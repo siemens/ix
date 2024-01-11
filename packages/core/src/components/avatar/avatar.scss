@@ -10,6 +10,7 @@
 @import 'common-variables';
 @import 'mixins/text-truncation';
 @import 'mixins/hover';
+@import './../button/button-mixin';
 
 :host {
   display: flex;
@@ -47,5 +48,20 @@
     #avatar-path-person {
       fill: var(--theme-color-4);
     }
+  }
+}
+
+:host(.avatar-button) {
+  button {
+    @include btn-base;
+    padding: 0px;
+
+    border-radius: 100px !important;
+  }
+
+  @include btn-base-variant('invisible-primary', false);
+
+  li {
+    transform: scale(0.8);
   }
 }

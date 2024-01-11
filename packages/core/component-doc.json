@@ -7,11 +7,11 @@
   },
   "components": [
     {
-      "dirPath": "./src/components/action-card",
-      "filePath": "./src/components/action-card/action-card.tsx",
+      "dirPath": "src/components/action-card",
+      "filePath": "src/components/action-card/action-card.tsx",
       "fileName": "action-card.tsx",
-      "readmePath": "./src/components/action-card/readme.md",
-      "usagesDir": "./src/components/action-card/usage",
+      "readmePath": "src/components/action-card/readme.md",
+      "usagesDir": "src/components/action-card/usage",
       "tag": "ix-action-card",
       "overview": "",
       "usage": {},
@@ -162,27 +162,173 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/application-header",
-      "filePath": "./src/components/application-header/application-header.tsx",
+      "dirPath": "src/components/application",
+      "filePath": "src/components/application/application.tsx",
+      "fileName": "application.tsx",
+      "readmePath": "src/components/application/readme.md",
+      "usagesDir": "src/components/application/usage",
+      "tag": "ix-application",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.1.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "appSwitchConfig",
+          "type": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string; i18nLoadingApps?: string; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Define application switch configuration",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string; i18nLoadingApps?: string; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "breakpoints",
+          "type": "(\"sm\" | \"md\" | \"lg\")[]",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Supported layouts",
+          "docsTags": [],
+          "default": "['sm', 'md', 'lg']",
+          "values": [
+            {
+              "type": "(\"sm\""
+            },
+            {
+              "value": "md",
+              "type": "string"
+            },
+            {
+              "type": "\"lg\")[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "forceBreakpoint",
+          "type": "\"lg\" | \"md\" | \"sm\"",
+          "mutable": false,
+          "attr": "force-breakpoint",
+          "reflectToAttr": false,
+          "docs": "Change the responsive layout of the menu structure",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "lg",
+              "type": "string"
+            },
+            {
+              "value": "md",
+              "type": "string"
+            },
+            {
+              "value": "sm",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "theme",
+          "type": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & {}",
+          "mutable": false,
+          "attr": "theme",
+          "reflectToAttr": false,
+          "docs": "Application theme",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "classic",
+              "type": "string"
+            },
+            {
+              "value": "classic-dark",
+              "type": "string"
+            },
+            {
+              "value": "classic-light",
+              "type": "string"
+            },
+            {
+              "type": "string & {}"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "themeSystemAppearance",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "theme-system-appearance",
+          "reflectToAttr": false,
+          "docs": "Use the system appearance dark or light",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/application-header",
+      "filePath": "src/components/application-header/application-header.tsx",
       "fileName": "application-header.tsx",
-      "readmePath": "./src/components/application-header/readme.md",
-      "usagesDir": "./src/components/application-header/usage",
+      "readmePath": "src/components/application-header/readme.md",
+      "usagesDir": "src/components/application-header/usage",
       "tag": "ix-application-header",
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "slot",
+          "text": "logo - Location of the Logo"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
         "ix-map-navigation"
       ],
       "dependencies": [
-        "ix-burger-menu"
+        "ix-burger-menu",
+        "ix-icon-button",
+        "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-application-header": [
-          "ix-burger-menu"
+          "ix-burger-menu",
+          "ix-icon-button",
+          "ix-dropdown"
         ],
         "ix-burger-menu": [
           "ix-icon-button",
@@ -219,16 +365,21 @@
       "methods": [],
       "events": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "logo",
+          "docs": "Location of the Logo"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
     {
-      "dirPath": "./src/components/avatar",
-      "filePath": "./src/components/avatar/avatar.tsx",
+      "dirPath": "src/components/avatar",
+      "filePath": "src/components/avatar/avatar.tsx",
       "fileName": "avatar.tsx",
-      "readmePath": "./src/components/avatar/readme.md",
-      "usagesDir": "./src/components/avatar/usage",
+      "readmePath": "src/components/avatar/readme.md",
+      "usagesDir": "src/components/avatar/usage",
       "tag": "ix-avatar",
       "overview": "",
       "usage": {},
@@ -243,8 +394,15 @@
       "dependents": [
         "ix-menu-avatar"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-dropdown",
+        "ix-spinner"
+      ],
       "dependencyGraph": {
+        "ix-avatar": [
+          "ix-dropdown",
+          "ix-spinner"
+        ],
         "ix-menu-avatar": [
           "ix-avatar"
         ]
@@ -291,16 +449,21 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/basic-navigation",
-      "filePath": "./src/components/basic-navigation/basic-navigation.tsx",
+      "dirPath": "src/components/basic-navigation",
+      "filePath": "src/components/basic-navigation/basic-navigation.tsx",
       "fileName": "basic-navigation.tsx",
-      "readmePath": "./src/components/basic-navigation/readme.md",
-      "usagesDir": "./src/components/basic-navigation/usage",
+      "readmePath": "src/components/basic-navigation/readme.md",
+      "usagesDir": "src/components/basic-navigation/usage",
       "tag": "ix-basic-navigation",
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "ix-basic-navigation is deprecated in favor of ix-application"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "my-component"
@@ -313,7 +476,9 @@
           "ix-application-header"
         ],
         "ix-application-header": [
-          "ix-burger-menu"
+          "ix-burger-menu",
+          "ix-icon-button",
+          "ix-dropdown"
         ],
         "ix-burger-menu": [
           "ix-icon-button",
@@ -326,6 +491,7 @@
           "ix-basic-navigation"
         ]
       },
+      "deprecation": "ix-basic-navigation is deprecated in favor of ix-application",
       "props": [
         {
           "name": "applicationName",
@@ -348,13 +514,8 @@
           "type": "(\"sm\" | \"md\" | \"lg\")[]",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Supported layouts",
-          "docsTags": [
-            {
-              "name": "example",
-              "text": "['sm', 'md']"
-            }
-          ],
+          "docs": "Supported layouts e.g ['sm', 'md']",
+          "docsTags": [],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
@@ -422,11 +583,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/blind",
-      "filePath": "./src/components/blind/blind.tsx",
+      "dirPath": "src/components/blind",
+      "filePath": "src/components/blind/blind.tsx",
       "fileName": "blind.tsx",
-      "readmePath": "./src/components/blind/readme.md",
-      "usagesDir": "./src/components/blind/usage",
+      "readmePath": "src/components/blind/readme.md",
+      "usagesDir": "src/components/blind/usage",
       "tag": "ix-blind",
       "overview": "",
       "usage": {},
@@ -596,11 +757,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/breadcrumb",
-      "filePath": "./src/components/breadcrumb/breadcrumb.tsx",
+      "dirPath": "src/components/breadcrumb",
+      "filePath": "src/components/breadcrumb/breadcrumb.tsx",
       "fileName": "breadcrumb.tsx",
-      "readmePath": "./src/components/breadcrumb/readme.md",
-      "usagesDir": "./src/components/breadcrumb/usage",
+      "readmePath": "src/components/breadcrumb/readme.md",
+      "usagesDir": "src/components/breadcrumb/usage",
       "tag": "ix-breadcrumb",
       "overview": "",
       "usage": {},
@@ -724,11 +885,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/breadcrumb-item",
-      "filePath": "./src/components/breadcrumb-item/breadcrumb-item.tsx",
+      "dirPath": "src/components/breadcrumb-item",
+      "filePath": "src/components/breadcrumb-item/breadcrumb-item.tsx",
       "fileName": "breadcrumb-item.tsx",
-      "readmePath": "./src/components/breadcrumb-item/readme.md",
-      "usagesDir": "./src/components/breadcrumb-item/usage",
+      "readmePath": "src/components/breadcrumb-item/readme.md",
+      "usagesDir": "src/components/breadcrumb-item/usage",
       "tag": "ix-breadcrumb-item",
       "overview": "",
       "usage": {},
@@ -791,11 +952,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/button",
-      "filePath": "./src/components/button/button.tsx",
+      "dirPath": "src/components/button",
+      "filePath": "src/components/button/button.tsx",
       "fileName": "button.tsx",
-      "readmePath": "./src/components/button/readme.md",
-      "usagesDir": "./src/components/button/usage",
+      "readmePath": "src/components/button/readme.md",
+      "usagesDir": "src/components/button/usage",
       "tag": "ix-button",
       "overview": "",
       "usage": {},
@@ -806,16 +967,13 @@
         "ix-card-list",
         "ix-date-dropdown",
         "ix-date-picker",
-        "ix-date-picker-rework",
         "ix-datetime-picker",
-        "ix-datetime-picker-rework",
         "ix-dropdown-button",
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-time-picker-rework",
         "ix-upload",
         "my-component"
       ],
@@ -835,13 +993,7 @@
         "ix-date-picker": [
           "ix-button"
         ],
-        "ix-date-picker-rework": [
-          "ix-button"
-        ],
         "ix-datetime-picker": [
-          "ix-button"
-        ],
-        "ix-datetime-picker-rework": [
           "ix-button"
         ],
         "ix-dropdown-button": [
@@ -860,9 +1012,6 @@
           "ix-button"
         ],
         "ix-time-picker": [
-          "ix-button"
-        ],
-        "ix-time-picker-rework": [
           "ix-button"
         ],
         "ix-upload": [
@@ -1015,11 +1164,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/card",
-      "filePath": "./src/components/card/card.tsx",
+      "dirPath": "src/components/card",
+      "filePath": "src/components/card/card.tsx",
       "fileName": "card.tsx",
-      "readmePath": "./src/components/card/readme.md",
-      "usagesDir": "./src/components/card/usage",
+      "readmePath": "src/components/card/readme.md",
+      "usagesDir": "src/components/card/usage",
       "tag": "ix-card",
       "overview": "",
       "usage": {},
@@ -1108,11 +1257,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/card-accordion",
-      "filePath": "./src/components/card-accordion/card-accordion.tsx",
+      "dirPath": "src/components/card-accordion",
+      "filePath": "src/components/card-accordion/card-accordion.tsx",
       "fileName": "card-accordion.tsx",
-      "readmePath": "./src/components/card-accordion/readme.md",
-      "usagesDir": "./src/components/card-accordion/usage",
+      "readmePath": "src/components/card-accordion/readme.md",
+      "usagesDir": "src/components/card-accordion/usage",
       "tag": "ix-card-accordion",
       "overview": "",
       "usage": {},
@@ -1165,11 +1314,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/card-content",
-      "filePath": "./src/components/card-content/card-content.tsx",
+      "dirPath": "src/components/card-content",
+      "filePath": "src/components/card-content/card-content.tsx",
       "fileName": "card-content.tsx",
-      "readmePath": "./src/components/card-content/readme.md",
-      "usagesDir": "./src/components/card-content/usage",
+      "readmePath": "src/components/card-content/readme.md",
+      "usagesDir": "src/components/card-content/usage",
       "tag": "ix-card-content",
       "overview": "",
       "usage": {},
@@ -1207,11 +1356,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/card-list",
-      "filePath": "./src/components/card-list/card-list.tsx",
+      "dirPath": "src/components/card-list",
+      "filePath": "src/components/card-list/card-list.tsx",
       "fileName": "card-list.tsx",
-      "readmePath": "./src/components/card-list/readme.md",
-      "usagesDir": "./src/components/card-list/usage",
+      "readmePath": "src/components/card-list/readme.md",
+      "usagesDir": "src/components/card-list/usage",
       "tag": "ix-card-list",
       "overview": "",
       "usage": {},
@@ -1413,11 +1562,11 @@
       ]
     },
     {
-      "dirPath": "./src/components/card-title",
-      "filePath": "./src/components/card-title/card-title.tsx",
+      "dirPath": "src/components/card-title",
+      "filePath": "src/components/card-title/card-title.tsx",
       "fileName": "card-title.tsx",
-      "readmePath": "./src/components/card-title/readme.md",
-      "usagesDir": "./src/components/card-title/usage",
+      "readmePath": "src/components/card-title/readme.md",
+      "usagesDir": "src/components/card-title/usage",
       "tag": "ix-card-title",
       "overview": "",
       "usage": {},
@@ -1456,11 +1605,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/category-filter",
-      "filePath": "./src/components/category-filter/category-filter.tsx",
+      "dirPath": "src/components/category-filter",
+      "filePath": "src/components/category-filter/category-filter.tsx",
       "fileName": "category-filter.tsx",
-      "readmePath": "./src/components/category-filter/readme.md",
-      "usagesDir": "./src/components/category-filter/usage",
+      "readmePath": "src/components/category-filter/readme.md",
+      "usagesDir": "src/components/category-filter/usage",
       "tag": "ix-category-filter",
       "overview": "",
       "usage": {},
@@ -1721,11 +1870,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/chip",
-      "filePath": "./src/components/chip/chip.tsx",
+      "dirPath": "src/components/chip",
+      "filePath": "src/components/chip/chip.tsx",
       "fileName": "chip.tsx",
-      "readmePath": "./src/components/chip/readme.md",
-      "usagesDir": "./src/components/chip/usage",
+      "readmePath": "src/components/chip/readme.md",
+      "usagesDir": "src/components/chip/usage",
       "tag": "ix-chip",
       "overview": "",
       "usage": {},
@@ -1779,6 +1928,22 @@
           "required": false
         },
         {
+          "name": "chipColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "chip-color",
+          "reflectToAttr": false,
+          "docs": "Custom font and icon color.\nOnly has an effect on chips with `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "closable",
           "type": "boolean",
           "mutable": false,
@@ -1802,7 +1967,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Custom font and icon color.\nOnly has an effect on chips with `variant='custom'`",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use `chip-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0 use `chip-color`",
           "values": [
             {
               "type": "string"
@@ -1914,11 +2085,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/col",
-      "filePath": "./src/components/col/col.tsx",
+      "dirPath": "src/components/col",
+      "filePath": "src/components/col/col.tsx",
       "fileName": "col.tsx",
-      "readmePath": "./src/components/col/readme.md",
-      "usagesDir": "./src/components/col/usage",
+      "readmePath": "src/components/col/readme.md",
+      "usagesDir": "src/components/col/usage",
       "tag": "ix-col",
       "overview": "",
       "usage": {},
@@ -1932,7 +2103,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker-rework",
+        "ix-datetime-picker",
         "ix-side-pane-group"
       ],
       "dependencies": [],
@@ -1940,7 +2111,7 @@
         "ix-date-dropdown": [
           "ix-col"
         ],
-        "ix-datetime-picker-rework": [
+        "ix-datetime-picker": [
           "ix-col"
         ],
         "ix-side-pane-group": [
@@ -2224,11 +2395,48 @@
       ]
     },
     {
-      "dirPath": "./src/components/content-header",
-      "filePath": "./src/components/content-header/content-header.tsx",
+      "dirPath": "src/components/content",
+      "filePath": "src/components/content/content.tsx",
+      "fileName": "content.tsx",
+      "readmePath": "src/components/content/readme.md",
+      "usagesDir": "src/components/content/usage",
+      "tag": "ix-content",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.1.0"
+        },
+        {
+          "name": "slot",
+          "text": "header - Display content at the top of the content page"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [
+        {
+          "name": "header",
+          "docs": "Display content at the top of the content page"
+        }
+      ],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/content-header",
+      "filePath": "src/components/content-header/content-header.tsx",
       "fileName": "content-header.tsx",
-      "readmePath": "./src/components/content-header/readme.md",
-      "usagesDir": "./src/components/content-header/usage",
+      "readmePath": "src/components/content-header/readme.md",
+      "usagesDir": "src/components/content-header/usage",
       "tag": "ix-content-header",
       "overview": "",
       "usage": {},
@@ -2341,11 +2549,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/date-dropdown",
-      "filePath": "./src/components/date-dropdown/date-dropdown.tsx",
+      "dirPath": "src/components/date-dropdown",
+      "filePath": "src/components/date-dropdown/date-dropdown.tsx",
       "fileName": "date-dropdown.tsx",
-      "readmePath": "./src/components/date-dropdown/readme.md",
-      "usagesDir": "./src/components/date-dropdown/usage",
+      "readmePath": "src/components/date-dropdown/readme.md",
+      "usagesDir": "src/components/date-dropdown/usage",
       "tag": "ix-date-dropdown",
       "overview": "",
       "usage": {},
@@ -2359,35 +2567,25 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-dropdown-button",
+        "ix-button",
         "ix-dropdown",
         "ix-layout-grid",
         "ix-row",
         "ix-col",
         "ix-dropdown-item",
-        "ix-date-picker",
-        "ix-button"
+        "ix-date-picker"
       ],
       "dependencyGraph": {
         "ix-date-dropdown": [
-          "ix-dropdown-button",
+          "ix-button",
           "ix-dropdown",
           "ix-layout-grid",
           "ix-row",
           "ix-col",
           "ix-dropdown-item",
-          "ix-date-picker",
-          "ix-button"
-        ],
-        "ix-dropdown-button": [
-          "ix-button",
-          "ix-icon-button",
-          "ix-dropdown"
+          "ix-date-picker"
         ],
         "ix-button": [
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
           "ix-spinner"
         ],
         "ix-date-picker": [
@@ -2395,6 +2593,9 @@
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
         ]
       },
       "props": [
@@ -2405,12 +2606,7 @@
           "attr": "custom-range-allowed",
           "reflectToAttr": false,
           "docs": "Controls whether the user is allowed to pick custom date ranges in the component.\nWhen set to 'true', the user can select a custom date range using the date picker.\nWhen set to 'false', only predefined time date ranges are available for selection.",
-          "docsTags": [
-            {
-              "name": "default",
-              "text": "''"
-            }
-          ],
+          "docsTags": [],
           "default": "true",
           "values": [
             {
@@ -2421,11 +2617,28 @@
           "required": false
         },
         {
+          "name": "dateRangeId",
+          "type": "string",
+          "mutable": false,
+          "attr": "date-range-id",
+          "reflectToAttr": false,
+          "docs": "Used to set the initial select date range as well as the button name,\nif not set or no according date range label is found, nothing will be selected",
+          "docsTags": [],
+          "default": "'custom'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "dateRangeOptions",
           "type": "DateDropdownOption[]",
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "An array of predefined date range options for the date picker.\nEach option is an object with a label describing the range and a function\nthat returns the start and end dates of the range as a DateRangeOption object.\n\nExample format:\n  {\n    label: 'No time limit',\n    getValue: (): DateRangeOption => {\n      // Calculate the date range here\n      return { from: undefined, to: today };\n    },\n  },\n  // ... other predefined date range options ...",
+          "docs": "An array of predefined date range options for the date picker.\nEach option is an object with a label describing the range and a function\nthat returns the start and end dates of the range as a DateRangeOption object.\n\nExample format:\n  {\n    id: 'some unique id',\n    label: 'Name of the range',\n    from: undefined, to: '2023/03/29'\n  },\n  // ... other predefined date range options ...",
           "docsTags": [],
           "default": "[]",
           "values": [
@@ -2444,7 +2657,7 @@
           "reflectToAttr": false,
           "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
           "docsTags": [],
-          "default": "'YYYY-MM-DD'",
+          "default": "'yyyy/LL/dd'",
           "values": [
             {
               "type": "string"
@@ -2461,7 +2674,6 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
           "docsTags": [],
-          "default": "null",
           "values": [
             {
               "type": "string"
@@ -2471,19 +2683,48 @@
           "required": false
         },
         {
-          "name": "initialSelectedDateRangeName",
+          "name": "i18nCustomItem",
           "type": "string",
           "mutable": false,
-          "attr": "initial-selected-date-range-name",
+          "attr": "i18n-custom-item",
           "reflectToAttr": false,
-          "docs": "Used to set the initial select date range as well as the button name,\nif not set or no according date range label is found, nothing will be selected",
-          "docsTags": [
+          "docs": "Text for custom dropdown item. Will be used for translation.",
+          "docsTags": [],
+          "default": "'Custom...'",
+          "values": [
             {
-              "name": "default",
-              "text": "''"
+              "type": "string"
             }
           ],
-          "default": "''",
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nDone",
+          "type": "string",
+          "mutable": false,
+          "attr": "i18n-done",
+          "reflectToAttr": false,
+          "docs": "Text for the done button. Will be used for translation.",
+          "docsTags": [],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nNoRange",
+          "type": "string",
+          "mutable": false,
+          "attr": "i18n-no-range",
+          "reflectToAttr": false,
+          "docs": "Text for the done button. Will be used for translation.",
+          "docsTags": [],
+          "default": "'No range set'",
           "values": [
             {
               "type": "string"
@@ -2549,7 +2790,6 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
           "docsTags": [],
-          "default": "null",
           "values": [
             {
               "type": "string"
@@ -2564,35 +2804,23 @@
           "name": "getDateRange",
           "returns": {
             "type": "Promise<DateRangeChangeEvent>",
-            "docs": "The selected date range."
+            "docs": ""
           },
           "signature": "getDateRange() => Promise<DateRangeChangeEvent>",
           "parameters": [],
           "docs": "Retrieves the currently selected date range from the component.\nThis method returns the selected date range as a `DateChangeEvent` object.",
-          "docsTags": [
-            {
-              "name": "returns",
-              "text": "The selected date range."
-            }
-          ]
+          "docsTags": []
         }
       ],
       "events": [
         {
           "event": "dateRangeChange",
-          "detail": "{ from: string; to: string; }",
+          "detail": "{ id: string; from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
           "docs": "EventEmitter for date range change events.\n\nThis event is emitted when the date range changes within the component.\nThe event payload contains information about the selected date range.",
-          "docsTags": [
-            {
-              "name": "event"
-            },
-            {
-              "name": "private"
-            }
-          ]
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -2601,11 +2829,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/date-picker",
-      "filePath": "./src/components/date-picker/date-picker.tsx",
+      "dirPath": "src/components/date-picker",
+      "filePath": "src/components/date-picker/date-picker.tsx",
       "fileName": "date-picker.tsx",
-      "readmePath": "./src/components/date-picker/readme.md",
-      "usagesDir": "./src/components/date-picker/usage",
+      "readmePath": "src/components/date-picker/readme.md",
+      "usagesDir": "src/components/date-picker/usage",
       "tag": "ix-date-picker",
       "overview": "",
       "usage": {},
@@ -2684,9 +2912,14 @@
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "Not used anymore see `this.dateChange`"
             }
           ],
           "default": "' - '",
+          "deprecation": "Not used anymore see `this.dateChange`",
           "values": [
             {
               "type": "string"
@@ -2718,14 +2951,35 @@
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
+          "docs": "The selected starting date. If the date-picker-rework is not in range mode this is the selected date.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
-          "default": "DateTime.now().toFormat(this.format)",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nDone",
+          "type": "string",
+          "mutable": false,
+          "attr": "i18n-done",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'Done'",
           "values": [
             {
               "type": "string"
@@ -2744,14 +2998,36 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Will be removed in 2.0.0"
+              "text": "Not supported since 2.0.0."
             }
           ],
           "default": "true",
-          "deprecation": "Will be removed in 2.0.0",
+          "deprecation": "Not supported since 2.0.0.",
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -2805,7 +3081,7 @@
           "mutable": false,
           "attr": "range",
           "reflectToAttr": false,
-          "docs": "If true a range of dates can be selected.",
+          "docs": "If true a date-range can be selected (from/to).",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -2822,14 +3098,18 @@
           "mutable": false,
           "attr": "text-select-date",
           "reflectToAttr": false,
-          "docs": "Text of date select button",
+          "docs": "Text of the button that confirms date selection.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0. Use `i18nDone`"
             }
           ],
-          "default": "'Done'",
+          "deprecation": "since 2.1.0. Use `i18nDone`",
           "values": [
             {
               "type": "string"
@@ -2844,17 +3124,38 @@
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
+          "docs": "The selected end date. If the the date-picker-rework is not in range mode this property has no impact.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
-          "default": "null",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -2865,30 +3166,29 @@
         {
           "name": "getCurrentDate",
           "returns": {
-            "type": "Promise<{ start: string; end: string; }>",
+            "type": "Promise<{ from: string; to: string; }>",
             "docs": ""
           },
-          "signature": "getCurrentDate() => Promise<{ start: string; end: string; }>",
+          "signature": "getCurrentDate() => Promise<{ from: string; to: string; }>",
           "parameters": [],
-          "docs": "Get the current DateTime",
+          "docs": "Get the currently selected date-range.",
           "docsTags": []
         }
       ],
       "events": [
         {
           "event": "dateChange",
-          "detail": "string | { from: string; to: string; }",
+          "detail": "{ from: string; to: string; }",
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date change event\n\nIf datepicker is in range mode the event detail will be sperated with a `-` e.g.\n`2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`.",
+          "docs": "Triggers if the date selection changes.\nNote: Since 2.0.0 `dateChange` does not dispatch detail property as `string`",
           "docsTags": [
             {
-              "name": "deprecated",
-              "text": "String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string"
+              "name": "since",
+              "text": "2.1.0"
             }
-          ],
-          "deprecation": "String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string"
+          ]
         },
         {
           "event": "dateRangeChange",
@@ -2896,11 +3196,11 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date range change.\nOnly triggered if datepicker is in range mode",
+          "docs": "Triggers if the date selection changes.\nOnly triggered if date-picker-rework is in range mode.",
           "docsTags": [
             {
               "name": "since",
-              "text": "1.1.0"
+              "text": "2.1.0"
             }
           ]
         },
@@ -2928,10 +3228,10 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Will be removed in 2.0.0. Use `dateSelect`"
+              "text": "NOT getting dispatched after 2.0.0. Use `dateSelect`."
             }
           ],
-          "deprecation": "Will be removed in 2.0.0. Use `dateSelect`"
+          "deprecation": "NOT getting dispatched after 2.0.0. Use `dateSelect`."
         }
       ],
       "styles": [],
@@ -2940,11 +3240,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/datetime-picker",
-      "filePath": "./src/components/datetime-picker/datetime-picker.tsx",
+      "dirPath": "src/components/datetime-picker",
+      "filePath": "src/components/datetime-picker/datetime-picker.tsx",
       "fileName": "datetime-picker.tsx",
-      "readmePath": "./src/components/datetime-picker/readme.md",
-      "usagesDir": "./src/components/datetime-picker/usage",
+      "readmePath": "src/components/datetime-picker/readme.md",
+      "usagesDir": "src/components/datetime-picker/usage",
       "tag": "ix-datetime-picker",
       "overview": "",
       "usage": {},
@@ -2953,12 +3253,18 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
+        "ix-layout-grid",
+        "ix-row",
+        "ix-col",
         "ix-date-picker",
         "ix-time-picker",
         "ix-button"
       ],
       "dependencyGraph": {
         "ix-datetime-picker": [
+          "ix-layout-grid",
+          "ix-row",
+          "ix-col",
           "ix-date-picker",
           "ix-time-picker",
           "ix-button"
@@ -2989,7 +3295,7 @@
           "mutable": false,
           "attr": "date-format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
+          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
           "docsTags": [
             {
               "name": "since",
@@ -3016,9 +3322,14 @@
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "Not used anymore see `done` event"
             }
           ],
           "default": "' - '",
+          "deprecation": "Not used anymore see `done` event",
           "values": [
             {
               "type": "string"
@@ -3033,13 +3344,57 @@
           "mutable": false,
           "attr": "from",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the start date.\n\nFormat is based on `format`",
+          "docs": "The selected starting date. If the picker is not in range mode this is the selected date.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "i18nDone",
+          "type": "string",
+          "mutable": false,
+          "attr": "i18n-done",
+          "reflectToAttr": false,
+          "docs": "Text of date select button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'Done'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "undefined",
           "values": [
             {
               "type": "string"
@@ -3096,7 +3451,7 @@
           "mutable": false,
           "attr": "range",
           "reflectToAttr": false,
-          "docs": "Set range size",
+          "docs": "If true a date-range can be selected (from/to).",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -3115,7 +3470,7 @@
           "reflectToAttr": false,
           "docs": "Show hour input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -3132,7 +3487,7 @@
           "reflectToAttr": false,
           "docs": "Show minutes input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -3149,7 +3504,7 @@
           "reflectToAttr": false,
           "docs": "Show seconds input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -3191,9 +3546,13 @@
             {
               "name": "since",
               "text": "1.1.0"
+            },
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0. Use `i18nDone`"
             }
           ],
-          "default": "'Done'",
+          "deprecation": "since 2.1.0. Use `i18nDone`",
           "values": [
             {
               "type": "string"
@@ -3229,14 +3588,14 @@
           "mutable": false,
           "attr": "time-format",
           "reflectToAttr": false,
-          "docs": "Time format string.\nSee @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.",
+          "docs": "Time format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
-          "default": "'TT'",
+          "default": "'HH:mm:ss'",
           "values": [
             {
               "type": "string"
@@ -3272,17 +3631,38 @@
           "mutable": false,
           "attr": "to",
           "reflectToAttr": false,
-          "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
+          "docs": "The selected end date. If the the picker is not in range mode this property has no impact.\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
               "text": "1.1.0"
             }
           ],
-          "default": "null",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -3311,7 +3691,7 @@
           "bubbles": true,
           "cancelable": true,
           "composed": true,
-          "docs": "Date selection event is fired after confirm button is pressend",
+          "docs": "Datetime selection event is fired after confirm button is pressed",
           "docsTags": [
             {
               "name": "since",
@@ -3326,7 +3706,13 @@
           "cancelable": true,
           "composed": true,
           "docs": "Done event\n\nSet `doneEventDelimiter` to null or undefine to get the typed event",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Use `this.dateChange`"
+            }
+          ],
+          "deprecation": "Use `this.dateChange`"
         },
         {
           "event": "timeChange",
@@ -3349,11 +3735,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/divider",
-      "filePath": "./src/components/divider/divider.tsx",
+      "dirPath": "src/components/divider",
+      "filePath": "src/components/divider/divider.tsx",
       "fileName": "divider.tsx",
-      "readmePath": "./src/components/divider/readme.md",
-      "usagesDir": "./src/components/divider/usage",
+      "readmePath": "src/components/divider/readme.md",
+      "usagesDir": "src/components/divider/usage",
       "tag": "ix-divider",
       "overview": "",
       "usage": {},
@@ -3383,11 +3769,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/drawer",
-      "filePath": "./src/components/drawer/drawer.tsx",
+      "dirPath": "src/components/drawer",
+      "filePath": "src/components/drawer/drawer.tsx",
       "fileName": "drawer.tsx",
-      "readmePath": "./src/components/drawer/readme.md",
-      "usagesDir": "./src/components/drawer/usage",
+      "readmePath": "src/components/drawer/readme.md",
+      "usagesDir": "src/components/drawer/usage",
       "tag": "ix-drawer",
       "overview": "",
       "usage": {},
@@ -3558,11 +3944,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/dropdown",
-      "filePath": "./src/components/dropdown/dropdown.tsx",
+      "dirPath": "src/components/dropdown",
+      "filePath": "src/components/dropdown/dropdown.tsx",
       "fileName": "dropdown.tsx",
-      "readmePath": "./src/components/dropdown/readme.md",
-      "usagesDir": "./src/components/dropdown/usage",
+      "readmePath": "src/components/dropdown/readme.md",
+      "usagesDir": "src/components/dropdown/usage",
       "tag": "ix-dropdown",
       "overview": "",
       "usage": {},
@@ -3570,11 +3956,12 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-application-header",
+        "ix-avatar",
         "ix-breadcrumb",
         "ix-category-filter",
         "ix-date-dropdown",
         "ix-date-picker",
-        "ix-date-picker-rework",
         "ix-dropdown-button",
         "ix-menu-avatar",
         "ix-menu-category",
@@ -3583,6 +3970,12 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-application-header": [
+          "ix-dropdown"
+        ],
+        "ix-avatar": [
+          "ix-dropdown"
+        ],
         "ix-breadcrumb": [
           "ix-dropdown"
         ],
@@ -3593,9 +3986,6 @@
           "ix-dropdown"
         ],
         "ix-date-picker": [
-          "ix-dropdown"
-        ],
-        "ix-date-picker-rework": [
           "ix-dropdown"
         ],
         "ix-dropdown-button": [
@@ -3788,7 +4178,7 @@
         },
         {
           "name": "trigger",
-          "type": "HTMLElement | string",
+          "type": "HTMLElement | Promise<HTMLElement> | string",
           "mutable": false,
           "attr": "trigger",
           "reflectToAttr": false,
@@ -3797,6 +4187,9 @@
           "values": [
             {
               "type": "HTMLElement"
+            },
+            {
+              "type": "Promise<HTMLElement>"
             },
             {
               "type": "string"
@@ -3836,11 +4229,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/dropdown-button",
-      "filePath": "./src/components/dropdown-button/dropdown-button.tsx",
+      "dirPath": "src/components/dropdown-button",
+      "filePath": "src/components/dropdown-button/dropdown-button.tsx",
       "fileName": "dropdown-button.tsx",
-      "readmePath": "./src/components/dropdown-button/readme.md",
-      "usagesDir": "./src/components/dropdown-button/usage",
+      "readmePath": "src/components/dropdown-button/readme.md",
+      "usagesDir": "src/components/dropdown-button/usage",
       "tag": "ix-dropdown-button",
       "readme": "# ix-dropdown-button\n\n\n",
       "overview": "",
@@ -3853,9 +4246,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-date-dropdown"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-button",
         "ix-icon-button",
@@ -3872,12 +4263,43 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-date-dropdown": [
-          "ix-dropdown-button"
         ]
       },
       "props": [
+        {
+          "name": "closeBehavior",
+          "type": "\"both\" | \"inside\" | \"outside\" | boolean",
+          "mutable": false,
+          "attr": "close-behavior",
+          "reflectToAttr": false,
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'both'",
+          "values": [
+            {
+              "value": "both",
+              "type": "string"
+            },
+            {
+              "value": "inside",
+              "type": "string"
+            },
+            {
+              "value": "outside",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "disabled",
           "type": "boolean",
@@ -4042,11 +4464,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/dropdown-header",
-      "filePath": "./src/components/dropdown-header/dropdown-header.tsx",
+      "dirPath": "src/components/dropdown-header",
+      "filePath": "src/components/dropdown-header/dropdown-header.tsx",
       "fileName": "dropdown-header.tsx",
-      "readmePath": "./src/components/dropdown-header/readme.md",
-      "usagesDir": "./src/components/dropdown-header/usage",
+      "readmePath": "src/components/dropdown-header/readme.md",
+      "usagesDir": "src/components/dropdown-header/usage",
       "tag": "ix-dropdown-header",
       "overview": "",
       "usage": {},
@@ -4093,11 +4515,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/dropdown-item",
-      "filePath": "./src/components/dropdown-item/dropdown-item.tsx",
+      "dirPath": "src/components/dropdown-item",
+      "filePath": "src/components/dropdown-item/dropdown-item.tsx",
       "fileName": "dropdown-item.tsx",
-      "readmePath": "./src/components/dropdown-item/readme.md",
-      "usagesDir": "./src/components/dropdown-item/usage",
+      "readmePath": "src/components/dropdown-item/readme.md",
+      "usagesDir": "src/components/dropdown-item/usage",
       "tag": "ix-dropdown-item",
       "overview": "",
       "usage": {},
@@ -4242,11 +4664,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/dropdown-quick-actions",
-      "filePath": "./src/components/dropdown-quick-actions/dropdown-quick-actions.tsx",
+      "dirPath": "src/components/dropdown-quick-actions",
+      "filePath": "src/components/dropdown-quick-actions/dropdown-quick-actions.tsx",
       "fileName": "dropdown-quick-actions.tsx",
-      "readmePath": "./src/components/dropdown-quick-actions/readme.md",
-      "usagesDir": "./src/components/dropdown-quick-actions/usage",
+      "readmePath": "src/components/dropdown-quick-actions/readme.md",
+      "usagesDir": "src/components/dropdown-quick-actions/usage",
       "tag": "ix-dropdown-quick-actions",
       "overview": "",
       "usage": {},
@@ -4270,11 +4692,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/empty-state",
-      "filePath": "./src/components/empty-state/empty-state.tsx",
+      "dirPath": "src/components/empty-state",
+      "filePath": "src/components/empty-state/empty-state.tsx",
       "fileName": "empty-state.tsx",
-      "readmePath": "./src/components/empty-state/readme.md",
-      "usagesDir": "./src/components/empty-state/usage",
+      "readmePath": "src/components/empty-state/readme.md",
+      "usagesDir": "src/components/empty-state/usage",
       "tag": "ix-empty-state",
       "overview": "",
       "usage": {},
@@ -4410,11 +4832,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/event-list",
-      "filePath": "./src/components/event-list/event-list.tsx",
+      "dirPath": "src/components/event-list",
+      "filePath": "src/components/event-list/event-list.tsx",
       "fileName": "event-list.tsx",
-      "readmePath": "./src/components/event-list/readme.md",
-      "usagesDir": "./src/components/event-list/usage",
+      "readmePath": "src/components/event-list/readme.md",
+      "usagesDir": "src/components/event-list/usage",
       "tag": "ix-event-list",
       "overview": "",
       "usage": {},
@@ -4509,11 +4931,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/event-list-item",
-      "filePath": "./src/components/event-list-item/event-list-item.tsx",
+      "dirPath": "src/components/event-list-item",
+      "filePath": "src/components/event-list-item/event-list-item.tsx",
       "fileName": "event-list-item.tsx",
-      "readmePath": "./src/components/event-list-item/readme.md",
-      "usagesDir": "./src/components/event-list-item/usage",
+      "readmePath": "src/components/event-list-item/readme.md",
+      "usagesDir": "src/components/event-list-item/usage",
       "tag": "ix-event-list-item",
       "overview": "",
       "usage": {},
@@ -4549,10 +4971,15 @@
           "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
           "docsTags": [
             {
-              "name": "see",
+              "name": "link",
               "text": "https://ix.siemens.io/docs/theming/colors/"
+            },
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use `item-color`"
             }
           ],
+          "deprecation": "since 2.1.0 use `item-color`",
           "values": [
             {
               "type": "string"
@@ -4572,6 +4999,27 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "itemColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "item-color",
+          "reflectToAttr": false,
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
+          "docsTags": [
+            {
+              "name": "link",
+              "text": "https://ix.siemens.io/docs/theming/colors/"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -4618,11 +5066,11 @@
       ]
     },
     {
-      "dirPath": "./src/components/expanding-search",
-      "filePath": "./src/components/expanding-search/expanding-search.tsx",
+      "dirPath": "src/components/expanding-search",
+      "filePath": "src/components/expanding-search/expanding-search.tsx",
       "fileName": "expanding-search.tsx",
-      "readmePath": "./src/components/expanding-search/readme.md",
-      "usagesDir": "./src/components/expanding-search/usage",
+      "readmePath": "src/components/expanding-search/readme.md",
+      "usagesDir": "src/components/expanding-search/usage",
       "tag": "ix-expanding-search",
       "overview": "",
       "usage": {},
@@ -4734,11 +5182,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/filter-chip",
-      "filePath": "./src/components/filter-chip/filter-chip.tsx",
+      "dirPath": "src/components/filter-chip",
+      "filePath": "src/components/filter-chip/filter-chip.tsx",
       "fileName": "filter-chip.tsx",
-      "readmePath": "./src/components/filter-chip/readme.md",
-      "usagesDir": "./src/components/filter-chip/usage",
+      "readmePath": "src/components/filter-chip/readme.md",
+      "usagesDir": "src/components/filter-chip/usage",
       "tag": "ix-filter-chip",
       "overview": "",
       "usage": {},
@@ -4825,11 +5273,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/flip-tile",
-      "filePath": "./src/components/flip-tile/flip-tile.tsx",
+      "dirPath": "src/components/flip-tile",
+      "filePath": "src/components/flip-tile/flip-tile.tsx",
       "fileName": "flip-tile.tsx",
-      "readmePath": "./src/components/flip-tile/readme.md",
-      "usagesDir": "./src/components/flip-tile/usage",
+      "readmePath": "src/components/flip-tile/readme.md",
+      "usagesDir": "src/components/flip-tile/usage",
       "tag": "ix-flip-tile",
       "overview": "",
       "usage": {},
@@ -4938,11 +5386,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/flip-tile-content",
-      "filePath": "./src/components/flip-tile-content/flip-tile-content.tsx",
+      "dirPath": "src/components/flip-tile-content",
+      "filePath": "src/components/flip-tile-content/flip-tile-content.tsx",
       "fileName": "flip-tile-content.tsx",
-      "readmePath": "./src/components/flip-tile-content/readme.md",
-      "usagesDir": "./src/components/flip-tile-content/usage",
+      "readmePath": "src/components/flip-tile-content/readme.md",
+      "usagesDir": "src/components/flip-tile-content/usage",
       "tag": "ix-flip-tile-content",
       "overview": "",
       "usage": {},
@@ -4961,11 +5409,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/form-field",
-      "filePath": "./src/components/form-field/form-field.tsx",
+      "dirPath": "src/components/form-field",
+      "filePath": "src/components/form-field/form-field.tsx",
       "fileName": "form-field.tsx",
-      "readmePath": "./src/components/form-field/readme.md",
-      "usagesDir": "./src/components/form-field/usage",
+      "readmePath": "src/components/form-field/readme.md",
+      "usagesDir": "src/components/form-field/usage",
       "tag": "ix-form-field",
       "overview": "",
       "usage": {},
@@ -5001,11 +5449,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/group",
-      "filePath": "./src/components/group/group.tsx",
+      "dirPath": "src/components/group",
+      "filePath": "src/components/group/group.tsx",
       "fileName": "group.tsx",
-      "readmePath": "./src/components/group/readme.md",
-      "usagesDir": "./src/components/group/usage",
+      "readmePath": "src/components/group/readme.md",
+      "usagesDir": "src/components/group/usage",
       "tag": "ix-group",
       "overview": "",
       "usage": {},
@@ -5182,11 +5630,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/group",
-      "filePath": "./src/components/group/group-context-menu.tsx",
+      "dirPath": "src/components/group",
+      "filePath": "src/components/group/group-context-menu.tsx",
       "fileName": "group-context-menu.tsx",
-      "readmePath": "./src/components/group/readme.md",
-      "usagesDir": "./src/components/group/usage",
+      "readmePath": "src/components/group/readme.md",
+      "usagesDir": "src/components/group/usage",
       "tag": "ix-group-context-menu",
       "overview": "",
       "usage": {},
@@ -5219,11 +5667,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/group-item",
-      "filePath": "./src/components/group-item/group-item.tsx",
+      "dirPath": "src/components/group-item",
+      "filePath": "src/components/group-item/group-item.tsx",
       "fileName": "group-item.tsx",
-      "readmePath": "./src/components/group-item/readme.md",
-      "usagesDir": "./src/components/group-item/usage",
+      "readmePath": "src/components/group-item/readme.md",
+      "usagesDir": "src/components/group-item/usage",
       "tag": "ix-group-item",
       "overview": "",
       "usage": {},
@@ -5379,11 +5827,11 @@
       ]
     },
     {
-      "dirPath": "./src/components/icon-button",
-      "filePath": "./src/components/icon-button/icon-button.tsx",
+      "dirPath": "src/components/icon-button",
+      "filePath": "src/components/icon-button/icon-button.tsx",
       "fileName": "icon-button.tsx",
-      "readmePath": "./src/components/icon-button/readme.md",
-      "usagesDir": "./src/components/icon-button/usage",
+      "readmePath": "src/components/icon-button/readme.md",
+      "usagesDir": "src/components/icon-button/usage",
       "tag": "ix-icon-button",
       "overview": "",
       "usage": {},
@@ -5391,13 +5839,13 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-application-header",
         "ix-burger-menu",
         "ix-card-list",
         "ix-category-filter",
         "ix-chip",
         "ix-content-header",
         "ix-date-picker",
-        "ix-date-picker-rework",
         "ix-drawer",
         "ix-dropdown-button",
         "ix-expanding-search",
@@ -5406,6 +5854,7 @@
         "ix-group-context-menu",
         "ix-map-navigation",
         "ix-map-navigation-overlay",
+        "ix-menu",
         "ix-menu-about",
         "ix-menu-about-news",
         "ix-menu-settings",
@@ -5417,7 +5866,6 @@
         "ix-side-pane",
         "ix-split-button",
         "ix-time-picker",
-        "ix-time-picker-rework",
         "ix-toast"
       ],
       "dependencies": [
@@ -5426,6 +5874,9 @@
       "dependencyGraph": {
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-application-header": [
+          "ix-icon-button"
         ],
         "ix-burger-menu": [
           "ix-icon-button"
@@ -5443,9 +5894,6 @@
           "ix-icon-button"
         ],
         "ix-date-picker": [
-          "ix-icon-button"
-        ],
-        "ix-date-picker-rework": [
           "ix-icon-button"
         ],
         "ix-drawer": [
@@ -5470,6 +5918,9 @@
           "ix-icon-button"
         ],
         "ix-map-navigation-overlay": [
+          "ix-icon-button"
+        ],
+        "ix-menu": [
           "ix-icon-button"
         ],
         "ix-menu-about": [
@@ -5505,9 +5956,6 @@
         "ix-time-picker": [
           "ix-icon-button"
         ],
-        "ix-time-picker-rework": [
-          "ix-icon-button"
-        ],
         "ix-toast": [
           "ix-icon-button"
         ]
@@ -5541,7 +5989,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Color of icon in  button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use `icon-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0 use `icon-color`",
           "values": [
             {
               "type": "string"
@@ -5590,6 +6044,22 @@
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Icon name",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "iconColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon-color",
+          "reflectToAttr": false,
+          "docs": "Color of icon in  button",
           "docsTags": [],
           "values": [
             {
@@ -5742,11 +6212,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/icon-toggle-button",
-      "filePath": "./src/components/icon-toggle-button/icon-toggle-button.tsx",
+      "dirPath": "src/components/icon-toggle-button",
+      "filePath": "src/components/icon-toggle-button/icon-toggle-button.tsx",
       "fileName": "icon-toggle-button.tsx",
-      "readmePath": "./src/components/icon-toggle-button/readme.md",
-      "usagesDir": "./src/components/icon-toggle-button/usage",
+      "readmePath": "src/components/icon-toggle-button/readme.md",
+      "usagesDir": "src/components/icon-toggle-button/usage",
       "tag": "ix-icon-toggle-button",
       "overview": "",
       "usage": {},
@@ -5936,11 +6406,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/input-group",
-      "filePath": "./src/components/input-group/input-group.tsx",
+      "dirPath": "src/components/input-group",
+      "filePath": "src/components/input-group/input-group.tsx",
       "fileName": "input-group.tsx",
-      "readmePath": "./src/components/input-group/readme.md",
-      "usagesDir": "./src/components/input-group/usage",
+      "readmePath": "src/components/input-group/readme.md",
+      "usagesDir": "src/components/input-group/usage",
       "tag": "ix-input-group",
       "overview": "",
       "usage": {},
@@ -5959,11 +6429,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/key-value",
-      "filePath": "./src/components/key-value/key-value.tsx",
+      "dirPath": "src/components/key-value",
+      "filePath": "src/components/key-value/key-value.tsx",
       "fileName": "key-value.tsx",
-      "readmePath": "./src/components/key-value/readme.md",
-      "usagesDir": "./src/components/key-value/usage",
+      "readmePath": "src/components/key-value/readme.md",
+      "usagesDir": "src/components/key-value/usage",
       "tag": "ix-key-value",
       "overview": "",
       "usage": {},
@@ -6067,11 +6537,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/key-value-list",
-      "filePath": "./src/components/key-value-list/key-value-list.tsx",
+      "dirPath": "src/components/key-value-list",
+      "filePath": "src/components/key-value-list/key-value-list.tsx",
       "fileName": "key-value-list.tsx",
-      "readmePath": "./src/components/key-value-list/readme.md",
-      "usagesDir": "./src/components/key-value-list/usage",
+      "readmePath": "src/components/key-value-list/readme.md",
+      "usagesDir": "src/components/key-value-list/usage",
       "tag": "ix-key-value-list",
       "overview": "",
       "usage": {},
@@ -6112,11 +6582,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/kpi",
-      "filePath": "./src/components/kpi/kpi.tsx",
+      "dirPath": "src/components/kpi",
+      "filePath": "src/components/kpi/kpi.tsx",
       "fileName": "kpi.tsx",
-      "readmePath": "./src/components/kpi/readme.md",
-      "usagesDir": "./src/components/kpi/usage",
+      "readmePath": "src/components/kpi/readme.md",
+      "usagesDir": "src/components/kpi/usage",
       "tag": "ix-kpi",
       "overview": "",
       "usage": {},
@@ -6235,11 +6705,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/grid",
-      "filePath": "./src/components/grid/layout-grid.tsx",
+      "dirPath": "src/components/grid",
+      "filePath": "src/components/grid/layout-grid.tsx",
       "fileName": "layout-grid.tsx",
-      "readmePath": "./src/components/grid/readme.md",
-      "usagesDir": "./src/components/grid/usage",
+      "readmePath": "src/components/grid/readme.md",
+      "usagesDir": "src/components/grid/usage",
       "tag": "ix-layout-grid",
       "overview": "",
       "usage": {},
@@ -6253,14 +6723,14 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker-rework"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-date-dropdown": [
           "ix-layout-grid"
         ],
-        "ix-datetime-picker-rework": [
+        "ix-datetime-picker": [
           "ix-layout-grid"
         ]
       },
@@ -6338,11 +6808,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/link-button",
-      "filePath": "./src/components/link-button/link-button.tsx",
+      "dirPath": "src/components/link-button",
+      "filePath": "src/components/link-button/link-button.tsx",
       "fileName": "link-button.tsx",
-      "readmePath": "./src/components/link-button/readme.md",
-      "usagesDir": "./src/components/link-button/usage",
+      "readmePath": "src/components/link-button/readme.md",
+      "usagesDir": "src/components/link-button/usage",
       "tag": "ix-link-button",
       "overview": "",
       "usage": {},
@@ -6430,16 +6900,21 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/map-navigation",
-      "filePath": "./src/components/map-navigation/map-navigation.tsx",
+      "dirPath": "src/components/map-navigation",
+      "filePath": "src/components/map-navigation/map-navigation.tsx",
       "fileName": "map-navigation.tsx",
-      "readmePath": "./src/components/map-navigation/readme.md",
-      "usagesDir": "./src/components/map-navigation/usage",
+      "readmePath": "src/components/map-navigation/readme.md",
+      "usagesDir": "src/components/map-navigation/usage",
       "tag": "ix-map-navigation",
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "ix-map-navigation is deprecated in favor of ix-application"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -6460,13 +6935,16 @@
           "ix-spinner"
         ],
         "ix-application-header": [
-          "ix-burger-menu"
+          "ix-burger-menu",
+          "ix-icon-button",
+          "ix-dropdown"
         ],
         "ix-burger-menu": [
           "ix-icon-button",
           "ix-spinner"
         ]
       },
+      "deprecation": "ix-map-navigation is deprecated in favor of ix-application",
       "props": [
         {
           "name": "applicationName",
@@ -6616,16 +7094,21 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/map-navigation-overlay",
-      "filePath": "./src/components/map-navigation-overlay/map-navigation-overlay.tsx",
+      "dirPath": "src/components/map-navigation-overlay",
+      "filePath": "src/components/map-navigation-overlay/map-navigation-overlay.tsx",
       "fileName": "map-navigation-overlay.tsx",
-      "readmePath": "./src/components/map-navigation-overlay/readme.md",
-      "usagesDir": "./src/components/map-navigation-overlay/usage",
+      "readmePath": "src/components/map-navigation-overlay/readme.md",
+      "usagesDir": "src/components/map-navigation-overlay/usage",
       "tag": "ix-map-navigation-overlay",
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "since 2.1.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-map-navigation"
@@ -6644,6 +7127,7 @@
           "ix-map-navigation-overlay"
         ]
       },
+      "deprecation": "since 2.1.0",
       "props": [
         {
           "name": "color",
@@ -6652,7 +7136,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Color of icon",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0. Use `icon-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0. Use `icon-color`",
           "values": [
             {
               "type": "string"
@@ -6668,6 +7158,22 @@
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Icon of overlay",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "iconColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "icon-color",
+          "reflectToAttr": false,
+          "docs": "Color of icon",
           "docsTags": [],
           "values": [
             {
@@ -6712,11 +7218,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/menu",
-      "filePath": "./src/components/menu/menu.tsx",
+      "dirPath": "src/components/menu",
+      "filePath": "src/components/menu/menu.tsx",
       "fileName": "menu.tsx",
-      "readmePath": "./src/components/menu/readme.md",
-      "usagesDir": "./src/components/menu/usage",
+      "readmePath": "src/components/menu/readme.md",
+      "usagesDir": "src/components/menu/usage",
       "tag": "ix-menu",
       "overview": "",
       "usage": {},
@@ -6728,11 +7234,13 @@
       ],
       "dependencies": [
         "ix-burger-menu",
+        "ix-icon-button",
         "ix-menu-item"
       ],
       "dependencyGraph": {
         "ix-menu": [
           "ix-burger-menu",
+          "ix-icon-button",
           "ix-menu-item"
         ],
         "ix-burger-menu": [
@@ -7129,11 +7637,11 @@
       ]
     },
     {
-      "dirPath": "./src/components/menu-about",
-      "filePath": "./src/components/menu-about/menu-about.tsx",
+      "dirPath": "src/components/menu-about",
+      "filePath": "src/components/menu-about/menu-about.tsx",
       "fileName": "menu-about.tsx",
-      "readmePath": "./src/components/menu-about/readme.md",
-      "usagesDir": "./src/components/menu-about/usage",
+      "readmePath": "src/components/menu-about/readme.md",
+      "usagesDir": "src/components/menu-about/usage",
       "tag": "ix-menu-about",
       "overview": "",
       "usage": {},
@@ -7226,11 +7734,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/menu-about-item",
-      "filePath": "./src/components/menu-about-item/menu-about-item.tsx",
+      "dirPath": "src/components/menu-about-item",
+      "filePath": "src/components/menu-about-item/menu-about-item.tsx",
       "fileName": "menu-about-item.tsx",
-      "readmePath": "./src/components/menu-about-item/readme.md",
-      "usagesDir": "./src/components/menu-about-item/usage",
+      "readmePath": "src/components/menu-about-item/readme.md",
+      "usagesDir": "src/components/menu-about-item/usage",
       "tag": "ix-menu-about-item",
       "overview": "",
       "usage": {},
@@ -7266,11 +7774,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/menu-about-news",
-      "filePath": "./src/components/menu-about-news/menu-about-news.tsx",
+      "dirPath": "src/components/menu-about-news",
+      "filePath": "src/components/menu-about-news/menu-about-news.tsx",
       "fileName": "menu-about-news.tsx",
-      "readmePath": "./src/components/menu-about-news/readme.md",
-      "usagesDir": "./src/components/menu-about-news/usage",
+      "readmePath": "src/components/menu-about-news/readme.md",
+      "usagesDir": "src/components/menu-about-news/usage",
       "tag": "ix-menu-about-news",
       "overview": "",
       "usage": {},
@@ -7425,16 +7933,21 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/menu-avatar",
-      "filePath": "./src/components/menu-avatar/menu-avatar.tsx",
+      "dirPath": "src/components/menu-avatar",
+      "filePath": "src/components/menu-avatar/menu-avatar.tsx",
       "fileName": "menu-avatar.tsx",
-      "readmePath": "./src/components/menu-avatar/readme.md",
-      "usagesDir": "./src/components/menu-avatar/usage",
+      "readmePath": "src/components/menu-avatar/readme.md",
+      "usagesDir": "src/components/menu-avatar/usage",
       "tag": "ix-menu-avatar",
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "Use ix-application-header and it's avatar functionality instead"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -7448,10 +7961,15 @@
           "ix-dropdown",
           "ix-menu-avatar-item"
         ],
+        "ix-avatar": [
+          "ix-dropdown",
+          "ix-spinner"
+        ],
         "ix-menu-avatar-item": [
           "ix-dropdown-item"
         ]
       },
+      "deprecation": "Use ix-application-header and it's avatar functionality instead",
       "props": [
         {
           "name": "bottom",
@@ -7585,16 +8103,21 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/menu-avatar-item",
-      "filePath": "./src/components/menu-avatar-item/menu-avatar-item.tsx",
+      "dirPath": "src/components/menu-avatar-item",
+      "filePath": "src/components/menu-avatar-item/menu-avatar-item.tsx",
       "fileName": "menu-avatar-item.tsx",
-      "readmePath": "./src/components/menu-avatar-item/readme.md",
-      "usagesDir": "./src/components/menu-avatar-item/usage",
+      "readmePath": "src/components/menu-avatar-item/readme.md",
+      "usagesDir": "src/components/menu-avatar-item/usage",
       "tag": "ix-menu-avatar-item",
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "deprecated",
+          "text": "Use ix-application-header and it's  avatar functionality instead"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-avatar"
@@ -7610,6 +8133,7 @@
           "ix-menu-avatar-item"
         ]
       },
+      "deprecation": "Use ix-application-header and it's  avatar functionality instead",
       "props": [
         {
           "name": "icon",
@@ -7662,11 +8186,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/menu-category",
-      "filePath": "./src/components/menu-category/menu-category.tsx",
+      "dirPath": "src/components/menu-category",
+      "filePath": "src/components/menu-category/menu-category.tsx",
       "fileName": "menu-category.tsx",
-      "readmePath": "./src/components/menu-category/readme.md",
-      "usagesDir": "./src/components/menu-category/usage",
+      "readmePath": "src/components/menu-category/readme.md",
+      "usagesDir": "src/components/menu-category/usage",
       "tag": "ix-menu-category",
       "overview": "",
       "usage": {},
@@ -7758,11 +8282,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/menu-item",
-      "filePath": "./src/components/menu-item/menu-item.tsx",
+      "dirPath": "src/components/menu-item",
+      "filePath": "src/components/menu-item/menu-item.tsx",
       "fileName": "menu-item.tsx",
-      "readmePath": "./src/components/menu-item/readme.md",
-      "usagesDir": "./src/components/menu-item/usage",
+      "readmePath": "src/components/menu-item/readme.md",
+      "usagesDir": "src/components/menu-item/usage",
       "tag": "ix-menu-item",
       "overview": "",
       "usage": {},
@@ -7864,7 +8388,7 @@
           "mutable": false,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "Icon name from @siemens/ix-icons",
+          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons",
           "docsTags": [],
           "values": [
             {
@@ -7896,7 +8420,7 @@
           "mutable": false,
           "attr": "tab-icon",
           "reflectToAttr": false,
-          "docs": "Icon name from @siemens/ix-icons",
+          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons",
           "docsTags": [
             {
               "name": "deprecated",
@@ -7927,11 +8451,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/menu-settings",
-      "filePath": "./src/components/menu-settings/menu-settings.tsx",
+      "dirPath": "src/components/menu-settings",
+      "filePath": "src/components/menu-settings/menu-settings.tsx",
       "fileName": "menu-settings.tsx",
-      "readmePath": "./src/components/menu-settings/readme.md",
-      "usagesDir": "./src/components/menu-settings/usage",
+      "readmePath": "src/components/menu-settings/readme.md",
+      "usagesDir": "src/components/menu-settings/usage",
       "tag": "ix-menu-settings",
       "overview": "",
       "usage": {},
@@ -8024,11 +8548,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/menu-settings-item",
-      "filePath": "./src/components/menu-settings-item/menu-settings-item.tsx",
+      "dirPath": "src/components/menu-settings-item",
+      "filePath": "src/components/menu-settings-item/menu-settings-item.tsx",
       "fileName": "menu-settings-item.tsx",
-      "readmePath": "./src/components/menu-settings-item/readme.md",
-      "usagesDir": "./src/components/menu-settings-item/usage",
+      "readmePath": "src/components/menu-settings-item/readme.md",
+      "usagesDir": "src/components/menu-settings-item/usage",
       "tag": "ix-menu-settings-item",
       "overview": "",
       "usage": {},
@@ -8057,18 +8581,28 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "labelChange",
+          "detail": "{ name: string; oldLabel: string; newLabel: string; }",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Label changed",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
       "listeners": []
     },
     {
-      "dirPath": "./src/components/message-bar",
-      "filePath": "./src/components/message-bar/message-bar.tsx",
+      "dirPath": "src/components/message-bar",
+      "filePath": "src/components/message-bar/message-bar.tsx",
       "fileName": "message-bar.tsx",
-      "readmePath": "./src/components/message-bar/readme.md",
-      "usagesDir": "./src/components/message-bar/usage",
+      "readmePath": "src/components/message-bar/readme.md",
+      "usagesDir": "src/components/message-bar/usage",
       "tag": "ix-message-bar",
       "overview": "",
       "usage": {},
@@ -8150,11 +8684,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/modal",
-      "filePath": "./src/components/modal/modal.tsx",
+      "dirPath": "src/components/modal",
+      "filePath": "src/components/modal/modal.tsx",
       "fileName": "modal.tsx",
-      "readmePath": "./src/components/modal/readme.md",
-      "usagesDir": "./src/components/modal/usage",
+      "readmePath": "src/components/modal/readme.md",
+      "usagesDir": "src/components/modal/usage",
       "tag": "ix-modal",
       "overview": "",
       "usage": {},
@@ -8405,11 +8939,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/modal-content",
-      "filePath": "./src/components/modal-content/modal-content.tsx",
+      "dirPath": "src/components/modal-content",
+      "filePath": "src/components/modal-content/modal-content.tsx",
       "fileName": "modal-content.tsx",
-      "readmePath": "./src/components/modal-content/readme.md",
-      "usagesDir": "./src/components/modal-content/usage",
+      "readmePath": "src/components/modal-content/readme.md",
+      "usagesDir": "src/components/modal-content/usage",
       "tag": "ix-modal-content",
       "overview": "",
       "usage": {},
@@ -8421,9 +8955,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-application-switch-modal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-application-switch-modal": [
+          "ix-modal-content"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -8433,11 +8973,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/my-component",
-      "filePath": "./src/components/my-component/example-modal.tsx",
+      "dirPath": "src/components/my-component",
+      "filePath": "src/components/my-component/example-modal.tsx",
       "fileName": "example-modal.tsx",
-      "readmePath": "./src/components/my-component/readme.md",
-      "usagesDir": "./src/components/my-component/usage",
+      "readmePath": "src/components/my-component/readme.md",
+      "usagesDir": "src/components/my-component/usage",
       "tag": "ix-modal-example",
       "overview": "",
       "usage": {},
@@ -8470,11 +9010,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/modal-footer",
-      "filePath": "./src/components/modal-footer/modal-footer.tsx",
+      "dirPath": "src/components/modal-footer",
+      "filePath": "src/components/modal-footer/modal-footer.tsx",
       "fileName": "modal-footer.tsx",
-      "readmePath": "./src/components/modal-footer/readme.md",
-      "usagesDir": "./src/components/modal-footer/usage",
+      "readmePath": "src/components/modal-footer/readme.md",
+      "usagesDir": "src/components/modal-footer/usage",
       "tag": "ix-modal-footer",
       "overview": "",
       "usage": {},
@@ -8498,11 +9038,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/modal-header",
-      "filePath": "./src/components/modal-header/modal-header.tsx",
+      "dirPath": "src/components/modal-header",
+      "filePath": "src/components/modal-header/modal-header.tsx",
       "fileName": "modal-header.tsx",
-      "readmePath": "./src/components/modal-header/readme.md",
-      "usagesDir": "./src/components/modal-header/usage",
+      "readmePath": "src/components/modal-header/readme.md",
+      "usagesDir": "src/components/modal-header/usage",
       "tag": "ix-modal-header",
       "overview": "",
       "usage": {},
@@ -8514,7 +9054,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-application-switch-modal"
+      ],
       "dependencies": [
         "ix-typography",
         "ix-icon-button"
@@ -8526,6 +9068,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-application-switch-modal": [
+          "ix-modal-header"
         ]
       },
       "props": [
@@ -8597,11 +9142,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/pagination",
-      "filePath": "./src/components/pagination/pagination.tsx",
+      "dirPath": "src/components/pagination",
+      "filePath": "src/components/pagination/pagination.tsx",
       "fileName": "pagination.tsx",
-      "readmePath": "./src/components/pagination/readme.md",
-      "usagesDir": "./src/components/pagination/usage",
+      "readmePath": "src/components/pagination/readme.md",
+      "usagesDir": "src/components/pagination/usage",
       "tag": "ix-pagination",
       "overview": "",
       "usage": {},
@@ -8809,11 +9354,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/pill",
-      "filePath": "./src/components/pill/pill.tsx",
+      "dirPath": "src/components/pill",
+      "filePath": "src/components/pill/pill.tsx",
       "fileName": "pill.tsx",
-      "readmePath": "./src/components/pill/readme.md",
-      "usagesDir": "./src/components/pill/usage",
+      "readmePath": "src/components/pill/readme.md",
+      "usagesDir": "src/components/pill/usage",
       "tag": "ix-pill",
       "overview": "",
       "usage": {},
@@ -8864,7 +9409,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Custom font color for pill. Only working for `variant='custom'`",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use `pill-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0 use `pill-color`",
           "values": [
             {
               "type": "string"
@@ -8901,6 +9452,22 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "pillColor",
+          "type": "string",
+          "mutable": false,
+          "attr": "pill-color",
+          "reflectToAttr": false,
+          "docs": "Custom font color for pill. Only working for `variant='custom'`",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -8961,11 +9528,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/push-card",
-      "filePath": "./src/components/push-card/push-card.tsx",
+      "dirPath": "src/components/push-card",
+      "filePath": "src/components/push-card/push-card.tsx",
       "fileName": "push-card.tsx",
-      "readmePath": "./src/components/push-card/readme.md",
-      "usagesDir": "./src/components/push-card/usage",
+      "readmePath": "src/components/push-card/readme.md",
+      "usagesDir": "src/components/push-card/usage",
       "tag": "ix-push-card",
       "overview": "",
       "usage": {},
@@ -9141,11 +9708,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/row",
-      "filePath": "./src/components/row/row.tsx",
+      "dirPath": "src/components/row",
+      "filePath": "src/components/row/row.tsx",
       "fileName": "row.tsx",
-      "readmePath": "./src/components/row/readme.md",
-      "usagesDir": "./src/components/row/usage",
+      "readmePath": "src/components/row/readme.md",
+      "usagesDir": "src/components/row/usage",
       "tag": "ix-row",
       "overview": "",
       "usage": {},
@@ -9159,7 +9726,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker-rework",
+        "ix-datetime-picker",
         "ix-side-pane-group"
       ],
       "dependencies": [],
@@ -9167,7 +9734,7 @@
         "ix-date-dropdown": [
           "ix-row"
         ],
-        "ix-datetime-picker-rework": [
+        "ix-datetime-picker": [
           "ix-row"
         ],
         "ix-side-pane-group": [
@@ -9183,11 +9750,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/select",
-      "filePath": "./src/components/select/select.tsx",
+      "dirPath": "src/components/select",
+      "filePath": "src/components/select/select.tsx",
       "fileName": "select.tsx",
-      "readmePath": "./src/components/select/readme.md",
-      "usagesDir": "./src/components/select/usage",
+      "readmePath": "src/components/select/readme.md",
+      "usagesDir": "src/components/select/usage",
       "tag": "ix-select",
       "overview": "",
       "usage": {},
@@ -9288,9 +9855,6 @@
             {
               "name": "since",
               "text": "1.5.0"
-            },
-            {
-              "name": ""
             }
           ],
           "default": "false",
@@ -9536,11 +10100,11 @@
       ]
     },
     {
-      "dirPath": "./src/components/select-item",
-      "filePath": "./src/components/select-item/select-item.tsx",
+      "dirPath": "src/components/select-item",
+      "filePath": "src/components/select-item/select-item.tsx",
       "fileName": "select-item.tsx",
-      "readmePath": "./src/components/select-item/readme.md",
-      "usagesDir": "./src/components/select-item/usage",
+      "readmePath": "src/components/select-item/readme.md",
+      "usagesDir": "src/components/select-item/usage",
       "tag": "ix-select-item",
       "overview": "",
       "usage": {},
@@ -9634,11 +10198,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/side-pane",
-      "filePath": "./src/components/side-pane/side-pane.tsx",
+      "dirPath": "src/components/side-pane",
+      "filePath": "src/components/side-pane/side-pane.tsx",
       "fileName": "side-pane.tsx",
-      "readmePath": "./src/components/side-pane/readme.md",
-      "usagesDir": "./src/components/side-pane/usage",
+      "readmePath": "src/components/side-pane/readme.md",
+      "usagesDir": "src/components/side-pane/usage",
       "tag": "ix-side-pane",
       "overview": "",
       "usage": {},
@@ -9664,11 +10228,33 @@
       },
       "props": [
         {
+          "name": "behaviour",
+          "type": "\"floating\" | \"inline\"",
+          "mutable": false,
+          "attr": "behaviour",
+          "reflectToAttr": false,
+          "docs": "Behaviour of the side pane",
+          "docsTags": [],
+          "default": "'inline'",
+          "values": [
+            {
+              "value": "floating",
+              "type": "string"
+            },
+            {
+              "value": "inline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "expandPane",
           "type": "boolean",
           "mutable": true,
           "attr": "expand-pane",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "State of the side-pane",
           "docsTags": [],
           "default": "false",
@@ -9727,40 +10313,6 @@
           "required": false
         },
         {
-          "name": "floating",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "floating",
-          "reflectToAttr": false,
-          "docs": "Floating or inline style",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "inline",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "inline",
-          "reflectToAttr": false,
-          "docs": "Floating or inline style",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "paneTitle",
           "type": "string",
           "mutable": false,
@@ -9780,9 +10332,9 @@
         {
           "name": "position",
           "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
-          "mutable": true,
+          "mutable": false,
           "attr": "position",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "Placement of the sidebar",
           "docsTags": [],
           "default": "'top'",
@@ -9828,7 +10380,7 @@
       "methods": [],
       "events": [
         {
-          "event": "expandedChange",
+          "event": "expandPaneChange",
           "detail": "{ position: string; expanded: boolean; }",
           "bubbles": true,
           "cancelable": true,
@@ -9840,21 +10392,14 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "resize",
-          "target": "window",
-          "capture": false,
-          "passive": true
-        }
-      ]
+      "listeners": []
     },
     {
-      "dirPath": "./src/components/side-pane-content-area",
-      "filePath": "./src/components/side-pane-content-area/side-pane-content-area.tsx",
+      "dirPath": "src/components/side-pane-content-area",
+      "filePath": "src/components/side-pane-content-area/side-pane-content-area.tsx",
       "fileName": "side-pane-content-area.tsx",
-      "readmePath": "./src/components/side-pane-content-area/readme.md",
-      "usagesDir": "./src/components/side-pane-content-area/usage",
+      "readmePath": "src/components/side-pane-content-area/readme.md",
+      "usagesDir": "src/components/side-pane-content-area/usage",
       "tag": "ix-side-pane-content-area",
       "overview": "",
       "usage": {},
@@ -9879,11 +10424,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/side-pane-group",
-      "filePath": "./src/components/side-pane-group/side-pane-group.tsx",
+      "dirPath": "src/components/side-pane-group",
+      "filePath": "src/components/side-pane-group/side-pane-group.tsx",
       "fileName": "side-pane-group.tsx",
-      "readmePath": "./src/components/side-pane-group/readme.md",
-      "usagesDir": "./src/components/side-pane-group/usage",
+      "readmePath": "src/components/side-pane-group/readme.md",
+      "usagesDir": "src/components/side-pane-group/usage",
       "tag": "ix-side-pane-group",
       "overview": "",
       "usage": {},
@@ -9908,34 +10453,22 @@
       },
       "props": [
         {
-          "name": "floating",
-          "type": "boolean",
+          "name": "behaviour",
+          "type": "\"floating\" | \"inline\"",
           "mutable": false,
-          "attr": "floating",
+          "attr": "behaviour",
           "reflectToAttr": false,
-          "docs": "Determines if the side panes behave floating",
+          "docs": "Behaviour of the side pane",
           "docsTags": [],
-          "default": "false",
+          "default": "'inline'",
           "values": [
             {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "inline",
-          "type": "boolean",
-          "mutable": false,
-          "attr": "inline",
-          "reflectToAttr": false,
-          "docs": "Determines if the side panes behave inline",
-          "docsTags": [],
-          "default": "false",
-          "values": [
+              "value": "floating",
+              "type": "string"
+            },
             {
-              "type": "boolean"
+              "value": "inline",
+              "type": "string"
             }
           ],
           "optional": false,
@@ -9971,19 +10504,18 @@
       "parts": [],
       "listeners": [
         {
-          "event": "resize",
-          "target": "window",
+          "event": "paneChange",
           "capture": false,
-          "passive": true
+          "passive": false
         }
       ]
     },
     {
-      "dirPath": "./src/components/slider",
-      "filePath": "./src/components/slider/slider.tsx",
+      "dirPath": "src/components/slider",
+      "filePath": "src/components/slider/slider.tsx",
       "fileName": "slider.tsx",
-      "readmePath": "./src/components/slider/readme.md",
-      "usagesDir": "./src/components/slider/usage",
+      "readmePath": "src/components/slider/readme.md",
+      "usagesDir": "src/components/slider/usage",
       "tag": "ix-slider",
       "overview": "",
       "usage": {},
@@ -10112,7 +10644,7 @@
           "docs": "Legal number intervals",
           "docsTags": [
             {
-              "name": "see",
+              "name": "link",
               "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
             }
           ],
@@ -10203,11 +10735,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/spinner",
-      "filePath": "./src/components/spinner/spinner.tsx",
+      "dirPath": "src/components/spinner",
+      "filePath": "src/components/spinner/spinner.tsx",
       "fileName": "spinner.tsx",
-      "readmePath": "./src/components/spinner/readme.md",
-      "usagesDir": "./src/components/spinner/usage",
+      "readmePath": "src/components/spinner/readme.md",
+      "usagesDir": "src/components/spinner/usage",
       "tag": "ix-spinner",
       "overview": "",
       "usage": {},
@@ -10215,6 +10747,8 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-application-switch-modal",
+        "ix-avatar",
         "ix-breadcrumb-item",
         "ix-burger-menu",
         "ix-button",
@@ -10228,6 +10762,12 @@
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-application-switch-modal": [
+          "ix-spinner"
+        ],
+        "ix-avatar": [
+          "ix-spinner"
+        ],
         "ix-breadcrumb-item": [
           "ix-spinner"
         ],
@@ -10325,11 +10865,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/split-button",
-      "filePath": "./src/components/split-button/split-button.tsx",
+      "dirPath": "src/components/split-button",
+      "filePath": "src/components/split-button/split-button.tsx",
       "fileName": "split-button.tsx",
-      "readmePath": "./src/components/split-button/readme.md",
-      "usagesDir": "./src/components/split-button/usage",
+      "readmePath": "src/components/split-button/readme.md",
+      "usagesDir": "src/components/split-button/usage",
       "tag": "ix-split-button",
       "overview": "",
       "usage": {},
@@ -10544,11 +11084,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/split-button-item",
-      "filePath": "./src/components/split-button-item/split-button-item.tsx",
+      "dirPath": "src/components/split-button-item",
+      "filePath": "src/components/split-button-item/split-button-item.tsx",
       "fileName": "split-button-item.tsx",
-      "readmePath": "./src/components/split-button-item/readme.md",
-      "usagesDir": "./src/components/split-button-item/usage",
+      "readmePath": "src/components/split-button-item/readme.md",
+      "usagesDir": "src/components/split-button-item/usage",
       "tag": "ix-split-button-item",
       "overview": "",
       "usage": {},
@@ -10622,11 +11162,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/tab-item",
-      "filePath": "./src/components/tab-item/tab-item.tsx",
+      "dirPath": "src/components/tab-item",
+      "filePath": "src/components/tab-item/tab-item.tsx",
       "fileName": "tab-item.tsx",
-      "readmePath": "./src/components/tab-item/readme.md",
-      "usagesDir": "./src/components/tab-item/usage",
+      "readmePath": "src/components/tab-item/readme.md",
+      "usagesDir": "src/components/tab-item/usage",
       "tag": "ix-tab-item",
       "overview": "",
       "usage": {},
@@ -10816,11 +11356,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/tabs",
-      "filePath": "./src/components/tabs/tabs.tsx",
+      "dirPath": "src/components/tabs",
+      "filePath": "src/components/tabs/tabs.tsx",
       "fileName": "tabs.tsx",
-      "readmePath": "./src/components/tabs/readme.md",
-      "usagesDir": "./src/components/tabs/usage",
+      "readmePath": "src/components/tabs/readme.md",
+      "usagesDir": "src/components/tabs/usage",
       "tag": "ix-tabs",
       "overview": "",
       "usage": {},
@@ -10972,11 +11512,11 @@
       ]
     },
     {
-      "dirPath": "./src/components/tile",
-      "filePath": "./src/components/tile/tile.tsx",
+      "dirPath": "src/components/tile",
+      "filePath": "src/components/tile/tile.tsx",
       "fileName": "tile.tsx",
-      "readmePath": "./src/components/tile/readme.md",
-      "usagesDir": "./src/components/tile/usage",
+      "readmePath": "src/components/tile/readme.md",
+      "usagesDir": "src/components/tile/usage",
       "tag": "ix-tile",
       "overview": "",
       "usage": {},
@@ -11022,11 +11562,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/time-picker",
-      "filePath": "./src/components/time-picker/time-picker.tsx",
+      "dirPath": "src/components/time-picker",
+      "filePath": "src/components/time-picker/time-picker.tsx",
       "fileName": "time-picker.tsx",
-      "readmePath": "./src/components/time-picker/readme.md",
-      "usagesDir": "./src/components/time-picker/usage",
+      "readmePath": "src/components/time-picker/readme.md",
+      "usagesDir": "src/components/time-picker/usage",
       "tag": "ix-time-picker",
       "overview": "",
       "usage": {},
@@ -11096,7 +11636,7 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Format of time string",
+          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
           "docsTags": [
             {
               "name": "since",
@@ -11122,11 +11662,11 @@
           "docsTags": [
             {
               "name": "deprecated",
-              "text": "Will be removed in 2.0.0"
+              "text": "Not supported since 2.0.0."
             }
           ],
           "default": "true",
-          "deprecation": "Will be removed in 2.0.0",
+          "deprecation": "Not supported since 2.0.0.",
           "values": [
             {
               "type": "boolean"
@@ -11143,7 +11683,7 @@
           "reflectToAttr": false,
           "docs": "Show hour input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -11160,7 +11700,7 @@
           "reflectToAttr": false,
           "docs": "Show minutes input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -11177,7 +11717,7 @@
           "reflectToAttr": false,
           "docs": "Show seconds input",
           "docsTags": [],
-          "default": "false",
+          "default": "true",
           "values": [
             {
               "type": "boolean"
@@ -11188,7 +11728,7 @@
         },
         {
           "name": "showTimeReference",
-          "type": "any",
+          "type": "boolean",
           "mutable": true,
           "attr": "show-time-reference",
           "reflectToAttr": false,
@@ -11196,13 +11736,35 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "1.1.0 time reference is default aligned with formt tt"
+              "text": "1.1.0 time reference is default aligned with format tt"
+            },
+            {
+              "name": "deprecated",
+              "text": "Since 2.0.0 time reference will be displayed depending on format."
             }
           ],
           "default": "undefined",
+          "deprecation": "Since 2.0.0 time reference will be displayed depending on format.",
           "values": [
             {
-              "type": "any"
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "standaloneAppearance",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "standalone-appearance",
+          "reflectToAttr": false,
+          "docs": "Controls the visual presentation and styling of the component when it is displayed as a standalone element",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -11231,12 +11793,34 @@
           "required": false
         },
         {
+          "name": "textTime",
+          "type": "string",
+          "mutable": false,
+          "attr": "text-time",
+          "reflectToAttr": false,
+          "docs": "Text for top label",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "default": "'Time'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "time",
           "type": "string",
           "mutable": false,
           "attr": "time",
           "reflectToAttr": false,
-          "docs": "Select time with format string",
+          "docs": "Select time with format string\nFormat has to match the `format` property.",
           "docsTags": [
             {
               "name": "since",
@@ -11255,12 +11839,11 @@
         {
           "name": "timeReference",
           "type": "\"AM\" | \"PM\"",
-          "mutable": true,
+          "mutable": false,
           "attr": "time-reference",
           "reflectToAttr": false,
           "docs": "Set time reference",
           "docsTags": [],
-          "default": "DateTime.fromFormat(\n    this.time,\n    this.format\n  ).toFormat('a') as 'PM' | 'AM'",
           "values": [
             {
               "value": "AM",
@@ -11284,7 +11867,7 @@
           },
           "signature": "getCurrentTime() => Promise<string>",
           "parameters": [],
-          "docs": "Get current time",
+          "docs": "Get the current time based on the wanted format",
           "docsTags": []
         }
       ],
@@ -11296,7 +11879,13 @@
           "cancelable": true,
           "composed": true,
           "docs": "Time event",
-          "docsTags": []
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Will be removed in 3.0.0. Use `time-select` event."
+            }
+          ],
+          "deprecation": "Will be removed in 3.0.0. Use `time-select` event."
         },
         {
           "event": "timeChange",
@@ -11306,6 +11895,15 @@
           "composed": true,
           "docs": "Time change event",
           "docsTags": []
+        },
+        {
+          "event": "timeSelect",
+          "detail": "string",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "Time event",
+          "docsTags": []
         }
       ],
       "styles": [],
@@ -11314,11 +11912,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/toast",
-      "filePath": "./src/components/toast/toast.tsx",
+      "dirPath": "src/components/toast",
+      "filePath": "src/components/toast/toast.tsx",
       "fileName": "toast.tsx",
-      "readmePath": "./src/components/toast/readme.md",
-      "usagesDir": "./src/components/toast/usage",
+      "readmePath": "src/components/toast/readme.md",
+      "usagesDir": "src/components/toast/usage",
       "tag": "ix-toast",
       "overview": "",
       "usage": {},
@@ -11474,11 +12072,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/toast",
-      "filePath": "./src/components/toast/toast-container.tsx",
+      "dirPath": "src/components/toast",
+      "filePath": "src/components/toast/toast-container.tsx",
       "fileName": "toast-container.tsx",
-      "readmePath": "./src/components/toast/readme.md",
-      "usagesDir": "./src/components/toast/usage",
+      "readmePath": "src/components/toast/readme.md",
+      "usagesDir": "src/components/toast/usage",
       "tag": "ix-toast-container",
       "overview": "",
       "usage": {},
@@ -11583,11 +12181,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/toggle",
-      "filePath": "./src/components/toggle/toggle.tsx",
+      "dirPath": "src/components/toggle",
+      "filePath": "src/components/toggle/toggle.tsx",
       "fileName": "toggle.tsx",
-      "readmePath": "./src/components/toggle/readme.md",
-      "usagesDir": "./src/components/toggle/usage",
+      "readmePath": "src/components/toggle/readme.md",
+      "usagesDir": "src/components/toggle/usage",
       "tag": "ix-toggle",
       "overview": "",
       "usage": {},
@@ -11736,11 +12334,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/toggle-button",
-      "filePath": "./src/components/toggle-button/toggle-button.tsx",
+      "dirPath": "src/components/toggle-button",
+      "filePath": "src/components/toggle-button/toggle-button.tsx",
       "fileName": "toggle-button.tsx",
-      "readmePath": "./src/components/toggle-button/readme.md",
-      "usagesDir": "./src/components/toggle-button/usage",
+      "readmePath": "src/components/toggle-button/readme.md",
+      "usagesDir": "src/components/toggle-button/usage",
       "tag": "ix-toggle-button",
       "overview": "",
       "usage": {},
@@ -11904,11 +12502,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/tooltip",
-      "filePath": "./src/components/tooltip/tooltip.tsx",
+      "dirPath": "src/components/tooltip",
+      "filePath": "src/components/tooltip/tooltip.tsx",
       "fileName": "tooltip.tsx",
-      "readmePath": "./src/components/tooltip/readme.md",
-      "usagesDir": "./src/components/tooltip/usage",
+      "readmePath": "src/components/tooltip/readme.md",
+      "usagesDir": "src/components/tooltip/usage",
       "tag": "ix-tooltip",
       "overview": "",
       "usage": {},
@@ -12045,11 +12643,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/tree",
-      "filePath": "./src/components/tree/tree.tsx",
+      "dirPath": "src/components/tree",
+      "filePath": "src/components/tree/tree.tsx",
       "fileName": "tree.tsx",
-      "readmePath": "./src/components/tree/readme.md",
-      "usagesDir": "./src/components/tree/usage",
+      "readmePath": "src/components/tree/readme.md",
+      "usagesDir": "src/components/tree/usage",
       "tag": "ix-tree",
       "overview": "",
       "usage": {},
@@ -12184,11 +12782,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/tree-item",
-      "filePath": "./src/components/tree-item/tree-item.tsx",
+      "dirPath": "src/components/tree-item",
+      "filePath": "src/components/tree-item/tree-item.tsx",
       "fileName": "tree-item.tsx",
-      "readmePath": "./src/components/tree-item/readme.md",
-      "usagesDir": "./src/components/tree-item/usage",
+      "readmePath": "src/components/tree-item/readme.md",
+      "usagesDir": "src/components/tree-item/usage",
       "tag": "ix-tree-item",
       "overview": "",
       "usage": {},
@@ -12280,11 +12878,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/typography",
-      "filePath": "./src/components/typography/typography.tsx",
+      "dirPath": "src/components/typography",
+      "filePath": "src/components/typography/typography.tsx",
       "fileName": "typography.tsx",
-      "readmePath": "./src/components/typography/readme.md",
-      "usagesDir": "./src/components/typography/usage",
+      "readmePath": "src/components/typography/readme.md",
+      "usagesDir": "src/components/typography/usage",
       "tag": "ix-typography",
       "overview": "",
       "usage": {},
@@ -12298,6 +12896,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-application-switch-modal",
         "ix-blind",
         "ix-card-list",
         "ix-content-header",
@@ -12310,12 +12909,14 @@
         "ix-push-card",
         "ix-slider",
         "ix-time-picker",
-        "ix-time-picker-rework",
         "ix-tooltip"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-application-switch-modal": [
           "ix-typography"
         ],
         "ix-blind": [
@@ -12354,9 +12955,6 @@
         "ix-time-picker": [
           "ix-typography"
         ],
-        "ix-time-picker-rework": [
-          "ix-typography"
-        ],
         "ix-tooltip": [
           "ix-typography"
         ]
@@ -12386,7 +12984,13 @@
           "attr": "color",
           "reflectToAttr": false,
           "docs": "Text color based on theme variables",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "since 2.1.0 use property `text-color`"
+            }
+          ],
+          "deprecation": "since 2.1.0 use property `text-color`",
           "values": [
             {
               "value": "alarm",
@@ -12457,6 +13061,55 @@
           "required": false
         },
         {
+          "name": "textColor",
+          "type": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
+          "mutable": false,
+          "attr": "text-color",
+          "reflectToAttr": false,
+          "docs": "Text color based on theme variables",
+          "docsTags": [],
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-contrast",
+              "type": "string"
+            },
+            {
+              "value": "inv-soft",
+              "type": "string"
+            },
+            {
+              "value": "inv-std",
+              "type": "string"
+            },
+            {
+              "value": "inv-weak",
+              "type": "string"
+            },
+            {
+              "value": "soft",
+              "type": "string"
+            },
+            {
+              "value": "std",
+              "type": "string"
+            },
+            {
+              "value": "weak",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "textDecoration",
           "type": "\"line-through\" | \"none\" | \"underline\"",
           "mutable": false,
@@ -12491,11 +13144,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/upload",
-      "filePath": "./src/components/upload/upload.tsx",
+      "dirPath": "src/components/upload",
+      "filePath": "src/components/upload/upload.tsx",
       "fileName": "upload.tsx",
-      "readmePath": "./src/components/upload/readme.md",
-      "usagesDir": "./src/components/upload/usage",
+      "readmePath": "src/components/upload/readme.md",
+      "usagesDir": "src/components/upload/usage",
       "tag": "ix-upload",
       "overview": "",
       "usage": {},
@@ -12748,11 +13401,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/validation-tooltip",
-      "filePath": "./src/components/validation-tooltip/validation-tooltip.tsx",
+      "dirPath": "src/components/validation-tooltip",
+      "filePath": "src/components/validation-tooltip/validation-tooltip.tsx",
       "fileName": "validation-tooltip.tsx",
-      "readmePath": "./src/components/validation-tooltip/readme.md",
-      "usagesDir": "./src/components/validation-tooltip/usage",
+      "readmePath": "src/components/validation-tooltip/readme.md",
+      "usagesDir": "src/components/validation-tooltip/usage",
       "tag": "ix-validation-tooltip",
       "overview": "",
       "usage": {},
@@ -12850,11 +13503,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/workflow-step",
-      "filePath": "./src/components/workflow-step/workflow-step.tsx",
+      "dirPath": "src/components/workflow-step",
+      "filePath": "src/components/workflow-step/workflow-step.tsx",
       "fileName": "workflow-step.tsx",
-      "readmePath": "./src/components/workflow-step/readme.md",
-      "usagesDir": "./src/components/workflow-step/usage",
+      "readmePath": "src/components/workflow-step/readme.md",
+      "usagesDir": "src/components/workflow-step/usage",
       "tag": "ix-workflow-step",
       "overview": "",
       "usage": {},
@@ -12976,11 +13629,11 @@
       "listeners": []
     },
     {
-      "dirPath": "./src/components/workflow-steps",
-      "filePath": "./src/components/workflow-steps/workflow-steps.tsx",
+      "dirPath": "src/components/workflow-steps",
+      "filePath": "src/components/workflow-steps/workflow-steps.tsx",
       "fileName": "workflow-steps.tsx",
-      "readmePath": "./src/components/workflow-steps/readme.md",
-      "usagesDir": "./src/components/workflow-steps/usage",
+      "readmePath": "src/components/workflow-steps/readme.md",
+      "usagesDir": "src/components/workflow-steps/usage",
       "tag": "ix-workflow-steps",
       "overview": "",
       "usage": {},
@@ -13067,11 +13720,11 @@
       ]
     },
     {
-      "dirPath": "./src/components/my-component",
-      "filePath": "./src/components/my-component/my-component.tsx",
+      "dirPath": "src/components/my-component",
+      "filePath": "src/components/my-component/my-component.tsx",
       "fileName": "my-component.tsx",
-      "readmePath": "./src/components/my-component/readme.md",
-      "usagesDir": "./src/components/my-component/usage",
+      "readmePath": "src/components/my-component/readme.md",
+      "usagesDir": "src/components/my-component/usage",
       "tag": "my-component",
       "overview": "",
       "usage": {},
@@ -13080,31 +13733,36 @@
       "encapsulation": "scoped",
       "dependents": [],
       "dependencies": [
+        "ix-button",
         "ix-basic-navigation",
         "ix-menu",
         "ix-menu-item",
         "ix-menu-category",
         "ix-side-pane-group",
         "ix-side-pane",
-        "ix-button",
         "ix-side-pane-content-area"
       ],
       "dependencyGraph": {
         "my-component": [
+          "ix-button",
           "ix-basic-navigation",
           "ix-menu",
           "ix-menu-item",
           "ix-menu-category",
           "ix-side-pane-group",
           "ix-side-pane",
-          "ix-button",
           "ix-side-pane-content-area"
+        ],
+        "ix-button": [
+          "ix-spinner"
         ],
         "ix-basic-navigation": [
           "ix-application-header"
         ],
         "ix-application-header": [
-          "ix-burger-menu"
+          "ix-burger-menu",
+          "ix-icon-button",
+          "ix-dropdown"
         ],
         "ix-burger-menu": [
           "ix-icon-button",
@@ -13115,6 +13773,7 @@
         ],
         "ix-menu": [
           "ix-burger-menu",
+          "ix-icon-button",
           "ix-menu-item"
         ],
         "ix-menu-category": [
@@ -13130,9 +13789,6 @@
         ],
         "ix-side-pane": [
           "ix-icon-button"
-        ],
-        "ix-button": [
-          "ix-spinner"
         ]
       },
       "props": [],

@@ -79,6 +79,12 @@ async function processImage(
 
   const s3BucketUrl = images[id];
 
+  if (s3BucketUrl === null) {
+    console.error(`Cannot find image in ${fileName} with node id ${nodeId}`);
+    node.url = `${config.baseUrl}/${config.error_image}`;
+    return;
+  }
+
   if (process.env.NODE_ENV === 'production') {
     const imageUUID = `${fileName}_${id.replace(/:/, '_')}`;
     const imageFileName = `${imageUUID}.png`;
@@ -133,7 +139,6 @@ export default (config: FigmaConfig) => {
       const { visit } = await import('unist-util-visit');
       const fileNameIds = new Map<string, Set<string>>();
       const nodes: FigmaNode[] = [];
-
       visit(ast, 'image', (node) => {
         const { fileName, nodeId } = getFigmaMeta(node);
         if (fileNameIds.has(fileName)) {

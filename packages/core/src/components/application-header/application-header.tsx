@@ -7,14 +7,31 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Fragment,
+  h,
+  Host,
+  Prop,
+  readTask,
+  State,
+} from '@stencil/core';
+import { showAppSwitch } from '../utils/app-switch';
 import { applicationLayoutService } from '../utils/application-layout';
-import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import {
+  ApplicationLayoutContext,
+  AppSwitchConfiguration,
+} from '../utils/application-layout/context';
 import { Breakpoint } from '../utils/breakpoints';
-import { useContextConsumer } from '../utils/context';
+import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
+import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
 
+/**
+ * @slot logo - Location of the Logo
+ */
 @Component({
   tag: 'ix-application-header',
   styleUrl: 'application-header.scss',
@@ -30,22 +47,38 @@ export class ApplicationHeader {
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
-
   @State() suppressResponsive = false;
+
+  @State() hasSlottedElements = false;
 
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
+  private callbackUpdateAppSwitchModal?: (
+    config: AppSwitchConfiguration
+  ) => void;
+
+  @State() applicationLayoutContext: ContextType<
+    typeof ApplicationLayoutContext
+  >;
 
   componentWillLoad() {
-    useContextConsumer(this.hostElement, ApplicationLayoutContext, (ctx) => {
-      if (ctx?.host === 'map-navigation') {
-        this.suppressResponsive = true;
-        this.breakpoint = 'md';
-        return;
-      }
+    useContextConsumer(
+      this.hostElement,
+      ApplicationLayoutContext,
+      (ctx) => {
+        if (ctx?.host === 'map-navigation') {
+          this.suppressResponsive = true;
+          this.breakpoint = 'md';
+          return;
+        }
 
-      this.breakpoint = applicationLayoutService.breakpoint;
-    });
+        this.breakpoint = applicationLayoutService.breakpoint;
+        this.applicationLayoutContext = ctx;
+
+        this.tryUpdateAppSwitch();
+      },
+      true
+    );
 
     this.menuDisposable = menuController.expandChange.on((show) => {
       this.menuExpanded = show;
@@ -59,6 +92,8 @@ export class ApplicationHeader {
 
       this.breakpoint = mode;
     });
+
+    this.updateIsSlottedContent();
   }
 
   componentDidLoad() {
@@ -95,23 +130,96 @@ export class ApplicationHeader {
     menuController.toggle();
   }
 
+  private resolveContextMenuButton() {
+    return new Promise<HTMLElement>((resolve) =>
+      readTask(() =>
+        resolve(
+          this.hostElement.shadowRoot.querySelector(
+            '[data-context-menu]'
+          ) as HTMLElement
+        )
+      )
+    );
+  }
+
+  private tryUpdateAppSwitch() {
+    if (!this.callbackUpdateAppSwitchModal) {
+      return;
+    }
+
+    this.callbackUpdateAppSwitchModal(
+      this.applicationLayoutContext?.appSwitchConfig
+    );
+  }
+
+  private async showAppSwitch() {
+    this.callbackUpdateAppSwitchModal = await showAppSwitch(
+      this.applicationLayoutContext?.appSwitchConfig
+    );
+  }
+
+  private updateIsSlottedContent() {
+    const slotElement =
+      this.hostElement.shadowRoot.querySelector('.content slot');
+
+    this.hasSlottedElements = hasSlottedElements(slotElement);
+  }
+
   render() {
     return (
       <Host
         class={{ [`breakpoint-${this.breakpoint}`]: true }}
         slot="application-header"
       >
-        {this.breakpoint === 'sm' && this.suppressResponsive === false ? (
+        {this.breakpoint === 'sm' && this.suppressResponsive === false && (
           <ix-burger-menu
             onClick={() => this.onMenuClick()}
             expanded={this.menuExpanded}
           ></ix-burger-menu>
-        ) : null}
+        )}
+        {this.applicationLayoutContext?.appSwitchConfig &&
+          this.breakpoint !== 'sm' &&
+          this.suppressResponsive === false && (
+            <ix-icon-button
+              onClick={() => this.showAppSwitch()}
+              icon="apps"
+              ghost
+              class="app-switch"
+            ></ix-icon-button>
+          )}
         <div class="logo">
           <slot name="logo"></slot>
         </div>
         <div class="name">{this.name}</div>
-        <slot></slot>
+        <div class="content">
+          {this.breakpoint === 'sm' ? (
+            <Fragment>
+              <ix-icon-button
+                class={{
+                  ['context-menu']: true,
+                  ['context-menu-visible']: this.hasSlottedElements,
+                }}
+                data-context-menu
+                icon="more-menu"
+                ghost
+              ></ix-icon-button>
+              <ix-dropdown
+                data-overflow-dropdown
+                class="dropdown"
+                trigger={this.resolveContextMenuButton()}
+              >
+                <div class="dropdown-content">
+                  <slot
+                    onSlotchange={() => this.updateIsSlottedContent()}
+                  ></slot>
+                </div>
+              </ix-dropdown>
+            </Fragment>
+          ) : (
+            <slot onSlotchange={() => this.updateIsSlottedContent()}></slot>
+          )}
+          <slot name="ix-application-header-avatar"></slot>
+        </div>
       </Host>
     );
   }

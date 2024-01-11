@@ -16,6 +16,9 @@ import {
   Prop,
 } from '@stencil/core';
 
+/**
+ * @deprecated Use ix-application-header and it's  avatar functionality instead
+ */
 @Component({
   tag: 'ix-menu-avatar-item',
   styleUrl: 'menu-avatar-item.scss',
