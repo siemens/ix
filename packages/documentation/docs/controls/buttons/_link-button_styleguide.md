@@ -7,7 +7,7 @@ Link buttons are simple button components that lead users to another location wi
 
 ## Options
 - **Disabled:** Link buttons can be disabled (see also button states). 
-- **Target:** To define where a link shall be opened, four options exist:
+- **Target:** To define where a link opens, there are four options:
 
 | Value     | Description                                       |
 | --------- | ------------------------------------------------- |
@@ -20,11 +20,11 @@ Link buttons are simple button components that lead users to another location wi
 
 ## Behavior in context
 - **Interaction:** Link buttons can be triggered by pressing anywhere within the button area. When link buttons are focused, they can be triggered by pressing `Enter`.
-- **Placement:** We typically place link buttons below or next to related content but not within paragraphs. You can place multiple link buttons on top of each   other to create a link list.
-- **Line length:** Link buttons don't support line break or text truncation. Link button texts are displayed in one line. In case of insufficient space, the complete link text is not visible.
+- **Placement:** We typically place link buttons below or next to related content but not within paragraphs. It's also possible to place multiple link buttons on top of each other to create link lists.
+- **Line length:** Link buttons cannot support line break or text truncation. Link button texts are displayed in one line. If there is not enough space, the complete link text is not visible.
 
 ## States
-Link buttons can take five states: Default, hover, active, disabled and focused. On hover, the link destination is shown. In disabled state, link buttons are visually displayed but don't offer any user interaction.
+Link buttons take five states: Default, hover, active, disabled and focused. On hover, the link destination is shown. In a disabled state, link buttons are visually displayed but don't offer any user interaction.
 
 ![States](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1507-9250&mode=design&t=5MYmq6zAbfw7xIkC-11)
 

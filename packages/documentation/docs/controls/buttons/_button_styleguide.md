@@ -8,13 +8,13 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 ## Variants
 
 - **Primary button:** In our applications, we most often use the primary button variant.
-- **Secondary button:** The secondary button variant has a greyscale appearance to distinguish it from the primary button. 
+- **Secondary button:** The secondary button variant has a grayscale appearance to distinguish it from the primary button. 
 
 **Note:** Please be aware that the terms *primary* and *secondary* are not used in accordance to common UX terminology for primary, secondary and ghost button.
 
 ## Options
-- **Default:** Use for the most important or most-likely next action within the user interface. These are typically actions that advance the user through a process, such as "Submit", "Save" or "Add". We use these sparingly, and recommend only one per layout. These are typically called *primary* buttons in UX. 
-- **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These could include actions like "Cancel", "Reset" or "Advanced Options". These are typically called *secondary* in UX.
+- **Default:** Use for the most important or most-likely next action within the user interface. These are typically actions that advance the user through a process, such as "Submit", "Save" or "Add". We use these sparingly and recommend only one per layout. These are typically called *primary* buttons in UX. 
+- **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These could include actions like "Cancel", "Reset" or "Advanced Options". These are typically called *secondary* buttons in UX.
 - **Ghost:** Use for actions that are typically not part of the core user journey but serve specialized or conditional purposes. Tertiary buttons can represent actions such as "Advanced settings", "More options", "Help" or "Customize". They may also be used for conditional actions like "Change preferences" or "View details".
 - **Icon:** Icons can also be displayed with button labels.
 - **Disabled:** Buttons can be disabled (see also button states).
@@ -25,11 +25,11 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 - **Interaction:** Buttons can be triggered by pressing anywhere within the button container. When buttons are focused, they can be triggered by pressing `Space`.
 - **Text truncation:** Button labels are not truncated. All text on buttons is one line only. 
 - **Alignment:** Buttons can be left-justified or right-justified or fully span a container's width.
-- **Cluster buttons:** Buttons can be clustered in groups based on their relationship. A cluster can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons. We typically cluster buttons if actions/functions are related but not excluding each other. Otherwise you can consider using a `button group`. 
+- **Cluster buttons:** Buttons can be clustered in groups based on their relationship. A cluster can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons, and we typically cluster buttons if actions/functions are related but not excluding each other. Otherwise, consider using a `button group`. 
 
 ## States
 
-Buttons have six states: Default, hover, active, disabled, loading and focused. In disabled state, buttons are visually displayed but don't offer any user interaction.
+Buttons have six states: Default, hover, active, disabled, loading and focused. In a disabled state, buttons are visually displayed but don't offer any user interaction.
 
 ![Button states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
 

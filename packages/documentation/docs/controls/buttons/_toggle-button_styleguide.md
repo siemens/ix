@@ -2,10 +2,10 @@ Toggle buttons are button elements which allow the user to activate/deactivate a
 
 ![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1480-30799&mode=design&t=97WS5dUS2rk3MCp2-11)
 
-Variants, options and states of the ix-button and the ix-icon-button components apply. Only additional, deviating or detailing specifications are listed here.
+Variants, options and states of the ix button and the ix icon button components apply. Only additional, deviating or detailing specifications are listed here.
 
 ## Options
-- **Pressed:** Toggle buttons can take a pressed (active) state. To improve accessibility, this state is set via the pressed option so that it can be interpreted by screen readers.
+- **Pressed:** Toggle buttons can take a pressed (active) state. To improve accessibility, this state is set via the pressed option so it can be read by screen readers.
 - The options **type** and **color** are not available for toggle buttons.
 - For the primary variant, one of the options **outline** or **ghost** has to be set.
 
