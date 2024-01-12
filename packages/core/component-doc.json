@@ -209,9 +209,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-application"
+        ]
+      },
       "props": [
         {
           "name": "appSwitchConfig",
@@ -397,7 +403,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
-        "ix-map-navigation"
+        "ix-map-navigation",
+        "my-component"
       ],
       "dependencies": [
         "ix-burger-menu",
@@ -421,6 +428,9 @@
           "ix-application-header"
         ],
         "ix-map-navigation": [
+          "ix-application-header"
+        ],
+        "my-component": [
           "ix-application-header"
         ]
       },
@@ -477,22 +487,56 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-menu-avatar"
+        "ix-menu-avatar",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown",
+        "ix-divider",
+        "ix-typography",
         "ix-spinner"
       ],
       "dependencyGraph": {
         "ix-avatar": [
           "ix-dropdown",
+          "ix-divider",
+          "ix-typography",
           "ix-spinner"
         ],
         "ix-menu-avatar": [
           "ix-avatar"
+        ],
+        "my-component": [
+          "ix-avatar"
         ]
       },
       "props": [
+        {
+          "name": "extra",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "extra",
+          "reflectToAttr": false,
+          "docs": "Show a free extra field as username description inside the dropdown.\nNote: Only working if avatar is part of the ix-application-header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "image",
           "type": "string",
@@ -527,6 +571,32 @@
           "reflectToAttr": false,
           "docs": "Display the initials of the user. Will be overwritten by image",
           "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "username",
+          "reflectToAttr": false,
+          "docs": "Show the username as an info card inside the dropdown.\nNote: Only working if avatar is part of the ix-application-header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -1177,7 +1247,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner"
@@ -1217,6 +1288,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -2909,9 +2983,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-content"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -4621,10 +4701,14 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-avatar",
         "ix-menu-category"
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-avatar": [
+          "ix-divider"
+        ],
         "ix-menu-category": [
           "ix-divider"
         ]
@@ -5598,7 +5682,8 @@
         "ix-menu-category",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -5621,6 +5706,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -9903,6 +9991,8 @@
         ],
         "ix-avatar": [
           "ix-dropdown",
+          "ix-divider",
+          "ix-typography",
           "ix-spinner"
         ],
         "ix-menu-avatar-item": [
@@ -15684,6 +15774,7 @@
       "dependents": [
         "ix-action-card",
         "ix-application-switch-modal",
+        "ix-avatar",
         "ix-blind",
         "ix-card-list",
         "ix-content-header",
@@ -15704,6 +15795,9 @@
           "ix-typography"
         ],
         "ix-application-switch-modal": [
+          "ix-typography"
+        ],
+        "ix-avatar": [
           "ix-typography"
         ],
         "ix-blind": [
@@ -16732,8 +16826,45 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-application",
+        "ix-application-header",
+        "ix-avatar",
+        "ix-dropdown-item",
+        "ix-content",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-application",
+          "ix-application-header",
+          "ix-avatar",
+          "ix-dropdown-item",
+          "ix-content",
+          "ix-button"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
+          "ix-spinner"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-avatar": [
+          "ix-dropdown",
+          "ix-divider",
+          "ix-typography",
+          "ix-spinner"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
