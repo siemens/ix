@@ -61,11 +61,13 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
     const { componentWillLoad, componentWillRender, disconnectedCallback } =
       proto;
 
-    proto.componentWillRender = function () {
-      const host = getElement(this);
-      host[`__ix__${methodName}`].enable(fnExp(this));
-      return componentWillRender && componentWillRender.call(this);
-    };
+    if (fnExp) {
+      proto.componentWillRender = function () {
+        const host = getElement(this);
+        host[`__ix__${methodName}`].enable(fnExp(this));
+        return componentWillRender && componentWillRender.call(this);
+      };
+    }
 
     proto.componentWillLoad = function () {
       const listener = createListener(event);
@@ -81,8 +83,11 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
     proto.disconnectedCallback = function () {
       const host = getElement(this);
 
-      host[`__ix__${methodName}`].destroy();
-      host[`__ix__${methodName}`] = null;
+      if (host && host[`__ix__${methodName}`]) {
+        host[`__ix__${methodName}`]?.destroy();
+        host[`__ix__${methodName}`] = null;
+      }
+
       return disconnectedCallback && disconnectedCallback.call(this);
     };
   };

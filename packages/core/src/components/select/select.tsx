@@ -95,7 +95,6 @@ export class Select {
    * Hide list header
    *
    * @since 1.5.0
-   @
    */
   @Prop() hideListHeader = false;
 
@@ -267,6 +266,7 @@ export class Select {
 
   componentDidLoad() {
     this.inputRef.addEventListener('input', () => {
+      this.dropdownShow = true;
       this.inputChange.emit(this.inputRef.value);
     });
   }
@@ -394,6 +394,10 @@ export class Select {
   private filterItemsWithTypeahead() {
     this.inputFilterText = this.inputRef.value;
 
+    if (this.isSingleMode && this.inputFilterText === this.selectedLabels[0]) {
+      return;
+    }
+
     if (this.inputFilterText) {
       this.items.forEach((item) => {
         item.classList.remove('d-none');
@@ -435,9 +439,7 @@ export class Select {
     }
 
     if (this.isSingleMode) {
-      if (this.dropdownShow && this.isDropdownEmpty) {
-        this.dropdownShow = false;
-      }
+      return;
     }
 
     if (!this.dropdownShow && this.mode !== 'multiple') {
@@ -498,6 +500,7 @@ export class Select {
                 : ''}
               <div class="trigger">
                 <input
+                  autocomplete="off"
                   data-testid="input"
                   disabled={this.disabled}
                   readOnly={this.readonly}
@@ -510,7 +513,11 @@ export class Select {
                   value={this.inputValue}
                   ref={(ref) => (this.inputRef = ref)}
                   onBlur={(e) => this.onInputBlur(e)}
+                  onFocus={() => {
+                    this.navigationItem = undefined;
+                  }}
                   onInput={() => this.filterItemsWithTypeahead()}
+                  onKeyDown={(e) => this.onKeyDown(e)}
                 />
                 {this.allowClear &&
                 (this.selectedLabels?.length || this.inputFilterText) ? (

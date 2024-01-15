@@ -22,6 +22,13 @@
     justify-content: space-between;
   }
 
+  .disabled-item {
+    pointer-events: none;
+    background-color: var(--theme-datepicker-day--background--disabled);
+    color: var(--theme-datepicker-day--color--disabled);
+    cursor: default;
+  }
+
   .selector {
     flex-basis: 100%;
     display: flex;
@@ -41,6 +48,16 @@
 
     .capitalize {
       text-transform: capitalize;
+    }
+
+    .month-dropdown-item {
+      margin-left: 4px;
+      margin-right: 4px;
+
+      &:focus-visible {
+        outline: 1px solid var(--theme-color-focus-bdr);
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
     }
 
     .arrowYear {
@@ -105,6 +122,11 @@
       height: 40px;
       cursor: pointer;
 
+      &:focus-visible {
+        outline: 1px solid var(--theme-color-focus-bdr);
+        outline-offset: var(--theme-btn--focus--outline-offset);
+      }
+
       &.today {
         border: 1px solid var(--theme-datepicker-today--border-color);
 
@@ -121,23 +143,23 @@
 
           &:hover {
             background-color: var(
-              --theme-datepicker-day--background--selected-hover
+                            --theme-datepicker-day--background--selected-hover
             );
           }
 
           &:active {
             background-color: var(
-              --theme-datepicker-day--background--selected-active
+                            --theme-datepicker-day--background--selected-active
             );
           }
 
           &.disabled {
             pointer-events: none;
             background-color: var(
-              --theme-datepicker-day--background--selected-disabled
+                            --theme-datepicker-day--background--selected-disabled
             );
             border: 1px solid
-              var(--theme-datepicker-day--background--selected-disabled);
+            var(--theme-datepicker-day--background--selected-disabled);
             color: var(--theme-datepicker-day--color--selected-disabled);
           }
         }
@@ -150,27 +172,27 @@
 
           &:hover {
             background-color: var(
-              --theme-datepicker-day--background--range-hover
+                            --theme-datepicker-day--background--range-hover
             );
             border: 1px solid
-              var(--theme-datepicker-today--border-color--range-hover);
+            var(--theme-datepicker-today--border-color--range-hover);
           }
 
           &:active {
             background-color: var(
-              --theme-datepicker-day--background--range-active
+                            --theme-datepicker-day--background--range-active
             );
             border: 1px solid
-              var(--theme-datepicker-today--border-color--range-active);
+            var(--theme-datepicker-today--border-color--range-active);
           }
 
           &.disabled {
             background-color: var(
-              --theme-datepicker-day--background--range-disabled
+                            --theme-datepicker-day--background--range-disabled
             );
             color: var(--theme-datepicker-day--color--range-disabled);
             border: 1px solid
-              var(--theme-datepicker-today--border-color--range-disabled);
+            var(--theme-datepicker-today--border-color--range-disabled);
           }
         }
 
@@ -179,7 +201,6 @@
           background-color: var(--theme-datepicker-day--background--disabled);
           color: var(--theme-datepicker-day--color--disabled);
           cursor: default;
-          pointer-events: none;
         }
       }
 
@@ -198,20 +219,20 @@
 
         &:hover {
           background-color: var(
-            --theme-datepicker-day--background--selected-hover
+                          --theme-datepicker-day--background--selected-hover
           );
         }
 
         &:active {
           background-color: var(
-            --theme-datepicker-day--background--selected-active
+                          --theme-datepicker-day--background--selected-active
           );
         }
 
         &.disabled {
           pointer-events: none;
           background-color: var(
-            --theme-datepicker-day--background--selected-disabled
+                          --theme-datepicker-day--background--selected-disabled
           );
           color: var(--theme-datepicker-day--color--selected-disabled);
         }
@@ -223,20 +244,20 @@
 
         &:hover {
           background-color: var(
-            --theme-datepicker-day--background--range-hover
+                          --theme-datepicker-day--background--range-hover
           );
         }
 
         &:active {
           background-color: var(
-            --theme-datepicker-day--background--range-active
+                          --theme-datepicker-day--background--range-active
           );
         }
 
         &.disabled {
           pointer-events: none;
           background-color: var(
-            --theme-datepicker-day--background--range-disabled
+                          --theme-datepicker-day--background--range-disabled
           );
           color: var(--theme-datepicker-day--color--range-disabled);
         }
@@ -266,7 +287,7 @@
       &.week-number {
         font-size: 10px;
         line-height: 14px;
-        color: var(--theme-datepicker-ix--color);
+        color: var(--theme-datepicker-weekday--color);
         border: none;
         background: none;
         cursor: initial;
@@ -275,7 +296,7 @@
       &:focus-visible {
         background-color: var(--theme-datepicker-day--background--selected);
         border: inset 1px solid
-          var(--theme-datepicker-day--border-color--selected);
+        var(--theme-datepicker-day--border-color--selected);
         color: var(--theme-datepicker-day--color--selected);
         font-size: 14px;
         line-height: 20px;

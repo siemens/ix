@@ -6,6 +6,7 @@ import { defineContainer } from './vue-component-lib/utils';
 import type { JSX } from '@siemens/ix/components';
 
 import { defineCustomElement as defineIxActionCard } from '@siemens/ix/components/ix-action-card.js';
+import { defineCustomElement as defineIxApplication } from '@siemens/ix/components/ix-application.js';
 import { defineCustomElement as defineIxApplicationHeader } from '@siemens/ix/components/ix-application-header.js';
 import { defineCustomElement as defineIxAvatar } from '@siemens/ix/components/ix-avatar.js';
 import { defineCustomElement as defineIxBasicNavigation } from '@siemens/ix/components/ix-basic-navigation.js';
@@ -21,7 +22,9 @@ import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
+import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
+import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
@@ -105,6 +108,15 @@ export const IxActionCard = /*@__PURE__*/ defineContainer<JSX.IxActionCard>('ix-
 ]);
 
 
+export const IxApplication = /*@__PURE__*/ defineContainer<JSX.IxApplication>('ix-application', defineIxApplication, [
+  'theme',
+  'themeSystemAppearance',
+  'forceBreakpoint',
+  'breakpoints',
+  'appSwitchConfig'
+]);
+
+
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', defineIxApplicationHeader, [
   'name'
 ]);
@@ -174,6 +186,7 @@ export const IxCard = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', defin
 
 
 export const IxCardAccordion = /*@__PURE__*/ defineContainer<JSX.IxCardAccordion>('ix-card-accordion', defineIxCardAccordion, [
+  'collapse',
   'accordionExpand'
 ]);
 
@@ -226,6 +239,7 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', defin
   'icon',
   'background',
   'color',
+  'chipColor',
   'outline',
   'closeChip'
 ]);
@@ -239,6 +253,9 @@ export const IxCol = /*@__PURE__*/ defineContainer<JSX.IxCol>('ix-col', defineIx
 ]);
 
 
+export const IxContent = /*@__PURE__*/ defineContainer<JSX.IxContent>('ix-content', defineIxContent);
+
+
 export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader>('ix-content-header', defineIxContentHeader, [
   'variant',
   'headerTitle',
@@ -248,21 +265,44 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 ]);
 
 
+export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>('ix-date-dropdown', defineIxDateDropdown, [
+  'format',
+  'range',
+  'from',
+  'to',
+  'minDate',
+  'maxDate',
+  'dateRangeId',
+  'customRangeAllowed',
+  'dateRangeOptions',
+  'i18nCustomItem',
+  'i18nDone',
+  'i18nNoRange',
+  'today',
+  'dateRangeChange'
+]);
+
+
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
   'format',
   'range',
-  'individual',
   'corners',
   'from',
   'to',
   'minDate',
   'maxDate',
-  'eventDelimiter',
   'textSelectDate',
+  'i18nDone',
+  'weekStartIndex',
+  'locale',
+  'individual',
+  'eventDelimiter',
+  'standaloneAppearance',
+  'today',
   'dateChange',
   'dateRangeChange',
-  'done',
-  'dateSelect'
+  'dateSelect',
+  'done'
 ]);
 
 
@@ -279,9 +319,12 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
   'to',
   'time',
   'showTimeReference',
-  'eventDelimiter',
   'timeReference',
   'textSelectDate',
+  'i18nDone',
+  'weekStartIndex',
+  'locale',
+  'eventDelimiter',
   'done',
   'timeChange',
   'dateChange',
@@ -327,6 +370,7 @@ export const IxDropdownButton = /*@__PURE__*/ defineContainer<JSX.IxDropdownButt
   'disabled',
   'label',
   'icon',
+  'closeBehavior',
   'placement'
 ]);
 
@@ -371,6 +415,7 @@ export const IxEventList = /*@__PURE__*/ defineContainer<JSX.IxEventList>('ix-ev
 
 export const IxEventListItem = /*@__PURE__*/ defineContainer<JSX.IxEventListItem>('ix-event-list-item', defineIxEventListItem, [
   'color',
+  'itemColor',
   'selected',
   'disabled',
   'chevron',
@@ -441,6 +486,7 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
 
 
 export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-icon-button', defineIxIconButton, [
+  'a11yLabel',
   'variant',
   'outline',
   'ghost',
@@ -448,6 +494,7 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
   'icon',
   'size',
   'color',
+  'iconColor',
   'disabled',
   'type',
   'loading'
@@ -519,6 +566,7 @@ export const IxMapNavigationOverlay = /*@__PURE__*/ defineContainer<JSX.IxMapNav
   'name',
   'icon',
   'color',
+  'iconColor',
   'closeClick'
 ]);
 
@@ -576,6 +624,7 @@ export const IxMenuAvatar = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatar>('ix-
   'image',
   'initials',
   'i18nLogout',
+  'showLogoutButton',
   'logoutClick'
 ]);
 
@@ -614,7 +663,8 @@ export const IxMenuSettings = /*@__PURE__*/ defineContainer<JSX.IxMenuSettings>(
 
 
 export const IxMenuSettingsItem = /*@__PURE__*/ defineContainer<JSX.IxMenuSettingsItem>('ix-menu-settings-item', defineIxMenuSettingsItem, [
-  'label'
+  'label',
+  'labelChange'
 ]);
 
 
@@ -633,6 +683,7 @@ export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', de
   'beforeDismiss',
   'centered',
   'keyboard',
+  'closeOnEscape',
   'dialogClose',
   'dialogDismiss'
 ]);
@@ -675,6 +726,7 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', defin
   'icon',
   'background',
   'color',
+  'pillColor',
   'alignLeft'
 ]);
 
@@ -684,7 +736,8 @@ export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push
   'notification',
   'heading',
   'subheading',
-  'variant'
+  'variant',
+  'collapse'
 ]);
 
 
@@ -792,6 +845,7 @@ export const IxTile = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defin
 export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-time-picker', defineIxTimePicker, [
   'format',
   'corners',
+  'standaloneAppearance',
   'individual',
   'showHour',
   'showMinutes',
@@ -800,6 +854,8 @@ export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-
   'showTimeReference',
   'timeReference',
   'textSelectTime',
+  'textTime',
+  'timeSelect',
   'done',
   'timeChange'
 ]);
@@ -881,6 +937,7 @@ export const IxTypography = /*@__PURE__*/ defineContainer<JSX.IxTypography>('ix-
   'variant',
   'format',
   'color',
+  'textColor',
   'bold',
   'textDecoration'
 ]);
