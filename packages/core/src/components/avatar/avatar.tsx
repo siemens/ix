@@ -120,7 +120,7 @@ export class Avatar {
   @Prop() username: string;
 
   /**
-   * Show a free extra field as username description inside the dropdown.
+   * Optional description text that will be displayed underneath the username.
    * Note: Only working if avatar is part of the ix-application-header
    *
    * @since 2.1.0
