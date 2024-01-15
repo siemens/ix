@@ -58,29 +58,21 @@ test('renders', async ({ mount, page }) => {
   const g1Dropdown = g1.locator('ix-dropdown');
   const g2Dropdown = g2.locator('ix-dropdown');
 
-  await sb1
-    .getByRole('button')
-    .filter({ hasText: 'context-menu' })
-    .first()
-    .click();
+  await sb1.locator('ix-icon-button').first().click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
     0
   );
 
-  await sb2
-    .getByRole('button')
-    .filter({ hasText: 'context-menu' })
-    .first()
-    .click();
+  await sb2.locator('ix-icon-button').first().click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
     1
   );
 
-  await g2.getByRole('button').filter({ hasText: 'context-menu' }).click();
+  await g2.locator('ix-icon-button').click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
