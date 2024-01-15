@@ -18,6 +18,9 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 
+/**
+ * @deprecated since 2.1.0
+ */
 @Component({
   tag: 'ix-map-navigation-overlay',
   styleUrl: 'map-navigation-overlay.scss',
@@ -40,8 +43,16 @@ export class MapNavigationOverlay {
 
   /**
    * Color of icon
+   *
+   * @deprecated since 2.1.0. Use `icon-color`
    */
+  // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop() color: string;
+
+  /**
+   * Color of icon
+   */
+  @Prop() iconColor: string;
 
   /**
    * Event closed
@@ -84,12 +95,13 @@ export class MapNavigationOverlay {
           <div
             class={{
               'color-indicator': true,
-              'd-none': this.color === 'undefined' || this.color === undefined,
+              'd-none': (this.iconColor ?? this.color) === undefined,
             }}
             style={{
-              'background-color': this.color
-                ? `var(--theme-${this.color})`
-                : '',
+              'background-color':
+                this.iconColor ?? this.color
+                  ? `var(--theme-${this.iconColor ?? this.color})`
+                  : '',
             }}
           ></div>
           <div class="overlay-header-content">

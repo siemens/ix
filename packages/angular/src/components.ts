@@ -30,6 +30,28 @@ export declare interface IxActionCard extends Components.IxActionCard {}
 
 
 @ProxyCmp({
+  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance']
+})
+@Component({
+  selector: 'ix-application',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance'],
+})
+export class IxApplication {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxApplication extends Components.IxApplication {}
+
+
+@ProxyCmp({
   inputs: ['name']
 })
 @Component({
@@ -361,14 +383,14 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 
 @ProxyCmp({
-  inputs: ['active', 'background', 'closable', 'color', 'icon', 'outline', 'variant']
+  inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'variant']
 })
 @Component({
   selector: 'ix-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'background', 'closable', 'color', 'icon', 'outline', 'variant'],
+  inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'variant'],
 })
 export class IxChip {
   protected el: HTMLElement;
@@ -408,6 +430,27 @@ export class IxCol {
 
 
 export declare interface IxCol extends Components.IxCol {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxContent {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxContent extends Components.IxContent {}
 
 
 @ProxyCmp({
@@ -498,12 +541,12 @@ import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/i
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
    * Triggers if the date selection changes.
-Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` @since 2.0.0
+Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` @since 2.1.0
    */
   dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
    * Triggers if the date selection changes.
-Only triggered if date-picker-rework is in range mode. @since 2.0.0
+Only triggered if date-picker-rework is in range mode. @since 2.1.0
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
@@ -784,14 +827,14 @@ export declare interface IxEventList extends Components.IxEventList {}
 
 
 @ProxyCmp({
-  inputs: ['chevron', 'color', 'disabled', 'selected']
+  inputs: ['chevron', 'color', 'disabled', 'itemColor', 'selected']
 })
 @Component({
   selector: 'ix-event-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['chevron', 'color', 'disabled', 'selected'],
+  inputs: ['chevron', 'color', 'disabled', 'itemColor', 'selected'],
 })
 export class IxEventListItem {
   protected el: HTMLElement;
@@ -1018,14 +1061,14 @@ export declare interface IxGroupItem extends Components.IxGroupItem {
 
 
 @ProxyCmp({
-  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'size', 'type', 'variant']
+  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'iconColor', 'loading', 'outline', 'oval', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'size', 'type', 'variant'],
+  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'iconColor', 'loading', 'outline', 'oval', 'size', 'type', 'variant'],
 })
 export class IxIconButton {
   protected el: HTMLElement;
@@ -1232,14 +1275,14 @@ export declare interface IxMapNavigation extends Components.IxMapNavigation {
 
 
 @ProxyCmp({
-  inputs: ['color', 'icon', 'name']
+  inputs: ['color', 'icon', 'iconColor', 'name']
 })
 @Component({
   selector: 'ix-map-navigation-overlay',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'icon', 'name'],
+  inputs: ['color', 'icon', 'iconColor', 'name'],
 })
 export class IxMapNavigationOverlay {
   protected el: HTMLElement;
@@ -1715,14 +1758,14 @@ export declare interface IxPagination extends Components.IxPagination {
 
 
 @ProxyCmp({
-  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'variant']
+  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'variant']
 })
 @Component({
   selector: 'ix-pill',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'variant'],
+  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'variant'],
 })
 export class IxPill {
   protected el: HTMLElement;
@@ -2230,14 +2273,14 @@ export declare interface IxTreeItem extends Components.IxTreeItem {
 
 
 @ProxyCmp({
-  inputs: ['bold', 'color', 'format', 'textDecoration']
+  inputs: ['bold', 'color', 'format', 'textColor', 'textDecoration']
 })
 @Component({
   selector: 'ix-typography',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['bold', 'color', 'format', 'textDecoration'],
+  inputs: ['bold', 'color', 'format', 'textColor', 'textDecoration'],
 })
 export class IxTypography {
   protected el: HTMLElement;
