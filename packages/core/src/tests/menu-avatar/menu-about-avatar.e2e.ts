@@ -44,14 +44,4 @@ regressionTest.describe('menu-avatar', () => {
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
-
-  regressionTest('no dropdown', async ({ page }) => {
-    await page.goto('menu-avatar/no-dropdown');
-    await page.locator('ix-burger-menu').click();
-    await page.waitForSelector('.expanded');
-    await page.locator('ix-menu-avatar').click();
-
-    await page.waitForTimeout(1000);
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
 });

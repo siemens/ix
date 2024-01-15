@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 regressionTest.describe('push-card: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
@@ -33,23 +33,4 @@ regressionTest.describe('push-card: basic', () => {
       await page.screenshot({ fullPage: true, animations: 'disabled' })
     ).toMatchSnapshot();
   });
-});
-
-test('push card expand', async ({ page, mount }) => {
-  await mount(`
-      <ix-push-card
-        icon="bulb"
-        notification="99"
-        heading="Heading content"
-        subheading="Subheading"
-        variant="insight"
-        collapse="false"
-      > </ix-push-card>
-  `);
-
-  await page.waitForSelector('ix-push-card');
-
-  expect(
-    await page.screenshot({ fullPage: true, animations: 'disabled' })
-  ).toMatchSnapshot();
 });

@@ -12,7 +12,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Fragment,
   h,
   Host,
   Prop,
@@ -72,7 +71,14 @@ export class Blind {
 
   constructor() {}
 
-  private onHeaderClick() {
+  private onHeaderClick(e: Event) {
+    if ((e.target as Element).closest('.header-actions')) {
+      return;
+    }
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
     this.collapsed = !this.collapsed;
     this.collapsedChange.emit(this.collapsed);
   }
@@ -135,27 +141,37 @@ export class Blind {
           [`blind-${this.variant}`]: true,
         }}
       >
-        <div class={'blind-header-wrapper'}>
-          <div class={'blind-header-content'}>
-            <ix-icon
-              class="collapse-icon"
-              name={'chevron-right-small'}
-              color={
-                this.variant === 'insight' || this.variant === 'outline'
-                  ? 'color-primary'
-                  : `color-${this.variant}--contrast`
-              }
-              ref={(ref) => (this.chevronRef = ref)}
-            ></ix-icon>
-            <div
-              class="blind-header-title"
-              id={`ix-blind-header-title-${this.blindId}`}
-            >
-              {this.label !== undefined ? (
-                <Fragment>
-                  {this.icon && (
+        <button
+          class={{
+            'blind-header': true,
+            [`blind-${this.variant}`]: true,
+            closed: this.collapsed,
+          }}
+          type="button"
+          aria-labelledby={`ix-blind-header-title-${this.blindId}`}
+          aria-controls={`ix-blind-content-section-${this.blindId}`}
+          aria-expanded={a11yBoolean(!this.collapsed)}
+          onClick={(e) => this.onHeaderClick(e)}
+        >
+          <ix-icon
+            class="collapse-icon"
+            name={'chevron-right-small'}
+            color={
+              this.variant === 'insight' || this.variant === 'outline'
+                ? 'color-primary'
+                : `color-${this.variant}--contrast`
+            }
+            ref={(ref) => (this.chevronRef = ref)}
+          ></ix-icon>
+          <div
+            class="blind-header-title"
+            id={`ix-blind-header-title-${this.blindId}`}
+          >
+            {this.label !== undefined ? (
+              <span class="blind-header-title-basic">
+                <div class="blind-header-title-col">
+                  {this.icon !== undefined ? (
                     <ix-icon
-                      class="blind-header-title-icon"
                       name={this.icon}
                       color={
                         this.variant === 'insight' || this.variant === 'outline'
@@ -163,52 +179,39 @@ export class Blind {
                           : `color-${this.variant}--contrast`
                       }
                     ></ix-icon>
+                  ) : (
+                    ''
                   )}
-                  <div class={'blind-header-title-row'}>
-                    <div class="blind-header-title-col">
-                      <ix-typography title={this.label} format="label-lg" bold>
-                        <div
-                          class="blind-header-title-label"
-                          title={this.label}
-                        >
-                          {this.label}
-                        </div>
-                      </ix-typography>
+                  <ix-typography title={this.label} format="label-lg" bold>
+                    <div class="blind-header-title-label" title={this.label}>
+                      {this.label}
                     </div>
+                  </ix-typography>
+                </div>
 
-                    {this.sublabel && (
-                      <div class="blind-header-title-col">
-                        <ix-typography title={this.sublabel}>
-                          <div class="blind-header-title-sublabel">
-                            {this.sublabel}
-                          </div>
-                        </ix-typography>
+                <div class="blind-header-title-col">
+                  {this.sublabel !== undefined ? (
+                    <ix-typography title={this.sublabel}>
+                      <div class="blind-header-title-sublabel">
+                        {this.sublabel}
                       </div>
-                    )}
-                  </div>
-                  <div class="header-actions">
+                    </ix-typography>
+                  ) : (
+                    ''
+                  )}
+                  <span
+                    class="header-actions"
+                    onClick={(e) => e.stopImmediatePropagation()}
+                  >
                     <slot name="header-actions"></slot>
-                  </div>
-                </Fragment>
-              ) : null}
-            </div>
+                  </span>
+                </div>
+              </span>
+            ) : (
+              <slot name="custom-header"></slot>
+            )}
           </div>
-
-          <button
-            class={{
-              'blind-header': true,
-              [`blind-${this.variant}`]: true,
-              closed: this.collapsed,
-            }}
-            type="button"
-            aria-labelledby={`ix-blind-header-title-${this.blindId}`}
-            aria-controls={`ix-blind-content-section-${this.blindId}`}
-            aria-expanded={a11yBoolean(!this.collapsed)}
-            onClick={() => this.onHeaderClick()}
-          >
-            <slot name="custom-header"></slot>
-          </button>
-        </div>
+        </button>
         <section
           id={`ix-blind-content-section-${this.blindId}`}
           aria-labelledby={`ix-blind-header-title-${this.blindId}`}

@@ -9,7 +9,6 @@
 
 <script setup lang="ts">
 import {
-IxApplication,
   IxBasicNavigation,
   IxMenu,
   IxMenuCategory,
@@ -18,7 +17,7 @@ IxApplication,
 </script>
 
 <template>
-  <IxApplication>
+  <IxBasicNavigation>
     <IxMenu>
       <IxMenuItem home icon="home"> Home </IxMenuItem>
       <IxMenuItem icon="globe">Normal Tab</IxMenuItem>
@@ -27,5 +26,5 @@ IxApplication,
         <IxMenuItem icon="globe">Nested Tab</IxMenuItem>
       </IxMenuCategory>
     </IxMenu>
-  </IxApplication>
+  </IxBasicNavigation>
 </template>

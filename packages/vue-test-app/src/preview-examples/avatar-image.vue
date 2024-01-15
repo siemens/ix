@@ -12,5 +12,5 @@ import { IxAvatar } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxAvatar image="https://www.gravatar.com/avatar/00000000000000000000000000000000"></IxAvatar>
+  <IxAvatar image="https://ui-avatars.com/api/?name=John+Doe"></IxAvatar>
 </template>

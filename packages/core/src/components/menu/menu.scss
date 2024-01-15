@@ -89,6 +89,10 @@ $menu-expanded-width: 16rem;
 
     background-color: var(--theme-nav--background);
     transition: width var(--animate-duration) ease-in-out;
+
+    .burger-menu {
+      margin: 0.75rem 0 1rem 0.35rem;
+    }
   }
 
   .menu-overlay {
@@ -146,19 +150,6 @@ $menu-expanded-width: 16rem;
   .bottom-tab-divider {
     margin-top: auto;
   }
-
-  .menu-buttons {
-    margin: 0.5rem 0 0 0.5rem;
-  }
-
-  .menu-buttons .burger-menu,
-  .menu-buttons .app-switch {
-    margin-left: 0.125rem;
-  }
-
-  .menu-buttons > :last-child {
-    margin-bottom: 1rem;
-  }
 }
 
 :host(.breakpoint-sm) {
@@ -167,7 +158,7 @@ $menu-expanded-width: 16rem;
   }
 
   .menu {
-    padding-top: 0.5rem;
+    padding-top: 2rem;
   }
 
   .menu .burger-menu {

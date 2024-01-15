@@ -9,7 +9,7 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 
-export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';
+export type DateTimeCardCorners = 'rounded' | 'left' | 'right';
 
 /**
  * @internal
@@ -20,9 +20,6 @@ export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';
   shadow: true,
 })
 export class DateTimeCard {
-  /** @internal */
-  @Prop() standaloneAppearance = undefined;
-
   /**
    * set styles
    */
@@ -36,11 +33,7 @@ export class DateTimeCard {
   private cardClasses() {
     return {
       card: true,
-      standaloneAppearance:
-        this.standaloneAppearance !== undefined
-          ? this.standaloneAppearance
-          : this.individual,
-      rounded: this.corners === 'rounded',
+      individual: this.individual,
       left: this.corners === 'left',
       right: this.corners === 'right',
     };

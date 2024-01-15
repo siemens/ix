@@ -101,6 +101,8 @@ export async function showModal<T>(
   setA11yAttributes(dialogRef, config);
   Object.assign(dialogRef, config);
 
+  dialogRef.setAttribute('ariaDescribedby', 'Test');
+
   dialogRef.showModal();
   dialogRef.addEventListener('dialogClose', async ({ detail }: CustomEvent) => {
     onClose.emit(detail);

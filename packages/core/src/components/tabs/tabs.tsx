@@ -236,10 +236,11 @@ export class Tabs {
     return true;
   }
 
-  componentWillLoad() {
+  componentDidRender() {
     const tabs = this.getTabs();
+    this.totalItems = tabs.length;
 
-    tabs.map((element, index) => {
+    tabs.forEach((element, index) => {
       if (this.small) element.setAttribute('small', 'true');
 
       if (this.rounded) element.setAttribute('rounded', 'true');
@@ -249,20 +250,7 @@ export class Tabs {
         'selected',
         index === this.selected ? 'true' : 'false'
       );
-
       element.setAttribute('placement', this.placement);
-    });
-  }
-
-  componentDidRender() {
-    const tabs = this.getTabs();
-    this.totalItems = tabs.length;
-
-    tabs.map((element, index) => {
-      element.setAttribute(
-        'selected',
-        index === this.selected ? 'true' : 'false'
-      );
     });
   }
 
@@ -270,7 +258,6 @@ export class Tabs {
     requestAnimationFrameNoNgZone(() => {
       const showNextArrow = this.showNextArrow();
       const previousArrow = this.showPreviousArrow();
-
       Object.assign(
         this.arrowLeftElement.style,
         this.getArrowStyle(previousArrow)

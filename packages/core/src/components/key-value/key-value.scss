@@ -12,15 +12,10 @@
 
   .keyValue__content {
     display: flex;
-    flex-grow: 1;
     align-items: flex-start;
 
     .content__label {
       color: var(--theme-color-soft-text);
-    }
-
-    .content__value {
-      width: 100%;
     }
   }
 }

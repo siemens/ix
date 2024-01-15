@@ -9,8 +9,6 @@
 
 <script setup lang="ts">
 import {
-IxApplication,
-  IxApplicationHeader,
   IxBasicNavigation,
   IxMenu,
   IxMenuAbout,
@@ -20,10 +18,8 @@ IxApplication,
 </script>
 
 <template>
-  <IxApplication>
-    <IxApplicationHeader>
-      <div className="placeholder-logo" slot="logo"></div>
-    </IxApplicationHeader>
+  <IxBasicNavigation>
+    <div className="placeholder-logo" slot="logo"></div>
     <IxMenu>
       <IxMenuAbout>
         <IxMenuAboutItem label="Example"> </IxMenuAboutItem>
@@ -32,5 +28,5 @@ IxApplication,
         Test
       </IxMenuAboutNews>
     </IxMenu>
-  </IxApplication>
+  </IxBasicNavigation>
 </template>

@@ -14,13 +14,8 @@ import {
   h,
   Host,
   Prop,
-  State,
 } from '@stencil/core';
-import { getSlottedElements } from '../utils/shadow-dom';
 
-/**
- * @deprecated Use ix-application-header and it's avatar functionality instead
- */
 @Component({
   tag: 'ix-menu-avatar',
   styleUrl: 'menu-avatar.scss',
@@ -56,19 +51,7 @@ export class MenuAvatar {
   /**
    * Use for translation
    */
-  @Prop() i18nLogout: string = 'Logout';
-
-  /**
-   *  Control the visibility of the logout button
-   *  @since 2.1.0
-   */
-  @Prop() showLogoutButton: boolean = true;
-
-  /**
-   * Control the visibility of the dropdown menu
-   * @since 2.1.0
-   */
-  @State() showContextMenu: boolean = false;
+  @Prop() i18nLogout = 'Logout';
 
   /**
    * Logout click
@@ -76,15 +59,6 @@ export class MenuAvatar {
   @Event() logoutClick: EventEmitter;
 
   private avatarElementId = 'ix-menu-avatar-id';
-
-  onSlotChange() {
-    const slot = this.hostElement.shadowRoot.querySelector('slot');
-    if (!slot) {
-      return;
-    }
-    const elements = getSlottedElements(slot);
-    this.showContextMenu = elements.length !== 0;
-  }
 
   render() {
     return (
@@ -109,21 +83,18 @@ export class MenuAvatar {
         <ix-dropdown
           trigger={this.hostElement}
           placement={'right-start'}
-          hidden={!this.showContextMenu && !this.showLogoutButton}
           offset={{
             mainAxis: 16,
           }}
         >
-          <slot onSlotchange={() => this.onSlotChange()}></slot>
-          {this.showLogoutButton ? (
-            <ix-menu-avatar-item
-              label={this.i18nLogout}
-              icon={'log-out'}
-              onClick={(e) => {
-                this.logoutClick.emit(e);
-              }}
-            ></ix-menu-avatar-item>
-          ) : null}
+          <slot></slot>
+          <ix-menu-avatar-item
+            label={this.i18nLogout}
+            icon={'log-out'}
+            onClick={(e) => {
+              this.logoutClick.emit(e);
+            }}
+          ></ix-menu-avatar-item>
         </ix-dropdown>
       </Host>
     );

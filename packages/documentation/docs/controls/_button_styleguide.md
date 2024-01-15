@@ -24,7 +24,7 @@ Do not use buttons for navigation. To foward a user to a new page, use a hyperli
 
 Buttons are available as primary, secondary and tertiary variants. Through the selective use of fill and outline color, different emphasis is given by each variant. Buttons can contain an icon and text, only text or only an icon. All buttons have a respective grey variant to be used within sections with less importance.
 
-![Button overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=143-9694&mode=design&t=Mg2LfIFREkpsVW6j-4)
+![Button overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=143-9694&mode=design&t=oeSCpzdXLLAiSHv2-0)
 
 ### Emphasis
 

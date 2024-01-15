@@ -111,7 +111,7 @@ function Homepage() {
   }, [context]);
 
   return (
-    <div className={clsx(styles.container, styles.industrial_experience)}>
+    <div className={clsx(styles.container, styles.industrial_experiance)}>
       <div className={styles.content}>
         <div className={styles.logo}>
           <svg
@@ -143,8 +143,6 @@ function Homepage() {
           noLine
           description_width="427px"
         ></Headline>
-
-        <CallToActions />
 
         <div className={styles.Card_Box}>
           <div className={styles.Card_Info}>
@@ -260,7 +258,15 @@ function Button(props: {
 
 function CallToActions() {
   return (
-    <div className={clsx(styles.container, styles.call_to_actions)}>
+    <div
+      id="getting-started"
+      className={clsx(styles.container, styles.call_to_actions)}
+    >
+      <img
+        src={useBaseUrl('/img/Screen_02_background_image.png')}
+        alt=""
+        className={styles.call_to_actions_background}
+      ></img>
       <div className={styles.lines}>
         <Button
           link={useBaseUrl('/docs/getting-started-for-designers')}
@@ -272,7 +278,22 @@ function CallToActions() {
           link={useBaseUrl('/docs/getting-started')}
           icon="arrow-right"
           label="iX for Developers"
-          style="primary"
+          style="secondary"
+        />
+      </div>
+
+      <div className={styles.lines}>
+        <Button
+          link={useBaseUrl('/docs/team')}
+          icon="user-management-filled"
+          label="Meet the Team"
+          style="grey"
+        />
+        <Button
+          link={'https://community.siemens.com/c/ix/'}
+          icon="user-management-filled"
+          label="iX Community"
+          style="grey"
         />
       </div>
     </div>
@@ -635,29 +656,18 @@ function InformationCards() {
 function FooterButtons() {
   return (
     <div className={clsx(styles.container, styles.footer_buttons)}>
-      <div className={styles.lines}>
-        <Button
-          link={useBaseUrl('/docs/getting-started-for-designers')}
-          icon="rocket"
-          label="Start iX now"
-          style="primary"
-        />
-        <Button
-          link={useBaseUrl('/docs/team')}
-          icon="heart"
-          label="Meet the team"
-          style="secondary"
-        />
-      </div>
-      <div className={styles.lines}>
-
-        <Button
-          link={'https://community.siemens.com/c/ix/'}
-          icon="user-management"
-          label="iX Community"
-          style="secondary"
-        />
-      </div>
+      <Button
+        link={useBaseUrl('/docs/getting-started-for-designers')}
+        icon=""
+        label="Start iX now"
+        style="primary"
+      />
+      <Button
+        link={useBaseUrl('/docs/team')}
+        icon="user-management-filled"
+        label="Meet the Team"
+        style="grey"
+      />
     </div>
   );
 }
@@ -676,6 +686,7 @@ const Home: React.FC = () => {
 
           <Layout>
             <Homepage />
+            <CallToActions />
             <Devices />
             <UX />
             <Developers />

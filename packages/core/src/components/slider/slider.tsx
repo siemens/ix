@@ -50,7 +50,7 @@ export class Slider {
   /**
    * Legal number intervals
    *
-   * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
    */
   @Prop() step: number;
 

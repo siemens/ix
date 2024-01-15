@@ -8,8 +8,7 @@
  */
 
 import {
-  IxApplication,
-  IxApplicationHeader,
+  IxBasicNavigation,
   IxMenu,
   IxMenuAbout,
   IxMenuAboutItem,
@@ -19,10 +18,8 @@ import React from 'react';
 
 export default () => {
   return (
-    <IxApplication>
-      <IxApplicationHeader>
-        <div className="placeholder-logo" slot="logo"></div>
-      </IxApplicationHeader>
+    <IxBasicNavigation>
+      <div className="placeholder-logo" slot="logo"></div>
       <IxMenu>
         <IxMenuAbout>
           <IxMenuAboutItem label="Example"> </IxMenuAboutItem>
@@ -31,6 +28,6 @@ export default () => {
           Test
         </IxMenuAboutNews>
       </IxMenu>
-    </IxApplication>
+    </IxBasicNavigation>
   );
 };

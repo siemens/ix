@@ -13,31 +13,8 @@
 
 :host {
   @include ix-component;
+
   @import 'legacy/components/forms';
-
-  display: block;
-  position: relative;
-  width: 22rem;
-
-  @media (max-width: 576px) {
-    .clock {
-      padding: 1.5rem 0;
-    }
-
-    .header {
-      height: $medium-control-height !important;
-    }
-  }
-
-  @media (min-width: 576px) {
-    .clock {
-      padding: 4.25rem 0;
-    }
-
-    .header {
-      height: $large-control-height !important;
-    }
-  }
 
   .header {
     display: flex;
@@ -46,14 +23,11 @@
     height: $large-control-height;
   }
 
-  .flex {
-    display: flex;
-  }
-
   .clock {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 4.25rem 0;
   }
 
   input,

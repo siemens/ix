@@ -10,8 +10,6 @@
 <script setup lang="ts">
 import {
   HTMLRefElement,
-  IxApplication,
-  IxApplicationHeader,
   IxBasicNavigation,
   IxMenu,
   IxMenuSettings,
@@ -28,15 +26,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <IxApplication>
-    <IxApplicationHeader>
-      <div className="placeholder-logo" slot="logo"></div>
-    </IxApplicationHeader>
+  <IxBasicNavigation>
+    <div className="placeholder-logo" slot="logo"></div>
     <IxMenu ref="menu">
       <IxMenuSettings>
         <IxMenuSettingsItem label="Example Setting 1"></IxMenuSettingsItem>
         <IxMenuSettingsItem label="Example Setting 2"></IxMenuSettingsItem>
       </IxMenuSettings>
     </IxMenu>
-  </IxApplication>
+  </IxBasicNavigation>
 </template>

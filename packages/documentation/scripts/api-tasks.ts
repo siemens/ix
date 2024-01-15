@@ -29,10 +29,10 @@ export async function writeApi(component: any, folderPath: string) {
   const output = path.join(folderPath, component.tag);
   const promises = [];
 
-  let data = [writeProps(component)].join('');
+  let data = [writeProps(component.props)].join('');
   promises.push(fse.outputFile(path.join(output, 'props.md'), data));
 
-  data = [writeEvents(component)].join('');
+  data = [writeEvents(component.events)].join('');
   promises.push(fse.outputFile(path.join(output, 'events.md'), data));
 
   promises.push(
@@ -73,14 +73,14 @@ export function writeSlots(slots: { name: string; docs: string }[]) {
   return staticCode;
 }
 
-function writeEvents(component: any) {
-  const events: {
+function writeEvents(
+  events: {
     docsTags: DocsTag[];
     event: string;
     docs: string;
     detail: string;
-  }[] = component.events;
-
+  }[]
+) {
   if (events.length === 0) {
     return 'No events available for this component.';
   }
@@ -100,7 +100,7 @@ function writeEvents(component: any) {
         return;
       }
 
-      console.log(`DocsTag not supported ${tag.name} (${component.filePath})`);
+      console.log(`DocsTag not supported ${tag.name}`);
     });
 
     attributes.push({
@@ -124,16 +124,16 @@ function writeEvents(component: any) {
   return staticCode;
 }
 
-function writeProps(component: any) {
-  const properties: {
+function writeProps(
+  properties: {
     name: string;
     docs: string;
     type: string;
     attr: string;
     default: string;
     docsTags: DocsTag[];
-  }[] = component.props;
-
+  }[]
+) {
   if (properties.length === 0) {
     return 'No properties available for this component.';
   }
@@ -157,7 +157,7 @@ function writeProps(component: any) {
         return;
       }
 
-      console.log(`DocsTag not supported ${tag.name} (${component.filePath})`);
+      console.log(`DocsTag not supported ${tag.name}`);
     });
 
     const attributeEntry: ApiTableEntry = {

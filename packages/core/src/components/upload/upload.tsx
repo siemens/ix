@@ -182,14 +182,14 @@ export class Upload {
       case UploadFileState.UPLOAD_FAILED:
         return (
           <span class="state">
-            <ix-icon name="error" class="icon-error"></ix-icon>
+            <i class="glyph glyph-error"></i>
             <span class="upload-text">{this.uploadFailedText}</span>
           </span>
         );
       case UploadFileState.UPLOAD_SUCCESSED:
         return (
           <span class="state">
-            <ix-icon name="success" class="icon-success"></ix-icon>
+            <i class="glyph glyph-success"></i>
             <span class="upload-text">{this.uploadSuccessText}</span>
           </span>
         );

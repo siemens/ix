@@ -16,7 +16,6 @@ import {
   h,
   Host,
   Prop,
-  State,
   Watch,
 } from '@stencil/core';
 
@@ -26,8 +25,6 @@ import {
   shadow: true,
 })
 export class MenuAbout {
-  @Element() el!: HTMLIxMenuSettingsElement;
-
   /**
    * active tab
    */
@@ -43,6 +40,8 @@ export class MenuAbout {
    */
   @Prop() show = false;
 
+  @Element() el!: HTMLIxMenuSettingsElement;
+
   /**
    * Popover closed
    */
@@ -51,7 +50,9 @@ export class MenuAbout {
     name: string;
   }>;
 
-  @State() settingsItems: HTMLIxMenuSettingsItemElement[];
+  get settingsItems(): HTMLIxMenuSettingsItemElement[] {
+    return Array.from(this.el.querySelectorAll('ix-menu-settings-item'));
+  }
 
   private setTab(label: string) {
     this.activeTabLabel = label;
@@ -64,39 +65,10 @@ export class MenuAbout {
     });
   }
 
-  private getTabItems() {
-    return this.settingsItems.map(({ label }) => {
-      return (
-        <ix-tab-item
-          selected={label === this.activeTabLabel}
-          onClick={() => this.setTab(label)}
-        >
-          {label}
-        </ix-tab-item>
-      );
-    });
-  }
-
   componentWillLoad() {
-    this.settingsItems = Array.from(
-      this.el.querySelectorAll('ix-menu-settings-item')
-    );
-
     if (this.settingsItems.length) {
       this.setTab(this.activeTabLabel || this.settingsItems[0].label);
     }
-
-    this.settingsItems.forEach((item) => {
-      item.addEventListener('labelChange', (e: CustomEvent) => {
-        this.settingsItems = Array.from(
-          this.el.querySelectorAll('ix-menu-settings-item')
-        );
-
-        if (e.detail.oldLabel === this.activeTabLabel) {
-          this.activeTabLabel = e.detail.newLabel;
-        }
-      });
-    });
   }
 
   componentDidLoad() {
@@ -106,6 +78,21 @@ export class MenuAbout {
   @Watch('activeTabLabel')
   watchActiveTabLabel(value: string) {
     this.setTab(value);
+  }
+
+  private getTabItems() {
+    return this.settingsItems.map(({ label }) => {
+      return (
+        <ix-tab-item
+          class={{
+            active: label === this.activeTabLabel,
+          }}
+          onClick={() => this.setTab(label)}
+        >
+          {label}
+        </ix-tab-item>
+      );
+    });
   }
 
   render() {

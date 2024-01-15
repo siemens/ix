@@ -124,22 +124,3 @@ test.describe('nested dropdown tests', () => {
     await expect(nestedDropdownItem).toHaveClass(/hydrated/);
   });
 });
-
-test('trigger toggles', async ({ mount, page }) => {
-  await mount(`<ix-button id="trigger">Open</ix-button>
-    <ix-dropdown trigger="trigger" trigger-toggles="true">
-      <ix-dropdown-item label="Item 1"></ix-dropdown-item>
-      <ix-dropdown-item label="Item 2"></ix-dropdown-item>
-    </ix-dropdown>
-  `);
-
-  await page.locator('ix-button').click();
-  const dropdown = page.locator('.dropdown-menu');
-  await expect(dropdown).toHaveClass(/show/);
-  await expect(dropdown).toBeVisible();
-
-  await page.locator('ix-button').click();
-  const after = page.locator('.dropdown-menu');
-  await expect(after).not.toHaveClass(/show/);
-  await expect(dropdown).not.toBeVisible();
-});

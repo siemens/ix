@@ -111,14 +111,14 @@
         width: $large-space;
       }
 
-      > ix-icon {
+      > i {
         margin-inline-end: $small-space;
 
-        &.icon-error {
+        &.glyph-error {
           color: var(--theme-color-alarm);
         }
 
-        &.icon-success {
+        &.glyph-success {
           color: var(--theme-color-success);
         }
       }

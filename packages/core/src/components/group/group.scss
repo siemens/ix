@@ -98,7 +98,6 @@
     justify-content: space-between;
     min-width: 0;
     flex-grow: 1;
-    flex-basis: 0;
     padding: 0.5rem;
     padding-left: 0;
 
@@ -117,7 +116,6 @@
         @include ellipsis;
 
         min-width: 0;
-        padding-right: 0;
       }
     }
 

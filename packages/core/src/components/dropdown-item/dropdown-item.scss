@@ -15,7 +15,7 @@ $itemPaddingRight: 1.5rem;
 $focusBorder: 0.0625rem;
 
 @mixin applyItemWidth($padding, $paddingRight) {
-  width: calc(100% - #{$padding} - #{$paddingRight});
+  width: calc(100% - #{$padding} - #{$paddingRight} - #{2 * $focusBorder});
 
   padding: 0 $padding;
   padding-right: $paddingRight;

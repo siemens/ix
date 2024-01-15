@@ -19,9 +19,9 @@
     position: relative;
   }
 
-  @media (max-width: 1024px) {
-    &.industrial_experience {
-      height: 1288px !important;
+  @media (max-width: 768px) {
+    &.industrial_experiance {
+      height: 1034px !important;
     }
 
     .content {
@@ -29,15 +29,7 @@
     }
   }
 
-  @media (max-width: 768px) {
-    &.industrial_experience {
-      height: 1188px !important;
-    }
-  }
-
-
-
-  &.industrial_experience {
+  &.industrial_experiance {
     padding: 81px 97px 0 66px;
     height: calc(100vh - var(--ifm-navbar-height));
     overflow: hidden;
@@ -118,8 +110,9 @@
 
   &.call_to_actions {
     flex-direction: row;
+    justify-content: center;
+    padding: 211px 0;
     gap: 45px;
-    margin: 1.5rem;
 
     .lines {
       display: flex;
@@ -127,21 +120,21 @@
     }
   }
 
-@media (max-width: 428px) {
+  @media (max-width: 1024px) {
     &.call_to_actions {
-      padding-inline-start: 0 !important;
-      padding-inline-end: 0 !important;
-      margin: 0;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lines {
+      flex-direction: column;
     }
   }
 
   @media (max-width: 1700px) {
     &.call_to_actions {
       flex-direction: column;
-    }
-
-    .lines {
-      flex-direction: column;
+      align-items: center;
     }
   }
 
@@ -152,7 +145,7 @@
   }
 
   &.devices {
-    padding: 8rem 66px 40px 66px;
+    padding: 40px 66px;
     min-height: 100vh;
     background-image: linear-gradient(#000028, #2d3137);
     overflow-x: clip;
@@ -160,6 +153,7 @@
     .image {
       position: absolute;
       top: -105px;
+      z-index: 1;
       width: 70%;
       height: auto;
       object-fit: cover;
@@ -624,6 +618,12 @@
     }
   }
 
+  @media (min-width: 1920px) {
+    &.footer_buttons {
+      flex-direction: row !important;
+    }
+  }
+
   &.footer_buttons {
     display: flex;
     flex-direction: column;
@@ -634,29 +634,6 @@
     padding-bottom: 107px;
     height: 425px;
     background-color: #000028;
-
-    .lines {
-      display: flex;
-      gap: 3rem;
-    }
-  }
-
-  @media (min-width: 1024px) and (max-width: 1700px) {
-    &.footer_buttons {
-      align-items: flex-start;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    &.footer_buttons {
-      flex-direction: row !important;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    &.footer_buttons {
-      height: 567px;
-    }
   }
 
   &.footer {
@@ -905,7 +882,14 @@
 
 @media (max-width: 1024px) {
   .Card_Info {
-    bottom: 104px !important;
+    right: -5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .Card_Info {
+    position: unset !important;
+    bottom: 0px !important;
   }
 
   .Card_Box {
@@ -962,33 +946,11 @@
   &.Primary {
     background-color: var(--theme-color-primary);
     border: 1px solid var(--theme-color-primary);
-
-    &:hover {
-      background-color: var(--theme-btn-primary--background--hover) !important;
-      color: var(--theme-btn-primary--color--hover) !important;
-    }
-
-    &:active {
-      background-color: var(--theme-btn-primary--background--active) !important;
-      color: var(--theme-btn-primary--color--active) !important;
-    }
   }
 
   &.Secondary {
     background-color: #000028;
     border: 1px solid var(--theme-color-primary);
-
-    &:hover {
-      background-color: var(--theme-btn-secondary--background--hover) !important;
-      color: var(--theme-btn-secondary--color--hover) !important;
-      border-color: var(--theme-btn-outline-primary--border-color--hover);
-    }
-
-    &:active {
-      background-color: var(--theme-btn-secondary--background--active) !important;
-      color: var(--theme-btn-secondary--color--active) !important;
-      border-color: var(--theme-btn-outline-primary--border-color--active);
-    }
   }
 
   &.Grey {

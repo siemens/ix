@@ -32,14 +32,14 @@ export class MenuItem {
   @Prop() bottom = false;
 
   /**
-   * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
+   * Icon name from @siemens/ix-icons
    *
    * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
    */
   @Prop() tabIcon = 'document';
 
   /**
-   * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
+   * Icon name from @siemens/ix-icons
    */
   @Prop() icon: string;
 

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
-  IxApplication,
+  IxBasicNavigation,
   IxMenu,
   IxMenuCategory,
   IxMenuItem,
@@ -16,7 +16,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <IxApplication>
+    <IxBasicNavigation>
       <IxMenu>
         <IxMenuItem home icon="home">
           Home
@@ -27,6 +27,6 @@ export default () => {
           <IxMenuItem icon="globe">Nested Tab</IxMenuItem>
         </IxMenuCategory>
       </IxMenu>
-    </IxApplication>
+    </IxBasicNavigation>
   );
 };

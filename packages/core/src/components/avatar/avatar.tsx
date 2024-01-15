@@ -40,17 +40,7 @@ function DefaultAvatar(props: { initials?: string }) {
   );
 }
 
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  readTask,
-  State,
-} from '@stencil/core';
-import { BaseButton } from '../button/base-button';
-import { closestElement } from '../utils/shadow-dom';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 
 /**
  * @since 2.0.0
@@ -75,52 +65,7 @@ export class Avatar {
    */
   @Prop() initials: string;
 
-  @State() isClosestApplicationHeader = false;
-
-  componentWillLoad() {
-    const closest = closestElement('ix-application-header', this.hostElement);
-    this.isClosestApplicationHeader = closest !== null;
-  }
-
-  private resolveAvatarTrigger() {
-    return new Promise<HTMLElement>((resolve) => {
-      readTask(() =>
-        resolve(this.hostElement.shadowRoot.querySelector('button'))
-      );
-    });
-  }
-
   render() {
-    if (this.isClosestApplicationHeader) {
-      return (
-        <Host slot="ix-application-header-avatar" class={'avatar-button'}>
-          <BaseButton
-            disabled={false}
-            ghost={true}
-            iconOval={false}
-            icon={undefined}
-            iconOnly={false}
-            loading={false}
-            outline={false}
-            selected={false}
-            type="button"
-            variant="primary"
-          >
-            <li class="avatar">
-              {this.image ? (
-                <img src={this.image} class="avatar-image"></img>
-              ) : (
-                <DefaultAvatar initials={this.initials} />
-              )}
-            </li>
-          </BaseButton>
-          <ix-dropdown trigger={this.resolveAvatarTrigger()}>
-            <slot></slot>
-          </ix-dropdown>
-        </Host>
-      );
-    }
-
     return (
       <Host>
         <li class="avatar">

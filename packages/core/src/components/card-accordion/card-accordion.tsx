@@ -5,9 +5,7 @@ import {
   EventEmitter,
   h,
   Host,
-  Prop,
   State,
-  Watch,
 } from '@stencil/core';
 
 let accordionControlId = 0;
@@ -29,12 +27,6 @@ export type CardAccordionExpandChangeEvent = {
   shadow: true,
 })
 export class CardAccordion {
-  /**
-   * Collapse the card
-   * @since 2.1.0
-   */
-  @Prop() collapse = false;
-
   @Element() hostElement: HTMLIxCardAccordionElement;
 
   /**
@@ -43,11 +35,6 @@ export class CardAccordion {
   @Event() accordionExpand: EventEmitter<CardAccordionExpandChangeEvent>;
 
   @State() expandContent = false;
-
-  @Watch('collapse')
-  onInitialExpandChange() {
-    this.expandContent = !this.collapse;
-  }
 
   get expandedContent() {
     return this.hostElement.shadowRoot.querySelector('.expand-content');
@@ -76,10 +63,6 @@ export class CardAccordion {
           .scrollIntoView(false);
       }
     }, 150);
-  }
-
-  componentWillLoad() {
-    this.onInitialExpandChange();
   }
 
   render() {

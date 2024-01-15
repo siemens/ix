@@ -11,7 +11,21 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './settings.html',
+  template: `
+    <ix-basic-navigation>
+      <div class="placeholder-logo" slot="logo"></div>
+      <ix-menu #menu>
+        <ix-menu-settings>
+          <ix-menu-settings-item
+            label="Example Setting 1"
+          ></ix-menu-settings-item>
+          <ix-menu-settings-item
+            label="Example Setting 2"
+          ></ix-menu-settings-item>
+        </ix-menu-settings>
+      </ix-menu>
+    </ix-basic-navigation>
+  `,
 })
 export default class Settings implements AfterViewInit {
   @ViewChild('menu', { read: ElementRef })

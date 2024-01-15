@@ -55,25 +55,14 @@ export class Chip {
   @Prop() icon: string;
 
   /**
-   * Custom background color.
-   * Only has an effect on chips with `variant='custom'`
+   * Custom color for pill. Only working for `variant='custom'`
    */
   @Prop() background: string | undefined;
 
   /**
-   * Custom font and icon color.
-   * Only has an effect on chips with `variant='custom'`
-   *
-   * @deprecated since 2.1.0 use `chip-color`
+   * Custom font color for pill. Only working for `variant='custom'`
    */
-  // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop() color: string | undefined;
-
-  /**
-   * Custom font and icon color.
-   * Only has an effect on chips with `variant='custom'`
-   */
-  @Prop() chipColor: string | undefined;
 
   /**
    * Show chip with outline style
@@ -97,11 +86,7 @@ export class Chip {
           class="close-button"
           oval
           size="16"
-          style={
-            this.variant === 'custom'
-              ? { color: this.chipColor ?? this.color }
-              : {}
-          }
+          style={this.variant === 'custom' ? { color: this.color } : {}}
           ghost
           onClick={(event) => {
             this.closeChip.emit(event);
@@ -119,7 +104,7 @@ export class Chip {
 
     if (this.variant === 'custom') {
       customStyle = {
-        color: this.chipColor ?? this.color,
+        color: this.color,
         [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
       };
     }
@@ -131,7 +116,7 @@ export class Chip {
         style={
           this.variant === 'custom'
             ? {
-                '--ix-icon-button-color': this.chipColor ?? this.color,
+                '--ix-icon-button-color': this.color,
               }
             : {}
         }
@@ -149,7 +134,6 @@ export class Chip {
             primary: this.variant === 'primary',
             success: this.variant === 'success',
             warning: this.variant === 'warning',
-            custom: this.variant === 'custom',
             closable: this.closable,
             icon: !!this.icon,
           }}

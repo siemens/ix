@@ -17,12 +17,6 @@ regressionTest.describe('empty state', () => {
     expect(await emptyState.screenshot()).toMatchSnapshot();
   });
 
-  regressionTest('overflow', async ({ page }) => {
-    await page.goto('empty-state/overflow');
-    const emptyState = await page.waitForSelector('ix-empty-state');
-    expect(await emptyState.screenshot()).toMatchSnapshot();
-  });
-
   regressionTest('compact', async ({ page }) => {
     await page.goto('empty-state/compact');
     const emptyState = await page.waitForSelector('ix-empty-state');

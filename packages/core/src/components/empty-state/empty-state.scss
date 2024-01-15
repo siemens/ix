@@ -43,11 +43,6 @@
       gap: $small-space;
     }
   }
-
-  .label__subHeader,
-  ix-typography {
-    text-align: center;
-  }
 }
 
 :host(.emptyState.emptyState--compact) {

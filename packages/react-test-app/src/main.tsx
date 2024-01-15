@@ -7,10 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+
+import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
+import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 import { IxApplicationContext } from '@siemens/ix-react';
 import React from 'react';
@@ -21,10 +22,6 @@ import './index.css';
 import AboutAndLegal from './preview-examples/about-and-legal';
 import ActionCard from './preview-examples/action-card';
 import AGGrid from './preview-examples/aggrid';
-import Application from './preview-examples/application';
-import ApplicationAppSwitch from './preview-examples/application-app-switch';
-import ApplicationBreakpoints from './preview-examples/application-breakpoints';
-import ApplicationHeader from './preview-examples/application-header';
 import BasicNavigation from './preview-examples/basic-navigation';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header';
 import Blind from './preview-examples/blind';
@@ -34,17 +31,12 @@ import BreadcrumbTruncate from './preview-examples/breadcrumb-truncate';
 import ButtonGroup from './preview-examples/button-group';
 import ButtonWithIcon from './preview-examples/button-with-icon';
 import Buttons from './preview-examples/buttons';
-import Card from './preview-examples/card';
 import CardList from './preview-examples/card-list';
 import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
-import Content from './preview-examples/content';
 import PageHeader from './preview-examples/content-header';
-import DateDropdown from './preview-examples/date-dropdown';
-import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
 import Datepicker from './preview-examples/datepicker';
-import DatepickerLocale from './preview-examples/datepicker-locale';
 import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import DrawerFullHeight from './preview-examples/drawer-full-height';
@@ -75,7 +67,6 @@ import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
 import Pill from './preview-examples/pill';
-import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
 import PushCard from './preview-examples/push-card';
 import RadioButton from './preview-examples/radio-button';
@@ -113,29 +104,13 @@ import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
-import Upload from './preview-examples/upload';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/preview/upload" element={<Upload />} />
         <Route path="/preview/checkbox" element={<Checkbox />} />
-        <Route path="/preview/application" element={<Application />} />
-        <Route
-          path="/preview/application-breakpoints"
-          element={<ApplicationBreakpoints />}
-        />
-        <Route
-          path="/preview/application-app-switch"
-          element={<ApplicationAppSwitch />}
-        />
-        <Route
-          path="/preview/application-header"
-          element={<ApplicationHeader />}
-        />
-        <Route path="/preview/content" element={<Content />} />
         <Route
           path="/preview/checkbox-indeterminate"
           element={<CheckboxIndeterminate />}
@@ -176,16 +151,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
         <Route path="/preview/aggrid" element={<AGGrid />} />
         <Route path="/preview/chip" element={<Chip />} />
-        <Route path="/preview/date-dropdown" element={<DateDropdown />} />
-        <Route
-          path="/preview/date-dropdown-user-range"
-          element={<DateDropdownUserRange />}
-        />
         <Route path="/preview/datepicker" element={<Datepicker />} />
-        <Route
-          path="/preview/datepicker-locale"
-          element={<DatepickerLocale />}
-        />
         <Route path="/preview/datepicker-range" element={<DatepickerRange />} />
         <Route path="/preview/datetimepicker" element={<Datetimepicker />} />
         <Route
@@ -228,7 +194,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/input-with-icon" element={<InputWithIcon />} />
         <Route path="/preview/message-bar" element={<MessageBar />} />
         <Route path="/preview/pill" element={<Pill />} />
-        <Route path="/preview/pill-variants" element={<PillVariants />} />
         <Route path="/preview/radio-button" element={<RadioButton />} />
         <Route path="/preview/select" element={<Select />} />
         <Route path="/preview/select-editable" element={<SelectEditable />} />
@@ -289,7 +254,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/tooltip-title" element={<TooltipTitle />} />
         <Route path="/preview/push-card" element={<PushCard />} />
         <Route path="/preview/action-card" element={<ActionCard />} />
-        <Route path="/preview/card" element={<Card />} />
         <Route path="/preview/card-list" element={<CardList />} />
         <Route path="/testing">
           <Route path="navigation" element={<NavigationTest />}>

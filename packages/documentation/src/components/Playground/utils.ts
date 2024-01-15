@@ -308,7 +308,7 @@ async function getSourceCodeFiles(
   filenames: string[]
 ) {
   const getPath = (name: string) =>
-    `${baseUrl}auto-generated/previews/${framework}/${name}`;
+    `${baseUrl}auto-generated/previews/${framework}/${name}.txt`;
 
   const sourceFiles: { filename: string; sourceCode: string }[] = [];
   const files = await loadSourceCodeFromStatic(filenames.map(getPath));

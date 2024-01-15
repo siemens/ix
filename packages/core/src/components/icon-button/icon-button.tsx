@@ -11,7 +11,6 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BaseButtonProps } from '../button/base-button';
 import { ButtonVariant } from '../button/button';
 import { BaseIconButton } from '../icon-button/base-icon-button';
-import { getFallbackLabelFromIconName } from '../utils/a11y';
 
 export type IconButtonVariant = ButtonVariant;
 
@@ -22,14 +21,6 @@ export type IconButtonVariant = ButtonVariant;
 })
 export class IconButton {
   @Element() hostElement: HTMLIxIconButtonElement;
-
-  /**
-   * Accessibility label for the icon button
-   * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 2.1.0
-   */
-  @Prop({ attribute: 'a11y-label' }) a11yLabel: string;
 
   /**
    * Variant of button
@@ -65,16 +56,8 @@ export class IconButton {
 
   /**
    * Color of icon in  button
-   *
-   * @deprecated since 2.1.0 use `icon-color`
    */
-  // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop() color: string;
-
-  /**
-   * Color of icon in  button
-   */
-  @Prop() iconColor: string;
 
   /**
    * Disabled
@@ -126,11 +109,6 @@ export class IconButton {
 
   render() {
     const baseButtonProps: BaseButtonProps = {
-      ariaAttributes: {
-        'aria-label': this.a11yLabel
-          ? this.a11yLabel
-          : getFallbackLabelFromIconName(this.icon),
-      },
       variant: this.variant,
       outline: this.outline,
       ghost: this.ghost,
@@ -139,7 +117,7 @@ export class IconButton {
       selected: false,
       disabled: this.disabled || this.loading,
       icon: this.icon,
-      iconColor: this.iconColor ?? this.color,
+      iconColor: this.color,
       iconSize: this.size,
       loading: this.loading,
       onClick: () => this.dispatchFormEvents(),

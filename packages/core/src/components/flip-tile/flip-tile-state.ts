@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// eslint-disable-next-line @stencil-community/ban-exported-const-enums
 export enum FlipTileState {
   None = 'none',
   Info = 'info',

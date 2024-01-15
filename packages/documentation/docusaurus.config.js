@@ -9,9 +9,8 @@
 
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-const path = require('path');
-const figmaPlugin = require('@siemens/figma-plugin');
 
+const path = require('path');
 
 let withBrandTheme = false;
 
@@ -43,101 +42,6 @@ const customCss = [
 
 const baseUrl = process.env.BASE_URL || '/';
 
-/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-const themeConfig =
-{
-  metadata: [
-    {
-      name: 'keywords',
-      content:
-        'siemens-ix, ix, stenciljs, angular, webcomponent, react, siemens, ix, siemens, industrial, experience, vue',
-    },
-    {
-      name: 'description',
-      content:
-        'Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
-    },
-  ],
-  colorMode: {
-    disableSwitch: true,
-  },
-  navbar: {
-    title: 'Siemens Industrial Experience',
-    logo: {
-      alt: 'Siemens AG',
-      src: 'img/logo.svg',
-    },
-    items: [
-    ],
-  },
-  footer: {
-    copyright: `© Siemens 1996 - ${new Date().getFullYear()}`,
-    links: [
-      {
-        title: 'Community',
-        items: [
-          {
-            label: 'GitHub',
-            href: 'https://github.com/siemens/ix',
-          },
-          {
-            label: 'iX Community',
-            href: 'https://community.siemens.com/c/ix',
-          },
-          {
-            label: 'Siemens Xcelerator Developer Portal',
-            href: 'https://developer.siemens.com',
-          },
-        ],
-      },
-      {
-        title: 'About',
-        items: [
-          {
-            label: 'Corporate Information',
-            href: 'https://www.siemens.com/corporate-information',
-          },
-          {
-            label: 'Privacy Notice',
-            href: 'https://www.siemens.com/privacy-notice',
-          },
-          {
-            label: 'Cookie notice',
-            href: '/cookie-notice',
-          },
-          {
-            html: '<a class="footer__link-item" href="javascript:void(0)" onClick="UC_UI.showSecondLayer();">Privacy Settings</a>',
-          },
-          {
-            label: 'Terms of use',
-            href: 'https://www.siemens.com/terms-of-use',
-          },
-          {
-            label: 'Digital ID',
-            href: 'https://www.siemens.com/digital-id',
-          },
-        ],
-      },
-    ],
-  },
-  prism: {
-    // @ts-ignore
-    theme: require('prism-react-renderer/themes/dracula'),
-    theme2: require('prism-react-renderer/themes/dracula'),
-  },
-};
-
-if (baseUrl !== '/') {
-  themeConfig.announcementBar = {
-    id: 'dev_env',
-    content:
-      'You are looking at our development environment, please go to our <a target="_blank" rel="noopener noreferrer" href="https://ix.siemens.io">production page</a>.',
-    backgroundColor: '#fafbfc',
-    textColor: '#091E42',
-    isCloseable: false,
-  };
-}
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Siemens Industrial Experience',
@@ -154,7 +58,7 @@ const config = {
     [
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
-      {
+      ({
         debug: false,
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
@@ -162,10 +66,10 @@ const config = {
           editUrl:
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
           remarkPlugins: [
-            figmaPlugin.default({
-              baseUrl: `${baseUrl}figma`,
+            require('@siemens/figma-plugin')({
+              baseUrl: baseUrl,
               figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
-              error_image: path.join('..', 'img', 'figma_error.png'),
+              error_image: 'img/figma_error.png',
               apiToken: process.env.FIGMA_API_TOKEN,
               rimraf: true,
             }),
@@ -174,13 +78,96 @@ const config = {
         theme: {
           customCss,
         },
-      },
+      }),
     ],
   ],
   customFields: {
     withBrandTheme,
   },
-  themeConfig: themeConfig,
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      metadata: [
+        {
+          name: 'keywords',
+          content:
+            'siemens-ix, ix, stenciljs, angular, webcomponent, react, siemens, ix, siemens, industrial, experience, vue',
+        },
+        {
+          name: 'description',
+          content:
+            'Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
+        },
+      ],
+      colorMode: {
+        disableSwitch: true,
+      },
+      navbar: {
+        title: 'Siemens Industrial Experience',
+        logo: {
+          alt: 'Siemens AG',
+          src: 'img/logo.svg',
+        },
+        items: [
+          // Remove docs version until library needs to publish an major release
+          // {
+          //   type: 'docsVersionDropdown',
+          //   position: 'right',
+          // },
+        ],
+      },
+      footer: {
+        copyright: `© Siemens 1996 - ${new Date().getFullYear()}`,
+        links: [
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'GitHub',
+                href: 'https://github.com/siemens/ix',
+              },
+              {
+                label: 'iX Community',
+                href: 'https://community.siemens.com/c/ix',
+              },
+              {
+                label: 'Siemens Developer Portal',
+                href: 'https://developer.siemens.com',
+              },
+            ],
+          },
+          {
+            title: 'About',
+            items: [
+              {
+                label: 'Corporate Information',
+                href: 'https://www.siemens.com/corporate-information',
+              },
+              {
+                label: 'Privacy Notice',
+                href: 'https://www.siemens.com/privacy-notice',
+              },
+              {
+                label: 'Cookie notice',
+                href: 'https://www.siemens.com/cookie-notice',
+              },
+              {
+                label: 'Terms of use',
+                href: 'https://www.siemens.com/terms-of-use',
+              },
+              {
+                label: 'Digital ID',
+                href: 'https://www.siemens.com/digital-id',
+              },
+            ],
+          },
+        ],
+      },
+      prism: {
+        theme: require('prism-react-renderer/themes/dracula'),
+        theme2: require('prism-react-renderer/themes/dracula'),
+      },
+    }),
   plugins: [
     'docusaurus-plugin-sass',
     [

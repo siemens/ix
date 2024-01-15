@@ -31,7 +31,6 @@ import { LogicalFilterOperator } from './logical-filter-operator';
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
-  @State() showDropdown: boolean;
   @State() private textInput?: HTMLInputElement;
   private formElement?: HTMLFormElement;
   private isScrollStateDirty: boolean;
@@ -242,7 +241,6 @@ export class CategoryFilter {
         break;
 
       case 'ArrowDown':
-        this.showDropdown = true;
         this.focusNextItem();
         e.preventDefault();
         break;
@@ -391,8 +389,7 @@ export class CategoryFilter {
     this.categoryChanged.emit(category);
   }
 
-  private resetFilter(e: Event) {
-    e.stopPropagation();
+  private resetFilter() {
     this.closeDropdown();
     this.filterTokens = [];
     this.emitFilterEvent();
@@ -624,7 +621,7 @@ export class CategoryFilter {
   private getResetButton() {
     return (
       <ix-icon-button
-        onClick={(e) => this.resetFilter(e)}
+        onClick={() => this.resetFilter()}
         class={{
           'reset-button': true,
           'hide-reset-button':
@@ -683,7 +680,6 @@ export class CategoryFilter {
                     <ix-filter-chip
                       disabled={this.disabled}
                       readonly={this.readonly}
-                      onClick={(e) => e.stopPropagation()}
                       onCloseClick={() => this.removeToken(index)}
                     >
                       {this.getFilterChipLabel(value)}
@@ -710,8 +706,6 @@ export class CategoryFilter {
                       this.disabled ||
                       this.category !== undefined,
                   }}
-                  autocomplete="off"
-                  name="category-filter-input"
                   disabled={this.disabled}
                   readonly={this.readonly}
                   ref={(el) => (this.textInput = el)}
@@ -728,11 +722,10 @@ export class CategoryFilter {
           ''
         ) : (
           <ix-dropdown
-            show={this.showDropdown}
             closeBehavior="outside"
             offset={{ mainAxis: 2 }}
-            anchor={this.textInput}
-            trigger={this.hostElement}
+            trigger={this.textInput}
+            triggerEvent={['click', 'focus']}
             header={this.getDropdownHeader()}
           >
             {this.renderDropdownContent()}

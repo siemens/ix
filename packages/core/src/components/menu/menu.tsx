@@ -22,7 +22,6 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
-import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
@@ -598,28 +597,15 @@ export class Menu {
             this.resetActiveTab();
           }}
         >
-          <div class={'menu-buttons'}>
-            <ix-burger-menu
-              onClick={async () => this.toggleMenu()}
-              expanded={this.expand}
-              ixAriaLabel={this.i18nExpandSidebar}
-              pinned={this.showPinned}
-              class={{
-                'burger-menu': true,
-              }}
-            ></ix-burger-menu>
-            {this.breakpoint === 'sm' &&
-              this.applicationLayoutContext.appSwitchConfig && (
-                <ix-icon-button
-                  onClick={() =>
-                    showAppSwitch(this.applicationLayoutContext.appSwitchConfig)
-                  }
-                  icon="apps"
-                  ghost
-                  class="app-switch"
-                ></ix-icon-button>
-              )}
-          </div>
+          <ix-burger-menu
+            onClick={async () => this.toggleMenu()}
+            expanded={this.expand}
+            ixAriaLabel={this.i18nExpandSidebar}
+            pinned={this.showPinned}
+            class={{
+              'burger-menu': true,
+            }}
+          ></ix-burger-menu>
           <div class="menu-avatar">
             <slot name="ix-menu-avatar"></slot>
           </div>

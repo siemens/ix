@@ -13,15 +13,11 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('date picker', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('date-picker/basic');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixels: 4,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('range', async ({ page }) => {
     await page.goto('date-picker/range');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixels: 4,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });

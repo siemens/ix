@@ -71,19 +71,4 @@ regressionTest.describe('dropdown', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
-
-  regressionTest('zoom', async ({ page }) => {
-    await page.goto('dropdown/basic');
-
-    // Set the zoom
-    await page.setViewportSize({ width: 1280, height: 720 });
-    await page.evaluate(() => {
-      (document.body.style as any).zoom = '110%';
-    });
-
-    await page.locator('ix-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
-
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
 });

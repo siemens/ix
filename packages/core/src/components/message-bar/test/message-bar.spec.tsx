@@ -28,22 +28,22 @@ describe('ix-message-bar', () => {
     );
   });
 
-  it('closes the alert message bar', (done) => {
+  it('closes the alert message bar', async (done) => {
     messageBar.addEventListener('closedChange', () => {
       done();
     });
     fireEvent.click(closeButton);
   });
 
-  it('emits an event when the message is dismissed', (done) => {
+  it('emits an event when the message is dismissed', async (done) => {
     const mockCallback = jest.fn(() => {
       done();
     });
     window.addEventListener('closedChange', mockCallback);
 
     fireEvent.click(closeButton);
-    page.waitForChanges().then(() => {
-      window.removeEventListener('closedChange', mockCallback);
-    });
+    await page.waitForChanges();
+
+    window.removeEventListener('closedChange', mockCallback);
   });
 });

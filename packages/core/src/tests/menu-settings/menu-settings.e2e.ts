@@ -17,29 +17,7 @@ regressionTest.describe('menu-settings', () => {
     await page.waitForTimeout(500);
 
     //Click is needed otherwise tab item is still hovered
-    await page.getByText('First Label - ').click();
-
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
-
-  regressionTest('label', async ({ page }) => {
-    await page.goto('menu-settings/basic');
-    await page.locator('ix-menu-item#settings').click();
-    await page.waitForTimeout(500);
-
-    await page.getByText('First Content').click();
-
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
-
-  regressionTest('switch', async ({ page }) => {
-    await page.goto('menu-settings/basic');
-    await page.locator('ix-menu-item#settings').click();
-    await page.waitForTimeout(500);
-
-    await page.getByText('First Content').click();
-
-    await page.getByText('Changed Label').click();
+    await page.getByText('Content test 1').click();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
