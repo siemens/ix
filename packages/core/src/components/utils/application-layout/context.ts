@@ -14,9 +14,31 @@ export const closestIxMenu = (element: Element) => {
   return menuElement;
 };
 
+export type AppSwitchConfigurationTarget =
+  | '_self'
+  | '_blank'
+  | '_parent'
+  | '_top'
+  | (string & {});
+
+export type AppSwitchConfiguration = {
+  currentAppId: string;
+  apps: {
+    id: string;
+    name: string;
+    description: string;
+    url: string;
+    target: AppSwitchConfigurationTarget;
+    iconSrc: string;
+  }[];
+  i18nAppSwitch?: string;
+  i18nLoadingApps?: string;
+};
+
 export const ApplicationLayoutContext = createContext<{
   hideHeader: boolean;
   host: 'basic-navigation' | 'map-navigation' | null;
+  appSwitchConfig?: AppSwitchConfiguration;
   sidebar?: boolean;
 }>('application-layout-context', {
   hideHeader: false,

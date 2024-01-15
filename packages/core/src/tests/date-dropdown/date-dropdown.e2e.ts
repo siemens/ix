@@ -13,8 +13,11 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('date dropdown', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('date-dropdown/basic');
-    await page.locator('ix-dropdown-button').click();
-    await page.waitForSelector('.dropdown-menu.show');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    const dateDropdown = page.locator('ix-date-dropdown');
+    await dateDropdown.click();
+    const dropdown = dateDropdown.locator('ix-dropdown[data-date-dropdown]');
+
+    await expect(dropdown).toHaveClass(/show/);
+    await expect(page).toHaveScreenshot();
   });
 });
