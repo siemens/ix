@@ -61,18 +61,24 @@ export class SidePane {
 
   /**
    * Toggle either the preview content is shown or not
+   * @internal
    */
   @Prop() showPreviewContent: boolean = false;
 
   /**
    * State of the side-pane
    */
-  @Prop({ mutable: true }) expandPane: boolean = false;
+  @Prop({ mutable: true }) expand: boolean = false;
 
   /**
    * Placement of the sidebar
    */
-  @Prop() position: SidePanelPosition = 'top';
+  @Prop({ mutable: true }) position: SidePanelPosition = 'top';
+
+  /**
+   * Name of the icon
+   */
+  @Prop() icon = '';
 
   /**
    * Event
@@ -94,6 +100,15 @@ export class SidePane {
   private inline: boolean = null;
   private floating: boolean = null;
 
+  @Watch('position')
+  onPositionChange() {
+    this.setIcons();
+    this.resetLayoutState();
+    if (this.expand) {
+      this.onExpandedChange();
+    }
+  }
+
   get pos() {
     return this.hostElement.getAttribute('slot') as SidePanelPosition;
   }
@@ -110,9 +125,11 @@ export class SidePane {
     return this.position === 'top' || this.position === 'left';
   }
 
-
-
   componentWillLoad() {
+    if (this.pos) {
+      this.position = this.pos;
+    }
+
     this.paneChange.emit(this.position);
     this.inline = this.behaviour === 'inline';
     this.floating = this.behaviour === 'floating';
@@ -123,7 +140,7 @@ export class SidePane {
 
     this.setIcons();
 
-    if (this.expandPane) {
+    if (this.expand) {
       this.onExpandedChange();
     }
 
@@ -172,17 +189,17 @@ export class SidePane {
     return { expandIcon, minimizeIcon };
   }
 
-  @Watch('expandPane')
+  @Watch('expand')
   onExpandedChange() {
-    if (this.expandPane) {
+    if (this.expand) {
       this.previousHeight = this.hostElement.offsetHeight.toString();
       this.previousWidth = this.hostElement.offsetWidth.toString();
 
       //fallback, if initially expanded
       if (!this.isMobile) {
         if (this.previousWidth === '0') {
-          this.previousWidth = this.showPreviewContent ? '76px' : '32px';
-          this.previousHeight = this.showPreviewContent ? '76px' : '32px';
+          this.previousWidth = this.showPreviewContent ? '76px' : '40px';
+          this.previousHeight = this.showPreviewContent ? '76px' : '40px';
         }
       }
 
@@ -196,16 +213,32 @@ export class SidePane {
     } else {
       if (this.isMobile) {
         this.resetLayoutState();
-      } else if (this.isBottomTopPane) {
-        this.animateHorizontalFadeIn(this.previousHeight);
       } else {
-        this.animateVerticalFadeIn(this.previousWidth);
+        //fallback if dynamically rendered
+        if (
+          parseInt(this.previousHeight) >
+          parseInt(this.hostElement.style.height)
+        ) {
+          this.previousHeight = '40px';
+        }
+
+        if (
+          parseInt(this.previousWidth) > parseInt(this.hostElement.style.width)
+        ) {
+          this.previousWidth = '40px';
+        }
+
+        if (this.isBottomTopPane) {
+          this.animateHorizontalFadeIn(this.previousHeight);
+        } else {
+          this.animateVerticalFadeIn(this.previousWidth);
+        }
       }
     }
 
     this.expandPaneChange.emit({
       position: this.position,
-      expanded: this.expandPane,
+      expanded: this.expand,
     });
   }
 
@@ -213,7 +246,7 @@ export class SidePane {
   onMobileChange(): void {
     this.resetLayoutState();
     this.setIcons();
-    this.expandPane = false;
+    this.expand = false;
   }
 
   resetLayoutState() {
@@ -232,12 +265,12 @@ export class SidePane {
         width: size,
         easing: 'linear',
         begin: () => {
-          if (!this.expandPane) {
+          if (!this.expand) {
             this.showContent = false;
           }
         },
         complete: () => {
-          if (this.expandPane) {
+          if (this.expand) {
             this.showContent = true;
           } else {
             this.hostElement.style.removeProperty('width');
@@ -255,12 +288,12 @@ export class SidePane {
         height: size,
         easing: 'linear',
         begin: () => {
-          if (!this.expandPane) {
+          if (!this.expand) {
             this.showContent = false;
           }
         },
         complete: () => {
-          if (this.expandPane) {
+          if (this.expand) {
             this.showContent = true;
           } else {
             this.hostElement.style.removeProperty('height');
@@ -277,7 +310,7 @@ export class SidePane {
     } else if (this.floating && this.isMobile) {
       return false;
       //floating at normal screen --> panes are hidden if they are not expanded
-    } else if (this.floating && this.expandPane && !this.isMobile) {
+    } else if (this.floating && this.expand && !this.isMobile) {
       return false;
     }
 
@@ -297,19 +330,21 @@ export class SidePane {
     return (
       <Host
         hidden={this.hiddePane()}
+        key={this.position}
         class={{
-          'mobile-overlay': this.expandPane && this.isMobile,
-          'top-expand': this.expandPane && this.isMobileTop && this.isMobile,
-          'bottom-expand':
-            this.expandPane && !this.isMobileTop && this.isMobile,
+          'mobile-overlay': this.expand && this.isMobile,
+          'top-expand': this.expand && this.isMobileTop && this.isMobile,
+          'bottom-expand': this.expand && !this.isMobileTop && this.isMobile,
           'preview-content':
             this.isLeftRightPane &&
-            !this.expandPane &&
+            !this.expand &&
             !this.isMobile &&
             this.showPreviewContent,
+          'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
+          'left-right-pane': this.isLeftRightPane && !this.isMobile,
         }}
         aria-hidden={!this.hiddePane()}
-        aria-expanded={this.expandPane}
+        aria-expanded={this.expand}
       >
         <aside
           class={{
@@ -319,25 +354,27 @@ export class SidePane {
             'left-right-pane-mobile': this.isLeftRightPane && this.isMobile,
             'box-shadow': this.floating && !this.isMobile,
             'mobile-border-top':
-              this.isMobileTop && this.isMobile && !this.expandPane,
+              this.isMobileTop && this.isMobile && !this.expand,
             'mobile-border-bottom':
-              !this.isMobileTop && this.isMobile && !this.expandPane,
-            'mobile-expanded': this.expandPane && this.isMobile,
+              !this.isMobileTop && this.isMobile && !this.expand,
+            'mobile-expanded': this.expand && this.isMobile,
           }}
         >
           <div
             class={{
               'title-inline-collapsed':
-                !this.expandPane && !this.isMobile && this.inline,
+                !this.expand && !this.isMobile && this.inline,
               'title-inline-expanded':
-                this.expandPane && !this.isMobile && this.inline,
+                this.expand && !this.isMobile && this.inline,
               'title-mobile': this.isMobile,
               'title-floating': this.floating,
             }}
           >
             <ix-icon-button
+              class="title-icon"
+              size="24"
               icon={
-                this.expandPane
+                this.expand
                   ? this.isMobile || this.floating
                     ? 'close'
                     : this.expandIcon
@@ -345,21 +382,28 @@ export class SidePane {
               }
               ghost
               onClick={() => {
-                this.expandPane = !this.expandPane;
+                this.expand = !this.expand;
               }}
             ></ix-icon-button>
             <span
               class={{
-                rotate:
-                  !this.expandPane && !this.isMobile && this.isLeftRightPane,
+                'title-text': true,
+                rotate: !this.expand && !this.isMobile && this.isLeftRightPane,
               }}
               hidden={
                 this.showPreviewContent &&
                 !this.isMobile &&
-                !this.expandPane &&
+                !this.expand &&
                 this.isLeftRightPane
               }
             >
+              {this.icon ? (
+                <ix-icon
+                  className="title-text-icon"
+                  size="16"
+                  name={this.icon}
+                ></ix-icon>
+              ) : null}
               {this.paneTitle}
             </span>
           </div>

@@ -64,14 +64,12 @@ export class SidePaneGroup {
 
   @Listen('paneChange')
   onPaneChange() {
-    console.log('!!!');
     this.configureLayout();
     forceUpdate(this.hostElement);
   }
 
   configureLayout() {
     const sidePanels = this.sidePanels;
-    console.log(this.sidePanels);
     sidePanels.forEach((sidePanelElement) => {
       let zIndex = '1';
       const isBottomTop =

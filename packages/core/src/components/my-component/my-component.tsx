@@ -20,6 +20,8 @@ export class MyComponent {
 
   @State() hideLeft: boolean = false;
 
+  @State() position: string = 'left';
+
   onButtonClick() {
     // const ixSidePaneGroup = document.querySelector('ix-side-pane-group');
     //
@@ -32,6 +34,12 @@ export class MyComponent {
     // ixSidePaneGroup.appendChild(ixSidePane);
 
     this.hideLeft = !this.hideLeft;
+
+    if (this.position === 'top') {
+      this.position = 'left';
+    } else {
+      this.position = 'top';
+    }
   }
 
   render() {
@@ -57,33 +65,33 @@ export class MyComponent {
           </ix-menu>
 
           <ix-side-pane-group behaviour="inline">
+            {this.hideLeft && (
+              <ix-side-pane
+                paneTitle="LEFT"
+                position="left"
+                slot="left"
+                icon="star"
+                expand={true}
+              >
+                <h1>Test Heading from LEFT</h1>
+              </ix-side-pane>
+            )}
             <ix-side-pane
               paneTitle="TOP"
               slot="top"
               position="top"
-              expandPane={true}
+              expand={true}
             >
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
             </ix-side-pane>
 
-            {this.hideLeft && (
-              <ix-side-pane
-                paneTitle="LEFT"
-                position="left"
-                slot="left"
-                expandPane={true}
-              >
-                <h1>Test Heading from LEFT</h1>
-              </ix-side-pane>
-            )}
-
             <ix-side-pane
               paneTitle="BOTTOM"
               position="bottom"
               slot="bottom"
-              expandPane={true}
+              expand={true}
             >
               <h1>Test Heading from BOTTOM</h1>
             </ix-side-pane>
@@ -92,7 +100,7 @@ export class MyComponent {
               paneTitle="RIGHT"
               position="right"
               slot="right"
-              expandPane={true}
+              expand={true}
             >
               <h1>Test Heading from RIGHT</h1>
             </ix-side-pane>
