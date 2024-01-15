@@ -1820,6 +1820,10 @@ export namespace Components {
          */
         "behaviour": 'floating' | 'inline';
         /**
+          * Toggle border
+         */
+        "borderless": boolean;
+        /**
           * State of the side-pane
          */
         "expand": boolean;
@@ -1838,6 +1842,7 @@ export namespace Components {
           * Name of the icon
          */
         "icon": string;
+        "onChangeSlot": () => Promise<void>;
         /**
           * Title of the side panel
          */
@@ -5340,6 +5345,10 @@ declare namespace LocalJSX {
           * Behaviour of the side pane
          */
         "behaviour"?: 'floating' | 'inline';
+        /**
+          * Toggle border
+         */
+        "borderless"?: boolean;
         /**
           * State of the side-pane
          */

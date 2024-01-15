@@ -15,6 +15,7 @@ import {
   Listen,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
@@ -46,6 +47,10 @@ export class SidePaneGroup {
     return this.hostElement.querySelectorAll('ix-side-pane');
   }
 
+  get slots() {
+    return this.hostElement.shadowRoot.querySelectorAll('slot');
+  }
+
   componentWillLoad() {
     this.inline = this.behaviour === 'inline';
     this.floating = this.behaviour === 'floating';
@@ -68,6 +73,7 @@ export class SidePaneGroup {
     forceUpdate(this.hostElement);
   }
 
+  @Watch('isMobile')
   configureLayout() {
     const sidePanels = this.sidePanels;
     sidePanels.forEach((sidePanelElement) => {
@@ -91,6 +97,10 @@ export class SidePaneGroup {
 
       sidePanelElement.style.zIndex = zIndex;
     });
+  }
+
+  slotChanges12(name: string) {
+    //console.log(name);
   }
 
   render() {
@@ -129,11 +139,21 @@ export class SidePaneGroup {
               }}
             >
               <div>
-                <slot name="top"></slot>
+                <slot
+                  name="top"
+                  onSlotchange={() => {
+                    this.slotChanges12('top');
+                  }}
+                ></slot>
               </div>
               <div class="row">
                 <div class="side-pane-wrapper-vertical">
-                  <slot name="left"></slot>
+                  <slot
+                    name="left"
+                    onSlotchange={() => {
+                      this.slotChanges12('left');
+                    }}
+                  ></slot>
                 </div>
                 {this.inline ? (
                   <div class="content">
@@ -141,11 +161,21 @@ export class SidePaneGroup {
                   </div>
                 ) : null}
                 <div class="side-pane-wrapper-vertical">
-                  <slot name="right"></slot>
+                  <slot
+                    name="right"
+                    onSlotchange={() => {
+                      this.slotChanges12('right');
+                    }}
+                  ></slot>
                 </div>
               </div>
               <div>
-                <slot name="bottom"></slot>
+                <slot
+                  name="bottom"
+                  onSlotchange={() => {
+                    this.slotChanges12('bottom');
+                  }}
+                ></slot>
               </div>
               {this.floating ? (
                 <div class="content absolute">

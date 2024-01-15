@@ -29,27 +29,25 @@ $side-pane-mini-content-width: 76px;
     font-size: 16px;
   }
 
-  .title-text-icon {
-    margin: 3px;
-  }
-
-  .title-icon {
-    margin: 4px;
+  .header-gap {
+    gap: 8px;
   }
 
   .top-bottom-pane {
     flex-grow: 1;
 
-    .title-inline-collapsed {
+    .header-gap {
+      margin: var(--theme-space--1) var(--theme-space-3) var(--theme-space--1) var(--theme-space-3);
+    }
+
+    .title-inline {
       display: flex;
       flex-direction: row;
       align-items: center;
-      height: 100%;
     }
 
     .title-inline-expanded {
-      display: flex;
-      flex-direction: row;
+      height: 52px;
     }
   }
 
@@ -62,7 +60,11 @@ $side-pane-mini-content-width: 76px;
     flex-direction: column;
     flex-grow: 1;
 
-    .title-inline-collapsed {
+    .header-gap {
+      margin: var(--theme-space-3) var(--theme-space--1)  var(--theme-space-3) var(--theme-space--1);
+    }
+
+    .title-inline {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -75,7 +77,11 @@ $side-pane-mini-content-width: 76px;
     .title-inline-expanded {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: unset;
+
+      &.header-gap {
+        margin: var(--theme-space--1)  var(--theme-space-3) var(--theme-space--1) var(--theme-space-3);
+      }
     }
   }
 
@@ -124,6 +130,10 @@ $side-pane-mini-content-width: 76px;
     @if $position {
       border-#{$position}: 1px solid var(--theme-color-soft-bdr);
     }
+  }
+
+  .nav-left-border {
+    @include set-border(left);
   }
 
   .right-pane-border {

@@ -80,20 +80,12 @@ export class MyComponent {
               paneTitle="TOP"
               slot="top"
               position="top"
+              icon="star"
               expand={true}
             >
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
-            </ix-side-pane>
-
-            <ix-side-pane
-              paneTitle="BOTTOM"
-              position="bottom"
-              slot="bottom"
-              expand={true}
-            >
-              <h1>Test Heading from BOTTOM</h1>
             </ix-side-pane>
 
             <ix-side-pane
@@ -103,6 +95,14 @@ export class MyComponent {
               expand={true}
             >
               <h1>Test Heading from RIGHT</h1>
+            </ix-side-pane>
+            <ix-side-pane
+              paneTitle="BOTTOM"
+              position="bottom"
+              slot="bottom"
+              expand={true}
+            >
+              <h1>Test Heading from BOTTOM</h1>
             </ix-side-pane>
 
             <ix-side-pane-content-area slot="content">
