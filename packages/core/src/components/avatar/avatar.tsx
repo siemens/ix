@@ -112,7 +112,7 @@ export class Avatar {
   @Prop() initials: string;
 
   /**
-   * Show the username as an info card inside the dropdown.
+   * If set an info card displaying the username will be placed inside the dropdown.
    * Note: Only working if avatar is part of the ix-application-header
    *
    * @since 2.1.0
