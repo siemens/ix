@@ -36,6 +36,20 @@ regressionTest.describe('modal', () => {
     });
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('close on Escape', async ({ page }) => {
+    await page.goto('modal/basic');
+
+    const modal = page.locator('ix-modal');
+    const dialog = modal.locator('dialog');
+
+    await expect(dialog).toBeVisible();
+    await page.keyboard.down('Escape');
+
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
 
 test('modal with dropdown', async ({ mount, page }) => {
