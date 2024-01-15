@@ -146,7 +146,7 @@ export namespace Components {
      */
     interface IxAvatar {
         /**
-          * Show a free extra field as username description inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
         "extra": string;
@@ -159,7 +159,7 @@ export namespace Components {
          */
         "initials": string;
         /**
-          * Show the username as an info card inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
         "username": string;
@@ -4027,7 +4027,7 @@ declare namespace LocalJSX {
      */
     interface IxAvatar {
         /**
-          * Show a free extra field as username description inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
         "extra"?: string;
@@ -4040,7 +4040,7 @@ declare namespace LocalJSX {
          */
         "initials"?: string;
         /**
-          * Show the username as an info card inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
         "username"?: string;

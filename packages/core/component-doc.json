@@ -508,7 +508,7 @@
           "mutable": false,
           "attr": "extra",
           "reflectToAttr": false,
-          "docs": "Show a free extra field as username description inside the dropdown.\nNote: Only working if avatar is part of the ix-application-header",
+          "docs": "Optional description text that will be displayed underneath the username.\nNote: Only working if avatar is part of the ix-application-header",
           "docsTags": [
             {
               "name": "since",
@@ -576,7 +576,7 @@
           "mutable": false,
           "attr": "username",
           "reflectToAttr": false,
-          "docs": "Show the username as an info card inside the dropdown.\nNote: Only working if avatar is part of the ix-application-header",
+          "docs": "If set an info card displaying the username will be placed inside the dropdown.\nNote: Only working if avatar is part of the ix-application-header",
           "docsTags": [
             {
               "name": "since",
