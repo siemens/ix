@@ -13,7 +13,6 @@ import {
   EventEmitter,
   h,
   Host,
-  Method,
   Prop,
   State,
   Watch,
@@ -131,11 +130,6 @@ export class SidePane {
 
   get isMobileTop() {
     return this.position === 'top' || this.position === 'left';
-  }
-
-  @Method()
-  onChangeSlot() {
-    this.resetLayoutState();
   }
 
   componentWillLoad() {
@@ -382,7 +376,7 @@ export class SidePane {
               <ix-icon
                 class={{
                   'title-text-icon': true,
-                  rotate:
+                  'rotate-icon':
                     !this.expand && !this.isMobile && this.isLeftRightPane,
                 }}
                 size="24"

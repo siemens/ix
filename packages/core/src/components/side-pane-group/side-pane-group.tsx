@@ -99,10 +99,6 @@ export class SidePaneGroup {
     });
   }
 
-  slotChanges12(name: string) {
-    //console.log(name);
-  }
-
   render() {
     return (
       <Host>
@@ -139,21 +135,11 @@ export class SidePaneGroup {
               }}
             >
               <div>
-                <slot
-                  name="top"
-                  onSlotchange={() => {
-                    this.slotChanges12('top');
-                  }}
-                ></slot>
+                <slot name="top"></slot>
               </div>
               <div class="row">
                 <div class="side-pane-wrapper-vertical">
-                  <slot
-                    name="left"
-                    onSlotchange={() => {
-                      this.slotChanges12('left');
-                    }}
-                  ></slot>
+                  <slot name="left"></slot>
                 </div>
                 {this.inline ? (
                   <div class="content">
@@ -161,21 +147,11 @@ export class SidePaneGroup {
                   </div>
                 ) : null}
                 <div class="side-pane-wrapper-vertical">
-                  <slot
-                    name="right"
-                    onSlotchange={() => {
-                      this.slotChanges12('right');
-                    }}
-                  ></slot>
+                  <slot name="right"></slot>
                 </div>
               </div>
               <div>
-                <slot
-                  name="bottom"
-                  onSlotchange={() => {
-                    this.slotChanges12('bottom');
-                  }}
-                ></slot>
+                <slot name="bottom"></slot>
               </div>
               {this.floating ? (
                 <div class="content absolute">

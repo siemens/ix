@@ -1842,7 +1842,6 @@ export namespace Components {
           * Name of the icon
          */
         "icon": string;
-        "onChangeSlot": () => Promise<void>;
         /**
           * Title of the side panel
          */

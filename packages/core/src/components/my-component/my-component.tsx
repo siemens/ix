@@ -64,13 +64,14 @@ export class MyComponent {
             </ix-menu-category>
           </ix-menu>
 
-          <ix-side-pane-group behaviour="inline">
+          <ix-side-pane-group behaviour="inline" variant="2">
             {this.hideLeft && (
               <ix-side-pane
+                key="left"
                 paneTitle="LEFT"
                 position="left"
                 slot="left"
-                icon="star"
+                icon="about"
                 expand={true}
               >
                 <h1>Test Heading from LEFT</h1>
