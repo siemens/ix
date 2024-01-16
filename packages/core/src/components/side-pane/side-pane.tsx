@@ -277,6 +277,9 @@ export class SidePane {
       begin: () => {
         if (!this.expand) {
           this.showContent = false;
+          this.animateHorizontalPadding('0px');
+        } else {
+          this.animateHorizontalPadding('6px');
         }
       },
       complete: () => {
@@ -286,6 +289,17 @@ export class SidePane {
           this.hostElement.style.removeProperty('width');
         }
       },
+    });
+  }
+
+  private animateHorizontalPadding(size: string) {
+    this.animationInstance = anime({
+      targets: this.hostElement.shadowRoot.querySelector('.title-inline'),
+      duration: Animation.mediumTime,
+      paddingTop: size,
+      paddingBottom: size,
+      easing: 'linear',
+      delay: 0,
     });
   }
 
