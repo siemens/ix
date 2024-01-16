@@ -72,14 +72,13 @@ import { defineCustomElement as defineIxModalExample } from '@siemens/ix/compone
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
+import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
+import { defineCustomElement as defineIxPanes } from '@siemens/ix/components/ix-panes.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
-import { defineCustomElement as defineIxSidePane } from '@siemens/ix/components/ix-side-pane.js';
-import { defineCustomElement as defineIxSidePaneContentArea } from '@siemens/ix/components/ix-pane-content-area.js';
-import { defineCustomElement as defineIxSidePaneGroup } from '@siemens/ix/components/ix-side-pane-group.js';
 import { defineCustomElement as defineIxSlider } from '@siemens/ix/components/ix-slider.js';
 import { defineCustomElement as defineIxSpinner } from '@siemens/ix/components/ix-spinner.js';
 import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/components/ix-split-button.js';
@@ -723,6 +722,26 @@ export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-
 ]);
 
 
+export const IxPane = /*@__PURE__*/ defineContainer<JSX.IxPane>('ix-pane', defineIxPane, [
+  'paneTitle',
+  'behaviour',
+  'expandedPaneSize',
+  'showPreviewContent',
+  'borderless',
+  'expand',
+  'position',
+  'icon',
+  'expandPaneChange',
+  'paneChange'
+]);
+
+
+export const IxPanes = /*@__PURE__*/ defineContainer<JSX.IxPanes>('ix-panes', defineIxPanes, [
+  'behaviour',
+  'variant'
+]);
+
+
 export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', defineIxPill, [
   'variant',
   'outline',
@@ -773,27 +792,6 @@ export const IxSelectItem = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-
   'selected',
   'hover',
   'itemClick'
-]);
-
-
-export const IxSidePane = /*@__PURE__*/ defineContainer<JSX.IxSidePane>('ix-side-pane', defineIxSidePane, [
-  'paneTitle',
-  'behaviour',
-  'expandedPaneSize',
-  'showPreviewContent',
-  'expandPane',
-  'position',
-  'expandPaneChange',
-  'paneChange'
-]);
-
-
-export const IxSidePaneContentArea = /*@__PURE__*/ defineContainer<JSX.IxSidePaneContentArea>('ix-pane-content-area', defineIxSidePaneContentArea);
-
-
-export const IxSidePaneGroup = /*@__PURE__*/ defineContainer<JSX.IxSidePaneGroup>('ix-side-pane-group', defineIxSidePaneGroup, [
-  'behaviour',
-  'variant'
 ]);
 
 

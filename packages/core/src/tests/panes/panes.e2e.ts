@@ -11,28 +11,28 @@ import { regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('pane: basic', () => {
   regressionTest('should be inline, not expanded', async ({ page }) => {
-    await page.goto('pane/basic');
+    await page.goto('panes/basic');
     await page.waitForTimeout(1000);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('should be inline, expanded', async ({ page }) => {
-    await page.goto('pane/inline-expanded');
+    await page.goto('panes/inline-expanded');
     await page.waitForTimeout(1000);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('should be floating, expanded', async ({ page }) => {
-    await page.goto('pane/floating');
+    await page.goto('panes/floating');
     await page.waitForTimeout(1000);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('mobile', async ({ page }) => {
-    await page.goto('pane/mobile');
+    await page.goto('panes/mobile');
     await page.setViewportSize(viewPorts.sm);
     await page.waitForTimeout(1000);
 
@@ -40,7 +40,7 @@ regressionTest.describe('pane: basic', () => {
   });
 
   regressionTest('mobile, expanded', async ({ page }) => {
-    await page.goto('pane/mobile-expanded');
+    await page.goto('panes/mobile-expanded');
     await page.setViewportSize(viewPorts.sm);
     await page.locator('ix-icon-button').first().click();
     await page.waitForTimeout(1000);

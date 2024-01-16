@@ -1758,6 +1758,58 @@ export declare interface IxPagination extends Components.IxPagination {
 
 
 @ProxyCmp({
+  inputs: ['behaviour', 'borderless', 'expand', 'expandedPaneSize', 'icon', 'paneTitle', 'position']
+})
+@Component({
+  selector: 'ix-pane',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['behaviour', 'borderless', 'expand', 'expandedPaneSize', 'icon', 'paneTitle', 'position'],
+})
+export class IxPane {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['expandPaneChange']);
+  }
+}
+
+
+import type { ExpandPaneChangeEvent as IIxPaneExpandPaneChangeEvent } from '@siemens/ix';
+
+export declare interface IxPane extends Components.IxPane {
+  /**
+   * Event
+   */
+  expandPaneChange: EventEmitter<CustomEvent<IIxPaneExpandPaneChangeEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['behaviour', 'variant']
+})
+@Component({
+  selector: 'ix-panes',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['behaviour', 'variant'],
+})
+export class IxPanes {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPanes extends Components.IxPanes {}
+
+
+@ProxyCmp({
   inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'variant']
 })
 @Component({
@@ -1888,79 +1940,6 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
    */
   itemClick: EventEmitter<CustomEvent<string>>;
 }
-
-
-@ProxyCmp({
-  inputs: ['behaviour', 'expandPane', 'expandedPaneSize', 'paneTitle', 'position', 'showPreviewContent']
-})
-@Component({
-  selector: 'ix-pane',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['behaviour', 'expandPane', 'expandedPaneSize', 'paneTitle', 'position', 'showPreviewContent'],
-})
-export class IxSidePane {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['expandPaneChange']);
-  }
-}
-
-
-import type { ExpandPaneChangeEvent as IIxSidePaneExpandPaneChangeEvent } from '@siemens/ix';
-
-export declare interface IxSidePane extends Components.IxSidePane {
-  /**
-   * Event
-   */
-  expandPaneChange: EventEmitter<CustomEvent<IIxSidePaneExpandPaneChangeEvent>>;
-}
-
-
-@ProxyCmp({
-})
-@Component({
-  selector: 'ix-pane-content-area',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-})
-export class IxSidePaneContentArea {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxSidePaneContentArea extends Components.IxSidePaneContentArea {}
-
-
-@ProxyCmp({
-  inputs: ['behaviour', 'variant']
-})
-@Component({
-  selector: 'ix-pane-group',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['behaviour', 'variant'],
-})
-export class IxSidePaneGroup {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxSidePaneGroup extends Components.IxSidePaneGroup {}
 
 
 @ProxyCmp({
