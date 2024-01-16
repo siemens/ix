@@ -53,6 +53,7 @@ export class MenuAbout {
 
   @State() settingsItems: HTMLIxMenuSettingsItemElement[];
 
+  @Watch('activeTabLabel')
   private setTab(label: string) {
     this.activeTabLabel = label;
     this.settingsItems.forEach((i) => {
@@ -101,11 +102,6 @@ export class MenuAbout {
 
   componentDidLoad() {
     forceUpdate(this.el);
-  }
-
-  @Watch('activeTabLabel')
-  watchActiveTabLabel(value: string) {
-    this.setTab(value);
   }
 
   render() {
