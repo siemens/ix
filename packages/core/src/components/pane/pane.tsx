@@ -108,8 +108,6 @@ export class Pane {
   @Watch('position')
   async onPositionChange() {
     this.setIcons();
-    this.animationInstance.pause();
-    this.animationInstance.reset();
     this.resetLayoutState();
     if (this.expand) {
       await this.onExpandedChange();
@@ -243,10 +241,9 @@ export class Pane {
     this.hostElement.style.removeProperty('width');
   }
 
-  private animationInstance;
 
   private animateVerticalFadeIn(size: string) {
-    this.animationInstance = anime({
+    anime({
       targets: this.hostElement,
       duration: Animation.mediumTime,
       width: size,
@@ -268,7 +265,7 @@ export class Pane {
   }
 
   private animateHorizontalFadeIn(size: string) {
-    this.animationInstance = anime({
+    anime({
       targets: this.hostElement,
       duration: Animation.mediumTime,
       height: size,
@@ -293,7 +290,7 @@ export class Pane {
   }
 
   private animateHorizontalPadding(size: string) {
-    this.animationInstance = anime({
+    anime({
       targets: this.hostElement.shadowRoot.querySelector('.title-inline'),
       duration: Animation.mediumTime,
       paddingTop: size,
@@ -386,6 +383,7 @@ export class Pane {
               onClick={() => {
                 this.expand = !this.expand;
               }}
+              aria-controls={this.position + "ToggleButton"}
             ></ix-icon-button>
             <span
               class={{
@@ -402,7 +400,7 @@ export class Pane {
               {this.icon ? (
                 <ix-icon
                   class={{
-                    'title-text-expanded': this.expand && !this.isMobile,
+                    'title-text-left-right-expanded': this.expand && !this.isMobile && this.isLeftRightPane,
                     'rotate-icon':
                       !this.expand && !this.isMobile && this.isLeftRightPane,
                   }}

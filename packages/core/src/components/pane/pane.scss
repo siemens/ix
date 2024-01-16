@@ -23,7 +23,7 @@ $side-pane-mini-content-width: 76px;
 
   aside {
     width: 100%;
-    
+
   }
 
   .title-text {
@@ -42,9 +42,10 @@ $side-pane-mini-content-width: 76px;
       white-space: nowrap;
     }
 
-    .title-text-expanded {
-      order: 1
+    .title-text-left-right-expanded {
+      order: 1;
     }
+
   }
 
   .header-gap {

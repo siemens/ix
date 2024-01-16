@@ -54,7 +54,6 @@ export class MyComponent {
         </ix-button>
         <ix-pane
           paneTitle="LEFT Pane 123123123 "
-          slot="left"
           position="left"
           icon="star"
           expand={true}
