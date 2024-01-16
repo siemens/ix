@@ -8,130 +8,26 @@
  */
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
+import {h} from "@stencil/core";
 
 test('renders', async ({ mount, page }) => {
   await mount(`
-        <ix-select>
-          <ix-select-item value="11" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="22" label="Item 2">Test</ix-select-item>
-        </ix-select>
-    `);
-  const element = page.locator('ix-select');
-  await expect(element).toHaveClass(/hydrated/);
-
-  await page.locator('[data-select-dropdown]').click();
-
-  const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
-
-  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
-});
-
-test('editable mode', async ({ mount, page }) => {
-  await mount(`
-        <ix-select editable>
-          <ix-select-item value="11" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="22" label="Item 2">Test</ix-select-item>
-        </ix-select>
-    `);
-  const element = page.locator('ix-select');
-  await expect(element).toHaveClass(/hydrated/);
-
-  await page.locator('[data-select-dropdown]').click();
-  await page.getByTestId('input').fill('Not existing');
-
-  const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
-
-  await expect(page.getByRole('button', { name: 'Item 1' })).not.toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).not.toBeVisible();
-
-  const add = page.getByRole('button', { name: /Not existing/ });
-  await expect(add).toBeVisible();
-
-  await add.click();
-  await expect(page.getByTestId('input')).toHaveValue(/Not existing/);
-  await page.locator('[data-select-dropdown]').click();
-
-  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
-
-  const addedItem = page
-    .getByRole('listitem')
-    .filter({ hasText: 'Not existing' });
-
-  await expect(addedItem).toBeVisible();
-});
-
-test('single selection', async ({ mount, page }) => {
-  await mount(`
-        <ix-select>
-          <ix-select-item value="11" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="22" label="Item 2">Test</ix-select-item>
-        </ix-select>
-    `);
-  const element = page.locator('ix-select');
-  await element.evaluate(
-    (select: HTMLIxSelectElement) => (select.value = '22')
-  );
-
-  await page.locator('[data-select-dropdown]').click();
-
-  const dropdown = element.locator('ix-dropdown');
-  await expect(dropdown).toBeVisible();
-
-  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-  await expect(
-    page.getByRole('button', { name: 'Item 2' }).locator('ix-icon')
-  ).toBeVisible();
-});
-
-test('multiple selection', async ({ mount, page }) => {
-  await mount(`
-        <ix-select mode="multiple">
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
-          <ix-select-item value="4" label="Item 4">Test</ix-select-item>
-        </ix-select>
-    `);
-  const element = page.locator('ix-select');
-  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
-  await page.locator('[data-select-dropdown]').click();
-
-  const dropdown = element.locator('ix-dropdown');
-  const chips = element.locator('.chips');
-
-  await expect(dropdown).toBeVisible();
-
-  const item1 = element.locator('ix-select-item').nth(0);
-  const item3 = element.locator('ix-select-item').nth(2);
-  await item1.click();
-  await item3.click();
-
-  await expect(item1.locator('ix-icon')).toBeVisible();
-  await expect(item3.locator('ix-icon')).toBeVisible();
-
-  const chip1 = chips.getByTitle('Item 1');
-  const chip3 = chips.getByTitle('Item 3');
-
-  await expect(chip1).toBeVisible();
-  await expect(chip3).toBeVisible();
-});
-
-test('filter', async ({ mount, page }) => {
-  await mount(`
-    <ix-side-pane
+    <ix-pane
         paneTitle="LEFT"
-        slot="left"
         position="left"
-        icon="star"
+        icon="about"
         expand={true}
     >
-      <h1>Test Heading</h1>
-      <p>This is a test content with a button</p>
-      <ix-button>PUSH ME</ix-button>
-    </ix-side-pane>
+        <h1>Test Heading</h1>
+        <p>This is a test content with a button</p>
+        <ix-button>PUSH ME</ix-button>
+    </ix-pane>
     `);
+  const element = page.locator('ix-pane');
+  await expect(element).toHaveClass(/hydrated/);
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const aside = element.locator('aside');
+  await expect(aside).toBeVisible();
 });
