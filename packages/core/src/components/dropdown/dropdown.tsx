@@ -503,7 +503,7 @@ export class Dropdown {
         shadowDropDownComponent.isSubMenu = true;
       }
 
-      this.hostElement.style.zIndex = `var(--theme-z-index-sticky)`;
+      this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
     }
   }
 

@@ -20,6 +20,8 @@
   min-height: 2.75rem;
   padding: 0 1rem 0 0.625rem;
 
+  z-index: var(--theme-z-index-fixed);
+
   color: var(--theme-app-header--color);
   background-color: var(--theme-app-header--background);
 
