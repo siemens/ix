@@ -11114,6 +11114,10 @@
               "Promise": {
                 "location": "global",
                 "id": "global::Promise"
+              },
+              "HTMLDialogElement": {
+                "location": "global",
+                "id": "global::HTMLDialogElement"
               }
             },
             "return": "Promise<void>"
@@ -11378,7 +11382,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Close icon is clicked",
+          "docs": "Emits when close icon is clicked and closes the modal\nCan be prevented, in which case only the event is triggered, and the modal remains open",
           "docsTags": []
         }
       ],

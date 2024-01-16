@@ -5643,7 +5643,7 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
-          * Close icon is clicked
+          * Emits when close icon is clicked and closes the modal Can be prevented, in which case only the event is triggered, and the modal remains open
          */
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }

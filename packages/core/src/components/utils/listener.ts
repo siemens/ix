@@ -64,7 +64,7 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
     if (fnExp) {
       proto.componentWillRender = function () {
         const host = getElement(this);
-        host[`__ix__${methodName}`].enable(fnExp(this));
+        host[`__ix__${methodName}`]?.enable(fnExp(this));
         return componentWillRender && componentWillRender.call(this);
       };
     }

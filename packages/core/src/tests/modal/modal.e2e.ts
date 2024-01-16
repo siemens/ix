@@ -15,6 +15,7 @@ regressionTest.describe('modal', () => {
     await page.goto('modal/basic');
 
     const modal = page.locator('ix-modal');
+    await modal.evaluate((modal) => (modal as any).showModal());
     const dialog = modal.locator('dialog');
 
     await expect(dialog).toBeVisible();
@@ -28,6 +29,7 @@ regressionTest.describe('modal', () => {
     await page.goto('modal/icon');
 
     const modal = page.locator('ix-modal');
+    await modal.evaluate((modal) => (modal as any).showModal());
     const dialog = modal.locator('dialog');
 
     await expect(dialog).toBeVisible();
@@ -78,7 +80,9 @@ test('modal with dropdown', async ({ mount, page }) => {
   </ix-modal>
     `);
   const modal = page.locator('ix-modal');
+  await modal.evaluate((modal) => ((modal as any).style.display = 'block'));
   await expect(modal).toHaveClass(/hydrated/);
+
   const dropdown = page.locator('ix-dropdown-button');
   await dropdown.click();
 
@@ -99,14 +103,14 @@ test('modal with dropdown', async ({ mount, page }) => {
       });
 
       await mount(`
-      <ix-modal size="${size}">
-        <ix-modal-header>Header</ix-modal-header>
-        <ix-modal-content>Some Content 123 content 123 content 123 content 123</ix-modal-content>
-        <ix-modal-footer>
-          <ix-button>Test</ix-button>
-        </ix-modal-footer>
-      </ix-modal>
-    `);
+        <ix-modal size="${size}">
+          <ix-modal-header>Header</ix-modal-header>
+          <ix-modal-content>Some Content 123 content 123 content 123 content 123</ix-modal-content>
+          <ix-modal-footer>
+            <ix-button>Test</ix-button>
+          </ix-modal-footer>
+        </ix-modal>
+      `);
 
       const modal = page.locator('ix-modal');
       await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
@@ -124,6 +128,7 @@ test('modal should show centered', async ({ mount, page }) => {
   </ix-modal>
     `);
   const modal = page.locator('ix-modal');
+  await modal.evaluate((modal) => (modal as any).showModal());
   await expect(modal).toHaveClass(/hydrated/);
 
   await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
