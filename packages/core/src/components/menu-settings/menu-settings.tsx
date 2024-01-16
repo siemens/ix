@@ -18,8 +18,12 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { CustomCloseEvent, setTab, initialize } from '../utils/menu-tabs/menu-tabs-utils';
 import { MenuTabs } from '../utils/menu-tabs/menu-tabs-fc';
+import {
+  CustomCloseEvent,
+  initialize,
+  setTab,
+} from '../utils/menu-tabs/menu-tabs-utils';
 
 @Component({
   tag: 'ix-menu-settings',
@@ -32,6 +36,7 @@ export class MenuSettings {
   /**
    * Active tab
    */
+  // eslint-disable-next-line @stencil-community/strict-mutable
   @Prop({ mutable: true }) activeTabLabel: string;
 
   /**
@@ -53,11 +58,11 @@ export class MenuSettings {
 
   @Watch('activeTabLabel')
   setTab(label: string) {
-    setTab(this, label)
+    setTab(this, label);
   }
 
   componentWillLoad() {
-    initialize(this)
+    initialize(this);
   }
 
   componentDidLoad() {
@@ -65,8 +70,6 @@ export class MenuSettings {
   }
 
   render() {
-    return (
-      <MenuTabs context={this}/>
-    );
+    return <MenuTabs context={this} />;
   }
 }
