@@ -1855,8 +1855,6 @@ export namespace Components {
          */
         "showPreviewContent": boolean;
     }
-    interface IxSidePaneContentArea {
-    }
     interface IxSidePaneGroup {
         /**
           * Behaviour of the side pane
@@ -3175,12 +3173,6 @@ declare global {
         prototype: HTMLIxSidePaneElement;
         new (): HTMLIxSidePaneElement;
     };
-    interface HTMLIxSidePaneContentAreaElement extends Components.IxSidePaneContentArea, HTMLStencilElement {
-    }
-    var HTMLIxSidePaneContentAreaElement: {
-        prototype: HTMLIxSidePaneContentAreaElement;
-        new (): HTMLIxSidePaneContentAreaElement;
-    };
     interface HTMLIxSidePaneGroupElement extends Components.IxSidePaneGroup, HTMLStencilElement {
     }
     var HTMLIxSidePaneGroupElement: {
@@ -3409,7 +3401,6 @@ declare global {
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
         "ix-side-pane": HTMLIxSidePaneElement;
-        "ix-side-pane-content-area": HTMLIxSidePaneContentAreaElement;
         "ix-side-pane-group": HTMLIxSidePaneGroupElement;
         "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
@@ -5385,8 +5376,6 @@ declare namespace LocalJSX {
          */
         "showPreviewContent"?: boolean;
     }
-    interface IxSidePaneContentArea {
-    }
     interface IxSidePaneGroup {
         /**
           * Behaviour of the side pane
@@ -6064,7 +6053,6 @@ declare namespace LocalJSX {
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
         "ix-side-pane": IxSidePane;
-        "ix-side-pane-content-area": IxSidePaneContentArea;
         "ix-side-pane-group": IxSidePaneGroup;
         "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
@@ -6272,7 +6260,6 @@ declare module "@stencil/core" {
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             "ix-side-pane": LocalJSX.IxSidePane & JSXBase.HTMLAttributes<HTMLIxSidePaneElement>;
-            "ix-side-pane-content-area": LocalJSX.IxSidePaneContentArea & JSXBase.HTMLAttributes<HTMLIxSidePaneContentAreaElement>;
             "ix-side-pane-group": LocalJSX.IxSidePaneGroup & JSXBase.HTMLAttributes<HTMLIxSidePaneGroupElement>;
             /**
              * @since 2.0.0

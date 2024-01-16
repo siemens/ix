@@ -121,7 +121,7 @@ export class SidePaneGroup {
             <slot name="right"></slot>
             {this.floating ? (
               <div class="content absolute">
-                <slot name="content"></slot>
+                <slot></slot>
               </div>
             ) : null}
           </ix-row>
@@ -155,7 +155,7 @@ export class SidePaneGroup {
               </div>
               {this.floating ? (
                 <div class="content absolute">
-                  <slot name="content"></slot>
+                  <slot></slot>
                 </div>
               ) : null}
             </ix-col>
@@ -168,7 +168,7 @@ export class SidePaneGroup {
               <slot name="left"></slot>
             </div>
             <div class="content">
-              <slot name="content"></slot>
+              <slot></slot>
             </div>
             <div>
               <slot name="right"></slot>

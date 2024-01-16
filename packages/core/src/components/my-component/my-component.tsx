@@ -11,7 +11,7 @@ import { Component, Element, h, Host, State } from '@stencil/core';
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.scss',
-  scoped: true,
+  shadow: true,
 })
 export class MyComponent {
   @Element() hostElement: HTMLMyComponentElement;
@@ -67,26 +67,26 @@ export class MyComponent {
           <ix-side-pane-group behaviour="inline" variant="2">
             {this.hideLeft && (
               <ix-side-pane
-                key="left"
                 paneTitle="LEFT"
-                position="left"
                 slot="left"
-                icon="about"
+                position="left"
+                icon="star"
                 expand={true}
               >
-                <h1>Test Heading from LEFT</h1>
+                <h1>Test Heading</h1>
+                <p>This is a test content with a button</p>
+                <ix-button>PUSH ME</ix-button>
               </ix-side-pane>
             )}
             <ix-side-pane
+              key="top"
               paneTitle="TOP"
-              slot="top"
               position="top"
-              icon="star"
+              slot="top"
+              icon="about"
               expand={true}
             >
-              <h1>Test Heading</h1>
-              <p>This is a test content with a button</p>
-              <ix-button>PUSH ME</ix-button>
+              <h1>Test Heading from LEFT</h1>
             </ix-side-pane>
 
             <ix-side-pane
@@ -106,7 +106,14 @@ export class MyComponent {
               <h1>Test Heading from BOTTOM</h1>
             </ix-side-pane>
 
-            <ix-side-pane-content-area slot="content">
+            <div
+              slot="content"
+              style={{
+                background: 'red',
+                height: '200rem',
+                width: '500rem',
+              }}
+            >
               <h1>Test Heading</h1>
               <h1>Test Heading</h1>
               <h1>Test Heading</h1>
@@ -114,7 +121,7 @@ export class MyComponent {
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
-            </ix-side-pane-content-area>
+            </div>
           </ix-side-pane-group>
         </ix-basic-navigation>
       </Host>
