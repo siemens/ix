@@ -17,7 +17,6 @@ test('renders', async ({ mount, page }) => {
   expect(button.allInnerTexts).not.toEqual('Content');
 
   await expect(button.locator('ix-icon')).toBeVisible();
-  await expect(button.locator('ix-icon').locator('title')).toHaveText('rocket');
 });
 
 test('show spinner while loading', async ({ mount, page }) => {

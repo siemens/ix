@@ -30,9 +30,7 @@ function CustomModal() {
 
   return (
     <Modal ref={modalRef}>
-      <IxModalHeader onCloseClick={() => dismiss()}>
-        Message headline
-      </IxModalHeader>
+      <IxModalHeader>Message headline</IxModalHeader>
       <IxModalContent>Message text lorem ipsum</IxModalContent>
       <IxModalFooter>
         <IxButton outline onClick={() => dismiss()}>

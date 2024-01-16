@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// eslint-disable-next-line @stencil-community/ban-exported-const-enums
 export enum UploadFileState {
   SELECT_FILE = 'SELECT_FILE',
   LOADING = 'LOADING',

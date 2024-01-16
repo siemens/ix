@@ -12,6 +12,10 @@ import { RouterModule, Routes } from '@angular/router';
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
 import ActionCard from 'src/preview-examples/action-card';
 import AGGrid from 'src/preview-examples/aggrid';
+import ApplicationExample from 'src/preview-examples/application';
+import ApplicationAppSwitchExample from 'src/preview-examples/application-app-switch';
+import ApplicationBreakpointExample from 'src/preview-examples/application-breakpoints';
+import ApplicationHeaderExample from 'src/preview-examples/application-header';
 import BasicNavigation from 'src/preview-examples/basic-navigation';
 import BasicNavigationWithOutHeader from 'src/preview-examples/basic-navigation-without-header';
 import Blind from 'src/preview-examples/blind';
@@ -28,11 +32,13 @@ import CategoryFilterSuggestions from 'src/preview-examples/category-filter-sugg
 import Checkbox from 'src/preview-examples/checkbox';
 import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
+import ContentExample from 'src/preview-examples/content';
 import PageHeader from 'src/preview-examples/content-header';
 import PageHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import DateDropdown from 'src/preview-examples/date-dropdown';
 import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
 import Datepicker from 'src/preview-examples/datepicker';
+import DatepickerLocale from 'src/preview-examples/datepicker-locale';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
 import Datetimepicker from 'src/preview-examples/datetimepicker';
 import Drawer from 'src/preview-examples/drawer';
@@ -82,6 +88,7 @@ import Modal from 'src/preview-examples/modal-by-template';
 import ModalSizes from 'src/preview-examples/modal-sizes';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
+import PillVariants from 'src/preview-examples/pill-variants';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -158,6 +165,26 @@ const routes: Routes = [
   {
     path: 'preview',
     children: [
+      {
+        path: 'application',
+        component: ApplicationExample,
+      },
+      {
+        path: 'application-breakpoints',
+        component: ApplicationBreakpointExample,
+      },
+      {
+        path: 'application-app-switch',
+        component: ApplicationAppSwitchExample,
+      },
+      {
+        path: 'application-header',
+        component: ApplicationHeaderExample,
+      },
+      {
+        path: 'content',
+        component: ContentExample,
+      },
       {
         path: 'buttons',
         component: Buttons,
@@ -247,6 +274,10 @@ const routes: Routes = [
         component: Datepicker,
       },
       {
+        path: 'datepicker-locale',
+        component: DatepickerLocale,
+      },
+      {
         path: 'datepicker-range',
         component: DatepickerRange,
       },
@@ -306,6 +337,7 @@ const routes: Routes = [
       { path: 'message-bar', component: MessageBar },
       { path: 'pagination', component: Pagination },
       { path: 'pill', component: Pill },
+      { path: 'pill-variants', component: PillVariants },
       { path: 'popover-news', component: PopoverNews },
       { path: 'radio-button', component: Radiobutton },
       { path: 'select-editable', component: SelectEditable },
