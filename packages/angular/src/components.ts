@@ -74,14 +74,14 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
 
 
 @ProxyCmp({
-  inputs: ['image', 'initials']
+  inputs: ['extra', 'image', 'initials', 'username']
 })
 @Component({
   selector: 'ix-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['image', 'initials'],
+  inputs: ['extra', 'image', 'initials', 'username'],
 })
 export class IxAvatar {
   protected el: HTMLElement;

@@ -146,6 +146,11 @@ export namespace Components {
      */
     interface IxAvatar {
         /**
+          * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "extra": string;
+        /**
           * Display a avatar image
          */
         "image": string;
@@ -153,6 +158,11 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials": string;
+        /**
+          * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "username": string;
     }
     /**
      * @deprecated ix-basic-navigation is deprecated in favor of ix-application
@@ -4017,6 +4027,11 @@ declare namespace LocalJSX {
      */
     interface IxAvatar {
         /**
+          * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "extra"?: string;
+        /**
           * Display a avatar image
          */
         "image"?: string;
@@ -4024,6 +4039,11 @@ declare namespace LocalJSX {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "username"?: string;
     }
     /**
      * @deprecated ix-basic-navigation is deprecated in favor of ix-application
