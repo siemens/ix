@@ -78,7 +78,7 @@ import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-ro
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
 import { defineCustomElement as defineIxSidePane } from '@siemens/ix/components/ix-side-pane.js';
-import { defineCustomElement as defineIxSidePaneContentArea } from '@siemens/ix/components/ix-side-pane-content-area.js';
+import { defineCustomElement as defineIxSidePaneContentArea } from '@siemens/ix/components/ix-pane-content-area.js';
 import { defineCustomElement as defineIxSidePaneGroup } from '@siemens/ix/components/ix-side-pane-group.js';
 import { defineCustomElement as defineIxSlider } from '@siemens/ix/components/ix-slider.js';
 import { defineCustomElement as defineIxSpinner } from '@siemens/ix/components/ix-spinner.js';
@@ -788,7 +788,7 @@ export const IxSidePane = /*@__PURE__*/ defineContainer<JSX.IxSidePane>('ix-side
 ]);
 
 
-export const IxSidePaneContentArea = /*@__PURE__*/ defineContainer<JSX.IxSidePaneContentArea>('ix-side-pane-content-area', defineIxSidePaneContentArea);
+export const IxSidePaneContentArea = /*@__PURE__*/ defineContainer<JSX.IxSidePaneContentArea>('ix-pane-content-area', defineIxSidePaneContentArea);
 
 
 export const IxSidePaneGroup = /*@__PURE__*/ defineContainer<JSX.IxSidePaneGroup>('ix-side-pane-group', defineIxSidePaneGroup, [

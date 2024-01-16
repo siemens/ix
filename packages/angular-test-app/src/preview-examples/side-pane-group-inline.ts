@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: './side-pane-group-inline.html',
+  template: './pane-group-inline.html',
 })
 export default class SidePaneGroupInline {}

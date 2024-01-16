@@ -29,12 +29,12 @@ export type ExpandPaneChangeEvent = {
 };
 
 @Component({
-  tag: 'ix-side-pane',
-  styleUrl: 'side-pane.scss',
+  tag: 'ix-pane',
+  styleUrl: 'pane.scss',
   shadow: true,
 })
-export class SidePane {
-  @Element() hostElement: HTMLIxSidePaneElement;
+export class Pane {
+  @Element() hostElement: HTMLIxPaneElement;
 
   /**
    * Title of the side panel
@@ -71,7 +71,7 @@ export class SidePane {
   @Prop() borderless: boolean = false;
 
   /**
-   * State of the side-pane
+   * State of the pane
    */
   @Prop({ mutable: true }) expand: boolean = false;
 

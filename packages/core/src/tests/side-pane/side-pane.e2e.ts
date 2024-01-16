@@ -9,30 +9,30 @@
 import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
-regressionTest.describe('side-pane: basic', () => {
+regressionTest.describe('pane: basic', () => {
   regressionTest('should be inline, not expanded', async ({ page }) => {
-    await page.goto('side-pane/basic');
+    await page.goto('pane/basic');
     await page.waitForTimeout(1000);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('should be inline, expanded', async ({ page }) => {
-    await page.goto('side-pane/inline-expanded');
+    await page.goto('pane/inline-expanded');
     await page.waitForTimeout(1000);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('should be floating, expanded', async ({ page }) => {
-    await page.goto('side-pane/floating');
+    await page.goto('pane/floating');
     await page.waitForTimeout(1000);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   regressionTest('mobile', async ({ page }) => {
-    await page.goto('side-pane/mobile');
+    await page.goto('pane/mobile');
     await page.setViewportSize(viewPorts.sm);
     await page.waitForTimeout(1000);
 
@@ -40,7 +40,7 @@ regressionTest.describe('side-pane: basic', () => {
   });
 
   regressionTest('mobile, expanded', async ({ page }) => {
-    await page.goto('side-pane/mobile-expanded');
+    await page.goto('pane/mobile-expanded');
     await page.setViewportSize(viewPorts.sm);
     await page.locator('ix-icon-button').first().click();
     await page.waitForTimeout(1000);

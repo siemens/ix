@@ -15,7 +15,7 @@ import { Component, Element, h, Host, State } from '@stencil/core';
 })
 export class MyComponent {
   @Element() hostElement: HTMLMyComponentElement;
-  ref: HTMLIxSidePaneElement = null;
+  ref: HTMLIxPaneElement = null;
   sidePanelWrapperRef: any = null;
 
   @State() hideLeft: boolean = false;
@@ -23,9 +23,9 @@ export class MyComponent {
   @State() position: string = 'left';
 
   onButtonClick() {
-    // const ixSidePaneGroup = document.querySelector('ix-side-pane-group');
+    // const ixSidePaneGroup = document.querySelector('ix-pane-group');
     //
-    // const ixSidePane = document.createElement('ix-side-pane');
+    // const ixSidePane = document.createElement('ix-pane');
     // ixSidePane.setAttribute('paneTitle', 'LEFT');
     // ixSidePane.setAttribute('inline', 'true');
     // ixSidePane.setAttribute('hidden', 'false');
@@ -64,9 +64,9 @@ export class MyComponent {
             </ix-menu-category>
           </ix-menu>
 
-          <ix-side-pane-group behaviour="inline" variant="2">
+          <ix-panes behaviour="inline" variant="2">
             {this.hideLeft && (
-              <ix-side-pane
+              <ix-pane
                 paneTitle="LEFT"
                 slot="left"
                 position="left"
@@ -76,9 +76,9 @@ export class MyComponent {
                 <h1>Test Heading</h1>
                 <p>This is a test content with a button</p>
                 <ix-button>PUSH ME</ix-button>
-              </ix-side-pane>
+              </ix-pane>
             )}
-            <ix-side-pane
+            <ix-pane
               key="top"
               paneTitle="TOP"
               position="top"
@@ -87,24 +87,24 @@ export class MyComponent {
               expand={true}
             >
               <h1>Test Heading from LEFT</h1>
-            </ix-side-pane>
+            </ix-pane>
 
-            <ix-side-pane
+            <ix-pane
               paneTitle="RIGHT"
               position="right"
               slot="right"
               expand={true}
             >
               <h1>Test Heading from RIGHT</h1>
-            </ix-side-pane>
-            <ix-side-pane
+            </ix-pane>
+            <ix-pane
               paneTitle="BOTTOM"
               position="bottom"
               slot="bottom"
               expand={true}
             >
               <h1>Test Heading from BOTTOM</h1>
-            </ix-side-pane>
+            </ix-pane>
 
             <div
               slot="content"
@@ -122,7 +122,7 @@ export class MyComponent {
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
             </div>
-          </ix-side-pane-group>
+          </ix-panes>
         </ix-basic-navigation>
       </Host>
     );

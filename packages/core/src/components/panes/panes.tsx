@@ -21,12 +21,12 @@ import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
 @Component({
-  tag: 'ix-side-pane-group',
-  styleUrl: 'side-pane-group.scss',
+  tag: 'ix-panes',
+  styleUrl: 'panes.scss',
   shadow: true,
 })
-export class SidePaneGroup {
-  @Element() hostElement: HTMLIxSidePaneGroupElement;
+export class Panes {
+  @Element() hostElement: HTMLIxPanesElement;
 
   /**
    * Behaviour of the side pane
@@ -44,7 +44,7 @@ export class SidePaneGroup {
   private floating: boolean = null;
 
   get sidePanels() {
-    return this.hostElement.querySelectorAll('ix-side-pane');
+    return this.hostElement.querySelectorAll('ix-pane');
   }
 
   get slots() {

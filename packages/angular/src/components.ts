@@ -1894,7 +1894,7 @@ export declare interface IxSelectItem extends Components.IxSelectItem {
   inputs: ['behaviour', 'expandPane', 'expandedPaneSize', 'paneTitle', 'position', 'showPreviewContent']
 })
 @Component({
-  selector: 'ix-side-pane',
+  selector: 'ix-pane',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
@@ -1923,7 +1923,7 @@ export declare interface IxSidePane extends Components.IxSidePane {
 @ProxyCmp({
 })
 @Component({
-  selector: 'ix-side-pane-content-area',
+  selector: 'ix-pane-content-area',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
@@ -1945,7 +1945,7 @@ export declare interface IxSidePaneContentArea extends Components.IxSidePaneCont
   inputs: ['behaviour', 'variant']
 })
 @Component({
-  selector: 'ix-side-pane-group',
+  selector: 'ix-pane-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property

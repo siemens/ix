@@ -12,7 +12,7 @@ import { IxSidePane } from '@siemens/ix-angular';
 
 @Component({
   selector: 'app-example',
-  template: './side-pane-group-floating.html',
+  template: './pane-group-floating.html',
 })
 export default class SidePaneGroup {
   @ViewChild('leftPaneRef') leftPaneRef!: IxSidePane;

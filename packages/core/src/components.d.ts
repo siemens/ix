@@ -32,8 +32,8 @@ import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
+import { ExpandPaneChangeEvent, SidePanelPosition } from "./components/pane/pane";
 import { PushCardVariant } from "./components/push-card/push-card";
-import { ExpandPaneChangeEvent, SidePanelPosition } from "./components/side-pane/side-pane";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
@@ -70,8 +70,8 @@ export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
+export { ExpandPaneChangeEvent, SidePanelPosition } from "./components/pane/pane";
 export { PushCardVariant } from "./components/push-card/push-card";
-export { ExpandPaneChangeEvent, SidePanelPosition } from "./components/side-pane/side-pane";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
@@ -1668,6 +1668,57 @@ export namespace Components {
          */
         "showItemCount": boolean;
     }
+    interface IxPane {
+        /**
+          * Behaviour of the side pane
+         */
+        "behaviour": 'floating' | 'inline';
+        /**
+          * Toggle border
+         */
+        "borderless": boolean;
+        /**
+          * State of the pane
+         */
+        "expand": boolean;
+        /**
+          * The maximum size of the sidebar, when it is expanded
+         */
+        "expandedPaneSize": | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%'
+    | '100%';
+        /**
+          * Name of the icon
+         */
+        "icon": string;
+        /**
+          * Title of the side panel
+         */
+        "paneTitle": string;
+        /**
+          * Placement of the sidebar
+         */
+        "position": SidePanelPosition;
+        /**
+          * Toggle either the preview content is shown or not
+         */
+        "showPreviewContent": boolean;
+    }
+    interface IxPanes {
+        /**
+          * Behaviour of the side pane
+         */
+        "behaviour": 'floating' | 'inline';
+        /**
+          * Choose the variant of the panes
+         */
+        "variant": '1' | '2';
+    }
     interface IxPill {
         /**
           * Align pill content left
@@ -1813,57 +1864,6 @@ export namespace Components {
           * Item value
          */
         "value": any;
-    }
-    interface IxSidePane {
-        /**
-          * Behaviour of the side pane
-         */
-        "behaviour": 'floating' | 'inline';
-        /**
-          * Toggle border
-         */
-        "borderless": boolean;
-        /**
-          * State of the side-pane
-         */
-        "expand": boolean;
-        /**
-          * The maximum size of the sidebar, when it is expanded
-         */
-        "expandedPaneSize": | '240px'
-    | '320px'
-    | '360px'
-    | '480px'
-    | '600px'
-    | '33%'
-    | '50%'
-    | '100%';
-        /**
-          * Name of the icon
-         */
-        "icon": string;
-        /**
-          * Title of the side panel
-         */
-        "paneTitle": string;
-        /**
-          * Placement of the sidebar
-         */
-        "position": SidePanelPosition;
-        /**
-          * Toggle either the preview content is shown or not
-         */
-        "showPreviewContent": boolean;
-    }
-    interface IxSidePaneGroup {
-        /**
-          * Behaviour of the side pane
-         */
-        "behaviour": 'floating' | 'inline';
-        /**
-          * Choose the variant of the panes
-         */
-        "variant": '1' | '2';
     }
     /**
      * @since 2.0.0
@@ -2525,6 +2525,10 @@ export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaginationElement;
 }
+export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPaneElement;
+}
 export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectElement;
@@ -2532,10 +2536,6 @@ export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
 export interface IxSelectItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectItemElement;
-}
-export interface IxSidePaneCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxSidePaneElement;
 }
 export interface IxSliderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3131,6 +3131,18 @@ declare global {
         prototype: HTMLIxPaginationElement;
         new (): HTMLIxPaginationElement;
     };
+    interface HTMLIxPaneElement extends Components.IxPane, HTMLStencilElement {
+    }
+    var HTMLIxPaneElement: {
+        prototype: HTMLIxPaneElement;
+        new (): HTMLIxPaneElement;
+    };
+    interface HTMLIxPanesElement extends Components.IxPanes, HTMLStencilElement {
+    }
+    var HTMLIxPanesElement: {
+        prototype: HTMLIxPanesElement;
+        new (): HTMLIxPanesElement;
+    };
     interface HTMLIxPillElement extends Components.IxPill, HTMLStencilElement {
     }
     var HTMLIxPillElement: {
@@ -3166,18 +3178,6 @@ declare global {
     var HTMLIxSelectItemElement: {
         prototype: HTMLIxSelectItemElement;
         new (): HTMLIxSelectItemElement;
-    };
-    interface HTMLIxSidePaneElement extends Components.IxSidePane, HTMLStencilElement {
-    }
-    var HTMLIxSidePaneElement: {
-        prototype: HTMLIxSidePaneElement;
-        new (): HTMLIxSidePaneElement;
-    };
-    interface HTMLIxSidePaneGroupElement extends Components.IxSidePaneGroup, HTMLStencilElement {
-    }
-    var HTMLIxSidePaneGroupElement: {
-        prototype: HTMLIxSidePaneGroupElement;
-        new (): HTMLIxSidePaneGroupElement;
     };
     /**
      * @since 2.0.0
@@ -3395,13 +3395,13 @@ declare global {
         "ix-modal-header": HTMLIxModalHeaderElement;
         "ix-modal-loading": HTMLIxModalLoadingElement;
         "ix-pagination": HTMLIxPaginationElement;
+        "ix-pane": HTMLIxPaneElement;
+        "ix-panes": HTMLIxPanesElement;
         "ix-pill": HTMLIxPillElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
-        "ix-side-pane": HTMLIxSidePaneElement;
-        "ix-side-pane-group": HTMLIxSidePaneGroupElement;
         "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
         "ix-split-button": HTMLIxSplitButtonElement;
@@ -5165,6 +5165,62 @@ declare namespace LocalJSX {
          */
         "showItemCount"?: boolean;
     }
+    interface IxPane {
+        /**
+          * Behaviour of the side pane
+         */
+        "behaviour"?: 'floating' | 'inline';
+        /**
+          * Toggle border
+         */
+        "borderless"?: boolean;
+        /**
+          * State of the pane
+         */
+        "expand"?: boolean;
+        /**
+          * The maximum size of the sidebar, when it is expanded
+         */
+        "expandedPaneSize"?: | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%'
+    | '100%';
+        /**
+          * Name of the icon
+         */
+        "icon"?: string;
+        /**
+          * Event
+         */
+        "onExpandPaneChange"?: (event: IxPaneCustomEvent<ExpandPaneChangeEvent>) => void;
+        "onPaneChange"?: (event: IxPaneCustomEvent<string>) => void;
+        /**
+          * Title of the side panel
+         */
+        "paneTitle"?: string;
+        /**
+          * Placement of the sidebar
+         */
+        "position"?: SidePanelPosition;
+        /**
+          * Toggle either the preview content is shown or not
+         */
+        "showPreviewContent"?: boolean;
+    }
+    interface IxPanes {
+        /**
+          * Behaviour of the side pane
+         */
+        "behaviour"?: 'floating' | 'inline';
+        /**
+          * Choose the variant of the panes
+         */
+        "variant"?: '1' | '2';
+    }
     interface IxPill {
         /**
           * Align pill content left
@@ -5329,62 +5385,6 @@ declare namespace LocalJSX {
           * Item value
          */
         "value": any;
-    }
-    interface IxSidePane {
-        /**
-          * Behaviour of the side pane
-         */
-        "behaviour"?: 'floating' | 'inline';
-        /**
-          * Toggle border
-         */
-        "borderless"?: boolean;
-        /**
-          * State of the side-pane
-         */
-        "expand"?: boolean;
-        /**
-          * The maximum size of the sidebar, when it is expanded
-         */
-        "expandedPaneSize"?: | '240px'
-    | '320px'
-    | '360px'
-    | '480px'
-    | '600px'
-    | '33%'
-    | '50%'
-    | '100%';
-        /**
-          * Name of the icon
-         */
-        "icon"?: string;
-        /**
-          * Event
-         */
-        "onExpandPaneChange"?: (event: IxSidePaneCustomEvent<ExpandPaneChangeEvent>) => void;
-        "onPaneChange"?: (event: IxSidePaneCustomEvent<string>) => void;
-        /**
-          * Title of the side panel
-         */
-        "paneTitle"?: string;
-        /**
-          * Placement of the sidebar
-         */
-        "position"?: SidePanelPosition;
-        /**
-          * Toggle either the preview content is shown or not
-         */
-        "showPreviewContent"?: boolean;
-    }
-    interface IxSidePaneGroup {
-        /**
-          * Behaviour of the side pane
-         */
-        "behaviour"?: 'floating' | 'inline';
-        /**
-          * Choose the variant of the panes
-         */
-        "variant"?: '1' | '2';
     }
     /**
      * @since 2.0.0
@@ -6047,13 +6047,13 @@ declare namespace LocalJSX {
         "ix-modal-header": IxModalHeader;
         "ix-modal-loading": IxModalLoading;
         "ix-pagination": IxPagination;
+        "ix-pane": IxPane;
+        "ix-panes": IxPanes;
         "ix-pill": IxPill;
         "ix-push-card": IxPushCard;
         "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
-        "ix-side-pane": IxSidePane;
-        "ix-side-pane-group": IxSidePaneGroup;
         "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
         "ix-split-button": IxSplitButton;
@@ -6248,6 +6248,8 @@ declare module "@stencil/core" {
              * @since 1.5.0
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
+            "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
+            "ix-panes": LocalJSX.IxPanes & JSXBase.HTMLAttributes<HTMLIxPanesElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             /**
              * @since 1.6.0
@@ -6259,8 +6261,6 @@ declare module "@stencil/core" {
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
-            "ix-side-pane": LocalJSX.IxSidePane & JSXBase.HTMLAttributes<HTMLIxSidePaneElement>;
-            "ix-side-pane-group": LocalJSX.IxSidePaneGroup & JSXBase.HTMLAttributes<HTMLIxSidePaneGroupElement>;
             /**
              * @since 2.0.0
              */
