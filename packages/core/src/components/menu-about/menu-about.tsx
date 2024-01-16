@@ -14,11 +14,12 @@ import {
   EventEmitter,
   forceUpdate,
   h,
-  Host,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
+import { CustomCloseEvent, setTab, initialize } from '../utils/menu-tabs/menu-tabs-utils';
+import { MenuTabs } from '../utils/menu-tabs/menu-tabs-fc';
 
 @Component({
   tag: 'ix-menu-about',
@@ -26,6 +27,8 @@ import {
   shadow: true,
 })
 export class MenuAbout {
+  @Element() el!: HTMLIxMenuAboutElement;
+
   /**
    * Active tab
    */
@@ -41,100 +44,29 @@ export class MenuAbout {
    */
   @Prop() show = false;
 
-  @Element() el!: HTMLIxMenuAboutElement;
-
   /**
    * About and Legal closed
    */
-  @Event() close: EventEmitter<{
-    nativeEvent: MouseEvent;
-    name: string;
-  }>;
+  @Event() close: EventEmitter<CustomCloseEvent>;
 
-  @State() labels: string[] = [];
-
-  get aboutItems(): HTMLIxMenuAboutItemElement[] {
-    return Array.from(this.el.querySelectorAll('ix-menu-about-item'));
-  }
+  @State() items: HTMLIxMenuAboutItemElement[];
 
   @Watch('activeTabLabel')
-  private setTab(label: string) {
-    this.activeTabLabel = label;
-    this.aboutItems.forEach((i) => {
-      i.style.display = 'none';
-      if (i.label === this.activeTabLabel) {
-        i.style.display = 'block';
-      }
-    });
+  setTab(label: string) {
+    setTab(this, label)
   }
 
   componentWillLoad() {
-    if (this.aboutItems.length) {
-      this.setTab(this.activeTabLabel || this.aboutItems[0].label);
-    }
+    initialize(this)
   }
 
   componentDidLoad() {
     forceUpdate(this.el);
   }
 
-  componentWillRender() {
-    this.updateLabels();
-  }
-
-  private updateLabels() {
-    this.labels = this.aboutItems.map((i) => i.label);
-  }
-
-  private getSelectedTabIndex(label: string) {
-    const selectedItem = this.aboutItems.find((item) => item.label === label);
-    return this.aboutItems.indexOf(selectedItem);
-  }
-
-  private getTabItems() {
-    return this.aboutItems.map(({ label }) => {
-      return (
-        <ix-tab-item
-          class={{
-            active: label === this.activeTabLabel,
-          }}
-          onClick={() => this.setTab(label)}
-        >
-          {label}
-        </ix-tab-item>
-      );
-    });
-  }
-
   render() {
     return (
-      <Host
-        slot="ix-menu-about"
-        class={{
-          show: this.show,
-        }}
-      >
-        <div class="about-header">
-          <h2 class="text-h2">{this.label}</h2>
-          <ix-icon-button
-            ghost
-            size="24"
-            icon={'close'}
-            onClick={(e) =>
-              this.close.emit({
-                name: 'ix-menu-about',
-                nativeEvent: e,
-              })
-            }
-          ></ix-icon-button>
-        </div>
-        <ix-tabs selected={this.getSelectedTabIndex(this.activeTabLabel)}>
-          {this.getTabItems()}
-        </ix-tabs>
-        <div class="about-items">
-          <slot></slot>
-        </div>
-      </Host>
+      <MenuTabs context={this}/>
     );
   }
 }

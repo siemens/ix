@@ -9660,15 +9660,16 @@
       "events": [
         {
           "event": "close",
-          "detail": "{ nativeEvent: MouseEvent; name: string; }",
+          "detail": "CustomCloseEvent",
           "bubbles": true,
           "complexType": {
-            "original": "{\n    nativeEvent: MouseEvent;\n    name: string;\n  }",
-            "resolved": "{ nativeEvent: MouseEvent; name: string; }",
+            "original": "CustomCloseEvent",
+            "resolved": "CustomCloseEvent",
             "references": {
-              "MouseEvent": {
-                "location": "global",
-                "id": "global::MouseEvent"
+              "CustomCloseEvent": {
+                "location": "import",
+                "path": "../utils/menu-tabs/menu-tabs-utils",
+                "id": "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent"
               }
             }
           },
@@ -9722,7 +9723,28 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "labelChange",
+          "detail": "CustomLabelChangeEvent",
+          "bubbles": true,
+          "complexType": {
+            "original": "CustomLabelChangeEvent",
+            "resolved": "CustomLabelChangeEvent",
+            "references": {
+              "CustomLabelChangeEvent": {
+                "location": "import",
+                "path": "../utils/menu-tabs/menu-tabs-utils",
+                "id": "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomLabelChangeEvent"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Label changed",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -10597,7 +10619,7 @@
           "mutable": true,
           "attr": "active-tab-label",
           "reflectToAttr": false,
-          "docs": "active tab",
+          "docs": "Active tab",
           "docsTags": [],
           "values": [
             {
@@ -10618,7 +10640,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "Label",
+          "docs": "Label of first tab",
           "docsTags": [],
           "default": "'Settings'",
           "values": [
@@ -10656,15 +10678,16 @@
       "events": [
         {
           "event": "close",
-          "detail": "{ nativeEvent: MouseEvent; name: string; }",
+          "detail": "CustomCloseEvent",
           "bubbles": true,
           "complexType": {
-            "original": "{\n    nativeEvent: MouseEvent;\n    name: string;\n  }",
-            "resolved": "{ nativeEvent: MouseEvent; name: string; }",
+            "original": "CustomCloseEvent",
+            "resolved": "CustomCloseEvent",
             "references": {
-              "MouseEvent": {
-                "location": "global",
-                "id": "global::MouseEvent"
+              "CustomCloseEvent": {
+                "location": "import",
+                "path": "../utils/menu-tabs/menu-tabs-utils",
+                "id": "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent"
               }
             }
           },
@@ -10705,8 +10728,8 @@
           },
           "mutable": false,
           "attr": "label",
-          "reflectToAttr": false,
-          "docs": "Label",
+          "reflectToAttr": true,
+          "docs": "Settings Item label",
           "docsTags": [],
           "values": [
             {
@@ -10721,12 +10744,18 @@
       "events": [
         {
           "event": "labelChange",
-          "detail": "{ name: string; oldLabel: string; newLabel: string; }",
+          "detail": "CustomLabelChangeEvent",
           "bubbles": true,
           "complexType": {
-            "original": "{\n    name: string;\n    oldLabel: string;\n    newLabel: string;\n  }",
-            "resolved": "{ name: string; oldLabel: string; newLabel: string; }",
-            "references": {}
+            "original": "CustomLabelChangeEvent",
+            "resolved": "CustomLabelChangeEvent",
+            "references": {
+              "CustomLabelChangeEvent": {
+                "location": "import",
+                "path": "../utils/menu-tabs/menu-tabs-utils",
+                "id": "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomLabelChangeEvent"
+              }
+            }
           },
           "cancelable": true,
           "composed": true,
@@ -16914,6 +16943,11 @@
       "docstring": "",
       "path": "src/components/key-value/key-value.tsx"
     },
+    "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent": {
+      "declaration": "export interface CustomCloseEvent {\n  nativeEvent: MouseEvent;\n  name: string;\n}",
+      "docstring": "",
+      "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
+    },
     "src/components/modal/modal.tsx::IxModalSize": {
       "declaration": "export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;",
       "docstring": "",
@@ -16993,6 +17027,11 @@
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
       "docstring": "",
       "path": "src/components/flip-tile/flip-tile-state.ts"
+    },
+    "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomLabelChangeEvent": {
+      "declaration": "export interface CustomLabelChangeEvent {\n  name: string;\n  oldLabel: string;\n  newLabel: string;\n}",
+      "docstring": "",
+      "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
     },
     "src/components/utils/typed-event.ts::TypedEvent": {
       "declaration": "any",
