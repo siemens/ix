@@ -342,6 +342,7 @@ export class Pane {
             this.showPreviewContent,
           'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
           'left-right-pane': this.isLeftRightPane && !this.isMobile,
+          [`${this.position}-pane-border`]: !this.isMobile,
         }}
         aria-hidden={!this.hiddePane()}
         aria-expanded={this.expand}
@@ -386,17 +387,6 @@ export class Pane {
                 this.expand = !this.expand;
               }}
             ></ix-icon-button>
-            {this.icon ? (
-              <ix-icon
-                class={{
-                  'title-text-icon': true,
-                  'rotate-icon':
-                    !this.expand && !this.isMobile && this.isLeftRightPane,
-                }}
-                size="24"
-                name={this.icon}
-              ></ix-icon>
-            ) : null}
             <span
               class={{
                 'title-text': true,
@@ -409,7 +399,18 @@ export class Pane {
                 this.isLeftRightPane
               }
             >
-              {this.paneTitle}
+              {this.icon ? (
+                <ix-icon
+                  class={{
+                    'title-text-expanded': this.expand && !this.isMobile,
+                    'rotate-icon':
+                      !this.expand && !this.isMobile && this.isLeftRightPane,
+                  }}
+                  size="24"
+                  name={this.icon}
+                ></ix-icon>
+              ) : null}
+              <div class="title-text-overflow">{this.paneTitle}</div>
             </span>
           </div>
           <div class="side-pane-content" hidden={this.hidePaneContent()}>

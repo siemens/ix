@@ -1717,7 +1717,7 @@ export namespace Components {
         /**
           * Choose the variant of the panes
          */
-        "variant": '1' | '2';
+        "variant": 'full-height-left-right' | 'full-width-top-bottom';
     }
     interface IxPill {
         /**
@@ -5219,7 +5219,7 @@ declare namespace LocalJSX {
         /**
           * Choose the variant of the panes
          */
-        "variant"?: '1' | '2';
+        "variant"?: 'full-height-left-right' | 'full-width-top-bottom';
     }
     interface IxPill {
         /**

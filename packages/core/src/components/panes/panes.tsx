@@ -36,7 +36,8 @@ export class Panes {
   /**
    * Choose the variant of the panes
    */
-  @Prop() variant: '1' | '2' = '2';
+  @Prop() variant: 'full-height-left-right' | 'full-width-top-bottom' =
+    'full-height-left-right';
 
   @State() isMobile: boolean = false;
 
@@ -85,7 +86,7 @@ export class Panes {
       if (this.isMobile) {
         sidePanelElement.style.removeProperty('z-index');
         return;
-      } else if (this.variant === '1') {
+      } else if (this.variant === 'full-height-left-right') {
         if (!isBottomTop) {
           zIndex = '2';
         }
@@ -102,7 +103,7 @@ export class Panes {
   render() {
     return (
       <Host>
-        {this.variant == '1' && !this.isMobile ? (
+        {this.variant == 'full-height-left-right' && !this.isMobile ? (
           <ix-row class="row">
             <slot name="left"></slot>
             <ix-col class="col">
@@ -126,7 +127,7 @@ export class Panes {
             ) : null}
           </ix-row>
         ) : null}
-        {this.variant == '2' && !this.isMobile ? (
+        {this.variant == 'full-width-top-bottom' && !this.isMobile ? (
           <div class="side-panes-wrapper">
             <ix-col
               class={{

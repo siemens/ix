@@ -52,7 +52,19 @@ export class MyComponent {
         >
           PUSH ME
         </ix-button>
-        <ix-basic-navigation>
+        <ix-pane
+          paneTitle="LEFT Pane 123123123 "
+          slot="left"
+          position="left"
+          icon="star"
+          expand={true}
+        >
+          <h1>Test Heading</h1>
+          <p>This is a test content with a button</p>
+          <ix-button>PUSH ME</ix-button>
+        </ix-pane>
+
+        {/*<ix-basic-navigation>
           <ix-menu>
             <ix-menu-item home icon="home">
               Home
@@ -64,7 +76,7 @@ export class MyComponent {
             </ix-menu-category>
           </ix-menu>
 
-          <ix-panes behaviour="inline" variant="2">
+          <ix-panes behaviour="inline" variant="full-width-top-bottom">
             {this.hideLeft && (
               <ix-pane
                 paneTitle="LEFT"
@@ -123,7 +135,7 @@ export class MyComponent {
               <ix-button>PUSH ME</ix-button>
             </div>
           </ix-panes>
-        </ix-basic-navigation>
+        </ix-basic-navigation>*/}
       </Host>
     );
   }
