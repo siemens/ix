@@ -203,7 +203,7 @@ export class Pane {
 
       const expandPaneSize = this.isMobile ? '100%' : this.expandedPaneSize;
 
-      if (this.isBottomTopPane || !this.isMobile) {
+      if (this.isBottomTopPane || this.isMobile) {
         this.animateHorizontalFadeIn(expandPaneSize);
       } else {
         this.animateVerticalFadeIn(expandPaneSize);
