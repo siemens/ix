@@ -203,7 +203,7 @@ export class Pane {
 
       const expandPaneSize = this.isMobile ? '100%' : this.expandedPaneSize;
 
-      if (this.isBottomTopPane || this.isMobile) {
+      if (this.isBottomTopPane || !this.isMobile) {
         this.animateHorizontalFadeIn(expandPaneSize);
       } else {
         this.animateVerticalFadeIn(expandPaneSize);
@@ -240,7 +240,6 @@ export class Pane {
     this.hostElement.style.removeProperty('height');
     this.hostElement.style.removeProperty('width');
   }
-
 
   private animateVerticalFadeIn(size: string) {
     anime({
@@ -400,7 +399,8 @@ export class Pane {
               {this.icon ? (
                 <ix-icon
                   class={{
-                    'title-text-left-right-expanded': this.expand && !this.isMobile && this.isLeftRightPane,
+                    'title-text-left-right-expanded':
+                      this.expand && !this.isMobile && this.isLeftRightPane,
                     'rotate-icon':
                       !this.expand && !this.isMobile && this.isLeftRightPane,
                   }}
