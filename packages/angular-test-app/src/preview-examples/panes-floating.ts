@@ -17,7 +17,7 @@ import { IxPane } from '@siemens/ix-angular';
 export default class PanesFloating {
   @ViewChild('leftPaneRef') leftPaneRef!: IxPane;
 
-  handleClick() {
+  handleButtonClick() {
     this.leftPaneRef.expand = !this.leftPaneRef.expand;
   }
 }

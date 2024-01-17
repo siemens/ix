@@ -1,36 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-    name="viewport"
-  />
-  <title>Stencil Component Starter</title>
-  <style>
-    ix-basic-navigation {
-      height: 100vh;
-      width: 100vw;
-    }
-  </style>
+    <meta charset="utf-8"/>
+    <meta
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+            name="viewport"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+        ix-basic-navigation {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
 </head>
 <body>
-  <!--Preview code-->
-  <div>
+<!--Preview code-->
+<div>
     <div>
-      <ix-panes inline>
-        <ix-pane paneTitle="TOP" slot="top"> </ix-pane>
-        <ix-pane paneTitle="LEFT" slot="left"> </ix-pane>
-        <ix-pane paneTitle="RIGHT" slot="right"></ix-pane>
-        <ix-pane paneTitle="BOTTOM" slot="bottom"></ix-pane>
-        <div slot="content">
-          <p>This is a text content.</p>
-        </div>
-      </ix-panes>
+        <ix-panes inline>
+            <ix-pane paneTitle="TOP" slot="top"></ix-pane>
+            <ix-pane id="leftSidePane" paneTitle="LEFT" slot="left"></ix-pane>
+            <ix-pane paneTitle="RIGHT" slot="right"></ix-pane>
+            <ix-pane paneTitle="BOTTOM" slot="bottom"></ix-pane>
+            <div slot="content">
+                <p>This is a text content.</p>
+                <ix-button>Toggle left pane</ix-button>
+            </div>
+        </ix-panes>
     </div>
-  </div>
+</div>
 
-  <!--Preview code-->
+<!--Preview code-->
+<script>
+    const leftPane = document.getElementById('leftSidePane');
+
+    const button = document.querySelector('ix-button');
+    button.addEventListener('click', () => {
+        handleButtonClick();
+    })
+
+    function handleButtonClick() {
+        if (leftPane) {
+            leftPane.expand = !leftPane.expand;
+        }
+    }
+</script>
 <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
 </body>
 </html>

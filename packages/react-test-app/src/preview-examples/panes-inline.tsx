@@ -15,7 +15,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <IxPanes behaviour="inline">
+    <IxPanes variant="full-height-left-right" behaviour="inline">
       <IxPane paneTitle="TOP" slot="top"></IxPane>
       <IxPane paneTitle="RIGHT" slot="right"></IxPane>
       <IxPane paneTitle="LEFT" slot="left"></IxPane>

@@ -8,22 +8,17 @@
 -->
 
 <script setup lang="ts">
-import {
-  IxButton,
-  IxPanes,
-  IxPane, HTMLRefElement,
-} from '@siemens/ix-vue';
-import {ref} from "vue";
-
-
+import { IxPane, IxPanes } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxPanes variant="full-height-left-right">
+  <IxPanes variant="full-height-left-right" behaviour="inline">
     <IxPane paneTitle="TOP" slot="top"></IxPane>
     <IxPane paneTitle="RIGHT" slot="right"></IxPane>
     <IxPane ref="leftSidePane" paneTitle="LEFT" slot="left"></IxPane>
     <IxPane paneTitle="BOTTOM" slot="bottom"></IxPane>
-
+    <div slot="content">
+      <p>This is a text content.</p>
+    </div>
   </IxPanes>
 </template>

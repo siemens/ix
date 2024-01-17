@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxButton, IxPane, IxPanes } from '@siemens/ix-react';
+import { IxPane, IxPanes } from '@siemens/ix-react';
 import React, { useRef } from 'react';
 
 export default () => {
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLIxPaneElement>(null);
 
   return (
     <IxPanes behaviour="floating" variant="full-height-left-right">
@@ -19,13 +19,7 @@ export default () => {
       <IxPane paneTitle="RIGHT" slot="right"></IxPane>
       <IxPane ref={ref} paneTitle="LEFT" slot="left"></IxPane>
       <IxPane paneTitle="BOTTOM" slot="bottom"></IxPane>
-      <div slot="content">
-        <IxButton
-          onClick={() => (ref.current!.expand = !ref.current!.expand)}
-        >
-          Toggle left pane
-        </IxButton>
-      </div>
+      <div slot="content">Test content.</div>
     </IxPanes>
   );
 };

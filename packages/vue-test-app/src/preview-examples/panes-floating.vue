@@ -8,8 +8,14 @@
 -->
 
 <script setup lang="ts">
+import { IxButton, IxPane, IxPanes } from '@siemens/ix-vue';
+import { ref } from 'vue';
 
+const leftSidePane = ref<any>();
 
+function handleButtonClick() {
+  leftSidePane.value!.$el.expand = !leftSidePane.value!.$el.expand;
+}
 </script>
 
 <template>
@@ -19,7 +25,7 @@
     <IxPane ref="leftSidePane" paneTitle="LEFT" slot="left"></IxPane>
     <IxPane paneTitle="BOTTOM" slot="bottom"></IxPane>
     <div slot="content">
-      Toggle left pane
+      <IxButton @click="handleButtonClick"> Toggle left pane </IxButton>
     </div>
   </IxPanes>
 </template>
