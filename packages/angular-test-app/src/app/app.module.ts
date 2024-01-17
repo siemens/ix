@@ -105,8 +105,8 @@ import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
 import SelectNgModel from 'src/preview-examples/select-ng-model';
 import Settings from 'src/preview-examples/settings';
-import SidePaneGroupInline from '../preview-examples/side-pane-group-inline';
-import SidePaneGroupFloating from '../preview-examples/side-pane-group-floating';
+import PanesInline from '../preview-examples/panes-inline';
+import SidePaneGroupFloating from '../preview-examples/panes-floating';
 import Slider from 'src/preview-examples/slider';
 import SliderError from 'src/preview-examples/slider-error';
 import SliderMarker from 'src/preview-examples/slider-marker';
@@ -217,7 +217,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     SelectNgModel,
     Select,
     Settings,
-    SidePaneGroupInline,
+    PanesInline,
     SidePaneGroupFloating,
     Spinner,
     SpinnerLarge,

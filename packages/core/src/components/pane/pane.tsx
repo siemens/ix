@@ -383,7 +383,7 @@ export class Pane {
               onClick={() => {
                 this.expand = !this.expand;
               }}
-              aria-controls={this.position + "ToggleButton"}
+              aria-controls={this.position + 'ToggleButton'}
             ></ix-icon-button>
             <span
               class={{

@@ -17,15 +17,15 @@
 <body>
   <!--Preview code-->
   <div>
-    <ix-side-pane-group inline variant="2">
-      <ix-side-pane paneTitle="TOP" slot="top"> </ix-side-pane>
-      <ix-side-pane #leftPaneRef paneTitle="LEFT" slot="left"> </ix-side-pane>
-      <ix-side-pane paneTitle="RIGHT" slot="right"></ix-side-pane>
-      <ix-side-pane paneTitle="BOTTOM" slot="bottom"></ix-side-pane>
-      <ix-side-pane-content-area slot="content">
+    <ix-panes inline variant="2">
+      <ix-pane paneTitle="TOP" slot="top"> </ix-pane>
+      <ix-pane #leftPaneRef paneTitle="LEFT" slot="left"> </ix-pane>
+      <ix-pane paneTitle="RIGHT" slot="right"></ix-pane>
+      <ix-pane paneTitle="BOTTOM" slot="bottom"></ix-pane>
+      <div slot="content">
         <ix-button (click)="handleClick()">Toggle Left Pane</ix-button>
-      </ix-side-pane-content-area>
-    </ix-side-pane-group>
+      </div>
+    </ix-panes>
   </div>
 
   <!--Preview code-->

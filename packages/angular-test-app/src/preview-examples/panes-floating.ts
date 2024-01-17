@@ -8,16 +8,16 @@
  */
 
 import { Component, ViewChild } from '@angular/core';
-import { IxSidePane } from '@siemens/ix-angular';
+import { IxPane } from '@siemens/ix-angular';
 
 @Component({
   selector: 'app-example',
   template: './pane-group-floating.html',
 })
-export default class SidePaneGroup {
-  @ViewChild('leftPaneRef') leftPaneRef!: IxSidePane;
+export default class PanesFloating {
+  @ViewChild('leftPaneRef') leftPaneRef!: IxPane;
 
   handleClick() {
-    this.leftPaneRef.expandPane = !this.leftPaneRef.expandPane;
+    this.leftPaneRef.expand = !this.leftPaneRef.expand;
   }
 }

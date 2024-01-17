@@ -83,9 +83,8 @@ import Select from './preview-examples/select';
 import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
 import Settings from './preview-examples/settings';
-import SidePaneGroupInline from './preview-examples/side-pane-group-inline';
-import SidePaneGroupFloating from './preview-examples/side-pane-group-floating';
-import SidePaneGroupPreviewContent from './preview-examples/side-pane-group-preview-content';
+import PanesInline from './preview-examples/panes-inline';
+import PanesFloating from './preview-examples/panes-floating';
 import Slider from './preview-examples/slider';
 import SliderError from './preview-examples/slider-error';
 import SliderMarker from './preview-examples/slider-marker';
@@ -236,9 +235,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/select" element={<Select />} />
         <Route path="/preview/select-editable" element={<SelectEditable />} />
         <Route path="/preview/select-multiple" element={<SelectMultiple />} />
-        <Route path="/preview/side-pane-group-inline" element={<SidePaneGroupInline />} />
-        <Route path="/preview/side-pane-group-floating" element={<SidePaneGroupFloating />} />
-        <Route path="/preview/side-pane-group-preview-content" element={<SidePaneGroupPreviewContent />} />
+        <Route path="/preview/panes-inline" element={<PanesInline />} />
+        <Route path="/preview/panes-floating" element={<PanesFloating />} />
         <Route path="/preview/spinner" element={<Spinner />} />
         <Route path="/preview/spinner-large" element={<SpinnerLarge />} />
         <Route path="/preview/split-button" element={<Splitbutton />} />
