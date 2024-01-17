@@ -36,6 +36,8 @@ import { AlignedPlacement } from './placement';
 export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
 let sequenceId = 0;
 
+let dropdownTracePath = [];
+
 @Component({
   tag: 'ix-dropdown',
   styleUrl: 'dropdown.scss',
@@ -130,6 +132,8 @@ export class Dropdown {
   private focusOutBind: any;
 
   private localUId = `dropdown-${sequenceId++}`;
+
+  private latestSubMenu: string;
 
   constructor() {
     this.toggleBind = this.toggle.bind(this);
@@ -276,6 +280,10 @@ export class Dropdown {
         this.applyDropdownPosition();
       }
     }
+
+    if (!newShow) {
+      this.latestSubMenu = undefined;
+    }
   }
 
   @Watch('trigger')
@@ -295,6 +303,20 @@ export class Dropdown {
   @OnListener<Dropdown>('click', (self) => self.show)
   clickOutside(event: PointerEvent) {
     const target = event.target as HTMLElement;
+
+    const xxx = this.isDropdownInsideAnotherDropdown(target);
+
+    console.log(
+      'clickOutside usDropdownInisdeParent',
+      xxx,
+      'latest sub menu',
+      this.latestSubMenu,
+      'from',
+      this.localUId
+    );
+    if (xxx && this.latestSubMenu === undefined) {
+      this.close();
+    }
 
     if (event.defaultPrevented) {
       return;
@@ -465,6 +487,7 @@ export class Dropdown {
           bubbles: true,
           composed: true,
           cancelable: true,
+          detail: this.localUId,
         })
       )
     );
@@ -475,10 +498,21 @@ export class Dropdown {
 
     // Event listener to check if a dropdown is inside another dropdown
     // cancellation of the event will prevent the closing of the parent dropdown
-    this.hostElement.addEventListener('check-nested-dropdown', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-    });
+    this.hostElement.addEventListener(
+      'check-nested-dropdown',
+      (event: CustomEvent<string>) => {
+        if (event.detail === this.localUId) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log('parent', this.localUId, 'sub menu', event.detail);
+
+        this.latestSubMenu = event.detail;
+      }
+    );
   }
 
   async componentDidRender() {
@@ -536,6 +570,17 @@ export class Dropdown {
         }}
         role="list"
       >
+        <div
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '1rem',
+            backgroundColor: 'rgba(255, 0, 0, 0.3)',
+            zIndex: '1000000000',
+          }}
+        >
+          {this.localUId}
+        </div>
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
 

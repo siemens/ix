@@ -91,11 +91,13 @@ export class DropdownButton {
         class={{
           disabled: this.disabled,
         }}
-        ref={(ref) => {
-          this.dropdownAnchor = ref;
-        }}
       >
-        <div class="dropdown-button">
+        <div
+          class="dropdown-button"
+          ref={(ref) => {
+            this.dropdownAnchor = ref;
+          }}
+        >
           {this.label ? (
             <ix-button
               variant={this.variant}
