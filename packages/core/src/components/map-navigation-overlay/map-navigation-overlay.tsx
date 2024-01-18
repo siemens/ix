@@ -18,9 +18,6 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 
-/**
- * @deprecated since 2.1.0
- */
 @Component({
   tag: 'ix-map-navigation-overlay',
   styleUrl: 'map-navigation-overlay.scss',

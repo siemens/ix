@@ -609,12 +609,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "ix-basic-navigation is deprecated in favor of ix-application"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -637,7 +632,6 @@
           "ix-spinner"
         ]
       },
-      "deprecation": "ix-basic-navigation is deprecated in favor of ix-application",
       "props": [
         {
           "name": "applicationName",
@@ -8516,12 +8510,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "ix-map-navigation is deprecated in favor of ix-application"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -8551,7 +8540,6 @@
           "ix-spinner"
         ]
       },
-      "deprecation": "ix-map-navigation is deprecated in favor of ix-application",
       "props": [
         {
           "name": "applicationName",
@@ -8826,12 +8814,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "since 2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-map-navigation"
@@ -8850,7 +8833,6 @@
           "ix-map-navigation-overlay"
         ]
       },
-      "deprecation": "since 2.1.0",
       "props": [
         {
           "name": "color",
@@ -9942,12 +9924,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "Use ix-application-header and it's avatar functionality instead"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -9971,7 +9948,6 @@
           "ix-dropdown-item"
         ]
       },
-      "deprecation": "Use ix-application-header and it's avatar functionality instead",
       "props": [
         {
           "name": "bottom",
@@ -10149,12 +10125,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "Use ix-application-header and it's  avatar functionality instead"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-avatar"
@@ -10170,7 +10141,6 @@
           "ix-menu-avatar-item"
         ]
       },
-      "deprecation": "Use ix-application-header and it's  avatar functionality instead",
       "props": [
         {
           "name": "icon",

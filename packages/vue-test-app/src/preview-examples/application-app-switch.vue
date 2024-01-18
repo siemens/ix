@@ -33,7 +33,7 @@ const appSwitchConfig: AppSwitchConfiguration = {
       name: 'Floor App',
       iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
       url: 'https://ix.siemens.io/',
-      description: 'Example description for floor app',
+      description: 'Example description for Floor app',
       target: '_self',
     },
     {
@@ -41,7 +41,7 @@ const appSwitchConfig: AppSwitchConfiguration = {
       name: 'Calculator App',
       iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
       url: 'https://ix.siemens.io/',
-      description: 'Example description for floor app',
+      description: 'Example description for Calculator app',
       target: '_self',
     },
   ],
