@@ -6,7 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENxSE file in the root directory of this source tree.
  */
-import { Component, Element, h, Host, State } from '@stencil/core';
+
+import { Component, h, Host, State } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
@@ -14,56 +15,16 @@ import { Component, Element, h, Host, State } from '@stencil/core';
   shadow: true,
 })
 export class MyComponent {
-  @Element() hostElement: HTMLMyComponentElement;
-  ref: HTMLIxPaneElement = null;
-  sidePanelWrapperRef: any = null;
+  @State() hide: boolean = true;
 
-  @State() hideLeft: boolean = false;
-
-  @State() position: string = 'left';
-
-  onButtonClick() {
-    // const ixSidePaneGroup = document.querySelector('ix-pane-group');
-    //
-    // const ixSidePane = document.createElement('ix-pane');
-    // ixSidePane.setAttribute('paneTitle', 'LEFT');
-    // ixSidePane.setAttribute('inline', 'true');
-    // ixSidePane.setAttribute('hidden', 'false');
-    // ixSidePane.setAttribute('showPreviewContent', 'true');
-    //
-    // ixSidePaneGroup.appendChild(ixSidePane);
-
-    this.hideLeft = !this.hideLeft;
-
-    if (this.position === 'top') {
-      this.position = 'left';
-    } else {
-      this.position = 'top';
-    }
+  onButtonClick(state: boolean) {
+    this.hide = state;
   }
 
   render() {
     return (
       <Host>
-        <ix-button
-          onClick={() => {
-            this.onButtonClick();
-          }}
-        >
-          PUSH ME
-        </ix-button>
-        <ix-pane
-          paneTitle="LEFT Pane 123123123 "
-          position="left"
-          icon="star"
-          expand={true}
-        >
-          <h1>Test Heading</h1>
-          <p>This is a test content with a button</p>
-          <ix-button>PUSH ME</ix-button>
-        </ix-pane>
-
-        {/*<ix-basic-navigation>
+        <ix-basic-navigation>
           <ix-menu>
             <ix-menu-item home icon="home">
               Home
@@ -76,45 +37,54 @@ export class MyComponent {
           </ix-menu>
 
           <ix-panes behaviour="inline" variant="full-width-top-bottom">
-            {this.hideLeft && (
+            {!this.hide && (
               <ix-pane
-                paneTitle="LEFT"
+                key={1}
+                paneTitle="left"
                 slot="left"
                 position="left"
-                icon="star"
-                expand={true}
+                expand={false}
               >
                 <h1>Test Heading</h1>
                 <p>This is a test content with a button</p>
                 <ix-button>PUSH ME</ix-button>
               </ix-pane>
             )}
+
             <ix-pane
-              key="top"
-              paneTitle="TOP"
-              position="top"
+              key={2}
+              paneTitle="top"
               slot="top"
-              icon="about"
-              expand={true}
+              position="top"
+              expand={false}
             >
-              <h1>Test Heading from LEFT</h1>
+              <h1>Test Heading</h1>
+              <p>This is a test content with a button</p>
+              <ix-button>PUSH ME</ix-button>
             </ix-pane>
 
             <ix-pane
-              paneTitle="RIGHT"
-              position="right"
-              slot="right"
-              expand={true}
-            >
-              <h1>Test Heading from RIGHT</h1>
-            </ix-pane>
-            <ix-pane
-              paneTitle="BOTTOM"
-              position="bottom"
+              key={3}
+              paneTitle="bottom"
               slot="bottom"
-              expand={true}
+              position="bottom"
+              expand={false}
             >
-              <h1>Test Heading from BOTTOM</h1>
+              <h1>Test Heading</h1>
+              <p>This is a test content with a button</p>
+              <ix-button>PUSH ME</ix-button>
+            </ix-pane>
+
+            <ix-pane
+              key={4}
+              paneTitle="right"
+              slot="right"
+              position="right"
+              expand={false}
+            >
+              <h1>Test Heading</h1>
+              <p>This is a test content with a button</p>
+              <ix-button>PUSH ME</ix-button>
             </ix-pane>
 
             <div
@@ -131,10 +101,12 @@ export class MyComponent {
               <h1>Test Heading</h1>
               <h1>Test Heading</h1>
               <p>This is a test content with a button</p>
-              <ix-button>PUSH ME</ix-button>
+              <ix-button onClick={() => this.onButtonClick(!this.hide)}>
+                PUSH ME
+              </ix-button>
             </div>
           </ix-panes>
-        </ix-basic-navigation>*/}
+        </ix-basic-navigation>
       </Host>
     );
   }
