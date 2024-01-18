@@ -116,6 +116,10 @@ const themeConfig =
             label: 'Digital ID',
             href: 'https://www.siemens.com/digital-id',
           },
+          {
+            label: 'Contact us',
+            to: 'docs/contact-us'
+          }
         ],
       },
     ],

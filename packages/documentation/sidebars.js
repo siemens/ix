@@ -29,7 +29,7 @@ const sidebars = {
     },
     {
       type: 'doc',
-      id: 'team',
+      id: 'contact-us',
     },
     {
       type: 'category',
