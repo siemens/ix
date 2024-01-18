@@ -107,6 +107,68 @@ test.describe('cross app navigation', () => {
     await expect(appEntries).toHaveCount(2);
   });
 
+  test(`should close modal after interaction with app`, async ({
+    page,
+    mount,
+  }) => {
+    await page.evaluate(() => {
+      window.addEventListener('context-request', (evt: any) => {
+        console.dir(evt.callback);
+        evt.callback({
+          hideHeader: false,
+          host: null,
+          sidebar: false,
+          appSwitchConfig: {
+            apps: [
+              {
+                id: '1',
+                description: 'description 1',
+                iconSrc: '',
+                name: 'app name 1',
+                target: '_self',
+                url: '',
+              },
+              {
+                id: '2',
+                description: 'description 2',
+                iconSrc: '',
+                name: 'app name 1',
+                target: '_self',
+                url: '',
+              },
+            ],
+            currentAppId: '2',
+          },
+        } as ContextType<typeof ApplicationLayoutContext>);
+      });
+    });
+    const header = page.locator('ix-application-header');
+    const appSwitchButton = header.locator('ix-icon-button.app-switch');
+    await mount(
+      `
+        <ix-application-header name="test">
+        </ix-application-header>
+      `
+    );
+    await expect(header).toHaveClass(/hydrated/);
+    await expect(appSwitchButton).toBeVisible();
+
+    await appSwitchButton.click();
+
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+
+    const modalContent = page.locator('ix-modal-content');
+    const appEntries = modalContent.locator('.AppEntry');
+
+    await expect(appEntries).toHaveCount(2);
+
+    const appEntry = appEntries.nth(0);
+    await appEntry.click();
+
+    await expect(dialog).not.toBeVisible();
+  });
+
   test(`should show app switch apps (config async)`, async ({
     page,
     mount,
