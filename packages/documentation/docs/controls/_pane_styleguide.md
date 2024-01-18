@@ -9,9 +9,15 @@ It can help users to focus better on their tasks since related controls are visu
 3. Right pane (floating)
 4. Bottom pane (inline)
 
+## Variants
+Up to four floating or inline panes can be placed in a panel layout component.
+
+- **Floating**: The panes are placed above the main content but below the nav menu and header.
+- **Inline**: The panes are placed on one level with the main content. When expanded, they move the main content and reduce its available space.
+
 ## Options
 
-- **Title**: Set a title for the pane. We typically use a short name that describes its content.
+- **Heading**: Set a headline for the pane. We typically use a short name that describes its content.
 - **Icon**: An icon can be displayed on the header with the title.
 - **Size**: Use one of the following values for the height of a left or right pane, and for the width of a top or bottom pane (on mobile, panes will always be full screen):
 	- `240px`
@@ -22,14 +28,16 @@ It can help users to focus better on their tasks since related controls are visu
 	- `100%`
 - **Borderless**: Panes have borders to visually split content areas. Use this option to hide them if panes are placed in other layouts than just the main content where borders are disruptive.
 - **Position**: Panes can be positioned on the left, top, right or bottom.
-- **Behavior**: Up to four floating or inline panes can be placed in a panel layout component.
-	- **Floating**: The panes are placed above the main content but below the nav menu and header.
-	- **Inline**: The panes are placed on one level with the main content. When expanded, they move the main content and reduce its available space.
+- **Layout**: Depending on which pane should have more focus the top/bottom or left/right panes can use more space.
+
+![Pane layouts](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1681-28910&mode=design&t=iP7h44Wf17P209P7-4)
+
+1. Full height (left/right)
+2. Full width (top/bottom)
 
 ## Behavior 
 
 - **Interaction**: The floating panes has a close button on the right side of the header; the inline pane has a collapse or expand button on the left side of the header.
-- **Layout**: Depending on which pane should have more focus the top/bottom or left/right panes can use more space.
 - **Responsive**: On large and medium sized screens, all panes have a maximum width or height of `50%` of the screen. On small screens, all panes have full width and height (the header and nav menu is visible). Make sure your content is prepared for different screen sizes. Collapsed left and right panes are shown on the top and bottom for a more efficient use of space.
 
 ![Pane small viewport](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1680-26548&mode=design&t=iP7h44Wf17P209P7-4)
@@ -37,11 +45,6 @@ It can help users to focus better on their tasks since related controls are visu
 1. Inline panes in collapsed state
 2. Inline or floating pane in expanded state
 3. Opened nav menu
-
-![Pane layouts](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1681-28910&mode=design&t=iP7h44Wf17P209P7-4)
-
-1. Full height (left/right)
-2. Full width (top/bottom)
 
 ## States
 
