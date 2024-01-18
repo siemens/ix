@@ -90,7 +90,7 @@ export class ApplicationSwitchModal {
     return (
       <Host>
         <ix-modal-header icon="apps">
-          {this.config?.i18nAppSwitch || 'Switch to Application'}
+          {this.config?.i18nAppSwitch || 'Switch to application'}
         </ix-modal-header>
         <ix-modal-content class="content">
           <div class="content-apps">
