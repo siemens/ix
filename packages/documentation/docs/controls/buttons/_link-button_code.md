@@ -1,6 +1,6 @@
 import Tags from './../../auto-generated/ix-link-button/tags.md';
 
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../../auto-generated/ix-link-button/props.md';
 
 import SourceLinkButton from './../../auto-generated/previews/web-component/link-button.md'

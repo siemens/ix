@@ -1,5 +1,5 @@
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 
 import Tags from './../../auto-generated/ix-toggle-button/tags.md';
 

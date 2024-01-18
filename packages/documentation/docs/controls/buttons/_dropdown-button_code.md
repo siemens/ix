@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 

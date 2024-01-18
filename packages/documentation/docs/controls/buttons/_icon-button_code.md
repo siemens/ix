@@ -1,5 +1,5 @@
 import Tags from './../../auto-generated/ix-link-button/tags.md';
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 
 import PropsIcon from './../../auto-generated/ix-icon-button/props.md';
 

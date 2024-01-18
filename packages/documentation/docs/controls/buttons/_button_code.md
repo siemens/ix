@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../../auto-generated/ix-button/props.md';
 
 import WebComponentButtons from './../../auto-generated/previews/web-component/buttons.md'
