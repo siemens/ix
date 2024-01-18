@@ -19,9 +19,9 @@
     "generate-markdown": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-markdown.ts"
   },
   "dependencies": {
-    "@docusaurus/core": "3.0.0",
-    "@docusaurus/preset-classic": "3.0.0",
-    "@docusaurus/theme-live-codeblock": "3.0.0",
+    "@docusaurus/core": "3.1.0",
+    "@docusaurus/preset-classic": "3.1.0",
+    "@docusaurus/theme-live-codeblock": "3.1.0",
     "@mdx-js/react": "^3.0.0",
     "html-test-app": "workspace:*",
     "@siemens/ix": "workspace:*",
@@ -41,9 +41,9 @@
     "sass": "^1.54.8"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.0.0",
-    "@docusaurus/tsconfig": "3.0.0",
-    "@docusaurus/types": "3.0.0",
+    "@docusaurus/module-type-aliases": "3.1.0",
+    "@docusaurus/tsconfig": "3.1.0",
+    "@docusaurus/types": "3.1.0",
     "figma-plugin": "workspace:*",
     "@types/fs-extra": "^9.0.13",
     "@types/rimraf": "^3.0.2",
