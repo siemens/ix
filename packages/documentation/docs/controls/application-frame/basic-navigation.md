@@ -9,7 +9,7 @@ import DocsCode from './\_basic-navigation_code.md';
 
 import Tags from './../../auto-generated/ix-basic-navigation/tags.md';
 
-# Basic Navigation (deprecated)
+# Basic Navigation
 
 <Tags />
 

@@ -15,7 +15,7 @@ The ix-application-header can host custom content which will be displayed on the
 
 ## Usage
 
-<Playground name="application-header" examplesByName noMargin height="18rem"></Playground>
+<Playground name="application-header" examplesByName noMargin height="21rem"></Playground>
 
 ### Avatar
 

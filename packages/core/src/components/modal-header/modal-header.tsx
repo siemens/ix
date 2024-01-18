@@ -39,6 +39,7 @@ export class ModalHeader {
    * Icon of the Header
    */
   @Prop() icon: string;
+
   @Watch('icon')
   onIconChange(icon: string) {
     if (this.parentDialog) {
@@ -56,7 +57,8 @@ export class ModalHeader {
   @Prop() iconColor: string;
 
   /**
-   * Close icon is clicked
+   * Emits when close icon is clicked and closes the modal
+   * Can be prevented, in which case only the event is triggered, and the modal remains open
    */
   @Event() closeClick: EventEmitter<MouseEvent>;
 

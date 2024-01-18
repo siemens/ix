@@ -417,8 +417,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: 2.1.0
+        version: 2.1.0
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -6253,6 +6253,13 @@ packages:
     engines: {node: '>=16.16.x', npm: '>=8.x.x'}
     dependencies:
       '@stencil/core': 3.2.1
+
+  /@siemens/ix-icons@2.1.0:
+    resolution: {integrity: sha512-PgBymG8wZIDwA5Ne02e55jkpZvTTMOa8A3UKoRDQ72CVsrbIGY9GtrYIZoIo8RjwNi/rAxdeYiUb6sGg76nU5g==}
+    engines: {node: '>=16.16.x', npm: '>=8.x.x'}
+    dependencies:
+      '@stencil/core': 3.2.1
+    dev: false
 
   /@sinclair/typebox@0.24.51:
     resolution: {integrity: sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==}

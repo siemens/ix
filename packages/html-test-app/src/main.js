@@ -12,4 +12,5 @@ import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
 (async () => {
   await applyPolyfills();
   await defineCustomElements();
+
 })();
