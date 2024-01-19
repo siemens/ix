@@ -1,6 +1,6 @@
 Panes are interactive components that allow users to access content that isn't constantly visible on the screen. Panes consist of a basic layout with a header and a content area. When collapsed, panes can be fully hidden or reduced to a bar. In our applications, we often include contextual information, options, trees and lists in the content area. 
 
-It can help users to focus better on their tasks since related controls are visually grouped and the main content contains less information. They are beneficial to use for more compact and hierarchically better organized content, providing a more dynamic layout. You can use them to give contextual information or providing a more tidied up main content for your users for a better task focus.
+Panes can help users to focus better on their tasks since related controls are visually grouped and the main content contains less information. They are beneficial to use for more compact and hierarchically better organized content, providing a more dynamic layout.
 
 ![Pane overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1680-22044&mode=design&t=iP7h44Wf17P209P7-4)
 
@@ -26,7 +26,7 @@ Up to four floating or inline panes can be placed in a panel layout component.
 	- `480px`
 	- `33%`
 	- `100%`
-- **Borderless**: Panes have borders to visually split content areas. Use this option to hide them if panes are placed in other layouts than just the main content where borders are disruptive.
+- **Borderless**: Panes can have borders to visually split them from other content areas. We typically use a borderless pane when it is placed within layouts that already contain other visual means for splitting areas.
 - **Position**: Panes can be positioned on the left, top, right or bottom.
 - **Layout**: Depending on which pane should have more focus the top/bottom or left/right panes can use more space.
 
@@ -38,7 +38,7 @@ Up to four floating or inline panes can be placed in a panel layout component.
 ## Behavior 
 
 - **Interaction**: The floating panes has a close button on the right side of the header; the inline pane has a collapse or expand button on the left side of the header.
-- **Responsive**: On large and medium sized screens, all panes have a maximum width or height of `50%` of the screen. On small screens, all panes have full width and height (the header and nav menu is visible). Make sure your content is prepared for different screen sizes. Collapsed left and right panes are shown on the top and bottom for a more efficient use of space.
+- **Responsive**: On large and medium sized screens, all panes have a maximum width or height of `50%` of the screen. On small screens, all panes have full width and height (the header and nav menu is visible).  Collapsed left and right panes are shown on the top and bottom for a more efficient use of space.
 
 ![Pane small viewport](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1680-26548&mode=design&t=iP7h44Wf17P209P7-4)
 
@@ -48,9 +48,7 @@ Up to four floating or inline panes can be placed in a panel layout component.
 
 ## States
 
-Panes have two states: 
-1. Collapsed
-2. Expanded
+Panes have two states: collapsed and expanded. Appearance of the states varies between variants and screen sizes.
 
 Floating panes (3) are not visible in the collapsed state since you trigger them from a control in the UI.
 
@@ -58,7 +56,7 @@ Floating panes (3) are not visible in the collapsed state since you trigger them
 
 ## Dos and Don'ts
 
-- Do use to organize the content when you have a lot. 
+- Do use to organize the content and guide users' attention. 
 - Do use to display different views within the single screen. 
 - Do use to expand or collapse the content to hide or reveal specific content. 
 - Don't use for small amount of content.  
