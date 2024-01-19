@@ -33,7 +33,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Whats happening',
+      label: 'What\'s happening?',
       items: [
         {
           type: 'doc',
