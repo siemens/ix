@@ -33,9 +33,10 @@ Please be aware, a possible overflow is not handled automatically. At breakpoint
 We at Siemens DI use the slot primarily for
 - Log in button, if the application is able to run without a logged in user
 - Changing the top level data context like environment, workspace, tenant or similar
-- Important information users should be aware of
-- Access to application wide actions like a global search
-Align other usages of the slot with the iX team to keep a consistent look an feel of our applications.
+- Important contextual information users should be aware of (like local times in remote access use cases)
+- Access to application wide actions like a global search  
+
+Align other usages of the slot with the iX team to keep a consistent look an feel of our applications within Siemens DI.
 
 
 ### Avatar
