@@ -52,14 +52,10 @@ class DropdownController {
 
   present(dropdown: DropdownInterface) {
     this.dropdownRules[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
-    setTimeout(() =>
-      setTimeout(() => {
-        if (dropdown.willPresent()) {
-          dropdown.present();
-          this.dismissByRule(dropdown.getId());
-        }
-      })
-    );
+    if (dropdown.willPresent()) {
+      dropdown.present();
+      this.dismissByRule(dropdown.getId());
+    }
   }
 
   dismiss(dropdown: DropdownInterface) {
