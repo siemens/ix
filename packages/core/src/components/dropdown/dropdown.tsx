@@ -142,28 +142,28 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return this.assignedSubmenu;
   }
 
-  isPresent(): boolean {
+  isPresent() {
     return this.show;
   }
 
-  present(): void {
+  present() {
     this.show = true;
   }
 
-  dismiss(): void {
+  dismiss() {
     this.show = false;
   }
 
-  getId(): string {
+  getId() {
     return this.localUId;
   }
 
-  willDismiss(): boolean {
+  willDismiss() {
     const { defaultPrevented } = this.showChanged.emit(false);
     return !defaultPrevented;
   }
 
-  willPresent(): boolean {
+  willPresent() {
     const { defaultPrevented } = this.showChanged.emit(true);
     return !defaultPrevented;
   }
