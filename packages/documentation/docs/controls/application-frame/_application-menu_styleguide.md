@@ -24,7 +24,7 @@ The avatar button is optional. It shows information about the logged-in user. Wh
 ## Menu item and menu category
 Menu items represent the main parts of an application. They have an icon for quick visual identification. When the navigation menu is expanded, the full name of the item is visible. 
 
-Menu categories can host menu items as a second navigation level. Second level menu items don’t use icons.
+Menu categories can host menu items as a second navigation level.
 
 ![Navigation item](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=998-67465&mode=design&t=puecEZZMJ24R1ngI-11)
 
