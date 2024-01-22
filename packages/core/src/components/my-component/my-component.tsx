@@ -17,7 +17,7 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-application>
+        <ix-application breakpoints={['sm']}>
           <ix-application-header>
             <ix-dropdown-button label="xxx">
               <ix-dropdown-item>Test 1</ix-dropdown-item>
@@ -32,7 +32,7 @@ export class MyComponent {
             </ix-avatar>
           </ix-application-header>
           <ix-content>
-            <ix-dropdown trigger={'avatarsub'}>
+            {/* <ix-dropdown trigger={'avatarsub'}>
               <ix-dropdown-item>ItemAvatar1</ix-dropdown-item>
               <ix-dropdown-item>ItemAvatar2</ix-dropdown-item>
             </ix-dropdown>
@@ -79,7 +79,7 @@ export class MyComponent {
             <ix-dropdown trigger={'XXMenu2_SubXXMenu21'}>
               <ix-dropdown-item>Item</ix-dropdown-item>
               <ix-dropdown-item>Item</ix-dropdown-item>
-            </ix-dropdown>
+            </ix-dropdown> */}
           </ix-content>
         </ix-application>
       </Host>
