@@ -179,7 +179,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private disposeListener?: Function;
 
   private addEventListenersFor() {
-    const handleEvent = (event: Event) => {
+    const stopEventDispatching = (event: Event) => {
+      // Prevent default and stop event bubbling to window, otherwise controller will close all dropdowns
       if (this.triggerElement.hasAttribute('data-ix-dropdown-trigger')) {
         event.preventDefault();
         event.stopPropagation();
@@ -198,7 +199,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.triggerElement,
       'click',
       (event) => {
-        handleEvent(event);
+        stopEventDispatching(event);
         toggleController();
       }
     );
