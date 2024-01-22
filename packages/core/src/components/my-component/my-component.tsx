@@ -32,7 +32,7 @@ export class MyComponent {
             </ix-avatar>
           </ix-application-header>
           <ix-content>
-            {/* <ix-dropdown trigger={'avatarsub'}>
+            <ix-dropdown trigger={'avatarsub'}>
               <ix-dropdown-item>ItemAvatar1</ix-dropdown-item>
               <ix-dropdown-item>ItemAvatar2</ix-dropdown-item>
             </ix-dropdown>
@@ -59,7 +59,7 @@ export class MyComponent {
               <ix-dropdown-item>Item deep</ix-dropdown-item>
             </ix-dropdown>
 
-            <ix-dropdown-button label="xxx">
+            <ix-dropdown-button label="xxx 123">
               <ix-dropdown-item>Test 1</ix-dropdown-item>
               <ix-dropdown-item>Test 2</ix-dropdown-item>
               <ix-dropdown-item id="XXMenu1">Test 3</ix-dropdown-item>
@@ -79,7 +79,14 @@ export class MyComponent {
             <ix-dropdown trigger={'XXMenu2_SubXXMenu21'}>
               <ix-dropdown-item>Item</ix-dropdown-item>
               <ix-dropdown-item>Item</ix-dropdown-item>
-            </ix-dropdown> */}
+            </ix-dropdown>
+
+            <ix-button id="trigger-type">Trigger Type 123</ix-button>
+            <ix-dropdown trigger={'trigger-type'}>
+              <ix-dropdown-item>Item 1</ix-dropdown-item>
+              <ix-dropdown-item>Item 2</ix-dropdown-item>
+              <ix-dropdown-item>Item 3</ix-dropdown-item>
+            </ix-dropdown>
           </ix-content>
         </ix-application>
       </Host>
