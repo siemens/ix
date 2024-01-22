@@ -4,21 +4,19 @@ Panes can help users to focus better on their tasks since related controls are v
 
 ![Pane overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1680-22044&mode=design&t=iP7h44Wf17P209P7-4)
 
-1. Left pane (inline & expanded)
-2. Top pane (inline)
-3. Right pane (floating)
-4. Bottom pane (inline)
 
 ## Variants
-Up to four floating or inline panes can be placed in a panel layout component.
 
-- **Floating**: The panes are placed above the main content but below the nav menu and header.
+- **Floating**: Can be placed up to up to four floating or inline in a panel layout component, in the floating panes are positioned higher than the main content but beneath the navigation menu and header.
 - **Inline**: The panes are placed on one level with the main content. When expanded, they move the main content and reduce its available space.
 
 ## Options
-
+- **Left pane**: (inline & expanded)
+- **Top pane**: (inline)
+- **Right pane**: (floating)
+- **Bottom pane**: (inline)
 - **Heading**: Set a headline for the pane. We typically use a short name that describes its content.
-- **Icon**: An icon can be displayed on the header with the title.
+- **Icon**: An icon can be displayed before the heading to the title.
 - **Size**: Use one of the following values for the height of a left or right pane, and for the width of a top or bottom pane (on mobile, panes will always be full screen):
 	- `240px`
 	- `320px`
@@ -45,6 +43,7 @@ Up to four floating or inline panes can be placed in a panel layout component.
 1. Inline panes in collapsed state
 2. Inline or floating pane in expanded state
 3. Opened nav menu
+4. Stacking behavior
 
 ## States
 
@@ -52,7 +51,6 @@ Panes have two states: collapsed and expanded. Appearance of the states varies b
 
 Floating panes (3) are not visible in the collapsed state since you trigger them from a control in the UI.
 
-![Pane state](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1681-28456&mode=design&t=iP7h44Wf17P209P7-4)
 
 ## Dos and Don'ts
 
@@ -60,6 +58,7 @@ Floating panes (3) are not visible in the collapsed state since you trigger them
 - Do use to display different views within the single screen. 
 - Do use to expand or collapse the content to hide or reveal specific content. 
 - Don't use for small amount of content.  
+- Don't use for content that should always be visible to the user.
 
 ## Related patterns
 
