@@ -3,7 +3,7 @@ The navigation menu is an essential part of your iX applications. It offers a wa
 ![Navigation menu collapsed and expanded](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=990-122297&mode=design&t=JbZngO5IAS8hvpTb-11)
 
 1. Expand/collapse icon button: Expands and collapses the navigation menu.
-2. [Avatar button](#avatar-button,): Shows the logged-in user and provides access to user-related actions (optional)
+2. [Avatar button](#avatar-button,): Shows the logged-in user and provides access to user-related actions (optional)  
 **Please note:** Only basic navigation and map navigation still use the avatar at this position. The new [application](./application.md) frame uses the avatar inside the [application header](./application-header.md).
 3. Navigation section: Navigates through the main parts of an application.
 4. [Bottom section](#bottom-section): Hosts infrastructural actions and additional content but does not navigate away from the selected main part.
@@ -18,8 +18,8 @@ The avatar button is optional. It shows information about the logged-in user. Wh
 ### Avatar button options
 - **top:** Defines the first line of the additional user information. We typically use this to show primary user information (first and last name or username), depending on the available information. Overflows are clipped with an ellipsis (...).  
 - **bottom:** Defines the second line of additional user information, used to show secondary information, for example user role. Overflows are clipped with an ellipsis (...). 
-- **initials:** Shows avatars with initials.  
-- **image:** Shows avatars with images.  
+- **initials:** Shows avatar with initials.  
+- **image:** Shows avatar with images.  
 
 ## Menu item and menu category
 Menu items represent the main parts of an application. They have an icon for quick visual identification. When the navigation menu is expanded, the full name of the item is visible. 
@@ -42,7 +42,7 @@ Menu categories can host menu items as a second navigation level.
 
 ### Options of menu items and menu category 
 
-- **Notifications (`number`):** Displays a number at the top right corner of the icon (2).
+- **Notifications:** Displays a number at the top right corner of the icon (2).
 
 
 

@@ -1,4 +1,4 @@
-Use the popover news component to present news and information when the application starts like release notes, new app features, or marketing-related information. For Siemens applications, provide the information additionally within the [About and legal overlay](./about-and-legal.md).
+Use the popover news component to present news and information when the application starts like release notes, new app features or marketing-related information. For Siemens applications, provide the information within the [About and legal overlay](./about-and-legal.md) as well.
 
 ![Popover news](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-70517&mode=design&t=Ntzn8IlSOlPey8s5-11)
 

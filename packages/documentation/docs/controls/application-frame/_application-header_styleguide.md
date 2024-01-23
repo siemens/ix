@@ -15,7 +15,7 @@ Use the application switch (see [application](./application.md)) to allow users 
 
 ### Brand logo
 Provide the brand logo (2) as SVG. The logo must be monochromatic and cannot contain strokes as it is colored during runtime depending on your chosen theme.
-For our Siemens applications, only the Siemens logo with the brand theme is allowed.
+For Siemens applications, only the Siemens logo with the brand theme is allowed.
 
 
 ### Application name
@@ -49,12 +49,12 @@ With the new modular application frame we moved the avatar from the navigation m
 
 The avatar is an optional element and indicates the current logged in user. If your application doesn’t support different users or user profiles, don’t use the avatar.  
 
-Clicking the avatar opens a dropdown (6) with additional user information (7, 8, 9) and possibly other user related actions like log out, profile settings, user settings.
+Clicking the avatar opens a dropdown (6) with additional user information (7, 8, 9) and possibly other user related actions like log out, profile settings or user settings.
 
 ![Examples of access login](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1636-62468&mode=design&t=4XzscFw57dE7McUX-11)
 
 If your application can be used without being logged in to, you can offer access to a login process in different ways, for example:
-- Show a log in button in the [slot for additional elements](#slot-for-additional-elements) and hide the avatar
+- Show a log in button in the [slot for additional elements](#slot) and hide the avatar
 - Show the avatar with a placeholder image and show text in the user information section
 
 ## Options
@@ -84,7 +84,7 @@ At breakpoints "lg" and "md" the application header behaves identically. At brea
 
 
 ## Dos and Don’ts
-- Do align other slot usages for Siemens applications with the our team to keep a consistent look and feel
+- Do align other slot usages for Siemens applications with our team to keep a consistent look and feel
 - Do use the avatar dropdown for actions related to the current logged in user
 - Don’t overload the slot with too many elements (overflows are not handled automatically)
 - Don’t use the avatar if your application does not support user profiles
