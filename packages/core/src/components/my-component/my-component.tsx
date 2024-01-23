@@ -36,7 +36,7 @@ export class MyComponent {
             </ix-menu-category>
           </ix-menu>
 
-          <ix-panes variant="floating" layout="full-height-left-right">
+          <ix-pane-layout variant="floating" layout="full-height-left-right">
             <ix-pane heading="left" slot="left" expanded={false}>
               <h1>LEFT</h1>
               <p>This is a test content with a button</p>
@@ -81,7 +81,7 @@ export class MyComponent {
                 PUSH ME
               </ix-button>
             </div>
-          </ix-panes>
+          </ix-pane-layout>
         </ix-basic-navigation>
       </Host>
     );
