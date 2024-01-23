@@ -58,29 +58,21 @@ test('renders', async ({ mount, page }) => {
   const g1Dropdown = g1.locator('ix-dropdown');
   const g2Dropdown = g2.locator('ix-dropdown');
 
-  await sb1
-    .getByRole('button')
-    .filter({ hasText: 'context-menu' })
-    .first()
-    .click();
+  await sb1.locator('ix-icon-button').first().click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
     0
   );
 
-  await sb2
-    .getByRole('button')
-    .filter({ hasText: 'context-menu' })
-    .first()
-    .click();
+  await sb2.locator('ix-icon-button').first().click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
     1
   );
 
-  await g2.getByRole('button').filter({ hasText: 'context-menu' }).click();
+  await g2.locator('ix-icon-button').click();
 
   await expectToBeVisible(
     [sb1Dropdown, sb2Dropdown, g1Dropdown, g2Dropdown],
@@ -123,4 +115,23 @@ test.describe('nested dropdown tests', () => {
 
     await expect(nestedDropdownItem).toHaveClass(/hydrated/);
   });
+});
+
+test('trigger toggles', async ({ mount, page }) => {
+  await mount(`<ix-button id="trigger">Open</ix-button>
+    <ix-dropdown trigger="trigger" trigger-toggles="true">
+      <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+    </ix-dropdown>
+  `);
+
+  await page.locator('ix-button').click();
+  const dropdown = page.locator('.dropdown-menu');
+  await expect(dropdown).toHaveClass(/show/);
+  await expect(dropdown).toBeVisible();
+
+  await page.locator('ix-button').click();
+  const after = page.locator('.dropdown-menu');
+  await expect(after).not.toHaveClass(/show/);
+  await expect(dropdown).not.toBeVisible();
 });

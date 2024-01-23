@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `<ix-date-dropdown></ix-date-dropdown>`,
+  templateUrl: './date-dropdown.html',
 })
 export default class DateDropdownUserRange {}

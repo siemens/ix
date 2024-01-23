@@ -1,8 +1,18 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import {
   Component,
   Element,
   Event,
   EventEmitter,
+  Fragment,
   h,
   Host,
   Method,
@@ -10,25 +20,17 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-
-dayjs.extend(customParseFormat);
-
-const CUSTOM_RANGE_LABEL = 'Custom...';
+import { DateTime } from 'luxon';
 
 export type DateDropdownOption = {
+  id: string;
   label: string;
-  getValue: () => any;
-};
-
-export type DateRangeOption = {
-  from: dayjs.Dayjs | undefined;
-  to: dayjs.Dayjs | undefined;
+  from: string;
+  to: string;
 };
 
 export type DateRangeChangeEvent = {
+  id: string;
   from: string;
   to: string;
 };
@@ -42,16 +44,18 @@ export type DateRangeChangeEvent = {
   shadow: true,
 })
 export class DateDropdown {
+  @Element() hostElement: HTMLIxDateDropdownElement;
+
   /**
    * Date format string.
    * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
    */
-  @Prop() public format = 'YYYY-MM-DD';
+  @Prop() format = 'yyyy/LL/dd';
 
   /**
    * If true a range of dates can be selected.
    */
-  @Prop() range: boolean = true;
+  @Prop() range = true;
 
   /**
    * Picker date. If the picker is in range mode this property is the start date.
@@ -59,7 +63,7 @@ export class DateDropdown {
    *
    * Format is based on `format`
    */
-  @Prop() from: string | null = null;
+  @Prop() from: string;
 
   /**
    * Picker date. If the picker is in range mode this property is the end date.
@@ -67,7 +71,7 @@ export class DateDropdown {
    *
    * Format is based on `format`
    */
-  @Prop() to: string | null = null;
+  @Prop() to: string;
 
   /**
    * The earliest date that can be selected by the date picker.
@@ -84,17 +88,26 @@ export class DateDropdown {
   /**
    * Used to set the initial select date range as well as the button name,
    * if not set or no according date range label is found, nothing will be selected
-   * @default ''
    */
-  @Prop() public initialSelectedDateRangeName: string = '';
+  @Prop() dateRangeId = 'custom';
+  @Watch('dateRangeId')
+  @Watch('to')
+  @Watch('from')
+  onDateRangeIdChange() {
+    this.onRangeListSelect(this.dateRangeId);
+    this.onDateSelect({
+      from: this.currentRangeValue.from,
+      to: this.currentRangeValue.to,
+      id: this.currentRangeValue.id,
+    });
+  }
 
   /**
    * Controls whether the user is allowed to pick custom date ranges in the component.
    * When set to 'true', the user can select a custom date range using the date picker.
    * When set to 'false', only predefined time date ranges are available for selection.
-   * @default ''
    */
-  @Prop() public customRangeAllowed: boolean = true;
+  @Prop() customRangeAllowed = true;
 
   /**
    * An array of predefined date range options for the date picker.
@@ -103,190 +116,252 @@ export class DateDropdown {
    *
    * Example format:
    *   {
-   *     label: 'No time limit',
-   *     getValue: (): DateRangeOption => {
-   *       // Calculate the date range here
-   *       return { from: undefined, to: today };
-   *     },
+   *     id: 'some unique id',
+   *     label: 'Name of the range',
+   *     from: undefined, to: '2023/03/29'
    *   },
    *   // ... other predefined date range options ...
    */
-  @Prop() public dateRangeOptions: DateDropdownOption[] = [];
+  @Prop() dateRangeOptions: DateDropdownOption[] = [];
+  @Watch('dateRangeOptions')
+  onDateRangeOptionsChange() {
+    this.initialize();
+    this.onDateRangeIdChange();
+  }
 
-  @State() private hideDatePicker: boolean = true;
-  @State() private currentlySelectedDateRangeName: string;
-  @State() private associatedDateRangeValue: DateRangeChangeEvent;
-  @State() private savedDateRangeName: string;
-  @State() private datePickerRange: DateRangeChangeEvent;
+  /**
+   * Text for custom dropdown item. Will be used for translation.
+   */
+  @Prop({ attribute: 'i18n-custom-item' }) i18nCustomItem = 'Custom...';
+
+  /**
+   * Text for the done button. Will be used for translation.
+   */
+  @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
+
+  /**
+   * Text for the done button. Will be used for translation.
+   */
+  @Prop({ attribute: 'i18n-no-range' }) i18nNoRange = 'No range set';
+
+  /** @internal */
+  @Prop() today = DateTime.now().toISO();
 
   /**
    * EventEmitter for date range change events.
    *
    * This event is emitted when the date range changes within the component.
    * The event payload contains information about the selected date range.
-   *
-   * @event
-   * @private
    */
   @Event() private dateRangeChange: EventEmitter<DateRangeChangeEvent>;
 
+  @State() private selectedDateRangeId: 'custom' | (string & {});
+  @State() private currentRangeValue: {
+    from: string;
+    to: string;
+    id: string;
+  };
   @State() private triggerRef: HTMLElement;
 
-  @Element() hostElement: HTMLIxDateDropdownElement;
+  private datePickerTouched = false;
 
-  constructor() {
-    this.updateSelectedDateRange(this.initialSelectedDateRangeName);
-  }
-
-  @Watch('dateRangeOptions')
-  @Watch('initialSelectedDateRangeName')
-  public initialSelectedDateRangeNameChanged(): void {
-    this.updateSelectedDateRange(this.initialSelectedDateRangeName);
-  }
-
-  private updateSelectedDateRange(newDateRangeName: string): void {
-    const dateRangeOption = this.dateRangeOptions.find(
-      (option) => option.label === newDateRangeName
-    );
-
-    const selectedDateRangeName = dateRangeOption
-      ? newDateRangeName
-      : 'No range set';
-
-    if (dateRangeOption) {
-      this.setSelectedDateRange(newDateRangeName, dateRangeOption.getValue);
-    }
-
-    this.savedDateRangeName = selectedDateRangeName;
-  }
-
-  @Watch('associatedDateRangeValue')
-  public associatedDateRangeValueChanged(): void {
-    this.savedDateRangeName = this.currentlySelectedDateRangeName;
-
-    this.dateRangeChange.emit(this.associatedDateRangeValue);
-    this.closeDropdown();
+  componentWillLoad() {
+    this.initialize();
+    this.setDateRangeSelection(this.dateRangeId);
   }
 
   /**
    * Retrieves the currently selected date range from the component.
    * This method returns the selected date range as a `DateChangeEvent` object.
-   *
-   * @returns {Promise<DateRangeChangeEvent>} The selected date range.
    */
   @Method()
   public async getDateRange(): Promise<DateRangeChangeEvent> {
-    return this.associatedDateRangeValue;
+    return this.currentRangeValue;
   }
 
-  private setSelectedDateRange(
-    dateRangeName: string,
-    getDateRange: () => DateRangeOption
-  ): void {
-    this.currentlySelectedDateRangeName = dateRangeName;
+  private initialize() {
+    const isCustomRange =
+      this.dateRangeId === 'custom' ||
+      (!this.dateRangeId && !!this.from && !!this.to);
 
-    if (dateRangeName !== CUSTOM_RANGE_LABEL) {
-      const { from, to } = getDateRange();
-
-      this.associatedDateRangeValue = {
-        from: from ? from.format(this.format) : undefined,
-        to: to ? to.format(this.format) : undefined,
+    if (isCustomRange && this.customRangeAllowed) {
+      this.selectedDateRangeId = 'custom';
+      this.currentRangeValue = {
+        id: this.selectedDateRangeId,
+        from: this.from,
+        to: this.to,
       };
-    } else {
-      this.hideDatePicker = false;
+
+      return;
+    }
+    const isValidConfiguration = !isCustomRange && !this.from;
+    if (!isValidConfiguration) {
+      console.warn(
+        '"from" and "range-date-id" is provided this is an invalid combination. Using "custom".'
+      );
+
+      this.selectedDateRangeId = 'custom';
+      this.currentRangeValue = {
+        id: this.selectedDateRangeId,
+        from: this.from,
+        to: this.to,
+      };
+
+      return;
     }
   }
 
-  closeDropdown(): void {
+  private onDateSelect(
+    rangeValue: { from: string; to: string; id: string },
+    preserveDropdown = true
+  ) {
+    this.dateRangeChange.emit(rangeValue);
+
+    if (preserveDropdown) {
+      this.closeDropdown();
+    }
+
+    this.datePickerTouched = false;
+  }
+
+  private onRangeListSelect(id: string) {
+    if (this.setDateRangeSelection(id)) {
+      this.onDateSelect(this.currentRangeValue);
+    }
+  }
+
+  private setDateRangeSelection(id: string) {
+    this.selectedDateRangeId = id;
+    const option = this.dateRangeOptions.find((range) => range.id === id);
+
+    if (option) {
+      this.currentRangeValue = option;
+    }
+
+    return option;
+  }
+
+  private closeDropdown() {
     this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
   }
 
-  reInitializeValuesOnDropdownOpen(e: any): void {
-    if (this.savedDateRangeName !== CUSTOM_RANGE_LABEL) {
-      this.hideDatePicker = true;
+  private getButtonLabel() {
+    if (this.selectedDateRangeId === 'custom' && this.currentRangeValue?.from) {
+      let range = this.currentRangeValue.from;
+
+      if (this.currentRangeValue.to) {
+        range += ` - ${this.currentRangeValue.to}`;
+      }
+
+      return range;
     }
 
-    if (e.detail === true) {
-      if (this.savedDateRangeName != this.currentlySelectedDateRangeName) {
-        this.currentlySelectedDateRangeName = this.savedDateRangeName;
-      }
+    if (!this.selectedDateRangeId) {
+      return this.i18nNoRange;
     }
+
+    if (!this.dateRangeOptions || this.dateRangeOptions?.length === 0) {
+      return this.i18nNoRange;
+    }
+
+    const option = this.dateRangeOptions.find(
+      (option) => option.id === this.selectedDateRangeId
+    );
+
+    if (!option) {
+      console.error(
+        `Cannot find range option with id ${this.selectedDateRangeId}`
+      );
+      return this.i18nNoRange;
+    }
+
+    return option.label;
   }
 
   render() {
     return (
       <Host>
-        <ix-dropdown-button
-          label={
-            this.savedDateRangeName === CUSTOM_RANGE_LABEL
-              ? this.associatedDateRangeValue.from +
-                ' — ' +
-                this.associatedDateRangeValue.to
-              : this.savedDateRangeName
-          }
+        <ix-button
+          data-date-dropdown-trigger
           variant="primary"
           icon="history"
           ref={(ref) => (this.triggerRef = ref)}
           class="button-width"
-        ></ix-dropdown-button>
+        >
+          {this.getButtonLabel()}
+        </ix-button>
         <ix-dropdown
+          data-date-dropdown
           class="min-width max-height"
           trigger={this.triggerRef}
           close-behavior="outside"
           placement="bottom-start"
-          onShowChanged={(e) => this.reInitializeValuesOnDropdownOpen(e)}
+          onShowChanged={({ detail: show }) => {
+            if (
+              !show &&
+              this.selectedDateRangeId === 'custom' &&
+              this.datePickerTouched
+            ) {
+              this.onDateSelect(this.currentRangeValue);
+            }
+          }}
         >
           <ix-layout-grid no-margin="true">
             <ix-row>
-              <ix-col class="no-margin border-right">
+              <ix-col
+                class={{
+                  'no-margin': true,
+                  'border-right': this.selectedDateRangeId === 'custom',
+                }}
+              >
                 {this.dateRangeOptions.map((dateRangeOption) => (
                   <ix-dropdown-item
                     label={dateRangeOption.label}
-                    onClick={() =>
-                      this.setSelectedDateRange(
-                        dateRangeOption.label,
-                        dateRangeOption.getValue
-                      )
-                    }
-                    checked={
-                      this.currentlySelectedDateRangeName ===
-                      dateRangeOption.label
-                    }
+                    onClick={() => this.onRangeListSelect(dateRangeOption.id)}
+                    checked={this.selectedDateRangeId === dateRangeOption.id}
                   ></ix-dropdown-item>
                 ))}
                 <div hidden={!this.customRangeAllowed}>
                   <ix-dropdown-item
-                    label={CUSTOM_RANGE_LABEL}
-                    checked={
-                      this.currentlySelectedDateRangeName === CUSTOM_RANGE_LABEL
-                    }
-                    onClick={(e) => {
-                      this.setSelectedDateRange(CUSTOM_RANGE_LABEL, undefined);
-                      e.preventDefault();
-                    }}
+                    label={this.i18nCustomItem}
+                    checked={this.selectedDateRangeId === 'custom'}
+                    onClick={() => this.onRangeListSelect('custom')}
                   ></ix-dropdown-item>
                 </div>
               </ix-col>
-              <ix-col class="no-margin" hidden={this.hideDatePicker}>
-                <ix-date-picker
-                  individual={false}
-                  onDateRangeChange={(e) => (this.datePickerRange = e.detail)}
-                  format={this.format}
-                  range={this.range}
-                  from={this.from}
-                  to={this.to}
-                  minDate={this.minDate}
-                  maxDate={this.maxDate}
-                ></ix-date-picker>
-                <div class="pull-right">
-                  <ix-button
-                    onClick={() => {
-                      this.associatedDateRangeValue = this.datePickerRange;
-                    }}
-                  >
-                    Done
-                  </ix-button>
-                </div>
+              <ix-col class="no-margin">
+                {this.selectedDateRangeId === 'custom' && (
+                  <Fragment>
+                    <ix-date-picker
+                      standaloneAppearance={false}
+                      onDateChange={(e) => {
+                        e.stopPropagation();
+                        this.currentRangeValue = {
+                          ...e.detail,
+                          id: 'custom',
+                        };
+                        this.datePickerTouched = true;
+                      }}
+                      onDateRangeChange={(e) => e.stopPropagation()}
+                      format={this.format}
+                      range={this.range}
+                      from={this.from || this.currentRangeValue?.from}
+                      to={this.to || this.currentRangeValue?.to}
+                      minDate={this.minDate}
+                      maxDate={this.maxDate}
+                      today={this.today}
+                    ></ix-date-picker>
+                    <div class="pull-right">
+                      <ix-button
+                        onClick={() => {
+                          this.onDateSelect(this.currentRangeValue);
+                        }}
+                      >
+                        {this.i18nDone}
+                      </ix-button>
+                    </div>
+                  </Fragment>
+                )}
               </ix-col>
             </ix-row>
           </ix-layout-grid>

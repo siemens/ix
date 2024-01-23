@@ -67,7 +67,7 @@ export class ValidationTooltip {
   }
 
   get formElement() {
-    return this.inputElement.form;
+    return this.inputElement?.form;
   }
 
   get tooltipElement(): HTMLElement {
@@ -75,7 +75,9 @@ export class ValidationTooltip {
   }
 
   private destroyAutoUpdate() {
-    this.tooltipElement.style.display = 'none';
+    if (this.tooltipElement) {
+      this.tooltipElement.style.display = 'none';
+    }
 
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
@@ -187,8 +189,8 @@ export class ValidationTooltip {
     this.observer?.disconnect();
     this.destroyAutoUpdate();
 
-    this.formElement.removeEventListener('submit', this.onSubmitBind);
-    this.inputElement.removeEventListener('focus', this.onInputFocusBind);
+    this.formElement?.removeEventListener('submit', this.onSubmitBind);
+    this.inputElement?.removeEventListener('focus', this.onInputFocusBind);
   }
 
   @Watch('isInputValid')
