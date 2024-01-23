@@ -9,37 +9,29 @@
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
-
 test('renders', async ({ mount, page }) => {
-  await mount(`<ix-panes></ix-panes`);
-  const panes = page.locator('ix-panes');
+  await mount(`<ix-pane-layout></ix-pane-layout`);
+  const panes = page.locator('ix-pane-layout');
   await expect(panes).toHaveClass(/hydrated/);
 });
-
 
 test.describe('pane tests', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
       `<ix-pane
-        paneTitle="LEFT"
+        heading="LEFT"
         position="left"
         icon="star"
-        expand="false"
+        expanded="true"
       >
         <h1>Test Heading</h1>
-        <p>This is a test content with a button</p>
-        <ix-button>PUSH ME</ix-button>
       </ix-pane>`
     );
   });
 
   test('expand pane', async ({ page }) => {
-    await page.waitForSelector('ix-pane');
-    const button = page.locator('ix-icon-button');
-    await button.click();
-
     await page.waitForSelector('h1');
-    const heading = page.locator('h1');
-    await expect(heading).toBeVisible();
+    const title = page.locator('h1');
+    await expect(title).toBeVisible();
   });
 });

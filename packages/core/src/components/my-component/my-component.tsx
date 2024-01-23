@@ -36,53 +36,29 @@ export class MyComponent {
             </ix-menu-category>
           </ix-menu>
 
-          <ix-panes behaviour="inline" variant="full-width-top-bottom">
+          <ix-panes variant="floating" layout="full-height-left-right">
+            <ix-pane heading="left" slot="left" expanded={false}>
+              <h1>LEFT</h1>
+              <p>This is a test content with a button</p>
+              <ix-button>PUSH ME</ix-button>
+            </ix-pane>
+
             {!this.hide && (
-              <ix-pane
-                key={1}
-                paneTitle="left"
-                slot="left"
-                position="left"
-                expand={false}
-              >
-                <h1>Test Heading</h1>
+              <ix-pane heading="top" slot="top" expanded={false}>
+                <h1>TOP</h1>
                 <p>This is a test content with a button</p>
                 <ix-button>PUSH ME</ix-button>
               </ix-pane>
             )}
 
-            <ix-pane
-              key={2}
-              paneTitle="top"
-              slot="top"
-              position="top"
-              expand={false}
-            >
-              <h1>Test Heading</h1>
+            <ix-pane heading="bottom" slot="bottom" expanded={false}>
+              <h1>BOTTOM</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
             </ix-pane>
 
-            <ix-pane
-              key={3}
-              paneTitle="bottom"
-              slot="bottom"
-              position="bottom"
-              expand={false}
-            >
-              <h1>Test Heading</h1>
-              <p>This is a test content with a button</p>
-              <ix-button>PUSH ME</ix-button>
-            </ix-pane>
-
-            <ix-pane
-              key={4}
-              paneTitle="right"
-              slot="right"
-              position="right"
-              expand={false}
-            >
-              <h1>Test Heading</h1>
+            <ix-pane heading="right" slot="right" expanded={false}>
+              <h1>RIGHT</h1>
               <p>This is a test content with a button</p>
               <ix-button>PUSH ME</ix-button>
             </ix-pane>
@@ -90,7 +66,7 @@ export class MyComponent {
             <div
               slot="content"
               style={{
-                background: 'red',
+                background: 'blue',
                 height: '200rem',
                 width: '500rem',
               }}

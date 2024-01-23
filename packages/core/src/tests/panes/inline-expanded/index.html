@@ -1,55 +1,61 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-    name="viewport"
-  />
-  <title>Stencil Component Starter</title>
-  <style>
-    ix-basic-navigation {
-      height: 100vh;
-      width: 100vw;
-    }
-  </style>
-</head>
-<body>
-<ix-basic-navigation>
-  <ix-menu>
-    <ix-menu-item home icon="home">
-      Home
-    </ix-menu-item>
-    <ix-menu-item icon="globe">Normal Tab</ix-menu-item>
-    <ix-menu-category icon="rocket" label="Top level Category">
-      <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
-      <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
-    </ix-menu-category>
-  </ix-menu>
-  <ix-panes inline>
-    <ix-pane paneTitle="TOP" slot="top" expand-pane="true">
-      <h1>Test Heading</h1>
-      <p>This is a test content with a button</p>
-      <ix-button>PUSH ME</ix-button>
-    </ix-pane>
-    <ix-pane paneTitle="LEFT" slot="left" expand="true">
-      <h1>Test Heading</h1>
-      <p>This is a test content with a button</p>
-      <ix-button>PUSH ME</ix-button>
-    </ix-pane>
-    <ix-pane icon="about" paneTitle="RIGHT" slot="right" expand="true"></ix-pane>
-    <ix-pane paneTitle="BOTTOM" slot="bottom" expand="true"></ix-pane>
-    <div slot="content">
-      <h1>Test Heading</h1>
-      <h1>Test Heading</h1>
-      <h1>Test Heading</h1>
-      <h1>Test Heading</h1>
-      <h1>Test Heading</h1>
-      <p>This is a test content with a button</p>
-      <ix-button>PUSH ME</ix-button>
-    </div>
-  </ix-panes>
-</ix-basic-navigation>
-<script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8"/>
+    <meta
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+      name="viewport"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      ix-basic-navigation {
+        height: 100vh;
+        width: 100vw;
+      }
+    </style>
+  </head>
+  <body>
+    <ix-basic-navigation>
+      <ix-menu>
+        <ix-menu-item home icon="home">
+          Home
+        </ix-menu-item>
+        <ix-menu-item icon="globe">Normal Tab</ix-menu-item>
+        <ix-menu-category icon="rocket" label="Top level Category">
+          <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
+          <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+      <ix-pane-layout>
+        <ix-pane heading="TOP" slot="top" expanded-pane="true">
+          <h1>Test Heading</h1>
+          <p>This is a test content with a button</p>
+          <ix-button>PUSH ME</ix-button>
+        </ix-pane>
+        <ix-pane heading="LEFT" slot="left" expanded="true">
+          <h1>Test Heading</h1>
+          <p>This is a test content with a button</p>
+          <ix-button>PUSH ME</ix-button>
+        </ix-pane>
+        <ix-pane icon="about" heading="RIGHT" slot="right" expanded="true"></ix-pane>
+        <ix-pane heading="BOTTOM" slot="bottom" expanded="true"></ix-pane>
+        <div slot="content">
+          <h1>Test Heading</h1>
+          <h1>Test Heading</h1>
+          <h1>Test Heading</h1>
+          <h1>Test Heading</h1>
+          <h1>Test Heading</h1>
+          <p>This is a test content with a button</p>
+          <ix-button>PUSH ME</ix-button>
+        </div>
+      </ix-pane-layout>
+    </ix-basic-navigation>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
 </html>
