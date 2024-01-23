@@ -28,24 +28,18 @@ export interface DropdownInterface extends IxComponent {
 type DropdownRule = Record<string, string[]>;
 
 class DropdownController {
-  dropdowns = new Set<DropdownInterface>();
-  dropdownRules: DropdownRule = {};
+  private dropdowns = new Set<DropdownInterface>();
+  private dropdownRules: DropdownRule = {};
 
-  constructor() {
-    window.addEventListener('click', () => {
-      this.dismissAll();
-    });
-
-    window.addEventListener('keydown', (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        this.dismissAll();
-      }
-    });
-  }
+  private isWindowListenerActive = false;
 
   connected(dropdown: DropdownInterface) {
+    if (!this.isWindowListenerActive) {
+      this.addOverlayListeners();
+    }
     this.dropdowns.add(dropdown);
   }
+
   disconnected(dropdown: DropdownInterface) {
     this.dropdowns.delete(dropdown);
   }
@@ -64,16 +58,15 @@ class DropdownController {
     }
   }
 
-  dismissById(id: string) {
+  dismissAll() {
     for (const dropdown of this.dropdowns) {
-      if (dropdown.getId() === id) {
+      if (dropdown.isPresent()) {
         this.dismiss(dropdown);
-        return;
       }
     }
   }
 
-  dismissByRule(lastPresentId: string) {
+  private dismissByRule(lastPresentId: string) {
     const path = this.buildComposedPath(lastPresentId, []);
     for (const dropdown of this.dropdowns) {
       if (dropdown.isPresent() && !path.includes(dropdown.getId())) {
@@ -96,12 +89,16 @@ class DropdownController {
     return path;
   }
 
-  dismissAll() {
-    for (const dropdown of this.dropdowns) {
-      if (dropdown.isPresent()) {
-        this.dismiss(dropdown);
+  private addOverlayListeners() {
+    window.addEventListener('click', () => {
+      this.dismissAll();
+    });
+
+    window.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        this.dismissAll();
       }
-    }
+    });
   }
 }
 
