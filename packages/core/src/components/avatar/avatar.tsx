@@ -64,7 +64,7 @@ export class Avatar {
   @Element() hostElement: HTMLIxAvatarElement;
 
   /**
-   * Display a avatar image
+   * Display an avatar image
    *
    */
   @Prop() image: string;

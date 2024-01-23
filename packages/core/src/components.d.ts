@@ -146,7 +146,7 @@ export namespace Components {
      */
     interface IxAvatar {
         /**
-          * Display a avatar image
+          * Display an avatar image
          */
         "image": string;
         /**
@@ -4017,7 +4017,7 @@ declare namespace LocalJSX {
      */
     interface IxAvatar {
         /**
-          * Display a avatar image
+          * Display an avatar image
          */
         "image"?: string;
         /**
