@@ -209,9 +209,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-application"
+        ]
+      },
       "props": [
         {
           "name": "appSwitchConfig",
@@ -397,7 +403,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
-        "ix-map-navigation"
+        "ix-map-navigation",
+        "my-component"
       ],
       "dependencies": [
         "ix-burger-menu",
@@ -421,6 +428,9 @@
           "ix-application-header"
         ],
         "ix-map-navigation": [
+          "ix-application-header"
+        ],
+        "my-component": [
           "ix-application-header"
         ]
       },
@@ -477,7 +487,8 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-menu-avatar"
+        "ix-menu-avatar",
+        "my-component"
       ],
       "dependencies": [
         "ix-dropdown",
@@ -493,6 +504,9 @@
           "ix-spinner"
         ],
         "ix-menu-avatar": [
+          "ix-avatar"
+        ],
+        "my-component": [
           "ix-avatar"
         ]
       },
@@ -1233,7 +1247,8 @@
         "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload"
+        "ix-upload",
+        "my-component"
       ],
       "dependencies": [
         "ix-spinner"
@@ -1273,6 +1288,9 @@
           "ix-button"
         ],
         "ix-upload": [
+          "ix-button"
+        ],
+        "my-component": [
           "ix-button"
         ]
       },
@@ -2965,9 +2983,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-content"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -4958,7 +4982,8 @@
         "ix-menu-avatar",
         "ix-menu-category",
         "ix-select",
-        "ix-split-button"
+        "ix-split-button",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -4993,6 +5018,9 @@
           "ix-dropdown"
         ],
         "ix-split-button": [
+          "ix-dropdown"
+        ],
+        "my-component": [
           "ix-dropdown"
         ]
       },
@@ -5294,7 +5322,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "ix-assign-sub-menu",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/dropdown-button",
@@ -5314,7 +5348,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-button",
         "ix-icon-button",
@@ -5331,6 +5367,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "my-component": [
+          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -5658,7 +5697,8 @@
         "ix-menu-category",
         "ix-select",
         "ix-select-item",
-        "ix-split-button-item"
+        "ix-split-button-item",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -5681,6 +5721,9 @@
           "ix-dropdown-item"
         ],
         "ix-split-button-item": [
+          "ix-dropdown-item"
+        ],
+        "my-component": [
           "ix-dropdown-item"
         ]
       },
@@ -16802,8 +16845,54 @@
       "docsTags": [],
       "encapsulation": "scoped",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-application",
+        "ix-application-header",
+        "ix-dropdown-button",
+        "ix-dropdown-item",
+        "ix-avatar",
+        "ix-content",
+        "ix-dropdown",
+        "ix-button"
+      ],
+      "dependencyGraph": {
+        "my-component": [
+          "ix-application",
+          "ix-application-header",
+          "ix-dropdown-button",
+          "ix-dropdown-item",
+          "ix-avatar",
+          "ix-content",
+          "ix-dropdown",
+          "ix-button"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
+          "ix-spinner"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-dropdown-button": [
+          "ix-button",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ],
+        "ix-avatar": [
+          "ix-dropdown",
+          "ix-divider",
+          "ix-typography",
+          "ix-spinner"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -16884,20 +16973,15 @@
       "docstring": "",
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
-    "src/components/dropdown/placement.ts::AlignedPlacement": {
-      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
-      "docstring": "",
-      "path": "src/components/dropdown/placement.ts"
-    },
-    "src/components/dropdown/dropdown.tsx::DropdownTriggerEvent": {
-      "declaration": "export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';",
-      "docstring": "",
-      "path": "src/components/dropdown/dropdown.tsx"
-    },
     "src/components/dropdown-button/dropdown-button.tsx::DropdownButtonVariant": {
       "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.tsx"
+    },
+    "src/components/dropdown/placement.ts::AlignedPlacement": {
+      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
+      "docstring": "",
+      "path": "src/components/dropdown/placement.ts"
     },
     "src/components/empty-state/empty-state.tsx::EmptyStateLayout": {
       "declaration": "export type EmptyStateLayout = 'large' | 'compact' | 'compactBreak';",

@@ -132,6 +132,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   disconnectedCallback() {
+    this.disposeListener?.();
     dropdownController.disconnected(this);
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
@@ -179,6 +180,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private disposeListener?: Function;
 
   private addEventListenersFor() {
+    this.disposeListener?.();
+
     const stopEventDispatching = (event: Event) => {
       // Prevent default and stop event bubbling to window, otherwise controller will close all dropdowns
       if (this.triggerElement.hasAttribute('data-ix-dropdown-trigger')) {
@@ -206,11 +209,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.triggerElement.setAttribute('data-ix-dropdown-trigger', this.localUId);
   }
 
-  private removeEventListenersFor() {
-    this.disposeListener?.();
-    this.triggerElement.removeAttribute('data-ix-dropdown-trigger');
-  }
-
   private async registerListener(
     element: string | HTMLElement | Promise<HTMLElement>
   ) {
@@ -227,13 +225,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         })
       );
     }
-  }
-
-  private async unregisterListener(
-    element: string | HTMLElement | Promise<HTMLElement>
-  ) {
-    await this.resolveElement(element);
-    this.removeEventListenersFor();
   }
 
   private resolveElement(
@@ -281,17 +272,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   @Watch('trigger')
-  changedTrigger(
-    newTriggerValue: string | HTMLElement | Promise<HTMLElement>,
-    oldTriggerValue: string | HTMLElement | Promise<HTMLElement>
-  ) {
-    if (newTriggerValue) {
-      this.registerListener(newTriggerValue);
-    }
-
-    if (oldTriggerValue) {
-      this.unregisterListener(oldTriggerValue);
-    }
+  changedTrigger(newTriggerValue: string | HTMLElement | Promise<HTMLElement>) {
+    this.registerListener(newTriggerValue);
   }
 
   private isAnchorSubmenu() {
@@ -375,7 +357,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   async componentDidLoad() {
-    this.changedTrigger(this.trigger, null);
+    this.changedTrigger(this.trigger);
 
     // Event listener to check if a dropdown is inside another dropdown
     // cancellation of the event will prevent the closing of the parent dropdown
@@ -467,17 +449,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         role="list"
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >
-        <div
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '1rem',
-            backgroundColor: 'rgba(255, 0, 0, 0.3)',
-            zIndex: '1000000000',
-          }}
-        >
-          {this.localUId}
-        </div>
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
 

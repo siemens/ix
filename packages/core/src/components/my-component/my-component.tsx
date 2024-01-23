@@ -17,7 +17,15 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <ix-application breakpoints={['sm']}>
+        <ix-group header="Title" sub-header="Subtitle">
+          <ix-dropdown slot="dropdown">
+            <ix-dropdown-item label="Item 1" icon="pin" />
+            <ix-dropdown-item label="Item 2" icon="star" />
+            <ix-dropdown-item label="Item 3" icon="heart" />
+            <ix-dropdown-item label="Item 4" icon="cogwheel" />
+          </ix-dropdown>
+        </ix-group>
+        {/* <ix-application breakpoints={['sm']}>
           <ix-application-header>
             <ix-dropdown-button label="xxx">
               <ix-dropdown-item>Test 1</ix-dropdown-item>
@@ -87,8 +95,34 @@ export class MyComponent {
               <ix-dropdown-item>Item 2</ix-dropdown-item>
               <ix-dropdown-item>Item 3</ix-dropdown-item>
             </ix-dropdown>
+
+            <ix-split-button label="Test 1">
+              <ix-dropdown-item>Test 1</ix-dropdown-item>
+            </ix-split-button>
+
+            <ix-split-button label="Test 2">
+              <ix-dropdown-item>Test 1</ix-dropdown-item>
+            </ix-split-button>
+
+            <ix-group header="Title" sub-header="Subtitle">
+              <ix-dropdown slot="dropdown">
+                <ix-dropdown-item label="Item 1" icon="pin" />
+                <ix-dropdown-item label="Item 2" icon="star" />
+                <ix-dropdown-item label="Item 3" icon="heart" />
+                <ix-dropdown-item label="Item 4" icon="cogwheel" />
+              </ix-dropdown>
+            </ix-group>
+
+            <ix-group header="Title" sub-header="Subtitle">
+              <ix-dropdown slot="dropdown">
+                <ix-dropdown-item label="Item 1" icon="pin" />
+                <ix-dropdown-item label="Item 2" icon="star" />
+                <ix-dropdown-item label="Item 3" icon="heart" />
+                <ix-dropdown-item label="Item 4" icon="cogwheel" />
+              </ix-dropdown>
+            </ix-group>
           </ix-content>
-        </ix-application>
+        </ix-application> */}
       </Host>
     );
   }
