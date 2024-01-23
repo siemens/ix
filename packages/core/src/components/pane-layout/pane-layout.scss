@@ -15,18 +15,12 @@
   @include ix-component;
   display: flex;
   position: absolute;
-  width: 100%;
+  width: calc(100% - 1px);
   height: 100%;
 
   .side-panes-wrapper {
     height: 100%;
     width: 100%;
-  }
-
-  .side-pane-wrapper-vertical {
-    display: flex;
-    flex-shrink: 0;
-    flex-grow: 0;
   }
 
   .row {
@@ -39,27 +33,23 @@
   }
 
   .col {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
     justify-content: space-between;
-  }
-
-  .col-floating {
-    position: absolute;
-    z-index: 10;
   }
 
   .content {
     display: flex;
-    flex-grow: 1;
     height: 100%;
-    overflow: scroll;
+    width: 100%;
+    overflow: auto;
   }
 
   .absolute {
     position: absolute;
+    width: 100%;
   }
-
 }

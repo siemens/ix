@@ -32,7 +32,7 @@ import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
-import { ExpandPaneChangeEvent, SidePanelPosition } from "./components/pane/pane";
+import { ExpandPaneChangeEvent, Position } from "./components/pane/pane";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -70,7 +70,7 @@ export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
-export { ExpandPaneChangeEvent, SidePanelPosition } from "./components/pane/pane";
+export { ExpandPaneChangeEvent, Position } from "./components/pane/pane";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -1674,21 +1674,34 @@ export namespace Components {
     }
     interface IxPane {
         /**
-          * Behaviour of the side pane
-         */
-        "behaviour": 'floating' | 'inline';
-        /**
           * Toggle border
          */
         "borderless": boolean;
         /**
           * State of the pane
          */
-        "expand": boolean;
+        "expanded": boolean;
+        /**
+          * Title of the side panel
+         */
+        "heading": string;
+        /**
+          * Name of the icon
+         */
+        "icon": string;
+        "isMobile": boolean;
+        /**
+          * Placement of the sidebar
+         */
+        "position": Position;
+        /**
+          * Toggle either the preview content is shown or not
+         */
+        "showPreviewContent": boolean;
         /**
           * The maximum size of the sidebar, when it is expanded
          */
-        "expandedPaneSize": | '240px'
+        "size": | '240px'
     | '320px'
     | '360px'
     | '480px'
@@ -1697,31 +1710,19 @@ export namespace Components {
     | '50%'
     | '100%';
         /**
-          * Name of the icon
+          * Behaviour of the side pane
          */
-        "icon": string;
-        /**
-          * Title of the side panel
-         */
-        "paneTitle": string;
-        /**
-          * Placement of the sidebar
-         */
-        "position": SidePanelPosition;
-        /**
-          * Toggle either the preview content is shown or not
-         */
-        "showPreviewContent": boolean;
+        "variant": 'floating' | 'inline';
     }
-    interface IxPanes {
+    interface IxPaneLayout {
+        /**
+          * Choose the layout of the panes
+         */
+        "layout": 'full-height-left-right' | 'full-width-top-bottom';
         /**
           * Behaviour of the side pane
          */
-        "behaviour": 'floating' | 'inline';
-        /**
-          * Choose the variant of the panes
-         */
-        "variant": 'full-height-left-right' | 'full-width-top-bottom';
+        "variant": 'floating' | 'inline';
     }
     interface IxPill {
         /**
@@ -3560,11 +3561,11 @@ declare global {
         prototype: HTMLIxPaneElement;
         new (): HTMLIxPaneElement;
     };
-    interface HTMLIxPanesElement extends Components.IxPanes, HTMLStencilElement {
+    interface HTMLIxPaneLayoutElement extends Components.IxPaneLayout, HTMLStencilElement {
     }
-    var HTMLIxPanesElement: {
-        prototype: HTMLIxPanesElement;
-        new (): HTMLIxPanesElement;
+    var HTMLIxPaneLayoutElement: {
+        prototype: HTMLIxPaneLayoutElement;
+        new (): HTMLIxPaneLayoutElement;
     };
     interface HTMLIxPillElement extends Components.IxPill, HTMLStencilElement {
     }
@@ -4004,7 +4005,7 @@ declare global {
         "ix-modal-loading": HTMLIxModalLoadingElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pane": HTMLIxPaneElement;
-        "ix-panes": HTMLIxPanesElement;
+        "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-row": HTMLIxRowElement;
@@ -5779,21 +5780,39 @@ declare namespace LocalJSX {
     }
     interface IxPane {
         /**
-          * Behaviour of the side pane
-         */
-        "behaviour"?: 'floating' | 'inline';
-        /**
           * Toggle border
          */
         "borderless"?: boolean;
         /**
           * State of the pane
          */
-        "expand"?: boolean;
+        "expanded"?: boolean;
+        /**
+          * Title of the side panel
+         */
+        "heading"?: string;
+        /**
+          * Name of the icon
+         */
+        "icon"?: string;
+        "isMobile"?: boolean;
+        /**
+          * Event
+         */
+        "onExpandPaneChange"?: (event: IxPaneCustomEvent<ExpandPaneChangeEvent>) => void;
+        "onPaneChange"?: (event: IxPaneCustomEvent<string>) => void;
+        /**
+          * Placement of the sidebar
+         */
+        "position"?: Position;
+        /**
+          * Toggle either the preview content is shown or not
+         */
+        "showPreviewContent"?: boolean;
         /**
           * The maximum size of the sidebar, when it is expanded
          */
-        "expandedPaneSize"?: | '240px'
+        "size"?: | '240px'
     | '320px'
     | '360px'
     | '480px'
@@ -5802,36 +5821,19 @@ declare namespace LocalJSX {
     | '50%'
     | '100%';
         /**
-          * Name of the icon
+          * Behaviour of the side pane
          */
-        "icon"?: string;
-        /**
-          * Event
-         */
-        "onExpandPaneChange"?: (event: IxPaneCustomEvent<ExpandPaneChangeEvent>) => void;
-        "onPaneChange"?: (event: IxPaneCustomEvent<string>) => void;
-        /**
-          * Title of the side panel
-         */
-        "paneTitle"?: string;
-        /**
-          * Placement of the sidebar
-         */
-        "position"?: SidePanelPosition;
-        /**
-          * Toggle either the preview content is shown or not
-         */
-        "showPreviewContent"?: boolean;
+        "variant"?: 'floating' | 'inline';
     }
-    interface IxPanes {
+    interface IxPaneLayout {
+        /**
+          * Choose the layout of the panes
+         */
+        "layout"?: 'full-height-left-right' | 'full-width-top-bottom';
         /**
           * Behaviour of the side pane
          */
-        "behaviour"?: 'floating' | 'inline';
-        /**
-          * Choose the variant of the panes
-         */
-        "variant"?: 'full-height-left-right' | 'full-width-top-bottom';
+        "variant"?: 'floating' | 'inline';
     }
     interface IxPill {
         /**
@@ -6660,7 +6662,7 @@ declare namespace LocalJSX {
         "ix-modal-loading": IxModalLoading;
         "ix-pagination": IxPagination;
         "ix-pane": IxPane;
-        "ix-panes": IxPanes;
+        "ix-pane-layout": IxPaneLayout;
         "ix-pill": IxPill;
         "ix-push-card": IxPushCard;
         "ix-row": IxRow;
@@ -6861,7 +6863,7 @@ declare module "@stencil/core" {
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
-            "ix-panes": LocalJSX.IxPanes & JSXBase.HTMLAttributes<HTMLIxPanesElement>;
+            "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             /**
              * @since 1.6.0

@@ -7,11 +7,11 @@
   },
   "components": [
     {
-      "dirPath": "src\\components\\action-card",
-      "filePath": "src\\components\\action-card\\action-card.tsx",
+      "dirPath": "src/components/action-card",
+      "filePath": "src/components/action-card/action-card.tsx",
       "fileName": "action-card.tsx",
-      "readmePath": "src\\components\\action-card\eadme.md",
-      "usagesDir": "src\\components\\action-card\\usage",
+      "readmePath": "src/components/action-card/readme.md",
+      "usagesDir": "src/components/action-card/usage",
       "tag": "ix-action-card",
       "overview": "",
       "usage": {},
@@ -132,7 +132,7 @@
             "references": {
               "ActionCardVariant": {
                 "location": "local",
-                "path": "src\\components\\action-card\\action-card.tsx",
+                "path": "src/components/action-card/action-card.tsx",
                 "id": "src/components/action-card/action-card.tsx::ActionCardVariant"
               }
             }
@@ -193,11 +193,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\application",
-      "filePath": "src\\components\\application\\application.tsx",
+      "dirPath": "src/components/application",
+      "filePath": "src/components/application/application.tsx",
       "fileName": "application.tsx",
-      "readmePath": "src\\components\\application\eadme.md",
-      "usagesDir": "src\\components\\application\\usage",
+      "readmePath": "src/components/application/readme.md",
+      "usagesDir": "src/components/application/usage",
       "tag": "ix-application",
       "overview": "",
       "usage": {},
@@ -222,7 +222,7 @@
             "references": {
               "AppSwitchConfiguration": {
                 "location": "import",
-                "path": "..\\utils\\application-layout\\context",
+                "path": "../utils/application-layout/context",
                 "id": "src/components/utils/application-layout/context.ts::AppSwitchConfiguration"
               }
             }
@@ -248,7 +248,7 @@
             "references": {
               "Breakpoint": {
                 "location": "import",
-                "path": "..\\utils\\breakpoints",
+                "path": "../utils/breakpoints",
                 "id": "src/components/utils/breakpoints.ts::Breakpoint"
               }
             }
@@ -282,7 +282,7 @@
             "references": {
               "Breakpoint": {
                 "location": "import",
-                "path": "..\\utils\\breakpoints",
+                "path": "../utils/breakpoints",
                 "id": "src/components/utils/breakpoints.ts::Breakpoint"
               }
             }
@@ -318,7 +318,7 @@
             "references": {
               "IxTheme": {
                 "location": "import",
-                "path": "..\\utils\\theme-switcher",
+                "path": "../utils/theme-switcher",
                 "id": "src/components/utils/theme-switcher.ts::IxTheme"
               }
             }
@@ -379,11 +379,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\application-header",
-      "filePath": "src\\components\\application-header\\application-header.tsx",
+      "dirPath": "src/components/application-header",
+      "filePath": "src/components/application-header/application-header.tsx",
       "fileName": "application-header.tsx",
-      "readmePath": "src\\components\\application-header\eadme.md",
-      "usagesDir": "src\\components\\application-header\\usage",
+      "readmePath": "src/components/application-header/readme.md",
+      "usagesDir": "src/components/application-header/usage",
       "tag": "ix-application-header",
       "overview": "",
       "usage": {},
@@ -460,11 +460,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\avatar",
-      "filePath": "src\\components\\avatar\\avatar.tsx",
+      "dirPath": "src/components/avatar",
+      "filePath": "src/components/avatar/avatar.tsx",
       "fileName": "avatar.tsx",
-      "readmePath": "src\\components\\avatar\eadme.md",
-      "usagesDir": "src\\components\\avatar\\usage",
+      "readmePath": "src/components/avatar/readme.md",
+      "usagesDir": "src/components/avatar/usage",
       "tag": "ix-avatar",
       "overview": "",
       "usage": {},
@@ -544,11 +544,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\basic-navigation",
-      "filePath": "src\\components\\basic-navigation\\basic-navigation.tsx",
+      "dirPath": "src/components/basic-navigation",
+      "filePath": "src/components/basic-navigation/basic-navigation.tsx",
       "fileName": "basic-navigation.tsx",
-      "readmePath": "src\\components\\basic-navigation\eadme.md",
-      "usagesDir": "src\\components\\basic-navigation\\usage",
+      "readmePath": "src/components/basic-navigation/readme.md",
+      "usagesDir": "src/components/basic-navigation/usage",
       "tag": "ix-basic-navigation",
       "overview": "",
       "usage": {},
@@ -560,7 +560,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-application-header"
       ],
@@ -579,6 +581,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "my-component": [
+          "ix-basic-navigation"
         ]
       },
       "deprecation": "ix-basic-navigation is deprecated in favor of ix-application",
@@ -613,7 +618,7 @@
             "references": {
               "Breakpoint": {
                 "location": "import",
-                "path": "..\\utils\\breakpoints",
+                "path": "../utils/breakpoints",
                 "id": "src/components/utils/breakpoints.ts::Breakpoint"
               }
             }
@@ -647,7 +652,7 @@
             "references": {
               "Breakpoint": {
                 "location": "import",
-                "path": "..\\utils\\breakpoints",
+                "path": "../utils/breakpoints",
                 "id": "src/components/utils/breakpoints.ts::Breakpoint"
               }
             }
@@ -705,11 +710,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\blind",
-      "filePath": "src\\components\\blind\\blind.tsx",
+      "dirPath": "src/components/blind",
+      "filePath": "src/components/blind/blind.tsx",
       "fileName": "blind.tsx",
-      "readmePath": "src\\components\\blind\eadme.md",
-      "usagesDir": "src\\components\\blind\\usage",
+      "readmePath": "src/components/blind/readme.md",
+      "usagesDir": "src/components/blind/usage",
       "tag": "ix-blind",
       "overview": "",
       "usage": {},
@@ -830,7 +835,7 @@
             "references": {
               "BlindVariant": {
                 "location": "local",
-                "path": "src\\components\\blind\\blind.tsx",
+                "path": "src/components/blind/blind.tsx",
                 "id": "src/components/blind/blind.tsx::BlindVariant"
               }
             }
@@ -915,11 +920,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\breadcrumb",
-      "filePath": "src\\components\\breadcrumb\\breadcrumb.tsx",
+      "dirPath": "src/components/breadcrumb",
+      "filePath": "src/components/breadcrumb/breadcrumb.tsx",
       "fileName": "breadcrumb.tsx",
-      "readmePath": "src\\components\\breadcrumb\eadme.md",
-      "usagesDir": "src\\components\\breadcrumb\\usage",
+      "readmePath": "src/components/breadcrumb/readme.md",
+      "usagesDir": "src/components/breadcrumb/usage",
       "tag": "ix-breadcrumb",
       "overview": "",
       "usage": {},
@@ -1078,11 +1083,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\breadcrumb-item",
-      "filePath": "src\\components\\breadcrumb-item\\breadcrumb-item.tsx",
+      "dirPath": "src/components/breadcrumb-item",
+      "filePath": "src/components/breadcrumb-item/breadcrumb-item.tsx",
       "fileName": "breadcrumb-item.tsx",
-      "readmePath": "src\\components\\breadcrumb-item\eadme.md",
-      "usagesDir": "src\\components\\breadcrumb-item\\usage",
+      "readmePath": "src/components/breadcrumb-item/readme.md",
+      "usagesDir": "src/components/breadcrumb-item/usage",
       "tag": "ix-breadcrumb-item",
       "overview": "",
       "usage": {},
@@ -1155,11 +1160,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\button",
-      "filePath": "src\\components\\button\\button.tsx",
+      "dirPath": "src/components/button",
+      "filePath": "src/components/button/button.tsx",
       "fileName": "button.tsx",
-      "readmePath": "src\\components\\button\eadme.md",
-      "usagesDir": "src\\components\\button\\usage",
+      "readmePath": "src/components/button/readme.md",
+      "usagesDir": "src/components/button/usage",
       "tag": "ix-button",
       "overview": "",
       "usage": {},
@@ -1375,7 +1380,7 @@
             "references": {
               "ButtonVariant": {
                 "location": "local",
-                "path": "src\\components\\button\\button.tsx",
+                "path": "src/components/button/button.tsx",
                 "id": "src/components/button/button.tsx::ButtonVariant"
               }
             }
@@ -1408,11 +1413,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\card",
-      "filePath": "src\\components\\card\\card.tsx",
+      "dirPath": "src/components/card",
+      "filePath": "src/components/card/card.tsx",
       "fileName": "card.tsx",
-      "readmePath": "src\\components\\card\eadme.md",
-      "usagesDir": "src\\components\\card\\usage",
+      "readmePath": "src/components/card/readme.md",
+      "usagesDir": "src/components/card/usage",
       "tag": "ix-card",
       "overview": "",
       "usage": {},
@@ -1451,7 +1456,7 @@
             "references": {
               "CardVariant": {
                 "location": "local",
-                "path": "src\\components\\card\\card.tsx",
+                "path": "src/components/card/card.tsx",
                 "id": "src/components/card/card.tsx::CardVariant"
               }
             }
@@ -1512,11 +1517,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\card-accordion",
-      "filePath": "src\\components\\card-accordion\\card-accordion.tsx",
+      "dirPath": "src/components/card-accordion",
+      "filePath": "src/components/card-accordion/card-accordion.tsx",
       "fileName": "card-accordion.tsx",
-      "readmePath": "src\\components\\card-accordion\eadme.md",
-      "usagesDir": "src\\components\\card-accordion\\usage",
+      "readmePath": "src/components/card-accordion/readme.md",
+      "usagesDir": "src/components/card-accordion/usage",
       "tag": "ix-card-accordion",
       "overview": "",
       "usage": {},
@@ -1574,11 +1579,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\card-content",
-      "filePath": "src\\components\\card-content\\card-content.tsx",
+      "dirPath": "src/components/card-content",
+      "filePath": "src/components/card-content/card-content.tsx",
       "fileName": "card-content.tsx",
-      "readmePath": "src\\components\\card-content\eadme.md",
-      "usagesDir": "src\\components\\card-content\\usage",
+      "readmePath": "src/components/card-content/readme.md",
+      "usagesDir": "src/components/card-content/usage",
       "tag": "ix-card-content",
       "overview": "",
       "usage": {},
@@ -1616,11 +1621,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\card-list",
-      "filePath": "src\\components\\card-list\\card-list.tsx",
+      "dirPath": "src/components/card-list",
+      "filePath": "src/components/card-list/card-list.tsx",
       "fileName": "card-list.tsx",
-      "readmePath": "src\\components\\card-list\eadme.md",
-      "usagesDir": "src\\components\\card-list\\usage",
+      "readmePath": "src/components/card-list/readme.md",
+      "usagesDir": "src/components/card-list/usage",
       "tag": "ix-card-list",
       "overview": "",
       "usage": {},
@@ -1882,11 +1887,11 @@
       ]
     },
     {
-      "dirPath": "src\\components\\card-title",
-      "filePath": "src\\components\\card-title\\card-title.tsx",
+      "dirPath": "src/components/card-title",
+      "filePath": "src/components/card-title/card-title.tsx",
       "fileName": "card-title.tsx",
-      "readmePath": "src\\components\\card-title\eadme.md",
-      "usagesDir": "src\\components\\card-title\\usage",
+      "readmePath": "src/components/card-title/readme.md",
+      "usagesDir": "src/components/card-title/usage",
       "tag": "ix-card-title",
       "overview": "",
       "usage": {},
@@ -1925,11 +1930,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\category-filter",
-      "filePath": "src\\components\\category-filter\\category-filter.tsx",
+      "dirPath": "src/components/category-filter",
+      "filePath": "src/components/category-filter/category-filter.tsx",
       "fileName": "category-filter.tsx",
-      "readmePath": "src\\components\\category-filter\eadme.md",
-      "usagesDir": "src\\components\\category-filter\\usage",
+      "readmePath": "src/components/category-filter/readme.md",
+      "usagesDir": "src/components/category-filter/usage",
       "tag": "ix-category-filter",
       "overview": "",
       "usage": {},
@@ -2283,11 +2288,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\chip",
-      "filePath": "src\\components\\chip\\chip.tsx",
+      "dirPath": "src/components/chip",
+      "filePath": "src/components/chip/chip.tsx",
       "fileName": "chip.tsx",
-      "readmePath": "src\\components\\chip\eadme.md",
-      "usagesDir": "src\\components\\chip\\usage",
+      "readmePath": "src/components/chip/readme.md",
+      "usagesDir": "src/components/chip/usage",
       "tag": "ix-chip",
       "overview": "",
       "usage": {},
@@ -2543,11 +2548,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\col",
-      "filePath": "src\\components\\col\\col.tsx",
+      "dirPath": "src/components/col",
+      "filePath": "src/components/col/col.tsx",
       "fileName": "col.tsx",
-      "readmePath": "src\\components\\col\eadme.md",
-      "usagesDir": "src\\components\\col\\usage",
+      "readmePath": "src/components/col/readme.md",
+      "usagesDir": "src/components/col/usage",
       "tag": "ix-col",
       "overview": "",
       "usage": {},
@@ -2561,8 +2566,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-panes"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2570,9 +2574,6 @@
           "ix-col"
         ],
         "ix-datetime-picker": [
-          "ix-col"
-        ],
-        "ix-panes": [
           "ix-col"
         ]
       },
@@ -2586,7 +2587,7 @@
             "references": {
               "ColumnSize": {
                 "location": "local",
-                "path": "src\\components\\col\\col.tsx",
+                "path": "src/components/col/col.tsx",
                 "id": "src/components/col/col.tsx::ColumnSize"
               }
             }
@@ -2662,7 +2663,7 @@
             "references": {
               "ColumnSize": {
                 "location": "local",
-                "path": "src\\components\\col\\col.tsx",
+                "path": "src/components/col/col.tsx",
                 "id": "src/components/col/col.tsx::ColumnSize"
               }
             }
@@ -2738,7 +2739,7 @@
             "references": {
               "ColumnSize": {
                 "location": "local",
-                "path": "src\\components\\col\\col.tsx",
+                "path": "src/components/col/col.tsx",
                 "id": "src/components/col/col.tsx::ColumnSize"
               }
             }
@@ -2814,7 +2815,7 @@
             "references": {
               "ColumnSize": {
                 "location": "local",
-                "path": "src\\components\\col\\col.tsx",
+                "path": "src/components/col/col.tsx",
                 "id": "src/components/col/col.tsx::ColumnSize"
               }
             }
@@ -2897,11 +2898,11 @@
       ]
     },
     {
-      "dirPath": "src\\components\\content",
-      "filePath": "src\\components\\content\\content.tsx",
+      "dirPath": "src/components/content",
+      "filePath": "src/components/content/content.tsx",
       "fileName": "content.tsx",
-      "readmePath": "src\\components\\content\eadme.md",
-      "usagesDir": "src\\components\\content\\usage",
+      "readmePath": "src/components/content/readme.md",
+      "usagesDir": "src/components/content/usage",
       "tag": "ix-content",
       "overview": "",
       "usage": {},
@@ -2934,11 +2935,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\content-header",
-      "filePath": "src\\components\\content-header\\content-header.tsx",
+      "dirPath": "src/components/content-header",
+      "filePath": "src/components/content-header/content-header.tsx",
       "fileName": "content-header.tsx",
-      "readmePath": "src\\components\\content-header\eadme.md",
-      "usagesDir": "src\\components\\content-header\\usage",
+      "readmePath": "src/components/content-header/readme.md",
+      "usagesDir": "src/components/content-header/usage",
       "tag": "ix-content-header",
       "overview": "",
       "usage": {},
@@ -3034,7 +3035,7 @@
             "references": {
               "ContentHeaderVariant": {
                 "location": "local",
-                "path": "src\\components\\content-header\\content-header.tsx",
+                "path": "src/components/content-header/content-header.tsx",
                 "id": "src/components/content-header/content-header.tsx::ContentHeaderVariant"
               }
             }
@@ -3082,11 +3083,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\date-dropdown",
-      "filePath": "src\\components\\date-dropdown\\date-dropdown.tsx",
+      "dirPath": "src/components/date-dropdown",
+      "filePath": "src/components/date-dropdown/date-dropdown.tsx",
       "fileName": "date-dropdown.tsx",
-      "readmePath": "src\\components\\date-dropdown\eadme.md",
-      "usagesDir": "src\\components\\date-dropdown\\usage",
+      "readmePath": "src/components/date-dropdown/readme.md",
+      "usagesDir": "src/components/date-dropdown/usage",
       "tag": "ix-date-dropdown",
       "overview": "",
       "usage": {},
@@ -3185,7 +3186,7 @@
             "references": {
               "DateDropdownOption": {
                 "location": "local",
-                "path": "src\\components\\date-dropdown\\date-dropdown.tsx",
+                "path": "src/components/date-dropdown/date-dropdown.tsx",
                 "id": "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption"
               }
             }
@@ -3420,7 +3421,7 @@
               },
               "DateRangeChangeEvent": {
                 "location": "local",
-                "path": "src\\components\\date-dropdown\\date-dropdown.tsx",
+                "path": "src/components/date-dropdown/date-dropdown.tsx",
                 "id": "src/components/date-dropdown/date-dropdown.tsx::DateRangeChangeEvent"
               }
             },
@@ -3443,7 +3444,7 @@
             "references": {
               "DateRangeChangeEvent": {
                 "location": "local",
-                "path": "src\\components\\date-dropdown\\date-dropdown.tsx",
+                "path": "src/components/date-dropdown/date-dropdown.tsx",
                 "id": "src/components/date-dropdown/date-dropdown.tsx::DateRangeChangeEvent"
               }
             }
@@ -3460,11 +3461,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\date-picker",
-      "filePath": "src\\components\\date-picker\\date-picker.tsx",
+      "dirPath": "src/components/date-picker",
+      "filePath": "src/components/date-picker/date-picker.tsx",
       "fileName": "date-picker.tsx",
-      "readmePath": "src\\components\\date-picker\eadme.md",
-      "usagesDir": "src\\components\\date-picker\\usage",
+      "readmePath": "src/components/date-picker/readme.md",
+      "usagesDir": "src/components/date-picker/usage",
       "tag": "ix-date-picker",
       "overview": "",
       "usage": {},
@@ -3511,7 +3512,7 @@
             "references": {
               "DateTimeCardCorners": {
                 "location": "import",
-                "path": "..\\date-time-card\\date-time-card",
+                "path": "../date-time-card/date-time-card",
                 "id": "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners"
               }
             }
@@ -3899,7 +3900,7 @@
             "references": {
               "DateChangeEvent": {
                 "location": "local",
-                "path": "src\\components\\date-picker\\date-picker.tsx",
+                "path": "src/components/date-picker/date-picker.tsx",
                 "id": "src/components/date-picker/date-picker.tsx::DateChangeEvent"
               }
             }
@@ -3924,7 +3925,7 @@
             "references": {
               "DateChangeEvent": {
                 "location": "local",
-                "path": "src\\components\\date-picker\\date-picker.tsx",
+                "path": "src/components/date-picker/date-picker.tsx",
                 "id": "src/components/date-picker/date-picker.tsx::DateChangeEvent"
               }
             }
@@ -3949,7 +3950,7 @@
             "references": {
               "DateChangeEvent": {
                 "location": "local",
-                "path": "src\\components\\date-picker\\date-picker.tsx",
+                "path": "src/components/date-picker/date-picker.tsx",
                 "id": "src/components/date-picker/date-picker.tsx::DateChangeEvent"
               }
             }
@@ -3991,11 +3992,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\datetime-picker",
-      "filePath": "src\\components\\datetime-picker\\datetime-picker.tsx",
+      "dirPath": "src/components/datetime-picker",
+      "filePath": "src/components/datetime-picker/datetime-picker.tsx",
       "fileName": "datetime-picker.tsx",
-      "readmePath": "src\\components\\datetime-picker\eadme.md",
-      "usagesDir": "src\\components\\datetime-picker\\usage",
+      "readmePath": "src/components/datetime-picker/readme.md",
+      "usagesDir": "src/components/datetime-picker/usage",
       "tag": "ix-datetime-picker",
       "overview": "",
       "usage": {},
@@ -4526,7 +4527,7 @@
             "references": {
               "DateTimeDateChangeEvent": {
                 "location": "local",
-                "path": "src\\components\\datetime-picker\\datetime-picker.tsx",
+                "path": "src/components/datetime-picker/datetime-picker.tsx",
                 "id": "src/components/datetime-picker/datetime-picker.tsx::DateTimeDateChangeEvent"
               }
             }
@@ -4551,7 +4552,7 @@
             "references": {
               "DateTimeSelectEvent": {
                 "location": "local",
-                "path": "src\\components\\datetime-picker\\datetime-picker.tsx",
+                "path": "src/components/datetime-picker/datetime-picker.tsx",
                 "id": "src/components/datetime-picker/datetime-picker.tsx::DateTimeSelectEvent"
               }
             }
@@ -4612,11 +4613,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\divider",
-      "filePath": "src\\components\\divider\\divider.tsx",
+      "dirPath": "src/components/divider",
+      "filePath": "src/components/divider/divider.tsx",
       "fileName": "divider.tsx",
-      "readmePath": "src\\components\\divider\eadme.md",
-      "usagesDir": "src\\components\\divider\\usage",
+      "readmePath": "src/components/divider/readme.md",
+      "usagesDir": "src/components/divider/usage",
       "tag": "ix-divider",
       "overview": "",
       "usage": {},
@@ -4646,11 +4647,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\drawer",
-      "filePath": "src\\components\\drawer\\drawer.tsx",
+      "dirPath": "src/components/drawer",
+      "filePath": "src/components/drawer/drawer.tsx",
       "fileName": "drawer.tsx",
-      "readmePath": "src\\components\\drawer\eadme.md",
-      "usagesDir": "src\\components\\drawer\\usage",
+      "readmePath": "src/components/drawer/readme.md",
+      "usagesDir": "src/components/drawer/usage",
       "tag": "ix-drawer",
       "overview": "",
       "usage": {},
@@ -4884,11 +4885,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\dropdown",
-      "filePath": "src\\components\\dropdown\\dropdown.tsx",
+      "dirPath": "src/components/dropdown",
+      "filePath": "src/components/dropdown/dropdown.tsx",
       "fileName": "dropdown.tsx",
-      "readmePath": "src\\components\\dropdown\eadme.md",
-      "usagesDir": "src\\components\\dropdown\\usage",
+      "readmePath": "src/components/dropdown/readme.md",
+      "usagesDir": "src/components/dropdown/usage",
       "tag": "ix-dropdown",
       "overview": "",
       "usage": {},
@@ -5245,11 +5246,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\dropdown-button",
-      "filePath": "src\\components\\dropdown-button\\dropdown-button.tsx",
+      "dirPath": "src/components/dropdown-button",
+      "filePath": "src/components/dropdown-button/dropdown-button.tsx",
       "fileName": "dropdown-button.tsx",
-      "readmePath": "src\\components\\dropdown-button\eadme.md",
-      "usagesDir": "src\\components\\dropdown-button\\usage",
+      "readmePath": "src/components/dropdown-button/readme.md",
+      "usagesDir": "src/components/dropdown-button/usage",
       "tag": "ix-dropdown-button",
       "readme": "# ix-dropdown-button\n\n\n",
       "overview": "",
@@ -5438,7 +5439,7 @@
             "references": {
               "AlignedPlacement": {
                 "location": "import",
-                "path": "..\\dropdown\\placement",
+                "path": "../dropdown/placement",
                 "id": "src/components/dropdown/placement.ts::AlignedPlacement"
               }
             }
@@ -5499,7 +5500,7 @@
             "references": {
               "DropdownButtonVariant": {
                 "location": "local",
-                "path": "src\\components\\dropdown-button\\dropdown-button.tsx",
+                "path": "src/components/dropdown-button/dropdown-button.tsx",
                 "id": "src/components/dropdown-button/dropdown-button.tsx::DropdownButtonVariant"
               }
             }
@@ -5532,11 +5533,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\dropdown-header",
-      "filePath": "src\\components\\dropdown-header\\dropdown-header.tsx",
+      "dirPath": "src/components/dropdown-header",
+      "filePath": "src/components/dropdown-header/dropdown-header.tsx",
       "fileName": "dropdown-header.tsx",
-      "readmePath": "src\\components\\dropdown-header\eadme.md",
-      "usagesDir": "src\\components\\dropdown-header\\usage",
+      "readmePath": "src/components/dropdown-header/readme.md",
+      "usagesDir": "src/components/dropdown-header/usage",
       "tag": "ix-dropdown-header",
       "overview": "",
       "usage": {},
@@ -5588,11 +5589,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\dropdown-item",
-      "filePath": "src\\components\\dropdown-item\\dropdown-item.tsx",
+      "dirPath": "src/components/dropdown-item",
+      "filePath": "src/components/dropdown-item/dropdown-item.tsx",
       "fileName": "dropdown-item.tsx",
-      "readmePath": "src\\components\\dropdown-item\eadme.md",
-      "usagesDir": "src\\components\\dropdown-item\\usage",
+      "readmePath": "src/components/dropdown-item/readme.md",
+      "usagesDir": "src/components/dropdown-item/usage",
       "tag": "ix-dropdown-item",
       "overview": "",
       "usage": {},
@@ -5773,11 +5774,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\dropdown-quick-actions",
-      "filePath": "src\\components\\dropdown-quick-actions\\dropdown-quick-actions.tsx",
+      "dirPath": "src/components/dropdown-quick-actions",
+      "filePath": "src/components/dropdown-quick-actions/dropdown-quick-actions.tsx",
       "fileName": "dropdown-quick-actions.tsx",
-      "readmePath": "src\\components\\dropdown-quick-actions\eadme.md",
-      "usagesDir": "src\\components\\dropdown-quick-actions\\usage",
+      "readmePath": "src/components/dropdown-quick-actions/readme.md",
+      "usagesDir": "src/components/dropdown-quick-actions/usage",
       "tag": "ix-dropdown-quick-actions",
       "overview": "",
       "usage": {},
@@ -5801,11 +5802,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\empty-state",
-      "filePath": "src\\components\\empty-state\\empty-state.tsx",
+      "dirPath": "src/components/empty-state",
+      "filePath": "src/components/empty-state/empty-state.tsx",
       "fileName": "empty-state.tsx",
-      "readmePath": "src\\components\\empty-state\eadme.md",
-      "usagesDir": "src\\components\\empty-state\\usage",
+      "readmePath": "src/components/empty-state/readme.md",
+      "usagesDir": "src/components/empty-state/usage",
       "tag": "ix-empty-state",
       "overview": "",
       "usage": {},
@@ -5904,7 +5905,7 @@
             "references": {
               "EmptyStateLayout": {
                 "location": "local",
-                "path": "src\\components\\empty-state\\empty-state.tsx",
+                "path": "src/components/empty-state/empty-state.tsx",
                 "id": "src/components/empty-state/empty-state.tsx::EmptyStateLayout"
               }
             }
@@ -5977,11 +5978,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\event-list",
-      "filePath": "src\\components\\event-list\\event-list.tsx",
+      "dirPath": "src/components/event-list",
+      "filePath": "src/components/event-list/event-list.tsx",
       "fileName": "event-list.tsx",
-      "readmePath": "src\\components\\event-list\eadme.md",
-      "usagesDir": "src\\components\\event-list\\usage",
+      "readmePath": "src/components/event-list/readme.md",
+      "usagesDir": "src/components/event-list/usage",
       "tag": "ix-event-list",
       "overview": "",
       "usage": {},
@@ -6096,11 +6097,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\event-list-item",
-      "filePath": "src\\components\\event-list-item\\event-list-item.tsx",
+      "dirPath": "src/components/event-list-item",
+      "filePath": "src/components/event-list-item/event-list-item.tsx",
       "fileName": "event-list-item.tsx",
-      "readmePath": "src\\components\\event-list-item\eadme.md",
-      "usagesDir": "src\\components\\event-list-item\\usage",
+      "readmePath": "src/components/event-list-item/readme.md",
+      "usagesDir": "src/components/event-list-item/usage",
       "tag": "ix-event-list-item",
       "overview": "",
       "usage": {},
@@ -6261,11 +6262,11 @@
       ]
     },
     {
-      "dirPath": "src\\components\\expanding-search",
-      "filePath": "src\\components\\expanding-search\\expanding-search.tsx",
+      "dirPath": "src/components/expanding-search",
+      "filePath": "src/components/expanding-search/expanding-search.tsx",
       "fileName": "expanding-search.tsx",
-      "readmePath": "src\\components\\expanding-search\eadme.md",
-      "usagesDir": "src\\components\\expanding-search\\usage",
+      "readmePath": "src/components/expanding-search/readme.md",
+      "usagesDir": "src/components/expanding-search/usage",
       "tag": "ix-expanding-search",
       "overview": "",
       "usage": {},
@@ -6402,11 +6403,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\filter-chip",
-      "filePath": "src\\components\\filter-chip\\filter-chip.tsx",
+      "dirPath": "src/components/filter-chip",
+      "filePath": "src/components/filter-chip/filter-chip.tsx",
       "fileName": "filter-chip.tsx",
-      "readmePath": "src\\components\\filter-chip\eadme.md",
-      "usagesDir": "src\\components\\filter-chip\\usage",
+      "readmePath": "src/components/filter-chip/readme.md",
+      "usagesDir": "src/components/filter-chip/usage",
       "tag": "ix-filter-chip",
       "overview": "",
       "usage": {},
@@ -6508,11 +6509,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\flip-tile",
-      "filePath": "src\\components\\flip-tile\\flip-tile.tsx",
+      "dirPath": "src/components/flip-tile",
+      "filePath": "src/components/flip-tile/flip-tile.tsx",
       "fileName": "flip-tile.tsx",
-      "readmePath": "src\\components\\flip-tile\eadme.md",
-      "usagesDir": "src\\components\\flip-tile\\usage",
+      "readmePath": "src/components/flip-tile/readme.md",
+      "usagesDir": "src/components/flip-tile/usage",
       "tag": "ix-flip-tile",
       "overview": "",
       "usage": {},
@@ -6642,11 +6643,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\flip-tile-content",
-      "filePath": "src\\components\\flip-tile-content\\flip-tile-content.tsx",
+      "dirPath": "src/components/flip-tile-content",
+      "filePath": "src/components/flip-tile-content/flip-tile-content.tsx",
       "fileName": "flip-tile-content.tsx",
-      "readmePath": "src\\components\\flip-tile-content\eadme.md",
-      "usagesDir": "src\\components\\flip-tile-content\\usage",
+      "readmePath": "src/components/flip-tile-content/readme.md",
+      "usagesDir": "src/components/flip-tile-content/usage",
       "tag": "ix-flip-tile-content",
       "overview": "",
       "usage": {},
@@ -6665,11 +6666,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\form-field",
-      "filePath": "src\\components\\form-field\\form-field.tsx",
+      "dirPath": "src/components/form-field",
+      "filePath": "src/components/form-field/form-field.tsx",
       "fileName": "form-field.tsx",
-      "readmePath": "src\\components\\form-field\eadme.md",
-      "usagesDir": "src\\components\\form-field\\usage",
+      "readmePath": "src/components/form-field/readme.md",
+      "usagesDir": "src/components/form-field/usage",
       "tag": "ix-form-field",
       "overview": "",
       "usage": {},
@@ -6710,11 +6711,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\group",
-      "filePath": "src\\components\\group\\group.tsx",
+      "dirPath": "src/components/group",
+      "filePath": "src/components/group/group.tsx",
       "fileName": "group.tsx",
-      "readmePath": "src\\components\\group\eadme.md",
-      "usagesDir": "src\\components\\group\\usage",
+      "readmePath": "src/components/group/readme.md",
+      "usagesDir": "src/components/group/usage",
       "tag": "ix-group",
       "overview": "",
       "usage": {},
@@ -6941,11 +6942,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\group",
-      "filePath": "src\\components\\group\\group-context-menu.tsx",
+      "dirPath": "src/components/group",
+      "filePath": "src/components/group/group-context-menu.tsx",
       "fileName": "group-context-menu.tsx",
-      "readmePath": "src\\components\\group\eadme.md",
-      "usagesDir": "src\\components\\group\\usage",
+      "readmePath": "src/components/group/readme.md",
+      "usagesDir": "src/components/group/usage",
       "tag": "ix-group-context-menu",
       "overview": "",
       "usage": {},
@@ -6978,11 +6979,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\group-item",
-      "filePath": "src\\components\\group-item\\group-item.tsx",
+      "dirPath": "src/components/group-item",
+      "filePath": "src/components/group-item/group-item.tsx",
       "fileName": "group-item.tsx",
-      "readmePath": "src\\components\\group-item\eadme.md",
-      "usagesDir": "src\\components\\group-item\\usage",
+      "readmePath": "src/components/group-item/readme.md",
+      "usagesDir": "src/components/group-item/usage",
       "tag": "ix-group-item",
       "overview": "",
       "usage": {},
@@ -7183,11 +7184,11 @@
       ]
     },
     {
-      "dirPath": "src\\components\\icon-button",
-      "filePath": "src\\components\\icon-button\\icon-button.tsx",
+      "dirPath": "src/components/icon-button",
+      "filePath": "src/components/icon-button/icon-button.tsx",
       "fileName": "icon-button.tsx",
-      "readmePath": "src\\components\\icon-button\eadme.md",
-      "usagesDir": "src\\components\\icon-button\\usage",
+      "readmePath": "src/components/icon-button/readme.md",
+      "usagesDir": "src/components/icon-button/usage",
       "tag": "ix-icon-button",
       "overview": "",
       "usage": {},
@@ -7601,7 +7602,7 @@
             "references": {
               "IconButtonVariant": {
                 "location": "local",
-                "path": "src\\components\\icon-button\\icon-button.tsx",
+                "path": "src/components/icon-button/icon-button.tsx",
                 "id": "src/components/icon-button/icon-button.tsx::IconButtonVariant"
               }
             }
@@ -7634,11 +7635,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\icon-toggle-button",
-      "filePath": "src\\components\\icon-toggle-button\\icon-toggle-button.tsx",
+      "dirPath": "src/components/icon-toggle-button",
+      "filePath": "src/components/icon-toggle-button/icon-toggle-button.tsx",
       "fileName": "icon-toggle-button.tsx",
-      "readmePath": "src\\components\\icon-toggle-button\eadme.md",
-      "usagesDir": "src\\components\\icon-toggle-button\\usage",
+      "readmePath": "src/components/icon-toggle-button/readme.md",
+      "usagesDir": "src/components/icon-toggle-button/usage",
       "tag": "ix-icon-toggle-button",
       "overview": "",
       "usage": {},
@@ -7831,7 +7832,7 @@
             "references": {
               "ButtonVariant": {
                 "location": "import",
-                "path": "..\\button\\button",
+                "path": "../button/button",
                 "id": "src/components/button/button.tsx::ButtonVariant"
               }
             }
@@ -7879,11 +7880,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\input-group",
-      "filePath": "src\\components\\input-group\\input-group.tsx",
+      "dirPath": "src/components/input-group",
+      "filePath": "src/components/input-group/input-group.tsx",
       "fileName": "input-group.tsx",
-      "readmePath": "src\\components\\input-group\eadme.md",
-      "usagesDir": "src\\components\\input-group\\usage",
+      "readmePath": "src/components/input-group/readme.md",
+      "usagesDir": "src/components/input-group/usage",
       "tag": "ix-input-group",
       "overview": "",
       "usage": {},
@@ -7902,11 +7903,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\key-value",
-      "filePath": "src\\components\\key-value\\key-value.tsx",
+      "dirPath": "src/components/key-value",
+      "filePath": "src/components/key-value/key-value.tsx",
       "fileName": "key-value.tsx",
-      "readmePath": "src\\components\\key-value\eadme.md",
-      "usagesDir": "src\\components\\key-value\\usage",
+      "readmePath": "src/components/key-value/readme.md",
+      "usagesDir": "src/components/key-value/usage",
       "tag": "ix-key-value",
       "overview": "",
       "usage": {},
@@ -7977,7 +7978,7 @@
             "references": {
               "KeyValueLabelPosition": {
                 "location": "local",
-                "path": "src\\components\\key-value\\key-value.tsx",
+                "path": "src/components/key-value/key-value.tsx",
                 "id": "src/components/key-value/key-value.tsx::KeyValueLabelPosition"
               }
             }
@@ -8036,11 +8037,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\key-value-list",
-      "filePath": "src\\components\\key-value-list\\key-value-list.tsx",
+      "dirPath": "src/components/key-value-list",
+      "filePath": "src/components/key-value-list/key-value-list.tsx",
       "fileName": "key-value-list.tsx",
-      "readmePath": "src\\components\\key-value-list\eadme.md",
-      "usagesDir": "src\\components\\key-value-list\\usage",
+      "readmePath": "src/components/key-value-list/readme.md",
+      "usagesDir": "src/components/key-value-list/usage",
       "tag": "ix-key-value-list",
       "overview": "",
       "usage": {},
@@ -8086,11 +8087,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\kpi",
-      "filePath": "src\\components\\kpi\\kpi.tsx",
+      "dirPath": "src/components/kpi",
+      "filePath": "src/components/kpi/kpi.tsx",
       "fileName": "kpi.tsx",
-      "readmePath": "src\\components\\kpi\eadme.md",
-      "usagesDir": "src\\components\\kpi\\usage",
+      "readmePath": "src/components/kpi/readme.md",
+      "usagesDir": "src/components/kpi/usage",
       "tag": "ix-kpi",
       "overview": "",
       "usage": {},
@@ -8234,11 +8235,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\grid",
-      "filePath": "src\\components\\grid\\layout-grid.tsx",
+      "dirPath": "src/components/grid",
+      "filePath": "src/components/grid/layout-grid.tsx",
       "fileName": "layout-grid.tsx",
-      "readmePath": "src\\components\\grid\eadme.md",
-      "usagesDir": "src\\components\\grid\\usage",
+      "readmePath": "src/components/grid/readme.md",
+      "usagesDir": "src/components/grid/usage",
       "tag": "ix-layout-grid",
       "overview": "",
       "usage": {},
@@ -8352,11 +8353,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\link-button",
-      "filePath": "src\\components\\link-button\\link-button.tsx",
+      "dirPath": "src/components/link-button",
+      "filePath": "src/components/link-button/link-button.tsx",
       "fileName": "link-button.tsx",
-      "readmePath": "src\\components\\link-button\eadme.md",
-      "usagesDir": "src\\components\\link-button\\usage",
+      "readmePath": "src/components/link-button/readme.md",
+      "usagesDir": "src/components/link-button/usage",
       "tag": "ix-link-button",
       "overview": "",
       "usage": {},
@@ -8459,11 +8460,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\map-navigation",
-      "filePath": "src\\components\\map-navigation\\map-navigation.tsx",
+      "dirPath": "src/components/map-navigation",
+      "filePath": "src/components/map-navigation/map-navigation.tsx",
       "fileName": "map-navigation.tsx",
-      "readmePath": "src\\components\\map-navigation\eadme.md",
-      "usagesDir": "src\\components\\map-navigation\\usage",
+      "readmePath": "src/components/map-navigation/readme.md",
+      "usagesDir": "src/components/map-navigation/usage",
       "tag": "ix-map-navigation",
       "overview": "",
       "usage": {},
@@ -8769,11 +8770,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\map-navigation-overlay",
-      "filePath": "src\\components\\map-navigation-overlay\\map-navigation-overlay.tsx",
+      "dirPath": "src/components/map-navigation-overlay",
+      "filePath": "src/components/map-navigation-overlay/map-navigation-overlay.tsx",
       "fileName": "map-navigation-overlay.tsx",
-      "readmePath": "src\\components\\map-navigation-overlay\eadme.md",
-      "usagesDir": "src\\components\\map-navigation-overlay\\usage",
+      "readmePath": "src/components/map-navigation-overlay/readme.md",
+      "usagesDir": "src/components/map-navigation-overlay/usage",
       "tag": "ix-map-navigation-overlay",
       "overview": "",
       "usage": {},
@@ -8918,18 +8919,20 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\menu",
-      "filePath": "src\\components\\menu\\menu.tsx",
+      "dirPath": "src/components/menu",
+      "filePath": "src/components/menu/menu.tsx",
       "fileName": "menu.tsx",
-      "readmePath": "src\\components\\menu\eadme.md",
-      "usagesDir": "src\\components\\menu\\usage",
+      "readmePath": "src/components/menu/readme.md",
+      "usagesDir": "src/components/menu/usage",
       "tag": "ix-menu",
       "overview": "",
       "usage": {},
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-burger-menu",
         "ix-icon-button",
@@ -8947,6 +8950,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "my-component": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -9514,11 +9520,11 @@
       ]
     },
     {
-      "dirPath": "src\\components\\menu-about",
-      "filePath": "src\\components\\menu-about\\menu-about.tsx",
+      "dirPath": "src/components/menu-about",
+      "filePath": "src/components/menu-about/menu-about.tsx",
       "fileName": "menu-about.tsx",
-      "readmePath": "src\\components\\menu-about\eadme.md",
-      "usagesDir": "src\\components\\menu-about\\usage",
+      "readmePath": "src/components/menu-about/readme.md",
+      "usagesDir": "src/components/menu-about/usage",
       "tag": "ix-menu-about",
       "overview": "",
       "usage": {},
@@ -9636,11 +9642,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\menu-about-item",
-      "filePath": "src\\components\\menu-about-item\\menu-about-item.tsx",
+      "dirPath": "src/components/menu-about-item",
+      "filePath": "src/components/menu-about-item/menu-about-item.tsx",
       "fileName": "menu-about-item.tsx",
-      "readmePath": "src\\components\\menu-about-item\eadme.md",
-      "usagesDir": "src\\components\\menu-about-item\\usage",
+      "readmePath": "src/components/menu-about-item/readme.md",
+      "usagesDir": "src/components/menu-about-item/usage",
       "tag": "ix-menu-about-item",
       "overview": "",
       "usage": {},
@@ -9681,11 +9687,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\menu-about-news",
-      "filePath": "src\\components\\menu-about-news\\menu-about-news.tsx",
+      "dirPath": "src/components/menu-about-news",
+      "filePath": "src/components/menu-about-news/menu-about-news.tsx",
       "fileName": "menu-about-news.tsx",
-      "readmePath": "src\\components\\menu-about-news\eadme.md",
-      "usagesDir": "src\\components\\menu-about-news\\usage",
+      "readmePath": "src/components/menu-about-news/readme.md",
+      "usagesDir": "src/components/menu-about-news/usage",
       "tag": "ix-menu-about-news",
       "overview": "",
       "usage": {},
@@ -9885,11 +9891,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\menu-avatar",
-      "filePath": "src\\components\\menu-avatar\\menu-avatar.tsx",
+      "dirPath": "src/components/menu-avatar",
+      "filePath": "src/components/menu-avatar/menu-avatar.tsx",
       "fileName": "menu-avatar.tsx",
-      "readmePath": "src\\components\\menu-avatar\eadme.md",
-      "usagesDir": "src\\components\\menu-avatar\\usage",
+      "readmePath": "src/components/menu-avatar/readme.md",
+      "usagesDir": "src/components/menu-avatar/usage",
       "tag": "ix-menu-avatar",
       "overview": "",
       "usage": {},
@@ -10090,11 +10096,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\menu-avatar-item",
-      "filePath": "src\\components\\menu-avatar-item\\menu-avatar-item.tsx",
+      "dirPath": "src/components/menu-avatar-item",
+      "filePath": "src/components/menu-avatar-item/menu-avatar-item.tsx",
       "fileName": "menu-avatar-item.tsx",
-      "readmePath": "src\\components\\menu-avatar-item\eadme.md",
-      "usagesDir": "src\\components\\menu-avatar-item\\usage",
+      "readmePath": "src/components/menu-avatar-item/readme.md",
+      "usagesDir": "src/components/menu-avatar-item/usage",
       "tag": "ix-menu-avatar-item",
       "overview": "",
       "usage": {},
@@ -10193,11 +10199,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\menu-category",
-      "filePath": "src\\components\\menu-category\\menu-category.tsx",
+      "dirPath": "src/components/menu-category",
+      "filePath": "src/components/menu-category/menu-category.tsx",
       "fileName": "menu-category.tsx",
-      "readmePath": "src\\components\\menu-category\eadme.md",
-      "usagesDir": "src\\components\\menu-category\\usage",
+      "readmePath": "src/components/menu-category/readme.md",
+      "usagesDir": "src/components/menu-category/usage",
       "tag": "ix-menu-category",
       "overview": "",
       "usage": {},
@@ -10209,7 +10215,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [
         "ix-menu-item",
         "ix-dropdown",
@@ -10224,6 +10232,9 @@
           "ix-dropdown-item",
           "ix-typography",
           "ix-divider"
+        ],
+        "my-component": [
+          "ix-menu-category"
         ]
       },
       "props": [
@@ -10299,11 +10310,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\menu-item",
-      "filePath": "src\\components\\menu-item\\menu-item.tsx",
+      "dirPath": "src/components/menu-item",
+      "filePath": "src/components/menu-item/menu-item.tsx",
       "fileName": "menu-item.tsx",
-      "readmePath": "src\\components\\menu-item\eadme.md",
-      "usagesDir": "src\\components\\menu-item\\usage",
+      "readmePath": "src/components/menu-item/readme.md",
+      "usagesDir": "src/components/menu-item/usage",
       "tag": "ix-menu-item",
       "overview": "",
       "usage": {},
@@ -10317,7 +10328,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu",
-        "ix-menu-category"
+        "ix-menu-category",
+        "my-component"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -10325,6 +10337,9 @@
           "ix-menu-item"
         ],
         "ix-menu-category": [
+          "ix-menu-item"
+        ],
+        "my-component": [
           "ix-menu-item"
         ]
       },
@@ -10508,11 +10523,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\menu-settings",
-      "filePath": "src\\components\\menu-settings\\menu-settings.tsx",
+      "dirPath": "src/components/menu-settings",
+      "filePath": "src/components/menu-settings/menu-settings.tsx",
       "fileName": "menu-settings.tsx",
-      "readmePath": "src\\components\\menu-settings\eadme.md",
-      "usagesDir": "src\\components\\menu-settings\\usage",
+      "readmePath": "src/components/menu-settings/readme.md",
+      "usagesDir": "src/components/menu-settings/usage",
       "tag": "ix-menu-settings",
       "overview": "",
       "usage": {},
@@ -10630,11 +10645,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\menu-settings-item",
-      "filePath": "src\\components\\menu-settings-item\\menu-settings-item.tsx",
+      "dirPath": "src/components/menu-settings-item",
+      "filePath": "src/components/menu-settings-item/menu-settings-item.tsx",
       "fileName": "menu-settings-item.tsx",
-      "readmePath": "src\\components\\menu-settings-item\eadme.md",
-      "usagesDir": "src\\components\\menu-settings-item\\usage",
+      "readmePath": "src/components/menu-settings-item/readme.md",
+      "usagesDir": "src/components/menu-settings-item/usage",
       "tag": "ix-menu-settings-item",
       "overview": "",
       "usage": {},
@@ -10690,11 +10705,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\message-bar",
-      "filePath": "src\\components\\message-bar\\message-bar.tsx",
+      "dirPath": "src/components/message-bar",
+      "filePath": "src/components/message-bar/message-bar.tsx",
       "fileName": "message-bar.tsx",
-      "readmePath": "src\\components\\message-bar\eadme.md",
-      "usagesDir": "src\\components\\message-bar\\usage",
+      "readmePath": "src/components/message-bar/readme.md",
+      "usagesDir": "src/components/message-bar/usage",
       "tag": "ix-message-bar",
       "overview": "",
       "usage": {},
@@ -10791,11 +10806,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\modal",
-      "filePath": "src\\components\\modal\\modal.tsx",
+      "dirPath": "src/components/modal",
+      "filePath": "src/components/modal/modal.tsx",
       "fileName": "modal.tsx",
-      "readmePath": "src\\components\\modal\eadme.md",
-      "usagesDir": "src\\components\\modal\\usage",
+      "readmePath": "src/components/modal/readme.md",
+      "usagesDir": "src/components/modal/usage",
       "tag": "ix-modal",
       "overview": "",
       "usage": {},
@@ -10986,7 +11001,7 @@
             "references": {
               "IxModalSize": {
                 "location": "local",
-                "path": "src\\components\\modal\\modal.tsx",
+                "path": "src/components/modal/modal.tsx",
                 "id": "src/components/modal/modal.tsx::IxModalSize"
               }
             }
@@ -11172,11 +11187,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\modal-content",
-      "filePath": "src\\components\\modal-content\\modal-content.tsx",
+      "dirPath": "src/components/modal-content",
+      "filePath": "src/components/modal-content/modal-content.tsx",
       "fileName": "modal-content.tsx",
-      "readmePath": "src\\components\\modal-content\eadme.md",
-      "usagesDir": "src\\components\\modal-content\\usage",
+      "readmePath": "src/components/modal-content/readme.md",
+      "usagesDir": "src/components/modal-content/usage",
       "tag": "ix-modal-content",
       "overview": "",
       "usage": {},
@@ -11206,11 +11221,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\my-component",
-      "filePath": "src\\components\\my-component\\example-modal.tsx",
+      "dirPath": "src/components/my-component",
+      "filePath": "src/components/my-component/example-modal.tsx",
       "fileName": "example-modal.tsx",
-      "readmePath": "src\\components\\my-component\eadme.md",
-      "usagesDir": "src\\components\\my-component\\usage",
+      "readmePath": "src/components/my-component/readme.md",
+      "usagesDir": "src/components/my-component/usage",
       "tag": "ix-modal-example",
       "overview": "",
       "usage": {},
@@ -11243,11 +11258,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\modal-footer",
-      "filePath": "src\\components\\modal-footer\\modal-footer.tsx",
+      "dirPath": "src/components/modal-footer",
+      "filePath": "src/components/modal-footer/modal-footer.tsx",
       "fileName": "modal-footer.tsx",
-      "readmePath": "src\\components\\modal-footer\eadme.md",
-      "usagesDir": "src\\components\\modal-footer\\usage",
+      "readmePath": "src/components/modal-footer/readme.md",
+      "usagesDir": "src/components/modal-footer/usage",
       "tag": "ix-modal-footer",
       "overview": "",
       "usage": {},
@@ -11271,11 +11286,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\modal-header",
-      "filePath": "src\\components\\modal-header\\modal-header.tsx",
+      "dirPath": "src/components/modal-header",
+      "filePath": "src/components/modal-header/modal-header.tsx",
       "fileName": "modal-header.tsx",
-      "readmePath": "src\\components\\modal-header\eadme.md",
-      "usagesDir": "src\\components\\modal-header\\usage",
+      "readmePath": "src/components/modal-header/readme.md",
+      "usagesDir": "src/components/modal-header/usage",
       "tag": "ix-modal-header",
       "overview": "",
       "usage": {},
@@ -11400,11 +11415,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\pagination",
-      "filePath": "src\\components\\pagination\\pagination.tsx",
+      "dirPath": "src/components/pagination",
+      "filePath": "src/components/pagination/pagination.tsx",
       "fileName": "pagination.tsx",
-      "readmePath": "src\\components\\pagination\eadme.md",
-      "usagesDir": "src\\components\\pagination\\usage",
+      "readmePath": "src/components/pagination/readme.md",
+      "usagesDir": "src/components/pagination/usage",
       "tag": "ix-pagination",
       "overview": "",
       "usage": {},
@@ -11662,11 +11677,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\pane",
-      "filePath": "src\\components\\pane\\pane.tsx",
+      "dirPath": "src/components/pane",
+      "filePath": "src/components/pane/pane.tsx",
       "fileName": "pane.tsx",
-      "readmePath": "src\\components\\pane\eadme.md",
-      "usagesDir": "src\\components\\pane\\usage",
+      "readmePath": "src/components/pane/readme.md",
+      "usagesDir": "src/components/pane/usage",
       "tag": "ix-pane",
       "overview": "",
       "usage": {},
@@ -11692,33 +11707,6 @@
       },
       "props": [
         {
-          "name": "behaviour",
-          "type": "\"floating\" | \"inline\"",
-          "complexType": {
-            "original": "'floating' | 'inline'",
-            "resolved": "\"floating\" | \"inline\"",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "behaviour",
-          "reflectToAttr": false,
-          "docs": "Behaviour of the side pane",
-          "docsTags": [],
-          "default": "'inline'",
-          "values": [
-            {
-              "value": "floating",
-              "type": "string"
-            },
-            {
-              "value": "inline",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "borderless",
           "type": "boolean",
           "complexType": {
@@ -11741,7 +11729,7 @@
           "required": false
         },
         {
-          "name": "expand",
+          "name": "expanded",
           "type": "boolean",
           "complexType": {
             "original": "boolean",
@@ -11749,7 +11737,7 @@
             "references": {}
           },
           "mutable": true,
-          "attr": "expand",
+          "attr": "expanded",
           "reflectToAttr": false,
           "docs": "State of the pane",
           "docsTags": [],
@@ -11763,7 +11751,92 @@
           "required": false
         },
         {
-          "name": "expandedPaneSize",
+          "name": "heading",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "heading",
+          "reflectToAttr": false,
+          "docs": "Title of the side panel",
+          "docsTags": [],
+          "default": "'Pane title'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Name of the icon",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "position",
+          "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+          "complexType": {
+            "original": "Position",
+            "resolved": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+            "references": {
+              "Position": {
+                "location": "local",
+                "path": "src/components/pane/pane.tsx",
+                "id": "src/components/pane/pane.tsx::Position"
+              }
+            }
+          },
+          "mutable": true,
+          "attr": "position",
+          "reflectToAttr": false,
+          "docs": "Placement of the sidebar",
+          "docsTags": [],
+          "default": "'top'",
+          "values": [
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
           "type": "\"100%\" | \"240px\" | \"320px\" | \"33%\" | \"360px\" | \"480px\" | \"50%\" | \"600px\"",
           "complexType": {
             "original": "| '240px'\n    | '320px'\n    | '360px'\n    | '480px'\n    | '600px'\n    | '33%'\n    | '50%'\n    | '100%'",
@@ -11771,7 +11844,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "expanded-pane-size",
+          "attr": "size",
           "reflectToAttr": false,
           "docs": "The maximum size of the sidebar, when it is expanded",
           "docsTags": [],
@@ -11814,84 +11887,26 @@
           "required": false
         },
         {
-          "name": "icon",
-          "type": "string",
+          "name": "variant",
+          "type": "\"floating\" | \"inline\"",
           "complexType": {
-            "original": "string",
-            "resolved": "string",
+            "original": "'floating' | 'inline'",
+            "resolved": "\"floating\" | \"inline\"",
             "references": {}
           },
           "mutable": false,
-          "attr": "icon",
-          "reflectToAttr": false,
-          "docs": "Name of the icon",
+          "attr": "variant",
+          "reflectToAttr": true,
+          "docs": "Behaviour of the side pane",
           "docsTags": [],
-          "default": "''",
+          "default": "'inline'",
           "values": [
             {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "paneTitle",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "pane-title",
-          "reflectToAttr": false,
-          "docs": "Title of the side panel",
-          "docsTags": [],
-          "default": "'Pane title'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "position",
-          "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
-          "complexType": {
-            "original": "SidePanelPosition",
-            "resolved": "\"bottom\" | \"left\" | \"right\" | \"top\"",
-            "references": {
-              "SidePanelPosition": {
-                "location": "local",
-                "path": "src\\components\\pane\\pane.tsx",
-                "id": "src/components/pane/pane.tsx::SidePanelPosition"
-              }
-            }
-          },
-          "mutable": true,
-          "attr": "position",
-          "reflectToAttr": false,
-          "docs": "Placement of the sidebar",
-          "docsTags": [],
-          "default": "'top'",
-          "values": [
-            {
-              "value": "bottom",
+              "value": "floating",
               "type": "string"
             },
             {
-              "value": "left",
-              "type": "string"
-            },
-            {
-              "value": "right",
-              "type": "string"
-            },
-            {
-              "value": "top",
+              "value": "inline",
               "type": "string"
             }
           ],
@@ -11911,7 +11926,7 @@
             "references": {
               "ExpandPaneChangeEvent": {
                 "location": "local",
-                "path": "src\\components\\pane\\pane.tsx",
+                "path": "src/components/pane/pane.tsx",
                 "id": "src/components/pane/pane.tsx::ExpandPaneChangeEvent"
               }
             }
@@ -11928,31 +11943,50 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\panes",
-      "filePath": "src\\components\\panes\\panes.tsx",
-      "fileName": "panes.tsx",
-      "readmePath": "src\\components\\panes\eadme.md",
-      "usagesDir": "src\\components\\panes\\usage",
-      "tag": "ix-panes",
+      "dirPath": "src/components/pane-layout",
+      "filePath": "src/components/pane-layout/pane-layout.tsx",
+      "fileName": "pane-layout.tsx",
+      "readmePath": "src/components/pane-layout/readme.md",
+      "usagesDir": "src/components/pane-layout/usage",
+      "tag": "ix-pane-layout",
       "overview": "",
       "usage": {},
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [
-        "ix-row",
-        "ix-col"
-      ],
-      "dependencyGraph": {
-        "ix-panes": [
-          "ix-row",
-          "ix-col"
-        ]
-      },
+      "dependencies": [],
+      "dependencyGraph": {},
       "props": [
         {
-          "name": "behaviour",
+          "name": "layout",
+          "type": "\"full-height-left-right\" | \"full-width-top-bottom\"",
+          "complexType": {
+            "original": "'full-height-left-right' | 'full-width-top-bottom'",
+            "resolved": "\"full-height-left-right\" | \"full-width-top-bottom\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "layout",
+          "reflectToAttr": false,
+          "docs": "Choose the layout of the panes",
+          "docsTags": [],
+          "default": "'full-height-left-right'",
+          "values": [
+            {
+              "value": "full-height-left-right",
+              "type": "string"
+            },
+            {
+              "value": "full-width-top-bottom",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
           "type": "\"floating\" | \"inline\"",
           "complexType": {
             "original": "'floating' | 'inline'",
@@ -11960,7 +11994,7 @@
             "references": {}
           },
           "mutable": false,
-          "attr": "behaviour",
+          "attr": "variant",
           "reflectToAttr": false,
           "docs": "Behaviour of the side pane",
           "docsTags": [],
@@ -11977,33 +12011,6 @@
           ],
           "optional": false,
           "required": false
-        },
-        {
-          "name": "variant",
-          "type": "\"full-height-left-right\" | \"full-width-top-bottom\"",
-          "complexType": {
-            "original": "'full-height-left-right' | 'full-width-top-bottom'",
-            "resolved": "\"full-height-left-right\" | \"full-width-top-bottom\"",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "variant",
-          "reflectToAttr": false,
-          "docs": "Choose the variant of the panes",
-          "docsTags": [],
-          "default": "'full-height-left-right'",
-          "values": [
-            {
-              "value": "full-height-left-right",
-              "type": "string"
-            },
-            {
-              "value": "full-width-top-bottom",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
         }
       ],
       "methods": [],
@@ -12011,20 +12018,14 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "paneChange",
-          "capture": false,
-          "passive": false
-        }
-      ]
+      "listeners": []
     },
     {
-      "dirPath": "src\\components\\pill",
-      "filePath": "src\\components\\pill\\pill.tsx",
+      "dirPath": "src/components/pill",
+      "filePath": "src/components/pill/pill.tsx",
       "fileName": "pill.tsx",
-      "readmePath": "src\\components\\pill\eadme.md",
-      "usagesDir": "src\\components\\pill\\usage",
+      "readmePath": "src/components/pill/readme.md",
+      "usagesDir": "src/components/pill/usage",
       "tag": "ix-pill",
       "overview": "",
       "usage": {},
@@ -12229,11 +12230,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\push-card",
-      "filePath": "src\\components\\push-card\\push-card.tsx",
+      "dirPath": "src/components/push-card",
+      "filePath": "src/components/push-card/push-card.tsx",
       "fileName": "push-card.tsx",
-      "readmePath": "src\\components\\push-card\eadme.md",
-      "usagesDir": "src\\components\\push-card\\usage",
+      "readmePath": "src/components/push-card/readme.md",
+      "usagesDir": "src/components/push-card/usage",
       "tag": "ix-push-card",
       "overview": "",
       "usage": {},
@@ -12384,7 +12385,7 @@
             "references": {
               "PushCardVariant": {
                 "location": "local",
-                "path": "src\\components\\push-card\\push-card.tsx",
+                "path": "src/components/push-card/push-card.tsx",
                 "id": "src/components/push-card/push-card.tsx::PushCardVariant"
               }
             }
@@ -12445,11 +12446,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\ow",
-      "filePath": "src\\components\ow\ow.tsx",
+      "dirPath": "src/components/row",
+      "filePath": "src/components/row/row.tsx",
       "fileName": "row.tsx",
-      "readmePath": "src\\components\ow\eadme.md",
-      "usagesDir": "src\\components\ow\\usage",
+      "readmePath": "src/components/row/readme.md",
+      "usagesDir": "src/components/row/usage",
       "tag": "ix-row",
       "overview": "",
       "usage": {},
@@ -12463,8 +12464,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-panes"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -12472,9 +12472,6 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
-          "ix-row"
-        ],
-        "ix-panes": [
           "ix-row"
         ]
       },
@@ -12487,11 +12484,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\select",
-      "filePath": "src\\components\\select\\select.tsx",
+      "dirPath": "src/components/select",
+      "filePath": "src/components/select/select.tsx",
       "fileName": "select.tsx",
-      "readmePath": "src\\components\\select\eadme.md",
-      "usagesDir": "src\\components\\select\\usage",
+      "readmePath": "src/components/select/readme.md",
+      "usagesDir": "src/components/select/usage",
       "tag": "ix-select",
       "overview": "",
       "usage": {},
@@ -12917,11 +12914,11 @@
       ]
     },
     {
-      "dirPath": "src\\components\\select-item",
-      "filePath": "src\\components\\select-item\\select-item.tsx",
+      "dirPath": "src/components/select-item",
+      "filePath": "src/components/select-item/select-item.tsx",
       "fileName": "select-item.tsx",
-      "readmePath": "src\\components\\select-item\eadme.md",
-      "usagesDir": "src\\components\\select-item\\usage",
+      "readmePath": "src/components/select-item/readme.md",
+      "usagesDir": "src/components/select-item/usage",
       "tag": "ix-select-item",
       "overview": "",
       "usage": {},
@@ -13035,11 +13032,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\slider",
-      "filePath": "src\\components\\slider\\slider.tsx",
+      "dirPath": "src/components/slider",
+      "filePath": "src/components/slider/slider.tsx",
       "fileName": "slider.tsx",
-      "readmePath": "src\\components\\slider\eadme.md",
-      "usagesDir": "src\\components\\slider\\usage",
+      "readmePath": "src/components/slider/readme.md",
+      "usagesDir": "src/components/slider/usage",
       "tag": "ix-slider",
       "overview": "",
       "usage": {},
@@ -13129,7 +13126,7 @@
             "references": {
               "SliderMarker": {
                 "location": "local",
-                "path": "src\\components\\slider\\slider.tsx",
+                "path": "src/components/slider/slider.tsx",
                 "id": "src/components/slider/slider.tsx::SliderMarker"
               }
             }
@@ -13315,11 +13312,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\spinner",
-      "filePath": "src\\components\\spinner\\spinner.tsx",
+      "dirPath": "src/components/spinner",
+      "filePath": "src/components/spinner/spinner.tsx",
       "fileName": "spinner.tsx",
-      "readmePath": "src\\components\\spinner\eadme.md",
-      "usagesDir": "src\\components\\spinner\\usage",
+      "readmePath": "src/components/spinner/readme.md",
+      "usagesDir": "src/components/spinner/usage",
       "tag": "ix-spinner",
       "overview": "",
       "usage": {},
@@ -13455,11 +13452,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\split-button",
-      "filePath": "src\\components\\split-button\\split-button.tsx",
+      "dirPath": "src/components/split-button",
+      "filePath": "src/components/split-button/split-button.tsx",
       "fileName": "split-button.tsx",
-      "readmePath": "src\\components\\split-button\eadme.md",
-      "usagesDir": "src\\components\\split-button\\usage",
+      "readmePath": "src/components/split-button/readme.md",
+      "usagesDir": "src/components/split-button/usage",
       "tag": "ix-split-button",
       "overview": "",
       "usage": {},
@@ -13604,7 +13601,7 @@
             "references": {
               "AlignedPlacement": {
                 "location": "import",
-                "path": "..\\dropdown\\placement",
+                "path": "../dropdown/placement",
                 "id": "src/components/dropdown/placement.ts::AlignedPlacement"
               }
             }
@@ -13683,7 +13680,7 @@
             "references": {
               "SplitButtonVariant": {
                 "location": "local",
-                "path": "src\\components\\split-button\\split-button.tsx",
+                "path": "src/components/split-button/split-button.tsx",
                 "id": "src/components/split-button/split-button.tsx::SplitButtonVariant"
               }
             }
@@ -13736,11 +13733,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\split-button-item",
-      "filePath": "src\\components\\split-button-item\\split-button-item.tsx",
+      "dirPath": "src/components/split-button-item",
+      "filePath": "src/components/split-button-item/split-button-item.tsx",
       "fileName": "split-button-item.tsx",
-      "readmePath": "src\\components\\split-button-item\eadme.md",
-      "usagesDir": "src\\components\\split-button-item\\usage",
+      "readmePath": "src/components/split-button-item/readme.md",
+      "usagesDir": "src/components/split-button-item/usage",
       "tag": "ix-split-button-item",
       "overview": "",
       "usage": {},
@@ -13834,11 +13831,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\tab-item",
-      "filePath": "src\\components\\tab-item\\tab-item.tsx",
+      "dirPath": "src/components/tab-item",
+      "filePath": "src/components/tab-item/tab-item.tsx",
       "fileName": "tab-item.tsx",
-      "readmePath": "src\\components\\tab-item\eadme.md",
-      "usagesDir": "src\\components\\tab-item\\usage",
+      "readmePath": "src/components/tab-item/readme.md",
+      "usagesDir": "src/components/tab-item/usage",
       "tag": "ix-tab-item",
       "overview": "",
       "usage": {},
@@ -14057,7 +14054,7 @@
             "references": {
               "TabClickDetail": {
                 "location": "local",
-                "path": "src\\components\\tab-item\\tab-item.tsx",
+                "path": "src/components/tab-item/tab-item.tsx",
                 "id": "src/components/tab-item/tab-item.tsx::TabClickDetail"
               }
             }
@@ -14079,11 +14076,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\tabs",
-      "filePath": "src\\components\\tabs\\tabs.tsx",
+      "dirPath": "src/components/tabs",
+      "filePath": "src/components/tabs/tabs.tsx",
       "fileName": "tabs.tsx",
-      "readmePath": "src\\components\\tabs\eadme.md",
-      "usagesDir": "src\\components\\tabs\\usage",
+      "readmePath": "src/components/tabs/readme.md",
+      "usagesDir": "src/components/tabs/usage",
       "tag": "ix-tabs",
       "overview": "",
       "usage": {},
@@ -14265,11 +14262,11 @@
       ]
     },
     {
-      "dirPath": "src\\components\\tile",
-      "filePath": "src\\components\\tile\\tile.tsx",
+      "dirPath": "src/components/tile",
+      "filePath": "src/components/tile/tile.tsx",
       "fileName": "tile.tsx",
-      "readmePath": "src\\components\\tile\eadme.md",
-      "usagesDir": "src\\components\\tile\\usage",
+      "readmePath": "src/components/tile/readme.md",
+      "usagesDir": "src/components/tile/usage",
       "tag": "ix-tile",
       "overview": "",
       "usage": {},
@@ -14320,11 +14317,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\time-picker",
-      "filePath": "src\\components\\time-picker\\time-picker.tsx",
+      "dirPath": "src/components/time-picker",
+      "filePath": "src/components/time-picker/time-picker.tsx",
       "fileName": "time-picker.tsx",
-      "readmePath": "src\\components\\time-picker\eadme.md",
-      "usagesDir": "src\\components\\time-picker\\usage",
+      "readmePath": "src/components/time-picker/readme.md",
+      "usagesDir": "src/components/time-picker/usage",
       "tag": "ix-time-picker",
       "overview": "",
       "usage": {},
@@ -14367,7 +14364,7 @@
             "references": {
               "TimePickerCorners": {
                 "location": "local",
-                "path": "src\\components\\time-picker\\time-picker.tsx",
+                "path": "src/components/time-picker/time-picker.tsx",
                 "id": "src/components/time-picker/time-picker.tsx::TimePickerCorners"
               }
             }
@@ -14762,11 +14759,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\toast",
-      "filePath": "src\\components\\toast\\toast.tsx",
+      "dirPath": "src/components/toast",
+      "filePath": "src/components/toast/toast.tsx",
       "fileName": "toast.tsx",
-      "readmePath": "src\\components\\toast\eadme.md",
-      "usagesDir": "src\\components\\toast\\usage",
+      "readmePath": "src/components/toast/readme.md",
+      "usagesDir": "src/components/toast/usage",
       "tag": "ix-toast",
       "overview": "",
       "usage": {},
@@ -14963,11 +14960,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\toast",
-      "filePath": "src\\components\\toast\\toast-container.tsx",
+      "dirPath": "src/components/toast",
+      "filePath": "src/components/toast/toast-container.tsx",
       "fileName": "toast-container.tsx",
-      "readmePath": "src\\components\\toast\eadme.md",
-      "usagesDir": "src\\components\\toast\\usage",
+      "readmePath": "src/components/toast/readme.md",
+      "usagesDir": "src/components/toast/usage",
       "tag": "ix-toast-container",
       "overview": "",
       "usage": {},
@@ -15085,7 +15082,7 @@
               },
               "TypedEvent": {
                 "location": "import",
-                "path": "..\\utils\\typed-event",
+                "path": "../utils/typed-event",
                 "id": "src/components/utils/typed-event.ts::TypedEvent"
               },
               "ToastConfig": {
@@ -15124,11 +15121,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\toggle",
-      "filePath": "src\\components\\toggle\\toggle.tsx",
+      "dirPath": "src/components/toggle",
+      "filePath": "src/components/toggle/toggle.tsx",
       "fileName": "toggle.tsx",
-      "readmePath": "src\\components\\toggle\eadme.md",
-      "usagesDir": "src\\components\\toggle\\usage",
+      "readmePath": "src/components/toggle/readme.md",
+      "usagesDir": "src/components/toggle/usage",
       "tag": "ix-toggle",
       "overview": "",
       "usage": {},
@@ -15317,11 +15314,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\toggle-button",
-      "filePath": "src\\components\\toggle-button\\toggle-button.tsx",
+      "dirPath": "src/components/toggle-button",
+      "filePath": "src/components/toggle-button/toggle-button.tsx",
       "fileName": "toggle-button.tsx",
-      "readmePath": "src\\components\\toggle-button\eadme.md",
-      "usagesDir": "src\\components\\toggle-button\\usage",
+      "readmePath": "src/components/toggle-button/readme.md",
+      "usagesDir": "src/components/toggle-button/usage",
       "tag": "ix-toggle-button",
       "overview": "",
       "usage": {},
@@ -15483,7 +15480,7 @@
             "references": {
               "ButtonVariant": {
                 "location": "import",
-                "path": "..\\button\\button",
+                "path": "../button/button",
                 "id": "src/components/button/button.tsx::ButtonVariant"
               }
             }
@@ -15531,11 +15528,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\tooltip",
-      "filePath": "src\\components\\tooltip\\tooltip.tsx",
+      "dirPath": "src/components/tooltip",
+      "filePath": "src/components/tooltip/tooltip.tsx",
       "fileName": "tooltip.tsx",
-      "readmePath": "src\\components\\tooltip\eadme.md",
-      "usagesDir": "src\\components\\tooltip\\usage",
+      "readmePath": "src/components/tooltip/readme.md",
+      "usagesDir": "src/components/tooltip/usage",
       "tag": "ix-tooltip",
       "overview": "",
       "usage": {},
@@ -15692,11 +15689,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\tree",
-      "filePath": "src\\components\\tree\\tree.tsx",
+      "dirPath": "src/components/tree",
+      "filePath": "src/components/tree/tree.tsx",
       "fileName": "tree.tsx",
-      "readmePath": "src\\components\\tree\eadme.md",
-      "usagesDir": "src\\components\\tree\\usage",
+      "readmePath": "src/components/tree/readme.md",
+      "usagesDir": "src/components/tree/usage",
       "tag": "ix-tree",
       "overview": "",
       "usage": {},
@@ -15912,11 +15909,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\tree-item",
-      "filePath": "src\\components\\tree-item\\tree-item.tsx",
+      "dirPath": "src/components/tree-item",
+      "filePath": "src/components/tree-item/tree-item.tsx",
       "fileName": "tree-item.tsx",
-      "readmePath": "src\\components\\tree-item\eadme.md",
-      "usagesDir": "src\\components\\tree-item\\usage",
+      "readmePath": "src/components/tree-item/readme.md",
+      "usagesDir": "src/components/tree-item/usage",
       "tag": "ix-tree-item",
       "overview": "",
       "usage": {},
@@ -15942,7 +15939,7 @@
             "references": {
               "TreeItemContext": {
                 "location": "import",
-                "path": "..\\tree\\tree-model",
+                "path": "../tree/tree-model",
                 "id": "src/components/tree/tree-model.ts::TreeItemContext"
               }
             }
@@ -16039,11 +16036,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\typography",
-      "filePath": "src\\components\\typography\\typography.tsx",
+      "dirPath": "src/components/typography",
+      "filePath": "src/components/typography/typography.tsx",
       "fileName": "typography.tsx",
-      "readmePath": "src\\components\\typography\eadme.md",
-      "usagesDir": "src\\components\\typography\\usage",
+      "readmePath": "src/components/typography/readme.md",
+      "usagesDir": "src/components/typography/usage",
       "tag": "ix-typography",
       "overview": "",
       "usage": {},
@@ -16152,7 +16149,7 @@
             "references": {
               "TypographyColors": {
                 "location": "local",
-                "path": "src\\components\\typography\\typography.tsx",
+                "path": "src/components/typography/typography.tsx",
                 "id": "src/components/typography/typography.tsx::TypographyColors"
               }
             }
@@ -16218,7 +16215,7 @@
             "references": {
               "TypographyFormat": {
                 "location": "local",
-                "path": "src\\components\\typography\\typography.tsx",
+                "path": "src/components/typography/typography.tsx",
                 "id": "src/components/typography/typography.tsx::TypographyFormat"
               }
             }
@@ -16257,7 +16254,7 @@
             "references": {
               "TypographyColors": {
                 "location": "local",
-                "path": "src\\components\\typography\\typography.tsx",
+                "path": "src/components/typography/typography.tsx",
                 "id": "src/components/typography/typography.tsx::TypographyColors"
               }
             }
@@ -16317,7 +16314,7 @@
             "references": {
               "TextDecoration": {
                 "location": "local",
-                "path": "src\\components\\typography\\typography.tsx",
+                "path": "src/components/typography/typography.tsx",
                 "id": "src/components/typography/typography.tsx::TextDecoration"
               }
             }
@@ -16354,11 +16351,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\upload",
-      "filePath": "src\\components\\upload\\upload.tsx",
+      "dirPath": "src/components/upload",
+      "filePath": "src/components/upload/upload.tsx",
       "fileName": "upload.tsx",
-      "readmePath": "src\\components\\upload\eadme.md",
-      "usagesDir": "src\\components\\upload\\usage",
+      "readmePath": "src/components/upload/readme.md",
+      "usagesDir": "src/components/upload/usage",
       "tag": "ix-upload",
       "overview": "",
       "usage": {},
@@ -16709,11 +16706,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\validation-tooltip",
-      "filePath": "src\\components\\validation-tooltip\\validation-tooltip.tsx",
+      "dirPath": "src/components/validation-tooltip",
+      "filePath": "src/components/validation-tooltip/validation-tooltip.tsx",
       "fileName": "validation-tooltip.tsx",
-      "readmePath": "src\\components\\validation-tooltip\eadme.md",
-      "usagesDir": "src\\components\\validation-tooltip\\usage",
+      "readmePath": "src/components/validation-tooltip/readme.md",
+      "usagesDir": "src/components/validation-tooltip/usage",
       "tag": "ix-validation-tooltip",
       "overview": "",
       "usage": {},
@@ -16759,7 +16756,7 @@
             "references": {
               "Side": {
                 "location": "import",
-                "path": "..\\dropdown\\placement",
+                "path": "../dropdown/placement",
                 "id": "src/components/dropdown/placement.ts::Side"
               }
             }
@@ -16832,11 +16829,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\workflow-step",
-      "filePath": "src\\components\\workflow-step\\workflow-step.tsx",
+      "dirPath": "src/components/workflow-step",
+      "filePath": "src/components/workflow-step/workflow-step.tsx",
       "fileName": "workflow-step.tsx",
-      "readmePath": "src\\components\\workflow-step\eadme.md",
-      "usagesDir": "src\\components\\workflow-step\\usage",
+      "readmePath": "src/components/workflow-step/readme.md",
+      "usagesDir": "src/components/workflow-step/usage",
       "tag": "ix-workflow-step",
       "overview": "",
       "usage": {},
@@ -16983,11 +16980,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src\\components\\workflow-steps",
-      "filePath": "src\\components\\workflow-steps\\workflow-steps.tsx",
+      "dirPath": "src/components/workflow-steps",
+      "filePath": "src/components/workflow-steps/workflow-steps.tsx",
       "fileName": "workflow-steps.tsx",
-      "readmePath": "src\\components\\workflow-steps\eadme.md",
-      "usagesDir": "src\\components\\workflow-steps\\usage",
+      "readmePath": "src/components/workflow-steps/readme.md",
+      "usagesDir": "src/components/workflow-steps/usage",
       "tag": "ix-workflow-steps",
       "overview": "",
       "usage": {},
@@ -17094,11 +17091,11 @@
       ]
     },
     {
-      "dirPath": "src\\components\\my-component",
-      "filePath": "src\\components\\my-component\\my-component.tsx",
+      "dirPath": "src/components/my-component",
+      "filePath": "src/components/my-component/my-component.tsx",
       "fileName": "my-component.tsx",
-      "readmePath": "src\\components\\my-component\eadme.md",
-      "usagesDir": "src\\components\\my-component\\usage",
+      "readmePath": "src/components/my-component/readme.md",
+      "usagesDir": "src/components/my-component/usage",
       "tag": "my-component",
       "overview": "",
       "usage": {},
@@ -17107,21 +17104,53 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-button",
-        "ix-pane"
+        "ix-basic-navigation",
+        "ix-menu",
+        "ix-menu-item",
+        "ix-menu-category",
+        "ix-pane",
+        "ix-button"
       ],
       "dependencyGraph": {
         "my-component": [
-          "ix-button",
-          "ix-pane"
+          "ix-basic-navigation",
+          "ix-menu",
+          "ix-menu-item",
+          "ix-menu-category",
+          "ix-pane",
+          "ix-button"
         ],
-        "ix-button": [
+        "ix-basic-navigation": [
+          "ix-application-header"
+        ],
+        "ix-application-header": [
+          "ix-burger-menu",
+          "ix-icon-button",
+          "ix-dropdown"
+        ],
+        "ix-burger-menu": [
+          "ix-icon-button",
           "ix-spinner"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-menu": [
+          "ix-burger-menu",
+          "ix-icon-button",
+          "ix-menu-item"
+        ],
+        "ix-menu-category": [
+          "ix-menu-item",
+          "ix-dropdown",
+          "ix-dropdown-item",
+          "ix-typography",
+          "ix-divider"
         ],
         "ix-pane": [
           "ix-icon-button"
         ],
-        "ix-icon-button": [
+        "ix-button": [
           "ix-spinner"
         ]
       },
@@ -17138,237 +17167,237 @@
     "src/components/card/card.tsx::CardVariant": {
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
       "docstring": "",
-      "path": "src\\components\\card\\card.tsx"
+      "path": "src/components/card/card.tsx"
     },
     "src/components/action-card/action-card.tsx::ActionCardVariant": {
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
       "docstring": "",
-      "path": "src\\components\\action-card\\action-card.tsx"
+      "path": "src/components/action-card/action-card.tsx"
     },
     "src/components/blind/blind.tsx::BlindVariant": {
       "declaration": "export type BlindVariant = CardVariant | 'outline';",
       "docstring": "",
-      "path": "src\\components\\blind\\blind.tsx"
+      "path": "src/components/blind/blind.tsx"
     },
     "src/components/button/button.tsx::ButtonVariant": {
       "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
       "docstring": "",
-      "path": "src\\components\\button\\button.tsx"
+      "path": "src/components/button/button.tsx"
     },
     "src/components/card-accordion/card-accordion.tsx::CardAccordionExpandChangeEvent": {
       "declaration": "{\n  expand: boolean;\n  nativeEvent: Event;\n}",
       "docstring": "",
-      "path": "src\\components\\card-accordion\\card-accordion.tsx"
+      "path": "src/components/card-accordion/card-accordion.tsx"
     },
     "src/components/col/col.tsx::ColumnSize": {
       "declaration": "export type ColumnSize =\n  | '1'\n  | '2'\n  | '3'\n  | '4'\n  | '5'\n  | '6'\n  | '7'\n  | '8'\n  | '9'\n  | '10'\n  | '11'\n  | '12'\n  | 'auto';",
       "docstring": "",
-      "path": "src\\components\\col\\col.tsx"
+      "path": "src/components/col/col.tsx"
     },
     "src/components/content-header/content-header.tsx::ContentHeaderVariant": {
       "declaration": "export type ContentHeaderVariant = 'primary' | 'secondary';",
       "docstring": "",
-      "path": "src\\components\\content-header\\content-header.tsx"
+      "path": "src/components/content-header/content-header.tsx"
     },
     "src/components/css-grid/css-grid.tsx::CssGridTemplateType": {
       "declaration": "export type CssGridTemplateType = 'sm' | 'md' | 'lg';",
       "docstring": "",
-      "path": "src\\components\\css-grid\\css-grid.tsx"
+      "path": "src/components/css-grid/css-grid.tsx"
     },
     "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption": {
       "declaration": "{\n  id: string;\n  label: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
-      "path": "src\\components\\date-dropdown\\date-dropdown.tsx"
+      "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
     "src/components/date-dropdown/date-dropdown.tsx::DateRangeChangeEvent": {
       "declaration": "{\n  id: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
-      "path": "src\\components\\date-dropdown\\date-dropdown.tsx"
+      "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
     "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
       "docstring": "",
-      "path": "src\\components\\date-time-card\\date-time-card.tsx"
+      "path": "src/components/date-time-card/date-time-card.tsx"
     },
     "src/components/date-picker/date-picker.tsx::DateChangeEvent": {
       "declaration": "{\n  from: string;\n  to: string;\n}",
       "docstring": "",
-      "path": "src\\components\\date-picker\\date-picker.tsx"
+      "path": "src/components/date-picker/date-picker.tsx"
     },
     "src/components/datetime-picker/datetime-picker.tsx::DateTimeDateChangeEvent": {
       "declaration": "export type DateTimeDateChangeEvent =\n  | string\n  | Omit<DateTimeSelectEvent, 'time'>;",
       "docstring": "",
-      "path": "src\\components\\datetime-picker\\datetime-picker.tsx"
+      "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
     "src/components/datetime-picker/datetime-picker.tsx::DateTimeSelectEvent": {
       "declaration": "{\n  from: string;\n  to: string;\n  time: string;\n}",
       "docstring": "",
-      "path": "src\\components\\datetime-picker\\datetime-picker.tsx"
+      "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
     "src/components/dropdown/placement.ts::AlignedPlacement": {
       "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
       "docstring": "",
-      "path": "src\\components\\dropdown\\placement.ts"
+      "path": "src/components/dropdown/placement.ts"
     },
     "src/components/dropdown/dropdown.tsx::DropdownTriggerEvent": {
       "declaration": "export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';",
       "docstring": "",
-      "path": "src\\components\\dropdown\\dropdown.tsx"
+      "path": "src/components/dropdown/dropdown.tsx"
     },
     "src/components/dropdown-button/dropdown-button.tsx::DropdownButtonVariant": {
       "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
       "docstring": "",
-      "path": "src\\components\\dropdown-button\\dropdown-button.tsx"
+      "path": "src/components/dropdown-button/dropdown-button.tsx"
     },
     "src/components/empty-state/empty-state.tsx::EmptyStateLayout": {
       "declaration": "export type EmptyStateLayout = 'large' | 'compact' | 'compactBreak';",
       "docstring": "",
-      "path": "src\\components\\empty-state\\empty-state.tsx"
+      "path": "src/components/empty-state/empty-state.tsx"
     },
     "src/components/icon-button/icon-button.tsx::IconButtonVariant": {
       "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
       "docstring": "",
-      "path": "src\\components\\icon-button\\icon-button.tsx"
+      "path": "src/components/icon-button/icon-button.tsx"
     },
     "src/components/key-value/key-value.tsx::KeyValueLabelPosition": {
       "declaration": "export type KeyValueLabelPosition = 'top' | 'left';",
       "docstring": "",
-      "path": "src\\components\\key-value\\key-value.tsx"
+      "path": "src/components/key-value/key-value.tsx"
     },
     "src/components/modal/modal.tsx::IxModalSize": {
       "declaration": "export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;",
       "docstring": "",
-      "path": "src\\components\\modal\\modal.tsx"
+      "path": "src/components/modal/modal.tsx"
     },
-    "src/components/pane/pane.tsx::SidePanelPosition": {
-      "declaration": "export type SidePanelPosition = 'top' | 'left' | 'bottom' | 'right';",
+    "src/components/pane/pane.tsx::Position": {
+      "declaration": "export type Position = 'top' | 'left' | 'bottom' | 'right';",
       "docstring": "",
-      "path": "src\\components\\pane\\pane.tsx"
+      "path": "src/components/pane/pane.tsx"
     },
     "src/components/pane/pane.tsx::ExpandPaneChangeEvent": {
       "declaration": "{\n  position: string;\n  expanded: boolean;\n}",
       "docstring": "",
-      "path": "src\\components\\pane\\pane.tsx"
+      "path": "src/components/pane/pane.tsx"
     },
     "src/components/typography/typography.tsx::TypographyVariants": {
       "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
       "docstring": "",
-      "path": "src\\components\\typography\\typography.tsx"
+      "path": "src/components/typography/typography.tsx"
     },
     "src/components/typography/typography.tsx::TypographyFormat": {
       "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
       "docstring": "",
-      "path": "src\\components\\typography\\typography.tsx"
+      "path": "src/components/typography/typography.tsx"
     },
     "src/components/typography/typography.tsx::TypographyColors": {
       "declaration": "export type TypographyColors =\n  | 'contrast'\n  | 'std'\n  | 'soft'\n  | 'weak'\n  | 'inv-contrast'\n  | 'inv-std'\n  | 'inv-soft'\n  | 'inv-weak'\n  | 'alarm';",
       "docstring": "",
-      "path": "src\\components\\typography\\typography.tsx"
+      "path": "src/components/typography/typography.tsx"
     },
     "src/components/typography/typography.tsx::TextDecoration": {
       "declaration": "export type TextDecoration = 'none' | 'underline' | 'line-through';",
       "docstring": "",
-      "path": "src\\components\\typography\\typography.tsx"
+      "path": "src/components/typography/typography.tsx"
     },
     "src/components/push-card/push-card.tsx::PushCardVariant": {
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
       "docstring": "",
-      "path": "src\\components\\push-card\\push-card.tsx"
+      "path": "src/components/push-card/push-card.tsx"
     },
     "src/components/slider/slider.tsx::SliderMarker": {
       "declaration": "interface Array<T> {\n    /**\n     * Gets or sets the length of the array. This is a number one higher than the highest index in the array.\n     */\n    length: number;\n    /**\n     * Returns a string representation of an array.\n     */\n    toString(): string;\n    /**\n     * Returns a string representation of an array. The elements are converted to string using their toLocaleString methods.\n     */\n    toLocaleString(): string;\n    /**\n     * Removes the last element from an array and returns it.\n     * If the array is empty, undefined is returned and the array is not modified.\n     */\n    pop(): T | undefined;\n    /**\n     * Appends new elements to the end of an array, and returns the new length of the array.\n     * @param items New elements to add to the array.\n     */\n    push(...items: T[]): number;\n    /**\n     * Combines two or more arrays.\n     * This method returns a new array without modifying any existing arrays.\n     * @param items Additional arrays and/or items to add to the end of the array.\n     */\n    concat(...items: ConcatArray<T>[]): T[];\n    /**\n     * Combines two or more arrays.\n     * This method returns a new array without modifying any existing arrays.\n     * @param items Additional arrays and/or items to add to the end of the array.\n     */\n    concat(...items: (T | ConcatArray<T>)[]): T[];\n    /**\n     * Adds all the elements of an array into a string, separated by the specified separator string.\n     * @param separator A string used to separate one element of the array from the next in the resulting string. If omitted, the array elements are separated with a comma.\n     */\n    join(separator?: string): string;\n    /**\n     * Reverses the elements in an array in place.\n     * This method mutates the array and returns a reference to the same array.\n     */\n    reverse(): T[];\n    /**\n     * Removes the first element from an array and returns it.\n     * If the array is empty, undefined is returned and the array is not modified.\n     */\n    shift(): T | undefined;\n    /**\n     * Returns a copy of a section of an array.\n     * For both start and end, a negative index can be used to indicate an offset from the end of the array.\n     * For example, -2 refers to the second to last element of the array.\n     * @param start The beginning index of the specified portion of the array.\n     * If start is undefined, then the slice begins at index 0.\n     * @param end The end index of the specified portion of the array. This is exclusive of the element at the index 'end'.\n     * If end is undefined, then the slice extends to the end of the array.\n     */\n    slice(start?: number, end?: number): T[];\n    /**\n     * Sorts an array in place.\n     * This method mutates the array and returns a reference to the same array.\n     * @param compareFn Function used to determine the order of the elements. It is expected to return\n     * a negative value if the first argument is less than the second argument, zero if they're equal, and a positive\n     * value otherwise. If omitted, the elements are sorted in ascending, ASCII character order.\n     * ```ts\n     * [11,2,22,1].sort((a, b) => a - b)\n     * ```\n     */\n    sort(compareFn?: (a: T, b: T) => number): this;\n    /**\n     * Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.\n     * @param start The zero-based location in the array from which to start removing elements.\n     * @param deleteCount The number of elements to remove.\n     * @returns An array containing the elements that were deleted.\n     */\n    splice(start: number, deleteCount?: number): T[];\n    /**\n     * Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.\n     * @param start The zero-based location in the array from which to start removing elements.\n     * @param deleteCount The number of elements to remove.\n     * @param items Elements to insert into the array in place of the deleted elements.\n     * @returns An array containing the elements that were deleted.\n     */\n    splice(start: number, deleteCount: number, ...items: T[]): T[];\n    /**\n     * Inserts new elements at the start of an array, and returns the new length of the array.\n     * @param items Elements to insert at the start of the array.\n     */\n    unshift(...items: T[]): number;\n    /**\n     * Returns the index of the first occurrence of a value in an array, or -1 if it is not present.\n     * @param searchElement The value to locate in the array.\n     * @param fromIndex The array index at which to begin the search. If fromIndex is omitted, the search starts at index 0.\n     */\n    indexOf(searchElement: T, fromIndex?: number): number;\n    /**\n     * Returns the index of the last occurrence of a specified value in an array, or -1 if it is not present.\n     * @param searchElement The value to locate in the array.\n     * @param fromIndex The array index at which to begin searching backward. If fromIndex is omitted, the search starts at the last index in the array.\n     */\n    lastIndexOf(searchElement: T, fromIndex?: number): number;\n    /**\n     * Determines whether all the members of an array satisfy the specified test.\n     * @param predicate A function that accepts up to three arguments. The every method calls\n     * the predicate function for each element in the array until the predicate returns a value\n     * which is coercible to the Boolean value false, or until the end of the array.\n     * @param thisArg An object to which the this keyword can refer in the predicate function.\n     * If thisArg is omitted, undefined is used as the this value.\n     */\n    every<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): this is S[];\n    /**\n     * Determines whether all the members of an array satisfy the specified test.\n     * @param predicate A function that accepts up to three arguments. The every method calls\n     * the predicate function for each element in the array until the predicate returns a value\n     * which is coercible to the Boolean value false, or until the end of the array.\n     * @param thisArg An object to which the this keyword can refer in the predicate function.\n     * If thisArg is omitted, undefined is used as the this value.\n     */\n    every(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): boolean;\n    /**\n     * Determines whether the specified callback function returns true for any element of an array.\n     * @param predicate A function that accepts up to three arguments. The some method calls\n     * the predicate function for each element in the array until the predicate returns a value\n     * which is coercible to the Boolean value true, or until the end of the array.\n     * @param thisArg An object to which the this keyword can refer in the predicate function.\n     * If thisArg is omitted, undefined is used as the this value.\n     */\n    some(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): boolean;\n    /**\n     * Performs the specified action for each element in an array.\n     * @param callbackfn  A function that accepts up to three arguments. forEach calls the callbackfn function one time for each element in the array.\n     * @param thisArg  An object to which the this keyword can refer in the callbackfn function. If thisArg is omitted, undefined is used as the this value.\n     */\n    forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;\n    /**\n     * Calls a defined callback function on each element of an array, and returns an array that contains the results.\n     * @param callbackfn A function that accepts up to three arguments. The map method calls the callbackfn function one time for each element in the array.\n     * @param thisArg An object to which the this keyword can refer in the callbackfn function. If thisArg is omitted, undefined is used as the this value.\n     */\n    map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];\n    /**\n     * Returns the elements of an array that meet the condition specified in a callback function.\n     * @param predicate A function that accepts up to three arguments. The filter method calls the predicate function one time for each element in the array.\n     * @param thisArg An object to which the this keyword can refer in the predicate function. If thisArg is omitted, undefined is used as the this value.\n     */\n    filter<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): S[];\n    /**\n     * Returns the elements of an array that meet the condition specified in a callback function.\n     * @param predicate A function that accepts up to three arguments. The filter method calls the predicate function one time for each element in the array.\n     * @param thisArg An object to which the this keyword can refer in the predicate function. If thisArg is omitted, undefined is used as the this value.\n     */\n    filter(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): T[];\n    /**\n     * Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.\n     * @param callbackfn A function that accepts up to four arguments. The reduce method calls the callbackfn function one time for each element in the array.\n     * @param initialValue If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the callbackfn function provides this value as an argument instead of an array value.\n     */\n    reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T): T;\n    reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T, initialValue: T): T;\n    /**\n     * Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.\n     * @param callbackfn A function that accepts up to four arguments. The reduce method calls the callbackfn function one time for each element in the array.\n     * @param initialValue If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the callbackfn function provides this value as an argument instead of an array value.\n     */\n    reduce<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue: U): U;\n    /**\n     * Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.\n     * @param callbackfn A function that accepts up to four arguments. The reduceRight method calls the callbackfn function one time for each element in the array.\n     * @param initialValue If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the callbackfn function provides this value as an argument instead of an array value.\n     */\n    reduceRight(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T): T;\n    reduceRight(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T, initialValue: T): T;\n    /**\n     * Calls the specified callback function for all the elements in an array, in descending order. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.\n     * @param callbackfn A function that accepts up to four arguments. The reduceRight method calls the callbackfn function one time for each element in the array.\n     * @param initialValue If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the callbackfn function provides this value as an argument instead of an array value.\n     */\n    reduceRight<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue: U): U;\n\n    [n: number]: T;\n}",
       "docstring": "",
-      "path": "src\\components\\slider\\slider.tsx"
+      "path": "src/components/slider/slider.tsx"
     },
     "src/components/split-button/split-button.tsx::SplitButtonVariant": {
       "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
       "docstring": "",
-      "path": "src\\components\\split-button\\split-button.tsx"
+      "path": "src/components/split-button/split-button.tsx"
     },
     "src/components/tab-item/tab-item.tsx::TabClickDetail": {
       "declaration": "{\n  nativeEvent: MouseEvent;\n}",
       "docstring": "",
-      "path": "src\\components\\tab-item\\tab-item.tsx"
+      "path": "src/components/tab-item/tab-item.tsx"
     },
     "src/components/time-picker/time-picker.tsx::TimePickerCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
       "docstring": "",
-      "path": "src\\components\\time-picker\\time-picker.tsx"
+      "path": "src/components/time-picker/time-picker.tsx"
     },
     "src/components/utils/theme-switcher.ts::IxTheme": {
       "declaration": "export type IxTheme =\n  | 'classic'\n  | 'classic-dark'\n  | 'classic-light'\n  | (string & {});",
       "docstring": "",
-      "path": "src\\components\\utils\\theme-switcher.ts"
+      "path": "src/components/utils/theme-switcher.ts"
     },
     "src/components/utils/breakpoints.ts::Breakpoint": {
       "declaration": "\"sm\" | \"md\" | \"lg\"",
       "docstring": "",
-      "path": "src\\components\\utils\\breakpoints.ts"
+      "path": "src/components/utils/breakpoints.ts"
     },
     "src/components/utils/application-layout/context.ts::AppSwitchConfiguration": {
       "declaration": "{\n  currentAppId: string;\n  apps: {\n    id: string;\n    name: string;\n    description: string;\n    url: string;\n    target: AppSwitchConfigurationTarget;\n    iconSrc: string;\n  }[];\n  i18nAppSwitch?: string;\n  i18nLoadingApps?: string;\n}",
       "docstring": "",
-      "path": "src\\components\\utils\\application-layout\\context.ts"
+      "path": "src/components/utils/application-layout/context.ts"
     },
     "src/components/category-filter/filter-state.ts::FilterState": {
       "declaration": "any",
       "docstring": "",
-      "path": "src\\components\\category-filter\\filter-state.ts"
+      "path": "src/components/category-filter/filter-state.ts"
     },
     "src/components/category-filter/input-state.ts::InputState": {
       "declaration": "any",
       "docstring": "",
-      "path": "src\\components\\category-filter\\input-state.ts"
+      "path": "src/components/category-filter/input-state.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
       "docstring": "",
-      "path": "src\\components\\flip-tile\\flip-tile-state.ts"
+      "path": "src/components/flip-tile/flip-tile-state.ts"
     },
     "src/components/utils/typed-event.ts::TypedEvent": {
       "declaration": "any",
       "docstring": "",
-      "path": "src\\components\\utils\\typed-event.ts"
+      "path": "src/components/utils/typed-event.ts"
     },
     "src/components/toast/toast-utils.ts::ToastConfig": {
       "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
       "docstring": "",
-      "path": "src\\components\\toast\\toast-utils.ts"
+      "path": "src/components/toast/toast-utils.ts"
     },
     "src/components/toast/toast-utils.ts::ToastType": {
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
       "docstring": "",
-      "path": "src\\components\\toast\\toast-utils.ts"
+      "path": "src/components/toast/toast-utils.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",
       "docstring": "",
-      "path": "src\\components\\tree\\tree-model.ts"
+      "path": "src/components/tree/tree-model.ts"
     },
     "src/components/tree/tree-model.ts::TreeContext": {
       "declaration": "{\n    [P in K]: T;\n}",
       "docstring": "",
-      "path": "src\\components\\tree\\tree-model.ts"
+      "path": "src/components/tree/tree-model.ts"
     },
     "src/components/tree/tree-model.ts::UpdateCallback": {
       "declaration": "(\n  treeItem: TreeItem<any>,\n  context: TreeContext\n) => void",
       "docstring": "",
-      "path": "src\\components\\tree\\tree-model.ts"
+      "path": "src/components/tree/tree-model.ts"
     },
     "src/components/tree/tree-model.ts::TreeItemContext": {
       "declaration": "export interface TreeItemContext {\n  isExpanded: boolean;\n  isSelected: boolean;\n}",
       "docstring": "",
-      "path": "src\\components\\tree\\tree-model.ts"
+      "path": "src/components/tree/tree-model.ts"
     },
     "src/components/upload/upload-file-state.ts::UploadFileState": {
       "declaration": "export enum UploadFileState {\n  SELECT_FILE = 'SELECT_FILE',\n  LOADING = 'LOADING',\n  UPLOAD_FAILED = 'UPLOAD_FAILED',\n  UPLOAD_SUCCESSED = 'UPLOAD_SUCCESSED',\n}",
       "docstring": "",
-      "path": "src\\components\\upload\\upload-file-state.ts"
+      "path": "src/components/upload/upload-file-state.ts"
     },
     "src/components/dropdown/placement.ts::Side": {
       "declaration": "export type Side = 'top' | 'right' | 'bottom' | 'left';",
       "docstring": "",
-      "path": "src\\components\\dropdown\\placement.ts"
+      "path": "src/components/dropdown/placement.ts"
     }
   }
 }
