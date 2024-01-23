@@ -1,11 +1,11 @@
 <div>
-  <ix-panes floating variant="1">
-    <ix-pane paneTitle="TOP" slot="top"> </ix-pane>
-    <ix-pane #leftPaneRef paneTitle="LEFT" slot="left"> </ix-pane>
-    <ix-pane paneTitle="RIGHT" slot="right"></ix-pane>
-    <ix-pane paneTitle="BOTTOM" slot="bottom"></ix-pane>
+  <ix-pane-layout variant="floating">
+    <ix-pane heading="TOP" slot="top"> </ix-pane>
+    <ix-pane heading="LEFT" slot="left"> </ix-pane>
+    <ix-pane heading="RIGHT" slot="right"></ix-pane>
+    <ix-pane heading="BOTTOM" slot="bottom"></ix-pane>
     <div slot="content">
-      <ix-button (click)="handleClick()">Toggle Left Pane</ix-button>
+      <p>This is a text content.</p>
     </div>
-  </ix-panes>
+  </ix-pane-layout>
 </div>

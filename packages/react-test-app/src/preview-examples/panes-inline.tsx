@@ -7,22 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  IxPanes,
-  IxPane,
-} from '@siemens/ix-react';
+import { IxPane, IxPaneLayout } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
   return (
-    <IxPanes behaviour="inline">
-      <IxPane paneTitle="TOP" slot="top"></IxPane>
-      <IxPane paneTitle="RIGHT" slot="right"></IxPane>
-      <IxPane paneTitle="LEFT" slot="left"></IxPane>
-      <IxPane paneTitle="BOTTOM" slot="bottom"></IxPane>
+    <IxPaneLayout variant="inline">
+      <IxPane heading="TOP" slot="top"></IxPane>
+      <IxPane heading="RIGHT" slot="right"></IxPane>
+      <IxPane heading="LEFT" slot="left"></IxPane>
+      <IxPane heading="BOTTOM" slot="bottom"></IxPane>
       <div slot="content">
         <p>This is a text content.</p>
       </div>
-    </IxPanes>
+    </IxPaneLayout>
   );
 };

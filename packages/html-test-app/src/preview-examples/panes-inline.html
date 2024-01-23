@@ -1,34 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-    name="viewport"
-  />
-  <title>Stencil Component Starter</title>
-  <style>
-    ix-basic-navigation {
-      height: 100vh;
-      width: 100vw;
-    }
-  </style>
-</head>
-<body>
-  <!--Preview code-->
-  <div>
-    <ix-panes inline variant="2">
-      <ix-pane paneTitle="TOP" slot="top"> </ix-pane>
-      <ix-pane #leftPaneRef paneTitle="LEFT" slot="left"> </ix-pane>
-      <ix-pane paneTitle="RIGHT" slot="right"></ix-pane>
-      <ix-pane paneTitle="BOTTOM" slot="bottom"></ix-pane>
+  <head>
+    <meta charset="utf-8"/>
+    <meta
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+      name="viewport"
+    />
+    <title>Panes Inline Example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!--Preview code-->
+    <ix-pane-layout variant="inline">
+      <ix-pane heading="TOP" slot="top"> </ix-pane>
+      <ix-pane heading="LEFT" slot="left"> </ix-pane>
+      <ix-pane heading="RIGHT" slot="right"></ix-pane>
+      <ix-pane heading="BOTTOM" slot="bottom"></ix-pane>
       <div slot="content">
-        <ix-button (click)="handleClick()">Toggle Left Pane</ix-button>
+        <p>This is a text content.</p>
       </div>
-    </ix-panes>
-  </div>
-
-  <!--Preview code-->
-<script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
-</body>
+    </ix-pane-layout>
+    <!--Preview code-->
+    <script type="module" src="./init.js"></script>
+  </body>
 </html>

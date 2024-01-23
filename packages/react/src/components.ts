@@ -73,7 +73,7 @@ import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/componen
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
-import { defineCustomElement as defineIxPanes } from '@siemens/ix/components/ix-panes.js';
+import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
@@ -166,7 +166,7 @@ export const IxModalFooter = /*@__PURE__*/createReactComponent<JSX.IxModalFooter
 export const IxModalHeader = /*@__PURE__*/createReactComponent<JSX.IxModalHeader, HTMLIxModalHeaderElement>('ix-modal-header', undefined, undefined, defineIxModalHeader);
 export const IxPagination = /*@__PURE__*/createReactComponent<JSX.IxPagination, HTMLIxPaginationElement>('ix-pagination', undefined, undefined, defineIxPagination);
 export const IxPane = /*@__PURE__*/createReactComponent<JSX.IxPane, HTMLIxPaneElement>('ix-pane', undefined, undefined, defineIxPane);
-export const IxPanes = /*@__PURE__*/createReactComponent<JSX.IxPanes, HTMLIxPanesElement>('ix-panes', undefined, undefined, defineIxPanes);
+export const IxPaneLayout = /*@__PURE__*/createReactComponent<JSX.IxPaneLayout, HTMLIxPaneLayoutElement>('ix-pane-layout', undefined, undefined, defineIxPaneLayout);
 export const IxPill = /*@__PURE__*/createReactComponent<JSX.IxPill, HTMLIxPillElement>('ix-pill', undefined, undefined, defineIxPill);
 export const IxPushCard = /*@__PURE__*/createReactComponent<JSX.IxPushCard, HTMLIxPushCardElement>('ix-push-card', undefined, undefined, defineIxPushCard);
 export const IxRow = /*@__PURE__*/createReactComponent<JSX.IxRow, HTMLIxRowElement>('ix-row', undefined, undefined, defineIxRow);

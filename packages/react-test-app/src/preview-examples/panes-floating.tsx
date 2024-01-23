@@ -7,25 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxButton, IxPane, IxPanes } from '@siemens/ix-react';
-import React, { useRef } from 'react';
+import { IxButton, IxPane, IxPaneLayout } from '@siemens/ix-react';
+import React, { useState } from 'react';
 
 export default () => {
-  const ref = useRef<any>(null);
+  const [hidden, setHidden] = useState(true);
 
   return (
-    <IxPanes behaviour="floating" variant="full-height-left-right">
-      <IxPane paneTitle="TOP" slot="top"></IxPane>
-      <IxPane paneTitle="RIGHT" slot="right"></IxPane>
-      <IxPane ref={ref} paneTitle="LEFT" slot="left"></IxPane>
-      <IxPane paneTitle="BOTTOM" slot="bottom"></IxPane>
+    <IxPaneLayout variant="floating" layout="full-height-left-right">
+      {!hidden && <IxPane heading="TOP" slot="top"></IxPane>}
+      <IxPane heading="RIGHT" slot="right"></IxPane>
+      <IxPane heading="LEFT" slot="left"></IxPane>
+      <IxPane heading="BOTTOM" slot="bottom"></IxPane>
       <div slot="content">
-        <IxButton
-          onClick={() => (ref.current!.expand = !ref.current!.expand)}
-        >
-          Toggle left pane
-        </IxButton>
+        <p>This is a text content.</p>
+        <IxButton onClick={() => setHidden(!hidden)}>Toggle left pane</IxButton>
       </div>
-    </IxPanes>
+    </IxPaneLayout>
   );
 };

@@ -1758,14 +1758,14 @@ export declare interface IxPagination extends Components.IxPagination {
 
 
 @ProxyCmp({
-  inputs: ['behaviour', 'borderless', 'expand', 'expandedPaneSize', 'icon', 'paneTitle', 'position']
+  inputs: ['borderless', 'expanded', 'heading', 'icon', 'position', 'size', 'variant']
 })
 @Component({
   selector: 'ix-pane',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['behaviour', 'borderless', 'expand', 'expandedPaneSize', 'icon', 'paneTitle', 'position'],
+  inputs: ['borderless', 'expanded', 'heading', 'icon', 'position', 'size', 'variant'],
 })
 export class IxPane {
   protected el: HTMLElement;
@@ -1788,16 +1788,16 @@ export declare interface IxPane extends Components.IxPane {
 
 
 @ProxyCmp({
-  inputs: ['behaviour', 'variant']
+  inputs: ['layout', 'variant']
 })
 @Component({
-  selector: 'ix-panes',
+  selector: 'ix-pane-layout',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['behaviour', 'variant'],
+  inputs: ['layout', 'variant'],
 })
-export class IxPanes {
+export class IxPaneLayout {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1806,7 +1806,7 @@ export class IxPanes {
 }
 
 
-export declare interface IxPanes extends Components.IxPanes {}
+export declare interface IxPaneLayout extends Components.IxPaneLayout {}
 
 
 @ProxyCmp({

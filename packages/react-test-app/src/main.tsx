@@ -74,6 +74,8 @@ import MenuCategory from './preview-examples/menu-category';
 import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
+import PanesFloating from './preview-examples/panes-floating';
+import PanesInline from './preview-examples/panes-inline';
 import Pill from './preview-examples/pill';
 import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
@@ -83,8 +85,6 @@ import Select from './preview-examples/select';
 import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
 import Settings from './preview-examples/settings';
-import PanesInline from './preview-examples/panes-inline';
-import PanesFloating from './preview-examples/panes-floating';
 import Slider from './preview-examples/slider';
 import SliderError from './preview-examples/slider-error';
 import SliderMarker from './preview-examples/slider-marker';
@@ -110,12 +110,12 @@ import Tooltip from './preview-examples/tooltip';
 import TooltipTitle from './preview-examples/tooltip-title';
 import Tree from './preview-examples/tree';
 import TreeCustom from './preview-examples/tree-custom';
+import Upload from './preview-examples/upload';
 import Validation from './preview-examples/validation';
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
-import Upload from './preview-examples/upload';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>

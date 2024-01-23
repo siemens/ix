@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: './pane-group-inline.html',
+  template: './panes-inline.html',
 })
 export default class PanesInline {}

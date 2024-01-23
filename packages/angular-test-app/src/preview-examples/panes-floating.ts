@@ -7,17 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, ViewChild } from '@angular/core';
-import { IxPane } from '@siemens/ix-angular';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: './pane-group-floating.html',
+  template: './panes-floating.html',
 })
-export default class PanesFloating {
-  @ViewChild('leftPaneRef') leftPaneRef!: IxPane;
-
-  handleClick() {
-    this.leftPaneRef.expand = !this.leftPaneRef.expand;
-  }
-}
+export default class PanesFloating {}

@@ -73,7 +73,7 @@ import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/componen
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
-import { defineCustomElement as defineIxPanes } from '@siemens/ix/components/ix-panes.js';
+import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
@@ -723,22 +723,23 @@ export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-
 
 
 export const IxPane = /*@__PURE__*/ defineContainer<JSX.IxPane>('ix-pane', defineIxPane, [
-  'paneTitle',
-  'behaviour',
-  'expandedPaneSize',
+  'heading',
+  'variant',
+  'size',
   'showPreviewContent',
   'borderless',
-  'expand',
+  'expanded',
   'position',
   'icon',
+  'isMobile',
   'expandPaneChange',
   'paneChange'
 ]);
 
 
-export const IxPanes = /*@__PURE__*/ defineContainer<JSX.IxPanes>('ix-panes', defineIxPanes, [
-  'behaviour',
-  'variant'
+export const IxPaneLayout = /*@__PURE__*/ defineContainer<JSX.IxPaneLayout>('ix-pane-layout', defineIxPaneLayout, [
+  'variant',
+  'layout'
 ]);
 
 

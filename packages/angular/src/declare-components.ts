@@ -70,7 +70,7 @@ export const DIRECTIVES = [
   d.IxModalHeader,
   d.IxPagination,
   d.IxPane,
-  d.IxPanes,
+  d.IxPaneLayout,
   d.IxPill,
   d.IxPushCard,
   d.IxRow,
