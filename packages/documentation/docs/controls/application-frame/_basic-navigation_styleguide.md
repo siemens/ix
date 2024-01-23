@@ -2,7 +2,7 @@ import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 import Playground from '@site/src/components/Demo';
 
 Basic navigation is a combination of essential infrastructure components forming the basic application layout structure. Alternatively, the [map navigation](./map-navigation.md) offers an additional but less flexible layout.  
-The new [application](./application.md) component is even more flexible, has a modular approach and introduces new features. Hence, we highly recommend using the new application frame.
+The new [application](./application.md) component released February 2024 is even more flexible, has a modular approach and introduces new features. Hence, we highly recommend using the new application frame.
 
 ![Basic navigation overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-33226&mode=design&t=SxUA6AcHswBAiIzi-11)
 
@@ -18,13 +18,13 @@ Basic navigation has:
 4. Brand logo
 5. Application name
 
-The application header (1) typically hosts the brand logo (4) and the application name (5). You can extended it with additional, context related information by using the pipe character "|" and 2 spaces before and after to separate both.  
+The application header (1) typically hosts the brand logo (4) and the application name (5). You can extended it with additional, context-related information by using the pipe character "|" and 2 spaces before and after to separate both.  
 If the application is hosted inside a framework that comes with its own header, you can hide the application header to avoid two headers on top of each other (option: `hideHeader`). The brand identity and the application name is then provided by the framework’s header.
 
 
 ## Options
-- **breakpoints:** Defines which breakpoints the basic navigation adapts to: lg (large), md (medium), sm (small)
-- **hideHeader:** If true, the header component is hidden
+- **breakpoints:** Defines which breakpoints the basic navigation adapts to: lg (large), md (medium), sm (small).
+- **hideHeader:** If true, the header component is hidden.
 - **forceBreakpoint:** This option forces the application to use only one of the available breakpoints.
 
 ## Behavior

@@ -1,14 +1,14 @@
 Map navigation is a combination of infrastructural components that form a layout structure to present map-like content (geographical maps, P&I diagrams or other plans). It is supported by a collapsible context panel and an overlay can temporarily present additional information. Map navigation does not offer all features the [basic navigation](./basic-navigation.md) offers.  
-The new [application](./application.md) component is even more flexible, has a modular approach and introduces new features. Hence, we highly recommend using the new application frame.
+The new [application](./application.md) component released February 2024 is even more flexible, has a modular approach and introduces new features. Hence, we highly recommend using the new application frame.
 
 ![Map navigation layout](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1020-71241&mode=design&t=Ntzn8IlSOlPey8s5-11)
 
-1. [App header](#app-header), included in the context pane
+1. [App header](#app-header): Included in the context pane
 2. [Navigation menu](./application-menu.md)
-3. Context pane, hosts additional information and eelements to control the map content
-4. Map content, shows map-like content, P&I diagrams or other plans
-5. Context pane icon: expands and collapses the context pane
-6. Overlay, shows detailed information of selected objects
+3. Context pane: Hosts additional information and elements to control the map content
+4. Map content: Shows map-like content, P&I diagrams or other plans
+5. Context pane icon: Expands and collapses the context pane
+6. Overlay: Shows detailed information of selected objects
 
 ### Application header
 

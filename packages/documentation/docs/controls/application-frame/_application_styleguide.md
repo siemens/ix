@@ -25,7 +25,7 @@ We typically avoid opening the same application in multiple browser tabs. Instea
 - **forceBreakpoint:** Forces a specific breakpoint "lg", "md" or "sm". This can be used to force a specific application behavior that ignores the current browser viewport width.
 
 ## Behavior
-The application component automatically adapts, by default, to three breakpoints and changes the application layout accordingly.
+The application component automatically adapts, by default, to three breakpoints and changes the application layout accordingly:
 - "lg" for large screens (min-width 62em)
 - "md" for medium screens (min-width 48em)
 - "sm" for small screens (min-width 36em)
