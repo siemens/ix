@@ -31,6 +31,7 @@ import {
 import { ComponentInterface } from '@stencil/core/internal';
 import {
   addDisposableEventListener,
+  CloseBehaviour,
   dropdownController,
   DropdownInterface,
 } from './dropdown-controller';
@@ -72,7 +73,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
    */
-  @Prop() closeBehavior: 'inside' | 'outside' | 'both' | boolean = 'both';
+  @Prop() closeBehavior: CloseBehaviour = 'both';
 
   /**
    * Placement of the dropdown
@@ -195,6 +196,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         dropdownController.present(this);
       } else {
         dropdownController.dismiss(this);
+        dropdownController.dismissSubMenu(this.getId());
       }
     };
 
@@ -360,7 +362,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.changedTrigger(this.trigger);
 
     // Event listener to check if a dropdown is inside another dropdown
-    // cancellation of the event will prevent the closing of the parent dropdown
+    // Cancellation of the event will prevent the closing of the parent dropdown
     this.hostElement.addEventListener(
       'check-nested-dropdown',
       (event: CustomEvent<string>) => {
@@ -388,6 +390,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
   }
 
+  /**
   private isClickInsideDropdown(event: PointerEvent) {
     const rect = this.dropdownRef.getBoundingClientRect();
     return (
@@ -397,11 +400,16 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       event.clientX <= rect.left + rect.width
     );
   }
+  */
 
   private onDropdownClick(event: PointerEvent) {
     event.preventDefault();
     event.stopPropagation();
 
+    if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
+      dropdownController.dismiss(this);
+    }
+    /*
     if (this.show === false || this.closeBehavior === false) {
       return;
     }
@@ -421,6 +429,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       default:
         dropdownController.dismissAll();
     }
+    */
   }
 
   /**

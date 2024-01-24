@@ -12,7 +12,11 @@ export interface IxComponent {
   hostElement: HTMLStencilElement;
 }
 
+export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;
+
 export interface DropdownInterface extends IxComponent {
+  closeBehavior: CloseBehaviour;
+
   getAssignedSubmenuIds(): string[];
   getId(): string;
 
@@ -53,14 +57,37 @@ class DropdownController {
   }
 
   dismiss(dropdown: DropdownInterface) {
+    console.log(`Dismiss ${dropdown.getId()} - ${dropdown.isPresent()}`);
+
     if (dropdown.willDismiss()) {
       dropdown.dismiss();
     }
   }
 
   dismissAll() {
+    console.log('Dismiss all');
+
     for (const dropdown of this.dropdowns) {
-      if (dropdown.isPresent()) {
+      if (
+        dropdown.closeBehavior === 'inside' ||
+        dropdown.closeBehavior === false
+      ) {
+        continue;
+      }
+
+      this.dismiss(dropdown);
+    }
+  }
+
+  dismissSubMenu(uid: string) {
+    let path = this.buildComposedPath(uid, []);
+    console.log(`Dismiss submenu ${uid} - ${path}`);
+    for (const dropdown of this.dropdowns) {
+      if (
+        dropdown.closeBehavior !== 'inside' &&
+        dropdown.closeBehavior !== false &&
+        !path.includes(dropdown.getId())
+      ) {
         this.dismiss(dropdown);
       }
     }
@@ -68,8 +95,15 @@ class DropdownController {
 
   private dismissByRule(lastPresentId: string) {
     const path = this.buildComposedPath(lastPresentId, []);
+
+    console.log(`Dismiss path ${path}`);
+
     for (const dropdown of this.dropdowns) {
-      if (dropdown.isPresent() && !path.includes(dropdown.getId())) {
+      if (
+        dropdown.closeBehavior !== 'inside' &&
+        dropdown.closeBehavior !== false &&
+        !path.includes(dropdown.getId())
+      ) {
         this.dismiss(dropdown);
       }
     }
@@ -90,6 +124,8 @@ class DropdownController {
   }
 
   private addOverlayListeners() {
+    this.isWindowListenerActive = true;
+
     window.addEventListener('click', () => {
       this.dismissAll();
     });
