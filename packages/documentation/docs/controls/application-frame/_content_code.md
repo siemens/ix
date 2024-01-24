@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 import Tags from './../../auto-generated/ix-content/tags.md';
 import Slots from './../../auto-generated/ix-content/slots.md';
 import Props from './../../auto-generated/ix-content/props.md';
