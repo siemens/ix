@@ -11954,9 +11954,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "my-component"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "my-component": [
+          "ix-pane-layout"
+        ]
+      },
       "props": [
         {
           "name": "layout",
@@ -17108,6 +17114,7 @@
         "ix-menu",
         "ix-menu-item",
         "ix-menu-category",
+        "ix-pane-layout",
         "ix-pane",
         "ix-button"
       ],
@@ -17117,6 +17124,7 @@
           "ix-menu",
           "ix-menu-item",
           "ix-menu-category",
+          "ix-pane-layout",
           "ix-pane",
           "ix-button"
         ],
