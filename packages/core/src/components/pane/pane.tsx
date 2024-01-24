@@ -45,9 +45,9 @@ export class Pane {
   @Prop() heading: string = 'Pane title';
 
   /**
-   * Behaviour of the side pane
+   * Variant of the side pane
    */
-  @Prop({ reflect: true }) variant: 'floating' | 'inline' = 'inline';
+  @Prop() variant: 'floating' | 'inline' = 'inline';
 
   /**
    * The maximum size of the sidebar, when it is expanded
@@ -101,48 +101,22 @@ export class Pane {
   /**
    * @internal
    */
-  @Event() paneChange: EventEmitter<string>;
+  @Event() slotChanged: EventEmitter<{ oldSlot: string; newSlot: string }>;
 
   @State() private expandIcon: string = '';
   @State() private showContent: boolean = false;
   @State() private minimizeIcon: string = '';
+  @State() private floating: boolean = null;
 
   private previousWidth: string = null;
   private previousHeight: string = null;
-  private floating: boolean = null;
 
-  @Watch('position')
-  async onPositionChange() {
-    this.setIcons();
-    this.resetLayoutState();
-    if (this.expanded) {
-      await this.onExpandedChange();
-    }
-  }
-
-  @Watch('variant')
-  onVariantChange() {
-    this.floating = this.variant === 'floating';
-  }
-
-  get isBottomTopPane() {
-    return this.position === 'bottom' || this.position === 'top';
-  }
-
-  get isLeftRightPane() {
-    return this.position === 'left' || this.position === 'right';
-  }
-
-  get isMobileTop() {
-    return this.position === 'top' || this.position === 'left';
-  }
+  private observer: MutationObserver = null;
 
   componentWillLoad() {
     this.resetLayoutState();
 
     this.floating = this.variant === 'floating';
-
-    this.paneChange.emit(this.position);
 
     if (this.showPreviewContent && this.isBottomTopPane) {
       console.warn('Preview content is only available on vertical side panes!');
@@ -158,6 +132,61 @@ export class Pane {
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
     });
+
+    // recognize a changed slot attribute
+    this.observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'slot'
+        ) {
+          const newSlotValue = this.hostElement.getAttribute('slot');
+
+          if (mutation.oldValue !== newSlotValue) {
+            this.position = newSlotValue as Position;
+
+            this.slotChanged.emit({
+              oldSlot: mutation.oldValue,
+              newSlot: newSlotValue,
+            });
+          }
+        }
+      });
+    });
+    this.observer.observe(this.hostElement, {
+      attributes: true,
+      attributeOldValue: true,
+    });
+  }
+
+  disconnectedCallback() {
+    this.observer.disconnect();
+  }
+
+  @Watch('position')
+  async onPositionChange() {
+    this.setIcons();
+    this.resetLayoutState();
+    if (this.expanded) {
+      await this.onExpandedChange();
+    }
+  }
+
+  @Watch('variant')
+  onVariantChange(value: 'inline' | 'floating') {
+    this.floating = value === 'floating';
+  }
+
+  get isBottomTopPane() {
+    return this.position === 'bottom' || this.position === 'top';
+  }
+
+  get isLeftRightPane() {
+    return this.position === 'left' || this.position === 'right';
+  }
+
+  get isMobileTop() {
+    return this.position === 'top' || this.position === 'left';
   }
 
   setIcons() {
@@ -200,6 +229,7 @@ export class Pane {
     return { expandIcon, minimizeIcon };
   }
 
+  @Watch('size')
   @Watch('expanded')
   async onExpandedChange() {
     if (this.expanded) {
@@ -358,7 +388,7 @@ export class Pane {
           'left-right-pane': this.isLeftRightPane && !this.isMobile,
           [`${this.position}-pane-border`]: !this.isMobile && !this.floating,
           'nav-left-border':
-            !this.borderless && !this.isMobile && this.position === 'left',
+            !this.borderless && !this.isMobile && this.position !== 'right',
           'box-shadow': this.floating && !this.isMobile,
           'aria-expanded': this.expanded,
         }}

@@ -11,11 +11,17 @@
 @import 'mixins/shadow-dom/component';
 @import '~animate.css/animate.min';
 
+@mixin set-padding($position) {
+  @if $position {
+    padding-#{$position}: 40px;
+  }
+}
+
 :host {
   @include ix-component;
   display: flex;
   position: absolute;
-  width: calc(100% - 1px);
+  width: 100%;
   height: 100%;
 
   .side-panes-wrapper {
@@ -42,14 +48,30 @@
   }
 
   .content {
-    display: flex;
     height: 100%;
     width: 100%;
     overflow: auto;
   }
 
   .absolute {
-    position: absolute;
+    height: 100%;
     width: 100%;
+    position: absolute;
+  }
+
+  .padding-top {
+    @include set-padding(top);
+  }
+
+  .padding-bottom {
+    @include set-padding(bottom);
+  }
+
+  .padding-left {
+    @include set-padding(left);
+  }
+
+  .padding-right {
+    @include set-padding(right);
   }
 }

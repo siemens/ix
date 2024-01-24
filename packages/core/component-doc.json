@@ -11896,8 +11896,8 @@
           },
           "mutable": false,
           "attr": "variant",
-          "reflectToAttr": true,
-          "docs": "Behaviour of the side pane",
+          "reflectToAttr": false,
+          "docs": "Variant of the side pane",
           "docsTags": [],
           "default": "'inline'",
           "values": [
@@ -11965,16 +11965,38 @@
       },
       "props": [
         {
+          "name": "borderless",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "borderless",
+          "reflectToAttr": false,
+          "docs": "Toggle border",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "layout",
           "type": "\"full-height-left-right\" | \"full-width-top-bottom\"",
           "complexType": {
-            "original": "'full-height-left-right' | 'full-width-top-bottom'",
+            "original": "| 'full-height-left-right'\n    | 'full-width-top-bottom'",
             "resolved": "\"full-height-left-right\" | \"full-width-top-bottom\"",
             "references": {}
           },
           "mutable": false,
           "attr": "layout",
-          "reflectToAttr": false,
+          "reflectToAttr": true,
           "docs": "Choose the layout of the panes",
           "docsTags": [],
           "default": "'full-height-left-right'",
@@ -12024,7 +12046,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "slotChanged",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/pill",

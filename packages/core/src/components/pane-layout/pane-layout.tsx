@@ -7,7 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Listen,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { Position } from '../pane/pane';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
@@ -28,33 +37,46 @@ export class Panes {
   /**
    * Choose the layout of the panes
    */
-  @Prop() layout: 'full-height-left-right' | 'full-width-top-bottom' =
-    'full-height-left-right';
+  @Prop({ reflect: true }) layout:
+    | 'full-height-left-right'
+    | 'full-width-top-bottom' = 'full-height-left-right';
 
-  @State() isMobile: boolean = false;
+  /**
+   * Toggle border
+   */
+  @Prop() borderless: boolean = false;
 
-  @State() paneElements: number = 0;
+  @State() private isMobile: boolean = false;
+  @State() private paneElements: number = 0;
+  @State() private floating: boolean = null;
+  @State() private slots: Array<string> = [];
 
-  private inline: boolean = null;
-  private floating: boolean = null;
   private observer: MutationObserver = null;
 
   componentWillLoad() {
-    this.inline = this.variant === 'inline';
     this.floating = this.variant === 'floating';
 
+    const panes = this.hostElement.querySelectorAll('ix-pane');
+
     // set initial pane amount
-    this.paneElements = this.hostElement.querySelectorAll('ix-pane').length;
+    this.paneElements = panes.length;
+
+    // set initial slots
+    this.setSlots(panes);
 
     // recognize inserted or removed panes
     this.observer = new MutationObserver((mutations) => {
       if (mutations[0].addedNodes.item(0)?.nodeName === 'IX-PANE') {
         this.paneElements += 1;
+        this.setSlots(this.hostElement.querySelectorAll('ix-pane'));
       } else if (mutations[0].removedNodes.item(0)?.nodeName === 'IX-PANE') {
         this.paneElements -= 1;
+        this.setSlots(this.hostElement.querySelectorAll('ix-pane'));
       }
     });
-    this.observer.observe(this.hostElement, { childList: true });
+    this.observer.observe(this.hostElement, {
+      childList: true,
+    });
 
     // set isMobile and add observer
     this.isMobile = matchBreakpoint('sm');
@@ -67,6 +89,29 @@ export class Panes {
     this.observer.disconnect();
   }
 
+  private setSlots(panes: NodeListOf<HTMLIxPaneElement>) {
+    panes.forEach((pane) => {
+      this.slots.push(pane.slot);
+    });
+  }
+
+  @Listen('slotChanged')
+  onSlotChanged(event: CustomEvent) {
+    const { oldSlot, newSlot } = event.detail;
+
+    this.slots = this.slots.filter((slot) => slot !== oldSlot);
+    this.slots.push(newSlot);
+  }
+
+  @Watch('variant')
+  onVariantChange(value: 'inline' | 'floating') {
+    this.floating = value === 'floating';
+
+    this.configureLayout();
+  }
+
+  @Watch('borderless')
+  @Watch('layout')
   @Watch('paneElements')
   @Watch('isMobile')
   configureLayout() {
@@ -131,7 +176,37 @@ export class Panes {
 
       sidePanelElement.position = sidePanelElement.slot as Position;
       sidePanelElement.variant = this.variant;
+
+      if (!sidePanelElement.getAttribute('borderless')) {
+        if (this.borderless) {
+          sidePanelElement.borderless = true;
+        } else {
+          if (
+            this.layout === 'full-height-left-right' &&
+            (sidePanelElement.position === 'top' ||
+              sidePanelElement.position === 'bottom')
+          ) {
+            sidePanelElement.borderless = true;
+          } else {
+            sidePanelElement.borderless = false;
+          }
+        }
+      }
     });
+  }
+
+  private getContentContainerClasses() {
+    return {
+      'padding-top':
+        this.floating && !this.isMobile && this.slots.includes('top'),
+      'padding-bottom':
+        this.floating && !this.isMobile && this.slots.includes('bottom'),
+      'padding-left':
+        this.floating && !this.isMobile && this.slots.includes('left'),
+      'padding-right':
+        this.floating && !this.isMobile && this.slots.includes('right'),
+      absolute: this.floating && !this.isMobile,
+    };
   }
 
   render() {
@@ -147,9 +222,11 @@ export class Panes {
                 <div>
                   <slot name="top"></slot>
                 </div>
-                {this.inline ? (
-                  <div class="content">
-                    <slot name="content"></slot>
+                {!this.floating ? (
+                  <div class={this.getContentContainerClasses()}>
+                    <div class="content">
+                      <slot name="content"></slot>
+                    </div>
                   </div>
                 ) : null}
                 <div>
@@ -160,8 +237,10 @@ export class Panes {
                 <slot name="right"></slot>
               </div>
               {this.floating ? (
-                <div class="content absolute">
-                  <slot name="content"></slot>
+                <div class={this.getContentContainerClasses()}>
+                  <div class="content">
+                    <slot name="content"></slot>
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -177,9 +256,11 @@ export class Panes {
                 <div>
                   <slot name="left"></slot>
                 </div>
-                {this.inline ? (
-                  <div class="content">
-                    <slot name="content"></slot>
+                {!this.floating ? (
+                  <div class={this.getContentContainerClasses()}>
+                    <div class="content">
+                      <slot name="content"></slot>
+                    </div>
                   </div>
                 ) : null}
                 <div>
@@ -190,8 +271,10 @@ export class Panes {
                 <slot name="bottom"></slot>
               </div>
               {this.floating ? (
-                <div class="content absolute">
-                  <slot name="content"></slot>
+                <div class={this.getContentContainerClasses()}>
+                  <div class="content">
+                    <slot name="content"></slot>
+                  </div>
                 </div>
               ) : null}
             </div>

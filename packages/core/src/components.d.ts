@@ -1710,15 +1710,20 @@ export namespace Components {
     | '50%'
     | '100%';
         /**
-          * Behaviour of the side pane
+          * Variant of the side pane
          */
         "variant": 'floating' | 'inline';
     }
     interface IxPaneLayout {
         /**
+          * Toggle border
+         */
+        "borderless": boolean;
+        /**
           * Choose the layout of the panes
          */
-        "layout": 'full-height-left-right' | 'full-width-top-bottom';
+        "layout": | 'full-height-left-right'
+    | 'full-width-top-bottom';
         /**
           * Behaviour of the side pane
          */
@@ -3545,7 +3550,7 @@ declare global {
     };
     interface HTMLIxPaneElementEventMap {
         "expandPaneChange": ExpandPaneChangeEvent;
-        "paneChange": string;
+        "slotChanged": { oldSlot: string; newSlot: string };
     }
     interface HTMLIxPaneElement extends Components.IxPane, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxPaneElementEventMap>(type: K, listener: (this: HTMLIxPaneElement, ev: IxPaneCustomEvent<HTMLIxPaneElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5800,7 +5805,7 @@ declare namespace LocalJSX {
           * Event
          */
         "onExpandPaneChange"?: (event: IxPaneCustomEvent<ExpandPaneChangeEvent>) => void;
-        "onPaneChange"?: (event: IxPaneCustomEvent<string>) => void;
+        "onSlotChanged"?: (event: IxPaneCustomEvent<{ oldSlot: string; newSlot: string }>) => void;
         /**
           * Placement of the sidebar
          */
@@ -5821,15 +5826,20 @@ declare namespace LocalJSX {
     | '50%'
     | '100%';
         /**
-          * Behaviour of the side pane
+          * Variant of the side pane
          */
         "variant"?: 'floating' | 'inline';
     }
     interface IxPaneLayout {
         /**
+          * Toggle border
+         */
+        "borderless"?: boolean;
+        /**
           * Choose the layout of the panes
          */
-        "layout"?: 'full-height-left-right' | 'full-width-top-bottom';
+        "layout"?: | 'full-height-left-right'
+    | 'full-width-top-bottom';
         /**
           * Behaviour of the side pane
          */

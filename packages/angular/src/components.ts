@@ -1788,14 +1788,14 @@ export declare interface IxPane extends Components.IxPane {
 
 
 @ProxyCmp({
-  inputs: ['layout', 'variant']
+  inputs: ['borderless', 'layout', 'variant']
 })
 @Component({
   selector: 'ix-pane-layout',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['layout', 'variant'],
+  inputs: ['borderless', 'layout', 'variant'],
 })
 export class IxPaneLayout {
   protected el: HTMLElement;
