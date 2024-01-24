@@ -1772,18 +1772,18 @@ export class IxPane {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['expandPaneChange']);
+    proxyOutputs(this, this.el, ['expandedChanged']);
   }
 }
 
 
-import type { ExpandPaneChangeEvent as IIxPaneExpandPaneChangeEvent } from '@siemens/ix';
+import type { ExpandedChangedEvent as IIxPaneExpandedChangedEvent } from '@siemens/ix';
 
 export declare interface IxPane extends Components.IxPane {
   /**
-   * Event
+   * This event is triggered when the pane either expands or contracts
    */
-  expandPaneChange: EventEmitter<CustomEvent<IIxPaneExpandPaneChangeEvent>>;
+  expandedChanged: EventEmitter<CustomEvent<IIxPaneExpandedChangedEvent>>;
 }
 
 

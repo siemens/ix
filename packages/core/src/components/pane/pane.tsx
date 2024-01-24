@@ -26,11 +26,15 @@ import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
 export type Position = 'top' | 'left' | 'bottom' | 'right';
-export type ExpandPaneChangeEvent = {
+export type ExpandedChangedEvent = {
   position: string;
   expanded: boolean;
 };
+export type SlotChangedEvent = { oldSlot: string; newSlot: string };
 
+/**
+ * @since 2.1.0
+ */
 @Component({
   tag: 'ix-pane',
   styleUrl: 'pane.scss',
@@ -63,12 +67,6 @@ export class Pane {
     | '100%' = '240px';
 
   /**
-   * Toggle either the preview content is shown or not
-   * @internal
-   */
-  @Prop() showPreviewContent: boolean = false;
-
-  /**
    * Toggle border
    */
   @Prop() borderless: boolean = false;
@@ -86,7 +84,7 @@ export class Pane {
   /**
    * Name of the icon
    */
-  @Prop() icon = '';
+  @Prop() icon: string;
 
   /**
    * @internal
@@ -94,33 +92,28 @@ export class Pane {
   @Prop({ mutable: true }) isMobile: boolean = false;
 
   /**
-   * Event
+   * This event is triggered when the pane either expands or contracts
    */
-  @Event() expandPaneChange: EventEmitter<ExpandPaneChangeEvent>;
+  @Event() expandedChanged: EventEmitter<ExpandedChangedEvent>;
 
   /**
    * @internal
    */
-  @Event() slotChanged: EventEmitter<{ oldSlot: string; newSlot: string }>;
+  @Event() slotChanged: EventEmitter<SlotChangedEvent>;
 
-  @State() private expandIcon: string = '';
-  @State() private showContent: boolean = false;
-  @State() private minimizeIcon: string = '';
-  @State() private floating: boolean = null;
+  @State() private expandIcon = '';
+  @State() private showContent = false;
+  @State() private minimizeIcon = '';
+  @State() private floating = false;
 
-  private previousWidth: string = null;
-  private previousHeight: string = null;
-
-  private observer: MutationObserver = null;
+  private previousWidth: string;
+  private previousHeight: string;
+  private observer: MutationObserver;
 
   componentWillLoad() {
     this.resetLayoutState();
 
     this.floating = this.variant === 'floating';
-
-    if (this.showPreviewContent && this.isBottomTopPane) {
-      console.warn('Preview content is only available on vertical side panes!');
-    }
 
     this.setIcons();
 
@@ -255,14 +248,14 @@ export class Pane {
       }
     }
 
-    this.expandPaneChange.emit({
+    this.expandedChanged.emit({
       position: this.position,
       expanded: this.expanded,
     });
   }
 
   @Watch('isMobile')
-  onMobileChange(): void {
+  onMobileChange() {
     this.resetLayoutState();
     this.setIcons();
     this.expanded = false;
@@ -361,29 +354,15 @@ export class Pane {
     });
   }
 
-  hidePaneContent() {
-    if (this.showPreviewContent && this.isLeftRightPane && !this.isMobile) {
-      return false;
-    } else if (this.showContent) {
-      return false;
-    }
-    return true;
-  }
-
   render() {
     return (
       <Host
         class={{
-          'inline-color': !this.floating && !this.isMobile,
+          'inline-color': true /* !this.floating || this.isMobile */,
           'mobile-overlay': this.expanded && this.isMobile,
           'top-expanded': this.expanded && this.isMobileTop && this.isMobile,
           'bottom-expanded':
             this.expanded && !this.isMobileTop && this.isMobile,
-          'preview-content':
-            this.isLeftRightPane &&
-            !this.expanded &&
-            !this.isMobile &&
-            this.showPreviewContent,
           'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
           'left-right-pane': this.isLeftRightPane && !this.isMobile,
           [`${this.position}-pane-border`]: !this.isMobile && !this.floating,
@@ -398,6 +377,7 @@ export class Pane {
             [`${this.position}-pane-border`]: !this.isMobile,
             'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
             'left-right-pane': this.isLeftRightPane && !this.isMobile,
+            'mobile-pane': this.isMobile,
             'mobile-border-top':
               this.isMobileTop && this.isMobile && !this.expanded,
             'mobile-border-bottom':
@@ -434,12 +414,6 @@ export class Pane {
                 rotate:
                   !this.expanded && !this.isMobile && this.isLeftRightPane,
               }}
-              hidden={
-                this.showPreviewContent &&
-                !this.isMobile &&
-                !this.expanded &&
-                this.isLeftRightPane
-              }
             >
               {this.icon ? (
                 <ix-icon
@@ -453,10 +427,12 @@ export class Pane {
                   name={this.icon}
                 ></ix-icon>
               ) : null}
-              <div class="title-text-overflow">{this.heading}</div>
+              <div class="title-text-overflow">
+                <ix-typography format="h4">{this.heading}</ix-typography>
+              </div>
             </span>
           </div>
-          <div class="side-pane-content" hidden={this.hidePaneContent()}>
+          <div class="side-pane-content" hidden={!this.showContent}>
             <slot></slot>
           </div>
         </aside>

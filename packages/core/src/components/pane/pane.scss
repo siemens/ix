@@ -11,8 +11,11 @@
 @import 'mixins/shadow-dom/component';
 @import '~animate.css/animate.min';
 
-$side-pane-expanded-width: 16rem;
-$side-pane-mini-content-width: 76px;
+@mixin set-border($position) {
+  @if $position {
+    border-#{$position}: var(--theme-app-header--border-width) solid var(--theme-color-soft-bdr);
+  }
+}
 
 :host {
   @include ix-component;
@@ -26,13 +29,10 @@ $side-pane-mini-content-width: 76px;
   }
 
   .title-text {
-    font-family: "Siemens Sans", serif;
-    font-weight: 700;
     display: flex;
     align-items: center;
-    font-size: 16px;
-    gap: 8px;
-    width: calc(100% - 40px);
+    width: 100%;
+    gap: var(--theme-space-1);
 
     .title-text-overflow {
       position: relative;
@@ -47,7 +47,7 @@ $side-pane-mini-content-width: 76px;
   }
 
   .header-gap {
-    gap: 8px;
+    gap: var(--theme-space-1);
   }
 
   .top-bottom-pane {
@@ -107,32 +107,32 @@ $side-pane-mini-content-width: 76px;
     transform: rotate(-45deg);
   }
 
+  .mobile-pane {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
   .title-mobile {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    margin: 0.5rem 1.2rem;
+    margin: var(--theme-space-1) var(--theme-space-2);
   }
 
   .side-pane-content {
-    padding: 0.5rem 1.2rem;
+    padding: var(--theme-space-1) var(--theme-space-2);
     overflow: auto;
     height: 100%;
     width: 100%;
   }
 
   .mobile-border-top {
-    border-bottom: 1px solid var(--theme-color-soft-bdr);
+    @include set-border(bottom);
   }
 
   .mobile-border-bottom {
-    border-top: 1px solid var(--theme-color-soft-bdr);
-  }
-}
-
-@mixin set-border($position) {
-  @if $position {
-    border-#{$position}: 1px solid var(--theme-color-soft-bdr);
+    @include set-border(top);
   }
 }
 
@@ -141,7 +141,7 @@ $side-pane-mini-content-width: 76px;
 }
 
 :host(.box-shadow) {
-  box-shadow: 0 0 15px black;
+  box-shadow: 0 0 1rem black;
 }
 
 :host(.left-pane-border) {
@@ -168,13 +168,9 @@ $side-pane-mini-content-width: 76px;
   width: 100%;
   position: absolute;
   z-index: 100;
-  height: 100%;
 
   .side-pane-content {
-    padding: 0.5rem 1.2rem;
-    overflow: scroll;
-    height: calc(100% - 40px);
-    width: 100%;
+    height: calc(100% - 2.5rem);
   }
 }
 
@@ -186,18 +182,10 @@ $side-pane-mini-content-width: 76px;
   bottom: 0;
 }
 
-:host(.preview-content) {
-  width: 76px;
-  overflow: hidden;
-}
-
 :host(.left-right-pane) {
   height: 100%;
-  width: 40px;
 }
 
 :host(.top-bottom-pane) {
   width: 100%;
-  height: 40px;
 }
-

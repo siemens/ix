@@ -13,7 +13,7 @@
 
 @mixin set-padding($position) {
   @if $position {
-    padding-#{$position}: 40px;
+    padding-#{$position}: 2.5rem;
   }
 }
 

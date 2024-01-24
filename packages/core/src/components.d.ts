@@ -32,7 +32,7 @@ import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
-import { ExpandPaneChangeEvent, Position } from "./components/pane/pane";
+import { ExpandedChangedEvent, Position, SlotChangedEvent } from "./components/pane/pane";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -70,7 +70,7 @@ export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
-export { ExpandPaneChangeEvent, Position } from "./components/pane/pane";
+export { ExpandedChangedEvent, Position, SlotChangedEvent } from "./components/pane/pane";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -1672,6 +1672,9 @@ export namespace Components {
          */
         "showItemCount": boolean;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxPane {
         /**
           * Toggle border
@@ -1695,10 +1698,6 @@ export namespace Components {
          */
         "position": Position;
         /**
-          * Toggle either the preview content is shown or not
-         */
-        "showPreviewContent": boolean;
-        /**
           * The maximum size of the sidebar, when it is expanded
          */
         "size": | '240px'
@@ -1714,6 +1713,9 @@ export namespace Components {
          */
         "variant": 'floating' | 'inline';
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxPaneLayout {
         /**
           * Toggle border
@@ -1725,7 +1727,7 @@ export namespace Components {
         "layout": | 'full-height-left-right'
     | 'full-width-top-bottom';
         /**
-          * Behaviour of the side pane
+          * Variant of the side pane
          */
         "variant": 'floating' | 'inline';
     }
@@ -3549,9 +3551,12 @@ declare global {
         new (): HTMLIxPaginationElement;
     };
     interface HTMLIxPaneElementEventMap {
-        "expandPaneChange": ExpandPaneChangeEvent;
-        "slotChanged": { oldSlot: string; newSlot: string };
+        "expandedChanged": ExpandedChangedEvent;
+        "slotChanged": SlotChangedEvent;
     }
+    /**
+     * @since 2.1.0
+     */
     interface HTMLIxPaneElement extends Components.IxPane, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxPaneElementEventMap>(type: K, listener: (this: HTMLIxPaneElement, ev: IxPaneCustomEvent<HTMLIxPaneElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3566,6 +3571,9 @@ declare global {
         prototype: HTMLIxPaneElement;
         new (): HTMLIxPaneElement;
     };
+    /**
+     * @since 2.1.0
+     */
     interface HTMLIxPaneLayoutElement extends Components.IxPaneLayout, HTMLStencilElement {
     }
     var HTMLIxPaneLayoutElement: {
@@ -5783,6 +5791,9 @@ declare namespace LocalJSX {
          */
         "showItemCount"?: boolean;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxPane {
         /**
           * Toggle border
@@ -5802,18 +5813,14 @@ declare namespace LocalJSX {
         "icon"?: string;
         "isMobile"?: boolean;
         /**
-          * Event
+          * This event is triggered when the pane either expands or contracts
          */
-        "onExpandPaneChange"?: (event: IxPaneCustomEvent<ExpandPaneChangeEvent>) => void;
-        "onSlotChanged"?: (event: IxPaneCustomEvent<{ oldSlot: string; newSlot: string }>) => void;
+        "onExpandedChanged"?: (event: IxPaneCustomEvent<ExpandedChangedEvent>) => void;
+        "onSlotChanged"?: (event: IxPaneCustomEvent<SlotChangedEvent>) => void;
         /**
           * Placement of the sidebar
          */
         "position"?: Position;
-        /**
-          * Toggle either the preview content is shown or not
-         */
-        "showPreviewContent"?: boolean;
         /**
           * The maximum size of the sidebar, when it is expanded
          */
@@ -5830,6 +5837,9 @@ declare namespace LocalJSX {
          */
         "variant"?: 'floating' | 'inline';
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxPaneLayout {
         /**
           * Toggle border
@@ -5841,7 +5851,7 @@ declare namespace LocalJSX {
         "layout"?: | 'full-height-left-right'
     | 'full-width-top-bottom';
         /**
-          * Behaviour of the side pane
+          * Variant of the side pane
          */
         "variant"?: 'floating' | 'inline';
     }
@@ -6872,7 +6882,13 @@ declare module "@stencil/core" {
              * @since 1.5.0
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
+            /**
+             * @since 2.1.0
+             */
             "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
+            /**
+             * @since 2.1.0
+             */
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             /**

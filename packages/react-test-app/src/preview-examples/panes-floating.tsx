@@ -8,11 +8,9 @@
  */
 
 import { IxPane, IxPaneLayout } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import React from 'react';
 
 export default () => {
-  const [hidden, setHidden] = useState(true);
-
   return (
     <IxPaneLayout variant="floating" layout="full-height-left-right">
       <IxPane heading="TOP" slot="top"></IxPane>

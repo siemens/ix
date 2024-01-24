@@ -44,7 +44,7 @@ regressionTest.describe('pane: basic', () => {
     await page.setViewportSize(viewPorts.sm);
     await page.locator('ix-icon-button').first().click();
     await page.waitForTimeout(1000);
-    await page.locator('ix-button').first().click();
+    await page.locator('p').first().click();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

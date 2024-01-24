@@ -21,6 +21,9 @@ import { Position } from '../pane/pane';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
+/**
+ * @since 2.1.0
+ */
 @Component({
   tag: 'ix-pane-layout',
   styleUrl: 'pane-layout.scss',
@@ -30,7 +33,7 @@ export class Panes {
   @Element() hostElement: HTMLIxPaneLayoutElement;
 
   /**
-   * Behaviour of the side pane
+   * Variant of the side pane
    */
   @Prop() variant: 'floating' | 'inline' = 'inline';
 
@@ -46,12 +49,12 @@ export class Panes {
    */
   @Prop() borderless: boolean = false;
 
-  @State() private isMobile: boolean = false;
-  @State() private paneElements: number = 0;
-  @State() private floating: boolean = null;
+  @State() private isMobile = false;
+  @State() private paneElements = 0;
+  @State() private floating = false;
   @State() private slots: Array<string> = [];
 
-  private observer: MutationObserver = null;
+  private observer: MutationObserver;
 
   componentWillLoad() {
     this.floating = this.variant === 'floating';
@@ -197,15 +200,11 @@ export class Panes {
 
   private getContentContainerClasses() {
     return {
-      'padding-top':
-        this.floating && !this.isMobile && this.slots.includes('top'),
-      'padding-bottom':
-        this.floating && !this.isMobile && this.slots.includes('bottom'),
-      'padding-left':
-        this.floating && !this.isMobile && this.slots.includes('left'),
-      'padding-right':
-        this.floating && !this.isMobile && this.slots.includes('right'),
-      absolute: this.floating && !this.isMobile,
+      'padding-top': this.slots.includes('top'),
+      'padding-bottom': this.slots.includes('bottom'),
+      'padding-left': this.slots.includes('left'),
+      'padding-right': this.slots.includes('right'),
+      absolute: true,
     };
   }
 
@@ -223,10 +222,8 @@ export class Panes {
                   <slot name="top"></slot>
                 </div>
                 {!this.floating ? (
-                  <div class={this.getContentContainerClasses()}>
-                    <div class="content">
-                      <slot name="content"></slot>
-                    </div>
+                  <div class="content">
+                    <slot name="content"></slot>
                   </div>
                 ) : null}
                 <div>
@@ -257,10 +254,8 @@ export class Panes {
                   <slot name="left"></slot>
                 </div>
                 {!this.floating ? (
-                  <div class={this.getContentContainerClasses()}>
-                    <div class="content">
-                      <slot name="content"></slot>
-                    </div>
+                  <div class="content">
+                    <slot name="content"></slot>
                   </div>
                 ) : null}
                 <div>
