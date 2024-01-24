@@ -1,4 +1,4 @@
-Panes are interactive components that allow users to access content that isn't constantly visible on the screen. Panes consist of a basic layout with a header and a content area. When collapsed, panes can be fully hidden or reduced to a bar. In our applications, we often include contextual information, options, trees and lists in the content area. 
+Panes are interactive components that allow users to access content that isn't constantly visible on the screen. Panes consist of a basic layout with a header and a content area. When collapsed, panes can be fully hidden or reduced to a bar. In our applications, we often include contextual information, options, trees and lists in the pane's content area. 
 
 Panes can help users to focus better on their tasks since related controls are visually grouped and the main content contains less information. They are beneficial to use for more compact and hierarchically better organized content, providing a more dynamic layout.
 
@@ -12,9 +12,9 @@ Panes can help users to focus better on their tasks since related controls are v
 ## Options
 - **Borderless**: Panes can have borders to visually split them from other content areas. We typically use borderless panes when they are placed within layouts that already contain other visual means for splitting areas.
 - **Heading**: Set a headline for the pane. We typically use a short name that describes its content.
-- **Icon**: An icon can be displayed before the heading to the title.
-- **Position**: Panes can be positioned on the left, top, right or bottom. Typically at Siemens, we use left panes for structuring components like trees or lists and right panes for contextual information. We use top and bottom panes to communicate a clear "top to bottom" hierarchy to the user.
-- **Size**: Picking a suitable pane width or height assures a smooth experience to the user that doesn't require scrolling. Sizes can be picked either as fixed size (in pixel) and as relative size (in percent) depending on the intended layout. Sizes only apply to medium and large screen sizes. On small screens panes are always be full screen (see responsive behavior).
+- **Icon**: An icon can be displayed in the pane header next to the title.
+- **Position**: Panes can be positioned on the left, top, right or bottom. Typically at Siemens, we use left panes for structuring components like trees or lists and right panes for contextual information. In our applications, top and bottom panes are less common but can communicate a clear "top to bottom" hierarchy to the user.
+- **Size**: Picking a suitable pane width or height assures a smooth experience to the user that doesn't require scrolling. Sizes can be picked either as fixed size (in pixel) and as relative size (in percent) depending on the intended layout. Sizes only apply to medium and large screen sizes. On small screens panes are always displayed full screen (see responsive behavior).
 - **Variant**: Floating panes are placed above (z-axis) the main content but below the nav menu and header. When expanded, they cover a part of the main content. Inline panes are placed on one level with the main content. When expanded, they move the main content and reduce its available space.
 
 - **Layout**: Depending on which pane should have more focus the top/bottom or left/right panes can use more space.
@@ -44,15 +44,15 @@ Floating panes are not visible in the collapsed state as users trigger them from
 
 
 ## Dos and Don'ts
-- Do use to organize the content and guide users' attention. 
-- Do use to display different views within the single screen. 
-- Do use to expand or collapse the content to hide or reveal specific content. 
-- Don't use for small amount of content.  
-- Don't use for content that should always be visible to the user.
-- Don't fit oversized content to avoid the need for scrolling.
+- Do use to organize the content and guide users' attention
+- Do use to display different views within the single screen
+- Do use to expand or collapse the content to hide or reveal specific content
+- Don't use for small amount of content
+- Don't use for content that should always be visible to the user
+- Don't fit oversized content to avoid the need for scrolling
 
 ## Related patterns
 
 [Drawers](./drawers.md)
-[Header](../controls/navigation/application-header.md)
-[Menu](../controls/navigation/basic-navigation.md)
+[Header](../controls/application-frame/application-header.md)
+[Menu](../controls/application-frame/application-menu.md)
