@@ -159,8 +159,6 @@ Contributions, issues and feature requests are welcome!
 
 - Daniel Leroux <daniel.leroux@siemens.com>
 - Lukas Maurer <lukas.maurer@siemens.com>
-- Carlos Leandro Cruz Ferrer <carlos.cruz_ferrer@siemens.com>
-- Gonçalo Ferreira <goncalo.alves-ferreira@siemens.com>
 
 ## 📝 License
 

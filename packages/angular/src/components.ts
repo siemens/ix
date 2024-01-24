@@ -74,14 +74,14 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
 
 
 @ProxyCmp({
-  inputs: ['image', 'initials']
+  inputs: ['extra', 'image', 'initials', 'username']
 })
 @Component({
   selector: 'ix-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['image', 'initials'],
+  inputs: ['extra', 'image', 'initials', 'username'],
 })
 export class IxAvatar {
   protected el: HTMLElement;
@@ -1719,7 +1719,8 @@ export class IxModalHeader {
 
 export declare interface IxModalHeader extends Components.IxModalHeader {
   /**
-   * Close icon is clicked
+   * Emits when close icon is clicked and closes the modal
+Can be prevented, in which case only the event is triggered, and the modal remains open
    */
   closeClick: EventEmitter<CustomEvent<MouseEvent>>;
 }

@@ -124,7 +124,9 @@ export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicati
 
 export const IxAvatar = /*@__PURE__*/ defineContainer<JSX.IxAvatar>('ix-avatar', defineIxAvatar, [
   'image',
-  'initials'
+  'initials',
+  'username',
+  'extra'
 ]);
 
 

@@ -7,6 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  Component,
+  Element,
+  Fragment,
+  h,
+  Host,
+  Prop,
+  readTask,
+  State,
+} from '@stencil/core';
+import { BaseButton } from '../button/base-button';
+import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+
 function DefaultAvatar(props: { initials?: string }) {
   const { initials } = props;
 
@@ -40,17 +53,40 @@ function DefaultAvatar(props: { initials?: string }) {
   );
 }
 
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  readTask,
-  State,
-} from '@stencil/core';
-import { BaseButton } from '../button/base-button';
-import { closestElement } from '../utils/shadow-dom';
+function AvatarImage(props: { image: string; initials: string }) {
+  return (
+    <li class="avatar">
+      {props.image ? (
+        <img src={props.image} class="avatar-image"></img>
+      ) : (
+        <DefaultAvatar initials={props.initials} />
+      )}
+    </li>
+  );
+}
+
+function UserInfo(props: {
+  image: string;
+  initials: string;
+  userName: string;
+  extra: string;
+}) {
+  return (
+    <Fragment>
+      <div class="user-info" onClick={(event) => event.preventDefault()}>
+        <AvatarImage image={props.image} initials={props.initials} />
+        <div class="user">
+          <div class="username">{props.userName}</div>
+          {props.extra && (
+            <ix-typography class="extra" color={'soft'}>
+              {props.extra}
+            </ix-typography>
+          )}
+        </div>
+      </div>
+    </Fragment>
+  );
+}
 
 /**
  * @since 2.0.0
@@ -75,11 +111,34 @@ export class Avatar {
    */
   @Prop() initials: string;
 
+  /**
+   * If set an info card displaying the username will be placed inside the dropdown.
+   * Note: Only working if avatar is part of the ix-application-header
+   *
+   * @since 2.1.0
+   */
+  @Prop() username: string;
+
+  /**
+   * Optional description text that will be displayed underneath the username.
+   * Note: Only working if avatar is part of the ix-application-header
+   *
+   * @since 2.1.0
+   */
+  @Prop() extra: string;
+
   @State() isClosestApplicationHeader = false;
+  @State() hasSlottedElements = false;
+
+  private slotElement: HTMLSlotElement;
 
   componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
     this.isClosestApplicationHeader = closest !== null;
+  }
+
+  private slottedChanged() {
+    this.hasSlottedElements = hasSlottedElements(this.slotElement);
   }
 
   private resolveAvatarTrigger() {
@@ -106,16 +165,27 @@ export class Avatar {
             type="button"
             variant="primary"
           >
-            <li class="avatar">
-              {this.image ? (
-                <img src={this.image} class="avatar-image"></img>
-              ) : (
-                <DefaultAvatar initials={this.initials} />
-              )}
-            </li>
+            <AvatarImage image={this.image} initials={this.initials} />
           </BaseButton>
-          <ix-dropdown trigger={this.resolveAvatarTrigger()}>
-            <slot></slot>
+          <ix-dropdown
+            trigger={this.resolveAvatarTrigger()}
+            class="avatar-dropdown"
+          >
+            {this.username && (
+              <Fragment>
+                <UserInfo
+                  extra={this.extra}
+                  image={this.image}
+                  initials={this.initials}
+                  userName={this.username}
+                />
+                {this.hasSlottedElements && <ix-divider></ix-divider>}
+              </Fragment>
+            )}
+            <slot
+              onSlotchange={() => this.slottedChanged()}
+              ref={(ref: HTMLSlotElement) => (this.slotElement = ref)}
+            ></slot>
           </ix-dropdown>
         </Host>
       );
@@ -123,13 +193,7 @@ export class Avatar {
 
     return (
       <Host>
-        <li class="avatar">
-          {this.image ? (
-            <img src={this.image} class="avatar-image"></img>
-          ) : (
-            <DefaultAvatar initials={this.initials} />
-          )}
-        </li>
+        <AvatarImage image={this.image} initials={this.initials} />
       </Host>
     );
   }

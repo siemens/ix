@@ -481,11 +481,15 @@
       ],
       "dependencies": [
         "ix-dropdown",
+        "ix-divider",
+        "ix-typography",
         "ix-spinner"
       ],
       "dependencyGraph": {
         "ix-avatar": [
           "ix-dropdown",
+          "ix-divider",
+          "ix-typography",
           "ix-spinner"
         ],
         "ix-menu-avatar": [
@@ -493,6 +497,32 @@
         ]
       },
       "props": [
+        {
+          "name": "extra",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "extra",
+          "reflectToAttr": false,
+          "docs": "Optional description text that will be displayed underneath the username.\nNote: Only working if avatar is part of the ix-application-header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "image",
           "type": "string",
@@ -534,6 +564,32 @@
           ],
           "optional": false,
           "required": false
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "username",
+          "reflectToAttr": false,
+          "docs": "If set an info card displaying the username will be placed inside the dropdown.\nNote: Only working if avatar is part of the ix-application-header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
         }
       ],
       "methods": [],
@@ -553,12 +609,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "ix-basic-navigation is deprecated in favor of ix-application"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -581,7 +632,6 @@
           "ix-spinner"
         ]
       },
-      "deprecation": "ix-basic-navigation is deprecated in favor of ix-application",
       "props": [
         {
           "name": "applicationName",
@@ -4621,10 +4671,14 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-avatar",
         "ix-menu-category"
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-avatar": [
+          "ix-divider"
+        ],
         "ix-menu-category": [
           "ix-divider"
         ]
@@ -8456,12 +8510,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "ix-map-navigation is deprecated in favor of ix-application"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -8491,7 +8540,6 @@
           "ix-spinner"
         ]
       },
-      "deprecation": "ix-map-navigation is deprecated in favor of ix-application",
       "props": [
         {
           "name": "applicationName",
@@ -8766,12 +8814,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "since 2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-map-navigation"
@@ -8790,7 +8833,6 @@
           "ix-map-navigation-overlay"
         ]
       },
-      "deprecation": "since 2.1.0",
       "props": [
         {
           "name": "color",
@@ -9882,12 +9924,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "Use ix-application-header and it's avatar functionality instead"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -9903,13 +9940,14 @@
         ],
         "ix-avatar": [
           "ix-dropdown",
+          "ix-divider",
+          "ix-typography",
           "ix-spinner"
         ],
         "ix-menu-avatar-item": [
           "ix-dropdown-item"
         ]
       },
-      "deprecation": "Use ix-application-header and it's avatar functionality instead",
       "props": [
         {
           "name": "bottom",
@@ -10087,12 +10125,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "Use ix-application-header and it's  avatar functionality instead"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-avatar"
@@ -10108,7 +10141,6 @@
           "ix-menu-avatar-item"
         ]
       },
-      "deprecation": "Use ix-application-header and it's  avatar functionality instead",
       "props": [
         {
           "name": "icon",
@@ -11114,6 +11146,10 @@
               "Promise": {
                 "location": "global",
                 "id": "global::Promise"
+              },
+              "HTMLDialogElement": {
+                "location": "global",
+                "id": "global::HTMLDialogElement"
               }
             },
             "return": "Promise<void>"
@@ -11378,7 +11414,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Close icon is clicked",
+          "docs": "Emits when close icon is clicked and closes the modal\nCan be prevented, in which case only the event is triggered, and the modal remains open",
           "docsTags": []
         }
       ],
@@ -15684,6 +15720,7 @@
       "dependents": [
         "ix-action-card",
         "ix-application-switch-modal",
+        "ix-avatar",
         "ix-blind",
         "ix-card-list",
         "ix-content-header",
@@ -15704,6 +15741,9 @@
           "ix-typography"
         ],
         "ix-application-switch-modal": [
+          "ix-typography"
+        ],
+        "ix-avatar": [
           "ix-typography"
         ],
         "ix-blind": [

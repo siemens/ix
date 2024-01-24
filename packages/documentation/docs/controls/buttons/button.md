@@ -1,5 +1,5 @@
 ---
-title: Buttons
+title: Button
 ---
 
 import DocsTabs from '@site/src/components/DocsTabs';

@@ -44,4 +44,75 @@ test.describe('embedded into header', () => {
     await expect(avatar.locator('ix-dropdown')).toHaveClass(/show/);
     await expect(avatar.getByText('Item 1')).toBeVisible();
   });
+
+  test('show user-info', async ({ page, mount }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(
+      `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" extra="bar">
+        </ix-avatar>
+      </ix-application-header>
+    `
+    );
+
+    const avatar = page.locator('ix-avatar');
+    await avatar.click();
+
+    const userInfo = avatar.locator('.user-info');
+    const username = userInfo.locator('.username');
+    const extra = userInfo.locator('.extra');
+
+    await expect(avatar.locator('.user-info')).toBeVisible();
+
+    await expect(username).toHaveText('foo');
+    await expect(extra).toHaveText('bar');
+
+    await expect(avatar.locator('ix-divider')).not.toBeVisible();
+  });
+
+  test('should show divider if a element is slotted', async ({
+    page,
+    mount,
+  }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(
+      `
+      <ix-application-header name="Test">
+        <ix-avatar username="foo" extra="bar">
+          <ix-dropdown-item>test</ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+    `
+    );
+
+    const avatar = page.locator('ix-avatar');
+    await avatar.click();
+
+    await expect(avatar.locator('ix-divider')).toBeVisible();
+  });
+
+  test('should hide user info if no username is provided', async ({
+    page,
+    mount,
+  }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(
+      `
+      <ix-application-header name="Test">
+        <ix-avatar>
+          <ix-dropdown-item>Test</ix-dropdown-item>
+        </ix-avatar>
+      </ix-application-header>
+    `
+    );
+
+    const avatar = page.locator('ix-avatar');
+    await avatar.click();
+
+    const userInfo = avatar.locator('.user-info');
+
+    await expect(userInfo).not.toBeVisible();
+    await expect(avatar.locator('ix-divider')).not.toBeVisible();
+  });
 });

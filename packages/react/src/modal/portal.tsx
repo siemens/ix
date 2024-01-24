@@ -50,6 +50,8 @@ export const IxOverlay = (props: { delegate: ReactFrameworkDelegate }) => {
     props.delegate.removeViewFromPortal = async (id: string) => {
       removeOverlay(id);
     };
+
+    props.delegate.portalReady();
   }, []);
 
   useLayoutEffect(() => {

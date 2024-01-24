@@ -43,7 +43,7 @@ test.describe('datetime picker tests single', () => {
     });
 
     const incrementButtons = (
-      await page.$$('ix-icon-button:has(svg title:has-text("chevron-up"))')
+      await page.$$('ix-icon-button.arrows:first-child')
     ).slice(0, 3);
 
     for (const button of incrementButtons) {

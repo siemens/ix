@@ -146,6 +146,11 @@ export namespace Components {
      */
     interface IxAvatar {
         /**
+          * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "extra": string;
+        /**
           * Display an avatar image
          */
         "image": string;
@@ -153,10 +158,12 @@ export namespace Components {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials": string;
+        /**
+          * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "username": string;
     }
-    /**
-     * @deprecated ix-basic-navigation is deprecated in favor of ix-application
-     */
     interface IxBasicNavigation {
         /**
           * Application name
@@ -1257,9 +1264,6 @@ export namespace Components {
          */
         "url": string;
     }
-    /**
-     * @deprecated ix-map-navigation is deprecated in favor of ix-application
-     */
     interface IxMapNavigation {
         /**
           * Application name
@@ -1294,9 +1298,6 @@ export namespace Components {
          */
         "toggleSidebar": (show?: boolean) => Promise<void>;
     }
-    /**
-     * @deprecated since 2.1.0
-     */
     interface IxMapNavigationOverlay {
         /**
           * Color of icon
@@ -1428,9 +1429,6 @@ export namespace Components {
          */
         "show": boolean;
     }
-    /**
-     * @deprecated Use ix-application-header and it's avatar functionality instead
-     */
     interface IxMenuAvatar {
         /**
           * Second line of text
@@ -1460,9 +1458,6 @@ export namespace Components {
          */
         "top": string;
     }
-    /**
-     * @deprecated Use ix-application-header and it's  avatar functionality instead
-     */
     interface IxMenuAvatarItem {
         /**
           * Avatar dropdown icon
@@ -2586,9 +2581,6 @@ declare global {
         prototype: HTMLIxAvatarElement;
         new (): HTMLIxAvatarElement;
     };
-    /**
-     * @deprecated ix-basic-navigation is deprecated in favor of ix-application
-     */
     interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
     }
     var HTMLIxBasicNavigationElement: {
@@ -3184,9 +3176,6 @@ declare global {
         "navigationToggled": boolean;
         "contextMenuClick": void;
     }
-    /**
-     * @deprecated ix-map-navigation is deprecated in favor of ix-application
-     */
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3204,9 +3193,6 @@ declare global {
     interface HTMLIxMapNavigationOverlayElementEventMap {
         "closeClick": any;
     }
-    /**
-     * @deprecated since 2.1.0
-     */
     interface HTMLIxMapNavigationOverlayElement extends Components.IxMapNavigationOverlay, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMapNavigationOverlayElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationOverlayElement, ev: IxMapNavigationOverlayCustomEvent<HTMLIxMapNavigationOverlayElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3286,9 +3272,6 @@ declare global {
     interface HTMLIxMenuAvatarElementEventMap {
         "logoutClick": any;
     }
-    /**
-     * @deprecated Use ix-application-header and it's avatar functionality instead
-     */
     interface HTMLIxMenuAvatarElement extends Components.IxMenuAvatar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAvatarElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarElement, ev: IxMenuAvatarCustomEvent<HTMLIxMenuAvatarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3306,9 +3289,6 @@ declare global {
     interface HTMLIxMenuAvatarItemElementEventMap {
         "itemClick": MouseEvent;
     }
-    /**
-     * @deprecated Use ix-application-header and it's  avatar functionality instead
-     */
     interface HTMLIxMenuAvatarItemElement extends Components.IxMenuAvatarItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAvatarItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarItemElement, ev: IxMenuAvatarItemCustomEvent<HTMLIxMenuAvatarItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4017,6 +3997,11 @@ declare namespace LocalJSX {
      */
     interface IxAvatar {
         /**
+          * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "extra"?: string;
+        /**
           * Display an avatar image
          */
         "image"?: string;
@@ -4024,10 +4009,12 @@ declare namespace LocalJSX {
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "username"?: string;
     }
-    /**
-     * @deprecated ix-basic-navigation is deprecated in favor of ix-application
-     */
     interface IxBasicNavigation {
         /**
           * Application name
@@ -5251,9 +5238,6 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
-    /**
-     * @deprecated ix-map-navigation is deprecated in favor of ix-application
-     */
     interface IxMapNavigation {
         /**
           * Application name
@@ -5276,9 +5260,6 @@ declare namespace LocalJSX {
          */
         "onNavigationToggled"?: (event: IxMapNavigationCustomEvent<boolean>) => void;
     }
-    /**
-     * @deprecated since 2.1.0
-     */
     interface IxMapNavigationOverlay {
         /**
           * Color of icon
@@ -5417,9 +5398,6 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
     }
-    /**
-     * @deprecated Use ix-application-header and it's avatar functionality instead
-     */
     interface IxMenuAvatar {
         /**
           * Second line of text
@@ -5453,9 +5431,6 @@ declare namespace LocalJSX {
          */
         "top"?: string;
     }
-    /**
-     * @deprecated Use ix-application-header and it's  avatar functionality instead
-     */
     interface IxMenuAvatarItem {
         /**
           * Avatar dropdown icon
@@ -5643,7 +5618,7 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
-          * Close icon is clicked
+          * Emits when close icon is clicked and closes the modal Can be prevented, in which case only the event is triggered, and the modal remains open
          */
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }
@@ -6567,9 +6542,6 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
-            /**
-             * @deprecated ix-basic-navigation is deprecated in favor of ix-application
-             */
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
@@ -6672,25 +6644,13 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
-            /**
-             * @deprecated ix-map-navigation is deprecated in favor of ix-application
-             */
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
-            /**
-             * @deprecated since 2.1.0
-             */
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
-            /**
-             * @deprecated Use ix-application-header and it's avatar functionality instead
-             */
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
-            /**
-             * @deprecated Use ix-application-header and it's  avatar functionality instead
-             */
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
             /**
              * @since 2.0.0

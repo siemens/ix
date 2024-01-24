@@ -31,10 +31,9 @@ import {
       <IxDropdownItem label="Config 3"></IxDropdownItem>
     </IxDropdownButton>
 
-    <IxAvatar>
+    <IxAvatar username="John Doe" extra="Administrator">
       <IxDropdownItem label="Action 1"></IxDropdownItem>
       <IxDropdownItem label="Action 2"></IxDropdownItem>
-      <IxDropdownItem label="Action 3"></IxDropdownItem>
     </IxAvatar>
   </IxApplicationHeader>
 </template>
