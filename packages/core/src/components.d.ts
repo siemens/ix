@@ -1703,6 +1703,8 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    interface IxPlaygroundInternal {
+    }
     /**
      * @since 1.6.0
      */
@@ -2331,8 +2333,6 @@ export namespace Components {
           * Select orientation
          */
         "vertical": boolean;
-    }
-    interface MyComponent {
     }
 }
 export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
@@ -3471,6 +3471,12 @@ declare global {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
     };
+    interface HTMLIxPlaygroundInternalElement extends Components.IxPlaygroundInternal, HTMLStencilElement {
+    }
+    var HTMLIxPlaygroundInternalElement: {
+        prototype: HTMLIxPlaygroundInternalElement;
+        new (): HTMLIxPlaygroundInternalElement;
+    };
     /**
      * @since 1.6.0
      */
@@ -3821,12 +3827,6 @@ declare global {
         prototype: HTMLIxWorkflowStepsElement;
         new (): HTMLIxWorkflowStepsElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
@@ -3903,6 +3903,7 @@ declare global {
         "ix-modal-loading": HTMLIxModalLoadingElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-playground-internal": HTMLIxPlaygroundInternalElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
@@ -3927,7 +3928,6 @@ declare global {
         "ix-validation-tooltip": HTMLIxValidationTooltipElement;
         "ix-workflow-step": HTMLIxWorkflowStepElement;
         "ix-workflow-steps": HTMLIxWorkflowStepsElement;
-        "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -5707,6 +5707,8 @@ declare namespace LocalJSX {
     | 'success'
     | 'custom';
     }
+    interface IxPlaygroundInternal {
+    }
     /**
      * @since 1.6.0
      */
@@ -6418,8 +6420,6 @@ declare namespace LocalJSX {
          */
         "vertical"?: boolean;
     }
-    interface MyComponent {
-    }
     interface IntrinsicElements {
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
@@ -6496,6 +6496,7 @@ declare namespace LocalJSX {
         "ix-modal-loading": IxModalLoading;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
+        "ix-playground-internal": IxPlaygroundInternal;
         "ix-push-card": IxPushCard;
         "ix-row": IxRow;
         "ix-select": IxSelect;
@@ -6520,7 +6521,6 @@ declare namespace LocalJSX {
         "ix-validation-tooltip": IxValidationTooltip;
         "ix-workflow-step": IxWorkflowStep;
         "ix-workflow-steps": IxWorkflowSteps;
-        "my-component": MyComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -6680,6 +6680,7 @@ declare module "@stencil/core" {
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            "ix-playground-internal": LocalJSX.IxPlaygroundInternal & JSXBase.HTMLAttributes<HTMLIxPlaygroundInternalElement>;
             /**
              * @since 1.6.0
              */
@@ -6725,7 +6726,6 @@ declare module "@stencil/core" {
             "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
             "ix-workflow-steps": LocalJSX.IxWorkflowSteps & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }
