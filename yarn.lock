@@ -3598,10 +3598,10 @@
   resolved "https://registry.npmjs.org/@stencil/core/-/core-3.2.1.tgz#50bd07f478e04a5527a35aee61deff772b056860"
   integrity sha512-Ybm4NteQBScLq3H0JML/uqo4nWjNpZw1HAAURtR5LlRm7ptzNKO5S8EnHp3m05/uyTzeh9yLpUFHY7bxGNdYLg==
 
-"@stencil/core@^4.9.0":
-  version "4.9.0"
-  resolved "https://registry.npmjs.org/@stencil/core/-/core-4.9.0.tgz#f224813dde3a2b7f3cdccc5d39eaf777ad2d0ef2"
-  integrity sha512-aWSkhBmk3yPwRAkUwBbzRwmdhb8hKiQ/JMr9m5jthpBZLjtppYbzz6PN2MhSMDfRp6K93eQw5WogSEH4HHuB6w==
+"@stencil/core@^4.11.0":
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.11.0.tgz#c9c1aed7ac7358d63ce5f6fdf5001a2d7f17259c"
+  integrity sha512-zsKhgIkTGo+s7IthitxR/MKiMS3Ck1yIypOdXr0aE6ofboKqe9NdffTcxZ0vel0wD2bZYOb6WfPMzuhRKk6+FA==
 
 "@stencil/postcss@^2.1.0":
   version "2.1.0"
@@ -3616,10 +3616,10 @@
   resolved "https://registry.npmjs.org/@stencil/react-output-target/-/react-output-target-0.5.3.tgz#2a7186b7ba6c8721f92f4200e414b70854030d79"
   integrity sha512-68jwRp35CjAcwhTJ9yFD/3n+jrHOqvEH2jreVuPVvZK+4tkhPlYlwz0d1E1RlF3jyifUSfdkWUGgXIEy8Fo3yw==
 
-"@stencil/sass@^3.0.7":
-  version "3.0.7"
-  resolved "https://registry.npmjs.org/@stencil/sass/-/sass-3.0.7.tgz#7f8225cd0122b3c517c0f9007ed0cd98cf82ea3d"
-  integrity sha512-HcBjrh2CJ6aJnkOrBNSVyf1+x3FnUneYFk44rcx/jDK6Lx7R4w0dXMEsIR5MXqtROYWonZt7WtR8wsM1vcD+6w==
+"@stencil/sass@^3.0.8":
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-3.0.8.tgz#5140382dd7cdf05cc01898f4cfae2ff066dd8afd"
+  integrity sha512-QJUG4Dr/b3wSizViwQXorrk1PJzxOsKkq5hSqtUHc3NNG3iomC4DQFYGeu15yNfoCDBtt4qkyHSCynsekQ8F6A==
 
 "@stencil/vue-output-target@^0.8.7":
   version "0.8.7"

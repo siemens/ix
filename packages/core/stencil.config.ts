@@ -75,13 +75,13 @@ export const config: Config = {
       includeImportCustomElements: true,
       includePolyfills: false,
       includeDefineCustomElements: false,
-      excludeComponents: ['my-component', 'ix-icon'],
+      excludeComponents: ['ix-playground-internal', 'ix-icon'],
     }),
     angularOutputTarget({
       componentCorePackage: '@siemens/ix',
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
-      excludeComponents: ['my-component', 'ix-tree', 'ix-icon'],
+      excludeComponents: ['ix-playground-internal', 'ix-tree', 'ix-icon'],
       valueAccessorConfigs: [
         {
           elementSelectors:
@@ -105,7 +105,12 @@ export const config: Config = {
       includeImportCustomElements: true,
       includePolyfills: false,
       includeDefineCustomElements: false,
-      excludeComponents: ['my-component', 'ix-tree', 'ix-tree-item', 'ix-icon'],
+      excludeComponents: [
+        'ix-playground-internal',
+        'ix-tree',
+        'ix-tree-item',
+        'ix-icon',
+      ],
     }),
     {
       type: 'dist',
