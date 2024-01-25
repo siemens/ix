@@ -52,7 +52,7 @@ class DropdownController {
     this.dropdownRules[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
     if (dropdown.willPresent()) {
       dropdown.present();
-      this.dismissSubMenu(dropdown.getId());
+      this.dismissPath(dropdown.getId());
     }
   }
 
@@ -75,7 +75,7 @@ class DropdownController {
     }
   }
 
-  dismissSubMenu(uid: string) {
+  dismissPath(uid: string) {
     let path = this.buildComposedPath(uid, []);
 
     for (const dropdown of this.dropdowns) {

@@ -196,7 +196,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         dropdownController.present(this);
       } else {
         dropdownController.dismiss(this);
-        dropdownController.dismissSubMenu(this.getId());
+        dropdownController.dismissPath(this.getId());
       }
     };
 
