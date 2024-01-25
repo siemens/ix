@@ -12,12 +12,18 @@ import { Component, h, Host } from '@stencil/core';
 @Component({
   tag: 'ix-playground-internal',
   styleUrl: 'playground.scss',
-  shadow: true,
+  // shadow: true,
   // Set scoped=true and shadow=false to test global styles like checkbox etc
-  // scoped: true,
+  scoped: true,
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host style={{ margin: '5rem' }}>
+        <ix-button id="test">Test</ix-button>
+        <ix-tooltip for="#test">Some test 123</ix-tooltip>
+        <ix-slider></ix-slider>
+      </Host>
+    );
   }
 }

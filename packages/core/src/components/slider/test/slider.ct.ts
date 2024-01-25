@@ -42,3 +42,23 @@ test('should show tooltip by focus', async ({ page, mount }) => {
   await page.waitForTimeout(500);
   await expect(tooltip).not.toBeVisible();
 });
+
+test('should show tooltip by click', async ({ page, mount }) => {
+  await mount(`<ix-slider value="20"></ix-slider>`);
+
+  const slider = page.locator('ix-slider');
+  await expect(slider).toHaveClass(/hydrated/);
+
+  const tooltip = slider.locator('ix-tooltip');
+
+  await expect(tooltip).not.toBeVisible();
+
+  const box = await slider.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width / 3, box.y + box.height / 3);
+  await expect(tooltip).toBeVisible();
+
+  await page.mouse.up();
+  await expect(tooltip).not.toBeVisible();
+});
