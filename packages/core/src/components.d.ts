@@ -151,7 +151,7 @@ export namespace Components {
          */
         "extra": string;
         /**
-          * Display a avatar image
+          * Display an avatar image
          */
         "image": string;
         /**
@@ -4002,7 +4002,7 @@ declare namespace LocalJSX {
          */
         "extra"?: string;
         /**
-          * Display a avatar image
+          * Display an avatar image
          */
         "image"?: string;
         /**

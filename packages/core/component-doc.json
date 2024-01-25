@@ -391,7 +391,7 @@
       "docsTags": [
         {
           "name": "slot",
-          "text": "logo - Location of the Logo"
+          "text": "logo - Location of the logo"
         }
       ],
       "encapsulation": "shadow",
@@ -453,7 +453,7 @@
       "slots": [
         {
           "name": "logo",
-          "docs": "Location of the Logo"
+          "docs": "Location of the logo"
         }
       ],
       "parts": [],
@@ -534,7 +534,7 @@
           "mutable": false,
           "attr": "image",
           "reflectToAttr": false,
-          "docs": "Display a avatar image",
+          "docs": "Display an avatar image",
           "docsTags": [],
           "values": [
             {
