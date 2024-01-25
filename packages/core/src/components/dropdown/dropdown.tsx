@@ -390,46 +390,14 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
   }
 
-  /**
-  private isClickInsideDropdown(event: PointerEvent) {
-    const rect = this.dropdownRef.getBoundingClientRect();
-    return (
-      rect.top <= event.clientY &&
-      event.clientY <= rect.top + rect.height &&
-      rect.left <= event.clientX &&
-      event.clientX <= rect.left + rect.width
-    );
-  }
-  */
-
   private onDropdownClick(event: PointerEvent) {
     event.preventDefault();
     event.stopPropagation();
 
     if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
       dropdownController.dismiss(this);
+      dropdownController.dismissAll();
     }
-    /*
-    if (this.show === false || this.closeBehavior === false) {
-      return;
-    }
-
-    switch (this.closeBehavior) {
-      case 'inside':
-        if (this.isClickInsideDropdown(event)) {
-          dropdownController.dismiss(this);
-        }
-        break;
-      case 'outside':
-        if (!this.isClickInsideDropdown(event)) {
-          dropdownController.dismiss(this);
-        }
-        break;
-      case 'both':
-      default:
-        dropdownController.dismissAll();
-    }
-    */
   }
 
   /**

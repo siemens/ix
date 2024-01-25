@@ -52,21 +52,17 @@ class DropdownController {
     this.dropdownRules[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
     if (dropdown.willPresent()) {
       dropdown.present();
-      this.dismissByRule(dropdown.getId());
+      this.dismissSubMenu(dropdown.getId());
     }
   }
 
   dismiss(dropdown: DropdownInterface) {
-    console.log(`Dismiss ${dropdown.getId()} - ${dropdown.isPresent()}`);
-
     if (dropdown.willDismiss()) {
       dropdown.dismiss();
     }
   }
 
   dismissAll() {
-    console.log('Dismiss all');
-
     for (const dropdown of this.dropdowns) {
       if (
         dropdown.closeBehavior === 'inside' ||
@@ -81,22 +77,6 @@ class DropdownController {
 
   dismissSubMenu(uid: string) {
     let path = this.buildComposedPath(uid, []);
-    console.log(`Dismiss submenu ${uid} - ${path}`);
-    for (const dropdown of this.dropdowns) {
-      if (
-        dropdown.closeBehavior !== 'inside' &&
-        dropdown.closeBehavior !== false &&
-        !path.includes(dropdown.getId())
-      ) {
-        this.dismiss(dropdown);
-      }
-    }
-  }
-
-  private dismissByRule(lastPresentId: string) {
-    const path = this.buildComposedPath(lastPresentId, []);
-
-    console.log(`Dismiss path ${path}`);
 
     for (const dropdown of this.dropdowns) {
       if (
