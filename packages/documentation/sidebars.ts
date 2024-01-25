@@ -32,7 +32,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Whats happening',
+      label: 'What\'s happening?',
       items: [
         {
           type: 'doc',

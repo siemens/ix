@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.9.1",
-    "typescriptVersion": "5.2.2"
+    "version": "4.11.0",
+    "typescriptVersion": "5.3.3"
   },
   "components": [
     {
@@ -11230,11 +11230,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/my-component",
-      "filePath": "src/components/my-component/example-modal.tsx",
+      "dirPath": "src/components/playground",
+      "filePath": "src/components/playground/example-modal.tsx",
       "fileName": "example-modal.tsx",
-      "readmePath": "src/components/my-component/readme.md",
-      "usagesDir": "src/components/my-component/usage",
+      "readmePath": "src/components/playground/readme.md",
+      "usagesDir": "src/components/playground/usage",
       "tag": "ix-modal-example",
       "overview": "",
       "usage": {},
@@ -16758,29 +16758,6 @@
           "passive": false
         }
       ]
-    },
-    {
-      "dirPath": "src/components/my-component",
-      "filePath": "src/components/my-component/my-component.tsx",
-      "fileName": "my-component.tsx",
-      "readmePath": "src/components/my-component/readme.md",
-      "usagesDir": "src/components/my-component/usage",
-      "tag": "my-component",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "scoped",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
     }
   ],
   "typeLibrary": {
