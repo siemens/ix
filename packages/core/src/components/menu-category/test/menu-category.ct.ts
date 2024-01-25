@@ -37,15 +37,12 @@ test('should collapse by click', async ({ mount, page }) => {
   `);
   const categoryItem = page.locator('ix-menu-category');
   const app = page.locator('ix-basic-navigation');
-  const expandMenuButton = page
-    .locator('ix-menu')
-    .locator('.burger-menu-button');
+  const expandMenuButton = page.locator('ix-menu').locator('.burger-menu');
 
   await app.evaluate(
     (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
   );
 
-  await expandMenuButton.click();
   await categoryItem.click();
 
   const item = page.locator('ix-menu-item').getByText('Test 2');
@@ -53,6 +50,7 @@ test('should collapse by click', async ({ mount, page }) => {
   await expect(item).toHaveClass(/active/);
 
   await item.click();
+  await expandMenuButton.click();
 
   await expect(categoryItem.locator('.menu-items')).toHaveClass(
     /menu-items--expanded/
