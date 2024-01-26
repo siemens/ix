@@ -30,7 +30,20 @@ export type ExpandedChangedEvent = {
   position: string;
   expanded: boolean;
 };
-export type SlotChangedEvent = { oldSlot: string; newSlot: string };
+export type SlotChangedEvent = {
+  paneId: string;
+  newSlot: string;
+};
+export type CollapsibleChangedEvent = {
+  paneId: string;
+  collapsible: boolean;
+};
+export type VariantChangedEvent = {
+  paneId: string;
+  variant: 'floating' | 'inline';
+};
+
+let idCounter = 0;
 
 /**
  * @since 2.1.0
@@ -52,6 +65,11 @@ export class Pane {
    * Variant of the side pane
    */
   @Prop() variant: 'floating' | 'inline' = 'inline';
+
+  /**
+   * Define if the pane should have a collapsed state
+   */
+  @Prop({ reflect: true }) collapsible: boolean = true;
 
   /**
    * The maximum size of the sidebar, when it is expanded
@@ -92,6 +110,11 @@ export class Pane {
   @Prop({ mutable: true }) isMobile: boolean = false;
 
   /**
+   * @internal
+   */
+  @Prop() identifier: string = `pane-${idCounter++}`;
+
+  /**
    * This event is triggered when the pane either expands or contracts
    */
   @Event() expandedChanged: EventEmitter<ExpandedChangedEvent>;
@@ -101,14 +124,30 @@ export class Pane {
    */
   @Event() slotChanged: EventEmitter<SlotChangedEvent>;
 
+  /**
+   * @internal
+   */
+  @Event() collapsibleChanged: EventEmitter<CollapsibleChangedEvent>;
+
+  /**
+   * @internal
+   */
+  @Event() variantChanged: EventEmitter<VariantChangedEvent>;
+
   @State() private expandIcon = '';
   @State() private showContent = false;
   @State() private minimizeIcon = '';
   @State() private floating = false;
 
+  private validPositions = ['top', 'left', 'bottom', 'right'];
+
   private previousWidth: string;
   private previousHeight: string;
   private observer: MutationObserver;
+
+  get currentSlot() {
+    return this.hostElement.getAttribute('slot');
+  }
 
   componentWillLoad() {
     this.resetLayoutState();
@@ -126,6 +165,9 @@ export class Pane {
       this.isMobile = matchBreakpoint('sm');
     });
 
+    // set position
+    this.setPosition(this.currentSlot);
+
     // recognize a changed slot attribute
     this.observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -133,15 +175,15 @@ export class Pane {
           mutation.type === 'attributes' &&
           mutation.attributeName === 'slot'
         ) {
-          const newSlotValue = this.hostElement.getAttribute('slot');
+          const newSlot = this.currentSlot;
+          const oldSlot = mutation.oldValue;
 
-          if (mutation.oldValue !== newSlotValue) {
-            this.position = newSlotValue as Position;
-
+          if (newSlot !== oldSlot) {
             this.slotChanged.emit({
-              oldSlot: mutation.oldValue,
-              newSlot: newSlotValue,
+              paneId: this.identifier,
+              newSlot: newSlot,
             });
+            this.setPosition(newSlot);
           }
         }
       });
@@ -153,7 +195,13 @@ export class Pane {
   }
 
   disconnectedCallback() {
-    this.observer.disconnect();
+    this.observer?.disconnect();
+  }
+
+  private setPosition(value: string) {
+    if (this.validPositions.includes(value)) {
+      this.position = value as Position;
+    }
   }
 
   @Watch('position')
@@ -165,9 +213,22 @@ export class Pane {
     }
   }
 
+  @Watch('collapsible')
+  onCollapsibleChange(value: boolean) {
+    this.collapsibleChanged.emit({
+      paneId: this.identifier,
+      collapsible: value,
+    });
+  }
+
   @Watch('variant')
   onVariantChange(value: 'inline' | 'floating') {
     this.floating = value === 'floating';
+
+    this.variantChanged.emit({
+      paneId: this.identifier,
+      variant: value,
+    });
   }
 
   get isBottomTopPane() {
@@ -358,18 +419,23 @@ export class Pane {
     return (
       <Host
         class={{
-          'inline-color': true /* !this.floating || this.isMobile */,
+          'inline-color': !this.floating,
           'mobile-overlay': this.expanded && this.isMobile,
           'top-expanded': this.expanded && this.isMobileTop && this.isMobile,
           'bottom-expanded':
             this.expanded && !this.isMobileTop && this.isMobile,
           'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
           'left-right-pane': this.isLeftRightPane && !this.isMobile,
-          [`${this.position}-pane-border`]: !this.isMobile && !this.floating,
+          [`${this.position}-pane-border`]:
+            !this.borderless && !this.isMobile && !this.floating,
           'nav-left-border':
-            !this.borderless && !this.isMobile && this.position !== 'right',
-          'box-shadow': this.floating && !this.isMobile,
+            !this.borderless &&
+            !this.isMobile &&
+            this.position !== 'right' &&
+            this.floating,
+          'box-shadow': this.floating,
           'aria-expanded': this.expanded,
+          'not-visible': !this.collapsible && !this.expanded,
         }}
       >
         <aside
@@ -379,9 +445,17 @@ export class Pane {
             'left-right-pane': this.isLeftRightPane && !this.isMobile,
             'mobile-pane': this.isMobile,
             'mobile-border-top':
-              this.isMobileTop && this.isMobile && !this.expanded,
+              !this.borderless &&
+              this.isMobileTop &&
+              this.isMobile &&
+              !this.expanded &&
+              !this.floating,
             'mobile-border-bottom':
-              !this.isMobileTop && this.isMobile && !this.expanded,
+              !this.borderless &&
+              !this.isMobileTop &&
+              this.isMobile &&
+              !this.expanded &&
+              !this.floating,
           }}
         >
           <div
@@ -432,7 +506,10 @@ export class Pane {
               </div>
             </span>
           </div>
-          <div class="side-pane-content" hidden={!this.showContent}>
+          <div
+            class="side-pane-content"
+            hidden={this.expanded ? !this.showContent : true}
+          >
             <slot></slot>
           </div>
         </aside>

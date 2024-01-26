@@ -10,6 +10,7 @@
 import {
   Component,
   Element,
+  forceUpdate,
   h,
   Host,
   Listen,
@@ -33,16 +34,16 @@ export class Panes {
   @Element() hostElement: HTMLIxPaneLayoutElement;
 
   /**
-   * Variant of the side pane
-   */
-  @Prop() variant: 'floating' | 'inline' = 'inline';
-
-  /**
    * Choose the layout of the panes
    */
   @Prop({ reflect: true }) layout:
     | 'full-height-left-right'
     | 'full-width-top-bottom' = 'full-height-left-right';
+
+  /**
+   * Set the default variant for all panes in the layout
+   */
+  @Prop() variant: 'floating' | 'inline' = 'inline';
 
   /**
    * Toggle border
@@ -51,30 +52,36 @@ export class Panes {
 
   @State() private isMobile = false;
   @State() private paneElements = 0;
-  @State() private floating = false;
-  @State() private slots: Array<string> = [];
+  @State() private panes: Array<{
+    paneId: string;
+    slot: string;
+    collapsible: boolean;
+    floating: boolean;
+  }> = [];
 
   private observer: MutationObserver;
 
-  componentWillLoad() {
-    this.floating = this.variant === 'floating';
+  get currentPanes() {
+    return this.hostElement.querySelectorAll('ix-pane');
+  }
 
-    const panes = this.hostElement.querySelectorAll('ix-pane');
+  componentWillLoad() {
+    const panes = this.currentPanes;
 
     // set initial pane amount
     this.paneElements = panes.length;
 
-    // set initial slots
-    this.setSlots(panes);
+    // set initial panes
+    this.setPanes(panes);
 
     // recognize inserted or removed panes
     this.observer = new MutationObserver((mutations) => {
       if (mutations[0].addedNodes.item(0)?.nodeName === 'IX-PANE') {
         this.paneElements += 1;
-        this.setSlots(this.hostElement.querySelectorAll('ix-pane'));
+        this.setPanes(this.currentPanes);
       } else if (mutations[0].removedNodes.item(0)?.nodeName === 'IX-PANE') {
         this.paneElements -= 1;
-        this.setSlots(this.hostElement.querySelectorAll('ix-pane'));
+        this.setPanes(this.currentPanes);
       }
     });
     this.observer.observe(this.hostElement, {
@@ -89,32 +96,66 @@ export class Panes {
   }
 
   disconnectedCallback() {
-    this.observer.disconnect();
+    this.observer?.disconnect();
   }
 
-  private setSlots(panes: NodeListOf<HTMLIxPaneElement>) {
+  private setPanes(panes: NodeListOf<HTMLIxPaneElement>) {
+    this.panes = [];
     panes.forEach((pane) => {
-      this.slots.push(pane.slot);
+      this.panes.push({
+        paneId: pane.identifier,
+        slot: pane.slot,
+        collapsible: pane.collapsible,
+        floating: pane.variant === 'floating',
+      });
     });
   }
 
   @Listen('slotChanged')
   onSlotChanged(event: CustomEvent) {
-    const { oldSlot, newSlot } = event.detail;
+    const { paneId, newSlot } = event.detail;
 
-    this.slots = this.slots.filter((slot) => slot !== oldSlot);
-    this.slots.push(newSlot);
-  }
-
-  @Watch('variant')
-  onVariantChange(value: 'inline' | 'floating') {
-    this.floating = value === 'floating';
+    this.panes.forEach((currentSlot) => {
+      if (currentSlot.paneId === paneId) {
+        currentSlot.slot = newSlot;
+      }
+    });
 
     this.configureLayout();
+    forceUpdate(this.hostElement);
   }
 
-  @Watch('borderless')
+  @Listen('collapsibleChanged')
+  onCollapsibleChanged(event: CustomEvent) {
+    const { paneId, collapsible } = event.detail;
+
+    this.panes.forEach((currentSlot) => {
+      if (currentSlot.paneId === paneId) {
+        currentSlot.collapsible = collapsible;
+      }
+    });
+
+    forceUpdate(this.hostElement);
+  }
+
+  @Listen('variantChanged')
+  onVariantChanged(event: CustomEvent) {
+    const { paneId, variant } = event.detail;
+
+    this.panes.forEach((currentSlot) => {
+      if (currentSlot.paneId === paneId) {
+        currentSlot.floating = variant === 'floating';
+      }
+    });
+
+    console.log('variant changed');
+
+    forceUpdate(this.hostElement);
+  }
+
   @Watch('layout')
+  @Watch('variant')
+  @Watch('borderless')
   @Watch('paneElements')
   @Watch('isMobile')
   configureLayout() {
@@ -123,11 +164,7 @@ export class Panes {
     let leftCount = 0;
     let rightCount = 0;
 
-    const panes = Array.from(
-      this.hostElement.querySelectorAll('ix-pane')
-    ).reverse();
-
-    panes.forEach((sidePanelElement) => {
+    this.currentPanes.forEach((sidePanelElement) => {
       const isTop = sidePanelElement.slot === 'top';
       const isBottom = sidePanelElement.slot === 'bottom';
       const isLeft = sidePanelElement.slot === 'left';
@@ -157,13 +194,15 @@ export class Panes {
           return;
         }
         bottomCount++;
+      } else {
+        sidePanelElement.slot = undefined;
+        return;
       }
 
       if (this.isMobile) {
         sidePanelElement.style.removeProperty('z-index');
       } else {
         let zIndex = 1;
-
         if (this.layout === 'full-height-left-right') {
           if (isLeft || isRight) {
             zIndex = 2;
@@ -173,19 +212,24 @@ export class Panes {
             zIndex = 2;
           }
         }
-
         sidePanelElement.style.zIndex = zIndex.toString();
       }
 
-      sidePanelElement.position = sidePanelElement.slot as Position;
-      sidePanelElement.variant = this.variant;
+      if (!sidePanelElement.getAttribute('variant')) {
+        sidePanelElement.variant = this.variant;
+      }
 
       if (!sidePanelElement.getAttribute('borderless')) {
         if (this.borderless) {
           sidePanelElement.borderless = true;
         } else {
+          const hasCollapsibleLeftPane = this.panes.find(
+            (pane) => pane.slot === 'left' && pane.collapsible
+          );
           if (
+            sidePanelElement.variant === 'floating' &&
             this.layout === 'full-height-left-right' &&
+            hasCollapsibleLeftPane &&
             (sidePanelElement.position === 'top' ||
               sidePanelElement.position === 'bottom')
           ) {
@@ -198,14 +242,14 @@ export class Panes {
     });
   }
 
-  private getContentContainerClasses() {
-    return {
-      'padding-top': this.slots.includes('top'),
-      'padding-bottom': this.slots.includes('bottom'),
-      'padding-left': this.slots.includes('left'),
-      'padding-right': this.slots.includes('right'),
-      absolute: true,
-    };
+  private hasPadding(position: Position) {
+    const pane = this.panes.find((pane) => pane.slot === position);
+    return pane ? pane.collapsible && pane.floating : false;
+  }
+
+  private isFloating(position: Position) {
+    const pane = this.panes.find((pane) => pane.slot === position);
+    return pane ? pane.floating : false;
   }
 
   render() {
@@ -213,65 +257,71 @@ export class Panes {
       <Host>
         {this.layout == 'full-height-left-right' && !this.isMobile ? (
           <div class="side-panes-wrapper">
-            <div class="row">
-              <div>
+            <div
+              class={{
+                row: true,
+                'padding-left': this.hasPadding('left'),
+                'padding-right': this.hasPadding('right'),
+              }}
+            >
+              <div class={{ 'absolute-left': this.isFloating('left') }}>
                 <slot name="left"></slot>
               </div>
-              <div class="col">
-                <div>
+              <div
+                class={{
+                  col: true,
+                  'padding-top': this.hasPadding('top'),
+                  'padding-bottom': this.hasPadding('bottom'),
+                }}
+              >
+                <div class={{ 'absolute-top': this.isFloating('top') }}>
                   <slot name="top"></slot>
                 </div>
-                {!this.floating ? (
-                  <div class="content">
-                    <slot name="content"></slot>
-                  </div>
-                ) : null}
-                <div>
+                <div class="content">
+                  <slot name="content"></slot>
+                </div>
+                <div class={{ 'absolute-bottom': this.isFloating('bottom') }}>
                   <slot name="bottom"></slot>
                 </div>
               </div>
-              <div>
+              <div class={{ 'absolute-right': this.isFloating('right') }}>
                 <slot name="right"></slot>
               </div>
-              {this.floating ? (
-                <div class={this.getContentContainerClasses()}>
-                  <div class="content">
-                    <slot name="content"></slot>
-                  </div>
-                </div>
-              ) : null}
             </div>
           </div>
         ) : null}
         {this.layout == 'full-width-top-bottom' && !this.isMobile ? (
           <div class="side-panes-wrapper">
-            <div class="col">
-              <div>
+            <div
+              class={{
+                col: true,
+                'padding-top': this.hasPadding('top'),
+                'padding-bottom': this.hasPadding('bottom'),
+              }}
+            >
+              <div class={{ 'absolute-top': this.isFloating('top') }}>
                 <slot name="top"></slot>
               </div>
-              <div class="row">
-                <div>
+              <div
+                class={{
+                  row: true,
+                  'padding-left': this.hasPadding('left'),
+                  'padding-right': this.hasPadding('right'),
+                }}
+              >
+                <div class={{ 'absolute-left': this.isFloating('left') }}>
                   <slot name="left"></slot>
                 </div>
-                {!this.floating ? (
-                  <div class="content">
-                    <slot name="content"></slot>
-                  </div>
-                ) : null}
-                <div>
+                <div class="content">
+                  <slot name="content"></slot>
+                </div>
+                <div class={{ 'absolute-right': this.isFloating('right') }}>
                   <slot name="right"></slot>
                 </div>
               </div>
-              <div>
+              <div class={{ 'absolute-bottom': this.isFloating('bottom') }}>
                 <slot name="bottom"></slot>
               </div>
-              {this.floating ? (
-                <div class={this.getContentContainerClasses()}>
-                  <div class="content">
-                    <slot name="content"></slot>
-                  </div>
-                </div>
-              ) : null}
             </div>
           </div>
         ) : null}

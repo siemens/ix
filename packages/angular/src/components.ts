@@ -1758,14 +1758,14 @@ export declare interface IxPagination extends Components.IxPagination {
 
 
 @ProxyCmp({
-  inputs: ['borderless', 'expanded', 'heading', 'icon', 'position', 'size', 'variant']
+  inputs: ['borderless', 'collapsible', 'expanded', 'heading', 'icon', 'position', 'size', 'variant']
 })
 @Component({
   selector: 'ix-pane',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['borderless', 'expanded', 'heading', 'icon', 'position', 'size', 'variant'],
+  inputs: ['borderless', 'collapsible', 'expanded', 'heading', 'icon', 'position', 'size', 'variant'],
 })
 export class IxPane {
   protected el: HTMLElement;

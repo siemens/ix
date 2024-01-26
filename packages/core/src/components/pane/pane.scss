@@ -136,6 +136,10 @@
   }
 }
 
+:host(.not-visible) {
+  display: none;
+}
+
 :host(.inline-color) {
   background-color: var(--theme-color-1);
 }
@@ -144,12 +148,12 @@
   box-shadow: 0 0 1rem black;
 }
 
-:host(.left-pane-border) {
-  @include set-border(right);
+:host(.nav-left-border) {
+  border-left: var(--theme-app-header--border-width) solid var(--theme-color-weak-bdr);
 }
 
-:host(.nav-left-border) {
-  @include set-border(left);
+:host(.left-pane-border) {
+  @include set-border(right);
 }
 
 :host(.right-pane-border) {

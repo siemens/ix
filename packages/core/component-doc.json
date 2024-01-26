@@ -11736,6 +11736,28 @@
           "required": false
         },
         {
+          "name": "collapsible",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "collapsible",
+          "reflectToAttr": true,
+          "docs": "Define if the pane should have a collapsed state",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "expanded",
           "type": "boolean",
           "complexType": {
@@ -12035,7 +12057,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Variant of the side pane",
+          "docs": "Set the default variant for all panes in the layout",
           "docsTags": [],
           "default": "'inline'",
           "values": [
@@ -12060,6 +12082,16 @@
       "listeners": [
         {
           "event": "slotChanged",
+          "capture": false,
+          "passive": false
+        },
+        {
+          "event": "collapsibleChanged",
+          "capture": false,
+          "passive": false
+        },
+        {
+          "event": "variantChanged",
           "capture": false,
           "passive": false
         }
@@ -17332,7 +17364,17 @@
       "path": "src/components/pane/pane.tsx"
     },
     "src/components/pane/pane.tsx::SlotChangedEvent": {
-      "declaration": "{ oldSlot: string; newSlot: string }",
+      "declaration": "{\n  paneId: string;\n  newSlot: string;\n}",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/pane/pane.tsx::CollapsibleChangedEvent": {
+      "declaration": "{\n  paneId: string;\n  collapsible: boolean;\n}",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/pane/pane.tsx::VariantChangedEvent": {
+      "declaration": "{\n  paneId: string;\n  variant: 'floating' | 'inline';\n}",
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },

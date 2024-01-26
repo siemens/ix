@@ -32,7 +32,7 @@ import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
-import { ExpandedChangedEvent, Position, SlotChangedEvent } from "./components/pane/pane";
+import { CollapsibleChangedEvent, ExpandedChangedEvent, Position, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -70,7 +70,7 @@ export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
-export { ExpandedChangedEvent, Position, SlotChangedEvent } from "./components/pane/pane";
+export { CollapsibleChangedEvent, ExpandedChangedEvent, Position, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -1681,6 +1681,10 @@ export namespace Components {
          */
         "borderless": boolean;
         /**
+          * Define if the pane should have a collapsed state
+         */
+        "collapsible": boolean;
+        /**
           * State of the pane
          */
         "expanded": boolean;
@@ -1692,6 +1696,7 @@ export namespace Components {
           * Name of the icon
          */
         "icon": string;
+        "identifier": string;
         "isMobile": boolean;
         /**
           * Placement of the sidebar
@@ -1727,7 +1732,7 @@ export namespace Components {
         "layout": | 'full-height-left-right'
     | 'full-width-top-bottom';
         /**
-          * Variant of the side pane
+          * Set the default variant for all panes in the layout
          */
         "variant": 'floating' | 'inline';
     }
@@ -3553,6 +3558,8 @@ declare global {
     interface HTMLIxPaneElementEventMap {
         "expandedChanged": ExpandedChangedEvent;
         "slotChanged": SlotChangedEvent;
+        "collapsibleChanged": CollapsibleChangedEvent;
+        "variantChanged": VariantChangedEvent;
     }
     /**
      * @since 2.1.0
@@ -5800,6 +5807,10 @@ declare namespace LocalJSX {
          */
         "borderless"?: boolean;
         /**
+          * Define if the pane should have a collapsed state
+         */
+        "collapsible"?: boolean;
+        /**
           * State of the pane
          */
         "expanded"?: boolean;
@@ -5811,12 +5822,15 @@ declare namespace LocalJSX {
           * Name of the icon
          */
         "icon"?: string;
+        "identifier"?: string;
         "isMobile"?: boolean;
+        "onCollapsibleChanged"?: (event: IxPaneCustomEvent<CollapsibleChangedEvent>) => void;
         /**
           * This event is triggered when the pane either expands or contracts
          */
         "onExpandedChanged"?: (event: IxPaneCustomEvent<ExpandedChangedEvent>) => void;
         "onSlotChanged"?: (event: IxPaneCustomEvent<SlotChangedEvent>) => void;
+        "onVariantChanged"?: (event: IxPaneCustomEvent<VariantChangedEvent>) => void;
         /**
           * Placement of the sidebar
          */
@@ -5851,7 +5865,7 @@ declare namespace LocalJSX {
         "layout"?: | 'full-height-left-right'
     | 'full-width-top-bottom';
         /**
-          * Variant of the side pane
+          * Set the default variant for all panes in the layout
          */
         "variant"?: 'floating' | 'inline';
     }

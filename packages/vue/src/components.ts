@@ -725,20 +725,24 @@ export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-
 export const IxPane = /*@__PURE__*/ defineContainer<JSX.IxPane>('ix-pane', defineIxPane, [
   'heading',
   'variant',
+  'collapsible',
   'size',
   'borderless',
   'expanded',
   'position',
   'icon',
   'isMobile',
+  'identifier',
   'expandedChanged',
-  'slotChanged'
+  'slotChanged',
+  'collapsibleChanged',
+  'variantChanged'
 ]);
 
 
 export const IxPaneLayout = /*@__PURE__*/ defineContainer<JSX.IxPaneLayout>('ix-pane-layout', defineIxPaneLayout, [
-  'variant',
   'layout',
+  'variant',
   'borderless'
 ]);
 
