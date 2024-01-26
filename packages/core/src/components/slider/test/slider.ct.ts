@@ -43,7 +43,10 @@ test('should show tooltip by focus', async ({ page, mount }) => {
   await expect(tooltip).not.toBeVisible();
 });
 
-test('should show tooltip while mouse drags slider handle', async ({ page, mount }) => {
+test('should show tooltip while mouse drags slider handle', async ({
+  page,
+  mount,
+}) => {
   await mount(`<ix-slider value="20"></ix-slider>`);
 
   const slider = page.locator('ix-slider');
