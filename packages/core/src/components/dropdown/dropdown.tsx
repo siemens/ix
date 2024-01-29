@@ -128,7 +128,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   @Listen('ix-assign-sub-menu')
-  test({ detail }: CustomEvent<string>) {
+  cacheSubmenuId({ detail }: CustomEvent<string>) {
     this.assignedSubmenu.push(detail);
   }
 
