@@ -50,14 +50,14 @@ class DropdownController {
 
   present(dropdown: DropdownInterface) {
     this.dropdownRules[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
-    if (dropdown.willPresent()) {
+    if (!dropdown.isPresent() && dropdown.willPresent()) {
       dropdown.present();
       this.dismissPath(dropdown.getId());
     }
   }
 
   dismiss(dropdown: DropdownInterface) {
-    if (dropdown.willDismiss()) {
+    if (dropdown.isPresent() && dropdown.willDismiss()) {
       dropdown.dismiss();
     }
   }
