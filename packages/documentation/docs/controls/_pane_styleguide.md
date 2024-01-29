@@ -15,8 +15,8 @@ Panes can help users to focus better on their tasks since related controls are v
 - **Icon**: An icon can be displayed in the pane header next to the title.
 - **Position**: Panes can be positioned on the left, top, right or bottom. Typically at Siemens, we use left panes for structuring components like trees or lists and right panes for contextual information. In our applications, top and bottom panes are less common but can communicate a clear "top to bottom" hierarchy to the user.
 - **Size**: Picking a suitable pane width or height assures a smooth experience to the user that doesn't require scrolling. Sizes can be picked either as fixed size (in pixel) and as relative size (in percent) depending on the intended layout. Sizes only apply to medium and large screen sizes. On small screens panes are always displayed full screen (see responsive behavior).
+- **Collapsible**: Defines whether a pane is visible in collapsed state. We typically use inline panes with collapsible option and floating panes without since they are usually triggered from a dedicated control like a button or list item.
 - **Variant**: Floating panes are placed above (z-axis) the main content but below the nav menu and header. When expanded, they cover a part of the main content. Inline panes are placed on one level with the main content. When expanded, they move the main content and reduce its available space.
-
 - **Layout**: Depending on which pane should have more focus the top/bottom or left/right panes can use more space.
 
 ![Pane layouts](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1681-28910&mode=design&t=iP7h44Wf17P209P7-4)
@@ -27,7 +27,7 @@ Panes can help users to focus better on their tasks since related controls are v
 ## Behavior 
 - **Interaction**: Inline panes take a bar appearance when collapsed containing the title and the expand button. Users can expand inline panes by pressing on the expand button. To expand floating panes, users typically click on a button or another interactive component within the main content. They can close floating panes by either pressing on the button on the right side of the header or clicking outside of the pane area. This removes the pane from their view.
 - **Overflow**: When content extends the available space within the pane, scrollbars appear. The header stays fixed at the top while users can scroll the content area.
-- **Stacking**: When users expand multiple panes of the same variant and position, panes stack up. Inline panes stack ... Floating panes **Fill in final behavior**
+- **Stacking**: When users expand multiple panes within a pane layout, panes are stacked.
 - **Placement**: We typically fit a pane layout within the complete content area of a page bounded by the applications header on top and the navigation menu on the left.
 - **Responsiveness**: On large and medium size screens, all panes have a maximum width or height of `50%` of the screen. On small screens, all panes have full width and expand to full height. The header and navigation menu are visible. We show collapsed left and right panes on the top and bottom for a more efficient use of space.
 
@@ -38,10 +38,7 @@ Panes can help users to focus better on their tasks since related controls are v
 3. Opened nav menu
 
 ## States
-Panes have two states: collapsed and expanded. Appearance of the states varies between variants and screen sizes.
-
-Floating panes are not visible in the collapsed state as users trigger them from a control in the UI.
-
+Panes have two states: collapsed and expanded. The appearance of the states varies between variants and screen sizes.
 
 ## Dos and Don'ts
 - Do use to organize the content and guide users' attention
