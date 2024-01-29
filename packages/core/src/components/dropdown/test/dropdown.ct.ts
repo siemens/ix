@@ -120,7 +120,7 @@ test.describe('Close behavior', () => {
   ) {
     return mount(`
     <ix-button id="level-1">Trigger</ix-button>
-    <ix-dropdown id="dropdown-level-1" trigger="level-1" close-behavior="${config.closeBehavior}">
+    <ix-dropdown id="dropdown-level-1" trigger="level-1" close-behavior=${config.closeBehavior}>
       <ix-dropdown-item>Item 1</ix-dropdown-item>
       <ix-dropdown-item>Item 2</ix-dropdown-item>
       <ix-dropdown-item>Item 3</ix-dropdown-item>
@@ -332,7 +332,8 @@ test.describe('Nested dropdowns 1/2', () => {
     await triggerDropdown4.click();
     await expect(dropdown4).toBeVisible();
 
-    await triggerDropdown4.click();
+    await triggerDropdown3.click();
+    await expect(dropdown3).not.toBeVisible();
     await expect(dropdown4).not.toBeVisible();
   });
 
