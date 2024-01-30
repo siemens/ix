@@ -23,8 +23,8 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+import { CloseBehaviour } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
-import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
@@ -60,8 +60,8 @@ export { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { CloseBehaviour } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
-export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
@@ -784,7 +784,7 @@ export namespace Components {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
-        "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
+        "closeBehavior": CloseBehaviour;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -822,10 +822,6 @@ export namespace Components {
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger": string | HTMLElement | Promise<HTMLElement>;
-        /**
-          * Define one or more events to open dropdown
-         */
-        "triggerEvent": DropdownTriggerEvent | DropdownTriggerEvent[];
         /**
           * Update position of dropdown
          */
@@ -4725,7 +4721,7 @@ declare namespace LocalJSX {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
-        "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
+        "closeBehavior"?: CloseBehaviour;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -4767,10 +4763,6 @@ declare namespace LocalJSX {
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger"?: string | HTMLElement | Promise<HTMLElement>;
-        /**
-          * Define one or more events to open dropdown
-         */
-        "triggerEvent"?: DropdownTriggerEvent | DropdownTriggerEvent[];
     }
     /**
      * @since 1.3.0

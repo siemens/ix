@@ -5024,9 +5024,15 @@
           "name": "closeBehavior",
           "type": "\"both\" | \"inside\" | \"outside\" | boolean",
           "complexType": {
-            "original": "'inside' | 'outside' | 'both' | boolean",
+            "original": "CloseBehaviour",
             "resolved": "\"both\" | \"inside\" | \"outside\" | boolean",
-            "references": {}
+            "references": {
+              "CloseBehaviour": {
+                "location": "import",
+                "path": "dropdown-controller",
+                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehaviour"
+              }
+            }
           },
           "mutable": false,
           "attr": "close-behavior",
@@ -5288,7 +5294,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "ix-assign-sub-menu",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/dropdown-button",
@@ -16831,20 +16843,15 @@
       "docstring": "",
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
-    "src/components/dropdown/placement.ts::AlignedPlacement": {
-      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
-      "docstring": "",
-      "path": "src/components/dropdown/placement.ts"
-    },
-    "src/components/dropdown/dropdown.tsx::DropdownTriggerEvent": {
-      "declaration": "export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';",
-      "docstring": "",
-      "path": "src/components/dropdown/dropdown.tsx"
-    },
     "src/components/dropdown-button/dropdown-button.tsx::DropdownButtonVariant": {
       "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.tsx"
+    },
+    "src/components/dropdown/placement.ts::AlignedPlacement": {
+      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
+      "docstring": "",
+      "path": "src/components/dropdown/placement.ts"
     },
     "src/components/empty-state/empty-state.tsx::EmptyStateLayout": {
       "declaration": "export type EmptyStateLayout = 'large' | 'compact' | 'compactBreak';",
@@ -16935,6 +16942,11 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
+    },
+    "src/components/dropdown/dropdown-controller.ts::CloseBehaviour": {
+      "declaration": "export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;",
+      "docstring": "",
+      "path": "src/components/dropdown/dropdown-controller.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
