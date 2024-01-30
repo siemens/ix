@@ -129,8 +129,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   @Listen('ix-assign-sub-menu')
-  cacheSubmenuId({ detail }: CustomEvent<string>) {
+  cacheSubmenuId(event: CustomEvent<string>) {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+
+    const { detail } = event;
     this.assignedSubmenu.push(detail);
+    console.log(this.localUId, this.assignedSubmenu);
   }
 
   disconnectedCallback() {
@@ -218,7 +223,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.triggerElement = await this.resolveElement(element);
     if (this.triggerElement) {
       this.addEventListenersFor();
-
       this.triggerElement.dispatchEvent(
         new CustomEvent('ix-assign-sub-menu', {
           bubbles: true,
@@ -230,7 +234,32 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
   }
 
-  private resolveElement(
+  private async resolveElement(
+    element: string | HTMLElement | Promise<HTMLElement>
+  ) {
+    const el = await this.findElement(element);
+
+    return this.checkForSubmenuAnchor(el);
+  }
+
+  private async checkForSubmenuAnchor(element: Element) {
+    if (hasDropdownItemWrapperImplemented(element)) {
+      const dropdownItem = await element.getDropdownItemElement();
+      dropdownItem.isSubMenu = true;
+      this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
+
+      return dropdownItem;
+    }
+
+    if (element.tagName === 'IX-DROPDOWN-ITEM') {
+      (element as HTMLIxDropdownItemElement).isSubMenu = true;
+      this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
+    }
+
+    return element;
+  }
+
+  private findElement(
     element: string | HTMLElement | Promise<HTMLElement>
   ): Promise<Element> {
     if (element instanceof Promise) {
@@ -270,7 +299,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       if (this.anchorElement) {
         this.applyDropdownPosition();
-        await this.checkForSubmenuAnchor();
+        // await this.checkForSubmenuAnchor();
       }
     }
   }
@@ -384,26 +413,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.anchorElement = await (this.anchor
       ? this.resolveElement(this.anchor)
       : this.resolveElement(this.trigger));
-
-    await this.checkForSubmenuAnchor();
-  }
-
-  private async checkForSubmenuAnchor() {
-    if (!this.anchorElement) {
-      return;
-    }
-
-    if (hasDropdownItemWrapperImplemented(this.anchorElement)) {
-      const dropdownItem = await this.anchorElement.getDropdownItemElement();
-      dropdownItem.isSubMenu = true;
-      this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
-
-      this.anchorElement = dropdownItem;
-      return;
-    }
-
-    (this.anchorElement as HTMLIxDropdownItemElement).isSubMenu = true;
-    this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
   }
 
   private onDropdownClick(event: PointerEvent) {
@@ -442,6 +451,14 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         role="list"
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >
+        <div
+          style={{
+            background: 'rgba(255,0,0,0.4)',
+            position: 'absolute',
+          }}
+        >
+          {this.localUId}
+        </div>
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
 

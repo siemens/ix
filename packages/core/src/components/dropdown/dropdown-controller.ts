@@ -28,7 +28,10 @@ export interface DropdownInterface extends IxComponent {
 export function hasDropdownItemWrapperImplemented(
   item: unknown
 ): item is DropdownItemWrapper {
-  return (item as DropdownItemWrapper).getDropdownItemElement !== undefined;
+  return (
+    (item as DropdownItemWrapper).getDropdownItemElement !== undefined &&
+    typeof (item as DropdownItemWrapper).getDropdownItemElement === 'function'
+  );
 }
 
 export interface DropdownItemWrapper {
@@ -65,6 +68,7 @@ class DropdownController {
   dismiss(dropdown: DropdownInterface) {
     if (dropdown.isPresent() && dropdown.willDismiss()) {
       dropdown.dismiss();
+      delete this.dropdownRules[dropdown.getId()];
     }
   }
 
@@ -82,27 +86,34 @@ class DropdownController {
   }
 
   dismissPath(uid: string) {
-    let path = this.buildComposedPath(uid, []);
+    let path = this.buildComposedPath(uid, new Set<string>());
 
+    console.log('Rules');
+    console.log(this.dropdownRules);
+    console.log('dismissPath');
+    console.log(path);
+    console.log('Want to close:', uid);
     for (const dropdown of this.dropdowns) {
       if (
+        dropdown.isPresent() &&
         dropdown.closeBehavior !== 'inside' &&
         dropdown.closeBehavior !== false &&
-        !path.includes(dropdown.getId())
+        !path.has(dropdown.getId())
       ) {
+        console.log('closing', dropdown.getId());
         this.dismiss(dropdown);
       }
     }
   }
 
-  private buildComposedPath(id: string, path: string[]): string[] {
+  private buildComposedPath(id: string, path: Set<string>): Set<string> {
     if (this.dropdownRules[id]) {
-      path.push(id);
+      path.add(id);
     }
 
     for (const ruleKey of Object.keys(this.dropdownRules)) {
       if (this.dropdownRules[ruleKey].includes(id)) {
-        return this.buildComposedPath(ruleKey, path);
+        this.buildComposedPath(ruleKey, path).forEach((key) => path.add(key));
       }
     }
 
