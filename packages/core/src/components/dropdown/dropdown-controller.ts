@@ -6,12 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { HTMLStencilElement } from '@stencil/core/internal';
 
-export interface IxComponent {
-  hostElement: HTMLStencilElement;
-}
-
+import { IxComponent } from '../utils/internal';
 export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;
 
 export interface DropdownInterface extends IxComponent {
@@ -27,6 +23,16 @@ export interface DropdownInterface extends IxComponent {
 
   present(): void;
   dismiss(): void;
+}
+
+export function hasDropdownItemWrapperImplemented(
+  item: unknown
+): item is DropdownItemWrapper {
+  return (item as DropdownItemWrapper).getDropdownItemElement !== undefined;
+}
+
+export interface DropdownItemWrapper {
+  getDropdownItemElement(): Promise<HTMLIxDropdownItemElement>;
 }
 
 type DropdownRule = Record<string, string[]>;

@@ -34,6 +34,7 @@ import {
   CloseBehaviour,
   dropdownController,
   DropdownInterface,
+  hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
 
@@ -269,6 +270,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       if (this.anchorElement) {
         this.applyDropdownPosition();
+        await this.checkForSubmenuAnchor();
       }
     }
   }
@@ -278,10 +280,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.registerListener(newTriggerValue);
   }
 
-  private isAnchorSubmenu() {
-    const anchor = this.anchorElement?.closest('ix-dropdown-item');
-    if (!anchor) {
-      return false;
+  private isAnchorSubmenu(): boolean {
+    if (!hasDropdownItemWrapperImplemented(this.anchorElement)) {
+      // Is no official dropdown-item, but check if any dropdown-item
+      // is placed somewhere up the DOM
+      return !!this.anchorElement?.closest('ix-dropdown-item');
     }
 
     return true;
@@ -382,12 +385,25 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       ? this.resolveElement(this.anchor)
       : this.resolveElement(this.trigger));
 
-    if (
-      this.isAnchorSubmenu() &&
-      this.anchorElement?.tagName === 'IX-DROPDOWN-ITEM'
-    ) {
-      (this.anchorElement as HTMLIxDropdownItemElement).isSubMenu = true;
+    await this.checkForSubmenuAnchor();
+  }
+
+  private async checkForSubmenuAnchor() {
+    if (!this.anchorElement) {
+      return;
     }
+
+    if (hasDropdownItemWrapperImplemented(this.anchorElement)) {
+      const dropdownItem = await this.anchorElement.getDropdownItemElement();
+      dropdownItem.isSubMenu = true;
+      this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
+
+      this.anchorElement = dropdownItem;
+      return;
+    }
+
+    (this.anchorElement as HTMLIxDropdownItemElement).isSubMenu = true;
+    this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
   }
 
   private onDropdownClick(event: PointerEvent) {

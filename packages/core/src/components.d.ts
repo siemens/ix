@@ -888,6 +888,7 @@ export namespace Components {
           * Internal usage only
          */
         "emitItemClick": () => Promise<void>;
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Display hover state
          */
@@ -1455,6 +1456,7 @@ export namespace Components {
         "top": string;
     }
     interface IxMenuAvatarItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Avatar dropdown icon
          */
@@ -1900,6 +1902,7 @@ export namespace Components {
      * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
      */
     interface IxSplitButtonItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Dropdown icon
          */
