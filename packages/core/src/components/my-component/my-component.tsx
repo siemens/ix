@@ -15,13 +15,7 @@ import { Component, h, Host, State } from '@stencil/core';
   shadow: true,
 })
 export class MyComponent {
-  @State() hide: boolean = true;
   @State() variant: string = 'floating';
-  @State() layout: string = 'full-width-top-bottom';
-
-  onButtonClick(state: boolean) {
-    this.hide = state;
-  }
 
   render() {
     return (
@@ -39,66 +33,43 @@ export class MyComponent {
           </ix-menu>
 
           <ix-pane-layout
-            variant={this.variant as any}
-            layout={this.layout as any}
+            variant={'floating'}
+            layout={'full-height-left-right'}
           >
-            <ix-pane heading="left" slot="left" expanded={false}>
+            <ix-pane key={1} heading="left" slot="left">
               <h1>LEFT</h1>
               <p>This is a test content with a button</p>
-              <ix-button
-                onClick={() =>
-                  (this.variant =
-                    this.variant === 'inline' ? 'floating' : 'inline')
-                }
-              >
-                PUSH ME
-              </ix-button>
             </ix-pane>
 
-            {!this.hide && (
-              <ix-pane heading="top" slot="top" expanded={false}>
-                <h1>TOP</h1>
-                <p>This is a test content with a button</p>
-                <ix-button>PUSH ME</ix-button>
-              </ix-pane>
-            )}
-
-            <ix-pane heading="bottom" slot="bottom" expanded={false}>
-              <h1>BOTTOM</h1>
+            <ix-pane
+              key={2}
+              heading="top"
+              slot="top"
+              variant={this.variant as any}
+            >
+              <h1>TOP</h1>
               <p>This is a test content with a button</p>
-              <ix-button
-                onClick={() =>
-                  (this.layout =
-                    this.layout === 'full-width-top-bottom'
-                      ? 'full-height-left-right'
-                      : 'full-width-top-bottom')
-                }
-              >
-                PUSH ME
-              </ix-button>
             </ix-pane>
 
-            <ix-pane heading="right" slot="right" expanded={false}>
+            <ix-pane key={3} heading="right" slot="right">
               <h1>RIGHT</h1>
               <p>This is a test content with a button</p>
-              <ix-button>PUSH ME</ix-button>
             </ix-pane>
 
             <div
               slot="content"
               style={{
                 background: 'blue',
-                height: '200rem',
-                width: '500rem',
+                width: '100%',
+                height: '100%',
               }}
             >
-              <h1>Test Heading</h1>
-              <h1>Test Heading</h1>
-              <h1>Test Heading</h1>
-              <h1>Test Heading</h1>
-              <h1>Test Heading</h1>
-              <p>This is a test content with a button</p>
-              <ix-button onClick={() => this.onButtonClick(!this.hide)}>
+              <ix-button
+                onClick={() =>
+                  (this.variant =
+                    this.variant === 'inline' ? 'floating' : 'inline')
+                }
+              >
                 PUSH ME
               </ix-button>
             </div>
