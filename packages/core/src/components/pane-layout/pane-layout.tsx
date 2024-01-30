@@ -148,14 +148,12 @@ export class Panes {
       }
     });
 
-    console.log('variant changed');
-
     forceUpdate(this.hostElement);
   }
 
-  @Watch('layout')
   @Watch('variant')
   @Watch('borderless')
+  @Watch('layout')
   @Watch('paneElements')
   @Watch('isMobile')
   configureLayout() {
@@ -199,10 +197,12 @@ export class Panes {
         return;
       }
 
+      let zIndex = 1;
       if (this.isMobile) {
-        sidePanelElement.style.removeProperty('z-index');
+        if (isBottom || isTop) {
+          zIndex = 2;
+        }
       } else {
-        let zIndex = 1;
         if (this.layout === 'full-height-left-right') {
           if (isLeft || isRight) {
             zIndex = 2;
@@ -212,8 +212,8 @@ export class Panes {
             zIndex = 2;
           }
         }
-        sidePanelElement.style.zIndex = zIndex.toString();
       }
+      sidePanelElement.style.zIndex = zIndex.toString();
 
       if (!sidePanelElement.getAttribute('variant')) {
         sidePanelElement.variant = this.variant;

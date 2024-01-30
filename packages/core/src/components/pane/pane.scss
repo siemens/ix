@@ -171,7 +171,7 @@
 :host(.mobile-overlay) {
   width: 100%;
   position: absolute;
-  z-index: 100;
+  z-index: 100 !important;
 
   .side-pane-content {
     height: calc(100% - 2.5rem);
