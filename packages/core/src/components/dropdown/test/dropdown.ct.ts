@@ -115,16 +115,20 @@ test.describe('Close behavior', () => {
   function mountDropdown(
     mount: (selector: string) => Promise<ElementHandle<HTMLElement>>,
     config: {
-      closeBehavior: string;
+      closeBehavior: string | boolean;
     }
   ) {
+    const closeBehavior = config.closeBehavior
+      ? `close-behavior="${config.closeBehavior}"`
+      : '';
+
     return mount(`
-    <ix-button id="level-1">Trigger</ix-button>
-    <ix-dropdown id="dropdown-level-1" trigger="level-1" close-behavior=${config.closeBehavior}>
-      <ix-dropdown-item>Item 1</ix-dropdown-item>
-      <ix-dropdown-item>Item 2</ix-dropdown-item>
-      <ix-dropdown-item>Item 3</ix-dropdown-item>
-    </ix-dropdown>
+      <ix-button id="level-1">Trigger</ix-button>
+      <ix-dropdown id="dropdown-level-1" trigger="level-1" ${closeBehavior}>
+        <ix-dropdown-item>Item 1</ix-dropdown-item>
+        <ix-dropdown-item>Item 2</ix-dropdown-item>
+        <ix-dropdown-item>Item 3</ix-dropdown-item>
+      </ix-dropdown>
   `);
   }
 
@@ -201,8 +205,14 @@ test.describe('Close behavior', () => {
 
   test(' = false', async ({ mount, page }) => {
     await mountDropdown(mount, {
-      closeBehavior: 'false',
+      // Disable close behavior
+      closeBehavior: false,
     });
+
+    // Have to be provided via javascript, otherwise the component parse the value as a string.
+    await page
+      .locator('ix-dropdown')
+      .evaluate((dropdown: any) => (dropdown.closeBehavior = false));
 
     setupTest(page);
 
