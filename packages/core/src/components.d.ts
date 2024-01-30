@@ -32,7 +32,7 @@ import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
-import { CollapsibleChangedEvent, ExpandedChangedEvent, Position, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+import { BorderlessChangedEvent, CollapsibleChangedEvent, ExpandedChangedEvent, Position, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -70,7 +70,7 @@ export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
-export { CollapsibleChangedEvent, ExpandedChangedEvent, Position, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+export { BorderlessChangedEvent, CollapsibleChangedEvent, ExpandedChangedEvent, Position, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -1677,7 +1677,7 @@ export namespace Components {
      */
     interface IxPane {
         /**
-          * Toggle border
+          * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
          */
         "borderless": boolean;
         /**
@@ -1696,6 +1696,9 @@ export namespace Components {
           * Name of the icon
          */
         "icon": string;
+        /**
+          * Identifier of the pane
+         */
         "identifier": string;
         "isMobile": boolean;
         /**
@@ -1714,7 +1717,7 @@ export namespace Components {
     | '50%'
     | '100%';
         /**
-          * Variant of the side pane
+          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to floating.
          */
         "variant": 'floating' | 'inline';
     }
@@ -1723,7 +1726,7 @@ export namespace Components {
      */
     interface IxPaneLayout {
         /**
-          * Toggle border
+          * Set the default border state for all panes in the layout
          */
         "borderless": boolean;
         /**
@@ -3557,9 +3560,10 @@ declare global {
     };
     interface HTMLIxPaneElementEventMap {
         "expandedChanged": ExpandedChangedEvent;
-        "slotChanged": SlotChangedEvent;
-        "collapsibleChanged": CollapsibleChangedEvent;
         "variantChanged": VariantChangedEvent;
+        "borderlessChanged": BorderlessChangedEvent;
+        "collapsibleChanged": CollapsibleChangedEvent;
+        "slotChanged": SlotChangedEvent;
     }
     /**
      * @since 2.1.0
@@ -5803,7 +5807,7 @@ declare namespace LocalJSX {
      */
     interface IxPane {
         /**
-          * Toggle border
+          * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
          */
         "borderless"?: boolean;
         /**
@@ -5822,14 +5826,24 @@ declare namespace LocalJSX {
           * Name of the icon
          */
         "icon"?: string;
+        /**
+          * Identifier of the pane
+         */
         "identifier"?: string;
         "isMobile"?: boolean;
+        /**
+          * This event is triggered when the variant of the pane is changed
+         */
+        "onBorderlessChanged"?: (event: IxPaneCustomEvent<BorderlessChangedEvent>) => void;
         "onCollapsibleChanged"?: (event: IxPaneCustomEvent<CollapsibleChangedEvent>) => void;
         /**
           * This event is triggered when the pane either expands or contracts
          */
         "onExpandedChanged"?: (event: IxPaneCustomEvent<ExpandedChangedEvent>) => void;
         "onSlotChanged"?: (event: IxPaneCustomEvent<SlotChangedEvent>) => void;
+        /**
+          * This event is triggered when the variant of the pane is changed
+         */
         "onVariantChanged"?: (event: IxPaneCustomEvent<VariantChangedEvent>) => void;
         /**
           * Placement of the sidebar
@@ -5847,7 +5861,7 @@ declare namespace LocalJSX {
     | '50%'
     | '100%';
         /**
-          * Variant of the side pane
+          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to floating.
          */
         "variant"?: 'floating' | 'inline';
     }
@@ -5856,7 +5870,7 @@ declare namespace LocalJSX {
      */
     interface IxPaneLayout {
         /**
-          * Toggle border
+          * Set the default border state for all panes in the layout
          */
         "borderless"?: boolean;
         /**

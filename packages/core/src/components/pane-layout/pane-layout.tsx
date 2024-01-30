@@ -46,7 +46,7 @@ export class Panes {
   @Prop() variant: 'floating' | 'inline' = 'inline';
 
   /**
-   * Toggle border
+   * Set the default border state for all panes in the layout
    */
   @Prop() borderless: boolean = false;
 
@@ -97,6 +97,26 @@ export class Panes {
 
   disconnectedCallback() {
     this.observer?.disconnect();
+  }
+
+  private setPaneBorder(pane: HTMLIxPaneElement) {
+    if (this.borderless) {
+      pane.borderless = true;
+    } else {
+      const hasCollapsibleLeftPane = this.panes.find(
+        (pane) => pane.slot === 'left' && pane.collapsible
+      );
+      if (
+        pane.variant === 'floating' &&
+        this.layout === 'full-height-left-right' &&
+        hasCollapsibleLeftPane &&
+        (pane.position === 'top' || pane.position === 'bottom')
+      ) {
+        pane.borderless = true;
+      } else {
+        pane.borderless = false;
+      }
+    }
   }
 
   private setPanes(panes: NodeListOf<HTMLIxPaneElement>) {
@@ -152,7 +172,19 @@ export class Panes {
   }
 
   @Watch('variant')
+  setVariant() {
+    this.currentPanes.forEach((pane) => {
+      pane.variant = this.variant;
+    });
+  }
+
   @Watch('borderless')
+  setBorders() {
+    this.currentPanes.forEach((pane) => {
+      this.setPaneBorder(pane);
+    });
+  }
+
   @Watch('layout')
   @Watch('paneElements')
   @Watch('isMobile')
@@ -162,38 +194,38 @@ export class Panes {
     let leftCount = 0;
     let rightCount = 0;
 
-    this.currentPanes.forEach((sidePanelElement) => {
-      const isTop = sidePanelElement.slot === 'top';
-      const isBottom = sidePanelElement.slot === 'bottom';
-      const isLeft = sidePanelElement.slot === 'left';
-      const isRight = sidePanelElement.slot === 'right';
+    this.currentPanes.forEach((pane) => {
+      const isTop = pane.slot === 'top';
+      const isBottom = pane.slot === 'bottom';
+      const isLeft = pane.slot === 'left';
+      const isRight = pane.slot === 'right';
 
       if (isLeft) {
         if (leftCount) {
-          sidePanelElement.slot = undefined;
+          pane.slot = undefined;
           return;
         }
         leftCount++;
       } else if (isRight) {
         if (rightCount) {
-          sidePanelElement.slot = undefined;
+          pane.slot = undefined;
           return;
         }
         rightCount++;
       } else if (isTop) {
         if (topCount) {
-          sidePanelElement.slot = undefined;
+          pane.slot = undefined;
           return;
         }
         topCount++;
       } else if (isBottom) {
         if (bottomCount) {
-          sidePanelElement.slot = undefined;
+          pane.slot = undefined;
           return;
         }
         bottomCount++;
       } else {
-        sidePanelElement.slot = undefined;
+        pane.slot = undefined;
         return;
       }
 
@@ -213,31 +245,14 @@ export class Panes {
           }
         }
       }
-      sidePanelElement.style.zIndex = zIndex.toString();
+      pane.style.zIndex = zIndex.toString();
 
-      if (!sidePanelElement.getAttribute('variant')) {
-        sidePanelElement.variant = this.variant;
+      if (pane.variant === undefined) {
+        pane.variant = this.variant;
       }
 
-      if (!sidePanelElement.getAttribute('borderless')) {
-        if (this.borderless) {
-          sidePanelElement.borderless = true;
-        } else {
-          const hasCollapsibleLeftPane = this.panes.find(
-            (pane) => pane.slot === 'left' && pane.collapsible
-          );
-          if (
-            sidePanelElement.variant === 'floating' &&
-            this.layout === 'full-height-left-right' &&
-            hasCollapsibleLeftPane &&
-            (sidePanelElement.position === 'top' ||
-              sidePanelElement.position === 'bottom')
-          ) {
-            sidePanelElement.borderless = true;
-          } else {
-            sidePanelElement.borderless = false;
-          }
-        }
+      if (pane.borderless === undefined) {
+        this.setPaneBorder(pane);
       }
     });
   }

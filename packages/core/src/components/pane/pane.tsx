@@ -27,7 +27,7 @@ import { matchBreakpoint } from '../utils/breakpoints';
 
 export type Position = 'top' | 'left' | 'bottom' | 'right';
 export type ExpandedChangedEvent = {
-  position: string;
+  paneId: string;
   expanded: boolean;
 };
 export type SlotChangedEvent = {
@@ -41,6 +41,10 @@ export type CollapsibleChangedEvent = {
 export type VariantChangedEvent = {
   paneId: string;
   variant: 'floating' | 'inline';
+};
+export type BorderlessChangedEvent = {
+  paneId: string;
+  borderless: boolean;
 };
 
 let idCounter = 0;
@@ -62,9 +66,10 @@ export class Pane {
   @Prop() heading: string = 'Pane title';
 
   /**
-   * Variant of the side pane
+   * Variant of the side pane.
+   * Defaults to the variant attribute of the pane layout. If used standalone it defaults to floating.
    */
-  @Prop() variant: 'floating' | 'inline' = 'inline';
+  @Prop() variant: 'floating' | 'inline';
 
   /**
    * Define if the pane should have a collapsed state
@@ -85,9 +90,10 @@ export class Pane {
     | '100%' = '240px';
 
   /**
-   * Toggle border
+   * Toggle the border of the pane.
+   * Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
    */
-  @Prop() borderless: boolean = false;
+  @Prop() borderless: boolean;
 
   /**
    * State of the pane
@@ -105,14 +111,14 @@ export class Pane {
   @Prop() icon: string;
 
   /**
-   * @internal
+   * Identifier of the pane
    */
-  @Prop({ mutable: true }) isMobile: boolean = false;
+  @Prop() identifier: string = `pane-${idCounter++}`;
 
   /**
    * @internal
    */
-  @Prop() identifier: string = `pane-${idCounter++}`;
+  @Prop({ mutable: true }) isMobile: boolean = false;
 
   /**
    * This event is triggered when the pane either expands or contracts
@@ -120,9 +126,14 @@ export class Pane {
   @Event() expandedChanged: EventEmitter<ExpandedChangedEvent>;
 
   /**
-   * @internal
+   * This event is triggered when the variant of the pane is changed
    */
-  @Event() slotChanged: EventEmitter<SlotChangedEvent>;
+  @Event() variantChanged: EventEmitter<VariantChangedEvent>;
+
+  /**
+   * This event is triggered when the variant of the pane is changed
+   */
+  @Event() borderlessChanged: EventEmitter<BorderlessChangedEvent>;
 
   /**
    * @internal
@@ -132,7 +143,7 @@ export class Pane {
   /**
    * @internal
    */
-  @Event() variantChanged: EventEmitter<VariantChangedEvent>;
+  @Event() slotChanged: EventEmitter<SlotChangedEvent>;
 
   @State() private expandIcon = '';
   @State() private showContent = false;
@@ -231,6 +242,14 @@ export class Pane {
     });
   }
 
+  @Watch('borderless')
+  onBorderlessChange(value: boolean) {
+    this.borderlessChanged.emit({
+      paneId: this.identifier,
+      borderless: value,
+    });
+  }
+
   get isBottomTopPane() {
     return this.position === 'bottom' || this.position === 'top';
   }
@@ -310,7 +329,7 @@ export class Pane {
     }
 
     this.expandedChanged.emit({
-      position: this.position,
+      paneId: this.identifier,
       expanded: this.expanded,
     });
   }
