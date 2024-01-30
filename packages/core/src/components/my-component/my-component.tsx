@@ -15,66 +15,83 @@ import { Component, h, Host, State } from '@stencil/core';
   shadow: true,
 })
 export class MyComponent {
-  @State() variant: string = 'floating';
+  @State() expanded: boolean = false;
+  @State() slot: string = 'left';
 
   render() {
     return (
       <Host>
-        <ix-basic-navigation>
-          <ix-menu>
-            <ix-menu-item home icon="home">
-              Home
-            </ix-menu-item>
-            <ix-menu-item icon="globe">Normal Tab</ix-menu-item>
-            <ix-menu-category icon="rocket" label="Top level Category">
-              <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
-              <ix-menu-item icon="globe">Nested Tab</ix-menu-item>
-            </ix-menu-category>
-          </ix-menu>
-
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
           <ix-pane-layout
             variant={'floating'}
-            layout={'full-height-left-right'}
+            layout={'full-width-top-bottom'}
+            borderless={true}
           >
-            <ix-pane key={1} heading="left" slot="left">
-              <h1>LEFT</h1>
-              <p>This is a test content with a button</p>
+            <ix-pane key={1} heading={'Pane 1'} slot={this.slot} size={'33%'}>
+              <div style={{ width: '1000px', height: '1000px' }}>
+                <h1>Pane 1</h1>
+              </div>
+            </ix-pane>
+
+            <ix-pane key={2} heading={'Pane 2'} slot={'top'} size={'33%'}>
+              <h1>Pane 2</h1>
             </ix-pane>
 
             <ix-pane
-              key={2}
-              heading="top"
-              slot="top"
-              variant={this.variant as any}
+              key={3}
+              heading={'Pane 3'}
+              slot={'right'}
+              size={'33%'}
+              // overwrite layout defaults
+              variant={'inline'}
+              borderless={false}
             >
-              <h1>TOP</h1>
-              <p>This is a test content with a button</p>
+              <h1>Pane 3</h1>
             </ix-pane>
 
-            <ix-pane key={3} heading="right" slot="right">
-              <h1>RIGHT</h1>
-              <p>This is a test content with a button</p>
+            <ix-pane key={4} heading={'Pane 4'} slot={'bottom'} size={'33%'}>
+              <h1>Pane 4</h1>
             </ix-pane>
 
             <div
-              slot="content"
+              slot={'content'}
               style={{
-                background: 'blue',
+                backgroundColor: 'white',
                 width: '100%',
                 height: '100%',
+                padding: '2.5rem',
               }}
             >
               <ix-button
-                onClick={() =>
-                  (this.variant =
-                    this.variant === 'inline' ? 'floating' : 'inline')
-                }
+                onClick={() => {
+                  this.expanded = !this.expanded;
+                }}
               >
-                PUSH ME
+                Popup Pane
               </ix-button>
             </div>
           </ix-pane-layout>
-        </ix-basic-navigation>
+
+          <ix-pane
+            key={5}
+            heading={'popup'}
+            position={'right'}
+            expanded={this.expanded}
+            variant={'floating'}
+            size={'50%'}
+            collapsible={false}
+            onExpandedChanged={(event) => {
+              this.expanded = event.detail.expanded;
+            }}
+            style={{
+              position: 'absolute',
+              right: '0',
+              zIndex: '10',
+            }}
+          >
+            <h1>Popup</h1>
+          </ix-pane>
+        </div>
       </Host>
     );
   }

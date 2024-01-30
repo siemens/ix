@@ -1700,6 +1700,7 @@ export namespace Components {
           * Identifier of the pane
          */
         "identifier": string;
+        "initialZIndex": number;
         "isMobile": boolean;
         /**
           * Placement of the sidebar
@@ -1714,10 +1715,9 @@ export namespace Components {
     | '480px'
     | '600px'
     | '33%'
-    | '50%'
-    | '100%';
+    | '50%';
         /**
-          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to floating.
+          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
          */
         "variant": 'floating' | 'inline';
     }
@@ -5830,6 +5830,7 @@ declare namespace LocalJSX {
           * Identifier of the pane
          */
         "identifier"?: string;
+        "initialZIndex"?: number;
         "isMobile"?: boolean;
         /**
           * This event is triggered when the variant of the pane is changed
@@ -5858,10 +5859,9 @@ declare namespace LocalJSX {
     | '480px'
     | '600px'
     | '33%'
-    | '50%'
-    | '100%';
+    | '50%';
         /**
-          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to floating.
+          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
          */
         "variant"?: 'floating' | 'inline';
     }

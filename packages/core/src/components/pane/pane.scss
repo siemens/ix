@@ -23,6 +23,7 @@
   display: flex;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 
   aside {
     width: 100%;
@@ -55,19 +56,29 @@
     flex-direction: column;
     flex-grow: 1;
 
-    .header-gap {
-      margin: var(--theme-space--1) var(--theme-space-2) var(--theme-space--1) var(--theme-space-2);
-    }
-
-    .title-inline {
+    .title {
       display: flex;
       flex-direction: row;
       align-items: center;
+      margin: var(--theme-space--1) var(--theme-space-2) var(--theme-space--1) var(--theme-space-2);
     }
 
-    .title-inline-expanded {
+    .title-finished {
+      padding: 0 !important;
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+    }
+
+    .title-expanded {
       display: flex;
       flex-direction: row;
+    }
+
+    .title-collapsible {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding: 0 !important;
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
     }
   }
 
@@ -76,14 +87,11 @@
     flex-direction: column;
     flex-grow: 1;
 
-    .header-gap {
-      margin: var(--theme-space-2) var(--theme-space--1)  var(--theme-space-2) var(--theme-space--1);
-    }
-
-    .title-inline {
+    .title {
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: var(--theme-space-2) var(--theme-space--1)  var(--theme-space-2) var(--theme-space--1);
 
       .title-text {
         flex-direction: row-reverse;
@@ -91,9 +99,22 @@
       }
     }
 
-    .title-inline-expanded {
+    .title-finished {
+      padding: 0 !important;
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+    }
+
+    .title-expanded {
       display: flex;
       flex-direction: row;
+    }
+
+    .title-collapsible {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding: 0 !important;
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
     }
   }
 
@@ -111,13 +132,14 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-  }
 
-  .title-mobile {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    margin: var(--theme-space-1) var(--theme-space-2);
+    .title-mobile {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding: 0 !important;
+      margin: var(--theme-space-1) var(--theme-space-2);
+    }
   }
 
   .side-pane-content {

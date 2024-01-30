@@ -66,22 +66,17 @@ export class Panes {
   }
 
   componentWillLoad() {
-    const panes = this.currentPanes;
-
     // set initial pane amount
-    this.paneElements = panes.length;
-
-    // set initial panes
-    this.setPanes(panes);
+    this.paneElements = this.currentPanes.length;
 
     // recognize inserted or removed panes
     this.observer = new MutationObserver((mutations) => {
       if (mutations[0].addedNodes.item(0)?.nodeName === 'IX-PANE') {
+        this.setPanes(this.currentPanes);
         this.paneElements += 1;
-        this.setPanes(this.currentPanes);
       } else if (mutations[0].removedNodes.item(0)?.nodeName === 'IX-PANE') {
-        this.paneElements -= 1;
         this.setPanes(this.currentPanes);
+        this.paneElements -= 1;
       }
     });
     this.observer.observe(this.hostElement, {
@@ -93,6 +88,10 @@ export class Panes {
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
     });
+  }
+
+  componentDidLoad() {
+    this.setPanes(this.currentPanes);
   }
 
   disconnectedCallback() {
@@ -232,16 +231,16 @@ export class Panes {
       let zIndex = 1;
       if (this.isMobile) {
         if (isBottom || isTop) {
-          zIndex = 2;
+          zIndex = 3;
         }
       } else {
         if (this.layout === 'full-height-left-right') {
           if (isLeft || isRight) {
-            zIndex = 2;
+            zIndex = 3;
           }
         } else {
           if (isBottom || isTop) {
-            zIndex = 2;
+            zIndex = 3;
           }
         }
       }

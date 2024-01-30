@@ -67,7 +67,7 @@ export class Pane {
 
   /**
    * Variant of the side pane.
-   * Defaults to the variant attribute of the pane layout. If used standalone it defaults to floating.
+   * Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
    */
   @Prop() variant: 'floating' | 'inline';
 
@@ -86,8 +86,7 @@ export class Pane {
     | '480px'
     | '600px'
     | '33%'
-    | '50%'
-    | '100%' = '240px';
+    | '50%' = '240px';
 
   /**
    * Toggle the border of the pane.
@@ -121,6 +120,11 @@ export class Pane {
   @Prop({ mutable: true }) isMobile: boolean = false;
 
   /**
+   * @internal
+   */
+  @Prop({ mutable: true }) initialZIndex: number = 1;
+
+  /**
    * This event is triggered when the pane either expands or contracts
    */
   @Event() expandedChanged: EventEmitter<ExpandedChangedEvent>;
@@ -149,28 +153,43 @@ export class Pane {
   @State() private showContent = false;
   @State() private minimizeIcon = '';
   @State() private floating = false;
+  @State() private parentWidthPx = 0;
+  @State() private parentHeightPx = 0;
 
   private validPositions = ['top', 'left', 'bottom', 'right'];
+  private collapsedWidth = '40px';
+  private collapsedHeight = '40px';
 
-  private previousWidth: string;
-  private previousHeight: string;
-  private observer: MutationObserver;
+  private mutationObserver: MutationObserver;
+  private resizeObserver: ResizeObserver;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
   }
 
+  get isBottomTopPane() {
+    return this.position === 'bottom' || this.position === 'top';
+  }
+
+  get isLeftRightPane() {
+    return this.position === 'left' || this.position === 'right';
+  }
+
+  get isMobileTop() {
+    return this.position === 'top' || this.position === 'left';
+  }
+
   componentWillLoad() {
-    this.resetLayoutState();
+    this.setIcons();
 
     this.floating = this.variant === 'floating';
 
-    this.setIcons();
-
+    // handle initial expansion
     if (this.expanded) {
       this.onExpandedChange();
     }
 
+    // observe breakpoint
     this.isMobile = matchBreakpoint('sm');
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
@@ -180,7 +199,7 @@ export class Pane {
     this.setPosition(this.currentSlot);
 
     // recognize a changed slot attribute
-    this.observer = new MutationObserver((mutations) => {
+    this.mutationObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (
           mutation.type === 'attributes' &&
@@ -199,14 +218,23 @@ export class Pane {
         }
       });
     });
-    this.observer.observe(this.hostElement, {
+    this.mutationObserver.observe(this.hostElement, {
       attributes: true,
       attributeOldValue: true,
     });
+
+    // Observe parent size change
+    const parentElement = this.hostElement.parentElement;
+    this.resizeObserver = new ResizeObserver((entries) => {
+      this.parentWidthPx = entries[0].borderBoxSize[0].inlineSize;
+      this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
+    });
+    if (parentElement) this.resizeObserver.observe(parentElement);
   }
 
   disconnectedCallback() {
-    this.observer?.disconnect();
+    this.mutationObserver?.disconnect();
+    this.resizeObserver?.disconnect();
   }
 
   private setPosition(value: string) {
@@ -215,54 +243,49 @@ export class Pane {
     }
   }
 
-  @Watch('position')
-  async onPositionChange() {
-    this.setIcons();
-    this.resetLayoutState();
-    if (this.expanded) {
-      await this.onExpandedChange();
+  private getExpandPaneSize() {
+    let expandPaneSize: string;
+
+    if (this.isBottomTopPane) {
+      if (this.size.includes('px')) {
+        const referenceValue = Math.round(this.parentHeightPx / 2);
+        const currentValue = Number(this.size.replace('px', ''));
+
+        if (referenceValue && referenceValue < currentValue) {
+          expandPaneSize = `${referenceValue}px`;
+        } else {
+          expandPaneSize = `${currentValue}px`;
+        }
+      } else {
+        if (this.size === '50%') {
+          expandPaneSize = `${Math.round(this.parentHeightPx / 2)}px`;
+        } else {
+          expandPaneSize = `${Math.round(this.parentHeightPx / 3)}px`;
+        }
+      }
+    } else {
+      if (this.size.includes('px')) {
+        const referenceValue = Math.round(this.parentWidthPx / 2);
+        const currentValue = Number(this.size.replace('px', ''));
+
+        if (referenceValue && referenceValue < currentValue) {
+          expandPaneSize = `${referenceValue}px`;
+        } else {
+          expandPaneSize = `${currentValue}px`;
+        }
+      } else {
+        if (this.size === '50%') {
+          expandPaneSize = `${Math.round(this.parentWidthPx / 2)}px`;
+        } else {
+          expandPaneSize = `${Math.round(this.parentWidthPx / 3)}px`;
+        }
+      }
     }
+
+    return expandPaneSize;
   }
 
-  @Watch('collapsible')
-  onCollapsibleChange(value: boolean) {
-    this.collapsibleChanged.emit({
-      paneId: this.identifier,
-      collapsible: value,
-    });
-  }
-
-  @Watch('variant')
-  onVariantChange(value: 'inline' | 'floating') {
-    this.floating = value === 'floating';
-
-    this.variantChanged.emit({
-      paneId: this.identifier,
-      variant: value,
-    });
-  }
-
-  @Watch('borderless')
-  onBorderlessChange(value: boolean) {
-    this.borderlessChanged.emit({
-      paneId: this.identifier,
-      borderless: value,
-    });
-  }
-
-  get isBottomTopPane() {
-    return this.position === 'bottom' || this.position === 'top';
-  }
-
-  get isLeftRightPane() {
-    return this.position === 'left' || this.position === 'right';
-  }
-
-  get isMobileTop() {
-    return this.position === 'top' || this.position === 'left';
-  }
-
-  setIcons() {
+  private setIcons() {
     const { expandIcon, minimizeIcon } = this.getIconNames();
     this.expandIcon = expandIcon;
     this.minimizeIcon = minimizeIcon;
@@ -302,54 +325,6 @@ export class Pane {
     return { expandIcon, minimizeIcon };
   }
 
-  @Watch('size')
-  @Watch('expanded')
-  async onExpandedChange() {
-    if (this.expanded) {
-      this.previousHeight = '40px';
-      this.previousWidth = '40px';
-
-      const expandPaneSize = this.isMobile ? '100%' : this.size;
-
-      if (this.isBottomTopPane || this.isMobile) {
-        this.animateHorizontalFadeIn(expandPaneSize);
-      } else {
-        this.animateVerticalFadeIn(expandPaneSize);
-      }
-    } else {
-      if (this.isMobile) {
-        this.resetLayoutState();
-      } else {
-        if (this.isBottomTopPane) {
-          this.animateHorizontalFadeIn(this.previousHeight);
-        } else {
-          this.animateVerticalFadeIn(this.previousWidth);
-        }
-      }
-    }
-
-    this.expandedChanged.emit({
-      paneId: this.identifier,
-      expanded: this.expanded,
-    });
-  }
-
-  @Watch('isMobile')
-  onMobileChange() {
-    this.resetLayoutState();
-    this.setIcons();
-    this.expanded = false;
-  }
-
-  resetLayoutState() {
-    this.previousWidth = null;
-    this.previousHeight = null;
-    this.showContent = false;
-    this.removePadding();
-    this.hostElement.style.removeProperty('height');
-    this.hostElement.style.removeProperty('width');
-  }
-
   private animateVerticalFadeIn(size: string) {
     anime({
       targets: this.hostElement,
@@ -368,8 +343,6 @@ export class Pane {
       complete: () => {
         if (this.expanded) {
           this.showContent = true;
-        } else {
-          this.hostElement.style.removeProperty('width');
         }
       },
     });
@@ -393,16 +366,20 @@ export class Pane {
       complete: () => {
         if (this.expanded) {
           this.showContent = true;
-        } else {
-          this.hostElement.style.removeProperty('width');
         }
       },
     });
   }
 
+  private resetLayoutState() {
+    this.removePadding();
+    this.hostElement.style.removeProperty('height');
+    this.hostElement.style.removeProperty('width');
+  }
+
   private removePadding() {
     anime({
-      targets: this.hostElement.shadowRoot.querySelector('.title-inline'),
+      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
       duration: 0,
       paddingTop: 0,
       paddingBottom: 0,
@@ -414,7 +391,7 @@ export class Pane {
 
   private animateHorizontalPadding(size: string) {
     anime({
-      targets: this.hostElement.shadowRoot.querySelector('.title-inline'),
+      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
       duration: Animation.mediumTime,
       paddingTop: size,
       paddingBottom: size,
@@ -425,13 +402,124 @@ export class Pane {
 
   private animateVerticalPadding(size: string) {
     anime({
-      targets: this.hostElement.shadowRoot.querySelector('.title-inline'),
+      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
       duration: Animation.mediumTime,
       paddingLeft: size,
       paddingRight: size,
       easing: 'linear',
       delay: 0,
     });
+  }
+
+  @Watch('isMobile')
+  onMobileChange() {
+    this.setIcons();
+    this.hostElement.style.removeProperty('width');
+    this.hostElement.style.removeProperty('height');
+    this.onParentSizeChange();
+  }
+
+  @Watch('position')
+  async onPositionChange() {
+    this.setIcons();
+    this.hostElement.style.removeProperty('width');
+    this.hostElement.style.removeProperty('height');
+    this.onParentSizeChange();
+  }
+
+  @Watch('collapsible')
+  onCollapsibleChange(value: boolean) {
+    this.collapsibleChanged.emit({
+      paneId: this.identifier,
+      collapsible: value,
+    });
+  }
+
+  @Watch('variant')
+  onVariantChange(value: 'inline' | 'floating') {
+    this.floating = value === 'floating';
+
+    this.variantChanged.emit({
+      paneId: this.identifier,
+      variant: value,
+    });
+  }
+
+  @Watch('borderless')
+  onBorderlessChange(value: boolean) {
+    this.borderlessChanged.emit({
+      paneId: this.identifier,
+      borderless: value,
+    });
+  }
+
+  @Watch('expanded')
+  onExpandedChange() {
+    this.onSizeChange();
+
+    this.expandedChanged.emit({
+      paneId: this.identifier,
+      expanded: this.expanded,
+    });
+  }
+
+  @Watch('parentHeightPx')
+  @Watch('parentWidthPx')
+  onParentSizeChange() {
+    if (this.expanded) {
+      if (this.isMobile) {
+        this.hostElement.style.height = '100%';
+      } else {
+        const expandPaneSize = this.getExpandPaneSize();
+
+        if (this.isBottomTopPane) {
+          this.hostElement.style.height = expandPaneSize;
+        } else {
+          this.hostElement.style.width = expandPaneSize;
+        }
+      }
+    } else {
+      this.showContent = false;
+
+      if (this.isMobile) {
+        this.resetLayoutState();
+      } else {
+        if (this.isBottomTopPane) {
+          this.hostElement.style.height = this.collapsedHeight;
+        } else {
+          this.hostElement.style.width = this.collapsedWidth;
+        }
+      }
+    }
+  }
+
+  @Watch('size')
+  onSizeChange() {
+    if (this.expanded) {
+      if (this.isMobile) {
+        this.animateHorizontalFadeIn('100%');
+      } else {
+        const expandPaneSize = this.getExpandPaneSize();
+
+        if (this.isBottomTopPane) {
+          this.animateHorizontalFadeIn(expandPaneSize);
+        } else {
+          this.animateVerticalFadeIn(expandPaneSize);
+        }
+      }
+    } else {
+      this.showContent = false;
+
+      if (this.isMobile) {
+        this.resetLayoutState();
+      } else {
+        if (this.isBottomTopPane) {
+          this.animateHorizontalFadeIn(this.collapsedHeight);
+        } else {
+          this.animateVerticalFadeIn(this.collapsedWidth);
+        }
+      }
+    }
   }
 
   render() {
@@ -459,7 +547,8 @@ export class Pane {
       >
         <aside
           class={{
-            [`${this.position}-pane-border`]: !this.isMobile,
+            [`${this.position}-pane-border`]:
+              !this.borderless && !this.isMobile && !this.floating,
             'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
             'left-right-pane': this.isLeftRightPane && !this.isMobile,
             'mobile-pane': this.isMobile,
@@ -478,11 +567,16 @@ export class Pane {
           }}
         >
           <div
+            id="title-div"
             class={{
-              'title-inline': !this.isMobile,
-              'title-inline-expanded': this.expanded && !this.isMobile,
+              title: !this.isMobile && this.collapsible && !this.showContent,
+              'title-finished':
+                !this.isMobile && this.collapsible && this.showContent,
+              'title-expanded':
+                !this.isMobile && this.collapsible && this.expanded,
+              'title-collapsible': !this.isMobile && !this.collapsible,
               'title-mobile': this.isMobile,
-              'header-gap': !this.isMobile,
+              'header-gap': !this.isMobile && this.collapsible,
             }}
           >
             <ix-icon-button
@@ -490,7 +584,7 @@ export class Pane {
               size="24"
               icon={
                 this.expanded
-                  ? this.isMobile
+                  ? this.isMobile || !this.collapsible
                     ? 'close'
                     : this.expandIcon
                   : this.minimizeIcon
@@ -525,10 +619,7 @@ export class Pane {
               </div>
             </span>
           </div>
-          <div
-            class="side-pane-content"
-            hidden={this.expanded ? !this.showContent : true}
-          >
+          <div class="side-pane-content" hidden={!this.showContent}>
             <slot></slot>
           </div>
         </aside>
