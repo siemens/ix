@@ -7,6 +7,16 @@ body:
       value: |
         Thanks for taking the time to fill out this bug report!
 
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description:  Make sure to not violate these rules
+      options:
+        - label: I have not leaked any internal company information.
+          required: true
+        - label: I have not posted internal links or code snippets.
+          required: true
+
   - type: textarea
     id: what-happened
     attributes:
