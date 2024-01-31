@@ -20,7 +20,7 @@ import { Component, h, Host, State } from '@stencil/core';
 export class PlaygroundInternal {
   @State() expanded: boolean = false;
   @State() slot: string = 'left';
-  @State() variant: 'inline' | 'floating' = 'floating';
+  @State() variant: 'inline' | 'floating' = 'inline';
 
   render() {
     return (
@@ -43,16 +43,19 @@ export class PlaygroundInternal {
               </div>
             </ix-pane>
 
-            <ix-pane key={2} heading={'Pane 2'} slot={'top'} size={'33%'}>
+            <ix-pane
+              key={2}
+              heading={'Pane 2'}
+              slot={'top'}
+              size={'33%'}
+              // overwrite layout default
+              borderless={true}
+            >
               <h1>Pane 2</h1>
             </ix-pane>
 
             <ix-pane key={3} heading={'Pane 3'} slot={'right'} size={'33%'}>
               <h1>Pane 3</h1>
-            </ix-pane>
-
-            <ix-pane key={4} heading={'Pane 4'} slot={'bottom'} size={'33%'}>
-              <h1>Pane 4</h1>
             </ix-pane>
 
             <div
@@ -76,8 +79,21 @@ export class PlaygroundInternal {
                   this.variant =
                     this.variant === 'inline' ? 'floating' : 'inline';
                 }}
+                style={{
+                  paddingLeft: '0.5rem',
+                }}
               >
                 Toggle Variant
+              </ix-button>
+              <ix-button
+                onClick={() => {
+                  this.slot = this.slot === 'left' ? 'bottom' : 'left';
+                }}
+                style={{
+                  paddingLeft: '0.5rem',
+                }}
+              >
+                Toggle Slot Pane 1
               </ix-button>
             </div>
           </ix-pane-layout>
