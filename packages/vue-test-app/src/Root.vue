@@ -76,8 +76,8 @@ import MapNavigation from './preview-examples/map-navigation.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
-import PanesFloating from './preview-examples/panes-floating.vue';
-import PanesInline from './preview-examples/panes-inline.vue';
+import Pane from './preview-examples/pane.vue';
+import PaneLayout from './preview-examples/pane-layout.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
 import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
@@ -164,8 +164,8 @@ const routes: any = {
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
   '/preview/select-multiple': SelectMultiple,
-  '/preview/panes-floating': PanesFloating,
-  '/preview/panes-inline': PanesInline,
+  '/preview/pane': Pane,
+  '/preview/pane-layout': PaneLayout,
   '/preview/spinner': Spinner,
   '/preview/spinner-large': SpinnerLarge,
   '/preview/split-button': Splitbutton,

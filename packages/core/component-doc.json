@@ -560,9 +560,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-application-header"
       ],
@@ -581,9 +579,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "my-component": [
-          "ix-basic-navigation"
         ]
       },
       "deprecation": "ix-basic-navigation is deprecated in favor of ix-application",
@@ -8930,9 +8925,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-burger-menu",
         "ix-icon-button",
@@ -8950,9 +8943,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "my-component": [
-          "ix-menu"
         ]
       },
       "props": [
@@ -10215,9 +10205,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "my-component"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-menu-item",
         "ix-dropdown",
@@ -10232,9 +10220,6 @@
           "ix-dropdown-item",
           "ix-typography",
           "ix-divider"
-        ],
-        "my-component": [
-          "ix-menu-category"
         ]
       },
       "props": [
@@ -10328,8 +10313,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu",
-        "ix-menu-category",
-        "my-component"
+        "ix-menu-category"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -10337,9 +10321,6 @@
           "ix-menu-item"
         ],
         "ix-menu-category": [
-          "ix-menu-item"
-        ],
-        "my-component": [
           "ix-menu-item"
         ]
       },
@@ -11724,9 +11705,8 @@
           "mutable": false,
           "attr": "borderless",
           "reflectToAttr": false,
-          "docs": "Toggle border",
+          "docs": "Toggle the border of the pane.\nDefaults to the borderless attribute of the pane layout. If used standalone it defaults to false.",
           "docsTags": [],
-          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -11823,6 +11803,28 @@
           "required": false
         },
         {
+          "name": "identifier",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "identifier",
+          "reflectToAttr": false,
+          "docs": "Identifier of the pane",
+          "docsTags": [],
+          "default": "`pane-${idCounter++}`",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "position",
           "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
           "complexType": {
@@ -11865,10 +11867,10 @@
         },
         {
           "name": "size",
-          "type": "\"100%\" | \"240px\" | \"320px\" | \"33%\" | \"360px\" | \"480px\" | \"50%\" | \"600px\"",
+          "type": "\"240px\" | \"320px\" | \"33%\" | \"360px\" | \"480px\" | \"50%\" | \"600px\"",
           "complexType": {
-            "original": "| '240px'\n    | '320px'\n    | '360px'\n    | '480px'\n    | '600px'\n    | '33%'\n    | '50%'\n    | '100%'",
-            "resolved": "\"100%\" | \"240px\" | \"320px\" | \"33%\" | \"360px\" | \"480px\" | \"50%\" | \"600px\"",
+            "original": "| '240px'\n    | '320px'\n    | '360px'\n    | '480px'\n    | '600px'\n    | '33%'\n    | '50%'",
+            "resolved": "\"240px\" | \"320px\" | \"33%\" | \"360px\" | \"480px\" | \"50%\" | \"600px\"",
             "references": {}
           },
           "mutable": false,
@@ -11878,10 +11880,6 @@
           "docsTags": [],
           "default": "'240px'",
           "values": [
-            {
-              "value": "100%",
-              "type": "string"
-            },
             {
               "value": "240px",
               "type": "string"
@@ -11925,9 +11923,8 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "Variant of the side pane",
+          "docs": "Variant of the side pane.\nDefaults to the variant attribute of the pane layout. If used standalone it defaults to inline.",
           "docsTags": [],
-          "default": "'inline'",
           "values": [
             {
               "value": "floating",
@@ -11945,12 +11942,32 @@
       "methods": [],
       "events": [
         {
+          "event": "borderlessChanged",
+          "detail": "{ paneId: string; borderless: boolean; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "BorderlessChangedEvent",
+            "resolved": "{ paneId: string; borderless: boolean; }",
+            "references": {
+              "BorderlessChangedEvent": {
+                "location": "local",
+                "path": "src/components/pane/pane.tsx",
+                "id": "src/components/pane/pane.tsx::BorderlessChangedEvent"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "This event is triggered when the variant of the pane is changed",
+          "docsTags": []
+        },
+        {
           "event": "expandedChanged",
-          "detail": "{ position: string; expanded: boolean; }",
+          "detail": "{ paneId: string; expanded: boolean; }",
           "bubbles": true,
           "complexType": {
             "original": "ExpandedChangedEvent",
-            "resolved": "{ position: string; expanded: boolean; }",
+            "resolved": "{ paneId: string; expanded: boolean; }",
             "references": {
               "ExpandedChangedEvent": {
                 "location": "local",
@@ -11962,6 +11979,26 @@
           "cancelable": true,
           "composed": true,
           "docs": "This event is triggered when the pane either expands or contracts",
+          "docsTags": []
+        },
+        {
+          "event": "variantChanged",
+          "detail": "{ paneId: string; variant: \"floating\" | \"inline\"; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "VariantChangedEvent",
+            "resolved": "{ paneId: string; variant: \"floating\" | \"inline\"; }",
+            "references": {
+              "VariantChangedEvent": {
+                "location": "local",
+                "path": "src/components/pane/pane.tsx",
+                "id": "src/components/pane/pane.tsx::VariantChangedEvent"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "This event is triggered when the variant of the pane is changed",
           "docsTags": []
         }
       ],
@@ -12008,7 +12045,7 @@
           "mutable": false,
           "attr": "borderless",
           "reflectToAttr": false,
-          "docs": "Toggle border",
+          "docs": "Set the default border state for all panes in the layout",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -17185,54 +17222,22 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-basic-navigation",
-        "ix-menu",
-        "ix-menu-item",
-        "ix-menu-category",
         "ix-pane-layout",
         "ix-pane",
         "ix-button"
       ],
       "dependencyGraph": {
         "my-component": [
-          "ix-basic-navigation",
-          "ix-menu",
-          "ix-menu-item",
-          "ix-menu-category",
           "ix-pane-layout",
           "ix-pane",
           "ix-button"
         ],
-        "ix-basic-navigation": [
-          "ix-application-header"
-        ],
-        "ix-application-header": [
-          "ix-burger-menu",
-          "ix-icon-button",
-          "ix-dropdown"
-        ],
-        "ix-burger-menu": [
-          "ix-icon-button",
-          "ix-spinner"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-menu": [
-          "ix-burger-menu",
-          "ix-icon-button",
-          "ix-menu-item"
-        ],
-        "ix-menu-category": [
-          "ix-menu-item",
-          "ix-dropdown",
-          "ix-dropdown-item",
-          "ix-typography",
-          "ix-divider"
-        ],
         "ix-pane": [
           "ix-icon-button",
           "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
         ],
         "ix-button": [
           "ix-spinner"
@@ -17359,12 +17364,17 @@
       "path": "src/components/pane/pane.tsx"
     },
     "src/components/pane/pane.tsx::ExpandedChangedEvent": {
-      "declaration": "{\n  position: string;\n  expanded: boolean;\n}",
+      "declaration": "{\n  paneId: string;\n  expanded: boolean;\n}",
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },
-    "src/components/pane/pane.tsx::SlotChangedEvent": {
-      "declaration": "{\n  paneId: string;\n  newSlot: string;\n}",
+    "src/components/pane/pane.tsx::VariantChangedEvent": {
+      "declaration": "{\n  paneId: string;\n  variant: 'floating' | 'inline';\n}",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/pane/pane.tsx::BorderlessChangedEvent": {
+      "declaration": "{\n  paneId: string;\n  borderless: boolean;\n}",
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },
@@ -17373,8 +17383,8 @@
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },
-    "src/components/pane/pane.tsx::VariantChangedEvent": {
-      "declaration": "{\n  paneId: string;\n  variant: 'floating' | 'inline';\n}",
+    "src/components/pane/pane.tsx::SlotChangedEvent": {
+      "declaration": "{\n  paneId: string;\n  newSlot: string;\n}",
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },

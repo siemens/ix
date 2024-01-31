@@ -105,8 +105,6 @@ import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
 import SelectNgModel from 'src/preview-examples/select-ng-model';
 import Settings from 'src/preview-examples/settings';
-import PanesInline from '../preview-examples/panes-inline';
-import SidePaneGroupFloating from '../preview-examples/panes-floating';
 import Slider from 'src/preview-examples/slider';
 import SliderError from 'src/preview-examples/slider-error';
 import SliderMarker from 'src/preview-examples/slider-marker';
@@ -145,6 +143,8 @@ import VerticalTabs from 'src/preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avatar';
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
+import PanesInline from '../preview-examples/pane';
+import SidePaneGroupFloating from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 
 @NgModule({

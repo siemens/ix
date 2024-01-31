@@ -11,6 +11,16 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: './panes-inline.html',
+  templateUrl: './pane.html',
 })
-export default class PanesInline {}
+export default class Pane {
+  expanded: boolean = false;
+
+  toggleExpanded() {
+    this.expanded = !this.expanded;
+  }
+
+  expandedChanged(event: CustomEvent) {
+    this.expanded = event.detail.expanded;
+  }
+}
