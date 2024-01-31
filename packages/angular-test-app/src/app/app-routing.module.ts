@@ -44,7 +44,11 @@ import Datetimepicker from 'src/preview-examples/datetimepicker';
 import Drawer from 'src/preview-examples/drawer';
 import DrawerFullHeight from 'src/preview-examples/drawer-full-height';
 import Dropdown from 'src/preview-examples/dropdown';
+import DropdownButton from 'src/preview-examples/dropdown-button';
+import DropdownButtonIcon from 'src/preview-examples/dropdown-button-icon';
 import DropdownIcon from 'src/preview-examples/dropdown-icon';
+import DropdownQuickActions from 'src/preview-examples/dropdown-quick-actions';
+import DropdownSubmenu from 'src/preview-examples/dropdown-submenu';
 import EmptyState from 'src/preview-examples/empty-state';
 import EmptyStateCompact from 'src/preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from 'src/preview-examples/empty-state-compact-break';
@@ -295,9 +299,13 @@ const routes: Routes = [
         path: 'drawer',
         component: Drawer,
       },
+      { path: 'dropdown-button', component: DropdownButton },
+      { path: 'dropdown-button-icon', component: DropdownButtonIcon },
       { path: 'dropdown-icon', component: DropdownIcon },
 
       { path: 'dropdown', component: Dropdown },
+      { path: 'dropdown-quick-actions', component: DropdownQuickActions },
+      { path: 'dropdown-submenu', component: DropdownSubmenu },
       { path: 'event-list-compact', component: EventListCompact },
       {
         path: 'event-list-custom-item-height',

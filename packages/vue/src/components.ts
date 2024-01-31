@@ -126,7 +126,9 @@ export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicati
 
 export const IxAvatar = /*@__PURE__*/ defineContainer<JSX.IxAvatar>('ix-avatar', defineIxAvatar, [
   'image',
-  'initials'
+  'initials',
+  'username',
+  'extra'
 ]);
 
 
@@ -359,7 +361,6 @@ export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-drop
   'positioningStrategy',
   'header',
   'offset',
-  'triggerEvent',
   'overwriteDropdownStyle',
   'showChanged'
 ]);

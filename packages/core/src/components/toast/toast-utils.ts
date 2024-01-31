@@ -27,7 +27,7 @@ export function getToastContainer() {
   const [container] = containerList;
   if (containerList.length > 1) {
     console.warn(
-      'Multiple toast container are found. Only there first is used.'
+      'Multiple toast containers were found. Only the first one will be used.'
     );
     return container;
   }

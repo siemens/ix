@@ -9,12 +9,15 @@
 
 import { Component, h, Host, State } from '@stencil/core';
 
+/** @internal */
 @Component({
-  tag: 'my-component',
-  styleUrl: 'my-component.scss',
+  tag: 'ix-playground-internal',
+  styleUrl: 'playground.scss',
   shadow: true,
+  // Set scoped=true and shadow=false to test global styles like checkbox etc
+  // scoped: true,
 })
-export class MyComponent {
+export class PlaygroundInternal {
   @State() expanded: boolean = false;
   @State() slot: string = 'left';
   @State() variant: 'inline' | 'floating' = 'floating';

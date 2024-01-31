@@ -7,13 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import {
   AppSwitchConfiguration,
   AppSwitchConfigurationTarget,
 } from '../../utils/application-layout/context';
+import { dismissModal } from '../../utils/modal';
 
 function ApplicationItem(props: {
+  host: HTMLIxApplicationSwitchModalElement;
   name: string;
   description: string;
   iconSrc: string;
@@ -46,7 +48,10 @@ function ApplicationItem(props: {
         AppEntry: true,
         Selected: props.selected,
       }}
-      onClick={() => window.open(props.url, props.target)}
+      onClick={() => {
+        dismissModal(props.host);
+        window.open(props.url, props.target);
+      }}
     >
       <div>
         <img class="AppIcon" src={props.iconSrc}></img>
@@ -77,6 +82,8 @@ function ApplicationItem(props: {
   shadow: true,
 })
 export class ApplicationSwitchModal {
+  @Element() hostElement!: HTMLIxApplicationSwitchModalElement;
+
   /** @internal */
   @Prop() config: AppSwitchConfiguration;
 
@@ -90,7 +97,7 @@ export class ApplicationSwitchModal {
     return (
       <Host>
         <ix-modal-header icon="apps">
-          {this.config?.i18nAppSwitch || 'Switch to Application'}
+          {this.config?.i18nAppSwitch || 'Switch to application'}
         </ix-modal-header>
         <ix-modal-content class="content">
           <div class="content-apps">
@@ -105,6 +112,7 @@ export class ApplicationSwitchModal {
             )}
             {this.config?.apps.map((appEntry) => (
               <ApplicationItem
+                host={this.hostElement}
                 name={appEntry.name}
                 description={appEntry.description}
                 iconSrc={appEntry.iconSrc}

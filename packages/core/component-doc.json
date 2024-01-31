@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.9.0",
-    "typescriptVersion": "5.2.2"
+    "version": "4.11.0",
+    "typescriptVersion": "5.3.3"
   },
   "components": [
     {
@@ -391,7 +391,7 @@
       "docsTags": [
         {
           "name": "slot",
-          "text": "logo - Location of the Logo"
+          "text": "logo - Location of the logo"
         }
       ],
       "encapsulation": "shadow",
@@ -453,7 +453,7 @@
       "slots": [
         {
           "name": "logo",
-          "docs": "Location of the Logo"
+          "docs": "Location of the logo"
         }
       ],
       "parts": [],
@@ -481,11 +481,15 @@
       ],
       "dependencies": [
         "ix-dropdown",
+        "ix-divider",
+        "ix-typography",
         "ix-spinner"
       ],
       "dependencyGraph": {
         "ix-avatar": [
           "ix-dropdown",
+          "ix-divider",
+          "ix-typography",
           "ix-spinner"
         ],
         "ix-menu-avatar": [
@@ -493,6 +497,32 @@
         ]
       },
       "props": [
+        {
+          "name": "extra",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "extra",
+          "reflectToAttr": false,
+          "docs": "Optional description text that will be displayed underneath the username.\nNote: Only working if avatar is part of the ix-application-header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "image",
           "type": "string",
@@ -504,7 +534,7 @@
           "mutable": false,
           "attr": "image",
           "reflectToAttr": false,
-          "docs": "Display a avatar image",
+          "docs": "Display an avatar image",
           "docsTags": [],
           "values": [
             {
@@ -534,6 +564,32 @@
           ],
           "optional": false,
           "required": false
+        },
+        {
+          "name": "username",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "username",
+          "reflectToAttr": false,
+          "docs": "If set an info card displaying the username will be placed inside the dropdown.\nNote: Only working if avatar is part of the ix-application-header",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
         }
       ],
       "methods": [],
@@ -553,12 +609,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "ix-basic-navigation is deprecated in favor of ix-application"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -581,7 +632,6 @@
           "ix-spinner"
         ]
       },
-      "deprecation": "ix-basic-navigation is deprecated in favor of ix-application",
       "props": [
         {
           "name": "applicationName",
@@ -1175,10 +1225,10 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
-        "ix-upload",
-        "my-component"
+        "ix-upload"
       ],
       "dependencies": [
         "ix-spinner"
@@ -1211,6 +1261,9 @@
         "ix-modal-example": [
           "ix-button"
         ],
+        "ix-playground-internal": [
+          "ix-button"
+        ],
         "ix-split-button": [
           "ix-button"
         ],
@@ -1218,9 +1271,6 @@
           "ix-button"
         ],
         "ix-upload": [
-          "ix-button"
-        ],
-        "my-component": [
           "ix-button"
         ]
       },
@@ -4625,10 +4675,14 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-avatar",
         "ix-menu-category"
       ],
       "dependencies": [],
       "dependencyGraph": {
+        "ix-avatar": [
+          "ix-divider"
+        ],
         "ix-menu-category": [
           "ix-divider"
         ]
@@ -4974,9 +5028,15 @@
           "name": "closeBehavior",
           "type": "\"both\" | \"inside\" | \"outside\" | boolean",
           "complexType": {
-            "original": "'inside' | 'outside' | 'both' | boolean",
+            "original": "CloseBehaviour",
             "resolved": "\"both\" | \"inside\" | \"outside\" | boolean",
-            "references": {}
+            "references": {
+              "CloseBehaviour": {
+                "location": "import",
+                "path": "dropdown-controller",
+                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehaviour"
+              }
+            }
           },
           "mutable": false,
           "attr": "close-behavior",
@@ -5238,7 +5298,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "ix-assign-sub-menu",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/dropdown-button",
@@ -8464,12 +8530,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "ix-map-navigation is deprecated in favor of ix-application"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -8499,7 +8560,6 @@
           "ix-spinner"
         ]
       },
-      "deprecation": "ix-map-navigation is deprecated in favor of ix-application",
       "props": [
         {
           "name": "applicationName",
@@ -8774,12 +8834,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "since 2.1.0"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-map-navigation"
@@ -8798,7 +8853,6 @@
           "ix-map-navigation-overlay"
         ]
       },
-      "deprecation": "since 2.1.0",
       "props": [
         {
           "name": "color",
@@ -9890,12 +9944,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "Use ix-application-header and it's avatar functionality instead"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
@@ -9911,13 +9960,14 @@
         ],
         "ix-avatar": [
           "ix-dropdown",
+          "ix-divider",
+          "ix-typography",
           "ix-spinner"
         ],
         "ix-menu-avatar-item": [
           "ix-dropdown-item"
         ]
       },
-      "deprecation": "Use ix-application-header and it's avatar functionality instead",
       "props": [
         {
           "name": "bottom",
@@ -10095,12 +10145,7 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "Use ix-application-header and it's  avatar functionality instead"
-        }
-      ],
+      "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-avatar"
@@ -10116,7 +10161,6 @@
           "ix-menu-avatar-item"
         ]
       },
-      "deprecation": "Use ix-application-header and it's  avatar functionality instead",
       "props": [
         {
           "name": "icon",
@@ -11122,6 +11166,10 @@
               "Promise": {
                 "location": "global",
                 "id": "global::Promise"
+              },
+              "HTMLDialogElement": {
+                "location": "global",
+                "id": "global::HTMLDialogElement"
               }
             },
             "return": "Promise<void>"
@@ -11202,11 +11250,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/my-component",
-      "filePath": "src/components/my-component/example-modal.tsx",
+      "dirPath": "src/components/playground",
+      "filePath": "src/components/playground/example-modal.tsx",
       "fileName": "example-modal.tsx",
-      "readmePath": "src/components/my-component/readme.md",
-      "usagesDir": "src/components/my-component/usage",
+      "readmePath": "src/components/playground/readme.md",
+      "usagesDir": "src/components/playground/usage",
       "tag": "ix-modal-example",
       "overview": "",
       "usage": {},
@@ -11386,7 +11434,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Close icon is clicked",
+          "docs": "Emits when close icon is clicked and closes the modal\nCan be prevented, in which case only the event is triggered, and the modal remains open",
           "docsTags": []
         }
       ],
@@ -11675,7 +11723,7 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "my-component"
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-icon-button",
@@ -11689,7 +11737,7 @@
         "ix-icon-button": [
           "ix-spinner"
         ],
-        "my-component": [
+        "ix-playground-internal": [
           "ix-pane"
         ]
       },
@@ -12025,11 +12073,11 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "my-component"
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
-        "my-component": [
+        "ix-playground-internal": [
           "ix-pane-layout"
         ]
       },
@@ -16169,6 +16217,7 @@
       "dependents": [
         "ix-action-card",
         "ix-application-switch-modal",
+        "ix-avatar",
         "ix-blind",
         "ix-card-list",
         "ix-content-header",
@@ -16190,6 +16239,9 @@
           "ix-typography"
         ],
         "ix-application-switch-modal": [
+          "ix-typography"
+        ],
+        "ix-avatar": [
           "ix-typography"
         ],
         "ix-blind": [
@@ -17207,49 +17259,6 @@
           "passive": false
         }
       ]
-    },
-    {
-      "dirPath": "src/components/my-component",
-      "filePath": "src/components/my-component/my-component.tsx",
-      "fileName": "my-component.tsx",
-      "readmePath": "src/components/my-component/readme.md",
-      "usagesDir": "src/components/my-component/usage",
-      "tag": "my-component",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [
-        "ix-pane-layout",
-        "ix-pane",
-        "ix-button"
-      ],
-      "dependencyGraph": {
-        "my-component": [
-          "ix-pane-layout",
-          "ix-pane",
-          "ix-button"
-        ],
-        "ix-pane": [
-          "ix-icon-button",
-          "ix-typography"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-button": [
-          "ix-spinner"
-        ]
-      },
-      "props": [],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
     }
   ],
   "typeLibrary": {
@@ -17323,20 +17332,15 @@
       "docstring": "",
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
-    "src/components/dropdown/placement.ts::AlignedPlacement": {
-      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
-      "docstring": "",
-      "path": "src/components/dropdown/placement.ts"
-    },
-    "src/components/dropdown/dropdown.tsx::DropdownTriggerEvent": {
-      "declaration": "export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';",
-      "docstring": "",
-      "path": "src/components/dropdown/dropdown.tsx"
-    },
     "src/components/dropdown-button/dropdown-button.tsx::DropdownButtonVariant": {
       "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.tsx"
+    },
+    "src/components/dropdown/placement.ts::AlignedPlacement": {
+      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
+      "docstring": "",
+      "path": "src/components/dropdown/placement.ts"
     },
     "src/components/empty-state/empty-state.tsx::EmptyStateLayout": {
       "declaration": "export type EmptyStateLayout = 'large' | 'compact' | 'compactBreak';",
@@ -17457,6 +17461,11 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
+    },
+    "src/components/dropdown/dropdown-controller.ts::CloseBehaviour": {
+      "declaration": "export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;",
+      "docstring": "",
+      "path": "src/components/dropdown/dropdown-controller.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",

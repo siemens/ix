@@ -44,9 +44,9 @@ test.describe('time picker tests', () => {
   test('increment time units', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
-    //Slice is necessary, because on element is on Shadow-DOM
+    // Slice is necessary, because on element is on Shadow-DOM
     const incrementButtons = (
-      await page.$$('ix-icon-button:has(svg title:has-text("chevron-up"))')
+      await page.$$('ix-icon-button.arrows:first-child')
     ).slice(0, 3);
 
     for (const button of incrementButtons) {
@@ -60,7 +60,7 @@ test.describe('time picker tests', () => {
     await page.waitForSelector('ix-date-time-card');
 
     const decrementButtons = (
-      await page.$$('ix-icon-button:has(svg title:has-text("chevron-down"))')
+      await page.$$('ix-icon-button.arrows:last-child')
     ).slice(0, 3);
 
     for (const button of decrementButtons) {
@@ -90,7 +90,7 @@ test.describe('time picker tests', () => {
     const dateTimeCard = await page.$$('ix-date-time-card');
 
     const decrementButtons = await dateTimeCard[1].$$(
-      'ix-icon-button:has(svg title:has-text("chevron-down"))'
+      'ix-icon-button.arrows:last-child'
     );
     await decrementButtons[3].click();
 
@@ -107,7 +107,7 @@ test.describe('time picker tests', () => {
     });
 
     const incrementButtons = (
-      await page.$$('ix-icon-button:has(svg title:has-text("chevron-up"))')
+      await page.$$('ix-icon-button.arrows:first-child')
     ).slice(0, 3);
     await incrementButtons[2].click();
 

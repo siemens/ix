@@ -16,6 +16,8 @@
 }
 
 :host {
+  display: none;
+
   dialog {
     margin: 0;
     left: 50%;
@@ -91,6 +93,10 @@
   ::slotted(ix-modal-footer) {
     margin-top: auto;
   }
+}
+
+:host(.visible) {
+  display: block;
 }
 
 :host(.align-center) {
