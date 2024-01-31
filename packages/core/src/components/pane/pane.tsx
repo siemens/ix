@@ -540,6 +540,18 @@ export class Pane {
             !this.isMobile &&
             this.position !== 'right' &&
             this.floating,
+          'mobile-border-top':
+            !this.borderless &&
+            this.isMobileTop &&
+            this.isMobile &&
+            !this.expanded &&
+            !this.floating,
+          'mobile-border-bottom':
+            !this.borderless &&
+            !this.isMobileTop &&
+            this.isMobile &&
+            !this.expanded &&
+            !this.floating,
           'box-shadow': this.floating,
           'aria-expanded': this.expanded,
           'not-visible': !this.collapsible && !this.expanded,
@@ -547,23 +559,9 @@ export class Pane {
       >
         <aside
           class={{
-            [`${this.position}-pane-border`]:
-              !this.borderless && !this.isMobile && !this.floating,
             'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
             'left-right-pane': this.isLeftRightPane && !this.isMobile,
             'mobile-pane': this.isMobile,
-            'mobile-border-top':
-              !this.borderless &&
-              this.isMobileTop &&
-              this.isMobile &&
-              !this.expanded &&
-              !this.floating,
-            'mobile-border-bottom':
-              !this.borderless &&
-              !this.isMobileTop &&
-              this.isMobile &&
-              !this.expanded &&
-              !this.floating,
           }}
         >
           <div

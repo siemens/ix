@@ -23,7 +23,6 @@
   display: flex;
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
 
   aside {
     width: 100%;
@@ -148,14 +147,6 @@
     height: 100%;
     width: 100%;
   }
-
-  .mobile-border-top {
-    @include set-border(bottom);
-  }
-
-  .mobile-border-bottom {
-    @include set-border(top);
-  }
 }
 
 :host(.not-visible) {
@@ -198,6 +189,14 @@
   .side-pane-content {
     height: calc(100% - 2.5rem);
   }
+}
+
+:host(.mobile-border-top) {
+  @include set-border(bottom);
+}
+
+:host(.mobile-border-bottom) {
+  @include set-border(top);
 }
 
 :host(.top-expanded) {
