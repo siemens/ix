@@ -6,46 +6,124 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
-regressionTest.describe('pane: basic', () => {
-  regressionTest('should be inline, not expanded', async ({ page }) => {
-    await page.goto('panes/basic');
+test.describe('pane', () => {
+  regressionTest(
+    'basic, floating, no_collapsible_state, collapsed',
+    async ({ page }) => {
+      await page.goto('panes/basic');
+      await page.waitForTimeout(1000);
+
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest(
+    'basic, floating, no_collapsible_state, expanded',
+    async ({ page }) => {
+      await page.goto('panes/basic');
+      await page.locator('ix-button').first().click();
+      await page.waitForTimeout(1000);
+
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest(
+    'basic, floating, no_collapsible_state, collapsed, mobile',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.sm);
+      await page.goto('panes/basic');
+      await page.waitForTimeout(1000);
+
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest(
+    'basic, floating, no_collapsible_state, expanded, mobile',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.sm);
+      await page.goto('panes/basic');
+      await page.locator('ix-button').first().click();
+      await page.waitForTimeout(1000);
+
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest('layout, floating, collapsed', async ({ page }) => {
+    await page.goto('panes/layout');
     await page.waitForTimeout(1000);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot();
   });
 
-  regressionTest('should be inline, expanded', async ({ page }) => {
-    await page.goto('panes/inline-expanded');
+  regressionTest('layout, floating, expanded', async ({ page }) => {
+    await page.goto('panes/layout');
+    for (const li of await page.locator('ix-icon-button').all())
+      await li.click();
     await page.waitForTimeout(1000);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot();
   });
 
-  regressionTest('should be floating, expanded', async ({ page }) => {
-    await page.goto('panes/floating');
-    await page.waitForTimeout(1000);
-
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
-
-  regressionTest('mobile', async ({ page }) => {
-    await page.goto('panes/mobile');
+  regressionTest('layout, floating, collapsed, mobile', async ({ page }) => {
     await page.setViewportSize(viewPorts.sm);
+    await page.goto('panes/layout');
     await page.waitForTimeout(1000);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot();
   });
 
-  regressionTest('mobile, expanded', async ({ page }) => {
-    await page.goto('panes/mobile-expanded');
+  regressionTest(
+    'layout, floating, left_expanded, mobile',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.sm);
+      await page.goto('panes/layout');
+      await page.locator('ix-icon-button').first().click();
+      await page.waitForTimeout(1000);
+
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest('layout, inline, collapsed', async ({ page }) => {
+    await page.goto('panes/layout');
+    await page.locator('ix-button').first().click();
+    await page.waitForTimeout(1000);
+
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('layout, inline, expanded', async ({ page }) => {
+    await page.goto('panes/layout');
+    await page.locator('ix-button').first().click();
+    for (const li of await page.locator('ix-icon-button').all())
+      await li.click();
+    await page.waitForTimeout(1000);
+
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('layout, inline, collapsed, mobile', async ({ page }) => {
     await page.setViewportSize(viewPorts.sm);
+    await page.goto('panes/layout');
+    await page.locator('ix-button').first().click();
+    await page.waitForTimeout(1000);
+
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('layout, inline, left_expanded, mobile', async ({ page }) => {
+    await page.setViewportSize(viewPorts.sm);
+    await page.goto('panes/layout');
+    await page.locator('ix-button').first().click();
     await page.locator('ix-icon-button').first().click();
     await page.waitForTimeout(1000);
-    await page.locator('p').first().click();
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot();
   });
 });
