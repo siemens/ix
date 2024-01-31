@@ -52,7 +52,8 @@ export class Panes {
 
   @State() private isMobile = false;
   @State() private paneElements = 0;
-  @State() private panes: Array<{
+
+  private panes: Array<{
     paneId: string;
     slot: string;
     collapsible: boolean;
@@ -251,6 +252,7 @@ export class Panes {
       }
 
       if (pane.borderless === undefined) {
+        console.log('set boarder', pane.heading);
         this.setPaneBorder(pane);
       }
     });
