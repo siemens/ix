@@ -17,15 +17,16 @@ import { Component, h, Host, State } from '@stencil/core';
 export class MyComponent {
   @State() expanded: boolean = false;
   @State() slot: string = 'left';
+  @State() variant: 'inline' | 'floating' = 'floating';
 
   render() {
     return (
       <Host>
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
           <ix-pane-layout
-            variant={'floating'}
+            variant={this.variant}
             layout={'full-width-top-bottom'}
-            borderless={true}
+            borderless={this.variant === 'floating'}
           >
             <ix-pane key={1} heading={'Pane 1'} slot={this.slot} size={'33%'}>
               <div style={{ width: '1000px', height: '1000px' }}>
@@ -68,6 +69,14 @@ export class MyComponent {
                 }}
               >
                 Popup Pane
+              </ix-button>
+              <ix-button
+                onClick={() => {
+                  this.variant =
+                    this.variant === 'inline' ? 'floating' : 'inline';
+                }}
+              >
+                Toggle Variant
               </ix-button>
             </div>
           </ix-pane-layout>
