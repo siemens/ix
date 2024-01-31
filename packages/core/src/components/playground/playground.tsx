@@ -20,24 +20,21 @@ export class PlaygroundInternal {
   render() {
     return (
       <Host>
-        <ix-application>
-          <ix-application-header>
-            <ix-dropdown-button label="test">
-              <ix-dropdown-item label="item 1"></ix-dropdown-item>
-              <ix-dropdown-item label="item 2"></ix-dropdown-item>
-              <ix-dropdown-item
-                id="submenu-01"
-                label="item 3"
-              ></ix-dropdown-item>
-            </ix-dropdown-button>
-            <ix-dropdown trigger="submenu-01">
-              <ix-dropdown-item>TEst2</ix-dropdown-item>
-              <ix-dropdown-item>TEst2</ix-dropdown-item>
-              <ix-dropdown-item>TEst2</ix-dropdown-item>
-              <ix-dropdown-item>TEst2</ix-dropdown-item>
-            </ix-dropdown>
-          </ix-application-header>
-        </ix-application>
+        {/* <ix-application> */}
+        <ix-application-header>
+          <ix-dropdown-button label="test">
+            <ix-dropdown-item label="item 1"></ix-dropdown-item>
+            <ix-dropdown-item label="item 2"></ix-dropdown-item>
+            <ix-dropdown-item id="submenu-01" label="item 3"></ix-dropdown-item>
+          </ix-dropdown-button>
+          <ix-dropdown trigger="submenu-01">
+            <ix-dropdown-item>TEst2</ix-dropdown-item>
+            <ix-dropdown-item>TEst2</ix-dropdown-item>
+            <ix-dropdown-item>TEst2</ix-dropdown-item>
+            <ix-dropdown-item>TEst2</ix-dropdown-item>
+          </ix-dropdown>
+        </ix-application-header>
+        {/* </ix-application> */}
       </Host>
     );
   }

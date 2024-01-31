@@ -10,6 +10,7 @@
 import {
   Component,
   Element,
+  Fragment,
   h,
   Host,
   Prop,
@@ -191,25 +192,7 @@ export class ApplicationHeader {
         </div>
         <div class="name">{this.name}</div>
         <div class="content">
-          <ix-icon-button
-            class={{
-              ['context-menu']: true,
-              ['context-menu-visible']: this.hasSlottedElements,
-            }}
-            data-context-menu
-            icon="more-menu"
-            ghost
-          ></ix-icon-button>
-          <ix-dropdown
-            data-overflow-dropdown
-            class="dropdown"
-            trigger={this.resolveContextMenuButton()}
-          >
-            <div class="dropdown-content">
-              <slot onSlotchange={() => this.updateIsSlottedContent()}></slot>
-            </div>
-          </ix-dropdown>
-          {/* {this.breakpoint === 'sm' ? (
+          {this.breakpoint === 'sm' ? (
             <Fragment>
               <ix-icon-button
                 class={{
@@ -234,7 +217,7 @@ export class ApplicationHeader {
             </Fragment>
           ) : (
             <slot onSlotchange={() => this.updateIsSlottedContent()}></slot>
-          )} */}
+          )}
           <slot name="ix-application-header-avatar"></slot>
         </div>
       </Host>

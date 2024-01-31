@@ -209,9 +209,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-application"
+        ]
+      },
       "props": [
         {
           "name": "appSwitchConfig",
@@ -397,7 +403,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
-        "ix-map-navigation"
+        "ix-map-navigation",
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-burger-menu",
@@ -421,6 +428,9 @@
           "ix-application-header"
         ],
         "ix-map-navigation": [
+          "ix-application-header"
+        ],
+        "ix-playground-internal": [
           "ix-application-header"
         ]
       },
@@ -4951,6 +4961,7 @@
         "ix-dropdown-button",
         "ix-menu-avatar",
         "ix-menu-category",
+        "ix-playground-internal",
         "ix-select",
         "ix-split-button"
       ],
@@ -4981,6 +4992,9 @@
           "ix-dropdown"
         ],
         "ix-menu-category": [
+          "ix-dropdown"
+        ],
+        "ix-playground-internal": [
           "ix-dropdown"
         ],
         "ix-select": [
@@ -5320,7 +5334,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-button",
         "ix-icon-button",
@@ -5337,6 +5353,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -5662,6 +5681,7 @@
         "ix-date-dropdown",
         "ix-menu-avatar-item",
         "ix-menu-category",
+        "ix-playground-internal",
         "ix-select",
         "ix-select-item",
         "ix-split-button-item"
@@ -5678,6 +5698,9 @@
           "ix-dropdown-item"
         ],
         "ix-menu-category": [
+          "ix-dropdown-item"
+        ],
+        "ix-playground-internal": [
           "ix-dropdown-item"
         ],
         "ix-select": [

@@ -451,14 +451,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         role="list"
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >
-        <div
-          style={{
-            background: 'rgba(255,0,0,0.4)',
-            position: 'absolute',
-          }}
-        >
-          {this.localUId}
-        </div>
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
 
