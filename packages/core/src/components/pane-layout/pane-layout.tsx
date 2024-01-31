@@ -141,7 +141,7 @@ export class Panes {
       }
     });
 
-    this.configureLayout();
+    this.configurePanes();
     forceUpdate(this.hostElement);
   }
 
@@ -172,23 +172,23 @@ export class Panes {
   }
 
   @Watch('variant')
-  setVariant() {
+  onVariableChange() {
     this.currentPanes.forEach((pane) => {
       pane.variant = this.variant;
     });
   }
 
   @Watch('borderless')
-  setBorders() {
+  onBorderChange() {
     this.currentPanes.forEach((pane) => {
       this.setPaneBorder(pane);
     });
   }
 
-  @Watch('layout')
   @Watch('paneElements')
   @Watch('isMobile')
-  configureLayout() {
+  @Watch('layout')
+  configurePanes() {
     let topCount = 0;
     let bottomCount = 0;
     let leftCount = 0;
@@ -270,53 +270,9 @@ export class Panes {
   render() {
     return (
       <Host>
-        {this.layout == 'full-height-left-right' && !this.isMobile ? (
-          <div class="side-panes-wrapper">
-            <div
-              class={{
-                row: true,
-                'padding-left': this.hasPadding('left'),
-                'padding-right': this.hasPadding('right'),
-              }}
-            >
-              <div class={{ 'absolute-left': this.isFloating('left') }}>
-                <slot name="left"></slot>
-              </div>
-              <div
-                class={{
-                  col: true,
-                  'padding-top': this.hasPadding('top'),
-                  'padding-bottom': this.hasPadding('bottom'),
-                }}
-              >
-                <div class={{ 'absolute-top': this.isFloating('top') }}>
-                  <slot name="top"></slot>
-                </div>
-                <div class="content">
-                  <slot name="content"></slot>
-                </div>
-                <div class={{ 'absolute-bottom': this.isFloating('bottom') }}>
-                  <slot name="bottom"></slot>
-                </div>
-              </div>
-              <div class={{ 'absolute-right': this.isFloating('right') }}>
-                <slot name="right"></slot>
-              </div>
-            </div>
-          </div>
-        ) : null}
-        {this.layout == 'full-width-top-bottom' && !this.isMobile ? (
-          <div class="side-panes-wrapper">
-            <div
-              class={{
-                col: true,
-                'padding-top': this.hasPadding('top'),
-                'padding-bottom': this.hasPadding('bottom'),
-              }}
-            >
-              <div class={{ 'absolute-top': this.isFloating('top') }}>
-                <slot name="top"></slot>
-              </div>
+        {!this.isMobile ? (
+          this.layout == 'full-height-left-right' ? (
+            <div class="side-panes-wrapper">
               <div
                 class={{
                   row: true,
@@ -327,20 +283,64 @@ export class Panes {
                 <div class={{ 'absolute-left': this.isFloating('left') }}>
                   <slot name="left"></slot>
                 </div>
-                <div class="content">
-                  <slot name="content"></slot>
+                <div
+                  class={{
+                    col: true,
+                    'padding-top': this.hasPadding('top'),
+                    'padding-bottom': this.hasPadding('bottom'),
+                  }}
+                >
+                  <div class={{ 'absolute-top': this.isFloating('top') }}>
+                    <slot name="top"></slot>
+                  </div>
+                  <div class="content">
+                    <slot name="content"></slot>
+                  </div>
+                  <div class={{ 'absolute-bottom': this.isFloating('bottom') }}>
+                    <slot name="bottom"></slot>
+                  </div>
                 </div>
                 <div class={{ 'absolute-right': this.isFloating('right') }}>
                   <slot name="right"></slot>
                 </div>
               </div>
-              <div class={{ 'absolute-bottom': this.isFloating('bottom') }}>
-                <slot name="bottom"></slot>
+            </div>
+          ) : (
+            <div class="side-panes-wrapper">
+              <div
+                class={{
+                  col: true,
+                  'padding-top': this.hasPadding('top'),
+                  'padding-bottom': this.hasPadding('bottom'),
+                }}
+              >
+                <div class={{ 'absolute-top': this.isFloating('top') }}>
+                  <slot name="top"></slot>
+                </div>
+                <div
+                  class={{
+                    row: true,
+                    'padding-left': this.hasPadding('left'),
+                    'padding-right': this.hasPadding('right'),
+                  }}
+                >
+                  <div class={{ 'absolute-left': this.isFloating('left') }}>
+                    <slot name="left"></slot>
+                  </div>
+                  <div class="content">
+                    <slot name="content"></slot>
+                  </div>
+                  <div class={{ 'absolute-right': this.isFloating('right') }}>
+                    <slot name="right"></slot>
+                  </div>
+                </div>
+                <div class={{ 'absolute-bottom': this.isFloating('bottom') }}>
+                  <slot name="bottom"></slot>
+                </div>
               </div>
             </div>
-          </div>
-        ) : null}
-        {this.isMobile ? (
+          )
+        ) : (
           <div class="col">
             <div>
               <slot name="top"></slot>
@@ -358,7 +358,7 @@ export class Panes {
               <slot name="bottom"></slot>
             </div>
           </div>
-        ) : null}
+        )}
       </Host>
     );
   }

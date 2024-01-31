@@ -420,7 +420,7 @@ export class Pane {
   }
 
   @Watch('position')
-  async onPositionChange() {
+  onPositionChange() {
     this.setIcons();
     this.hostElement.style.removeProperty('width');
     this.hostElement.style.removeProperty('height');
