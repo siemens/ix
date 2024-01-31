@@ -21,6 +21,8 @@ export class PlaygroundInternal {
   @State() expanded: boolean = false;
   @State() slot: string = 'left';
   @State() variant: 'inline' | 'floating' = 'inline';
+  @State() layout: 'full-width-top-bottom' | 'full-height-left-right' =
+    'full-height-left-right';
 
   render() {
     return (
@@ -34,17 +36,16 @@ export class PlaygroundInternal {
         >
           <ix-pane-layout
             variant={this.variant}
-            layout={'full-width-top-bottom'}
+            layout={this.layout}
             borderless={this.variant === 'floating'}
           >
-            <ix-pane key={1} heading={'Pane 1'} slot={this.slot} size={'33%'}>
+            <ix-pane heading={'Pane 1'} slot={this.slot} size={'33%'}>
               <div style={{ width: '1000px', height: '1000px' }}>
                 <h1>Pane 1</h1>
               </div>
             </ix-pane>
 
             <ix-pane
-              key={2}
               heading={'Pane 2'}
               slot={'top'}
               size={'33%'}
@@ -54,7 +55,7 @@ export class PlaygroundInternal {
               <h1>Pane 2</h1>
             </ix-pane>
 
-            <ix-pane key={3} heading={'Pane 3'} slot={'right'} size={'33%'}>
+            <ix-pane heading={'Pane 3'} slot={'right'} size={'33%'}>
               <h1>Pane 3</h1>
             </ix-pane>
 
@@ -65,11 +66,16 @@ export class PlaygroundInternal {
                 width: '100%',
                 height: '100%',
                 padding: '2.5rem',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <ix-button
                 onClick={() => {
                   this.expanded = !this.expanded;
+                }}
+                style={{
+                  width: '20rem',
                 }}
               >
                 Popup Pane
@@ -80,7 +86,8 @@ export class PlaygroundInternal {
                     this.variant === 'inline' ? 'floating' : 'inline';
                 }}
                 style={{
-                  paddingLeft: '0.5rem',
+                  width: '20rem',
+                  paddingTop: '0.5rem',
                 }}
               >
                 Toggle Variant
@@ -90,16 +97,31 @@ export class PlaygroundInternal {
                   this.slot = this.slot === 'left' ? 'bottom' : 'left';
                 }}
                 style={{
-                  paddingLeft: '0.5rem',
+                  width: '20rem',
+                  paddingTop: '0.5rem',
                 }}
               >
                 Toggle Slot Pane 1
+              </ix-button>
+              {/* Layout Toggle doesn't work in stencil - faulty dom handling */}
+              <ix-button
+                onClick={() => {
+                  this.layout =
+                    this.layout === 'full-height-left-right'
+                      ? 'full-width-top-bottom'
+                      : 'full-height-left-right';
+                }}
+                style={{
+                  width: '20rem',
+                  paddingTop: '0.5rem',
+                }}
+              >
+                Toggle Layout
               </ix-button>
             </div>
           </ix-pane-layout>
 
           <ix-pane
-            key={5}
             heading={'popup'}
             position={'right'}
             expanded={this.expanded}
