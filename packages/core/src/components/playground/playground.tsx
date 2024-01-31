@@ -25,7 +25,13 @@ export class PlaygroundInternal {
   render() {
     return (
       <Host>
-        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+          }}
+        >
           <ix-pane-layout
             variant={this.variant}
             layout={'full-width-top-bottom'}
@@ -41,15 +47,7 @@ export class PlaygroundInternal {
               <h1>Pane 2</h1>
             </ix-pane>
 
-            <ix-pane
-              key={3}
-              heading={'Pane 3'}
-              slot={'right'}
-              size={'33%'}
-              // overwrite layout defaults
-              variant={'inline'}
-              borderless={false}
-            >
+            <ix-pane key={3} heading={'Pane 3'} slot={'right'} size={'33%'}>
               <h1>Pane 3</h1>
             </ix-pane>
 
@@ -60,7 +58,7 @@ export class PlaygroundInternal {
             <div
               slot={'content'}
               style={{
-                backgroundColor: 'white',
+                backgroundColor: 'black',
                 width: '100%',
                 height: '100%',
                 padding: '2.5rem',
