@@ -401,24 +401,19 @@ test.describe('nested dropdown 2/2', () => {
 
 test('Nested dropdowns within application-header', async ({ mount, page }) => {
   await mount(html`
-    <ix-application>
-      <ix-application-header>
-        <ix-dropdown-button label="Trigger">
-          <ix-dropdown-item label="MainItem 1"></ix-dropdown-item>
-          <ix-dropdown-item label="MainItem 2"></ix-dropdown-item>
-          <ix-dropdown-item
-            label="MainItem 3"
-            id="submenu-01"
-          ></ix-dropdown-item>
-        </ix-dropdown-button>
-      </ix-application-header>
-      <ix-dropdown id="submenu" trigger="submenu-01">
-        <ix-dropdown-item>SubMenuItem 1</ix-dropdown-item>
-        <ix-dropdown-item>SubMenuItem 2</ix-dropdown-item>
-        <ix-dropdown-item>SubMenuItem 3</ix-dropdown-item>
-        <ix-dropdown-item>SubMenuItem 4</ix-dropdown-item>
-      </ix-dropdown>
-    </ix-application>
+    <ix-application-header>
+      <ix-dropdown-button label="Trigger">
+        <ix-dropdown-item label="MainItem 1"></ix-dropdown-item>
+        <ix-dropdown-item label="MainItem 2"></ix-dropdown-item>
+        <ix-dropdown-item label="MainItem 3" id="submenu-01"></ix-dropdown-item>
+      </ix-dropdown-button>
+    </ix-application-header>
+    <ix-dropdown id="submenu" trigger="submenu-01">
+      <ix-dropdown-item>SubMenuItem 1</ix-dropdown-item>
+      <ix-dropdown-item>SubMenuItem 2</ix-dropdown-item>
+      <ix-dropdown-item>SubMenuItem 3</ix-dropdown-item>
+      <ix-dropdown-item>SubMenuItem 4</ix-dropdown-item>
+    </ix-dropdown>
   `);
   await page.setViewportSize(viewPorts.sm);
   await page.waitForTimeout(500);
