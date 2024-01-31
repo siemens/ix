@@ -13,16 +13,18 @@
 
 @mixin set-border($position) {
   @if $position {
-    border-#{$position}: var(--theme-app-header--border-width) solid var(--theme-color-soft-bdr);
+    border-#{$position}-color: var(--theme-color-soft-bdr) !important;
   }
 }
 
 :host {
   @include ix-component;
   background-color: var(--theme-color-2);
+  border: var(--theme-app-header--border-width) solid var(--theme-color-2);
   display: flex;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 
   aside {
     width: 100%;
@@ -72,7 +74,7 @@
       flex-direction: row;
     }
 
-    .title-collapsible {
+    .title-hide-on-collapse {
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
@@ -108,7 +110,7 @@
       flex-direction: row;
     }
 
-    .title-collapsible {
+    .title-hide-on-collapse {
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
@@ -121,10 +123,6 @@
     writing-mode: vertical-lr;
     text-orientation: mixed;
     transform: rotate(180deg);
-  }
-
-  .rotate-icon {
-    transform: rotate(-45deg);
   }
 
   .mobile-pane {
@@ -155,6 +153,7 @@
 
 :host(.inline-color) {
   background-color: var(--theme-color-1);
+  border-color: var(--theme-color-1);
 }
 
 :host(.box-shadow) {
@@ -162,7 +161,7 @@
 }
 
 :host(.nav-left-border) {
-  border-left: var(--theme-app-header--border-width) solid var(--theme-color-weak-bdr);
+  border-left-color: var(--theme-color-weak-bdr) !important;
 }
 
 :host(.left-pane-border) {

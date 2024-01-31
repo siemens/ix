@@ -34,9 +34,9 @@ export type SlotChangedEvent = {
   paneId: string;
   newSlot: string;
 };
-export type CollapsibleChangedEvent = {
+export type HideOnCollapseChangedEvent = {
   paneId: string;
-  collapsible: boolean;
+  hideOnCollapse: boolean;
 };
 export type VariantChangedEvent = {
   paneId: string;
@@ -74,7 +74,7 @@ export class Pane {
   /**
    * Define if the pane should have a collapsed state
    */
-  @Prop({ reflect: true }) collapsible: boolean = true;
+  @Prop() hideOnCollapse: boolean = false;
 
   /**
    * The maximum size of the sidebar, when it is expanded
@@ -110,6 +110,11 @@ export class Pane {
   @Prop() icon: string;
 
   /**
+   * Prevents overwriting of the variant and borderless property when used inside layout
+   */
+  @Prop() preventOverwrite: boolean = false;
+
+  /**
    * Identifier of the pane
    */
   @Prop() identifier: string = `pane-${idCounter++}`;
@@ -118,11 +123,6 @@ export class Pane {
    * @internal
    */
   @Prop({ mutable: true }) isMobile: boolean = false;
-
-  /**
-   * @internal
-   */
-  @Prop({ mutable: true }) initialZIndex: number = 1;
 
   /**
    * This event is triggered when the pane either expands or contracts
@@ -142,7 +142,7 @@ export class Pane {
   /**
    * @internal
    */
-  @Event() collapsibleChanged: EventEmitter<CollapsibleChangedEvent>;
+  @Event() hideOnCollapseChanged: EventEmitter<HideOnCollapseChangedEvent>;
 
   /**
    * @internal
@@ -157,8 +157,8 @@ export class Pane {
   @State() private parentHeightPx = 0;
 
   private validPositions = ['top', 'left', 'bottom', 'right'];
-  private collapsedWidth = '40px';
-  private collapsedHeight = '40px';
+  private collapsedPane = '40px';
+  private collapsedPaneMobile = '48px';
 
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
@@ -184,21 +184,17 @@ export class Pane {
 
     this.floating = this.variant === 'floating';
 
-    // handle initial expansion
     if (this.expanded) {
       this.onExpandedChange();
     }
 
-    // observe breakpoint
     this.isMobile = matchBreakpoint('sm');
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
     });
 
-    // set position
     this.setPosition(this.currentSlot);
 
-    // recognize a changed slot attribute
     this.mutationObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (
@@ -223,7 +219,6 @@ export class Pane {
       attributeOldValue: true,
     });
 
-    // Observe parent size change
     const parentElement = this.hostElement.parentElement;
     this.resizeObserver = new ResizeObserver((entries) => {
       this.parentWidthPx = entries[0].borderBoxSize[0].inlineSize;
@@ -371,10 +366,9 @@ export class Pane {
     });
   }
 
-  private resetLayoutState() {
+  private resetMobileExpanded() {
     this.removePadding();
-    this.hostElement.style.removeProperty('height');
-    this.hostElement.style.removeProperty('width');
+    this.hostElement.style.height = this.collapsedPaneMobile;
   }
 
   private removePadding() {
@@ -427,11 +421,11 @@ export class Pane {
     this.onParentSizeChange();
   }
 
-  @Watch('collapsible')
+  @Watch('hideOnCollapse')
   onCollapsibleChange(value: boolean) {
-    this.collapsibleChanged.emit({
+    this.hideOnCollapseChanged.emit({
       paneId: this.identifier,
-      collapsible: value,
+      hideOnCollapse: value,
     });
   }
 
@@ -482,12 +476,12 @@ export class Pane {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.resetLayoutState();
+        this.resetMobileExpanded();
       } else {
         if (this.isBottomTopPane) {
-          this.hostElement.style.height = this.collapsedHeight;
+          this.hostElement.style.height = this.collapsedPane;
         } else {
-          this.hostElement.style.width = this.collapsedWidth;
+          this.hostElement.style.width = this.collapsedPane;
         }
       }
     }
@@ -511,12 +505,12 @@ export class Pane {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.resetLayoutState();
+        this.resetMobileExpanded();
       } else {
         if (this.isBottomTopPane) {
-          this.animateHorizontalFadeIn(this.collapsedHeight);
+          this.animateHorizontalFadeIn(this.collapsedPane);
         } else {
-          this.animateVerticalFadeIn(this.collapsedWidth);
+          this.animateVerticalFadeIn(this.collapsedPane);
         }
       }
     }
@@ -554,7 +548,7 @@ export class Pane {
             !this.floating,
           'box-shadow': this.floating,
           'aria-expanded': this.expanded,
-          'not-visible': !this.collapsible && !this.expanded,
+          'not-visible': this.hideOnCollapse && !this.expanded,
         }}
       >
         <aside
@@ -567,14 +561,15 @@ export class Pane {
           <div
             id="title-div"
             class={{
-              title: !this.isMobile && this.collapsible && !this.showContent,
+              title:
+                !this.isMobile && !this.hideOnCollapse && !this.showContent,
               'title-finished':
-                !this.isMobile && this.collapsible && this.showContent,
+                !this.isMobile && !this.hideOnCollapse && this.showContent,
               'title-expanded':
-                !this.isMobile && this.collapsible && this.expanded,
-              'title-collapsible': !this.isMobile && !this.collapsible,
+                !this.isMobile && !this.hideOnCollapse && this.expanded,
+              'title-hide-on-collapse': !this.isMobile && this.hideOnCollapse,
               'title-mobile': this.isMobile,
-              'header-gap': !this.isMobile && this.collapsible,
+              'header-gap': !this.isMobile && !this.hideOnCollapse,
             }}
           >
             <ix-icon-button
@@ -582,7 +577,7 @@ export class Pane {
               size="24"
               icon={
                 this.expanded
-                  ? this.isMobile || !this.collapsible
+                  ? this.isMobile || this.hideOnCollapse
                     ? 'close'
                     : this.expandIcon
                   : this.minimizeIcon
@@ -605,8 +600,6 @@ export class Pane {
                   class={{
                     'title-text-left-right-expanded':
                       this.expanded && !this.isMobile && this.isLeftRightPane,
-                    'rotate-icon':
-                      !this.expanded && !this.isMobile && this.isLeftRightPane,
                   }}
                   size="24"
                   name={this.icon}

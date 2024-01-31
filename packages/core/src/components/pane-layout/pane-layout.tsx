@@ -36,9 +36,8 @@ export class Panes {
   /**
    * Choose the layout of the panes
    */
-  @Prop({ reflect: true }) layout:
-    | 'full-height-left-right'
-    | 'full-width-top-bottom' = 'full-height-left-right';
+  @Prop() layout: 'full-height-left-right' | 'full-width-top-bottom' =
+    'full-height-left-right';
 
   /**
    * Set the default variant for all panes in the layout
@@ -56,7 +55,7 @@ export class Panes {
   private panes: Array<{
     paneId: string;
     slot: string;
-    collapsible: boolean;
+    hideOnCollapse: boolean;
     floating: boolean;
   }> = [];
 
@@ -99,24 +98,58 @@ export class Panes {
     this.observer?.disconnect();
   }
 
+  private setPaneVariant(pane: HTMLIxPaneElement) {
+    if (!pane.preventOverwrite) {
+      pane.variant = this.variant;
+    }
+  }
+
   private setPaneBorder(pane: HTMLIxPaneElement) {
-    if (this.borderless) {
-      pane.borderless = true;
-    } else {
-      const hasCollapsibleLeftPane = this.panes.find(
-        (pane) => pane.slot === 'left' && pane.collapsible
-      );
-      if (
-        pane.variant === 'floating' &&
-        this.layout === 'full-height-left-right' &&
-        hasCollapsibleLeftPane &&
-        (pane.position === 'top' || pane.position === 'bottom')
-      ) {
+    if (!pane.preventOverwrite) {
+      if (this.borderless) {
         pane.borderless = true;
       } else {
-        pane.borderless = false;
+        const hasVisibleLeftPane = !!this.panes.find(
+          (pane) => pane.slot === 'left' && !pane.hideOnCollapse
+        );
+        if (
+          pane.variant === 'floating' &&
+          this.layout === 'full-height-left-right' &&
+          hasVisibleLeftPane &&
+          (pane.position === 'top' || pane.position === 'bottom')
+        ) {
+          console.log('Hallo');
+          pane.borderless = true;
+        } else {
+          pane.borderless = false;
+        }
       }
     }
+  }
+
+  private setPaneZIndex(pane: HTMLIxPaneElement) {
+    const isTop = pane.slot === 'top';
+    const isBottom = pane.slot === 'bottom';
+    const isLeft = pane.slot === 'left';
+    const isRight = pane.slot === 'right';
+
+    let zIndex = 1;
+    if (this.isMobile) {
+      if (isBottom || isTop) {
+        zIndex = 3;
+      }
+    } else {
+      if (this.layout === 'full-height-left-right') {
+        if (isLeft || isRight) {
+          zIndex = 3;
+        }
+      } else {
+        if (isBottom || isTop) {
+          zIndex = 3;
+        }
+      }
+    }
+    pane.style.zIndex = zIndex.toString();
   }
 
   private setPanes(panes: NodeListOf<HTMLIxPaneElement>) {
@@ -125,7 +158,7 @@ export class Panes {
       this.panes.push({
         paneId: pane.identifier,
         slot: pane.slot,
-        collapsible: pane.collapsible,
+        hideOnCollapse: pane.hideOnCollapse,
         floating: pane.variant === 'floating',
       });
     });
@@ -145,13 +178,13 @@ export class Panes {
     forceUpdate(this.hostElement);
   }
 
-  @Listen('collapsibleChanged')
+  @Listen('hideOnCollapseChanged')
   onCollapsibleChanged(event: CustomEvent) {
-    const { paneId, collapsible } = event.detail;
+    const { paneId, hideOnCollapse } = event.detail;
 
     this.panes.forEach((currentSlot) => {
       if (currentSlot.paneId === paneId) {
-        currentSlot.collapsible = collapsible;
+        currentSlot.hideOnCollapse = hideOnCollapse;
       }
     });
 
@@ -174,7 +207,8 @@ export class Panes {
   @Watch('variant')
   onVariableChange() {
     this.currentPanes.forEach((pane) => {
-      pane.variant = this.variant;
+      this.setPaneVariant(pane);
+      this.setPaneBorder(pane);
     });
   }
 
@@ -185,9 +219,22 @@ export class Panes {
     });
   }
 
-  @Watch('paneElements')
-  @Watch('isMobile')
   @Watch('layout')
+  onLayoutChange() {
+    this.currentPanes.forEach((pane) => {
+      this.setPaneBorder(pane);
+      this.setPaneZIndex(pane);
+    });
+  }
+
+  @Watch('isMobile')
+  onMobileChange() {
+    this.currentPanes.forEach((pane) => {
+      this.setPaneZIndex(pane);
+    });
+  }
+
+  @Watch('paneElements')
   configurePanes() {
     let topCount = 0;
     let bottomCount = 0;
@@ -229,37 +276,13 @@ export class Panes {
         return;
       }
 
-      let zIndex = 1;
-      if (this.isMobile) {
-        if (isBottom || isTop) {
-          zIndex = 3;
-        }
-      } else {
-        if (this.layout === 'full-height-left-right') {
-          if (isLeft || isRight) {
-            zIndex = 3;
-          }
-        } else {
-          if (isBottom || isTop) {
-            zIndex = 3;
-          }
-        }
-      }
-      pane.style.zIndex = zIndex.toString();
-
-      if (pane.variant === undefined) {
-        pane.variant = this.variant;
-      }
-
-      if (pane.borderless === undefined) {
-        this.setPaneBorder(pane);
-      }
+      this.setPaneZIndex(pane);
     });
   }
 
   private hasPadding(position: Position) {
     const pane = this.panes.find((pane) => pane.slot === position);
-    return pane ? pane.collapsible && pane.floating : false;
+    return pane ? !pane.hideOnCollapse && pane.floating : false;
   }
 
   private isFloating(position: Position) {

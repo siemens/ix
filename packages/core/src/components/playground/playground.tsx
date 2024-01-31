@@ -19,6 +19,8 @@ import { Component, h, Host, State } from '@stencil/core';
 })
 export class PlaygroundInternal {
   @State() expanded: boolean = false;
+  @State() borderless: boolean = false;
+  @State() hideOnCollapse: boolean = false;
   @State() slot: string = 'left';
   @State() variant: 'inline' | 'floating' = 'inline';
   @State() layout: 'full-width-top-bottom' | 'full-height-left-right' =
@@ -37,25 +39,31 @@ export class PlaygroundInternal {
           <ix-pane-layout
             variant={this.variant}
             layout={this.layout}
-            borderless={this.variant === 'floating'}
+            borderless={this.borderless}
           >
-            <ix-pane heading={'Pane 1'} slot={this.slot} size={'33%'}>
+            <ix-pane
+              heading={'Pane 1'}
+              slot={this.slot}
+              size={'33%'}
+              // prevent overwrite
+              preventOverwrite
+              borderless
+            >
               <div style={{ width: '1000px', height: '1000px' }}>
                 <h1>Pane 1</h1>
               </div>
             </ix-pane>
 
-            <ix-pane
-              heading={'Pane 2'}
-              slot={'top'}
-              size={'33%'}
-              // overwrite layout default
-              borderless={true}
-            >
+            <ix-pane heading={'Pane 2'} slot={'top'} size={'33%'}>
               <h1>Pane 2</h1>
             </ix-pane>
 
-            <ix-pane heading={'Pane 3'} slot={'right'} size={'33%'}>
+            <ix-pane
+              heading={'Pane 3'}
+              slot={'right'}
+              size={'33%'}
+              hideOnCollapse={this.hideOnCollapse}
+            >
               <h1>Pane 3</h1>
             </ix-pane>
 
@@ -120,6 +128,30 @@ export class PlaygroundInternal {
               >
                 Toggle Layout
               </ix-button>
+
+              <ix-button
+                onClick={() => {
+                  this.hideOnCollapse = !this.hideOnCollapse;
+                }}
+                style={{
+                  width: '20rem',
+                  paddingTop: '0.5rem',
+                }}
+              >
+                Change HideOnCollapse Pane 3
+              </ix-button>
+
+              <ix-button
+                onClick={() => {
+                  this.borderless = !this.borderless;
+                }}
+                style={{
+                  width: '20rem',
+                  paddingTop: '0.5rem',
+                }}
+              >
+                Change Borderless
+              </ix-button>
             </div>
           </ix-pane-layout>
 
@@ -129,7 +161,7 @@ export class PlaygroundInternal {
             expanded={this.expanded}
             variant={'floating'}
             size={'50%'}
-            collapsible={false}
+            hideOnCollapse
             onExpandedChanged={(event) => {
               this.expanded = event.detail.expanded;
             }}

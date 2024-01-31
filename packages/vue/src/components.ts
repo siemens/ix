@@ -726,19 +726,19 @@ export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-
 export const IxPane = /*@__PURE__*/ defineContainer<JSX.IxPane>('ix-pane', defineIxPane, [
   'heading',
   'variant',
-  'collapsible',
+  'hideOnCollapse',
   'size',
   'borderless',
   'expanded',
   'position',
   'icon',
+  'preventOverwrite',
   'identifier',
   'isMobile',
-  'initialZIndex',
   'expandedChanged',
   'variantChanged',
   'borderlessChanged',
-  'collapsibleChanged',
+  'hideOnCollapseChanged',
   'slotChanged'
 ]);
 

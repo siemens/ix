@@ -11764,28 +11764,6 @@
           "required": false
         },
         {
-          "name": "collapsible",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "collapsible",
-          "reflectToAttr": true,
-          "docs": "Define if the pane should have a collapsed state",
-          "docsTags": [],
-          "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "expanded",
           "type": "boolean",
           "complexType": {
@@ -11824,6 +11802,28 @@
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideOnCollapse",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-on-collapse",
+          "reflectToAttr": false,
+          "docs": "Define if the pane should have a collapsed state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -11908,6 +11908,28 @@
             {
               "value": "top",
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "preventOverwrite",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "prevent-overwrite",
+          "reflectToAttr": false,
+          "docs": "Prevents overwriting of the variant and borderless property when used inside layout",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -12108,13 +12130,13 @@
           "name": "layout",
           "type": "\"full-height-left-right\" | \"full-width-top-bottom\"",
           "complexType": {
-            "original": "| 'full-height-left-right'\n    | 'full-width-top-bottom'",
+            "original": "'full-height-left-right' | 'full-width-top-bottom'",
             "resolved": "\"full-height-left-right\" | \"full-width-top-bottom\"",
             "references": {}
           },
           "mutable": false,
           "attr": "layout",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "Choose the layout of the panes",
           "docsTags": [],
           "default": "'full-height-left-right'",
@@ -12171,7 +12193,7 @@
           "passive": false
         },
         {
-          "event": "collapsibleChanged",
+          "event": "hideOnCollapseChanged",
           "capture": false,
           "passive": false
         },
@@ -17382,8 +17404,8 @@
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },
-    "src/components/pane/pane.tsx::CollapsibleChangedEvent": {
-      "declaration": "{\n  paneId: string;\n  collapsible: boolean;\n}",
+    "src/components/pane/pane.tsx::HideOnCollapseChangedEvent": {
+      "declaration": "{\n  paneId: string;\n  hideOnCollapse: boolean;\n}",
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },

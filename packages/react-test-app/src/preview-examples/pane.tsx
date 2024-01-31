@@ -20,7 +20,7 @@ export default () => {
         position="right"
         size="50%"
         variant="floating"
-        collapsible={false}
+        hideOnCollapse
         expanded={expanded}
         onExpandedChanged={(event: CustomEvent) => {
           setExpanded(event.detail.expanded);

@@ -23,8 +23,7 @@ SPDX-License-Identifier: MIT
         position="right"
         size="50%"
         variant="floating"
-        collapsible="false"
-        expanded="false"
+        hide-on-collapse
         style="position: absolute; right: 0; z-index: 1"
       >
         <p>This is a popup pane.</p>
@@ -40,7 +39,7 @@ SPDX-License-Identifier: MIT
       const button = document.getElementById("toggle-expanded");
 
       button.addEventListener("click", () => {
-        pane.expanded = !pane.expanded
+        pane.expanded = pane.expanded ? undefined : true
       })
     </script>
     <!--Preview code-->

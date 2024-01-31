@@ -13,10 +13,6 @@ import { onMounted, ref } from 'vue';
 
 const expanded = ref<boolean>(false)
 
-const handleAllEvents = (event: Event) => {
-  console.log('Event:', event);
-};
-
 const expandedChanged = (event: CustomEvent) => {
   expanded.value = event.detail.expanded
 };
@@ -34,9 +30,8 @@ onMounted(() => {
       position="right"
       size="50%"
       variant="floating"
-      :collapsible="false"
+      hideOnCollapse
       :expanded="expanded"
-      v-on:keydown.native="handleAllEvents"
       style="position: absolute; right: 0; z-index: 1"
     >
       <p>This is a popup pane.</p>
