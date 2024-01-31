@@ -252,7 +252,6 @@ export class Panes {
       }
 
       if (pane.borderless === undefined) {
-        console.log('set boarder', pane.heading);
         this.setPaneBorder(pane);
       }
     });
