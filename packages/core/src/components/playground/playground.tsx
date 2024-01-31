@@ -80,6 +80,7 @@ export class PlaygroundInternal {
               >
                 Popup Pane
               </ix-button>
+
               <ix-button
                 onClick={() => {
                   this.variant =
@@ -92,6 +93,7 @@ export class PlaygroundInternal {
               >
                 Toggle Variant
               </ix-button>
+
               <ix-button
                 onClick={() => {
                   this.slot = this.slot === 'left' ? 'bottom' : 'left';
@@ -103,7 +105,7 @@ export class PlaygroundInternal {
               >
                 Toggle Slot Pane 1
               </ix-button>
-              {/* Layout Toggle doesn't work in stencil - faulty dom handling */}
+
               <ix-button
                 onClick={() => {
                   this.layout =

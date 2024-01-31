@@ -34,20 +34,25 @@ SPDX-License-Identifier: MIT
         <p>This is the bottom pane.</p>
       </ix-pane>
 
-      <div slot="content">
+      <div slot="content" style="display: flex; flex-direction: column;">
         <ix-button id="toggle-variant" style="margin: 2.5rem">Toggle Variant</ix-button>
+        <ix-button id="toggle-layout" style="margin: 2.5rem">Toggle Layout</ix-button>
       </div>
     </ix-pane-layout>
 
     <script>
       const paneLayout = document.getElementById("pane-layout");
-      const button = document.getElementById("toggle-variant");
+      const buttonVariant = document.getElementById("toggle-variant");
+      const buttonLayout = document.getElementById("toggle-layout");
 
-      button.addEventListener("click", () => {
+      buttonVariant.addEventListener("click", () => {
         const isInline = paneLayout.variant === 'inline'
 
         paneLayout.variant = isInline ? 'floating' : 'inline'
         paneLayout.borderless = isInline;
+      })
+      buttonLayout.addEventListener("click", () => {
+        paneLayout.layout = paneLayout.layout === "full-height-left-right" ? "full-width-top-bottom" : "full-height-left-right"
       })
     </script>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>

@@ -280,7 +280,10 @@ export class Panes {
                   'padding-right': this.hasPadding('right'),
                 }}
               >
-                <div class={{ 'absolute-left': this.isFloating('left') }}>
+                <div
+                  key="left"
+                  class={{ 'absolute-left': this.isFloating('left') }}
+                >
                   <slot name="left"></slot>
                 </div>
                 <div
@@ -290,17 +293,26 @@ export class Panes {
                     'padding-bottom': this.hasPadding('bottom'),
                   }}
                 >
-                  <div class={{ 'absolute-top': this.isFloating('top') }}>
+                  <div
+                    key="top"
+                    class={{ 'absolute-top': this.isFloating('top') }}
+                  >
                     <slot name="top"></slot>
                   </div>
-                  <div class="content">
+                  <div key="content" class="content">
                     <slot name="content"></slot>
                   </div>
-                  <div class={{ 'absolute-bottom': this.isFloating('bottom') }}>
+                  <div
+                    key="bottom"
+                    class={{ 'absolute-bottom': this.isFloating('bottom') }}
+                  >
                     <slot name="bottom"></slot>
                   </div>
                 </div>
-                <div class={{ 'absolute-right': this.isFloating('right') }}>
+                <div
+                  key="right"
+                  class={{ 'absolute-right': this.isFloating('right') }}
+                >
                   <slot name="right"></slot>
                 </div>
               </div>
@@ -314,7 +326,10 @@ export class Panes {
                   'padding-bottom': this.hasPadding('bottom'),
                 }}
               >
-                <div class={{ 'absolute-top': this.isFloating('top') }}>
+                <div
+                  key="top"
+                  class={{ 'absolute-top': this.isFloating('top') }}
+                >
                   <slot name="top"></slot>
                 </div>
                 <div
@@ -324,17 +339,26 @@ export class Panes {
                     'padding-right': this.hasPadding('right'),
                   }}
                 >
-                  <div class={{ 'absolute-left': this.isFloating('left') }}>
+                  <div
+                    key="left"
+                    class={{ 'absolute-left': this.isFloating('left') }}
+                  >
                     <slot name="left"></slot>
                   </div>
-                  <div class="content">
+                  <div key="content" class="content">
                     <slot name="content"></slot>
                   </div>
-                  <div class={{ 'absolute-right': this.isFloating('right') }}>
+                  <div
+                    key="right"
+                    class={{ 'absolute-right': this.isFloating('right') }}
+                  >
                     <slot name="right"></slot>
                   </div>
                 </div>
-                <div class={{ 'absolute-bottom': this.isFloating('bottom') }}>
+                <div
+                  key="bottom"
+                  class={{ 'absolute-bottom': this.isFloating('bottom') }}
+                >
                   <slot name="bottom"></slot>
                 </div>
               </div>
@@ -342,19 +366,19 @@ export class Panes {
           )
         ) : (
           <div class="col">
-            <div>
+            <div key="top">
               <slot name="top"></slot>
             </div>
-            <div>
+            <div key="left">
               <slot name="left"></slot>
             </div>
-            <div class="content">
+            <div key="content" class="content">
               <slot name="content"></slot>
             </div>
-            <div>
+            <div key="right">
               <slot name="right"></slot>
             </div>
-            <div>
+            <div key="bottom">
               <slot name="bottom"></slot>
             </div>
           </div>
