@@ -46,6 +46,6 @@ jobs:
             🤖 Hello @${{ github.event.issue.user.login }}
 
             Your issue will be analyzed and is part of our internal workflow.
-            To get informed about our workflow please checkout the [contribution guidelines](https://github.com/danielleroux/ix/blob/main/CONTRIBUTING.md#issue-workflow)
+            To get informed about our workflow please checkout the [Contributing Guidelines](https://github.com/siemens/ix/blob/main/CONTRIBUTING.md#issue-workflow)
 
             JIRA: IX-000
