@@ -554,6 +554,7 @@ export class Pane {
             'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
             'left-right-pane': this.isLeftRightPane && !this.isMobile,
             'mobile-pane': this.isMobile,
+            expanded: this.expanded,
           }}
         >
           <div

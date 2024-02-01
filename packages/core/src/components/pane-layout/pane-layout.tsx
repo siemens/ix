@@ -66,16 +66,12 @@ export class Panes {
   }
 
   componentWillLoad() {
-    // set initial pane amount
     this.paneElements = this.currentPanes.length;
 
-    // recognize inserted or removed panes
     this.observer = new MutationObserver((mutations) => {
       if (mutations[0].addedNodes.item(0)?.nodeName === 'IX-PANE') {
-        this.setPanes(this.currentPanes);
         this.paneElements += 1;
       } else if (mutations[0].removedNodes.item(0)?.nodeName === 'IX-PANE') {
-        this.setPanes(this.currentPanes);
         this.paneElements -= 1;
       }
     });
@@ -83,7 +79,6 @@ export class Panes {
       childList: true,
     });
 
-    // set isMobile and add observer
     this.isMobile = matchBreakpoint('sm');
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
@@ -118,7 +113,6 @@ export class Panes {
           hasVisibleLeftPane &&
           (pane.position === 'top' || pane.position === 'bottom')
         ) {
-          console.log('Hallo');
           pane.borderless = true;
         } else {
           pane.borderless = false;
@@ -164,78 +158,7 @@ export class Panes {
     });
   }
 
-  @Listen('slotChanged')
-  onSlotChanged(event: CustomEvent) {
-    const { paneId, newSlot } = event.detail;
-
-    this.panes.forEach((currentSlot) => {
-      if (currentSlot.paneId === paneId) {
-        currentSlot.slot = newSlot;
-      }
-    });
-
-    this.configurePanes();
-    forceUpdate(this.hostElement);
-  }
-
-  @Listen('hideOnCollapseChanged')
-  onCollapsibleChanged(event: CustomEvent) {
-    const { paneId, hideOnCollapse } = event.detail;
-
-    this.panes.forEach((currentSlot) => {
-      if (currentSlot.paneId === paneId) {
-        currentSlot.hideOnCollapse = hideOnCollapse;
-      }
-    });
-
-    forceUpdate(this.hostElement);
-  }
-
-  @Listen('variantChanged')
-  onVariantChanged(event: CustomEvent) {
-    const { paneId, variant } = event.detail;
-
-    this.panes.forEach((currentSlot) => {
-      if (currentSlot.paneId === paneId) {
-        currentSlot.floating = variant === 'floating';
-      }
-    });
-
-    forceUpdate(this.hostElement);
-  }
-
-  @Watch('variant')
-  onVariableChange() {
-    this.currentPanes.forEach((pane) => {
-      this.setPaneVariant(pane);
-      this.setPaneBorder(pane);
-    });
-  }
-
-  @Watch('borderless')
-  onBorderChange() {
-    this.currentPanes.forEach((pane) => {
-      this.setPaneBorder(pane);
-    });
-  }
-
-  @Watch('layout')
-  onLayoutChange() {
-    this.currentPanes.forEach((pane) => {
-      this.setPaneBorder(pane);
-      this.setPaneZIndex(pane);
-    });
-  }
-
-  @Watch('isMobile')
-  onMobileChange() {
-    this.currentPanes.forEach((pane) => {
-      this.setPaneZIndex(pane);
-    });
-  }
-
-  @Watch('paneElements')
-  configurePanes() {
+  private configurePanes() {
     let topCount = 0;
     let bottomCount = 0;
     let leftCount = 0;
@@ -276,6 +199,80 @@ export class Panes {
         return;
       }
 
+      this.setPaneVariant(pane);
+      this.setPaneBorder(pane);
+      this.setPaneZIndex(pane);
+    });
+
+    this.setPanes(this.currentPanes);
+    forceUpdate(this.hostElement);
+  }
+
+  @Listen('slotChanged')
+  onSlotChanged() {
+    this.configurePanes();
+  }
+
+  @Listen('hideOnCollapseChanged')
+  onCollapsibleChanged(event: CustomEvent) {
+    const { paneId, hideOnCollapse } = event.detail;
+
+    this.panes.forEach((currentSlot) => {
+      if (currentSlot.paneId === paneId) {
+        currentSlot.hideOnCollapse = hideOnCollapse;
+      }
+    });
+
+    forceUpdate(this.hostElement);
+  }
+
+  @Listen('variantChanged')
+  onVariantChanged(event: CustomEvent) {
+    const { paneId, variant } = event.detail;
+
+    this.panes.forEach((currentSlot) => {
+      if (currentSlot.paneId === paneId) {
+        currentSlot.floating = variant === 'floating';
+      }
+    });
+
+    forceUpdate(this.hostElement);
+  }
+
+  @Watch('paneElements')
+  onPaneElementsChange() {
+    this.configurePanes();
+  }
+
+  @Watch('variant')
+  onVariableChange() {
+    this.currentPanes.forEach((pane) => {
+      this.setPaneVariant(pane);
+      this.setPaneBorder(pane);
+    });
+
+    this.setPanes(this.currentPanes);
+    forceUpdate(this.hostElement);
+  }
+
+  @Watch('borderless')
+  onBorderChange() {
+    this.currentPanes.forEach((pane) => {
+      this.setPaneBorder(pane);
+    });
+  }
+
+  @Watch('layout')
+  onLayoutChange() {
+    this.currentPanes.forEach((pane) => {
+      this.setPaneBorder(pane);
+      this.setPaneZIndex(pane);
+    });
+  }
+
+  @Watch('isMobile')
+  onMobileChange() {
+    this.currentPanes.forEach((pane) => {
       this.setPaneZIndex(pane);
     });
   }
