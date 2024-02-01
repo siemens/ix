@@ -11,7 +11,7 @@ import { regressionTest, viewPorts } from '@utils/test';
 
 test.describe('pane', () => {
   regressionTest(
-    'basic, floating, no_collapsible_state, collapsed',
+    'basic, floating, no_collapsed_state, collapsed',
     async ({ page }) => {
       await page.goto('panes/basic');
       await page.waitForTimeout(1000);
@@ -21,7 +21,7 @@ test.describe('pane', () => {
   );
 
   regressionTest(
-    'basic, floating, no_collapsible_state, expanded',
+    'basic, floating, no_collapsed_state, expanded',
     async ({ page }) => {
       await page.goto('panes/basic');
       await page.locator('ix-button').first().click();
@@ -32,7 +32,7 @@ test.describe('pane', () => {
   );
 
   regressionTest(
-    'basic, floating, no_collapsible_state, collapsed, mobile',
+    'basic, floating, no_collapsed_state, collapsed, mobile',
     async ({ page }) => {
       await page.setViewportSize(viewPorts.sm);
       await page.goto('panes/basic');
@@ -43,7 +43,7 @@ test.describe('pane', () => {
   );
 
   regressionTest(
-    'basic, floating, no_collapsible_state, expanded, mobile',
+    'basic, floating, no_collapsed_state, expanded, mobile',
     async ({ page }) => {
       await page.setViewportSize(viewPorts.sm);
       await page.goto('panes/basic');
