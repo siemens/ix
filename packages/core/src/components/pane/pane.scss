@@ -11,9 +11,9 @@
 @import 'mixins/hover';
 @import 'mixins/shadow-dom/component';
 
-@mixin set-border($position) {
-  @if $position {
-    border-#{$position}: var(--theme-app-header--border-width) solid var(--theme-color-soft-bdr);
+@mixin set-border($composition) {
+  @if $composition {
+    border-#{$composition}: var(--theme-app-header--border-width) solid var(--theme-color-soft-bdr);
   }
 }
 

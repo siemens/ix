@@ -11,16 +11,16 @@
 @import 'mixins/hover';
 @import 'mixins/shadow-dom/component';
 
-@mixin set-padding($position) {
-  @if $position {
-    padding-#{$position}: 2.5rem;
+@mixin set-padding($composition) {
+  @if $composition {
+    padding-#{$composition}: 2.5rem;
   }
 }
 
-@mixin set-absolute($position) {
-  @if $position {
+@mixin set-absolute($composition) {
+  @if $composition {
     position: absolute;
-    #{$position}: 0;
+    #{$composition}: 0;
   }
 }
 

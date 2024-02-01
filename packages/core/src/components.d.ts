@@ -32,7 +32,7 @@ import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { IxModalSize } from "./components/modal/modal";
-import { BorderlessChangedEvent, ExpandedChangedEvent, HideOnCollapseChangedEvent, Position, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -70,7 +70,7 @@ export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { IxModalSize } from "./components/modal/modal";
-export { BorderlessChangedEvent, ExpandedChangedEvent, HideOnCollapseChangedEvent, Position, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -1672,6 +1672,10 @@ export namespace Components {
          */
         "borderless": boolean;
         /**
+          * Placement of the sidebar
+         */
+        "composition": Composition;
+        /**
           * State of the pane
          */
         "expanded": boolean;
@@ -1693,10 +1697,6 @@ export namespace Components {
         "identifier": string;
         "ignoreLayoutSettings": boolean;
         "isMobile": boolean;
-        /**
-          * Placement of the sidebar
-         */
-        "position": Position;
         /**
           * The maximum size of the sidebar, when it is expanded
          */
@@ -5777,6 +5777,10 @@ declare namespace LocalJSX {
          */
         "borderless"?: boolean;
         /**
+          * Placement of the sidebar
+         */
+        "composition"?: Composition;
+        /**
           * State of the pane
          */
         "expanded"?: boolean;
@@ -5812,10 +5816,6 @@ declare namespace LocalJSX {
           * This event is triggered when the variant of the pane is changed
          */
         "onVariantChanged"?: (event: IxPaneCustomEvent<VariantChangedEvent>) => void;
-        /**
-          * Placement of the sidebar
-         */
-        "position"?: Position;
         /**
           * The maximum size of the sidebar, when it is expanded
          */

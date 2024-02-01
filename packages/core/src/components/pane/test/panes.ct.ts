@@ -20,7 +20,7 @@ test.describe('pane tests', () => {
     await mount(
       `<ix-pane
         heading="LEFT"
-        position="left"
+        composition="left"
         icon="star"
         expanded="true"
       >

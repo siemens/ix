@@ -23,7 +23,7 @@ import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
-export type Position = 'top' | 'left' | 'bottom' | 'right';
+export type Composition = 'top' | 'left' | 'bottom' | 'right';
 export type ExpandedChangedEvent = {
   paneId: string;
   expanded: boolean;
@@ -100,7 +100,7 @@ export class Pane {
   /**
    * Placement of the sidebar
    */
-  @Prop({ mutable: true }) position: Position = 'top';
+  @Prop({ mutable: true }) composition: Composition = 'top';
 
   /**
    * Name of the icon
@@ -167,15 +167,15 @@ export class Pane {
   }
 
   get isBottomTopPane() {
-    return this.position === 'bottom' || this.position === 'top';
+    return this.composition === 'bottom' || this.composition === 'top';
   }
 
   get isLeftRightPane() {
-    return this.position === 'left' || this.position === 'right';
+    return this.composition === 'left' || this.composition === 'right';
   }
 
   get isMobileTop() {
-    return this.position === 'top' || this.position === 'left';
+    return this.composition === 'top' || this.composition === 'left';
   }
 
   componentWillLoad() {
@@ -233,7 +233,7 @@ export class Pane {
 
   private setPosition(value: string) {
     if (this.validPositions.includes(value)) {
-      this.position = value as Position;
+      this.composition = value as Composition;
     }
   }
 
@@ -289,7 +289,7 @@ export class Pane {
     let expandIcon = '';
     let minimizeIcon = '';
 
-    switch (this.position) {
+    switch (this.composition) {
       case 'left':
         expandIcon = this.isMobile
           ? 'double-chevron-up'
@@ -412,7 +412,7 @@ export class Pane {
     this.onParentSizeChange();
   }
 
-  @Watch('position')
+  @Watch('composition')
   onPositionChange() {
     this.setIcons();
     this.hostElement.style.removeProperty('width');
@@ -526,12 +526,12 @@ export class Pane {
             this.expanded && !this.isMobileTop && this.isMobile,
           'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
           'left-right-pane': this.isLeftRightPane && !this.isMobile,
-          [`${this.position}-pane-border`]:
+          [`${this.composition}-pane-border`]:
             !this.borderless && !this.isMobile && !this.floating,
           'nav-left-border':
             !this.borderless &&
             !this.isMobile &&
-            this.position !== 'right' &&
+            this.composition !== 'right' &&
             this.floating,
           'mobile-border-top':
             !this.borderless &&
@@ -586,7 +586,7 @@ export class Pane {
               onClick={() => {
                 this.expanded = !this.expanded;
               }}
-              aria-controls={this.position + 'ToggleButton'}
+              aria-controls={this.composition + 'ToggleButton'}
             ></ix-icon-button>
             <span
               class={{

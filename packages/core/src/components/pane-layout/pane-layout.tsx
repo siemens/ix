@@ -18,7 +18,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { Position } from '../pane/pane';
+import { Composition } from '../pane/pane';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
 
@@ -111,7 +111,7 @@ export class Panes {
           pane.variant === 'floating' &&
           this.layout === 'full-height-left-right' &&
           hasVisibleLeftPane &&
-          (pane.position === 'top' || pane.position === 'bottom')
+          (pane.composition === 'top' || pane.composition === 'bottom')
         ) {
           pane.borderless = true;
         } else {
@@ -277,13 +277,18 @@ export class Panes {
     });
   }
 
-  private hasPadding(position: Position) {
-    const pane = this.panes.find((pane) => pane.slot === position);
+  private hasPadding(composition: Composition) {
+    const pane = this.panes.find((pane) => pane.slot === composition);
     return pane ? !pane.hideOnCollapse && pane.floating : false;
   }
 
-  private isFloating(position: Position) {
-    const pane = this.panes.find((pane) => pane.slot === position);
+  private hasPaddingMobile(composition: Composition) {
+    const pane = this.panes.find((pane) => pane.slot === composition);
+    return pane && !pane.hideOnCollapse;
+  }
+
+  private isFloating(composition: Composition) {
+    const pane = this.panes.find((pane) => pane.slot === composition);
     return pane ? pane.floating : false;
   }
 
@@ -386,19 +391,39 @@ export class Panes {
           )
         ) : (
           <div class="col">
-            <div key="top">
+            <div
+              key="top"
+              style={{
+                minHeight: this.hasPaddingMobile('top') ? '48px' : '0',
+              }}
+            >
               <slot name="top"></slot>
             </div>
-            <div key="left">
+            <div
+              key="left"
+              style={{
+                minHeight: this.hasPaddingMobile('left') ? '48px' : '0',
+              }}
+            >
               <slot name="left"></slot>
             </div>
             <div key="content" class="content">
               <slot name="content"></slot>
             </div>
-            <div key="right">
+            <div
+              key="right"
+              style={{
+                minHeight: this.hasPaddingMobile('right') ? '48px' : '0',
+              }}
+            >
               <slot name="right"></slot>
             </div>
-            <div key="bottom">
+            <div
+              key="bottom"
+              style={{
+                minHeight: this.hasPaddingMobile('bottom') ? '48px' : '0',
+              }}
+            >
               <slot name="bottom"></slot>
             </div>
           </div>
