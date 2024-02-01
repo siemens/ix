@@ -12,12 +12,13 @@ import { IxPaneLayout, IxPane, IxButton } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
 const variant = ref<'floating' | 'inline'>('floating');
+const layout = ref<'full-width-top-bottom' | 'full-height-left-right'>('full-width-top-bottom');
 </script>
 
 <template>
   <IxPaneLayout
     :variant="variant"
-    layout="full-width-top-bottom"
+    :layout="layout"
     :borderless="variant === 'floating'"
   >
     <IxPane heading="Pane Left" slot="left" size="33%">
@@ -39,6 +40,12 @@ const variant = ref<'floating' | 'inline'>('floating');
         style="margin: 2.5rem"
       >
         Toggle Variant
+      </IxButton>
+      <IxButton
+        @click="() => {layout = layout === 'full-width-top-bottom' ? 'full-height-left-right' : 'full-width-top-bottom'}"
+        style="margin: 2.5rem"
+      >
+        Toggle Layout
       </IxButton>
     </div>
   </IxPaneLayout>

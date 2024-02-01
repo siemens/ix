@@ -12,11 +12,14 @@ import React, { useState } from 'react';
 
 export default () => {
   const [variant, setVariant] = useState<'inline' | 'floating'>('floating');
+  const [layout, setLayout] = useState<
+    'full-width-top-bottom' | 'full-height-left-right'
+  >('full-width-top-bottom');
 
   return (
     <IxPaneLayout
       variant={variant}
-      layout="full-width-top-bottom"
+      layout={layout}
       borderless={variant === 'floating'}
     >
       <IxPane heading="Pane Left" slot="left" size="33%">
@@ -40,6 +43,18 @@ export default () => {
           style={{ margin: '2.5rem' }}
         >
           Toggle Variant
+        </IxButton>
+        <IxButton
+          onClick={() =>
+            setLayout(
+              layout === 'full-width-top-bottom'
+                ? 'full-height-left-right'
+                : 'full-width-top-bottom'
+            )
+          }
+          style={{ margin: '2.5rem' }}
+        >
+          Toggle Layout
         </IxButton>
       </div>
     </IxPaneLayout>

@@ -15,6 +15,8 @@ import { Component } from '@angular/core';
 })
 export default class PaneLayout {
   variant: 'floating' | 'inline' = 'floating';
+  layout: 'full-width-top-bottom' | 'full-height-left-right' =
+    'full-width-top-bottom';
   borderless: boolean = true;
 
   toggleVariant() {
@@ -22,5 +24,12 @@ export default class PaneLayout {
 
     this.variant = isInline ? 'floating' : 'inline';
     this.borderless = isInline;
+  }
+
+  toggleLayout() {
+    this.layout =
+      this.layout === 'full-width-top-bottom'
+        ? 'full-height-left-right'
+        : 'full-width-top-bottom';
   }
 }

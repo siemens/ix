@@ -1,6 +1,6 @@
 <ix-pane-layout
   [variant]="variant"
-  layout="full-width-top-bottom"
+  [layout]="layout"
   [borderless]="borderless"
 >
   <ix-pane heading="Pane Left" slot="left" size="33%">
@@ -18,5 +18,6 @@
 
   <div slot="content">
     <ix-button (click)="toggleVariant()" style="margin: 2.5rem" >Toggle Variant</ix-button>
+    <ix-button (click)="toggleLayout()" style="margin: 2.5rem" >Toggle Layout</ix-button>
   </div>
 </ix-pane-layout>

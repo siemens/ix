@@ -27,7 +27,7 @@ onMounted(() => {
   <div style="position: relative; width: 100%; height: 100%">
     <IxPane
       heading="Pane Popup"
-      position="right"
+      composition="right"
       size="50%"
       variant="floating"
       hideOnCollapse

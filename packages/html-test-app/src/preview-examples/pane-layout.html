@@ -37,18 +37,23 @@ SPDX-License-Identifier: MIT
 
       <div slot="content">
         <ix-button id="toggle-variant" style="margin: 2.5rem">Toggle Variant</ix-button>
+        <ix-button id="toggle-layout" style="margin: 2.5rem">Toggle Layout</ix-button>
       </div>
     </ix-pane-layout>
 
     <script>
       const paneLayout = document.getElementById("pane-layout");
-      const button = document.getElementById("toggle-variant");
+      const buttonVariant = document.getElementById("toggle-variant");
+      const buttonLayout = document.getElementById("toggle-layout");
 
-      button.addEventListener("click", () => {
+      buttonVariant.addEventListener("click", () => {
         const isInline = paneLayout.variant === 'inline'
 
         paneLayout.variant = isInline ? 'floating' : 'inline'
         paneLayout.borderless = isInline;
+      })
+      buttonLayout.addEventListener("click", () => {
+        paneLayout.layout = paneLayout.layout === "full-width-top-bottom" ? "full-height-left-right" : "full-width-top-bottom"
       })
     </script>
     <!--Preview code-->
