@@ -13,10 +13,10 @@ Panes help users focus on tasks as related controls are visually grouped and the
 
 - **Heading**: Set a headline for the pane (we normally use a short content description).
 - **Icon**: Panes can display an icon in the pane header next to the title.
-- **Position**: Panes can be positioned on the left, top, right or bottom. We often use left panes for structuring components like trees or lists, and right panes for contextual information. Top and bottom panes are less common in our applications, but can help communicate a clear "top to bottom" hierarchy.
+- **Composition**: Panes can be positioned on the left, top, right or bottom. We often use left panes for structuring components like trees or lists, and right panes for contextual information. Top and bottom panes are less common in our applications, but can help communicate a clear "top to bottom" hierarchy.
 - **Size**: Sizes can be picked either as a fixed size (in pixels) or as a relative size (in percentage) depending on the intended layout. However, picking sizes only applies to medium and large screens as small screen panes are always displayed in full screen (see responsiveness below for more information). We usually choose a pane width and height that avoids the need for scrolling in our applications. 
 - **Borderless**: Panes can have borders to visually split them from other content areas. We typically use borderless panes when placed within layouts that already have other visual means to split areas.
-- **Hide on collapsible**: Define whether a pane is visible in its collapsed state. We use inline panes with a collapsible option and floating panes without since they are usually triggered from a dedicated control like a button or a list item.
+- **Hide on collapse**: Define whether a pane is visible in its collapsed state. We use inline panes with a collapsible option and floating panes without since they are usually triggered from a dedicated control like a button or a list item.
 - **Variant**: Floating panes are placed above (z-axis) the main content but below the navigation menu and header. When expanded, they cover a part of the main content. Inline panes are placed on one level with the main content. When expanded, they move the main content and reduce its available space.
 - **Layout**: Depending on which pane needs more focus, the top/bottom or left/right panes can use more space.
 
