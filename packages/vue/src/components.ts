@@ -730,7 +730,7 @@ export const IxPane = /*@__PURE__*/ defineContainer<JSX.IxPane>('ix-pane', defin
   'size',
   'borderless',
   'expanded',
-  'position',
+  'composition',
   'icon',
   'identifier',
   'ignoreLayoutSettings',

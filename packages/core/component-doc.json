@@ -11764,6 +11764,47 @@
           "required": false
         },
         {
+          "name": "composition",
+          "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+          "complexType": {
+            "original": "Composition",
+            "resolved": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+            "references": {
+              "Composition": {
+                "location": "local",
+                "path": "src/components/pane/pane.tsx",
+                "id": "src/components/pane/pane.tsx::Composition"
+              }
+            }
+          },
+          "mutable": true,
+          "attr": "composition",
+          "reflectToAttr": false,
+          "docs": "Placement of the sidebar",
+          "docsTags": [],
+          "default": "'top'",
+          "values": [
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "expanded",
           "type": "boolean",
           "complexType": {
@@ -11866,47 +11907,6 @@
           "default": "`pane-${idCounter++}`",
           "values": [
             {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "position",
-          "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
-          "complexType": {
-            "original": "Position",
-            "resolved": "\"bottom\" | \"left\" | \"right\" | \"top\"",
-            "references": {
-              "Position": {
-                "location": "local",
-                "path": "src/components/pane/pane.tsx",
-                "id": "src/components/pane/pane.tsx::Position"
-              }
-            }
-          },
-          "mutable": true,
-          "attr": "position",
-          "reflectToAttr": false,
-          "docs": "Placement of the sidebar",
-          "docsTags": [],
-          "default": "'top'",
-          "values": [
-            {
-              "value": "bottom",
-              "type": "string"
-            },
-            {
-              "value": "left",
-              "type": "string"
-            },
-            {
-              "value": "right",
-              "type": "string"
-            },
-            {
-              "value": "top",
               "type": "string"
             }
           ],
@@ -17362,8 +17362,8 @@
       "docstring": "",
       "path": "src/components/modal/modal.tsx"
     },
-    "src/components/pane/pane.tsx::Position": {
-      "declaration": "export type Position = 'top' | 'left' | 'bottom' | 'right';",
+    "src/components/pane/pane.tsx::Composition": {
+      "declaration": "export type Composition = 'top' | 'left' | 'bottom' | 'right';",
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },
