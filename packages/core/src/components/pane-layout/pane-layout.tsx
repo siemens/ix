@@ -94,13 +94,13 @@ export class Panes {
   }
 
   private setPaneVariant(pane: HTMLIxPaneElement) {
-    if (!pane.preventOverwrite) {
+    if (!pane.ignoreLayoutSettings) {
       pane.variant = this.variant;
     }
   }
 
   private setPaneBorder(pane: HTMLIxPaneElement) {
-    if (!pane.preventOverwrite) {
+    if (!pane.ignoreLayoutSettings) {
       if (this.borderless) {
         pane.borderless = true;
       } else {

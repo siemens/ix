@@ -108,14 +108,15 @@ export class Pane {
   @Prop() icon: string;
 
   /**
-   * Prevents overwriting of the variant and borderless property when used inside layout
-   */
-  @Prop() preventOverwrite: boolean = false;
-
-  /**
    * Identifier of the pane
    */
   @Prop() identifier: string = `pane-${idCounter++}`;
+
+  /**
+   * @internal
+   * Prevents overwriting of the variant and borderless property when used inside layout
+   */
+  @Prop() ignoreLayoutSettings: boolean = false;
 
   /**
    * @internal

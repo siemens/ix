@@ -1691,15 +1691,12 @@ export namespace Components {
           * Identifier of the pane
          */
         "identifier": string;
+        "ignoreLayoutSettings": boolean;
         "isMobile": boolean;
         /**
           * Placement of the sidebar
          */
         "position": Position;
-        /**
-          * Prevents overwriting of the variant and borderless property when used inside layout
-         */
-        "preventOverwrite": boolean;
         /**
           * The maximum size of the sidebar, when it is expanded
          */
@@ -5799,6 +5796,7 @@ declare namespace LocalJSX {
           * Identifier of the pane
          */
         "identifier"?: string;
+        "ignoreLayoutSettings"?: boolean;
         "isMobile"?: boolean;
         /**
           * This event is triggered when the variant of the pane is changed
@@ -5818,10 +5816,6 @@ declare namespace LocalJSX {
           * Placement of the sidebar
          */
         "position"?: Position;
-        /**
-          * Prevents overwriting of the variant and borderless property when used inside layout
-         */
-        "preventOverwrite"?: boolean;
         /**
           * The maximum size of the sidebar, when it is expanded
          */
