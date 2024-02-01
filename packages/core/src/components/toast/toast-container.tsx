@@ -32,7 +32,15 @@ export class ToastContainer {
   private readonly PREFIX_POSITION_CLASS = 'toast-container--';
 
   get hostContainer() {
-    return document.getElementById(this.containerId);
+    return new Promise<HTMLElement>((resolve) => {
+      const interval = setInterval(() => {
+        const containerElement = document.getElementById(this.containerId);
+        if (containerElement) {
+          clearInterval(interval);
+          resolve(containerElement);
+        }
+      });
+    });
   }
 
   componentDidLoad() {
@@ -91,9 +99,7 @@ export class ToastContainer {
       toast.appendChild(config.message);
     }
 
-    setTimeout(() => {
-      this.hostContainer.appendChild(toast);
-    });
+    (await this.hostContainer).appendChild(toast);
 
     return {
       onClose,

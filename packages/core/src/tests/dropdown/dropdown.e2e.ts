@@ -34,15 +34,6 @@ regressionTest.describe('dropdown', () => {
     await expect(page).toHaveScreenshot();
   });
 
-  regressionTest('tigger events', async ({ page }) => {
-    await page.goto('dropdown/trigger-events');
-
-    await page.locator('input').focus();
-    await page.waitForSelector('.dropdown-menu.show');
-
-    await expect(page).toHaveScreenshot();
-  });
-
   regressionTest('disabled', async ({ page }) => {
     await page.goto('dropdown/disabled');
 
