@@ -22,6 +22,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [I Want To Contribute](#i-want-to-contribute)
+- [Issue workflow](#issue-workflow)
 - [Reporting Bugs](#reporting-bugs)
 - [Suggesting Enhancements](#suggesting-enhancements)
 - [Your First Code Contribution](#your-first-code-contribution)
@@ -57,10 +58,12 @@ We use GitHub issues to track bugs and errors. If you run into an issue with the
 
 Once it's filed:
 
-- The project team will label the issue accordingly.
-- A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs with the `needs-repro` tag will not be addressed until the steps to reproduce it have been provided.
-- If the team is able to reproduce the issue, it will be marked `type: bug`, as well as possibly other tags (such as `type: enhancement`), and the issue will be left to be [implemented by someone](#your-first-code-contribution).
-- If the issue is labeled as `planned` its already tracked in our internal sprint backlog.
+#### Issue workflow
+
+- The project team will label the issue accordingly. `Workflow: Issue created`
+- A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs with the `needs-repro` label will not be addressed until the steps to reproduce it have been provided. It is necessary to provide accessible repository.
+- If the team is able to reproduce the issue, it will be marked `type: bug` and `Workflow: Approved`, as well as possibly other labels (such as `type: enhancement`)
+- If someone of the team started to work on the issue the workflow label will be changed to `Workflow: In progress`
 
 
 ### Suggesting Enhancements
