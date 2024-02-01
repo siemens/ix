@@ -111,6 +111,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }) => Promise<Partial<CSSStyleDeclaration>>;
 
   /**
+   * @internal
+   * If initialisation of this dropdown is expected to be defered submenu discovery will have to be re-run globally by the controller.
+   * This property indicates the need for that to the controller.
+   */
+  @Prop() discoverAllSubmenus = false;
+
+  /**
    * Fire event after visibility of dropdown has changed
    */
   @Event() showChanged: EventEmitter<boolean>;
@@ -134,8 +141,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     event.preventDefault();
 
     const { detail } = event;
-    this.assignedSubmenu.push(detail);
-    console.log(this.localUId, this.assignedSubmenu);
+
+    if (this.assignedSubmenu.indexOf(detail) === -1) {
+      this.assignedSubmenu.push(detail);
+    }
   }
 
   disconnectedCallback() {
@@ -217,20 +226,26 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.triggerElement.setAttribute('data-ix-dropdown-trigger', this.localUId);
   }
 
+  /** @internal */
+  @Method()
+  discoverSubmenu() {
+    this.triggerElement?.dispatchEvent(
+      new CustomEvent('ix-assign-sub-menu', {
+        bubbles: true,
+        composed: false,
+        cancelable: true,
+        detail: this.localUId,
+      })
+    );
+  }
+
   private async registerListener(
     element: string | HTMLElement | Promise<HTMLElement>
   ) {
     this.triggerElement = await this.resolveElement(element);
     if (this.triggerElement) {
       this.addEventListenersFor();
-      this.triggerElement.dispatchEvent(
-        new CustomEvent('ix-assign-sub-menu', {
-          bubbles: true,
-          composed: false,
-          cancelable: true,
-          detail: this.localUId,
-        })
-      );
+      this.discoverSubmenu();
     }
   }
 

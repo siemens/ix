@@ -785,6 +785,8 @@ export namespace Components {
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior": CloseBehaviour;
+        "discoverAllSubmenus": boolean;
+        "discoverSubmenu": () => Promise<void>;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -4725,6 +4727,7 @@ declare namespace LocalJSX {
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior"?: CloseBehaviour;
+        "discoverAllSubmenus"?: boolean;
         /**
           * An optional header shown at the top of the dropdown
          */

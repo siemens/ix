@@ -12,9 +12,12 @@ export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;
 
 export interface DropdownInterface extends IxComponent {
   closeBehavior: CloseBehaviour;
+  discoverAllSubmenus: boolean;
 
   getAssignedSubmenuIds(): string[];
   getId(): string;
+
+  discoverSubmenu(): void;
 
   isPresent(): boolean;
 
@@ -51,10 +54,22 @@ class DropdownController {
       this.addOverlayListeners();
     }
     this.dropdowns.add(dropdown);
+
+    if (dropdown.discoverAllSubmenus) {
+      this.discoverSubmenus();
+    }
   }
 
   disconnected(dropdown: DropdownInterface) {
     this.dropdowns.delete(dropdown);
+  }
+
+  discoverSubmenus() {
+    console.log('Discover submenus');
+
+    this.dropdowns.forEach((dropdown) => {
+      dropdown.discoverSubmenu();
+    });
   }
 
   present(dropdown: DropdownInterface) {
@@ -88,11 +103,9 @@ class DropdownController {
   dismissPath(uid: string) {
     let path = this.buildComposedPath(uid, new Set<string>());
 
-    console.log('Rules');
-    console.log(this.dropdownRules);
-    console.log('dismissPath');
-    console.log(path);
-    console.log('Want to close:', uid);
+    console.log('Rules', this.dropdownRules);
+    console.log('dismissPath', path);
+    console.log('Trying to close:', uid);
     for (const dropdown of this.dropdowns) {
       if (
         dropdown.isPresent() &&

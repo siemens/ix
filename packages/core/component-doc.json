@@ -209,9 +209,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-application"
+        ]
+      },
       "props": [
         {
           "name": "appSwitchConfig",
