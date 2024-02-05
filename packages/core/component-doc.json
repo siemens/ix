@@ -10733,7 +10733,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-icon-button"
       ],
@@ -10743,6 +10745,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-message-bar"
         ]
       },
       "props": [
