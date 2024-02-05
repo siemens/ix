@@ -28,4 +28,16 @@ regressionTest.describe('workflow-steps', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('toggle and disable', async ({ page }) => {
+    await page.goto('workflow-steps/toggle');
+
+    const stepItemLocator = page.locator('ix-workflow-step').nth(1);
+    await stepItemLocator.evaluate((stepItem: any) => {
+      stepItem.status = 'done';
+      stepItem.disabled = true;
+    });
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
