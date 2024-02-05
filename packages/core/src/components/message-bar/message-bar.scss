@@ -21,7 +21,6 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     min-height: 3.375rem;
-    margin: $small-space $small-space 0rem $small-space;
     padding: calc(#{$medium-space} - var(--theme-message-bar--border-thickness))
       $medium-space
       calc(#{$medium-space} - var(--theme-message-bar--border-thickness))
