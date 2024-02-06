@@ -13,8 +13,12 @@ import {
   Event,
   EventEmitter,
   h,
+  Host,
+  Method,
   Prop,
 } from '@stencil/core';
+import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { makeRef } from '../utils/make-ref';
 
 /**
  * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
@@ -24,7 +28,9 @@ import {
   styleUrl: 'split-button-item.css',
   shadow: true,
 })
-export class SplitButtonItem {
+export class SplitButtonItem implements DropdownItemWrapper {
+  @Element() hostElement: HTMLIxSplitButtonItemElement;
+
   /**
    * Dropdown icon
    */
@@ -40,20 +46,29 @@ export class SplitButtonItem {
    */
   @Event() itemClick: EventEmitter<MouseEvent>;
 
-  @Element() hostElement: HTMLIxSplitButtonItemElement;
+  private wrapperRef = makeRef<HTMLIxDropdownItemElement>();
+
+  /** @internal */
+  @Method()
+  async getDropdownItemElement() {
+    return this.wrapperRef.waitForCurrent();
+  }
 
   render() {
     return (
-      <ix-dropdown-item
-        suppressChecked
-        icon={this.icon}
-        label={this.label}
-        onItemClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }}
-        onClick={(e) => this.itemClick.emit(e)}
-      ></ix-dropdown-item>
+      <Host>
+        <ix-dropdown-item
+          ref={this.wrapperRef}
+          suppressChecked
+          icon={this.icon}
+          label={this.label}
+          onItemClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onClick={(e) => this.itemClick.emit(e)}
+        ></ix-dropdown-item>
+      </Host>
     );
   }
 }

@@ -785,6 +785,8 @@ export namespace Components {
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior": CloseBehaviour;
+        "discoverAllSubmenus": boolean;
+        "discoverSubmenu": () => Promise<void>;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -888,6 +890,7 @@ export namespace Components {
           * Internal usage only
          */
         "emitItemClick": () => Promise<void>;
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Display hover state
          */
@@ -1455,6 +1458,7 @@ export namespace Components {
         "top": string;
     }
     interface IxMenuAvatarItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Avatar dropdown icon
          */
@@ -1900,6 +1904,7 @@ export namespace Components {
      * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
      */
     interface IxSplitButtonItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Dropdown icon
          */
@@ -4722,6 +4727,7 @@ declare namespace LocalJSX {
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
         "closeBehavior"?: CloseBehaviour;
+        "discoverAllSubmenus"?: boolean;
         /**
           * An optional header shown at the top of the dropdown
          */

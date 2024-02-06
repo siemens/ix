@@ -360,6 +360,7 @@ export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-drop
   'header',
   'offset',
   'overwriteDropdownStyle',
+  'discoverAllSubmenus',
   'showChanged'
 ]);
 

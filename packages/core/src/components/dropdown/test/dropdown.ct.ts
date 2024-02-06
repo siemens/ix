@@ -16,7 +16,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { ElementHandle, expect, Locator, Page } from '@playwright/test';
-import { test } from '@utils/test';
+import { test, viewPorts } from '@utils/test';
+
+const html = String.raw;
 
 test('renders', async ({ mount, page }) => {
   await mount(`
@@ -239,8 +241,6 @@ test.describe('Nested dropdowns 1/2', () => {
   function mountDropdown(
     mount: (selector: string) => Promise<ElementHandle<HTMLElement>>
   ) {
-    const html = String.raw;
-
     return mount(html`
       <ix-button id="trigger-dropdown-1">Trigger 1</ix-button>
       <ix-dropdown id="dropdown-1" trigger="trigger-dropdown-1">
@@ -397,4 +397,55 @@ test.describe('nested dropdown 2/2', () => {
 
     await expect(nestedDropdownItem).toHaveClass(/hydrated/);
   });
+});
+
+test('Nested dropdowns within application-header', async ({ mount, page }) => {
+  await mount(html`
+    <ix-application-header>
+      <ix-dropdown-button label="Trigger">
+        <ix-dropdown-item label="MainItem 1"></ix-dropdown-item>
+        <ix-dropdown-item label="MainItem 2"></ix-dropdown-item>
+        <ix-dropdown-item label="MainItem 3" id="submenu-01"></ix-dropdown-item>
+      </ix-dropdown-button>
+    </ix-application-header>
+    <ix-dropdown id="submenu" trigger="submenu-01">
+      <ix-dropdown-item>SubMenuItem 1</ix-dropdown-item>
+      <ix-dropdown-item>SubMenuItem 2</ix-dropdown-item>
+      <ix-dropdown-item>SubMenuItem 3</ix-dropdown-item>
+      <ix-dropdown-item>SubMenuItem 4</ix-dropdown-item>
+    </ix-dropdown>
+  `);
+  await page.setViewportSize(viewPorts.sm);
+  await page.waitForTimeout(500);
+
+  const header = page.locator('ix-application-header');
+  await expect(header).toBeVisible();
+
+  const overflowTrigger = header.getByRole('button', { name: 'More Menu' });
+  await overflowTrigger.click();
+
+  const dropdownButton = header.locator('ix-dropdown-button');
+  await dropdownButton.locator('ix-button').click();
+
+  const dropdownOfDropdownButton = dropdownButton.locator('ix-dropdown');
+  await expect(dropdownOfDropdownButton).toBeVisible();
+
+  const submenuTrigger = page
+    .locator('ix-dropdown-item')
+    .getByText('MainItem 3');
+  await expect(submenuTrigger).toBeVisible();
+  await submenuTrigger.click();
+
+  const submenuDropdown = page.locator('#submenu');
+
+  await expect(submenuDropdown).toBeVisible();
+
+  const subMenuItem = submenuDropdown
+    .locator('ix-dropdown-item')
+    .getByText('SubMenuItem 3');
+
+  await subMenuItem.click();
+
+  await expect(submenuDropdown).not.toBeVisible();
+  await expect(dropdownOfDropdownButton).not.toBeVisible();
 });

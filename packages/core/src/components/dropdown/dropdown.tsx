@@ -34,6 +34,7 @@ import {
   CloseBehaviour,
   dropdownController,
   DropdownInterface,
+  hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
 
@@ -110,6 +111,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }) => Promise<Partial<CSSStyleDeclaration>>;
 
   /**
+   * @internal
+   * If initialisation of this dropdown is expected to be defered submenu discovery will have to be re-run globally by the controller.
+   * This property indicates the need for that to the controller.
+   */
+  @Prop() discoverAllSubmenus = false;
+
+  /**
    * Fire event after visibility of dropdown has changed
    */
   @Event() showChanged: EventEmitter<boolean>;
@@ -128,8 +136,15 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   @Listen('ix-assign-sub-menu')
-  cacheSubmenuId({ detail }: CustomEvent<string>) {
-    this.assignedSubmenu.push(detail);
+  cacheSubmenuId(event: CustomEvent<string>) {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+
+    const { detail } = event;
+
+    if (this.assignedSubmenu.indexOf(detail) === -1) {
+      this.assignedSubmenu.push(detail);
+    }
   }
 
   disconnectedCallback() {
@@ -211,25 +226,55 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.triggerElement.setAttribute('data-ix-dropdown-trigger', this.localUId);
   }
 
+  /** @internal */
+  @Method()
+  async discoverSubmenu() {
+    this.triggerElement?.dispatchEvent(
+      new CustomEvent('ix-assign-sub-menu', {
+        bubbles: true,
+        composed: false,
+        cancelable: true,
+        detail: this.localUId,
+      })
+    );
+  }
+
   private async registerListener(
     element: string | HTMLElement | Promise<HTMLElement>
   ) {
     this.triggerElement = await this.resolveElement(element);
     if (this.triggerElement) {
       this.addEventListenersFor();
-
-      this.triggerElement.dispatchEvent(
-        new CustomEvent('ix-assign-sub-menu', {
-          bubbles: true,
-          composed: false,
-          cancelable: true,
-          detail: this.localUId,
-        })
-      );
+      this.discoverSubmenu();
     }
   }
 
-  private resolveElement(
+  private async resolveElement(
+    element: string | HTMLElement | Promise<HTMLElement>
+  ) {
+    const el = await this.findElement(element);
+
+    return this.checkForSubmenuAnchor(el);
+  }
+
+  private async checkForSubmenuAnchor(element: Element) {
+    if (hasDropdownItemWrapperImplemented(element)) {
+      const dropdownItem = await element.getDropdownItemElement();
+      dropdownItem.isSubMenu = true;
+      this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
+
+      return dropdownItem;
+    }
+
+    if (element.tagName === 'IX-DROPDOWN-ITEM') {
+      (element as HTMLIxDropdownItemElement).isSubMenu = true;
+      this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
+    }
+
+    return element;
+  }
+
+  private findElement(
     element: string | HTMLElement | Promise<HTMLElement>
   ): Promise<Element> {
     if (element instanceof Promise) {
@@ -269,6 +314,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       if (this.anchorElement) {
         this.applyDropdownPosition();
+        // await this.checkForSubmenuAnchor();
       }
     }
   }
@@ -278,10 +324,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.registerListener(newTriggerValue);
   }
 
-  private isAnchorSubmenu() {
-    const anchor = this.anchorElement?.closest('ix-dropdown-item');
-    if (!anchor) {
-      return false;
+  private isAnchorSubmenu(): boolean {
+    if (!hasDropdownItemWrapperImplemented(this.anchorElement)) {
+      // Is no official dropdown-item, but check if any dropdown-item
+      // is placed somewhere up the DOM
+      return !!this.anchorElement?.closest('ix-dropdown-item');
     }
 
     return true;
@@ -381,13 +428,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.anchorElement = await (this.anchor
       ? this.resolveElement(this.anchor)
       : this.resolveElement(this.trigger));
-
-    if (
-      this.isAnchorSubmenu() &&
-      this.anchorElement?.tagName === 'IX-DROPDOWN-ITEM'
-    ) {
-      (this.anchorElement as HTMLIxDropdownItemElement).isSubMenu = true;
-    }
   }
 
   private onDropdownClick(event: PointerEvent) {
