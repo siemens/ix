@@ -65,8 +65,6 @@ class DropdownController {
   }
 
   discoverSubmenus() {
-    console.log('Discover submenus');
-
     this.dropdowns.forEach((dropdown) => {
       dropdown.discoverSubmenu();
     });
@@ -103,9 +101,6 @@ class DropdownController {
   dismissPath(uid: string) {
     let path = this.buildComposedPath(uid, new Set<string>());
 
-    console.log('Rules', this.dropdownRules);
-    console.log('dismissPath', path);
-    console.log('Trying to close:', uid);
     for (const dropdown of this.dropdowns) {
       if (
         dropdown.isPresent() &&
@@ -113,7 +108,6 @@ class DropdownController {
         dropdown.closeBehavior !== false &&
         !path.has(dropdown.getId())
       ) {
-        console.log('closing', dropdown.getId());
         this.dismiss(dropdown);
       }
     }

@@ -17,52 +17,7 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class PlaygroundInternal {
-  renderDropdowns(count = 100) {
-    return new Array(count).fill(false).map((_, i) => {
-      return (
-        <div>
-          <ix-dropdown-button label="test">
-            <ix-dropdown-item label="item 1"></ix-dropdown-item>
-            <ix-dropdown-item label="item 2"></ix-dropdown-item>
-            <ix-dropdown-item
-              id={`submenu-0${i}`}
-              label="item 3"
-            ></ix-dropdown-item>
-          </ix-dropdown-button>
-          <ix-dropdown trigger={`submenu-0${i}`}>
-            <ix-dropdown-item>Test2</ix-dropdown-item>
-            <ix-dropdown-item>Test2</ix-dropdown-item>
-            <ix-dropdown-item>Test2</ix-dropdown-item>
-            <ix-dropdown-item>Test2</ix-dropdown-item>
-          </ix-dropdown>
-        </div>
-      );
-    });
-  }
-
   render() {
-    return (
-      <Host>
-        <ix-application>
-          <ix-application-header>
-            <ix-dropdown-button label="test">
-              <ix-dropdown-item label="item 1"></ix-dropdown-item>
-              <ix-dropdown-item label="item 2"></ix-dropdown-item>
-              <ix-dropdown-item
-                id="submenu-01"
-                label="item 3"
-              ></ix-dropdown-item>
-            </ix-dropdown-button>
-            <ix-dropdown trigger="submenu-01">
-              <ix-dropdown-item>Test2</ix-dropdown-item>
-              <ix-dropdown-item>Test2</ix-dropdown-item>
-              <ix-dropdown-item>Test2</ix-dropdown-item>
-              <ix-dropdown-item>Test2</ix-dropdown-item>
-            </ix-dropdown>
-          </ix-application-header>
-          {this.renderDropdowns()}
-        </ix-application>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

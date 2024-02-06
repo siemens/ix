@@ -228,7 +228,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   /** @internal */
   @Method()
-  discoverSubmenu() {
+  async discoverSubmenu() {
     this.triggerElement?.dispatchEvent(
       new CustomEvent('ix-assign-sub-menu', {
         bubbles: true,
