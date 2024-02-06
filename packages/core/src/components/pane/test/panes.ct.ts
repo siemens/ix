@@ -43,7 +43,7 @@ test.describe('pane tests', () => {
 
   test('closes on outside click', async ({ page }) => {
     await page.waitForSelector('h1');
-    page.locator('p').click();
+    page.getByText('Some Text').click();
     const title = page.locator('h1');
     await expect(title).not.toBeVisible();
   });
