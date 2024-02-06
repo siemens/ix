@@ -25,27 +25,25 @@ import { matchBreakpoint } from '../utils/breakpoints';
 
 export type Composition = 'top' | 'left' | 'bottom' | 'right';
 export type ExpandedChangedEvent = {
-  paneId: string;
+  slot: string;
   expanded: boolean;
 };
 export type SlotChangedEvent = {
-  paneId: string;
+  slot: string;
   newSlot: string;
 };
 export type HideOnCollapseChangedEvent = {
-  paneId: string;
+  slot: string;
   hideOnCollapse: boolean;
 };
 export type VariantChangedEvent = {
-  paneId: string;
+  slot: string;
   variant: 'floating' | 'inline';
 };
 export type BorderlessChangedEvent = {
-  paneId: string;
+  slot: string;
   borderless: boolean;
 };
-
-let idCounter = 0;
 
 /**
  * @since 2.1.0
@@ -61,13 +59,13 @@ export class Pane {
   /**
    * Title of the side panel
    */
-  @Prop() heading: string = 'Pane title';
+  @Prop() heading: string;
 
   /**
    * Variant of the side pane.
    * Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
    */
-  @Prop() variant: 'floating' | 'inline';
+  @Prop() variant: 'floating' | 'inline' = 'inline';
 
   /**
    * Define if the pane should have a collapsed state
@@ -90,7 +88,7 @@ export class Pane {
    * Toggle the border of the pane.
    * Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
    */
-  @Prop() borderless: boolean;
+  @Prop() borderless: boolean = false;
 
   /**
    * State of the pane
@@ -98,7 +96,8 @@ export class Pane {
   @Prop({ mutable: true }) expanded: boolean = false;
 
   /**
-   * Placement of the sidebar
+   * Define the style of the pane. Use as composition the position you want to use the pane at.
+   * This property gets set automatically to the slot value when used inside a layout.
    */
   @Prop({ mutable: true }) composition: Composition = 'top';
 
@@ -106,11 +105,6 @@ export class Pane {
    * Name of the icon
    */
   @Prop() icon: string;
-
-  /**
-   * Identifier of the pane
-   */
-  @Prop() identifier: string = `pane-${idCounter++}`;
 
   /**
    * @internal
@@ -161,6 +155,7 @@ export class Pane {
 
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
+  private disposeListener?: Function;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -205,7 +200,7 @@ export class Pane {
 
           if (newSlot !== oldSlot) {
             this.slotChanged.emit({
-              paneId: this.identifier,
+              slot: oldSlot,
               newSlot: newSlot,
             });
             this.setPosition(newSlot);
@@ -224,11 +219,40 @@ export class Pane {
       this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
     });
     if (parentElement) this.resizeObserver.observe(parentElement);
+
+    if (this.hideOnCollapse) this.disposeListener = this.addClickOutsideEvent();
   }
 
   disconnectedCallback() {
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
+    this.disposeListener?.();
+  }
+
+  private addClickOutsideEvent() {
+    return this.addDisposableEventListener(document, 'click', (event) =>
+      this.handleOutsideClick(event)
+    );
+  }
+
+  private addDisposableEventListener = (
+    element: Element | Window | Document,
+    eventType: string,
+    callback: EventListenerOrEventListenerObject
+  ) => {
+    element.addEventListener(eventType, callback);
+
+    return () => {
+      element.removeEventListener(eventType, callback);
+    };
+  };
+
+  private handleOutsideClick(event: Event) {
+    const composedPath = event.composedPath();
+
+    if (!composedPath.includes(this.hostElement) && this.showContent) {
+      this.expanded = false;
+    }
   }
 
   private setPosition(value: string) {
@@ -324,7 +348,7 @@ export class Pane {
       targets: this.hostElement,
       duration: Animation.mediumTime,
       width: size,
-      easing: 'linear',
+      easing: 'easeInOutSine',
       delay: 0,
       begin: () => {
         if (!this.expanded) {
@@ -347,7 +371,7 @@ export class Pane {
       targets: this.hostElement,
       duration: Animation.mediumTime,
       height: size,
-      easing: 'linear',
+      easing: 'easeInOutSine',
       delay: 0,
       begin: () => {
         if (!this.expanded) {
@@ -388,7 +412,7 @@ export class Pane {
       duration: Animation.mediumTime,
       paddingTop: size,
       paddingBottom: size,
-      easing: 'linear',
+      easing: 'easeInOutSine',
       delay: 0,
     });
   }
@@ -399,7 +423,7 @@ export class Pane {
       duration: Animation.mediumTime,
       paddingLeft: size,
       paddingRight: size,
-      easing: 'linear',
+      easing: 'easeInOutSine',
       delay: 0,
     });
   }
@@ -421,9 +445,17 @@ export class Pane {
   }
 
   @Watch('hideOnCollapse')
-  onCollapsibleChange(value: boolean) {
+  onHideOnCollapseChange(value: boolean) {
+    if (value) {
+      this.disposeListener = this.addClickOutsideEvent();
+    } else {
+      this.disposeListener?.();
+    }
+
+    this.onSizeChange();
+
     this.hideOnCollapseChanged.emit({
-      paneId: this.identifier,
+      slot: this.currentSlot,
       hideOnCollapse: value,
     });
   }
@@ -433,7 +465,7 @@ export class Pane {
     this.floating = value === 'floating';
 
     this.variantChanged.emit({
-      paneId: this.identifier,
+      slot: this.currentSlot,
       variant: value,
     });
   }
@@ -441,7 +473,7 @@ export class Pane {
   @Watch('borderless')
   onBorderlessChange(value: boolean) {
     this.borderlessChanged.emit({
-      paneId: this.identifier,
+      slot: this.currentSlot,
       borderless: value,
     });
   }
@@ -451,7 +483,7 @@ export class Pane {
     this.onSizeChange();
 
     this.expandedChanged.emit({
-      paneId: this.identifier,
+      slot: this.currentSlot,
       expanded: this.expanded,
     });
   }
@@ -478,9 +510,13 @@ export class Pane {
         this.resetMobileExpanded();
       } else {
         if (this.isBottomTopPane) {
-          this.hostElement.style.height = this.collapsedPane;
+          this.hostElement.style.height = this.hideOnCollapse
+            ? '0'
+            : this.collapsedPane;
         } else {
-          this.hostElement.style.width = this.collapsedPane;
+          this.hostElement.style.width = this.hideOnCollapse
+            ? '0'
+            : this.collapsedPane;
         }
       }
     }
@@ -507,9 +543,13 @@ export class Pane {
         this.resetMobileExpanded();
       } else {
         if (this.isBottomTopPane) {
-          this.animateHorizontalFadeIn(this.collapsedPane);
+          this.animateHorizontalFadeIn(
+            this.hideOnCollapse ? '0' : this.collapsedPane
+          );
         } else {
-          this.animateVerticalFadeIn(this.collapsedPane);
+          this.animateVerticalFadeIn(
+            this.hideOnCollapse ? '0' : this.collapsedPane
+          );
         }
       }
     }
@@ -587,7 +627,7 @@ export class Pane {
                 this.expanded = !this.expanded;
               }}
               aria-controls={this.composition + 'ToggleButton'}
-            ></ix-icon-button>
+            />
             <span
               class={{
                 'title-text': true,

@@ -12,9 +12,9 @@ import React, { useState } from 'react';
 
 export default () => {
   const [variant, setVariant] = useState<'inline' | 'floating'>('floating');
-  const [layout, setLayout] = useState<
-    'full-width-top-bottom' | 'full-height-left-right'
-  >('full-width-top-bottom');
+  const [layout, setLayout] = useState<'full-horizontal' | 'full-vertical'>(
+    'full-horizontal'
+  );
 
   return (
     <IxPaneLayout
@@ -47,9 +47,7 @@ export default () => {
         <IxButton
           onClick={() =>
             setLayout(
-              layout === 'full-width-top-bottom'
-                ? 'full-height-left-right'
-                : 'full-width-top-bottom'
+              layout === 'full-horizontal' ? 'full-vertical' : 'full-horizontal'
             )
           }
           style={{ margin: '2.5rem' }}

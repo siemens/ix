@@ -1672,7 +1672,7 @@ export namespace Components {
          */
         "borderless": boolean;
         /**
-          * Placement of the sidebar
+          * Define the style of the pane. Use as composition the position you want to use the pane at. This property gets set automatically to the slot value when used inside a layout.
          */
         "composition": Composition;
         /**
@@ -1691,10 +1691,6 @@ export namespace Components {
           * Name of the icon
          */
         "icon": string;
-        /**
-          * Identifier of the pane
-         */
-        "identifier": string;
         "ignoreLayoutSettings": boolean;
         "isMobile": boolean;
         /**
@@ -1721,9 +1717,9 @@ export namespace Components {
          */
         "borderless": boolean;
         /**
-          * Choose the layout of the panes
+          * Choose the layout of the panes. When set to 'full-vertical' the vertical panes (left, right) will get the full height. When set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.
          */
-        "layout": 'full-height-left-right' | 'full-width-top-bottom';
+        "layout": 'full-vertical' | 'full-horizontal';
         /**
           * Set the default variant for all panes in the layout
          */
@@ -5777,7 +5773,7 @@ declare namespace LocalJSX {
          */
         "borderless"?: boolean;
         /**
-          * Placement of the sidebar
+          * Define the style of the pane. Use as composition the position you want to use the pane at. This property gets set automatically to the slot value when used inside a layout.
          */
         "composition"?: Composition;
         /**
@@ -5796,10 +5792,6 @@ declare namespace LocalJSX {
           * Name of the icon
          */
         "icon"?: string;
-        /**
-          * Identifier of the pane
-         */
-        "identifier"?: string;
         "ignoreLayoutSettings"?: boolean;
         "isMobile"?: boolean;
         /**
@@ -5840,9 +5832,9 @@ declare namespace LocalJSX {
          */
         "borderless"?: boolean;
         /**
-          * Choose the layout of the panes
+          * Choose the layout of the panes. When set to 'full-vertical' the vertical panes (left, right) will get the full height. When set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.
          */
-        "layout"?: 'full-height-left-right' | 'full-width-top-bottom';
+        "layout"?: 'full-vertical' | 'full-horizontal';
         /**
           * Set the default variant for all panes in the layout
          */

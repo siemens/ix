@@ -34,10 +34,11 @@ export class Panes {
   @Element() hostElement: HTMLIxPaneLayoutElement;
 
   /**
-   * Choose the layout of the panes
+   * Choose the layout of the panes.
+   * When set to 'full-vertical' the vertical panes (left, right) will get the full height.
+   * When set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.
    */
-  @Prop() layout: 'full-height-left-right' | 'full-width-top-bottom' =
-    'full-height-left-right';
+  @Prop() layout: 'full-vertical' | 'full-horizontal' = 'full-vertical';
 
   /**
    * Set the default variant for all panes in the layout
@@ -53,7 +54,6 @@ export class Panes {
   @State() private paneElements = 0;
 
   private panes: Array<{
-    paneId: string;
     slot: string;
     hideOnCollapse: boolean;
     floating: boolean;
@@ -109,7 +109,7 @@ export class Panes {
         );
         if (
           pane.variant === 'floating' &&
-          this.layout === 'full-height-left-right' &&
+          this.layout === 'full-vertical' &&
           hasVisibleLeftPane &&
           (pane.composition === 'top' || pane.composition === 'bottom')
         ) {
@@ -133,7 +133,7 @@ export class Panes {
         zIndex = 3;
       }
     } else {
-      if (this.layout === 'full-height-left-right') {
+      if (this.layout === 'full-vertical') {
         if (isLeft || isRight) {
           zIndex = 3;
         }
@@ -150,7 +150,6 @@ export class Panes {
     this.panes = [];
     panes.forEach((pane) => {
       this.panes.push({
-        paneId: pane.identifier,
         slot: pane.slot,
         hideOnCollapse: pane.hideOnCollapse,
         floating: pane.variant === 'floating',
@@ -215,10 +214,10 @@ export class Panes {
 
   @Listen('hideOnCollapseChanged')
   onCollapsibleChanged(event: CustomEvent) {
-    const { paneId, hideOnCollapse } = event.detail;
+    const { slot, hideOnCollapse } = event.detail;
 
     this.panes.forEach((currentSlot) => {
-      if (currentSlot.paneId === paneId) {
+      if (currentSlot.slot === slot) {
         currentSlot.hideOnCollapse = hideOnCollapse;
       }
     });
@@ -228,10 +227,10 @@ export class Panes {
 
   @Listen('variantChanged')
   onVariantChanged(event: CustomEvent) {
-    const { paneId, variant } = event.detail;
+    const { slot, variant } = event.detail;
 
     this.panes.forEach((currentSlot) => {
-      if (currentSlot.paneId === paneId) {
+      if (currentSlot.slot === slot) {
         currentSlot.floating = variant === 'floating';
       }
     });
@@ -296,7 +295,7 @@ export class Panes {
     return (
       <Host>
         {!this.isMobile ? (
-          this.layout == 'full-height-left-right' ? (
+          this.layout == 'full-vertical' ? (
             <div class="side-panes-wrapper">
               <div
                 class={{

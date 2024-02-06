@@ -18,7 +18,7 @@ SPDX-License-Identifier: MIT
     <ix-pane-layout
       id="pane-layout"
       variant="floating"
-      layout="full-width-top-bottom"
+      layout="full-horizontal"
       borderless="true"
     >
       <ix-pane heading="Pane Left" slot="left" size="33%">
@@ -52,7 +52,7 @@ SPDX-License-Identifier: MIT
         paneLayout.borderless = isInline;
       })
       buttonLayout.addEventListener("click", () => {
-        paneLayout.layout = paneLayout.layout === "full-height-left-right" ? "full-width-top-bottom" : "full-height-left-right"
+        paneLayout.layout = paneLayout.layout === "full-vertical" ? "full-horizontal" : "full-vertical"
       })
     </script>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>

@@ -18,20 +18,33 @@ test('renders', async ({ mount, page }) => {
 test.describe('pane tests', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
-      `<ix-pane
-        heading="LEFT"
-        composition="left"
-        icon="star"
-        expanded="true"
-      >
-        <h1>Test Heading</h1>
-      </ix-pane>`
+      `
+      <>
+        <ix-pane
+          heading="LEFT"
+          composition="left"
+          icon="star"
+          expanded="true"
+          hide-on-collapse
+        >
+          <h1>Test Heading</h1>
+        </ix-pane>
+        <p>Some Text<p>
+      </>
+      `
     );
   });
 
-  test('expand pane', async ({ page }) => {
+  test('expanded pane', async ({ page }) => {
     await page.waitForSelector('h1');
     const title = page.locator('h1');
     await expect(title).toBeVisible();
+  });
+
+  test('closes on outside click', async ({ page }) => {
+    await page.waitForSelector('h1');
+    page.locator('p').click();
+    const title = page.locator('h1');
+    await expect(title).not.toBeVisible();
   });
 });
