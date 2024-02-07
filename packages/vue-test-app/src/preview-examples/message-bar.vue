@@ -15,7 +15,7 @@ import { IxButton, IxMessageBar } from '@siemens/ix-vue';
   <div style="padding: 0.5rem">
     <IxMessageBar>Message text</IxMessageBar>
     <br />
-    <IxMessageBar type="warning">Message text</IxMessageBar
+    <IxMessageBar type="warning">Message text</IxMessageBar>
     <br />
     <IxMessageBar type="danger">
       <div className="d-flex align-items-center justify-content-between">
