@@ -2,22 +2,18 @@
 sidebar_position: 3
 ---
 
+import Playground from '@site/src/components/Playground'
+import DocsTabs from '@site/src/components/DocsTabs';
+
+import DocsUx from './\_content_styleguide.md';
+import DocsCode from './\_content_code.md';
+
+
 import Tags from './../../auto-generated/ix-content/tags.md';
-import Slots from './../../auto-generated/ix-content/slots.md';
-import Props from './../../auto-generated/ix-content/props.md';
-import Playground from '@site/src/components/Playground';
 
 # Content
 
 <Tags />
 
-## Usage
-
-The `ix-content` is usually used as layouting component on a single page.
-
-<Playground name="content" examplesByName height="18rem" noMargin></Playground>
-
-## Slots
-
-<Slots />
+<DocsTabs styleguide={DocsUx} code={DocsCode} />
 

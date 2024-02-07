@@ -23,8 +23,8 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+import { CloseBehaviour } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
-import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
@@ -61,8 +61,8 @@ export { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { CloseBehaviour } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
-export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
@@ -153,7 +153,7 @@ export namespace Components {
          */
         "extra": string;
         /**
-          * Display a avatar image
+          * Display an avatar image
          */
         "image": string;
         /**
@@ -166,9 +166,6 @@ export namespace Components {
          */
         "username": string;
     }
-    /**
-     * @deprecated ix-basic-navigation is deprecated in favor of ix-application
-     */
     interface IxBasicNavigation {
         /**
           * Application name
@@ -789,7 +786,9 @@ export namespace Components {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
-        "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
+        "closeBehavior": CloseBehaviour;
+        "discoverAllSubmenus": boolean;
+        "discoverSubmenu": () => Promise<void>;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -827,10 +826,6 @@ export namespace Components {
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger": string | HTMLElement | Promise<HTMLElement>;
-        /**
-          * Define one or more events to open dropdown
-         */
-        "triggerEvent": DropdownTriggerEvent | DropdownTriggerEvent[];
         /**
           * Update position of dropdown
          */
@@ -897,6 +892,7 @@ export namespace Components {
           * Internal usage only
          */
         "emitItemClick": () => Promise<void>;
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Display hover state
          */
@@ -1269,9 +1265,6 @@ export namespace Components {
          */
         "url": string;
     }
-    /**
-     * @deprecated ix-map-navigation is deprecated in favor of ix-application
-     */
     interface IxMapNavigation {
         /**
           * Application name
@@ -1306,9 +1299,6 @@ export namespace Components {
          */
         "toggleSidebar": (show?: boolean) => Promise<void>;
     }
-    /**
-     * @deprecated since 2.1.0
-     */
     interface IxMapNavigationOverlay {
         /**
           * Color of icon
@@ -1440,9 +1430,6 @@ export namespace Components {
          */
         "show": boolean;
     }
-    /**
-     * @deprecated Use ix-application-header and it's avatar functionality instead
-     */
     interface IxMenuAvatar {
         /**
           * Second line of text
@@ -1472,10 +1459,8 @@ export namespace Components {
          */
         "top": string;
     }
-    /**
-     * @deprecated Use ix-application-header and it's  avatar functionality instead
-     */
     interface IxMenuAvatarItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Avatar dropdown icon
          */
@@ -1720,6 +1705,8 @@ export namespace Components {
     | 'success'
     | 'custom';
     }
+    interface IxPlaygroundInternal {
+    }
     /**
      * @since 1.6.0
      */
@@ -1919,6 +1906,7 @@ export namespace Components {
      * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
      */
     interface IxSplitButtonItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Dropdown icon
          */
@@ -2349,8 +2337,6 @@ export namespace Components {
          */
         "vertical": boolean;
     }
-    interface MyComponent {
-    }
 }
 export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2602,9 +2588,6 @@ declare global {
         prototype: HTMLIxAvatarElement;
         new (): HTMLIxAvatarElement;
     };
-    /**
-     * @deprecated ix-basic-navigation is deprecated in favor of ix-application
-     */
     interface HTMLIxBasicNavigationElement extends Components.IxBasicNavigation, HTMLStencilElement {
     }
     var HTMLIxBasicNavigationElement: {
@@ -3200,9 +3183,6 @@ declare global {
         "navigationToggled": boolean;
         "contextMenuClick": void;
     }
-    /**
-     * @deprecated ix-map-navigation is deprecated in favor of ix-application
-     */
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3220,9 +3200,6 @@ declare global {
     interface HTMLIxMapNavigationOverlayElementEventMap {
         "closeClick": any;
     }
-    /**
-     * @deprecated since 2.1.0
-     */
     interface HTMLIxMapNavigationOverlayElement extends Components.IxMapNavigationOverlay, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMapNavigationOverlayElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationOverlayElement, ev: IxMapNavigationOverlayCustomEvent<HTMLIxMapNavigationOverlayElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3310,9 +3287,6 @@ declare global {
     interface HTMLIxMenuAvatarElementEventMap {
         "logoutClick": any;
     }
-    /**
-     * @deprecated Use ix-application-header and it's avatar functionality instead
-     */
     interface HTMLIxMenuAvatarElement extends Components.IxMenuAvatar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAvatarElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarElement, ev: IxMenuAvatarCustomEvent<HTMLIxMenuAvatarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3330,9 +3304,6 @@ declare global {
     interface HTMLIxMenuAvatarItemElementEventMap {
         "itemClick": MouseEvent;
     }
-    /**
-     * @deprecated Use ix-application-header and it's  avatar functionality instead
-     */
     interface HTMLIxMenuAvatarItemElement extends Components.IxMenuAvatarItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAvatarItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarItemElement, ev: IxMenuAvatarItemCustomEvent<HTMLIxMenuAvatarItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3507,6 +3478,12 @@ declare global {
     var HTMLIxPillElement: {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
+    };
+    interface HTMLIxPlaygroundInternalElement extends Components.IxPlaygroundInternal, HTMLStencilElement {
+    }
+    var HTMLIxPlaygroundInternalElement: {
+        prototype: HTMLIxPlaygroundInternalElement;
+        new (): HTMLIxPlaygroundInternalElement;
     };
     /**
      * @since 1.6.0
@@ -3858,12 +3835,6 @@ declare global {
         prototype: HTMLIxWorkflowStepsElement;
         new (): HTMLIxWorkflowStepsElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
@@ -3940,6 +3911,7 @@ declare global {
         "ix-modal-loading": HTMLIxModalLoadingElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-playground-internal": HTMLIxPlaygroundInternalElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
@@ -3964,7 +3936,6 @@ declare global {
         "ix-validation-tooltip": HTMLIxValidationTooltipElement;
         "ix-workflow-step": HTMLIxWorkflowStepElement;
         "ix-workflow-steps": HTMLIxWorkflowStepsElement;
-        "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -4039,7 +4010,7 @@ declare namespace LocalJSX {
          */
         "extra"?: string;
         /**
-          * Display a avatar image
+          * Display an avatar image
          */
         "image"?: string;
         /**
@@ -4052,9 +4023,6 @@ declare namespace LocalJSX {
          */
         "username"?: string;
     }
-    /**
-     * @deprecated ix-basic-navigation is deprecated in favor of ix-application
-     */
     interface IxBasicNavigation {
         /**
           * Application name
@@ -4765,7 +4733,8 @@ declare namespace LocalJSX {
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
          */
-        "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
+        "closeBehavior"?: CloseBehaviour;
+        "discoverAllSubmenus"?: boolean;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -4807,10 +4776,6 @@ declare namespace LocalJSX {
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
         "trigger"?: string | HTMLElement | Promise<HTMLElement>;
-        /**
-          * Define one or more events to open dropdown
-         */
-        "triggerEvent"?: DropdownTriggerEvent | DropdownTriggerEvent[];
     }
     /**
      * @since 1.3.0
@@ -5278,9 +5243,6 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
-    /**
-     * @deprecated ix-map-navigation is deprecated in favor of ix-application
-     */
     interface IxMapNavigation {
         /**
           * Application name
@@ -5303,9 +5265,6 @@ declare namespace LocalJSX {
          */
         "onNavigationToggled"?: (event: IxMapNavigationCustomEvent<boolean>) => void;
     }
-    /**
-     * @deprecated since 2.1.0
-     */
     interface IxMapNavigationOverlay {
         /**
           * Color of icon
@@ -5445,9 +5404,6 @@ declare namespace LocalJSX {
          */
         "show"?: boolean;
     }
-    /**
-     * @deprecated Use ix-application-header and it's avatar functionality instead
-     */
     interface IxMenuAvatar {
         /**
           * Second line of text
@@ -5481,9 +5437,6 @@ declare namespace LocalJSX {
          */
         "top"?: string;
     }
-    /**
-     * @deprecated Use ix-application-header and it's  avatar functionality instead
-     */
     interface IxMenuAvatarItem {
         /**
           * Avatar dropdown icon
@@ -5752,6 +5705,8 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxPlaygroundInternal {
     }
     /**
      * @since 1.6.0
@@ -6464,8 +6419,6 @@ declare namespace LocalJSX {
          */
         "vertical"?: boolean;
     }
-    interface MyComponent {
-    }
     interface IntrinsicElements {
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
@@ -6542,6 +6495,7 @@ declare namespace LocalJSX {
         "ix-modal-loading": IxModalLoading;
         "ix-pagination": IxPagination;
         "ix-pill": IxPill;
+        "ix-playground-internal": IxPlaygroundInternal;
         "ix-push-card": IxPushCard;
         "ix-row": IxRow;
         "ix-select": IxSelect;
@@ -6566,7 +6520,6 @@ declare namespace LocalJSX {
         "ix-validation-tooltip": IxValidationTooltip;
         "ix-workflow-step": IxWorkflowStep;
         "ix-workflow-steps": IxWorkflowSteps;
-        "my-component": MyComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -6588,9 +6541,6 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-avatar": LocalJSX.IxAvatar & JSXBase.HTMLAttributes<HTMLIxAvatarElement>;
-            /**
-             * @deprecated ix-basic-navigation is deprecated in favor of ix-application
-             */
             "ix-basic-navigation": LocalJSX.IxBasicNavigation & JSXBase.HTMLAttributes<HTMLIxBasicNavigationElement>;
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
@@ -6693,25 +6643,13 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-link-button": LocalJSX.IxLinkButton & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
-            /**
-             * @deprecated ix-map-navigation is deprecated in favor of ix-application
-             */
             "ix-map-navigation": LocalJSX.IxMapNavigation & JSXBase.HTMLAttributes<HTMLIxMapNavigationElement>;
-            /**
-             * @deprecated since 2.1.0
-             */
             "ix-map-navigation-overlay": LocalJSX.IxMapNavigationOverlay & JSXBase.HTMLAttributes<HTMLIxMapNavigationOverlayElement>;
             "ix-menu": LocalJSX.IxMenu & JSXBase.HTMLAttributes<HTMLIxMenuElement>;
             "ix-menu-about": LocalJSX.IxMenuAbout & JSXBase.HTMLAttributes<HTMLIxMenuAboutElement>;
             "ix-menu-about-item": LocalJSX.IxMenuAboutItem & JSXBase.HTMLAttributes<HTMLIxMenuAboutItemElement>;
             "ix-menu-about-news": LocalJSX.IxMenuAboutNews & JSXBase.HTMLAttributes<HTMLIxMenuAboutNewsElement>;
-            /**
-             * @deprecated Use ix-application-header and it's avatar functionality instead
-             */
             "ix-menu-avatar": LocalJSX.IxMenuAvatar & JSXBase.HTMLAttributes<HTMLIxMenuAvatarElement>;
-            /**
-             * @deprecated Use ix-application-header and it's  avatar functionality instead
-             */
             "ix-menu-avatar-item": LocalJSX.IxMenuAvatarItem & JSXBase.HTMLAttributes<HTMLIxMenuAvatarItemElement>;
             /**
              * @since 2.0.0
@@ -6741,6 +6679,7 @@ declare module "@stencil/core" {
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            "ix-playground-internal": LocalJSX.IxPlaygroundInternal & JSXBase.HTMLAttributes<HTMLIxPlaygroundInternalElement>;
             /**
              * @since 1.6.0
              */
@@ -6786,7 +6725,6 @@ declare module "@stencil/core" {
             "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
             "ix-workflow-steps": LocalJSX.IxWorkflowSteps & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }

@@ -30,7 +30,7 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 import { Disposable } from '../utils/typed-event';
 
 /**
- * @slot logo - Location of the Logo
+ * @slot logo - Location of the logo
  */
 @Component({
   tag: 'ix-application-header',
@@ -206,6 +206,7 @@ export class ApplicationHeader {
               <ix-dropdown
                 data-overflow-dropdown
                 class="dropdown"
+                discoverAllSubmenus
                 trigger={this.resolveContextMenuButton()}
               >
                 <div class="dropdown-content">

@@ -43,4 +43,4 @@ import { Component } from '@angular/core';
     </ix-dropdown-button>
   `,
 })
-export class Dropdown {}
+export default class Dropdown {}

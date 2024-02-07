@@ -8,11 +8,10 @@
  */
 
 :root {
-  --theme-z-index-dropdown: 1000;
   --theme-z-index-sticky: 1020;
   --theme-z-index-fixed: 1030;
   --theme-z-index-modal-backdrop: 1040;
   --theme-z-index-modal: 1050;
-  --theme-z-index-popover: 1060;
+  --theme-z-index-dropdown: 1060;
   --theme-z-index-tooltip: 1070;
 }
