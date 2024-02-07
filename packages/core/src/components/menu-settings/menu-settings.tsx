@@ -57,7 +57,7 @@ export class MenuSettings {
   @State() items: HTMLIxMenuSettingsItemElement[];
 
   @Watch('activeTabLabel')
-  setTab(label: string) {
+  updateTab(label: string) {
     setTab(this, label);
   }
 
