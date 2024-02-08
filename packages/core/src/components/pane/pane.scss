@@ -33,14 +33,19 @@
   .title-text {
     display: flex;
     align-items: center;
-    width: 100%;
     gap: var(--theme-space-1);
+    overflow: hidden;
 
     .title-text-overflow {
-      position: relative;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      width: 100%;
+      height: 100%;
+      display: contents;
+
+      * {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
     }
 
     .title-text-left-right-expanded {
