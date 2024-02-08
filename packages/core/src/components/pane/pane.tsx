@@ -155,7 +155,6 @@ export class Pane {
 
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
-  private disposeListener?: Function;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -219,40 +218,11 @@ export class Pane {
       this.parentHeightPx = entries[0].borderBoxSize[0].blockSize;
     });
     if (parentElement) this.resizeObserver.observe(parentElement);
-
-    if (this.hideOnCollapse) this.disposeListener = this.addClickOutsideEvent();
   }
 
   disconnectedCallback() {
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
-    this.disposeListener?.();
-  }
-
-  private addClickOutsideEvent() {
-    return this.addDisposableEventListener(document, 'click', (event) =>
-      this.handleOutsideClick(event)
-    );
-  }
-
-  private addDisposableEventListener = (
-    element: Element | Window | Document,
-    eventType: string,
-    callback: EventListenerOrEventListenerObject
-  ) => {
-    element.addEventListener(eventType, callback);
-
-    return () => {
-      element.removeEventListener(eventType, callback);
-    };
-  };
-
-  private handleOutsideClick(event: Event) {
-    const composedPath = event.composedPath();
-
-    if (!composedPath.includes(this.hostElement) && this.showContent) {
-      this.expanded = false;
-    }
   }
 
   private setPosition(value: string) {
@@ -389,11 +359,6 @@ export class Pane {
     });
   }
 
-  private resetMobileExpanded() {
-    this.removePadding();
-    this.hostElement.style.height = this.collapsedPaneMobile;
-  }
-
   private removePadding() {
     anime({
       targets: this.hostElement.shadowRoot.querySelector('#title-div'),
@@ -433,6 +398,7 @@ export class Pane {
     this.setIcons();
     this.hostElement.style.removeProperty('width');
     this.hostElement.style.removeProperty('height');
+    this.hostElement.style.removeProperty('min-height');
     this.onParentSizeChange();
   }
 
@@ -446,13 +412,7 @@ export class Pane {
 
   @Watch('hideOnCollapse')
   onHideOnCollapseChange(value: boolean) {
-    if (value) {
-      this.disposeListener = this.addClickOutsideEvent();
-    } else {
-      this.disposeListener?.();
-    }
-
-    this.onSizeChange();
+    this.onParentSizeChange();
 
     this.hideOnCollapseChanged.emit({
       slot: this.currentSlot,
@@ -507,7 +467,10 @@ export class Pane {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.resetMobileExpanded();
+        this.removePadding();
+        this.hostElement.style.height = this.hideOnCollapse
+          ? '0'
+          : this.collapsedPaneMobile;
       } else {
         if (this.isBottomTopPane) {
           this.hostElement.style.height = this.hideOnCollapse
@@ -526,13 +489,22 @@ export class Pane {
   onSizeChange() {
     if (this.expanded) {
       if (this.isMobile) {
+        this.hostElement.style.minHeight = this.hideOnCollapse
+          ? '0'
+          : this.collapsedPaneMobile;
         this.animateHorizontalFadeIn('100%');
       } else {
         const expandPaneSize = this.getExpandPaneSize();
 
         if (this.isBottomTopPane) {
+          this.hostElement.style.height = this.hideOnCollapse
+            ? '0'
+            : this.collapsedPane;
           this.animateHorizontalFadeIn(expandPaneSize);
         } else {
+          this.hostElement.style.width = this.hideOnCollapse
+            ? '0'
+            : this.collapsedPane;
           this.animateVerticalFadeIn(expandPaneSize);
         }
       }
@@ -540,16 +512,13 @@ export class Pane {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.resetMobileExpanded();
+        this.removePadding();
+        this.hostElement.style.height = this.collapsedPaneMobile;
       } else {
         if (this.isBottomTopPane) {
-          this.animateHorizontalFadeIn(
-            this.hideOnCollapse ? '0' : this.collapsedPane
-          );
+          this.animateHorizontalFadeIn(this.collapsedPane);
         } else {
-          this.animateVerticalFadeIn(
-            this.hideOnCollapse ? '0' : this.collapsedPane
-          );
+          this.animateVerticalFadeIn(this.collapsedPane);
         }
       }
     }

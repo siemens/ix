@@ -157,6 +157,14 @@ export class Panes {
     });
   }
 
+  private closeFloatingPanes() {
+    this.currentPanes.forEach((pane) => {
+      if (pane.expanded && pane.variant === 'floating') {
+        pane.expanded = false;
+      }
+    });
+  }
+
   private configurePanes() {
     let topCount = 0;
     let bottomCount = 0;
@@ -323,7 +331,11 @@ export class Panes {
                   >
                     <slot name="top"></slot>
                   </div>
-                  <div key="content" class="content">
+                  <div
+                    key="content"
+                    class="content"
+                    onClick={() => this.closeFloatingPanes()}
+                  >
                     <slot name="content"></slot>
                   </div>
                   <div
@@ -369,7 +381,11 @@ export class Panes {
                   >
                     <slot name="left"></slot>
                   </div>
-                  <div key="content" class="content">
+                  <div
+                    key="content"
+                    class="content"
+                    onClick={() => this.closeFloatingPanes()}
+                  >
                     <slot name="content"></slot>
                   </div>
                   <div
@@ -406,7 +422,11 @@ export class Panes {
             >
               <slot name="left"></slot>
             </div>
-            <div key="content" class="content">
+            <div
+              key="content"
+              class="content"
+              onClick={() => this.closeFloatingPanes()}
+            >
               <slot name="content"></slot>
             </div>
             <div
