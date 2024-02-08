@@ -206,6 +206,7 @@ export class ApplicationHeader {
               <ix-dropdown
                 data-overflow-dropdown
                 class="dropdown"
+                discoverAllSubmenus
                 trigger={this.resolveContextMenuButton()}
               >
                 <div class="dropdown-content">

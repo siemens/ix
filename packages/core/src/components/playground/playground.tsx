@@ -13,9 +13,9 @@ import { Component, h, Host } from '@stencil/core';
 @Component({
   tag: 'ix-playground-internal',
   styleUrl: 'playground.scss',
-  shadow: true,
+  // shadow: true,
   // Set scoped=true and shadow=false to test global styles like checkbox etc
-  // scoped: true,
+  scoped: true,
 })
 export class PlaygroundInternal {
   render() {

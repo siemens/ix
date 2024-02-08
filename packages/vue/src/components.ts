@@ -362,6 +362,7 @@ export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-drop
   'header',
   'offset',
   'overwriteDropdownStyle',
+  'discoverAllSubmenus',
   'showChanged'
 ]);
 
@@ -605,7 +606,8 @@ export const IxMenuAbout = /*@__PURE__*/ defineContainer<JSX.IxMenuAbout>('ix-me
 
 
 export const IxMenuAboutItem = /*@__PURE__*/ defineContainer<JSX.IxMenuAboutItem>('ix-menu-about-item', defineIxMenuAboutItem, [
-  'label'
+  'label',
+  'labelChange'
 ]);
 
 

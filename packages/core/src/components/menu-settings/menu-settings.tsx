@@ -14,27 +14,33 @@ import {
   EventEmitter,
   forceUpdate,
   h,
-  Host,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
+import { MenuTabs } from '../utils/menu-tabs/menu-tabs-fc';
+import {
+  CustomCloseEvent,
+  initialize,
+  setTab,
+} from '../utils/menu-tabs/menu-tabs-utils';
 
 @Component({
   tag: 'ix-menu-settings',
   styleUrl: 'menu-settings.scss',
   shadow: true,
 })
-export class MenuAbout {
+export class MenuSettings {
   @Element() el!: HTMLIxMenuSettingsElement;
 
   /**
-   * active tab
+   * Active tab
    */
+  // eslint-disable-next-line @stencil-community/strict-mutable
   @Prop({ mutable: true }) activeTabLabel: string;
 
   /**
-   * Label
+   * Label of first tab
    */
   @Prop() label = 'Settings';
 
@@ -46,93 +52,24 @@ export class MenuAbout {
   /**
    * Popover closed
    */
-  @Event() close: EventEmitter<{
-    nativeEvent: MouseEvent;
-    name: string;
-  }>;
+  @Event() close: EventEmitter<CustomCloseEvent>;
 
-  @State() settingsItems: HTMLIxMenuSettingsItemElement[];
+  @State() items: HTMLIxMenuSettingsItemElement[];
 
-  private setTab(label: string) {
-    this.activeTabLabel = label;
-    this.settingsItems.forEach((i) => {
-      i.style.display = 'none';
-
-      if (i.label === this.activeTabLabel) {
-        i.style.display = 'block';
-      }
-    });
-  }
-
-  private getTabItems() {
-    return this.settingsItems.map(({ label }) => {
-      return (
-        <ix-tab-item
-          selected={label === this.activeTabLabel}
-          onClick={() => this.setTab(label)}
-        >
-          {label}
-        </ix-tab-item>
-      );
-    });
+  @Watch('activeTabLabel')
+  updateTab(label: string) {
+    setTab(this, label);
   }
 
   componentWillLoad() {
-    this.settingsItems = Array.from(
-      this.el.querySelectorAll('ix-menu-settings-item')
-    );
-
-    if (this.settingsItems.length) {
-      this.setTab(this.activeTabLabel || this.settingsItems[0].label);
-    }
-
-    this.settingsItems.forEach((item) => {
-      item.addEventListener('labelChange', (e: CustomEvent) => {
-        this.settingsItems = Array.from(
-          this.el.querySelectorAll('ix-menu-settings-item')
-        );
-
-        if (e.detail.oldLabel === this.activeTabLabel) {
-          this.activeTabLabel = e.detail.newLabel;
-        }
-      });
-    });
+    initialize(this);
   }
 
   componentDidLoad() {
     forceUpdate(this.el);
   }
 
-  @Watch('activeTabLabel')
-  watchActiveTabLabel(value: string) {
-    this.setTab(value);
-  }
-
   render() {
-    return (
-      <Host
-        slot="ix-menu-settings"
-        class={{
-          show: this.show,
-        }}
-      >
-        <div class="settings-header">
-          <h2 class="text-h2">{this.label}</h2>
-          <ix-icon-button
-            ghost
-            size="24"
-            icon={'close'}
-            onClick={(e) =>
-              this.close.emit({
-                name: 'ix-menu-settings',
-                nativeEvent: e,
-              })
-            }
-          ></ix-icon-button>
-        </div>
-        <ix-tabs>{this.getTabItems()}</ix-tabs>
-        <slot></slot>
-      </Host>
-    );
+    return <MenuTabs context={this} />;
   }
 }

@@ -109,14 +109,14 @@
 
     & + label:after {
       content: '';
-      width: 0.625rem;
-      height: 0.625rem;
+      width: $small-space;
+      height: $small-space;
       display: block;
       background-color: var(--theme-radiobtn-checked--color);
       border-radius: 100%;
       position: absolute;
-      top: 0.4125rem;
-      left: 0.3125rem;
+      top: 0.5rem;
+      left: 0.375rem;
     }
 
     &:hover + label:before {
