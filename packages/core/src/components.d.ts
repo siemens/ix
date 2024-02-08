@@ -31,6 +31,7 @@ import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
+import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
@@ -68,6 +69,7 @@ export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
+export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
@@ -1520,11 +1522,11 @@ export namespace Components {
     }
     interface IxMenuSettings {
         /**
-          * active tab
+          * Active tab
          */
         "activeTabLabel": string;
         /**
-          * Label
+          * Label of first tab
          */
         "label": string;
         /**
@@ -1534,7 +1536,7 @@ export namespace Components {
     }
     interface IxMenuSettingsItem {
         /**
-          * Label
+          * Settings Item label
          */
         "label": string;
     }
@@ -2436,6 +2438,10 @@ export interface IxMenuAboutCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuAboutElement;
 }
+export interface IxMenuAboutItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuAboutItemElement;
+}
 export interface IxMenuAboutNewsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuAboutNewsElement;
@@ -3227,10 +3233,7 @@ declare global {
         new (): HTMLIxMenuElement;
     };
     interface HTMLIxMenuAboutElementEventMap {
-        "close": {
-    nativeEvent: MouseEvent;
-    name: string;
-  };
+        "close": CustomCloseEvent;
     }
     interface HTMLIxMenuAboutElement extends Components.IxMenuAbout, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuAboutElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutElement, ev: IxMenuAboutCustomEvent<HTMLIxMenuAboutElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3246,7 +3249,18 @@ declare global {
         prototype: HTMLIxMenuAboutElement;
         new (): HTMLIxMenuAboutElement;
     };
+    interface HTMLIxMenuAboutItemElementEventMap {
+        "labelChange": CustomLabelChangeEvent;
+    }
     interface HTMLIxMenuAboutItemElement extends Components.IxMenuAboutItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuAboutItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutItemElement, ev: IxMenuAboutItemCustomEvent<HTMLIxMenuAboutItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuAboutItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutItemElement, ev: IxMenuAboutItemCustomEvent<HTMLIxMenuAboutItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuAboutItemElement: {
         prototype: HTMLIxMenuAboutItemElement;
@@ -3320,10 +3334,7 @@ declare global {
         new (): HTMLIxMenuItemElement;
     };
     interface HTMLIxMenuSettingsElementEventMap {
-        "close": {
-    nativeEvent: MouseEvent;
-    name: string;
-  };
+        "close": CustomCloseEvent;
     }
     interface HTMLIxMenuSettingsElement extends Components.IxMenuSettings, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuSettingsElementEventMap>(type: K, listener: (this: HTMLIxMenuSettingsElement, ev: IxMenuSettingsCustomEvent<HTMLIxMenuSettingsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3340,11 +3351,7 @@ declare global {
         new (): HTMLIxMenuSettingsElement;
     };
     interface HTMLIxMenuSettingsItemElementEventMap {
-        "labelChange": {
-    name: string;
-    oldLabel: string;
-    newLabel: string;
-  };
+        "labelChange": CustomLabelChangeEvent;
     }
     interface HTMLIxMenuSettingsItemElement extends Components.IxMenuSettingsItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuSettingsItemElementEventMap>(type: K, listener: (this: HTMLIxMenuSettingsItemElement, ev: IxMenuSettingsItemCustomEvent<HTMLIxMenuSettingsItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5350,10 +5357,7 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: IxMenuAboutCustomEvent<{
-    nativeEvent: MouseEvent;
-    name: string;
-  }>) => void;
+        "onClose"?: (event: IxMenuAboutCustomEvent<CustomCloseEvent>) => void;
         /**
           * Internal
          */
@@ -5364,6 +5368,10 @@ declare namespace LocalJSX {
           * About Item label
          */
         "label"?: string;
+        /**
+          * Label changed
+         */
+        "onLabelChange"?: (event: IxMenuAboutItemCustomEvent<CustomLabelChangeEvent>) => void;
     }
     interface IxMenuAboutNews {
         /**
@@ -5495,20 +5503,17 @@ declare namespace LocalJSX {
     }
     interface IxMenuSettings {
         /**
-          * active tab
+          * Active tab
          */
         "activeTabLabel"?: string;
         /**
-          * Label
+          * Label of first tab
          */
         "label"?: string;
         /**
           * Popover closed
          */
-        "onClose"?: (event: IxMenuSettingsCustomEvent<{
-    nativeEvent: MouseEvent;
-    name: string;
-  }>) => void;
+        "onClose"?: (event: IxMenuSettingsCustomEvent<CustomCloseEvent>) => void;
         /**
           * Internal
          */
@@ -5516,17 +5521,13 @@ declare namespace LocalJSX {
     }
     interface IxMenuSettingsItem {
         /**
-          * Label
+          * Settings Item label
          */
         "label"?: string;
         /**
           * Label changed
          */
-        "onLabelChange"?: (event: IxMenuSettingsItemCustomEvent<{
-    name: string;
-    oldLabel: string;
-    newLabel: string;
-  }>) => void;
+        "onLabelChange"?: (event: IxMenuSettingsItemCustomEvent<CustomLabelChangeEvent>) => void;
     }
     interface IxMessageBar {
         /**

@@ -1355,11 +1355,13 @@ export class IxMenuAbout {
 }
 
 
+import type { CustomCloseEvent as IIxMenuAboutCustomCloseEvent } from '@siemens/ix';
+
 export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
    * About and Legal closed
    */
-  close: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; name: string; }>>;
+  close: EventEmitter<CustomEvent<IIxMenuAboutCustomCloseEvent>>;
 }
 
 
@@ -1378,11 +1380,19 @@ export class IxMenuAboutItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['labelChange']);
   }
 }
 
 
-export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {}
+import type { CustomLabelChangeEvent as IIxMenuAboutItemCustomLabelChangeEvent } from '@siemens/ix';
+
+export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {
+  /**
+   * Label changed
+   */
+  labelChange: EventEmitter<CustomEvent<IIxMenuAboutItemCustomLabelChangeEvent>>;
+}
 
 
 @ProxyCmp({
@@ -1537,11 +1547,13 @@ export class IxMenuSettings {
 }
 
 
+import type { CustomCloseEvent as IIxMenuSettingsCustomCloseEvent } from '@siemens/ix';
+
 export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
    * Popover closed
    */
-  close: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; name: string; }>>;
+  close: EventEmitter<CustomEvent<IIxMenuSettingsCustomCloseEvent>>;
 }
 
 
@@ -1565,11 +1577,13 @@ export class IxMenuSettingsItem {
 }
 
 
+import type { CustomLabelChangeEvent as IIxMenuSettingsItemCustomLabelChangeEvent } from '@siemens/ix';
+
 export declare interface IxMenuSettingsItem extends Components.IxMenuSettingsItem {
   /**
    * Label changed
    */
-  labelChange: EventEmitter<CustomEvent<{ name: string; oldLabel: string; newLabel: string; }>>;
+  labelChange: EventEmitter<CustomEvent<IIxMenuSettingsItemCustomLabelChangeEvent>>;
 }
 
 
