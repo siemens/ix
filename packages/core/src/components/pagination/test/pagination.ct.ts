@@ -36,10 +36,7 @@ test('open show number of page dropdown', async ({ mount, page }) => {
   `);
   const element = page.locator('ix-pagination[advanced]');
 
-  await element
-    .getByRole('button')
-    .filter({ hasText: 'chevron-down-small' })
-    .click();
+  await element.getByRole('button').nth(-1).click();
 
   const dropdown = element.locator('ix-dropdown');
 
@@ -61,10 +58,7 @@ test('should dispatch items count change', async ({ mount, page }) => {
     });
   });
 
-  await pagination
-    .getByRole('button')
-    .filter({ hasText: 'chevron-down-small' })
-    .click();
+  await pagination.getByRole('button').nth(-1).click();
 
   await pagination.locator('ix-dropdown-item').nth(3).click();
   await expect(pagination.locator('ix-dropdown')).not.toBeVisible();

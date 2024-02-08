@@ -65,7 +65,7 @@ test.describe('date picker tests single', () => {
   test('select different date in next month', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
-    await page.getByRole('button').filter({ hasText: 'chevron-right' }).click();
+    await page.locator('ix-icon-button').nth(1).click();
     await page.getByText(/^31$/).click();
 
     expect((await getDateObj(page))[0]).toEqual({
@@ -77,7 +77,7 @@ test.describe('date picker tests single', () => {
   test('select different date in previous month', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
-    await page.getByRole('button').filter({ hasText: 'chevron-left' }).click();
+    await page.locator('ix-icon-button').nth(0).click();
     await page
       .locator('.calendar-item:not(.week-number)')
       .getByText(/^31$/)
@@ -166,7 +166,7 @@ test.describe('date picker tests range', () => {
     await page.waitForSelector('ix-date-time-card');
 
     await page.getByText(/^28$/).click();
-    await page.getByRole('button').filter({ hasText: 'chevron-right' }).click();
+    await page.locator('ix-icon-button').nth(1).click();
     await page.getByText(/^5$/).click();
 
     expect((await getDateObj(page))[0]).toEqual({

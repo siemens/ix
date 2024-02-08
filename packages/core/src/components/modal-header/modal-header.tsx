@@ -17,6 +17,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { closestPassShadow } from '../utils/shadow-dom';
 
 /**
  * @since 2.0.0
@@ -38,6 +39,7 @@ export class ModalHeader {
    * Icon of the Header
    */
   @Prop() icon: string;
+
   @Watch('icon')
   onIconChange(icon: string) {
     if (this.parentDialog) {
@@ -55,14 +57,18 @@ export class ModalHeader {
   @Prop() iconColor: string;
 
   /**
-   * Close icon is clicked
+   * Emits when close icon is clicked and closes the modal
+   * Can be prevented, in which case only the event is triggered, and the modal remains open
    */
   @Event() closeClick: EventEmitter<MouseEvent>;
 
   private parentDialog: HTMLIxModalElement;
 
   componentDidLoad() {
-    this.parentDialog = this.hostElement.closest('ix-modal');
+    this.parentDialog = closestPassShadow(
+      this.hostElement,
+      'ix-modal'
+    ) as HTMLIxModalElement;
     this.onIconChange(this.icon);
   }
 

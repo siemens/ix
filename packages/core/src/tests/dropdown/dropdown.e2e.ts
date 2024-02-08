@@ -38,17 +38,6 @@ regressionTest.describe('dropdown', () => {
     });
   });
 
-  regressionTest('tigger events', async ({ page }) => {
-    await page.goto('dropdown/trigger-events');
-
-    await page.locator('input').focus();
-    await page.waitForSelector('.dropdown-menu.show');
-
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.05,
-    });
-  });
-
   regressionTest('disabled', async ({ page }) => {
     await page.goto('dropdown/disabled');
 

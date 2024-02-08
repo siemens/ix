@@ -19,6 +19,10 @@ import { AgGridModule } from 'ag-grid-angular';
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
 import ActionCard from 'src/preview-examples/action-card';
 import AGGrid from 'src/preview-examples/aggrid';
+import ApplicationExample from 'src/preview-examples/application';
+import ApplicationAppSwitchExample from 'src/preview-examples/application-app-switch';
+import ApplicationBreakpointExample from 'src/preview-examples/application-breakpoints';
+import ApplicationHeaderExample from 'src/preview-examples/application-header';
 import BasicNavigation from 'src/preview-examples/basic-navigation';
 import BasicNavigationWithOutHeader from 'src/preview-examples/basic-navigation-without-header';
 import Blind from 'src/preview-examples/blind';
@@ -35,6 +39,7 @@ import CategoryFilterSuggestions from 'src/preview-examples/category-filter-sugg
 import Checkbox from 'src/preview-examples/checkbox';
 import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
+import ContentExample from 'src/preview-examples/content';
 import ContentHeader from 'src/preview-examples/content-header';
 import ContentHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import DateDropdown from 'src/preview-examples/date-dropdown';
@@ -46,7 +51,11 @@ import Datetimepicker from 'src/preview-examples/datetimepicker';
 import Drawer from 'src/preview-examples/drawer';
 import DrawerFullHeight from 'src/preview-examples/drawer-full-height';
 import Dropdown from 'src/preview-examples/dropdown';
+import DropdownButton from 'src/preview-examples/dropdown-button';
+import DropdownButtonIcon from 'src/preview-examples/dropdown-button-icon';
 import DropdownIcon from 'src/preview-examples/dropdown-icon';
+import DropdownQuickActions from 'src/preview-examples/dropdown-quick-actions';
+import DropdownSubmenu from 'src/preview-examples/dropdown-submenu';
 import EmptyState from 'src/preview-examples/empty-state';
 import EmptyStateCompact from 'src/preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from 'src/preview-examples/empty-state-compact-break';
@@ -142,7 +151,12 @@ import { NavigationTestComponent } from './components/navigation-test.component'
 
 @NgModule({
   declarations: [
+    ApplicationExample,
+    ApplicationBreakpointExample,
+    ApplicationAppSwitchExample,
+    ApplicationHeaderExample,
     AppComponent,
+    ContentExample,
     Buttons,
     ButtonGroup,
     AGGrid,
@@ -172,8 +186,12 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Datetimepicker,
     DrawerFullHeight,
     Drawer,
+    DropdownButton,
+    DropdownButtonIcon,
     DropdownIcon,
     Dropdown,
+    DropdownQuickActions,
+    DropdownSubmenu,
     EventListCompact,
     EventListCustomItemHeight,
     EventListSelected,

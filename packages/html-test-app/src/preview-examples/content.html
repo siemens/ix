@@ -1,0 +1,34 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <body class="theme-classic-dark">
+    <!-- Preview code -->
+    <ix-content>
+      <ix-content-header slot="header" header-title="My Content Page">
+      </ix-content-header>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+        ipsum dolor sit amet.
+    </ix-content>
+    <!-- Preview code -->
+    <script type="module">
+      (async () => {
+        await window.customElements.whenDefined('ix-application');
+        const menu = document.querySelector('ix-application');
+        menu.breakpoints = ['md'];
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
