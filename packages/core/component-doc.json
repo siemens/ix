@@ -11801,7 +11801,7 @@
           "mutable": true,
           "attr": "composition",
           "reflectToAttr": false,
-          "docs": "Define the style of the pane. Use as composition the position you want to use the pane at.\nThis property gets set automatically to the slot value when used inside a layout.",
+          "docs": "Defines the position of the pane inside it's container.\nInside a pane layout this property will automatically be set to the name of slot the pane is assigned to.",
           "docsTags": [],
           "default": "'top'",
           "values": [

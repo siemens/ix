@@ -1678,7 +1678,7 @@ export namespace Components {
          */
         "borderless": boolean;
         /**
-          * Define the style of the pane. Use as composition the position you want to use the pane at. This property gets set automatically to the slot value when used inside a layout.
+          * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
          */
         "composition": Composition;
         /**
@@ -5780,7 +5780,7 @@ declare namespace LocalJSX {
          */
         "borderless"?: boolean;
         /**
-          * Define the style of the pane. Use as composition the position you want to use the pane at. This property gets set automatically to the slot value when used inside a layout.
+          * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
          */
         "composition"?: Composition;
         /**
