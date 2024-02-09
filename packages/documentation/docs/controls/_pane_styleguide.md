@@ -26,7 +26,7 @@ Panes help users focus on tasks as related controls are visually grouped and the
 2. Full width (top/bottom)
 
 ## Behavior 
-- **Interaction**: For panes that are collapsible, users expand them by pressing on the expand button. To expand panes with hidden collapsed state, users typically click on a button or another interactive component within the main content. They close these panes by either pressing on the button on the right side of the header or clicking outside the pane area. This removes the pane from their view.
+- **Interaction**: Users expand panes that are collapsible by pressing on the expand button. To expand panes with hidden collapsed state, users typically click on a button or another interactive component within the main content. They close these panes by either pressing on the button on the right side of the header or clicking outside the pane area. This removes the pane from their view.
 - **Overflow**: When content extends the available space within the pane, scrollbars appear. Headers stay fixed at the top allowing users to scroll the content area. We like to avoid overfilling panes with content to remove the need for scrolling.
 - **Stacking**: When users expand multiple panes within a pane layout, panes are stacked.
 - **Placement**: We typically fit a pane layout within the complete content area of a page bounded by the application header on top and the navigation menu on the left.
