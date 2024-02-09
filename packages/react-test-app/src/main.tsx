@@ -74,6 +74,8 @@ import MenuCategory from './preview-examples/menu-category';
 import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
+import Pane from './preview-examples/pane';
+import PaneLayout from './preview-examples/pane-layout';
 import Pill from './preview-examples/pill';
 import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
@@ -233,6 +235,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/select" element={<Select />} />
         <Route path="/preview/select-editable" element={<SelectEditable />} />
         <Route path="/preview/select-multiple" element={<SelectMultiple />} />
+        <Route path="/preview/pane" element={<Pane />} />
+        <Route path="/preview/pane-layout" element={<PaneLayout />} />
         <Route path="/preview/spinner" element={<Spinner />} />
         <Route path="/preview/spinner-large" element={<SpinnerLarge />} />
         <Route path="/preview/split-button" element={<Splitbutton />} />

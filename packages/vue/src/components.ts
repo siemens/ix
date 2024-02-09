@@ -72,6 +72,8 @@ import { defineCustomElement as defineIxModalExample } from '@siemens/ix/compone
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
+import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
+import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
@@ -720,6 +722,32 @@ export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-
   'i18nItems',
   'pageSelected',
   'itemCountChanged'
+]);
+
+
+export const IxPane = /*@__PURE__*/ defineContainer<JSX.IxPane>('ix-pane', defineIxPane, [
+  'heading',
+  'variant',
+  'hideOnCollapse',
+  'size',
+  'borderless',
+  'expanded',
+  'composition',
+  'icon',
+  'ignoreLayoutSettings',
+  'isMobile',
+  'expandedChanged',
+  'variantChanged',
+  'borderlessChanged',
+  'hideOnCollapseChanged',
+  'slotChanged'
+]);
+
+
+export const IxPaneLayout = /*@__PURE__*/ defineContainer<JSX.IxPaneLayout>('ix-pane-layout', defineIxPaneLayout, [
+  'layout',
+  'variant',
+  'borderless'
 ]);
 
 

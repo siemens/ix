@@ -33,6 +33,7 @@ import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal";
+import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -71,6 +72,7 @@ export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal";
+export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -1667,6 +1669,68 @@ export namespace Components {
          */
         "showItemCount": boolean;
     }
+    /**
+     * @since 2.1.0
+     */
+    interface IxPane {
+        /**
+          * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
+         */
+        "borderless": boolean;
+        /**
+          * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
+         */
+        "composition": Composition;
+        /**
+          * State of the pane
+         */
+        "expanded": boolean;
+        /**
+          * Title of the side panel
+         */
+        "heading": string;
+        /**
+          * Define if the pane should have a collapsed state
+         */
+        "hideOnCollapse": boolean;
+        /**
+          * Name of the icon
+         */
+        "icon": string;
+        "ignoreLayoutSettings": boolean;
+        "isMobile": boolean;
+        /**
+          * The maximum size of the sidebar, when it is expanded
+         */
+        "size": | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%';
+        /**
+          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
+         */
+        "variant": 'floating' | 'inline';
+    }
+    /**
+     * @since 2.1.0
+     */
+    interface IxPaneLayout {
+        /**
+          * Set the default border state for all panes in the layout
+         */
+        "borderless": boolean;
+        /**
+          * Choose the layout of the panes. When set to 'full-vertical' the vertical panes (left, right) will get the full height. When set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.
+         */
+        "layout": 'full-vertical' | 'full-horizontal';
+        /**
+          * Set the default variant for all panes in the layout
+         */
+        "variant": 'floating' | 'inline';
+    }
     interface IxPill {
         /**
           * Align pill content left
@@ -2477,6 +2541,10 @@ export interface IxModalHeaderCustomEvent<T> extends CustomEvent<T> {
 export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaginationElement;
+}
+export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPaneElement;
 }
 export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3473,6 +3541,39 @@ declare global {
         prototype: HTMLIxPaginationElement;
         new (): HTMLIxPaginationElement;
     };
+    interface HTMLIxPaneElementEventMap {
+        "expandedChanged": ExpandedChangedEvent;
+        "variantChanged": VariantChangedEvent;
+        "borderlessChanged": BorderlessChangedEvent;
+        "hideOnCollapseChanged": HideOnCollapseChangedEvent;
+        "slotChanged": SlotChangedEvent;
+    }
+    /**
+     * @since 2.1.0
+     */
+    interface HTMLIxPaneElement extends Components.IxPane, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxPaneElementEventMap>(type: K, listener: (this: HTMLIxPaneElement, ev: IxPaneCustomEvent<HTMLIxPaneElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxPaneElementEventMap>(type: K, listener: (this: HTMLIxPaneElement, ev: IxPaneCustomEvent<HTMLIxPaneElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxPaneElement: {
+        prototype: HTMLIxPaneElement;
+        new (): HTMLIxPaneElement;
+    };
+    /**
+     * @since 2.1.0
+     */
+    interface HTMLIxPaneLayoutElement extends Components.IxPaneLayout, HTMLStencilElement {
+    }
+    var HTMLIxPaneLayoutElement: {
+        prototype: HTMLIxPaneLayoutElement;
+        new (): HTMLIxPaneLayoutElement;
+    };
     interface HTMLIxPillElement extends Components.IxPill, HTMLStencilElement {
     }
     var HTMLIxPillElement: {
@@ -3910,6 +4011,8 @@ declare global {
         "ix-modal-header": HTMLIxModalHeaderElement;
         "ix-modal-loading": HTMLIxModalLoadingElement;
         "ix-pagination": HTMLIxPaginationElement;
+        "ix-pane": HTMLIxPaneElement;
+        "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
         "ix-playground-internal": HTMLIxPlaygroundInternalElement;
         "ix-push-card": HTMLIxPushCardElement;
@@ -5668,6 +5771,82 @@ declare namespace LocalJSX {
          */
         "showItemCount"?: boolean;
     }
+    /**
+     * @since 2.1.0
+     */
+    interface IxPane {
+        /**
+          * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
+         */
+        "borderless"?: boolean;
+        /**
+          * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
+         */
+        "composition"?: Composition;
+        /**
+          * State of the pane
+         */
+        "expanded"?: boolean;
+        /**
+          * Title of the side panel
+         */
+        "heading"?: string;
+        /**
+          * Define if the pane should have a collapsed state
+         */
+        "hideOnCollapse"?: boolean;
+        /**
+          * Name of the icon
+         */
+        "icon"?: string;
+        "ignoreLayoutSettings"?: boolean;
+        "isMobile"?: boolean;
+        /**
+          * This event is triggered when the variant of the pane is changed
+         */
+        "onBorderlessChanged"?: (event: IxPaneCustomEvent<BorderlessChangedEvent>) => void;
+        /**
+          * This event is triggered when the pane either expands or contracts
+         */
+        "onExpandedChanged"?: (event: IxPaneCustomEvent<ExpandedChangedEvent>) => void;
+        "onHideOnCollapseChanged"?: (event: IxPaneCustomEvent<HideOnCollapseChangedEvent>) => void;
+        "onSlotChanged"?: (event: IxPaneCustomEvent<SlotChangedEvent>) => void;
+        /**
+          * This event is triggered when the variant of the pane is changed
+         */
+        "onVariantChanged"?: (event: IxPaneCustomEvent<VariantChangedEvent>) => void;
+        /**
+          * The maximum size of the sidebar, when it is expanded
+         */
+        "size"?: | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%';
+        /**
+          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
+         */
+        "variant"?: 'floating' | 'inline';
+    }
+    /**
+     * @since 2.1.0
+     */
+    interface IxPaneLayout {
+        /**
+          * Set the default border state for all panes in the layout
+         */
+        "borderless"?: boolean;
+        /**
+          * Choose the layout of the panes. When set to 'full-vertical' the vertical panes (left, right) will get the full height. When set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.
+         */
+        "layout"?: 'full-vertical' | 'full-horizontal';
+        /**
+          * Set the default variant for all panes in the layout
+         */
+        "variant"?: 'floating' | 'inline';
+    }
     interface IxPill {
         /**
           * Align pill content left
@@ -6494,6 +6673,8 @@ declare namespace LocalJSX {
         "ix-modal-header": IxModalHeader;
         "ix-modal-loading": IxModalLoading;
         "ix-pagination": IxPagination;
+        "ix-pane": IxPane;
+        "ix-pane-layout": IxPaneLayout;
         "ix-pill": IxPill;
         "ix-playground-internal": IxPlaygroundInternal;
         "ix-push-card": IxPushCard;
@@ -6678,6 +6859,14 @@ declare module "@stencil/core" {
              * @since 1.5.0
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
+            /**
+             * @since 2.1.0
+             */
+            "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
+            /**
+             * @since 2.1.0
+             */
+            "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             "ix-playground-internal": LocalJSX.IxPlaygroundInternal & JSXBase.HTMLAttributes<HTMLIxPlaygroundInternalElement>;
             /**

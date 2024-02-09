@@ -1,0 +1,100 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
+
+@mixin set-padding($composition) {
+  @if $composition {
+    padding-#{$composition}: 2.5rem;
+  }
+}
+
+@mixin set-absolute($composition) {
+  @if $composition {
+    position: absolute;
+    #{$composition}: 0;
+  }
+}
+
+:host {
+  @include ix-component;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  .side-panes-wrapper {
+    height: 100%;
+    width: 100%;
+  }
+
+  .row {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .col {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .absolute-top {
+    width: 100%;
+    @include set-absolute(top);
+  }
+
+  .absolute-bottom {
+    width: 100%;
+    @include set-absolute(bottom);
+  }
+
+  .absolute-left {
+    height: 100%;
+    @include set-absolute(left);
+  }
+
+  .absolute-right {
+    height: 100%;
+    @include set-absolute(right);
+  }
+
+  .padding-top {
+    @include set-padding(top);
+  }
+
+  .padding-bottom {
+    @include set-padding(bottom);
+  }
+
+  .padding-left {
+    @include set-padding(left);
+  }
+
+  .padding-right {
+    @include set-padding(right);
+  }
+}

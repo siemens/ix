@@ -1773,6 +1773,68 @@ export declare interface IxPagination extends Components.IxPagination {
 
 
 @ProxyCmp({
+  inputs: ['borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant']
+})
+@Component({
+  selector: 'ix-pane',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant'],
+})
+export class IxPane {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['expandedChanged', 'variantChanged', 'borderlessChanged']);
+  }
+}
+
+
+import type { ExpandedChangedEvent as IIxPaneExpandedChangedEvent } from '@siemens/ix';
+import type { VariantChangedEvent as IIxPaneVariantChangedEvent } from '@siemens/ix';
+import type { BorderlessChangedEvent as IIxPaneBorderlessChangedEvent } from '@siemens/ix';
+
+export declare interface IxPane extends Components.IxPane {
+  /**
+   * This event is triggered when the pane either expands or contracts
+   */
+  expandedChanged: EventEmitter<CustomEvent<IIxPaneExpandedChangedEvent>>;
+  /**
+   * This event is triggered when the variant of the pane is changed
+   */
+  variantChanged: EventEmitter<CustomEvent<IIxPaneVariantChangedEvent>>;
+  /**
+   * This event is triggered when the variant of the pane is changed
+   */
+  borderlessChanged: EventEmitter<CustomEvent<IIxPaneBorderlessChangedEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['borderless', 'layout', 'variant']
+})
+@Component({
+  selector: 'ix-pane-layout',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['borderless', 'layout', 'variant'],
+})
+export class IxPaneLayout {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPaneLayout extends Components.IxPaneLayout {}
+
+
+@ProxyCmp({
   inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'variant']
 })
 @Component({
