@@ -108,6 +108,8 @@ export class Modal {
     return this.hostElement.shadowRoot.querySelector('dialog');
   }
 
+  private contentRef: Element = null;
+
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
 
@@ -143,14 +145,11 @@ export class Modal {
     });
   }
 
-  private onModalClick(event: MouseEvent) {
-    const rect = this.dialog.getBoundingClientRect();
-    const isClickOutside =
-      rect.top <= event.clientY &&
-      event.clientY <= rect.top + rect.height &&
-      rect.left <= event.clientX &&
-      event.clientX <= rect.left + rect.width;
-    if (!isClickOutside && this.closeOnBackdropClick) {
+  private onModalClick(event: PointerEvent | MouseEvent) {
+    if (!(event as PointerEvent).pointerType) return;
+
+    const isClickInside = event.composedPath().includes(this.contentRef);
+    if (!isClickInside && this.closeOnBackdropClick) {
       this.dismissModal();
     }
   }
@@ -257,7 +256,7 @@ export class Modal {
               this.dismissModal();
             }}
           >
-            <slot></slot>
+            <slot ref={(el) => (this.contentRef = el)}></slot>
           </dialog>
         </div>
       </Host>
