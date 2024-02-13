@@ -31,7 +31,7 @@ import {
 import { ComponentInterface } from '@stencil/core/internal';
 import {
   addDisposableEventListener,
-  CloseBehaviour,
+  CloseBehavior,
   dropdownController,
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
@@ -73,8 +73,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+   * If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
    */
-  @Prop() closeBehavior: CloseBehaviour = 'both';
+  @Prop() closeBehavior: CloseBehavior = 'both';
 
   /**
    * Placement of the dropdown

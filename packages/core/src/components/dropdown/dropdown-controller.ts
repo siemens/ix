@@ -8,10 +8,10 @@
  */
 
 import { IxComponent } from '../utils/internal';
-export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;
+export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;
 
 export interface DropdownInterface extends IxComponent {
-  closeBehavior: CloseBehaviour;
+  closeBehavior: CloseBehavior;
   discoverAllSubmenus: boolean;
 
   getAssignedSubmenuIds(): string[];
@@ -78,8 +78,17 @@ class DropdownController {
     }
   }
 
+  dismissMultiple(ids: string[]) {
+    for (const dropdown of this.dropdowns) {
+      if (ids.includes(dropdown.getId())) {
+        this.dismiss(dropdown);
+      }
+    }
+  }
+
   dismiss(dropdown: DropdownInterface) {
     if (dropdown.isPresent() && dropdown.willDismiss()) {
+      this.dismissMultiple(dropdown.getAssignedSubmenuIds());
       dropdown.dismiss();
       delete this.dropdownRules[dropdown.getId()];
     }
