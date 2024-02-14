@@ -237,7 +237,7 @@ test.describe('Close behavior', () => {
   });
 });
 
-test.describe('Nested dropdowns 1/2', () => {
+test.describe('Nested dropdowns 1/3', () => {
   function mountDropdown(
     mount: (selector: string) => Promise<ElementHandle<HTMLElement>>
   ) {
@@ -374,7 +374,7 @@ test.describe('Nested dropdowns 1/2', () => {
   });
 });
 
-test.describe('nested dropdown 2/2', () => {
+test.describe('nested dropdown 2/3', () => {
   const button1Text = 'Triggerbutton1';
   const button2Text = 'Triggerbutton2';
 
@@ -396,6 +396,39 @@ test.describe('nested dropdown 2/2', () => {
     const nestedDropdownItem = page.locator('ix-dropdown-item');
 
     await expect(nestedDropdownItem).toHaveClass(/hydrated/);
+  });
+});
+
+test.describe('nested dropdown 3/3', () => {
+  test.beforeEach(async ({ mount }) => {
+    await mount(`
+      <ix-button id="trigger-dropdown-1" close-behavior="inside">Trigger 1</ix-button>
+      <ix-dropdown id="dropdown-1" trigger="trigger-dropdown-1">
+        <ix-dropdown-item id="trigger-dropdown-2">Item 1</ix-dropdown-item>
+        <ix-dropdown-item>Item 2</ix-dropdown-item>
+      </ix-dropdown>
+
+      <ix-dropdown trigger="trigger-dropdown-2" id="dropdown-2" close-behavior="inside">
+        <ix-dropdown-item>Item 1.1</ix-dropdown-item>
+        <ix-dropdown-item>Item 1.2</ix-dropdown-item>
+        <ix-dropdown-item>Item 1.3</ix-dropdown-item>
+      </ix-dropdown>
+    `);
+  });
+
+  test('close child on parent dismiss', async ({ page }) => {
+    const triggerDropdown1 = page.locator('#trigger-dropdown-1');
+    const triggerDropdown2 = page.locator('#trigger-dropdown-2');
+
+    const dropdown1 = page.locator('#dropdown-1');
+    const dropdown2 = page.locator('#dropdown-2');
+
+    await triggerDropdown1.click();
+    await triggerDropdown2.click();
+    await triggerDropdown1.click();
+
+    await expect(dropdown1).not.toBeVisible();
+    await expect(dropdown2).not.toBeVisible();
   });
 });
 
