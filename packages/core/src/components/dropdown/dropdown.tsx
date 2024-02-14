@@ -199,28 +199,20 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private addEventListenersFor() {
     this.disposeListener?.();
 
-    const stopEventDispatching = (event: Event) => {
-      // Prevent default and stop event bubbling to window, otherwise controller will close all dropdowns
-      if (this.triggerElement.hasAttribute('data-ix-dropdown-trigger')) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    };
-
     const toggleController = () => {
       if (!this.isPresent()) {
         dropdownController.present(this);
       } else {
         dropdownController.dismiss(this);
-        dropdownController.dismissPath(this.getId());
       }
+
+      dropdownController.dismissOthers(this.getId());
     };
 
     this.disposeListener = addDisposableEventListener(
       this.triggerElement,
       'click',
-      (event) => {
-        stopEventDispatching(event);
+      () => {
         toggleController();
       }
     );
@@ -408,20 +400,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   async componentDidLoad() {
     this.changedTrigger(this.trigger);
-
-    // Event listener to check if a dropdown is inside another dropdown
-    // Cancellation of the event will prevent the closing of the parent dropdown
-    this.hostElement.addEventListener(
-      'check-nested-dropdown',
-      (event: CustomEvent<string>) => {
-        if (event.detail === this.localUId) {
-          return;
-        }
-
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    );
   }
 
   async componentDidRender() {
@@ -431,13 +409,23 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       : this.resolveElement(this.trigger));
   }
 
-  private onDropdownClick(event: PointerEvent) {
-    event.preventDefault();
-    event.stopPropagation();
+  private isSubMenu(element: HTMLElement) {
+    if (element.tagName === 'IX-DROPDOWN-ITEM') {
+      if ((element as HTMLIxDropdownItemElement).isSubMenu) {
+        return true;
+      }
+    }
 
-    if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
-      dropdownController.dismiss(this);
-      dropdownController.dismissAll();
+    return false;
+  }
+
+  private onDropdownClick(event: PointerEvent) {
+    if (!this.isSubMenu(event.target as HTMLElement)) {
+      if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
+        dropdownController.dismiss(this);
+      }
+
+      dropdownController.dismissOthers(this.getId());
     }
   }
 

@@ -74,13 +74,12 @@ class DropdownController {
     this.dropdownRules[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
     if (!dropdown.isPresent() && dropdown.willPresent()) {
       dropdown.present();
-      this.dismissPath(dropdown.getId());
     }
   }
 
-  dismissMultiple(ids: string[]) {
+  dismissChildren(uid: string) {
     for (const dropdown of this.dropdowns) {
-      if (ids.includes(dropdown.getId())) {
+      if (this.dropdownRules[uid].includes(dropdown.getId())) {
         this.dismiss(dropdown);
       }
     }
@@ -88,7 +87,7 @@ class DropdownController {
 
   dismiss(dropdown: DropdownInterface) {
     if (dropdown.isPresent() && dropdown.willDismiss()) {
-      this.dismissMultiple(dropdown.getAssignedSubmenuIds());
+      this.dismissChildren(dropdown.getId());
       dropdown.dismiss();
       delete this.dropdownRules[dropdown.getId()];
     }
@@ -107,7 +106,7 @@ class DropdownController {
     }
   }
 
-  dismissPath(uid: string) {
+  dismissOthers(uid: string) {
     let path = this.buildComposedPath(uid, new Set<string>());
 
     for (const dropdown of this.dropdowns) {
@@ -139,8 +138,18 @@ class DropdownController {
   private addOverlayListeners() {
     this.isWindowListenerActive = true;
 
-    window.addEventListener('click', () => {
-      this.dismissAll();
+    window.addEventListener('click', (event: PointerEvent) => {
+      const trigger = (event.target as HTMLElement).getAttribute(
+        'data-ix-dropdown-trigger'
+      );
+
+      const dropdown: HTMLIxDropdownElement | null = (
+        event.target as HTMLElement
+      ).closest('ix-dropdown');
+
+      if (!trigger && !dropdown) {
+        this.dismissAll();
+      }
     });
 
     window.addEventListener('keydown', (event: KeyboardEvent) => {
