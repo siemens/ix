@@ -86,7 +86,7 @@ See the code tab for more information and other options available.
 <br></br>
 
 ## Dos and Don’ts
-- Do use icons in second level navigation items only if it helps users to better understand and recognize these items.
-- Don’t mix second level item with and without icons within a category.
+- Do use icons in second level navigation items only if it helps users to better understand and recognize these items
+- Don’t mix second level item with and without icons within a category
 - Don’t place non-navigational items in the navigation section
 - Don’t place navigation items in the bottom section as items in the bottom section must not navigate away from the current context
