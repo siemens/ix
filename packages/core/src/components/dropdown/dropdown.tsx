@@ -212,8 +212,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.disposeListener = addDisposableEventListener(
       this.triggerElement,
       'click',
-      () => {
-        toggleController();
+      (event: PointerEvent) => {
+        if (!event.defaultPrevented) toggleController();
       }
     );
     this.triggerElement.setAttribute('data-ix-dropdown-trigger', this.localUId);
@@ -409,24 +409,24 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       : this.resolveElement(this.trigger));
   }
 
-  private isSubMenu(element: HTMLElement) {
-    if (element.tagName === 'IX-DROPDOWN-ITEM') {
-      if ((element as HTMLIxDropdownItemElement).isSubMenu) {
-        return true;
-      }
-    }
+  private isTriggerElement(element: HTMLElement) {
+    const trigger = !!element.hasAttribute('data-ix-dropdown-trigger');
 
-    return false;
+    return trigger;
   }
 
   private onDropdownClick(event: PointerEvent) {
-    if (!this.isSubMenu(event.target as HTMLElement)) {
-      if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
-        dropdownController.dismiss(this);
-      }
-
-      dropdownController.dismissOthers(this.getId());
+    if (this.isTriggerElement(event.target as HTMLElement)) {
+      event.preventDefault();
+      return;
     }
+
+    if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
+      dropdownController.dismiss(this);
+      dropdownController.dismissAll();
+    }
+
+    dropdownController.dismissOthers(this.getId());
   }
 
   /**

@@ -79,7 +79,7 @@ class DropdownController {
 
   dismissChildren(uid: string) {
     for (const dropdown of this.dropdowns) {
-      if (this.dropdownRules[uid].includes(dropdown.getId())) {
+      if (this.dropdownRules[uid]?.includes(dropdown.getId())) {
         this.dismiss(dropdown);
       }
     }
@@ -135,17 +135,25 @@ class DropdownController {
     return path;
   }
 
+  private pathIncludesTrigger(eventTargets: EventTarget[]) {
+    return !!eventTargets.find(
+      (element: HTMLElement) =>
+        !!element.hasAttribute?.('data-ix-dropdown-trigger')
+    );
+  }
+
+  private pathIncludesDropdown(eventTargets: EventTarget[]) {
+    return !!eventTargets.find(
+      (element: HTMLElement) => element.tagName === 'IX-DROPDOWN'
+    );
+  }
+
   private addOverlayListeners() {
     this.isWindowListenerActive = true;
 
     window.addEventListener('click', (event: PointerEvent) => {
-      const trigger = (event.target as HTMLElement).getAttribute(
-        'data-ix-dropdown-trigger'
-      );
-
-      const dropdown: HTMLIxDropdownElement | null = (
-        event.target as HTMLElement
-      ).closest('ix-dropdown');
+      const trigger = this.pathIncludesTrigger(event.composedPath());
+      const dropdown = this.pathIncludesDropdown(event.composedPath());
 
       if (!trigger && !dropdown) {
         this.dismissAll();
