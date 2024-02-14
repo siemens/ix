@@ -416,9 +416,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private onDropdownClick(event: PointerEvent) {
-    if (this.isTriggerElement(event.target as HTMLElement)) {
+    if (dropdownController.pathIncludesTrigger(event.composedPath())) {
       event.preventDefault();
-      return;
+
+      if (this.isTriggerElement(event.target as HTMLElement)) return;
     }
 
     if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {

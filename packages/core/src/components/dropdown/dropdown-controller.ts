@@ -121,6 +121,19 @@ class DropdownController {
     }
   }
 
+  pathIncludesTrigger(eventTargets: EventTarget[]) {
+    return !!eventTargets.find(
+      (element: HTMLElement) =>
+        !!element.hasAttribute?.('data-ix-dropdown-trigger')
+    );
+  }
+
+  private pathIncludesDropdown(eventTargets: EventTarget[]) {
+    return !!eventTargets.find(
+      (element: HTMLElement) => element.tagName === 'IX-DROPDOWN'
+    );
+  }
+
   private buildComposedPath(id: string, path: Set<string>): Set<string> {
     if (this.dropdownRules[id]) {
       path.add(id);
@@ -133,19 +146,6 @@ class DropdownController {
     }
 
     return path;
-  }
-
-  private pathIncludesTrigger(eventTargets: EventTarget[]) {
-    return !!eventTargets.find(
-      (element: HTMLElement) =>
-        !!element.hasAttribute?.('data-ix-dropdown-trigger')
-    );
-  }
-
-  private pathIncludesDropdown(eventTargets: EventTarget[]) {
-    return !!eventTargets.find(
-      (element: HTMLElement) => element.tagName === 'IX-DROPDOWN'
-    );
   }
 
   private addOverlayListeners() {
