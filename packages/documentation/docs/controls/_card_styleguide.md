@@ -11,7 +11,7 @@ Cards are interactive elements. The entire container is clickable and triggers a
 6. Container
 7. Expanding content
 
-## Card Types
+## Card types
 
 We currently offer two types of cards: **action** and **push**
 
