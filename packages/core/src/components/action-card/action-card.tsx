@@ -48,11 +48,7 @@ export class IxActionCard {
 
   render() {
     return (
-      <Host
-        class={{
-          selected: this.selected,
-        }}
-      >
+      <Host>
         <ix-card
           selected={this.selected}
           variant={this.variant}
