@@ -296,6 +296,10 @@ export namespace Components {
      */
     interface IxCard {
         /**
+          * @since 2.1.0
+         */
+        "selected": boolean;
+        /**
           * Card variant
          */
         "variant": CardVariant;
@@ -4266,6 +4270,10 @@ declare namespace LocalJSX {
      * @since 1.6.0
      */
     interface IxCard {
+        /**
+          * @since 2.1.0
+         */
+        "selected"?: boolean;
         /**
           * Card variant
          */
