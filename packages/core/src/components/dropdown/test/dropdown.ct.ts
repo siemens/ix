@@ -402,7 +402,7 @@ test.describe('nested dropdown 2/3', () => {
 test.describe('nested dropdown 3/3', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(`
-      <ix-button id="trigger-dropdown-1" close-behavior="inside">Trigger 1</ix-button>
+      <ix-button id="trigger-dropdown-1" close-behavior="outside">Trigger 1</ix-button>
       <ix-dropdown id="dropdown-1" trigger="trigger-dropdown-1">
         <ix-dropdown-item id="trigger-dropdown-2">Item 1</ix-dropdown-item>
         <ix-dropdown-item>Item 2</ix-dropdown-item>

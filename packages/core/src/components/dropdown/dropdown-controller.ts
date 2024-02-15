@@ -41,11 +41,14 @@ export interface DropdownItemWrapper {
   getDropdownItemElement(): Promise<HTMLIxDropdownItemElement>;
 }
 
-type DropdownRule = Record<string, string[]>;
+type SubmenuIds = Record<string, string[]>;
 
 class DropdownController {
-  private dropdowns = new Set<DropdownInterface>();
-  private dropdownRules: DropdownRule = {};
+  private dropdowns: Map<string, DropdownInterface> = new Map<
+    string,
+    DropdownInterface
+  >();
+  private submenuIds: SubmenuIds = {};
 
   private isWindowListenerActive = false;
 
@@ -53,7 +56,7 @@ class DropdownController {
     if (!this.isWindowListenerActive) {
       this.addOverlayListeners();
     }
-    this.dropdowns.add(dropdown);
+    this.dropdowns.set(dropdown.getId(), dropdown);
 
     if (dropdown.discoverAllSubmenus) {
       this.discoverSubmenus();
@@ -61,7 +64,7 @@ class DropdownController {
   }
 
   disconnected(dropdown: DropdownInterface) {
-    this.dropdowns.delete(dropdown);
+    this.dropdowns.delete(dropdown.getId());
   }
 
   discoverSubmenus() {
@@ -71,17 +74,16 @@ class DropdownController {
   }
 
   present(dropdown: DropdownInterface) {
-    this.dropdownRules[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
     if (!dropdown.isPresent() && dropdown.willPresent()) {
+      this.submenuIds[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
       dropdown.present();
     }
   }
 
   dismissChildren(uid: string) {
-    for (const dropdown of this.dropdowns) {
-      if (this.dropdownRules[uid]?.includes(dropdown.getId())) {
-        this.dismiss(dropdown);
-      }
+    const childIds = this.submenuIds[uid] || [];
+    for (const id of childIds) {
+      this.dismiss(this.dropdowns.get(id));
     }
   }
 
@@ -89,27 +91,28 @@ class DropdownController {
     if (dropdown.isPresent() && dropdown.willDismiss()) {
       this.dismissChildren(dropdown.getId());
       dropdown.dismiss();
-      delete this.dropdownRules[dropdown.getId()];
+      delete this.submenuIds[dropdown.getId()];
     }
   }
 
-  dismissAll() {
-    for (const dropdown of this.dropdowns) {
+  dismissAll(includeUid?: string[]) {
+    this.dropdowns.forEach((dropdown) => {
       if (
-        dropdown.closeBehavior === 'inside' ||
-        dropdown.closeBehavior === false
+        !includeUid?.includes(dropdown.getId()) &&
+        (dropdown.closeBehavior === 'inside' ||
+          dropdown.closeBehavior === false)
       ) {
-        continue;
+        return;
       }
 
       this.dismiss(dropdown);
-    }
+    });
   }
 
   dismissOthers(uid: string) {
     let path = this.buildComposedPath(uid, new Set<string>());
 
-    for (const dropdown of this.dropdowns) {
+    this.dropdowns.forEach((dropdown) => {
       if (
         dropdown.isPresent() &&
         dropdown.closeBehavior !== 'inside' &&
@@ -118,7 +121,7 @@ class DropdownController {
       ) {
         this.dismiss(dropdown);
       }
-    }
+    });
   }
 
   pathIncludesTrigger(eventTargets: EventTarget[]) {
@@ -135,12 +138,12 @@ class DropdownController {
   }
 
   private buildComposedPath(id: string, path: Set<string>): Set<string> {
-    if (this.dropdownRules[id]) {
+    if (this.submenuIds[id]) {
       path.add(id);
     }
 
-    for (const ruleKey of Object.keys(this.dropdownRules)) {
-      if (this.dropdownRules[ruleKey].includes(id)) {
+    for (const ruleKey of Object.keys(this.submenuIds)) {
+      if (this.submenuIds[ruleKey].includes(id)) {
         this.buildComposedPath(ruleKey, path).forEach((key) => path.add(key));
       }
     }

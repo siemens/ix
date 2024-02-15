@@ -423,8 +423,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
 
     if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
-      dropdownController.dismiss(this);
-      dropdownController.dismissAll();
+      dropdownController.dismissAll([this.getId()]);
     }
 
     dropdownController.dismissOthers(this.getId());
