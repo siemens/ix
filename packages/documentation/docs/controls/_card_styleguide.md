@@ -17,7 +17,7 @@ We currently offer two types of cards: **action** and **push**
 
 Action cards have an icon, a heading and a subheading. We use them to trigger key actions.
 
-Push cards contain a notification value in addition to the icon, heading, and subheading. These cards have an expandable section placed at the bottom of the container. When clicked, the expandable section displays additional content. The notification value is logically related to the items shown in the expandable area. This expanding mechanism requires a fixed content height. Therefore, the height of a push card cannot be changed.
+Push cards contain a notification value in addition to the icon, heading, and subheading. These cards have an expandable section placed at the bottom of the container. When clicked, the expandable section displays additional content. The notification value is logically related to the items shown in the expandable area. Push cards have a fixed content height of 11rem that cannot be changed.
 
 ![Card types](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858%3A4953&mode=design&t=RDimbEsIHFIXIByo-1)
 
