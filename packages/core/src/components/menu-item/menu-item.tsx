@@ -36,7 +36,7 @@ export class MenuItem {
    *
    * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
    */
-  @Prop() tabIcon = 'document';
+  @Prop() tabIcon: string;
 
   /**
    * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
@@ -122,15 +122,17 @@ export class MenuItem {
           tabIndex={this.disabled ? -1 : 0}
           role="listitem"
         >
-          <ix-icon
-            class={'tab-icon'}
-            name={this.icon ?? this.tabIcon}
-          ></ix-icon>
-          <div class="notification">
-            {this.notifications ? (
+          {(this.icon || this.tabIcon) && (
+            <ix-icon
+              class={'tab-icon'}
+              name={this.icon ?? this.tabIcon}
+            ></ix-icon>
+          )}
+          {this.notifications ? (
+            <div class="notification">
               <div class="pill">{this.notifications}</div>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
           <span class="tab-text text-default">
             <slot></slot>
           </span>
