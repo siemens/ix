@@ -1,4 +1,4 @@
-# [2.1.0-beta.1](https://github.com/siemens/ix/compare/v2.1.0-beta.0...v2.1.0-beta.1) (2024-02-09)
+# [2.1.0-beta.2](https://github.com/siemens/ix/compare/v2.1.0-beta.0...v2.1.0-beta.2) (2024-02-16)
 
 
 ### Bug Fixes
@@ -50,6 +50,7 @@
 
 * **core/application:** app switch ([#1007](https://github.com/siemens/ix/issues/1007)) ([3298e87](https://github.com/siemens/ix/commit/3298e87f9a8e439e18265d7dbf5d7c4eaaa09432))
 * **core/avatar:** add user-info to dropdown ([#1043](https://github.com/siemens/ix/issues/1043)) ([01a0093](https://github.com/siemens/ix/commit/01a009306b55a9747ee8fbcf6d99bacf9ee9a727))
+* **core/card:** add selection and mouse states ([#1089](https://github.com/siemens/ix/issues/1089)) ([6eb71c2](https://github.com/siemens/ix/commit/6eb71c2d9ca50c7a261992d6bf9cdf5ec4c1391a))
 * **core/date-dropdown:** new date-dropdown component ([#797](https://github.com/siemens/ix/issues/797)) ([710b356](https://github.com/siemens/ix/commit/710b356a2ebc0793e7f60d79ef85f913d19aed68))
 * **core/date-picker/time-picker/date-time-picker:** refactor ([#737](https://github.com/siemens/ix/issues/737)) ([9879b2c](https://github.com/siemens/ix/commit/9879b2ce227205fa19daa0e935062abec7c60bdc))
 * **core/dropdown:** allow trigger to toggle dropdown ([#872](https://github.com/siemens/ix/issues/872)) ([132c435](https://github.com/siemens/ix/commit/132c4356ade153833efff2269cfe415923e4d3b0))
