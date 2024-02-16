@@ -460,7 +460,6 @@ test.describe('Nested dropdowns 1/3', () => {
       await expect(dropdown3).not.toBeVisible();
       await expect(dropdown4).not.toBeVisible();
     });
-
   });
 });
 
