@@ -1,4 +1,4 @@
-# [2.1.0-beta.3](https://github.com/siemens/ix/compare/v2.1.0-beta.0...v2.1.0-beta.3) (2024-02-16)
+# [2.1.0](https://github.com/siemens/ix/compare/v2.1.0-beta.0...v2.1.0) (2024-02-16)
 
 
 ### Bug Fixes
