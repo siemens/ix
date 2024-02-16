@@ -1,4 +1,4 @@
-# [2.1.0-beta.2](https://github.com/siemens/ix/compare/v2.1.0-beta.0...v2.1.0-beta.2) (2024-02-16)
+# [2.1.0-beta.3](https://github.com/siemens/ix/compare/v2.1.0-beta.0...v2.1.0-beta.3) (2024-02-16)
 
 
 ### Bug Fixes
@@ -8,6 +8,7 @@
 * **core/burger-menu:** cursor appearance for burger menu button ([#941](https://github.com/siemens/ix/issues/941)) ([37f7fe0](https://github.com/siemens/ix/commit/37f7fe0274a07bfb96b64f8b5b12a7c241a10048))
 * **core/button:** documentation fix ([#885](https://github.com/siemens/ix/issues/885)) ([9ff270f](https://github.com/siemens/ix/commit/9ff270f7364e1c96bf55811f129fd06fb0608e3a))
 * **core/dropdown-item:** prevent unwatned truncation ([#961](https://github.com/siemens/ix/issues/961)) ([4009a45](https://github.com/siemens/ix/commit/4009a4551a2b8e1f148b6c98b7d6a709bffd07c6))
+* **core/dropdown:** always close on escape ([#1093](https://github.com/siemens/ix/issues/1093)) ([716ffae](https://github.com/siemens/ix/commit/716ffae97fbc244361d98a2f3e1c5f72126e9b7e))
 * **core/dropdown:** fix  submenu discovery ([#1060](https://github.com/siemens/ix/issues/1060)) ([4a95af8](https://github.com/siemens/ix/commit/4a95af8806da282225098fd8b2a9c539fe746057))
 * **core/dropdown:** nested dropdown fix for shadow dom ([#849](https://github.com/siemens/ix/issues/849)) ([28e73f5](https://github.com/siemens/ix/commit/28e73f519dbc2530b8bf6e7bf88f42d5335dfc30))
 * **core/dropdown:** use controller instance to handle dropdown instances ([#1051](https://github.com/siemens/ix/issues/1051)) ([aa4bdc3](https://github.com/siemens/ix/commit/aa4bdc3289b71dfc47090001678a5c897860039d))
