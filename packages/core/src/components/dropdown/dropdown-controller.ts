@@ -155,10 +155,10 @@ class DropdownController {
     this.isWindowListenerActive = true;
 
     window.addEventListener('click', (event: PointerEvent) => {
-      const trigger = this.pathIncludesTrigger(event.composedPath());
-      const dropdown = this.pathIncludesDropdown(event.composedPath());
+      const hasTrigger = this.pathIncludesTrigger(event.composedPath());
+      const hasDropdown = this.pathIncludesDropdown(event.composedPath());
 
-      if (!trigger && !dropdown) {
+      if (!hasTrigger && !hasDropdown) {
         this.dismissAll();
       }
     });
