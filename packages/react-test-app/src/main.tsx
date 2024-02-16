@@ -49,6 +49,7 @@ import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import DrawerFullHeight from './preview-examples/drawer-full-height';
 import Dropdown from './preview-examples/dropdown';
+import DropdownButton from './preview-examples/dropdown-button';
 import DropdownIcon from './preview-examples/dropdown-icon';
 import DropdownSubmenu from './preview-examples/dropdown-submenu';
 import EventList from './preview-examples/event-list';
@@ -196,6 +197,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<DrawerFullHeight />}
         />
         <Route path="/preview/dropdown" element={<Dropdown />} />
+        <Route path="/preview/dropdown-button" element={<DropdownButton />} />
         <Route path="/preview/dropdown-submenu" element={<DropdownSubmenu />} />
         <Route path="/preview/dropdown-icon" element={<DropdownIcon />} />
         <Route path="/preview/event-list" element={<EventList />} />
