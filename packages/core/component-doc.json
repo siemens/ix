@@ -5050,20 +5050,20 @@
           "name": "closeBehavior",
           "type": "\"both\" | \"inside\" | \"outside\" | boolean",
           "complexType": {
-            "original": "CloseBehaviour",
+            "original": "CloseBehavior",
             "resolved": "\"both\" | \"inside\" | \"outside\" | boolean",
             "references": {
-              "CloseBehaviour": {
+              "CloseBehavior": {
                 "location": "import",
                 "path": "dropdown-controller",
-                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehaviour"
+                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehavior"
               }
             }
           },
           "mutable": false,
           "attr": "close-behavior",
           "reflectToAttr": false,
-          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.\nIf the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.",
           "docsTags": [],
           "default": "'both'",
           "values": [
@@ -17486,8 +17486,8 @@
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
     },
-    "src/components/dropdown/dropdown-controller.ts::CloseBehaviour": {
-      "declaration": "export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;",
+    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
+      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
       "docstring": "",
       "path": "src/components/dropdown/dropdown-controller.ts"
     },
