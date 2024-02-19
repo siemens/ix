@@ -86,6 +86,7 @@ export class WorkflowStep {
     }
   }
 
+  @Watch('disabled')
   @Watch('status')
   watchPropHandler() {
     switch (this.status) {

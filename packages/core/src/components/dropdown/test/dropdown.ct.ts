@@ -16,7 +16,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { ElementHandle, expect, Locator, Page } from '@playwright/test';
-import { test } from '@utils/test';
+import { test, viewPorts } from '@utils/test';
+
+const html = String.raw;
 
 test('renders', async ({ mount, page }) => {
   await mount(`
@@ -235,15 +237,20 @@ test.describe('Close behavior', () => {
   });
 });
 
-test.describe('Nested dropdowns 1/2', () => {
+test.describe('Nested dropdowns 1/3', () => {
   function mountDropdown(
-    mount: (selector: string) => Promise<ElementHandle<HTMLElement>>
+    mount: (selector: string) => Promise<ElementHandle<HTMLElement>>,
+    config?: {
+      closeBehavior: string | boolean;
+    }
   ) {
-    const html = String.raw;
-
     return mount(html`
       <ix-button id="trigger-dropdown-1">Trigger 1</ix-button>
-      <ix-dropdown id="dropdown-1" trigger="trigger-dropdown-1">
+      <ix-dropdown
+        close-behavior="${config?.closeBehavior ?? 'both'}"
+        id="dropdown-1"
+        trigger="trigger-dropdown-1"
+      >
         <ix-dropdown-item id="trigger-dropdown-2">Item 1</ix-dropdown-item>
         <ix-dropdown-item>Item 2</ix-dropdown-item>
         <ix-dropdown-item id="trigger-dropdown-3">Item 3</ix-dropdown-item>
@@ -347,34 +354,116 @@ test.describe('Nested dropdowns 1/2', () => {
     await expect(dropdown4).not.toBeVisible();
   });
 
-  test('close by Escape', async ({ mount, page }) => {
-    await mountDropdown(mount);
+  test.describe('close by Escape with close behavior', () => {
+    test(' = both', async ({ mount, page }) => {
+      await mountDropdown(mount);
 
-    setupTest(page);
+      setupTest(page);
 
-    await triggerDropdown1.click();
-    await expect(dropdown1).toBeVisible();
+      await triggerDropdown1.click();
+      await expect(dropdown1).toBeVisible();
 
-    await triggerDropdown2.click();
-    await expect(dropdown2).toBeVisible();
+      await triggerDropdown2.click();
+      await expect(dropdown2).toBeVisible();
 
-    await triggerDropdown3.click();
-    await expect(dropdown2).not.toBeVisible();
-    await expect(dropdown3).toBeVisible();
+      await triggerDropdown3.click();
+      await expect(dropdown2).not.toBeVisible();
+      await expect(dropdown3).toBeVisible();
 
-    await triggerDropdown4.click();
-    await expect(dropdown4).toBeVisible();
+      await triggerDropdown4.click();
+      await expect(dropdown4).toBeVisible();
 
-    await page.keyboard.press('Escape');
+      await page.keyboard.press('Escape');
 
-    await expect(dropdown1).not.toBeVisible();
-    await expect(dropdown2).not.toBeVisible();
-    await expect(dropdown3).not.toBeVisible();
-    await expect(dropdown4).not.toBeVisible();
+      await expect(dropdown1).not.toBeVisible();
+      await expect(dropdown2).not.toBeVisible();
+      await expect(dropdown3).not.toBeVisible();
+      await expect(dropdown4).not.toBeVisible();
+    });
+
+    test(' = inside', async ({ mount, page }) => {
+      await mountDropdown(mount, {
+        closeBehavior: 'inside',
+      });
+
+      setupTest(page);
+
+      await triggerDropdown1.click();
+      await expect(dropdown1).toBeVisible();
+
+      await triggerDropdown2.click();
+      await expect(dropdown2).toBeVisible();
+
+      await triggerDropdown3.click();
+      await expect(dropdown2).not.toBeVisible();
+      await expect(dropdown3).toBeVisible();
+
+      await triggerDropdown4.click();
+      await expect(dropdown4).toBeVisible();
+
+      await page.keyboard.press('Escape');
+
+      await expect(dropdown1).not.toBeVisible();
+      await expect(dropdown2).not.toBeVisible();
+      await expect(dropdown3).not.toBeVisible();
+      await expect(dropdown4).not.toBeVisible();
+    });
+
+    test(' = outside', async ({ mount, page }) => {
+      await mountDropdown(mount, { closeBehavior: 'outside' });
+
+      setupTest(page);
+
+      await triggerDropdown1.click();
+      await expect(dropdown1).toBeVisible();
+
+      await triggerDropdown2.click();
+      await expect(dropdown2).toBeVisible();
+
+      await triggerDropdown3.click();
+      await expect(dropdown2).not.toBeVisible();
+      await expect(dropdown3).toBeVisible();
+
+      await triggerDropdown4.click();
+      await expect(dropdown4).toBeVisible();
+
+      await page.keyboard.press('Escape');
+
+      await expect(dropdown1).not.toBeVisible();
+      await expect(dropdown2).not.toBeVisible();
+      await expect(dropdown3).not.toBeVisible();
+      await expect(dropdown4).not.toBeVisible();
+    });
+
+    test(' = false', async ({ mount, page }) => {
+      await mountDropdown(mount, { closeBehavior: false });
+
+      setupTest(page);
+
+      await triggerDropdown1.click();
+      await expect(dropdown1).toBeVisible();
+
+      await triggerDropdown2.click();
+      await expect(dropdown2).toBeVisible();
+
+      await triggerDropdown3.click();
+      await expect(dropdown2).not.toBeVisible();
+      await expect(dropdown3).toBeVisible();
+
+      await triggerDropdown4.click();
+      await expect(dropdown4).toBeVisible();
+
+      await page.keyboard.press('Escape');
+
+      await expect(dropdown1).not.toBeVisible();
+      await expect(dropdown2).not.toBeVisible();
+      await expect(dropdown3).not.toBeVisible();
+      await expect(dropdown4).not.toBeVisible();
+    });
   });
 });
 
-test.describe('nested dropdown 2/2', () => {
+test.describe('nested dropdown 2/3', () => {
   const button1Text = 'Triggerbutton1';
   const button2Text = 'Triggerbutton2';
 
@@ -397,4 +486,88 @@ test.describe('nested dropdown 2/2', () => {
 
     await expect(nestedDropdownItem).toHaveClass(/hydrated/);
   });
+});
+
+test.describe('nested dropdown 3/3', () => {
+  test.beforeEach(async ({ mount }) => {
+    await mount(`
+      <ix-button id="trigger-dropdown-1">Trigger 1</ix-button>
+      <ix-dropdown id="dropdown-1" close-behavior="outside" trigger="trigger-dropdown-1">
+        <ix-dropdown-item id="trigger-dropdown-2">Item 1</ix-dropdown-item>
+        <ix-dropdown-item>Item 2</ix-dropdown-item>
+      </ix-dropdown>
+
+      <ix-dropdown trigger="trigger-dropdown-2" id="dropdown-2" close-behavior="inside">
+        <ix-dropdown-item>Item 1.1</ix-dropdown-item>
+        <ix-dropdown-item>Item 1.2</ix-dropdown-item>
+        <ix-dropdown-item>Item 1.3</ix-dropdown-item>
+      </ix-dropdown>
+    `);
+  });
+
+  test('close child on parent dismiss', async ({ page }) => {
+    const triggerDropdown1 = page.locator('#trigger-dropdown-1');
+    const triggerDropdown2 = page.locator('#trigger-dropdown-2');
+
+    const dropdown1 = page.locator('#dropdown-1');
+    const dropdown2 = page.locator('#dropdown-2');
+
+    await triggerDropdown1.click();
+    await triggerDropdown2.click();
+    await triggerDropdown1.click();
+
+    await expect(dropdown1).not.toBeVisible();
+    await expect(dropdown2).not.toBeVisible();
+  });
+});
+
+test('Nested dropdowns within application-header', async ({ mount, page }) => {
+  await mount(html`
+    <ix-application-header>
+      <ix-dropdown-button label="Trigger">
+        <ix-dropdown-item label="MainItem 1"></ix-dropdown-item>
+        <ix-dropdown-item label="MainItem 2"></ix-dropdown-item>
+        <ix-dropdown-item label="MainItem 3" id="submenu-01"></ix-dropdown-item>
+      </ix-dropdown-button>
+    </ix-application-header>
+    <ix-dropdown id="submenu" trigger="submenu-01">
+      <ix-dropdown-item>SubMenuItem 1</ix-dropdown-item>
+      <ix-dropdown-item>SubMenuItem 2</ix-dropdown-item>
+      <ix-dropdown-item>SubMenuItem 3</ix-dropdown-item>
+      <ix-dropdown-item>SubMenuItem 4</ix-dropdown-item>
+    </ix-dropdown>
+  `);
+  await page.setViewportSize(viewPorts.sm);
+  await page.waitForTimeout(500);
+
+  const header = page.locator('ix-application-header');
+  await expect(header).toBeVisible();
+
+  const overflowTrigger = header.getByRole('button', { name: 'More Menu' });
+  await overflowTrigger.click();
+
+  const dropdownButton = header.locator('ix-dropdown-button');
+  await dropdownButton.locator('ix-button').click();
+
+  const dropdownOfDropdownButton = dropdownButton.locator('ix-dropdown');
+  await expect(dropdownOfDropdownButton).toBeVisible();
+
+  const submenuTrigger = page
+    .locator('ix-dropdown-item')
+    .getByText('MainItem 3');
+  await expect(submenuTrigger).toBeVisible();
+  await submenuTrigger.click();
+
+  const submenuDropdown = page.locator('#submenu');
+
+  await expect(submenuDropdown).toBeVisible();
+
+  const subMenuItem = submenuDropdown
+    .locator('ix-dropdown-item')
+    .getByText('SubMenuItem 3');
+
+  await subMenuItem.click();
+
+  await expect(submenuDropdown).not.toBeVisible();
+  await expect(dropdownOfDropdownButton).not.toBeVisible();
 });

@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.11.0",
+    "version": "4.12.0",
     "typescriptVersion": "5.3.3"
   },
   "components": [
@@ -1488,6 +1488,32 @@
         ]
       },
       "props": [
+        {
+          "name": "selected",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
         {
           "name": "variant",
           "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
@@ -5024,20 +5050,20 @@
           "name": "closeBehavior",
           "type": "\"both\" | \"inside\" | \"outside\" | boolean",
           "complexType": {
-            "original": "CloseBehaviour",
+            "original": "CloseBehavior",
             "resolved": "\"both\" | \"inside\" | \"outside\" | boolean",
             "references": {
-              "CloseBehaviour": {
+              "CloseBehavior": {
                 "location": "import",
                 "path": "dropdown-controller",
-                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehaviour"
+                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehavior"
               }
             }
           },
           "mutable": false,
           "attr": "close-behavior",
           "reflectToAttr": false,
-          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.\nIf the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.",
           "docsTags": [],
           "default": "'both'",
           "values": [
@@ -7276,6 +7302,7 @@
         "ix-modal-example",
         "ix-modal-header",
         "ix-pagination",
+        "ix-pane",
         "ix-select",
         "ix-split-button",
         "ix-time-picker",
@@ -7355,6 +7382,9 @@
           "ix-icon-button"
         ],
         "ix-pagination": [
+          "ix-icon-button"
+        ],
+        "ix-pane": [
           "ix-icon-button"
         ],
         "ix-select": [
@@ -9654,15 +9684,16 @@
       "events": [
         {
           "event": "close",
-          "detail": "{ nativeEvent: MouseEvent; name: string; }",
+          "detail": "CustomCloseEvent",
           "bubbles": true,
           "complexType": {
-            "original": "{\n    nativeEvent: MouseEvent;\n    name: string;\n  }",
-            "resolved": "{ nativeEvent: MouseEvent; name: string; }",
+            "original": "CustomCloseEvent",
+            "resolved": "CustomCloseEvent",
             "references": {
-              "MouseEvent": {
-                "location": "global",
-                "id": "global::MouseEvent"
+              "CustomCloseEvent": {
+                "location": "import",
+                "path": "../utils/menu-tabs/menu-tabs-utils",
+                "id": "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent"
               }
             }
           },
@@ -9716,7 +9747,28 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "labelChange",
+          "detail": "CustomLabelChangeEvent",
+          "bubbles": true,
+          "complexType": {
+            "original": "CustomLabelChangeEvent",
+            "resolved": "CustomLabelChangeEvent",
+            "references": {
+              "CustomLabelChangeEvent": {
+                "location": "import",
+                "path": "../utils/menu-tabs/menu-tabs-utils",
+                "id": "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomLabelChangeEvent"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Label changed",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -10579,7 +10631,7 @@
           "mutable": true,
           "attr": "active-tab-label",
           "reflectToAttr": false,
-          "docs": "active tab",
+          "docs": "Active tab",
           "docsTags": [],
           "values": [
             {
@@ -10600,7 +10652,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "Label",
+          "docs": "Label of first tab",
           "docsTags": [],
           "default": "'Settings'",
           "values": [
@@ -10638,15 +10690,16 @@
       "events": [
         {
           "event": "close",
-          "detail": "{ nativeEvent: MouseEvent; name: string; }",
+          "detail": "CustomCloseEvent",
           "bubbles": true,
           "complexType": {
-            "original": "{\n    nativeEvent: MouseEvent;\n    name: string;\n  }",
-            "resolved": "{ nativeEvent: MouseEvent; name: string; }",
+            "original": "CustomCloseEvent",
+            "resolved": "CustomCloseEvent",
             "references": {
-              "MouseEvent": {
-                "location": "global",
-                "id": "global::MouseEvent"
+              "CustomCloseEvent": {
+                "location": "import",
+                "path": "../utils/menu-tabs/menu-tabs-utils",
+                "id": "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent"
               }
             }
           },
@@ -10687,8 +10740,8 @@
           },
           "mutable": false,
           "attr": "label",
-          "reflectToAttr": false,
-          "docs": "Label",
+          "reflectToAttr": true,
+          "docs": "Settings Item label",
           "docsTags": [],
           "values": [
             {
@@ -10703,12 +10756,18 @@
       "events": [
         {
           "event": "labelChange",
-          "detail": "{ name: string; oldLabel: string; newLabel: string; }",
+          "detail": "CustomLabelChangeEvent",
           "bubbles": true,
           "complexType": {
-            "original": "{\n    name: string;\n    oldLabel: string;\n    newLabel: string;\n  }",
-            "resolved": "{ name: string; oldLabel: string; newLabel: string; }",
-            "references": {}
+            "original": "CustomLabelChangeEvent",
+            "resolved": "CustomLabelChangeEvent",
+            "references": {
+              "CustomLabelChangeEvent": {
+                "location": "import",
+                "path": "../utils/menu-tabs/menu-tabs-utils",
+                "id": "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomLabelChangeEvent"
+              }
+            }
           },
           "cancelable": true,
           "composed": true,
@@ -11696,6 +11755,451 @@
       "slots": [],
       "parts": [],
       "listeners": []
+    },
+    {
+      "dirPath": "src/components/pane",
+      "filePath": "src/components/pane/pane.tsx",
+      "fileName": "pane.tsx",
+      "readmePath": "src/components/pane/readme.md",
+      "usagesDir": "src/components/pane/usage",
+      "tag": "ix-pane",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.1.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-pane": [
+          "ix-icon-button",
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ]
+      },
+      "props": [
+        {
+          "name": "borderless",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "borderless",
+          "reflectToAttr": false,
+          "docs": "Toggle the border of the pane.\nDefaults to the borderless attribute of the pane layout. If used standalone it defaults to false.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "composition",
+          "type": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+          "complexType": {
+            "original": "Composition",
+            "resolved": "\"bottom\" | \"left\" | \"right\" | \"top\"",
+            "references": {
+              "Composition": {
+                "location": "local",
+                "path": "src/components/pane/pane.tsx",
+                "id": "src/components/pane/pane.tsx::Composition"
+              }
+            }
+          },
+          "mutable": true,
+          "attr": "composition",
+          "reflectToAttr": false,
+          "docs": "Defines the position of the pane inside it's container.\nInside a pane layout this property will automatically be set to the name of slot the pane is assigned to.",
+          "docsTags": [],
+          "default": "'top'",
+          "values": [
+            {
+              "value": "bottom",
+              "type": "string"
+            },
+            {
+              "value": "left",
+              "type": "string"
+            },
+            {
+              "value": "right",
+              "type": "string"
+            },
+            {
+              "value": "top",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "expanded",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "expanded",
+          "reflectToAttr": false,
+          "docs": "State of the pane",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "heading",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "heading",
+          "reflectToAttr": false,
+          "docs": "Title of the side panel",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideOnCollapse",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-on-collapse",
+          "reflectToAttr": false,
+          "docs": "Define if the pane should have a collapsed state",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "icon",
+          "reflectToAttr": false,
+          "docs": "Name of the icon",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"240px\" | \"320px\" | \"33%\" | \"360px\" | \"480px\" | \"50%\" | \"600px\"",
+          "complexType": {
+            "original": "| '240px'\n    | '320px'\n    | '360px'\n    | '480px'\n    | '600px'\n    | '33%'\n    | '50%'",
+            "resolved": "\"240px\" | \"320px\" | \"33%\" | \"360px\" | \"480px\" | \"50%\" | \"600px\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "size",
+          "reflectToAttr": false,
+          "docs": "The maximum size of the sidebar, when it is expanded",
+          "docsTags": [],
+          "default": "'240px'",
+          "values": [
+            {
+              "value": "240px",
+              "type": "string"
+            },
+            {
+              "value": "320px",
+              "type": "string"
+            },
+            {
+              "value": "33%",
+              "type": "string"
+            },
+            {
+              "value": "360px",
+              "type": "string"
+            },
+            {
+              "value": "480px",
+              "type": "string"
+            },
+            {
+              "value": "50%",
+              "type": "string"
+            },
+            {
+              "value": "600px",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"floating\" | \"inline\"",
+          "complexType": {
+            "original": "'floating' | 'inline'",
+            "resolved": "\"floating\" | \"inline\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Variant of the side pane.\nDefaults to the variant attribute of the pane layout. If used standalone it defaults to inline.",
+          "docsTags": [],
+          "default": "'inline'",
+          "values": [
+            {
+              "value": "floating",
+              "type": "string"
+            },
+            {
+              "value": "inline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "borderlessChanged",
+          "detail": "{ slot: string; borderless: boolean; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "BorderlessChangedEvent",
+            "resolved": "{ slot: string; borderless: boolean; }",
+            "references": {
+              "BorderlessChangedEvent": {
+                "location": "local",
+                "path": "src/components/pane/pane.tsx",
+                "id": "src/components/pane/pane.tsx::BorderlessChangedEvent"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "This event is triggered when the variant of the pane is changed",
+          "docsTags": []
+        },
+        {
+          "event": "expandedChanged",
+          "detail": "{ slot: string; expanded: boolean; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "ExpandedChangedEvent",
+            "resolved": "{ slot: string; expanded: boolean; }",
+            "references": {
+              "ExpandedChangedEvent": {
+                "location": "local",
+                "path": "src/components/pane/pane.tsx",
+                "id": "src/components/pane/pane.tsx::ExpandedChangedEvent"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "This event is triggered when the pane either expands or contracts",
+          "docsTags": []
+        },
+        {
+          "event": "variantChanged",
+          "detail": "{ slot: string; variant: \"floating\" | \"inline\"; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "VariantChangedEvent",
+            "resolved": "{ slot: string; variant: \"floating\" | \"inline\"; }",
+            "references": {
+              "VariantChangedEvent": {
+                "location": "local",
+                "path": "src/components/pane/pane.tsx",
+                "id": "src/components/pane/pane.tsx::VariantChangedEvent"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "This event is triggered when the variant of the pane is changed",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/pane-layout",
+      "filePath": "src/components/pane-layout/pane-layout.tsx",
+      "fileName": "pane-layout.tsx",
+      "readmePath": "src/components/pane-layout/readme.md",
+      "usagesDir": "src/components/pane-layout/usage",
+      "tag": "ix-pane-layout",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.1.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "borderless",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "borderless",
+          "reflectToAttr": false,
+          "docs": "Set the default border state for all panes in the layout",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "layout",
+          "type": "\"full-horizontal\" | \"full-vertical\"",
+          "complexType": {
+            "original": "'full-vertical' | 'full-horizontal'",
+            "resolved": "\"full-horizontal\" | \"full-vertical\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "layout",
+          "reflectToAttr": false,
+          "docs": "Choose the layout of the panes.\nWhen set to 'full-vertical' the vertical panes (left, right) will get the full height.\nWhen set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.",
+          "docsTags": [],
+          "default": "'full-vertical'",
+          "values": [
+            {
+              "value": "full-horizontal",
+              "type": "string"
+            },
+            {
+              "value": "full-vertical",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"floating\" | \"inline\"",
+          "complexType": {
+            "original": "'floating' | 'inline'",
+            "resolved": "\"floating\" | \"inline\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Set the default variant for all panes in the layout",
+          "docsTags": [],
+          "default": "'inline'",
+          "values": [
+            {
+              "value": "floating",
+              "type": "string"
+            },
+            {
+              "value": "inline",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "slotChanged",
+          "capture": false,
+          "passive": false
+        },
+        {
+          "event": "hideOnCollapseChanged",
+          "capture": false,
+          "passive": false
+        },
+        {
+          "event": "variantChanged",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/pill",
@@ -15742,6 +16246,7 @@
         "ix-menu-category",
         "ix-modal-header",
         "ix-pagination",
+        "ix-pane",
         "ix-push-card",
         "ix-slider",
         "ix-time-picker",
@@ -15783,6 +16288,9 @@
           "ix-typography"
         ],
         "ix-pagination": [
+          "ix-typography"
+        ],
+        "ix-pane": [
           "ix-typography"
         ],
         "ix-push-card": [
@@ -16868,10 +17376,45 @@
       "docstring": "",
       "path": "src/components/key-value/key-value.tsx"
     },
+    "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomCloseEvent": {
+      "declaration": "export interface CustomCloseEvent {\n  nativeEvent: MouseEvent;\n  name: string;\n}",
+      "docstring": "",
+      "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
+    },
     "src/components/modal/modal.tsx::IxModalSize": {
       "declaration": "export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;",
       "docstring": "",
       "path": "src/components/modal/modal.tsx"
+    },
+    "src/components/pane/pane.tsx::Composition": {
+      "declaration": "export type Composition = 'top' | 'left' | 'bottom' | 'right';",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/pane/pane.tsx::ExpandedChangedEvent": {
+      "declaration": "{\n  slot: string;\n  expanded: boolean;\n}",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/pane/pane.tsx::VariantChangedEvent": {
+      "declaration": "{\n  slot: string;\n  variant: 'floating' | 'inline';\n}",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/pane/pane.tsx::BorderlessChangedEvent": {
+      "declaration": "{\n  slot: string;\n  borderless: boolean;\n}",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/pane/pane.tsx::HideOnCollapseChangedEvent": {
+      "declaration": "{\n  slot: string;\n  hideOnCollapse: boolean;\n}",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/pane/pane.tsx::SlotChangedEvent": {
+      "declaration": "{\n  slot: string;\n  newSlot: string;\n}",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
     },
     "src/components/typography/typography.tsx::TypographyVariants": {
       "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
@@ -16943,8 +17486,8 @@
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
     },
-    "src/components/dropdown/dropdown-controller.ts::CloseBehaviour": {
-      "declaration": "export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;",
+    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
+      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
       "docstring": "",
       "path": "src/components/dropdown/dropdown-controller.ts"
     },
@@ -16952,6 +17495,11 @@
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
       "docstring": "",
       "path": "src/components/flip-tile/flip-tile-state.ts"
+    },
+    "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomLabelChangeEvent": {
+      "declaration": "export interface CustomLabelChangeEvent {\n  name: string;\n  oldLabel: string;\n  newLabel: string;\n}",
+      "docstring": "",
+      "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
     },
     "src/components/utils/typed-event.ts::TypedEvent": {
       "declaration": "any",

@@ -74,14 +74,13 @@ importers:
         version: 4.7.4
 
   packages/aggrid:
-    dependencies:
-      '@siemens/ix':
-        specifier: ^2.0.3
-        version: link:../core
     devDependencies:
       '@playwright/test':
         specifier: ^1.32.1
         version: 1.39.0
+      '@siemens/ix':
+        specifier: ~2.1.0
+        version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
@@ -128,7 +127,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.0.4
+        specifier: ~2.1.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -272,8 +271,8 @@ importers:
         specifier: ^2.11.0
         version: 2.11.8
       '@stencil/core':
-        specifier: ^4.11.0
-        version: 4.11.0
+        specifier: ^4.12.0
+        version: 4.12.2
       '@types/luxon':
         specifier: ^3.3.7
         version: 3.3.7
@@ -298,19 +297,19 @@ importers:
         version: 0.7.1(@typescript-eslint/eslint-plugin@6.18.1)(@typescript-eslint/parser@6.18.1)(eslint-plugin-react@7.33.2)(eslint@8.56.0)(typescript@5.3.3)
       '@stencil-community/postcss':
         specifier: ^2.2.0
-        version: 2.2.0(@stencil/core@4.11.0)
+        version: 2.2.0(@stencil/core@4.12.2)
       '@stencil/angular-output-target':
         specifier: ^0.8.3
-        version: 0.8.3(@stencil/core@4.11.0)
+        version: 0.8.3(@stencil/core@4.12.2)
       '@stencil/react-output-target':
         specifier: ^0.5.3
-        version: 0.5.3(@stencil/core@4.11.0)
+        version: 0.5.3(@stencil/core@4.12.2)
       '@stencil/sass':
         specifier: ^3.0.8
-        version: 3.0.8(@stencil/core@4.11.0)
+        version: 3.0.8(@stencil/core@4.12.2)
       '@stencil/vue-output-target':
         specifier: ^0.8.7
-        version: 0.8.7(@stencil/core@4.11.0)
+        version: 0.8.7(@stencil/core@4.12.2)
       '@testing-library/dom':
         specifier: ^8.11.0
         version: 8.20.1
@@ -590,7 +589,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.0.4
+        specifier: ~2.1.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -703,7 +702,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.0.4
+        specifier: ~2.1.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -6637,21 +6636,21 @@ packages:
       typescript: 5.3.3
     dev: true
 
-  /@stencil-community/postcss@2.2.0(@stencil/core@4.11.0):
+  /@stencil-community/postcss@2.2.0(@stencil/core@4.12.2):
     resolution: {integrity: sha512-PuPdjqgF6HdvSLwS6fpLf1TRzd3bd6zqpsICCUA0u9sxPnwrsIpx1xYyA/K9hSWrmyUg0WhHPvkX9k26N5DCnw==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0 || >=4.0.0'
     dependencies:
-      '@stencil/core': 4.11.0
+      '@stencil/core': 4.12.2
       postcss: 8.4.31
     dev: true
 
-  /@stencil/angular-output-target@0.8.3(@stencil/core@4.11.0):
+  /@stencil/angular-output-target@0.8.3(@stencil/core@4.12.2):
     resolution: {integrity: sha512-I/QO1sEx09WWUaNlA30EBhlXYftOSfSBTwYBwC65qlpHDIlD5WU3EAtKhU5IphfwhxnD63kvOoU1YvTUXFHNng==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.11.0
+      '@stencil/core': 4.12.2
     dev: true
 
   /@stencil/core@3.2.1:
@@ -6659,34 +6658,34 @@ packages:
     engines: {node: '>=14.10.0', npm: '>=6.0.0'}
     hasBin: true
 
-  /@stencil/core@4.11.0:
-    resolution: {integrity: sha512-zsKhgIkTGo+s7IthitxR/MKiMS3Ck1yIypOdXr0aE6ofboKqe9NdffTcxZ0vel0wD2bZYOb6WfPMzuhRKk6+FA==}
+  /@stencil/core@4.12.2:
+    resolution: {integrity: sha512-WEMpoqwMV4hY/ab2z9NxRhSeZwuKEugjyn6Vd+qA9xqZh6VNUL27QbP8vCa7IeqD4Zql4JBtKu3lVuBHutWE6w==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
-  /@stencil/react-output-target@0.5.3(@stencil/core@4.11.0):
+  /@stencil/react-output-target@0.5.3(@stencil/core@4.12.2):
     resolution: {integrity: sha512-68jwRp35CjAcwhTJ9yFD/3n+jrHOqvEH2jreVuPVvZK+4tkhPlYlwz0d1E1RlF3jyifUSfdkWUGgXIEy8Fo3yw==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.11.0
+      '@stencil/core': 4.12.2
     dev: true
 
-  /@stencil/sass@3.0.8(@stencil/core@4.11.0):
+  /@stencil/sass@3.0.8(@stencil/core@4.12.2):
     resolution: {integrity: sha512-QJUG4Dr/b3wSizViwQXorrk1PJzxOsKkq5hSqtUHc3NNG3iomC4DQFYGeu15yNfoCDBtt4qkyHSCynsekQ8F6A==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.11.0
+      '@stencil/core': 4.12.2
     dev: true
 
-  /@stencil/vue-output-target@0.8.7(@stencil/core@4.11.0):
+  /@stencil/vue-output-target@0.8.7(@stencil/core@4.12.2):
     resolution: {integrity: sha512-hgOzbKKgLdCFrhLpmaw/qQrPSXl6hZ09K+j3p/iWh3esq6sxnwuW1PJKLniwkT4Z/JlDIk6stGPGQYi+WE5I2Q==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.11.0
+      '@stencil/core': 4.12.2
     dev: true
 
   /@svgr/babel-plugin-add-jsx-attribute@6.5.1(@babel/core@7.23.7):

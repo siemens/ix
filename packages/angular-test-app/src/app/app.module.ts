@@ -147,6 +147,8 @@ import VerticalTabs from 'src/preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avatar';
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
+import Pane from '../preview-examples/pane';
+import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 
 @NgModule({
@@ -223,6 +225,8 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     SelectNgModel,
     Select,
     Settings,
+    Pane,
+    PaneLayout,
     Spinner,
     SpinnerLarge,
     SplitButtonIcons,

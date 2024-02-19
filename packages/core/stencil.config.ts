@@ -146,7 +146,7 @@ export const config: Config = {
 
         fs.writeFileSync(
           'component-doc.json',
-          JSON.stringify(patchedJson, null, 2).replace(/(?:\\[r])+/g, '')
+          JSON.stringify(patchedJson, null, 2)
         );
       },
     },
@@ -163,7 +163,8 @@ function normalizeProperties(obj: JsonDocs, deleteProps: string[]) {
     if (obj[key] && typeof obj[key] === 'object') {
       normalizeProperties(obj[key], deleteProps);
     } else if (deleteProps.includes(key)) {
-      obj[key] = path.relative(__dirname, obj[key]);
+      const posixPath = path.join(...path.relative(__dirname, obj[key]).split(path.sep)).toString();
+      obj[key] = posixPath.replace(/\\/g, '/');
     }
   }
 

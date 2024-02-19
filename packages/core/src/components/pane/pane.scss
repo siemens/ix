@@ -1,0 +1,222 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@import 'common-variables';
+@import 'mixins/hover';
+@import 'mixins/shadow-dom/component';
+
+@mixin set-border($composition) {
+  @if $composition {
+    border-#{$composition}: var(--theme-app-header--border-width) solid var(--theme-color-soft-bdr);
+  }
+}
+
+:host {
+  @include ix-component;
+  background-color: var(--theme-color-2);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  aside {
+    width: 100%;
+    height: 100%;
+  }
+
+  .title-text {
+    display: flex;
+    align-items: center;
+    gap: var(--theme-space-1);
+    overflow: hidden;
+
+    .title-text-overflow {
+      width: 100%;
+      height: 100%;
+      display: contents;
+
+      * {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    .title-text-left-right-expanded {
+      order: 1;
+    }
+  }
+
+  .header-gap {
+    gap: var(--theme-space-1);
+  }
+
+  .top-bottom-pane {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: var(--theme-space--1) var(--theme-space-2) var(--theme-space--1) var(--theme-space-2);
+    }
+
+    .title-finished {
+      padding: 0 !important;
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+    }
+
+    .title-expanded {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .title-hide-on-collapse {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding: 0 !important;
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+    }
+  }
+
+  .left-right-pane {
+    display: flex;
+    flex-grow: 1;
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: var(--theme-space-2) var(--theme-space--1)  var(--theme-space-2) var(--theme-space--1);
+
+      .title-text {
+        flex-direction: row-reverse;
+        justify-content: start;
+      }
+    }
+
+    .title-finished {
+      padding: 0 !important;
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+    }
+
+    .title-expanded {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .title-hide-on-collapse {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding: 0 !important;
+      margin: var(--theme-space-2) var(--theme-space-2) var(--theme-space-2) var(--theme-space-2);
+    }
+  }
+
+  .left-right-pane.expanded {
+    flex-direction: column;
+  }
+
+  .rotate {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .mobile-pane {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .title-mobile {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding: 0 !important;
+      margin: var(--theme-space-1) var(--theme-space-2);
+    }
+  }
+
+  .side-pane-content {
+    padding: var(--theme-space-1) var(--theme-space-2);
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+:host(.not-visible) {
+  display: none;
+}
+
+:host(.inline-color) {
+  background-color: var(--theme-color-1);
+}
+
+:host(.box-shadow) {
+  box-shadow: 0 0 1rem black;
+}
+
+:host(.nav-left-border) {
+  border-left: var(--theme-app-header--border-width) solid var(--theme-color-weak-bdr);
+}
+
+:host(.left-pane-border) {
+  @include set-border(right);
+}
+
+:host(.right-pane-border) {
+  @include set-border(left);
+}
+
+:host(.top-pane-border) {
+  @include set-border(bottom);
+}
+
+:host(.bottom-pane-border) {
+  @include set-border(top);
+}
+
+:host(.mobile-overlay) {
+  width: 100%;
+  position: absolute;
+  z-index: 100 !important;
+
+  .side-pane-content {
+    height: calc(100% - 2.5rem);
+  }
+}
+
+:host(.mobile-border-top) {
+  @include set-border(bottom);
+}
+
+:host(.mobile-border-bottom) {
+  @include set-border(top);
+}
+
+:host(.top-expanded) {
+  top: 0;
+}
+
+:host(.bottom-expanded) {
+  bottom: 0;
+}
+
+:host(.left-right-pane) {
+  height: 100%;
+}
+
+:host(.top-bottom-pane) {
+  width: 100%;
+}
