@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Date picker example</title>
+    <script type="module" crossorigin src="../assets/index.2b5e1098.js"></script>
+    <script type="module" crossorigin src="../assets/init.5f6f11d5.js"></script>
+    <link rel="stylesheet" href="../assets/index.161dc669.css">
+    <link rel="stylesheet" href="../assets/init.bf4c6d72.css">
+  </head>
+
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <span style="margin-right: 1rem;">Language:</span>
+    <ix-select style="margin: 1rem 0;">
+      <ix-select-item value="de" label="de"></ix-select-item>
+      <ix-select-item value="en" label="en"></ix-select-item>
+    </ix-select>
+    <ix-date-picker range="false"></ix-date-picker>
+    <script>
+      const select = document.querySelector('ix-select');
+      const datepicker = document.querySelector('ix-date-picker');
+
+      let locale = 'de';
+
+      function setLocale(newLocale) {
+        locale = newLocale;
+        datepicker.locale = locale;
+        select.value = locale;
+      }
+
+      setLocale(locale);
+
+      select.addEventListener('valueChange', ({ detail }) => {
+        setLocale(detail);
+      })
+    </script>
+    <!-- Preview code -->
+    
+  </body>
+</html>

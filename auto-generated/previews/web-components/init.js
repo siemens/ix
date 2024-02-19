@@ -45,7 +45,7 @@ function detectThemeSwitching() {
 
 function isMarginSuppressed() {
   const searchParams = new URLSearchParams(location.search);
-  return searchParams.has('no-margin');
+  return searchParams.has('no-margin') && searchParams.get('no-margin') === 'true';
 }
 
 /**
