@@ -19,6 +19,21 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-message-bar>Message text</ix-message-bar>
+        <ix-message-bar
+          style={{ display: 'block', marginTop: '5rem', marginBottom: '5rem' }}
+          type="warning"
+        >
+          Message text
+        </ix-message-bar>
+        <ix-message-bar type="danger">
+          <div class="d-flex align-items-center justify-content-between">
+            Message text <ix-button>Action</ix-button>
+          </div>
+        </ix-message-bar>
+      </Host>
+    );
   }
 }
