@@ -143,8 +143,8 @@ export class Modal {
     });
   }
 
-  private onModalClick(event: PointerEvent | MouseEvent) {
-    if (!(event as PointerEvent).pointerType) return;
+  private onModalClick(event: MouseEvent) {
+    if (event.target !== this.dialog) return;
 
     const rect = this.dialog.getBoundingClientRect();
     const isClickOutside =
