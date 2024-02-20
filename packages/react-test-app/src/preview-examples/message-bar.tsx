@@ -14,10 +14,8 @@ export default () => {
   return (
     <>
       <div style={{ padding: '0.5rem' }}>
-        <IxMessageBar>Message text</IxMessageBar>
-        <br />
-        <IxMessageBar type="warning">Message text</IxMessageBar>
-        <br />
+        <IxMessageBar style={{marginBottom: '1.25rem', display: 'block'}}>Message text</IxMessageBar>
+        <IxMessageBar style={{marginBottom: '1.25rem', display: 'block'}}>Message text</IxMessageBar>
         <IxMessageBar type="danger">
           <div className="d-flex align-items-center justify-content-between">
             Message text <IxButton>Action</IxButton>
