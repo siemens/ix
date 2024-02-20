@@ -17,13 +17,14 @@ import {
   Method,
   Prop,
 } from '@stencil/core';
+import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 
 @Component({
   tag: 'ix-dropdown-item',
   styleUrl: 'dropdown-item.scss',
   shadow: true,
 })
-export class DropdownItem {
+export class DropdownItem implements DropdownItemWrapper {
   @Element() hostElement!: HTMLIxDropdownItemElement;
 
   /**
@@ -66,6 +67,12 @@ export class DropdownItem {
   @Method()
   async emitItemClick() {
     this.itemClick.emit(this.hostElement);
+  }
+
+  /** @internal */
+  @Method()
+  async getDropdownItemElement() {
+    return this.hostElement;
   }
 
   private isIconOnly() {

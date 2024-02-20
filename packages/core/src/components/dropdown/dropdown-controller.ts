@@ -6,19 +6,18 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { HTMLStencilElement } from '@stencil/core/internal';
 
-export interface IxComponent {
-  hostElement: HTMLStencilElement;
-}
-
-export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;
+import { IxComponent } from '../utils/internal';
+export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;
 
 export interface DropdownInterface extends IxComponent {
-  closeBehavior: CloseBehaviour;
+  closeBehavior: CloseBehavior;
+  discoverAllSubmenus: boolean;
 
   getAssignedSubmenuIds(): string[];
   getId(): string;
+
+  discoverSubmenu(): void;
 
   isPresent(): boolean;
 
@@ -29,11 +28,27 @@ export interface DropdownInterface extends IxComponent {
   dismiss(): void;
 }
 
-type DropdownRule = Record<string, string[]>;
+export function hasDropdownItemWrapperImplemented(
+  item: unknown
+): item is DropdownItemWrapper {
+  return (
+    (item as DropdownItemWrapper).getDropdownItemElement !== undefined &&
+    typeof (item as DropdownItemWrapper).getDropdownItemElement === 'function'
+  );
+}
+
+export interface DropdownItemWrapper {
+  getDropdownItemElement(): Promise<HTMLIxDropdownItemElement>;
+}
+
+type SubmenuIds = Record<string, string[]>;
 
 class DropdownController {
-  private dropdowns = new Set<DropdownInterface>();
-  private dropdownRules: DropdownRule = {};
+  private dropdowns: Map<string, DropdownInterface> = new Map<
+    string,
+    DropdownInterface
+  >();
+  private submenuIds: SubmenuIds = {};
 
   private isWindowListenerActive = false;
 
@@ -41,62 +56,95 @@ class DropdownController {
     if (!this.isWindowListenerActive) {
       this.addOverlayListeners();
     }
-    this.dropdowns.add(dropdown);
+    this.dropdowns.set(dropdown.getId(), dropdown);
+
+    if (dropdown.discoverAllSubmenus) {
+      this.discoverSubmenus();
+    }
   }
 
   disconnected(dropdown: DropdownInterface) {
-    this.dropdowns.delete(dropdown);
+    this.dropdowns.delete(dropdown.getId());
+  }
+
+  discoverSubmenus() {
+    this.dropdowns.forEach((dropdown) => {
+      dropdown.discoverSubmenu();
+    });
   }
 
   present(dropdown: DropdownInterface) {
-    this.dropdownRules[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
     if (!dropdown.isPresent() && dropdown.willPresent()) {
+      this.submenuIds[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
       dropdown.present();
-      this.dismissPath(dropdown.getId());
+    }
+  }
+
+  dismissChildren(uid: string) {
+    const childIds = this.submenuIds[uid] || [];
+    for (const id of childIds) {
+      this.dismiss(this.dropdowns.get(id));
     }
   }
 
   dismiss(dropdown: DropdownInterface) {
     if (dropdown.isPresent() && dropdown.willDismiss()) {
+      this.dismissChildren(dropdown.getId());
       dropdown.dismiss();
+      delete this.submenuIds[dropdown.getId()];
     }
   }
 
-  dismissAll() {
-    for (const dropdown of this.dropdowns) {
+  dismissAll(includeUids?: string[]) {
+    this.dropdowns.forEach((dropdown) => {
       if (
-        dropdown.closeBehavior === 'inside' ||
-        dropdown.closeBehavior === false
+        !includeUids?.includes(dropdown.getId()) &&
+        (dropdown.closeBehavior === 'inside' ||
+          dropdown.closeBehavior === false)
       ) {
-        continue;
+        return;
       }
 
       this.dismiss(dropdown);
-    }
+    });
   }
 
-  dismissPath(uid: string) {
-    let path = this.buildComposedPath(uid, []);
+  dismissOthers(uid: string) {
+    let path = this.buildComposedPath(uid, new Set<string>());
 
-    for (const dropdown of this.dropdowns) {
+    this.dropdowns.forEach((dropdown) => {
       if (
+        dropdown.isPresent() &&
         dropdown.closeBehavior !== 'inside' &&
         dropdown.closeBehavior !== false &&
-        !path.includes(dropdown.getId())
+        !path.has(dropdown.getId())
       ) {
         this.dismiss(dropdown);
       }
-    }
+    });
   }
 
-  private buildComposedPath(id: string, path: string[]): string[] {
-    if (this.dropdownRules[id]) {
-      path.push(id);
+  pathIncludesTrigger(eventTargets: EventTarget[]) {
+    return !!eventTargets.find(
+      (element: HTMLElement) =>
+        !!element.hasAttribute?.('data-ix-dropdown-trigger')
+    );
+  }
+
+  private pathIncludesDropdown(eventTargets: EventTarget[]) {
+    return !!eventTargets.find(
+      (element: HTMLElement) => element.tagName === 'IX-DROPDOWN'
+    );
+  }
+
+  private buildComposedPath(id: string, path: Set<string>): Set<string> {
+    if (this.submenuIds[id]) {
+      path.add(id);
     }
 
-    for (const ruleKey of Object.keys(this.dropdownRules)) {
-      if (this.dropdownRules[ruleKey].includes(id)) {
-        return this.buildComposedPath(ruleKey, path);
+    for (const ruleKey of Object.keys(this.submenuIds)) {
+      if (this.submenuIds[ruleKey].includes(id)) {
+        this.buildComposedPath(ruleKey, path).forEach((key) => path.add(key));
       }
     }
 
@@ -106,13 +154,18 @@ class DropdownController {
   private addOverlayListeners() {
     this.isWindowListenerActive = true;
 
-    window.addEventListener('click', () => {
-      this.dismissAll();
+    window.addEventListener('click', (event: PointerEvent) => {
+      const hasTrigger = this.pathIncludesTrigger(event.composedPath());
+      const hasDropdown = this.pathIncludesDropdown(event.composedPath());
+
+      if (!hasTrigger && !hasDropdown) {
+        this.dismissAll();
+      }
     });
 
     window.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        this.dismissAll();
+        this.dismissAll([...this.dropdowns.keys()]);
       }
     });
   }

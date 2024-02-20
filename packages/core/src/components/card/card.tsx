@@ -27,9 +27,19 @@ export class Card {
    */
   @Prop() variant: CardVariant = 'insight';
 
+  /**
+   * @since 2.1.0
+   */
+  @Prop() selected: boolean;
+
   render() {
     return (
-      <Host class={`card-${this.variant}`}>
+      <Host
+        class={{
+          selected: this.selected,
+          [`card-${this.variant}`]: true,
+        }}
+      >
         <div class="card-content">
           <slot></slot>
         </div>
