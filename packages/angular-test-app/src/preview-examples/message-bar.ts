@@ -13,9 +13,9 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <div style='margin: 0.5rem'>
-      <ix-message-bar style="margin-bottom: 1.25rem; display: block">Message text</ix-message-bar>
-      <ix-message-bar style="margin-bottom: 1.25rem; display: block" type="warning">Message text</ix-message-bar>
-      <ix-message-bar type="danger">
+      <ix-message-bar style="margin-bottom: 0.5rem; display: block">Message text</ix-message-bar>
+      <ix-message-bar style="margin-bottom: 0.5rem; display: block" type="warning">Message text</ix-message-bar>
+      <ix-message-bar style="display: block" type="danger">
         <div class="d-flex align-items-center justify-content-between">
           Message text <ix-button>Action</ix-button>
         </div>

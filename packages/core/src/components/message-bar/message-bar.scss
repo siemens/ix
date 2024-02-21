@@ -13,6 +13,7 @@
 
 :host {
   @include ix-component;
+  margin: $small-space $small-space 0rem $small-space;
 
   .message-container {
     display: flex;
