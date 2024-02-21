@@ -71,7 +71,7 @@ These guidelines extend the basic guidelines on [Siemens brandville](https://bra
 ## 3. Light weight icons
 
 - Prefer strokes and outlines over filled shapes
-- Please provide a filled variant of the icon as well, where possible and potentially useful. It can be used in situations when more visual weight is required. The filled variant gets the name suffix “_filled”.
+- Please provide a filled variant of the icon as well, where possible and potentially useful. It can be used in situations when more visual weight is required. The filled variant gets the name suffix “-filled”.
 
 ![Normal and filled variant](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=808-23094&mode=design&t=LqIxNidruCmTfYDF-4)
 
