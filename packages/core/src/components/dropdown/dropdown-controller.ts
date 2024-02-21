@@ -32,6 +32,7 @@ export function hasDropdownItemWrapperImplemented(
   item: unknown
 ): item is DropdownItemWrapper {
   return (
+    item &&
     (item as DropdownItemWrapper).getDropdownItemElement !== undefined &&
     typeof (item as DropdownItemWrapper).getDropdownItemElement === 'function'
   );
