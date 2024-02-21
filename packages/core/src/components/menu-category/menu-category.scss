@@ -25,7 +25,7 @@
 
   .category-chevron {
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0;
     transition: var(--theme-default-time) transform ease-in-out;
   }
 
@@ -35,7 +35,7 @@
 
   .menu-items {
     overflow: hidden;
-    max-height: 0px;
+    max-height: 0;
     transition: var(--theme-default-time) max-height ease-in-out;
     padding: 0.25rem 0 0.25rem 1.625rem;
   }

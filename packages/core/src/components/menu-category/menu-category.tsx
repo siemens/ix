@@ -122,13 +122,22 @@ export class MenuCategory {
     return this.menuExpand && (this.showItems || this.isNestedItemActive());
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
     const closestMenu = closestIxMenu(this.hostElement);
     if (!closestMenu) {
       throw Error('ix-menu-category can only be used as a child of ix-menu');
     }
     this.ixMenu = closestMenu;
 
+    this.initSetup();
+  }
+
+  initSetup() {
+    this.menuExpand = this.ixMenu.expand;
+    this.showItems = this.isCategoryItemListVisible();
+  }
+
+  componentDidLoad() {
     this.observer = createMutationObserver(() => this.onNestedItemsChanged());
     this.observer.observe(this.hostElement, {
       attributes: true,
@@ -144,10 +153,15 @@ export class MenuCategory {
       'expandChange',
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
-
+        !this.menuExpand ? this.clearMenuItemStyles() : null;
         this.showItems = this.isCategoryItemListVisible();
       }
     );
+  }
+
+  clearMenuItemStyles() {
+    this.menuItemsContainer.style.removeProperty('max-height');
+    this.menuItemsContainer.style.removeProperty('opacity');
   }
 
   disconnectedCallback() {
@@ -184,7 +198,7 @@ export class MenuCategory {
         <div
           ref={(ref) => (this.menuItemsContainer = ref!)}
           class={{
-            'menu-items': true,
+            'menu-items': this.menuExpand && this.showItems,
             'menu-items--expanded': this.showItems,
           }}
         >
