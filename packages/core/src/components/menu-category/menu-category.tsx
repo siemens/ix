@@ -129,10 +129,6 @@ export class MenuCategory {
     }
     this.ixMenu = closestMenu;
 
-    this.initSetup();
-  }
-
-  initSetup() {
     this.menuExpand = this.ixMenu.expand;
     this.showItems = this.isCategoryItemListVisible();
   }
@@ -198,7 +194,7 @@ export class MenuCategory {
         <div
           ref={(ref) => (this.menuItemsContainer = ref!)}
           class={{
-            'menu-items': this.menuExpand && this.showItems,
+            'menu-items': true,
             'menu-items--expanded': this.showItems,
           }}
         >

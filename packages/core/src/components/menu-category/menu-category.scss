@@ -37,11 +37,11 @@
     overflow: hidden;
     max-height: 0;
     transition: var(--theme-default-time) max-height ease-in-out;
-    padding: 0.25rem 0 0.25rem 1.625rem;
   }
 
   .menu-items--expanded {
     max-height: 999999999px;
+    padding: 0.25rem 0 0.25rem 1.625rem;
   }
 
   .category-dropdown {
