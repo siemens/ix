@@ -52,7 +52,7 @@ test('closes on Escape key down', async ({ mount, page }) => {
 });
 
 test.describe('closeOnBackdropClick = true', () => {
-  test('should close modal by dropdown click', async ({ mount, page }) => {
+  test('should close modal on backdrop click', async ({ mount, page }) => {
     await mount(`
       <ix-button>Some background noise</ix-button>
     `);
