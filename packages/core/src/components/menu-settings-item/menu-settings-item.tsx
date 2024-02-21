@@ -16,6 +16,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+import { CustomLabelChangeEvent } from '../utils/menu-tabs/menu-tabs-utils';
 
 @Component({
   tag: 'ix-menu-settings-item',
@@ -24,18 +25,14 @@ import {
 })
 export class MenuSettingsItem {
   /**
-   * Label
+   * Settings Item label
    */
-  @Prop() label: string;
+  @Prop({ reflect: true }) label: string;
 
   /**
    * Label changed
    */
-  @Event() labelChange: EventEmitter<{
-    name: string;
-    oldLabel: string;
-    newLabel: string;
-  }>;
+  @Event() labelChange: EventEmitter<CustomLabelChangeEvent>;
 
   @Watch('label')
   watchLabel(newValue: string, oldValue: string) {

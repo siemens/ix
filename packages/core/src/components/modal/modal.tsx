@@ -144,12 +144,17 @@ export class Modal {
   }
 
   private onModalClick(event: MouseEvent) {
+    if (event.target !== this.dialog) {
+      return;
+    }
+
     const rect = this.dialog.getBoundingClientRect();
     const isClickOutside =
       rect.top <= event.clientY &&
       event.clientY <= rect.top + rect.height &&
       rect.left <= event.clientX &&
       event.clientX <= rect.left + rect.width;
+
     if (!isClickOutside && this.closeOnBackdropClick) {
       this.dismissModal();
     }

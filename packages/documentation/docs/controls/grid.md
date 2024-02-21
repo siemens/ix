@@ -6,7 +6,7 @@ import AngularSourceAggrid from './../auto-generated/previews/angular/aggrid.ts.
 
 # Grid (AG Grid)
 
-Siemens Industrial Experience provides a theme for the populer data grid library [AG Grid](https://www.ag-grid.com).
+Siemens Industrial Experience provides a theme for the popular data grid library [AG Grid](https://www.ag-grid.com).
 This lets you harness the power of AG Grid with seemless intergration into the Siemens Industrial Experience styleguide.
 
 <div className="siemens-brand-section">
