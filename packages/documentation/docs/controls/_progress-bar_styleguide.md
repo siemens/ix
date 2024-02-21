@@ -1,35 +1,35 @@
-A progress bar is used to visually convey the status or completion of a task or process. Its primary purpose is to offer a clear indication of how much of the task has been completed and how much remains.
+Progress bars visually convey the status or completion of a task or process. Their primary purpose is to clearly display how much of a task has been completed and how much remains.
 
 ![Progress bar anatomy](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2094-345&mode=design&t=fa4W7cvdm8pVsQFn-11)
 
-1. Indicator: Shows the current progress of a process, with the indeterminate option the the Indicator bar moves from left to right in a continuous loop
-2. Background Track: The area that the indicator fills or moves across, represents the total duration of the process
-3. Content slot (optional): Used for additional information about the process, the content itself should handle a possible overflow
+1. Indicator: Shows the current progress of a process. With the indeterminate option, the indicator bar moves from left to right in a continuous loop.
+2. Background track: The area that the indicator fills or moves across represents the total duration of the process.
+3. Content slot (optional): Use for additional information about the process. The content should handle a possible overflow by itself.
 
 
 ![Progress bar examples](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2098-372&mode=design&t=fa4W7cvdm8pVsQFn-11)
 
-5. The slot is not used
-6. The slot is used to show additional information
-7. Indeterminate process, the slot shows icon and text
-8. The progress bar is set to "error"
+5. Slot not used
+6. Slot used to show additional information
+7. Indeterminate process slot shows icon and text
+8. Progress bar set to "error"
 
 ## Options
 
-- Indeterminate (7): Used for processes with yet unknown duration, the indicator animates continuously from left to right until the process is complete or the duration of the process is known
-- Error: Is used to indicate that the process did not successfully complete.
+- Indeterminate (7): Use for processes with an unknown duration. The indicator animates continuously from left to right until the process is complete or the duration of the process is known.
+- Error: Use to indicate unsuccessful processes.
 
 
 ## Behavior
-The width of a progress bar can be customized appropriately for its context. Make sure the elements in the slot take care about the overflow behavior.
+The width of a progress bar can be customized, however, make sure the slot elements can manage the overflow behavior.
 
 ## Dos and Don'ts
-- Do use the progress bar for longer lasting processes with a known duration – as a rule of thumb: durations > 3 seconds. 
-- Do use the option "indeterminate" if the duration is unknown yet. This can happen at the beginning of the process while the duration is being calculated.
-- Do use the slot to display information about the process like a percentage value or the name of the current step in the process.
-- Do place a label above or left from the progress bar to name the process.
-- Don’t use the progress bar for short processes < 3 seconds, use the [Spinner](./spinner.md) or the loading option of [Button](./buttons/) instead
-- Don’t use the progress bar for processes with always unknown duration, use the [Spinner](./spinner.md) instead.
+- Do use progress bars for longer processes with a known duration (we recommend using them when processes are longer than 3 seconds)
+- Do use the option "indeterminate" when the duration is unknown
+- Do use the slot to display information about the process (we typically use a percentage value or the name of the current step in the process)
+- Do place a label above or left from the progress bar to name the process
+- Don’t use the progress bar for short processes (under 3 seconds) instead use a [Spinner](./spinner.md) or the loading option of the [Button](./buttons/)
+- Don’t use the progress bar for processes of an unknown duration, instead use the [Spinner](./spinner.md)
 
 ## Related patterns
 - [Spinner](./spinner.md)
