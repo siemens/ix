@@ -149,7 +149,9 @@ export class MenuCategory {
       'expandChange',
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
-        !this.menuExpand ? this.clearMenuItemStyles() : null;
+        if (!menuExpand) {
+          this.clearMenuItemStyles();
+        }
         this.showItems = this.isCategoryItemListVisible();
       }
     );
