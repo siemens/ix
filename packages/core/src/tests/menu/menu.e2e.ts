@@ -34,27 +34,36 @@ regressionTest.describe('menu', () => {
     ).toMatchSnapshot();
   });
 
-  regressionTest('category initial opened', async ({ page }) => {
-    await page.setViewportSize(viewPorts.lg);
-    await page.goto('menu/basic');
+  regressionTest(
+    'category open on expand when initially closed',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await page.goto('menu/basic');
 
-    const basicNavigationElement = page.locator('ix-basic-navigation');
+      const basicNavigationElement = page.locator('ix-basic-navigation');
 
-    const categoryElement = page.locator('ix-menu-item').filter({ hasText: 'Sub' });
-    await categoryElement.click();
+      const categoryElement = page
+        .locator('ix-menu-item')
+        .filter({ hasText: 'Sub' });
+      await categoryElement.click();
 
-    const collapseButton = page.getByRole('button', { name: 'Double Chevron Right' });
-    collapseButton.click();
-    await page.waitForTimeout(1000);
-    
-    const expandButton = page.getByRole('button', { name: 'Double Chevron Right' })
-    expandButton.click();
-    await page.waitForTimeout(1000);
+      const collapseButton = page.getByRole('button', {
+        name: 'Double Chevron Right',
+      });
+      collapseButton.click();
+      await page.waitForTimeout(1000);
 
-    expect(
-      await basicNavigationElement.screenshot({
-        animations: 'disabled',
-      })
-    ).toMatchSnapshot();
-  });
+      const expandButton = page.getByRole('button', {
+        name: 'Double Chevron Right',
+      });
+      expandButton.click();
+      await page.waitForTimeout(1000);
+
+      expect(
+        await basicNavigationElement.screenshot({
+          animations: 'disabled',
+        })
+      ).toMatchSnapshot();
+    }
+  );
 });
