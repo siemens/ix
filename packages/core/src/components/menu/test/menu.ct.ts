@@ -206,6 +206,28 @@ test('should close menu by bottom icon click', async ({ mount, page }) => {
   await expect(element).toBeVisible();
 });
 
+test('should have correct aria label', async ({ mount, page }) => {
+  await mount(`
+    <ix-menu pinned>
+    </ix-menu>
+    `);
+
+  await page.locator('ix-menu');
+  const chevronButton = page.locator('ix-icon-button button');
+
+  await expect(chevronButton).toHaveAttribute(
+    'aria-label',
+    'Double Chevron Right'
+  );
+
+  chevronButton.click();
+
+  await expect(chevronButton).toHaveAttribute(
+    'aria-label',
+    'Double Chevron Left'
+  );
+});
+
 async function clickAboutButton(element: Locator, page: Page) {
   const aboutButton = element.locator('ix-menu-item#aboutAndLegal');
   await aboutButton.click();
