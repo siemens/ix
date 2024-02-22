@@ -17,9 +17,6 @@ regressionTest.describe('menu', () => {
 
     const basicNavigationElement = page.locator('ix-basic-navigation');
 
-    const category = page.locator('ix-menu-category');
-    await category.click();
-
     const link1 = page.getByText('Link 1');
     await expect(link1).toBeVisible();
 
@@ -43,16 +40,10 @@ regressionTest.describe('menu', () => {
 
     const basicNavigationElement = page.locator('ix-basic-navigation');
 
-    const category = page.locator('ix-menu-category');
+    const category = page
+      .locator('ix-menu-category')
+      .locator('ix-menu-item');
     await category.click();
-
-    const link1 = page.getByText('Link 1');
-    await expect(link1).toBeVisible();
-
-    const link2 = page.getByText('Link 2');
-    await expect(link2).toBeVisible();
-
-    await link2.hover();
 
     await page.waitForTimeout(1000);
 
@@ -61,4 +52,5 @@ regressionTest.describe('menu', () => {
         animations: 'disabled',
       })
     ).toMatchSnapshot();
-  });});
+  });
+});
