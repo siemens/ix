@@ -40,11 +40,15 @@ regressionTest.describe('menu', () => {
 
     const basicNavigationElement = page.locator('ix-basic-navigation');
 
-    const category = page
-      .locator('ix-menu-category')
-      .locator('ix-menu-item');
-    await category.click();
+    const categoryElement = page.locator('ix-menu-item').filter({ hasText: 'Sub' });
+    await categoryElement.click();
 
+    const collapseButton = page.getByRole('button', { name: 'Double Chevron Right' });
+    collapseButton.click();
+    await page.waitForTimeout(1000);
+    
+    const expandButton = page.getByRole('button', { name: 'Double Chevron Right' })
+    expandButton.click();
     await page.waitForTimeout(1000);
 
     expect(
