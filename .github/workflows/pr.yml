@@ -137,4 +137,4 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Test
-        run: pnpm run test --cache-dir=.turbo --filter @siemens/ix --filter @siemens/ix-angular
+        run: pnpm run test --cache-dir=.turbo --filter !\documentation
