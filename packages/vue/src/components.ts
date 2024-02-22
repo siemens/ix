@@ -185,7 +185,8 @@ export const IxButton = /*@__PURE__*/ defineContainer<JSX.IxButton>('ix-button',
 
 
 export const IxCard = /*@__PURE__*/ defineContainer<JSX.IxCard>('ix-card', defineIxCard, [
-  'variant'
+  'variant',
+  'selected'
 ]);
 
 

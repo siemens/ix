@@ -23,7 +23,7 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-import { CloseBehaviour } from "./components/dropdown/dropdown-controller";
+import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
@@ -62,7 +62,7 @@ export { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
-export { CloseBehaviour } from "./components/dropdown/dropdown-controller";
+export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
@@ -295,6 +295,10 @@ export namespace Components {
      * @since 1.6.0
      */
     interface IxCard {
+        /**
+          * @since 2.1.0
+         */
+        "selected": boolean;
         /**
           * Card variant
          */
@@ -786,9 +790,9 @@ export namespace Components {
          */
         "anchor": string | HTMLElement;
         /**
-          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
-        "closeBehavior": CloseBehaviour;
+        "closeBehavior": CloseBehavior;
         "discoverAllSubmenus": boolean;
         "discoverSubmenu": () => Promise<void>;
         /**
@@ -4267,6 +4271,10 @@ declare namespace LocalJSX {
      */
     interface IxCard {
         /**
+          * @since 2.1.0
+         */
+        "selected"?: boolean;
+        /**
           * Card variant
          */
         "variant"?: CardVariant;
@@ -4834,9 +4842,9 @@ declare namespace LocalJSX {
          */
         "anchor"?: string | HTMLElement;
         /**
-          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
-        "closeBehavior"?: CloseBehaviour;
+        "closeBehavior"?: CloseBehavior;
         "discoverAllSubmenus"?: boolean;
         /**
           * An optional header shown at the top of the dropdown

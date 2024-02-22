@@ -1,4 +1,4 @@
-The navigation menu is an essential part of your iX applications. It offers a way to directly navigate to the main parts of your application and it can give your users access to legal and version information, and access to settings.
+The navigation menu is an essential part of your application. It offers a way to directly navigate to the main application parts and it can give your users access to legal and version information, and access to settings.
 
 ![Navigation menu collapsed and expanded](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=990-122297&mode=design&t=JbZngO5IAS8hvpTb-11)
 
@@ -40,6 +40,12 @@ Menu categories can host menu items as a second navigation level.
 7. Menu category appears selected if one of its children items is selected
 8. When second level menu items are visible, the currently selected item also appears selected
 
+![Second level items with icons](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2062-21146&mode=design&t=E5f1YhpwznaV7Qjk-11)
+
+Second level items with icons in collapsed (9) and expanded (10) navigation menu
+
+We usually don’t use icons on the second navigation level as in most cases it won’t add any value for users. But it is allowed to use icons if it helps users to better understand and recognize the items. Don’t mix items with and without icon within a category.
+
 ### Options of menu items and menu category 
 
 - **Notifications:** Displays a number at the top right corner of the icon (2).
@@ -80,5 +86,7 @@ See the code tab for more information and other options available.
 <br></br>
 
 ## Dos and Don’ts
+- Do use icons in second-level navigation items when it helps users to better understand and recognize them
+- Don’t mix menu items with and without icons within a second-level navigation category
 - Don’t place non-navigational items in the navigation section
 - Don’t place navigation items in the bottom section as items in the bottom section must not navigate away from the current context
