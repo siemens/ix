@@ -152,6 +152,8 @@ export class Pane {
   private validPositions = ['top', 'left', 'bottom', 'right'];
   private collapsedPane = '40px';
   private collapsedPaneMobile = '48px';
+  private animations: Map<string, anime.AnimeInstance> = new Map();
+  private animationCounter = 0;
 
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
@@ -313,8 +315,13 @@ export class Pane {
     return { expandIcon, minimizeIcon };
   }
 
+  private getKey() {
+    return (this.animationCounter++).toString();
+  }
+
   private animateVerticalFadeIn(size: string) {
-    anime({
+    let key = this.getKey();
+    let animation = anime({
       targets: this.hostElement,
       duration: Animation.mediumTime,
       width: size,
@@ -332,12 +339,17 @@ export class Pane {
         if (this.expanded) {
           this.showContent = true;
         }
+
+        this.animations.delete(key);
       },
     });
+
+    this.animations.set(key, animation);
   }
 
   private animateHorizontalFadeIn(size: string) {
-    anime({
+    let key = this.getKey();
+    let animation = anime({
       targets: this.hostElement,
       duration: Animation.mediumTime,
       height: size,
@@ -355,8 +367,12 @@ export class Pane {
         if (this.expanded) {
           this.showContent = true;
         }
+
+        this.animations.delete(key);
       },
     });
+
+    this.animations.set(key, animation);
   }
 
   private removePadding() {
@@ -375,28 +391,46 @@ export class Pane {
     size: string,
     duration = Animation.mediumTime
   ) {
-    anime({
+    let key = this.getKey();
+    let animation = anime({
       targets: this.hostElement.shadowRoot.querySelector('#title-div'),
       duration: duration,
       paddingTop: size,
       paddingBottom: size,
       easing: 'easeInOutSine',
       delay: 0,
+      complete: () => {
+        this.animations.delete(key);
+      },
     });
+
+    this.animations.set(key, animation);
   }
 
   private animateVerticalPadding(
     size: string,
     duration = Animation.mediumTime
   ) {
-    anime({
+    let key = this.getKey();
+    let animation = anime({
       targets: this.hostElement.shadowRoot.querySelector('#title-div'),
       duration: duration,
       paddingLeft: size,
       paddingRight: size,
       easing: 'easeInOutSine',
       delay: 0,
+      complete: () => {
+        this.animations.delete(key);
+      },
     });
+
+    this.animations.set(key, animation);
+  }
+
+  private clearAnimations() {
+    this.animations.forEach((animation) => animation.pause());
+    this.animations.clear();
+    this.animationCounter = 0;
   }
 
   @Watch('isMobile')
@@ -457,9 +491,10 @@ export class Pane {
   @Watch('parentHeightPx')
   @Watch('parentWidthPx')
   onParentSizeChange() {
-    if (this.expanded) {
-      this.removePadding();
+    this.clearAnimations();
+    this.removePadding();
 
+    if (this.expanded) {
       if (this.isMobile) {
         this.hostElement.style.height = '100%';
       } else {
