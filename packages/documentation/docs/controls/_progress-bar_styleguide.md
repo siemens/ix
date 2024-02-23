@@ -29,7 +29,7 @@ The width of a progress bar can be customized, however, make sure the slot eleme
 - Do use the slot to display information about the process (we typically use a percentage value or the name of the current step in the process)
 - Do place a label above or left from the progress bar to name the process
 - Don’t use the progress bar for short processes (under 3 seconds) instead use a [Spinner](./spinner.md) or the loading option of the [Button](./buttons/)
-- Don’t use the progress bar for processes of an unknown duration, instead use the [Spinner](./spinner.md)
+- Don’t use the progress bar for page or content loading processes, instead use the spinner. [Spinner](./spinner.md)
 
 ## Related patterns
 - [Spinner](./spinner.md)
