@@ -3778,10 +3778,10 @@
   resolved "https://registry.npmjs.org/@stencil/core/-/core-3.2.1.tgz#50bd07f478e04a5527a35aee61deff772b056860"
   integrity sha512-Ybm4NteQBScLq3H0JML/uqo4nWjNpZw1HAAURtR5LlRm7ptzNKO5S8EnHp3m05/uyTzeh9yLpUFHY7bxGNdYLg==
 
-"@stencil/core@^4.12.0":
-  version "4.12.0"
-  resolved "https://registry.npmjs.org/@stencil/core/-/core-4.12.0.tgz#bd87f314ce1c98174077514a161f8bcd6e9f2fc0"
-  integrity sha512-qAQcfNmp2sdxAh1DlyUhHfDmIUS7mhI+5LAhPphg74zK9sKgFL5vpLzgjs0wohpjlmI4msgJFYiRB8lxVPqjPg==
+"@stencil/core@^4.12.3":
+  version "4.12.3"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.12.3.tgz#5cf5e857d3896278c7b45143f4e2207d20e3fd8c"
+  integrity sha512-9XkE9i2aXPlApMNeq3tbVHKx0eAfDc7QGyIl6t5NMuQFTOGL5Xd1soF38d+hCIDpUoUUtY7jXWg+iFrlrMzQhg==
 
 "@stencil/postcss@^2.1.0":
   version "2.1.0"
