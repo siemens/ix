@@ -186,6 +186,7 @@ export class MenuCategory {
           class={{
             'menu-items': true,
             'menu-items--expanded': this.showItems,
+            'menu-items--collapsed': !this.showItems,
           }}
         >
           {this.showItems ? <slot></slot> : null}

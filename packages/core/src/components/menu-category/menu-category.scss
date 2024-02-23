@@ -51,6 +51,10 @@
     max-height: 999999999px;
   }
 
+  .menu-items--collapsed {
+    display: none;
+  }
+
   .category-dropdown {
     ::slotted(ix-menu-item) {
       --ix-menu-item-height: 2.5rem;
