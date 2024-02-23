@@ -13,23 +13,20 @@ import React from 'react';
 export default () => {
   return (
     <div style={{ padding: '4rem' }}>
-      <IxButton class="any-class" aria-describedby="my-tooltip">
+      <IxButton class="any-class" aria-describedby="tooltip-1">
         Hover me
       </IxButton>
-      <IxTooltip id="my-tooltip" for=".any-class">
+      <IxTooltip id="tooltip-1" for=".any-class">
         Simple selector
       </IxTooltip>
 
       <IxButton
         my-custom-special-selector="any-value"
-        aria-describedby="my-tooltip-01"
+        aria-describedby="tooltip-2"
       >
         Also hover me
       </IxButton>
-      <IxTooltip
-        id="my-tooltip-01"
-        for="[my-custom-special-selector='any-value']"
-      >
+      <IxTooltip id="tooltip-2" for="[my-custom-special-selector='any-value']">
         Custom selector
       </IxTooltip>
     </div>
