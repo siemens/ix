@@ -177,10 +177,6 @@ export class Pane {
 
     this.floating = this.variant === 'floating';
 
-    if (this.expanded) {
-      this.onExpandedChange();
-    }
-
     this.isMobile = matchBreakpoint('sm');
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
