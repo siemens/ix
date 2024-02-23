@@ -13,19 +13,23 @@ SPDX-License-Identifier: MIT
   <body class="theme-brand-dark">
     <!-- Preview code -->
     <div style="padding: 4rem">
-      <ix-button class="any-class" style="margin-right: 4rem"
-        >Hover me</ix-button
+      <ix-button class="any-class" aria-describedby="my-tooltip">Hover me</ix-button
       >
-      <ix-tooltip for=".any-class">Simple selector</ix-tooltip>
+      <ix-tooltip id="my-tooltip" for=".any-class">Simple selector</ix-tooltip>
 
-      <ix-button my-custom-special-selector="any-value"
+      <ix-button my-custom-special-selector="any-value" aria-describedby="my-tooltip-01"
         >Also hover me</ix-button
       >
-      <ix-tooltip for="[my-custom-special-selector='any-value']">
+      <ix-tooltip id="my-tooltip-01" for="[my-custom-special-selector='any-value']">
         Custom selector
       </ix-tooltip>
     </div>
     <!-- Preview code -->
+    <style>
+      ix-button:first-child {
+        margin-right: 4rem;
+      }
+    </style>
     <script type="module" src="./init.js"></script>
   </body>
 </html>

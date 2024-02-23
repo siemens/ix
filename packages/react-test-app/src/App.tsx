@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { IxButton } from '@siemens/ix-react';
+import { IxButton, IxTooltip } from '@siemens/ix-react';
 import React, { useState } from 'react';
 
 function ToggleMe(props: { toggle: boolean }) {
@@ -18,8 +18,12 @@ function App() {
 
   return (
     <div>
-      <IxButton onClick={() => setToggle(!toggle)}>Toggle!</IxButton>
-      <ToggleMe toggle={toggle} />
+      <IxButton id="triggerId" ariaDescribedBy="tooltip1">
+        Delete
+      </IxButton>
+      <IxTooltip for="#triggerId" id="tooltip1">
+        Delete the user
+      </IxTooltip>
     </div>
   );
 }

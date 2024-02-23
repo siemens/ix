@@ -1,9 +1,9 @@
 <div style="padding: 4rem">
-  <ix-button class="any-class" style="margin-right: 4rem">Hover me</ix-button>
-  <ix-tooltip for=".any-class">Simple selector</ix-tooltip>
+  <ix-button class="any-class" aria-describedby="my-tooltip">Hover me</ix-button>
+  <ix-tooltip id="my-tooltip" for=".any-class">Simple selector</ix-tooltip>
 
-  <ix-button my-custom-special-selector="any-value">Also hover me</ix-button>
-  <ix-tooltip for="[my-custom-special-selector='any-value']">
+  <ix-button my-custom-special-selector="any-value" aria-describedby="my-tooltip-01">Also hover me</ix-button>
+  <ix-tooltip id="my-tooltip-01" for="[my-custom-special-selector='any-value']">
     Custom selector
   </ix-tooltip>
 </div>

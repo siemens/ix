@@ -22,15 +22,7 @@ import Playground from '@site/src/components/Playground'
 <Playground
 name="tooltip"
 height="16rem"
-frameworks={{
-    react: SourceReact,
-    angular: {
-        "tooltip.html": SourceAngularHtml,
-        "tooltip.ts": SourceAngularTs
-    },
-    javascript: SourceJavascript,
-    vue: SourceVue
-}}>
+examplesByName>
 </Playground>
 
 ## Properties
@@ -42,3 +34,12 @@ frameworks={{
 ### Slots
 
 <Slots />
+
+## A11y
+
+Set the `aria-describedby` attribute on the trigger element to the tooltip `id` attribute. This allows assistive technologies to establish a logical connection between the trigger and the tooltip. 
+
+See examples [above](#usage). 
+
+[More information](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+
