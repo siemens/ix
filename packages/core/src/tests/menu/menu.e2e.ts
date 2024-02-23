@@ -48,7 +48,7 @@ regressionTest.describe('menu', () => {
       await categoryElement.click();
 
       const collapseButton = page.getByRole('button', {
-        name: 'Double Chevron Right',
+        name: 'Double Chevron Left',
       });
       collapseButton.click();
       await page.waitForTimeout(1000);

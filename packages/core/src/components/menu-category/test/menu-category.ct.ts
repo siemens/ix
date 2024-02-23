@@ -167,7 +167,10 @@ test('should collapse category after collapse menu', async ({
   await expect(menuCategory.locator('.menu-items')).toHaveClass('menu-items');
 });
 
-test('category opens when collapsed initially', async ({ mount, page }) => {
+test('should open category when collapsed initially', async ({
+  mount,
+  page,
+}) => {
   await mount(`
     <ix-basic-navigation>
       <ix-menu>
