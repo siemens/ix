@@ -96,10 +96,10 @@ class DropdownController {
     }
   }
 
-  dismissAll(includeUids?: string[]) {
+  dismissAll(forceCloseIds: string[] = []) {
     this.dropdowns.forEach((dropdown) => {
       if (
-        !includeUids?.includes(dropdown.getId()) &&
+        !forceCloseIds.includes(dropdown.getId()) &&
         (dropdown.closeBehavior === 'inside' ||
           dropdown.closeBehavior === false)
       ) {
@@ -115,7 +115,6 @@ class DropdownController {
 
     this.dropdowns.forEach((dropdown) => {
       if (
-        dropdown.isPresent() &&
         dropdown.closeBehavior !== 'inside' &&
         dropdown.closeBehavior !== false &&
         !path.has(dropdown.getId())
@@ -126,10 +125,15 @@ class DropdownController {
   }
 
   pathIncludesTrigger(eventTargets: EventTarget[]) {
-    return !!eventTargets.find(
-      (element: HTMLElement) =>
-        !!element.hasAttribute?.('data-ix-dropdown-trigger')
-    );
+    for (let eventTarget of eventTargets) {
+      if (eventTarget instanceof HTMLElement) {
+        if (eventTarget.hasAttribute('data-ix-dropdown-trigger')) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   private pathIncludesDropdown(eventTargets: EventTarget[]) {

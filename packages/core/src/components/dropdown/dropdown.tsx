@@ -213,10 +213,16 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.triggerElement,
       'click',
       (event: PointerEvent) => {
-        if (!event.defaultPrevented) toggleController();
+        if (!event.defaultPrevented) {
+          toggleController();
+        }
       }
     );
-    this.triggerElement.setAttribute('data-ix-dropdown-trigger', this.localUId);
+
+    this.triggerElement?.setAttribute(
+      'data-ix-dropdown-trigger',
+      this.localUId
+    );
   }
 
   /** @internal */
@@ -255,8 +261,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       const dropdownItem = await element.getDropdownItemElement();
       dropdownItem.isSubMenu = true;
       this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
-
-      return dropdownItem;
     }
 
     if (element.tagName === 'IX-DROPDOWN-ITEM') {
@@ -419,7 +423,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     if (dropdownController.pathIncludesTrigger(event.composedPath())) {
       event.preventDefault();
 
-      if (this.isTriggerElement(event.target as HTMLElement)) return;
+      if (this.isTriggerElement(event.target as HTMLElement)) {
+        return;
+      }
     }
 
     if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
