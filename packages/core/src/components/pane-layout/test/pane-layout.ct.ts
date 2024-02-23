@@ -49,6 +49,8 @@ test.describe('pane-layout with floating pane', () => {
   test('expanded', async ({ page }) => {
     await page.waitForSelector('h1');
     const title = page.locator('h1');
+    // timeout to make sure it is currently not closing
+    await page.waitForTimeout(1000);
     await expect(title).toBeVisible();
   });
 
