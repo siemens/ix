@@ -177,6 +177,10 @@ export class Pane {
 
     this.floating = this.variant === 'floating';
 
+    if (this.expanded) {
+      this.onParentSizeChange();
+    }
+
     this.isMobile = matchBreakpoint('sm');
     applicationLayoutService.onChange.on(() => {
       this.isMobile = matchBreakpoint('sm');
@@ -342,9 +346,9 @@ export class Pane {
       begin: () => {
         if (!this.expanded) {
           this.showContent = false;
-          this.animateHorizontalPadding('0px');
+          if (!this.isMobile) this.animateHorizontalPadding('0px');
         } else {
-          this.animateHorizontalPadding('8px');
+          if (!this.isMobile) this.animateHorizontalPadding('8px');
         }
       },
       complete: () => {
@@ -367,10 +371,13 @@ export class Pane {
     });
   }
 
-  private animateHorizontalPadding(size: string) {
+  private animateHorizontalPadding(
+    size: string,
+    duration = Animation.mediumTime
+  ) {
     anime({
       targets: this.hostElement.shadowRoot.querySelector('#title-div'),
-      duration: Animation.mediumTime,
+      duration: duration,
       paddingTop: size,
       paddingBottom: size,
       easing: 'easeInOutSine',
@@ -378,10 +385,13 @@ export class Pane {
     });
   }
 
-  private animateVerticalPadding(size: string) {
+  private animateVerticalPadding(
+    size: string,
+    duration = Animation.mediumTime
+  ) {
     anime({
       targets: this.hostElement.shadowRoot.querySelector('#title-div'),
-      duration: Animation.mediumTime,
+      duration: duration,
       paddingLeft: size,
       paddingRight: size,
       easing: 'easeInOutSine',
@@ -448,6 +458,8 @@ export class Pane {
   @Watch('parentWidthPx')
   onParentSizeChange() {
     if (this.expanded) {
+      this.removePadding();
+
       if (this.isMobile) {
         this.hostElement.style.height = '100%';
       } else {
@@ -455,15 +467,18 @@ export class Pane {
 
         if (this.isBottomTopPane) {
           this.hostElement.style.height = expandPaneSize;
+          this.animateHorizontalPadding('8px', 0);
         } else {
           this.hostElement.style.width = expandPaneSize;
+          this.animateVerticalPadding('8px', 0);
         }
       }
+
+      this.showContent = true;
     } else {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.removePadding();
         this.hostElement.style.height = this.hideOnCollapse
           ? '0'
           : this.collapsedPaneMobile;
@@ -508,7 +523,6 @@ export class Pane {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.removePadding();
         this.hostElement.style.height = this.collapsedPaneMobile;
       } else {
         if (this.isBottomTopPane) {
@@ -601,14 +615,7 @@ export class Pane {
               }}
             >
               {this.icon ? (
-                <ix-icon
-                  class={{
-                    'title-text-left-right-expanded':
-                      this.expanded && !this.isMobile && this.isLeftRightPane,
-                  }}
-                  size="24"
-                  name={this.icon}
-                ></ix-icon>
+                <ix-icon size="24" name={this.icon}></ix-icon>
               ) : null}
               <div class="title-text-overflow">
                 <ix-typography format="h4">{this.heading}</ix-typography>
