@@ -152,6 +152,8 @@ export class Pane {
   private validPositions = ['top', 'left', 'bottom', 'right'];
   private collapsedPane = '40px';
   private collapsedPaneMobile = '48px';
+  private animations: Map<string, anime.AnimeInstance> = new Map();
+  private animationCounter = 0;
 
   private mutationObserver: MutationObserver;
   private resizeObserver: ResizeObserver;
@@ -178,7 +180,7 @@ export class Pane {
     this.floating = this.variant === 'floating';
 
     if (this.expanded) {
-      this.onExpandedChange();
+      this.onParentSizeChange();
     }
 
     this.isMobile = matchBreakpoint('sm');
@@ -313,8 +315,13 @@ export class Pane {
     return { expandIcon, minimizeIcon };
   }
 
+  private getKey() {
+    return (this.animationCounter++).toString();
+  }
+
   private animateVerticalFadeIn(size: string) {
-    anime({
+    let key = this.getKey();
+    let animation = anime({
       targets: this.hostElement,
       duration: Animation.mediumTime,
       width: size,
@@ -332,12 +339,17 @@ export class Pane {
         if (this.expanded) {
           this.showContent = true;
         }
+
+        this.animations.delete(key);
       },
     });
+
+    this.animations.set(key, animation);
   }
 
   private animateHorizontalFadeIn(size: string) {
-    anime({
+    let key = this.getKey();
+    let animation = anime({
       targets: this.hostElement,
       duration: Animation.mediumTime,
       height: size,
@@ -346,17 +358,21 @@ export class Pane {
       begin: () => {
         if (!this.expanded) {
           this.showContent = false;
-          this.animateHorizontalPadding('0px');
+          if (!this.isMobile) this.animateHorizontalPadding('0px');
         } else {
-          this.animateHorizontalPadding('8px');
+          if (!this.isMobile) this.animateHorizontalPadding('8px');
         }
       },
       complete: () => {
         if (this.expanded) {
           this.showContent = true;
         }
+
+        this.animations.delete(key);
       },
     });
+
+    this.animations.set(key, animation);
   }
 
   private removePadding() {
@@ -371,26 +387,50 @@ export class Pane {
     });
   }
 
-  private animateHorizontalPadding(size: string) {
-    anime({
+  private animateHorizontalPadding(
+    size: string,
+    duration = Animation.mediumTime
+  ) {
+    let key = this.getKey();
+    let animation = anime({
       targets: this.hostElement.shadowRoot.querySelector('#title-div'),
-      duration: Animation.mediumTime,
+      duration: duration,
       paddingTop: size,
       paddingBottom: size,
       easing: 'easeInOutSine',
       delay: 0,
+      complete: () => {
+        this.animations.delete(key);
+      },
     });
+
+    this.animations.set(key, animation);
   }
 
-  private animateVerticalPadding(size: string) {
-    anime({
+  private animateVerticalPadding(
+    size: string,
+    duration = Animation.mediumTime
+  ) {
+    let key = this.getKey();
+    let animation = anime({
       targets: this.hostElement.shadowRoot.querySelector('#title-div'),
-      duration: Animation.mediumTime,
+      duration: duration,
       paddingLeft: size,
       paddingRight: size,
       easing: 'easeInOutSine',
       delay: 0,
+      complete: () => {
+        this.animations.delete(key);
+      },
     });
+
+    this.animations.set(key, animation);
+  }
+
+  private clearAnimations() {
+    this.animations.forEach((animation) => animation.pause());
+    this.animations.clear();
+    this.animationCounter = 0;
   }
 
   @Watch('isMobile')
@@ -451,6 +491,9 @@ export class Pane {
   @Watch('parentHeightPx')
   @Watch('parentWidthPx')
   onParentSizeChange() {
+    this.clearAnimations();
+    this.removePadding();
+
     if (this.expanded) {
       if (this.isMobile) {
         this.hostElement.style.height = '100%';
@@ -459,15 +502,18 @@ export class Pane {
 
         if (this.isBottomTopPane) {
           this.hostElement.style.height = expandPaneSize;
+          this.animateHorizontalPadding('8px', 0);
         } else {
           this.hostElement.style.width = expandPaneSize;
+          this.animateVerticalPadding('8px', 0);
         }
       }
+
+      this.showContent = true;
     } else {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.removePadding();
         this.hostElement.style.height = this.hideOnCollapse
           ? '0'
           : this.collapsedPaneMobile;
@@ -512,7 +558,6 @@ export class Pane {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.removePadding();
         this.hostElement.style.height = this.collapsedPaneMobile;
       } else {
         if (this.isBottomTopPane) {
@@ -605,14 +650,7 @@ export class Pane {
               }}
             >
               {this.icon ? (
-                <ix-icon
-                  class={{
-                    'title-text-left-right-expanded':
-                      this.expanded && !this.isMobile && this.isLeftRightPane,
-                  }}
-                  size="24"
-                  name={this.icon}
-                ></ix-icon>
+                <ix-icon size="24" name={this.icon}></ix-icon>
               ) : null}
               <div class="title-text-overflow">
                 <ix-typography format="h4">{this.heading}</ix-typography>
