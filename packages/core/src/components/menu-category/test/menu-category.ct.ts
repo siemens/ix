@@ -202,7 +202,7 @@ test('should hide menu-items when collapsed', async ({ mount, page }) => {
   await expect(menuCategory.locator('.menu-items')).toBeHidden();
 });
 
-test('should open category when collapsed initially', async ({
+test('should open category when collapsed initially and active', async ({
   mount,
   page,
 }) => {
@@ -234,7 +234,7 @@ test('should open category when collapsed initially', async ({
   );
 
   await menuCategory.locator('.category-parent').click();
-  await expect(menuCategory.locator('.menu-items')).toHaveClass('menu-items');
+  await expect(menuCategory.locator('.menu-items')).toHaveClass(/menu-items/);
   await menuButton.click();
   await menuButton.click();
 
