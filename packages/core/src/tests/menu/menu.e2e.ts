@@ -63,4 +63,19 @@ test.describe('menu', () => {
       await expect(page).toHaveScreenshot();
     }
   );
+
+  regressionTest('toggle - check icon & functionality', async ({ page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await page.goto('menu/toggle');
+
+    const category = page.locator('ix-menu-category');
+    await category.click();
+
+    const themeToggle = page.locator('#toggleTheme');
+    await themeToggle.click();
+
+    await page.waitForTimeout(10000);
+
+    await expect(page).toHaveScreenshot();
+  });
 });
