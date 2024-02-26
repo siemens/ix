@@ -10507,7 +10507,7 @@
             "resolved": "string",
             "references": {}
           },
-          "mutable": false,
+          "mutable": true,
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
@@ -10554,7 +10554,7 @@
             "resolved": "string",
             "references": {}
           },
-          "mutable": false,
+          "mutable": true,
           "attr": "tab-icon",
           "reflectToAttr": false,
           "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
@@ -10568,7 +10568,6 @@
               "text": "since 2.0.0 use `icon` property. Will be removed in 3.0.0"
             }
           ],
-          "default": "'document'",
           "deprecation": "since 2.0.0 use `icon` property. Will be removed in 3.0.0",
           "values": [
             {
