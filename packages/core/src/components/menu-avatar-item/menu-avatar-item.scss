@@ -11,5 +11,5 @@
 :host {
   @include ix-component;
   display: block;
-  color: var(--theme-nav-item-primary--color);
+  color: var(--theme-color-std-text);
 }
