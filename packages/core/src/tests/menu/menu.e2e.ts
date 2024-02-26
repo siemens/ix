@@ -7,52 +7,92 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect } from '@playwright/test';
-import { test, viewPorts } from '@utils/test';
+import { expect, test } from '@playwright/test';
+import { regressionTest, viewPorts } from '@utils/test';
 
-test('should render menu items with a[href]', async ({ mount, page }) => {
-  await page.setViewportSize(viewPorts.lg);
-  await mount(`
-  <ix-basic-navigation>
-    <ix-menu>
-      <a href="#link1">
-        <ix-menu-item>Link 1</ix-menu-item>
-      </a>
-      <ix-menu-category label="Sub">
-        <a href="#link2">
-          <ix-menu-item>Link 2</ix-menu-item>
-        </a>
-        <a href="#link3">
-          <ix-menu-item active>Link 3</ix-menu-item>
-        </a>
-        <a href="#link4">
-          <ix-menu-item>Link 4</ix-menu-item>
-        </a>
-        <a href="#link5">
-          <ix-menu-item>Link 5</ix-menu-item>
-        </a>
-      </ix-menu-category>
-    </ix-menu>
-  </ix-basic-navigation>`);
+test.describe('menu', () => {
+  regressionTest(
+    'basic md - no default icon on second level, scaling for popup window',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.md);
+      await page.goto('menu/basic');
 
-  const basicNavigationElement = page.locator('ix-basic-navigation');
+      const category = page.locator('ix-menu-category');
+      await category.click();
 
-  const category = page.locator('ix-menu-category');
-  await category.click();
+      await page.waitForTimeout(1000);
 
-  const link1 = page.getByText('Link 1');
-  await expect(link1).toBeVisible();
+      await expect(page).toHaveScreenshot();
+    }
+  );
 
-  const link2 = page.getByText('Link 2');
-  await expect(link2).toBeVisible();
+  regressionTest(
+    'basic lg - no default icon on second level, visible ellipsis for category',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await page.goto('menu/basic');
 
-  await link2.hover();
+      const category = page.locator('ix-menu-category');
+      await category.click();
 
-  await page.waitForTimeout(1000);
+      await page.waitForTimeout(1000);
 
-  expect(
-    await basicNavigationElement.screenshot({
-      animations: 'disabled',
-    })
-  ).toMatchSnapshot();
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest(
+    'link - should render menu items with a[href]',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await page.goto('menu/link');
+
+      const category = page.locator('ix-menu-category');
+      await category.click();
+
+      const link1 = page.getByText('Link 1');
+      await expect(link1).toBeVisible();
+
+      const link2 = page.getByText('Link 2');
+      await expect(link2).toBeVisible();
+
+      await link2.hover();
+
+      await page.waitForTimeout(1000);
+
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest(
+    'category open on expand when initially closed and activated',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await page.goto('menu/active');
+
+      const basicNavigationElement = page.locator('ix-basic-navigation');
+
+      const category = page.locator('ix-menu-category');
+      await category.click();
+      await page.waitForTimeout(1000);
+
+      const collapseButton = page.getByRole('button', {
+        name: 'Double Chevron Left',
+      });
+      await collapseButton.click();
+      await page.waitForTimeout(1000);
+
+      const expandButton = page.getByRole('button', {
+        name: 'Double Chevron Right',
+      });
+      await expandButton.click();
+      await page.waitForTimeout(1000);
+
+      expect(
+        await basicNavigationElement.screenshot({
+          animations: 'disabled',
+        })
+      ).toMatchSnapshot();
+    }
+  );
 });
