@@ -118,7 +118,9 @@ test('should show items as dropdown', async ({ mount, page }) => {
 
   const dropdown = menuCategory.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
-  await expect(menuCategory.locator('.menu-items')).toHaveClass('menu-items');
+  await expect(menuCategory.locator('.menu-items')).toHaveClass(
+    'menu-items menu-items--collapsed'
+  );
 
   const dropdownHeader = dropdown.locator('ix-dropdown-item');
   await expect(dropdownHeader).toHaveText('Category label');
@@ -164,7 +166,40 @@ test('should collapse category after collapse menu', async ({
   );
 
   await menuButton.click();
-  await expect(menuCategory.locator('.menu-items')).toHaveClass('menu-items');
+  await expect(menuCategory.locator('.menu-items')).toHaveClass(
+    'menu-items menu-items--collapsed'
+  );
+});
+
+test('should hide menu-items when collapsed', async ({ mount, page }) => {
+  await mount(`
+    <ix-basic-navigation>
+      <ix-menu>
+        <ix-menu-category label="Category label">
+          <ix-menu-item>Test Item 1</ix-menu-item>
+          <ix-menu-item>Test Item 2</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-basic-navigation>
+  `);
+
+  await page.waitForSelector('ix-menu');
+  const menu = page.locator('ix-menu');
+  await page
+    .locator('ix-basic-navigation')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    );
+
+  const menuButton = menu.locator('ix-burger-menu');
+  await menuButton.click();
+
+  const menuCategory = page.locator('ix-menu-category');
+
+  await expect(menuCategory.locator('.menu-items')).toHaveClass(
+    'menu-items menu-items--collapsed'
+  );
+  await expect(menuCategory.locator('.menu-items')).toBeHidden();
 });
 
 test('should open category when collapsed initially', async ({

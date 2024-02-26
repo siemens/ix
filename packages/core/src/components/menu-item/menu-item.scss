@@ -56,7 +56,7 @@ $menuItemPadding: 0.875rem;
     display: inline-flex;
     position: absolute;
     top: 0.25rem;
-    left: 1.75rem;
+    left: 1.5rem;
 
     .pill {
       display: inline-flex;
@@ -159,7 +159,28 @@ $menuItemPadding: 0.875rem;
 }
 
 :host(.tab-nested) {
-  .tab::before {
-    display: none;
+  .tab {
+    flex-direction: row;
+    padding-left: calc(0.5rem + $menuItemPadding);
+
+    .notification {
+      position: relative;
+      top: 0;
+      left: 0;
+      padding-left: 0.5rem;
+    }
+
+    .tab-icon {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .tab-text {
+      margin-left: 0.5rem;
+    }
+
+    &::before {
+      display: none;
+    }
   }
 }

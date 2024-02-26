@@ -183,7 +183,7 @@ export class MenuCategory {
           onClick={(e) => this.onCategoryClicked(e)}
         >
           <div class="category">
-            {this.label}
+            <div class="category-text">{this.label}</div>
             <ix-icon
               name={'chevron-down-small'}
               class={{
@@ -198,6 +198,7 @@ export class MenuCategory {
           class={{
             'menu-items': true,
             'menu-items--expanded': this.showItems,
+            'menu-items--collapsed': !this.showItems,
           }}
         >
           {this.showItems ? <slot></slot> : null}
