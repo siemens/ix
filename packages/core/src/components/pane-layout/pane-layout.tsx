@@ -294,6 +294,11 @@ export class Panes {
     return pane && !pane.hideOnCollapse;
   }
 
+  private slotExists(composition: Composition) {
+    const pane = this.panes.find((pane) => pane.slot === composition);
+    return !!pane;
+  }
+
   private isFloating(composition: Composition) {
     const pane = this.panes.find((pane) => pane.slot === composition);
     return pane ? pane.floating : false;
@@ -410,6 +415,7 @@ export class Panes {
               key="top"
               style={{
                 minHeight: this.hasPaddingMobile('top') ? '48px' : '0',
+                display: this.slotExists('top') ? 'block' : 'none',
               }}
             >
               <slot name="top"></slot>
@@ -418,6 +424,7 @@ export class Panes {
               key="left"
               style={{
                 minHeight: this.hasPaddingMobile('left') ? '48px' : '0',
+                display: this.slotExists('left') ? 'block' : 'none',
               }}
             >
               <slot name="left"></slot>
@@ -433,6 +440,7 @@ export class Panes {
               key="right"
               style={{
                 minHeight: this.hasPaddingMobile('right') ? '48px' : '0',
+                display: this.slotExists('right') ? 'block' : 'none',
               }}
             >
               <slot name="right"></slot>
@@ -441,6 +449,7 @@ export class Panes {
               key="bottom"
               style={{
                 minHeight: this.hasPaddingMobile('bottom') ? '48px' : '0',
+                display: this.slotExists('bottom') ? 'block' : 'none',
               }}
             >
               <slot name="bottom"></slot>
