@@ -78,4 +78,36 @@ test.describe('menu', () => {
 
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest(
+    'category open on expand when initially closed and activated',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await page.goto('menu/active');
+
+      const basicNavigationElement = page.locator('ix-basic-navigation');
+
+      const category = page.locator('ix-menu-category');
+      await category.click();
+      await page.waitForTimeout(1000);
+
+      const collapseButton = page.getByRole('button', {
+        name: 'Double Chevron Left',
+      });
+      await collapseButton.click();
+      await page.waitForTimeout(1000);
+
+      const expandButton = page.getByRole('button', {
+        name: 'Double Chevron Right',
+      });
+      await expandButton.click();
+      await page.waitForTimeout(1000);
+
+      expect(
+        await basicNavigationElement.screenshot({
+          animations: 'disabled',
+        })
+      ).toMatchSnapshot();
+    }
+  );
 });
