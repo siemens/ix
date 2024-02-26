@@ -65,10 +65,10 @@ test.describe('menu', () => {
   );
 
   regressionTest(
-    'category open on expand when initially closed',
+    'category open on expand when initially closed and activated',
     async ({ page }) => {
       await page.setViewportSize(viewPorts.lg);
-      await page.goto('menu/basic');
+      await page.goto('menu/active');
 
       const basicNavigationElement = page.locator('ix-basic-navigation');
 
