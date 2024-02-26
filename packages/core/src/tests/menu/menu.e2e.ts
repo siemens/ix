@@ -53,18 +53,16 @@ test.describe('menu', () => {
       const link1 = page.getByText('Link 1');
       await expect(link1).toBeVisible();
 
-    const link2 = page.getByText('Link 2');
-    await expect(link2).toBeVisible();
+      const link2 = page.getByText('Link 2');
+      await expect(link2).toBeVisible();
 
-    await link2.hover();
+      await link2.hover();
 
-    await page.waitForTimeout(1000);
-
+      await page.waitForTimeout(1000);
 
       await expect(page).toHaveScreenshot();
-      }
-    );
-  });
+    }
+  );
 
   regressionTest(
     'category open on expand when initially closed',
@@ -74,10 +72,8 @@ test.describe('menu', () => {
 
       const basicNavigationElement = page.locator('ix-basic-navigation');
 
-      const categoryElement = page
-        .locator('ix-menu-item')
-        .filter({ hasText: 'Sub' });
-      await categoryElement.click();
+      const category = page.locator('ix-menu-category');
+      await category.click();
       await page.waitForTimeout(1000);
 
       const collapseButton = page.getByRole('button', {
@@ -92,7 +88,7 @@ test.describe('menu', () => {
       await expandButton.click();
       await page.waitForTimeout(1000);
 
-      await expect(
+      expect(
         await basicNavigationElement.screenshot({
           animations: 'disabled',
         })
