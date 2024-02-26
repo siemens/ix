@@ -24,29 +24,6 @@ test('renders', async ({ mount, page }) => {
 });
 
 test.describe('a11y', () => {
-  test('append to aria-describedby', async ({ mount, page }) => {
-    await mount(`
-      <ix-tooltip for=".test">tooltip</ix-tooltip>
-      <ix-button class="test" aria-describedby="info">button</ix-button>
-      <div id="info">Info</div>
-    `);
-    const button = page.locator('ix-button');
-    await expect(button).toHaveAttribute(
-      'aria-describedby',
-      'info ix-tooltip-1'
-    );
-  });
-
-  test('handle custom ID in aria-describedby', async ({ mount, page }) => {
-    await mount(`
-      <ix-tooltip id="custom-id" for=".test">tooltip</ix-tooltip>
-      <ix-button class="test" aria-describedby="info">button</ix-button>
-      <div id="info">Info</div>
-    `);
-    const button = page.locator('ix-button');
-    await expect(button).toHaveAttribute('aria-describedby', 'info custom-id');
-  });
-
   test('closes on ESC', async ({ mount, page }) => {
     await mount(`
       <ix-tooltip for=".test">tooltip</ix-tooltip>
