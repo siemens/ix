@@ -201,3 +201,44 @@ test('should hide menu-items when collapsed', async ({ mount, page }) => {
   );
   await expect(menuCategory.locator('.menu-items')).toBeHidden();
 });
+
+test('should open category when collapsed initially and active', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-basic-navigation>
+      <ix-menu>
+        <ix-menu-category label="Category label">
+          <ix-menu-item active="true">Test Item 1</ix-menu-item>
+          <ix-menu-item>Test Item 2</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-basic-navigation>
+  `);
+
+  await page.waitForSelector('ix-menu');
+  const menu = page.locator('ix-menu');
+  await page
+    .locator('ix-basic-navigation')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    );
+
+  const menuButton = menu.locator('ix-burger-menu');
+  await menuButton.click();
+
+  const menuCategory = page.locator('ix-menu-category');
+  await expect(menuCategory.locator('.menu-items')).toHaveClass(
+    'menu-items menu-items--expanded'
+  );
+
+  await menuCategory.locator('.category-parent').click();
+  await expect(menuCategory.locator('.menu-items')).toHaveClass(/menu-items/);
+  await menuButton.click();
+  await menuButton.click();
+
+  await expect(menuCategory.locator('.menu-items')).toHaveClass(
+    'menu-items menu-items--expanded'
+  );
+});
