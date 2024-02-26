@@ -96,10 +96,10 @@ class DropdownController {
     }
   }
 
-  dismissAll(forceCloseIds: string[] = []) {
+  dismissAll(ignoreBehaviorForIds: string[] = []) {
     this.dropdowns.forEach((dropdown) => {
       if (
-        !forceCloseIds.includes(dropdown.getId()) &&
+        !ignoreBehaviorForIds.includes(dropdown.getId()) &&
         (dropdown.closeBehavior === 'inside' ||
           dropdown.closeBehavior === false)
       ) {
