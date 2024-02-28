@@ -11,13 +11,13 @@
 :host {
   @include ix-component;
   display: flex;
-  padding: .5rem;
+  padding: 0.5rem;
   align-items: center;
   align-self: stretch;
 
   .modal-close {
     margin-left: auto;
-    margin-right: -16px;
+    margin-right: -1rem;
   }
 
   .modal-icon {
