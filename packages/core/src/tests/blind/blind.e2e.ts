@@ -37,6 +37,11 @@ regressionTest.describe('blind', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('custom-header', async ({ page }) => {
+    await page.goto('blind/custom-header');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   test('should no hover on slot', async ({ mount, page }) => {
     await mount(`
     <ix-blind label="Example label" style="width: 25rem">
