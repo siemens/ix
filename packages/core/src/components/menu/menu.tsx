@@ -620,9 +620,6 @@ export class Menu {
                 ></ix-icon-button>
               )}
           </div>
-          <div class="menu-avatar">
-            <slot name="ix-menu-avatar"></slot>
-          </div>
 
           <div
             id="menu-tabs"
@@ -631,9 +628,6 @@ export class Menu {
             }}
             onClick={(e) => this.onMenuItemsClick(e)}
           >
-            <div class="tabs-top">
-              <slot name="home"></slot>
-            </div>
             <div class="tabs-shadow-container">
               <div
                 class={{
@@ -642,7 +636,17 @@ export class Menu {
                   'tabs--shadow--show': this.itemsScrollShadowTop,
                 }}
               ></div>
-              <div class="tabs" onScroll={() => this.handleOverflowIndicator()}>
+              <div
+                class={{
+                  tabs: true,
+                  scrollbar: this.expand,
+                }}
+                onScroll={() => this.handleOverflowIndicator()}
+              >
+                <div class="menu-avatar">
+                  <slot name="ix-menu-avatar"></slot>
+                </div>
+                <slot name="home"></slot>
                 {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
                   <slot></slot>
                 ) : null}
