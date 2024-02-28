@@ -110,4 +110,18 @@ test.describe('menu', () => {
       ).toMatchSnapshot();
     }
   );
+
+  regressionTest('show scrollbar on overflow on expand', async ({ page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await page.goto('menu/overflow');
+
+    const basicNavigationElement = page.locator('ix-application');
+    await page.waitForTimeout(1000);
+
+    expect(
+      await basicNavigationElement.screenshot({
+        animations: 'disabled',
+      })
+    ).toMatchSnapshot();
+  });
 });

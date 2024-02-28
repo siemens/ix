@@ -639,7 +639,7 @@ export class Menu {
               <div
                 class={{
                   tabs: true,
-                  scrollbar: this.expand,
+                  'show-scrollbar': this.expand,
                 }}
                 onScroll={() => this.handleOverflowIndicator()}
               >
