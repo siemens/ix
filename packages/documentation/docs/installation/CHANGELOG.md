@@ -4,7 +4,7 @@ title: Changelog
 hide_table_of_contents: true
 sidebar_position: 100
 ---
-## [2.1.1](https://github.com/siemens/ix/compare/v2.1.0-beta.0...v2.1.1) (2024-02-28)
+## [2.1.2-beta.0](https://github.com/siemens/ix/compare/v2.1.0-beta.0...v2.1.2-beta.0) (2024-02-29)
 
 
 ### Bug Fixes
@@ -17,6 +17,7 @@ sidebar_position: 100
 * **core/burger-menu:** cursor appearance for burger menu button ([#941](https://github.com/siemens/ix/issues/941)) ([37f7fe0](https://github.com/siemens/ix/commit/37f7fe0274a07bfb96b64f8b5b12a7c241a10048))
 * **core/button:** documentation fix ([#885](https://github.com/siemens/ix/issues/885)) ([9ff270f](https://github.com/siemens/ix/commit/9ff270f7364e1c96bf55811f129fd06fb0608e3a))
 * **core/dropdown-item:** prevent unwatned truncation ([#961](https://github.com/siemens/ix/issues/961)) ([4009a45](https://github.com/siemens/ix/commit/4009a4551a2b8e1f148b6c98b7d6a709bffd07c6))
+* **core/dropdown:** add null check ([#1132](https://github.com/siemens/ix/issues/1132)) ([ee6fac7](https://github.com/siemens/ix/commit/ee6fac7f5e4f25e895d3e761ca1acade95ea3d41))
 * **core/dropdown:** always close on escape ([#1093](https://github.com/siemens/ix/issues/1093)) ([716ffae](https://github.com/siemens/ix/commit/716ffae97fbc244361d98a2f3e1c5f72126e9b7e))
 * **core/dropdown:** check against undefined access ([#1104](https://github.com/siemens/ix/issues/1104)) ([47deab1](https://github.com/siemens/ix/commit/47deab1ee7febafed439de003f967067ca6fe74e))
 * **core/dropdown:** fix  submenu discovery ([#1060](https://github.com/siemens/ix/issues/1060)) ([4a95af8](https://github.com/siemens/ix/commit/4a95af8806da282225098fd8b2a9c539fe746057))
@@ -41,6 +42,7 @@ sidebar_position: 100
 * **core/message-bar:** fix styling ([#1064](https://github.com/siemens/ix/issues/1064)) ([62b7565](https://github.com/siemens/ix/commit/62b7565706ed150df9014d25037b653349491386))
 * **core/modal-header:** prevent npe ([28da016](https://github.com/siemens/ix/commit/28da0163eaa8c1d5cdf592bb61c8c57965f3dc4e))
 * **core/modal:** ensure that key down listener gets called ([#870](https://github.com/siemens/ix/issues/870)) ([ceacb71](https://github.com/siemens/ix/commit/ceacb716fd7431d03603962634f4987a652e1aaf))
+* **core/modal:** fix padding ([#1126](https://github.com/siemens/ix/issues/1126)) ([37d90fb](https://github.com/siemens/ix/commit/37d90fb6d2f4364229c5fc8c891de8b2c50f1584))
 * **core/modal:** fixed closing modal issue when press space or enter ([#1080](https://github.com/siemens/ix/issues/1080)) ([214012f](https://github.com/siemens/ix/commit/214012f4a63996ebe737e8198f52307366f048b0))
 * **core/modal:** fixes runtime error ([#902](https://github.com/siemens/ix/issues/902)) ([f628f5f](https://github.com/siemens/ix/commit/f628f5f6985e91b61e1542d28f1a83d58febe2fb))
 * **core/modal:** remove dialog on escape ([#1016](https://github.com/siemens/ix/issues/1016)) ([3b69aba](https://github.com/siemens/ix/commit/3b69aba23373f8425cf98d4e062356d4e15eb325))
