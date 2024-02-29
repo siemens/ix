@@ -67,7 +67,6 @@ $menuItemPadding: 0.875rem;
       position: relative;
       border-radius: 6.25rem;
       background-color: var(--theme-color-primary);
-      border-radius: 6.25rem;
       font-size: 0.75rem;
       font-weight: bold;
       line-height: 1;
@@ -80,7 +79,7 @@ $menuItemPadding: 0.875rem;
   .tab-text {
     @include ellipsis;
     color: var(--theme-nav-item-primary--color);
-    margin: 0 1.25rem;
+    margin: 0 1rem 0 1.25rem;
     user-select: none;
     width: 100%;
   }
