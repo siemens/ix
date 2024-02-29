@@ -42,6 +42,7 @@
       line-height: 1.14;
 
       .text-default-single {
+        color: var(--theme-nav-item-primary--color);
         @include ellipsis;
       }
     }
