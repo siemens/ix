@@ -119,6 +119,37 @@ test.describe('menu', () => {
     await menuItem.nth(5).hover();
     await page.mouse.wheel(0, 400);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(
+      await page.screenshot({
+        animations: 'disabled',
+        fullPage: true,
+      })
+    ).toMatchSnapshot();
   });
+
+  regressionTest(
+    'hide scrollbar on collapsed but scrollable',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await page.goto('menu/overflow');
+
+      const basicNavigationElement = page.locator('ix-application');
+
+      const collapseButton = page.getByRole('button', {
+        name: 'Double Chevron Left',
+      });
+      await collapseButton.click();
+      await page.waitForTimeout(1000);
+
+      const menuItem = page.locator('ix-menu-item');
+      await menuItem.nth(5).hover();
+      await page.mouse.wheel(0, 400);
+
+      expect(
+        await basicNavigationElement.screenshot({
+          animations: 'disabled',
+        })
+      ).toMatchSnapshot();
+    }
+  );
 });
