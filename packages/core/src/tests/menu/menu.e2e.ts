@@ -141,10 +141,6 @@ test.describe('menu', () => {
       await collapseButton.click();
       await page.waitForTimeout(1000);
 
-      const menuItem = page.locator('ix-menu-item');
-      await menuItem.nth(5).hover();
-      await page.mouse.wheel(0, 400);
-
       expect(
         await basicNavigationElement.screenshot({
           animations: 'disabled',

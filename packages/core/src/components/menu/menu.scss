@@ -21,7 +21,7 @@ $menu-expanded-width: 16rem;
   flex-direction: row;
   position: absolute;
   height: 100%;
-  min-height: min-content; //TODO: Ist das wo definiert? 22.87rem
+  min-height: min-content;
   z-index: var(--theme-z-index-sticky);
   width: auto;
 
