@@ -14,33 +14,36 @@ This document describes our practices on how we provide new features and changes
 
 ### Versioning
 
-We use [semantic versioning]https://semver.org/ for our releases. Version numbers indicate the level of changes introduces by the release and follow the standard format: major.minor.patch.
+We use ![semantic versioning](https://semver.org/) for our releases. Version numbers indicate the level of changes introduced by the release and follow the standard format: major.minor.patch.
 
-1. MAJOR version: Contains significant new features and changes, might include breaking changes. Updating requires some developer support and can include .... Formerly deprecated components are removed when updating to a new major version.
-2. MINOR version: Contains smaller features and changes. Updating requires no developer support. Minor versions can include status changes of components to deprecated. They are fully backward compatible.
-3. PATCH version: Contains bug fixes. Updating requires no developer support.
-
-
+| Release type        | Details                                                     |
+|---------------------|-------------------------------------------------------------|
+| Major release       | Contains significant new features and changes, might include breaking changes. Updating requires some developer support and can include .... Formerly deprecated components are removed when updating to a new major version. |
+| Minor release       | Contains smaller features and changes. Updating requires no developer support. Minor versions can include status changes of components to deprecated. They are fully backward compatible. |
+| Patch release       | Contains bug fixes. Updating requires no developer support. |
 
 ### Release frequency
 
 We follow a time based release schedule consisting of
 - a major release every 6 months
-- 1-3 minor release for each major release
-- patch release at hot fixes whenever necessary
+- 1-3 minor releases for each major release
+- patch releases as hot fixes whenever necessary
 
 ### Support policy
 
-All major release receive support for approx. 6 months. We distinguish two support stages for major releases:
+All major releases receive support for approx. 6 months. We distinguish two support stages for major releases:
 
-- Active: Receives regular minor releases for 6 months.
-- Long-term (LTS): Receives patch releases to fixe critical issues fro 6 months.
+| Support stage           | Support window | Details                                       |
+|-------------------------|:--------------:|-----------------------------------------------|
+| Active                  | 6 months       | Receive regular minor releases                |
+| Long-term support (LTS) | 6 months       | Receive patch releases to fix critical issues |
+
+Our support policy applies to all components of the design system including the code base, Figma design kits and our documentation. 
 
 We recommend to always follow the active release. When a version moves from the Active stage to the LTS stage, projects should start migrating to the new Active major version. 
 
-# Note
-- Figma info missing
-- add illustration for support stages?
-- Add info on current Versions and stages
-- fix styling
+### Supported versions
 
+|Version      |Status     |Released      |
+|-------------|:---------:|--------------|
+|v2.0.0       |Active     |Sep 27, 2023  |
