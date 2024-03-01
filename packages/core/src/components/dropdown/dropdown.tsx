@@ -31,7 +31,7 @@ import {
 import { ComponentInterface } from '@stencil/core/internal';
 import {
   addDisposableEventListener,
-  CloseBehaviour,
+  CloseBehavior,
   dropdownController,
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
@@ -73,8 +73,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+   * If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
    */
-  @Prop() closeBehavior: CloseBehaviour = 'both';
+  @Prop() closeBehavior: CloseBehavior = 'both';
 
   /**
    * Placement of the dropdown
@@ -198,32 +199,30 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private addEventListenersFor() {
     this.disposeListener?.();
 
-    const stopEventDispatching = (event: Event) => {
-      // Prevent default and stop event bubbling to window, otherwise controller will close all dropdowns
-      if (this.triggerElement.hasAttribute('data-ix-dropdown-trigger')) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    };
-
     const toggleController = () => {
       if (!this.isPresent()) {
         dropdownController.present(this);
       } else {
         dropdownController.dismiss(this);
-        dropdownController.dismissPath(this.getId());
       }
+
+      dropdownController.dismissOthers(this.getId());
     };
 
     this.disposeListener = addDisposableEventListener(
       this.triggerElement,
       'click',
-      (event) => {
-        stopEventDispatching(event);
-        toggleController();
+      (event: PointerEvent) => {
+        if (!event.defaultPrevented) {
+          toggleController();
+        }
       }
     );
-    this.triggerElement.setAttribute('data-ix-dropdown-trigger', this.localUId);
+
+    this.triggerElement?.setAttribute(
+      'data-ix-dropdown-trigger',
+      this.localUId
+    );
   }
 
   /** @internal */
@@ -258,12 +257,14 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private async checkForSubmenuAnchor(element: Element) {
+    if (!element) {
+      return null;
+    }
+
     if (hasDropdownItemWrapperImplemented(element)) {
       const dropdownItem = await element.getDropdownItemElement();
       dropdownItem.isSubMenu = true;
       this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
-
-      return dropdownItem;
     }
 
     if (element.tagName === 'IX-DROPDOWN-ITEM') {
@@ -314,7 +315,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       if (this.anchorElement) {
         this.applyDropdownPosition();
-        // await this.checkForSubmenuAnchor();
       }
     }
   }
@@ -407,20 +407,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   async componentDidLoad() {
     this.changedTrigger(this.trigger);
-
-    // Event listener to check if a dropdown is inside another dropdown
-    // Cancellation of the event will prevent the closing of the parent dropdown
-    this.hostElement.addEventListener(
-      'check-nested-dropdown',
-      (event: CustomEvent<string>) => {
-        if (event.detail === this.localUId) {
-          return;
-        }
-
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    );
   }
 
   async componentDidRender() {
@@ -430,14 +416,26 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       : this.resolveElement(this.trigger));
   }
 
+  private isTriggerElement(element: HTMLElement) {
+    const trigger = !!element.hasAttribute('data-ix-dropdown-trigger');
+
+    return trigger;
+  }
+
   private onDropdownClick(event: PointerEvent) {
-    event.preventDefault();
-    event.stopPropagation();
+    if (dropdownController.pathIncludesTrigger(event.composedPath())) {
+      event.preventDefault();
+
+      if (this.isTriggerElement(event.target as HTMLElement)) {
+        return;
+      }
+    }
 
     if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
-      dropdownController.dismiss(this);
-      dropdownController.dismissAll();
+      dropdownController.dismissAll([this.getId()]);
     }
+
+    dropdownController.dismissOthers(this.getId());
   }
 
   /**

@@ -139,6 +139,8 @@ import VerticalTabs from 'src/preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avatar';
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
+import Pane from '../preview-examples/pane';
+import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 
 const routes: Routes = [
@@ -344,6 +346,8 @@ const routes: Routes = [
       { path: 'kpi', component: Kpi },
       { path: 'message-bar', component: MessageBar },
       { path: 'pagination', component: Pagination },
+      { path: 'pane', component: Pane },
+      { path: 'pane-layout', component: PaneLayout },
       { path: 'pill', component: Pill },
       { path: 'pill-variants', component: PillVariants },
       { path: 'popover-news', component: PopoverNews },

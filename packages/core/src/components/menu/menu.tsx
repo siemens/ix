@@ -698,7 +698,7 @@ export class Menu {
               id="toggleTheme"
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
-              icon={'bulb'}
+              icon={'light-dark'}
             >
               {this.i18nToggleTheme}
             </ix-menu-item>

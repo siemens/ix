@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 
 /**
@@ -36,12 +36,12 @@ export class MenuItem {
    *
    * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
    */
-  @Prop() tabIcon = 'document';
+  @Prop({ mutable: true }) tabIcon: string;
 
   /**
    * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
    */
-  @Prop() icon: string;
+  @Prop({ mutable: true }) icon: string;
 
   /**
    * Show notification count on tab
@@ -68,6 +68,9 @@ export class MenuItem {
   componentWillLoad() {
     this.isHostedInsideCategory =
       !!this.hostElement.closest('ix-menu-category');
+
+    this.onIconChange();
+    this.onTabIconChange();
   }
 
   componentWillRender() {
@@ -89,6 +92,28 @@ export class MenuItem {
   disconnectedCallback() {
     if (this.observer) {
       this.observer.disconnect();
+    }
+  }
+
+  @Watch('icon')
+  onIconChange() {
+    if (
+      !this.isHostedInsideCategory &&
+      !this.hostElement.icon &&
+      !this.hostElement.tabIcon
+    ) {
+      this.icon = 'document';
+    }
+  }
+
+  @Watch('tabIcon')
+  onTabIconChange() {
+    if (
+      !this.isHostedInsideCategory &&
+      !this.hostElement.icon &&
+      !this.hostElement.tabIcon
+    ) {
+      this.tabIcon = 'document';
     }
   }
 
@@ -122,15 +147,17 @@ export class MenuItem {
           tabIndex={this.disabled ? -1 : 0}
           role="listitem"
         >
-          <ix-icon
-            class={'tab-icon'}
-            name={this.icon ?? this.tabIcon}
-          ></ix-icon>
-          <div class="notification">
-            {this.notifications ? (
+          {(this.icon || this.tabIcon) && (
+            <ix-icon
+              class={'tab-icon'}
+              name={this.icon ?? this.tabIcon}
+            ></ix-icon>
+          )}
+          {this.notifications ? (
+            <div class="notification">
               <div class="pill">{this.notifications}</div>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
           <span class="tab-text text-default">
             <slot></slot>
           </span>

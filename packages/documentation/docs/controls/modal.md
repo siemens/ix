@@ -157,7 +157,7 @@ How to open a message modal is independent from the framework in use. Note that 
 `showMessage` provides multiple pre-configured messages:
 
 - info
-- waring
+- warning
 - error
 - success
 - question
