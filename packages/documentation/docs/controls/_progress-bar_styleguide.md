@@ -33,7 +33,7 @@ The width of a progress bar can be customized, however, make sure the slot eleme
 
 ## Related patterns
 - [Spinner](./spinner.md)
-- loading option of [Button](./buttons/)
+- loading option of [Button](./buttons/button.md)
 
 
 
