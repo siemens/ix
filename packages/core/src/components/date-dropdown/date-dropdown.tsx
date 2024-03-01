@@ -95,6 +95,8 @@ export class DateDropdown {
   @Watch('from')
   onDateRangeIdChange() {
     this.onRangeListSelect(this.dateRangeId);
+    this.updateCurrentDate();
+
     this.onDateSelect({
       from: this.currentRangeValue.from,
       to: this.currentRangeValue.to,
@@ -186,11 +188,7 @@ export class DateDropdown {
 
     if (isCustomRange && this.customRangeAllowed) {
       this.selectedDateRangeId = 'custom';
-      this.currentRangeValue = {
-        id: this.selectedDateRangeId,
-        from: this.from,
-        to: this.to,
-      };
+      this.updateCurrentDate();
 
       return;
     }
@@ -201,20 +199,25 @@ export class DateDropdown {
       );
 
       this.selectedDateRangeId = 'custom';
-      this.currentRangeValue = {
-        id: this.selectedDateRangeId,
-        from: this.from,
-        to: this.to,
-      };
+      this.updateCurrentDate();
 
       return;
     }
+  }
+
+  private updateCurrentDate() {
+    this.currentRangeValue = {
+      id: this.selectedDateRangeId,
+      from: this.from,
+      to: this.to,
+    };
   }
 
   private onDateSelect(
     rangeValue: { from: string; to: string; id: string },
     preserveDropdown = true
   ) {
+    console.log('on data Chjange: ',rangeValue)
     this.dateRangeChange.emit(rangeValue);
 
     if (preserveDropdown) {
@@ -246,6 +249,7 @@ export class DateDropdown {
   }
 
   private getButtonLabel() {
+    console.log('current range: ,',this.currentRangeValue);
     if (this.selectedDateRangeId === 'custom' && this.currentRangeValue?.from) {
       let range = this.currentRangeValue.from;
 
