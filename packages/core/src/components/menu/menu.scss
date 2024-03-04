@@ -185,13 +185,6 @@ $menu-expanded-width: 16rem;
   }
 }
 
-:host(.breakpoint-md) {
-
-  .menu.expanded {
-    padding-top: 0.5rem;
-  }
-}
-
 :host(.breakpoint-lg) {
   position: relative;
 
