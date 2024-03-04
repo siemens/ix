@@ -31,7 +31,7 @@ We follow a time based release schedule consisting of
 
 ### Support policy
 
-All major releases receive support for approx. 6 months. We distinguish two support stages for major releases:
+All major releases receive support for approx. 12 months. We distinguish two support stages for major releases:
 
 | Support stage           | Support window | Details                                       |
 |-------------------------|:--------------:|-----------------------------------------------|
