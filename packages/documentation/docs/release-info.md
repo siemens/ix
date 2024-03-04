@@ -9,7 +9,7 @@ title: Versioning and releases
 <p className="text-l-title">
 We at Siemens Industrial Experience strive to provide a stable and reliable design system. At the same time we aim to constantly evolve our offer to meet our user's needs and provide the tools for leading-edge application development. Finding the balance between stability and evolution is our daily business.
 
-This document describes our practices on how we provide new features and changes, remove features and support existing versions. It gives you the background to make sensible decisions on your own update schedule.
+This document describes our practices on how we provide new features and changes, deprecate and remove outdated features and provide long-term support for older versions. It gives you the background to make sensible decisions on your own update schedule.
 </p>
 
 ### Versioning
@@ -18,9 +18,9 @@ We use ![semantic versioning](https://semver.org/) for our releases. Version num
 
 | Release type        | Details                                                     |
 |---------------------|-------------------------------------------------------------|
-| Major release       | Contains significant new features and changes, might include breaking changes. Updating requires some developer support and can include .... Formerly deprecated components are removed when updating to a new major version. |
-| Minor release       | Contains smaller features and changes. Updating requires no developer support. Minor versions can include status changes of components to deprecated. They are fully backward compatible. |
-| Patch release       | Contains bug fixes. Updating requires no developer support. |
+| Major release       | Contains significant new features and changes, might include breaking changes. Updating requires some developer efforts and can include .... Formerly deprecated components are removed when updating to a new major version. |
+| Minor release       | Contains smaller features and changes. Updating requires no developer efforts. Minor versions can include status changes of components to deprecated. They are fully backward compatible. |
+| Patch release       | Contains bug fixes. Updating requires no developer efforts. |
 
 ### Release frequency
 
