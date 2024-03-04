@@ -598,7 +598,7 @@ export class Menu {
             this.resetActiveTab();
           }}
         >
-          <div class={'menu-buttons'}>
+          <div class={{ 'menu-buttons': this.breakpoint != 'sm' }}>
             <ix-burger-menu
               onClick={async () => this.toggleMenu()}
               expanded={this.expand}
