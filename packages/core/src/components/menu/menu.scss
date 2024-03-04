@@ -175,10 +175,6 @@ $menu-expanded-width: 16rem;
     width: 0;
   }
 
-  .menu {
-    padding-top: 0.5rem;
-  }
-
   .menu .burger-menu {
     display: none;
   }
@@ -186,6 +182,13 @@ $menu-expanded-width: 16rem;
   .menu-overlay {
     left: 0;
     width: 100vw;
+  }
+}
+
+:host(.breakpoint-md) {
+
+  .menu {
+    padding-top: 0.5rem;
   }
 }
 
