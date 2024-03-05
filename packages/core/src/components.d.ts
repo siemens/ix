@@ -534,8 +534,7 @@ export namespace Components {
          */
         "dateRangeOptions": DateDropdownOption[];
         /**
-          * Date format string. See
-          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format": string;
         /**
@@ -968,8 +967,7 @@ export namespace Components {
          */
         "chevron": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
+          * Color of the status indicator. You can find a list of all available colors in our documentation (see {@link "https://ix.siemens.io/docs/theming/colors/"}). Example values are `--theme-color-alarm` or `color-alarm`
           * @deprecated since 2.1.0 use `item-color`
          */
         "color": string;
@@ -978,8 +976,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
+          * Color of the status indicator. You can find a list of all available colors in our documentation (see {@link "https://ix.siemens.io/docs/theming/colors/"}). Example values are `--theme-color-alarm` or `color-alarm`
          */
         "itemColor": string;
         /**
@@ -1511,8 +1508,7 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation (see {@link "https://ix.siemens.io/docs/icon-library/icons"}).
          */
         "icon": string;
         /**
@@ -1520,9 +1516,8 @@ export namespace Components {
          */
         "notifications": number;
         /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
-          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
+          * Name of the icon you want to display. Icon names can be resolved from the documentation (see {@link "https://ix.siemens.io/docs/icon-library/icons"}).
+          * @deprecated Since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
     }
@@ -1908,8 +1903,7 @@ export namespace Components {
          */
         "min": number;
         /**
-          * Legal number intervals
-          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * Legal number intervals (see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}).
          */
         "step": number;
         /**
@@ -2301,7 +2295,7 @@ export namespace Components {
     }
     interface IxUpload {
         /**
-          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
+          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload - see {@link "https://www.w3schools.com/tags/att_input_accept.asp"}).
          */
         "accept": string;
         /**
@@ -4547,8 +4541,7 @@ declare namespace LocalJSX {
          */
         "dateRangeOptions"?: DateDropdownOption[];
         /**
-          * Date format string. See
-          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format"?: string;
         /**
@@ -5019,8 +5012,7 @@ declare namespace LocalJSX {
          */
         "chevron"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
+          * Color of the status indicator. You can find a list of all available colors in our documentation (see {@link "https://ix.siemens.io/docs/theming/colors/"}). Example values are `--theme-color-alarm` or `color-alarm`
           * @deprecated since 2.1.0 use `item-color`
          */
         "color"?: string;
@@ -5029,8 +5021,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
+          * Color of the status indicator. You can find a list of all available colors in our documentation (see {@link "https://ix.siemens.io/docs/theming/colors/"}). Example values are `--theme-color-alarm` or `color-alarm`
          */
         "itemColor"?: string;
         /**
@@ -5597,8 +5588,7 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation (see {@link "https://ix.siemens.io/docs/icon-library/icons"}).
          */
         "icon"?: string;
         /**
@@ -5606,9 +5596,8 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
-          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
+          * Name of the icon you want to display. Icon names can be resolved from the documentation (see {@link "https://ix.siemens.io/docs/icon-library/icons"}).
+          * @deprecated Since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
     }
@@ -6048,8 +6037,7 @@ declare namespace LocalJSX {
         "min"?: number;
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
-          * Legal number intervals
-          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * Legal number intervals (see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}).
          */
         "step"?: number;
         /**
@@ -6498,7 +6486,7 @@ declare namespace LocalJSX {
     }
     interface IxUpload {
         /**
-          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
+          * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload - see {@link "https://www.w3schools.com/tags/att_input_accept.asp"}).
          */
         "accept"?: string;
         /**

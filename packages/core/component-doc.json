@@ -3282,13 +3282,8 @@
           "mutable": false,
           "attr": "format",
           "reflectToAttr": false,
-          "docs": "Date format string.\nSee",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens."
-            }
-          ],
+          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docsTags": [],
           "default": "'yyyy/LL/dd'",
           "values": [
             {
@@ -6227,12 +6222,8 @@
           "mutable": false,
           "attr": "color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation (see {@link \"https://ix.siemens.io/docs/theming/colors/\"}).\nExample values are `--theme-color-alarm` or `color-alarm`",
           "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/theming/colors/"
-            },
             {
               "name": "deprecated",
               "text": "since 2.1.0 use `item-color`"
@@ -6279,13 +6270,8 @@
           "mutable": false,
           "attr": "item-color",
           "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/theming/colors/"
-            }
-          ],
+          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation (see {@link \"https://ix.siemens.io/docs/theming/colors/\"}).\nExample values are `--theme-color-alarm` or `color-alarm`",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -10510,13 +10496,8 @@
           "mutable": true,
           "attr": "icon",
           "reflectToAttr": false,
-          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/icon-library/icons"
-            }
-          ],
+          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation (see {@link \"https://ix.siemens.io/docs/icon-library/icons\"}).",
+          "docsTags": [],
           "values": [
             {
               "type": "string"
@@ -10557,18 +10538,14 @@
           "mutable": true,
           "attr": "tab-icon",
           "reflectToAttr": false,
-          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
+          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation (see {@link \"https://ix.siemens.io/docs/icon-library/icons\"}).",
           "docsTags": [
             {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/icon-library/icons"
-            },
-            {
               "name": "deprecated",
-              "text": "since 2.0.0 use `icon` property. Will be removed in 3.0.0"
+              "text": "Since 2.0.0 use `icon` property. Will be removed in 3.0.0"
             }
           ],
-          "deprecation": "since 2.0.0 use `icon` property. Will be removed in 3.0.0",
+          "deprecation": "Since 2.0.0 use `icon` property. Will be removed in 3.0.0",
           "values": [
             {
               "type": "string"
@@ -13378,13 +13355,8 @@
           "mutable": false,
           "attr": "step",
           "reflectToAttr": false,
-          "docs": "Legal number intervals",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
-            }
-          ],
+          "docs": "Legal number intervals (see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}).",
+          "docsTags": [],
           "values": [
             {
               "type": "number"
@@ -16576,7 +16548,7 @@
           "mutable": false,
           "attr": "accept",
           "reflectToAttr": false,
-          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).\n[accept]{@link \"https://www.w3schools.com/tags/att_input_accept.asp\"}",
+          "docs": "The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload - see {@link \"https://www.w3schools.com/tags/att_input_accept.asp\"}).",
           "docsTags": [],
           "values": [
             {

@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import React from 'react';
 import { ApiTableDeprecatedTag, ApiTableSinceTag } from '../ApiTableTag';
 import './ApiTable.css';
@@ -30,6 +31,31 @@ export type ApiTableEntryDefinition = {
 }[];
 
 function ApiTableRow(props: { attribute: ApiTableEntry }) {
+  const description = props?.attribute?.description || '';
+  const linkPattern = /\{@link "(.+?)"\}/;
+  const parts = description.split(linkPattern);
+
+  const content = (
+    <>
+      {parts.map((part, index) => {
+        if (part.includes('http')) {
+          return (
+            <a
+              key={index}
+              href={part}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              link
+            </a>
+          );
+        } else {
+          return <span key={index}>{part}</span>;
+        }
+      })}
+    </>
+  );
+
   return (
     <div className="row with--border">
       <div className="col-sm-6">
@@ -55,9 +81,7 @@ function ApiTableRow(props: { attribute: ApiTableEntry }) {
       </div>
       <div className="col-sm-6">
         <div className="ApiTable__Content">
-          <span className="Attribute__Description">
-            {props?.attribute?.description}
-          </span>
+          <div className="Attribute__Description">{content}</div>
           <div className="container-fluid">
             {props?.attribute?.definition
               ?.filter((attribute) => attribute.value !== undefined)
