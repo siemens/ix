@@ -21,7 +21,6 @@ import Playground from '@site/src/components/Playground'
 
 <Playground
 name="tooltip"
-height="16rem"
 examplesByName>
 </Playground>
 

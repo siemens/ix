@@ -21,7 +21,7 @@ import SourceVuePaginationAdvanced from './../auto-generated/previews/vue/pagina
 ## Usage
 
 <Playground
-name="pagination" height="24rem"
+name="pagination"
 frameworks={{
   react: SourceReactPagination,
   angular: SourceAngularPagination,
@@ -33,7 +33,7 @@ frameworks={{
 ## Advanced
 
 <Playground
-name="pagination-advanced" height="24rem"
+name="pagination-advanced"
 frameworks={{
   react: SourceReactPaginationAdvanced,
   angular: SourceAngularPaginationAdvanced,

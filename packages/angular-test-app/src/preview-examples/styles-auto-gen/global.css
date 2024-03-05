@@ -17,6 +17,7 @@
 html {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* placeholder-logo for usage in all files */

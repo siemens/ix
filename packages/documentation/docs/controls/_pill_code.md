@@ -14,7 +14,7 @@ import SourceReactPillVariants from './../auto-generated/previews/react/pill-var
 import SourceVuePillVariants from './../auto-generated/previews/vue/pill-variants.md';
 
 <Playground
-name="pill" height="24rem"
+name="pill"
 frameworks={{
   react: SourceReactPill,
   angular: SourceAngularPill,

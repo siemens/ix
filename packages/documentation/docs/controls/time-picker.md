@@ -13,7 +13,7 @@ import SourceVueTimepicker from './../auto-generated/previews/vue/timepicker.md'
 ## Usage
 
 <Playground
-name="timepicker" height="35rem"
+name="timepicker" height="24rem"
 frameworks={{
   react: SourceReactTimepicker,
   angular: SourceAngularTimepicker,

@@ -17,7 +17,7 @@ In the following preview section you will find different implementation of a for
 ## Preview
 
 <Playground
-name="validation" height="20rem"
+name="validation" height="24rem"
 frameworks={{
   react: SourceReactValidation,
   angular: SourceAngularValidation,

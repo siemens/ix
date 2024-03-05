@@ -15,7 +15,7 @@ import AngularHtmlCardList from './../auto-generated/previews/angular/card-list.
 <CardListTags />
 
 <Playground
-height="40rem"
+height="55rem"
 name="card-list"
 frameworks={{
   javascript: WebComponentCardList,

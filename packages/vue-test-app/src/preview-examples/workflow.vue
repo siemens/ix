@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 import { IxWorkflowStep, IxWorkflowSteps } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./styles-auto-gen/workflow.css"></style>
+
 <template>
   <IxWorkflowSteps>
     <IxWorkflowStep status="done">Step 1</IxWorkflowStep>

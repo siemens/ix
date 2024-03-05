@@ -58,7 +58,7 @@ frameworks={{
 
 <Playground
 name="blind-variants"
-height="16rem"
+height="55rem"
 frameworks={{
     react: SourceReactVariants,
     angular: {

@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './styles-auto-gen/workflow.css';
+
 import { IxWorkflowStep, IxWorkflowSteps } from '@siemens/ix-react';
 import React from 'react';
 export default () => {

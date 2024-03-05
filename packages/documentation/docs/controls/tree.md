@@ -23,7 +23,7 @@ import SourceVueTreeCustom from './../auto-generated/previews/vue/tree-custom.md
 ## Usage
 
 <Playground
-name="tree" height="16rem"
+name="tree"
 frameworks={{
   react: SourceReactTree,
   angular: SourceAngularTree,
@@ -34,7 +34,7 @@ frameworks={{
 ### Custom tree node
 
 <Playground
-name="tree-custom" height="16rem"
+name="tree-custom" height="12rem"
 hideInitalCodePreview
 frameworks={{
   react: SourceReactTreeCustom,

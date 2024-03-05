@@ -12,7 +12,7 @@ import SourceVueFlip from './../auto-generated/previews/vue/flip-tile.md'
 ## Usage
 
 <Playground
-name="flip-tile" height="20rem"
+name="flip-tile" height="35rem"
 frameworks={{
   react: SourceReactFlip,
   angular: SourceAngularFlip,

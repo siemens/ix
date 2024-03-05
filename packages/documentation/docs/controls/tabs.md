@@ -22,7 +22,7 @@ import SourceVueTabsRounded from './../auto-generated/previews/vue/tabs-rounded.
 ## Usage
 
 <Playground
-name="tabs" height="20rem"
+name="tabs"
 frameworks={{
   react: SourceReactTabs,
   angular: SourceAngularTabs,
