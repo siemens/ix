@@ -18,7 +18,7 @@ import SourceVuePaginationAdvanced from './../auto-generated/previews/vue/pagina
 
 <Tags />
 
-## Usage
+## Example
 
 <Playground
 name="pagination"
@@ -30,7 +30,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Advanced
+### Advanced
 
 <Playground
 name="pagination-advanced"
@@ -42,7 +42,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties
+## API
 
 ### Props
 

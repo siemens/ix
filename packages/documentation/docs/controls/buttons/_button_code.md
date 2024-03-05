@@ -41,7 +41,7 @@ import VueButtonGreyGhost from './../../auto-generated/previews/vue/button-grey-
 import VueButtonTextIcon from './../../auto-generated/previews/vue/button-text-icon.md'
 import VueButtonLoading from './../../auto-generated/previews/vue/button-loading.md'
 
-## Usage
+## Example
 
 ### Primary
 
@@ -55,7 +55,7 @@ frameworks={{
 }}>
 </Playground>
 
-### Primary Outline
+### Primary outline
 
 :::info
 
@@ -73,7 +73,7 @@ frameworks={{
   vue: VueButtonSecondary
 }}></Playground>
 
-### Primary Ghost
+### Primary ghost
 
 :::info
 
@@ -109,7 +109,7 @@ frameworks={{
   vue: VueButtonGrey
 }}></Playground>
 
-### Secondary Outline
+### Secondary outline
 
 :::info
 
@@ -127,7 +127,7 @@ frameworks={{
   vue: VueButtonGreySecondary
 }}></Playground>
 
-### Secondary Ghost
+### Secondary ghost
 
 :::info
 
@@ -181,6 +181,8 @@ frameworks={{
   vue: VueButtonLoading
 }}></Playground>
 
-## Properties (ix-button)
+## API
+
+### Props
 
 <Props />

@@ -18,7 +18,7 @@ import Playground from '@site/src/components/Playground';
 
 # Category filter
 
-## Usage
+## Example
 
 <Playground
 name="category-filter"
@@ -30,7 +30,7 @@ frameworks={{
   vue: SourceVueCategoryFilter
 }}></Playground>
 
-### without categories
+### Without categories
 
 <Playground
 name="category-filter-suggestions"
@@ -43,7 +43,7 @@ frameworks={{
   vue: SourceVueCategoryFilterSuggestions
 }}></Playground>
 
-## Properties
+## API
 
 ### Props
 

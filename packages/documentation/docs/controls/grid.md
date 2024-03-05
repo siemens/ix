@@ -64,7 +64,7 @@ e.g.:
 <div class="ag-theme-alpine-dark ag-theme-ix"></div>
 ```
 
-## Usage
+## Example
 
 <Playground
 name="aggrid" height="20rem"

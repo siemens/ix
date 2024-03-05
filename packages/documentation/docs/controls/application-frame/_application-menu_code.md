@@ -37,9 +37,7 @@ import SourceVueMenuCategory from './../../auto-generated/previews/vue/menu-cate
 import SourceVueMenuWithAvatar from './../../auto-generated/previews/vue/vertical-tabs-with-avatar.md'
 import SourceVueMenuWithBottomTabs from './../../auto-generated/previews/vue/menu-with-bottom-tabs.md'
 
-# Navigation menu
-
-## Usage
+## Example
 
 <Playground
 name="vertical-tabs" height="30rem" noMargin
@@ -51,9 +49,10 @@ frameworks={{
   vue: SourceVueMenu
 }}></Playground>
 
-## 2nd navigation level
+### 2nd navigation level
 
 <CategoryTags />
+
 <Playground
 name="menu-category" height="30rem" noMargin
 hideInitalCodePreview
@@ -67,7 +66,7 @@ frameworks={{
   vue: SourceVueMenuCategory
 }}></Playground>
 
-## Avatar
+### Avatar
 
 <AvatarTags />
 
@@ -81,7 +80,7 @@ frameworks={{
   vue: SourceVueMenuWithAvatar
 }}></Playground>
 
-## Bottom tabs
+### Bottom tabs
 
 <div class="siemens-brand-section">
   <strong>Caution</strong>: Since the old implementation using the bottom property on menu items had some problems and will not work anymore please use slot="bottom" instead.
@@ -97,7 +96,7 @@ frameworks={{
   vue: SourceVueMenuWithBottomTabs
 }}></Playground>
 
-## Properties (ix-menu)
+## API (ix-menu)
 
 ### Props
 
@@ -107,19 +106,19 @@ frameworks={{
 
 <MenuEvents />
 
-## Properties (ix-menu-item)
+## API (ix-menu-item)
 
 ### Props
 
 <ItemProps />
 
-## Properties (ix-menu-category)
+## API (ix-menu-category)
 
 ### Props
 
 <CategoryProps />
 
-## Properties (ix-menu-avatar)
+## API (ix-menu-avatar)
 
 ### Props
 
@@ -129,7 +128,7 @@ frameworks={{
 
 <AvatarEvents />
 
-## Properties (ix-menu-avatar-item)
+## API (ix-menu-avatar-item)
 
 ### Props
 

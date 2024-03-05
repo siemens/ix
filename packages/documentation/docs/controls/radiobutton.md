@@ -7,7 +7,7 @@ import SourceVueRadio from './../auto-generated/previews/vue/radio-button.md';
 
 # Radio button
 
-## Usage
+## Example
 
 <Playground
 name="radio-button"

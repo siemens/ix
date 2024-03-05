@@ -1,5 +1,3 @@
-import Tags from './../../auto-generated/ix-link-button/tags.md';
-
 import Playground from '@site/src/components/Playground';
 import Props from './../../auto-generated/ix-link-button/props.md';
 
@@ -13,9 +11,7 @@ import SourceReactLinkButtonDisabled from './../../auto-generated/previews/react
 import SourceAngularLinkButtonDisabled from './../../auto-generated/previews/angular/link-button-disabled.ts.md'
 import SourceVueLinkButtonDisabled from './../../auto-generated/previews/vue/link-button-disabled.md'
 
-<Tags />
-
-## Usage
+## Example
 
 <Playground
 name="link-button"
@@ -27,7 +23,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Disabled
+### Disabled
 
 <Playground
 name="link-button-disabled"
@@ -39,7 +35,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties
+## API
 
 ### Props
 

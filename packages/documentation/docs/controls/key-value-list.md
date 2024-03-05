@@ -27,7 +27,7 @@ import SourceVueKeyValueListStriped from './../auto-generated/previews/vue/key-v
 
 <Tags />
 
-## Usage
+## Example
 
 <Playground
 name="key-value-list" height="12rem"
@@ -75,7 +75,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties
+## API
 
 ### Props
 

@@ -9,7 +9,7 @@ import SourceVueExpandingSearch from './../auto-generated/previews/vue/expanding
 
 # Expanding search
 
-## Usage
+## Example
 
 <Playground
 name="expanding-search" height="5rem"
@@ -21,7 +21,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties
+## API
 
 ### Props
 

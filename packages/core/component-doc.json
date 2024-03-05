@@ -11746,6 +11746,10 @@
         {
           "name": "since",
           "text": "2.1.0"
+        },
+        {
+          "name": "slot",
+          "text": "default - Content displayed inside the expanded pane"
         }
       ],
       "encapsulation": "shadow",
@@ -12052,7 +12056,12 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "default",
+          "docs": "Content displayed inside the expanded pane"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -12070,6 +12079,26 @@
         {
           "name": "since",
           "text": "2.1.0"
+        },
+        {
+          "name": "slot",
+          "text": "left - Add a left pane to the layout"
+        },
+        {
+          "name": "slot",
+          "text": "right - Add a right pane to the layout"
+        },
+        {
+          "name": "slot",
+          "text": "top - Add a top pane to the layout"
+        },
+        {
+          "name": "slot",
+          "text": "bottom - Add a bottom pane to the layout"
+        },
+        {
+          "name": "slot",
+          "text": "content - The content displayed inside the pane layout"
         }
       ],
       "encapsulation": "shadow",
@@ -12157,7 +12186,28 @@
       "methods": [],
       "events": [],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "bottom",
+          "docs": "Add a bottom pane to the layout"
+        },
+        {
+          "name": "content",
+          "docs": "The content displayed inside the pane layout"
+        },
+        {
+          "name": "left",
+          "docs": "Add a left pane to the layout"
+        },
+        {
+          "name": "right",
+          "docs": "Add a right pane to the layout"
+        },
+        {
+          "name": "top",
+          "docs": "Add a top pane to the layout"
+        }
+      ],
       "parts": [],
       "listeners": [
         {
@@ -14440,7 +14490,7 @@
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
-          "docs": "Size of the tile - one of 'small', 'medium' or 'large'",
+          "docs": "Size of the tile",
           "docsTags": [],
           "default": "'medium'",
           "values": [

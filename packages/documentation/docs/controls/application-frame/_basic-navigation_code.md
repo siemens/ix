@@ -11,7 +11,7 @@ import ReactComponentWithoutHeader from './../../auto-generated/previews/react/b
 import AngularComponentWithoutHeader from './../../auto-generated/previews/angular/basic-navigation-without-header.ts.md'
 import VueComponentWithoutHeader from './../../auto-generated/previews/vue/basic-navigation-without-header.md'
 
-## Usage
+## Example
 
 <Playground
 name="basic-navigation" height="30rem" noMargin
@@ -34,8 +34,8 @@ frameworks={{
   vue: VueComponentWithoutHeader
 }}></Playground>
 
-### ix-basic-navigation
+## API
 
-#### Props
+### Props
 
 <Props />

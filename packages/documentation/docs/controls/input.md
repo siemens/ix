@@ -34,7 +34,7 @@ import SourceVueInputLabels from './../auto-generated/previews/vue/input-labels.
 
 # Input
 
-## Usage
+## Example
 
 <Playground
 name="input"

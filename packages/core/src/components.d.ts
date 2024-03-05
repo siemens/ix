@@ -2036,7 +2036,7 @@ export namespace Components {
     }
     interface IxTile {
         /**
-          * Size of the tile - one of 'small', 'medium' or 'large'
+          * Size of the tile
          */
         "size": 'small' | 'medium' | 'big';
     }
@@ -6187,7 +6187,7 @@ declare namespace LocalJSX {
     }
     interface IxTile {
         /**
-          * Size of the tile - one of 'small', 'medium' or 'large'
+          * Size of the tile
          */
         "size"?: 'small' | 'medium' | 'big';
     }

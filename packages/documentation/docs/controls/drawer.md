@@ -16,7 +16,7 @@ import SourceVueDrawerFullHeight from './../auto-generated/previews/vue/drawer-f
 
 # Drawer
 
-## Usage
+## Example
 
 <Playground
 name="drawer-full-height" height="24rem"
@@ -39,7 +39,7 @@ frameworks={{
   vue: SourceVueDrawerFullHeight
 }}></Playground>
 
-## Properties
+## API
 
 ### Props
 

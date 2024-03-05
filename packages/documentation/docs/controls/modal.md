@@ -29,7 +29,9 @@ import SourceReactMessage from './../auto-generated/previews/react/message.md'
 
 # Modal
 
-## Sizes
+## Example
+
+### Sizes
 
 Our modals support the following sizes:
 
@@ -50,7 +52,42 @@ The `size` can be configured over the configuration object of the `showModal` fu
 >
 </Playground>
 
-## Custom
+### Loading
+
+How to open a loading modal is independent from the framework in use. Note that you have to import `showLoadingModal` from the core package `@siemens/ix`.
+
+<Playground name="loading" frameworks={{
+  react: SourceReactLoading,
+}}/>
+
+### Message
+
+How to open a message modal is independent from the framework in use. Note that you have to import `showMessage` from the core package `@siemens/ix`.
+
+`showMessage` provides multiple pre-configured messages:
+
+- info
+- warning
+- error
+- success
+- question
+
+<Playground name="message" height="15rem" frameworks={{
+  react: SourceReactMessage,
+}}/>
+
+The `showMessage` method returns a Listener with the following signature:
+
+```ts
+TypedEvent<{
+  actionId: string;
+  payload: T;
+}>
+```
+
+`actionId` represents the configured action button.
+
+## Framework
 
 How to open a modal depends on the framework in use. Note that you will not instantiate `ix-modal` on your own.
 Select the appropriate section below for the respective usage information.
@@ -87,8 +124,6 @@ frameworks={{
   react: SourceReactModal,
 }}>
 </Playground>
-
-
 
 :::info Use context
 
@@ -127,53 +162,20 @@ frameworks={{
 }}>
 </Playground>
 
-### API
+## API
 
-#### Modal config
+### Modal config
+
 <ModalConfig />
 
-#### Modal instance
+### Modal instance
+
 <ModalInstance />
 
-#### Modal header
-##### Props
+### Modal header
+
+**Props**
 <PropsHeaderJavaScript />
 
-##### Events
+**Events**
 <EventsHeaderJavaScript />
-
-## Loading
-
-How to open a loading modal is independent from the framework in use. Note that you have to import `showLoadingModal` from the core package `@siemens/ix`.
-
-<Playground name="loading" frameworks={{
-  react: SourceReactLoading,
-}}/>
-
-## Message
-
-How to open a message modal is independent from the framework in use. Note that you have to import `showMessage` from the core package `@siemens/ix`.
-
-`showMessage` provides multiple pre-configured messages:
-
-- info
-- warning
-- error
-- success
-- question
-
-<Playground name="message" height="15rem" frameworks={{
-  react: SourceReactMessage,
-}}/>
-
-The `showMessage` method returns a Listener with the following signature:
-
-```ts
-TypedEvent<{
-  actionId: string;
-  payload: T;
-}>
-```
-
-`actionId` represents the configured action button.
-

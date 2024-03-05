@@ -2,8 +2,6 @@ import Playground from '@site/src/components/Playground';
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import Overview from './../../auto-generated/ix-dropdown-button/overview.md';
-import Tags from './../../auto-generated/ix-dropdown-button/tags.md';
 import Props from './../../auto-generated/ix-dropdown-button/props.md';
 
 import SourceDropdownButton from './../../auto-generated/previews/web-component/dropdown-button.md';
@@ -18,12 +16,7 @@ import SourceAngularDropdownButtonIcon from './../../auto-generated/previews/ang
 import SourceVueDropdownButton from './../../auto-generated/previews/vue/dropdown-button.md';
 import SourceVueDropdownButtonIcon from './../../auto-generated/previews/vue/dropdown-button-icon.md';
 
-
-<Tags />
-
-<Overview />
-
-## Usage
+## Example
 
 <Playground
 name="dropdown-button" height="16rem"
@@ -45,7 +38,7 @@ frameworks={{
   vue: SourceVueDropdownButtonIcon
 }}></Playground>
 
-## Properties (ix-dropdown-button)
+## API
 
 ### Props
 

@@ -19,11 +19,7 @@ import SourceVueAvatar from './../auto-generated/previews/vue/avatar.md'
 import SourceVueAvatarImage from './../auto-generated/previews/vue/avatar-image.md'
 import SourceVueAvatarInitials from './../auto-generated/previews/vue/avatar-initials.md'
 
-# Avatar
-
-<Tags />
-
-## Default
+## Example
 
 <Playground
 name="avatar"
@@ -35,7 +31,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Initials
+### Initials
 
 <Playground
 name="avatar-initials"
@@ -47,7 +43,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Image
+### Image
 
 <Playground
 name="avatar-image"
@@ -59,13 +55,13 @@ frameworks={{
 }}>
 </Playground>
 
-## Header
+### Header
 
 You can also add the avatar to the header which will turn it into a clickable button.
 
 <Playground name="application-header" examplesByName noMargin height="21rem"></Playground>
 
-## Properties
+## API
 
 ### Props
 

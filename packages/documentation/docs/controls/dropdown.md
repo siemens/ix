@@ -30,7 +30,7 @@ import SourceVueDropdownSubmenu from './../auto-generated/previews/vue/dropdown-
 
 # Dropdown
 
-## Usage
+## Example
 
 <Playground
 name="dropdown" height="28rem"
@@ -79,7 +79,7 @@ frameworks={{
   vue: SourceVueDropdownSubmenu
 }}></Playground>
 
-## Properties (ix-dropdown)
+## API (ix-dropdown)
 
 ### Props
 
@@ -89,7 +89,7 @@ frameworks={{
 
 <Events />
 
-## Properties (ix-dropdown-item)
+## API (ix-dropdown-item)
 
 ### Props
 

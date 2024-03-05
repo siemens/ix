@@ -18,7 +18,7 @@ export class Tile {
   @Element() hostElement: HTMLIxTileElement;
 
   /**
-   * Size of the tile - one of 'small', 'medium' or 'large'
+   * Size of the tile
    */
   @Prop() size: 'small' | 'medium' | 'big' = 'medium';
 

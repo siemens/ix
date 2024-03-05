@@ -25,7 +25,7 @@ import SourceVueMultiple from './../auto-generated/previews/vue/select-multiple.
 
 # Select
 
-## Usage
+## Example
 
 <Playground
 name="select" height="18rem"
@@ -63,7 +63,7 @@ frameworks={{
   vue: SourceVueMultiple
 }}></Playground>
 
-## Properties (ix-select)
+## API (ix-select)
 
 ### Props
 
@@ -73,7 +73,7 @@ frameworks={{
 
 <Events />
 
-## Properties (ix-select-item)
+## API (ix-select-item)
 
 ### Props
 

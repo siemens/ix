@@ -1,5 +1,5 @@
 ---
-title: Layout Grid
+title: Layout grid
 ---
 
 import DocsTabs from '@site/src/components/DocsTabs';

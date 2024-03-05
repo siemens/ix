@@ -11,7 +11,7 @@ import DocsCode from './\_map-navigation_code.md';
 
 import Tags from './../../auto-generated/ix-map-navigation/tags.md';
 
-# Map Navigation
+# Map navigation
 
 <Tags />
 

@@ -28,7 +28,7 @@ import SourceVueKeyValueWithLabelLeft from './../auto-generated/previews/vue/key
 
 <Tags />
 
-## Usage
+## Example
 
 <Playground
 name="key-value" height="16rem"
@@ -76,7 +76,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties
+## API
 
 ### Props
 

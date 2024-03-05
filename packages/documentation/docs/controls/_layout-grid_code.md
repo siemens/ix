@@ -7,7 +7,7 @@ import ColProps from './../auto-generated/ix-col/props.md';
 import ColEvents from './../auto-generated/ix-col/events.md';
 
 
-## Usage
+## Example
 
 <Playground
   height="15rem"
@@ -32,22 +32,14 @@ import ColEvents from './../auto-generated/ix-col/events.md';
   examplesByName>
 </Playground>
 
-## Properties (ix-layout-grid)
+## API (ix-layout-grid)
 
 ### Props 
 
 <Props />
 
-### Events
-
-<Events />
-
-## Properties (ix-col)
+## API (ix-col)
 
 ### Props
 
 <ColProps />
-
-### Events
-
-<ColEvents />

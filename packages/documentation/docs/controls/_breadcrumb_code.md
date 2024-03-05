@@ -21,6 +21,8 @@ import SourceVueBreadcrumbNextItems from './../auto-generated/previews/vue/bread
 
 import Playground from '@site/src/components/Playground'
 
+## Example
+
 <Playground
 name="breadcrumb"
 height="8rem"
@@ -60,7 +62,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties (ix-breadcrumb)
+## API (ix-breadcrumb)
 
 ### Props
 
@@ -70,7 +72,7 @@ frameworks={{
 
 <Events />
 
-## Properties (ix-breadcrumb-item)
+## API (ix-breadcrumb-item)
 
 ### Props
 

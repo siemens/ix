@@ -18,7 +18,7 @@ import SourceVueWorkflowVertical from './../auto-generated/previews/vue/workflow
 
 # Workflow
 
-## Usage
+## Example
 
 <Playground
 name="workflow"
@@ -41,7 +41,7 @@ frameworks={{
   vue: SourceVueWorkflowVertical
 }}></Playground>
 
-## Properties ix-workflow-steps
+## API (ix-workflow-steps)
 
 ### Props
 
@@ -51,12 +51,8 @@ frameworks={{
 
 <WorkflowStepsEvents />
 
-## Properties ix-workflow-step
+## API (ix-workflow-step)
 
 ### Props
 
 <WorkflowStepProps />
-
-### Events
-
-<WorkflowStepEvents />

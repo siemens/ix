@@ -1,6 +1,4 @@
-import Tags from './../../auto-generated/ix-link-button/tags.md';
 import Playground from '@site/src/components/Playground';
-
 import PropsIcon from './../../auto-generated/ix-icon-button/props.md';
 
 import WebComponentButtonIcon from './../../auto-generated/previews/web-component/button-with-icon.md'
@@ -8,11 +6,7 @@ import AngularButtonIcon from './../../auto-generated/previews/angular/button-wi
 import ReactButtonIcon from './../../auto-generated/previews/react/button-with-icon.md'
 import VueButtonIcon from './../../auto-generated/previews/vue/button-with-icon.md'
 
-### Icon button
-
-<Tags />
-
-## Usage
+## Example
 
 <Playground
 name="button-with-icon"
@@ -24,7 +18,7 @@ frameworks={{
   vue: VueButtonIcon
 }}></Playground>
 
-## Properties (ix-icon-button)
+## API
 
 ### Props
 

@@ -41,7 +41,3 @@ The navigation to another application is implemented via `window.open` (https://
 ### Props
 
 <Props />
-
-### Events
-
-<Events />

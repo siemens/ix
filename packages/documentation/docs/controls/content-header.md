@@ -15,9 +15,9 @@ import SourceHtmlAngularContentHeaderNoBack from './../auto-generated/previews/a
 import SourceTsAngularContentHeaderNoBack from './../auto-generated/previews/angular/content-header-no-back.ts.md'
 import SourceVueContentHeaderNoBack from './../auto-generated/previews/vue/content-header-no-back.md'
 
-# Content Header
+# Content header
 
-## Usage
+## Example
 
 <Playground
 name="content-header"
@@ -47,7 +47,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties
+## API
 
 ### Props
 

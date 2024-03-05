@@ -1,6 +1,5 @@
 import Playground from '@site/src/components/Playground';
 
-import CardListTags from './../auto-generated/ix-card-list/tags.md';
 import CardListProps from './../auto-generated/ix-card-list/props.md';
 import CardListEvents from './../auto-generated/ix-card-list/events.md';
 
@@ -10,9 +9,7 @@ import VueCardList from './../auto-generated/previews/vue/card-list.md'
 import AngularTsCardList from './../auto-generated/previews/angular/card-list.ts.md'
 import AngularHtmlCardList from './../auto-generated/previews/angular/card-list.html.md'
 
-## Card List (ix-card-list)
-
-<CardListTags />
+## Example
 
 <Playground
 height="55rem"
@@ -28,7 +25,9 @@ frameworks={{
 }}>
 </Playground>
 
-### Properties
+## API
+
+### Props
 
 <CardListProps />
 

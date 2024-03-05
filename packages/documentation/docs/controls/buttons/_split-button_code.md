@@ -18,6 +18,7 @@ import SourceAngularSplitButtonIcons from './../../auto-generated/previews/angul
 import SourceVueSplitButton from './../../auto-generated/previews/vue/split-button.md';
 import SourceVueSplitButtonIcons from './../../auto-generated/previews/vue/split-button-icons.md';
 
+## Example
 
 <Playground
 name="split-button" height="16rem"
@@ -28,7 +29,7 @@ frameworks={{
   vue: SourceVueSplitButton
 }}></Playground>
 
-### With icon only
+### Icon
 
 <Playground
 name="split-button-icons" height="16rem"
@@ -40,7 +41,7 @@ frameworks={{
   vue: SourceVueSplitButtonIcons
 }}></Playground>
 
-## Properties
+## API
 
 ### Props
 

@@ -13,12 +13,12 @@ import SourceAngularDateDropdownUserRangeTs from './../auto-generated/previews/a
 import SourceAngularDateDropdownUserRangeHtml from './../auto-generated/previews/angular/date-dropdown-user-range.html.md'
 import SourceVueDateDropdownUserRange from './../auto-generated/previews/vue/date-dropdown-user-range.md'
 
-# Date Dropdown
+# Date dropdown
 
-## Usage
+## Example
 
 <Playground
-  name="date-dropdown" height="35rem"
+  name="date-dropdown" height="34rem"
   frameworks={{
     react: SourceReactDateDropdown,
     angular: SourceAngularDateDropdown,
@@ -26,10 +26,10 @@ import SourceVueDateDropdownUserRange from './../auto-generated/previews/vue/dat
     vue: SourceVueDateDropdown
 }}></Playground>
 
-## with user defined range options
+### With user defined range options
 
 <Playground
-  name="date-dropdown-user-range" height="35rem"
+  name="date-dropdown-user-range" height="34rem"
   frameworks={{
     react: SourceReactDateDropdownUserRange,
     angular: {
@@ -40,7 +40,7 @@ import SourceVueDateDropdownUserRange from './../auto-generated/previews/vue/dat
     vue: SourceVueDateDropdownUserRange
 }}></Playground>
 
-## Properties
+## API
 
 ### Props
 

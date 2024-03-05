@@ -19,7 +19,7 @@ ECharts is a third party library distributed under [Apache License 2.0](https://
 
 </div>
 
-### Installation
+## Installation
 
 ```sh
 npm install --save @siemens/ix-echarts
@@ -31,10 +31,10 @@ Import the module once in your application.
 import '@siemens/ix-echarts';
 ```
 
-## Usage
+## Example
 
 <Playground
-height="50rem"
+height="40rem"
 name="echarts"
 frameworks={{
   react: ReactSourceEcharts,

@@ -4,17 +4,17 @@ import Props from './../../auto-generated/ix-menu-about/props.md';
 import Events from './../../auto-generated/ix-menu-about/events.md';
 import PropsItem from './../../auto-generated/ix-menu-about-item/props.md';
 
-## Usage
+## Example
 
 <Playground
 name="about-and-legal" height="30rem" width="100%" noMargin examplesByName>
 </Playground>
 
-## Change language of legal links
+### Change language of legal links
 
 Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
 
-## Properties (ix-menu-about)
+## API (ix-menu-about)
 
 #### Props
 
@@ -24,7 +24,7 @@ Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
 
 <Events />
 
-## Properties (ix-menu-about-item)
+## API (ix-menu-about-item)
 
 #### Props
 

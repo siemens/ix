@@ -17,14 +17,14 @@ import Playground from '@site/src/components/Playground'
 
 <Tags />
 
-## Usage
+## Example
 
 <Playground
 name="tooltip"
 examplesByName>
 </Playground>
 
-## Properties
+## API
 
 ### Props
 

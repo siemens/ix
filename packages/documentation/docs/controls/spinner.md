@@ -17,7 +17,7 @@ import SourceVueSpinnerLarge from './../auto-generated/previews/vue/spinner-larg
 
 # Spinner
 
-## Usage
+## Example
 
 <Playground
 name="spinner" height="5rem"
@@ -31,7 +31,7 @@ frameworks={{
 ### Large
 
 <Playground
-name="spinner-large" height="16rem"
+name="spinner-large" height="10rem"
 hideInitalCodePreview
 frameworks={{
   angular: SourceAngularSpinnerLarge,
@@ -40,12 +40,8 @@ frameworks={{
   vue: SourceVueSpinnerLarge
 }}></Playground>
 
-## Properties
+## API
 
 ### Props
 
 <Props />
-
-### Events
-
-<Events />

@@ -28,7 +28,7 @@ import SourceVueGroupContext from './../auto-generated/previews/vue/group-contex
 
 # Group
 
-## Usage
+## Example
 
 <Playground
 name="group" height="16rem"
@@ -84,7 +84,7 @@ frameworks={{
   vue: SourceVueGroupContext
 }}></Playground>
 
-## Properties (ix-group)
+## API (ix-group)
 
 ### Props
 
@@ -94,7 +94,7 @@ frameworks={{
 
 <Events />
 
-## Properties (ix-group-item)
+## API (ix-group-item)
 
 ### Props
 

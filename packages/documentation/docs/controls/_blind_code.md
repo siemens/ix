@@ -22,8 +22,9 @@ import SourceVueVariants from './../auto-generated/previews/vue/blind-variants.m
 import SourceAngularVariantsTs from './../auto-generated/previews/angular/blind-variants.ts.md'
 import SourceAngularVariantsHtml from './../auto-generated/previews/angular/blind-variants.html.md'
 
-
 import Playground from '@site/src/components/Playground'
+
+## Example
 
 <Playground
 name="blind"
@@ -54,6 +55,8 @@ frameworks={{
 }}>
 </Playground>
 
+### Variants
+
 <ApiTableSinceTag message="2.0.0" />
 
 <Playground
@@ -70,13 +73,12 @@ frameworks={{
 }}>
 </Playground>
 
+## API
 
-### Properties
-
-#### Props
+### Props
 
 <Props />
 
-#### Events
+### Events
 
 <Events />

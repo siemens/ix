@@ -4,13 +4,13 @@ import Props from './../../auto-generated/ix-menu-settings/props.md';
 import Events from './../../auto-generated/ix-menu-settings/events.md';
 import ItemProps from './../../auto-generated/ix-menu-settings-item/props.md';
 
-## Usage
+## Example
 
 <Playground
 name="settings" height="30rem" noMargin examplesByName>
 </Playground>
 
-## Properties (ix-menu-settings)
+## API (ix-menu-settings)
 
 ### Props
 
@@ -20,7 +20,7 @@ name="settings" height="30rem" noMargin examplesByName>
 
 <Events />
 
-## Properties (ix-menu-settings-item)
+## API (ix-menu-settings-item)
 
 ### Props
 

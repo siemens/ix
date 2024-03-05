@@ -20,7 +20,7 @@ import SourceVueTreeCustom from './../auto-generated/previews/vue/tree-custom.md
 
 # Tree
 
-## Usage
+## Example
 
 <Playground
 name="tree"
@@ -43,7 +43,7 @@ frameworks={{
   vue: SourceVueTreeCustom
 }}></Playground>
 
-## Properties (ix-tree)
+## API (ix-tree)
 
 ### Props
 
@@ -53,7 +53,7 @@ frameworks={{
 
 <Events />
 
-## Properties (ix-tree-item)
+## API (ix-tree-item)
 
 ### Props
 

@@ -14,21 +14,10 @@ import SourceVueDatePicker from './../auto-generated/previews/vue/datepicker.md'
 
 # Date picker
 
-## Range Selection
+## Example
 
 <Playground
-name="datepicker-range" height="35rem"
-frameworks={{
-    react: SourceReactDatePickerRange,
-    angular: SourceAngularDatePickerRange,
-    javascript: SourceDatePickerRange,
-    vue: SourceVueDatePickerRange
-}}></Playground>
-
-## Single Selection
-
-<Playground
-name="datepicker" height="35rem"
+name="datepicker" height="30rem"
 frameworks={{
     react: SourceReactDatePicker,
     angular: SourceAngularDatePicker,
@@ -36,15 +25,26 @@ frameworks={{
     vue: SourceVueDatePicker
 }}></Playground>
 
-## Translation
+### Range Selection
+
+<Playground
+name="datepicker-range" height="30rem"
+frameworks={{
+    react: SourceReactDatePickerRange,
+    angular: SourceAngularDatePickerRange,
+    javascript: SourceDatePickerRange,
+    vue: SourceVueDatePickerRange
+}}></Playground>
+
+### Translation
 
 The `ix-date-picker` can be configured using [BCP 47](https://tools.ietf.org/html/rfc5646) locale strings specifying the language to use generating or interpreting strings. More information can be found [here](https://moment.github.io/luxon/#/intl?id=default-locale)
 
 <Playground
-name="datepicker-locale" height="35rem"
+name="datepicker-locale" height="30rem"
 examplesByName></Playground>
 
-## Properties
+## API
 
 ### Props
 

@@ -5,7 +5,7 @@ import SourceTableStriped from './../auto-generated/previews/web-component/html-
 
 # HTML table
 
-## Usage
+## Example
 
 <Playground
 name="html-table" height="12rem"

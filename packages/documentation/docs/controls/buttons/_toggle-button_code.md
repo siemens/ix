@@ -1,14 +1,13 @@
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 import Playground from '@site/src/components/Playground';
 
-import Tags from './../../auto-generated/ix-toggle-button/tags.md';
-
 import EventsToggleButton from './../../auto-generated/ix-toggle-button/events.md';
-
 import EventsIconToggleButton from './../../auto-generated/ix-icon-toggle-button/events.md';
 
-import PropsToggleButton from './../../auto-generated/ix-toggle-button/props.md';
+import TagsToggleButton from './../../auto-generated/ix-toggle-button/tags.md';
+import TagsIconToggleButton from './../../auto-generated/ix-icon-toggle-button/tags.md';
 
+import PropsToggleButton from './../../auto-generated/ix-toggle-button/props.md';
 import PropsIconToggleButton from './../../auto-generated/ix-icon-toggle-button/props.md';
 
 import WcToggleButtonSecondary from './../../auto-generated/previews/web-component/toggle-button-secondary.md'
@@ -59,45 +58,13 @@ import VueIconToggleButtonSecondaryOutline from './../../auto-generated/previews
 import VueIconToggleButtonPrimaryGhost from './../../auto-generated/previews/vue/icon-toggle-button-primary-ghost.md'
 import VueIconToggleButtonPrimaryOutline from './../../auto-generated/previews/vue/icon-toggle-button-primary-outline.md'
 
-<Tags />
+# Toggle button
 
-## Toggle button secondary outline
+<TagsToggleButton />
 
-<Playground
-name="toggle-button-secondary-outline"
-frameworks={{
-  javascript: WcToggleButtonSecondaryOutline,
-  angular: NgToggleButtonSecondaryOutline,
-  react: ReactToggleButtonSecondaryOutline,
-  vue: VueToggleButtonSecondaryOutline
-}}>
-</Playground>
+## Example
 
-## Toggle button secondary ghost
-
-<Playground
-name="toggle-button-secondary-ghost"
-frameworks={{
-  javascript: WcToggleButtonSecondaryGhost,
-  angular: NgToggleButtonSecondaryGhost,
-  react: ReactToggleButtonSecondaryGhost,
-  vue: VueToggleButtonSecondaryGhost
-}}>
-</Playground>
-
-## Toggle button secondary
-
-<Playground
-name="toggle-button-secondary"
-frameworks={{
-  javascript: WcToggleButtonSecondary,
-  angular: NgToggleButtonSecondary,
-  react: ReactToggleButtonSecondary,
-  vue: VueToggleButtonSecondary
-}}>
-</Playground>
-
-## Toggle button primary outline
+### Primary outline
 
 <Playground
 name="toggle-button-primary-outline"
@@ -109,7 +76,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Toggle button primary ghost
+### Primary ghost
 
 <Playground
 name="toggle-button-primary-ghost"
@@ -121,45 +88,59 @@ frameworks={{
 }}>
 </Playground>
 
-<Tags />
-
-## Icon Toggle button secondary outline
+### Secondary
 
 <Playground
-name="icon-toggle-button-secondary-outline"
+name="toggle-button-secondary"
 frameworks={{
-  javascript: WcIconToggleButtonSecondaryOutline,
-  angular: NgIconToggleButtonSecondaryOutline,
-  react: ReactIconToggleButtonSecondaryOutline,
-  vue: VueIconToggleButtonSecondaryOutline
+  javascript: WcToggleButtonSecondary,
+  angular: NgToggleButtonSecondary,
+  react: ReactToggleButtonSecondary,
+  vue: VueToggleButtonSecondary
 }}>
 </Playground>
 
-## Icon Toggle button secondary ghost
+### Secondary outline
 
 <Playground
-name="icon-toggle-button-secondary-ghost"
+name="toggle-button-secondary-outline"
 frameworks={{
-  javascript: WcIconToggleButtonSecondaryGhost,
-  angular: NgIconToggleButtonSecondaryGhost,
-  react: ReactIconToggleButtonSecondaryGhost,
-  vue: VueIconToggleButtonSecondaryGhost
+  javascript: WcToggleButtonSecondaryOutline,
+  angular: NgToggleButtonSecondaryOutline,
+  react: ReactToggleButtonSecondaryOutline,
+  vue: VueToggleButtonSecondaryOutline
 }}>
 </Playground>
 
-## Icon Toggle Button secondary
+### Secondary ghost
 
 <Playground
-name="icon-toggle-button-secondary"
+name="toggle-button-secondary-ghost"
 frameworks={{
-  javascript: WcIconToggleButtonSecondary,
-  angular: NgIconToggleButtonSecondary,
-  react: ReactIconToggleButtonSecondary,
-  vue: VueIconToggleButtonSecondary
+  javascript: WcToggleButtonSecondaryGhost,
+  angular: NgToggleButtonSecondaryGhost,
+  react: ReactToggleButtonSecondaryGhost,
+  vue: VueToggleButtonSecondaryGhost
 }}>
 </Playground>
 
-## Icon Toggle button primary outline
+## API
+
+### Props
+
+<PropsToggleButton />
+
+### Events
+
+<EventsToggleButton />
+
+# Icon toggle button
+
+<TagsIconToggleButton />
+
+## Example
+
+### Primary outline
 
 <Playground
 name="icon-toggle-button-primary-outline"
@@ -171,7 +152,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Icon Toggle Button primary ghost
+### Primary ghost
 
 <Playground
 name="icon-toggle-button-primary-ghost"
@@ -183,18 +164,48 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties (ix-toggle-button)
+### Secondary
 
-<PropsToggleButton />
+<Playground
+name="icon-toggle-button-secondary"
+frameworks={{
+  javascript: WcIconToggleButtonSecondary,
+  angular: NgIconToggleButtonSecondary,
+  react: ReactIconToggleButtonSecondary,
+  vue: VueIconToggleButtonSecondary
+}}>
+</Playground>
 
-## Events (ix-toggle-button)
+### Secondary outline
 
-<EventsToggleButton />
+<Playground
+name="icon-toggle-button-secondary-outline"
+frameworks={{
+  javascript: WcIconToggleButtonSecondaryOutline,
+  angular: NgIconToggleButtonSecondaryOutline,
+  react: ReactIconToggleButtonSecondaryOutline,
+  vue: VueIconToggleButtonSecondaryOutline
+}}>
+</Playground>
 
-## Properties (ix-icon-toggle-button)
+### Secondary ghost
+
+<Playground
+name="icon-toggle-button-secondary-ghost"
+frameworks={{
+  javascript: WcIconToggleButtonSecondaryGhost,
+  angular: NgIconToggleButtonSecondaryGhost,
+  react: ReactIconToggleButtonSecondaryGhost,
+  vue: VueIconToggleButtonSecondaryGhost
+}}>
+</Playground>
+
+## API
+
+### Props
 
 <PropsIconToggleButton />
 
-## Events (ix-icon-toggle-button)
+### Events
 
 <EventsIconToggleButton />

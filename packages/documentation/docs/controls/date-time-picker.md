@@ -9,10 +9,10 @@ import SourceVueDatetimepicker from './../auto-generated/previews/vue/datetimepi
 
 # Date time picker
 
-## Usage
+## Example
 
 <Playground
-name="datetimepicker" height="35rem"
+name="datetimepicker" height="30rem"
 frameworks={{
   react: SourceReactDatetimepicker,
   angular: SourceAngularDatetimepicker,
@@ -46,7 +46,7 @@ export default async () => {
 };
 ``` -->
 
-## Properties
+## API
 
 ### Props
 
