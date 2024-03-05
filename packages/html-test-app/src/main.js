@@ -13,4 +13,5 @@ import './preview-examples/styles-auto-gen/global.css';
 (async () => {
   await applyPolyfills();
   await defineCustomElements();
+
 })();

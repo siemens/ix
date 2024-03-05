@@ -12,7 +12,11 @@ import { computed, ref } from 'vue';
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
 import ActionCard from './preview-examples/action-card.vue';
-import AGGrid from './preview-examples/aggrid.vue';
+import AgGrid from './preview-examples/aggrid.vue';
+import ApplicationAppSwitch from './preview-examples/application-app-switch.vue';
+import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
+import ApplicationHeader from './preview-examples/application-header.vue';
+import Application from './preview-examples/application.vue';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header.vue';
 import BasicNavigation from './preview-examples/basic-navigation.vue';
 import Blind from './preview-examples/blind.vue';
@@ -42,6 +46,7 @@ import CardList from './preview-examples/card-list.vue';
 import CategoryFilter from './preview-examples/category-filter.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
+import Content from './preview-examples/content.vue';
 import DateDropdown from "./preview-examples/date-dropdown.vue";
 import DateDropdownUserRange from "./preview-examples/date-dropdown-user-range.vue";
 import DatepickerRange from './preview-examples/datepicker-range.vue';
@@ -138,6 +143,8 @@ import ModalSizes from './preview-examples/modal-sizes.vue';
 import Modal from './preview-examples/modal.vue';
 import PaginationAdvanced from './preview-examples/pagination-advanced.vue';
 import Pagination from './preview-examples/pagination.vue';
+import Pane from './preview-examples/pane.vue';
+import PaneLayout from './preview-examples/pane-layout.vue';
 import SplitButtonIcons from './preview-examples/split-button-icons.vue';
 import SplitButton from './preview-examples/split-button.vue';
 import TabsRounded from './preview-examples/tabs-rounded.vue';
@@ -160,7 +167,12 @@ const routes: any = {
 '/': App,
 '/preview/about-and-legal': AboutAndLegal,
 '/preview/action-card': ActionCard,
-'/preview/aggrid': AGGrid,
+'/preview/aggrid': AgGrid,
+'/preview/application': Application,
+'/preview/application-header': ApplicationHeader,
+'/preview/application-breakpoints': ApplicationBreakpoints,
+'/preview/application-app-switch': ApplicationAppSwitch,
+'/preview/content': Content,
 '/preview/avatar-image': AvatarImage,
 '/preview/avatar-initials': AvatarInitials,
 '/preview/avatar': Avatar,
@@ -255,6 +267,8 @@ const routes: any = {
 '/preview/modal': Modal,
 '/preview/pagination-advanced': PaginationAdvanced,
 '/preview/pagination': Pagination,
+'/preview/pane': Pane,
+'/preview/pane-layout': PaneLayout,
 '/preview/pill': Pill,
 '/preview/pill-variants': PillVariants,
 '/preview/popover-news': PopoverNews,

@@ -15,11 +15,13 @@ import {
   Host,
   Method,
   Prop,
+  State,
 } from '@stencil/core';
 import anime from 'animejs';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
 import { OnListener } from '../utils/listener';
+import { waitForElement } from '../utils/waitForElement';
 
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
 export type IxModalDynamicSize = 'full-width' | 'full-screen';
@@ -93,6 +95,8 @@ export class Modal {
    */
   @Event() dialogDismiss: EventEmitter;
 
+  @State() modalVisible = false;
+
   @OnListener<Modal>('keydown', (self) => !self.closeOnEscape || !self.keyboard)
   onKey(e: KeyboardEvent) {
     if (e.key === 'Escape') {
@@ -140,12 +144,17 @@ export class Modal {
   }
 
   private onModalClick(event: MouseEvent) {
+    if (event.target !== this.dialog) {
+      return;
+    }
+
     const rect = this.dialog.getBoundingClientRect();
     const isClickOutside =
       rect.top <= event.clientY &&
       event.clientY <= rect.top + rect.height &&
       rect.left <= event.clientX &&
       event.clientX <= rect.left + rect.width;
+
     if (!isClickOutside && this.closeOnBackdropClick) {
       this.dismissModal();
     }
@@ -156,7 +165,16 @@ export class Modal {
    */
   @Method()
   async showModal() {
-    setTimeout(() => this.dialog.showModal());
+    try {
+      const dialog = await waitForElement<HTMLDialogElement>(
+        'dialog',
+        this.hostElement.shadowRoot
+      );
+      this.modalVisible = true;
+      dialog.showModal();
+    } catch (e) {
+      console.error('HTMLDialogElement not existing');
+    }
   }
 
   /**
@@ -174,6 +192,7 @@ export class Modal {
     }
 
     this.slideOutModal(() => {
+      this.modalVisible = false;
       this.dialog.close(
         JSON.stringify(
           {
@@ -222,6 +241,7 @@ export class Modal {
     return (
       <Host
         class={{
+          visible: this.modalVisible,
           'no-backdrop': this.backdrop === false,
           'align-center': this.centered,
         }}
@@ -235,6 +255,7 @@ export class Modal {
               modal: true,
               [`modal-size-${this.size}`]: true,
             }}
+            onClose={() => this.dismissModal()}
             onClick={(event) => this.onModalClick(event)}
             onCancel={(e) => {
               e.preventDefault();

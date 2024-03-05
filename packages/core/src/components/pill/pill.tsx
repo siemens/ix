@@ -47,8 +47,16 @@ export class Pill {
 
   /**
    * Custom font color for pill. Only working for `variant='custom'`
+   *
+   * @deprecated since 2.1.0 use `pill-color`
    */
+  // eslint-disable-next-line @stencil-community/reserved-member-names
   @Prop() color: string | undefined;
+
+  /**
+   * Custom font color for pill. Only working for `variant='custom'`
+   */
+  @Prop() pillColor: string | undefined;
 
   /**
    * Align pill content left
@@ -60,7 +68,7 @@ export class Pill {
 
     if (this.variant === 'custom') {
       customStyle = {
-        color: this.color,
+        color: this.pillColor ?? this.color,
         [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
       };
     }
@@ -69,7 +77,7 @@ export class Pill {
         style={
           this.variant === 'custom'
             ? {
-                '--ix-icon-button-color': this.color,
+                '--ix-icon-button-color': this.pillColor ?? this.color,
               }
             : {}
         }

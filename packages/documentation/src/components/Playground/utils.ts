@@ -90,6 +90,7 @@ async function openHtmlStackBlitz(
     global_css,
     index_html,
     init_js,
+    utils_js,
     package_json,
     vite_config_ts,
     license,
@@ -97,6 +98,7 @@ async function openHtmlStackBlitz(
     `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/html/src/index.html`,
     `${baseUrl}code-runtime/html/src/init.js`,
+    `${baseUrl}code-runtime/html/src/utils.js`,
     `${baseUrl}code-runtime/html/package.json`,
     `${baseUrl}code-runtime/html/vite.config.ts`,
     `${baseUrl}LICENSE.md`,
@@ -140,6 +142,7 @@ async function openHtmlStackBlitz(
           sourceCode
         ),
         'src/init.js': init_js,
+        'src/utils.js': utils_js,
         'package.json': package_json,
         'vite.config.ts': vite_config_ts,
         'LICENSE.md': license,

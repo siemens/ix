@@ -12,5 +12,5 @@ import {Card, CardList} from '@site/src/components/Card';
   <Card label="iX for designers" link="getting-started-for-designers" icon="tulip"/>
   <Card label="Industrial icon system" link="icon-library/icons" icon="language" />
   <Card label="Theming" link="guidelines/theme" icon="bulb"/>
-  <Card label="Components" link="controls/navigation/basic-navigation" icon="configuration" />
+  <Card label="Components" link="controls/application-frame/application" icon="configuration" />
 </CardList>

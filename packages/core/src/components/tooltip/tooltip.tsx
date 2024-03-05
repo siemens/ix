@@ -34,8 +34,6 @@ type ArrowPosition = {
 
 const numberToPixel = (value: number) => (value != null ? `${value}px` : '');
 
-let sequentialInstanceId = 0;
-
 /**
  * @slot title-icon - Icon of tooltip title
  * @slot title-content - Content of tooltip title
@@ -78,13 +76,14 @@ export class Tooltip {
 
   @Element() hostElement: HTMLIxTooltipElement;
 
-  private id = ++sequentialInstanceId;
   private observer: MutationObserver;
   private hideTooltipTimeout: NodeJS.Timeout;
   private onEnterElementBind = this.onTooltipShow.bind(this);
   private onLeaveElementBind = this.onTooltipHide.bind(this);
   private disposeAutoUpdate?: () => void;
   private tooltipCloseTimeInMS = 50;
+
+  private disposeListener: Function;
 
   private get arrowElement() {
     return this.hostElement.shadowRoot.querySelector('.arrow') as HTMLElement;
@@ -108,8 +107,8 @@ export class Tooltip {
   @Method()
   async showTooltip(anchorElement: any) {
     clearTimeout(this.hideTooltipTimeout);
+    await this.computeTooltipPosition(anchorElement);
     this.visible = true;
-    this.computeTooltipPosition(anchorElement);
   }
 
   /** @internal */
@@ -160,50 +159,55 @@ export class Tooltip {
     if (!target) {
       return;
     }
-    this.disposeAutoUpdate = autoUpdate(
-      target,
-      this.hostElement,
-      async () => {
-        setTimeout(async () => {
-          const computeResponse = await computePosition(
-            target,
-            this.hostElement,
-            {
-              strategy: 'fixed',
-              placement: this.placement,
-              middleware: [
-                shift(),
-                offset(8),
-                arrow({
-                  element: this.arrowElement,
-                }),
-                flip({
-                  fallbackStrategy: 'initialPlacement',
-                  padding: 10,
-                }),
-              ],
+
+    return new Promise<void>((resolve) => {
+      this.disposeAutoUpdate = autoUpdate(
+        target,
+        this.hostElement,
+        async () => {
+          setTimeout(async () => {
+            const computeResponse = await computePosition(
+              target,
+              this.hostElement,
+              {
+                strategy: 'fixed',
+                placement: this.placement,
+                middleware: [
+                  shift(),
+                  offset(8),
+                  arrow({
+                    element: this.arrowElement,
+                  }),
+                  flip({
+                    fallbackStrategy: 'initialPlacement',
+                    padding: 10,
+                  }),
+                ],
+              }
+            );
+
+            if (computeResponse.middlewareData.arrow) {
+              const arrowPosition = this.computeArrowPosition(computeResponse);
+              Object.assign(this.arrowElement.style, arrowPosition);
             }
-          );
 
-          if (computeResponse.middlewareData.arrow) {
-            const arrowPosition = this.computeArrowPosition(computeResponse);
-            Object.assign(this.arrowElement.style, arrowPosition);
-          }
+            const { x, y } = computeResponse;
+            Object.assign(this.hostElement.style, {
+              left: x !== null ? `${x}px` : '',
+              top: y !== null ? `${y}px` : '',
+            });
 
-          const { x, y } = computeResponse;
-          Object.assign(this.hostElement.style, {
-            left: x !== null ? `${x}px` : '',
-            top: y !== null ? `${y}px` : '',
+            resolve();
           });
-        });
-      },
-      {
-        ancestorResize: true,
-        ancestorScroll: true,
-        elementResize: true,
-        animationFrame: this.animationFrame,
-      }
-    );
+        },
+        {
+          ancestorResize: true,
+          ancestorScroll: true,
+          elementResize: true,
+          animationFrame: this.animationFrame,
+        }
+      );
+    });
   }
 
   private clearHideTimeout() {
@@ -216,29 +220,25 @@ export class Tooltip {
     return Array.from(document.querySelectorAll(this.for));
   }
 
-  private updateAriaDescribedBy(element: Element, describedBy: string) {
-    const oldDescribedBy = element.getAttribute('aria-describedby');
+  private registerTriggerListener() {
+    const triggerElementList = this.queryAnchorElements();
 
-    if (oldDescribedBy.indexOf(describedBy) != -1) {
-      return;
+    if (this.disposeListener) {
+      this.disposeListener();
     }
 
-    const newDescribedBy = `${oldDescribedBy} ${describedBy}`;
-    element.setAttribute('aria-describedby', newDescribedBy);
-  }
+    triggerElementList.forEach((element) => {
+      element.addEventListener('mouseenter', this.onEnterElementBind);
+      element.addEventListener('mouseleave', this.onLeaveElementBind);
+      element.addEventListener('focusin', this.onEnterElementBind);
+      element.addEventListener('focusout', this.onLeaveElementBind);
 
-  private getTooltipId() {
-    return this.hostElement.id || 'ix-tooltip-' + this.id;
-  }
-
-  private registerTriggerListener() {
-    const elements = this.queryAnchorElements();
-    elements.forEach((e) => {
-      e.addEventListener('mouseenter', this.onEnterElementBind);
-      e.addEventListener('mouseleave', this.onLeaveElementBind);
-      e.addEventListener('focusin', this.onEnterElementBind);
-      e.addEventListener('focusout', this.onLeaveElementBind);
-      this.updateAriaDescribedBy(e, this.getTooltipId());
+      this.disposeListener = () => {
+        element.removeEventListener('mouseenter', this.onEnterElementBind);
+        element.removeEventListener('mouseleave', this.onLeaveElementBind);
+        element.removeEventListener('focusin', this.onEnterElementBind);
+        element.removeEventListener('focusout', this.onLeaveElementBind);
+      };
     });
   }
 
@@ -295,7 +295,6 @@ export class Tooltip {
         class={{
           visible: this.visible,
         }}
-        id={this.getTooltipId()}
         role="tooltip"
       >
         <div class={'tooltip-title'}>

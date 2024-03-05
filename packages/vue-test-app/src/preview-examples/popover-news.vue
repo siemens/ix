@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts">
 import {
+IxApplication,
+  IxApplicationHeader,
   IxBasicNavigation,
   IxMenu,
   IxMenuAbout,
@@ -18,8 +20,10 @@ import {
 </script>
 
 <template>
-  <IxBasicNavigation>
-    <div className="placeholder-logo" slot="logo"></div>
+  <IxApplication>
+    <IxApplicationHeader>
+      <div className="placeholder-logo" slot="logo"></div>
+    </IxApplicationHeader>
     <IxMenu>
       <IxMenuAbout>
         <IxMenuAboutItem label="Example"> </IxMenuAboutItem>
@@ -28,5 +32,5 @@ import {
         Test
       </IxMenuAboutNews>
     </IxMenu>
-  </IxBasicNavigation>
+  </IxApplication>
 </template>

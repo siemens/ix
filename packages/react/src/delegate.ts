@@ -49,14 +49,30 @@ export class ReactFrameworkDelegate implements FrameworkDelegate {
   attachViewToPortal?: (id: string, view: any) => Promise<Element>;
   removeViewFromPortal?: (id: string) => void;
 
+  resolvePortalInitPromise: (() => void) | undefined;
+  portalInitPromise: Promise<void>;
+  isUsingReactPortal = false;
+
+  constructor() {
+    this.portalInitPromise = new Promise<void>(
+      (resolve) => (this.resolvePortalInitPromise = resolve)
+    );
+  }
+
   async attachView(view: any): Promise<any> {
     const id = createViewInstance();
 
-    if (!this.attachViewToPortal) {
+    if (!this.isUsingReactPortal) {
       return fallbackRootDom(id, view);
     }
-    const refElement = await this.attachViewToPortal(id, view);
-    return refElement;
+
+    await this.isPortalReady();
+    if (this.attachViewToPortal) {
+      const refElement = await this.attachViewToPortal(id, view);
+      return refElement;
+    }
+
+    console.error('Portal could not be initialized');
   }
 
   async removeView(view: any): Promise<void> {
@@ -68,6 +84,14 @@ export class ReactFrameworkDelegate implements FrameworkDelegate {
     const id = parent.getAttribute('data-portal-id');
 
     this.removeViewFromPortal(id);
+  }
+
+  portalReady() {
+    this.resolvePortalInitPromise?.();
+  }
+
+  private async isPortalReady() {
+    return this.portalInitPromise;
   }
 }
 

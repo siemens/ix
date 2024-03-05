@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 <script setup lang="ts">
 import {
   HTMLRefElement,
+  IxApplication,
+  IxApplicationHeader,
   IxBasicNavigation,
   IxMenu,
   IxMenuSettings,
@@ -26,13 +28,15 @@ onMounted(async () => {
 </script>
 
 <template>
-  <IxBasicNavigation>
-    <div className="placeholder-logo" slot="logo"></div>
+  <IxApplication>
+    <IxApplicationHeader>
+      <div className="placeholder-logo" slot="logo"></div>
+    </IxApplicationHeader>
     <IxMenu ref="menu">
       <IxMenuSettings>
         <IxMenuSettingsItem label="Example Setting 1"></IxMenuSettingsItem>
         <IxMenuSettingsItem label="Example Setting 2"></IxMenuSettingsItem>
       </IxMenuSettings>
     </IxMenu>
-  </IxBasicNavigation>
+  </IxApplication>
 </template>

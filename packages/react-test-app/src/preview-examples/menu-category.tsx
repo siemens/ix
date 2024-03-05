@@ -8,7 +8,7 @@
  */
 
 import {
-  IxBasicNavigation,
+  IxApplication,
   IxMenu,
   IxMenuCategory,
   IxMenuItem,
@@ -17,7 +17,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <IxBasicNavigation>
+    <IxApplication>
       <IxMenu>
         <IxMenuItem home icon="home">
           Home
@@ -28,6 +28,6 @@ export default () => {
           <IxMenuItem icon="globe">Nested Tab</IxMenuItem>
         </IxMenuCategory>
       </IxMenu>
-    </IxBasicNavigation>
+    </IxApplication>
   );
 };

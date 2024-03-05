@@ -643,14 +643,13 @@ function FooterButtons() {
           style="primary"
         />
         <Button
-          link={useBaseUrl('/docs/team')}
+          link={useBaseUrl('/docs/contact-us')}
           icon="heart"
           label="Meet the team"
           style="secondary"
         />
       </div>
       <div className={styles.lines}>
-
         <Button
           link={'https://community.siemens.com/c/ix/'}
           icon="user-management"

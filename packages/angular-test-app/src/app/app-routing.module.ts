@@ -12,6 +12,10 @@ import { RouterModule, Routes } from '@angular/router';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AgGrid from '../preview-examples/aggrid';
+import ApplicationExample from '../preview-examples/application';
+import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
+import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
+import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
@@ -40,6 +44,7 @@ import CategoryFilterSuggestions from '../preview-examples/category-filter-sugge
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
+import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
 import DateDropdown from '../preview-examples/date-dropdown';
@@ -108,6 +113,8 @@ import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalSizes from '../preview-examples/modal-sizes';
 import Pagination from '../preview-examples/pagination';
 import PaginationAdvanced from '../preview-examples/pagination-advanced';
+import Pane from '../preview-examples/pane';
+import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
@@ -131,7 +138,7 @@ import TabsRounded from '../preview-examples/tabs-rounded';
 import Textarea from '../preview-examples/textarea';
 import TextareaDisabled from '../preview-examples/textarea-disabled';
 import TextareaReadonly from '../preview-examples/textarea-readonly';
-import ThemeSwitcher from '../preview-examples/theme-switcher';
+import ThemeService from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import Timepicker from '../preview-examples/timepicker';
 import Toast from '../preview-examples/toast';
@@ -194,6 +201,26 @@ const routes: Routes = [
       {
         path: 'action-card',
         component: ActionCard,
+      },
+      {
+        path: 'application',
+        component: ApplicationExample,
+      },
+      {
+        path: 'application-breakpoints',
+        component: ApplicationBreakpointExample,
+      },
+      {
+        path: 'application-app-switch',
+        component: ApplicationAppSwitchExample,
+      },
+      {
+        path: 'application-header',
+        component: ApplicationHeaderExample,
+      },
+      {
+        path: 'content',
+        component: ContentExample,
       },
       {
         path: 'aggrid',
@@ -580,6 +607,8 @@ const routes: Routes = [
         path: 'pagination',
         component: Pagination,
       },
+      { path: 'pane', component: Pane },
+      { path: 'pane-layout', component: PaneLayout },
       {
         path: 'pill',
         component: Pill,
@@ -671,7 +700,7 @@ const routes: Routes = [
       },
       {
         path: 'theme-switcher',
-        component: ThemeSwitcher,
+        component: ThemeService,
       },
       {
         path: 'tile',

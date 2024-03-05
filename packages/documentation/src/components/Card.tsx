@@ -26,6 +26,7 @@ export function Card(
     style?: CSSProperties;
   }>
 ) {
+  const baseUrl = useBaseUrl('/');
   const { preferredVersion } = useDocsPreferredVersion();
 
   function link() {
@@ -42,6 +43,11 @@ export function Card(
     return useBaseUrl(`${path}/${props.link}`);
   }
 
+  let icon = props.icon;
+  if (props.icon?.startsWith('/')) {
+    icon = baseUrl + props.icon.substring(1);
+  }
+
   return (
     <Link
       to={link()}
@@ -49,7 +55,7 @@ export function Card(
         styles.Card,
         {
           [styles.Card__Primary]: props.isPrimary,
-          [styles.With__Icon]: props.icon,
+          [styles.With__Icon]: icon,
           [styles.Auto__Width]: props.autoWidth,
         },
         props.size === 'big' ? styles.Card_big : styles.Card
@@ -58,17 +64,17 @@ export function Card(
     >
       <div
         className={clsx(styles.Label, 'text-h2', {
-          [styles.Full__Height]: !props.icon,
+          [styles.Full__Height]: !icon,
         })}
       >
         {props.label}
         {props.children}
       </div>
-      {props.icon ? (
+      {icon ? (
         <>
           <div className={styles.Splitter}></div>
           <div className={styles.Icon}>
-            <IxIcon name={props.icon} size="32"></IxIcon>
+            <IxIcon name={icon} size="32"></IxIcon>
           </div>
         </>
       ) : null}

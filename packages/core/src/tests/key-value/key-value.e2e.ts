@@ -15,4 +15,9 @@ regressionTest.describe('key value', () => {
     await page.goto('key-value/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('overflow', async ({ page }) => {
+    await page.goto('key-value/overflow');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

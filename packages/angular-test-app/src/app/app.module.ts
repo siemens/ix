@@ -15,7 +15,11 @@ import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
-import Aggrid from '../preview-examples/aggrid';
+import AgGrid from '../preview-examples/aggrid';
+import ApplicationExample from '../preview-examples/application';
+import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
+import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
+import ApplicationHeaderExample from '../preview-examples/application-header';
 import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
@@ -44,6 +48,7 @@ import CategoryFilterSuggestions from '../preview-examples/category-filter-sugge
 import Checkbox from '../preview-examples/checkbox';
 import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
 import Chip from '../preview-examples/chip';
+import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
 import DateDropdown from '../preview-examples/date-dropdown';
@@ -112,6 +117,8 @@ import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalSizes from '../preview-examples/modal-sizes';
 import Pagination from '../preview-examples/pagination';
 import PaginationAdvanced from '../preview-examples/pagination-advanced';
+import Pane from '../preview-examples/pane';
+import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
@@ -170,7 +177,11 @@ import { NavigationTestComponent } from './components/navigation-test/navigation
     AppComponent,
     AboutAndLegal,
     ActionCard,
-    Aggrid,
+    AgGrid,
+    ApplicationExample,
+    ApplicationBreakpointExample,
+    ApplicationAppSwitchExample,
+    ApplicationHeaderExample,
     AvatarImage,
     AvatarInitials,
     Avatar,
@@ -199,6 +210,7 @@ import { NavigationTestComponent } from './components/navigation-test/navigation
     CheckboxIndeterminate,
     Checkbox,
     Chip,
+    ContentExample,
     DateDropdown,
     DateDropdownUserRange,
     ContentHeaderNoBack,
@@ -267,6 +279,8 @@ import { NavigationTestComponent } from './components/navigation-test/navigation
     ModalSizes,
     PaginationAdvanced,
     Pagination,
+    Pane,
+    PaneLayout,
     Pill,
     PillVariants,
     PopoverNews,

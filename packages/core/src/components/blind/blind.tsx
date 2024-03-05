@@ -136,6 +136,21 @@ export class Blind {
         }}
       >
         <div class={'blind-header-wrapper'}>
+          <button
+            class={{
+              'blind-header': true,
+              [`blind-${this.variant}`]: true,
+              closed: this.collapsed,
+            }}
+            type="button"
+            aria-labelledby={`ix-blind-header-title-${this.blindId}`}
+            aria-controls={`ix-blind-content-section-${this.blindId}`}
+            aria-expanded={a11yBoolean(!this.collapsed)}
+            onClick={() => this.onHeaderClick()}
+          >
+            <slot name="custom-header"></slot>
+          </button>
+
           <div class={'blind-header-content'}>
             <ix-icon
               class="collapse-icon"
@@ -193,21 +208,6 @@ export class Blind {
               ) : null}
             </div>
           </div>
-
-          <button
-            class={{
-              'blind-header': true,
-              [`blind-${this.variant}`]: true,
-              closed: this.collapsed,
-            }}
-            type="button"
-            aria-labelledby={`ix-blind-header-title-${this.blindId}`}
-            aria-controls={`ix-blind-content-section-${this.blindId}`}
-            aria-expanded={a11yBoolean(!this.collapsed)}
-            onClick={() => this.onHeaderClick()}
-          >
-            <slot name="custom-header"></slot>
-          </button>
         </div>
         <section
           id={`ix-blind-content-section-${this.blindId}`}
