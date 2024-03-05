@@ -25,6 +25,8 @@ import {
 } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./styles-auto-gen/application.css"></style>
+
 <script lang="ts">
 export default {
   data(): {

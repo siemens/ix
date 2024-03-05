@@ -16,7 +16,7 @@ The code snippet below shows an example of a combination of different components
 
 ### Breakpoints
 
-<Playground name="application-breakpoints" height="30rem" noMargin examplesByName></Playground>
+<Playground name="application-breakpoints" examplesByName height="30rem" noMargin ></Playground>
 
 ### Application switch
 
@@ -34,7 +34,7 @@ The navigation to another application is implemented via `window.open` (https://
   }
 ```
 
-<Playground name="application-app-switch" examplesByName height="30rem"></Playground>
+<Playground name="application-app-switch" examplesByName height="30rem" noMargin></Playground>
 
 ## API
 
