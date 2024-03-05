@@ -2072,7 +2072,7 @@ export namespace Components {
         "showSeconds": boolean;
         /**
           * Show time reference input
-          * @since 1.1.0 time reference is default aligned with format tt
+          * @since 1.1.0 | Time reference is default aligned with format tt.
           * @deprecated Since 2.0.0 time reference will be displayed depending on format.
          */
         "showTimeReference"?: boolean;
@@ -6232,7 +6232,7 @@ declare namespace LocalJSX {
         "showSeconds"?: boolean;
         /**
           * Show time reference input
-          * @since 1.1.0 time reference is default aligned with format tt
+          * @since 1.1.0 | Time reference is default aligned with format tt.
           * @deprecated Since 2.0.0 time reference will be displayed depending on format.
          */
         "showTimeReference"?: boolean;

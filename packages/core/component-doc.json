@@ -14684,7 +14684,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "1.1.0 time reference is default aligned with format tt"
+              "text": "1.1.0 | Time reference is default aligned with format tt."
             },
             {
               "name": "deprecated",
