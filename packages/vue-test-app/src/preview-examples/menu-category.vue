@@ -10,12 +10,13 @@ LICENSE file in the root directory of this source tree.
 <script setup lang="ts">
 import {
 IxApplication,
-  IxBasicNavigation,
   IxMenu,
   IxMenuCategory,
   IxMenuItem,
 } from '@siemens/ix-vue';
 </script>
+
+<style scoped src="./styles-auto-gen/menu-category.css"></style>
 
 <template>
   <IxApplication>
