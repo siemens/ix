@@ -412,6 +412,12 @@ export class Menu {
 
     this.isTransitionDisabled = false;
     this.checkTransition();
+
+    if (this.breakpoint == 'sm' && this.expand) {
+      setTimeout(() => {
+        this.handleOverflowIndicator();
+      }, 100);
+    }
   }
 
   /**
@@ -514,6 +520,7 @@ export class Menu {
   private handleOverflowIndicator() {
     const { clientHeight, scrollTop, scrollHeight } = this.menuItemsContainer;
     this.itemsScrollShadowTop = scrollTop > 0;
+    console.log(clientHeight, scrollTop, scrollHeight);
     this.itemsScrollShadowBottom =
       Math.round(scrollTop + clientHeight) < scrollHeight;
   }
