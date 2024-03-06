@@ -12082,23 +12082,23 @@
         },
         {
           "name": "slot",
-          "text": "left - Add a left pane to the layout"
+          "text": "left - Use this slot on a pane to position it on the left side of the layout"
         },
         {
           "name": "slot",
-          "text": "right - Add a right pane to the layout"
+          "text": "right - Use this slot on a pane to position it on the right side of the layout"
         },
         {
           "name": "slot",
-          "text": "top - Add a top pane to the layout"
+          "text": "top - Use this slot on a pane to position it on the top side of the layout"
         },
         {
           "name": "slot",
-          "text": "bottom - Add a bottom pane to the layout"
+          "text": "bottom - Use this slot on a pane to position it on the bottom side of the layout"
         },
         {
           "name": "slot",
-          "text": "content - The content displayed inside the pane layout"
+          "text": "content - Use this slot on an element to make it the content of the layout"
         }
       ],
       "encapsulation": "shadow",
@@ -12189,23 +12189,23 @@
       "slots": [
         {
           "name": "bottom",
-          "docs": "Add a bottom pane to the layout"
+          "docs": "Use this slot on a pane to position it on the bottom side of the layout"
         },
         {
           "name": "content",
-          "docs": "The content displayed inside the pane layout"
+          "docs": "Use this slot on an element to make it the content of the layout"
         },
         {
           "name": "left",
-          "docs": "Add a left pane to the layout"
+          "docs": "Use this slot on a pane to position it on the left side of the layout"
         },
         {
           "name": "right",
-          "docs": "Add a right pane to the layout"
+          "docs": "Use this slot on a pane to position it on the right side of the layout"
         },
         {
           "name": "top",
-          "docs": "Add a top pane to the layout"
+          "docs": "Use this slot on a pane to position it on the top side of the layout"
         }
       ],
       "parts": [],
