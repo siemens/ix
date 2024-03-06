@@ -14,7 +14,7 @@ The differences is that the validation tooltip is implemented as `@siemens/ix` [
 
 In the following preview section you will find different implementation of a forms validation.
 
-## Example
+## Examples
 
 <Playground
 name="validation" height="24rem"

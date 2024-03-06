@@ -13,4 +13,6 @@ import Tags from './../../auto-generated/ix-application/tags.md';
 
 <Tags />
 
+<br/><br/>
+
 <DocsTabs styleguide={DocsUx} code={DocsCode} />

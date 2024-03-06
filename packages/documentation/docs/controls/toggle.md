@@ -30,7 +30,7 @@ import SourceVueToggleIndeterminate from './../auto-generated/previews/vue/toggl
 
 # Toggle
 
-## Example
+## Examples
 
 <Playground
 name="toggle"
@@ -92,7 +92,7 @@ frameworks={{
   vue: SourceVueToggleIndeterminate
 }}></Playground>
 
-## API
+## API (ix-toggle)
 
 ### Props
 

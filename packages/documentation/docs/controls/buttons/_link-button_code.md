@@ -11,7 +11,7 @@ import SourceReactLinkButtonDisabled from './../../auto-generated/previews/react
 import SourceAngularLinkButtonDisabled from './../../auto-generated/previews/angular/link-button-disabled.ts.md'
 import SourceVueLinkButtonDisabled from './../../auto-generated/previews/vue/link-button-disabled.md'
 
-## Example
+## Examples
 
 <Playground
 name="link-button"
@@ -35,7 +35,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-link-button)
 
 ### Props
 

@@ -9,7 +9,7 @@ import SourceVueFlip from './../auto-generated/previews/vue/flip-tile.md'
 
 # Flip
 
-## Example
+## Examples
 
 <Playground
 name="flip-tile" height="35rem"
@@ -21,7 +21,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-flip-tile)
 
 ### Props
 

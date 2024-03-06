@@ -9,7 +9,7 @@ import SourceVueKPI from './../auto-generated/previews/vue/kpi.md'
 
 # KPI
 
-## Example
+## Examples
 
 <Playground
 name="kpi" height="28rem"
@@ -21,7 +21,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-kpi)
 
 ### Props
 

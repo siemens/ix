@@ -24,7 +24,7 @@ import SourceAngularVariantsHtml from './../auto-generated/previews/angular/blin
 
 import Playground from '@site/src/components/Playground'
 
-## Example
+## Examples
 
 <Playground
 name="blind"
@@ -73,7 +73,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-blind)
 
 ### Props
 

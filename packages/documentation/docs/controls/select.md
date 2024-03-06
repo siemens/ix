@@ -25,7 +25,7 @@ import SourceVueMultiple from './../auto-generated/previews/vue/select-multiple.
 
 # Select
 
-## Example
+## Examples
 
 <Playground
 name="select" height="18rem"

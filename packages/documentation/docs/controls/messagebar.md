@@ -10,7 +10,7 @@ import SourceVueMessage from './../auto-generated/previews/vue/message-bar.md';
 
 # Message bar
 
-## Example
+## Examples
 
 <Playground
 name="message-bar" height="14rem"
@@ -22,7 +22,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-message-bar)
 
 ### Props
 

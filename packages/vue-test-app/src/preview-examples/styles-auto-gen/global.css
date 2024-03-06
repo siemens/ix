@@ -20,6 +20,11 @@ html {
   overflow: hidden;
 }
 
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
 /* placeholder-logo for usage in all files */
 .placeholder-logo {
   float: left;

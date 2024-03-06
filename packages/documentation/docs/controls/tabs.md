@@ -19,7 +19,7 @@ import SourceVueTabsRounded from './../auto-generated/previews/vue/tabs-rounded.
 
 # Tabs
 
-## Example
+## Examples
 
 <Playground
 name="tabs"

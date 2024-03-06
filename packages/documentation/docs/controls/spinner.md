@@ -17,7 +17,7 @@ import SourceVueSpinnerLarge from './../auto-generated/previews/vue/spinner-larg
 
 # Spinner
 
-## Example
+## Examples
 
 <Playground
 name="spinner" height="5rem"
@@ -40,7 +40,7 @@ frameworks={{
   vue: SourceVueSpinnerLarge
 }}></Playground>
 
-## API
+## API (ix-spinner)
 
 ### Props
 

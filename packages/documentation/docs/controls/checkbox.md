@@ -12,7 +12,7 @@ import SourceVueCheckboxInderterminate from './../auto-generated/previews/vue/ch
 
 # Checkbox
 
-## Example
+## Examples
 
 <Playground
 name="checkbox" height="8rem"

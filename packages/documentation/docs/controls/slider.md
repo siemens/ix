@@ -8,7 +8,7 @@ import Slots from './../auto-generated/ix-slider/slots.md';
 
 <Tags />
 
-## Example
+## Examples
 
 <Playground
   height="15rem"
@@ -40,7 +40,7 @@ import Slots from './../auto-generated/ix-slider/slots.md';
   examplesByName>
 </Playground>
 
-## API
+## API (ix-slider)
 
 ### Props 
 

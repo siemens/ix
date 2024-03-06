@@ -18,7 +18,7 @@ import SourceVueTextareaReadonly from './../auto-generated/previews/vue/textarea
 
 # Text area
 
-## Example
+## Examples
 
 <Playground
 name="textarea" height="7rem"

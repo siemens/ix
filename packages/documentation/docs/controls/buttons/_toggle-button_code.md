@@ -62,7 +62,7 @@ import VueIconToggleButtonPrimaryOutline from './../../auto-generated/previews/v
 
 <TagsToggleButton />
 
-## Example
+## Examples
 
 ### Primary outline
 
@@ -124,21 +124,11 @@ frameworks={{
 }}>
 </Playground>
 
-## API
-
-### Props
-
-<PropsToggleButton />
-
-### Events
-
-<EventsToggleButton />
-
 # Icon toggle button
 
 <TagsIconToggleButton />
 
-## Example
+## Examples
 
 ### Primary outline
 
@@ -200,7 +190,19 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+#
+
+## API (ix-toggle-button)
+
+### Props
+
+<PropsToggleButton />
+
+### Events
+
+<EventsToggleButton />
+
+## API (ix-icon-toggle-button)
 
 ### Props
 

@@ -15,7 +15,7 @@ import SourceVueDateDropdownUserRange from './../auto-generated/previews/vue/dat
 
 # Date dropdown
 
-## Example
+## Examples
 
 <Playground
   name="date-dropdown" height="34rem"
@@ -40,7 +40,7 @@ import SourceVueDateDropdownUserRange from './../auto-generated/previews/vue/dat
     vue: SourceVueDateDropdownUserRange
 }}></Playground>
 
-## API
+## API (ix-date-dropdown)
 
 ### Props
 

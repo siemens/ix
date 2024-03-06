@@ -16,7 +16,7 @@ import SourceAngularDropdownButtonIcon from './../../auto-generated/previews/ang
 import SourceVueDropdownButton from './../../auto-generated/previews/vue/dropdown-button.md';
 import SourceVueDropdownButtonIcon from './../../auto-generated/previews/vue/dropdown-button-icon.md';
 
-## Example
+## Examples
 
 <Playground
 name="dropdown-button" height="16rem"
@@ -38,7 +38,7 @@ frameworks={{
   vue: SourceVueDropdownButtonIcon
 }}></Playground>
 
-## API
+## API (ix-dropdown-button)
 
 ### Props
 

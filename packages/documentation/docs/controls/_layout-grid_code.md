@@ -2,12 +2,10 @@ import Playground from '@site/src/components/Playground';
 import Props from './../auto-generated/ix-layout-grid/props.md';
 import Events from './../auto-generated/ix-layout-grid/events.md';
 
-
 import ColProps from './../auto-generated/ix-col/props.md';
 import ColEvents from './../auto-generated/ix-col/events.md';
 
-
-## Example
+## Examples
 
 <Playground
   height="15rem"

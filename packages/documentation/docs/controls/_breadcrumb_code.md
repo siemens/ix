@@ -21,7 +21,7 @@ import SourceVueBreadcrumbNextItems from './../auto-generated/previews/vue/bread
 
 import Playground from '@site/src/components/Playground'
 
-## Example
+## Examples
 
 <Playground
 name="breadcrumb"

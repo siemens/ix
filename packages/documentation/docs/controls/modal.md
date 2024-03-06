@@ -29,7 +29,7 @@ import SourceReactMessage from './../auto-generated/previews/react/message.md'
 
 # Modal
 
-## Example
+## Examples
 
 ### Sizes
 
@@ -87,7 +87,7 @@ TypedEvent<{
 
 `actionId` represents the configured action button.
 
-## Framework
+## Frameworks
 
 How to open a modal depends on the framework in use. Note that you will not instantiate `ix-modal` on your own.
 Select the appropriate section below for the respective usage information.
@@ -162,17 +162,17 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## APIs
 
-### Modal config
+### Config
 
 <ModalConfig />
 
-### Modal instance
+### Instance
 
 <ModalInstance />
 
-### Modal header
+### Header (ix-modal-header)
 
 **Props**
 <PropsHeaderJavaScript />

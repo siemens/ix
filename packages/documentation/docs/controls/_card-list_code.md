@@ -9,7 +9,7 @@ import VueCardList from './../auto-generated/previews/vue/card-list.md'
 import AngularTsCardList from './../auto-generated/previews/angular/card-list.ts.md'
 import AngularHtmlCardList from './../auto-generated/previews/angular/card-list.html.md'
 
-## Example
+## Examples
 
 <Playground
 height="55rem"
@@ -25,7 +25,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-card-list)
 
 ### Props
 

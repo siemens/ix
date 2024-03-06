@@ -6,7 +6,7 @@ import AngularButtonIcon from './../../auto-generated/previews/angular/button-wi
 import ReactButtonIcon from './../../auto-generated/previews/react/button-with-icon.md'
 import VueButtonIcon from './../../auto-generated/previews/vue/button-with-icon.md'
 
-## Example
+## Examples
 
 <Playground
 name="button-with-icon"
@@ -18,7 +18,7 @@ frameworks={{
   vue: VueButtonIcon
 }}></Playground>
 
-## API
+## API (ix-icon-button)
 
 ### Props
 

@@ -14,7 +14,7 @@ import SourceVueDatePicker from './../auto-generated/previews/vue/datepicker.md'
 
 # Date picker
 
-## Example
+## Examples
 
 <Playground
 name="datepicker" height="30rem"
@@ -44,7 +44,7 @@ The `ix-date-picker` can be configured using [BCP 47](https://tools.ietf.org/htm
 name="datepicker-locale" height="30rem"
 examplesByName></Playground>
 
-## API
+## API (ix-date-picker)
 
 ### Props
 

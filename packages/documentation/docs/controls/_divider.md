@@ -13,7 +13,7 @@ import SourceVueDivider from './../auto-generated/previews/vue/divider.vue'
 
 <Tags />
 
-## Usage
+## Examples
 
 <Playground
 name="divider" height="16rem"

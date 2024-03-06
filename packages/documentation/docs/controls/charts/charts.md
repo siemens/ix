@@ -31,7 +31,7 @@ Import the module once in your application.
 import '@siemens/ix-echarts';
 ```
 
-## Example
+## Examples
 
 <Playground
 height="40rem"

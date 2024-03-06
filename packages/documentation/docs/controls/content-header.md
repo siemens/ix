@@ -17,7 +17,7 @@ import SourceVueContentHeaderNoBack from './../auto-generated/previews/vue/conte
 
 # Content header
 
-## Example
+## Examples
 
 <Playground
 name="content-header"
@@ -47,7 +47,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-content-header)
 
 ### Props
 

@@ -10,7 +10,7 @@ import SourceVueUpload from './../auto-generated/previews/vue/upload.md';
 
 # Upload
 
-## Example
+## Examples
 
 <Playground
 name="upload" height="8rem"
@@ -22,7 +22,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-upload)
 
 ### Props
 

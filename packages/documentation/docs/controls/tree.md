@@ -20,7 +20,7 @@ import SourceVueTreeCustom from './../auto-generated/previews/vue/tree-custom.md
 
 # Tree
 
-## Example
+## Examples
 
 <Playground
 name="tree"

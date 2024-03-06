@@ -15,7 +15,7 @@ import OverlayReactComponent from './../../auto-generated/previews/react/map-nav
 import OverlayAngularComponent from './../../auto-generated/previews/angular/map-navigation-overlay.ts.md'
 import OverlayVueComponent from './../../auto-generated/previews/vue/map-navigation-overlay.md'
 
-## Example
+## Examples
 
 <Playground
 name="map-navigation" height="35rem" noMargin
@@ -39,7 +39,7 @@ frameworks={{
   vue: OverlayVueComponent
 }}></Playground>
 
-## API
+## API (ix-map-navigation)
 
 ### Props
 

@@ -19,7 +19,7 @@ import SourceVueAvatar from './../auto-generated/previews/vue/avatar.md'
 import SourceVueAvatarImage from './../auto-generated/previews/vue/avatar-image.md'
 import SourceVueAvatarInitials from './../auto-generated/previews/vue/avatar-initials.md'
 
-## Example
+## Examples
 
 <Playground
 name="avatar"
@@ -61,7 +61,7 @@ You can also add the avatar to the header which will turn it into a clickable bu
 
 <Playground name="application-header" examplesByName noMargin height="21rem"></Playground>
 
-## API
+## API (ix-avatar)
 
 ### Props
 

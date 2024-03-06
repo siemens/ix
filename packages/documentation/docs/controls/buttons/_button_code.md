@@ -41,7 +41,7 @@ import VueButtonGreyGhost from './../../auto-generated/previews/vue/button-grey-
 import VueButtonTextIcon from './../../auto-generated/previews/vue/button-text-icon.md'
 import VueButtonLoading from './../../auto-generated/previews/vue/button-loading.md'
 
-## Example
+## Examples
 
 ### Primary
 
@@ -181,7 +181,7 @@ frameworks={{
   vue: VueButtonLoading
 }}></Playground>
 
-## API
+## API (ix-button)
 
 ### Props
 

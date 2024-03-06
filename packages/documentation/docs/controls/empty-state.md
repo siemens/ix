@@ -23,7 +23,7 @@ import SourceVueEmptyStateCompactBreak from './../auto-generated/previews/vue/em
 
 <Tags />
 
-## Example
+## Examples
 
 <Playground
 name="empty-state" height="16rem"
@@ -59,7 +59,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-empty-state)
 
 ### Props
 

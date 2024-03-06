@@ -13,7 +13,7 @@ import SourceAngularPillVariants from './../auto-generated/previews/angular/pill
 import SourceReactPillVariants from './../auto-generated/previews/react/pill-variants.md';
 import SourceVuePillVariants from './../auto-generated/previews/vue/pill-variants.md';
 
-## Example
+## Examples
 
 <Playground
 name="pill"
@@ -37,7 +37,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-pill)
 
 ### Props
 

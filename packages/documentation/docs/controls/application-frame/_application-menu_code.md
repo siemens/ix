@@ -37,7 +37,7 @@ import SourceVueMenuCategory from './../../auto-generated/previews/vue/menu-cate
 import SourceVueMenuWithAvatar from './../../auto-generated/previews/vue/vertical-tabs-with-avatar.md'
 import SourceVueMenuWithBottomTabs from './../../auto-generated/previews/vue/menu-with-bottom-tabs.md'
 
-## Example
+## Examples
 
 <Playground
 name="vertical-tabs" height="30rem" noMargin

@@ -13,4 +13,6 @@ import Tags from './../auto-generated/ix-card-list/tags.md';
 
 <Tags />
 
+<br/><br/>
+
 <DocsTabs styleguide={DocsUx} code={DocsCode} />

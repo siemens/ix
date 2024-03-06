@@ -13,4 +13,6 @@ import Tags from './../../auto-generated/ix-dropdown-button/tags.md';
 
 <Tags />
 
+<br/><br/>
+
 <DocsTabs styleguide={DocsUx} code={DocsCode} />

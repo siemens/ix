@@ -30,7 +30,7 @@ import SourceVueDropdownSubmenu from './../auto-generated/previews/vue/dropdown-
 
 # Dropdown
 
-## Example
+## Examples
 
 <Playground
 name="dropdown" height="28rem"

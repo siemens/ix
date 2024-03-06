@@ -10,4 +10,6 @@ import Tags from './../auto-generated/ix-layout-grid/tags.md';
 
 <Tags />
 
+<br/><br/>
+
 <DocsTabs styleguide={DocsUx} code={DocsCode} />

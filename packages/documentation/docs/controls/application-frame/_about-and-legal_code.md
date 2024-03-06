@@ -4,7 +4,7 @@ import Props from './../../auto-generated/ix-menu-about/props.md';
 import Events from './../../auto-generated/ix-menu-about/events.md';
 import PropsItem from './../../auto-generated/ix-menu-about-item/props.md';
 
-## Example
+## Examples
 
 <Playground
 name="about-and-legal" height="30rem" width="100%" noMargin examplesByName>

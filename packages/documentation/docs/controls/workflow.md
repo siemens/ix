@@ -18,7 +18,7 @@ import SourceVueWorkflowVertical from './../auto-generated/previews/vue/workflow
 
 # Workflow
 
-## Example
+## Examples
 
 <Playground
 name="workflow"

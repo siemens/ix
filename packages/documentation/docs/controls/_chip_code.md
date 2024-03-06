@@ -7,7 +7,7 @@ import SourceReactChip from './../auto-generated/previews/react/chip.md'
 import SourceAngularChip from './../auto-generated/previews/angular/chip.ts.md'
 import SourceVueChip from './../auto-generated/previews/vue/chip.md'
 
-## Example
+## Examples
 
 <Playground
 name="chip" height="25rem"
@@ -19,7 +19,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-chip)
 
 ### Props
 

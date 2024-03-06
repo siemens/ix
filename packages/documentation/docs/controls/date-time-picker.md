@@ -9,7 +9,7 @@ import SourceVueDatetimepicker from './../auto-generated/previews/vue/datetimepi
 
 # Date time picker
 
-## Example
+## Examples
 
 <Playground
 name="datetimepicker" height="30rem"
@@ -46,7 +46,7 @@ export default async () => {
 };
 ``` -->
 
-## API
+## API (ix-datetime-picker)
 
 ### Props
 

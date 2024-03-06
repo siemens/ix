@@ -10,7 +10,7 @@ import SourceVueTile from './../auto-generated/previews/vue/tile.md';
 
 # Tile
 
-## Example
+## Examples
 
 <Playground
 name="tile" height="22rem"
@@ -22,7 +22,7 @@ frameworks={{
 }}>
 </Playground>
 
-## API
+## API (ix-tile)
 
 ### Props
 

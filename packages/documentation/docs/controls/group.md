@@ -28,7 +28,7 @@ import SourceVueGroupContext from './../auto-generated/previews/vue/group-contex
 
 # Group
 
-## Example
+## Examples
 
 <Playground
 name="group" height="16rem"

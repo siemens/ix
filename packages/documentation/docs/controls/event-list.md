@@ -28,7 +28,7 @@ import SourceVueEventListCompact from './../auto-generated/previews/vue/event-li
 
 # Event list
 
-## Example
+## Examples
 
 <Playground
 name="event-list" height="14rem"
