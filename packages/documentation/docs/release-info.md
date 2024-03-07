@@ -1,5 +1,5 @@
 ---
-sidebar_position: 
+sidebar_position: 2
 sidebar_title: Versioning and releases
 title: Versioning and releases
 ---
@@ -12,7 +12,7 @@ Our Siemens Industrial Experience design team strive to provide a stable and rel
 
 ### Versioning
 
-We use ![semantic versioning](https://semver.org/) for our releases. Version numbers indicate the level of changes introduced by the release and follow the standard major, minor and patch format. 
+We use [semantic versioning](https://semver.org/) for our releases. Version numbers indicate the level of changes introduced by the release and follow the standard major, minor and patch format.
 
 | Release type        | Details                                                     |
 |---------------------|-------------------------------------------------------------|
