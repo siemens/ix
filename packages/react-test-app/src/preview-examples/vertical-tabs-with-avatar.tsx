@@ -18,7 +18,7 @@ import React from 'react';
 export default () => {
   return (
     <IxMenu>
-      <IxMenuAvatar image="https://ui-avatars.com/api/?name=John+Doe">
+      <IxMenuAvatar top="john.doe@company.com" bottom="Administrator" image="https://ui-avatars.com/api/?name=John+Doe">
         <IxMenuAvatarItem label="Option 1"></IxMenuAvatarItem>
       </IxMenuAvatar>
       <IxMenuItem home tab-icon="home">
