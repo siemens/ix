@@ -30,7 +30,7 @@ If you are planning to contribute a larger change it is advisable to open an iss
 
 In order to start working on an issue fork the repository.
 Once all changes are implemented commit them to the fork and create a merge request (MR).
-Please make sure to enable the option `Allow commits from members who can merge to the target branch` in your MR. This way the maintainer team will be able to rebase the MR if necessary.
+Please make sure to enable the option `Allow commits from members who can merge to the target branch` in your MR. This way the maintainers will be able to rebase the MR if necessary.
 
 Usually all changes have to be combined into one single commit for clarity. No unrelated changes must be part of that commit.
 If your MR should contain more than one commit it will get squash merged.
