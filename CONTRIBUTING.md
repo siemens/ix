@@ -4,9 +4,9 @@ SPDX-FileCopyrightText: 2023 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-# Siemens iX
+# Siemens Industrial Experience design system
 
-Siemens iX provides a holistic design system for building attractive and intuitive web applications.
+Siemens provides a holistic design system for building attractive and intuitive web applications.
 
 Contributions to the library and feedback are very welcome.
 This document explains our guidelines for both.
@@ -26,19 +26,19 @@ Bug reports need to include a clear description of the problem as well as additi
 
 ## Merge requests
 
-If you are planning to contribute a larger change to iX it is advisable to open an issue for discussion first. This way you can make sure in advance that your changes will actually get accepted.
+If you are planning to contribute a larger change it is advisable to open an issue for discussion first. This way you can make sure in advance that your changes will actually get accepted.
 
-In order to start working on an issue fork the `iX repositiory`.
+In order to start working on an issue fork the repository.
 Once all changes are implemented commit them to the fork and create a merge request (MR).
-Please make sure to enable the option `Allow commits from members who can merge to the target branch` in your MR. This way the iX team will be able to rebase the MR if neccessary.
+Please make sure to enable the option `Allow commits from members who can merge to the target branch` in your MR. This way the maintainer team will be able to rebase the MR if necessary.
 
 Usually all changes have to be combined into one single commit for clarity. No unrelated changes must be part of that commit.
 If your MR should contain more than one commit it will get squash merged.
 
 ## Coding guidelines
 
-iX releases follow the concept of [Semantic versioning](https://semver.org/). Therefore it is vital that changes to the codebase don't violate these principles.
-The API of iX consists of components, TypeScript classes, CSS classes, CSS Custom properties and SCSS mixins.
+Our releases follow the concept of [Semantic versioning](https://semver.org/). Therefore it is vital that changes to the codebase don't violate these principles.
+The API consists of components, TypeScript classes, CSS classes, CSS Custom properties and SCSS mixins.
 Please make sure that no accidental breaking changes are produced by your changes.
 For issues that are not yet tagged with a version number it is important that you communicate breaking changes in your merge request.
 
@@ -49,7 +49,7 @@ In order to keep code quality high we ask for any contribution to adhere to any 
 
 ## Design specs/styleguide
 
-If you need access to iX design documentation please contact a iX maintainer.
+If you need access to design documentation please contact a maintainer.
 
 ## Definition of done (DoD)
 

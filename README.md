@@ -6,7 +6,7 @@ SPDX-License-Identifier: MIT
 
 ![iX](./logo.svg)
 
-> Siemens Industrial Experience (iX) monorepo
+> Siemens Industrial Experience monorepo
 
 ![version](https://img.shields.io/npm/v/@siemens/ix)
 ![npm](https://img.shields.io/badge/npm-%3E%3D8.x.x-blue.svg)
@@ -14,7 +14,7 @@ SPDX-License-Identifier: MIT
 ![yarn](https://img.shields.io/badge/yarn->=1.x.x-blue.svg)
 [![MIT License](https://img.shields.io/badge/license-MIT-009999.svg?style=flat)](./LICENSE.md)
 
-iX is an open-source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
+Siemens Industrial Experience is an open-source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
 
 <h2 align="center">
   <a href="https://ix.siemens.io/docs/installation/">Quickstart</a>

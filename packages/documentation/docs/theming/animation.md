@@ -35,7 +35,7 @@ Therefore it is important to choose the correct timing for the respective situat
 - use `ease-in` and `ease-out` to accelerate and decelerate objects
 - Slide-in movements (from off screen) should use `ease-out` only
 - Slide-out movements (to off screen) should use `ease-in` only
-- transformations or translations within the screen (object is visisble the whole time) should use `ease-in-out`
+- transformations or translations within the screen (object is visible the whole time) should use `ease-in-out`
 - hiding or appearing objects (opacity) use linear transitions as there is no mass to accelerate/decelerate
 
 <hr/>
