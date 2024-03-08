@@ -286,7 +286,6 @@ export class DateDropdown {
           variant="primary"
           icon="history"
           ref={(ref) => (this.triggerRef = ref)}
-          class="button-width"
         >
           {this.getButtonLabel()}
         </ix-button>
