@@ -84,7 +84,7 @@ In the latest version of `ix-basic-navigation`, we have changed handling of menu
 Now the list of menu items will scroll vertically to prevent overflow.
 This ensures that all menu items remain contained within the menu, offering a more intuitive and visually consistent experience.
 
-### Replacement of Bootstrap Modal parts with ix-modal components
+### Replacement of Bootstrap Modal parts with our modal components
 
 __Old:__
 
