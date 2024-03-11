@@ -108,7 +108,7 @@ export class InputGroup {
       const startPadding = this.getChildrenWidth(slot);
 
       if (startPadding !== 0) {
-        this.inputPaddingLeft = 12 + startPadding;
+        this.inputPaddingLeft = 11 + startPadding;
       } else {
         this.inputPaddingLeft = 0;
       }
@@ -126,9 +126,9 @@ export class InputGroup {
         this.inputElement.form?.noValidate === false;
 
       if (formWasValidated && isInputInvalid) {
-        const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 8;
+        const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 7;
         this.inputElement.style.backgroundPosition = `left ${left}px center`;
-        this.inputPaddingLeft += 32;
+        this.inputPaddingLeft += 26;
       }
     });
   }
