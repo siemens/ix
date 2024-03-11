@@ -6,7 +6,7 @@ SPDX-License-Identifier: MIT
 
 # Siemens Industrial Experience design system
 
-Siemens provides a holistic design system for building attractive and intuitive web applications.
+With Industrial Experience, Siemens provides a holistic design system for building attractive and intuitive web applications.
 
 Contributions to the library and feedback are very welcome.
 This document explains our guidelines for both.
