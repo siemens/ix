@@ -34,12 +34,13 @@ export class SelectItem {
   @Prop({ reflect: true }) label: string;
 
   /**
-   * Item value
+   * The value of the item. Please use type string.
+   * @deprecated will be of type string in future releases.
    */
   @Prop({ reflect: true }) value!: any;
 
   /**
-   * Whether the item is selected.
+   * Flag indicating wether the item is selected
    */
   @Prop() selected = false;
 
