@@ -23,7 +23,28 @@ test('renders', async ({ mount, page }) => {
   await expect(element).toHaveClass(/breakpoint-lg/);
 });
 
-test('should stay close after menu click when NOT pinned', async ({
+test('should be open when expanded-navigation-menu-preferred ist set', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-basic-navigation>
+        <ix-menu expanded-navigation-menu-preferred>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+      </ix-basic-navigation>
+    `);
+  await page
+    .locator('ix-basic-navigation')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
+    );
+  const menu = page.locator('ix-menu');
+
+  await expect(menu).toHaveClass(/expanded/);
+});
+
+test('should be closed when expanded-navigation-menu-preferred ist NOT set', async ({
   mount,
   page,
 }) => {
@@ -34,12 +55,33 @@ test('should stay close after menu click when NOT pinned', async ({
         </ix-menu>
       </ix-basic-navigation>
     `);
+  await page
+    .locator('ix-basic-navigation')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
+    );
   const menu = page.locator('ix-menu');
+
+  await expect(menu).not.toHaveClass(/expanded/);
+});
+
+test('should be closed after menu click when NOT pinned', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-basic-navigation>
+        <ix-menu>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+      </ix-basic-navigation>
+    `);
   await page
     .locator('ix-basic-navigation')
     .evaluate(
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
+  const menu = page.locator('ix-menu');
   const menuButton = menu.locator('ix-burger-menu');
   await menuButton.click();
 
@@ -59,15 +101,18 @@ test('should stay open after menu click when pinned', async ({
         </ix-menu>
       </ix-basic-navigation>
     `);
+  await page
+    .locator('ix-basic-navigation')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    );
   const menu = page.locator('ix-menu');
   const menuButton = menu.locator('ix-burger-menu');
   await menuButton.click();
 
-  await expect(menu).not.toHaveClass(/expanded/);
-
+  await expect(menu).toHaveClass(/expanded/);
   await page.locator('ix-menu-item').click();
-
-  await expect(menu).not.toHaveClass(/expanded/);
+  await expect(menu).toHaveClass(/expanded/);
 });
 
 test('should open and close settings', async ({ mount, page }) => {

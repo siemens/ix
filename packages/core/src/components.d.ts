@@ -1345,7 +1345,14 @@ export namespace Components {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme": boolean;
+        /**
+          * Toggle the expand state of the menu
+         */
         "expand": boolean;
+        /**
+          * Preferred value for the menus expand state, that will only take effect at the lg breakpoint
+         */
+        "expandedNavigationMenuPreferred": boolean;
         "i18nCollapse": string;
         "i18nExpand": string;
         /**
@@ -5420,7 +5427,14 @@ declare namespace LocalJSX {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme"?: boolean;
+        /**
+          * Toggle the expand state of the menu
+         */
         "expand"?: boolean;
+        /**
+          * Preferred value for the menus expand state, that will only take effect at the lg breakpoint
+         */
+        "expandedNavigationMenuPreferred"?: boolean;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
         /**

@@ -1303,7 +1303,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
 
 
 @ProxyCmp({
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'expandedNavigationMenuPreferred', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
@@ -1311,7 +1311,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'expandedNavigationMenuPreferred', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
 })
 export class IxMenu {
   protected el: HTMLElement;

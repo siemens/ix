@@ -88,8 +88,14 @@ export class Menu {
   @Prop() i18nExpandSidebar = 'Expand sidebar';
 
   /**
+   *  Toggle the expand state of the menu
    */
   @Prop({ mutable: true, reflect: true }) expand = false;
+
+  /**
+   *  Preferred value for the menus expand state, that will only take effect at the lg breakpoint
+   */
+  @Prop() expandedNavigationMenuPreferred = false;
 
   /**
    * Menu stays pinned to the left
@@ -329,7 +335,7 @@ export class Menu {
 
     if (this.breakpoint === 'lg') {
       this.setPinned(true);
-      this.toggleMenu(true);
+      this.toggleMenu(this.expandedNavigationMenuPreferred);
       return;
     }
 
