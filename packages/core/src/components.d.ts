@@ -1879,7 +1879,8 @@ export namespace Components {
          */
         "selected": boolean;
         /**
-          * Item value
+          * The value of the item. Please use type string.
+          * @deprecated will be of type string in future releases
          */
         "value": any;
     }
@@ -6018,7 +6019,8 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         /**
-          * Item value
+          * The value of the item. Please use type string.
+          * @deprecated will be of type string in future releases
          */
         "value": any;
     }

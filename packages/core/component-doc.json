@@ -13178,8 +13178,14 @@
           "mutable": false,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "Item value",
-          "docsTags": [],
+          "docs": "The value of the item. Please use type string.",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "will be of type string in future releases"
+            }
+          ],
+          "deprecation": "will be of type string in future releases",
           "values": [
             {
               "type": "any"
