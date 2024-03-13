@@ -1875,12 +1875,12 @@ export namespace Components {
          */
         "onItemClick": (event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>;
         /**
-          * Flag indicating wether the item is selected
+          * Flag indicating whether the item is selected
          */
         "selected": boolean;
         /**
-          * The value of the item. Please use type string.
-          * @deprecated will be of type string in future releases.
+          * The value of the item. Important: The select component uses string values to handle selection and will call toString() on this value. Therefor a string should be passed to value to prevent unexpected behavior.
+          * @deprecated will be changed to type string with next major release (3.0.0)
          */
         "value": any;
     }
@@ -6015,12 +6015,12 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxSelectItemCustomEvent<string>) => void;
         /**
-          * Flag indicating wether the item is selected
+          * Flag indicating whether the item is selected
          */
         "selected"?: boolean;
         /**
-          * The value of the item. Please use type string.
-          * @deprecated will be of type string in future releases.
+          * The value of the item. Important: The select component uses string values to handle selection and will call toString() on this value. Therefor a string should be passed to value to prevent unexpected behavior.
+          * @deprecated will be changed to type string with next major release (3.0.0)
          */
         "value": any;
     }
