@@ -1376,7 +1376,7 @@ export namespace Components {
          */
         "showSettings": boolean;
         /**
-          * Preferred value for the menus expand state, that will only take effect at the lg breakpoint
+          * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
          */
         "startExpanded": boolean;
         /**
@@ -5466,7 +5466,7 @@ declare namespace LocalJSX {
          */
         "showSettings"?: boolean;
         /**
-          * Preferred value for the menus expand state, that will only take effect at the lg breakpoint
+          * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
          */
         "startExpanded"?: boolean;
     }

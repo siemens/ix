@@ -93,7 +93,7 @@ export class Menu {
   @Prop({ mutable: true, reflect: true }) expand = false;
 
   /**
-   *  Preferred value for the menus expand state, that will only take effect at the lg breakpoint
+   *  If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
    */
   @Prop() startExpanded = false;
 
