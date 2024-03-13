@@ -237,7 +237,10 @@ test('should close menu by bottom icon click', async ({ mount, page }) => {
   `);
 
   const element = page.locator('ix-menu');
-  await element.getByRole('button', { name: 'Expand sidebar' }).click();
+
+  await page.locator('ix-menu ix-burger-menu').click();
+  await page.waitForSelector('ix-menu ix-burger-menu.expanded');
+
   const innerMenu = element.locator('.menu');
   await expect(innerMenu).toHaveClass(/expanded/);
 
