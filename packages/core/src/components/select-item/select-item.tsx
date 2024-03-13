@@ -34,8 +34,10 @@ export class SelectItem {
   @Prop({ reflect: true }) label: string;
 
   /**
-   * The value of the item. Please use type string.
-   * @deprecated will be of type string in future releases.
+   * The value of the item.
+   * Important: The select component uses string values to handle selection and will call toString() on this value.
+   * Therefor a string should be passed to value to prevent unexpected behavior.
+   * @deprecated will be changed to type string with next major release (3.0.0)
    */
   @Prop({ reflect: true }) value!: any;
 
