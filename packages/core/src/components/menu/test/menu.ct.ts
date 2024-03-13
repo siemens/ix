@@ -23,13 +23,10 @@ test('renders', async ({ mount, page }) => {
   await expect(element).toHaveClass(/breakpoint-lg/);
 });
 
-test('should be open when expanded-navigation-menu-preferred ist set', async ({
-  mount,
-  page,
-}) => {
+test('should be open when start-expanded ist set', async ({ mount, page }) => {
   await mount(`
       <ix-application>
-        <ix-menu expanded-navigation-menu-preferred>
+        <ix-menu start-expanded>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
       </ix-application>
@@ -44,7 +41,7 @@ test('should be open when expanded-navigation-menu-preferred ist set', async ({
   await expect(menu).toHaveClass(/expanded/);
 });
 
-test('should be closed when expanded-navigation-menu-preferred ist NOT set', async ({
+test('should be closed when start-expanded ist NOT set', async ({
   mount,
   page,
 }) => {

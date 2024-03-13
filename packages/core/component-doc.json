@@ -9154,28 +9154,6 @@
           "required": false
         },
         {
-          "name": "expandedNavigationMenuPreferred",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "expanded-navigation-menu-preferred",
-          "reflectToAttr": false,
-          "docs": "Preferred value for the menus expand state, that will only take effect at the lg breakpoint",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "i18nCollapse",
           "type": "string",
           "complexType": {
@@ -9391,6 +9369,28 @@
           "attr": "show-settings",
           "reflectToAttr": false,
           "docs": "Is settings tab visible",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "startExpanded",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "start-expanded",
+          "reflectToAttr": false,
+          "docs": "Preferred value for the menus expand state, that will only take effect at the lg breakpoint",
           "docsTags": [],
           "default": "false",
           "values": [

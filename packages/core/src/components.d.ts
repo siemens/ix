@@ -1349,10 +1349,6 @@ export namespace Components {
           * Toggle the expand state of the menu
          */
         "expand": boolean;
-        /**
-          * Preferred value for the menus expand state, that will only take effect at the lg breakpoint
-         */
-        "expandedNavigationMenuPreferred": boolean;
         "i18nCollapse": string;
         "i18nExpand": string;
         /**
@@ -1379,6 +1375,10 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
+        /**
+          * Preferred value for the menus expand state, that will only take effect at the lg breakpoint
+         */
+        "startExpanded": boolean;
         /**
           * Toggle About tabs
           * @param show
@@ -5431,10 +5431,6 @@ declare namespace LocalJSX {
           * Toggle the expand state of the menu
          */
         "expand"?: boolean;
-        /**
-          * Preferred value for the menus expand state, that will only take effect at the lg breakpoint
-         */
-        "expandedNavigationMenuPreferred"?: boolean;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
         /**
@@ -5469,6 +5465,10 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
+        /**
+          * Preferred value for the menus expand state, that will only take effect at the lg breakpoint
+         */
+        "startExpanded"?: boolean;
     }
     interface IxMenuAbout {
         /**

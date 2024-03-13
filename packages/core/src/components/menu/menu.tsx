@@ -95,7 +95,7 @@ export class Menu {
   /**
    *  Preferred value for the menus expand state, that will only take effect at the lg breakpoint
    */
-  @Prop() expandedNavigationMenuPreferred = false;
+  @Prop() startExpanded = false;
 
   /**
    * Menu stays pinned to the left
@@ -333,7 +333,7 @@ export class Menu {
 
     this.setPinned(mode === 'lg');
     if (initial || mode !== this.breakpoint)
-      this.toggleMenu(mode === 'lg' && this.expandedNavigationMenuPreferred);
+      this.toggleMenu(mode === 'lg' && this.startExpanded);
 
     this.breakpoint = mode;
   }
