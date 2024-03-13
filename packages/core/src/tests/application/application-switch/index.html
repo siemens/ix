@@ -1,0 +1,86 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <style>
+    .debug-element {
+      position: relative;
+      background-color: #ff000069;
+      width: 10rem;
+      height: 10rem;
+    }
+    .debug-element::after {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      content: '🚧';
+      border: 2px dashed #ff0000aa;
+      padding: 2rem;
+      font-size: 55px;
+
+      width: 8rem;
+      height: 5rem;
+
+      left: 10%;
+      top: 25%;
+    }
+  </style>
+
+  <body>
+    <ix-application>
+      <ix-application-header name="My Application">
+        <div class="placeholder-logo" slot="logo"></div>
+      </ix-application-header>
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+      </ix-menu>
+
+      <ix-content>
+        <ix-content-header
+          slot="header"
+          header-title="My Content Page"
+        >
+        </ix-content-header>
+      </ix-content>
+    </ix-application>
+    <script type="module">
+      const application = document.querySelector('ix-application');
+      application.appSwitchConfig = {
+        i18nAppSwitch: 'Switch to Application',
+        currentAppId: 'demo-app-2',
+        apps: [
+          {
+            id: 'demo-app-1',
+            name: 'Floor App',
+            iconSrc: 'https://www.svgrepo.com/show/530661/genetic-data.svg',
+            url: 'https://ix.siemens.io/',
+            description: 'Example description for Floor app',
+            target: '_self',
+          },
+          {
+            id: 'demo-app-2',
+            name: 'Calculator App',
+            iconSrc: 'https://www.svgrepo.com/show/513581/square-play.svg',
+            url: 'https://ix.siemens.io/',
+            description: 'Example description for Calculator app',
+            target: '_self',
+          },
+        ],
+      };
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>
