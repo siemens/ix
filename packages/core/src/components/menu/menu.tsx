@@ -610,7 +610,7 @@ export class Menu {
               onClick={async () => this.toggleMenu()}
               expanded={this.expand}
               ixAriaLabel={this.i18nExpandSidebar}
-              pinned={this.showPinned}
+              pinned={true}
               class={{
                 'burger-menu': true,
               }}
