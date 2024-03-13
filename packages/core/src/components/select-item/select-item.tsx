@@ -40,7 +40,7 @@ export class SelectItem {
   @Prop({ reflect: true }) value!: any;
 
   /**
-   * Flag indicating wether the item is selected
+   * Flag indicating whether the item is selected
    */
   @Prop() selected = false;
 
