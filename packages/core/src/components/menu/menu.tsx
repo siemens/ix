@@ -299,7 +299,7 @@ export class Menu {
     applicationLayoutService.onChange.on((breakpoint) =>
       this.onBreakpointChange(breakpoint)
     );
-    this.onBreakpointChange(applicationLayoutService.breakpoint);
+    this.onBreakpointChange(applicationLayoutService.breakpoint, true);
   }
 
   componentWillRender() {
@@ -315,7 +315,7 @@ export class Menu {
     menuController.setIsPinned(pinned);
   }
 
-  private onBreakpointChange(mode: Breakpoint) {
+  private onBreakpointChange(mode: Breakpoint, initial = false) {
     if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }
@@ -331,16 +331,11 @@ export class Menu {
       return;
     }
 
+    this.setPinned(mode === 'lg');
+    if (initial || mode !== this.breakpoint)
+      this.toggleMenu(mode === 'lg' && this.expandedNavigationMenuPreferred);
+
     this.breakpoint = mode;
-
-    if (this.breakpoint === 'lg') {
-      this.setPinned(true);
-      this.toggleMenu(this.expandedNavigationMenuPreferred);
-      return;
-    }
-
-    this.setPinned(false);
-    this.toggleMenu(false);
   }
 
   private appendFragments() {
