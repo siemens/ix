@@ -28,14 +28,14 @@ test('should be open when expanded-navigation-menu-preferred ist set', async ({
   page,
 }) => {
   await mount(`
-      <ix-basic-navigation>
+      <ix-application>
         <ix-menu expanded-navigation-menu-preferred>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
-      </ix-basic-navigation>
+      </ix-application>
     `);
   await page
-    .locator('ix-basic-navigation')
+    .locator('ix-application')
     .evaluate(
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
     );
@@ -49,14 +49,14 @@ test('should be closed when expanded-navigation-menu-preferred ist NOT set', asy
   page,
 }) => {
   await mount(`
-      <ix-basic-navigation>
+      <ix-application>
         <ix-menu>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
-      </ix-basic-navigation>
+      </ix-application>
     `);
   await page
-    .locator('ix-basic-navigation')
+    .locator('ix-application')
     .evaluate(
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
     );
@@ -70,14 +70,14 @@ test('should be closed after menu click when NOT pinned', async ({
   page,
 }) => {
   await mount(`
-      <ix-basic-navigation>
+      <ix-application>
         <ix-menu>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
-      </ix-basic-navigation>
+      </ix-application>
     `);
   await page
-    .locator('ix-basic-navigation')
+    .locator('ix-application')
     .evaluate(
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
@@ -95,14 +95,14 @@ test('should stay open after menu click when pinned', async ({
   page,
 }) => {
   await mount(`
-      <ix-basic-navigation>
+      <ix-application>
         <ix-menu pinned>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
-      </ix-basic-navigation>
+      </ix-application>
     `);
   await page
-    .locator('ix-basic-navigation')
+    .locator('ix-application')
     .evaluate(
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
