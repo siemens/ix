@@ -19,7 +19,7 @@ export default () => {
   return (
     <IxMenu>
       <IxMenuAvatar top="john.doe@company.com" bottom="Administrator" image="https://ui-avatars.com/api/?name=John+Doe">
-        <IxMenuAvatarItem icon="user-profile" label="User profiles..."></IxMenuAvatarItem>
+        <IxMenuAvatarItem icon="user-profile" label="User profile..."></IxMenuAvatarItem>
       </IxMenuAvatar>
       <IxMenuItem home tab-icon="home">
         {' '}
