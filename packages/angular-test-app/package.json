@@ -1,6 +1,6 @@
 {
   "name": "angular-test-app",
-  "version": "2.1.0",
+  "version": "2.1.2-beta.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

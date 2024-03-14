@@ -40,6 +40,10 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
+          id: 'release-info',
+        },
+        {
+          type: 'doc',
           id: 'installation/CHANGELOG',
         },
       ],

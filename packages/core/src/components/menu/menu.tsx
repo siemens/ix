@@ -412,6 +412,12 @@ export class Menu {
 
     this.isTransitionDisabled = false;
     this.checkTransition();
+
+    if (this.breakpoint == 'sm' && this.expand) {
+      setTimeout(() => {
+        this.handleOverflowIndicator();
+      }, 100);
+    }
   }
 
   /**
@@ -598,7 +604,7 @@ export class Menu {
             this.resetActiveTab();
           }}
         >
-          <div class={'menu-buttons'}>
+          <div class={{ 'menu-buttons': this.breakpoint != 'sm' }}>
             <ix-burger-menu
               onClick={async () => this.toggleMenu()}
               expanded={this.expand}
@@ -620,9 +626,6 @@ export class Menu {
                 ></ix-icon-button>
               )}
           </div>
-          <div class="menu-avatar">
-            <slot name="ix-menu-avatar"></slot>
-          </div>
 
           <div
             id="menu-tabs"
@@ -631,9 +634,6 @@ export class Menu {
             }}
             onClick={(e) => this.onMenuItemsClick(e)}
           >
-            <div class="tabs-top">
-              <slot name="home"></slot>
-            </div>
             <div class="tabs-shadow-container">
               <div
                 class={{
@@ -642,7 +642,17 @@ export class Menu {
                   'tabs--shadow--show': this.itemsScrollShadowTop,
                 }}
               ></div>
-              <div class="tabs" onScroll={() => this.handleOverflowIndicator()}>
+              <div
+                class={{
+                  tabs: true,
+                  'show-scrollbar': this.expand,
+                }}
+                onScroll={() => this.handleOverflowIndicator()}
+              >
+                <div class="menu-avatar">
+                  <slot name="ix-menu-avatar"></slot>
+                </div>
+                <slot name="home"></slot>
                 {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
                   <slot></slot>
                 ) : null}

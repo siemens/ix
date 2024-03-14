@@ -257,6 +257,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private async checkForSubmenuAnchor(element: Element) {
+    if (!element) {
+      return null;
+    }
+
     if (hasDropdownItemWrapperImplemented(element)) {
       const dropdownItem = await element.getDropdownItemElement();
       dropdownItem.isSubMenu = true;
@@ -311,7 +315,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       if (this.anchorElement) {
         this.applyDropdownPosition();
-        // await this.checkForSubmenuAnchor();
       }
     }
   }

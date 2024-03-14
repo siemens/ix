@@ -2,7 +2,7 @@
   "name": "html-test-app",
   "private": true,
   "license": "MIT",
-  "version": "2.1.0",
+  "version": "2.1.2-beta.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
