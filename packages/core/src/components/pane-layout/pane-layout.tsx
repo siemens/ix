@@ -24,6 +24,12 @@ import { matchBreakpoint } from '../utils/breakpoints';
 
 /**
  * @since 2.1.0
+ *
+ * @slot left - Use this slot on a pane to position it on the left side of the layout
+ * @slot right - Use this slot on a pane to position it on the right side of the layout
+ * @slot top - Use this slot on a pane to position it on the top side of the layout
+ * @slot bottom - Use this slot on a pane to position it on the bottom side of the layout
+ * @slot content - Use this slot on an element to make it the content of the layout
  */
 @Component({
   tag: 'ix-pane-layout',

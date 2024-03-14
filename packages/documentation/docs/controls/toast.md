@@ -24,8 +24,11 @@ import ApiToastServiceAngular from './\_toast/angular/toast-service.html.md';
 import ApiToastConfigAngular from './\_toast/angular/toast-config.md';
 
 import ApiToastConfigReact from './\_toast/react/toast-config.md';
+import ApiToastConfigVue from './\_toast/vue/toast-config.md';
 
 # Toast
+
+## Examples
 
 <Playground
 name="toast" height="18rem"
@@ -36,7 +39,7 @@ frameworks={{
   vue: SourceVueToast
 }}></Playground>
 
-## Custom toast message
+### Custom toast message
 
 <Playground
 name="toast-custom" height="18rem"
@@ -48,7 +51,7 @@ frameworks={{
   vue: SourceVueToastCustom
 }}></Playground>
 
-## Position
+### Position
 
 <ApiTableSinceTag message="1.5.0" />
 
@@ -61,23 +64,28 @@ frameworks={{
   vue: SourceVueToastPosition,
 }}></Playground>
 
-## API
+## APIs
 
 <Tabs>
   <TabItem value="Angular">
-    <h3>ToastService</h3>
-    <ApiToastServiceAngular />
-    <h3>ToastConfig</h3>
+    <h3>Config</h3>
     <ApiToastConfigAngular />
+    <h3>Service</h3>
+    <ApiToastServiceAngular />
   </TabItem>
 
   <TabItem value="React">
-    <h3>ToastConfig</h3>
+    <h3>Config</h3>
     <ApiToastConfigReact />
   </TabItem>
 
   <TabItem value="JavaScript">
-    <h3>ToastConfig</h3>
+    <h3>Config</h3>
     <ApiToastConfigJavaScript />
+  </TabItem>
+
+  <TabItem value="Vue">
+    <h3>Config</h3>
+    <ApiToastConfigVue />
   </TabItem>
 </Tabs>

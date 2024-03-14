@@ -5,6 +5,7 @@ import Props from './../auto-generated/ix-validation-tooltip/props.md';
 import SourceValidation from './../auto-generated/previews/web-component/validation.md';
 import SourceReactValidation from './../auto-generated/previews/react/validation.md';
 import SourceAngularValidation from './../auto-generated/previews/angular/validation.ts.md';
+import SourceVueValidation from './../auto-generated/previews/vue/validation.md';
 
 # Form validation
 
@@ -13,18 +14,19 @@ The differences is that the validation tooltip is implemented as `@siemens/ix` [
 
 In the following preview section you will find different implementation of a forms validation.
 
-## Preview
+## Examples
 
 <Playground
-name="validation" height="20rem"
+name="validation" height="24rem"
 frameworks={{
   react: SourceReactValidation,
   angular: SourceAngularValidation,
   javascript: SourceValidation,
+  vue: SourceVueValidation
 }}>
 </Playground>
 
-## Properties (Tooltip)
+## API (ix-validation-tooltip)
 
 ## Props
 

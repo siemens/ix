@@ -47,6 +47,8 @@ export type BorderlessChangedEvent = {
 
 /**
  * @since 2.1.0
+ *
+ * @slot default - Content displayed inside the expanded pane
  */
 @Component({
   tag: 'ix-pane',

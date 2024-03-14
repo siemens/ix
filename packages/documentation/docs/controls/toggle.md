@@ -15,7 +15,8 @@ import SourceReactToggleDisabled from './../auto-generated/previews/react/toggle
 import SourceReactToggleChecked from './../auto-generated/previews/react/toggle-checked.md';
 import SourceReactToggleIndeterminate from './../auto-generated/previews/react/toggle-indeterminate.md';
 
-import SourceAngularToggle from './../auto-generated/previews/angular/toggle-ng-model.ts.md';
+import SourceAngularToggle from './../auto-generated/previews/angular/toggle.ts.md';
+import SourceAngularToggleNgModel from './../auto-generated/previews/angular/toggle-ng-model.ts.md';
 import SourceAngularToggleLabel from './../auto-generated/previews/angular/toggle-custom-label.ts.md';
 import SourceAngularToggleDisabled from './../auto-generated/previews/angular/toggle-disabled.ts.md';
 import SourceAngularToggleChecked from './../auto-generated/previews/angular/toggle-checked.ts.md';
@@ -29,13 +30,16 @@ import SourceVueToggleIndeterminate from './../auto-generated/previews/vue/toggl
 
 # Toggle
 
-## Usage
+## Examples
 
 <Playground
 name="toggle"
 frameworks={{
   react: SourceReactToggle,
-  angular: SourceAngularToggle,
+  angular: {
+    'toggle.ts': SourceAngularToggle,
+    "toggle-ng-model.ts": SourceAngularToggleNgModel,
+    },
   javascript: SourceToggle,
   vue: SourceVueToggle
 }}></Playground>
@@ -88,7 +92,7 @@ frameworks={{
   vue: SourceVueToggleIndeterminate
 }}></Playground>
 
-## Properties
+## API (ix-toggle)
 
 ### Props
 

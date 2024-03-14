@@ -15,5 +15,7 @@ import Tags from './../../auto-generated/ix-content/tags.md';
 
 <Tags />
 
+<br/><br/>
+
 <DocsTabs styleguide={DocsUx} code={DocsCode} />
 

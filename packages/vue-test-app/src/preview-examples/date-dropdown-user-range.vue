@@ -1,3 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
 <script setup lang="ts">
 import { IxDateDropdown } from '@siemens/ix-vue';
 
@@ -32,5 +41,3 @@ const dateDropdownOptions = [
 <template>
   <IxDateDropdown :dateRangeOptions="dateDropdownOptions" date-range-id="last-7" format="LL/dd/yyyy"/>
 </template>
-
-<style scoped></style>

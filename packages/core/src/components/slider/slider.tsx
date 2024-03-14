@@ -48,9 +48,7 @@ export class Slider {
   @Element() hostElement!: HTMLIxSliderElement;
 
   /**
-   * Legal number intervals
-   *
-   * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+   * Legal number intervals (see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step}).
    */
   @Prop() step: number;
 

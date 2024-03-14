@@ -27,8 +27,7 @@ import { UploadFileState } from './upload-file-state';
 })
 export class Upload {
   /**
-   * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).
-   * [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
+   * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload - see {@link "https://www.w3schools.com/tags/att_input_accept.asp"}).
    */
   @Prop() accept: string;
 

@@ -7,9 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './styles-auto-gen/card.css'
+
 import { IxCard, IxCardContent, IxIcon, IxTypography } from '@siemens/ix-react';
 import React from 'react';
-import './styles/card.css';
 
 export default () => {
   return (

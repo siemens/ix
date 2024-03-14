@@ -23,7 +23,7 @@ This can be done in various ways.
 
 The simplest way is to use the bundler/loader and just import the legacy styles inside of your global stylesheet.
 
-e.g. styles.css:
+e.g. styles.scss:
 ```
 @import '@siemens/ix/dist-css/theme/legacy-classic-dark.css';
 @import '@siemens/ix/dist-css/theme/legacy-classic-light.css';

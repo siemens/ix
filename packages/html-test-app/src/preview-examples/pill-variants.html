@@ -2,17 +2,22 @@
 SPDX-FileCopyrightText: 2023 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pill variant examples</title>
-    <style>
-      ix-pill {
-        min-width: 7rem;
-      }
-    </style>
+    <!-- Sources -->
+    <script type="module">
+      import './styles-auto-gen/pill-variants.css';
+    </script>
+    <!-- Sources -->
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
@@ -130,10 +135,8 @@ SPDX-License-Identifier: MIT
             Custom
           </ix-pill>
         </ix-col>
-
       </ix-row>
     </ix-layout-grid>
-
     <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>

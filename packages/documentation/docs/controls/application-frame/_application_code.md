@@ -8,7 +8,7 @@ The component itself is designed with modularity in mind. It can be seamlessly i
 
 It's important to note that the application component focuses solely on layouting and does not dictate visual design.
 
-## Example
+## Examples
 
 The code snippet below shows an example of a combination of different components like `ix-application-header` or `ix-content`.
 
@@ -16,7 +16,7 @@ The code snippet below shows an example of a combination of different components
 
 ### Breakpoints
 
-<Playground name="application-breakpoints" height="30rem" noMargin examplesByName></Playground>
+<Playground name="application-breakpoints" examplesByName height="30rem" noMargin ></Playground>
 
 ### Application switch
 
@@ -34,14 +34,10 @@ The navigation to another application is implemented via `window.open` (https://
   }
 ```
 
-<Playground name="application-app-switch" examplesByName height="30rem"></Playground>
+<Playground name="application-app-switch" examplesByName height="30rem" noMargin></Playground>
 
-## API
+## API (ix-application)
 
 ### Props
 
 <Props />
-
-### Events
-
-<Events />

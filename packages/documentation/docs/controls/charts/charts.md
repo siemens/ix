@@ -1,7 +1,12 @@
+import Playground from '@site/src/components/Playground';
+
 import TabItem from '@theme/TabItem';
 import Preview from '@site/src/components/Preview';
 
-import SourceEcharts from './../../auto-generated/previews/web-component/echarts.md'
+import JavaScriptSourceEcharts from './../../auto-generated/previews/web-component/echarts.md'
+import ReactSourceEcharts from './../../auto-generated/previews/react/echarts.md'
+import VueSourceEcharts from './../../auto-generated/previews/vue/echarts.md'
+import AngularSourceEcharts from './../../auto-generated/previews/angular/echarts.ts.md'
 
 # ECharts
 
@@ -14,7 +19,7 @@ ECharts is a third party library distributed under [Apache License 2.0](https://
 
 </div>
 
-### Installation
+## Installation
 
 ```sh
 npm install --save @siemens/ix-echarts
@@ -26,10 +31,15 @@ Import the module once in your application.
 import '@siemens/ix-echarts';
 ```
 
-## Usage
+## Examples
 
-<Preview name="echarts" height="42rem">
-  <TabItem value="javascript">
-    <SourceEcharts />
-  </TabItem>
-</Preview>
+<Playground
+height="40rem"
+name="echarts"
+frameworks={{
+  react: ReactSourceEcharts,
+  angular: AngularSourceEcharts,
+  javascript: JavaScriptSourceEcharts,
+  vue: VueSourceEcharts
+}}>
+</Playground>

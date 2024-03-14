@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  styleUrls: ['./styles-auto-gen/workflow.css'],
   template: `<ix-workflow-steps>
     <ix-workflow-step status="done">Step 1</ix-workflow-step>
     <ix-workflow-step status="success">Step 2</ix-workflow-step>

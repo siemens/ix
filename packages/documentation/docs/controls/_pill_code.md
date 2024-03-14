@@ -13,8 +13,10 @@ import SourceAngularPillVariants from './../auto-generated/previews/angular/pill
 import SourceReactPillVariants from './../auto-generated/previews/react/pill-variants.md';
 import SourceVuePillVariants from './../auto-generated/previews/vue/pill-variants.md';
 
+## Examples
+
 <Playground
-name="pill" height="24rem"
+name="pill"
 frameworks={{
   react: SourceReactPill,
   angular: SourceAngularPill,
@@ -23,7 +25,8 @@ frameworks={{
 }}>
 </Playground>
 
-## Variants
+### Variants
+
 <Playground
 name="pill-variants" height="24rem"
 frameworks={{
@@ -34,12 +37,8 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties
+## API (ix-pill)
 
 ### Props
 
 <Props />
-
-### Events
-
-<Events />

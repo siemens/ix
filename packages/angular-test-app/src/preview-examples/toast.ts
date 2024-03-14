@@ -13,14 +13,7 @@ import { ToastService } from '@siemens/ix-angular';
 @Component({
   selector: 'app-example',
   template: `
-    <div>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-      voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-      amet.
-    </div>
-    <ix-button (click)="showToastMessage()">Show Toast</ix-button>
+    <ix-button (click)="showToastMessage()">Trigger toast</ix-button>
   `,
 })
 export default class Toast {
@@ -28,7 +21,7 @@ export default class Toast {
 
   async showToastMessage() {
     this.toastService.show({
-      message: 'Hello World!',
+      message: 'My toast message!',
     });
   }
 }

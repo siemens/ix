@@ -4,7 +4,7 @@ import Playground from '@site/src/components/Playground';
 
 The application-header can host custom content which will be displayed on the far right side of the header.
 
-## Usage
+## Examples
 
 <Playground name="application-header" examplesByName noMargin height="18rem"></Playground>
 
@@ -12,10 +12,12 @@ The application-header can host custom content which will be displayed on the fa
 
 Enhance the interactivity of your application-header by placing the avatar component as part of the content. This not only makes the avatar clickable but also enables the addition of dropdown-item's directly within the avatar component.
 
-## Slots
+## API (ix-application-header)
 
-<Slots />
-
-## API
+### Props
 
 <Props />
+
+### Slots
+
+<Slots />

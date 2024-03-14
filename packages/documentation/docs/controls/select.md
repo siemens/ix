@@ -14,7 +14,8 @@ import SourceReactSelect from './../auto-generated/previews/react/select.md';
 import SourceReactEditable from './../auto-generated/previews/react/select-editable.md';
 import SourceReactMultiple from './../auto-generated/previews/react/select-multiple.md';
 
-import SourceAngularSelect from './../auto-generated/previews/angular/select-ng-model.ts.md';
+import SourceAngularSelect from './../auto-generated/previews/angular/select.ts.md';
+import SourceAngularSelectNgModel from './../auto-generated/previews/angular/select-ng-model.ts.md';
 import SourceAngularEditable from './../auto-generated/previews/angular/select-editable.ts.md';
 import SourceAngularMultiple from './../auto-generated/previews/angular/select-multiple.ts.md';
 
@@ -24,13 +25,16 @@ import SourceVueMultiple from './../auto-generated/previews/vue/select-multiple.
 
 # Select
 
-## Usage
+## Examples
 
 <Playground
 name="select" height="18rem"
 frameworks={{
   react: SourceReactSelect,
-  angular: SourceAngularSelect,
+  angular: {
+    'select.ts': SourceAngularSelect,
+    "select-ng-model.ts": SourceAngularSelectNgModel,
+    },
   javascript: SourceSelect,
   vue: SourceVueSelect
 }}></Playground>
@@ -59,7 +63,7 @@ frameworks={{
   vue: SourceVueMultiple
 }}></Playground>
 
-## Properties (ix-select)
+## API (ix-select)
 
 ### Props
 
@@ -69,7 +73,7 @@ frameworks={{
 
 <Events />
 
-## Properties (ix-select-item)
+## API (ix-select-item)
 
 ### Props
 

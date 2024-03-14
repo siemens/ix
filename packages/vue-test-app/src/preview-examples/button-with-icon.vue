@@ -1,10 +1,10 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <script setup lang="ts">
@@ -14,7 +14,7 @@ import { IxIconButton } from '@siemens/ix-vue';
 <template>
   <div>
     <IxIconButton class="m-1" icon="info" variant="primary"></IxIconButton>
-    <IxIconButton class="m-1" icon="info" variant="secondary"></IxIconButton>
+    <IxIconButton class="m-1" icon="info"></IxIconButton>
     <IxIconButton class="m-1" icon="info" outline></IxIconButton>
     <IxIconButton class="m-1" icon="info" ghost></IxIconButton>
   </div>
@@ -25,7 +25,6 @@ import { IxIconButton } from '@siemens/ix-vue';
       class="m-1"
       icon="info"
       oval
-      variant="secondary"
     ></IxIconButton>
     <IxIconButton class="m-1" icon="info" oval outline></IxIconButton>
     <IxIconButton class="m-1" icon="info" oval ghost></IxIconButton>

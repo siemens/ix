@@ -19,10 +19,10 @@ import SourceVueTabsRounded from './../auto-generated/previews/vue/tabs-rounded.
 
 # Tabs
 
-## Usage
+## Examples
 
 <Playground
-name="tabs" height="20rem"
+name="tabs"
 frameworks={{
   react: SourceReactTabs,
   angular: SourceAngularTabs,
@@ -42,7 +42,7 @@ frameworks={{
   vue: SourceVueTabsRounded
 }}></Playground>
 
-## Properties (ix-tabs)
+## API (ix-tabs)
 
 ### Props
 
@@ -52,7 +52,7 @@ frameworks={{
 
 <Events />
 
-## Properties (ix-tab-item)
+## API (ix-tab-item)
 
 ### Props
 

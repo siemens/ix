@@ -10,10 +10,10 @@ import SourceVueTimepicker from './../auto-generated/previews/vue/timepicker.md'
 
 # Time picker
 
-## Usage
+## Examples
 
 <Playground
-name="timepicker" height="35rem"
+name="timepicker" height="24rem"
 frameworks={{
   react: SourceReactTimepicker,
   angular: SourceAngularTimepicker,
@@ -22,7 +22,7 @@ frameworks={{
 }}>
 </Playground>
 
-## Properties
+## API (ix-time-picker)
 
 ### Props
 

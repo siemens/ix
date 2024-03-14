@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { ApiTableEntry } from '@site/src/components/ApiTable';
 import { ensureDir } from 'fs-extra';
 import { writeFile } from 'fs/promises';

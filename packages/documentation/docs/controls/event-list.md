@@ -28,7 +28,7 @@ import SourceVueEventListCompact from './../auto-generated/previews/vue/event-li
 
 # Event list
 
-## Usage
+## Examples
 
 <Playground
 name="event-list" height="14rem"
@@ -59,7 +59,8 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactEventListHeight,
   angular: SourceAngularEventListHeight,
-  javascript: SourceVueEventListHeight
+  javascript: SourceEventListHeight,
+  vue: SourceVueEventListHeight
 }}></Playground>
 
 ### Compact
@@ -70,20 +71,17 @@ hideInitalCodePreview
 frameworks={{
   react: SourceReactEventListCompact,
   angular: SourceAngularEventListCompact,
-  javascript: SourceVueEventListCompact
+  javascript: SourceEventListCompact,
+  vue: SourceVueEventListCompact
 }}></Playground>
 
-## Properties (ix-event-list)
+## API (ix-event-list)
 
 ### Props
 
 <Props />
 
-### Events
-
-<Events />
-
-## Properties (ix-event-list-item)
+## API (ix-event-list-item)
 
 ### Props
 

@@ -11,26 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  styleUrls: ['./styles-auto-gen/grid.css'],
   templateUrl: './grid-size.html',
-  styles: [
-    `
-      ix-layout-grid {
-        margin-bottom: 1rem;
-      }
-
-      ix-col > ix-typography {
-        display: flex;
-        padding: 0.15rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        flex: 1 0 0;
-        align-self: stretch;
-        border: 1px solid var(--theme-color-soft-bdr);
-        background: var(--theme-color-ghost);
-        border-radius: 3px;
-      }
-    `,
-  ],
 })
 export default class GridSize {}

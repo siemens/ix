@@ -20,10 +20,10 @@ import SourceVueTreeCustom from './../auto-generated/previews/vue/tree-custom.md
 
 # Tree
 
-## Usage
+## Examples
 
 <Playground
-name="tree" height="16rem"
+name="tree"
 frameworks={{
   react: SourceReactTree,
   angular: SourceAngularTree,
@@ -34,7 +34,7 @@ frameworks={{
 ### Custom tree node
 
 <Playground
-name="tree-custom" height="16rem"
+name="tree-custom" height="12rem"
 hideInitalCodePreview
 frameworks={{
   react: SourceReactTreeCustom,
@@ -43,7 +43,7 @@ frameworks={{
   vue: SourceVueTreeCustom
 }}></Playground>
 
-## Properties (ix-tree)
+## API (ix-tree)
 
 ### Props
 
@@ -53,7 +53,7 @@ frameworks={{
 
 <Events />
 
-## Properties (ix-tree-item)
+## API (ix-tree-item)
 
 ### Props
 

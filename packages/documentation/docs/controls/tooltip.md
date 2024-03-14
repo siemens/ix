@@ -17,15 +17,14 @@ import Playground from '@site/src/components/Playground'
 
 <Tags />
 
-## Usage
+## Examples
 
 <Playground
 name="tooltip"
-height="16rem"
 examplesByName>
 </Playground>
 
-## Properties
+## API (ix-tooltip)
 
 ### Props
 
@@ -42,4 +41,3 @@ Set the `aria-describedby` attribute on the trigger element to the tooltip `id` 
 See examples [above](#usage). 
 
 [More information](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
-

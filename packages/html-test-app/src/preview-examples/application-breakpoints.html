@@ -2,12 +2,22 @@
 SPDX-FileCopyrightText: 2023 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Basic navigation example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application breakpoint example</title>
+    <!-- Sources -->
+    <script type="module">
+      import './styles-auto-gen/application.css';
+    </script>
+    <!-- Sources -->
   </head>
   <body class="theme-classic-dark">
     <!-- Preview code -->
@@ -47,6 +57,7 @@ SPDX-License-Identifier: MIT
         <label for="large">Large</label>
       </ix-content>
     </ix-application>
+
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-application');

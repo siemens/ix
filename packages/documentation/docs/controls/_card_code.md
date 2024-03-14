@@ -30,9 +30,11 @@ import VueActionCard from './../auto-generated/previews/vue/action-card.md'
 import AngularTsActionCard from './../auto-generated/previews/angular/action-card.ts.md'
 import AngularHtmlActionCard from './../auto-generated/previews/angular/action-card.html.md'
 
-## Action Card (ix-action-card)
+# Action card
 
 <ActionCardTags />
+
+## Examples
 
 <Playground
 height="13rem"
@@ -48,17 +50,11 @@ frameworks={{
 }}>
 </Playground>
 
-### Properties
-
-<ActionCardProps />
-
-### Events
-
-<ActionCardEvents />
-
-## Push Card (ix-push-card)
+# Push card
 
 <PushCardTags />
+
+## Examples
 
 <Playground
 height="20rem"
@@ -74,17 +70,11 @@ frameworks={{
 }}>
 </Playground>
 
-### Properties
-
-<PushCardProps />
-
-### Events
-
-<PushCardEvents />
-
-## Card (ix-card)
+# Card
 
 <CardTags />
+
+## Examples
 
 <Playground
 height="17rem"
@@ -100,10 +90,22 @@ frameworks={{
 }}>
 </Playground>
 
-### Properties
+#
+
+## API (ix-action-card)
+
+### Props
+
+<ActionCardProps />
+
+## API (ix-push-card)
+
+### Props
+
+<PushCardProps />
+
+## API (ix-card)
+
+### Props
 
 <CardProps />
-
-### Events
-
-<CardEvents />

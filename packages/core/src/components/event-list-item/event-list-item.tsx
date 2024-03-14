@@ -25,10 +25,8 @@ import {
 export class EventListItem {
   /**
    * Color of the status indicator.
-   * You can find a list of all available colors in our documentation.
+   * You can find a list of all available colors in our documentation (see {@link "https://ix.siemens.io/docs/theming/colors/"}).
    * Example values are `--theme-color-alarm` or `color-alarm`
-   *
-   * @link https://ix.siemens.io/docs/theming/colors/
    *
    * @deprecated since 2.1.0 use `item-color`
    */
@@ -37,10 +35,8 @@ export class EventListItem {
 
   /**
    * Color of the status indicator.
-   * You can find a list of all available colors in our documentation.
+   * You can find a list of all available colors in our documentation (see {@link "https://ix.siemens.io/docs/theming/colors/"}).
    * Example values are `--theme-color-alarm` or `color-alarm`
-   *
-   * @link https://ix.siemens.io/docs/theming/colors/
    */
   @Prop() itemColor: string;
 
