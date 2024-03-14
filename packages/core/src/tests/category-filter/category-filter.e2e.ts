@@ -24,4 +24,17 @@ regressionTest.describe('category-filter', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('dropdown open after selected filter', async ({ page }) => {
+    await page.goto('category-filter/categories');
+    await page.locator('input').first().click();
+
+    const vendorButton = page.getByRole('button', { name: 'Vendor' });
+    await vendorButton.click();
+
+    const filterButton = page.getByRole('button', { name: '= Apple' });
+    await filterButton.click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
