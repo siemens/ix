@@ -74,13 +74,14 @@ importers:
         version: 4.7.4
 
   packages/aggrid:
+    dependencies:
+      '@siemens/ix':
+        specifier: ~2.1.2-beta.0
+        version: link:../core
     devDependencies:
       '@playwright/test':
         specifier: ^1.32.1
         version: 1.39.0
-      '@siemens/ix':
-        specifier: ~2.1.0
-        version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
@@ -127,7 +128,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.1.0
+        specifier: ~2.1.2-beta.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -589,7 +590,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.1.0
+        specifier: ~2.1.2-beta.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -726,7 +727,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.1.0
+        specifier: ~2.1.2-beta.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -17217,8 +17218,6 @@ packages:
       webpack: '*'
     peerDependenciesMeta:
       webpack:
-        optional: true
-      webpack-sources:
         optional: true
     dependencies:
       webpack: 5.76.1(esbuild@0.15.5)
