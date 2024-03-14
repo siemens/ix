@@ -38,7 +38,8 @@
     "test:ct": "playwright test --config playwright-ct.config.ts --reporter list",
     "visual-regression": "playwright test",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080 -c-1",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "pkg": "pnpm pack"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.5.1",

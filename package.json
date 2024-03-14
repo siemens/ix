@@ -21,6 +21,7 @@
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
     "build": "dotenv -- turbo run build",
+    "pkg": "dotenv -- turbo run pkg",
     "start": "dotenv -- turbo run start",
     "turbo": "dotenv -- turbo",
     "lint": "dotenv -- turbo run lint",
