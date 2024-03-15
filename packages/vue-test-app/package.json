@@ -1,6 +1,6 @@
 {
   "name": "vue-test-app",
-  "version": "2.1.2-beta.0",
+  "version": "2.1.2",
   "private": true,
   "license": "MIT",
   "type": "module",
