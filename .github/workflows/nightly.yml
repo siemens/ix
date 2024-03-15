@@ -34,7 +34,8 @@ jobs:
       - name: Build
         run: pnpm build --cache-dir=.turbo --filter \!documentation
 
-      - uses: ./.github/workflows/actions/push-remote
+      - name: Push to remote @siemens/ix
+        uses: ./.github/workflows/actions/push-remote
         env:
           GIT_COMMIT_ID: ${{ steps.gitcommit.outputs.GIT_COMMIT_ID }}
         with:
@@ -43,7 +44,8 @@ jobs:
           commit_id: $GIT_COMMIT_ID
           token: ${{ secrets.NIGHTLY_STORE }}
 
-      - uses: ./.github/workflows/actions/push-remote
+      - name: Push to remote @siemens/ix-react
+        uses: ./.github/workflows/actions/push-remote
         env:
           GIT_COMMIT_ID: ${{ steps.gitcommit.outputs.GIT_COMMIT_ID }}
         with:
@@ -52,7 +54,8 @@ jobs:
           commit_id: $GIT_COMMIT_ID
           token: ${{ secrets.NIGHTLY_STORE }}
 
-      - uses: ./.github/workflows/actions/push-remote
+      - name: Push to remote @siemens/ix-angular
+        uses: ./.github/workflows/actions/push-remote
         env:
           GIT_COMMIT_ID: ${{ steps.gitcommit.outputs.GIT_COMMIT_ID }}
         with:
