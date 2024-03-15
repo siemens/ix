@@ -94,6 +94,11 @@ const config: Config = {
               rimraf: true,
             }),
           ],
+          versions: {
+            current: {
+              label: 'v2.1',
+            },
+          },
         },
         theme: {
           customCss,
@@ -105,6 +110,12 @@ const config: Config = {
     withBrandTheme,
   },
   themeConfig: {
+    announcementBar: {
+      content:
+        '<span style="font-size: 1rem">This is the documentation for Siemens Industrial Experience <b>v2</b>, which is no longer actively maintained. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>',
+      isCloseable: false,
+      backgroundColor: 'var(--theme-color-warning)',
+    },
     metadata: [
       {
         name: 'keywords',
@@ -128,10 +139,17 @@ const config: Config = {
       },
       items: [
         // Remove docs version until library needs to publish an major release
-        // {
-        //   type: 'docsVersionDropdown',
-        //   position: 'right',
-        // },
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+          dropdownItemsBefore: [
+            {
+              href: 'https://ix-dev.siemens.io',
+              label: 'Dev',
+            },
+          ],
+        },
       ],
     },
     footer: {
