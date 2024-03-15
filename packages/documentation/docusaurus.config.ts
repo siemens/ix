@@ -8,6 +8,7 @@
  */
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
+import type { ThemeConfig } from '@docusaurus/theme-common';
 import { themes as prismThemes } from 'prism-react-renderer';
 import figmaPlugin from 'figma-plugin';
 import path from 'path';
@@ -20,6 +21,33 @@ const libCss = [
   require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-dark.css'),
   require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-light.css'),
 ];
+
+const isDeployPreview = process.env.CONTEXT === 'deploy-preview';
+const isDevPreview = process.env.CONTEXT === 'dev';
+
+function getAnnouncementBarConfig() {
+  if (isDevPreview) {
+    return {
+      announcementBar: {
+        content:
+          '<span style="font-size: 1rem">This is the development documentation for Siemens Industrial Experience. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>',
+        isCloseable: false,
+        backgroundColor: 'var(--theme-color-warning)',
+      },
+    };
+  }
+
+  if (isDeployPreview) {
+    return {
+      announcementBar: {
+        content:
+          '<span style="font-size: 1rem">This is the preview documentation for Siemens Industrial Experience. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>',
+        isCloseable: false,
+        backgroundColor: 'var(--theme-color-warning)',
+      },
+    };
+  }
+}
 
 if (!process.env.CI) {
   try {
@@ -110,12 +138,7 @@ const config: Config = {
     withBrandTheme,
   },
   themeConfig: {
-    announcementBar: {
-      content:
-        '<span style="font-size: 1rem">This is the documentation for Siemens Industrial Experience <b>v2</b>, which is no longer actively maintained. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>',
-      isCloseable: false,
-      backgroundColor: 'var(--theme-color-warning)',
-    },
+    ...getAnnouncementBarConfig(),
     metadata: [
       {
         name: 'keywords',
