@@ -11,7 +11,7 @@ inputs:
     description: 'commit id'
 
   token:
-    description: 'github psa'
+    description: 'github pat'
 
 runs:
   using: 'composite'
