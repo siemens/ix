@@ -286,7 +286,6 @@ export class DateDropdown {
           variant="primary"
           icon="history"
           ref={(ref) => (this.triggerRef = ref)}
-          class="button-width"
         >
           {this.getButtonLabel()}
         </ix-button>
@@ -308,27 +307,29 @@ export class DateDropdown {
         >
           <ix-layout-grid no-margin="true">
             <ix-row>
-              <ix-col
-                class={{
-                  'no-margin': true,
-                  'border-right': this.selectedDateRangeId === 'custom',
-                }}
-              >
-                {this.dateRangeOptions.map((dateRangeOption) => (
-                  <ix-dropdown-item
-                    label={dateRangeOption.label}
-                    onClick={() => this.onRangeListSelect(dateRangeOption.id)}
-                    checked={this.selectedDateRangeId === dateRangeOption.id}
-                  ></ix-dropdown-item>
-                ))}
-                <div hidden={!this.customRangeAllowed}>
-                  <ix-dropdown-item
-                    label={this.i18nCustomItem}
-                    checked={this.selectedDateRangeId === 'custom'}
-                    onClick={() => this.onRangeListSelect('custom')}
-                  ></ix-dropdown-item>
-                </div>
-              </ix-col>
+              {this.dateRangeOptions?.length > 1 && (
+                <ix-col
+                  class={{
+                    'no-margin': true,
+                    'border-right': this.selectedDateRangeId === 'custom',
+                  }}
+                >
+                  {this.dateRangeOptions.map((dateRangeOption) => (
+                    <ix-dropdown-item
+                      label={dateRangeOption.label}
+                      onClick={() => this.onRangeListSelect(dateRangeOption.id)}
+                      checked={this.selectedDateRangeId === dateRangeOption.id}
+                    ></ix-dropdown-item>
+                  ))}
+                  <div hidden={!this.customRangeAllowed}>
+                    <ix-dropdown-item
+                      label={this.i18nCustomItem}
+                      checked={this.selectedDateRangeId === 'custom'}
+                      onClick={() => this.onRangeListSelect('custom')}
+                    ></ix-dropdown-item>
+                  </div>
+                </ix-col>
+              )}
               <ix-col class="no-margin">
                 {this.selectedDateRangeId === 'custom' && (
                   <Fragment>
