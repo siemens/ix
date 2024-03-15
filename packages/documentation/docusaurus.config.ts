@@ -7,12 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import type * as Preset from '@docusaurus/preset-classic';
-import type { Config } from '@docusaurus/types';
-import type { ThemeConfig } from '@docusaurus/theme-common';
+import type { Config, PluginConfig } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 import figmaPlugin from 'figma-plugin';
 import path from 'path';
 import fs from 'fs';
+import versions from './version-deployment.json' with { type: 'json '};
 
 let withBrandTheme = false;
 
@@ -22,10 +22,47 @@ const libCss = [
   require.resolve('@siemens/ix/dist/siemens-ix/theme/legacy-classic-light.css'),
 ];
 
+const useFastStart = !!process.env.FAST_START;
+
 const isDeployPreview = process.env.CONTEXT === 'deploy-preview';
 const isDevPreview = process.env.CONTEXT === 'dev';
 
+const plugins: PluginConfig[] = [
+  'docusaurus-plugin-sass',
+]
+
+if (useFastStart) {
+  console.warn('🚧 🚧 🚧 🚧 🚧 🚧');
+  console.warn('🚧 🚧 🚧 🚧 🚧 🚧');
+  console.warn('Fast start enabled');
+  console.warn('No figma plugin enabled');
+  console.warn('No search plugin enabled');
+  console.warn('🚧 🚧 🚧 🚧 🚧 🚧');
+  console.warn('🚧 🚧 🚧 🚧 🚧 🚧');
+}
+
+if (!useFastStart) {
+  plugins.push([
+    require.resolve('docusaurus-lunr-search'),
+    {
+      languages: ['en'],
+      excludeRoutes: ['**/installation/CHANGELOG', '**/auto-generated/**/*'],
+    },
+  ],)
+}
+
 function getAnnouncementBarConfig() {
+  if (versions.currentVersion !== versions.latestVersion) {
+    return {
+      announcementBar: {
+        content:
+          '<span style="font-size: 1rem">OLD VERSION!!!!. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>',
+        isCloseable: false,
+        backgroundColor: 'var(--theme-color-warning)',
+      },
+    };
+  }
+
   if (isDevPreview) {
     return {
       announcementBar: {
@@ -98,7 +135,7 @@ const config: Config = {
   url: 'https://ix.siemens.io',
   baseUrl: baseUrl,
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'Siemens AG',
   projectName: 'ix',
@@ -113,7 +150,7 @@ const config: Config = {
           // Please change this to your repo.
           editUrl:
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
-          remarkPlugins: [
+          remarkPlugins: useFastStart ? [] : [
             figmaPlugin({
               baseUrl: `${baseUrl}figma`,
               figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
@@ -122,11 +159,6 @@ const config: Config = {
               rimraf: true,
             }),
           ],
-          versions: {
-            current: {
-              label: 'v2.1',
-            },
-          },
         },
         theme: {
           customCss,
@@ -163,15 +195,11 @@ const config: Config = {
       items: [
         // Remove docs version until library needs to publish an major release
         {
-          type: 'docsVersionDropdown',
+          type: 'dropdown',
           position: 'right',
           dropdownActiveClassDisabled: true,
-          dropdownItemsBefore: [
-            {
-              href: 'https://ix-dev.siemens.io',
-              label: 'Dev',
-            },
-          ],
+          label: versions.currentVersion,
+          items: versions.versions.filter(version => version.label !== versions.currentVersion)
         },
       ],
     },
@@ -242,16 +270,7 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
-  plugins: [
-    'docusaurus-plugin-sass',
-    [
-      require.resolve('docusaurus-lunr-search'),
-      {
-        languages: ['en'],
-        excludeRoutes: ['**/installation/CHANGELOG', '**/auto-generated/**/*'],
-      },
-    ],
-  ],
+  plugins: plugins,
 };
 
 module.exports = config;

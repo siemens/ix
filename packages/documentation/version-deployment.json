@@ -1,0 +1,14 @@
+{
+  "latestVersion": "v2",
+  "currentVersion": "v2",
+  "versions": [
+    {
+      "href": "https://ix.siemens.io",
+      "label": "v3 (Active)"
+    },
+    {
+      "href": "https://v2.ix.siemens.io",
+      "label": "v2 (LTS)"
+    }
+  ]
+}
