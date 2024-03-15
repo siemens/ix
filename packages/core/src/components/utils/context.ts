@@ -87,7 +87,7 @@ export type ContextConsumerSubscription = {
 
 export function useContextConsumer<
   T extends HTMLElement,
-  C extends UnknownContext
+  C extends UnknownContext,
 >(
   hostElement: T,
   context: C,
@@ -122,7 +122,7 @@ export type ContextProvider<C extends Context<{}> = Context<any>> = {
 export function useContextProvider<
   X extends {},
   C extends Context<X>,
-  T extends HTMLElement = HTMLElement
+  T extends HTMLElement = HTMLElement,
 >(
   hostElement: T,
   context: C,

@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
-import Playground from '@site/src/components/Playground';
+import PlaygroundV2 from '@site/src/components/PlaygroundV2';
 
 # Theme switching
 
@@ -10,8 +10,9 @@ import Playground from '@site/src/components/Playground';
 
 <ApiTableSinceTag message="1.3.0" />
 
-<Playground
+<PlaygroundV2
   name="theme-switcher"
   height="15rem"
-  examplesByName>
-</Playground>
+  examplesByName  
+>
+</PlaygroundV2>
