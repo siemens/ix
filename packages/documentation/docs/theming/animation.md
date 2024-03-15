@@ -14,7 +14,7 @@ Therefore it is important to choose the correct timing for the respective situat
 
 ##### default-time: 150 ms
 
-- all mouse state changes e.g. normal <-> hover <-> active/pressed
+- all mouse state changes e.g. normal to hover to active/pressed
 - showing and hiding of small UI elements
 
 ##### medium-time: 300 ms

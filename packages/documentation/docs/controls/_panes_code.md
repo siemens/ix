@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 
 import PaneProps from './../auto-generated/ix-pane/props.md';
 import PaneEvents from './../auto-generated/ix-pane/events.md';
@@ -20,36 +20,16 @@ import SourceVuePaneLayout from './../auto-generated/previews/vue/pane-layout.md
 
 ## Pane
 
-<Tags />
-
 <Playground
 name="pane" height="24rem" noMargin
-frameworks={{
-  react: SourceReactPane,
-  angular: {
-    "pane.html": SourceAngularPaneHtml,
-    "pane.ts": SourceAngularPaneTs
-  },
-  javascript: SourcePane,
-  vue: SourceVuePane
-}}>
+examplesByName>
 </Playground>
 
 ## Pane Layout
 
-<Tags />
-
 <Playground
 name="pane-layout" height="24rem" noMargin
-frameworks={{
-  react: SourceReactPaneLayout,
-  angular: {
-    "pane-layout.html": SourceAngularPaneLayoutHtml,
-    "pane-layout.ts": SourceAngularPaneLayoutTs
-  },
-  javascript: SourcePaneLayout,
-  vue: SourceVuePaneLayout
-}}>
+examplesByName>
 </Playground>
 
 ## Properties

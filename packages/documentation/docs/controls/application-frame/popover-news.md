@@ -2,7 +2,6 @@
 sidebar_position: 9
 ---
 
-import Playground from '@site/src/components/Playground'
 import DocsTabs from '@site/src/components/DocsTabs';
 
 import DocsUx from './\_popover-news_styleguide.md';

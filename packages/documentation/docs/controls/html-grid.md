@@ -1,7 +1,4 @@
-import Playground from '@site/src/components/Playground';
-
-import SourceTable from './../auto-generated/previews/web-component/html-table.md'
-import SourceTableStriped from './../auto-generated/previews/web-component/html-table-striped.md'
+import Playground from '@site/src/components/PlaygroundV2';
 
 # HTML table
 
@@ -10,8 +7,8 @@ import SourceTableStriped from './../auto-generated/previews/web-component/html-
 <Playground
 name="html-table" height="12rem"
 hideInitalCodePreview
-frameworks={{
-  javascript: SourceTable
+files={{
+  javascript: ['html-table.html']
 }}></Playground>
 
 ### Striped
@@ -19,6 +16,6 @@ frameworks={{
 <Playground
 name="html-table-striped" height="12rem"
 hideInitalCodePreview
-frameworks={{
-  javascript: SourceTableStriped
+files={{
+  javascript: ['html-table-striped.html']
 }}></Playground>
