@@ -169,40 +169,40 @@
 
 :host(.selected) {
   --ix-card-border-color: var(--theme-color-dynamic);
+}
 
-  &.card-insight {
-    --ix-card-background: var(--theme-color-ghost--selected);
-  }
+:host(.selected.card-insight) {
+  --ix-card-background: var(--theme-color-ghost--selected);
+}
 
-  &.card-notification {
-    --ix-card-background: var(--theme-color-ghost--selected);
-  }
+:host(.selected.card-notification) {
+  --ix-card-background: var(--theme-color-ghost--selected);
+}
 
-  &.card-alarm {
-    --ix-card-background: var(--theme-color-alarm--active);
-  }
+:host(.selected.card-alarm) {
+  --ix-card-background: var(--theme-color-alarm--active);
+}
 
-  &.card-critical {
-    --ix-card-background: var(--theme-color-critical--active);
-  }
+:host(.selected.card-critical) {
+  --ix-card-background: var(--theme-color-critical--active);
+}
 
-  &.card-warning {
-    --ix-card-background: var(--theme-color-warning--active);
-  }
+:host(.selected.card-warning) {
+  --ix-card-background: var(--theme-color-warning--active);
+}
 
-  &.card-success {
-    --ix-card-background: var(--theme-color-success--active);
-  }
+:host(.selected.card-success) {
+  --ix-card-background: var(--theme-color-success--active);
+}
 
-  &.card-info {
-    --ix-card-background: var(--theme-color-info--active);
-  }
+:host(.selected.card-info) {
+  --ix-card-background: var(--theme-color-info--active);
+}
 
-  &.card-neutral {
-    --ix-card-background: var(--theme-color-neutral--active);
-  }
+:host(.selected.card-neutral) {
+  --ix-card-background: var(--theme-color-neutral--active);
+}
 
-  &.card-primary {
-    --ix-card-background: var(--theme-color-primary--active);
-  }
+:host(.selected.card-primary) {
+  --ix-card-background: var(--theme-color-primary--active);
 }
