@@ -37,10 +37,10 @@ jobs:
       #     result-encoding: string
 
       - name: Deploy Preview for PR
-        # if: "contains(github.event.pull_request.labels.*.name, 'Deploy Preview')"
+        if: contains( github.event.pull_request.labels.*.name, 'Deploy Preview')
         shell: bash
         run: |
-          echo ${{ toJSON(github.event.pull_request) }}
+          echo Deploy to netlify
         # uses: actions-cool/issues-helper@v3
         # with:
         #   actions: 'create-comment'
