@@ -9,52 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Deploy Preview for PR
-        if: contains(github.event.pull_request.labels.*.name, 'Deploy Preview')
-        uses: actions-cool/issues-helper@v3
+      - name: Publish
+        id: publish
+        uses: netlify/actions/cli@master
         with:
-          issue-number: ${{ github.event.pull_request.number }}
-          actions: 'create-comment'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: |
-            🤖 PR Preview Deployment
-
-            Deployment in progress
-
-
-      - name: Find comments
-        id: find_comments
-        uses: actions-cool/issues-helper@v3
-        with:
-          actions: 'find-comments'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-auth: 'github-actions[bot]'
-          body-includes: '🤖 PR Preview Deployment'
-
-      - uses: actions/github-script@v7
-        id: filter-comment
+          args: deploy
         env:
-          COMMENTS_RESULT: ${{ steps.find_comments.outputs.comments }}
-        with:
-          script: |
-            const { COMMENTS_RESULT } = process.env;
-            const comments = JSON.parse(COMMENTS_RESULT);
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
-            if (comments.length === 1) {
-              return comments[0].id;
-            }
+      - name: Debug output
+        shell: bash
+        run: |
+          echo ${{ steps.publish.outputs.NETLIFY_URL }}
+      # - name: Deploy Preview for PR
+      #   if: contains(github.event.pull_request.labels.*.name, 'Deploy Preview')
+      #   uses: actions-cool/issues-helper@v3
+      #   with:
+      #     issue-number: ${{ github.event.pull_request.number }}
+      #     actions: 'create-comment'
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     body: |
+      #       📡 PR Preview Deployment
 
-            return '';
-          result-encoding: string
-
-      - name: Update comment
-        uses: actions-cool/issues-helper@v3
-        with:
-          actions: 'update-comment'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          comment-id: ${{ steps.filter-comment.outputs.results }}
-          body: |
-            🤖 PR Preview Deployment
-
-            Deployment in ready: <URL>
