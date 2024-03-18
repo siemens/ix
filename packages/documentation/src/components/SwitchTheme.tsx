@@ -33,7 +33,12 @@ function ThemeEntry(props: {
     </div>
   );
 }
-export function SwitchTheme(props: { icon: string; label: string }) {
+
+export function SwitchTheme(props: {
+  icon: string;
+  label: string;
+  isMobile: boolean;
+}) {
   const context = useDocusaurusContext();
 
   const [open, setOpen] = useState(false);
@@ -104,7 +109,11 @@ export function SwitchTheme(props: { icon: string; label: string }) {
   }
 
   return (
-    <IxDropdownButton outline icon={props.icon} label={getLabel(theme)}>
+    <IxDropdownButton
+      outline
+      icon={props.icon}
+      label={props.isMobile ? getLabel(theme) : null}
+    >
       {registeredThemes.map(({ id, label, color }) => {
         return (
           <IxDropdownItem key={id} checked={id === theme}>

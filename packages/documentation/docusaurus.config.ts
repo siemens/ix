@@ -56,7 +56,7 @@ function getAnnouncementBarConfig() {
     return {
       announcementBar: {
         content:
-          '<span style="font-size: 1rem">OLD VERSION!!!!. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>',
+          `<span style="font-size: 1rem">You are looking at an different version ${versions.currentVersion} then the latest supported version. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>`,
         isCloseable: false,
         backgroundColor: 'var(--theme-color-warning)',
       },
@@ -168,6 +168,7 @@ const config: Config = {
   ],
   customFields: {
     withBrandTheme,
+    versions
   },
   themeConfig: {
     ...getAnnouncementBarConfig(),
@@ -192,16 +193,7 @@ const config: Config = {
         alt: 'Siemens AG',
         src: 'img/logo.svg',
       },
-      items: [
-        // Remove docs version until library needs to publish an major release
-        {
-          type: 'dropdown',
-          position: 'right',
-          dropdownActiveClassDisabled: true,
-          label: versions.currentVersion,
-          items: versions.versions.filter(version => version.label !== versions.currentVersion)
-        },
-      ],
+      items: [],
     },
     footer: {
       copyright: `© Siemens 1996 - ${new Date().getFullYear()}`,

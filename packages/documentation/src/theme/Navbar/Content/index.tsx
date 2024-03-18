@@ -13,6 +13,7 @@ import NavbarSearch from '@theme/Navbar/Search';
 import { SwitchTheme } from '@site/src/components/SwitchTheme';
 
 import styles from './styles.module.css';
+import VersionRedirect from '@site/src/components/VersionRedirect';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -90,16 +91,15 @@ export default function NavbarContent(): JSX.Element {
         // Ask the user to add the respective navbar items => more flexible
         <>
           <NavbarItems items={rightItems} />
-          <NavbarColorModeToggle className={styles.colorModeToggle} />
-
           {isDocs() ? null : (
             <>
-              {!searchBarItem && (
-                <NavbarSearch>
-                  <SearchBar />
-                </NavbarSearch>
-              )}
-              <SwitchTheme icon="image" label="Theme"></SwitchTheme>
+              <SearchBar />
+              <VersionRedirect />
+              <SwitchTheme
+                isMobile={mobileSidebar.disabled}
+                icon="image"
+                label="Theme"
+              ></SwitchTheme>
             </>
           )}
         </>
