@@ -38,7 +38,6 @@ jobs:
 
       - name: Deploy Preview for PR
         if: "contains(github.event.labels.*.name, 'Deploy Preview')"
-      - name: Debug
         shell: bash
         run: |
           echo Test
