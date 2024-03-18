@@ -7,7 +7,7 @@ hide_table_of_contents: true
 
 import {Card, CardList} from '@site/src/components/Card';
 
-Test 2
+Test 2 123 123 
 
 <CardList>
   <Card label="Installation" isPrimary={true} size="big" link="installation" icon="disk" />
