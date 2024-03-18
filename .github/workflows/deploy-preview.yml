@@ -8,6 +8,13 @@ jobs:
   netlify:
     runs-on: ubuntu-latest
     steps:
+      - name: Build
+        uses: netlify/actions/cli@master
+        with:
+          args: build
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
       - name: Publish
         id: publish
