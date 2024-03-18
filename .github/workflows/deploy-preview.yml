@@ -36,10 +36,6 @@ jobs:
       #       return '';
       #     result-encoding: string
 
-      - name: Debug
-        shell: bash
-        run: echo ${{ contains(github.event.pull_request.labels.*.name, 'Deploy Preview') }}
-
       - name: Deploy Preview for PR
         if: contains(github.event.pull_request.labels.*.name, 'Deploy Preview')
         shell: bash
