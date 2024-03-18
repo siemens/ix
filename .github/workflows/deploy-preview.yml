@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened, labeled]
 
 jobs:
-  comment-workflow:
+  netlify:
     runs-on: ubuntu-latest
     steps:
 
@@ -37,7 +37,7 @@ jobs:
       #     result-encoding: string
 
       - name: Deploy Preview for PR
-        if: "contains(github.event.labels.*.name, 'Deploy Preview')"
+        if: "contains(github.event.pull_request.labels.*.name, 'Deploy Preview')"
         shell: bash
         run: |
           echo Test
