@@ -11,12 +11,11 @@ import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 
 export default function VersionRedirect() {
   const context = useDocusaurusContext();
-  const versionMeta = context.siteConfig.customFields.versions as any;
+  const versionDeployment = context.siteConfig.customFields
+    .versionDeployment as any;
 
-  console.log(versionMeta);
-
-  const { currentVersion } = versionMeta;
-  const selected = versionMeta.versions.find(
+  const { currentVersion } = versionDeployment;
+  const selected = versionDeployment.versions.find(
     (version) => version.id === currentVersion
   );
 
@@ -28,7 +27,7 @@ export default function VersionRedirect() {
 
   return (
     <IxDropdownButton style={{ marginRight: '1rem' }} label={selected.label}>
-      {versionMeta.versions.map((version) => (
+      {versionDeployment.versions.map((version) => (
         <IxDropdownItem
           key={version.id}
           label={version.label}

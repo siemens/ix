@@ -12,7 +12,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import figmaPlugin from 'figma-plugin';
 import path from 'path';
 import fs from 'fs';
-import versions from './version-deployment.json' with { type: 'json '};
+import versionDeployment from './version-deployment.json' with { type: 'json '};
 
 let withBrandTheme = false;
 
@@ -52,11 +52,14 @@ if (!useFastStart) {
 }
 
 function getAnnouncementBarConfig() {
-  if (versions.currentVersion !== versions.latestVersion) {
+
+  const latestVersion = versionDeployment.versions.find(version => version.id === versionDeployment.currentVersion);
+
+  if (versionDeployment.currentVersion !== versionDeployment.latestVersion) {
     return {
       announcementBar: {
         content:
-          `<span style="font-size: 1rem">You are looking at an different version ${versions.currentVersion} then the latest supported version. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>`,
+          `<span style="font-size: 1rem">You are looking at an different version ${latestVersion?.label} then the latest supported version. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>`,
         isCloseable: false,
         backgroundColor: 'var(--theme-color-warning)',
       },
@@ -168,7 +171,7 @@ const config: Config = {
   ],
   customFields: {
     withBrandTheme,
-    versions
+    versionDeployment
   },
   themeConfig: {
     ...getAnnouncementBarConfig(),
