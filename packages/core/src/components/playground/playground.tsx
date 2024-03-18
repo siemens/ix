@@ -13,7 +13,7 @@ import { Component, h, Host } from '@stencil/core';
 @Component({
   tag: 'ix-playground-internal',
   styleUrl: 'playground.scss',
-  // shadow: true,
+  // shadow: true, bla bla
   // Set scoped=true and shadow=false to test global styles like checkbox etc
   scoped: true,
 })
