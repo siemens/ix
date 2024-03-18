@@ -28,7 +28,7 @@ jobs:
         with:
           actions: 'find-comments'
           token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.issue.number }}
+          issue-number: ${{ github.event.pull_request.number }}
           comment-auth: 'github-actions[bot]'
           body-includes: '🤖 PR Preview Deployment'
 
