@@ -13,6 +13,7 @@ jobs:
         if: contains(github.event.pull_request.labels.*.name, 'Deploy Preview')
         uses: actions-cool/issues-helper@v3
         with:
+          issue-number: ${{ github.event.pull_request.number }}
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
