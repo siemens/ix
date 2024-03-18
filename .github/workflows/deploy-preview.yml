@@ -40,7 +40,7 @@ jobs:
         if: "contains(github.event.pull_request.labels.*.name, 'Deploy Preview')"
         shell: bash
         run: |
-          echo Test
+          echo Test 123
         # uses: actions-cool/issues-helper@v3
         # with:
         #   actions: 'create-comment'
