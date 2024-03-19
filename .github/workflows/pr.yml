@@ -157,7 +157,7 @@ jobs:
         id: publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy
+          args: deploy --site $NETLIFY_SITE_ID --context deploy-preview
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
