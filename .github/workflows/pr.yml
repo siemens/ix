@@ -8,6 +8,7 @@ on:
       - opened
       - reopened
       - synchronize
+      - labeled
 
 concurrency: pr-${{ github.ref }}
 
@@ -125,6 +126,7 @@ jobs:
           name: core-html-report--attempt-${{ github.run_attempt }}
           path: playwright-report
           retention-days: 2
+
   unit:
     if: ${{ needs.changes.outputs.core == 'true' || needs.changes.outputs.angular == 'true' }}
     needs: [build]
@@ -138,3 +140,23 @@ jobs:
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
+
+  deploy-preview:
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'Deploy Preview') }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --filter documentation
+
+      - name: Publish
+        id: publish
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
