@@ -150,14 +150,14 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
-      - name: Build
-        run: pnpm build --cache-dir=.turbo --filter documentation
+      # - name: Build
+      #   run: pnpm build --cache-dir=.turbo --filter documentation
 
       - name: Publish
         id: publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy --filter documentation --alias pr-${{ github.event.pull_request.number }}
+          args: deploy --build --context deploy-preview --filter documentation --alias pr-${{ github.event.pull_request.number }}
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -192,10 +192,12 @@ jobs:
         if: ${{ steps.filter-comment.outputs.result == '' }}
         uses: actions-cool/issues-helper@v3
         with:
+          issue-number: ${{ github.event.pull_request.number }}
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             🚢 PR Deployment is ready
 
-            Checkout [${{ steps.publish.outputs.NETLIFY_URL }}](${{ steps.publish.outputs.NETLIFY_URL }})
+            Preview ✅: [${{ steps.publish.outputs.NETLIFY_URL }}](${{ steps.publish.outputs.NETLIFY_URL }})
+            Logs: [${{ steps.publish.outputs.NETLIFY_LOGS_URL }}](${{ steps.publish.outputs.NETLIFY_LOGS_URL }})
 
