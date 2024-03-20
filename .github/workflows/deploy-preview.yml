@@ -15,7 +15,6 @@ concurrency: pr-${{ github.ref }}
 jobs:
   deploy-preview:
     if: ${{ contains(github.event.pull_request.labels.*.name, 'Deploy Preview') }}
-    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

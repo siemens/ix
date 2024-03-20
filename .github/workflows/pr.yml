@@ -8,7 +8,6 @@ on:
       - opened
       - reopened
       - synchronize
-      - labeled
 
 concurrency: pr-${{ github.ref }}
 
