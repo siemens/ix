@@ -1,10 +1,10 @@
 {
   "latestVersion": "v2",
-  "currentVersion": "v3-preview",
+  "currentVersion": "v2",
   "versions": [
     {
       "id": "v3-preview",
-      "href": "https://v3-preview.ix.siemens.io",
+      "href": "https://release-docs-v3--industrial-experience.netlify.app/",
       "label": "V3 (Preview)"
     },
     {
