@@ -65,28 +65,6 @@ function getAnnouncementBarConfig() {
       },
     };
   }
-
-  if (isDevPreview) {
-    return {
-      announcementBar: {
-        content:
-          '<span style="font-size: 1rem">This is the development documentation for Siemens Industrial Experience. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>',
-        isCloseable: false,
-        backgroundColor: 'var(--theme-color-warning)',
-      },
-    };
-  }
-
-  if (isDeployPreview) {
-    return {
-      announcementBar: {
-        content:
-          '<span style="font-size: 1rem">This is the preview documentation for Siemens Industrial Experience. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>',
-        isCloseable: false,
-        backgroundColor: 'var(--theme-color-warning)',
-      },
-    };
-  }
 }
 
 if (!process.env.CI) {
