@@ -1,2 +1,0 @@
-[build]
-  ignore = "GIT_COMMIT_MESSAGE=$(git show -s --format=%s $CACHED_COMMIT_REF) node ./scripts/ignore-netlify.js"
