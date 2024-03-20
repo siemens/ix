@@ -32,11 +32,11 @@ jobs:
         id: publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy --message "PullRequest - ${{ github.event.pull_request.number }}" --filter documentation --alias pr-preview-${{ github.event.pull_request.number }}
+          args: deploy --message "PullRequest $PR_NUMBER" --filter documentation --alias pr-preview-${{ github.event.pull_request.number }}
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: "PullRequest ${{ github.event.pull_request.number }}"
 
       - name: Find comments
         id: find_comments
