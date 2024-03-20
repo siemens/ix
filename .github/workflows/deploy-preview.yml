@@ -32,11 +32,10 @@ jobs:
         id: publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy --filter documentation
+          args: deploy --filter documentation --alias pr-preview-${{ github.event.pull_request.number }}
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-
 
       - name: Find comments
         id: find_comments
@@ -70,6 +69,8 @@ jobs:
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            🚢 PR Deployment is ready
-            Preview ✅: [${{ steps.publish.outputs.NETLIFY_URL }}](${{ steps.publish.outputs.NETLIFY_URL }})
-            Logs: [${{ steps.publish.outputs.NETLIFY_LOGS_URL }}](${{ steps.publish.outputs.NETLIFY_LOGS_URL }})
+            | 🚢 PR Preview Deployment is ready  | - |
+            |-------------|-------|
+            | ✅ Preview  | [${{ steps.publish.outputs.NETLIFY_URL }}](${{ steps.publish.outputs.NETLIFY_URL }}) |
+            | 🗂️ Logs     | [${{ steps.publish.outputs.NETLIFY_LOGS_URL }}](${{ steps.publish.outputs.NETLIFY_LOGS_URL }}) |
+            | 🚧 Settings | TODO |
