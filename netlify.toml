@@ -1,4 +1,3 @@
-[build]
-  publish = "packages/documentation/build"
-  command = "pnpm run build --filter documentation"
 
+[context.deploy-preview.environment]
+  NODE_VERSION = "20"
