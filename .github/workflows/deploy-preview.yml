@@ -33,7 +33,7 @@ jobs:
             - packages/html-test-app/**
             - packages/angular-test-app/**
             - packages/react-test-app/**
-          - packages/vue-test-app/**
+            - packages/vue-test-app/**
 
     - name: List all changed files
       env:
