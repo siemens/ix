@@ -29,7 +29,7 @@ jobs:
         id: publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy --build --context deploy-preview --filter documentation
+          args: deploy --build --context deploy-preview --filter documentation --debug
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
