@@ -272,7 +272,7 @@ importers:
         specifier: ^2.11.0
         version: 2.11.8
       '@stencil/core':
-        specifier: ^4.12.6
+        specifier: ^4.12.3
         version: 4.12.6
       '@types/luxon':
         specifier: ^3.3.7
@@ -16284,7 +16284,7 @@ packages:
       pretty-format: 29.7.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      ts-node: 10.9.1(@types/node@16.18.70)(typescript@5.3.3)
+      ts-node: 10.9.1(@types/node@18.18.7)(typescript@4.7.4)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
