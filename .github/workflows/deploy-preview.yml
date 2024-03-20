@@ -22,19 +22,21 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
-      # - name: Build
-      #   run: pnpm build --cache-dir=.turbo --filter documentation
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --filter documentation
+        env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+          CSC: ${{ secrets.READ_CSC_TOKEN }}
 
       - name: Publish
         id: publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy --build --filter documentation --context deploy-preview
+          args: deploy --filter documentation
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
-          CSC: ${{ secrets.READ_CSC_TOKEN }}
+
 
       - name: Find comments
         id: find_comments
