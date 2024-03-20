@@ -3,9 +3,6 @@ name: nightly
 on:
   schedule:
     - cron: '0 8,16 * * 1-5'
-  push:
-    branches:
-      - 'main'
   workflow_dispatch:
 
 jobs:
