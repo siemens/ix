@@ -25,6 +25,7 @@ jobs:
       id: changes
       uses: tj-actions/changed-files@v43
       with:
+        since_last_remote_commit: true
         files_yaml: |
           core:
             - packages/core/**
@@ -34,14 +35,6 @@ jobs:
             - packages/angular-test-app/**
             - packages/react-test-app/**
             - packages/vue-test-app/**
-
-    - name: List all changed files
-      env:
-        ALL_CHANGED_FILES: ${{ steps.changes.outputs.core_all_changed_files }}
-      run: |
-        for file in ${ALL_CHANGED_FILES}; do
-          echo "$file was changed"
-        done
 
   deploy-preview:
     needs: changes
