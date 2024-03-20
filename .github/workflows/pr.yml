@@ -27,17 +27,17 @@ jobs:
       with:
         files_yaml: |
           core:
-            - 'packages/core/**'
+            - packages/core/**
           angular:
-            - 'packages/angular/**'
+            - packages/angular/**
           aggrid:
-            - 'packages/aggrid/**'
+            - packages/aggrid/**
           docs:
-            - 'packages/documentation/**'
-            - 'packages/html-test-app/**'
-            - 'packages/angular-test-app/**'
-            - 'packages/react-test-app/**'
-            - 'packages/vue-test-app/**'
+            - packages/documentation/**
+            - packages/html-test-app/**
+            - packages/angular-test-app/**
+            - packages/react-test-app/**
+            - packages/vue-test-app/**
 
   build:
     needs: changes
@@ -82,7 +82,7 @@ jobs:
 
   visual-testing-aggrid:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' }}
-    needs: [build]
+    needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
     container:
@@ -128,7 +128,7 @@ jobs:
 
   unit:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.angular_any_changed == 'true' }}
-    needs: [build]
+    needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
     container:
