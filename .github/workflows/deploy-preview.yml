@@ -32,7 +32,7 @@ jobs:
         id: publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy --filter documentation --alias pr-preview-${{ github.event.pull_request.number }} --message "PR $PR_NUMBER"
+          args: deploy --message "PullRequest - ${{ github.event.pull_request.number }}" --filter documentation --alias pr-preview-${{ github.event.pull_request.number }}
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
