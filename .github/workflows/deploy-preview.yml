@@ -13,7 +13,7 @@ on:
 concurrency: pr-preview-${{ github.ref }}
 
 jobs:
-  change-detection:
+  files_changed:
     if: ${{ contains(github.event.pull_request.labels.*.name, 'Deploy Preview') }}
     runs-on: ubuntu-latest
     outputs:
@@ -37,8 +37,8 @@ jobs:
             - packages/vue-test-app/**
 
   deploy-preview:
-    needs: change-detection
-    if: ${{ needs.change-detection.outputs.core_any_changed == 'true' && needs.change-detection.outputs.docs_any_changed == 'true' }}
+    needs: files_changed
+    if: ${{ needs.files_changed.outputs.core_any_changed == 'true' && needs.files_changed.outputs.docs_any_changed == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,7 +46,7 @@ jobs:
 
       - name: List all changed files
         env:
-          ALL_CHANGED_FILES: ${{ needs.change-detection.outputs.all_changed_files }}
+          ALL_CHANGED_FILES: ${{ needs.files_changed.outputs.all_changed_files }}
         run: |
           for file in ${ALL_CHANGED_FILES}; do
             echo "$file was changed"
