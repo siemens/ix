@@ -13,13 +13,12 @@ on:
 concurrency: pr-preview-${{ github.ref }}
 
 jobs:
-  files_changed:
+  changes:
     if: ${{ contains(github.event.pull_request.labels.*.name, 'Deploy Preview') }}
     runs-on: ubuntu-latest
     outputs:
       core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
       docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
-      all_changed_files: ${{ steps.changes.outputs.all_changed_files}}
     steps:
     - uses: actions/checkout@v3
     - name: Track changes between commits
@@ -34,23 +33,23 @@ jobs:
             - packages/html-test-app/**
             - packages/angular-test-app/**
             - packages/react-test-app/**
-            - packages/vue-test-app/**
+          - packages/vue-test-app/**
+
+    - name: List all changed files
+      env:
+        ALL_CHANGED_FILES: ${{ steps.changes.outputs.all_changed_files }}
+      run: |
+        for file in ${ALL_CHANGED_FILES}; do
+          echo "$file was changed"
+        done
 
   deploy-preview:
-    needs: files_changed
-    if: ${{ needs.files_changed.outputs.core_any_changed == 'true' && needs.files_changed.outputs.docs_any_changed == 'true' }}
+    needs: changes
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' && needs.changes.outputs.docs_any_changed == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: List all changed files
-        env:
-          ALL_CHANGED_FILES: ${{ needs.files_changed.outputs.all_changed_files }}
-        run: |
-          for file in ${ALL_CHANGED_FILES}; do
-            echo "$file was changed"
-          done
 
       - uses: ./.github/workflows/actions/turbo
 
