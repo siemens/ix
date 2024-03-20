@@ -1,0 +1,4 @@
+[build]
+  publish = "packages/documentation/build"
+  command = "pnpm run build --filter documentation"
+
