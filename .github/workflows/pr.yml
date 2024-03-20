@@ -15,16 +15,18 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      core: ${{ steps.changes.outputs.core }}
-      angular: ${{ steps.changes.outputs.angular }}
-      aggrid: ${{ steps.changes.outputs.aggrid }}
-      docs: ${{ steps.changes.outputs.docs }}
+      core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
+      angular_any_changed: ${{ steps.changes.outputs.angular_any_changed }}
+      aggrid_any_changed: ${{ steps.changes.outputs.aggrid_any_changed }}
+      docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
     steps:
     - uses: actions/checkout@v3
-    - uses: dorny/paths-filter@v2
+    - name: Track changes between commits
       id: changes
+      uses: tj-actions/changed-files@v43
       with:
-        filters: |
+        since_last_remote_commit: true
+        files_yaml: |
           core:
             - 'packages/core/**'
           angular:
@@ -54,7 +56,7 @@ jobs:
         run: pnpm lint
 
   visual-testing-core:
-    if: ${{ needs.changes.outputs.core == 'true' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -80,7 +82,7 @@ jobs:
           retention-days: 1
 
   visual-testing-aggrid:
-    if: ${{ needs.changes.outputs.core == 'true' || needs.changes.outputs.aggrid == 'true' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' }}
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -126,7 +128,7 @@ jobs:
           retention-days: 2
 
   unit:
-    if: ${{ needs.changes.outputs.core == 'true' || needs.changes.outputs.angular == 'true' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.angular_any_changed == 'true' }}
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
