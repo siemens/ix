@@ -25,7 +25,6 @@ jobs:
       id: changes
       uses: tj-actions/changed-files@v43
       with:
-        since_last_remote_commit: true
         files_yaml: |
           core:
             - 'packages/core/**'
