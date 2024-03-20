@@ -10,7 +10,7 @@ on:
       - synchronize
       - labeled
 
-concurrency: pr-${{ github.ref }}
+concurrency: pr-preview-${{ github.ref }}
 
 jobs:
   deploy-preview:
