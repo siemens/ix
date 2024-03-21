@@ -26,24 +26,10 @@ entryPoints.forEach((file) => {
   input[name] = entryPath;
 });
 
-const isBrandThemeExisting = fs.existsSync(
-  path.join(
-    __dirname,
-    'src',
-    'public',
-    'additional-theme',
-    'ix-brand-theme/package.json'
-  )
-);
-
-let additionalTheme = {};
-
-if (isBrandThemeExisting) {
-  additionalTheme = {
-    loader: 'ix-brand-theme/loader',
-    css: 'ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css',
-  };
-}
+const additionalTheme = {
+  loader: 'ix-brand-theme/loader',
+  css: 'ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css',
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({

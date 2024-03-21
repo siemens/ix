@@ -5,16 +5,16 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report!
+        Thank you for taking the time to fill out this bug report!
 
   - type: checkboxes
     attributes:
       label: Prerequisites
       description:  Make sure to not violate these rules
       options:
-        - label: I have not leaked any internal company information.
+        - label: I have read the [Contributing Guidelines](https://github.com/siemens/ix/blob/main/CONTRIBUTING.md).
           required: true
-        - label: I have not posted internal links or code snippets.
+        - label: I have not leaked any internal/restricted information like screenshots, videos, code snippets, links etc.
           required: true
 
   - type: textarea

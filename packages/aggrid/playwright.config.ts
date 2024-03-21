@@ -72,7 +72,7 @@ const config: PlaywrightTestConfig = {
   /* Configure projects for major browsers */
   projects: buildProjectsWithThemes(),
   webServer: {
-    command: 'yarn host-root',
+    command: 'pnpm host-root',
     port: 8080,
   },
 };

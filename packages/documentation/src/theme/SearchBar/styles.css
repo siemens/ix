@@ -1,4 +1,5 @@
 .search-icon {
+  background-image: var(--ifm-navbar-search-input-icon);
   height: auto;
   width: 24px;
   cursor: pointer;
@@ -7,10 +8,6 @@
   background-repeat: no-repeat;
   background-position: center;
   display: none;
-}
-
-.sss::search-cancel-button {
-  appearance: searchfield-cancel-button;
 }
 
 .search-icon-hidden {
