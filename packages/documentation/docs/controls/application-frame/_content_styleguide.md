@@ -1,5 +1,5 @@
 import Tags from './../../auto-generated/ix-content/tags.md';
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 
 The content component is a simple layout component made for hosting content.
 

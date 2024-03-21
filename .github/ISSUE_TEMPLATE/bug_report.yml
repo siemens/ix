@@ -12,9 +12,9 @@ body:
       label: Prerequisites
       description:  Make sure to not violate these rules
       options:
-        - label: I have not leaked any internal company information.
+        - label: I have read the [Contributing Guidelines](https://github.com/siemens/ix/blob/main/CONTRIBUTING.md).
           required: true
-        - label: I have not posted internal links or code snippets.
+        - label: I have not leaked any internal/restricted information like screenshots, videos, code snippets, links etc.
           required: true
 
   - type: textarea
@@ -29,7 +29,7 @@ body:
   - type: dropdown
     id: framework
     attributes:
-      label: What type of frontend frameware are you seeing the problem on?
+      label: What type of frontend framework are you seeing the problem on?
       multiple: true
       options:
         - Angular
@@ -44,7 +44,7 @@ body:
     attributes:
       label: Which version of iX do you use?
       description: The exact version of Siemens iX you use.
-      placeholder: v1.x.x
+      placeholder: v2.x.x
     validations:
       required: true
 
@@ -52,7 +52,9 @@ body:
     id: logs
     attributes:
       label: Code to produce this issue.
-      description: Please copy and paste any relevant code to re-produce this issue (__preferred__ stackblitz/codesandbox/... link or a github repository).
+      description: |
+        Please provide accessible code (no private repositories) to reproduce the problem (__preferred__ github repository, stackblitz or codesandbox).
+        Issues without code to reproduce can not be analyzed by the team.
       render: shell
     validations:
       required: true

@@ -110,4 +110,91 @@ test.describe('menu', () => {
       ).toMatchSnapshot();
     }
   );
+
+  regressionTest(
+    'show scrollbar on overflow on expand on lg',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await page.goto('menu/overflow');
+
+      const menuItem = page.locator('ix-menu-item');
+      await menuItem.nth(5).hover();
+      await page.mouse.wheel(0, 400);
+
+      expect(
+        await page.screenshot({
+          animations: 'disabled',
+          fullPage: true,
+        })
+      ).toMatchSnapshot();
+    }
+  );
+
+  regressionTest(
+    'show scrollbar on overflow on expand on md',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.md);
+      await page.goto('menu/overflow');
+
+      const collapseButton = page.locator('ix-burger-menu');
+      await collapseButton.click();
+      await page.waitForTimeout(1000);
+
+      const menuItem = page.locator('ix-menu-item');
+      await menuItem.nth(5).hover();
+      await page.mouse.wheel(0, 400);
+
+      expect(
+        await page.screenshot({
+          animations: 'disabled',
+          fullPage: true,
+        })
+      ).toMatchSnapshot();
+    }
+  );
+
+  regressionTest(
+    'show scrollbar on overflow on expand on sm',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.sm);
+      await page.goto('menu/overflow');
+
+      const collapseButton = page.locator('ix-burger-menu').first();
+      await collapseButton.click();
+      await page.waitForTimeout(1000);
+
+      const menuItem = page.locator('ix-menu-item');
+      await menuItem.nth(5).hover();
+      await page.mouse.wheel(0, 400);
+
+      expect(
+        await page.screenshot({
+          animations: 'disabled',
+          fullPage: true,
+        })
+      ).toMatchSnapshot();
+    }
+  );
+
+  regressionTest(
+    'hide scrollbar on collapsed but scrollable',
+    async ({ page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await page.goto('menu/overflow');
+
+      const application = page.locator('ix-application');
+
+      const collapseButton = page.getByRole('button', {
+        name: 'Double Chevron Left',
+      });
+      await collapseButton.click();
+      await page.waitForTimeout(1000);
+
+      expect(
+        await application.screenshot({
+          animations: 'disabled',
+        })
+      ).toMatchSnapshot();
+    }
+  );
 });

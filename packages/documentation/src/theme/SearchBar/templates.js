@@ -23,6 +23,7 @@ const templates = {
         <div class="${suggestionPrefix}--subcategory-inline">{{{subcategory}}}</div>
         <div class="${suggestionPrefix}--title">{{{title}}}</div>
         {{#text}}<div class="${suggestionPrefix}--text">{{{text}}}</div>{{/text}}
+        {{#version}}<div class="${suggestionPrefix}--version">{{version}}</div>{{/version}}
       </div>
       {{/isTextOrSubcategoryNonEmpty}}
     </div>
@@ -87,6 +88,16 @@ const templates = {
   <form novalidate="novalidate" onsubmit="return false;" class="searchbox">
     <div role="search" class="searchbox__wrapper">
       <input id="docsearch" type="search" name="search" placeholder="Search the docs" autocomplete="off" required="required" class="searchbox__input"/>
+      <button type="submit" title="Submit your search query." class="searchbox__submit" >
+        <svg width=12 height=12 role="img" aria-label="Search">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sbx-icon-search-13"></use>
+        </svg>
+      </button>
+      <button type="reset" title="Clear the search query." class="searchbox__reset hide">
+        <svg width=12 height=12 role="img" aria-label="Reset">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sbx-icon-clear-3"></use>
+        </svg>
+      </button>
     </div>
 </form>
 
