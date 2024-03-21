@@ -31,11 +31,7 @@
     "strictPropertyInitialization": false,
     "target": "es2015",
     "baseUrl": ".",
-    "paths": {
-      "@siemens/ix": ["../core"]
-    },
-    "plugins": [
-    ],
+    "plugins": [],
     "skipLibCheck": true
   },
   "exclude": ["node_modules"],

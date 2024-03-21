@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Page, test as base, TestInfo } from '@playwright/test';
+import { Page, TestInfo, test as base } from '@playwright/test';
 
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
