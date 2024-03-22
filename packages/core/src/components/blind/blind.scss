@@ -71,9 +71,7 @@
   overflow: hidden;
 
   .blind-header-wrapper {
-    display: block;
     position: relative;
-    width: 100%;
     min-height: 3rem;
     height: 3rem;
     overflow: hidden;
@@ -97,7 +95,6 @@
     position: relative;
     align-items: center;
     flex-grow: 1;
-    flex-shrink: 0;
     margin-right: 1rem;
   }
 
@@ -134,16 +131,7 @@
   }
 
   .blind-header-title-row {
-    display: flex;
-    flex-grow: 1;
-  }
-
-  .blind-header-title-col {
-    flex-grow: 1;
-    flex-basis: 0;
-    display: inline-flex;
-    align-items: center;
-    min-width: 0;
+    width: calc(100% - 4rem);
   }
 
   .blind-header-title-col:not(:first-of-type) {
@@ -194,6 +182,7 @@
 
   .header-actions {
     pointer-events: all;
+    margin-left: auto;
   }
 }
 
