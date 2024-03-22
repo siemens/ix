@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { TypedEvent } from '../utils/typed-event';
 export type ToastType = 'info' | 'success' | 'error' | 'warning';
 export type ToastPosition = 'bottom-right' | 'top-right';
 
@@ -46,15 +46,19 @@ export function setToastPosition(position: ToastPosition) {
 
 async function toast(config: ToastConfig) {
   const context = getToastContainer();
-  const toast = await context.showToast(config);
+  const toast = (await context.showToast(config)) as {
+    onClose: TypedEvent<any>;
+    close: (result?: any) => void;
+  };
   return toast;
 }
 
 toast.info = (config: ToastConfig) => {
-  return toast({
+  const x = toast({
     ...config,
     type: 'info',
   });
+  return x;
 };
 
 toast.error = (config: ToastConfig) => {
