@@ -7,7 +7,7 @@ import {Card, CardList} from '@site/src/components/Card';
 import DesignKit from '@site/src/components/design-kit/DesignKit';
 import Separator from '@site/src/components/separator/Separator';
 
-# iX design resources
+# Design resources
 
 ![design kit](./image.png)
 
