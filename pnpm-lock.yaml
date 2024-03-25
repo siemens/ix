@@ -272,8 +272,8 @@ importers:
         specifier: ^2.11.0
         version: 2.11.8
       '@stencil/core':
-        specifier: ^4.12.3
-        version: 4.12.6
+        specifier: ^4.13.0
+        version: 4.13.0
       '@types/luxon':
         specifier: ^3.3.7
         version: 3.3.7
@@ -298,19 +298,19 @@ importers:
         version: 0.7.1(@typescript-eslint/eslint-plugin@6.18.1)(@typescript-eslint/parser@6.18.1)(eslint-plugin-react@7.33.2)(eslint@8.56.0)(typescript@5.3.3)
       '@stencil-community/postcss':
         specifier: ^2.2.0
-        version: 2.2.0(@stencil/core@4.12.6)
+        version: 2.2.0(@stencil/core@4.13.0)
       '@stencil/angular-output-target':
         specifier: ^0.8.3
-        version: 0.8.3(@stencil/core@4.12.6)
+        version: 0.8.3(@stencil/core@4.13.0)
       '@stencil/react-output-target':
         specifier: ^0.5.3
-        version: 0.5.3(@stencil/core@4.12.6)
+        version: 0.5.3(@stencil/core@4.13.0)
       '@stencil/sass':
         specifier: ^3.0.8
-        version: 3.0.8(@stencil/core@4.12.6)
+        version: 3.0.8(@stencil/core@4.13.0)
       '@stencil/vue-output-target':
         specifier: ^0.8.7
-        version: 0.8.7(@stencil/core@4.12.6)
+        version: 0.8.7(@stencil/core@4.13.0)
       '@testing-library/dom':
         specifier: ^8.11.0
         version: 8.20.1
@@ -6992,21 +6992,21 @@ packages:
       typescript: 5.3.3
     dev: true
 
-  /@stencil-community/postcss@2.2.0(@stencil/core@4.12.6):
+  /@stencil-community/postcss@2.2.0(@stencil/core@4.13.0):
     resolution: {integrity: sha512-PuPdjqgF6HdvSLwS6fpLf1TRzd3bd6zqpsICCUA0u9sxPnwrsIpx1xYyA/K9hSWrmyUg0WhHPvkX9k26N5DCnw==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0 || >=4.0.0'
     dependencies:
-      '@stencil/core': 4.12.6
+      '@stencil/core': 4.13.0
       postcss: 8.4.31
     dev: true
 
-  /@stencil/angular-output-target@0.8.3(@stencil/core@4.12.6):
+  /@stencil/angular-output-target@0.8.3(@stencil/core@4.13.0):
     resolution: {integrity: sha512-I/QO1sEx09WWUaNlA30EBhlXYftOSfSBTwYBwC65qlpHDIlD5WU3EAtKhU5IphfwhxnD63kvOoU1YvTUXFHNng==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.12.6
+      '@stencil/core': 4.13.0
     dev: true
 
   /@stencil/core@3.2.1:
@@ -7014,34 +7014,34 @@ packages:
     engines: {node: '>=14.10.0', npm: '>=6.0.0'}
     hasBin: true
 
-  /@stencil/core@4.12.6:
-    resolution: {integrity: sha512-15JO2TdaxGVKNdLZb/2TtDa+juj3XGD/V0y/disgdzYYSnajgSh06nwODfdHz9eTUh1Hisz+KIo857I1rCZrfg==}
+  /@stencil/core@4.13.0:
+    resolution: {integrity: sha512-gg+gtBWekQ08mDja8GVAUHNu+rrFhQaKZDvfhnS3l/5JbYiJddTimuDPPhuc0sR0JZL1iRdJTJSa+JbvmnQ1cQ==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
-  /@stencil/react-output-target@0.5.3(@stencil/core@4.12.6):
+  /@stencil/react-output-target@0.5.3(@stencil/core@4.13.0):
     resolution: {integrity: sha512-68jwRp35CjAcwhTJ9yFD/3n+jrHOqvEH2jreVuPVvZK+4tkhPlYlwz0d1E1RlF3jyifUSfdkWUGgXIEy8Fo3yw==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.12.6
+      '@stencil/core': 4.13.0
     dev: true
 
-  /@stencil/sass@3.0.8(@stencil/core@4.12.6):
+  /@stencil/sass@3.0.8(@stencil/core@4.13.0):
     resolution: {integrity: sha512-QJUG4Dr/b3wSizViwQXorrk1PJzxOsKkq5hSqtUHc3NNG3iomC4DQFYGeu15yNfoCDBtt4qkyHSCynsekQ8F6A==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.12.6
+      '@stencil/core': 4.13.0
     dev: true
 
-  /@stencil/vue-output-target@0.8.7(@stencil/core@4.12.6):
+  /@stencil/vue-output-target@0.8.7(@stencil/core@4.13.0):
     resolution: {integrity: sha512-hgOzbKKgLdCFrhLpmaw/qQrPSXl6hZ09K+j3p/iWh3esq6sxnwuW1PJKLniwkT4Z/JlDIk6stGPGQYi+WE5I2Q==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.12.6
+      '@stencil/core': 4.13.0
     dev: true
 
   /@svgr/babel-plugin-add-jsx-attribute@6.5.1(@babel/core@7.23.7):
