@@ -1,4 +1,4 @@
-name: main and preview
+name: Build
 
 on:
   push:

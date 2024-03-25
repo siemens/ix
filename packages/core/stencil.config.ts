@@ -163,7 +163,9 @@ function normalizeProperties(obj: JsonDocs, deleteProps: string[]) {
     if (obj[key] && typeof obj[key] === 'object') {
       normalizeProperties(obj[key], deleteProps);
     } else if (deleteProps.includes(key)) {
-      const posixPath = path.join(...path.relative(__dirname, obj[key]).split(path.sep)).toString();
+      const posixPath = path
+        .join(...path.relative(__dirname, obj[key]).split(path.sep))
+        .toString();
       obj[key] = posixPath.replace(/\\/g, '/');
     }
   }

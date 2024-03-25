@@ -16,7 +16,7 @@ import BlazorIcon from '@site/static/img/blazor.svg';
 # Welcome to Siemens Industrial Experience
 
 <p className="text-l-title">
-Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers within industrial contexts. Siemens Industrial Experience gives you access to a broad range of UI patterns, web-based code implementations, design tools, resources and content guidelines to accelerate collaboration between designers, developers and writers, helping to build efficient and consistent products.
+Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers within industrial contexts. It gives you access to a broad range of UI patterns, web-based code implementations, design tools, resources and content guidelines to accelerate collaboration between designers, developers and writers, helping to build efficient and consistent products.
 </p>
 
 ## Guiding principles
@@ -25,7 +25,7 @@ Siemens Industrial Experience is an open-source design system for designers and 
 
 ## Resources & assets
 
-Siemens Industrial Experience provides and maintains a Figma design kit containing all components, design foundations and assets. Multiple code implementations are offered and maintained by the Siemens Industrial Experience team. With guidelines on UX writing, pattern usage and more, Siemens Industrial Experience supports its users along the way. The comprehensive icon set contains more than 500 icons and is constantly growing.
+Siemens Industrial Experience provides and maintains a Figma design kit containing all components, design foundations and assets. Multiple code implementations are offered and maintained by our team. With guidelines on UX writing, pattern usage and more, Siemens Industrial Experience supports its users along the way. The comprehensive icon set contains more than 500 icons and is constantly growing.
 
 <CardList>
   <Card link="design-kit">Go to design kits</Card>
