@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-feat(core): adjust classic theme variables
+fix(core): update classic theme values
