@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
-sidebar_title: Migration from Core UI 6.5.0
-title: Core UI 6.5.0 to Siemens Industrial Experience design system v1
+sidebar_label: Migration from Core UI 6.5.0
 ---
+
+# Core UI 6.5.0 to Siemens Industrial Experience design system v1
 
 ## Changed dependencies
 
