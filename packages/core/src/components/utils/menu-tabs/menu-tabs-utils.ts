@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { MenuAbout } from 'src/components/menu-about/menu-about';
-import { MenuSettings } from 'src/components/menu-settings/menu-settings';
+import { MenuAbout } from '../../menu-about/menu-about';
+import { MenuSettings } from '../../menu-settings/menu-settings';
 
 function getItems(
   context: MenuSettings | MenuAbout

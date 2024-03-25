@@ -4,6 +4,7 @@ SPDX-FileCopyrightText: 2023 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
+
 <!-- omit in toc -->
 # Contributing to Siemens Industrial Experience
 
@@ -39,10 +40,12 @@ to <daniel.leroux@siemens.com> or <lukas.maurer@siemens.com>.
 
 ## I Want To Contribute
 
+
 > ### Legal Notice <!-- omit in toc -->
 > When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project license.
 
 ### Reporting Bugs
+
 
 <!-- omit in toc -->
 #### How Do I Submit a Good Bug Report?
@@ -64,7 +67,6 @@ Once it's filed:
 - A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs with the `needs-repro` label will not be addressed until the steps to reproduce it have been provided. Ideally you can provide a link to a running example (e.g. StackBlitz).
 - If the team is able to reproduce the issue, it will be marked `type: bug` and `Workflow: Approved`, as well as possibly other labels (such as `type: enhancement`)
 - If work on the issue has begun the workflow label will be changed to `Workflow: In progress`
-
 
 ### Suggesting Enhancements
 
