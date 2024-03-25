@@ -1,15 +1,17 @@
 {
-  "name": "@siemens/figma-plugin",
+  "name": "figma-plugin",
   "version": "1.0.0",
+  "private": true,
   "main": "dist/figma.js",
+  "types": "dist/figma.d.ts",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "axios": "^1.5.0",
     "rimraf": "^5.0.1",
     "unist-util-visit": "^5.0.0"
   },
   "scripts": {
-    "dev": "ts-node ./src/dev.ts",
     "build": "tsc"
   },
   "devDependencies": {

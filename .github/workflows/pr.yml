@@ -1,0 +1,140 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches-ignore:
+      - changeset-release/main
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+concurrency: pr-${{ github.ref }}
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      core: ${{ steps.changes.outputs.core }}
+      angular: ${{ steps.changes.outputs.angular }}
+      aggrid: ${{ steps.changes.outputs.aggrid }}
+      docs: ${{ steps.changes.outputs.docs }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: dorny/paths-filter@v2
+      id: changes
+      with:
+        filters: |
+          core:
+            - 'packages/core/**'
+          angular:
+            - 'packages/angular/**'
+          aggrid:
+            - 'packages/aggrid/**'
+          docs:
+            - 'packages/documentation/**'
+            - 'packages/html-test-app/**'
+            - 'packages/angular-test-app/**'
+            - 'packages/react-test-app/**'
+            - 'packages/vue-test-app/**'
+
+  build:
+    needs: changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --filter \!documentation
+
+      - name: Lint
+        run: pnpm lint
+
+  visual-testing-core:
+    if: ${{ needs.changes.outputs.core == 'true' }}
+    needs: [build, changes]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.39.0-jammy
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1/4, 2/4, 3/4, 4/4]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Visual Regression
+        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard ${{ matrix.shard }}
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: core-blob-report
+          path: |
+            ./packages/core/blob-report/
+          retention-days: 1
+
+  visual-testing-aggrid:
+    if: ${{ needs.changes.outputs.core == 'true' || needs.changes.outputs.aggrid == 'true' }}
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.39.0-jammy
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Visual Regression
+        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: aggrid-html-report--attempt-${{ github.run_attempt }}
+          path: |
+            ./packages/aggrid/playwright-report/
+          retention-days: 1
+
+  merge-core-reports:
+      if: failure()
+      needs: [visual-testing-core]
+
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: core-blob-report
+          path: all-blob-reports
+
+      - name: Merge into HTML Report
+        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: core-html-report--attempt-${{ github.run_attempt }}
+          path: playwright-report
+          retention-days: 2
+  unit:
+    if: ${{ needs.changes.outputs.core == 'true' || needs.changes.outputs.angular == 'true' }}
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.39.0-jammy
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Test
+        run: pnpm run test --cache-dir=.turbo --filter !\documentation

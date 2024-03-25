@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
-sidebar_title: Migration from Core UI 6.5.0
-title: Core UI 6.5.0 to Siemens iX v1
+sidebar_label: Migration from Core UI 6.5.0
 ---
+
+# Core UI 6.5.0 to Siemens Industrial Experience design system v1
 
 ## Changed dependencies
 
@@ -24,7 +25,7 @@ Check the following points:
 
 - Rename `cui-vertical-tabs` to `ix-menu`
 - Settings and About overlays are now **_optional_** and have to be placed by developer.
-- Content of AboutAndLegal overlay is not part of the library anymore. The prevoius default content can be found inside the inner source brand theme.
+- Content of AboutAndLegal overlay is not part of the library anymore. The previous default content can be found inside the inner source brand theme.
 
 ### Component selectors changed
 
@@ -38,7 +39,7 @@ Change selectors. From `cui-` to `ix-`
 
 - SCSS variables are not exported anymore
 - Chart colors are not part of the library
-- theme.ts with hardcored hex color values are removed
+- theme.ts with hardcoded hex color values are removed
 
 ### Changed theme naming
 

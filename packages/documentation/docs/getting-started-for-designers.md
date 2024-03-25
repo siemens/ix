@@ -8,10 +8,10 @@ hide_table_of_contents: true
 import {Card, CardList} from '@site/src/components/Card';
 
 <CardList>
-  <Card label="iX design kits" isPrimary={true} size="big" link="design-kit" icon="disk" />
-  <Card label="iX for developers" link="getting-started" icon="rocket"/>
-  <Card label="Industrial icon system" link="icon-library/icons" icon="language" />
-  <Card label="Color palette" link="theming/colors" icon="bulb"/>
-  <Card label="Font System" link="theming/fonts" icon="book"/>
+  <Card label="Design kits" isPrimary={true} size="big" link="design-kit" icon="ink-pen" />
+  <Card label="For developers" link="getting-started" icon="script"/>
+  <Card label="Icon set" link="icon-library/icons" icon="edit-plant" />
+  <Card label="Styles" link="theming/colors" icon="light-dark"/>
+  <Card label="Font system" link="theming/fonts" icon="text"/>
   <Card label="Components" link="controls/application-frame/application" icon="configuration" />
 </CardList>

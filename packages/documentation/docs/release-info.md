@@ -16,9 +16,9 @@ We use [semantic versioning](https://semver.org/) for our releases. Version numb
 
 | Release type        | Details                                                     |
 |---------------------|-------------------------------------------------------------|
-| Major release       | Contains significant new features and changes, might include breaking changes. Updating requires some developer efforts and includes backward incompatible changes to APIs, file paths, component behavior and/or dependencies. Formerly deprecated components are removed when updating to a new major version. |
-| Minor release       | Contains smaller features and changes. Updating requires no developer efforts. Minor versions can include components changing their status to deprecated. They are fully backward compatible. |
-| Patch release       | Contains bug fixes. Updating requires no developer efforts. |
+| Major               | Contains significant new features and changes, might include breaking changes. Updating requires some developer efforts and includes backward incompatible changes to APIs, file paths, component behavior and/or dependencies. Formerly deprecated components are removed when updating to a new major version. |
+| Minor               | Contains smaller features and changes. Updating requires no developer efforts. Minor versions can include components changing their status to deprecated. They are fully backward compatible. |
+| Patch               | Contains bug fixes. Updating requires no developer efforts. |
 
 ### Release frequency
 
