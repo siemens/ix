@@ -23,9 +23,7 @@ const libCss = [
 ];
 
 const useFastStart = !!process.env.FAST_START;
-
-const isDeployPreview = process.env.CONTEXT === 'deploy-preview';
-const isDevPreview = process.env.CONTEXT === 'dev';
+const playgroundVersion = process.env.PLAYGROUND_VERSION || 'latest';
 
 const plugins: PluginConfig[] = [
   'docusaurus-plugin-sass',
@@ -50,6 +48,8 @@ if (!useFastStart) {
     },
   ],)
 }
+
+console.log('Playground version:', playgroundVersion)
 
 function getAnnouncementBarConfig() {
 
@@ -149,7 +149,8 @@ const config: Config = {
   ],
   customFields: {
     withBrandTheme,
-    versionDeployment
+    versionDeployment,
+    playgroundVersion
   },
   themeConfig: {
     ...getAnnouncementBarConfig(),
