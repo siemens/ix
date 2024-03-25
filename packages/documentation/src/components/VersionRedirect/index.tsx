@@ -8,6 +8,7 @@
  */
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
+import { useMemo } from 'react';
 
 export default function VersionRedirect() {
   const context = useDocusaurusContext();
@@ -15,6 +16,11 @@ export default function VersionRedirect() {
     .versionDeployment as any;
 
   const { currentVersion } = versionDeployment;
+
+  const hasVersions = useMemo(() => {
+    return versionDeployment.versions.length !== 1;
+  }, versionDeployment);
+
   const selected = versionDeployment.versions.find(
     (version) => version.id === currentVersion
   );
@@ -23,6 +29,10 @@ export default function VersionRedirect() {
     if (typeof window !== 'undefined') {
       window.location.href = link;
     }
+  }
+
+  if (!hasVersions) {
+    return <></>;
   }
 
   return (
