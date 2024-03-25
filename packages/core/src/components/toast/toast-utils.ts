@@ -50,11 +50,10 @@ async function toast(config: ToastConfig): Promise<ShowToastResult> {
 }
 
 toast.info = (config: ToastConfig) => {
-  const x = toast({
+  return toast({
     ...config,
     type: 'info',
   });
-  return x;
 };
 
 toast.error = (config: ToastConfig) => {
