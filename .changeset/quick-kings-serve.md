@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix(category-filter|input-group): udpate styling
+fix(category-filter|input-group): align styling
