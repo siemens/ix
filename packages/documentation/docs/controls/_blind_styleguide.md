@@ -8,8 +8,6 @@ import SourceReact from './../auto-generated/previews/react/blind.md'
 import SourceAngularTs from './../auto-generated/previews/angular/blind.ts.md'
 import SourceAngularHtml from './../auto-generated/previews/angular/blind.html.md'
 
-import Playground from '@site/src/components/Playground'
-
 Blinds are UI controls that allow the users to hide or reveal content by clicking on a control element. Blinds can display a large amount of content in a compact space or present information in an organized and hierarchical way. Blinds reduce the user's cognitive load by removing clutter and less important information from an interface. We typically don't use blinds if the content is central to the user's task due to its reduced visibility and accessibility.
 
 Blinds consist of a header section on the top and a content section below. The header section contains a chevron on the left followed by the blind's label. Within the content section, content can be placed freely.

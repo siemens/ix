@@ -1,11 +1,6 @@
-import Playground from '@site/src/components/Playground';
-
 import Props from './../auto-generated/ix-validation-tooltip/props.md';
 
-import SourceValidation from './../auto-generated/previews/web-component/validation.md';
-import SourceReactValidation from './../auto-generated/previews/react/validation.md';
-import SourceAngularValidation from './../auto-generated/previews/angular/validation.ts.md';
-import SourceVueValidation from './../auto-generated/previews/vue/validation.md';
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Form validation
 
@@ -18,12 +13,7 @@ In the following preview section you will find different implementation of a for
 
 <Playground
 name="validation" height="24rem"
-frameworks={{
-  react: SourceReactValidation,
-  angular: SourceAngularValidation,
-  javascript: SourceValidation,
-  vue: SourceVueValidation
-}}>
+examplesByName>
 </Playground>
 
 ## API (ix-validation-tooltip)

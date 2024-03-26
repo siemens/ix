@@ -128,7 +128,7 @@ export class IxTypography {
 
     if (this.textColor) {
       style = {
-        color: `var(--theme-color-${this.color}-text)`,
+        color: `var(--theme-color-${this.textColor}-text)`,
       };
     }
 

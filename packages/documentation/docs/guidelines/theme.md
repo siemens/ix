@@ -89,4 +89,3 @@ import '@siemens/ix/dist/siemens-ix/theme/classic-dark.css';
   ...
 </body>
 ```
-

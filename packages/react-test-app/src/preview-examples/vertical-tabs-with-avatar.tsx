@@ -18,8 +18,8 @@ import React from 'react';
 export default () => {
   return (
     <IxMenu>
-      <IxMenuAvatar image="https://ui-avatars.com/api/?name=John+Doe">
-        <IxMenuAvatarItem label="Option 1"></IxMenuAvatarItem>
+      <IxMenuAvatar top="john.doe@company.com" bottom="Administrator" image="https://ui-avatars.com/api/?name=John+Doe">
+        <IxMenuAvatarItem icon="user-profile" label="User profile..."></IxMenuAvatarItem>
       </IxMenuAvatar>
       <IxMenuItem home tab-icon="home">
         {' '}

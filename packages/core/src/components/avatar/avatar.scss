@@ -38,8 +38,8 @@
       min-height: 2rem;
       min-width: 2rem;
       border-radius: 100px;
-      background-color: var(--theme-color-component-3);
-      color: var(--theme-color-std-text);
+      background-color: var(--theme-avatar--background);
+      color: var(--theme-avatar--color);
     }
 
     #avatar-path-background {
@@ -47,7 +47,7 @@
     }
 
     #avatar-path-person {
-      fill: var(--theme-color-4);
+      fill:var(--theme-avatar--color);
     }
   }
 }

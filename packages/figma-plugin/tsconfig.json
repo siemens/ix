@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "module": "Node16",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

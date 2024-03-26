@@ -1,24 +1,14 @@
-import Playground from '@site/src/components/Playground';
 import Props from './../auto-generated/ix-datetime-picker/props.md';
 import Events from './../auto-generated/ix-datetime-picker/events.md';
 
-import SourceDatetimepicker from './../auto-generated/previews/web-component/datetimepicker.md'
-import SourceReactDatetimepicker from './../auto-generated/previews/react/datetimepicker.md'
-import SourceAngularDatetimepicker from './../auto-generated/previews/angular/datetimepicker.ts.md'
-import SourceVueDatetimepicker from './../auto-generated/previews/vue/datetimepicker.md'
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Date time picker
 
 ## Examples
 
 <Playground
-name="datetimepicker" height="30rem"
-frameworks={{
-  react: SourceReactDatetimepicker,
-  angular: SourceAngularDatetimepicker,
-  javascript: SourceDatetimepicker,
-  vue: SourceVueDatetimepicker
-}}></Playground>
+name="datetimepicker" height="30rem" examplesByName></Playground>
 
 <!-- Re-add this when migrating to the rework components -->
 <!-- ## Translation

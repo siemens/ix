@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 
 import Props from './../../auto-generated/ix-menu-settings/props.md';
 import Events from './../../auto-generated/ix-menu-settings/events.md';

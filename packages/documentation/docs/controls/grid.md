@@ -1,8 +1,4 @@
-import Playground from '@site/src/components/Playground';
-import SourceAggrid from './../auto-generated/previews/web-component/aggrid.md'
-import ReactSourceAggrid from './../auto-generated/previews/react/aggrid.md'
-import AngularSourceAggrid from './../auto-generated/previews/angular/aggrid.ts.md'
-import VueSourceAggrid from './../auto-generated/previews/vue/aggrid.md'
+import Playground from '@site/src/components/PlaygroundV2';
 
 # AG Grid
 
@@ -68,9 +64,4 @@ e.g.:
 
 <Playground
 name="aggrid" height="20rem"
-frameworks={{
-  react: ReactSourceAggrid,
-  javascript: SourceAggrid,
-  angular: AngularSourceAggrid,
-  vue: VueSourceAggrid
-}}></Playground>
+examplesByName></Playground>

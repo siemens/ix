@@ -1,12 +1,4 @@
-import Playground from '@site/src/components/Playground';
-
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
-
-import JavaScriptSourceEcharts from './../../auto-generated/previews/web-component/echarts.md'
-import ReactSourceEcharts from './../../auto-generated/previews/react/echarts.md'
-import VueSourceEcharts from './../../auto-generated/previews/vue/echarts.md'
-import AngularSourceEcharts from './../../auto-generated/previews/angular/echarts.ts.md'
+import Playground from '@site/src/components/PlaygroundV2';
 
 # ECharts
 
@@ -36,10 +28,5 @@ import '@siemens/ix-echarts';
 <Playground
 height="40rem"
 name="echarts"
-frameworks={{
-  react: ReactSourceEcharts,
-  angular: AngularSourceEcharts,
-  javascript: JavaScriptSourceEcharts,
-  vue: VueSourceEcharts
-}}>
+examplesByName>
 </Playground>

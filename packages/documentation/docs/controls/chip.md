@@ -2,7 +2,6 @@
 title: Chip
 ---
 
-import Playground from '@site/src/components/Playground'
 import DocsTabs from '@site/src/components/DocsTabs';
 
 import DocsUx from './\_chip_styleguide.md'
