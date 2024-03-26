@@ -59,7 +59,7 @@ function getAnnouncementBarConfig() {
     return {
       announcementBar: {
         content:
-          `<span style="font-size: 1rem">You are looking at an different version ${latestVersion?.label} then the latest supported version. Visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a> for the latest version.</span>`,
+          `<span style="font-size: 1rem">You are viewing the documentation for version ${latestVersion?.label}. To access the documentation for the latest release please visit <a style="font-weight: bold;" href="https://ix.siemens.io">https://ix.siemens.io</a>.</span>`,
         isCloseable: false,
         backgroundColor: 'var(--theme-color-warning)',
       },
