@@ -1,4 +1,4 @@
-Application is a technical and infrastructural component without a direct visual appearance. It lays out the top level app elements like [header](./application-header.md), [navigation menu](./application-menu.md) and [content](./content.md). Furthermore, it controls the breakpoint handling and the theming of an iX application.
+Application is a technical and infrastructural component without a direct visual appearance. It lays out the top level app elements like [header](./application-header.md), [navigation menu](./application-menu.md) and [content](./content.md). Furthermore, it controls the breakpoint handling and the theming of an application.
 
 
 ### Application switch

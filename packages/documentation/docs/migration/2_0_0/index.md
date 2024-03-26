@@ -6,7 +6,7 @@ title: Updating to v2
 
 # Updating to v2.0.0
 
-Welcome to the migration guide for upgrading from Siemens iX v1 to v2.
+Welcome to the migration guide for upgrading from Siemens Industrial Experience design system v1 to v2.
 This guide introduces all major changes. This includes, inter alia, the switch from offering an icon font to a SVG based implementation, changes and extensions to the ix-menu and the migration of our components to Shadow DOM. 
 
 ## Breaking changes in v2.0.0
@@ -84,7 +84,7 @@ In the latest version of `ix-basic-navigation`, we have changed handling of menu
 Now the list of menu items will scroll vertically to prevent overflow.
 This ensures that all menu items remain contained within the menu, offering a more intuitive and visually consistent experience.
 
-### Replacement of Bootstrap Modal parts with iX modal components
+### Replacement of Bootstrap Modal parts with our modal components
 
 __Old:__
 
