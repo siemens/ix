@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/angular"
   },
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Siemens iX for Angular",
   "scripts": {
     "build": "ng-packagr -c tsconfig.json",
@@ -16,7 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@siemens/ix": "~2.1.2"
+    "@siemens/ix": "~2.2.0"
   },
   "peerDependencies": {
     "@angular/core": ">=13.4.0",
@@ -30,7 +30,7 @@
     "@angular/core": "v13-lts",
     "@angular/forms": "v13-lts",
     "@jest/globals": "^29.3.1",
-    "@siemens/ix": "~2.1.2",
+    "@siemens/ix": "~2.2.0",
     "@types/jest": "^29.2.3",
     "fs-extra": "^10.1.0",
     "jest": "^29.3.1",
