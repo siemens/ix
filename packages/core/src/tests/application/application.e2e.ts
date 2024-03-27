@@ -221,3 +221,21 @@ regressionTest.describe('basic navigation mobile', () => {
     });
   });
 });
+
+regressionTest.describe('application-switch', () => {
+  regressionTest('modal', async ({ page }) => {
+    await page.goto('application/application-switch');
+
+    const appSwitchButton = page.getByRole('button', { name: 'Apps' });
+    await appSwitchButton.click();
+
+    await page.waitForTimeout(1000);
+    const modal = page.locator('ix-modal');
+    await expect(modal).toHaveClass(/hydrated/);
+
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
+    });
+  });
+});
