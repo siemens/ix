@@ -5,5 +5,5 @@ SPDX-License-Identifier: MIT
 -->
 
 All features/fixes satisfy their respective DoD
-Beta phase completed succesfully
+Beta phase completed successfully
 Changelog generated

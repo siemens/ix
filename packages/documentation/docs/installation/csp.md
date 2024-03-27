@@ -16,7 +16,7 @@ import VueIcon from '@site/static/img/vue.svg';
 
 In order to prevent certain XSS (Cross-Site Scripting) attacks a [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) can be implemented.
 Depending on the CSP configuration in place inline styles and scripts can be forbidden.
-By applying a [CSP nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) such elements can be explicilty allowed even if they would violate the CSP otherwise.
+By applying a [CSP nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) such elements can be explicitly allowed even if they would violate the CSP otherwise.
 
-With version 3 the Web Component compiler Stencil (used to build all iX components) introduced support for CSP nonces.
+With version 3 the Web Component compiler Stencil (used to build all of our components) introduced support for CSP nonces.
 For details on how to use them please read the [official Stencil docs](https://stenciljs.com/docs/csp-nonce) on the topic.
