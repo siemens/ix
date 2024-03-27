@@ -1345,6 +1345,9 @@ export namespace Components {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme": boolean;
+        /**
+          * Toggle the expand state of the menu
+         */
         "expand": boolean;
         "i18nCollapse": string;
         "i18nExpand": string;
@@ -1372,6 +1375,10 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
+        /**
+          * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+         */
+        "startExpanded": boolean;
         /**
           * Toggle About tabs
           * @param show
@@ -5421,6 +5428,9 @@ declare namespace LocalJSX {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme"?: boolean;
+        /**
+          * Toggle the expand state of the menu
+         */
         "expand"?: boolean;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
@@ -5456,6 +5466,10 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
+        /**
+          * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+         */
+        "startExpanded"?: boolean;
     }
     interface IxMenuAbout {
         /**

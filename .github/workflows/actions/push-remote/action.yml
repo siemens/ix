@@ -10,6 +10,13 @@ inputs:
   commit_id:
     description: 'commit id'
 
+  commit_message_prefix:
+    default: 'Nightly build'
+
+  commit_message:
+    description: 'commit message'
+    default: ''
+
   token:
     description: 'github pat'
 
@@ -48,6 +55,6 @@ runs:
         if [[ $(git status --porcelain) == '' ]]; then
           echo "No changes. Push to remote skipped!"
         else
-          git commit -m "Nightly build $(date +"%Y-%m-%d %T") - ${{ inputs.commit_id }}"
+          git commit -m "${{ inputs.commit_message_prefix }} $(date +"%Y-%m-%d %T") - ${{ inputs.commit_id }} ${{ inputs.commit_message }}"
           git push
         fi

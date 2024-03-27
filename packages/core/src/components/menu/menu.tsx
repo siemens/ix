@@ -88,8 +88,14 @@ export class Menu {
   @Prop() i18nExpandSidebar = 'Expand sidebar';
 
   /**
+   *  Toggle the expand state of the menu
    */
   @Prop({ mutable: true, reflect: true }) expand = false;
+
+  /**
+   *  If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+   */
+  @Prop() startExpanded = false;
 
   /**
    * Menu stays pinned to the left
@@ -293,7 +299,7 @@ export class Menu {
     applicationLayoutService.onChange.on((breakpoint) =>
       this.onBreakpointChange(breakpoint)
     );
-    this.onBreakpointChange(applicationLayoutService.breakpoint);
+    this.onBreakpointChange(applicationLayoutService.breakpoint, true);
   }
 
   componentWillRender() {
@@ -309,7 +315,7 @@ export class Menu {
     menuController.setIsPinned(pinned);
   }
 
-  private onBreakpointChange(mode: Breakpoint) {
+  private onBreakpointChange(mode: Breakpoint, initial = false) {
     if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }
@@ -325,16 +331,11 @@ export class Menu {
       return;
     }
 
+    this.setPinned(mode === 'lg');
+    if (initial || mode !== this.breakpoint)
+      this.toggleMenu(mode === 'lg' && this.startExpanded);
+
     this.breakpoint = mode;
-
-    if (this.breakpoint === 'lg') {
-      this.setPinned(true);
-      this.toggleMenu(true);
-      return;
-    }
-
-    this.setPinned(false);
-    this.toggleMenu(false);
   }
 
   private appendFragments() {
@@ -609,7 +610,7 @@ export class Menu {
               onClick={async () => this.toggleMenu()}
               expanded={this.expand}
               ixAriaLabel={this.i18nExpandSidebar}
-              pinned={this.showPinned}
+              pinned={true}
               class={{
                 'burger-menu': true,
               }}

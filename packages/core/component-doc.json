@@ -9142,7 +9142,7 @@
           "mutable": true,
           "attr": "expand",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "Toggle the expand state of the menu",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -9369,6 +9369,28 @@
           "attr": "show-settings",
           "reflectToAttr": false,
           "docs": "Is settings tab visible",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "startExpanded",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "start-expanded",
+          "reflectToAttr": false,
+          "docs": "If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.",
           "docsTags": [],
           "default": "false",
           "values": [

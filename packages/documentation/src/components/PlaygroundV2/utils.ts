@@ -16,6 +16,10 @@ export type SourceFile = {
   source: string;
 };
 
+function patchPkgLibraryVersion(pkg: string, replaceVersion: string) {
+  return pkg.replace(/\"<VERSION>\"/g, `"${replaceVersion}"`);
+}
+
 function getSourceCodeFile({
   name,
   framework,
@@ -60,7 +64,11 @@ async function loadSourceCodeFromStatic(paths: string[]) {
   return Promise.all(sourceFiles.map((res) => res.text()));
 }
 
-async function openHtmlStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
+async function openHtmlStackBlitz(
+  baseUrl: string,
+  sourceFiles: SourceFile[],
+  version: string
+) {
   const [index_html, main_js, package_json, vite_config_ts] =
     await loadSourceCodeFromStatic([
       `${baseUrl}code-runtime/html/src/index.html`,
@@ -88,7 +96,7 @@ async function openHtmlStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
           renderFirstExample.source
         ),
         'src/main.js': main_js,
-        'package.json': package_json,
+        'package.json': patchPkgLibraryVersion(package_json, version),
         'vite.config.ts': vite_config_ts,
       },
     },
@@ -101,7 +109,8 @@ async function openHtmlStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
 async function openAngularStackBlitz(
   baseUrl: string,
   name: string,
-  additionalFiles: SourceFile[]
+  additionalFiles: SourceFile[],
+  version: string
 ) {
   const [
     app_component_css,
@@ -172,7 +181,7 @@ async function openAngularStackBlitz(
         'src/main.ts': main_ts,
         'src/styles.css': styles_css,
         'angular.json': angular_json,
-        'package.json': package_json,
+        'package.json': patchPkgLibraryVersion(package_json, version),
         'tsconfig.app.json': tsconfig_app_json,
         'tsconfig.json': tsconfig_json,
         ...exampleFiles,
@@ -184,7 +193,11 @@ async function openAngularStackBlitz(
   );
 }
 
-async function openReactStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
+async function openReactStackBlitz(
+  baseUrl: string,
+  sourceFiles: SourceFile[],
+  version: string
+) {
   const [app_tsx, index_html, index_tsx, package_json, tsconfig_json] =
     await loadSourceCodeFromStatic([
       `${baseUrl}code-runtime/react/App.tsx`,
@@ -224,7 +237,7 @@ async function openReactStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
         'public/index.html': index_html,
         'src/index.tsx': index_tsx,
         'src/App.tsx': patchAppTs(),
-        'package.json': package_json,
+        'package.json': patchPkgLibraryVersion(package_json, version),
         'tsconfig.json': tsconfig_json,
         '.stackblitzrc': `{
         "startCommand": "yarn run start"
@@ -237,7 +250,11 @@ async function openReactStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
   );
 }
 
-async function openVueStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
+async function openVueStackBlitz(
+  baseUrl: string,
+  sourceFiles: SourceFile[],
+  version: string
+) {
   const [
     app_vue,
     index_html,
@@ -284,7 +301,7 @@ async function openVueStackBlitz(baseUrl: string, sourceFiles: SourceFile[]) {
         'src/main.ts': index_ts,
         'src/App.vue': patchAppTs(),
         'src/env.d.ts': env_d_ts,
-        'package.json': package_json,
+        'package.json': patchPkgLibraryVersion(package_json, version),
         'tsconfig.json': tsconfig_json,
         'vite.config.ts': viteconfig_ts,
         '.stackblitzrc': `{
@@ -324,25 +341,28 @@ export async function openStackBlitz({
   framework,
   files,
   baseUrl,
+  version,
 }: {
   name: string;
   files: SourceFile[];
   framework: TargetFramework;
   baseUrl: string;
+  version: string;
 }) {
+  const libraryVersion = version || 'latest';
   if (framework === TargetFramework.REACT) {
-    return openReactStackBlitz(baseUrl, files);
+    return openReactStackBlitz(baseUrl, files, libraryVersion);
   }
 
   if (framework === TargetFramework.ANGULAR) {
-    return openAngularStackBlitz(baseUrl, name, files);
+    return openAngularStackBlitz(baseUrl, name, files, libraryVersion);
   }
 
   if (framework === TargetFramework.JAVASCRIPT) {
-    return openHtmlStackBlitz(baseUrl, files);
+    return openHtmlStackBlitz(baseUrl, files, libraryVersion);
   }
 
   if (framework === TargetFramework.VUE) {
-    return openVueStackBlitz(baseUrl, files);
+    return openVueStackBlitz(baseUrl, files, libraryVersion);
   }
 }
