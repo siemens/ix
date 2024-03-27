@@ -42,6 +42,13 @@ regressionTest.describe('blind', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('test ellipsis ', async ({ page }) => {
+    await page.goto('blind/basic');
+    await page.waitForSelector('ix-blind');
+    await page.waitForTimeout(800);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   test('should no hover on slot', async ({ mount, page }) => {
     await mount(`
     <ix-blind label="Example label" style="width: 25rem">
