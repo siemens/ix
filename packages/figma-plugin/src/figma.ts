@@ -45,7 +45,7 @@ async function getImageResource(
 
   if (response.status !== 200) {
     console.log(
-      `🪲 Ups! A received a different status code ${response.status}`,
+      `🪲 Oops! Received unexpected status code ${response.status}`,
       fileName,
       'with node ids:',
       ids
