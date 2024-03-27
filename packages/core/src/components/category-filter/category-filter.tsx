@@ -363,8 +363,6 @@ export class CategoryFilter {
     if (emitEvent) {
       this.emitFilterEvent();
     }
-
-    this.closeDropdown();
   }
 
   private removeToken(index: number) {
