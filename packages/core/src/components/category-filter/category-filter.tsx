@@ -720,7 +720,7 @@ export class CategoryFilter {
                 ></input>
               </ul>
             </div>
-            {this.getResetButton()}
+            {!this.readonly && !this.disabled && this.getResetButton()}
           </div>
         </form>
 

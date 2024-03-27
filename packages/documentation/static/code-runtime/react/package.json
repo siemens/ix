@@ -11,9 +11,9 @@
     "react-scripts": "5.0.1",
     "typescript": "^4.6.4",
     "web-vitals": "^2.1.4",
-    "@siemens/ix": "latest",
+    "@siemens/ix": "<VERSION>",
     "@siemens/ix-icons": "latest",
-    "@siemens/ix-react": "latest"
+    "@siemens/ix-react": "<VERSION>"
   },
   "scripts": {
     "start": "react-scripts start",
