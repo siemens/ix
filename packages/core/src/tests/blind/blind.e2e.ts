@@ -11,7 +11,6 @@ import { expect } from '@playwright/test';
 import { regressionTest, test } from '@utils/test';
 
 regressionTest.describe('blind', () => {
-
   regressionTest('basic', async ({ page }) => {
     await page.goto('blind/basic');
     await page.waitForSelector('ix-blind');
