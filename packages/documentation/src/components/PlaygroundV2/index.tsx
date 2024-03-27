@@ -21,6 +21,7 @@ import { TargetFramework } from './framework-types';
 import Demo, { DemoProps } from './../Demo';
 import styles from './styles.module.css';
 import { openStackBlitz, SourceFile } from './utils';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 function getBranchPath(framework: TargetFramework) {
   let path = 'html';
@@ -252,6 +253,10 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
   const baseUrlAssets = useBaseUrl('/img');
   const iframe = useBaseUrl('/webcomponent-examples/dist/preview-examples');
   const [files, setFiles] = useState<SourceFile[]>([]);
+  const context = useDocusaurusContext();
+  const versionDeployment = context.siteConfig.customFields
+    .playgroundVersion as 'latest' | (string & {});
+
   const isTabVisible = (framework: TargetFramework) => {
     if (props.examplesByName) {
       return true;
@@ -307,6 +312,7 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
                     files: files,
                     framework: tab,
                     name: props.name,
+                    version: versionDeployment,
                   });
                 }}
               ></IxIconButton>
