@@ -132,13 +132,15 @@
 
   .blind-header-title-row {
     display: flex;
-    width: calc(100% - 4rem);
+    width: 100%;
+    overflow: hidden;
   }
 
   .blind-header-title-col {
     display: inline-flex;
     align-items: center;
     width: calc(100% - 1rem);
+    overflow: hidden;
   }
 
   .blind-header-title-col:not(:first-of-type) {
