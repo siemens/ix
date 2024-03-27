@@ -68,7 +68,7 @@ export class IxActionCard {
         >
           <ix-card-content>
             {this.icon ? (
-              <ix-icon class={'icon'} name={this.icon} size="24"></ix-icon>
+              <ix-icon class={'icon'} name={this.icon} size="32"></ix-icon>
             ) : null}
             <div>
               {this.heading ? (
