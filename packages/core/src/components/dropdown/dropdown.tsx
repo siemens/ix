@@ -286,6 +286,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       return Promise.resolve(element);
     }
 
+    //TODO: Check side effect:
+    if (typeof element != 'string') {
+      return;
+    }
+
     const selector = `#${element}`;
     return new Promise((resolve) => {
       if (document.querySelector(selector)) {
