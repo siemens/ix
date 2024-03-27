@@ -19,7 +19,7 @@ export default function VersionRedirect() {
 
   const hasVersions = useMemo(() => {
     return versionDeployment.versions.length !== 1;
-  }, versionDeployment);
+  }, [versionDeployment]);
 
   const selected = versionDeployment.versions.find(
     (version) => version.id === currentVersion
