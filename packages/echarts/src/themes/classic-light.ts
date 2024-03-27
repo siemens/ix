@@ -139,46 +139,6 @@ export default {
         color: '#ffffff',
       },
     },
-    map: {
-      itemStyle: {
-        areaColor: '#eee',
-        borderColor: '#444',
-        borderWidth: 0.5,
-      },
-      label: {
-        color: '#fff',
-      },
-      emphasis: {
-        itemStyle: {
-          areaColor: 'rgba(255,215,0,0.8)',
-          borderColor: '#444',
-          borderWidth: 1,
-        },
-        label: {
-          color: 'rgb(100,0,0)',
-        },
-      },
-    },
-    geo: {
-      itemStyle: {
-        areaColor: '#eee',
-        borderColor: '#444',
-        borderWidth: 0.5,
-      },
-      label: {
-        color: '#fff',
-      },
-      emphasis: {
-        itemStyle: {
-          areaColor: 'rgba(255,215,0,0.8)',
-          borderColor: '#444',
-          borderWidth: 1,
-        },
-        label: {
-          color: 'rgb(100,0,0)',
-        },
-      },
-    },
     categoryAxis: {
       axisLine: {
         show: true,
