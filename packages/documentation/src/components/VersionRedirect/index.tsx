@@ -42,7 +42,9 @@ export default function VersionRedirect() {
           key={version.id}
           label={version.label}
           checked={version.id === currentVersion}
-          onClick={() => routeToVersion(version.href)}
+          onClick={() =>
+            version.id === currentVersion || routeToVersion(version.href)
+          }
         ></IxDropdownItem>
       ))}
     </IxDropdownButton>

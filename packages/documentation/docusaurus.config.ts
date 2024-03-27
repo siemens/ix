@@ -14,6 +14,8 @@ import path from 'path';
 import fs from 'fs';
 import versionDeployment from './version-deployment.json' with { type: 'json '};
 
+type DocContext = 'prod' | 'dev' | (string & {});
+
 let withBrandTheme = false;
 
 const libCss = [
@@ -24,6 +26,8 @@ const libCss = [
 
 const useFastStart = !!process.env.FAST_START;
 const playgroundVersion = process.env.PLAYGROUND_VERSION || 'latest';
+const docsContext: DocContext = process.env.DOCS_CONTEXT || 'prod';
+const docsContextValue: string | undefined = process.env.DOCS_CONTEXT_VALUE;
 
 const plugins: PluginConfig[] = [
   'docusaurus-plugin-sass',
@@ -51,8 +55,21 @@ if (!useFastStart) {
 
 console.log('Playground version:', playgroundVersion)
 
-function getAnnouncementBarConfig() {
+checkDocsContext();
 
+function checkDocsContext() {
+  if (docsContext === 'dev') {
+    const devLabel = docsContextValue ?? 'Development'
+    versionDeployment.versions.unshift({
+      id: 'dev',
+      href: '#',
+      label: devLabel
+    });
+    versionDeployment.currentVersion = 'dev';
+  }
+}
+
+function getAnnouncementBarConfig() {
   const latestVersion = versionDeployment.versions.find(version => version.id === versionDeployment.currentVersion);
 
   if (versionDeployment.currentVersion !== versionDeployment.latestVersion) {
