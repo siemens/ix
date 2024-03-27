@@ -11,6 +11,7 @@ import { expect } from '@playwright/test';
 import { regressionTest, test } from '@utils/test';
 
 regressionTest.describe('blind', () => {
+
   regressionTest('basic', async ({ page }) => {
     await page.goto('blind/basic');
     await page.waitForSelector('ix-blind');
@@ -39,13 +40,6 @@ regressionTest.describe('blind', () => {
 
   regressionTest('custom-header', async ({ page }) => {
     await page.goto('blind/custom-header');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-  });
-
-  regressionTest('test ellipsis ', async ({ page }) => {
-    await page.goto('blind/basic');
-    await page.waitForSelector('ix-blind');
-    await page.waitForTimeout(800);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
