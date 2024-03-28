@@ -98,5 +98,6 @@ regressionTest.describe('dropdown', () => {
       await page.locator('ix-button').click();
 
       await expect(page).toHaveScreenshot();
-    });
+    }
+  );
 });
