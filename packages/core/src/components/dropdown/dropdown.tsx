@@ -134,6 +134,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   connectedCallback(): void {
     dropdownController.connected(this);
+
+    if (this.trigger != undefined) {
+      this.registerListener(this.trigger);
+    }
   }
 
   @Listen('ix-assign-sub-menu')
@@ -286,7 +290,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       return Promise.resolve(element);
     }
 
-    //TODO: Check side effect:
     if (typeof element != 'string') {
       return;
     }
