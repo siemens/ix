@@ -96,6 +96,7 @@ export class DateDropdown {
   onDateRangeIdChange() {
     this.onRangeListSelect(this.dateRangeId);
     this.updateCurrentDate();
+    this.setDateRangeSelection(this.dateRangeId);
 
     this.onDateSelect({
       from: this.currentRangeValue.from,
@@ -217,7 +218,6 @@ export class DateDropdown {
     rangeValue: { from: string; to: string; id: string },
     preserveDropdown = true
   ) {
-    console.log('on data Chjange: ',rangeValue)
     this.dateRangeChange.emit(rangeValue);
 
     if (preserveDropdown) {
@@ -249,7 +249,6 @@ export class DateDropdown {
   }
 
   private getButtonLabel() {
-    console.log('current range: ,',this.currentRangeValue);
     if (this.selectedDateRangeId === 'custom' && this.currentRangeValue?.from) {
       let range = this.currentRangeValue.from;
 
