@@ -2,27 +2,20 @@
 SPDX-FileCopyrightText: 2023 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Dropdown example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts example</title>
+    <!-- Sources -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
-    <script>
-      function detectThemeSwitching() {
-        const searchParams = new URLSearchParams(location.search);
-
-        if (!searchParams.has('theme')) {
-          return 'brand-dark';
-        }
-        const theme = searchParams.get('theme');
-        return theme.substring('theme-'.length, theme.length);
-      }
-
-      const theme = detectThemeSwitching();
-      window.demoTheme = theme;
-    </script>
+    <!-- Sources -->
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
@@ -30,16 +23,22 @@ SPDX-License-Identifier: MIT
       id="main"
       style="display: block; position: relative; width: 100%; height: 40rem"
     ></div>
+
     <script type="module">
-      import { registerTheme } from '@siemens/ix-echarts';
+      import '@siemens/ix-echarts';
 
-      registerTheme(echarts);
+      function getTheme() {
+        const searchParams = new URLSearchParams(location.search);
 
-      var myChart = echarts.init(
-        document.querySelector('#main'),
-        window.demoTheme // brand-dark, brand-light, classic-dark or classic-light
-      );
-      // Draw the chart
+        if (!searchParams.has('theme')) {
+          return 'brand-dark';
+        }
+        const theme = searchParams.get('theme');
+        return theme.substring('theme-'.length, theme.length); // brand-dark, brand-light, classic-dark or classic-light
+      }
+
+      var myChart = echarts.init(document.querySelector('#main'), getTheme());
+
       myChart.setOption({
         tooltip: {
           trigger: 'axis',
