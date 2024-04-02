@@ -32,7 +32,7 @@ LICENSE file in the root directory of this source tree.
   <body>
     <div id="main"></div>
     <script type="module">
-      function detectThemeSwitching() {
+      function getTheme() {
         const searchParams = new URLSearchParams(location.search);
 
         if (!searchParams.has('theme')) {
@@ -42,18 +42,14 @@ LICENSE file in the root directory of this source tree.
         return theme.substring('theme-'.length, theme.length);
       }
 
-      const theme = detectThemeSwitching();
-      window.demoTheme = theme;
+      const theme = getTheme();
 
       // Configure the background color to enhance contrast
       document.body.style.backgroundColor = theme.includes('dark')
         ? 'black'
         : 'white';
 
-      var myChart = echarts.init(
-        document.querySelector('#main'),
-        window.demoTheme
-      );
+      var myChart = echarts.init(document.querySelector('#main'), theme);
 
       myChart.setOption({
         title: {
