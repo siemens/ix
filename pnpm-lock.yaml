@@ -210,6 +210,9 @@ importers:
       '@siemens/ix-angular':
         specifier: workspace:*
         version: link:../angular/dist
+      '@siemens/ix-echarts':
+        specifier: workspace:*
+        version: link:../echarts
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
@@ -219,6 +222,12 @@ importers:
       ag-grid-community:
         specifier: ^30.2.0
         version: 30.2.0
+      echarts:
+        specifier: ^5.4.1
+        version: 5.4.3
+      ngx-echarts:
+        specifier: ~14.0.0
+        version: 14.0.0(echarts@5.4.3)
       rxjs:
         specifier: ~7.5.0
         version: 7.5.7
@@ -1172,7 +1181,7 @@ packages:
       tree-kill: 1.2.2
       tslib: 2.4.0
       typescript: 4.7.4
-      webpack: 5.76.1
+      webpack: 5.76.1(esbuild@0.15.5)
       webpack-dev-middleware: 5.3.3(webpack@5.76.1)
       webpack-dev-server: 4.11.0(webpack@5.76.1)
       webpack-merge: 5.8.0
@@ -6562,7 +6571,7 @@ packages:
     dependencies:
       '@angular/compiler-cli': 14.3.0(@angular/compiler@14.3.0)(typescript@4.7.4)
       typescript: 4.7.4
-      webpack: 5.76.1
+      webpack: 5.76.1(esbuild@0.15.5)
     dev: true
 
   /@nodelib/fs.scandir@2.1.5:
@@ -12230,7 +12239,6 @@ packages:
     dependencies:
       tslib: 2.3.0
       zrender: 5.4.4
-    dev: true
 
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
@@ -19005,6 +19013,15 @@ packages:
       - supports-color
     dev: true
 
+  /ngx-echarts@14.0.0(echarts@5.4.3):
+    resolution: {integrity: sha512-Q8J/DXiWqYM2vqTfQq16A7KyxbWECZSiAApS0rBjsAJCPjG/VZogUe0snZ/i3mA6bV3vYm41imTYOaH+Rl97QA==}
+    peerDependencies:
+      echarts: '>=5.0.0'
+    dependencies:
+      echarts: 5.4.3
+      tslib: 2.6.2
+    dev: false
+
   /nice-napi@1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}
     os: ['!win32']
@@ -24219,30 +24236,6 @@ packages:
       webpack: 5.76.1(esbuild@0.15.5)
     dev: true
 
-  /terser-webpack-plugin@5.3.9(webpack@5.76.1):
-    resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      '@swc/core': '*'
-      esbuild: '*'
-      uglify-js: '*'
-      webpack: ^5.1.0
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      esbuild:
-        optional: true
-      uglify-js:
-        optional: true
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.20
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.1
-      terser: 5.22.0
-      webpack: 5.76.1
-    dev: true
-
   /terser-webpack-plugin@5.3.9(webpack@5.89.0):
     resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
     engines: {node: '>= 10.13.0'}
@@ -24717,7 +24710,6 @@ packages:
 
   /tslib@2.3.0:
     resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
-    dev: true
 
   /tslib@2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
@@ -26071,46 +26063,6 @@ packages:
       webpack: 5.76.1(esbuild@0.15.5)
     dev: true
 
-  /webpack@5.76.1:
-    resolution: {integrity: sha512-4+YIK4Abzv8172/SGqObnUjaIHjLEuUasz9EwQj/9xmPPkYJy2Mh03Q/lJfSD3YLzbxy5FeTq5Uw0323Oh6SJQ==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-    peerDependencies:
-      webpack-cli: '*'
-    peerDependenciesMeta:
-      webpack-cli:
-        optional: true
-    dependencies:
-      '@types/eslint-scope': 3.7.6
-      '@types/estree': 0.0.51
-      '@webassemblyjs/ast': 1.11.1
-      '@webassemblyjs/wasm-edit': 1.11.1
-      '@webassemblyjs/wasm-parser': 1.11.1
-      acorn: 8.10.0
-      acorn-import-assertions: 1.9.0(acorn@8.10.0)
-      browserslist: 4.22.1
-      chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.15.0
-      es-module-lexer: 0.9.3
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.9(webpack@5.76.1)
-      watchpack: 2.4.0
-      webpack-sources: 3.2.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-    dev: true
-
   /webpack@5.76.1(esbuild@0.15.5):
     resolution: {integrity: sha512-4+YIK4Abzv8172/SGqObnUjaIHjLEuUasz9EwQj/9xmPPkYJy2Mh03Q/lJfSD3YLzbxy5FeTq5Uw0323Oh6SJQ==}
     engines: {node: '>=10.13.0'}
@@ -26671,7 +26623,6 @@ packages:
     resolution: {integrity: sha512-0VxCNJ7AGOMCWeHVyTrGzUgrK4asT4ml9PEkeGirAkKNYXYzoPJCLvmyfdoOXcjTHPs10OZVMfD1Rwg16AZyYw==}
     dependencies:
       tslib: 2.3.0
-    dev: true
 
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}

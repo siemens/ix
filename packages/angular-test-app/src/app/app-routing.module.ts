@@ -142,6 +142,7 @@ import WorkflowVertical from 'src/preview-examples/workflow-vertical';
 import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
+import Echarts from 'src/preview-examples/echarts';
 
 const routes: Routes = [
   {
@@ -306,6 +307,7 @@ const routes: Routes = [
       { path: 'dropdown', component: Dropdown },
       { path: 'dropdown-quick-actions', component: DropdownQuickActions },
       { path: 'dropdown-submenu', component: DropdownSubmenu },
+      { path: 'echarts', component: Echarts },
       { path: 'event-list-compact', component: EventListCompact },
       {
         path: 'event-list-custom-item-height',
