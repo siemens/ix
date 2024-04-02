@@ -22,11 +22,9 @@
     "sourceMap": true,
     "target": "es2017",
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@utils/test": ["tests/utils/test"]
-    }
+    "baseUrl": "."
   },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "dist"],
   "compileOnSave": false,
   "buildOnSave": false

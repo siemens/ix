@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest } from './utils/test';
 
 regressionTest.describe('echarts', () => {
   regressionTest('basic', async ({ page }) => {
