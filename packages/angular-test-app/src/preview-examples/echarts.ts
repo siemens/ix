@@ -7,8 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
-import '@siemens/ix-echarts';
+import { Component, OnInit } from '@angular/core';
+import { registerTheme } from '@siemens/ix-echarts';
+import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 @Component({
@@ -22,7 +23,7 @@ import { EChartsOption } from 'echarts';
     ></div>
   `,
 })
-export default class Echarts {
+export default class Echarts implements OnInit {
   theme = document.body.className.replace('theme-', ''); // brand-dark, brand-light, classic-dark or classic-light
 
   options: EChartsOption = {
@@ -139,4 +140,8 @@ export default class Echarts {
       },
     ],
   };
+
+  ngOnInit() {
+    registerTheme(echarts);
+  }
 }
