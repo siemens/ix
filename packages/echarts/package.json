@@ -18,13 +18,18 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
-    "compile": "rollup -c"
+    "compile": "rollup -c",
+    "test:e2e": "playwright test",
+    "host-root": "http-server -a 127.0.0.1"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@playwright/test": "^1.32.1",
     "@rollup/plugin-typescript": "^8.4.0",
+    "@siemens/ix": "~2.1.2",
     "echarts": "^5.4.1",
+    "http-server": "^14.1.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.78.1",
     "rollup-plugin-dts": "^4.2.0",
