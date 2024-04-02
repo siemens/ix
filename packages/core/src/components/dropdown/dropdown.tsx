@@ -153,8 +153,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   disconnectedCallback() {
-    this.disposeListener?.();
+    dropdownController.dismiss(this);
     dropdownController.disconnected(this);
+
+    if (this.disposeListener) {
+      this.disposeListener();
+    }
+
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
     }
@@ -343,6 +348,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private async applyDropdownPosition() {
+    if (!this.show) {
+      return;
+    }
     if (!this.anchorElement) {
       return;
     }
@@ -388,7 +396,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           this.dropdownRef,
           positionConfig
         );
-
         Object.assign(this.dropdownRef.style, {
           top: '0',
           left: '0',
