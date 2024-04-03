@@ -787,6 +787,9 @@ importers:
       '@siemens/ix-aggrid':
         specifier: workspace:*
         version: link:../aggrid
+      '@siemens/ix-echarts':
+        specifier: workspace:*
+        version: link:../echarts
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
@@ -799,9 +802,15 @@ importers:
       ag-grid-vue3:
         specifier: ^30.1.0
         version: 30.2.1(ag-grid-community@30.2.0)(vue@3.3.7)
+      echarts:
+        specifier: ^5.4.1
+        version: 5.4.3
       vue:
         specifier: ^3.2.45
         version: 3.3.7(typescript@4.9.5)
+      vue-echarts:
+        specifier: ~6.6.9
+        version: 6.6.9(echarts@5.4.3)(vue@3.3.7)
       vue-hooks-form:
         specifier: ^0.3.0
         version: 0.3.0(vue@3.3.7)
@@ -22615,6 +22624,10 @@ packages:
   /requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
 
+  /resize-detector@0.3.0:
+    resolution: {integrity: sha512-R/tCuvuOHQ8o2boRP6vgx8hXCCy87H1eY9V5imBYeVNyNVpuL9ciReSccLj2gDcax9+2weXy3bc8Vv+NRXeEvQ==}
+    dev: false
+
   /resolve-alpn@1.2.1:
     resolution: {integrity: sha512-0a1F4l73/ZFZOakJnQ3FvkJ2+gSTQWz/r2KE5OdDY0TxPm5h4GkqkWWfM47T7HsbnOtcJVEF4epCVy6u7Q3K+g==}
     dev: false
@@ -25771,6 +25784,26 @@ packages:
         optional: true
     dependencies:
       vue: 3.3.7(typescript@4.9.5)
+    dev: false
+
+  /vue-echarts@6.6.9(echarts@5.4.3)(vue@3.3.7):
+    resolution: {integrity: sha512-mojIq3ZvsjabeVmDthhAUDV8Kgf2Rr/X4lV4da7gEFd1fP05gcSJ0j7wa7HQkW5LlFmF2gdCJ8p4Chas6NNIQQ==}
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.5
+      '@vue/runtime-core': ^3.0.0
+      echarts: ^5.4.1
+      vue: ^2.6.12 || ^3.1.1
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      '@vue/runtime-core':
+        optional: true
+    dependencies:
+      echarts: 5.4.3
+      resize-detector: 0.3.0
+      vue: 3.3.7(typescript@4.9.5)
+      vue-demi: 0.13.11(vue@3.3.7)
     dev: false
 
   /vue-eslint-parser@9.3.2(eslint@8.57.0):
