@@ -18,6 +18,7 @@ jobs:
       core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
       angular_any_changed: ${{ steps.changes.outputs.angular_any_changed }}
       aggrid_any_changed: ${{ steps.changes.outputs.aggrid_any_changed }}
+      echarts_any_changed: ${{ steps.changes.outputs.echarts_any_changed }}
       docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
     steps:
       - uses: actions/checkout@v3
@@ -32,6 +33,8 @@ jobs:
               - packages/angular/**
             aggrid:
               - packages/aggrid/**
+            echarts:
+              - packages/echarts/**
             docs:
               - packages/documentation/**
               - packages/html-test-app/**
