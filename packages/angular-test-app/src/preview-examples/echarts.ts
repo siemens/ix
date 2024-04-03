@@ -9,7 +9,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { registerTheme } from '@siemens/ix-echarts';
-import * as echarts from 'echarts';
+import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
 
 @Component({
