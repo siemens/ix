@@ -23,17 +23,19 @@ LICENSE file in the root directory of this source tree.
     ></div>
 
     <script type="module">
-      import '@siemens/ix-echarts';
+      import { registerTheme } from '@siemens/ix-echarts';
 
       function getTheme() {
         const searchParams = new URLSearchParams(location.search);
 
-        if (!searchParams.has('theme')) {
-          return 'brand-dark';
-        }
-        const theme = searchParams.get('theme');
-        return theme.substring('theme-'.length, theme.length); // brand-dark, brand-light, classic-dark or classic-light
+        if (!searchParams.has('theme')) return 'brand-dark';
+
+        return searchParams
+          .get('theme')
+          .substring('theme-'.length, theme.length);
       }
+
+      registerTheme(echarts);
 
       var myChart = echarts.init(document.querySelector('#main'), getTheme());
 
