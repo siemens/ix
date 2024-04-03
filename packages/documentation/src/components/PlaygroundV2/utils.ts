@@ -6,18 +6,33 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import sdk from '@stackblitz/sdk';
 import { TargetFramework } from './framework-types';
+import { themeSwitcher } from '@siemens/ix';
 
 const repositoryUrl = 'https://github.com/siemens/ix/tree/main/packages';
 
 export type SourceFile = {
   filename: string;
   source: string;
+  raw: string;
 };
 
 function patchPkgLibraryVersion(pkg: string, replaceVersion: string) {
   return pkg.replace(/\"<VERSION>\"/g, `"${replaceVersion}"`);
+}
+
+function replaceTheme(source: string) {
+  const theme: string = themeSwitcher.getCurrentTheme();
+  return source.replace(/(<body class=")[^"]*(")/, `$1${theme}$2`);
+}
+
+function replaceScriptFilePath(source: string) {
+  return source.replace(
+    /(<script type="module" src=")[^"]*(">)/,
+    `$1${'./main.js'}$2`
+  );
 }
 
 function getSourceCodeFile({
@@ -91,9 +106,11 @@ async function openHtmlStackBlitz(
       description: 'iX html playground',
       files: {
         ...files,
-        'src/index.html': index_html.replace(
-          '<!-- IX_INJECT_SOURCE_CODE -->',
-          renderFirstExample.source
+        'src/index.html': replaceTheme(
+          index_html.replace(
+            '<!-- IX_INJECT_SOURCE_CODE -->',
+            replaceScriptFilePath(renderFirstExample.raw)
+          )
         ),
         'src/main.js': main_js,
         'package.json': patchPkgLibraryVersion(package_json, version),
@@ -177,7 +194,7 @@ async function openAngularStackBlitz(
         'src/app/app.component.html': app_component_html,
         'src/app/app.component.ts': app_component_ts,
         'src/app/app.module.ts': app_module_ts,
-        'src/index.html': index_html,
+        'src/index.html': replaceTheme(index_html),
         'src/main.ts': main_ts,
         'src/styles.css': styles_css,
         'angular.json': angular_json,
@@ -234,7 +251,7 @@ async function openReactStackBlitz(
       description: 'iX react playground',
       files: {
         ...files,
-        'public/index.html': index_html,
+        'public/index.html': replaceTheme(index_html),
         'src/index.tsx': index_tsx,
         'src/App.tsx': patchAppTs(),
         'package.json': patchPkgLibraryVersion(package_json, version),
@@ -297,7 +314,7 @@ async function openVueStackBlitz(
       description: 'iX vue playground',
       files: {
         ...files,
-        'index.html': index_html,
+        'index.html': replaceTheme(index_html),
         'src/main.ts': index_ts,
         'src/App.vue': patchAppTs(),
         'src/env.d.ts': env_d_ts,

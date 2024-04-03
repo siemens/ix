@@ -8,13 +8,7 @@
  */
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import {
-  IxButton,
-  IxIconButton,
-  IxSpinner,
-  IxTabItem,
-  IxTabs,
-} from '@siemens/ix-react';
+import { IxIconButton, IxSpinner, IxTabItem, IxTabs } from '@siemens/ix-react';
 import CodeBlock from '@theme/CodeBlock';
 import { useEffect, useState } from 'react';
 import { TargetFramework } from './framework-types';
@@ -117,6 +111,7 @@ async function fetchHTMLSource(
         return {
           filename: file,
           source: sliceHtmlCode(source),
+          raw: source,
         };
       } catch (e) {
         console.warn(e);
