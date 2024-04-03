@@ -14,6 +14,8 @@ import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 export default function Echarts() {
+  registerTheme(echarts);
+
   const theme = document.body.className.replace('theme-', '');
 
   const options: EChartsOption = {
@@ -130,8 +132,6 @@ export default function Echarts() {
       },
     ],
   };
-
-  registerTheme(echarts);
 
   return (
     <ReactEcharts
