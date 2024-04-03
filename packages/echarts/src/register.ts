@@ -20,16 +20,10 @@ declare global {
 }
 
 export default function registerEChartsThemes(echartsInstance?: any) {
-  let chart = echartsInstance ?? window.echarts;
+  const chart = echartsInstance ?? window.echarts;
 
-  if (chart === undefined) {
-    import('echarts')
-      .then((echarts) => {
-        chart = echarts;
-      })
-      .catch(() => {
-        console.error('echarts not found!');
-      });
+  if (!chart) {
+    throw Error('echarts not found');
   }
 
   [
