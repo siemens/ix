@@ -10,25 +10,19 @@ LICENSE file in the root directory of this source tree.
 <script setup lang="ts">
 import VueECharts from 'vue-echarts';
 import { registerTheme } from '@siemens/ix-echarts';
-import * as echarts from 'echarts';
+import * as echarts from 'echarts/core';
+import * as charts from 'echarts/charts';
+import * as components from 'echarts/components';
+import * as renderer from 'echarts/renderers';
 import { EChartsOption } from 'echarts';
-import { use } from 'echarts/core';
-import { BarChart } from 'echarts/charts';
-import {
-  TooltipComponent,
-  LegendComponent,
-  GridComponent,
-  MarkLineComponent,
-} from 'echarts/components';
-import { CanvasRenderer } from 'echarts/renderers';
 
-use([
-  TooltipComponent,
-  LegendComponent,
-  GridComponent,
-  MarkLineComponent,
-  BarChart,
-  CanvasRenderer,
+echarts.use([
+  components.TooltipComponent,
+  components.LegendComponent,
+  components.GridComponent,
+  components.MarkLineComponent,
+  charts.BarChart,
+  renderer.CanvasRenderer,
 ]);
 
 registerTheme(echarts);
@@ -153,6 +147,6 @@ const options: EChartsOption = {
 
 <template>
   <div style="display: block; position: relative; width: 100%; height: 40rem">
-    <VueECharts :theme="theme" :option="options"></VueECharts>
+    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
   </div>
 </template>
