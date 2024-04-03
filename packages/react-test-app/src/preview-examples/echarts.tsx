@@ -142,6 +142,7 @@ export default function Echarts() {
         position: 'relative',
         width: '100%',
         height: '40rem',
+        paddingTop: '1rem',
       }}
     />
   );

@@ -19,7 +19,7 @@ import { EChartsOption } from 'echarts';
       echarts
       [options]="options"
       [theme]="theme"
-      style="display: block; position: relative; width: 100%; height: 40rem"
+      style="display: block; position: relative; width: 100%; height: 40rem; padding-top: 1rem;"
     ></div>
   `,
 })
