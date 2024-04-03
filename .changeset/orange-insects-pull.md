@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-fix(core/date-dropdown): update the date when the props are change
+fix(core/date-dropdown): update the date when the props are changed
