@@ -11,7 +11,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   extends: ['turbo', 'prettier'],
-  plugins: ['prettier'],
+  plugins: ['prettier', '@typescript-eslint'],
   rules: {
     'prettier/prettier': 'error',
     quotes: [

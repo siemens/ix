@@ -72,6 +72,7 @@
       --theme-color-x-weak-bdr: #8e9da533;
       --theme-color-focus-bdr: #199fff;
       --theme-color-contrast-bdr: #ffffff;
+      --theme-color-hard-bdr: #7b8c94;
       --theme-color-alarm: #ff2453;
       --theme-color-alarm--hover: #ff577b;
       --theme-color-alarm--active: #ff335f;
@@ -120,6 +121,7 @@
       --theme-color-backdrop: #000000d9;
       --theme-color-backdrop-3: #37464dd9;
       --theme-color-logo: #ffffff;
+      --theme-color-logo-login: #ffffff;
       --theme-chart-1: #00ebd5;
       --theme-chart-1-40: #00ebd566;
       --theme-chart-2: #009e78;
@@ -348,7 +350,7 @@
       --theme-nav-item-secondary-icon--color--disabled: var(--theme-color-weak-text);
       --theme-avatar--background: var(--theme-color-component-3);
       --theme-input--border-color: var(--theme-color-std-bdr);
-      --theme-input--border-color--autofill: var(--theme-color-std-bdr);
+      --theme-input--border-color--autofill: var(--theme-color-hard-bdr);
       --theme-input--background: var(--theme-color-component-8);
       --theme-input--background--autofill: var(--theme-color-component-info);
       --theme-input-hint--color: var(--theme-color-soft-text);

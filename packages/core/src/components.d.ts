@@ -40,7 +40,7 @@ import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
-import { TypedEvent } from "./components/utils/typed-event";
+import { ShowToastResult } from "./components/toast/toast-container";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
@@ -79,7 +79,7 @@ export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
-export { TypedEvent } from "./components/utils/typed-event";
+export { ShowToastResult } from "./components/toast/toast-container";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
@@ -1345,6 +1345,9 @@ export namespace Components {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme": boolean;
+        /**
+          * Toggle the expand state of the menu
+         */
         "expand": boolean;
         "i18nCollapse": string;
         "i18nExpand": string;
@@ -1372,6 +1375,10 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
+        /**
+          * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+         */
+        "startExpanded": boolean;
         /**
           * Toggle About tabs
           * @param show
@@ -1875,11 +1882,12 @@ export namespace Components {
          */
         "onItemClick": (event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>;
         /**
-          * Whether the item is selected.
+          * Flag indicating whether the item is selected
          */
         "selected": boolean;
         /**
-          * Item value
+          * The value of the item. Important: The select component uses string values to handle selection and will call toString() on this value. Therefor a string should be passed to value to prevent unexpected behavior.
+          * @deprecated will be changed to type string with next major release (3.0.0)
          */
         "value": any;
     }
@@ -2140,7 +2148,7 @@ export namespace Components {
           * Display a toast message
           * @param config
          */
-        "showToast": (config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>;
+        "showToast": (config: ToastConfig) => Promise<ShowToastResult>;
     }
     interface IxToggle {
         /**
@@ -5420,6 +5428,9 @@ declare namespace LocalJSX {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme"?: boolean;
+        /**
+          * Toggle the expand state of the menu
+         */
         "expand"?: boolean;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
@@ -5455,6 +5466,10 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
+        /**
+          * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+         */
+        "startExpanded"?: boolean;
     }
     interface IxMenuAbout {
         /**
@@ -6014,11 +6029,12 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxSelectItemCustomEvent<string>) => void;
         /**
-          * Whether the item is selected.
+          * Flag indicating whether the item is selected
          */
         "selected"?: boolean;
         /**
-          * Item value
+          * The value of the item. Important: The select component uses string values to handle selection and will call toString() on this value. Therefor a string should be passed to value to prevent unexpected behavior.
+          * @deprecated will be changed to type string with next major release (3.0.0)
          */
         "value": any;
     }

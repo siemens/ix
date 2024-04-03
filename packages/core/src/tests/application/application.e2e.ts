@@ -16,6 +16,9 @@ regressionTest.describe('basic navigation large', () => {
     await page.setViewportSize(viewPorts.lg);
     await page.waitForTimeout(500);
 
+    await page.locator('ix-menu ix-burger-menu').click();
+    await page.waitForSelector('ix-menu ix-burger-menu.expanded');
+
     await page.waitForTimeout(1000);
 
     await expect(page).toHaveScreenshot({
@@ -28,6 +31,9 @@ regressionTest.describe('basic navigation large', () => {
     await page.goto('application/content-width');
     await page.setViewportSize(viewPorts.lg);
     await page.waitForTimeout(500);
+
+    await page.locator('ix-menu ix-burger-menu').click();
+    await page.waitForSelector('ix-menu ix-burger-menu.expanded');
 
     await expect(page.getByText('Example content')).toBeVisible();
 
@@ -44,7 +50,6 @@ regressionTest.describe('basic navigation', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('application/basic');
     await page.setViewportSize(viewPorts.md);
-    await page.waitForTimeout(500);
 
     await page.waitForTimeout(1000);
 
@@ -58,6 +63,7 @@ regressionTest.describe('basic navigation', () => {
     await page.goto('application/content-width');
     await page.setViewportSize(viewPorts.md);
     await page.waitForTimeout(500);
+
     await expect(page.getByText('Example content')).toBeVisible();
 
     await page.waitForTimeout(1000);
@@ -93,8 +99,6 @@ regressionTest.describe('basic navigation mobile', () => {
   regressionTest('mobile', async ({ page }) => {
     await page.goto('application/mobile');
     await page.setViewportSize(viewPorts.sm);
-
-    await page.waitForTimeout(500);
 
     await page.waitForTimeout(1000);
 
@@ -214,6 +218,24 @@ regressionTest.describe('basic navigation mobile', () => {
 
     // Animation
     await page.waitForTimeout(500);
+
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
+    });
+  });
+});
+
+regressionTest.describe('application-switch', () => {
+  regressionTest('modal', async ({ page }) => {
+    await page.goto('application/application-switch');
+
+    const appSwitchButton = page.getByRole('button', { name: 'Apps' });
+    await appSwitchButton.click();
+
+    await page.waitForTimeout(1000);
+    const modal = page.locator('ix-modal');
+    await expect(modal).toHaveClass(/hydrated/);
 
     await expect(page).toHaveScreenshot({
       fullPage: true,

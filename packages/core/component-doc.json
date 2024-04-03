@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.12.3",
-    "typescriptVersion": "5.3.3"
+    "version": "4.13.0",
+    "typescriptVersion": "5.4.2"
   },
   "components": [
     {
@@ -9142,7 +9142,7 @@
           "mutable": true,
           "attr": "expand",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "Toggle the expand state of the menu",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -9369,6 +9369,28 @@
           "attr": "show-settings",
           "reflectToAttr": false,
           "docs": "Is settings tab visible",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "startExpanded",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "start-expanded",
+          "reflectToAttr": false,
+          "docs": "If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -13156,7 +13178,7 @@
           "mutable": false,
           "attr": "selected",
           "reflectToAttr": false,
-          "docs": "Whether the item is selected.",
+          "docs": "Flag indicating whether the item is selected",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -13178,8 +13200,14 @@
           "mutable": false,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "Item value",
-          "docsTags": [],
+          "docs": "The value of the item.\nImportant: The select component uses string values to handle selection and will call toString() on this value.\nTherefor a string should be passed to value to prevent unexpected behavior.",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "will be changed to type string with next major release (3.0.0)"
+            }
+          ],
+          "deprecation": "will be changed to type string with next major release (3.0.0)",
           "values": [
             {
               "type": "any"
@@ -15243,11 +15271,11 @@
         {
           "name": "showToast",
           "returns": {
-            "type": "Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>",
+            "type": "Promise<ShowToastResult>",
             "docs": ""
           },
           "complexType": {
-            "signature": "(config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>",
+            "signature": "(config: ToastConfig) => Promise<ShowToastResult>",
             "parameters": [
               {
                 "name": "config",
@@ -15260,10 +15288,10 @@
                 "location": "global",
                 "id": "global::Promise"
               },
-              "TypedEvent": {
-                "location": "import",
-                "path": "../utils/typed-event",
-                "id": "src/components/utils/typed-event.ts::TypedEvent"
+              "ShowToastResult": {
+                "location": "local",
+                "path": "src/components/toast/toast-container.tsx",
+                "id": "src/components/toast/toast-container.tsx::ShowToastResult"
               },
               "ToastConfig": {
                 "location": "import",
@@ -15275,9 +15303,9 @@
                 "id": "global::CustomEvent"
               }
             },
-            "return": "Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>"
+            "return": "Promise<ShowToastResult>"
           },
-          "signature": "showToast(config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>",
+          "signature": "showToast(config: ToastConfig) => Promise<ShowToastResult>",
           "parameters": [
             {
               "name": "config",
@@ -17285,6 +17313,26 @@
       "docstring": "",
       "path": "src/components/card/card.tsx"
     },
+    "src/components/typography/typography.tsx::TypographyVariants": {
+      "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
+    "src/components/typography/typography.tsx::TypographyFormat": {
+      "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
+    "src/components/typography/typography.tsx::TypographyColors": {
+      "declaration": "export type TypographyColors =\n  | 'contrast'\n  | 'std'\n  | 'soft'\n  | 'weak'\n  | 'inv-contrast'\n  | 'inv-std'\n  | 'inv-soft'\n  | 'inv-weak'\n  | 'alarm';",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
+    "src/components/typography/typography.tsx::TextDecoration": {
+      "declaration": "export type TextDecoration = 'none' | 'underline' | 'line-through';",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
     "src/components/action-card/action-card.tsx::ActionCardVariant": {
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
       "docstring": "",
@@ -17415,26 +17463,6 @@
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },
-    "src/components/typography/typography.tsx::TypographyVariants": {
-      "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
-    "src/components/typography/typography.tsx::TypographyFormat": {
-      "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
-    "src/components/typography/typography.tsx::TypographyColors": {
-      "declaration": "export type TypographyColors =\n  | 'contrast'\n  | 'std'\n  | 'soft'\n  | 'weak'\n  | 'inv-contrast'\n  | 'inv-std'\n  | 'inv-soft'\n  | 'inv-weak'\n  | 'alarm';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
-    "src/components/typography/typography.tsx::TextDecoration": {
-      "declaration": "export type TextDecoration = 'none' | 'underline' | 'line-through';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
     "src/components/push-card/push-card.tsx::PushCardVariant": {
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
       "docstring": "",
@@ -17459,6 +17487,16 @@
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
       "docstring": "",
       "path": "src/components/time-picker/time-picker.tsx"
+    },
+    "src/components/toast/toast-container.tsx::ShowToastResult": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components/toast/toast-container.tsx"
+    },
+    "src/components/toast/toast-utils.ts::ToastConfig": {
+      "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "docstring": "",
+      "path": "src/components/toast/toast-utils.ts"
     },
     "src/components/utils/theme-switcher.ts::IxTheme": {
       "declaration": "export type IxTheme =\n  | 'classic'\n  | 'classic-dark'\n  | 'classic-light'\n  | (string & {});",
@@ -17499,16 +17537,6 @@
       "declaration": "export interface CustomLabelChangeEvent {\n  name: string;\n  oldLabel: string;\n  newLabel: string;\n}",
       "docstring": "",
       "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
-    },
-    "src/components/utils/typed-event.ts::TypedEvent": {
-      "declaration": "any",
-      "docstring": "",
-      "path": "src/components/utils/typed-event.ts"
-    },
-    "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
-      "docstring": "",
-      "path": "src/components/toast/toast-utils.ts"
     },
     "src/components/toast/toast-utils.ts::ToastType": {
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
