@@ -24,7 +24,9 @@ function patchPkgLibraryVersion(pkg: string, replaceVersion: string) {
 }
 
 function replaceTheme(source: string) {
-  const theme: string = themeSwitcher.getCurrentTheme();
+  const theme: string = themeSwitcher
+    .getCurrentTheme()
+    .replace('brand', 'classic'); // replace brand with classic since brand theme is currently not supported inside stackblitz
   return source.replace(/(<body class=")[^"]*(")/, `$1${theme}$2`);
 }
 
