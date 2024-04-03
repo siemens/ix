@@ -38,9 +38,9 @@ LICENSE file in the root directory of this source tree.
 
         if (!searchParams.has('theme')) return 'brand-dark';
 
-        return searchParams
-          .get('theme')
-          .substring('theme-'.length, theme.length);
+        const theme = searchParams.get('theme');
+
+        return theme.substring('theme-'.length, theme.length);
       }
 
       registerTheme(echarts);
