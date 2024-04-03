@@ -10,7 +10,7 @@
 import React from 'react';
 import { registerTheme } from '@siemens/ix-echarts';
 import ReactEcharts from 'echarts-for-react';
-import * as echarts from 'echarts';
+import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
 
 export default function Echarts() {
