@@ -33,17 +33,17 @@ LICENSE file in the root directory of this source tree.
     <script type="module">
       import { registerTheme } from '../dist/index.esm.js';
 
-      registerTheme(echarts);
-
       function getTheme() {
         const searchParams = new URLSearchParams(location.search);
 
-        if (!searchParams.has('theme')) {
-          return 'brand-dark';
-        }
-        const theme = searchParams.get('theme');
-        return theme.substring('theme-'.length, theme.length);
+        if (!searchParams.has('theme')) return 'brand-dark';
+
+        return searchParams
+          .get('theme')
+          .substring('theme-'.length, theme.length);
       }
+
+      registerTheme(echarts);
 
       const theme = getTheme();
 
