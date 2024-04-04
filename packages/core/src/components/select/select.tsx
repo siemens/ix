@@ -20,7 +20,9 @@ import {
   Watch,
 } from '@stencil/core';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
+import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 @Component({
   tag: 'ix-select',
@@ -127,24 +129,52 @@ export class Select {
   @State() dropdownWrapperRef!: HTMLElement;
   @State() dropdownAnchor!: HTMLElement;
   @State() isDropdownEmpty = false;
-  @State() hasFocus = false;
-  @State() navigationItem: HTMLIxSelectItemElement;
+  @State() navigationItem: HTMLIxSelectItemElement | HTMLIxDropdownItemElement;
   @State() inputFilterText: string;
   @State() inputValue: string;
 
   private inputRef!: HTMLInputElement;
   private dropdownRef!: HTMLIxDropdownElement;
-  private addItemRef!: HTMLDivElement;
+  private customItemsContainerRef!: HTMLDivElement;
+  private addItemRef!: HTMLIxDropdownItemElement;
 
-  private labelMutationObserver: MutationObserver;
+  private itemMutationObserver: MutationObserver;
+
+  private arrowFocusController: ArrowFocusController;
+  private focusControllerCallbackBind = this.focusDropdownItem.bind(this);
+
+  private itemObserver = createMutationObserver(() => {
+    this.arrowFocusController.items = this.visibleNonShadowItems;
+  });
+
+  get nonShadowItems() {
+    return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
+  }
+
+  get visibleNonShadowItems() {
+    return this.nonShadowItems.filter(
+      (item) => !item.classList.contains('d-none')
+    );
+  }
+
+  get shadowItems() {
+    return Array.from(
+      this.hostElement.shadowRoot.querySelectorAll('ix-select-item')
+    );
+  }
+
+  get visibleShadowItems() {
+    return this.shadowItems.filter(
+      (item) => !item.classList.contains('d-none')
+    );
+  }
 
   get items() {
-    return [
-      ...Array.from(this.hostElement.querySelectorAll('ix-select-item')),
-      ...Array.from(
-        this.hostElement.shadowRoot.querySelectorAll('ix-select-item')
-      ),
-    ];
+    return [...this.nonShadowItems, ...this.shadowItems];
+  }
+
+  get visibleItems() {
+    return this.items.filter((item) => !item.classList.contains('d-none'));
   }
 
   get selectedItems() {
@@ -179,10 +209,52 @@ export class Select {
     this.updateSelection();
   }
 
+  @Watch('dropdownShow')
+  watchDropdownShow(show: boolean) {
+    if (show) {
+      this.arrowFocusController = new ArrowFocusController(
+        this.visibleNonShadowItems,
+        this.dropdownRef,
+        this.focusControllerCallbackBind
+      );
+
+      this.arrowFocusController.wrap = !this.editable;
+
+      this.itemObserver.observe(this.dropdownRef, {
+        childList: true,
+        subtree: true,
+      });
+
+      this.itemObserver.observe(this.dropdownRef, {
+        childList: true,
+        subtree: true,
+      });
+    } else {
+      this.arrowFocusController.disconnect();
+      this.arrowFocusController = undefined;
+      this.itemObserver.disconnect();
+    }
+  }
+
   @Listen('itemClick')
   onItemClicked(event: CustomEvent<string>) {
     const newId = event.detail;
     this.itemClick(newId);
+  }
+
+  private focusDropdownItem(index: number) {
+    this.navigationItem = undefined;
+
+    if (index < this.visibleNonShadowItems.length) {
+      const nestedDropdownItem =
+        this.visibleNonShadowItems[index]?.shadowRoot.querySelector(
+          'ix-dropdown-item'
+        );
+
+      requestAnimationFrame(() => {
+        nestedDropdownItem.shadowRoot.querySelector('button').focus();
+      });
+    }
   }
 
   private itemClick(newId: string) {
@@ -192,7 +264,7 @@ export class Select {
   }
 
   private emitAddItem(value: string) {
-    if (value.trim() === '') {
+    if (value === undefined || value.trim() === '') {
       return;
     }
 
@@ -200,7 +272,7 @@ export class Select {
     newItem.value = value;
     newItem.label = value;
 
-    this.addItemRef.appendChild(newItem);
+    this.customItemsContainerRef.appendChild(newItem);
 
     this.clearInput();
     this.itemClick(value);
@@ -290,8 +362,8 @@ export class Select {
   }
 
   disconnectedCallback() {
-    if (this.labelMutationObserver) {
-      this.labelMutationObserver.disconnect();
+    if (this.itemMutationObserver) {
+      this.itemMutationObserver.disconnect();
     }
   }
 
@@ -301,7 +373,6 @@ export class Select {
 
   private dropdownVisibilityChanged(event: CustomEvent<boolean>) {
     this.dropdownShow = event.detail;
-    this.hasFocus = event.detail;
 
     if (event.detail) {
       this.inputRef.focus();
@@ -343,7 +414,10 @@ export class Select {
       this.navigationItem = this.items[this.items.length - 1];
     }
 
-    this.navigationItem?.onItemClick();
+    if (this.navigationItem) {
+      this.navigationItem['onItemClick']?.();
+    }
+
     await this.dropdownRef?.updatePosition();
 
     if (this.isSingleMode && !this.editable) {
@@ -355,35 +429,84 @@ export class Select {
     event: KeyboardEvent,
     key: 'ArrowDown' | 'ArrowUp'
   ) {
+    if (event.defaultPrevented) {
+      return;
+    }
+
     event.preventDefault();
     event.stopPropagation();
 
     this.dropdownShow = true;
 
-    const items = this.items.filter((i) => !i.classList.contains('d-none'));
-    if (this.navigationItem === undefined) {
-      this.applyFocusTo(items[0]);
+    const moveUp = key === 'ArrowUp';
+    const indexNonShadow = this.visibleNonShadowItems.indexOf(
+      document.activeElement as any
+    );
+
+    // Slotted select items
+    if (indexNonShadow === 0) {
+      if (this.isAddItemVisible()) {
+        this.focusAddItemButton();
+      } else {
+        this.applyFocusTo(this.visibleShadowItems.pop());
+      }
+      return;
+    } else if (indexNonShadow === this.visibleNonShadowItems.length - 1) {
+      if (this.visibleShadowItems.length) {
+        this.applyFocusTo(this.visibleShadowItems.shift());
+      } else if (this.isAddItemVisible()) {
+        this.focusAddItemButton();
+      }
       return;
     }
 
-    let indexOfNavigationItem = items.findIndex(
-      (item) => item === this.navigationItem
-    );
-
-    if (key === 'ArrowDown') {
-      indexOfNavigationItem++;
-    } else {
-      indexOfNavigationItem--;
+    if (
+      this.isAddItemVisible() &&
+      this.addItemRef.contains(this.navigationItem)
+    ) {
+      if (moveUp) {
+        this.applyFocusTo(this.visibleItems.pop());
+      } else {
+        if (this.visibleItems.length) {
+          this.applyFocusTo(this.visibleItems.shift());
+        }
+      }
+      return;
     }
 
-    const newFocusItem = items[indexOfNavigationItem];
-    this.applyFocusTo(newFocusItem);
+    // Custom select items
+    const indexShadow = this.visibleShadowItems.indexOf(
+      this.navigationItem as any
+    );
+
+    if (moveUp) {
+      if (indexShadow === 0) {
+        if (this.visibleNonShadowItems.length) {
+          this.applyFocusTo(this.visibleNonShadowItems.pop());
+        } else if (this.isAddItemVisible()) {
+          this.focusAddItemButton();
+        }
+      } else {
+        this.applyFocusTo(this.visibleShadowItems[indexShadow - 1]);
+      }
+    } else {
+      if (indexShadow === this.visibleShadowItems.length - 1) {
+        if (this.isAddItemVisible()) {
+          this.focusAddItemButton();
+        } else {
+          this.applyFocusTo(this.visibleItems.shift());
+        }
+      } else {
+        this.applyFocusTo(this.visibleShadowItems[indexShadow + 1]);
+      }
+    }
   }
 
   private applyFocusTo(element: HTMLIxSelectItemElement) {
     if (!element) {
       return;
     }
+
     this.navigationItem = element;
 
     setTimeout(() => {
@@ -392,6 +515,13 @@ export class Select {
         .shadowRoot.querySelector('button')
         .focus();
     });
+  }
+
+  private focusAddItemButton() {
+    if (this.addItemButton) {
+      this.addItemButton.shadowRoot.querySelector('button').focus();
+      this.navigationItem = this.addItemRef;
+    }
   }
 
   private filterItemsWithTypeahead() {
@@ -579,7 +709,10 @@ export class Select {
             {this.i18nSelectListHeader}
           </div>
           <slot></slot>
-          <div ref={(ref) => (this.addItemRef = ref)} class="d-contents"></div>
+          <div
+            ref={(ref) => (this.customItemsContainerRef = ref)}
+            class="d-contents"
+          ></div>
           {this.isAddItemVisible() ? (
             <ix-dropdown-item
               data-testid="add-item"
@@ -592,6 +725,10 @@ export class Select {
                 e.preventDefault();
                 e.stopPropagation();
                 this.emitAddItem(this.inputFilterText);
+              }}
+              onFocus={() => (this.navigationItem = this.addItemRef)}
+              ref={(ref) => {
+                this.addItemRef = ref;
               }}
             ></ix-dropdown-item>
           ) : null}
