@@ -37,7 +37,7 @@ jobs:
 
   deploy-preview:
     needs: changes
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' && needs.changes.outputs.docs_any_changed == 'true' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.docs_any_changed == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
