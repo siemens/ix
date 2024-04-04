@@ -10,6 +10,7 @@
 @import 'common-variables';
 @import 'mixins/text-truncation';
 @import 'mixins/hover';
+@import './../button/button-mixin';
 
 :host {
   display: flex;
@@ -37,7 +38,8 @@
       min-height: 2rem;
       min-width: 2rem;
       border-radius: 100px;
-      background-color: var(--theme-color-component-3);
+      background-color: var(--theme-avatar--background);
+      color: var(--theme-avatar--color);
     }
 
     #avatar-path-background {
@@ -45,7 +47,64 @@
     }
 
     #avatar-path-person {
-      fill: var(--theme-color-4);
+      fill:var(--theme-avatar--color);
     }
+  }
+}
+
+:host {
+  .user-info {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 2.5rem;
+    padding: 1rem;
+    width: 12.75rem;
+    min-width: 12.75rem;
+    max-width: 12.75rem;
+
+    gap: 1rem;
+
+    .avatar {
+      width: 2rem;
+      pointer-events: none;
+    }
+
+    .user {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 10rem;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .username {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .extra {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+:host(.avatar-button) {
+  button {
+    @include btn-base;
+    padding: 0px;
+
+    border-radius: 100px !important;
+  }
+
+  @include btn-base-variant('invisible-primary', false);
+
+  li {
+    transform: scale(0.8);
   }
 }

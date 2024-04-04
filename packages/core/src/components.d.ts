@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ActionCardVariant } from "./components/action-card/action-card";
 import { IxTheme } from "./components/utils/theme-switcher";
 import { Breakpoint } from "./components/utils/breakpoints";
+import { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 import { BlindVariant } from "./components/blind/blind";
 import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
@@ -20,38 +21,36 @@ import { CssGridTemplateType } from "./components/css-grid/css-grid";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { InputValidator } from "./components/utils/validators/validator";
-import { DateChangeEventRework } from "./components/date-picker-rework/date-picker-rework";
 import { DateInputEvent } from "./components/date-input/date-input";
-import { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
-import { DateChangeEventRework as DateChangeEventRework1 } from "./components/date-picker-rework/date-picker-rework";
+import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-import { DateTimeSelectEvent } from "./components/datetime-picker-rework/datetime-picker-rework";
 import { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
-import { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
-import { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent2 } from "./components/datetime-picker-rework/datetime-picker-rework";
+import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
-import { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
+import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal";
+import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
-import { TimePickerCorners as TimePickerCorners1 } from "./components/time-picker-rework/time-picker-rework";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
-import { TypedEvent } from "./components/utils/typed-event";
+import { ShowToastResult } from "./components/toast/toast-container";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
 export { Breakpoint } from "./components/utils/breakpoints";
+export { AppSwitchConfiguration } from "./components/utils/application-layout/context";
 export { BlindVariant } from "./components/blind/blind";
 export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
@@ -64,32 +63,29 @@ export { CssGridTemplateType } from "./components/css-grid/css-grid";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { InputValidator } from "./components/utils/validators/validator";
-export { DateChangeEventRework } from "./components/date-picker-rework/date-picker-rework";
 export { DateInputEvent } from "./components/date-input/date-input";
-export { DateChangeEvent, LegacyDateChangeEvent } from "./components/date-picker/date-picker";
-export { DateChangeEventRework as DateChangeEventRework1 } from "./components/date-picker-rework/date-picker-rework";
+export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
-export { DateTimeSelectEvent } from "./components/datetime-picker-rework/datetime-picker-rework";
 export { DatetimeInputEvent, DatetimeInputValues } from "./components/datetime-input/datetime-input";
-export { DateTimeDateChangeEvent, DateTimeSelectEvent as DateTimeSelectEvent1 } from "./components/datetime-picker/datetime-picker";
-export { DateTimeDateChangeEvent as DateTimeDateChangeEvent1, DateTimeSelectEvent as DateTimeSelectEvent2 } from "./components/datetime-picker-rework/datetime-picker-rework";
+export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
-export { DropdownTriggerEvent } from "./components/dropdown/dropdown";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
+export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal";
+export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
-export { TimePickerCorners as TimePickerCorners1 } from "./components/time-picker-rework/time-picker-rework";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
-export { TypedEvent } from "./components/utils/typed-event";
+export { ShowToastResult } from "./components/toast/toast-container";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
@@ -119,7 +115,14 @@ export namespace Components {
          */
         "variant": ActionCardVariant;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxApplication {
+        /**
+          * Define application switch configuration
+         */
+        "appSwitchConfig": AppSwitchConfiguration;
         /**
           * Supported layouts
          */
@@ -145,18 +148,31 @@ export namespace Components {
     }
     interface IxApplicationSidebar {
     }
+    interface IxApplicationSwitchModal {
+        "config": AppSwitchConfiguration;
+    }
     /**
      * @since 2.0.0
      */
     interface IxAvatar {
         /**
-          * Display a avatar image
+          * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "extra": string;
+        /**
+          * Display an avatar image
          */
         "image": string;
         /**
           * Display the initials of the user. Will be overwritten by image
          */
         "initials": string;
+        /**
+          * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "username": string;
     }
     interface IxBasicNavigation {
         /**
@@ -164,7 +180,7 @@ export namespace Components {
          */
         "applicationName": string;
         /**
-          * Supported layouts
+          * Supported layouts e.g ['sm', 'md']
          */
         "breakpoints": Breakpoint[];
         /**
@@ -285,6 +301,10 @@ export namespace Components {
      * @since 1.6.0
      */
     interface IxCard {
+        /**
+          * @since 2.1.0
+         */
+        "selected": boolean;
         /**
           * Card variant
          */
@@ -411,15 +431,20 @@ export namespace Components {
          */
         "active": boolean;
         /**
-          * Custom color for pill. Only working for `variant='custom'`
+          * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background": string | undefined;
+        /**
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+         */
+        "chipColor": string | undefined;
         /**
           * Show close icon
          */
         "closable": boolean;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+          * @deprecated since 2.1.0 use `chip-color`
          */
         "color": string | undefined;
         /**
@@ -463,6 +488,9 @@ export namespace Components {
          */
         "sizeSm"?: ColumnSize;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxContent {
     }
     interface IxContentHeader {
@@ -501,31 +529,41 @@ export namespace Components {
     interface IxDateDropdown {
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
-          * @default ''
          */
         "customRangeAllowed": boolean;
         /**
-          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     label: 'No time limit',     getValue: (): DateRangeOption => {       // Calculate the date range here       return { from: undefined, to: today };     },   },   // ... other predefined date range options ...
+          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
+         */
+        "dateRangeId": string;
+        /**
+          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
         "dateRangeOptions": DateDropdownOption[];
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See
+          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "format": string;
         /**
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
          */
-        "from": string | null;
+        "from": string;
         /**
           * Retrieves the currently selected date range from the component. This method returns the selected date range as a `DateChangeEvent` object.
-          * @returns The selected date range.
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
-          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
-          * @default ''
+          * Text for custom dropdown item. Will be used for translation.
          */
-        "initialSelectedDateRangeName": string;
+        "i18nCustomItem": string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "i18nDone": string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "i18nNoRange": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
@@ -541,7 +579,8 @@ export namespace Components {
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
-        "to": string | null;
+        "to": string;
+        "today": string;
     }
     /**
      * @since 2.1.0
@@ -617,61 +656,11 @@ export namespace Components {
         /**
           * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
           * @since 1.1.0
+          * @deprecated Not used anymore see `this.dateChange`
          */
         "eventDelimiter": string;
         /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
-         */
-        "format": string;
-        /**
-          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
-          * @since 1.1.0
-         */
-        "from": string | null;
-        /**
-          * Get the current DateTime
-         */
-        "getCurrentDate": () => Promise<{ start: string; end: string; }>;
-        /**
-          * @deprecated Will be removed in 2.0.0
-         */
-        "individual": boolean;
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate": string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate": string;
-        /**
-          * If true a range of dates can be selected.
-         */
-        "range": boolean;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectDate": string;
-        /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
-         */
-        "to": string | null;
-    }
-    interface IxDatePickerRework {
-        /**
-          * Corner style
-         */
-        "corners": DateTimeCardCorners;
-        /**
-          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
-         */
-        "dayJsLocale": ILocale;
-        /**
-          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
          */
         "format": string;
         /**
@@ -683,6 +672,20 @@ export namespace Components {
           * Get the currently selected date-range.
          */
         "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        /**
+          * Text of date select button
+          * @since 2.1.0
+         */
+        "i18nDone": string;
+        /**
+          * @deprecated Not supported since 2.0.0.
+         */
+        "individual": boolean;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * @since 2.1.0
+         */
+        "locale": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -701,6 +704,7 @@ export namespace Components {
         /**
           * Text of the button that confirms date selection.
           * @since 1.1.0
+          * @deprecated since 2.1.0. Use `i18nDone`
          */
         "textSelectDate": string;
         /**
@@ -708,9 +712,10 @@ export namespace Components {
           * @since 1.1.0
          */
         "to": string | undefined;
+        "today": string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "weekStartIndex": number;
     }
@@ -730,7 +735,8 @@ export namespace Components {
      */
     interface IxDatetimeInput {
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See
+          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "dateFormat": string;
         /**
@@ -787,7 +793,8 @@ export namespace Components {
          */
         "showSeconds": boolean;
         /**
-          * Show time reference input Per default time reference is aligned with @see {this.timeFormat}
+          * Show time reference input Per default time reference is aligned with
+          * @see { this.timeFormat}
          */
         "showTimeReference": any;
         /**
@@ -795,7 +802,8 @@ export namespace Components {
          */
         "suppressErrorMessage": boolean;
         /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Time format string. See
+          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "timeFormat": string;
         /**
@@ -821,91 +829,31 @@ export namespace Components {
     }
     interface IxDatetimePicker {
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "dateFormat": string;
         /**
           * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
           * @since 1.1.0
+          * @deprecated Not used anymore see `done` event
          */
         "eventDelimiter": string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
-          * @since 1.1.0
-         */
-        "from": string;
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate": string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate": string;
-        /**
-          * Set range size
-         */
-        "range": boolean;
-        /**
-          * Show hour input
-         */
-        "showHour": boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes": boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds": boolean;
-        /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
-          * @since 1.1.0
-         */
-        "showTimeReference": any;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectDate": string;
-        /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time": string;
-        /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @since 1.1.0
-         */
-        "timeFormat": string;
-        /**
-          * Set time reference
-         */
-        "timeReference": 'AM' | 'PM';
-        /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
-         */
-        "to": string | null;
-    }
-    interface IxDatetimePickerRework {
-        /**
-          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
-          * @since 1.1.0
-         */
-        "dateFormat": string;
-        /**
-          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
-         */
-        "dayJsLocale": ILocale;
-        /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
+          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
         "from": string | undefined;
+        /**
+          * Text of date select button
+          * @since 2.1.0
+         */
+        "i18nDone": string;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * @since 2.1.0
+         */
+        "locale": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -933,13 +881,15 @@ export namespace Components {
          */
         "showSeconds": boolean;
         /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
+          * Show time reference input Time reference is default aligned with
+          * @see { this.timeFormat}
           * @since 1.1.0
          */
         "showTimeReference": any;
         /**
           * Text of date select button
           * @since 1.1.0
+          * @deprecated since 2.1.0. Use `i18nDone`
          */
         "textSelectDate": string;
         /**
@@ -948,7 +898,7 @@ export namespace Components {
          */
         "time": string;
         /**
-          * Time format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "timeFormat": string;
@@ -957,13 +907,13 @@ export namespace Components {
          */
         "timeReference": 'AM' | 'PM';
         /**
-          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to": string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "weekStartIndex": number;
     }
@@ -1009,9 +959,11 @@ export namespace Components {
          */
         "anchor": string | HTMLElement;
         /**
-          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
-        "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
+        "closeBehavior": CloseBehavior;
+        "discoverAllSubmenus": boolean;
+        "discoverSubmenu": () => Promise<void>;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -1048,11 +1000,7 @@ export namespace Components {
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
-        "trigger": string | HTMLElement;
-        /**
-          * Define one or more events to open dropdown
-         */
-        "triggerEvent": DropdownTriggerEvent | DropdownTriggerEvent[];
+        "trigger": string | HTMLElement | Promise<HTMLElement>;
         /**
           * Update position of dropdown
          */
@@ -1062,6 +1010,11 @@ export namespace Components {
      * @since 1.3.0
      */
     interface IxDropdownButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior": 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
          */
@@ -1114,6 +1067,7 @@ export namespace Components {
           * Internal usage only
          */
         "emitItemClick": () => Promise<void>;
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Display hover state
          */
@@ -1184,13 +1138,19 @@ export namespace Components {
         "chevron": boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @see https://ix.siemens.io/docs/theming/colors/
+          * @link https://ix.siemens.io/docs/theming/colors/
+          * @deprecated since 2.1.0 use `item-color`
          */
         "color": string;
         /**
           * Disable event list item
          */
         "disabled": boolean;
+        /**
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * @link https://ix.siemens.io/docs/theming/colors/
+         */
+        "itemColor": string;
         /**
           * Show event list item as selected
          */
@@ -1318,7 +1278,13 @@ export namespace Components {
     }
     interface IxIconButton {
         /**
+          * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
+          * @since 2.1.0
+         */
+        "a11yLabel": string;
+        /**
           * Color of icon in  button
+          * @deprecated since 2.1.0 use `icon-color`
          */
         "color": string;
         /**
@@ -1333,6 +1299,10 @@ export namespace Components {
           * Icon name
          */
         "icon": string;
+        /**
+          * Color of icon in  button
+         */
+        "iconColor": string;
         /**
           * Loading button
           * @since 2.0.0
@@ -1507,12 +1477,17 @@ export namespace Components {
     interface IxMapNavigationOverlay {
         /**
           * Color of icon
+          * @deprecated since 2.1.0. Use `icon-color`
          */
         "color": string;
         /**
           * Icon of overlay
          */
         "icon": string;
+        /**
+          * Color of icon
+         */
+        "iconColor": string;
         /**
           * Title of overlay
          */
@@ -1539,6 +1514,9 @@ export namespace Components {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme": boolean;
+        /**
+          * Toggle the expand state of the menu
+         */
         "expand": boolean;
         "i18nCollapse": string;
         "i18nExpand": string;
@@ -1566,6 +1544,10 @@ export namespace Components {
           * Is settings tab visible
          */
         "showSettings": boolean;
+        /**
+          * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+         */
+        "startExpanded": boolean;
         /**
           * Toggle About tabs
           * @param show
@@ -1660,6 +1642,7 @@ export namespace Components {
         "top": string;
     }
     interface IxMenuAvatarItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Avatar dropdown icon
          */
@@ -1704,7 +1687,8 @@ export namespace Components {
          */
         "home": boolean;
         /**
-          * Icon name from @siemens/ix-icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation
+          * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon": string;
         /**
@@ -1712,18 +1696,19 @@ export namespace Components {
          */
         "notifications": number;
         /**
-          * Icon name from @siemens/ix-icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation
+          * @link https://ix.siemens.io/docs/icon-library/icons
           * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon": string;
     }
     interface IxMenuSettings {
         /**
-          * active tab
+          * Active tab
          */
         "activeTabLabel": string;
         /**
-          * Label
+          * Label of first tab
          */
         "label": string;
         /**
@@ -1733,7 +1718,7 @@ export namespace Components {
     }
     interface IxMenuSettingsItem {
         /**
-          * Label
+          * Settings Item label
          */
         "label": string;
     }
@@ -1864,6 +1849,68 @@ export namespace Components {
          */
         "showItemCount": boolean;
     }
+    /**
+     * @since 2.1.0
+     */
+    interface IxPane {
+        /**
+          * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
+         */
+        "borderless": boolean;
+        /**
+          * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
+         */
+        "composition": Composition;
+        /**
+          * State of the pane
+         */
+        "expanded": boolean;
+        /**
+          * Title of the side panel
+         */
+        "heading": string;
+        /**
+          * Define if the pane should have a collapsed state
+         */
+        "hideOnCollapse": boolean;
+        /**
+          * Name of the icon
+         */
+        "icon": string;
+        "ignoreLayoutSettings": boolean;
+        "isMobile": boolean;
+        /**
+          * The maximum size of the sidebar, when it is expanded
+         */
+        "size": | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%';
+        /**
+          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
+         */
+        "variant": 'floating' | 'inline';
+    }
+    /**
+     * @since 2.1.0
+     */
+    interface IxPaneLayout {
+        /**
+          * Set the default border state for all panes in the layout
+         */
+        "borderless": boolean;
+        /**
+          * Choose the layout of the panes. When set to 'full-vertical' the vertical panes (left, right) will get the full height. When set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.
+         */
+        "layout": 'full-vertical' | 'full-horizontal';
+        /**
+          * Set the default variant for all panes in the layout
+         */
+        "variant": 'floating' | 'inline';
+    }
     interface IxPill {
         /**
           * Align pill content left
@@ -1875,6 +1922,7 @@ export namespace Components {
         "background": string | undefined;
         /**
           * Custom font color for pill. Only working for `variant='custom'`
+          * @deprecated since 2.1.0 use `pill-color`
          */
         "color": string | undefined;
         /**
@@ -1886,6 +1934,10 @@ export namespace Components {
          */
         "outline": boolean;
         /**
+          * Custom font color for pill. Only working for `variant='custom'`
+         */
+        "pillColor": string | undefined;
+        /**
           * Pill variant
          */
         "variant": | 'primary'
@@ -1896,6 +1948,8 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxPlaygroundInternal {
     }
     /**
      * @since 1.6.0
@@ -1948,7 +2002,6 @@ export namespace Components {
         /**
           * Hide list header
           * @since 1.5.0
-          * @
          */
         "hideListHeader": boolean;
         /**
@@ -1998,11 +2051,12 @@ export namespace Components {
          */
         "onItemClick": (event?: CustomEvent<HTMLIxDropdownItemElement>) => Promise<void>;
         /**
-          * Whether the item is selected.
+          * Flag indicating whether the item is selected
          */
         "selected": boolean;
         /**
-          * Item value
+          * The value of the item. Important: The select component uses string values to handle selection and will call toString() on this value. Therefor a string should be passed to value to prevent unexpected behavior.
+          * @deprecated will be changed to type string with next major release (3.0.0)
          */
         "value": any;
     }
@@ -2032,7 +2086,7 @@ export namespace Components {
         "min": number;
         /**
           * Legal number intervals
-          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
          */
         "step": number;
         /**
@@ -2097,6 +2151,7 @@ export namespace Components {
      * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
      */
     interface IxSplitButtonItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Dropdown icon
          */
@@ -2174,16 +2229,16 @@ export namespace Components {
          */
         "corners": TimePickerCorners;
         /**
-          * Format of time string
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "format": string;
         /**
-          * Get current time
+          * Get the current time based on the wanted format
          */
         "getCurrentTime": () => Promise<string>;
         /**
-          * @deprecated Will be removed in 2.0.0
+          * @deprecated Not supported since 2.0.0.
          */
         "individual": boolean;
         /**
@@ -2200,50 +2255,10 @@ export namespace Components {
         "showSeconds": boolean;
         /**
           * Show time reference input
-          * @since 1.1.0 time reference is default aligned with formt tt
+          * @since 1.1.0 time reference is default aligned with format tt
+          * @deprecated Since 2.0.0 time reference will be displayed depending on format.
          */
-        "showTimeReference": any;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectTime": string;
-        /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time": string;
-        /**
-          * Set time reference
-         */
-        "timeReference": 'AM' | 'PM';
-    }
-    interface IxTimePickerRework {
-        /**
-          * Corner style
-         */
-        "corners": TimePickerCorners1;
-        /**
-          * Format of time string See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
-          * @since 1.1.0
-         */
-        "format": string;
-        /**
-          * Get the current time based on the wanted format
-         */
-        "getCurrentTime": () => Promise<string>;
-        /**
-          * Show hour input
-         */
-        "showHours": boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes": boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds": boolean;
+        "showTimeReference"?: boolean;
         /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
@@ -2253,6 +2268,11 @@ export namespace Components {
           * @since 1.1.0
          */
         "textSelectTime": string;
+        /**
+          * Text for top label
+          * @since 2.1.0
+         */
+        "textTime": string;
         /**
           * Select time with format string Format has to match the `format` property.
           * @since 1.1.0
@@ -2297,7 +2317,7 @@ export namespace Components {
           * Display a toast message
           * @param config
          */
-        "showToast": (config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>;
+        "showToast": (config: ToastConfig) => Promise<ShowToastResult>;
     }
     interface IxToggle {
         /**
@@ -2435,12 +2455,17 @@ export namespace Components {
         "bold": boolean;
         /**
           * Text color based on theme variables
+          * @deprecated since 2.1.0 use property `text-color`
          */
         "color": TypographyColors;
         /**
           * Text format
          */
         "format": TypographyFormat;
+        /**
+          * Text color based on theme variables
+         */
+        "textColor": TypographyColors;
         /**
           * Text decoration
          */
@@ -2557,8 +2582,6 @@ export namespace Components {
          */
         "vertical": boolean;
     }
-    interface MyComponent {
-    }
 }
 export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2604,10 +2627,6 @@ export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatePickerElement;
 }
-export interface IxDatePickerReworkCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxDatePickerReworkElement;
-}
 export interface IxDatetimeInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatetimeInputElement;
@@ -2615,10 +2634,6 @@ export interface IxDatetimeInputCustomEvent<T> extends CustomEvent<T> {
 export interface IxDatetimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDatetimePickerElement;
-}
-export interface IxDatetimePickerReworkCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxDatetimePickerReworkElement;
 }
 export interface IxDrawerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2676,6 +2691,10 @@ export interface IxMenuAboutCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuAboutElement;
 }
+export interface IxMenuAboutItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuAboutItemElement;
+}
 export interface IxMenuAboutNewsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuAboutNewsElement;
@@ -2692,6 +2711,10 @@ export interface IxMenuSettingsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuSettingsElement;
 }
+export interface IxMenuSettingsItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuSettingsItemElement;
+}
 export interface IxMessageBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMessageBarElement;
@@ -2707,6 +2730,10 @@ export interface IxModalHeaderCustomEvent<T> extends CustomEvent<T> {
 export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaginationElement;
+}
+export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxPaneElement;
 }
 export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2739,10 +2766,6 @@ export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTimePickerElement;
-}
-export interface IxTimePickerReworkCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxTimePickerReworkElement;
 }
 export interface IxToastCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2786,6 +2809,9 @@ declare global {
         prototype: HTMLIxActionCardElement;
         new (): HTMLIxActionCardElement;
     };
+    /**
+     * @since 2.1.0
+     */
     interface HTMLIxApplicationElement extends Components.IxApplication, HTMLStencilElement {
     }
     var HTMLIxApplicationElement: {
@@ -2804,6 +2830,12 @@ declare global {
         prototype: HTMLIxApplicationSidebarElement;
         new (): HTMLIxApplicationSidebarElement;
     };
+    interface HTMLIxApplicationSwitchModalElement extends Components.IxApplicationSwitchModal, HTMLStencilElement {
+    }
+    var HTMLIxApplicationSwitchModalElement: {
+        prototype: HTMLIxApplicationSwitchModalElement;
+        new (): HTMLIxApplicationSwitchModalElement;
+    };
     /**
      * @since 2.0.0
      */
@@ -2819,19 +2851,53 @@ declare global {
         prototype: HTMLIxBasicNavigationElement;
         new (): HTMLIxBasicNavigationElement;
     };
+    interface HTMLIxBlindElementEventMap {
+        "collapsedChange": boolean;
+    }
     interface HTMLIxBlindElement extends Components.IxBlind, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxBlindElementEventMap>(type: K, listener: (this: HTMLIxBlindElement, ev: IxBlindCustomEvent<HTMLIxBlindElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxBlindElementEventMap>(type: K, listener: (this: HTMLIxBlindElement, ev: IxBlindCustomEvent<HTMLIxBlindElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxBlindElement: {
         prototype: HTMLIxBlindElement;
         new (): HTMLIxBlindElement;
     };
+    interface HTMLIxBreadcrumbElementEventMap {
+        "itemClick": string;
+        "nextClick": { event: UIEvent; item: string };
+    }
     interface HTMLIxBreadcrumbElement extends Components.IxBreadcrumb, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxBreadcrumbElementEventMap>(type: K, listener: (this: HTMLIxBreadcrumbElement, ev: IxBreadcrumbCustomEvent<HTMLIxBreadcrumbElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxBreadcrumbElementEventMap>(type: K, listener: (this: HTMLIxBreadcrumbElement, ev: IxBreadcrumbCustomEvent<HTMLIxBreadcrumbElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxBreadcrumbElement: {
         prototype: HTMLIxBreadcrumbElement;
         new (): HTMLIxBreadcrumbElement;
     };
+    interface HTMLIxBreadcrumbItemElementEventMap {
+        "itemClick": string;
+    }
     interface HTMLIxBreadcrumbItemElement extends Components.IxBreadcrumbItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxBreadcrumbItemElementEventMap>(type: K, listener: (this: HTMLIxBreadcrumbItemElement, ev: IxBreadcrumbItemCustomEvent<HTMLIxBreadcrumbItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxBreadcrumbItemElementEventMap>(type: K, listener: (this: HTMLIxBreadcrumbItemElement, ev: IxBreadcrumbItemCustomEvent<HTMLIxBreadcrumbItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxBreadcrumbItemElement: {
         prototype: HTMLIxBreadcrumbItemElement;
@@ -2858,10 +2924,21 @@ declare global {
         prototype: HTMLIxCardElement;
         new (): HTMLIxCardElement;
     };
+    interface HTMLIxCardAccordionElementEventMap {
+        "accordionExpand": CardAccordionExpandChangeEvent;
+    }
     /**
      * @since 1.6.0
      */
     interface HTMLIxCardAccordionElement extends Components.IxCardAccordion, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxCardAccordionElementEventMap>(type: K, listener: (this: HTMLIxCardAccordionElement, ev: IxCardAccordionCustomEvent<HTMLIxCardAccordionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxCardAccordionElementEventMap>(type: K, listener: (this: HTMLIxCardAccordionElement, ev: IxCardAccordionCustomEvent<HTMLIxCardAccordionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxCardAccordionElement: {
         prototype: HTMLIxCardAccordionElement;
@@ -2876,10 +2953,27 @@ declare global {
         prototype: HTMLIxCardContentElement;
         new (): HTMLIxCardContentElement;
     };
+    interface HTMLIxCardListElementEventMap {
+        "collapseChanged": boolean;
+        "showAllClick": {
+    nativeEvent: MouseEvent;
+  };
+        "showMoreCardClick": {
+    nativeEvent: MouseEvent;
+  };
+    }
     /**
      * @since 1.6.0
      */
     interface HTMLIxCardListElement extends Components.IxCardList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxCardListElementEventMap>(type: K, listener: (this: HTMLIxCardListElement, ev: IxCardListCustomEvent<HTMLIxCardListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxCardListElementEventMap>(type: K, listener: (this: HTMLIxCardListElement, ev: IxCardListCustomEvent<HTMLIxCardListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxCardListElement: {
         prototype: HTMLIxCardListElement;
@@ -2894,13 +2988,37 @@ declare global {
         prototype: HTMLIxCardTitleElement;
         new (): HTMLIxCardTitleElement;
     };
+    interface HTMLIxCategoryFilterElementEventMap {
+        "categoryChanged": string;
+        "inputChanged": InputState;
+        "filterChanged": FilterState;
+    }
     interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxCategoryFilterElementEventMap>(type: K, listener: (this: HTMLIxCategoryFilterElement, ev: IxCategoryFilterCustomEvent<HTMLIxCategoryFilterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxCategoryFilterElementEventMap>(type: K, listener: (this: HTMLIxCategoryFilterElement, ev: IxCategoryFilterCustomEvent<HTMLIxCategoryFilterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxCategoryFilterElement: {
         prototype: HTMLIxCategoryFilterElement;
         new (): HTMLIxCategoryFilterElement;
     };
+    interface HTMLIxChipElementEventMap {
+        "closeChip": any;
+    }
     interface HTMLIxChipElement extends Components.IxChip, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxChipElementEventMap>(type: K, listener: (this: HTMLIxChipElement, ev: IxChipCustomEvent<HTMLIxChipElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxChipElementEventMap>(type: K, listener: (this: HTMLIxChipElement, ev: IxChipCustomEvent<HTMLIxChipElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxChipElement: {
         prototype: HTMLIxChipElement;
@@ -2915,13 +3033,27 @@ declare global {
         prototype: HTMLIxColElement;
         new (): HTMLIxColElement;
     };
+    /**
+     * @since 2.1.0
+     */
     interface HTMLIxContentElement extends Components.IxContent, HTMLStencilElement {
     }
     var HTMLIxContentElement: {
         prototype: HTMLIxContentElement;
         new (): HTMLIxContentElement;
     };
+    interface HTMLIxContentHeaderElementEventMap {
+        "backButtonClick": void;
+    }
     interface HTMLIxContentHeaderElement extends Components.IxContentHeader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxContentHeaderElementEventMap>(type: K, listener: (this: HTMLIxContentHeaderElement, ev: IxContentHeaderCustomEvent<HTMLIxContentHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxContentHeaderElementEventMap>(type: K, listener: (this: HTMLIxContentHeaderElement, ev: IxContentHeaderCustomEvent<HTMLIxContentHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxContentHeaderElement: {
         prototype: HTMLIxContentHeaderElement;
@@ -2939,35 +3071,70 @@ declare global {
         prototype: HTMLIxCssGridItemElement;
         new (): HTMLIxCssGridItemElement;
     };
+    interface HTMLIxDateDropdownElementEventMap {
+        "dateRangeChange": DateRangeChangeEvent;
+    }
     /**
      * @since 2.1.0
      */
     interface HTMLIxDateDropdownElement extends Components.IxDateDropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDateDropdownElementEventMap>(type: K, listener: (this: HTMLIxDateDropdownElement, ev: IxDateDropdownCustomEvent<HTMLIxDateDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDateDropdownElementEventMap>(type: K, listener: (this: HTMLIxDateDropdownElement, ev: IxDateDropdownCustomEvent<HTMLIxDateDropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDateDropdownElement: {
         prototype: HTMLIxDateDropdownElement;
         new (): HTMLIxDateDropdownElement;
     };
+    interface HTMLIxDateInputElementEventMap {
+        "dateChange": DateChangeEventRework;
+        "dateSelect": DateChangeEventRework;
+        "ixChange": DateInputEvent;
+        "ixFocus": DateInputEvent;
+        "ixBlur": DateInputEvent;
+        "ixClear": void;
+    }
     /**
      * @since 2.1.0
      */
     interface HTMLIxDateInputElement extends Components.IxDateInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDateInputElementEventMap>(type: K, listener: (this: HTMLIxDateInputElement, ev: IxDateInputCustomEvent<HTMLIxDateInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDateInputElementEventMap>(type: K, listener: (this: HTMLIxDateInputElement, ev: IxDateInputCustomEvent<HTMLIxDateInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDateInputElement: {
         prototype: HTMLIxDateInputElement;
         new (): HTMLIxDateInputElement;
     };
+    interface HTMLIxDatePickerElementEventMap {
+        "dateChange": DateChangeEvent;
+        "dateRangeChange": DateChangeEvent;
+        "dateSelect": DateChangeEvent;
+        "done": string;
+    }
     interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDatePickerElementEventMap>(type: K, listener: (this: HTMLIxDatePickerElement, ev: IxDatePickerCustomEvent<HTMLIxDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDatePickerElementEventMap>(type: K, listener: (this: HTMLIxDatePickerElement, ev: IxDatePickerCustomEvent<HTMLIxDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDatePickerElement: {
         prototype: HTMLIxDatePickerElement;
         new (): HTMLIxDatePickerElement;
-    };
-    interface HTMLIxDatePickerReworkElement extends Components.IxDatePickerRework, HTMLStencilElement {
-    }
-    var HTMLIxDatePickerReworkElement: {
-        prototype: HTMLIxDatePickerReworkElement;
-        new (): HTMLIxDatePickerReworkElement;
     };
     interface HTMLIxDateTimeCardElement extends Components.IxDateTimeCard, HTMLStencilElement {
     }
@@ -2975,26 +3142,53 @@ declare global {
         prototype: HTMLIxDateTimeCardElement;
         new (): HTMLIxDateTimeCardElement;
     };
+    interface HTMLIxDatetimeInputElementEventMap {
+        "fromDateChange": string;
+        "toDateChange": string;
+        "fromTimeChange": string;
+        "toTimeChange": string;
+        "dateSelect": DateTimeSelectEvent;
+        "ixChange": DatetimeInputEvent;
+        "ixFocus": DatetimeInputEvent;
+        "ixBlur": DatetimeInputEvent;
+        "ixClear": string;
+    }
     /**
      * @since 2.1.0
      */
     interface HTMLIxDatetimeInputElement extends Components.IxDatetimeInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDatetimeInputElementEventMap>(type: K, listener: (this: HTMLIxDatetimeInputElement, ev: IxDatetimeInputCustomEvent<HTMLIxDatetimeInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDatetimeInputElementEventMap>(type: K, listener: (this: HTMLIxDatetimeInputElement, ev: IxDatetimeInputCustomEvent<HTMLIxDatetimeInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDatetimeInputElement: {
         prototype: HTMLIxDatetimeInputElement;
         new (): HTMLIxDatetimeInputElement;
     };
+    interface HTMLIxDatetimePickerElementEventMap {
+        "done": string;
+        "timeChange": string;
+        "dateChange": DateTimeDateChangeEvent;
+        "dateSelect": DateTimeSelectEvent;
+    }
     interface HTMLIxDatetimePickerElement extends Components.IxDatetimePicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDatetimePickerElementEventMap>(type: K, listener: (this: HTMLIxDatetimePickerElement, ev: IxDatetimePickerCustomEvent<HTMLIxDatetimePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDatetimePickerElementEventMap>(type: K, listener: (this: HTMLIxDatetimePickerElement, ev: IxDatetimePickerCustomEvent<HTMLIxDatetimePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDatetimePickerElement: {
         prototype: HTMLIxDatetimePickerElement;
         new (): HTMLIxDatetimePickerElement;
-    };
-    interface HTMLIxDatetimePickerReworkElement extends Components.IxDatetimePickerRework, HTMLStencilElement {
-    }
-    var HTMLIxDatetimePickerReworkElement: {
-        prototype: HTMLIxDatetimePickerReworkElement;
-        new (): HTMLIxDatetimePickerReworkElement;
     };
     /**
      * @since 1.4.0
@@ -3005,13 +3199,36 @@ declare global {
         prototype: HTMLIxDividerElement;
         new (): HTMLIxDividerElement;
     };
+    interface HTMLIxDrawerElementEventMap {
+        "open": any;
+        "drawerClose": any;
+    }
     interface HTMLIxDrawerElement extends Components.IxDrawer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDrawerElementEventMap>(type: K, listener: (this: HTMLIxDrawerElement, ev: IxDrawerCustomEvent<HTMLIxDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDrawerElementEventMap>(type: K, listener: (this: HTMLIxDrawerElement, ev: IxDrawerCustomEvent<HTMLIxDrawerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDrawerElement: {
         prototype: HTMLIxDrawerElement;
         new (): HTMLIxDrawerElement;
     };
+    interface HTMLIxDropdownElementEventMap {
+        "showChanged": boolean;
+    }
     interface HTMLIxDropdownElement extends Components.IxDropdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDropdownElementEventMap>(type: K, listener: (this: HTMLIxDropdownElement, ev: IxDropdownCustomEvent<HTMLIxDropdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDropdownElementEventMap>(type: K, listener: (this: HTMLIxDropdownElement, ev: IxDropdownCustomEvent<HTMLIxDropdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDropdownElement: {
         prototype: HTMLIxDropdownElement;
@@ -3035,7 +3252,18 @@ declare global {
         prototype: HTMLIxDropdownHeaderElement;
         new (): HTMLIxDropdownHeaderElement;
     };
+    interface HTMLIxDropdownItemElementEventMap {
+        "itemClick": HTMLIxDropdownItemElement;
+    }
     interface HTMLIxDropdownItemElement extends Components.IxDropdownItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDropdownItemElementEventMap>(type: K, listener: (this: HTMLIxDropdownItemElement, ev: IxDropdownItemCustomEvent<HTMLIxDropdownItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDropdownItemElementEventMap>(type: K, listener: (this: HTMLIxDropdownItemElement, ev: IxDropdownItemCustomEvent<HTMLIxDropdownItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxDropdownItemElement: {
         prototype: HTMLIxDropdownItemElement;
@@ -3050,10 +3278,21 @@ declare global {
         prototype: HTMLIxDropdownQuickActionsElement;
         new (): HTMLIxDropdownQuickActionsElement;
     };
+    interface HTMLIxEmptyStateElementEventMap {
+        "actionClick": void;
+    }
     /**
      * @since 1.6.0
      */
     interface HTMLIxEmptyStateElement extends Components.IxEmptyState, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxEmptyStateElementEventMap>(type: K, listener: (this: HTMLIxEmptyStateElement, ev: IxEmptyStateCustomEvent<HTMLIxEmptyStateElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxEmptyStateElementEventMap>(type: K, listener: (this: HTMLIxEmptyStateElement, ev: IxEmptyStateCustomEvent<HTMLIxEmptyStateElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxEmptyStateElement: {
         prototype: HTMLIxEmptyStateElement;
@@ -3065,19 +3304,52 @@ declare global {
         prototype: HTMLIxEventListElement;
         new (): HTMLIxEventListElement;
     };
+    interface HTMLIxEventListItemElementEventMap {
+        "itemClick": any;
+    }
     interface HTMLIxEventListItemElement extends Components.IxEventListItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxEventListItemElementEventMap>(type: K, listener: (this: HTMLIxEventListItemElement, ev: IxEventListItemCustomEvent<HTMLIxEventListItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxEventListItemElementEventMap>(type: K, listener: (this: HTMLIxEventListItemElement, ev: IxEventListItemCustomEvent<HTMLIxEventListItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxEventListItemElement: {
         prototype: HTMLIxEventListItemElement;
         new (): HTMLIxEventListItemElement;
     };
+    interface HTMLIxExpandingSearchElementEventMap {
+        "valueChange": string;
+    }
     interface HTMLIxExpandingSearchElement extends Components.IxExpandingSearch, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxExpandingSearchElementEventMap>(type: K, listener: (this: HTMLIxExpandingSearchElement, ev: IxExpandingSearchCustomEvent<HTMLIxExpandingSearchElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxExpandingSearchElementEventMap>(type: K, listener: (this: HTMLIxExpandingSearchElement, ev: IxExpandingSearchCustomEvent<HTMLIxExpandingSearchElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxExpandingSearchElement: {
         prototype: HTMLIxExpandingSearchElement;
         new (): HTMLIxExpandingSearchElement;
     };
+    interface HTMLIxFilterChipElementEventMap {
+        "closeClick": void;
+    }
     interface HTMLIxFilterChipElement extends Components.IxFilterChip, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxFilterChipElementEventMap>(type: K, listener: (this: HTMLIxFilterChipElement, ev: IxFilterChipCustomEvent<HTMLIxFilterChipElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxFilterChipElementEventMap>(type: K, listener: (this: HTMLIxFilterChipElement, ev: IxFilterChipCustomEvent<HTMLIxFilterChipElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxFilterChipElement: {
         prototype: HTMLIxFilterChipElement;
@@ -3101,7 +3373,20 @@ declare global {
         prototype: HTMLIxFormFieldElement;
         new (): HTMLIxFormFieldElement;
     };
+    interface HTMLIxGroupElementEventMap {
+        "selectGroup": boolean;
+        "selectItem": number;
+        "collapsedChanged": boolean;
+    }
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxGroupElementEventMap>(type: K, listener: (this: HTMLIxGroupElement, ev: IxGroupCustomEvent<HTMLIxGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxGroupElementEventMap>(type: K, listener: (this: HTMLIxGroupElement, ev: IxGroupCustomEvent<HTMLIxGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxGroupElement: {
         prototype: HTMLIxGroupElement;
@@ -3113,7 +3398,18 @@ declare global {
         prototype: HTMLIxGroupContextMenuElement;
         new (): HTMLIxGroupContextMenuElement;
     };
+    interface HTMLIxGroupItemElementEventMap {
+        "selectedChanged": HTMLIxGroupItemElement;
+    }
     interface HTMLIxGroupItemElement extends Components.IxGroupItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxGroupItemElementEventMap>(type: K, listener: (this: HTMLIxGroupItemElement, ev: IxGroupItemCustomEvent<HTMLIxGroupItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxGroupItemElementEventMap>(type: K, listener: (this: HTMLIxGroupItemElement, ev: IxGroupItemCustomEvent<HTMLIxGroupItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxGroupItemElement: {
         prototype: HTMLIxGroupItemElement;
@@ -3125,10 +3421,21 @@ declare global {
         prototype: HTMLIxIconButtonElement;
         new (): HTMLIxIconButtonElement;
     };
+    interface HTMLIxIconToggleButtonElementEventMap {
+        "pressedChange": boolean;
+    }
     /**
      * @since 2.0.0
      */
     interface HTMLIxIconToggleButtonElement extends Components.IxIconToggleButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxIconToggleButtonElementEventMap>(type: K, listener: (this: HTMLIxIconToggleButtonElement, ev: IxIconToggleButtonCustomEvent<HTMLIxIconToggleButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxIconToggleButtonElementEventMap>(type: K, listener: (this: HTMLIxIconToggleButtonElement, ev: IxIconToggleButtonCustomEvent<HTMLIxIconToggleButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxIconToggleButtonElement: {
         prototype: HTMLIxIconToggleButtonElement;
@@ -3182,49 +3489,140 @@ declare global {
         prototype: HTMLIxLinkButtonElement;
         new (): HTMLIxLinkButtonElement;
     };
+    interface HTMLIxMapNavigationElementEventMap {
+        "navigationToggled": boolean;
+        "contextMenuClick": void;
+    }
     interface HTMLIxMapNavigationElement extends Components.IxMapNavigation, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMapNavigationElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationElement, ev: IxMapNavigationCustomEvent<HTMLIxMapNavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMapNavigationElement: {
         prototype: HTMLIxMapNavigationElement;
         new (): HTMLIxMapNavigationElement;
     };
+    interface HTMLIxMapNavigationOverlayElementEventMap {
+        "closeClick": any;
+    }
     interface HTMLIxMapNavigationOverlayElement extends Components.IxMapNavigationOverlay, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMapNavigationOverlayElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationOverlayElement, ev: IxMapNavigationOverlayCustomEvent<HTMLIxMapNavigationOverlayElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMapNavigationOverlayElementEventMap>(type: K, listener: (this: HTMLIxMapNavigationOverlayElement, ev: IxMapNavigationOverlayCustomEvent<HTMLIxMapNavigationOverlayElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMapNavigationOverlayElement: {
         prototype: HTMLIxMapNavigationOverlayElement;
         new (): HTMLIxMapNavigationOverlayElement;
     };
+    interface HTMLIxMenuElementEventMap {
+        "expandChange": boolean;
+        "mapExpandChange": boolean;
+    }
     interface HTMLIxMenuElement extends Components.IxMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuElementEventMap>(type: K, listener: (this: HTMLIxMenuElement, ev: IxMenuCustomEvent<HTMLIxMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuElementEventMap>(type: K, listener: (this: HTMLIxMenuElement, ev: IxMenuCustomEvent<HTMLIxMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuElement: {
         prototype: HTMLIxMenuElement;
         new (): HTMLIxMenuElement;
     };
+    interface HTMLIxMenuAboutElementEventMap {
+        "close": CustomCloseEvent;
+    }
     interface HTMLIxMenuAboutElement extends Components.IxMenuAbout, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuAboutElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutElement, ev: IxMenuAboutCustomEvent<HTMLIxMenuAboutElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuAboutElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutElement, ev: IxMenuAboutCustomEvent<HTMLIxMenuAboutElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuAboutElement: {
         prototype: HTMLIxMenuAboutElement;
         new (): HTMLIxMenuAboutElement;
     };
+    interface HTMLIxMenuAboutItemElementEventMap {
+        "labelChange": CustomLabelChangeEvent;
+    }
     interface HTMLIxMenuAboutItemElement extends Components.IxMenuAboutItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuAboutItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutItemElement, ev: IxMenuAboutItemCustomEvent<HTMLIxMenuAboutItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuAboutItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutItemElement, ev: IxMenuAboutItemCustomEvent<HTMLIxMenuAboutItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuAboutItemElement: {
         prototype: HTMLIxMenuAboutItemElement;
         new (): HTMLIxMenuAboutItemElement;
     };
+    interface HTMLIxMenuAboutNewsElementEventMap {
+        "showMore": MouseEvent;
+        "closePopover": void;
+    }
     interface HTMLIxMenuAboutNewsElement extends Components.IxMenuAboutNews, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuAboutNewsElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutNewsElement, ev: IxMenuAboutNewsCustomEvent<HTMLIxMenuAboutNewsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuAboutNewsElementEventMap>(type: K, listener: (this: HTMLIxMenuAboutNewsElement, ev: IxMenuAboutNewsCustomEvent<HTMLIxMenuAboutNewsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuAboutNewsElement: {
         prototype: HTMLIxMenuAboutNewsElement;
         new (): HTMLIxMenuAboutNewsElement;
     };
+    interface HTMLIxMenuAvatarElementEventMap {
+        "logoutClick": any;
+    }
     interface HTMLIxMenuAvatarElement extends Components.IxMenuAvatar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuAvatarElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarElement, ev: IxMenuAvatarCustomEvent<HTMLIxMenuAvatarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuAvatarElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarElement, ev: IxMenuAvatarCustomEvent<HTMLIxMenuAvatarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuAvatarElement: {
         prototype: HTMLIxMenuAvatarElement;
         new (): HTMLIxMenuAvatarElement;
     };
+    interface HTMLIxMenuAvatarItemElementEventMap {
+        "itemClick": MouseEvent;
+    }
     interface HTMLIxMenuAvatarItemElement extends Components.IxMenuAvatarItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuAvatarItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarItemElement, ev: IxMenuAvatarItemCustomEvent<HTMLIxMenuAvatarItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuAvatarItemElementEventMap>(type: K, listener: (this: HTMLIxMenuAvatarItemElement, ev: IxMenuAvatarItemCustomEvent<HTMLIxMenuAvatarItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuAvatarItemElement: {
         prototype: HTMLIxMenuAvatarItemElement;
@@ -3245,25 +3643,70 @@ declare global {
         prototype: HTMLIxMenuItemElement;
         new (): HTMLIxMenuItemElement;
     };
+    interface HTMLIxMenuSettingsElementEventMap {
+        "close": CustomCloseEvent;
+    }
     interface HTMLIxMenuSettingsElement extends Components.IxMenuSettings, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuSettingsElementEventMap>(type: K, listener: (this: HTMLIxMenuSettingsElement, ev: IxMenuSettingsCustomEvent<HTMLIxMenuSettingsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuSettingsElementEventMap>(type: K, listener: (this: HTMLIxMenuSettingsElement, ev: IxMenuSettingsCustomEvent<HTMLIxMenuSettingsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuSettingsElement: {
         prototype: HTMLIxMenuSettingsElement;
         new (): HTMLIxMenuSettingsElement;
     };
+    interface HTMLIxMenuSettingsItemElementEventMap {
+        "labelChange": CustomLabelChangeEvent;
+    }
     interface HTMLIxMenuSettingsItemElement extends Components.IxMenuSettingsItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuSettingsItemElementEventMap>(type: K, listener: (this: HTMLIxMenuSettingsItemElement, ev: IxMenuSettingsItemCustomEvent<HTMLIxMenuSettingsItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuSettingsItemElementEventMap>(type: K, listener: (this: HTMLIxMenuSettingsItemElement, ev: IxMenuSettingsItemCustomEvent<HTMLIxMenuSettingsItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuSettingsItemElement: {
         prototype: HTMLIxMenuSettingsItemElement;
         new (): HTMLIxMenuSettingsItemElement;
     };
+    interface HTMLIxMessageBarElementEventMap {
+        "closedChange": any;
+    }
     interface HTMLIxMessageBarElement extends Components.IxMessageBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMessageBarElementEventMap>(type: K, listener: (this: HTMLIxMessageBarElement, ev: IxMessageBarCustomEvent<HTMLIxMessageBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMessageBarElementEventMap>(type: K, listener: (this: HTMLIxMessageBarElement, ev: IxMessageBarCustomEvent<HTMLIxMessageBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMessageBarElement: {
         prototype: HTMLIxMessageBarElement;
         new (): HTMLIxMessageBarElement;
     };
+    interface HTMLIxModalElementEventMap {
+        "dialogClose": any;
+        "dialogDismiss": any;
+    }
     interface HTMLIxModalElement extends Components.IxModal, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxModalElementEventMap>(type: K, listener: (this: HTMLIxModalElement, ev: IxModalCustomEvent<HTMLIxModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxModalElementEventMap>(type: K, listener: (this: HTMLIxModalElement, ev: IxModalCustomEvent<HTMLIxModalElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxModalElement: {
         prototype: HTMLIxModalElement;
@@ -3293,10 +3736,21 @@ declare global {
         prototype: HTMLIxModalFooterElement;
         new (): HTMLIxModalFooterElement;
     };
+    interface HTMLIxModalHeaderElementEventMap {
+        "closeClick": MouseEvent;
+    }
     /**
      * @since 2.0.0
      */
     interface HTMLIxModalHeaderElement extends Components.IxModalHeader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxModalHeaderElementEventMap>(type: K, listener: (this: HTMLIxModalHeaderElement, ev: IxModalHeaderCustomEvent<HTMLIxModalHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxModalHeaderElementEventMap>(type: K, listener: (this: HTMLIxModalHeaderElement, ev: IxModalHeaderCustomEvent<HTMLIxModalHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxModalHeaderElement: {
         prototype: HTMLIxModalHeaderElement;
@@ -3308,20 +3762,71 @@ declare global {
         prototype: HTMLIxModalLoadingElement;
         new (): HTMLIxModalLoadingElement;
     };
+    interface HTMLIxPaginationElementEventMap {
+        "pageSelected": number;
+        "itemCountChanged": number;
+    }
     /**
      * @since 1.5.0
      */
     interface HTMLIxPaginationElement extends Components.IxPagination, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxPaginationElementEventMap>(type: K, listener: (this: HTMLIxPaginationElement, ev: IxPaginationCustomEvent<HTMLIxPaginationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxPaginationElementEventMap>(type: K, listener: (this: HTMLIxPaginationElement, ev: IxPaginationCustomEvent<HTMLIxPaginationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxPaginationElement: {
         prototype: HTMLIxPaginationElement;
         new (): HTMLIxPaginationElement;
+    };
+    interface HTMLIxPaneElementEventMap {
+        "expandedChanged": ExpandedChangedEvent;
+        "variantChanged": VariantChangedEvent;
+        "borderlessChanged": BorderlessChangedEvent;
+        "hideOnCollapseChanged": HideOnCollapseChangedEvent;
+        "slotChanged": SlotChangedEvent;
+    }
+    /**
+     * @since 2.1.0
+     */
+    interface HTMLIxPaneElement extends Components.IxPane, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxPaneElementEventMap>(type: K, listener: (this: HTMLIxPaneElement, ev: IxPaneCustomEvent<HTMLIxPaneElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxPaneElementEventMap>(type: K, listener: (this: HTMLIxPaneElement, ev: IxPaneCustomEvent<HTMLIxPaneElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxPaneElement: {
+        prototype: HTMLIxPaneElement;
+        new (): HTMLIxPaneElement;
+    };
+    /**
+     * @since 2.1.0
+     */
+    interface HTMLIxPaneLayoutElement extends Components.IxPaneLayout, HTMLStencilElement {
+    }
+    var HTMLIxPaneLayoutElement: {
+        prototype: HTMLIxPaneLayoutElement;
+        new (): HTMLIxPaneLayoutElement;
     };
     interface HTMLIxPillElement extends Components.IxPill, HTMLStencilElement {
     }
     var HTMLIxPillElement: {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
+    };
+    interface HTMLIxPlaygroundInternalElement extends Components.IxPlaygroundInternal, HTMLStencilElement {
+    }
+    var HTMLIxPlaygroundInternalElement: {
+        prototype: HTMLIxPlaygroundInternalElement;
+        new (): HTMLIxPlaygroundInternalElement;
     };
     /**
      * @since 1.6.0
@@ -3341,22 +3846,58 @@ declare global {
         prototype: HTMLIxRowElement;
         new (): HTMLIxRowElement;
     };
+    interface HTMLIxSelectElementEventMap {
+        "valueChange": string | string[];
+        "itemSelectionChange": string[];
+        "inputChange": string;
+        "addItem": string;
+    }
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxSelectElementEventMap>(type: K, listener: (this: HTMLIxSelectElement, ev: IxSelectCustomEvent<HTMLIxSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxSelectElementEventMap>(type: K, listener: (this: HTMLIxSelectElement, ev: IxSelectCustomEvent<HTMLIxSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxSelectElement: {
         prototype: HTMLIxSelectElement;
         new (): HTMLIxSelectElement;
     };
+    interface HTMLIxSelectItemElementEventMap {
+        "itemClick": string;
+    }
     interface HTMLIxSelectItemElement extends Components.IxSelectItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxSelectItemElementEventMap>(type: K, listener: (this: HTMLIxSelectItemElement, ev: IxSelectItemCustomEvent<HTMLIxSelectItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxSelectItemElementEventMap>(type: K, listener: (this: HTMLIxSelectItemElement, ev: IxSelectItemCustomEvent<HTMLIxSelectItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxSelectItemElement: {
         prototype: HTMLIxSelectItemElement;
         new (): HTMLIxSelectItemElement;
     };
+    interface HTMLIxSliderElementEventMap {
+        "valueChange": number;
+    }
     /**
      * @since 2.0.0
      */
     interface HTMLIxSliderElement extends Components.IxSlider, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxSliderElementEventMap>(type: K, listener: (this: HTMLIxSliderElement, ev: IxSliderCustomEvent<HTMLIxSliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxSliderElementEventMap>(type: K, listener: (this: HTMLIxSliderElement, ev: IxSliderCustomEvent<HTMLIxSliderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxSliderElement: {
         prototype: HTMLIxSliderElement;
@@ -3368,28 +3909,72 @@ declare global {
         prototype: HTMLIxSpinnerElement;
         new (): HTMLIxSpinnerElement;
     };
+    interface HTMLIxSplitButtonElementEventMap {
+        "buttonClick": MouseEvent;
+    }
     interface HTMLIxSplitButtonElement extends Components.IxSplitButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxSplitButtonElementEventMap>(type: K, listener: (this: HTMLIxSplitButtonElement, ev: IxSplitButtonCustomEvent<HTMLIxSplitButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxSplitButtonElementEventMap>(type: K, listener: (this: HTMLIxSplitButtonElement, ev: IxSplitButtonCustomEvent<HTMLIxSplitButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxSplitButtonElement: {
         prototype: HTMLIxSplitButtonElement;
         new (): HTMLIxSplitButtonElement;
     };
+    interface HTMLIxSplitButtonItemElementEventMap {
+        "itemClick": MouseEvent;
+    }
     /**
      * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
      */
     interface HTMLIxSplitButtonItemElement extends Components.IxSplitButtonItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxSplitButtonItemElementEventMap>(type: K, listener: (this: HTMLIxSplitButtonItemElement, ev: IxSplitButtonItemCustomEvent<HTMLIxSplitButtonItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxSplitButtonItemElementEventMap>(type: K, listener: (this: HTMLIxSplitButtonItemElement, ev: IxSplitButtonItemCustomEvent<HTMLIxSplitButtonItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxSplitButtonItemElement: {
         prototype: HTMLIxSplitButtonItemElement;
         new (): HTMLIxSplitButtonItemElement;
     };
+    interface HTMLIxTabItemElementEventMap {
+        "tabClick": TabClickDetail;
+    }
     interface HTMLIxTabItemElement extends Components.IxTabItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTabItemElementEventMap>(type: K, listener: (this: HTMLIxTabItemElement, ev: IxTabItemCustomEvent<HTMLIxTabItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTabItemElementEventMap>(type: K, listener: (this: HTMLIxTabItemElement, ev: IxTabItemCustomEvent<HTMLIxTabItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxTabItemElement: {
         prototype: HTMLIxTabItemElement;
         new (): HTMLIxTabItemElement;
     };
+    interface HTMLIxTabsElementEventMap {
+        "selectedChange": number;
+    }
     interface HTMLIxTabsElement extends Components.IxTabs, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTabsElementEventMap>(type: K, listener: (this: HTMLIxTabsElement, ev: IxTabsCustomEvent<HTMLIxTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTabsElementEventMap>(type: K, listener: (this: HTMLIxTabsElement, ev: IxTabsCustomEvent<HTMLIxTabsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxTabsElement: {
         prototype: HTMLIxTabsElement;
@@ -3401,19 +3986,37 @@ declare global {
         prototype: HTMLIxTileElement;
         new (): HTMLIxTileElement;
     };
+    interface HTMLIxTimePickerElementEventMap {
+        "timeSelect": string;
+        "done": string;
+        "timeChange": string;
+    }
     interface HTMLIxTimePickerElement extends Components.IxTimePicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTimePickerElementEventMap>(type: K, listener: (this: HTMLIxTimePickerElement, ev: IxTimePickerCustomEvent<HTMLIxTimePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTimePickerElementEventMap>(type: K, listener: (this: HTMLIxTimePickerElement, ev: IxTimePickerCustomEvent<HTMLIxTimePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxTimePickerElement: {
         prototype: HTMLIxTimePickerElement;
         new (): HTMLIxTimePickerElement;
     };
-    interface HTMLIxTimePickerReworkElement extends Components.IxTimePickerRework, HTMLStencilElement {
+    interface HTMLIxToastElementEventMap {
+        "closeToast": any;
     }
-    var HTMLIxTimePickerReworkElement: {
-        prototype: HTMLIxTimePickerReworkElement;
-        new (): HTMLIxTimePickerReworkElement;
-    };
     interface HTMLIxToastElement extends Components.IxToast, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxToastElementEventMap>(type: K, listener: (this: HTMLIxToastElement, ev: IxToastCustomEvent<HTMLIxToastElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxToastElementEventMap>(type: K, listener: (this: HTMLIxToastElement, ev: IxToastCustomEvent<HTMLIxToastElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxToastElement: {
         prototype: HTMLIxToastElement;
@@ -3425,16 +4028,38 @@ declare global {
         prototype: HTMLIxToastContainerElement;
         new (): HTMLIxToastContainerElement;
     };
+    interface HTMLIxToggleElementEventMap {
+        "checkedChange": boolean;
+    }
     interface HTMLIxToggleElement extends Components.IxToggle, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxToggleElementEventMap>(type: K, listener: (this: HTMLIxToggleElement, ev: IxToggleCustomEvent<HTMLIxToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxToggleElementEventMap>(type: K, listener: (this: HTMLIxToggleElement, ev: IxToggleCustomEvent<HTMLIxToggleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxToggleElement: {
         prototype: HTMLIxToggleElement;
         new (): HTMLIxToggleElement;
     };
+    interface HTMLIxToggleButtonElementEventMap {
+        "pressedChange": boolean;
+    }
     /**
      * @since 2.0.0
      */
     interface HTMLIxToggleButtonElement extends Components.IxToggleButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxToggleButtonElementEventMap>(type: K, listener: (this: HTMLIxToggleButtonElement, ev: IxToggleButtonCustomEvent<HTMLIxToggleButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxToggleButtonElementEventMap>(type: K, listener: (this: HTMLIxToggleButtonElement, ev: IxToggleButtonCustomEvent<HTMLIxToggleButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxToggleButtonElement: {
         prototype: HTMLIxToggleButtonElement;
@@ -3449,13 +4074,39 @@ declare global {
         prototype: HTMLIxTooltipElement;
         new (): HTMLIxTooltipElement;
     };
+    interface HTMLIxTreeElementEventMap {
+        "contextChange": TreeContext;
+        "nodeToggled": { id: string; isExpaned: boolean };
+        "nodeClicked": string;
+        "nodeRemoved": any;
+    }
     interface HTMLIxTreeElement extends Components.IxTree, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTreeElementEventMap>(type: K, listener: (this: HTMLIxTreeElement, ev: IxTreeCustomEvent<HTMLIxTreeElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTreeElementEventMap>(type: K, listener: (this: HTMLIxTreeElement, ev: IxTreeCustomEvent<HTMLIxTreeElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxTreeElement: {
         prototype: HTMLIxTreeElement;
         new (): HTMLIxTreeElement;
     };
+    interface HTMLIxTreeItemElementEventMap {
+        "toggle": void;
+        "itemClick": void;
+    }
     interface HTMLIxTreeItemElement extends Components.IxTreeItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTreeItemElementEventMap>(type: K, listener: (this: HTMLIxTreeItemElement, ev: IxTreeItemCustomEvent<HTMLIxTreeItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTreeItemElementEventMap>(type: K, listener: (this: HTMLIxTreeItemElement, ev: IxTreeItemCustomEvent<HTMLIxTreeItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxTreeItemElement: {
         prototype: HTMLIxTreeItemElement;
@@ -3470,7 +4121,18 @@ declare global {
         prototype: HTMLIxTypographyElement;
         new (): HTMLIxTypographyElement;
     };
+    interface HTMLIxUploadElementEventMap {
+        "filesChanged": Array<File>;
+    }
     interface HTMLIxUploadElement extends Components.IxUpload, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxUploadElementEventMap>(type: K, listener: (this: HTMLIxUploadElement, ev: IxUploadCustomEvent<HTMLIxUploadElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxUploadElementEventMap>(type: K, listener: (this: HTMLIxUploadElement, ev: IxUploadCustomEvent<HTMLIxUploadElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxUploadElement: {
         prototype: HTMLIxUploadElement;
@@ -3482,29 +4144,46 @@ declare global {
         prototype: HTMLIxValidationTooltipElement;
         new (): HTMLIxValidationTooltipElement;
     };
+    interface HTMLIxWorkflowStepElementEventMap {
+        "selectedChanged": HTMLIxWorkflowStepElement;
+    }
     interface HTMLIxWorkflowStepElement extends Components.IxWorkflowStep, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxWorkflowStepElementEventMap>(type: K, listener: (this: HTMLIxWorkflowStepElement, ev: IxWorkflowStepCustomEvent<HTMLIxWorkflowStepElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxWorkflowStepElementEventMap>(type: K, listener: (this: HTMLIxWorkflowStepElement, ev: IxWorkflowStepCustomEvent<HTMLIxWorkflowStepElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxWorkflowStepElement: {
         prototype: HTMLIxWorkflowStepElement;
         new (): HTMLIxWorkflowStepElement;
     };
+    interface HTMLIxWorkflowStepsElementEventMap {
+        "stepSelected": number;
+    }
     interface HTMLIxWorkflowStepsElement extends Components.IxWorkflowSteps, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxWorkflowStepsElementEventMap>(type: K, listener: (this: HTMLIxWorkflowStepsElement, ev: IxWorkflowStepsCustomEvent<HTMLIxWorkflowStepsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxWorkflowStepsElementEventMap>(type: K, listener: (this: HTMLIxWorkflowStepsElement, ev: IxWorkflowStepsCustomEvent<HTMLIxWorkflowStepsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxWorkflowStepsElement: {
         prototype: HTMLIxWorkflowStepsElement;
         new (): HTMLIxWorkflowStepsElement;
-    };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
         "ix-application-sidebar": HTMLIxApplicationSidebarElement;
+        "ix-application-switch-modal": HTMLIxApplicationSwitchModalElement;
         "ix-avatar": HTMLIxAvatarElement;
         "ix-basic-navigation": HTMLIxBasicNavigationElement;
         "ix-blind": HTMLIxBlindElement;
@@ -3527,11 +4206,9 @@ declare global {
         "ix-date-dropdown": HTMLIxDateDropdownElement;
         "ix-date-input": HTMLIxDateInputElement;
         "ix-date-picker": HTMLIxDatePickerElement;
-        "ix-date-picker-rework": HTMLIxDatePickerReworkElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-input": HTMLIxDatetimeInputElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
-        "ix-datetime-picker-rework": HTMLIxDatetimePickerReworkElement;
         "ix-divider": HTMLIxDividerElement;
         "ix-drawer": HTMLIxDrawerElement;
         "ix-dropdown": HTMLIxDropdownElement;
@@ -3578,7 +4255,10 @@ declare global {
         "ix-modal-header": HTMLIxModalHeaderElement;
         "ix-modal-loading": HTMLIxModalLoadingElement;
         "ix-pagination": HTMLIxPaginationElement;
+        "ix-pane": HTMLIxPaneElement;
+        "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
+        "ix-playground-internal": HTMLIxPlaygroundInternalElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
@@ -3591,7 +4271,6 @@ declare global {
         "ix-tabs": HTMLIxTabsElement;
         "ix-tile": HTMLIxTileElement;
         "ix-time-picker": HTMLIxTimePickerElement;
-        "ix-time-picker-rework": HTMLIxTimePickerReworkElement;
         "ix-toast": HTMLIxToastElement;
         "ix-toast-container": HTMLIxToastContainerElement;
         "ix-toggle": HTMLIxToggleElement;
@@ -3604,7 +4283,6 @@ declare global {
         "ix-validation-tooltip": HTMLIxValidationTooltipElement;
         "ix-workflow-step": HTMLIxWorkflowStepElement;
         "ix-workflow-steps": HTMLIxWorkflowStepsElement;
-        "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -3633,7 +4311,14 @@ declare namespace LocalJSX {
          */
         "variant"?: ActionCardVariant;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxApplication {
+        /**
+          * Define application switch configuration
+         */
+        "appSwitchConfig"?: AppSwitchConfiguration;
         /**
           * Supported layouts
          */
@@ -3659,18 +4344,31 @@ declare namespace LocalJSX {
     }
     interface IxApplicationSidebar {
     }
+    interface IxApplicationSwitchModal {
+        "config"?: AppSwitchConfiguration;
+    }
     /**
      * @since 2.0.0
      */
     interface IxAvatar {
         /**
-          * Display a avatar image
+          * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "extra"?: string;
+        /**
+          * Display an avatar image
          */
         "image"?: string;
         /**
           * Display the initials of the user. Will be overwritten by image
          */
         "initials"?: string;
+        /**
+          * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
+          * @since 2.1.0
+         */
+        "username"?: string;
     }
     interface IxBasicNavigation {
         /**
@@ -3678,7 +4376,7 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
-          * Supported layouts
+          * Supported layouts e.g ['sm', 'md']
          */
         "breakpoints"?: Breakpoint[];
         /**
@@ -3812,6 +4510,10 @@ declare namespace LocalJSX {
      * @since 1.6.0
      */
     interface IxCard {
+        /**
+          * @since 2.1.0
+         */
+        "selected"?: boolean;
         /**
           * Card variant
          */
@@ -3967,15 +4669,20 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
-          * Custom color for pill. Only working for `variant='custom'`
+          * Custom background color. Only has an effect on chips with `variant='custom'`
          */
         "background"?: string | undefined;
+        /**
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+         */
+        "chipColor"?: string | undefined;
         /**
           * Show close icon
          */
         "closable"?: boolean;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
+          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
+          * @deprecated since 2.1.0 use `chip-color`
          */
         "color"?: string | undefined;
         /**
@@ -4024,6 +4731,9 @@ declare namespace LocalJSX {
          */
         "sizeSm"?: ColumnSize;
     }
+    /**
+     * @since 2.1.0
+     */
     interface IxContent {
     }
     interface IxContentHeader {
@@ -4066,26 +4776,37 @@ declare namespace LocalJSX {
     interface IxDateDropdown {
         /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
-          * @default ''
          */
         "customRangeAllowed"?: boolean;
         /**
-          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     label: 'No time limit',     getValue: (): DateRangeOption => {       // Calculate the date range here       return { from: undefined, to: today };     },   },   // ... other predefined date range options ...
+          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
+         */
+        "dateRangeId"?: string;
+        /**
+          * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
         "dateRangeOptions"?: DateDropdownOption[];
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See
+          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "format"?: string;
         /**
           * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
          */
-        "from"?: string | null;
+        "from"?: string;
         /**
-          * Used to set the initial select date range as well as the button name, if not set or no according date range label is found, nothing will be selected
-          * @default ''
+          * Text for custom dropdown item. Will be used for translation.
          */
-        "initialSelectedDateRangeName"?: string;
+        "i18nCustomItem"?: string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "i18nDone"?: string;
+        /**
+          * Text for the done button. Will be used for translation.
+         */
+        "i18nNoRange"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
@@ -4096,8 +4817,6 @@ declare namespace LocalJSX {
         "minDate"?: string;
         /**
           * EventEmitter for date range change events.  This event is emitted when the date range changes within the component. The event payload contains information about the selected date range.
-          * @event 
-          * @private
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
@@ -4107,7 +4826,8 @@ declare namespace LocalJSX {
         /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
-        "to"?: string | null;
+        "to"?: string;
+        "today"?: string;
     }
     /**
      * @since 2.1.0
@@ -4206,6 +4926,7 @@ declare namespace LocalJSX {
         /**
           * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
           * @since 1.1.0
+          * @deprecated Not used anymore see `this.dateChange`
          */
         "eventDelimiter"?: string;
         /**
@@ -4213,14 +4934,24 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date. If set to `null` no default start date will be pre-selected.  Format is based on `format`
+          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
-        "from"?: string | null;
+        "from"?: string | undefined;
         /**
-          * @deprecated Will be removed in 2.0.0
+          * Text of date select button
+          * @since 2.1.0
+         */
+        "i18nDone"?: string;
+        /**
+          * @deprecated Not supported since 2.0.0.
          */
         "individual"?: boolean;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * @since 2.1.0
+         */
+        "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -4232,13 +4963,13 @@ declare namespace LocalJSX {
          */
         "minDate"?: string;
         /**
-          * Date change event  If datepicker is in range mode the event detail will be sperated with a `-` e.g. `2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`.
-          * @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+          * Triggers if the date selection changes. Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
+          * @since 2.1.0
          */
-        "onDateChange"?: (event: IxDatePickerCustomEvent<LegacyDateChangeEvent>) => void;
+        "onDateChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date range change. Only triggered if datepicker is in range mode
-          * @since 1.1.0
+          * Triggers if the date selection changes. Only triggered if date-picker-rework is in range mode.
+          * @since 2.1.0
          */
         "onDateRangeChange"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
@@ -4248,68 +4979,9 @@ declare namespace LocalJSX {
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
           * Date selection confirmed via button action
-          * @deprecated Will be removed in 2.0.0. Use `dateSelect`
+          * @deprecated NOT getting dispatched after 2.0.0. Use `dateSelect`.
          */
         "onDone"?: (event: IxDatePickerCustomEvent<string>) => void;
-        /**
-          * If true a range of dates can be selected.
-         */
-        "range"?: boolean;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectDate"?: string;
-        /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
-         */
-        "to"?: string | null;
-    }
-    interface IxDatePickerRework {
-        /**
-          * Corner style
-         */
-        "corners"?: DateTimeCardCorners;
-        /**
-          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load the locale.
-         */
-        "dayJsLocale"?: ILocale;
-        /**
-          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
-         */
-        "format"?: string;
-        /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
-         */
-        "from"?: string | undefined;
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate"?: string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate"?: string;
-        /**
-          * Triggers if the date selection changes.
-          * @since 2.0.0
-         */
-        "onDateChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEventRework1>) => void;
-        /**
-          * Triggers if the date selection changes. Only triggered if date-picker-rework is in range mode.
-          * @since 1.1.0
-          * @deprecated Use `dateChange` (triggers on both modes)
-         */
-        "onDateRangeChange"?: (event: IxDatePickerReworkCustomEvent<DateChangeEventRework1>) => void;
-        /**
-          * Date selection confirmed via button action
-          * @since 1.1.0
-         */
-        "onDateSelect"?: (event: IxDatePickerReworkCustomEvent<DateChangeEventRework1>) => void;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -4318,6 +4990,7 @@ declare namespace LocalJSX {
         /**
           * Text of the button that confirms date selection.
           * @since 1.1.0
+          * @deprecated since 2.1.0. Use `i18nDone`
          */
         "textSelectDate"?: string;
         /**
@@ -4325,9 +4998,10 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "to"?: string | undefined;
+        "today"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "weekStartIndex"?: number;
     }
@@ -4347,7 +5021,8 @@ declare namespace LocalJSX {
      */
     interface IxDatetimeInput {
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See
+          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "dateFormat"?: string;
         /**
@@ -4444,7 +5119,8 @@ declare namespace LocalJSX {
          */
         "showSeconds"?: boolean;
         /**
-          * Show time reference input Per default time reference is aligned with @see {this.timeFormat}
+          * Show time reference input Per default time reference is aligned with
+          * @see { this.timeFormat}
          */
         "showTimeReference"?: any;
         /**
@@ -4452,7 +5128,8 @@ declare namespace LocalJSX {
          */
         "suppressErrorMessage"?: boolean;
         /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Time format string. See
+          * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
         "timeFormat"?: string;
         /**
@@ -4478,20 +5155,31 @@ declare namespace LocalJSX {
     }
     interface IxDatetimePicker {
         /**
-          * Date format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "dateFormat"?: string;
         /**
           * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
           * @since 1.1.0
+          * @deprecated Not used anymore see `done` event
          */
         "eventDelimiter"?: string;
         /**
-          * Picker date. If the picker is in range mode this property is the start date.  Format is based on `format`
+          * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
-        "from"?: string;
+        "from"?: string | undefined;
+        /**
+          * Text of date select button
+          * @since 2.1.0
+         */
+        "i18nDone"?: string;
+        /**
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * @since 2.1.0
+         */
+        "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -4508,12 +5196,13 @@ declare namespace LocalJSX {
          */
         "onDateChange"?: (event: IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>) => void;
         /**
-          * Date selection event is fired after confirm button is pressend
+          * Datetime selection event is fired after confirm button is pressed
           * @since 1.1.0
          */
-        "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent1>) => void;
+        "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
           * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
+          * @deprecated Use `this.dateChange`
          */
         "onDone"?: (event: IxDatetimePickerCustomEvent<string>) => void;
         /**
@@ -4521,92 +5210,6 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "onTimeChange"?: (event: IxDatetimePickerCustomEvent<string>) => void;
-        /**
-          * Set range size
-         */
-        "range"?: boolean;
-        /**
-          * Show hour input
-         */
-        "showHour"?: boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes"?: boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds"?: boolean;
-        /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
-          * @since 1.1.0
-         */
-        "showTimeReference"?: any;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectDate"?: string;
-        /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time"?: string;
-        /**
-          * Time format string. See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
-          * @since 1.1.0
-         */
-        "timeFormat"?: string;
-        /**
-          * Set time reference
-         */
-        "timeReference"?: 'AM' | 'PM';
-        /**
-          * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
-          * @since 1.1.0
-         */
-        "to"?: string | null;
-    }
-    interface IxDatetimePickerRework {
-        /**
-          * Date format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
-          * @since 1.1.0
-         */
-        "dateFormat"?: string;
-        /**
-          * DayJS locale object used for translation. See {@link "https://day.js.org/docs/en/i18n/loading-into-browser"} or the ix-date-picker documentation to see how to load a locale.
-         */
-        "dayJsLocale"?: ILocale;
-        /**
-          * The selected starting date. If the date-picker-rework is not in range mode this is the selected date. Format has to match the `format` property.
-          * @since 1.1.0
-         */
-        "from"?: string | undefined;
-        /**
-          * The latest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "maxDate"?: string;
-        /**
-          * The earliest date that can be selected by the date picker. If not set there will be no restriction.
-          * @since 1.1.0
-         */
-        "minDate"?: string;
-        /**
-          * Date change
-          * @since 1.1.0
-         */
-        "onDateChange"?: (event: IxDatetimePickerReworkCustomEvent<DateTimeDateChangeEvent1>) => void;
-        /**
-          * Datetime selection event is fired after confirm button is pressed
-          * @since 1.1.0
-         */
-        "onDateSelect"?: (event: IxDatetimePickerReworkCustomEvent<DateTimeSelectEvent2>) => void;
-        /**
-          * Time change
-          * @since 1.1.0
-         */
-        "onTimeChange"?: (event: IxDatetimePickerReworkCustomEvent<string>) => void;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -4624,13 +5227,15 @@ declare namespace LocalJSX {
          */
         "showSeconds"?: boolean;
         /**
-          * Show time reference input Time reference is default aligned with @see {this.timeFormat}
+          * Show time reference input Time reference is default aligned with
+          * @see { this.timeFormat}
           * @since 1.1.0
          */
         "showTimeReference"?: any;
         /**
           * Text of date select button
           * @since 1.1.0
+          * @deprecated since 2.1.0. Use `i18nDone`
          */
         "textSelectDate"?: string;
         /**
@@ -4639,7 +5244,7 @@ declare namespace LocalJSX {
          */
         "time"?: string;
         /**
-          * Time format string. See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
+          * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "timeFormat"?: string;
@@ -4648,13 +5253,13 @@ declare namespace LocalJSX {
          */
         "timeReference"?: 'AM' | 'PM';
         /**
-          * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
+          * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
         "to"?: string | undefined;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
-          * @since 2.0.0
+          * @since 2.1.0
          */
         "weekStartIndex"?: number;
     }
@@ -4703,9 +5308,10 @@ declare namespace LocalJSX {
          */
         "anchor"?: string | HTMLElement;
         /**
-          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
-        "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
+        "closeBehavior"?: CloseBehavior;
+        "discoverAllSubmenus"?: boolean;
         /**
           * An optional header shown at the top of the dropdown
          */
@@ -4746,16 +5352,17 @@ declare namespace LocalJSX {
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
-        "trigger"?: string | HTMLElement;
-        /**
-          * Define one or more events to open dropdown
-         */
-        "triggerEvent"?: DropdownTriggerEvent | DropdownTriggerEvent[];
+        "trigger"?: string | HTMLElement | Promise<HTMLElement>;
     }
     /**
      * @since 1.3.0
      */
     interface IxDropdownButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.1.0
+         */
+        "closeBehavior"?: 'inside' | 'outside' | 'both' | boolean;
         /**
           * Disable button
          */
@@ -4879,13 +5486,19 @@ declare namespace LocalJSX {
         "chevron"?: boolean;
         /**
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @see https://ix.siemens.io/docs/theming/colors/
+          * @link https://ix.siemens.io/docs/theming/colors/
+          * @deprecated since 2.1.0 use `item-color`
          */
         "color"?: string;
         /**
           * Disable event list item
          */
         "disabled"?: boolean;
+        /**
+          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
+          * @link https://ix.siemens.io/docs/theming/colors/
+         */
+        "itemColor"?: string;
         /**
           * Event list item click
          */
@@ -5041,7 +5654,13 @@ declare namespace LocalJSX {
     }
     interface IxIconButton {
         /**
+          * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
+          * @since 2.1.0
+         */
+        "a11yLabel"?: string;
+        /**
           * Color of icon in  button
+          * @deprecated since 2.1.0 use `icon-color`
          */
         "color"?: string;
         /**
@@ -5056,6 +5675,10 @@ declare namespace LocalJSX {
           * Icon name
          */
         "icon"?: string;
+        /**
+          * Color of icon in  button
+         */
+        "iconColor"?: string;
         /**
           * Loading button
           * @since 2.0.0
@@ -5222,12 +5845,17 @@ declare namespace LocalJSX {
     interface IxMapNavigationOverlay {
         /**
           * Color of icon
+          * @deprecated since 2.1.0. Use `icon-color`
          */
         "color"?: string;
         /**
           * Icon of overlay
          */
         "icon"?: string;
+        /**
+          * Color of icon
+         */
+        "iconColor"?: string;
         /**
           * Title of overlay
          */
@@ -5258,6 +5886,9 @@ declare namespace LocalJSX {
           * Show toggle between light and dark variant. Only if the provided theme have implemented both!
          */
         "enableToggleTheme"?: boolean;
+        /**
+          * Toggle the expand state of the menu
+         */
         "expand"?: boolean;
         "i18nCollapse"?: string;
         "i18nExpand"?: string;
@@ -5293,6 +5924,10 @@ declare namespace LocalJSX {
           * Is settings tab visible
          */
         "showSettings"?: boolean;
+        /**
+          * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+         */
+        "startExpanded"?: boolean;
     }
     interface IxMenuAbout {
         /**
@@ -5306,10 +5941,7 @@ declare namespace LocalJSX {
         /**
           * About and Legal closed
          */
-        "onClose"?: (event: IxMenuAboutCustomEvent<{
-    nativeEvent: MouseEvent;
-    name: string;
-  }>) => void;
+        "onClose"?: (event: IxMenuAboutCustomEvent<CustomCloseEvent>) => void;
         /**
           * Internal
          */
@@ -5320,6 +5952,10 @@ declare namespace LocalJSX {
           * About Item label
          */
         "label"?: string;
+        /**
+          * Label changed
+         */
+        "onLabelChange"?: (event: IxMenuAboutItemCustomEvent<CustomLabelChangeEvent>) => void;
     }
     interface IxMenuAboutNews {
         /**
@@ -5434,7 +6070,8 @@ declare namespace LocalJSX {
          */
         "home"?: boolean;
         /**
-          * Icon name from @siemens/ix-icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation
+          * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon"?: string;
         /**
@@ -5442,27 +6079,25 @@ declare namespace LocalJSX {
          */
         "notifications"?: number;
         /**
-          * Icon name from @siemens/ix-icons
+          * Name of the icon you want to display. Icon names can be resolved from the documentation
+          * @link https://ix.siemens.io/docs/icon-library/icons
           * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
          */
         "tabIcon"?: string;
     }
     interface IxMenuSettings {
         /**
-          * active tab
+          * Active tab
          */
         "activeTabLabel"?: string;
         /**
-          * Label
+          * Label of first tab
          */
         "label"?: string;
         /**
           * Popover closed
          */
-        "onClose"?: (event: IxMenuSettingsCustomEvent<{
-    nativeEvent: MouseEvent;
-    name: string;
-  }>) => void;
+        "onClose"?: (event: IxMenuSettingsCustomEvent<CustomCloseEvent>) => void;
         /**
           * Internal
          */
@@ -5470,9 +6105,13 @@ declare namespace LocalJSX {
     }
     interface IxMenuSettingsItem {
         /**
-          * Label
+          * Settings Item label
          */
         "label"?: string;
+        /**
+          * Label changed
+         */
+        "onLabelChange"?: (event: IxMenuSettingsItemCustomEvent<CustomLabelChangeEvent>) => void;
     }
     interface IxMessageBar {
         /**
@@ -5562,7 +6201,7 @@ declare namespace LocalJSX {
          */
         "iconColor"?: string;
         /**
-          * Close icon is clicked
+          * Emits when close icon is clicked and closes the modal Can be prevented, in which case only the event is triggered, and the modal remains open
          */
         "onCloseClick"?: (event: IxModalHeaderCustomEvent<MouseEvent>) => void;
     }
@@ -5613,6 +6252,82 @@ declare namespace LocalJSX {
          */
         "showItemCount"?: boolean;
     }
+    /**
+     * @since 2.1.0
+     */
+    interface IxPane {
+        /**
+          * Toggle the border of the pane. Defaults to the borderless attribute of the pane layout. If used standalone it defaults to false.
+         */
+        "borderless"?: boolean;
+        /**
+          * Defines the position of the pane inside it's container. Inside a pane layout this property will automatically be set to the name of slot the pane is assigned to.
+         */
+        "composition"?: Composition;
+        /**
+          * State of the pane
+         */
+        "expanded"?: boolean;
+        /**
+          * Title of the side panel
+         */
+        "heading"?: string;
+        /**
+          * Define if the pane should have a collapsed state
+         */
+        "hideOnCollapse"?: boolean;
+        /**
+          * Name of the icon
+         */
+        "icon"?: string;
+        "ignoreLayoutSettings"?: boolean;
+        "isMobile"?: boolean;
+        /**
+          * This event is triggered when the variant of the pane is changed
+         */
+        "onBorderlessChanged"?: (event: IxPaneCustomEvent<BorderlessChangedEvent>) => void;
+        /**
+          * This event is triggered when the pane either expands or contracts
+         */
+        "onExpandedChanged"?: (event: IxPaneCustomEvent<ExpandedChangedEvent>) => void;
+        "onHideOnCollapseChanged"?: (event: IxPaneCustomEvent<HideOnCollapseChangedEvent>) => void;
+        "onSlotChanged"?: (event: IxPaneCustomEvent<SlotChangedEvent>) => void;
+        /**
+          * This event is triggered when the variant of the pane is changed
+         */
+        "onVariantChanged"?: (event: IxPaneCustomEvent<VariantChangedEvent>) => void;
+        /**
+          * The maximum size of the sidebar, when it is expanded
+         */
+        "size"?: | '240px'
+    | '320px'
+    | '360px'
+    | '480px'
+    | '600px'
+    | '33%'
+    | '50%';
+        /**
+          * Variant of the side pane. Defaults to the variant attribute of the pane layout. If used standalone it defaults to inline.
+         */
+        "variant"?: 'floating' | 'inline';
+    }
+    /**
+     * @since 2.1.0
+     */
+    interface IxPaneLayout {
+        /**
+          * Set the default border state for all panes in the layout
+         */
+        "borderless"?: boolean;
+        /**
+          * Choose the layout of the panes. When set to 'full-vertical' the vertical panes (left, right) will get the full height. When set to 'full-horizontal' the horizontal panes (top, bottom) will get the full width.
+         */
+        "layout"?: 'full-vertical' | 'full-horizontal';
+        /**
+          * Set the default variant for all panes in the layout
+         */
+        "variant"?: 'floating' | 'inline';
+    }
     interface IxPill {
         /**
           * Align pill content left
@@ -5624,6 +6339,7 @@ declare namespace LocalJSX {
         "background"?: string | undefined;
         /**
           * Custom font color for pill. Only working for `variant='custom'`
+          * @deprecated since 2.1.0 use `pill-color`
          */
         "color"?: string | undefined;
         /**
@@ -5635,6 +6351,10 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
+          * Custom font color for pill. Only working for `variant='custom'`
+         */
+        "pillColor"?: string | undefined;
+        /**
           * Pill variant
          */
         "variant"?: | 'primary'
@@ -5645,6 +6365,8 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
+    }
+    interface IxPlaygroundInternal {
     }
     /**
      * @since 1.6.0
@@ -5697,7 +6419,6 @@ declare namespace LocalJSX {
         /**
           * Hide list header
           * @since 1.5.0
-          * @
          */
         "hideListHeader"?: boolean;
         /**
@@ -5766,11 +6487,12 @@ declare namespace LocalJSX {
          */
         "onItemClick"?: (event: IxSelectItemCustomEvent<string>) => void;
         /**
-          * Whether the item is selected.
+          * Flag indicating whether the item is selected
          */
         "selected"?: boolean;
         /**
-          * Item value
+          * The value of the item. Important: The select component uses string values to handle selection and will call toString() on this value. Therefor a string should be passed to value to prevent unexpected behavior.
+          * @deprecated will be changed to type string with next major release (3.0.0)
          */
         "value": any;
     }
@@ -5801,7 +6523,7 @@ declare namespace LocalJSX {
         "onValueChange"?: (event: IxSliderCustomEvent<number>) => void;
         /**
           * Legal number intervals
-          * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+          * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
          */
         "step"?: number;
         /**
@@ -5961,22 +6683,27 @@ declare namespace LocalJSX {
          */
         "corners"?: TimePickerCorners;
         /**
-          * Format of time string
+          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
          */
         "format"?: string;
         /**
-          * @deprecated Will be removed in 2.0.0
+          * @deprecated Not supported since 2.0.0.
          */
         "individual"?: boolean;
         /**
           * Time event
+          * @deprecated Will be removed in 3.0.0. Use `time-select` event.
          */
         "onDone"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
           * Time change event
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
+        /**
+          * Time event
+         */
+        "onTimeSelect"?: (event: IxTimePickerCustomEvent<string>) => void;
         /**
           * Show hour input
          */
@@ -5991,54 +6718,10 @@ declare namespace LocalJSX {
         "showSeconds"?: boolean;
         /**
           * Show time reference input
-          * @since 1.1.0 time reference is default aligned with formt tt
+          * @since 1.1.0 time reference is default aligned with format tt
+          * @deprecated Since 2.0.0 time reference will be displayed depending on format.
          */
-        "showTimeReference"?: any;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-         */
-        "textSelectTime"?: string;
-        /**
-          * Select time with format string
-          * @since 1.1.0
-         */
-        "time"?: string;
-        /**
-          * Set time reference
-         */
-        "timeReference"?: 'AM' | 'PM';
-    }
-    interface IxTimePickerRework {
-        /**
-          * Corner style
-         */
-        "corners"?: TimePickerCorners1;
-        /**
-          * Format of time string See {@link "https://day.js.org/docs/en/display/format"} for all available tokens.
-          * @since 1.1.0
-         */
-        "format"?: string;
-        /**
-          * Time change event
-         */
-        "onTimeChange"?: (event: IxTimePickerReworkCustomEvent<string>) => void;
-        /**
-          * Time event
-         */
-        "onTimeSelect"?: (event: IxTimePickerReworkCustomEvent<string>) => void;
-        /**
-          * Show hour input
-         */
-        "showHours"?: boolean;
-        /**
-          * Show minutes input
-         */
-        "showMinutes"?: boolean;
-        /**
-          * Show seconds input
-         */
-        "showSeconds"?: boolean;
+        "showTimeReference"?: boolean;
         /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
@@ -6048,6 +6731,11 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "textSelectTime"?: string;
+        /**
+          * Text for top label
+          * @since 2.1.0
+         */
+        "textTime"?: string;
         /**
           * Select time with format string Format has to match the `format` property.
           * @since 1.1.0
@@ -6261,12 +6949,17 @@ declare namespace LocalJSX {
         "bold"?: boolean;
         /**
           * Text color based on theme variables
+          * @deprecated since 2.1.0 use property `text-color`
          */
         "color"?: TypographyColors;
         /**
           * Text format
          */
         "format"?: TypographyFormat;
+        /**
+          * Text color based on theme variables
+         */
+        "textColor"?: TypographyColors;
         /**
           * Text decoration
          */
@@ -6387,13 +7080,12 @@ declare namespace LocalJSX {
          */
         "vertical"?: boolean;
     }
-    interface MyComponent {
-    }
     interface IntrinsicElements {
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
         "ix-application-header": IxApplicationHeader;
         "ix-application-sidebar": IxApplicationSidebar;
+        "ix-application-switch-modal": IxApplicationSwitchModal;
         "ix-avatar": IxAvatar;
         "ix-basic-navigation": IxBasicNavigation;
         "ix-blind": IxBlind;
@@ -6416,11 +7108,9 @@ declare namespace LocalJSX {
         "ix-date-dropdown": IxDateDropdown;
         "ix-date-input": IxDateInput;
         "ix-date-picker": IxDatePicker;
-        "ix-date-picker-rework": IxDatePickerRework;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-input": IxDatetimeInput;
         "ix-datetime-picker": IxDatetimePicker;
-        "ix-datetime-picker-rework": IxDatetimePickerRework;
         "ix-divider": IxDivider;
         "ix-drawer": IxDrawer;
         "ix-dropdown": IxDropdown;
@@ -6467,7 +7157,10 @@ declare namespace LocalJSX {
         "ix-modal-header": IxModalHeader;
         "ix-modal-loading": IxModalLoading;
         "ix-pagination": IxPagination;
+        "ix-pane": IxPane;
+        "ix-pane-layout": IxPaneLayout;
         "ix-pill": IxPill;
+        "ix-playground-internal": IxPlaygroundInternal;
         "ix-push-card": IxPushCard;
         "ix-row": IxRow;
         "ix-select": IxSelect;
@@ -6480,7 +7173,6 @@ declare namespace LocalJSX {
         "ix-tabs": IxTabs;
         "ix-tile": IxTile;
         "ix-time-picker": IxTimePicker;
-        "ix-time-picker-rework": IxTimePickerRework;
         "ix-toast": IxToast;
         "ix-toast-container": IxToastContainer;
         "ix-toggle": IxToggle;
@@ -6493,7 +7185,6 @@ declare namespace LocalJSX {
         "ix-validation-tooltip": IxValidationTooltip;
         "ix-workflow-step": IxWorkflowStep;
         "ix-workflow-steps": IxWorkflowSteps;
-        "my-component": MyComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -6504,9 +7195,13 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-action-card": LocalJSX.IxActionCard & JSXBase.HTMLAttributes<HTMLIxActionCardElement>;
+            /**
+             * @since 2.1.0
+             */
             "ix-application": LocalJSX.IxApplication & JSXBase.HTMLAttributes<HTMLIxApplicationElement>;
             "ix-application-header": LocalJSX.IxApplicationHeader & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             "ix-application-sidebar": LocalJSX.IxApplicationSidebar & JSXBase.HTMLAttributes<HTMLIxApplicationSidebarElement>;
+            "ix-application-switch-modal": LocalJSX.IxApplicationSwitchModal & JSXBase.HTMLAttributes<HTMLIxApplicationSwitchModalElement>;
             /**
              * @since 2.0.0
              */
@@ -6543,6 +7238,9 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-col": LocalJSX.IxCol & JSXBase.HTMLAttributes<HTMLIxColElement>;
+            /**
+             * @since 2.1.0
+             */
             "ix-content": LocalJSX.IxContent & JSXBase.HTMLAttributes<HTMLIxContentElement>;
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
@@ -6556,14 +7254,12 @@ declare module "@stencil/core" {
              */
             "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
-            "ix-date-picker-rework": LocalJSX.IxDatePickerRework & JSXBase.HTMLAttributes<HTMLIxDatePickerReworkElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             /**
              * @since 2.1.0
              */
             "ix-datetime-input": LocalJSX.IxDatetimeInput & JSXBase.HTMLAttributes<HTMLIxDatetimeInputElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
-            "ix-datetime-picker-rework": LocalJSX.IxDatetimePickerRework & JSXBase.HTMLAttributes<HTMLIxDatetimePickerReworkElement>;
             /**
              * @since 1.4.0
              */
@@ -6655,7 +7351,16 @@ declare module "@stencil/core" {
              * @since 1.5.0
              */
             "ix-pagination": LocalJSX.IxPagination & JSXBase.HTMLAttributes<HTMLIxPaginationElement>;
+            /**
+             * @since 2.1.0
+             */
+            "ix-pane": LocalJSX.IxPane & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
+            /**
+             * @since 2.1.0
+             */
+            "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
+            "ix-playground-internal": LocalJSX.IxPlaygroundInternal & JSXBase.HTMLAttributes<HTMLIxPlaygroundInternalElement>;
             /**
              * @since 1.6.0
              */
@@ -6680,7 +7385,6 @@ declare module "@stencil/core" {
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
-            "ix-time-picker-rework": LocalJSX.IxTimePickerRework & JSXBase.HTMLAttributes<HTMLIxTimePickerReworkElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
             "ix-toast-container": LocalJSX.IxToastContainer & JSXBase.HTMLAttributes<HTMLIxToastContainerElement>;
             "ix-toggle": LocalJSX.IxToggle & JSXBase.HTMLAttributes<HTMLIxToggleElement>;
@@ -6702,7 +7406,6 @@ declare module "@stencil/core" {
             "ix-validation-tooltip": LocalJSX.IxValidationTooltip & JSXBase.HTMLAttributes<HTMLIxValidationTooltipElement>;
             "ix-workflow-step": LocalJSX.IxWorkflowStep & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
             "ix-workflow-steps": LocalJSX.IxWorkflowSteps & JSXBase.HTMLAttributes<HTMLIxWorkflowStepsElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }

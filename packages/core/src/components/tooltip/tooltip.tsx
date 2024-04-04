@@ -24,6 +24,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { OnListener } from '../utils/listener';
 
 type ArrowPosition = {
   top?: string;
@@ -77,10 +78,12 @@ export class Tooltip {
 
   private observer: MutationObserver;
   private hideTooltipTimeout: NodeJS.Timeout;
-  private onMouseEnterBind = this.onTooltipShow.bind(this);
-  private onMouseLeaveBind = this.onTooltipHide.bind(this);
+  private onEnterElementBind = this.onTooltipShow.bind(this);
+  private onLeaveElementBind = this.onTooltipHide.bind(this);
   private disposeAutoUpdate?: () => void;
   private tooltipCloseTimeInMS = 50;
+
+  private disposeListener: Function;
 
   private get arrowElement() {
     return this.hostElement.shadowRoot.querySelector('.arrow') as HTMLElement;
@@ -104,8 +107,8 @@ export class Tooltip {
   @Method()
   async showTooltip(anchorElement: any) {
     clearTimeout(this.hideTooltipTimeout);
+    await this.computeTooltipPosition(anchorElement);
     this.visible = true;
-    this.computeTooltipPosition(anchorElement);
   }
 
   /** @internal */
@@ -156,50 +159,61 @@ export class Tooltip {
     if (!target) {
       return;
     }
-    this.disposeAutoUpdate = autoUpdate(
-      target,
-      this.hostElement,
-      async () => {
-        setTimeout(async () => {
-          const computeResponse = await computePosition(
-            target,
-            this.hostElement,
-            {
-              strategy: 'fixed',
-              placement: this.placement,
-              middleware: [
-                shift(),
-                offset(8),
-                arrow({
-                  element: this.arrowElement,
-                }),
-                flip({
-                  fallbackStrategy: 'initialPlacement',
-                  padding: 10,
-                }),
-              ],
+
+    return new Promise<void>((resolve) => {
+      this.disposeAutoUpdate = autoUpdate(
+        target,
+        this.hostElement,
+        async () => {
+          setTimeout(async () => {
+            const computeResponse = await computePosition(
+              target,
+              this.hostElement,
+              {
+                strategy: 'fixed',
+                placement: this.placement,
+                middleware: [
+                  shift(),
+                  offset(8),
+                  arrow({
+                    element: this.arrowElement,
+                  }),
+                  flip({
+                    fallbackStrategy: 'initialPlacement',
+                    padding: 10,
+                  }),
+                ],
+              }
+            );
+
+            if (computeResponse.middlewareData.arrow) {
+              const arrowPosition = this.computeArrowPosition(computeResponse);
+              Object.assign(this.arrowElement.style, arrowPosition);
             }
-          );
 
-          if (computeResponse.middlewareData.arrow) {
-            const arrowPosition = this.computeArrowPosition(computeResponse);
-            Object.assign(this.arrowElement.style, arrowPosition);
-          }
+            const { x, y } = computeResponse;
+            Object.assign(this.hostElement.style, {
+              left: x !== null ? `${x}px` : '',
+              top: y !== null ? `${y}px` : '',
+            });
 
-          const { x, y } = computeResponse;
-          Object.assign(this.hostElement.style, {
-            left: x !== null ? `${x}px` : '',
-            top: y !== null ? `${y}px` : '',
+            resolve();
           });
-        });
-      },
-      {
-        ancestorResize: true,
-        ancestorScroll: true,
-        elementResize: true,
-        animationFrame: this.animationFrame,
-      }
-    );
+        },
+        {
+          ancestorResize: true,
+          ancestorScroll: true,
+          elementResize: true,
+          animationFrame: this.animationFrame,
+        }
+      );
+    });
+  }
+
+  private clearHideTimeout() {
+    if (this.interactive) {
+      clearTimeout(this.hideTooltipTimeout);
+    }
   }
 
   private queryAnchorElements() {
@@ -207,22 +221,44 @@ export class Tooltip {
   }
 
   private registerTriggerListener() {
-    const elements = this.queryAnchorElements();
-    elements.forEach((e) => {
-      e.addEventListener('mouseenter', this.onMouseEnterBind);
-      e.addEventListener('mouseleave', this.onMouseLeaveBind);
+    const triggerElementList = this.queryAnchorElements();
+
+    if (this.disposeListener) {
+      this.disposeListener();
+    }
+
+    triggerElementList.forEach((element) => {
+      element.addEventListener('mouseenter', this.onEnterElementBind);
+      element.addEventListener('mouseleave', this.onLeaveElementBind);
+      element.addEventListener('focusin', this.onEnterElementBind);
+      element.addEventListener('focusout', this.onLeaveElementBind);
+
+      this.disposeListener = () => {
+        element.removeEventListener('mouseenter', this.onEnterElementBind);
+        element.removeEventListener('mouseleave', this.onLeaveElementBind);
+        element.removeEventListener('focusin', this.onEnterElementBind);
+        element.removeEventListener('focusout', this.onLeaveElementBind);
+      };
     });
   }
 
   private registerTooltipListener() {
-    this.hostElement.addEventListener('mouseenter', () => {
-      if (this.interactive) {
-        clearTimeout(this.hideTooltipTimeout);
-      }
-    });
-    this.hostElement.addEventListener('mouseleave', () => {
+    const { hostElement } = this;
+    hostElement.addEventListener('mouseenter', () => this.clearHideTimeout());
+    hostElement.addEventListener('focusin', () => this.clearHideTimeout());
+    hostElement.addEventListener('mouseleave', () => this.onTooltipHide());
+    hostElement.addEventListener('focusout', () => this.onTooltipHide());
+  }
+
+  @OnListener<Tooltip>('keydown', (self) => self.visible)
+  async onKeydown(event: KeyboardEvent) {
+    if (event.code === 'Escape') {
       this.onTooltipHide();
-    });
+    }
+  }
+
+  componentWillLoad() {
+    this.registerTriggerListener();
   }
 
   componentDidLoad() {
@@ -241,7 +277,6 @@ export class Tooltip {
       subtree: true,
     });
 
-    this.registerTriggerListener();
     this.registerTooltipListener();
   }
 
@@ -260,6 +295,7 @@ export class Tooltip {
         class={{
           visible: this.visible,
         }}
+        role="tooltip"
       >
         <div class={'tooltip-title'}>
           <slot name="title-icon"></slot>

@@ -22,3 +22,17 @@ test('renders', async ({ mount, page }) => {
   await expect(tooltip).toHaveClass(/hydrated/);
   await expect(tooltip).toBeVisible();
 });
+
+test.describe('a11y', () => {
+  test('closes on ESC', async ({ mount, page }) => {
+    await mount(`
+      <ix-tooltip for=".test">tooltip</ix-tooltip>
+      <ix-button class="test"></ix-button>
+    `);
+    const button = page.locator('ix-button');
+    await button.hover();
+    page.keyboard.down('Escape');
+    const tooltip = page.locator('ix-tooltip');
+    await expect(tooltip).not.toBeVisible();
+  });
+});

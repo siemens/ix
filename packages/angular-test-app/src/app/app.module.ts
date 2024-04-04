@@ -19,6 +19,10 @@ import { AgGridModule } from 'ag-grid-angular';
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
 import ActionCard from 'src/preview-examples/action-card';
 import AGGrid from 'src/preview-examples/aggrid';
+import ApplicationExample from 'src/preview-examples/application';
+import ApplicationAppSwitchExample from 'src/preview-examples/application-app-switch';
+import ApplicationBreakpointExample from 'src/preview-examples/application-breakpoints';
+import ApplicationHeaderExample from 'src/preview-examples/application-header';
 import BasicNavigation from 'src/preview-examples/basic-navigation';
 import BasicNavigationWithOutHeader from 'src/preview-examples/basic-navigation-without-header';
 import Blind from 'src/preview-examples/blind';
@@ -28,23 +32,30 @@ import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
 import ButtonGroup from 'src/preview-examples/button-group';
 import ButtonWithIcon from 'src/preview-examples/button-with-icon';
 import Buttons from 'src/preview-examples/buttons';
+import Card from 'src/preview-examples/card';
 import CardList from 'src/preview-examples/card-list';
 import CategoryFilter from 'src/preview-examples/category-filter';
 import CategoryFilterSuggestions from 'src/preview-examples/category-filter-suggestions';
 import Checkbox from 'src/preview-examples/checkbox';
 import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
+import ContentExample from 'src/preview-examples/content';
 import ContentHeader from 'src/preview-examples/content-header';
 import ContentHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import DateDropdown from 'src/preview-examples/date-dropdown';
 import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
 import Datepicker from 'src/preview-examples/datepicker';
+import DatepickerLocale from 'src/preview-examples/datepicker-locale';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
 import Datetimepicker from 'src/preview-examples/datetimepicker';
 import Drawer from 'src/preview-examples/drawer';
 import DrawerFullHeight from 'src/preview-examples/drawer-full-height';
 import Dropdown from 'src/preview-examples/dropdown';
+import DropdownButton from 'src/preview-examples/dropdown-button';
+import DropdownButtonIcon from 'src/preview-examples/dropdown-button-icon';
 import DropdownIcon from 'src/preview-examples/dropdown-icon';
+import DropdownQuickActions from 'src/preview-examples/dropdown-quick-actions';
+import DropdownSubmenu from 'src/preview-examples/dropdown-submenu';
 import EmptyState from 'src/preview-examples/empty-state';
 import EmptyStateCompact from 'src/preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from 'src/preview-examples/empty-state-compact-break';
@@ -89,6 +100,7 @@ import Modal from 'src/preview-examples/modal-by-template';
 import ModalSizes from 'src/preview-examples/modal-sizes';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
+import PillVariants from 'src/preview-examples/pill-variants';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
@@ -135,11 +147,18 @@ import VerticalTabs from 'src/preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avatar';
 import Workflow from 'src/preview-examples/workflow';
 import WorkflowVertical from 'src/preview-examples/workflow-vertical';
+import Pane from '../preview-examples/pane';
+import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 
 @NgModule({
   declarations: [
+    ApplicationExample,
+    ApplicationBreakpointExample,
+    ApplicationAppSwitchExample,
+    ApplicationHeaderExample,
     AppComponent,
+    ContentExample,
     Buttons,
     ButtonGroup,
     AGGrid,
@@ -169,8 +188,12 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Datetimepicker,
     DrawerFullHeight,
     Drawer,
+    DropdownButton,
+    DropdownButtonIcon,
     DropdownIcon,
     Dropdown,
+    DropdownQuickActions,
+    DropdownSubmenu,
     EventListCompact,
     EventListCustomItemHeight,
     EventListSelected,
@@ -194,6 +217,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     MessageBar,
     Pagination,
     Pill,
+    PillVariants,
     PopoverNews,
     Radiobutton,
     SelectEditable,
@@ -201,6 +225,8 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     SelectNgModel,
     Select,
     Settings,
+    Pane,
+    PaneLayout,
     Spinner,
     SpinnerLarge,
     SplitButtonIcons,
@@ -237,6 +263,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     ModalByInstanceExample,
     PushCard,
     ActionCard,
+    Card,
     CardList,
     EmptyState,
     EmptyStateCompact,
@@ -260,6 +287,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     GridSize,
     GridPadding,
     ModalSizes,
+    DatepickerLocale,
   ],
   imports: [
     BrowserModule,

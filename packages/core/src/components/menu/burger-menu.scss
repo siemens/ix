@@ -20,7 +20,7 @@ $focus-bdr-width: 0.0625rem;
   justify-content: center;
   align-items: center;
   height: 2rem;
-  width: 2.5rem;
+  width: 2rem;
   border-radius: var(--theme-btn--border-radius);
   pointer-events: all;
 
@@ -46,8 +46,9 @@ $focus-bdr-width: 0.0625rem;
 }
 
 .burger-menu-button {
-  width: 40px;
+  width: 2rem;
   padding: 0;
+  cursor: pointer;
 }
 
 @include host-active {
@@ -72,9 +73,5 @@ $focus-bdr-width: 0.0625rem;
     opacity: 1;
     transform: rotate(45deg);
     y: 11px;
-  }
-
-  ix-icon-button {
-    transform: rotate(180deg);
   }
 }

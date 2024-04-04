@@ -18,6 +18,7 @@ export class IxApplicationContext extends React.Component<IxApplicationContextPr
 
   constructor(props: IxApplicationContextProps) {
     super(props);
+    this.delegate.isUsingReactPortal = true;
   }
 
   render() {

@@ -21,11 +21,11 @@ $menu-expanded-width: 16rem;
   flex-direction: row;
   position: absolute;
   height: 100%;
-  min-height: 22.75rem;
+  min-height: min-content;
   z-index: var(--theme-z-index-sticky);
   width: auto;
 
-  bottom: 0px;
+  bottom: 0;
 
   .tabs {
     height: 100%;
@@ -34,10 +34,19 @@ $menu-expanded-width: 16rem;
     pointer-events: all;
 
     -ms-overflow-style: none;
-    scrollbar-width: none;
+
+    scrollbar-width: inherit;
 
     &::-webkit-scrollbar {
       display: none;
+    }
+  }
+
+  .show-scrollbar {
+    scrollbar-width: inherit;
+
+    &::-webkit-scrollbar {
+      display: inherit;
     }
   }
 
@@ -45,7 +54,7 @@ $menu-expanded-width: 16rem;
     overflow: hidden;
     display: block;
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 0.75rem;
   }
 
   .tabs--shadow {
@@ -61,12 +70,12 @@ $menu-expanded-width: 16rem;
     transition: opacity var(--theme-default-time);
   }
   .tabs--shadow-top {
-    top: 0px;
+    top: 0;
     background: linear-gradient(var(--theme-color-shadow-1), transparent);
   }
 
   .tabs--shadow-bottom {
-    bottom: 0px;
+    bottom: 0;
     background: linear-gradient(transparent, var(--theme-color-shadow-1));
   }
 
@@ -89,10 +98,6 @@ $menu-expanded-width: 16rem;
 
     background-color: var(--theme-nav--background);
     transition: width var(--animate-duration) ease-in-out;
-
-    .burger-menu {
-      margin: 0.75rem 0 1rem 0.35rem;
-    }
   }
 
   .menu-overlay {
@@ -150,6 +155,19 @@ $menu-expanded-width: 16rem;
   .bottom-tab-divider {
     margin-top: auto;
   }
+
+  .menu-buttons {
+    margin: 0.5rem 0 0 0.5rem;
+  }
+
+  .menu-buttons .burger-menu,
+  .menu-buttons .app-switch {
+    margin-left: 0.125rem;
+  }
+
+  .menu-buttons > :last-child {
+    margin-bottom: 1rem;
+  }
 }
 
 :host(.breakpoint-sm) {
@@ -157,8 +175,8 @@ $menu-expanded-width: 16rem;
     width: 0;
   }
 
-  .menu {
-    padding-top: 2rem;
+  .show-scrollbar {
+    padding-top: 1rem;
   }
 
   .menu .burger-menu {
@@ -166,7 +184,7 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-overlay {
-    left: 0px;
+    left: 0;
     width: 100vw;
   }
 }

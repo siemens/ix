@@ -30,6 +30,28 @@ export declare interface IxActionCard extends Components.IxActionCard {}
 
 
 @ProxyCmp({
+  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance']
+})
+@Component({
+  selector: 'ix-application',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['appSwitchConfig', 'breakpoints', 'forceBreakpoint', 'theme', 'themeSystemAppearance'],
+})
+export class IxApplication {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxApplication extends Components.IxApplication {}
+
+
+@ProxyCmp({
   inputs: ['name']
 })
 @Component({
@@ -52,14 +74,14 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
 
 
 @ProxyCmp({
-  inputs: ['image', 'initials']
+  inputs: ['extra', 'image', 'initials', 'username']
 })
 @Component({
   selector: 'ix-avatar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['image', 'initials'],
+  inputs: ['extra', 'image', 'initials', 'username'],
 })
 export class IxAvatar {
   protected el: HTMLElement;
@@ -200,14 +222,14 @@ export declare interface IxButton extends Components.IxButton {}
 
 
 @ProxyCmp({
-  inputs: ['variant']
+  inputs: ['selected', 'variant']
 })
 @Component({
   selector: 'ix-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['variant'],
+  inputs: ['selected', 'variant'],
 })
 export class IxCard {
   protected el: HTMLElement;
@@ -361,14 +383,14 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 
 @ProxyCmp({
-  inputs: ['active', 'background', 'closable', 'color', 'icon', 'outline', 'variant']
+  inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'variant']
 })
 @Component({
   selector: 'ix-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'background', 'closable', 'color', 'icon', 'outline', 'variant'],
+  inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'variant'],
 })
 export class IxChip {
   protected el: HTMLElement;
@@ -411,6 +433,27 @@ export declare interface IxCol extends Components.IxCol {}
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'ix-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxContent {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxContent extends Components.IxContent {}
+
+
+@ProxyCmp({
   inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'variant']
 })
 @Component({
@@ -439,7 +482,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
   methods: ['getDateRange']
 })
 @Component({
@@ -447,7 +490,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['customRangeAllowed', 'dateRangeOptions', 'format', 'from', 'initialSelectedDateRangeName', 'maxDate', 'minDate', 'range', 'to'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
 })
 export class IxDateDropdown {
   protected el: HTMLElement;
@@ -466,7 +509,7 @@ export declare interface IxDateDropdown extends Components.IxDateDropdown {
    * EventEmitter for date range change events.
 
 This event is emitted when the date range changes within the component.
-The event payload contains information about the selected date range. @event undefined,@private undefined
+The event payload contains information about the selected date range.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
 }
@@ -493,18 +536,17 @@ export class IxDateInput {
 }
 
 
-import type { DateChangeEventRework as IIxDateInputDateChangeEventRework } from '@siemens/ix';
 import type { DateInputEvent as IIxDateInputDateInputEvent } from '@siemens/ix';
 
 export declare interface IxDateInput extends Components.IxDateInput {
   /**
    * Triggers if the date selection changes.
    */
-  dateChange: EventEmitter<CustomEvent<IIxDateInputDateChangeEventRework>>;
+  dateChange: EventEmitter<CustomEvent<DateChangeEventRework>>;
   /**
    * Date selection confirmed via button action
    */
-  dateSelect: EventEmitter<CustomEvent<IIxDateInputDateChangeEventRework>>;
+  dateSelect: EventEmitter<CustomEvent<DateChangeEventRework>>;
   /**
    * Triggers if one of the inputs changes @emits DateInputEvent
    */
@@ -525,7 +567,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
 
 
 @ProxyCmp({
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
+  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'i18nDone', 'individual', 'locale', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
   methods: ['getCurrentDate']
 })
 @Component({
@@ -533,42 +575,39 @@ export declare interface IxDateInput extends Components.IxDateInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'individual', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to'],
+  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'i18nDone', 'individual', 'locale', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
 })
 export class IxDatePicker {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['dateChange', 'dateRangeChange', 'done', 'dateSelect']);
+    proxyOutputs(this, this.el, ['dateChange', 'dateRangeChange', 'dateSelect', 'done']);
   }
 }
 
 
-import type { LegacyDateChangeEvent as IIxDatePickerLegacyDateChangeEvent } from '@siemens/ix';
 import type { DateChangeEvent as IIxDatePickerDateChangeEvent } from '@siemens/ix';
 
 export declare interface IxDatePicker extends Components.IxDatePicker {
   /**
-   * Date change event
-
-If datepicker is in range mode the event detail will be sperated with a `-` e.g.
-`2022/10/22 - 2022/10/24` (start and end). If range mode is chosen consider to use `dateRangeChange`. @deprecated String output will be removed. Set ´doneEventDelimiter´ to undefined or null to get date change object instead of a string
+   * Triggers if the date selection changes.
+Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string` @since 2.1.0
    */
-  dateChange: EventEmitter<CustomEvent<IIxDatePickerLegacyDateChangeEvent>>;
+  dateChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
-   * Date range change.
-Only triggered if datepicker is in range mode @since 1.1.0
+   * Triggers if the date selection changes.
+Only triggered if date-picker-rework is in range mode. @since 2.1.0
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
-  /**
-   * Date selection confirmed via button action @deprecated Will be removed in 2.0.0. Use `dateSelect`
-   */
-  done: EventEmitter<CustomEvent<string>>;
   /**
    * Date selection confirmed via button action @since 1.1.0
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatePickerDateChangeEvent>>;
+  /**
+   * Date selection confirmed via button action @deprecated NOT getting dispatched after 2.0.0. Use `dateSelect`.
+   */
+  done: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -593,7 +632,6 @@ export class IxDatetimeInput {
 }
 
 
-import type { DateTimeSelectEvent as IIxDatetimeInputDateTimeSelectEvent } from '@siemens/ix';
 import type { DatetimeInputEvent as IIxDatetimeInputDatetimeInputEvent } from '@siemens/ix';
 
 export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
@@ -616,7 +654,7 @@ export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
   /**
    * Date selection confirmed via button action @emits DateTimeSelectEvent
    */
-  dateSelect: EventEmitter<CustomEvent<IIxDatetimeInputDateTimeSelectEvent>>;
+  dateSelect: EventEmitter<CustomEvent<DateTimeSelectEvent>>;
   /**
    * Triggers every time one of the inputs changes @emits DatetimeInputChangeEvent
    */
@@ -637,14 +675,14 @@ export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
 
 
 @ProxyCmp({
-  inputs: ['dateFormat', 'eventDelimiter', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to']
+  inputs: ['dateFormat', 'eventDelimiter', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateFormat', 'eventDelimiter', 'from', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to'],
+  inputs: ['dateFormat', 'eventDelimiter', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectDate', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
 })
 export class IxDatetimePicker {
   protected el: HTMLElement;
@@ -663,7 +701,7 @@ export declare interface IxDatetimePicker extends Components.IxDatetimePicker {
   /**
    * Done event
 
-Set `doneEventDelimiter` to null or undefine to get the typed event
+Set `doneEventDelimiter` to null or undefine to get the typed event @deprecated Use `this.dateChange`
    */
   done: EventEmitter<CustomEvent<string>>;
   /**
@@ -675,7 +713,7 @@ Set `doneEventDelimiter` to null or undefine to get the typed event
    */
   dateChange: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
-   * Date selection event is fired after confirm button is pressend @since 1.1.0
+   * Datetime selection event is fired after confirm button is pressed @since 1.1.0
    */
   dateSelect: EventEmitter<CustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
 }
@@ -765,14 +803,14 @@ export declare interface IxDropdown extends Components.IxDropdown {
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant']
+  inputs: ['closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant']
 })
 @Component({
   selector: 'ix-dropdown-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant'],
+  inputs: ['closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'variant'],
 })
 export class IxDropdownButton {
   protected el: HTMLElement;
@@ -903,14 +941,14 @@ export declare interface IxEventList extends Components.IxEventList {}
 
 
 @ProxyCmp({
-  inputs: ['chevron', 'color', 'disabled', 'selected']
+  inputs: ['chevron', 'color', 'disabled', 'itemColor', 'selected']
 })
 @Component({
   selector: 'ix-event-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['chevron', 'color', 'disabled', 'selected'],
+  inputs: ['chevron', 'color', 'disabled', 'itemColor', 'selected'],
 })
 export class IxEventListItem {
   protected el: HTMLElement;
@@ -1137,14 +1175,14 @@ export declare interface IxGroupItem extends Components.IxGroupItem {
 
 
 @ProxyCmp({
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'size', 'type', 'variant']
+  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'iconColor', 'loading', 'outline', 'oval', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'disabled', 'ghost', 'icon', 'loading', 'outline', 'oval', 'size', 'type', 'variant'],
+  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'iconColor', 'loading', 'outline', 'oval', 'size', 'type', 'variant'],
 })
 export class IxIconButton {
   protected el: HTMLElement;
@@ -1351,14 +1389,14 @@ export declare interface IxMapNavigation extends Components.IxMapNavigation {
 
 
 @ProxyCmp({
-  inputs: ['color', 'icon', 'name']
+  inputs: ['color', 'icon', 'iconColor', 'name']
 })
 @Component({
   selector: 'ix-map-navigation-overlay',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['color', 'icon', 'name'],
+  inputs: ['color', 'icon', 'iconColor', 'name'],
 })
 export class IxMapNavigationOverlay {
   protected el: HTMLElement;
@@ -1379,7 +1417,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
 
 
 @ProxyCmp({
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
@@ -1387,7 +1425,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings'],
+  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
 })
 export class IxMenu {
   protected el: HTMLElement;
@@ -1431,11 +1469,13 @@ export class IxMenuAbout {
 }
 
 
+import type { CustomCloseEvent as IIxMenuAboutCustomCloseEvent } from '@siemens/ix';
+
 export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
    * About and Legal closed
    */
-  close: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; name: string; }>>;
+  close: EventEmitter<CustomEvent<IIxMenuAboutCustomCloseEvent>>;
 }
 
 
@@ -1454,11 +1494,19 @@ export class IxMenuAboutItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['labelChange']);
   }
 }
 
 
-export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {}
+import type { CustomLabelChangeEvent as IIxMenuAboutItemCustomLabelChangeEvent } from '@siemens/ix';
+
+export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {
+  /**
+   * Label changed
+   */
+  labelChange: EventEmitter<CustomEvent<IIxMenuAboutItemCustomLabelChangeEvent>>;
+}
 
 
 @ProxyCmp({
@@ -1613,11 +1661,13 @@ export class IxMenuSettings {
 }
 
 
+import type { CustomCloseEvent as IIxMenuSettingsCustomCloseEvent } from '@siemens/ix';
+
 export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
    * Popover closed
    */
-  close: EventEmitter<CustomEvent<{ nativeEvent: MouseEvent; name: string; }>>;
+  close: EventEmitter<CustomEvent<IIxMenuSettingsCustomCloseEvent>>;
 }
 
 
@@ -1636,11 +1686,19 @@ export class IxMenuSettingsItem {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['labelChange']);
   }
 }
 
 
-export declare interface IxMenuSettingsItem extends Components.IxMenuSettingsItem {}
+import type { CustomLabelChangeEvent as IIxMenuSettingsItemCustomLabelChangeEvent } from '@siemens/ix';
+
+export declare interface IxMenuSettingsItem extends Components.IxMenuSettingsItem {
+  /**
+   * Label changed
+   */
+  labelChange: EventEmitter<CustomEvent<IIxMenuSettingsItemCustomLabelChangeEvent>>;
+}
 
 
 @ProxyCmp({
@@ -1789,7 +1847,8 @@ export class IxModalHeader {
 
 export declare interface IxModalHeader extends Components.IxModalHeader {
   /**
-   * Close icon is clicked
+   * Emits when close icon is clicked and closes the modal
+Can be prevented, in which case only the event is triggered, and the modal remains open
    */
   closeClick: EventEmitter<CustomEvent<MouseEvent>>;
 }
@@ -1828,14 +1887,76 @@ export declare interface IxPagination extends Components.IxPagination {
 
 
 @ProxyCmp({
-  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'variant']
+  inputs: ['borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant']
+})
+@Component({
+  selector: 'ix-pane',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['borderless', 'composition', 'expanded', 'heading', 'hideOnCollapse', 'icon', 'size', 'variant'],
+})
+export class IxPane {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['expandedChanged', 'variantChanged', 'borderlessChanged']);
+  }
+}
+
+
+import type { ExpandedChangedEvent as IIxPaneExpandedChangedEvent } from '@siemens/ix';
+import type { VariantChangedEvent as IIxPaneVariantChangedEvent } from '@siemens/ix';
+import type { BorderlessChangedEvent as IIxPaneBorderlessChangedEvent } from '@siemens/ix';
+
+export declare interface IxPane extends Components.IxPane {
+  /**
+   * This event is triggered when the pane either expands or contracts
+   */
+  expandedChanged: EventEmitter<CustomEvent<IIxPaneExpandedChangedEvent>>;
+  /**
+   * This event is triggered when the variant of the pane is changed
+   */
+  variantChanged: EventEmitter<CustomEvent<IIxPaneVariantChangedEvent>>;
+  /**
+   * This event is triggered when the variant of the pane is changed
+   */
+  borderlessChanged: EventEmitter<CustomEvent<IIxPaneBorderlessChangedEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['borderless', 'layout', 'variant']
+})
+@Component({
+  selector: 'ix-pane-layout',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['borderless', 'layout', 'variant'],
+})
+export class IxPaneLayout {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxPaneLayout extends Components.IxPaneLayout {}
+
+
+@ProxyCmp({
+  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'variant']
 })
 @Component({
   selector: 'ix-pill',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'variant'],
+  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'variant'],
 })
 export class IxPill {
   protected el: HTMLElement;
@@ -2145,7 +2266,7 @@ export declare interface IxTile extends Components.IxTile {}
 
 
 @ProxyCmp({
-  inputs: ['corners', 'format', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
   methods: ['getCurrentTime']
 })
 @Component({
@@ -2153,14 +2274,14 @@ export declare interface IxTile extends Components.IxTile {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'format', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'textSelectTime', 'time', 'timeReference'],
+  inputs: ['corners', 'format', 'individual', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'standaloneAppearance', 'textSelectTime', 'textTime', 'time', 'timeReference'],
 })
 export class IxTimePicker {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['done', 'timeChange']);
+    proxyOutputs(this, this.el, ['timeSelect', 'done', 'timeChange']);
   }
 }
 
@@ -2168,6 +2289,10 @@ export class IxTimePicker {
 export declare interface IxTimePicker extends Components.IxTimePicker {
   /**
    * Time event
+   */
+  timeSelect: EventEmitter<CustomEvent<string>>;
+  /**
+   * Time event @deprecated Will be removed in 3.0.0. Use `time-select` event.
    */
   done: EventEmitter<CustomEvent<string>>;
   /**
@@ -2339,14 +2464,14 @@ export declare interface IxTreeItem extends Components.IxTreeItem {
 
 
 @ProxyCmp({
-  inputs: ['bold', 'color', 'format', 'textDecoration']
+  inputs: ['bold', 'color', 'format', 'textColor', 'textDecoration']
 })
 @Component({
   selector: 'ix-typography',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['bold', 'color', 'format', 'textDecoration'],
+  inputs: ['bold', 'color', 'format', 'textColor', 'textDecoration'],
 })
 export class IxTypography {
   protected el: HTMLElement;

@@ -95,7 +95,6 @@ export class Select {
    * Hide list header
    *
    * @since 1.5.0
-   @
    */
   @Prop() hideListHeader = false;
 
@@ -238,7 +237,10 @@ export class Select {
     }
 
     this.items.forEach((item) => {
-      item.selected = ids.some((i) => i === item.value);
+      item.selected = ids.some(
+        // Check can be removed if value is type of string in future releases
+        (i) => i === (item.value ? item.value.toString() : '')
+      );
     });
 
     this.selectedLabels = this.selectedItems.map((item) => item.label);
@@ -501,6 +503,7 @@ export class Select {
                 : ''}
               <div class="trigger">
                 <input
+                  autocomplete="off"
                   data-testid="input"
                   disabled={this.disabled}
                   readOnly={this.readonly}

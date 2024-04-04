@@ -3,7 +3,7 @@
   "homepage": "https://ix.siemens.io",
   "author": "Siemens AG",
   "license": "MIT",
-  "version": "2.0.4",
+  "version": "2.1.2",
   "description": "Siemens iX for Vue",
   "bugs": "https://github.com/siemens/ix/issues",
   "repository": {
@@ -25,13 +25,13 @@
     }
   },
   "scripts": {
-    "build": "yarn clean && yarn compile",
-    "compile": "yarn tsc",
+    "build": "pnpm clean && pnpm compile",
+    "compile": "pnpm tsc",
     "clean": "rimraf dist",
     "lint": "eslint src"
   },
   "dependencies": {
-    "@siemens/ix": "~2.0.4"
+    "@siemens/ix": "~2.1.2"
   },
   "devDependencies": {
     "rimraf": "^3.0.2",
