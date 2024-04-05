@@ -353,7 +353,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.arrowFocusController = new ArrowFocusController(
         this.dropdownItems,
         this.dropdownRef,
-        this.focusDropdownItemBind,
+        this.focusDropdownItemBind
       );
 
       this.itemObserver.observe(this.dropdownRef, {
