@@ -172,3 +172,354 @@ test('open filtered dropdown on input', async ({ mount, page }) => {
   await expect(item1).toBeVisible();
   await expect(item2).not.toBeVisible();
 });
+
+test.describe('arrow key navigation', () => {
+  test.describe('ArrowDown', () => {
+    test('input -> slotted item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+      `);
+
+      await page.locator('ix-select input').click();
+      await page.keyboard.down('ArrowDown');
+      const itemOne = await page.locator('ix-select-item').first();
+      await expect(itemOne).toBeFocused();
+    });
+
+    test('input -> dynamic item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable></ix-select>
+     `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('I');
+      await page.waitForSelector('.add-item');
+
+      await page.keyboard.down('ArrowDown');
+      const itemOne = await page.locator('.add-item');
+      await expect(itemOne).toBeFocused();
+    });
+
+    test('input -> add item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable></ix-select>
+      `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('I');
+      await page.keyboard.down('Enter');
+      await page.waitForSelector('.checkmark');
+
+      await page.keyboard.down('ArrowDown');
+      const addItem = await page.locator('ix-dropdown-item');
+      await expect(addItem).toBeFocused();
+    });
+
+    test('slot -> dynamic item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+      `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('I');
+      await page.keyboard.down('Enter');
+      await page.waitForSelector('.checkmark');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const itemThree = page.locator('ix-select-item').last();
+      await expect(itemThree).toBeFocused();
+    });
+
+    test('slot -> add item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+      `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('I');
+      await page.waitForSelector('.add-item');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const addItem = page.locator('.add-item');
+      await expect(addItem).toBeFocused();
+    });
+
+    test('dynamic item -> add item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        </ix-select>
+      `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('Item 2');
+      await page.keyboard.down('Enter');
+      await page.waitForSelector('.checkmark');
+
+      await page.locator('input').clear();
+      await page.keyboard.type('I');
+      await page.waitForSelector('.add-item');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const addItem = page.locator('.add-item');
+      await expect(addItem).toBeFocused();
+    });
+
+    test('wrap - dynamic item -> slot', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        </ix-select>
+     `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('Item 2');
+      await page.keyboard.press('Enter')
+      await page.locator('input').clear();
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const itemTwo = await page.locator('ix-select-item').nth(1);
+      await expect(itemTwo).toBeFocused();
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const itemOne = await page.locator('ix-select-item').first();
+      await expect(itemOne).toBeFocused();
+    });
+
+    test('wrap - add item -> slot', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        </ix-select>
+     `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('I');
+      await page.waitForSelector('.add-item');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const addItem = await page.locator('.add-item');
+      await expect(addItem).toBeFocused();
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const itemOne = await page.locator('ix-select-item').first();
+      await expect(itemOne).toBeFocused();
+    });
+
+    test('wrap - add item -> dynamic item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable></ix-select>
+     `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('Item 1');
+      await page.keyboard.press('Enter')
+      await page.waitForSelector('.checkmark');
+
+      await page.locator('input').clear();
+      await page.keyboard.type('I');
+      await page.waitForSelector('.add-item');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const addItem = await page.locator('.add-item');
+      await expect(addItem).toBeFocused();
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const itemOne = await page.locator('ix-select-item');
+      await expect(itemOne).toBeFocused();
+    });
+  });
+
+  test.describe('ArrowUp', () => {
+    test('dynamic item -> slot', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        </ix-select>
+      `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('I');
+      await page.keyboard.down('Enter');
+      await page.waitForSelector('.checkmark');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const itemTwo = page.locator('ix-select-item').last();
+      await expect(itemTwo).toBeFocused();
+
+      await page.keyboard.down('ArrowUp');
+      await page.waitForTimeout(100);
+
+      const itemOne = page.locator('ix-select-item').first();
+      await expect(itemOne).toBeFocused();
+    });
+
+    test('add item -> slot', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        </ix-select>
+      `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('I');
+      await page.waitForSelector('.add-item');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const addItem = page.locator('.add-item');
+      await expect(addItem).toBeFocused();
+
+      await page.keyboard.down('ArrowUp');
+      await page.waitForTimeout(100);
+
+      const itemOne = page.locator('ix-select-item');
+      await expect(itemOne).toBeFocused();
+    });
+
+    test('add item -> dynamic item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable></ix-select>
+      `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('Item 1');
+      await page.keyboard.press('Enter')
+      await page.waitForSelector('.checkmark');
+
+      await page.locator('input').clear();
+      await page.keyboard.type('I');
+      await page.waitForSelector('.add-item');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+
+      const addItem = page.locator('.add-item');
+      await expect(addItem).toBeFocused();
+
+      await page.keyboard.down('ArrowUp');
+      await page.waitForTimeout(100);
+
+      const itemOne = page.locator('ix-select-item');
+      await expect(itemOne).toBeFocused();
+    });
+
+    test('wrap - slot -> dynamic item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        </ix-select>
+     `);
+
+      await page.locator('input').focus();
+      await page.keyboard.type('Item 2');
+      await page.keyboard.press('Enter')
+      await page.locator('input').clear();
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowUp');
+      await page.waitForTimeout(100);
+
+      const itemTwo = await page.locator('ix-select-item').last();
+      await expect(itemTwo).toBeFocused();
+    });
+
+    test('wrap - slot -> add-item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        </ix-select>
+     `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('I');
+      await page.waitForSelector('.add-item');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowUp');
+      await page.waitForTimeout(100);
+
+      const addItem = await page.locator('.add-item');
+      await expect(addItem).toBeFocused();
+    });
+
+    test('wrap - dynamic item -> add item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable></ix-select>
+     `);
+
+      await page.locator('ix-select input').focus();
+      await page.keyboard.type('Item 1');
+      await page.keyboard.press('Enter')
+      await page.waitForSelector('.checkmark');
+
+      await page.locator('input').clear();
+      await page.keyboard.type('I');
+      await page.waitForSelector('.add-item');
+
+      await page.keyboard.down('ArrowDown');
+      await page.waitForTimeout(100);
+      await page.keyboard.down('ArrowUp');
+      await page.waitForTimeout(100);
+
+      const addItem = await page.locator('.add-item');
+      await expect(addItem).toBeFocused();
+    });
+  });
+});
