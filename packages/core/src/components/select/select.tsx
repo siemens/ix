@@ -409,13 +409,15 @@ export class Select {
       return;
     }
 
+    let item;
+
     if (this.editable && !this.itemExists(this.inputFilterText)) {
       this.emitAddItem(this.inputFilterText);
-      this.navigationItem = this.items[this.items.length - 1];
+      item = this.items[this.items.length - 1];
     }
 
-    if (this.navigationItem) {
-      this.navigationItem['onItemClick']?.();
+    if (item) {
+      item['onItemClick']?.();
     }
 
     await this.dropdownRef?.updatePosition();
@@ -438,6 +440,15 @@ export class Select {
 
     this.dropdownShow = true;
 
+    if (!this.navigationItem && document.activeElement === this.hostElement) {
+      if (this.visibleItems.length) {
+        this.applyFocusTo(this.visibleItems.shift());
+      } else if (this.isAddItemVisible()) {
+        this.focusAddItemButton();
+      }
+      return;
+    }
+
     const moveUp = key === 'ArrowUp';
     const indexNonShadow = this.visibleNonShadowItems.indexOf(
       document.activeElement as any
@@ -445,13 +456,16 @@ export class Select {
 
     // Slotted select items
     if (indexNonShadow === 0) {
-      if (this.isAddItemVisible()) {
+      if (!this.visibleShadowItems.length && this.isAddItemVisible()) {
         this.focusAddItemButton();
       } else {
         this.applyFocusTo(this.visibleShadowItems.pop());
       }
       return;
-    } else if (indexNonShadow === this.visibleNonShadowItems.length - 1) {
+    } else if (
+      indexNonShadow !== -1 &&
+      indexNonShadow === this.visibleNonShadowItems.length - 1
+    ) {
       if (this.visibleShadowItems.length) {
         this.applyFocusTo(this.visibleShadowItems.shift());
       } else if (this.isAddItemVisible()) {
