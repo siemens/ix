@@ -301,7 +301,7 @@ test.describe('arrow key navigation', () => {
 
       await page.locator('ix-select input').focus();
       await page.keyboard.type('Item 2');
-      await page.keyboard.press('Enter')
+      await page.keyboard.press('Enter');
       await page.locator('input').clear();
 
       await page.keyboard.down('ArrowDown');
@@ -352,7 +352,7 @@ test.describe('arrow key navigation', () => {
 
       await page.locator('ix-select input').focus();
       await page.keyboard.type('Item 1');
-      await page.keyboard.press('Enter')
+      await page.keyboard.press('Enter');
       await page.waitForSelector('.checkmark');
 
       await page.locator('input').clear();
@@ -436,7 +436,7 @@ test.describe('arrow key navigation', () => {
 
       await page.locator('ix-select input').focus();
       await page.keyboard.type('Item 1');
-      await page.keyboard.press('Enter')
+      await page.keyboard.press('Enter');
       await page.waitForSelector('.checkmark');
 
       await page.locator('input').clear();
@@ -467,7 +467,7 @@ test.describe('arrow key navigation', () => {
 
       await page.locator('input').focus();
       await page.keyboard.type('Item 2');
-      await page.keyboard.press('Enter')
+      await page.keyboard.press('Enter');
       await page.locator('input').clear();
 
       await page.keyboard.down('ArrowDown');
@@ -506,7 +506,7 @@ test.describe('arrow key navigation', () => {
 
       await page.locator('ix-select input').focus();
       await page.keyboard.type('Item 1');
-      await page.keyboard.press('Enter')
+      await page.keyboard.press('Enter');
       await page.waitForSelector('.checkmark');
 
       await page.locator('input').clear();
