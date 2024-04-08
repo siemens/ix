@@ -172,3 +172,40 @@ test('open filtered dropdown on input', async ({ mount, page }) => {
   await expect(item1).toBeVisible();
   await expect(item2).not.toBeVisible();
 });
+
+test('remove text from input and reselect the element', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select value="2">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  await page.locator('[data-select-dropdown]').click();
+  const element = page.locator('ix-select');
+  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
+  const dropdown = element.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  await element.locator('input').fill('Item 3');
+
+  const item1 = page.getByRole('button', { name: 'Item 1' });
+  const item2 = page.getByRole('button', { name: 'Item 2' });
+  const item3 = page.getByRole('button', { name: 'Item 3' });
+
+  await expect(item1).not.toBeVisible();
+  await expect(item2).not.toBeVisible();
+  await expect(item3).toBeVisible();
+
+  await element.locator('input').fill('Item 2');
+  await expect(item2).toBeVisible();
+
+  await item2.click();
+
+  const inputValue = await element.locator('input').inputValue();
+  expect(inputValue).toEqual('Item 2');
+});
