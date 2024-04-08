@@ -13,7 +13,7 @@ import {
   ToastConfig as IxToastConfig,
 } from '@siemens/ix';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
-import { defineToastContainer as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
+import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
 import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/dist/components/ix-icon';
 
 export type ToastConfig = {
