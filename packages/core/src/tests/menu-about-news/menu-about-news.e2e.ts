@@ -26,7 +26,9 @@ regressionTest.describe('menu-about-news', () => {
     await page.goto('menu-about-news/basic');
     page.setViewportSize(viewPorts.sm);
 
-    const burgerMenu = page.locator('ix-application-header ix-burger-menu');
+    const burgerMenu = page.locator(
+      'ix-application-header ix-menu-expand-icon'
+    );
     await burgerMenu.click();
 
     const settings = page.locator('ix-menu-item#settings');
@@ -35,7 +37,9 @@ regressionTest.describe('menu-about-news', () => {
     await page.waitForTimeout(500);
 
     await burgerMenu.click();
-    await page.waitForSelector('ix-application-header ix-burger-menu.expanded');
+    await page.waitForSelector(
+      'ix-application-header ix-menu-expand-icon.expanded'
+    );
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

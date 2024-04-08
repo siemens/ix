@@ -172,10 +172,10 @@ export class ApplicationHeader {
         slot="application-header"
       >
         {this.breakpoint === 'sm' && this.suppressResponsive === false && (
-          <ix-burger-menu
+          <ix-menu-expand-icon
             onClick={() => this.onMenuClick()}
             expanded={this.menuExpanded}
-          ></ix-burger-menu>
+          ></ix-menu-expand-icon>
         )}
         {this.applicationLayoutContext?.appSwitchConfig &&
           this.breakpoint !== 'sm' &&

@@ -82,7 +82,7 @@ test('should expand items', async ({ mount, page }) => {
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
 
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
   const menuCategory = page.locator('ix-menu-category');
   await menuCategory.click();
@@ -155,7 +155,7 @@ test('should collapse category after collapse menu', async ({
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
 
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
   const menuCategory = page.locator('ix-menu-category');
@@ -191,7 +191,7 @@ test('should hide menu-items when collapsed', async ({ mount, page }) => {
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
 
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
   const menuCategory = page.locator('ix-menu-category');
@@ -225,7 +225,7 @@ test('should open category when collapsed initially and active', async ({
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
 
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
   const menuCategory = page.locator('ix-menu-category');

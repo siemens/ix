@@ -9,6 +9,9 @@
 
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { makeRef } from '../utils/make-ref';
+import { menuController } from '../utils/menu-service/menu-service';
+import { Disposable } from '../utils/typed-event';
 
 /**
  * @slot menu-item-label Custom label
@@ -61,9 +64,15 @@ export class MenuItem {
   @Element() hostElement: HTMLIxMenuItemElement;
 
   @State() title: string;
+  @State() menuExpanded: boolean;
 
-  private observer: MutationObserver;
+  private buttonRef = makeRef<HTMLButtonElement>();
   private isHostedInsideCategory = false;
+  private menuExpandedDisposer: Disposable;
+
+  private observer: MutationObserver = createMutationObserver(() => {
+    this.title = this.hostElement.innerText;
+  });
 
   componentWillLoad() {
     this.isHostedInsideCategory =
@@ -71,17 +80,20 @@ export class MenuItem {
 
     this.onIconChange();
     this.onTabIconChange();
+
+    this.menuExpanded = menuController.nativeElement.expand;
+    this.menuExpandedDisposer = menuController.expandChange.on(
+      (expand) => (this.menuExpanded = expand)
+    );
   }
 
   componentWillRender() {
-    this.title = this.hostElement.innerText;
+    setTimeout(() => {
+      this.title = this.hostElement.innerText;
+    });
   }
 
   connectedCallback() {
-    this.observer = createMutationObserver(() => {
-      this.title = this.hostElement.innerText;
-    });
-
     this.observer.observe(this.hostElement, {
       subtree: true,
       childList: true,
@@ -92,6 +104,10 @@ export class MenuItem {
   disconnectedCallback() {
     if (this.observer) {
       this.observer.disconnect();
+    }
+
+    if (this.menuExpandedDisposer) {
+      this.menuExpandedDisposer.dispose();
     }
   }
 
@@ -143,9 +159,9 @@ export class MenuItem {
       >
         <button
           class="tab"
-          title={this.title}
           tabIndex={this.disabled ? -1 : 0}
           role="listitem"
+          ref={this.buttonRef}
         >
           {(this.icon || this.tabIcon) && (
             <ix-icon
@@ -162,6 +178,15 @@ export class MenuItem {
             <slot></slot>
           </span>
         </button>
+        {!this.menuExpanded && (
+          <ix-tooltip
+            for={this.buttonRef.waitForCurrent()}
+            placement={'right'}
+            showDelay={250}
+          >
+            {this.title}
+          </ix-tooltip>
+        )}
       </Host>
     );
   }

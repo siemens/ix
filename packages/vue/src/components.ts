@@ -941,6 +941,8 @@ export const IxTooltip = /*@__PURE__*/ defineContainer<JSX.IxTooltip>('ix-toolti
   'titleContent',
   'interactive',
   'placement',
+  'showDelay',
+  'hideDelay',
   'animationFrame'
 ]);
 

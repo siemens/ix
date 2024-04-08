@@ -49,7 +49,7 @@ export class Tooltip {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
-  @Prop() for: string;
+  @Prop() for: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Title of the tooltip
@@ -70,6 +70,12 @@ export class Tooltip {
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
   /** @internal */
+  @Prop() showDelay = 50;
+
+  /** @internal */
+  @Prop() hideDelay = 50;
+
+  /** @internal */
   @Prop() animationFrame = false;
 
   @State() visible = false;
@@ -78,12 +84,11 @@ export class Tooltip {
 
   private observer: MutationObserver;
   private hideTooltipTimeout: NodeJS.Timeout;
+  private showTooltipTimeout: NodeJS.Timeout;
   private onEnterElementBind = this.onTooltipShow.bind(this);
   private onLeaveElementBind = this.onTooltipHide.bind(this);
   private disposeAutoUpdate?: () => void;
-  private tooltipCloseTimeInMS = 50;
-
-  private disposeListener: Function;
+  private disposeListener: () => void;
 
   private get arrowElement() {
     return this.hostElement.shadowRoot.querySelector('.arrow') as HTMLElement;
@@ -108,15 +113,21 @@ export class Tooltip {
   async showTooltip(anchorElement: any) {
     clearTimeout(this.hideTooltipTimeout);
     await this.computeTooltipPosition(anchorElement);
-    this.visible = true;
+
+    this.showTooltipTimeout = setTimeout(() => {
+      this.visible = true;
+    }, this.showDelay);
   }
 
   /** @internal */
   @Method()
   async hideTooltip() {
+    clearTimeout(this.showTooltipTimeout);
+    const hideDelay = this.interactive ? 150 : this.hideDelay;
+
     this.hideTooltipTimeout = setTimeout(() => {
       this.visible = false;
-    }, this.tooltipCloseTimeInMS);
+    }, hideDelay);
     this.destroyAutoUpdate();
   }
 
@@ -216,12 +227,23 @@ export class Tooltip {
     }
   }
 
-  private queryAnchorElements() {
-    return Array.from(document.querySelectorAll(this.for));
+  private async queryAnchorElements(): Promise<Array<HTMLElement>> {
+    if (typeof this.for === 'string') {
+      return Promise.resolve(Array.from(document.querySelectorAll(this.for)));
+    }
+
+    if (this.for instanceof HTMLElement) {
+      return Promise.resolve([this.for]);
+    }
+
+    if (this.for instanceof Promise) {
+      const element = await this.for;
+      return [element];
+    }
   }
 
-  private registerTriggerListener() {
-    const triggerElementList = this.queryAnchorElements();
+  private async registerTriggerListener() {
+    const triggerElementList = await this.queryAnchorElements();
 
     if (this.disposeListener) {
       this.disposeListener();
@@ -262,10 +284,6 @@ export class Tooltip {
   }
 
   componentDidLoad() {
-    if (this.interactive) {
-      this.tooltipCloseTimeInMS = 150;
-    }
-
     this.observer = new MutationObserver(() => {
       this.registerTriggerListener();
     });

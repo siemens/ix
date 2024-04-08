@@ -160,8 +160,7 @@ $menu-expanded-width: 16rem;
     margin: 0.5rem 0 0 0.5rem;
   }
 
-  .menu-buttons .burger-menu,
-  .menu-buttons .app-switch {
+  .menu-buttons .menu-expand-icon {
     margin-left: 0.125rem;
   }
 
@@ -179,7 +178,7 @@ $menu-expanded-width: 16rem;
     padding-top: 1rem;
   }
 
-  .menu .burger-menu {
+  .menu .menu-expand-icon {
     display: none;
   }
 

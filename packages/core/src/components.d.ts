@@ -244,20 +244,6 @@ export namespace Components {
         "showChevron": boolean;
         "visible": boolean;
     }
-    interface IxBurgerMenu {
-        /**
-          * Does burger menu button display the expanded or the not expanded state
-         */
-        "expanded": boolean;
-        /**
-          * Accessibility label for the burger menu button (MANDATORY)
-         */
-        "ixAriaLabel": string;
-        /**
-          * Display as pinned
-         */
-        "pinned": boolean;
-    }
     interface IxButton {
         "alignment": 'center' | 'start';
         /**
@@ -1377,6 +1363,7 @@ export namespace Components {
         "showSettings": boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+          * @since 2.2.0
          */
         "startExpanded": boolean;
         /**
@@ -1499,6 +1486,24 @@ export namespace Components {
           * Show notification count on the category
          */
         "notifications": number;
+    }
+    interface IxMenuExpandIcon {
+        /**
+          * Controls which icon is displayed
+         */
+        "breakpoint": Breakpoint;
+        /**
+          * Does burger menu button display the expanded or the not expanded state
+         */
+        "expanded": boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel": string;
+        /**
+          * Display as pinned
+         */
+        "pinned": boolean;
     }
     interface IxMenuItem {
         /**
@@ -2221,7 +2226,8 @@ export namespace Components {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for": string;
+        "for": string | HTMLElement | Promise<HTMLElement>;
+        "hideDelay": number;
         "hideTooltip": () => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
@@ -2232,6 +2238,7 @@ export namespace Components {
           * @since 1.5.0
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
+        "showDelay": number;
         "showTooltip": (anchorElement: any) => Promise<void>;
         /**
           * Title of the tooltip
@@ -2725,12 +2732,6 @@ declare global {
     var HTMLIxBreadcrumbItemElement: {
         prototype: HTMLIxBreadcrumbItemElement;
         new (): HTMLIxBreadcrumbItemElement;
-    };
-    interface HTMLIxBurgerMenuElement extends Components.IxBurgerMenu, HTMLStencilElement {
-    }
-    var HTMLIxBurgerMenuElement: {
-        prototype: HTMLIxBurgerMenuElement;
-        new (): HTMLIxBurgerMenuElement;
     };
     interface HTMLIxButtonElement extends Components.IxButton, HTMLStencilElement {
     }
@@ -3407,6 +3408,12 @@ declare global {
         prototype: HTMLIxMenuCategoryElement;
         new (): HTMLIxMenuCategoryElement;
     };
+    interface HTMLIxMenuExpandIconElement extends Components.IxMenuExpandIcon, HTMLStencilElement {
+    }
+    var HTMLIxMenuExpandIconElement: {
+        prototype: HTMLIxMenuExpandIconElement;
+        new (): HTMLIxMenuExpandIconElement;
+    };
     interface HTMLIxMenuItemElement extends Components.IxMenuItem, HTMLStencilElement {
     }
     var HTMLIxMenuItemElement: {
@@ -3959,7 +3966,6 @@ declare global {
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
-        "ix-burger-menu": HTMLIxBurgerMenuElement;
         "ix-button": HTMLIxButtonElement;
         "ix-card": HTMLIxCardElement;
         "ix-card-accordion": HTMLIxCardAccordionElement;
@@ -4012,6 +4018,7 @@ declare global {
         "ix-menu-avatar": HTMLIxMenuAvatarElement;
         "ix-menu-avatar-item": HTMLIxMenuAvatarItemElement;
         "ix-menu-category": HTMLIxMenuCategoryElement;
+        "ix-menu-expand-icon": HTMLIxMenuExpandIconElement;
         "ix-menu-item": HTMLIxMenuItemElement;
         "ix-menu-settings": HTMLIxMenuSettingsElement;
         "ix-menu-settings-item": HTMLIxMenuSettingsItemElement;
@@ -4226,20 +4233,6 @@ declare namespace LocalJSX {
         "onItemClick"?: (event: IxBreadcrumbItemCustomEvent<string>) => void;
         "showChevron"?: boolean;
         "visible"?: boolean;
-    }
-    interface IxBurgerMenu {
-        /**
-          * Does burger menu button display the expanded or the not expanded state
-         */
-        "expanded"?: boolean;
-        /**
-          * Accessibility label for the burger menu button (MANDATORY)
-         */
-        "ixAriaLabel"?: string;
-        /**
-          * Display as pinned
-         */
-        "pinned"?: boolean;
     }
     interface IxButton {
         "alignment"?: 'center' | 'start';
@@ -5468,6 +5461,7 @@ declare namespace LocalJSX {
         "showSettings"?: boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+          * @since 2.2.0
          */
         "startExpanded"?: boolean;
     }
@@ -5593,6 +5587,24 @@ declare namespace LocalJSX {
           * Show notification count on the category
          */
         "notifications"?: number;
+    }
+    interface IxMenuExpandIcon {
+        /**
+          * Controls which icon is displayed
+         */
+        "breakpoint"?: Breakpoint;
+        /**
+          * Does burger menu button display the expanded or the not expanded state
+         */
+        "expanded"?: boolean;
+        /**
+          * Accessibility label for the burger menu button (MANDATORY)
+         */
+        "ixAriaLabel"?: string;
+        /**
+          * Display as pinned
+         */
+        "pinned"?: boolean;
     }
     interface IxMenuItem {
         /**
@@ -6402,7 +6414,8 @@ declare namespace LocalJSX {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: string;
+        "for"?: string | HTMLElement | Promise<HTMLElement>;
+        "hideDelay"?: number;
         /**
           * Define if the user can access the tooltip via mouse.
          */
@@ -6412,6 +6425,7 @@ declare namespace LocalJSX {
           * @since 1.5.0
          */
         "placement"?: 'top' | 'right' | 'bottom' | 'left';
+        "showDelay"?: number;
         /**
           * Title of the tooltip
          */
@@ -6633,7 +6647,6 @@ declare namespace LocalJSX {
         "ix-blind": IxBlind;
         "ix-breadcrumb": IxBreadcrumb;
         "ix-breadcrumb-item": IxBreadcrumbItem;
-        "ix-burger-menu": IxBurgerMenu;
         "ix-button": IxButton;
         "ix-card": IxCard;
         "ix-card-accordion": IxCardAccordion;
@@ -6686,6 +6699,7 @@ declare namespace LocalJSX {
         "ix-menu-avatar": IxMenuAvatar;
         "ix-menu-avatar-item": IxMenuAvatarItem;
         "ix-menu-category": IxMenuCategory;
+        "ix-menu-expand-icon": IxMenuExpandIcon;
         "ix-menu-item": IxMenuItem;
         "ix-menu-settings": IxMenuSettings;
         "ix-menu-settings-item": IxMenuSettingsItem;
@@ -6750,7 +6764,6 @@ declare module "@stencil/core" {
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
-            "ix-burger-menu": LocalJSX.IxBurgerMenu & JSXBase.HTMLAttributes<HTMLIxBurgerMenuElement>;
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
             /**
              * @since 1.6.0
@@ -6860,6 +6873,7 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
+            "ix-menu-expand-icon": LocalJSX.IxMenuExpandIcon & JSXBase.HTMLAttributes<HTMLIxMenuExpandIconElement>;
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;

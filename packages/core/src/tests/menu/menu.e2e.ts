@@ -136,7 +136,7 @@ test.describe('menu', () => {
       await page.setViewportSize(viewPorts.md);
       await page.goto('menu/overflow');
 
-      const collapseButton = page.locator('ix-burger-menu');
+      const collapseButton = page.locator('ix-menu-expand-icon');
       await collapseButton.click();
       await page.waitForTimeout(1000);
 
@@ -159,7 +159,7 @@ test.describe('menu', () => {
       await page.setViewportSize(viewPorts.sm);
       await page.goto('menu/overflow');
 
-      const collapseButton = page.locator('ix-burger-menu').first();
+      const collapseButton = page.locator('ix-menu-expand-icon').first();
       await collapseButton.click();
       await page.waitForTimeout(1000);
 
