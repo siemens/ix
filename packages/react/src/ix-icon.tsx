@@ -9,10 +9,12 @@
 import type { JSX as IxIconsJSX } from '@siemens/ix-icons';
 import { createReactComponent } from './react-component-lib';
 
-import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/dist/components/ix-icon';
+import { defineCustomElement } from '@siemens/ix-icons/dist/components/ix-icon';
 
 // eslint-disable-next-line no-inline-comments
 export const IxIcon = /*@__PURE__*/ createReactComponent<
   IxIconsJSX.IxIcon,
   HTMLIxIconElement
->('ix-icon', undefined, undefined, defineIxIcon);
+>('ix-icon', undefined, undefined, defineCustomElement);
+
+export const defineIxIcon = defineCustomElement;
