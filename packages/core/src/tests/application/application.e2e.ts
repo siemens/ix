@@ -243,3 +243,21 @@ regressionTest.describe('application-switch', () => {
     });
   });
 });
+
+Object.keys(viewPorts).forEach((viewPort) => {
+  regressionTest(`MenuSidebar ${viewPort}`, async ({ page }) => {
+    await page.setViewportSize(viewPorts[viewPort]);
+    await page.goto('application/application-switch');
+
+    const toggleMenuButton = page.locator('ix-menu-expand-icon').nth(0);
+
+    await toggleMenuButton.click();
+
+    await expect(page.locator('ix-menu')).toHaveClass(/expanded/);
+
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
+    });
+  });
+});
