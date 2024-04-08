@@ -178,7 +178,7 @@ test.describe('date dropdown tests', () => {
   });
 
   test('check initial date', async ({ page }) => {
-    const dateDropDownButton = page.locator('ix-date-dropdown');
+    const dateDropDownButton = page.locator(DATE_DROPDOWN_SELECTOR);
     await expect(dateDropDownButton).toHaveClass(/hydrated/);
 
     const initialSetDate = await dateDropDownButton.evaluate(
@@ -195,4 +195,23 @@ test.describe('date dropdown tests', () => {
       label: 'Today',
     });
   });
+});
+
+test('set date from a button', async ({ mount, page }) => {
+  await mount(
+    `<ix-date-dropdown from="2024/02/16"></ix-date-dropdown><ix-button id="set-tomorrow"></ix-button>`
+  );
+  const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+  const setButton = page.locator('#set-tomorrow');
+  await expect(dateDropdown).toHaveClass(/hydrated/);
+
+  await setButton.click();
+
+  await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
+    el.from = '2024/02/17';
+    el.to = '2024/02/27';
+    return el.getDateRange();
+  });
+  const button = dateDropdown.locator('[data-date-dropdown-trigger]');
+  await expect(button).toHaveText(/2024\/02\/17 \- 2024\/02\/27/);
 });
