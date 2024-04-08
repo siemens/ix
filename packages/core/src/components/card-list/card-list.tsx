@@ -95,8 +95,9 @@ export class CardList {
   @Prop() suppressOverflowHandling = false;
 
   /**
-   * @since 2.2.0
    * Hide the show all button
+   *
+   * @since 2.2.0
    */
   @Prop() hideShowAll = false;
 

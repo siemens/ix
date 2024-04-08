@@ -1761,11 +1761,11 @@
           "mutable": false,
           "attr": "hide-show-all",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "Hide the show all button",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.2.0\nHide the show all button"
+              "text": "2.2.0"
             }
           ],
           "default": "false",

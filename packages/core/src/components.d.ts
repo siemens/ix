@@ -328,7 +328,8 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
-          * @since 2.2.0 Hide the show all button
+          * Hide the show all button
+          * @since 2.2.0
          */
         "hideShowAll": boolean;
         /**
@@ -4316,7 +4317,8 @@ declare namespace LocalJSX {
          */
         "collapse"?: boolean;
         /**
-          * @since 2.2.0 Hide the show all button
+          * Hide the show all button
+          * @since 2.2.0
          */
         "hideShowAll"?: boolean;
         /**
