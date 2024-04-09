@@ -178,7 +178,7 @@ export class MenuItem {
             <slot></slot>
           </span>
         </button>
-        {!this.menuExpanded && (
+        {!this.isHostedInsideCategory && !this.menuExpanded && (
           <ix-tooltip
             for={this.buttonRef.waitForCurrent()}
             placement={'right'}
