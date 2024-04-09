@@ -19,25 +19,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return (
-      <Host>
-        <ix-application
-          appSwitchConfig={{
-            apps: [],
-            currentAppId: '',
-          }}
-        >
-          <ix-application-header name="Test"></ix-application-header>
-          <ix-menu startExpanded>
-            <ix-menu-item>test</ix-menu-item>
-            <ix-menu-category label="test2">
-              <ix-menu-item>1</ix-menu-item>
-              <ix-menu-item active>2</ix-menu-item>
-            </ix-menu-category>
-          </ix-menu>
-          <ix-content>Test</ix-content>
-        </ix-application>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
