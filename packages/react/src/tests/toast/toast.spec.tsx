@@ -13,7 +13,7 @@ import Content from './toast';
 
 describe(`toast`, () => {
   it(`basic`, async () => {
-    const { getByText } = render(<Content />);
+    const { getByText, debug } = render(<Content />);
 
     const button = getByText('Hallo');
     button.click();
@@ -25,9 +25,13 @@ describe(`toast`, () => {
     expect(toastShadowRoot).toBeDefined();
     expect(toast.innerText).toBe('Foobar');
 
-    const icon = toastShadowRoot?.querySelector('ix-icon');
+    await customElements.whenDefined('ix-icon');
+
+    const icon = toastShadowRoot?.querySelector(
+      '.toast-icon ix-icon'
+    ) as HTMLIxIconElement;
 
     expect(icon).toBeDefined();
-    expect(icon?.name).toBe('star');
+    expect(icon.name).toBe('star');
   });
 });
