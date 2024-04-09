@@ -11,7 +11,6 @@ import { defineCustomElement as defineToast } from '@siemens/ix/components/ix-to
 
 import { toast, ToastConfig as IxToastConfig } from '@siemens/ix';
 import ReactDOMClient from 'react-dom/client';
-import { defineIxIcon } from '../ix-icon';
 
 export type ToastConfig = {
   message: string | React.ReactNode;
@@ -23,9 +22,6 @@ export async function showToast(
   // Define custom element, otherwise dynamic creation of toast container will fail
   defineToast();
   defineToastContainer();
-
-  // Predefine `ix-icon` to be sure its loaded before its used inside the util functions
-  defineIxIcon();
 
   if (typeof config.message === 'string') {
     const toastInstance = await toast(config as IxToastConfig);

@@ -15,6 +15,7 @@ import { defineCustomElement } from '@siemens/ix-icons/dist/components/ix-icon';
 export const IxIcon = /*@__PURE__*/ createReactComponent<
   IxIconsJSX.IxIcon,
   HTMLIxIconElement
->('ix-icon', undefined, undefined, defineCustomElement);
+>('ix-icon', undefined, undefined);
 
-export const defineIxIcon = defineCustomElement;
+// Predefine `ix-icon` to be sure its loaded before its used inside the util functions
+defineCustomElement();

@@ -13,10 +13,13 @@ import Content from './toast';
 
 describe(`toast`, () => {
   it(`basic`, async () => {
-    const { getByText, debug } = render(<Content />);
+    const { getByText } = render(<Content />);
 
     const button = getByText('Hallo');
     button.click();
+
+    await customElements.whenDefined('ix-toast');
+    await customElements.whenDefined('ix-toast-container');
 
     const toast = await screen.findByText('Foobar');
     const toastShadowRoot = toast.shadowRoot;
@@ -34,6 +37,6 @@ describe(`toast`, () => {
     console.log(toastShadowRoot?.innerHTML);
 
     expect(icon).toBeDefined();
-    expect(icon.name).toBe('star');
+    expect(icon.name).toEqual('star');
   });
 });
