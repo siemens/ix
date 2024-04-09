@@ -19,6 +19,14 @@ regressionTest.describe('card-list: basic', () => {
     ).toMatchSnapshot();
   });
 
+  regressionTest('should hide show all button', async ({ page }) => {
+    await page.goto('card-list/hide-show-all');
+    await page.waitForTimeout(1000);
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  });
+
   regressionTest('layout scrolling', async ({ page }) => {
     await page.goto('card-list/layout-scroll');
     await page.waitForTimeout(1000);
