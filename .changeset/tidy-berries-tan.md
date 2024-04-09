@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix runtime & detach issues
+fix(core/dropdown): resolve trigger during element connect phase

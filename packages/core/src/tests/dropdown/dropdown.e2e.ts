@@ -69,35 +69,4 @@ regressionTest.describe('dropdown', () => {
 
     await expect(page).toHaveScreenshot();
   });
-
-  regressionTest('detach and attach to dom again', async ({ page }) => {
-    await page.goto('dropdown/basic');
-
-    //Simulate detach and attaching again
-    await page.evaluate(() => {
-      const dropdown = document.querySelector('ix-dropdown');
-      document.body.removeChild(dropdown);
-      document.body.append(dropdown);
-    });
-
-    await page.locator('ix-button').click();
-
-    await expect(page).toHaveScreenshot();
-  });
-
-  regressionTest(
-    'add element with id undefined in runtime',
-    async ({ page }) => {
-      await page.goto('dropdown/basic');
-      await page.evaluate(() => {
-        const divElement = document.createElement('div');
-        divElement.id = 'undefined';
-        document.body.appendChild(divElement);
-      });
-
-      await page.locator('ix-button').click();
-
-      await expect(page).toHaveScreenshot();
-    }
-  );
 });

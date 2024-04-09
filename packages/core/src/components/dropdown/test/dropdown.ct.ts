@@ -571,3 +571,43 @@ test('Nested dropdowns within application-header', async ({ mount, page }) => {
   await expect(submenuDropdown).not.toBeVisible();
   await expect(dropdownOfDropdownButton).not.toBeVisible();
 });
+
+test('tst', async ({ mount, page }) => {
+  await mount(`
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger">
+        <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        <ix-dropdown-item>Custom</ix-dropdown-item>
+      </ix-dropdown>
+    `);
+
+  const dropdownSelector = document.querySelector('ix-dropdown');
+  const dropdown = page.locator('ix-dropdown');
+  document.body.removeChild(dropdownSelector);
+  document.body.append(dropdownSelector);
+
+  await page.locator('ix-button').first().click();
+
+  await expect(dropdown).not.toBeVisible();
+});
+
+test('tst2', async ({ mount, page }) => {
+  await mount(`
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger">
+        <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        <ix-dropdown-item>Custom</ix-dropdown-item>
+      </ix-dropdown>
+    `);
+  const dropdown = page.locator('ix-dropdown');
+
+  const divElement = document.createElement('div');
+  divElement.id = 'undefined';
+  document.body.appendChild(divElement);
+
+  await page.locator('ix-button').first().click();
+
+  await expect(dropdown).not.toBeVisible();
+});
