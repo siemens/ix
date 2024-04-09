@@ -209,9 +209,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-application"
+        ]
+      },
       "props": [
         {
           "name": "appSwitchConfig",
@@ -397,7 +403,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
-        "ix-map-navigation"
+        "ix-map-navigation",
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-menu-expand-icon",
@@ -421,6 +428,9 @@
           "ix-application-header"
         ],
         "ix-map-navigation": [
+          "ix-application-header"
+        ],
+        "ix-playground-internal": [
           "ix-application-header"
         ]
       },
@@ -2985,9 +2995,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-content"
+        ]
+      },
       "props": [],
       "methods": [],
       "events": [],
@@ -9001,7 +9017,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-menu-expand-icon",
         "ix-icon-button",
@@ -9025,6 +9043,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -10326,7 +10347,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-menu-item",
         "ix-dropdown",
@@ -10347,6 +10370,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-menu-category"
         ]
       },
       "props": [
@@ -10440,7 +10466,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu",
-        "ix-menu-category"
+        "ix-menu-category",
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-tooltip"
@@ -10456,6 +10483,9 @@
           "ix-menu-item"
         ],
         "ix-menu-category": [
+          "ix-menu-item"
+        ],
+        "ix-playground-internal": [
           "ix-menu-item"
         ]
       },

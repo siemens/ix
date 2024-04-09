@@ -41,7 +41,7 @@ export class MenuExpandIcon {
   /** Display as pinned */
   @Prop() pinned = false;
 
-  getDefaultMenuIcon() {
+  getSmallScreenIcon() {
     return (
       <button
         class={{
@@ -88,11 +88,15 @@ export class MenuExpandIcon {
       return this.getLargeScreenIcon();
     }
 
+    if (this.breakpoint === 'md') {
+      return this.getLargeScreenIcon();
+    }
+
     if (this.breakpoint === 'lg') {
       return this.getLargeScreenIcon();
     }
 
-    return this.getDefaultMenuIcon();
+    return this.getSmallScreenIcon();
   }
 
   render() {
