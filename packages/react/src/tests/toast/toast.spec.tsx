@@ -13,7 +13,7 @@ import Content from './toast';
 
 describe(`toast`, () => {
   it(`basic`, async () => {
-    const { getByText, debug } = render(<Content />);
+    const { getByText } = render(<Content />);
 
     const button = getByText('Hallo');
     button.click();
