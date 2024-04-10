@@ -14,6 +14,6 @@ regressionTest.describe('echarts', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('basic.html');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot();
   });
 });
