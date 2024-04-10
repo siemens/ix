@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.13.0",
-    "typescriptVersion": "5.4.2"
+    "version": "4.12.3",
+    "typescriptVersion": "5.3.3"
   },
   "components": [
     {
@@ -1225,6 +1225,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1258,6 +1259,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -17056,9 +17060,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-workflow-step"
+        ]
+      },
       "props": [
         {
           "name": "clickable",
@@ -17207,9 +17217,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-workflow-steps"
+        ]
+      },
       "props": [
         {
           "name": "clickable",

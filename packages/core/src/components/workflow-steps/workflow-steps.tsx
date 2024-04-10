@@ -114,9 +114,9 @@ export class WorkflowSteps {
     }
   }
 
-  //componentDidRender() {
-  //  this.updateSteps();
-  //}
+  componentDidRender() {
+    this.updateSteps();
+  }
 
   render() {
     return (
