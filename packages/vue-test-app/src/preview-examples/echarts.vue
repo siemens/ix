@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts">
 import VueECharts from 'vue-echarts';
+import { themeSwitcher } from '@siemens/ix';
 import { registerTheme } from '@siemens/ix-echarts';
 import * as echarts from 'echarts/core';
 import * as charts from 'echarts/charts';
@@ -27,7 +28,7 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = document.body.className.replace('theme-', '');
+const theme = themeSwitcher.getCurrentTheme().replace('theme-', '');
 
 const options: EChartsOption = {
   tooltip: {
