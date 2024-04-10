@@ -36,7 +36,9 @@ LICENSE file in the root directory of this source tree.
       function getTheme() {
         const searchParams = new URLSearchParams(location.search);
 
-        if (!searchParams.has('theme')) return 'brand-dark';
+        if (!searchParams.has('theme')) {
+          return 'brand-dark';
+        }
 
         const theme = searchParams.get('theme');
 
