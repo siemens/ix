@@ -8,6 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
+import { themeSwitcher } from '@siemens/ix';
 import { registerTheme } from '@siemens/ix-echarts';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
@@ -17,7 +18,7 @@ import { EChartsOption } from 'echarts';
   templateUrl: './echarts.html',
 })
 export default class Echarts implements OnInit {
-  theme = document.body.className.replace('theme-', '');
+  theme = themeSwitcher.getCurrentTheme().replace('theme-', '');
 
   options: EChartsOption = {
     tooltip: {
