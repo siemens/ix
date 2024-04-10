@@ -31,7 +31,7 @@ test('renders', async ({ mount, page }) => {
   );
   const step = workflowSteps
     .locator('ix-workflow-step')
-    .nth(1)
+    .first()
     .locator('.step .selected');
   await expect(workflowSteps).toHaveClass(/hydrated/);
   await expect(step).toBeVisible();
