@@ -26,7 +26,7 @@ function patchPkgLibraryVersion(pkg: string, replaceVersion: string) {
 function replaceTheme(source: string) {
   const theme: string = themeSwitcher
     .getCurrentTheme()
-    .replace('brand', 'classic'); // replace brand with classic since brand theme is currently not supported inside stackblitz
+    .replace('brand', 'classic');
   return source.replace(/(<body class=")[^"]*(")/, `$1${theme}$2`);
 }
 
@@ -86,9 +86,8 @@ async function openHtmlStackBlitz(
   sourceFiles: SourceFile[],
   version: string
 ) {
-  const [index_html, main_js, package_json, vite_config_ts] =
+  const [main_js, package_json, vite_config_ts] =
     await loadSourceCodeFromStatic([
-      `${baseUrl}code-runtime/html/src/index.html`,
       `${baseUrl}code-runtime/html/src/main.js`,
       `${baseUrl}code-runtime/html/package.json`,
       `${baseUrl}code-runtime/html/vite.config.ts`,
@@ -109,10 +108,7 @@ async function openHtmlStackBlitz(
       files: {
         ...files,
         'src/index.html': replaceTheme(
-          index_html.replace(
-            '<!-- IX_INJECT_SOURCE_CODE -->',
-            replaceScriptFilePath(renderFirstExample.raw)
-          )
+          replaceScriptFilePath(renderFirstExample.raw)
         ),
         'src/main.js': main_js,
         'package.json': patchPkgLibraryVersion(package_json, version),
