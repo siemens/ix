@@ -8,6 +8,7 @@
  */
 
 import React from 'react';
+import { themeSwitcher } from '@siemens/ix';
 import { registerTheme } from '@siemens/ix-echarts';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
@@ -16,7 +17,7 @@ import { EChartsOption } from 'echarts';
 export default function Echarts() {
   registerTheme(echarts);
 
-  const theme = document.body.className.replace('theme-', '');
+  const theme = themeSwitcher.getCurrentTheme().replace('theme-', '');
 
   const options: EChartsOption = {
     tooltip: {
