@@ -20,9 +20,9 @@ declare global {
 }
 
 export default function registerEChartsThemes(echartsInstance?: any) {
-  const chart = echartsInstance ?? window.echarts;
+  const echarts = echartsInstance ?? window.echarts;
 
-  if (!chart) {
+  if (!echarts) {
     throw Error('echarts not found');
   }
 
@@ -32,6 +32,6 @@ export default function registerEChartsThemes(echartsInstance?: any) {
     brandDarkProject,
     brandLightProject,
   ].forEach((themeBundle) => {
-    chart.registerTheme(themeBundle.themeName, themeBundle.theme);
+    echarts.registerTheme(themeBundle.themeName, themeBundle.theme);
   });
 }
