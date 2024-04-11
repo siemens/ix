@@ -54,7 +54,7 @@ export class MenuExpandIcon {
             false,
             false
           ),
-          'burger-menu-button': true,
+          'menu-expand-button': true,
         }}
         type="button"
         aria-label={this.ixAriaLabel ? this.ixAriaLabel : null}

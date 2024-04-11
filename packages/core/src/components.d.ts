@@ -1527,6 +1527,12 @@ export namespace Components {
           * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon": string;
+        "isCategory": boolean;
+        /**
+          * Label of the menu item. Will also be used as tooltip text
+          * @since 2.2.0
+         */
+        "label": string;
         /**
           * Show notification count on tab
          */
@@ -2537,6 +2543,10 @@ export interface IxMenuAvatarItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuAvatarItemElement;
 }
+export interface IxMenuCategoryCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuCategoryElement;
+}
 export interface IxMenuSettingsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuSettingsElement;
@@ -3399,10 +3409,21 @@ declare global {
         prototype: HTMLIxMenuAvatarItemElement;
         new (): HTMLIxMenuAvatarItemElement;
     };
+    interface HTMLIxMenuCategoryElementEventMap {
+        "closeOtherCategories": any;
+    }
     /**
      * @since 2.0.0
      */
     interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuCategoryElementEventMap>(type: K, listener: (this: HTMLIxMenuCategoryElement, ev: IxMenuCategoryCustomEvent<HTMLIxMenuCategoryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuCategoryElementEventMap>(type: K, listener: (this: HTMLIxMenuCategoryElement, ev: IxMenuCategoryCustomEvent<HTMLIxMenuCategoryElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuCategoryElement: {
         prototype: HTMLIxMenuCategoryElement;
@@ -5587,6 +5608,7 @@ declare namespace LocalJSX {
           * Show notification count on the category
          */
         "notifications"?: number;
+        "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
     }
     interface IxMenuExpandIcon {
         /**
@@ -5628,6 +5650,12 @@ declare namespace LocalJSX {
           * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon"?: string;
+        "isCategory"?: boolean;
+        /**
+          * Label of the menu item. Will also be used as tooltip text
+          * @since 2.2.0
+         */
+        "label"?: string;
         /**
           * Show notification count on tab
          */

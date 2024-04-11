@@ -40,19 +40,19 @@ $focus-bdr-width: 0.0625rem;
 }
 
 @include host-hover {
-  .burger-menu-button {
+  .menu-expand-button {
     background-color: var(--theme-menu-btn--background--hover);
   }
 }
 
-.burger-menu-button {
+.menu-expand-button {
   width: 2rem;
   padding: 0;
   cursor: pointer;
 }
 
 @include host-active {
-  .burger-menu-button {
+  .menu-expand-button {
     background-color: var(--theme-menu-btn--background--active);
   }
 }

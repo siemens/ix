@@ -10419,7 +10419,14 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "closeOtherCategories",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/menu-item",
@@ -10562,6 +10569,32 @@
             {
               "name": "link",
               "text": "https://ix.siemens.io/docs/icon-library/icons"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label of the menu item. Will also be used as tooltip text",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.2.0"
             }
           ],
           "values": [

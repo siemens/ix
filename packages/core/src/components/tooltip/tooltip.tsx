@@ -25,6 +25,7 @@ import {
   State,
 } from '@stencil/core';
 import { OnListener } from '../utils/listener';
+import { IxComponent } from '../utils/internal';
 
 type ArrowPosition = {
   top?: string;
@@ -45,7 +46,7 @@ const numberToPixel = (value: number) => (value != null ? `${value}px` : '');
   styleUrl: 'tooltip.scss',
   shadow: true,
 })
-export class Tooltip {
+export class Tooltip implements IxComponent {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
@@ -70,7 +71,7 @@ export class Tooltip {
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
   /** @internal */
-  @Prop() showDelay = 50;
+  @Prop() showDelay = 0;
 
   /** @internal */
   @Prop() hideDelay = 50;
@@ -304,10 +305,6 @@ export class Tooltip {
   }
 
   render() {
-    const tooltipContentClass = {
-      'tooltip-content': true,
-    };
-
     return (
       <Host
         class={{
@@ -322,7 +319,7 @@ export class Tooltip {
             <slot name="title-content"></slot>
           </ix-typography>
         </div>
-        <div class={tooltipContentClass}>
+        <div class={'tooltip-content'}>
           <slot></slot>
         </div>
         <div class="arrow"></div>

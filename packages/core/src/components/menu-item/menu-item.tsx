@@ -7,7 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  readTask,
+  State,
+  Watch,
+} from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { makeRef } from '../utils/make-ref';
 import { menuController } from '../utils/menu-service/menu-service';
@@ -22,6 +31,13 @@ import { Disposable } from '../utils/typed-event';
   shadow: true,
 })
 export class MenuItem {
+  /**
+   * Label of the menu item. Will also be used as tooltip text
+   *
+   * @since 2.2.0
+   */
+  @Prop() label: string;
+
   /**
    * Move the Tab to a top position.
    */
@@ -61,9 +77,12 @@ export class MenuItem {
    */
   @Prop() disabled: boolean;
 
+  /** @internal */
+  @Prop() isCategory: boolean;
+
   @Element() hostElement: HTMLIxMenuItemElement;
 
-  @State() title: string;
+  @State() tooltip: string;
   @State() menuExpanded: boolean;
 
   private buttonRef = makeRef<HTMLButtonElement>();
@@ -71,7 +90,7 @@ export class MenuItem {
   private menuExpandedDisposer: Disposable;
 
   private observer: MutationObserver = createMutationObserver(() => {
-    this.title = this.hostElement.innerText;
+    this.tooltip = this.label ?? this.hostElement.innerText;
   });
 
   componentWillLoad() {
@@ -88,8 +107,8 @@ export class MenuItem {
   }
 
   componentWillRender() {
-    setTimeout(() => {
-      this.title = this.hostElement.innerText;
+    readTask(() => {
+      this.tooltip = this.label ?? this.hostElement.innerText;
     });
   }
 
@@ -175,18 +194,20 @@ export class MenuItem {
             </div>
           ) : null}
           <span class="tab-text text-default">
-            <slot></slot>
+            {this.label} <slot></slot>
           </span>
         </button>
-        {!this.isHostedInsideCategory && !this.menuExpanded && (
-          <ix-tooltip
-            for={this.buttonRef.waitForCurrent()}
-            placement={'right'}
-            showDelay={250}
-          >
-            {this.title}
-          </ix-tooltip>
-        )}
+        {!this.isCategory &&
+          !this.isHostedInsideCategory &&
+          !this.menuExpanded && (
+            <ix-tooltip
+              for={this.buttonRef.waitForCurrent()}
+              placement={'right'}
+              showDelay={1000}
+            >
+              {this.tooltip}
+            </ix-tooltip>
+          )}
       </Host>
     );
   }

@@ -197,4 +197,21 @@ test.describe('menu', () => {
       ).toMatchSnapshot();
     }
   );
+
+  regressionTest('show tooltip', async ({ page }) => {
+    await page.setViewportSize(viewPorts.md);
+    await page.goto('menu/basic');
+
+    const menu = page.locator('ix-menu');
+    await expect(menu).not.toHaveClass('expanded');
+
+    const item = page.locator('ix-menu-item').filter({
+      hasText: 'Item 1',
+    });
+
+    await item.hover();
+    await page.waitForTimeout(1500);
+
+    await expect(page).toHaveScreenshot();
+  });
 });

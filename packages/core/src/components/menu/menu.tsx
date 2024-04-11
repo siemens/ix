@@ -607,15 +607,17 @@ export class Menu {
             this.resetActiveTab();
           }}
         >
-          <div class={{ 'menu-buttons': true }}>
-            <ix-menu-expand-icon
-              breakpoint={this.breakpoint}
-              expanded={this.expand}
-              pinned={this.pinned}
-              class="menu-expand-icon"
-              ixAriaLabel={this.i18nExpandSidebar}
-              onClick={async () => this.toggleMenu()}
-            ></ix-menu-expand-icon>
+          <div class="menu-buttons">
+            {this.breakpoint !== 'sm' && (
+              <ix-menu-expand-icon
+                breakpoint={this.breakpoint}
+                expanded={this.expand}
+                pinned={this.pinned}
+                class="menu-expand-icon"
+                ixAriaLabel={this.i18nExpandSidebar}
+                onClick={async () => this.toggleMenu()}
+              ></ix-menu-expand-icon>
+            )}
             {this.breakpoint === 'sm' &&
               this.applicationLayoutContext.appSwitchConfig && (
                 <ix-icon-button

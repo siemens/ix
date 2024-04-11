@@ -157,11 +157,7 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-buttons {
-    margin: 0.5rem 0 0 0.5rem;
-  }
-
-  .menu-buttons .menu-expand-icon {
-    margin-left: 0.125rem;
+    margin: 0.5rem 0 0 0.625rem;
   }
 
   .menu-buttons > :last-child {
@@ -175,11 +171,7 @@ $menu-expanded-width: 16rem;
   }
 
   .show-scrollbar {
-    padding-top: 1rem;
-  }
-
-  .menu .menu-expand-icon {
-    display: none;
+    // padding-top: 1rem;
   }
 
   .menu-overlay {
