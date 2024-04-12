@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-fix(select-item): make 0 a valid value option
+fix(core/select-item): check by undefined not by value
