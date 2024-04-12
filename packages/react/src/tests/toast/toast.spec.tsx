@@ -34,7 +34,8 @@ describe(`toast`, () => {
       '.toast-icon ix-icon'
     ) as HTMLIxIconElement;
 
-    console.log(toastShadowRoot?.innerHTML);
+    console.log(icon);
+    console.log(icon.shadowRoot);
 
     expect(icon).toBeDefined();
     expect(icon.name).toEqual('star');
