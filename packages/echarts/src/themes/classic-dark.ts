@@ -275,8 +275,10 @@ export default {
       },
     },
     tooltip: {
+      backgroundColor: '#283236',
+      borderColor: '#283236',
       textStyle: {
-        color: 'rgba(0, 10, 20, .9)',
+        color: 'rgba(245, 252, 255, .93)',
       },
       axisPointer: {
         lineStyle: {
