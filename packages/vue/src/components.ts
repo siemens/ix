@@ -206,6 +206,7 @@ export const IxCardList = /*@__PURE__*/ defineContainer<JSX.IxCardList>('ix-card
   'maxVisibleCards',
   'showAllCount',
   'suppressOverflowHandling',
+  'hideShowAll',
   'i18nShowAll',
   'i18nMoreCards',
   'collapseChanged',

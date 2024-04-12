@@ -314,6 +314,11 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
+          * Hide the show all button
+          * @since 2.2.0
+         */
+        "hideShowAll": boolean;
+        /**
           * i18n More cards available
          */
         "i18nMoreCards": string;
@@ -4325,6 +4330,11 @@ declare namespace LocalJSX {
           * Collapse the list
          */
         "collapse"?: boolean;
+        /**
+          * Hide the show all button
+          * @since 2.2.0
+         */
+        "hideShowAll"?: boolean;
         /**
           * i18n More cards available
          */
