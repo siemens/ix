@@ -27,7 +27,7 @@ $left: 3.4rem;
   padding: 1rem;
   left: $left;
   z-index: 10000;
-  transition: left var(--animate-duration);
+  transition: left var(--theme-default-time);
 
   margin-inline-start: var(--margin) !important;
 
