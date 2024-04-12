@@ -4,4 +4,4 @@
 '@siemens/ix-vue': patch
 ---
 
-fix(core/toast|react/toast|vue/toast): prefine custom elements before usage
+fix(core/toast|react/toast|vue/toast): predefine custom elements before usage
