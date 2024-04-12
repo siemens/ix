@@ -11,12 +11,12 @@ We typically use a category filter to efficiently navigate large data sets, allo
 ## Options
 
 - **Categories**: These are the predefined groups that users can select to narrow down their search or browsing. The categories are customizable and should be defined based on the specific needs of your application or website.
-- - **Suggestions**: These are potential search terms that appear as users begin to type in the input field. The aim is to assist users by predicting their intended search or category, thereby speeding up the input process and reducing potential errors.
-- **NonSelectableCategories**: This option is useful in scenarios where the user should not be able to select certain categories. This could be due to categories that are irrelevant in the current context, restricted throug user permissions or dependent on other conditions.
-- **RepeatCategories**: This option allows users to select the same category more than once. This can be useful when users want to apply different filter conditions to the same category.
+- **Suggestions**: These are potential search terms that appear as users begin to type in the input field. The aim is to assist users by predicting their intended search or category, thereby speeding up the input process and reducing potential errors.
+- **Non-selectable categories**: This option is useful in scenarios where the user should not be able to select certain categories. This could be due to categories that are irrelevant in the current context, restricted throug user permissions or dependent on other conditions.
+- **Repeat categories**: This option allows users to select the same category more than once. This can be useful when users want to apply different filter conditions to the same category.
 - **Placeholder**: We typically use the placeholder to provide guidance or context to users when the category filter is empty.
 - **Icon**: The default icon is "search". It can be changed to any other icon by using this property. Changing the icon within the category filter can be beneficial in certain situations to enhance user experience and improve visual communication. It can also be hidden.
-- **i18nPlainText**: It provides the possibility to do a plain text search without choosing a specific category.
+- **Plain text**: It provides the possibility to do a plain text search without choosing a specific category.
 
 
 ## Behaviour
