@@ -25,6 +25,10 @@ import { registerTheme } from '@siemens/ix-echarts';
 registerTheme(echarts);
 ```
 
+### Angular
+
+Please make sure to correctly add `NgxEcharts` in your module file.
+
 ## Examples
 
 <Playground
