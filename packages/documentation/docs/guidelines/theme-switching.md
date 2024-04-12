@@ -1,18 +1,12 @@
 ---
 sidebar_position: 2
 ---
-import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
-import PlaygroundV2 from '@site/src/components/PlaygroundV2';
 
-# Theme switching
+import DocsTabs from '@site/src/components/DocsTabs';
 
-## Working with themes during runtime
+import DocsUx from './\_theme-switching_styleguide.md';
+import DocsCode from './\_theme-switching_code.md';
 
-<ApiTableSinceTag message="1.3.0" />
+# Theme Switching
 
-<PlaygroundV2
-  name="theme-switcher"
-  height="15rem"
-  examplesByName  
->
-</PlaygroundV2>
+<DocsTabs styleguide={DocsUx} code={DocsCode} />
