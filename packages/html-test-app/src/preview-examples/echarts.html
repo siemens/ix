@@ -15,7 +15,7 @@ LICENSE file in the root directory of this source tree.
     <title>ECharts example</title>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
   </head>
-  <body class="theme-brand-dark">
+  <body class="">
     <!-- Preview code -->
     <div
       id="main"
@@ -29,26 +29,20 @@ LICENSE file in the root directory of this source tree.
     ></div>
 
     <script type="module">
-      import { registerTheme } from '@siemens/ix-echarts';
+      import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+      import { themeSwitcher } from '@siemens/ix';
 
-      // providing echarts is in this case optional
-      registerTheme(echarts);
+      function initChart(theme, options) {
+        var myChart = echarts.init(
+          document.querySelector('#main'),
+          convertThemeName(theme)
+        );
+        myChart.setOption(options);
 
-      function getTheme() {
-        const searchParams = new URLSearchParams(location.search);
-
-        if (!searchParams.has('theme')) {
-          return 'brand-dark';
-        }
-
-        const theme = searchParams.get('theme');
-
-        return theme.substring('theme-'.length, theme.length);
+        return myChart;
       }
 
-      var myChart = echarts.init(document.querySelector('#main'), getTheme());
-
-      myChart.setOption({
+      const options = {
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -161,6 +155,16 @@ LICENSE file in the root directory of this source tree.
             data: [62, 82, 91, 84, 109, 110, 120],
           },
         ],
+      };
+
+      // providing echarts is in this case optional
+      registerTheme(echarts);
+
+      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+
+      themeSwitcher.themeChanged.on((theme) => {
+        myChart.dispose();
+        myChart = initChart(theme, options);
       });
 
       window.onresize = function () {

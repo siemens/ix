@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
-import { registerTheme } from '@siemens/ix-echarts';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
@@ -17,7 +17,15 @@ import { EChartsOption } from 'echarts';
 export default function Echarts() {
   registerTheme(echarts);
 
-  const theme = themeSwitcher.getCurrentTheme().replace('theme-', '');
+  const [theme, setTheme] = useState(
+    convertThemeName(themeSwitcher.getCurrentTheme())
+  );
+
+  useEffect(() => {
+    themeSwitcher.themeChanged.on((theme: string) => {
+      setTheme(convertThemeName(theme));
+    });
+  }, []);
 
   const options: EChartsOption = {
     tooltip: {
