@@ -34,10 +34,8 @@ describe(`toast`, () => {
       '.toast-icon ix-icon'
     ) as HTMLIxIconElement;
 
-    console.log(icon);
-    console.log(icon.shadowRoot);
-
     expect(icon).toBeDefined();
+    expect(icon.shadowRoot).toBeDefined();
     expect(icon.name).toEqual('star');
   });
 });
