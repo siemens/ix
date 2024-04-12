@@ -203,11 +203,17 @@ test.describe('menu', () => {
     await page.goto('menu/basic');
 
     const menu = page.locator('ix-menu');
-    await expect(menu).not.toHaveClass('expanded');
+
+    const toggle = menu.locator('ix-menu-expand-icon');
+    await toggle.click();
 
     const item = page.locator('ix-menu-item').filter({
       hasText: 'Item 1',
     });
+
+    await toggle.click();
+
+    await expect(menu).not.toHaveClass('expanded');
 
     await item.hover();
     await page.waitForTimeout(1500);
