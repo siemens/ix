@@ -1498,11 +1498,11 @@ export namespace Components {
          */
         "breakpoint": Breakpoint;
         /**
-          * Does burger menu button display the expanded or the not expanded state
+          * Whether the menu expand icon displays the expanded state or not
          */
         "expanded": boolean;
         /**
-          * Accessibility label for the burger menu button (MANDATORY)
+          * Accessibility label for the menu expand icon (MANDATORY)
          */
         "ixAriaLabel": string;
         /**
@@ -5626,11 +5626,11 @@ declare namespace LocalJSX {
          */
         "breakpoint"?: Breakpoint;
         /**
-          * Does burger menu button display the expanded or the not expanded state
+          * Whether the menu expand icon displays the expanded state or not
          */
         "expanded"?: boolean;
         /**
-          * Accessibility label for the burger menu button (MANDATORY)
+          * Accessibility label for the menu expand icon (MANDATORY)
          */
         "ixAriaLabel"?: string;
         /**

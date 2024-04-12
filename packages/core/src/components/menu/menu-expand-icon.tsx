@@ -29,10 +29,10 @@ import { Breakpoint } from '../utils/breakpoints';
   shadow: true,
 })
 export class MenuExpandIcon {
-  /** Accessibility label for the burger menu button (MANDATORY) */
+  /** Accessibility label for the menu expand icon (MANDATORY) */
   @Prop() ixAriaLabel: string = 'Expand';
 
-  /** Does burger menu button display the expanded or the not expanded state */
+  /** Whether the menu expand icon displays the expanded state or not */
   @Prop({ reflect: true }) expanded = false;
 
   /** Controls which icon is displayed */

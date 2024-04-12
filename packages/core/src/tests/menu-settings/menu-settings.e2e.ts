@@ -49,6 +49,8 @@ regressionTest.describe('menu-settings', () => {
     await page.getByText('First Content').click();
     await page.getByText('Changed Label').click();
 
+    await expect(settings.locator('ix-tooltip')).toBeVisible();
+
     await expect(page).toHaveScreenshot({
       animations: 'disabled',
     });
