@@ -30,7 +30,7 @@
   background-color: var(--theme-color-1);
   border-radius: $default-border-radius;
 
-  transition: all $medium-time ease-out;
+  transition: all var(--theme-medium-time) ease-out;
 
   .toggle {
     z-index: 100;

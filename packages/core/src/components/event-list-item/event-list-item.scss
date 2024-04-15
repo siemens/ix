@@ -27,7 +27,7 @@ $default-event-list-item-height: 2.5rem;
     border-radius: var(--event-list-item-border-radius, $default-border-radius);
     background-color: var(--theme-event-item--background);
     overflow: hidden;
-    transition: $default-time;
+    transition: var(--theme-default-time);
     cursor: pointer;
     margin-bottom: var(--event-list-item-margin-bottom, $small-space);
 
