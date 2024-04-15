@@ -311,6 +311,7 @@ export class Select {
     } else {
       this.navigationItem = undefined;
       this.updateSelection();
+      this.inputFilterText = '';
     }
   }
 
