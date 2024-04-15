@@ -2,4 +2,4 @@
 "@siemens/ix-echarts": patch
 ---
 
-fix(echarts): themes
+fix(echarts): align charting colors
