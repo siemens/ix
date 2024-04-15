@@ -8,13 +8,8 @@
  */
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import {
-  IxButton,
-  IxIconButton,
-  IxSpinner,
-  IxTabItem,
-  IxTabs,
-} from '@siemens/ix-react';
+import { themeSwitcher } from '@siemens/ix';
+import { IxIconButton, IxSpinner, IxTabItem, IxTabs } from '@siemens/ix-react';
 import CodeBlock from '@theme/CodeBlock';
 import { useEffect, useState } from 'react';
 import { TargetFramework } from './framework-types';
@@ -117,6 +112,7 @@ async function fetchHTMLSource(
         return {
           filename: file,
           source: sliceHtmlCode(source),
+          raw: source,
         };
       } catch (e) {
         console.warn(e);
@@ -297,7 +293,14 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
               size="16"
               icon={`open-external`}
               onClick={() => {
-                window.open(`${iframe}/${props.name}.html`);
+                const theme: string = themeSwitcher.getCurrentTheme();
+                const noMargin: string = props.noMargin
+                  ? '&no-margin=true'
+                  : '';
+
+                window.open(
+                  `${iframe}/${props.name}.html?theme=${theme}${noMargin}`
+                );
               }}
             ></IxIconButton>
           ) : (
