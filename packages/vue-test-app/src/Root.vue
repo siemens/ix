@@ -27,6 +27,7 @@ import Breadcrumb from './preview-examples/breadcrumb.vue';
 import ButtonGroup from './preview-examples/button-group.vue';
 import ButtonWithIcon from './preview-examples/button-with-icon.vue';
 import Buttons from './preview-examples/buttons.vue';
+import Card from './preview-examples/card.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
@@ -122,6 +123,7 @@ const routes: any = {
   '/preview/application-header': ApplicationHeader,
   '/preview/application-breakpoints': ApplicationBreakpoints,
   '/preview/application-app-switch': ApplicationAppSwitch,
+  '/preview/card': Card,
   '/preview/content': content,
   '/preview/checkbox': Checkbox,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
