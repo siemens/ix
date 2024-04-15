@@ -239,7 +239,11 @@ export class Select {
     this.items.forEach((item) => {
       item.selected = ids.some(
         // Check can be removed if value is type of string in future releases
-        (i) => i === (item.value ? item.value.toString() : '')
+        (i) =>
+          i ===
+          (item.value !== undefined && item.value !== null
+            ? item.value.toString()
+            : '')
       );
     });
 
