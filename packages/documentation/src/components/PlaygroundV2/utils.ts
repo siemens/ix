@@ -37,7 +37,10 @@ function replaceScriptFilePath(source: string) {
   );
 }
 
-function replaceStyleFilepath(source: string, sameFolder: boolean = false) {
+export function replaceStyleFilepath(
+  source: string,
+  sameFolder: boolean = false
+) {
   var styleFileName: string | undefined;
   const regex = /styles-auto-gen\/(.*\.(css|scss))/;
   const match = source.match(regex);
@@ -124,7 +127,7 @@ async function openHtmlStackBlitz(
 
   const files: Record<string, string> = {};
   additionalFiles.forEach((file) => {
-    files[`src/${file.filename}`] = file.source;
+    files[`src/${file.filename}`] = file.raw;
   });
 
   sdk.openProject(
@@ -181,8 +184,8 @@ async function openAngularStackBlitz(
   ]);
 
   const declareComponents: string[] = [];
-  sourceFiles.forEach(({ filename, source }) => {
-    if (/@Component/gms.test(source)) {
+  sourceFiles.forEach(({ filename, raw }) => {
+    if (/@Component/gms.test(raw)) {
       declareComponents.push(filename);
     }
   });
@@ -205,7 +208,8 @@ async function openAngularStackBlitz(
 
   const files: Record<string, string> = {};
   const styleFiles: Record<string, string> = {};
-  const filePromises = sourceFiles.map(async ({ filename, source }) => {
+  const filePromises = sourceFiles.map(async ({ filename, raw }) => {
+    let source = raw;
     if (filename.endsWith('.ts')) {
       // set style filepath
       const { source: adaptedSource, styleFileName } = replaceStyleFilepath(
@@ -291,7 +295,8 @@ async function openReactStackBlitz(
 
   const files: Record<string, string> = {};
   const styleFiles: Record<string, string> = {};
-  const filePromises = sourceFiles.map(async ({ filename, source }) => {
+  const filePromises = sourceFiles.map(async ({ filename, raw }) => {
+    let source = raw;
     if (filename.endsWith('.tsx')) {
       const { source: adaptedSource, styleFileName } =
         replaceStyleFilepath(source);
@@ -372,7 +377,8 @@ async function openVueStackBlitz(
 
   const files: Record<string, string> = {};
   const styleFiles: Record<string, string> = {};
-  const filePromises = sourceFiles.map(async ({ filename, source }) => {
+  const filePromises = sourceFiles.map(async ({ filename, raw }) => {
+    let source = raw;
     if (filename.endsWith('.vue')) {
       const { source: adaptedSource, styleFileName } =
         replaceStyleFilepath(source);

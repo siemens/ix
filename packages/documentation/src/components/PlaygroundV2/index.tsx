@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { TargetFramework } from './framework-types';
 import Demo, { DemoProps } from './../Demo';
 import styles from './styles.module.css';
-import { openStackBlitz, SourceFile } from './utils';
+import { openStackBlitz, replaceStyleFilepath, SourceFile } from './utils';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 function getBranchPath(framework: TargetFramework) {
@@ -40,23 +40,50 @@ function getBranchPath(framework: TargetFramework) {
 
 function stripHeader(code: string) {
   return code
-    .replace(/\/\*\s*\n([^\*]|\*[^\/])*\*\/(\n)+/g, '')
-    .replace(/<!-.*SPD.*-->(\n)+/gms, '');
+    .replace(/\/\*[^]*?\*\//gs, '')
+    .replace(/<!--[^]*?-->/gs, '')
+    .trim();
 }
 
-function sliceHtmlCode(code: string) {
-  if (code.includes('<!-- Preview code -->')) {
-    const [__, source] = code.split('<!-- Preview code -->\n');
-    return stripHeader(
-      source
-        .split('\n')
-        .map((line) => line.replace(/[ ]{4}/, ''))
-        .join('\n')
-        .trimEnd()
-    );
+function extractCodePart(code: string, limiter: RegExp) {
+  const limiterMatches = code.match(limiter);
+
+  if (limiterMatches && limiterMatches.length === 2) {
+    const [_, intermediate] = code.split(limiter);
+
+    return intermediate
+      .split('\n')
+      .map((line) => line.replace(/[ ]{4}/, ''))
+      .join('\n')
+      .trim();
+  }
+
+  return '';
+}
+
+function sliceCode(code: string) {
+  const previewCode = extractCodePart(code, /<!-- Preview code -->/g);
+
+  if (previewCode) {
+    const headerSources = extractCodePart(code, /<!-- Sources -->/g);
+
+    if (headerSources) {
+      return (
+        '<!-- Include in header -->\n' +
+        headerSources +
+        '\n<!-- Include in header -->\n\n' +
+        previewCode
+      );
+    }
+
+    return previewCode;
   }
 
   return stripHeader(code);
+}
+
+function adaptCode(code: string) {
+  return replaceStyleFilepath(sliceCode(code), true).source;
 }
 
 async function fetchSource(path: string) {
@@ -111,7 +138,7 @@ async function fetchHTMLSource(
 
         return {
           filename: file,
-          source: sliceHtmlCode(source),
+          source: adaptCode(source),
           raw: source,
         };
       } catch (e) {
