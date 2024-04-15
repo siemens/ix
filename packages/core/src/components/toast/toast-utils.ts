@@ -41,12 +41,13 @@ export function getToastContainer() {
 }
 
 export function setToastPosition(position: ToastPosition) {
-  getToastContainer().position = position;
+  const container = getToastContainer();
+  container.position = position;
 }
 
-async function toast(config: ToastConfig): Promise<ShowToastResult> {
-  const context = getToastContainer();
-  return context.showToast(config);
+function toast(config: ToastConfig): Promise<ShowToastResult> {
+  const container = getToastContainer();
+  return container.showToast(config);
 }
 
 toast.info = (config: ToastConfig) => {
