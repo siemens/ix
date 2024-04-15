@@ -26,37 +26,12 @@ describe(`toast`, () => {
 
     await waitFor(() => {
       expect(toast).toBeInTheDocument();
-      expect(toast.shadowRoot).toBeDefined();
     });
 
-    const icon = toast.shadowRoot?.querySelector(
-      '.toast-icon ix-icon'
-    ) as HTMLIxIconElement;
+    const icon = (await screen.findByShadowTestId(
+      'toast-icon'
+    )) as HTMLIxIconElement;
 
-    await waitFor(() => {
-      expect(icon).toBeInTheDocument();
-    });
-
-    expect(icon?.name).toEqual('star');
-
-    // const toast = await screen.findByText('Foobar');
-    // const toastShadowRoot = toast.shadowRoot;
-
-    // expect(toast).toBeDefined();
-    // expect(toastShadowRoot).toBeDefined();
-    // expect(toast.innerText).toBe('Foobar');
-
-    // await customElements.whenDefined('ix-icon');
-
-    // const icon = toastShadowRoot?.querySelector(
-    //   '.toast-icon ix-icon'
-    // ) as HTMLIxIconElement;
-
-    // await waitFor(() => {
-    //   // expect(icon).toBeInThe
-    //   screen.querby
-    // });
-
-    // expect(icon.name).toEqual('star');
+    expect(icon.name).toEqual('star');
   });
 });
