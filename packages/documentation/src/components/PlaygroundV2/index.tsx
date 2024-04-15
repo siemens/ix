@@ -38,7 +38,7 @@ function getBranchPath(framework: TargetFramework) {
   return `siemens/ix/tree/${branch}/packages/${path}-test-app`;
 }
 
-function stripHeader(code: string) {
+function stripComments(code: string) {
   return code
     .replace(/\/\*[^]*?\*\//gs, '')
     .replace(/<!--[^]*?-->/gs, '')
@@ -51,11 +51,13 @@ function extractCodePart(code: string, limiter: RegExp) {
   if (limiterMatches && limiterMatches.length === 2) {
     const [_, intermediate] = code.split(limiter);
 
-    return intermediate
-      .split('\n')
-      .map((line) => line.replace(/[ ]{4}/, ''))
-      .join('\n')
-      .trim();
+    return stripComments(
+      intermediate
+        .split('\n')
+        .map((line) => line.replace(/[ ]{4}/, ''))
+        .join('\n')
+        .trim()
+    );
   }
 
   return '';
@@ -79,7 +81,7 @@ function sliceCode(code: string) {
     return previewCode;
   }
 
-  return stripHeader(code);
+  return stripComments(code);
 }
 
 function adaptCode(code: string) {
