@@ -12,6 +12,9 @@ import {
   toast,
   ToastConfig as IxToastConfig,
 } from '@siemens/ix';
+import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
+import { defineCustomElement as defineIxToastContainer } from '@siemens/ix/components/ix-toast-container.js';
+import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/dist/components/ix-icon';
 
 export type ToastConfig = {
   message: string | HTMLElement;
@@ -24,6 +27,11 @@ export function setToastPosition(position: 'bottom-right' | 'top-right') {
 export async function showToast(
   config: Omit<IxToastConfig, 'message'> & ToastConfig
 ) {
+  // Define components upfront to prevent undefined components
+  defineIxIcon();
+  defineIxToastContainer();
+  defineIxToast();
+
   if (typeof config.message === 'string') {
     const toastInstance = await toast(config as IxToastConfig);
     return toastInstance;
