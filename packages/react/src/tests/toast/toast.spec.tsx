@@ -26,6 +26,7 @@ describe(`toast`, () => {
 
     await waitFor(() => {
       expect(toast).toBeInTheDocument();
+      expect(toast.shadowRoot).toBeDefined();
     });
 
     const icon = toast.shadowRoot?.querySelector(
