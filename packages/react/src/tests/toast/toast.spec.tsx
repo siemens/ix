@@ -34,9 +34,8 @@ describe(`toast`, () => {
       '.toast-icon ix-icon'
     ) as HTMLIxIconElement;
 
-    expect(icon).toBeDefined();
-
     await waitFor(() => {
+      expect(icon).toBeDefined();
       expect(icon.shadowRoot).toBeDefined();
     });
 
