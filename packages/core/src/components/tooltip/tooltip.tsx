@@ -91,8 +91,8 @@ export class Tooltip implements IxComponent {
   private disposeAutoUpdate?: () => void;
   private disposeListener: () => void;
 
-  private get arrowElement() {
-    return this.hostElement.shadowRoot.querySelector('.arrow') as HTMLElement;
+  private get arrowElement(): HTMLElement {
+    return this.hostElement.shadowRoot.querySelector('.arrow');
   }
 
   private destroyAutoUpdate() {
@@ -113,10 +113,13 @@ export class Tooltip implements IxComponent {
   @Method()
   async showTooltip(anchorElement: any) {
     clearTimeout(this.hideTooltipTimeout);
-    await this.computeTooltipPosition(anchorElement);
+    await this.applyTooltipPosition(anchorElement);
 
     this.showTooltipTimeout = setTimeout(() => {
       this.visible = true;
+      // Need to compute and apply tooltip position after initial rendered,
+      // because arrow has no valid bounding rect before that
+      this.applyTooltipPosition(anchorElement);
     }, this.showDelay);
   }
 
@@ -168,39 +171,44 @@ export class Tooltip implements IxComponent {
   }
 
   private async computeTooltipPosition(target: Element) {
+    const computeResponse = await computePosition(target, this.hostElement, {
+      strategy: 'fixed',
+      placement: this.placement,
+      middleware: [
+        shift(),
+        offset(8),
+        arrow({
+          element: this.arrowElement,
+        }),
+        flip({
+          fallbackStrategy: 'initialPlacement',
+          padding: 10,
+        }),
+      ],
+    });
+    return computeResponse;
+  }
+
+  private applyTooltipArrowPosition(computeResponse: ComputePositionReturn) {
+    const arrowPosition = this.computeArrowPosition(computeResponse);
+    Object.assign(this.arrowElement.style, arrowPosition);
+  }
+
+  private async applyTooltipPosition(target: Element) {
     if (!target) {
       return;
     }
 
-    return new Promise<void>((resolve) => {
+    return new Promise<ComputePositionReturn>((resolve) => {
       this.disposeAutoUpdate = autoUpdate(
         target,
         this.hostElement,
         async () => {
           setTimeout(async () => {
-            const computeResponse = await computePosition(
-              target,
-              this.hostElement,
-              {
-                strategy: 'fixed',
-                placement: this.placement,
-                middleware: [
-                  shift(),
-                  offset(8),
-                  arrow({
-                    element: this.arrowElement,
-                  }),
-                  flip({
-                    fallbackStrategy: 'initialPlacement',
-                    padding: 10,
-                  }),
-                ],
-              }
-            );
+            const computeResponse = await this.computeTooltipPosition(target);
 
             if (computeResponse.middlewareData.arrow) {
-              const arrowPosition = this.computeArrowPosition(computeResponse);
-              Object.assign(this.arrowElement.style, arrowPosition);
+              this.applyTooltipArrowPosition(computeResponse);
             }
 
             const { x, y } = computeResponse;
@@ -209,7 +217,7 @@ export class Tooltip implements IxComponent {
               top: y !== null ? `${y}px` : '',
             });
 
-            resolve();
+            resolve(computeResponse);
           });
         },
         {
