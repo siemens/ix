@@ -415,27 +415,6 @@ async function openVueStackBlitz(
   );
 }
 
-async function getSourceCodeFiles(
-  baseUrl: string,
-  framework: TargetFramework,
-  filenames: string[]
-) {
-  const getPath = (name: string) =>
-    `${baseUrl}auto-generated/previews/${framework}/${name}`;
-
-  const sourceFiles: { filename: string; sourceCode: string }[] = [];
-  const files = await loadSourceCodeFromStatic(filenames.map(getPath));
-
-  files.forEach((value, index) => {
-    sourceFiles.push({
-      filename: filenames[index],
-      sourceCode: value,
-    });
-  });
-
-  return sourceFiles;
-}
-
 export async function openStackBlitz({
   name,
   framework,
