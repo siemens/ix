@@ -38,5 +38,5 @@ With our content header variants, you can make it easer for easier for you to ac
 
 ## Related patterns
 
-- [Application header](./application-frame/_application-header_styleguide.md)
-- [Content](./application-frame/_content_styleguide.md) 
+- [Application header](./application-frame/application-header.md)
+- [Content](./application-frame/content.md) 
