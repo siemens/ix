@@ -157,7 +157,10 @@ export class WorkflowStep {
     ) : null;
 
     return (
-      <Host onClick={() => this.onStepClick()}>
+      <Host
+        class={{ 'host-vertical': this.vertical }}
+        onClick={() => this.onStepClick()}
+      >
         <div
           tabIndex={0}
           class={{
