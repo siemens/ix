@@ -46,7 +46,7 @@ const htmlRootPath = path.join('..', 'html-test-app');
 const angularRootPath = path.join('..', 'angular-test-app');
 const reactRootPath = path.join('..', 'react-test-app');
 const vueRootPath = path.join('..', 'vue-test-app');
-
+const distPath = path.join('.', 'dist');
 const stylesPath = path.join('src', 'preview-examples', 'styles-auto-gen');
 
 const htmlDestination = path.join(htmlRootPath, stylesPath);
@@ -59,6 +59,7 @@ const destinationDirs = [
   angularDestination,
   reactDestination,
   vueDestination,
+  distPath,
 ];
 
 // delete folders
