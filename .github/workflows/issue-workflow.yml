@@ -6,6 +6,7 @@ on:
 
 jobs:
   comment-workflow:
+    if: ${{ github.repository == 'siemens/ix' }}
     runs-on: ubuntu-latest
     steps:
 

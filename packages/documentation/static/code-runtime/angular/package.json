@@ -18,7 +18,10 @@
     "@popperjs/core": "^2.11.6",
     "@siemens/ix": "<VERSION>",
     "@siemens/ix-angular": "<VERSION>",
+    "@siemens/ix-echarts": "<VERSION>",
     "@siemens/ix-icons": "latest",
+    "ngx-echarts": "~14.0.0",
+    "echarts": "^5.4.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
