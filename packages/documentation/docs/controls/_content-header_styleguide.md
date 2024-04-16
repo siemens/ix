@@ -11,6 +11,9 @@ We typically use it at the very top of the page.
 ## Variants
 With our content header variants, you can make it easer for easier for you to achieve a well-balanced visual hierarchy throughout the page.
 
+* Primary: In our applications, we most often use the primary variant for main pages or primary sections.
+* Secondary: It is typically used when you want to provide context or actions for a specific section of a page, such as when displaying detailed information related to a selected item from a list.
+
 ![Content header variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2250-9102&mode=design&t=XmCepM9jPR9PImPw-4)
 
 ## Options
