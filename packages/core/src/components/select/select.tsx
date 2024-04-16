@@ -595,12 +595,16 @@ export class Select {
   }
 
   private placeholderValue() {
-    if (this.editable) {
-      return this.i18nPlaceholderEditable;
+    if (this.disabled) {
+      return '';
     }
 
     if (this.readonly) {
       return '';
+    }
+
+    if (this.editable) {
+      return this.i18nPlaceholderEditable;
     }
 
     return this.i18nPlaceholder;
