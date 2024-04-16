@@ -84,8 +84,8 @@ body {
   margin-top: 5.125rem;
   margin-left: 6.25rem;
   margin-right: 0;
-
-  max-width: 75rem;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 @media (min-width: 1440px) {
