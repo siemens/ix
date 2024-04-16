@@ -92,6 +92,10 @@ export class WorkflowSteps {
     });
   }
 
+  componentWillLoad() {
+    this.updateSteps();
+  }
+
   componentDidLoad() {
     this.observer = createMutationObserver((mutations) => {
       for (let mutation of mutations) {
