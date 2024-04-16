@@ -683,6 +683,9 @@ importers:
       rollup-plugin-terser:
         specifier: ^7.0.2
         version: 7.0.2(rollup@2.79.1)
+      shadow-dom-testing-library:
+        specifier: ^1.11.2
+        version: 1.11.2(@testing-library/dom@8.20.1)
       typescript:
         specifier: ^4.5.5
         version: 4.9.5
@@ -23265,6 +23268,15 @@ packages:
 
   /setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
+
+  /shadow-dom-testing-library@1.11.2(@testing-library/dom@8.20.1):
+    resolution: {integrity: sha512-iZW5mLQob5UlWfT2KEF8YYLuLYMLQeoda0mNeB+KEQIzzwb+mASR1mhKfGjDds9jWNZMX1V443FDYAbaaNMAVw==}
+    engines: {node: '>= 14', npm: '>= 7'}
+    peerDependencies:
+      '@testing-library/dom': '>= 8'
+    dependencies:
+      '@testing-library/dom': 8.20.1
+    dev: true
 
   /shallow-clone@3.0.1:
     resolution: {integrity: sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==}
