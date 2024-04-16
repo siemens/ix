@@ -143,7 +143,7 @@
       .text {
         margin-top: 0;
         margin-left: $default-space;
-        padding: 0;
+        padding: 0 $small-space 0 0;
         width: auto;
       }
     }
