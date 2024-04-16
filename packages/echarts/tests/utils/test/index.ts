@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,10 +7,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-
-function App() {
-  return <div></div>;
-}
-
-export default App;
+export * from './page';

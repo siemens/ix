@@ -115,6 +115,7 @@ import Tree from './preview-examples/tree.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
+import Echarts from './preview-examples/echarts.vue';
 
 const routes: any = {
   '/': App,
@@ -145,6 +146,7 @@ const routes: any = {
   '/preview/drawer-full-height': DrawerFullHeight,
   '/preview/dropdown': Dropdown,
   '/preview/dropdown-icon': DropdownIcon,
+  '/preview/echarts': Echarts,
   '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomHeight,
