@@ -16,8 +16,8 @@ regressionTest.describe('basic navigation large', () => {
     await page.setViewportSize(viewPorts.lg);
     await page.waitForTimeout(500);
 
-    await page.locator('ix-menu ix-burger-menu').click();
-    await page.waitForSelector('ix-menu ix-burger-menu.expanded');
+    await page.locator('ix-menu ix-menu-expand-icon').click();
+    await page.waitForSelector('ix-menu ix-menu-expand-icon.expanded');
 
     await page.waitForTimeout(1000);
 
@@ -32,8 +32,8 @@ regressionTest.describe('basic navigation large', () => {
     await page.setViewportSize(viewPorts.lg);
     await page.waitForTimeout(500);
 
-    await page.locator('ix-menu ix-burger-menu').click();
-    await page.waitForSelector('ix-menu ix-burger-menu.expanded');
+    await page.locator('ix-menu ix-menu-expand-icon').click();
+    await page.waitForSelector('ix-menu ix-menu-expand-icon.expanded');
 
     await expect(page.getByText('Example content')).toBeVisible();
 
@@ -79,8 +79,8 @@ regressionTest.describe('basic navigation', () => {
     await page.setViewportSize(viewPorts.md);
     await page.waitForTimeout(500);
 
-    await page.locator('ix-menu ix-burger-menu').click();
-    await page.waitForSelector('ix-menu ix-burger-menu.expanded');
+    await page.locator('ix-menu ix-menu-expand-icon').click();
+    await page.waitForSelector('ix-menu ix-menu-expand-icon.expanded');
 
     await expect(
       page.locator('ix-menu').locator('.menu.expanded')
@@ -119,7 +119,7 @@ regressionTest.describe('basic navigation mobile', () => {
 
     await page.waitForTimeout(500);
     const menuElement = await page.waitForSelector(
-      'ix-application-header ix-burger-menu'
+      'ix-application-header ix-menu-expand-icon'
     );
     await menuElement.click();
 
@@ -141,7 +141,7 @@ regressionTest.describe('basic navigation mobile', () => {
 
     await page.waitForTimeout(500);
     const menuElement = await page.waitForSelector(
-      'ix-application-header ix-burger-menu'
+      'ix-application-header ix-menu-expand-icon'
     );
     await menuElement.click();
     await expect(
@@ -192,7 +192,7 @@ regressionTest.describe('basic navigation mobile', () => {
     // Animation
     await page.waitForTimeout(500);
 
-    const toggleMenuButton = page.locator('ix-burger-menu').nth(0);
+    const toggleMenuButton = page.locator('ix-menu-expand-icon').nth(0);
     await expect(toggleMenuButton).toBeVisible();
     await toggleMenuButton.click();
 
@@ -236,6 +236,24 @@ regressionTest.describe('application-switch', () => {
     await page.waitForTimeout(1000);
     const modal = page.locator('ix-modal');
     await expect(modal).toHaveClass(/hydrated/);
+
+    await expect(page).toHaveScreenshot({
+      fullPage: true,
+      animations: 'disabled',
+    });
+  });
+});
+
+Object.keys(viewPorts).forEach((viewPort) => {
+  regressionTest(`MenuSidebar ${viewPort}`, async ({ page }) => {
+    await page.setViewportSize(viewPorts[viewPort]);
+    await page.goto('application/application-switch');
+
+    const toggleMenuButton = page.locator('ix-menu-expand-icon').nth(0);
+
+    await toggleMenuButton.click();
+
+    await expect(page.locator('ix-menu')).toHaveClass(/expanded/);
 
     await expect(page).toHaveScreenshot({
       fullPage: true,

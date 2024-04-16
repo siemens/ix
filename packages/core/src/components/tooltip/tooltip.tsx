@@ -25,6 +25,7 @@ import {
   State,
 } from '@stencil/core';
 import { OnListener } from '../utils/listener';
+import { IxComponent } from '../utils/internal';
 
 type ArrowPosition = {
   top?: string;
@@ -45,11 +46,11 @@ const numberToPixel = (value: number) => (value != null ? `${value}px` : '');
   styleUrl: 'tooltip.scss',
   shadow: true,
 })
-export class Tooltip {
+export class Tooltip implements IxComponent {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
-  @Prop() for: string;
+  @Prop() for: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Title of the tooltip
@@ -70,6 +71,12 @@ export class Tooltip {
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
   /** @internal */
+  @Prop() showDelay = 0;
+
+  /** @internal */
+  @Prop() hideDelay = 50;
+
+  /** @internal */
   @Prop() animationFrame = false;
 
   @State() visible = false;
@@ -78,15 +85,14 @@ export class Tooltip {
 
   private observer: MutationObserver;
   private hideTooltipTimeout: NodeJS.Timeout;
+  private showTooltipTimeout: NodeJS.Timeout;
   private onEnterElementBind = this.onTooltipShow.bind(this);
   private onLeaveElementBind = this.onTooltipHide.bind(this);
   private disposeAutoUpdate?: () => void;
-  private tooltipCloseTimeInMS = 50;
+  private disposeListener: () => void;
 
-  private disposeListener: Function;
-
-  private get arrowElement() {
-    return this.hostElement.shadowRoot.querySelector('.arrow') as HTMLElement;
+  private get arrowElement(): HTMLElement {
+    return this.hostElement.shadowRoot.querySelector('.arrow');
   }
 
   private destroyAutoUpdate() {
@@ -107,16 +113,25 @@ export class Tooltip {
   @Method()
   async showTooltip(anchorElement: any) {
     clearTimeout(this.hideTooltipTimeout);
-    await this.computeTooltipPosition(anchorElement);
-    this.visible = true;
+    await this.applyTooltipPosition(anchorElement);
+
+    this.showTooltipTimeout = setTimeout(() => {
+      this.visible = true;
+      // Need to compute and apply tooltip position after initial render,
+      // because arrow has no valid bounding rect before that
+      this.applyTooltipPosition(anchorElement);
+    }, this.showDelay);
   }
 
   /** @internal */
   @Method()
   async hideTooltip() {
+    clearTimeout(this.showTooltipTimeout);
+    const hideDelay = this.interactive ? 150 : this.hideDelay;
+
     this.hideTooltipTimeout = setTimeout(() => {
       this.visible = false;
-    }, this.tooltipCloseTimeInMS);
+    }, hideDelay);
     this.destroyAutoUpdate();
   }
 
@@ -156,39 +171,44 @@ export class Tooltip {
   }
 
   private async computeTooltipPosition(target: Element) {
+    const computeResponse = await computePosition(target, this.hostElement, {
+      strategy: 'fixed',
+      placement: this.placement,
+      middleware: [
+        shift(),
+        offset(8),
+        arrow({
+          element: this.arrowElement,
+        }),
+        flip({
+          fallbackStrategy: 'initialPlacement',
+          padding: 10,
+        }),
+      ],
+    });
+    return computeResponse;
+  }
+
+  private applyTooltipArrowPosition(computeResponse: ComputePositionReturn) {
+    const arrowPosition = this.computeArrowPosition(computeResponse);
+    Object.assign(this.arrowElement.style, arrowPosition);
+  }
+
+  private async applyTooltipPosition(target: Element) {
     if (!target) {
       return;
     }
 
-    return new Promise<void>((resolve) => {
+    return new Promise<ComputePositionReturn>((resolve) => {
       this.disposeAutoUpdate = autoUpdate(
         target,
         this.hostElement,
         async () => {
           setTimeout(async () => {
-            const computeResponse = await computePosition(
-              target,
-              this.hostElement,
-              {
-                strategy: 'fixed',
-                placement: this.placement,
-                middleware: [
-                  shift(),
-                  offset(8),
-                  arrow({
-                    element: this.arrowElement,
-                  }),
-                  flip({
-                    fallbackStrategy: 'initialPlacement',
-                    padding: 10,
-                  }),
-                ],
-              }
-            );
+            const computeResponse = await this.computeTooltipPosition(target);
 
             if (computeResponse.middlewareData.arrow) {
-              const arrowPosition = this.computeArrowPosition(computeResponse);
-              Object.assign(this.arrowElement.style, arrowPosition);
+              this.applyTooltipArrowPosition(computeResponse);
             }
 
             const { x, y } = computeResponse;
@@ -197,7 +217,7 @@ export class Tooltip {
               top: y !== null ? `${y}px` : '',
             });
 
-            resolve();
+            resolve(computeResponse);
           });
         },
         {
@@ -216,12 +236,23 @@ export class Tooltip {
     }
   }
 
-  private queryAnchorElements() {
-    return Array.from(document.querySelectorAll(this.for));
+  private async queryAnchorElements(): Promise<Array<HTMLElement>> {
+    if (typeof this.for === 'string') {
+      return Promise.resolve(Array.from(document.querySelectorAll(this.for)));
+    }
+
+    if (this.for instanceof HTMLElement) {
+      return Promise.resolve([this.for]);
+    }
+
+    if (this.for instanceof Promise) {
+      const element = await this.for;
+      return [element];
+    }
   }
 
-  private registerTriggerListener() {
-    const triggerElementList = this.queryAnchorElements();
+  private async registerTriggerListener() {
+    const triggerElementList = await this.queryAnchorElements();
 
     if (this.disposeListener) {
       this.disposeListener();
@@ -262,10 +293,6 @@ export class Tooltip {
   }
 
   componentDidLoad() {
-    if (this.interactive) {
-      this.tooltipCloseTimeInMS = 150;
-    }
-
     this.observer = new MutationObserver(() => {
       this.registerTriggerListener();
     });
@@ -286,10 +313,6 @@ export class Tooltip {
   }
 
   render() {
-    const tooltipContentClass = {
-      'tooltip-content': true,
-    };
-
     return (
       <Host
         class={{
@@ -304,7 +327,7 @@ export class Tooltip {
             <slot name="title-content"></slot>
           </ix-typography>
         </div>
-        <div class={tooltipContentClass}>
+        <div class={'tooltip-content'}>
           <slot></slot>
         </div>
         <div class="arrow"></div>
