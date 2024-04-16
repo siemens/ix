@@ -36,3 +36,34 @@ test.describe('a11y', () => {
     await expect(tooltip).not.toBeVisible();
   });
 });
+
+test('show tooltip after delay', async ({ mount, page }) => {
+  await mount(`
+    <ix-tooltip for=".test" show-delay="1000">tooltip</ix-tooltip>
+    <ix-button class="test">button</ix-button>
+  `);
+  const tooltip = page.locator('ix-tooltip');
+  const button = page.locator('ix-button');
+
+  await button.hover();
+  await expect(tooltip).not.toBeVisible();
+  await page.waitForTimeout(1000);
+  await expect(tooltip).toBeVisible();
+});
+
+test('hide tooltip after delay', async ({ mount, page }) => {
+  await mount(`
+    <div style="margin: 2rem">
+      <ix-tooltip for=".test" hide-delay="1000">tooltip</ix-tooltip>
+      <ix-button class="test">button</ix-button>
+    </div>
+  `);
+  const tooltip = page.locator('ix-tooltip');
+  const button = page.locator('ix-button');
+
+  await button.hover();
+  await expect(tooltip).toBeVisible();
+  await page.mouse.move(0, 0);
+  await page.waitForTimeout(1000);
+  await expect(tooltip).not.toBeVisible();
+});

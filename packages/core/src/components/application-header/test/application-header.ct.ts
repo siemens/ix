@@ -42,7 +42,7 @@ test('not response inside map navigation', async ({ mount, page }) => {
     `
   );
   const header = page.locator('ix-map-navigation ix-application-header');
-  const burger = header.locator('ix-burger-menu');
+  const burger = header.locator('ix-menu-expand-icon');
 
   await expect(burger).not.toBeVisible();
   await expect(header).toHaveClass(/breakpoint-md/);

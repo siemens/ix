@@ -10,6 +10,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
+    if: ${{ github.repository == 'siemens/ix' }}
     name: Release
     runs-on: ubuntu-latest
     steps:

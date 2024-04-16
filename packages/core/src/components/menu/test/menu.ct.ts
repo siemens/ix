@@ -79,7 +79,7 @@ test('should be closed after menu click when NOT pinned', async ({
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
   const menu = page.locator('ix-menu');
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
   await expect(menu).toHaveClass(/expanded/);
@@ -104,7 +104,7 @@ test('should stay open after menu click when pinned', async ({
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
   const menu = page.locator('ix-menu');
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
   await expect(menu).toHaveClass(/expanded/);
@@ -238,8 +238,8 @@ test('should close menu by bottom icon click', async ({ mount, page }) => {
 
   const element = page.locator('ix-menu');
 
-  await page.locator('ix-menu ix-burger-menu').click();
-  await page.waitForSelector('ix-menu ix-burger-menu.expanded');
+  await page.locator('ix-menu ix-menu-expand-icon').click();
+  await page.waitForSelector('ix-menu ix-menu-expand-icon.expanded');
 
   const innerMenu = element.locator('.menu');
   await expect(innerMenu).toHaveClass(/expanded/);

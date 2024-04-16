@@ -17,6 +17,7 @@ on:
 jobs:
   deploy_nightly:
     runs-on: ubuntu-latest
+    if: ${{ github.repository == 'siemens/ix' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
