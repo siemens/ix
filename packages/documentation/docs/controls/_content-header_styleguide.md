@@ -8,7 +8,6 @@ We typically use it at the very top of the page.
 3. Content subtitle
 4. Action buttons
 
-
 ## Variants
 With our content header variants, you can make it easer for easier for you to achieve a well-balanced visual hierarchy throughout the page.
 
