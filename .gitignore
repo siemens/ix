@@ -6,6 +6,7 @@
 /dist
 /tmp
 /out-tsc
+**/styles-auto-gen
 
 # dependencies
 node_modules
