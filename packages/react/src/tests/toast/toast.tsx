@@ -8,12 +8,21 @@
  */
 
 import React from 'react';
-import { IxButton } from '../../components';
+import { IxButton, showToast } from '../../';
 
 const Index = () => {
   return (
     <>
-      <IxButton onClick={() => console.log('Hallo')}>Hallo</IxButton>
+      <IxButton
+        onClick={async () => {
+          await showToast({
+            icon: 'star',
+            message: 'Foobar',
+          });
+        }}
+      >
+        Hallo
+      </IxButton>
     </>
   );
 };

@@ -571,3 +571,43 @@ test('Nested dropdowns within application-header', async ({ mount, page }) => {
   await expect(submenuDropdown).not.toBeVisible();
   await expect(dropdownOfDropdownButton).not.toBeVisible();
 });
+
+test.describe('resolve during element connect', () => {
+  test.beforeEach(async ({ mount }) => {
+    await mount(`
+    <ix-button id="trigger">Open</ix-button>
+    <ix-dropdown trigger="trigger">
+      <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
+      <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+      <ix-dropdown-item>Custom</ix-dropdown-item>
+    </ix-dropdown>
+    `);
+  });
+
+  test('attach and detach from dom', async ({ page }) => {
+    await page.evaluate(() => {
+      const dropdown = document.querySelector('ix-dropdown');
+      const mount = document.querySelector('#mount');
+      mount.removeChild(dropdown);
+      mount.append(dropdown);
+    });
+
+    const dropdown = page.locator('ix-dropdown');
+    await page.locator('ix-button').first().click();
+
+    await expect(dropdown).toBeVisible();
+  });
+
+  test('add element within runtime', async ({ page }) => {
+    await page.evaluate(async () => {
+      const divElement = document.createElement('div');
+      const mount = document.querySelector('#mount');
+      mount.appendChild(divElement);
+    });
+
+    const dropdown = page.locator('ix-dropdown');
+    await page.locator('ix-button').first().click();
+
+    await expect(dropdown).toBeVisible();
+  });
+});
