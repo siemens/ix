@@ -550,6 +550,8 @@ importers:
         specifier: latest
         version: 3.0.3
 
+  packages/example-styles: {}
+
   packages/figma-plugin:
     dependencies:
       axios:
