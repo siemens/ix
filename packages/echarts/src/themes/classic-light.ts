@@ -6,17 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 export default {
-  version: 1,
   themeName: 'classic-light',
   theme: {
-    seriesCnt: 3,
-    backgroundColor: 'rgba(0,0,0,0)',
-    titleColor: '#000000',
-    subtitleColor: '#000000',
-    textColorShow: false,
-    textColor: 'rgba(0,0,0,0.75)',
-    markTextColor: '#ffffff',
     color: [
       '#00b8a6',
       '#0094f0',
@@ -29,122 +22,340 @@ export default {
       '#dd886a',
       '#909700',
     ],
-    borderColor: '#000000',
-    borderWidth: 0,
-    visualMapColor: ['#dc0031', '#ff8d00', '#f0b800'],
-    legendTextColor: '#000000',
+    backgroundColor: 'rgba(0,0,0,0)',
+    textStyle: {},
+    title: {
+      textStyle: {
+        color: '#000000',
+      },
+      subtextStyle: {
+        color: '#000000',
+      },
+    },
+    line: {
+      itemStyle: {
+        borderWidth: 1,
+      },
+      lineStyle: {
+        width: 2,
+      },
+      symbolSize: 4,
+      symbol: 'circle',
+      smooth: false,
+    },
+    radar: {
+      itemStyle: {
+        borderWidth: 1,
+      },
+      lineStyle: {
+        width: 2,
+      },
+      symbolSize: 4,
+      symbol: 'circle',
+      smooth: false,
+    },
+    bar: {
+      itemStyle: {
+        barBorderWidth: 0,
+        barBorderColor: '#000000',
+      },
+    },
+    pie: {
+      itemStyle: {
+        borderWidth: 0,
+        borderColor: '#000000',
+      },
+    },
+    scatter: {
+      itemStyle: {
+        borderWidth: 0,
+        borderColor: '#000000',
+      },
+    },
+    boxplot: {
+      itemStyle: {
+        borderWidth: 0,
+        borderColor: '#000000',
+      },
+    },
+    parallel: {
+      itemStyle: {
+        borderWidth: 0,
+        borderColor: '#000000',
+      },
+    },
+    sankey: {
+      itemStyle: {
+        borderWidth: 0,
+        borderColor: '#000000',
+      },
+    },
+    funnel: {
+      itemStyle: {
+        borderWidth: 0,
+        borderColor: '#000000',
+      },
+    },
+    gauge: {
+      itemStyle: {
+        borderWidth: 0,
+        borderColor: '#000000',
+      },
+    },
+    candlestick: {
+      itemStyle: {
+        color: '#339b00',
+        color0: '#dc0031',
+        borderColor: '#339b00',
+        borderColor0: '#dc0031',
+        borderWidth: 1,
+      },
+    },
+    graph: {
+      itemStyle: {
+        borderWidth: 0,
+        borderColor: '#000000',
+      },
+      lineStyle: {
+        width: '1',
+        color: '#000000',
+      },
+      symbolSize: 4,
+      symbol: 'circle',
+      smooth: false,
+      color: [
+        '#00b8a6',
+        '#0094f0',
+        '#b63b8c',
+        '#617d8c',
+        '#2351a4',
+        '#5560ff',
+        '#94947b',
+        '#007362',
+        '#dd886a',
+        '#909700',
+      ],
+      label: {
+        color: '#ffffff',
+      },
+    },
+    categoryAxis: {
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: 'rgba(0,0,0,0.3)',
+        },
+      },
+      axisTick: {
+        show: true,
+        lineStyle: {
+          color: 'rgba(0,0,0,0.3)',
+        },
+      },
+      axisLabel: {
+        show: true,
+        color: 'rgba(0,0,0,0.75)',
+      },
+      splitLine: {
+        show: true,
+        lineStyle: {
+          color: ['rgba(0,0,0,0.1)'],
+        },
+      },
+      splitArea: {
+        show: false,
+        areaStyle: {
+          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+        },
+      },
+    },
+    valueAxis: {
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: 'rgba(0,0,0,0.3)',
+        },
+      },
+      axisTick: {
+        show: true,
+        lineStyle: {
+          color: 'rgba(0,0,0,0.3)',
+        },
+      },
+      axisLabel: {
+        show: true,
+        color: 'rgba(0,0,0,0.75)',
+      },
+      splitLine: {
+        show: true,
+        lineStyle: {
+          color: ['rgba(0,0,0,0.1)'],
+        },
+      },
+      splitArea: {
+        show: false,
+        areaStyle: {
+          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+        },
+      },
+    },
+    logAxis: {
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: 'rgba(0,0,0,0.3)',
+        },
+      },
+      axisTick: {
+        show: true,
+        lineStyle: {
+          color: 'rgba(0,0,0,0.3)',
+        },
+      },
+      axisLabel: {
+        show: true,
+        color: 'rgba(0,0,0,0.75)',
+      },
+      splitLine: {
+        show: true,
+        lineStyle: {
+          color: ['rgba(0,0,0,0.1)'],
+        },
+      },
+      splitArea: {
+        show: false,
+        areaStyle: {
+          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+        },
+      },
+    },
+    timeAxis: {
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: 'rgba(0,0,0,0.3)',
+        },
+      },
+      axisTick: {
+        show: true,
+        lineStyle: {
+          color: 'rgba(0,0,0,0.3)',
+        },
+      },
+      axisLabel: {
+        show: true,
+        color: 'rgba(0,0,0,0.75)',
+      },
+      splitLine: {
+        show: true,
+        lineStyle: {
+          color: ['rgba(0,0,0,0.1)'],
+        },
+      },
+      splitArea: {
+        show: false,
+        areaStyle: {
+          color: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+        },
+      },
+    },
+    toolbox: {
+      iconStyle: {
+        borderColor: '#000000',
+      },
+      emphasis: {
+        iconStyle: {
+          borderColor: '#000000',
+        },
+      },
+    },
     legend: {
       textStyle: {
         color: '#000000',
       },
     },
-    kColor: '#dc0031',
-    kColor0: '#339b00',
-    kBorderColor: '#dc0031',
-    kBorderColor0: '#339b00',
-    kBorderWidth: 1,
-    lineWidth: 2,
-    symbolSize: 4,
-    symbol: 'circle',
-    symbolBorderWidth: 1,
-    lineSmooth: false,
-    graphLineWidth: '1',
-    graphLineColor: '#000000',
-    mapLabelColor: '#fff',
-    mapLabelColorE: 'rgb(100,0,0)',
-    mapBorderColor: '#444',
-    mapBorderColorE: '#444',
-    mapBorderWidth: 0.5,
-    mapBorderWidthE: 1,
-    mapAreaColor: '#eee',
-    mapAreaColorE: 'rgba(255,215,0,0.8)',
-    axes: [
-      {
-        type: 'all',
-        name: '通用坐标轴',
-        axisLineShow: true,
-        axisLineColor: 'rgba(0,0,0,0.3)',
-        axisTickShow: true,
-        axisTickColor: 'rgba(0,0,0,0.3)',
-        axisLabelShow: true,
-        axisLabelColor: 'rgba(0,0,0,0.75)',
-        splitLineShow: true,
-        splitLineColor: ['rgba(0,0,0,0.1)'],
-        splitAreaShow: false,
-        splitAreaColor: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+    tooltip: {
+      backgroundColor: '#eff0f1',
+      borderColor: '#eff0f1',
+      textStyle: {
+        color: 'rgba(0, 10, 20, .9)',
       },
-      {
-        type: 'category',
-        name: '类目坐标轴',
-        axisLineShow: true,
-        axisLineColor: '#6E7079',
-        axisTickShow: true,
-        axisTickColor: '#6E7079',
-        axisLabelShow: true,
-        axisLabelColor: '#6E7079',
-        splitLineShow: false,
-        splitLineColor: ['#E0E6F1'],
-        splitAreaShow: false,
-        splitAreaColor: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+      axisPointer: {
+        lineStyle: {
+          color: '#000000',
+          width: '1',
+        },
+        crossStyle: {
+          color: '#000000',
+          width: '1',
+        },
       },
-      {
-        type: 'value',
-        name: '数值坐标轴',
-        axisLineShow: true,
-        axisLineColor: '#6E7079',
-        axisTickShow: false,
-        axisTickColor: '#6E7079',
-        axisLabelShow: true,
-        axisLabelColor: '#6E7079',
-        splitLineShow: true,
-        splitLineColor: ['#E0E6F1'],
-        splitAreaShow: false,
-        splitAreaColor: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+    },
+    timeline: {
+      lineStyle: {
+        color: 'transparent',
+        width: '1',
       },
-      {
-        type: 'log',
-        name: '对数坐标轴',
-        axisLineShow: false,
-        axisLineColor: '#6E7079',
-        axisTickShow: false,
-        axisTickColor: '#6E7079',
-        axisLabelShow: true,
-        axisLabelColor: '#6E7079',
-        splitLineShow: false,
-        splitLineColor: ['#E0E6F1'],
-        splitAreaShow: true,
-        splitAreaColor: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+      itemStyle: {
+        color: '#000000',
+        borderWidth: '1',
       },
-      {
-        type: 'time',
-        name: '时间坐标轴',
-        axisLineShow: true,
-        axisLineColor: '#6E7079',
-        axisTickShow: true,
-        axisTickColor: '#6E7079',
-        axisLabelShow: true,
-        axisLabelColor: '#6E7079',
-        splitLineShow: false,
-        splitLineColor: ['#E0E6F1'],
-        splitAreaShow: false,
-        splitAreaColor: ['rgba(250,250,250,0.2)', 'rgba(210,219,238,0.2)'],
+      controlStyle: {
+        color: '#0e777c',
+        borderColor: '#0e777c',
+        borderWidth: '1',
       },
-    ],
-    axisSeperateSetting: false,
-    toolboxColor: '#000000',
-    toolboxEmphasisColor: '#000000',
-    tooltipAxisColor: '#000000',
-    tooltipAxisWidth: '1',
-    timelineLineColor: 'transparent',
-    timelineLineWidth: '1',
-    timelineItemColor: '#000000',
-    timelineItemColorE: '#000000',
-    timelineCheckColor: '#0e777c',
-    timelineCheckBorderColor: '#ffffff',
-    timelineItemBorderWidth: '1',
-    timelineControlColor: '#0e777c',
-    timelineControlBorderColor: '#0e777c',
-    timelineControlBorderWidth: '1',
-    timelineLabelColor: '#000000',
+      checkpointStyle: {
+        color: '#0e777c',
+        borderColor: '#ffffff',
+      },
+      label: {
+        color: '#000000',
+      },
+      emphasis: {
+        itemStyle: {
+          color: '#000000',
+        },
+        controlStyle: {
+          color: '#0e777c',
+          borderColor: '#0e777c',
+          borderWidth: '1',
+        },
+        label: {
+          color: '#000000',
+        },
+      },
+    },
+    visualMap: {
+      color: ['#dc0031', '#ff8d00', '#f0b800'],
+    },
+    dataZoom: {
+      handleSize: 'undefined%',
+      textStyle: {},
+    },
+    nameTextStyle: {
+      color: 'rgba(0, 10, 20, .9)',
+    },
+    markPoint: {
+      label: {
+        color: 'rgba(0, 10, 20, .9)',
+        textBorderColor: '#fff',
+        textBorderWidth: 1,
+      },
+    },
+    markLine: {
+      label: {
+        color: 'rgba(0, 10, 20, .9)',
+        textBorderColor: '#fff',
+        textBorderWidth: 1,
+      },
+    },
+    markArea: {
+      label: {
+        color: 'rgba(0, 10, 20, .9)',
+        textBorderColor: '#fff',
+        textBorderWidth: 1,
+      },
+    },
   },
 };

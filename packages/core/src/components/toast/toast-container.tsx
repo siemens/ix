@@ -76,7 +76,6 @@ export class ToastContainer {
   @Method()
   async showToast(config: ToastConfig): Promise<ShowToastResult> {
     const toast = document.createElement('ix-toast');
-
     const onClose = new TypedEvent<any | undefined>();
 
     function removeToast(result?: any) {
@@ -122,7 +121,7 @@ export class ToastContainer {
           'toast-container--top-right': this.position === 'top-right',
         }}
       >
-        {/* <slot></slot> */}
+        <slot></slot>
       </Host>
     );
   }

@@ -5,6 +5,7 @@ on:
     branches:
       - 'main'
       - 'release/*'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -67,12 +68,33 @@ jobs:
             ./packages/aggrid/playwright-report/
           retention-days: 1
 
-  merge-core-reports:
-      if: failure()
-      needs: [visual-testing-core]
+  visual-testing-echarts:
+    needs: [build]
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.39.0-jammy
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/turbo
 
-      runs-on: ubuntu-latest
-      steps:
+      - name: Visual Regression
+        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: echarts-html-report--attempt-${{ github.run_attempt }}
+          path: |
+            ./packages/echarts/playwright-report/
+          retention-days: 1
+
+  merge-core-reports:
+    if: failure()
+    needs: [visual-testing-core]
+
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
 
