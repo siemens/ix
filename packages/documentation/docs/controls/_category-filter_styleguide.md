@@ -61,4 +61,4 @@ Do not use if your users are not familiar with the category names
 - [Expanding search](expanding-search.md)
 - [Input](input.md)
 - [Select](select.md)
-- [Dropdown button](./buttons/_dropdown-button_styleguide.md)
+- [Dropdown button](./buttons/dropdown-button.md)
