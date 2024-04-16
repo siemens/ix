@@ -22,7 +22,7 @@
 
 :host {
   @include ix-component;
-  flex: 1 1 0;
+  flex: 1 0 0;
 
   .step {
     display: flex;
@@ -60,7 +60,7 @@
 
         &.selected {
           background-color: var(
-            --theme-workflow-step-icon-default--color--selected
+              --theme-workflow-step-icon-default--color--selected
           );
         }
 
@@ -69,7 +69,7 @@
 
           &.selected {
             background-color: var(
-              --theme-workflow-step-icon-done--color--selected
+                --theme-workflow-step-icon-done--color--selected
             );
           }
         }
@@ -141,9 +141,8 @@
       }
 
       .text {
-        margin-top: 0;
-        margin-left: $default-space;
-        padding: 0 $small-space 0 0;
+        margin: 0 $default-space;
+        padding: 0;
         width: auto;
       }
     }
@@ -172,7 +171,7 @@
 
       .line {
         background-color: var(
-          --theme-workflow-step-icon-default--color--disabled
+            --theme-workflow-step-icon-default--color--disabled
         ) !important;
       }
 

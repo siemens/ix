@@ -13,6 +13,7 @@
 :host {
   @include ix-component;
   width: 100%;
+  min-width: 2rem;
 
   .steps {
     display: flex;
