@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix initial layout shift
+fix(core/workflow-steps): fix initial layout shift
