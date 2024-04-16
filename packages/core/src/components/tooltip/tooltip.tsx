@@ -25,7 +25,8 @@ import {
   State,
 } from '@stencil/core';
 import { OnListener } from '../utils/listener';
-import { IxComponent } from '../utils/internal';
+import { tooltipController } from './tooltip-controller';
+import { IxOverlayComponent } from '../utils/overlay';
 
 type ArrowPosition = {
   top?: string;
@@ -46,7 +47,7 @@ const numberToPixel = (value: number) => (value != null ? `${value}px` : '');
   styleUrl: 'tooltip.scss',
   shadow: true,
 })
-export class Tooltip implements IxComponent {
+export class Tooltip implements IxOverlayComponent {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
@@ -86,8 +87,6 @@ export class Tooltip implements IxComponent {
   private observer: MutationObserver;
   private hideTooltipTimeout: NodeJS.Timeout;
   private showTooltipTimeout: NodeJS.Timeout;
-  private onEnterElementBind = this.onTooltipShow.bind(this);
-  private onLeaveElementBind = this.onTooltipHide.bind(this);
   private disposeAutoUpdate?: () => void;
   private disposeListener: () => void;
 
@@ -101,14 +100,6 @@ export class Tooltip implements IxComponent {
     }
   }
 
-  private onTooltipShow(e: Event) {
-    this.showTooltip(e.target as Element);
-  }
-
-  private onTooltipHide() {
-    this.hideTooltip();
-  }
-
   /** @internal */
   @Method()
   async showTooltip(anchorElement: any) {
@@ -116,7 +107,7 @@ export class Tooltip implements IxComponent {
     await this.applyTooltipPosition(anchorElement);
 
     this.showTooltipTimeout = setTimeout(() => {
-      this.visible = true;
+      tooltipController.present(this);
       // Need to compute and apply tooltip position after initial render,
       // because arrow has no valid bounding rect before that
       this.applyTooltipPosition(anchorElement);
@@ -127,10 +118,14 @@ export class Tooltip implements IxComponent {
   @Method()
   async hideTooltip() {
     clearTimeout(this.showTooltipTimeout);
-    const hideDelay = this.interactive ? 150 : this.hideDelay;
+    let hideDelay = 50;
+
+    if (this.interactive && this.hideDelay === hideDelay) {
+      hideDelay = 150;
+    }
 
     this.hideTooltipTimeout = setTimeout(() => {
-      this.visible = false;
+      tooltipController.dismiss(this);
     }, hideDelay);
     this.destroyAutoUpdate();
   }
@@ -259,16 +254,36 @@ export class Tooltip implements IxComponent {
     }
 
     triggerElementList.forEach((element) => {
-      element.addEventListener('mouseenter', this.onEnterElementBind);
-      element.addEventListener('mouseleave', this.onLeaveElementBind);
-      element.addEventListener('focusin', this.onEnterElementBind);
-      element.addEventListener('focusout', this.onLeaveElementBind);
+      const onMouseEnter = () => {
+        this.showTooltip(element);
+      };
+
+      const onMouseLeave = () => {
+        this.hideTooltip();
+      };
+
+      const onFocusIn = () => {
+        if (this.showTooltipTimeout !== undefined) {
+          clearTimeout(this.showTooltipTimeout);
+        }
+
+        onMouseEnter();
+      };
+
+      const onFocusOut = () => {
+        this.hideTooltip();
+      };
+
+      element.addEventListener('mouseenter', onMouseEnter);
+      element.addEventListener('mouseleave', onMouseLeave);
+      element.addEventListener('focusin', onFocusIn);
+      element.addEventListener('focusout', onFocusOut);
 
       this.disposeListener = () => {
-        element.removeEventListener('mouseenter', this.onEnterElementBind);
-        element.removeEventListener('mouseleave', this.onLeaveElementBind);
-        element.removeEventListener('focusin', this.onEnterElementBind);
-        element.removeEventListener('focusout', this.onLeaveElementBind);
+        element.removeEventListener('mouseenter', onMouseEnter);
+        element.removeEventListener('mouseleave', onMouseLeave);
+        element.removeEventListener('focusin', onFocusIn);
+        element.removeEventListener('focusout', onFocusOut);
       };
     });
   }
@@ -277,14 +292,15 @@ export class Tooltip implements IxComponent {
     const { hostElement } = this;
     hostElement.addEventListener('mouseenter', () => this.clearHideTimeout());
     hostElement.addEventListener('focusin', () => this.clearHideTimeout());
-    hostElement.addEventListener('mouseleave', () => this.onTooltipHide());
-    hostElement.addEventListener('focusout', () => this.onTooltipHide());
+
+    hostElement.addEventListener('mouseleave', () => this.hideTooltip());
+    hostElement.addEventListener('focusout', () => this.hideTooltip());
   }
 
   @OnListener<Tooltip>('keydown', (self) => self.visible)
   async onKeydown(event: KeyboardEvent) {
     if (event.code === 'Escape') {
-      this.onTooltipHide();
+      this.hideTooltip();
     }
   }
 
@@ -307,9 +323,26 @@ export class Tooltip implements IxComponent {
     this.registerTooltipListener();
   }
 
+  connectedCallback() {
+    tooltipController.connected(this);
+  }
+
   disconnectedCallback() {
     this.observer?.disconnect();
     this.destroyAutoUpdate();
+    tooltipController.disconnected(this);
+  }
+
+  isPresent(): boolean {
+    return this.visible;
+  }
+
+  present(): void {
+    this.visible = true;
+  }
+
+  dismiss(): void {
+    this.visible = false;
   }
 
   render() {
