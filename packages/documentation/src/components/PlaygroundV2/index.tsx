@@ -131,7 +131,9 @@ async function fetchHTMLSource(
     files.map(async (file) => {
       try {
         const source = await fetchSource(
-          `${path}/previews/${frameworkPath}/${file}`
+          `${path}/previews/${frameworkPath}/${
+            getLanguage(file) === 'css' ? 'styles-auto-gen/' + file : file
+          }`
         );
 
         if (!source) {
@@ -166,10 +168,15 @@ function getLanguage(filename: string) {
   if (filename.endsWith('.vue')) {
     return 'tsx';
   }
+
+  if (filename.endsWith('.css')) {
+    return 'css';
+  }
 }
 
 type PlaygroundV2Props = {
   files: Record<TargetFramework, string[]>;
+  includeCssFile?: boolean;
   examplesByName?: boolean;
 } & DemoProps;
 
@@ -177,6 +184,7 @@ function SourceCodePreview(props: {
   framework: TargetFramework;
   name: string;
   files?: Record<TargetFramework, string[]>;
+  includeCssFile?: boolean;
   examplesByName?: boolean;
   onSourceCodeFetched: (files: SourceFile[]) => void;
 }) {
@@ -189,26 +197,31 @@ function SourceCodePreview(props: {
 
   useEffect(() => {
     if (props.examplesByName) {
-      let filesToFetch = [];
+      const filesToFetch = [];
 
       if (props.framework === TargetFramework.ANGULAR) {
-        filesToFetch = [`${props.name}.ts`, `${props.name}.html`];
+        filesToFetch.push(...[`${props.name}.ts`, `${props.name}.html`]);
       }
 
       if (props.framework === TargetFramework.JAVASCRIPT) {
-        filesToFetch = [`${props.name}.html`];
+        filesToFetch.push(`${props.name}.html`);
       }
 
       if (props.framework === TargetFramework.REACT) {
-        filesToFetch = [`${props.name}.tsx`];
+        filesToFetch.push(`${props.name}.tsx`);
       }
 
       if (props.framework === TargetFramework.VUE) {
-        filesToFetch = [`${props.name}.vue`];
+        filesToFetch.push(`${props.name}.vue`);
+      }
+
+      if (props.includeCssFile) {
+        filesToFetch.push(`${props.name}.css`);
       }
 
       setFetching(true);
       fetchHTMLSource(baseUrl, props.framework, filesToFetch).then((files) => {
+        setSelectedFile(0);
         setFiles(files.filter((f) => f));
         setFetching(false);
       });
@@ -219,6 +232,7 @@ function SourceCodePreview(props: {
 
       setFetching(true);
       fetchHTMLSource(baseUrl, props.framework, filesToFetch).then((files) => {
+        setSelectedFile(0);
         setFiles(files.filter((f) => f));
         setFetching(false);
       });
@@ -368,6 +382,7 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
           framework={tab}
           name={props.name}
           files={props.files}
+          includeCssFile={props.includeCssFile}
           examplesByName={props.examplesByName}
         ></SourceCodePreview>
       ) : null}

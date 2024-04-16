@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import fs from 'fs-extra';
 import fsp from 'fs/promises';
 import { Listr } from 'listr2';
@@ -337,27 +338,34 @@ const tasks = new Listr<Context>(
     {
       title: 'Rename code snippets',
       task: async () => {
+        const renameFilesInDirectory = async (
+          directory: string
+        ): Promise<any[]> => {
+          const entries = await fsp.readdir(directory, { withFileTypes: true });
+
+          return Promise.all(
+            entries.flatMap((entry) => {
+              const entryPath = path.join(directory, entry.name);
+
+              if (entry.isDirectory()) {
+                return renameFilesInDirectory(entryPath);
+              }
+
+              return fs.rename(
+                entryPath,
+                path.join(directory, `${entry.name}.txt`)
+              );
+            })
+          );
+        };
+
         return Promise.all(
           [
             docsStaticWebComponentExamples,
             docsStaticAngularExamples,
             docsStaticReactExamples,
             docsStaticVueExamples,
-          ].flatMap(async (snippetDirectory) => {
-            const files = await fsp.readdir(snippetDirectory);
-            return files.flatMap((filePath) => {
-              const file = path.join(snippetDirectory, filePath);
-
-              if (fs.lstatSync(file).isDirectory()) {
-                return Promise.resolve();
-              }
-
-              return fs.rename(
-                file,
-                path.join(snippetDirectory, `${filePath}.txt`)
-              );
-            });
-          })
+          ].map(renameFilesInDirectory)
         );
       },
     },
