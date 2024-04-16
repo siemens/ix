@@ -12,12 +12,9 @@
     "@siemens/ix": "<VERSION>",
     "@siemens/ix-vue": "<VERSION>",
     "@siemens/ix-echarts": "<VERSION>",
-    "@siemens/ix-aggrid": "<VERSION>",
     "@siemens/ix-icons": "latest",
     "vue-echarts": "~6.6.9",
-    "echarts": "^5.4.1",
-    "ag-grid-community": "^30.2.0",
-    "ag-grid-vue3": "^28.2.1"
+    "echarts": "^5.4.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

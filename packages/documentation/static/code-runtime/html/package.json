@@ -12,7 +12,6 @@
   "dependencies": {
     "@siemens/ix": "<VERSION>",
     "@siemens/ix-echarts": "<VERSION>",
-    "@siemens/ix-aggrid": "<VERSION>",
     "@siemens/ix-icons": "latest"
   },
   "devDependencies": {
