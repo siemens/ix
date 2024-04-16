@@ -117,7 +117,7 @@ export class Tooltip implements IxComponent {
 
     this.showTooltipTimeout = setTimeout(() => {
       this.visible = true;
-      // Need to compute and apply tooltip position after initial rendered,
+      // Need to compute and apply tooltip position after initial render,
       // because arrow has no valid bounding rect before that
       this.applyTooltipPosition(anchorElement);
     }, this.showDelay);
