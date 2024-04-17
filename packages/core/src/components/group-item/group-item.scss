@@ -20,6 +20,7 @@ $focusBorderWidth: 1px;
   display: flex;
   min-height: 2.25rem;
   height: 2.25rem;
+  cursor: pointer;
 
   > button {
     display: flex;
@@ -32,6 +33,7 @@ $focusBorderWidth: 1px;
     background-color: var(--theme-group-item--background);
     border: 1px solid transparent;
     color: var(--theme-color-std-text);
+    cursor: inherit;
 
     padding-left: 2.5rem;
 
