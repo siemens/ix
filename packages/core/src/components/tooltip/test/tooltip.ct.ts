@@ -67,3 +67,42 @@ test('hide tooltip after delay', async ({ mount, page }) => {
   await page.waitForTimeout(1000);
   await expect(tooltip).not.toBeVisible();
 });
+
+test('avoid double visibility request by focusin event', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-menu>
+      <ix-menu-item>Item 1</ix-menu-item>
+      <ix-menu-item>Item 2</ix-menu-item>
+    </ix-menu>
+  `);
+
+  const menuItem1 = page.locator('ix-menu-item:nth-child(1)');
+  const menuItem2 = page.locator('ix-menu-item:nth-child(2)');
+
+  await menuItem1.hover();
+  await page.waitForTimeout(5);
+  await menuItem1.click();
+  await page.waitForTimeout(200);
+  await expect(menuItem1.locator('ix-tooltip')).toBeVisible();
+
+  await menuItem2.hover();
+  await page.waitForTimeout(5);
+  await menuItem2.click();
+  await page.waitForTimeout(200);
+  await expect(menuItem2.locator('ix-tooltip')).toBeVisible();
+
+  await menuItem1.hover();
+  await page.waitForTimeout(5);
+  await menuItem1.click();
+  await page.waitForTimeout(200);
+  await expect(menuItem1.locator('ix-tooltip')).toBeVisible();
+
+  await page.mouse.move(0, 0);
+  await page.waitForTimeout(200);
+
+  await expect(menuItem1.locator('ix-tooltip')).not.toBeVisible();
+  await expect(menuItem2.locator('ix-tooltip')).not.toBeVisible();
+});
