@@ -3,7 +3,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../auto-generated/ix-content-header/props.md';
 import Events from './../auto-generated/ix-content-header/events.md';
 
-# Content Header
+# Content header
 
 ## Usage
 
