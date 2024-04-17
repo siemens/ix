@@ -209,3 +209,70 @@ test('remove text from input and reselect the element', async ({
   const inputValue = await element.locator('input').inputValue();
   expect(inputValue).toEqual('Item 2');
 });
+
+test('type an item name and remove it then check in the list', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select value="2" editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+  const element = page.locator('ix-select');
+  await expect(element).toHaveClass(/hydrated/);
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
+
+  await expect(page.getByRole('button', { name: 'Item 1' })).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).not.toBeVisible();
+
+  const add = page.getByRole('button', { name: 'test' });
+  await expect(add).toBeVisible();
+
+  await page.getByTestId('input').fill('');
+
+  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
+  await expect(add).not.toBeVisible();
+});
+
+test('type an item and click outside then check list again', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select value="2" editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+        <ix-button>outside</ix-button>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  const btnElement = page.locator('ix-button');
+  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(btnElement).toBeVisible();
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
+
+  const add = page.getByRole('button', { name: 'test' });
+  await expect(add).toBeVisible();
+
+  await btnElement.click();
+  const inputValue = await page.getByTestId('input').inputValue();
+
+  expect(inputValue).toBe('Item 2');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
+});
