@@ -138,7 +138,7 @@ export class EventList {
         offset: offset,
         opacity: [0, 1],
         duration: EventList.fadeInDuration + delay,
-        easing: 'easeInOutSine',
+        easing: 'easeOut',
         delay: delay,
         autoplay: true,
       });
