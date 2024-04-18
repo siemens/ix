@@ -65,5 +65,6 @@ e.g.:
 <Playground
 name="aggrid"
 height="14rem"
-examplesByName>
+examplesByName
+blockStackBlitz>
 </Playground>
