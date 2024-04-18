@@ -14,6 +14,7 @@ import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 import { FilterState } from "./components/category-filter/filter-state";
+import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
@@ -53,6 +54,7 @@ export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 export { FilterState } from "./components/category-filter/filter-state";
+export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
@@ -404,6 +406,10 @@ export namespace Components {
           * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
         "repeatCategories": boolean;
+        /**
+          * @since 2.2.0 If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
+         */
+        "staticOperator"?: LogicalFilterOperator;
         /**
           * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
          */
@@ -4449,6 +4455,10 @@ declare namespace LocalJSX {
           * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
         "repeatCategories"?: boolean;
+        /**
+          * @since 2.2.0 If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
+         */
+        "staticOperator"?: LogicalFilterOperator;
         /**
           * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
          */

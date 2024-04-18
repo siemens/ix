@@ -108,6 +108,13 @@ export class CategoryFilter {
   @Prop() hideIcon: boolean;
 
   /**
+   * @since 2.2.0
+   * If set categories will always be filtered via the respective logical operator.
+   * Toggling of the operator will not be available to the user.
+   */
+  @Prop() staticOperator?: LogicalFilterOperator;
+
+  /**
    * If set to true allows that a single category can be set more than once.
    * An already set category will not appear in the category dropdown if set to false.
    *
@@ -506,6 +513,10 @@ export class CategoryFilter {
   }
 
   private renderOperatorButton() {
+    if (this.staticOperator) {
+      return '';
+    }
+
     const params: BaseButtonProps = {
       type: 'button',
       variant: 'secondary',
@@ -514,7 +525,7 @@ export class CategoryFilter {
       iconOnly: true,
       iconOval: false,
       selected: false,
-      disabled: this.disabled,
+      disabled: this.disabled || this.staticOperator !== undefined,
       loading: false,
       icon: '',
       onClick: (e: Event) => {
@@ -536,6 +547,16 @@ export class CategoryFilter {
     );
   }
 
+  private getFilterOperatorString() {
+    let operator: LogicalFilterOperator;
+    if (this.staticOperator !== undefined) {
+      operator = this.staticOperator;
+    } else {
+      operator = this.categoryLogicalOperator;
+    }
+    return `${operator === LogicalFilterOperator.EQUAL ? '=' : '!='} `;
+  }
+
   private renderCategoryValues() {
     return (
       <div class="dropdown-item-container">
@@ -554,11 +575,7 @@ export class CategoryFilter {
               key={id}
               onClick={() => this.addToken(id, this.category)}
             >
-              {`${
-                this.categoryLogicalOperator === LogicalFilterOperator.EQUAL
-                  ? '='
-                  : '!='
-              } ${id}`}
+              {`${this.getFilterOperatorString()} ${id}`}
             </button>
           ))}
       </div>
