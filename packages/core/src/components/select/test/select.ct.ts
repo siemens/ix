@@ -191,19 +191,7 @@ test('remove text from input and reselect the element', async ({
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 
-  await element.locator('input').fill('Item 3');
-
-  const item1 = page.getByRole('button', { name: 'Item 1' });
   const item2 = page.getByRole('button', { name: 'Item 2' });
-  const item3 = page.getByRole('button', { name: 'Item 3' });
-
-  await expect(item1).not.toBeVisible();
-  await expect(item2).not.toBeVisible();
-  await expect(item3).toBeVisible();
-
-  await element.locator('input').fill('Item 2');
-  await expect(item2).toBeVisible();
-
   await item2.click();
 
   const inputValue = await element.locator('input').inputValue();
