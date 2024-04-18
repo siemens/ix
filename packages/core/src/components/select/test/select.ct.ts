@@ -210,7 +210,7 @@ test('remove text from input and reselect the element', async ({
   expect(inputValue).toEqual('Item 2');
 });
 
-test('type an item name and remove it then check in the list', async ({
+test('type in a novel item name in editable mode and then remove it', async ({
   mount,
   page,
 }) => {
@@ -218,7 +218,6 @@ test('type an item name and remove it then check in the list', async ({
         <ix-select value="2" editable>
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
         </ix-select>
     `);
 
@@ -241,7 +240,7 @@ test('type an item name and remove it then check in the list', async ({
   await expect(add).not.toBeVisible();
 });
 
-test('type an item and click outside then check list again', async ({
+test('type in a novel item name in editable mode, click outside and reopen the select', async ({
   mount,
   page,
 }) => {
