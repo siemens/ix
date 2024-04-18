@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 export function waitForElement(checkFn, callback) {
   const intervalId = setInterval(function () {
     const element = checkFn();
@@ -21,14 +22,14 @@ export function getElementPosition(element) {
   return {
     top: rect.top + window.scrollY,
     left: rect.left + window.scrollX,
-    rect
+    rect,
   };
 }
 
 export function pulseOnElement(queryFunction) {
   const pulseElement = document.createElement('DIV');
   pulseElement.style.position = 'absolute';
-  pulseElement.innerText = ''
+  pulseElement.innerText = '';
   pulseElement.style.zIndex = 10000;
   pulseElement.style.pointerEvents = 'none';
 
@@ -64,16 +65,12 @@ export function pulseOnElement(queryFunction) {
 
   document.body.appendChild(pulseElement);
   document.body.appendChild(style);
-  waitForElement(
-    queryFunction,
-    function (element) {
-      const elementPosition = getElementPosition(element);
-      pulseElement.style.top = (elementPosition.top) + 'px';
-      pulseElement.style.left = (elementPosition.left) + 'px';
-      pulseElement.style.width = elementPosition.rect.width + 'px';
-      pulseElement.style.height = elementPosition.rect.height + 'px';
-      pulseElement.classList.add('pulse-element')
-    }
-  );
+  waitForElement(queryFunction, function (element) {
+    const elementPosition = getElementPosition(element);
+    pulseElement.style.top = elementPosition.top + 'px';
+    pulseElement.style.left = elementPosition.left + 'px';
+    pulseElement.style.width = elementPosition.rect.width + 'px';
+    pulseElement.style.height = elementPosition.rect.height + 'px';
+    pulseElement.classList.add('pulse-element');
+  });
 }
-
