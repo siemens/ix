@@ -20,7 +20,7 @@ export default () => {
 
       <IxSlider min={0} max={50} step={10} marker={[0, 10, 20, 30, 40, 50]}>
         <span slot="label-start">0</span>
-        <span slot="label-end">100</span>
+        <span slot="label-end">50</span>
       </IxSlider>
     </>
   );
