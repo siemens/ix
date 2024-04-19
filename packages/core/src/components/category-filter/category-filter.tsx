@@ -108,9 +108,10 @@ export class CategoryFilter {
   @Prop() hideIcon: boolean;
 
   /**
-   * @since 2.2.0
    * If set categories will always be filtered via the respective logical operator.
    * Toggling of the operator will not be available to the user.
+   *
+   * @since 2.2.0
    */
   @Prop() staticOperator?: LogicalFilterOperator;
 
