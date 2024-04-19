@@ -136,9 +136,9 @@ export class EventList {
       anime({
         targets: e,
         offset: offset,
-        opacity: [0, 1],
         duration: EventList.fadeInDuration + delay,
-        easing: 'easeOut',
+        opacity: [0, 1],
+        easing: 'easeInOutSine',
         delay: delay,
         autoplay: true,
       });
