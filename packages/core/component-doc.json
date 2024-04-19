@@ -2315,11 +2315,11 @@
           "mutable": false,
           "attr": "static-operator",
           "reflectToAttr": false,
-          "docs": "",
+          "docs": "If set categories will always be filtered via the respective logical operator.\nToggling of the operator will not be available to the user.",
           "docsTags": [
             {
               "name": "since",
-              "text": "2.2.0\nIf set categories will always be filtered via the respective logical operator.\nToggling of the operator will not be available to the user."
+              "text": "2.2.0"
             }
           ],
           "values": [
