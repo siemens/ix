@@ -18,6 +18,7 @@ function CardListTitle(props: {
   onShowAllClick: (e: MouseEvent) => void;
   showAllLabel: string;
   showAllCounter: number;
+  hideShowAll: boolean;
 }) {
   if (props.label === '') {
     return null;
@@ -36,16 +37,18 @@ function CardListTitle(props: {
         }}
       ></ix-icon-button>
       <ix-typography variant="large-single">{props.label}</ix-typography>
-      <ix-button
-        class="CardList__Title__Show__All"
-        ghost
-        onClick={props.onShowAllClick}
-      >
-        <span>{props.showAllLabel}</span>
-        <span>
-          {!isNaN(props.showAllCounter) ? ` (${props.showAllCounter})` : null}
-        </span>
-      </ix-button>
+      {!props.hideShowAll && (
+        <ix-button
+          class="CardList__Title__Show__All"
+          ghost
+          onClick={props.onShowAllClick}
+        >
+          <span>{props.showAllLabel}</span>
+          <span>
+            {!isNaN(props.showAllCounter) ? ` (${props.showAllCounter})` : null}
+          </span>
+        </ix-button>
+      )}
     </div>
   );
 }
@@ -90,6 +93,13 @@ export class CardList {
    * Suppress the overflow handling of child elements
    */
   @Prop() suppressOverflowHandling = false;
+
+  /**
+   * Hide the show all button
+   *
+   * @since 2.2.0
+   */
+  @Prop() hideShowAll = false;
 
   /**
    * i18n Show all button
@@ -280,6 +290,7 @@ export class CardList {
           }
           onClick={() => this.onCardListVisibilityToggle()}
           onShowAllClick={(e) => this.onShowAllClick(e)}
+          hideShowAll={this.hideShowAll}
         ></CardListTitle>
         <div
           class={{

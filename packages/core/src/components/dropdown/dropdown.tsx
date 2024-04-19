@@ -142,6 +142,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   connectedCallback(): void {
     dropdownController.connected(this);
+
+    if (this.trigger != undefined) {
+      this.registerListener(this.trigger);
+    }
   }
 
   @Listen('ix-assign-sub-menu')
@@ -157,9 +161,17 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   disconnectedCallback() {
-    this.disposeClickListener?.();
-    this.disposeKeyListener?.();
+    dropdownController.dismiss(this);
     dropdownController.disconnected(this);
+
+    if (this.disposeClickListener) {
+      this.disposeClickListener();
+    }
+
+    if (this.disposeKeyListener) {
+      this.disposeKeyListener();
+    }
+
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
     }
@@ -319,6 +331,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       return Promise.resolve(element);
     }
 
+    if (typeof element != 'string') {
+      return;
+    }
+
     const selector = `#${element}`;
     return new Promise((resolve) => {
       if (document.querySelector(selector)) {
@@ -386,6 +402,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private async applyDropdownPosition() {
+    if (!this.show) {
+      return;
+    }
     if (!this.anchorElement) {
       return;
     }
@@ -431,7 +450,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
           this.dropdownRef,
           positionConfig
         );
-
         Object.assign(this.dropdownRef.style, {
           top: '0',
           left: '0',

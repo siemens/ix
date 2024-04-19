@@ -37,7 +37,9 @@ test('should collapse by click', async ({ mount, page }) => {
   `);
   const categoryItem = page.locator('ix-menu-category');
   const app = page.locator('ix-basic-navigation');
-  const expandMenuButton = page.locator('ix-menu').locator('.burger-menu');
+  const expandMenuButton = page
+    .locator('ix-menu')
+    .locator('ix-menu-expand-icon');
 
   await app.evaluate(
     (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
@@ -82,7 +84,7 @@ test('should expand items', async ({ mount, page }) => {
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
 
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
   const menuCategory = page.locator('ix-menu-category');
   await menuCategory.click();
@@ -114,7 +116,7 @@ test('should show items as dropdown', async ({ mount, page }) => {
     );
 
   const menuCategory = page.locator('ix-menu-category');
-  await menuCategory.click();
+  await menuCategory.hover();
 
   const dropdown = menuCategory.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
@@ -155,7 +157,7 @@ test('should collapse category after collapse menu', async ({
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
 
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
   const menuCategory = page.locator('ix-menu-category');
@@ -191,7 +193,7 @@ test('should hide menu-items when collapsed', async ({ mount, page }) => {
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
 
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
   const menuCategory = page.locator('ix-menu-category');
@@ -225,7 +227,7 @@ test('should open category when collapsed initially and active', async ({
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
 
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
   const menuCategory = page.locator('ix-menu-category');
@@ -241,4 +243,80 @@ test('should open category when collapsed initially and active', async ({
   await expect(menuCategory.locator('.menu-items')).toHaveClass(
     'menu-items menu-items--expanded'
   );
+});
+
+test('do not show tooltip', async ({ mount, page }) => {
+  await mount(`
+    <ix-application>
+      <ix-menu>
+        <ix-menu-category label="Category label">
+          <ix-menu-item>Test</ix-menu-item>
+          <ix-menu-item>Test</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-application>
+    `);
+  const categoryElement = page.locator('ix-menu-category');
+  await expect(categoryElement).toHaveClass(/hydrated/);
+
+  await categoryElement.hover();
+  await page.waitForTimeout(1500);
+
+  const tooltip = categoryElement
+    .locator('ix-menu-item.category-parent')
+    .locator('ix-tooltip');
+
+  await expect(tooltip).not.toBeVisible();
+});
+
+test('collapse after category blur', async ({ mount, page }) => {
+  await mount(`
+    <ix-application>
+      <ix-menu>
+        <ix-menu-item label="Other"></ix-menu-item>
+        <ix-menu-category label="Category label">
+          <ix-menu-item>Test</ix-menu-item>
+          <ix-menu-item>Test</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-application>
+    `);
+  const menuItem = page.locator('ix-menu-item').filter({
+    hasText: 'Other',
+  });
+  const categoryElement = page.locator('ix-menu-category');
+  await expect(categoryElement).toHaveClass(/hydrated/);
+
+  await categoryElement.hover();
+
+  const dropdown = categoryElement.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  await categoryElement.hover();
+  await menuItem.hover();
+
+  await expect(dropdown).not.toBeVisible();
+});
+
+test('show category if item are focused', async ({ mount, page }) => {
+  await mount(`
+    <ix-application>
+      <ix-menu>
+        <ix-menu-category label="Category label">
+          <ix-menu-item>Test</ix-menu-item>
+          <ix-menu-item>Test</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-application>
+    `);
+  const categoryElement = page.locator('ix-menu-category');
+  await expect(categoryElement).toHaveClass(/hydrated/);
+
+  // Navigate to category
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+
+  const dropdown = categoryElement.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
 });

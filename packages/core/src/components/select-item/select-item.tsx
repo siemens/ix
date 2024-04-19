@@ -69,7 +69,7 @@ export class SelectItem {
   }
 
   componentDidRender() {
-    if (!this.value) {
+    if (this.value === undefined || this.value === null) {
       throw Error('ix-select-item must have a `value` property');
     }
   }
