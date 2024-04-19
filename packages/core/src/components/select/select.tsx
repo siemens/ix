@@ -413,7 +413,7 @@ export class Select {
       return;
     }
 
-    let item;
+    let item: HTMLIxSelectItemElement;
 
     if (this.editable && !this.itemExists(this.inputFilterText)) {
       this.emitAddItem(this.inputFilterText);
@@ -421,7 +421,7 @@ export class Select {
     }
 
     if (item) {
-      item['onItemClick']?.();
+      item.onItemClick();
     }
 
     await this.dropdownRef?.updatePosition();

@@ -215,8 +215,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return this.hostElement.shadowRoot.querySelector('slot');
   }
 
-  private disposeClickListener?: Function;
-  private disposeKeyListener?: Function;
+  private disposeClickListener?: () => void;
+  private disposeKeyListener?: () => void;
 
   private addEventListenersFor() {
     this.disposeClickListener?.();
@@ -380,7 +380,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.registerKeyListener();
     } else {
       this.arrowFocusController.disconnect();
-      this.arrowFocusController = undefined;
       this.itemObserver.disconnect();
       this.disposeKeyListener?.();
     }
@@ -475,8 +474,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private focusDropdownItem(index: number) {
-    requestAnimationFrame(() => {
-      this.dropdownItems[index]?.shadowRoot.querySelector('button').focus();
+    requestAnimationFrame(async () => {
+      const item = await this.dropdownItems[index]?.getDropdownItemElement();
+      item.focus();
     });
   }
 
