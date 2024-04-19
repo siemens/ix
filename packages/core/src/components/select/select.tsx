@@ -224,11 +224,6 @@ export class Select {
         childList: true,
         subtree: true,
       });
-
-      this.itemObserver.observe(this.dropdownRef, {
-        childList: true,
-        subtree: true,
-      });
     } else {
       this.arrowFocusController.disconnect();
       this.arrowFocusController = undefined;
@@ -560,6 +555,10 @@ export class Select {
       });
     } else {
       this.removeHiddenFromItems();
+    }
+
+    if (this.arrowFocusController) {
+      this.arrowFocusController.items = this.visibleNonShadowItems;
     }
 
     this.isDropdownEmpty = this.isEveryDropdownItemHidden;
