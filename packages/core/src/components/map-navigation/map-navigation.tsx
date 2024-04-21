@@ -21,6 +21,7 @@ import {
 import anime from 'animejs';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { useContextProvider } from '../utils/context';
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-map-navigation',
@@ -244,7 +245,7 @@ export class MapNavigation {
                   ''
                 ) : (
                   <ix-icon-button
-                    icon={'context-menu'}
+                    icon={iconContextMenu}
                     ghost
                     size="24"
                     variant="secondary"

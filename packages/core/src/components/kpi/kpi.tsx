@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconAlarm, iconWarning } from '@siemens/ix-icons/icons';
 import { Component, h, Host, Prop } from '@stencil/core';
 
 @Component({
@@ -46,7 +47,7 @@ export class Kpi {
         return (
           <ix-icon
             color="kpi-display-icon--color"
-            name={'alarm'}
+            name={iconAlarm}
             size="16"
           ></ix-icon>
         );
@@ -55,7 +56,7 @@ export class Kpi {
         return (
           <ix-icon
             color="kpi-display-icon--color"
-            name={'warning'}
+            name={iconWarning}
             size="16"
           ></ix-icon>
         );

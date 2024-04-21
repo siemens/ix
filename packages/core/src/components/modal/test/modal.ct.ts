@@ -23,7 +23,7 @@ test('closes on Escape key down', async ({ mount, page }) => {
       const script = document.createElement('script');
       script.type = 'module';
       script.innerHTML = `
-        import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+        import * as ix from 'http://127.0.0.1:8080/build/index.esm.js';
         window.showModal = ix.showModal;
       `;
       document.body.appendChild(script);
@@ -62,7 +62,7 @@ test.describe('closeOnBackdropClick = true', () => {
         const script = document.createElement('script');
         script.type = 'module';
         script.innerHTML = `
-          import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+          import * as ix from 'http://127.0.0.1:8080/build/index.esm.js';
           window.showModal = ix.showModal;
         `;
 
@@ -112,7 +112,7 @@ test.describe('closeOnBackdropClick = true', () => {
         const script = document.createElement('script');
         script.type = 'module';
         script.innerHTML = `
-          import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+          import * as ix from 'http://127.0.0.1:8080/build/index.esm.js';
           window.showModal = ix.showModal;
         `;
 

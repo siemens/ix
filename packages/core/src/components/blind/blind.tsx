@@ -21,6 +21,7 @@ import {
 import anime from 'animejs';
 import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
+import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
 export type BlindVariant = CardVariant | 'outline';
 
@@ -154,7 +155,7 @@ export class Blind {
           <div class={'blind-header-content'}>
             <ix-icon
               class="collapse-icon"
-              name={'chevron-right-small'}
+              name={iconChevronRightSmall}
               color={
                 this.variant === 'insight' || this.variant === 'outline'
                   ? 'color-primary'

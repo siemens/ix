@@ -10,6 +10,7 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileState } from './flip-tile-state';
+import { iconEye } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-flip-tile',
@@ -125,7 +126,7 @@ export class FlipTile {
               <slot name="header"></slot>
             </div>
             <ix-icon-button
-              icon={'eye'}
+              icon={iconEye}
               variant="primary"
               ghost
               onClick={() => this.toggleIndex()}

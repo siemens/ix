@@ -21,6 +21,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { makeRef } from '../utils/make-ref';
 import { menuController } from '../utils/menu-service/menu-service';
 import { Disposable } from '../utils/typed-event';
+import { iconDocument } from '@siemens/ix-icons/icons';
 
 /**
  * @slot menu-item-label Custom label
@@ -137,7 +138,7 @@ export class MenuItem {
       !this.hostElement.icon &&
       !this.hostElement.tabIcon
     ) {
-      this.icon = 'document';
+      this.icon = iconDocument;
     }
   }
 
@@ -148,7 +149,7 @@ export class MenuItem {
       !this.hostElement.icon &&
       !this.hostElement.tabIcon
     ) {
-      this.tabIcon = 'document';
+      this.tabIcon = iconDocument;
     }
   }
 

@@ -2181,7 +2181,6 @@
           "reflectToAttr": false,
           "docs": "The icon next to the actual text input\nDefaults to 'search'",
           "docsTags": [],
-          "default": "'search'",
           "values": [
             {
               "type": "string"
@@ -6436,7 +6435,6 @@
           "reflectToAttr": false,
           "docs": "Search icon",
           "docsTags": [],
-          "default": "'search'",
           "values": [
             {
               "type": "string"
@@ -12397,7 +12395,7 @@
           "name": "icon",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -12411,7 +12409,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12603,7 +12601,7 @@
           "name": "icon",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -12612,13 +12610,12 @@
           "reflectToAttr": false,
           "docs": "Card icon",
           "docsTags": [],
-          "default": "undefined",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13833,7 +13830,6 @@
           "reflectToAttr": false,
           "docs": "Button icon",
           "docsTags": [],
-          "default": "''",
           "values": [
             {
               "type": "string"
@@ -13955,7 +13951,6 @@
           "reflectToAttr": false,
           "docs": "Icon of the button on the right",
           "docsTags": [],
-          "default": "'context-menu'",
           "values": [
             {
               "type": "string"

@@ -11,6 +11,7 @@ import { FunctionalComponent, h, Host } from '@stencil/core';
 import { setTab } from './menu-tabs-utils';
 import { MenuAbout } from '../../menu-about/menu-about';
 import { MenuSettings } from '../../menu-settings/menu-settings';
+import { iconClose } from '@siemens/ix-icons/icons';
 
 interface MenuTabsProps {
   context: MenuSettings | MenuAbout;
@@ -47,7 +48,7 @@ export const MenuTabs: FunctionalComponent<MenuTabsProps> = ({ context }) => (
       <ix-icon-button
         ghost
         size="24"
-        icon={'close'}
+        icon={iconClose}
         onClick={(e) =>
           context.close.emit({
             name:

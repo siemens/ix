@@ -18,6 +18,10 @@ import {
   Prop,
 } from '@stencil/core';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import {
+  iconChevronRightSmall,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-dropdown-item',
@@ -108,7 +112,7 @@ export class DropdownItem implements DropdownItemWrapper {
               {this.checked ? (
                 <ix-icon
                   class="checkmark"
-                  name={'single-check'}
+                  name={iconSingleCheck}
                   size="16"
                 ></ix-icon>
               ) : null}
@@ -123,7 +127,7 @@ export class DropdownItem implements DropdownItemWrapper {
           </div>
           {this.isSubMenu ? (
             <ix-icon
-              name={'chevron-right-small'}
+              name={iconChevronRightSmall}
               class={'submenu-icon'}
             ></ix-icon>
           ) : null}

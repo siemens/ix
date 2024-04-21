@@ -1,5 +1,53 @@
 # Breaking Changes
 
+## v3.0.0
+
+### Remove package from from library `@siemens/ix-icon`
+
+One major change is the removal of the package from the library `@siemens/ix-icon`. This change allows for more individual icons to be used in your applications. Please refer to the installation instructions for details on how to include the new icons.
+
+TODO: Link to installation instruction
+
+#### Usage of icons inside  `@siemens/ix-react` and  `@siemens/ix-vue` changed
+
+TODO: Rewrite this section
+
+Import the icon you want
+```tsx
+import { iconStar } from '@siemens/ix-icons/icons';
+```
+
+React/Vue:
+```tsx
+<IxIcon name={iconStar} />
+```
+
+#### Installation instruction of `@siemens/ix-angular` changed
+
+TODO: Rewrite this section
+
+Configuration
+```json
+{
+  "glob": "**/*.svg",
+  "input": "node_modules/@siemens/ix-icons/dist/svg",
+  "output": "./svg"
+}
+```
+
+Add to assets property inside the `angular.json` file
+```json
+"assets": [
+  "src/favicon.ico",
+  "src/assets",
+  {
+  "glob": "**/*.svg",
+  "input": "node_modules/@siemens/ix-icons/dist/svg",
+  "output": "./svg"
+  }
+],
+```
+
 ## v2.0.0
 
 ### `input[class="form-control"]` and `textarea[class="form-control"]` are deprecated

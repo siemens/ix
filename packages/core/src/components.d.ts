@@ -1775,7 +1775,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string | undefined;
+        "icon"?: string;
         /**
           * Show pill as outline
          */
@@ -1814,7 +1814,7 @@ export namespace Components {
         /**
           * Card icon
          */
-        "icon": string | undefined;
+        "icon"?: string;
         /**
           * Card KPI value
          */
@@ -5937,7 +5937,7 @@ declare namespace LocalJSX {
         /**
           * Show icon
          */
-        "icon"?: string | undefined;
+        "icon"?: string;
         /**
           * Show pill as outline
          */
@@ -5976,7 +5976,7 @@ declare namespace LocalJSX {
         /**
           * Card icon
          */
-        "icon"?: string | undefined;
+        "icon"?: string;
         /**
           * Card KPI value
          */

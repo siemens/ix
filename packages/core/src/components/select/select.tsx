@@ -21,6 +21,7 @@ import {
 } from '@stencil/core';
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { OnListener } from '../utils/listener';
+import { iconChevronDownSmall, iconClear } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-select',
@@ -530,7 +531,7 @@ export class Select {
                 (this.selectedLabels?.length || this.inputFilterText) ? (
                   <ix-icon-button
                     class="clear"
-                    icon={'clear'}
+                    icon={iconClear}
                     ghost
                     oval
                     size="16"
@@ -545,7 +546,7 @@ export class Select {
                   <ix-icon-button
                     data-select-dropdown
                     class={{ 'dropdown-visible': this.dropdownShow }}
-                    icon="chevron-down-small"
+                    icon={iconChevronDownSmall}
                     ghost
                     ref={(ref) => {
                       if (this.editable) this.dropdownWrapperRef = ref;

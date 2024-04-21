@@ -28,6 +28,10 @@ const config: PlaywrightTestConfig = {
       },
     },
   ],
+  webServer: {
+    command: 'pnpm run host-root -- ./www',
+    port: 8080,
+  },
 };
 
 export default config;

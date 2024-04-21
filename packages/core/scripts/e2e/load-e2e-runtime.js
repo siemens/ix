@@ -54,12 +54,18 @@ function loadResources() {
     'http://127.0.0.1:8080/www/build/ix-brand-theme/ix-brand-theme.js'
   );
 
-  var ixIcons = document.createElement('link');
-  ixIcons.setAttribute('rel', 'stylesheet');
-  ixIcons.setAttribute(
-    'href',
-    'http://127.0.0.1:8080/www/build/ix-icons/css/ix-icons.css'
-  );
+  var ixIcons = document.createElement('script');
+  ixIcons.setAttribute('type', 'module');
+  ixIcons.innerHTML =
+    'import { defineCustomElements } from "/www/build/ix-icons/loader/index.es2017.js"; defineCustomElements();';
+
+  //     <meta name="ix-icons:path" content="/build/svg" />
+
+  var asset = document.createElement('meta');
+  asset.setAttribute('name', 'ix-icons:path');
+  asset.setAttribute('content', '/www/svg');
+
+  document.getElementsByTagName('head')[0].appendChild(asset);
 
   document.getElementsByTagName('head')[0].appendChild(bootstrapStyling);
   document.getElementsByTagName('head')[0].appendChild(ixEsm);
@@ -72,7 +78,6 @@ function loadResources() {
 }
 
 function detectThemeSwitching() {
-  console.log(location.search);
   var searchParams = new URLSearchParams(location.search);
   if (searchParams.has('theme')) {
     var theme = searchParams.get('theme');

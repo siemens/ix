@@ -21,6 +21,7 @@ import {
 import animejs from 'animejs';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yHostAttributes } from '../utils/a11y';
+import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
 export type BreadcrumbItemLinkTarget =
   | '_self'
@@ -125,7 +126,7 @@ export class BreadcrumbItem {
               <Fragment>
                 {this.showChevron ? (
                   <ix-icon
-                    name={'chevron-right-small'}
+                    name={iconChevronRightSmall}
                     size="16"
                     class={'chevron'}
                   ></ix-icon>

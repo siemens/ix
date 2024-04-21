@@ -19,6 +19,7 @@ import {
 } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 
 export type SplitButtonVariant = ButtonVariant;
 
@@ -53,12 +54,12 @@ export class SplitButton {
   /**
    * Button icon
    */
-  @Prop() icon = '';
+  @Prop() icon: string;
 
   /**
    * Icon of the button on the right
    */
-  @Prop() splitIcon = 'context-menu';
+  @Prop() splitIcon: string;
 
   /**
    * Disabled
@@ -122,7 +123,7 @@ export class SplitButton {
             {...buttonAttributes}
             ref={(r) => (this.triggerElement = r)}
             class={'anchor'}
-            icon={this.splitIcon}
+            icon={this.splitIcon ?? iconContextMenu}
           ></ix-icon-button>
         </div>
 
