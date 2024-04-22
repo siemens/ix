@@ -83,8 +83,8 @@ importers:
         specifier: ^1.32.1
         version: 1.39.0
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.0.1
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       '@types/gulp':
         specifier: ^4.0.14
         version: 4.0.16
@@ -131,8 +131,8 @@ importers:
         specifier: ~2.1.2
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.0.1
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
     devDependencies:
       '@angular/common':
         specifier: v13-lts
@@ -214,8 +214,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.0.1
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       ag-grid-angular:
         specifier: ^30.0.0
         version: 30.2.1(@angular/common@14.3.0)(@angular/core@14.3.0)(ag-grid-community@30.2.0)
@@ -300,8 +300,8 @@ importers:
         specifier: ^1.32.1
         version: 1.39.0
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.0.1
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       '@stencil-community/eslint-plugin':
         specifier: ^0.7.1
         version: 0.7.1(@typescript-eslint/eslint-plugin@6.18.1)(@typescript-eslint/parser@6.18.1)(eslint-plugin-react@7.33.2)(eslint@8.56.0)(typescript@5.3.3)
@@ -596,8 +596,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.0.1
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       vite:
         specifier: ^3.1.0
         version: 3.2.7(@types/node@18.18.7)
@@ -608,8 +608,8 @@ importers:
         specifier: ~2.1.2
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.0.1
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.4.0
@@ -705,8 +705,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.0.1
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -760,8 +760,8 @@ importers:
         specifier: ~2.1.2
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.0.1
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.45.0
@@ -794,8 +794,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.0.1
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../vue
@@ -6976,11 +6976,11 @@ packages:
   /@sideway/pinpoint@2.0.0:
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
-  /@siemens/ix-icons@2.0.1:
-    resolution: {integrity: sha512-BT0mqB7rGj+DX0tRHYWsIeOf+hV7a9IHWT0F7owNKLNwTs4VXvYkokRhc82vVnQjL81NGs9Vjo62MMrEa2oGqA==}
+  /@siemens/ix-icons@0.0.0-20240422125504:
+    resolution: {integrity: sha512-ORnrzFCnSCbEQ6UTflYhD2j9W40dQ+re2Khgdcv9Iz4usYIOF4MCLEb3uFtGhhbABuHphR6wEcm5ovn15YyCjw==}
     engines: {node: '>=16.16.x', npm: '>=8.x.x'}
     dependencies:
-      '@stencil/core': 3.2.1
+      '@stencil/core': 4.13.0
 
   /@siemens/ix-icons@2.1.0:
     resolution: {integrity: sha512-PgBymG8wZIDwA5Ne02e55jkpZvTTMOa8A3UKoRDQ72CVsrbIGY9GtrYIZoIo8RjwNi/rAxdeYiUb6sGg76nU5g==}
@@ -7095,6 +7095,7 @@ packages:
     resolution: {integrity: sha512-Ybm4NteQBScLq3H0JML/uqo4nWjNpZw1HAAURtR5LlRm7ptzNKO5S8EnHp3m05/uyTzeh9yLpUFHY7bxGNdYLg==}
     engines: {node: '>=14.10.0', npm: '>=6.0.0'}
     hasBin: true
+    dev: false
 
   /@stencil/core@4.13.0:
     resolution: {integrity: sha512-gg+gtBWekQ08mDja8GVAUHNu+rrFhQaKZDvfhnS3l/5JbYiJddTimuDPPhuc0sR0JZL1iRdJTJSa+JbvmnQ1cQ==}

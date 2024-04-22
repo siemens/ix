@@ -28,14 +28,7 @@ const icons = [
     dest: path.join(__dirname, 'www', 'build', 'ix-icons', 'loader'),
   },
   {
-    src: path.join(
-      __dirname,
-      'node_modules',
-      '@siemens',
-      'ix-icons',
-      'dist',
-      'svg'
-    ),
+    src: path.join(__dirname, 'node_modules', '@siemens', 'ix-icons', 'svg'),
     dest: path.join(__dirname, 'www', 'svg'),
   },
 ];
