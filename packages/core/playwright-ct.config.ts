@@ -29,7 +29,7 @@ const config: PlaywrightTestConfig = {
     },
   ],
   webServer: {
-    command: 'pnpm run host-root -- ./www',
+    command: 'pnpm run host-root',
     port: 8080,
   },
 };

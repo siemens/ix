@@ -185,6 +185,7 @@ export class ApplicationHeader {
               icon={iconApps}
               ghost
               class="app-switch"
+              data-testid="app-switch"
             ></ix-icon-button>
           )}
         <div class="logo">

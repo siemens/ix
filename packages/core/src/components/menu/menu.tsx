@@ -617,6 +617,7 @@ export class Menu {
                 class="menu-expand-icon"
                 ixAriaLabel={this.i18nExpandSidebar}
                 onClick={async () => this.toggleMenu()}
+                data-testid="expand-collapse-menu"
               ></ix-menu-expand-icon>
             )}
             {this.breakpoint === 'sm' &&

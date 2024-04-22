@@ -77,26 +77,15 @@ export const test = testBase.extend<{
     testInfo.annotations.push({
       type: theme,
     });
-    await page.goto(`http://127.0.0.1:8080/index.html?theme=${theme}`);
+    await page.goto(
+      `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
+    );
     use((selector) => {
       return page.evaluateHandle(
         async ({ componentSelector }) => {
           await window.customElements.whenDefined('ix-button');
-          const playground = document.body.querySelector(
-            'ix-playground-internal'
-          );
-          playground.remove();
-
-          const mount = document.createElement('div');
-          mount.id = 'mount';
-          mount.style.display = 'block';
-          mount.style.position = 'relative';
-          mount.style.width = '100%';
-          mount.style.height = '100%';
+          const mount = document.querySelector('#mount');
           mount.innerHTML = componentSelector;
-
-          document.body.appendChild(mount);
-
           return mount.children.item(0) as HTMLElement;
         },
         { componentSelector: selector }
