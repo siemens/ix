@@ -18,6 +18,10 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-icon name="star"></ix-icon>
+      </Host>
+    );
   }
 }

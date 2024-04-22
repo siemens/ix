@@ -17,7 +17,7 @@ async function setupIcons() {
   );
 
   const ixIcons = await import('@siemens/ix-icons/loader');
-  await ixIcons.defineCustomElements();
+  ixIcons.defineCustomElements();
 }
 
 export default async function () {
