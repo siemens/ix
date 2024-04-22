@@ -23,6 +23,7 @@ import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 
 @Component({
   tag: 'ix-select',
@@ -129,7 +130,7 @@ export class Select {
   @State() dropdownWrapperRef!: HTMLElement;
   @State() dropdownAnchor!: HTMLElement;
   @State() isDropdownEmpty = false;
-  @State() navigationItem: HTMLIxSelectItemElement | HTMLIxDropdownItemElement;
+  @State() navigationItem: DropdownItemWrapper;
   @State() inputFilterText: string;
   @State() inputValue: string;
 
@@ -387,7 +388,7 @@ export class Select {
   @OnListener<Select>('keydown', (self) => self.dropdownShow)
   async onKeyDown(event: KeyboardEvent) {
     if (event.code === 'ArrowDown' || event.code === 'ArrowUp') {
-      this.onArrowNavigation(event, event.code);
+      await this.onArrowNavigation(event, event.code);
     }
 
     if (!this.dropdownShow) {
@@ -426,7 +427,7 @@ export class Select {
     }
   }
 
-  private onArrowNavigation(
+  private async onArrowNavigation(
     event: KeyboardEvent,
     key: 'ArrowDown' | 'ArrowUp'
   ) {
@@ -475,7 +476,9 @@ export class Select {
 
     if (
       this.isAddItemVisible() &&
-      this.addItemRef.contains(this.navigationItem)
+      this.addItemRef.contains(
+        await this.navigationItem.getDropdownItemElement()
+      )
     ) {
       if (moveUp) {
         this.applyFocusTo(this.visibleItems.pop());

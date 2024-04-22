@@ -1888,6 +1888,7 @@ export namespace Components {
         "value"?: string | string[];
     }
     interface IxSelectItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         "hover": boolean;
         /**
           * Displayed name of the item

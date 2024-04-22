@@ -474,9 +474,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private focusDropdownItem(index: number) {
-    requestAnimationFrame(async () => {
-      const item = await this.dropdownItems[index]?.getDropdownItemElement();
-      item.focus();
+    requestAnimationFrame(() => {
+      this.dropdownItems[index]?.shadowRoot.querySelector('button').focus();
     });
   }
 
