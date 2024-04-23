@@ -400,13 +400,13 @@ test.describe('arrow key navigation', () => {
       await page.keyboard.down('ArrowDown');
       await page.waitForTimeout(100);
 
-      const itemTwo = await page.locator('ix-select-item').nth(1);
+      const itemTwo = page.locator('ix-select-item').nth(1);
       await expect(itemTwo).toBeFocused();
 
       await page.keyboard.down('ArrowDown');
       await page.waitForTimeout(100);
 
-      const itemOne = await page.locator('ix-select-item').first();
+      const itemOne = page.locator('ix-select-item').first();
       await expect(itemOne).toBeFocused();
     });
 
@@ -426,13 +426,13 @@ test.describe('arrow key navigation', () => {
       await page.keyboard.down('ArrowDown');
       await page.waitForTimeout(100);
 
-      const addItem = await page.locator('.add-item');
+      const addItem = page.locator('.add-item');
       await expect(addItem).toBeFocused();
 
       await page.keyboard.down('ArrowDown');
       await page.waitForTimeout(100);
 
-      const itemOne = await page.locator('ix-select-item').first();
+      const itemOne = page.locator('ix-select-item').first();
       await expect(itemOne).toBeFocused();
     });
 
@@ -455,13 +455,13 @@ test.describe('arrow key navigation', () => {
       await page.keyboard.down('ArrowDown');
       await page.waitForTimeout(100);
 
-      const addItem = await page.locator('.add-item');
+      const addItem = page.locator('.add-item');
       await expect(addItem).toBeFocused();
 
       await page.keyboard.down('ArrowDown');
       await page.waitForTimeout(100);
 
-      const itemOne = await page.locator('ix-select-item');
+      const itemOne = page.locator('ix-select-item');
       await expect(itemOne).toBeFocused();
     });
   });
@@ -566,7 +566,7 @@ test.describe('arrow key navigation', () => {
       await page.keyboard.down('ArrowUp');
       await page.waitForTimeout(100);
 
-      const itemTwo = await page.locator('ix-select-item').last();
+      const itemTwo = page.locator('ix-select-item').last();
       await expect(itemTwo).toBeFocused();
     });
 
@@ -586,7 +586,7 @@ test.describe('arrow key navigation', () => {
       await page.keyboard.down('ArrowUp');
       await page.waitForTimeout(100);
 
-      const addItem = await page.locator('.add-item');
+      const addItem = page.locator('.add-item');
       await expect(addItem).toBeFocused();
     });
 
@@ -609,7 +609,8 @@ test.describe('arrow key navigation', () => {
       await page.keyboard.down('ArrowUp');
       await page.waitForTimeout(100);
 
-      const addItem = await page.locator('.add-item');
+      const addItem = page.locator('.add-item');
       await expect(addItem).toBeFocused();
     });
   });
+});
