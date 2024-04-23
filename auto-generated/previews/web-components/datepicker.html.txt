@@ -1,0 +1,19 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Date picker example</title>
+  </head>
+
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-date-picker range="false"></ix-date-picker>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Toggle indeterminate example</title>
+</head>
+
+<body class="theme-brand-dark">
+  <!-- Preview code -->
+  <ix-toggle indeterminate></ix-toggle>
+  <!-- Preview code -->
+  <script type="module" src="./init.js"></script>
+</body>
+
+</html>

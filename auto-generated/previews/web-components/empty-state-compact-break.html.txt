@@ -1,0 +1,36 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Empty state compact break example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-empty-state
+      layout="compactBreak"
+      header="No elements available"
+      sub-header="Create an element first"
+      icon="add"
+      action="Create element"
+    ></ix-empty-state>
+
+    <script>
+      (async function () {
+        await window.customElements.whenDefined('ix-empty-state');
+        const emptyState = document.querySelector('ix-empty-state');
+
+        emptyState.addEventListener('actionClick', (event) =>
+          console.log(event)
+        );
+      })();
+    </script>
+
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

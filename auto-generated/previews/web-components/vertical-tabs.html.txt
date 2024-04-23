@@ -1,0 +1,26 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vertical tabs example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-menu>
+      <ix-menu-item home icon="home"> Home </ix-menu-item>
+      <ix-menu-item icon="globe"> Normal Tab </ix-menu-item>
+      <ix-menu-item icon="star" disabled> Disabled tab </ix-menu-item>
+      <ix-menu-item icon="star"> With other icon </ix-menu-item>
+      <ix-menu-item icon="globe" style="display: none">
+        Should not be visible
+      </ix-menu-item>
+    </ix-menu>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

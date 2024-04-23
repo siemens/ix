@@ -1,0 +1,80 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blind example</title>
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css"
+    />
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <div
+      style="height: 12rem; width: 100%"
+      id="grid-container"
+      class="ag-theme-alpine-dark ag-theme-ix"
+    ></div>
+    <script>
+      (async function () {
+        const container = document.querySelector('#grid-container');
+
+        const gridOptions = {
+          columnDefs: [
+            {
+              field: 'type',
+              headerName: 'Type',
+              resizable: true,
+              checkboxSelection: true,
+            },
+            {
+              field: 'status',
+              headerName: 'Status',
+              resizable: true,
+              sortable: true,
+              filter: true,
+            },
+            { field: 'hwVersion', headerName: 'HW version', resizable: true },
+          ],
+          rowData: [
+            {
+              type: 'Equipment',
+              status: 'Normal',
+              hwVersion: '2.0',
+              checked: false,
+            },
+            {
+              type: 'Positioner',
+              status: 'Maintenance',
+              hwVersion: '1.0',
+              checked: true,
+            },
+            {
+              type: 'Pressure sensor',
+              status: 'Unknown',
+              hwVersion: 'N/A',
+              checked: false,
+            },
+          ],
+          rowSelection: 'multiple',
+          suppressCellFocus: true,
+          checkboxSelection: true,
+        };
+
+        new agGrid.Grid(container, gridOptions);
+      })();
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map navigation example</title>
+    <link rel="stylesheet" href="./example.css" />
+  </head>
+  <body class="theme-classic-dark">
+    <!-- Preview code -->
+    <ix-map-navigation
+      application-name="Test Application"
+      navigation-title="Some other content"
+    >
+      <placeholder-logo slot="logo"></placeholder-logo>
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+        <ix-menu-item>Item 3</ix-menu-item>
+      </ix-menu>
+      <div slot="sidebar-content">Sidebar content</div>
+      <div>Content</div>
+    </ix-map-navigation>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

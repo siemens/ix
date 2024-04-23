@@ -1,0 +1,29 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pill example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <form class="needs-validation m-2">
+      <input
+        value="Some example text"
+        placeholder="Enter text here"
+        type="text"
+      />
+    </form>
+    <!-- Preview code -->
+    <script>
+      document
+        .querySelector('form')
+        .addEventListener('submit', (evt) => evt.preventDefault());
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

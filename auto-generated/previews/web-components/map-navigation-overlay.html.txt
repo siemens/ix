@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map navigation example</title>
+    <link rel="stylesheet" href="./example.css" />
+  </head>
+  <body class="theme-classic-dark">
+    <!-- Preview code -->
+    <ix-map-navigation
+      application-name="Test Application"
+      navigation-title="Some other content"
+    >
+      <placeholder-logo slot="logo"></placeholder-logo>
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+      </ix-menu>
+      <ix-button id="btn-open-overlay">Open overlay</ix-button>
+    </ix-map-navigation>
+
+    <script type="module">
+      const mapNav = document.querySelector('ix-map-navigation');
+      const buttonOpenOverlay = document.getElementById('btn-open-overlay');
+
+      buttonOpenOverlay.addEventListener('click', () => {
+        const overlay = document.createElement('ix-map-navigation-overlay');
+        overlay.slot = 'overlay';
+        overlay.name = 'Custom overlay';
+        overlay.icon = 'bulb';
+        mapNav.appendChild(overlay);
+
+        overlay.addEventListener('closeClick', (e) => {
+          overlay.parentNode.removeChild(overlay);
+        });
+      });
+    </script>
+
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dropdown Button Icon</title>
+
+    <style>
+      .example {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        max-width: 20rem;
+      }
+
+      .example > ix-dropdown-button {
+        margin-bottom: 0.5rem;
+        margin-left: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <div class="example">
+      <ix-dropdown-button label="" variant="primary" icon="checkboxes">
+        <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+      </ix-dropdown-button>
+      <ix-dropdown-button label="" variant="primary" outline icon="checkboxes">
+        <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+      </ix-dropdown-button>
+      <ix-dropdown-button label="" variant="primary" ghost icon="checkboxes">
+        <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+      </ix-dropdown-button>
+      <ix-dropdown-button label="" variant="primary" disabled icon="checkboxes">
+      </ix-dropdown-button>
+    </div>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

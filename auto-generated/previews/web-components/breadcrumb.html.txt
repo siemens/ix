@@ -1,0 +1,22 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Breadcrumb example</title>
+  </head>
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <ix-breadcrumb>
+      <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
+      <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
+      <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
+    </ix-breadcrumb>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
