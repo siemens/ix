@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,17 +11,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <ix-basic-navigation>
-      <div class="placeholder-logo" slot="logo"></div>
-      <ix-menu #menu>
-        <ix-menu-about>
-          <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
-          <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
-        </ix-menu-about>
-      </ix-menu>
-    </ix-basic-navigation>
-  `,
+  templateUrl: './about-and-legal.html',
 })
 export default class AboutAndLegal implements AfterViewInit {
   @ViewChild('menu', { read: ElementRef })

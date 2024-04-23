@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -25,6 +25,18 @@ regressionTest.describe('workflow-steps', () => {
 
     stepItem.scrollIntoViewIfNeeded();
     await stepItem.click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('toggle and disable', async ({ page }) => {
+    await page.goto('workflow-steps/toggle');
+
+    const stepItemLocator = page.locator('ix-workflow-step').nth(1);
+    await stepItemLocator.evaluate((stepItem: any) => {
+      stepItem.status = 'done';
+      stepItem.disabled = true;
+    });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

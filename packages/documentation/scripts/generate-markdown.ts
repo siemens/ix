@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,11 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import fs from 'fs-extra';
+import fsp from 'fs/promises';
 import { Listr } from 'listr2';
 import path from 'path';
 import { writeApi } from './api-tasks';
 import { writeTypeScriptFiles } from './ts-class-tasks';
 import { escapeMarkdown } from './utils';
+import rimraf from 'rimraf';
 
 const branch = process.env.IX_DOCS_BRANCH ?? 'main';
 const rootPath = path.join(__dirname, '../');
@@ -86,6 +88,8 @@ const docsStaticAngularExamples = path.join(docsStaticExamples, 'angular');
 const docsStaticReactExamples = path.join(docsStaticExamples, 'react');
 const docsStaticVueExamples = path.join(docsStaticExamples, 'vue');
 
+const iframeFrameDist = path.join(iframeExampleCodePath, 'dist');
+
 interface Context {
   names: string[];
   htmlExamples: string[];
@@ -107,12 +111,15 @@ const tasks = new Listr<Context>(
         await fs.ensureDir(docsExampleAngularPath);
         await fs.ensureDir(docsExampleVuePath);
 
+        rimraf.sync(docsStaticExamples);
         await fs.ensureDir(docsStaticWebComponentExamples);
         await fs.ensureDir(docsStaticAngularExamples);
         await fs.ensureDir(docsStaticReactExamples);
         await fs.ensureDir(docsStaticVueExamples);
 
+        rimraf.sync(iframeExampleCodePath);
         await fs.ensureDir(iframeExampleCodePath);
+        await fs.ensureDir(iframeFrameDist);
       },
     },
     {
@@ -277,7 +284,7 @@ const tasks = new Listr<Context>(
     {
       title: 'Generate Typescript class docs',
       task: async () => {
-        return writeTypeScriptFiles(
+        await writeTypeScriptFiles(
           [
             path.join(
               rootPath,
@@ -297,16 +304,61 @@ const tasks = new Listr<Context>(
     {
       title: 'Copy examples to dist',
       task: async () => {
-        return Promise.all([
+        const copy = [
           fs.copy(htmlTestAppPath, docsStaticWebComponentExamples),
           fs.copy(
             path.join(examplePath, 'html-test-app', 'dist'),
-            path.join(iframeExampleCodePath, 'dist')
+            iframeFrameDist
           ),
           fs.copy(angularTestAppPath, docsStaticAngularExamples),
           fs.copy(reactTestAppPath, docsStaticReactExamples),
           fs.copy(vueTestAppPath, docsStaticVueExamples),
-        ]);
+        ];
+
+        // Copy theme to examples folder
+        const additionalThemeSource = path.join(
+          rootPath,
+          '.build-temp',
+          'package'
+        );
+
+        if (fs.pathExistsSync(additionalThemeSource)) {
+          const additionalThemeTarget = path.join(
+            iframeFrameDist,
+            'additional-theme',
+            'ix-brand-theme'
+          );
+          copy.push(fs.copy(additionalThemeSource, additionalThemeTarget));
+        }
+
+        return Promise.all(copy);
+      },
+    },
+    {
+      title: 'Rename code snippets',
+      task: async () => {
+        return Promise.all(
+          [
+            docsStaticWebComponentExamples,
+            docsStaticAngularExamples,
+            docsStaticReactExamples,
+            docsStaticVueExamples,
+          ].flatMap(async (snippetDirectory) => {
+            const files = await fsp.readdir(snippetDirectory);
+            return files.flatMap((filePath) => {
+              const file = path.join(snippetDirectory, filePath);
+
+              if (fs.lstatSync(file).isDirectory()) {
+                return Promise.resolve();
+              }
+
+              return fs.rename(
+                file,
+                path.join(snippetDirectory, `${filePath}.txt`)
+              );
+            });
+          })
+        );
       },
     },
   ],
@@ -335,7 +387,7 @@ function wrap(
   newLinesStart = 1
 ) {
   const markdownHeader = `<!--
-SPDX-FileCopyrightText: 2023 Siemens AG
+SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
 -->`;

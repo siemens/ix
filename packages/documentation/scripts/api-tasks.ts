@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -29,10 +29,10 @@ export async function writeApi(component: any, folderPath: string) {
   const output = path.join(folderPath, component.tag);
   const promises = [];
 
-  let data = [writeProps(component.props)].join('');
+  let data = [writeProps(component)].join('');
   promises.push(fse.outputFile(path.join(output, 'props.md'), data));
 
-  data = [writeEvents(component.events)].join('');
+  data = [writeEvents(component)].join('');
   promises.push(fse.outputFile(path.join(output, 'events.md'), data));
 
   promises.push(
@@ -73,14 +73,14 @@ export function writeSlots(slots: { name: string; docs: string }[]) {
   return staticCode;
 }
 
-function writeEvents(
-  events: {
+function writeEvents(component: any) {
+  const events: {
     docsTags: DocsTag[];
     event: string;
     docs: string;
     detail: string;
-  }[]
-) {
+  }[] = component.events;
+
   if (events.length === 0) {
     return 'No events available for this component.';
   }
@@ -100,7 +100,7 @@ function writeEvents(
         return;
       }
 
-      console.log(`DocsTag not supported ${tag.name}`);
+      console.log(`DocsTag not supported ${tag.name} (${component.filePath})`);
     });
 
     attributes.push({
@@ -124,16 +124,16 @@ function writeEvents(
   return staticCode;
 }
 
-function writeProps(
-  properties: {
+function writeProps(component: any) {
+  const properties: {
     name: string;
     docs: string;
     type: string;
     attr: string;
     default: string;
     docsTags: DocsTag[];
-  }[]
-) {
+  }[] = component.props;
+
   if (properties.length === 0) {
     return 'No properties available for this component.';
   }
@@ -157,7 +157,7 @@ function writeProps(
         return;
       }
 
-      console.log(`DocsTag not supported ${tag.name}`);
+      console.log(`DocsTag not supported ${tag.name} (${component.filePath})`);
     });
 
     const attributeEntry: ApiTableEntry = {

@@ -45,19 +45,19 @@
     right: 0;
     bottom: 0;
     background-color: var(--theme-switch-off--background);
-    transition: 150ms;
+    transition: var(--theme-default-time);
     border-radius: 1.5rem;
   }
 
   .slider:before {
     position: absolute;
     content: '';
-    height: 18px;
-    width: 18px;
+    height: 1.125rem;
+    width: 1.125rem;
     left: 4px;
     bottom: 3px;
     background-color: var(--theme-switch-thumb-off--background);
-    transition: 150ms;
+    transition: var(--theme-default-time);
     border-radius: 50%;
   }
 

@@ -1,7 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
-
-import SourceEcharts from './../../auto-generated/previews/web-component/echarts.md'
+import Playground from '@site/src/components/PlaygroundV2';
 
 # ECharts
 
@@ -14,22 +11,29 @@ ECharts is a third party library distributed under [Apache License 2.0](https://
 
 </div>
 
-### Installation
+## Installation
 
 ```sh
 npm install --save @siemens/ix-echarts
 ```
 
-Import the module once in your application.
+First, import the `registerTheme` function from our module. Then, invoke this function, passing in your `echarts` instance as an argument. You don't need to provide the `echarts` instance if it is provided globally in your `window` object when using vanilla Javascript. Once this is done, you’ll be able to utilize the `brand-dark`, `brand-light`, `classic-dark`, and `classic-light` themes for your chart.
 
 ```typescript
-import '@siemens/ix-echarts';
+import { registerTheme } from '@siemens/ix-echarts';
+
+registerTheme(echarts);
 ```
 
-## Usage
+### Angular
 
-<Preview name="echarts" height="42rem">
-  <TabItem value="javascript">
-    <SourceEcharts />
-  </TabItem>
-</Preview>
+Please make sure to correctly add `NgxEcharts` in your module file.
+
+## Examples
+
+<Playground
+height="40rem"
+name="echarts"
+noMargin
+examplesByName>
+</Playground>

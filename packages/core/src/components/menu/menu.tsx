@@ -22,6 +22,7 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 import { ApplicationSidebarToggleEvent } from '../application-sidebar/events';
+import { showAppSwitch } from '../utils/app-switch';
 import { ApplicationLayoutContext } from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
@@ -87,8 +88,16 @@ export class Menu {
   @Prop() i18nExpandSidebar = 'Expand sidebar';
 
   /**
+   *  Toggle the expand state of the menu
    */
   @Prop({ mutable: true, reflect: true }) expand = false;
+
+  /**
+   *  If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+   *
+   *  @since 2.2.0
+   */
+  @Prop() startExpanded = false;
 
   /**
    * Menu stays pinned to the left
@@ -292,7 +301,7 @@ export class Menu {
     applicationLayoutService.onChange.on((breakpoint) =>
       this.onBreakpointChange(breakpoint)
     );
-    this.onBreakpointChange(applicationLayoutService.breakpoint);
+    this.onBreakpointChange(applicationLayoutService.breakpoint, true);
   }
 
   componentWillRender() {
@@ -308,7 +317,7 @@ export class Menu {
     menuController.setIsPinned(pinned);
   }
 
-  private onBreakpointChange(mode: Breakpoint) {
+  private onBreakpointChange(mode: Breakpoint, initial = false) {
     if (!this.applicationLayoutContext && mode === 'sm') {
       return;
     }
@@ -324,16 +333,11 @@ export class Menu {
       return;
     }
 
+    this.setPinned(mode === 'lg');
+    if (initial || mode !== this.breakpoint)
+      this.toggleMenu(mode === 'lg' && this.startExpanded);
+
     this.breakpoint = mode;
-
-    if (this.breakpoint === 'lg') {
-      this.setPinned(true);
-      this.toggleMenu(true);
-      return;
-    }
-
-    this.setPinned(false);
-    this.toggleMenu(false);
   }
 
   private appendFragments() {
@@ -411,6 +415,12 @@ export class Menu {
 
     this.isTransitionDisabled = false;
     this.checkTransition();
+
+    if (this.breakpoint == 'sm' && this.expand) {
+      setTimeout(() => {
+        this.handleOverflowIndicator();
+      }, 100);
+    }
   }
 
   /**
@@ -597,17 +607,27 @@ export class Menu {
             this.resetActiveTab();
           }}
         >
-          <ix-burger-menu
-            onClick={async () => this.toggleMenu()}
-            expanded={this.expand}
-            ixAriaLabel={this.i18nExpandSidebar}
-            pinned={this.showPinned}
-            class={{
-              'burger-menu': true,
-            }}
-          ></ix-burger-menu>
-          <div class="menu-avatar">
-            <slot name="ix-menu-avatar"></slot>
+          <div class="menu-buttons">
+            {this.breakpoint !== 'sm' && (
+              <ix-menu-expand-icon
+                breakpoint={this.breakpoint}
+                expanded={this.expand}
+                pinned={this.pinned}
+                class="menu-expand-icon"
+                ixAriaLabel={this.i18nExpandSidebar}
+                onClick={async () => this.toggleMenu()}
+              ></ix-menu-expand-icon>
+            )}
+            {this.breakpoint === 'sm' &&
+              this.applicationLayoutContext.appSwitchConfig && (
+                <ix-icon-button
+                  onClick={() =>
+                    showAppSwitch(this.applicationLayoutContext.appSwitchConfig)
+                  }
+                  icon="apps"
+                  ghost
+                ></ix-icon-button>
+              )}
           </div>
 
           <div
@@ -617,9 +637,6 @@ export class Menu {
             }}
             onClick={(e) => this.onMenuItemsClick(e)}
           >
-            <div class="tabs-top">
-              <slot name="home"></slot>
-            </div>
             <div class="tabs-shadow-container">
               <div
                 class={{
@@ -628,7 +645,17 @@ export class Menu {
                   'tabs--shadow--show': this.itemsScrollShadowTop,
                 }}
               ></div>
-              <div class="tabs" onScroll={() => this.handleOverflowIndicator()}>
+              <div
+                class={{
+                  tabs: true,
+                  'show-scrollbar': this.expand,
+                }}
+                onScroll={() => this.handleOverflowIndicator()}
+              >
+                <div class="menu-avatar">
+                  <slot name="ix-menu-avatar"></slot>
+                </div>
+                <slot name="home"></slot>
                 {this.breakpoint !== 'sm' || !this.isHiddenFromViewport() ? (
                   <slot></slot>
                 ) : null}
@@ -684,7 +711,7 @@ export class Menu {
               id="toggleTheme"
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
-              icon={'bulb'}
+              icon={'light-dark'}
             >
               {this.i18nToggleTheme}
             </ix-menu-item>

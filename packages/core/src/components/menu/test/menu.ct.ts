@@ -23,24 +23,63 @@ test('renders', async ({ mount, page }) => {
   await expect(element).toHaveClass(/breakpoint-lg/);
 });
 
-test('should stay close after menu click when NOT pinned', async ({
+test('should be open when start-expanded ist set', async ({ mount, page }) => {
+  await mount(`
+      <ix-application>
+        <ix-menu start-expanded>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+      </ix-application>
+    `);
+  await page
+    .locator('ix-application')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
+    );
+  const menu = page.locator('ix-menu');
+
+  await expect(menu).toHaveClass(/expanded/);
+});
+
+test('should be closed when start-expanded ist NOT set', async ({
   mount,
   page,
 }) => {
   await mount(`
-      <ix-basic-navigation>
+      <ix-application>
         <ix-menu>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
-      </ix-basic-navigation>
+      </ix-application>
     `);
-  const menu = page.locator('ix-menu');
   await page
-    .locator('ix-basic-navigation')
+    .locator('ix-application')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
+    );
+  const menu = page.locator('ix-menu');
+
+  await expect(menu).not.toHaveClass(/expanded/);
+});
+
+test('should be closed after menu click when NOT pinned', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-item>Item</ix-menu-item>
+        </ix-menu>
+      </ix-application>
+    `);
+  await page
+    .locator('ix-application')
     .evaluate(
       (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
     );
-  const menuButton = menu.locator('ix-burger-menu');
+  const menu = page.locator('ix-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
   await expect(menu).toHaveClass(/expanded/);
@@ -53,21 +92,24 @@ test('should stay open after menu click when pinned', async ({
   page,
 }) => {
   await mount(`
-      <ix-basic-navigation>
+      <ix-application>
         <ix-menu pinned>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
-      </ix-basic-navigation>
+      </ix-application>
     `);
+  await page
+    .locator('ix-application')
+    .evaluate(
+      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    );
   const menu = page.locator('ix-menu');
-  const menuButton = menu.locator('ix-burger-menu');
+  const menuButton = menu.locator('ix-menu-expand-icon');
   await menuButton.click();
 
-  await expect(menu).not.toHaveClass(/expanded/);
-
+  await expect(menu).toHaveClass(/expanded/);
   await page.locator('ix-menu-item').click();
-
-  await expect(menu).not.toHaveClass(/expanded/);
+  await expect(menu).toHaveClass(/expanded/);
 });
 
 test('should open and close settings', async ({ mount, page }) => {
@@ -195,7 +237,10 @@ test('should close menu by bottom icon click', async ({ mount, page }) => {
   `);
 
   const element = page.locator('ix-menu');
-  await element.getByRole('button', { name: 'Expand sidebar' }).click();
+
+  await page.locator('ix-menu ix-menu-expand-icon').click();
+  await page.waitForSelector('ix-menu ix-menu-expand-icon.expanded');
+
   const innerMenu = element.locator('.menu');
   await expect(innerMenu).toHaveClass(/expanded/);
 
@@ -204,6 +249,28 @@ test('should close menu by bottom icon click', async ({ mount, page }) => {
 
   await expect(innerMenu).not.toHaveClass(/expanded/);
   await expect(element).toBeVisible();
+});
+
+test('should have correct aria label', async ({ mount, page }) => {
+  await mount(`
+    <ix-menu pinned>
+    </ix-menu>
+    `);
+
+  await page.locator('ix-menu');
+  const chevronButton = page.locator('ix-icon-button button');
+
+  await expect(chevronButton).toHaveAttribute(
+    'aria-label',
+    'Double Chevron Right'
+  );
+
+  chevronButton.click();
+
+  await expect(chevronButton).toHaveAttribute(
+    'aria-label',
+    'Double Chevron Left'
+  );
 });
 
 async function clickAboutButton(element: Locator, page: Page) {

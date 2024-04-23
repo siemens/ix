@@ -1,5 +1,5 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -9,6 +9,8 @@
 
 <script setup lang="ts">
 import {
+IxApplication,
+  IxApplicationHeader,
   IxBasicNavigation,
   IxMenu,
   IxMenuAbout,
@@ -22,13 +24,15 @@ watch(menu, () => menu.value?.toggleAbout(true));
 </script>
 
 <template>
-  <IxBasicNavigation>
-    <div className="placeholder-logo" slot="logo"></div>
+  <IxApplication>
+    <IxApplicationHeader>
+      <div className="placeholder-logo" slot="logo"></div>
+    </IxApplicationHeader>
     <IxMenu ref="menu">
       <IxMenuAbout>
         <IxMenuAboutItem label="Tab 1">Content 1</IxMenuAboutItem>
         <IxMenuAboutItem label="Tab 2">Content 2</IxMenuAboutItem>
       </IxMenuAbout>
     </IxMenu>
-  </IxBasicNavigation>
+  </IxApplication>
 </template>

@@ -82,14 +82,16 @@ export class MenuAboutNews {
 
         <ix-icon-button
           size="24"
-          icon={'close-small'}
+          icon={'close'}
           ghost
           onClick={() => {
             this.show = false;
             this.closePopover.emit();
           }}
         ></ix-icon-button>
-        <slot></slot>
+        <div class="slot-container">
+          <slot></slot>
+        </div>
         {this.aboutItemLabel ? (
           <div class="cui-popover-news-footer">
             <ix-button

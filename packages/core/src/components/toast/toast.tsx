@@ -67,21 +67,56 @@ export class Toast {
 
   private getIcon() {
     if (this.icon) {
-      return <ix-icon name={this.icon} color={this.iconColor} size="24" />;
+      return (
+        <ix-icon
+          data-testid="toast-icon"
+          name={this.icon}
+          color={this.iconColor}
+          size="24"
+        />
+      );
     }
 
     switch (this.type) {
       case 'info':
-        return <ix-icon name={'info'} size="24" color="color-std-text" />;
+        return (
+          <ix-icon
+            data-testid="toast-icon"
+            name={'info'}
+            size="24"
+            color="color-std-text"
+          />
+        );
 
       case 'error':
-        return <ix-icon name={'error'} size="24" color="color-alarm" />;
+        return (
+          <ix-icon
+            data-testid="toast-icon"
+            name={'error'}
+            size="24"
+            color="color-alarm"
+          />
+        );
 
       case 'success':
-        return <ix-icon name={'success'} size="24" color="color-success" />;
+        return (
+          <ix-icon
+            data-testid="toast-icon"
+            name={'success'}
+            size="24"
+            color="color-success"
+          />
+        );
 
       case 'warning':
-        return <ix-icon name={'warning'} size="24" color="color-warning" />;
+        return (
+          <ix-icon
+            data-testid="toast-icon"
+            name={'warning'}
+            size="24"
+            color="color-warning"
+          />
+        );
 
       default:
         return '';

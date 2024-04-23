@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -30,9 +30,7 @@ function CustomModal() {
 
   return (
     <Modal ref={modalRef}>
-      <IxModalHeader onCloseClick={() => dismiss()}>
-        Message headline
-      </IxModalHeader>
+      <IxModalHeader>Message headline</IxModalHeader>
       <IxModalContent>Message text lorem ipsum</IxModalContent>
       <IxModalFooter>
         <IxButton outline onClick={() => dismiss()}>

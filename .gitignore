@@ -171,6 +171,7 @@ packages/html-test-app/src/public/additional-theme
 ###
 
 packages/documentation/docs/auto-generated/
+packages/documentation/.build-temp
 packages/documentation/scripts/.typedoc/
 packages/documentation/static/auto-generated/
 packages/documentation/static/figma/

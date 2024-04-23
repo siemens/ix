@@ -6,10 +6,21 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  State,
+  Event,
+  EventEmitter,
+  Listen,
+} from '@stencil/core';
 import anime from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { createEnterLeaveDebounce } from './enter-leave';
 
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
@@ -40,6 +51,11 @@ export class MenuCategory {
    */
   @Prop() notifications: number;
 
+  /** @internal */
+  // eslint-disable-next-line @stencil-community/decorators-style
+  @Event({ bubbles: true, cancelable: true })
+  closeOtherCategories: EventEmitter;
+
   @State() menuExpand = false;
   @State() showItems = false;
   @State() showDropdown = false;
@@ -48,6 +64,15 @@ export class MenuCategory {
   private observer: MutationObserver;
   private menuItemsContainer: HTMLDivElement;
   private ixMenu: HTMLIxMenuElement;
+
+  private enterLeaveDebounce = createEnterLeaveDebounce(
+    () => {
+      this.onPointerEnter();
+    },
+    () => {
+      this.onPointerLeave();
+    }
+  );
 
   private isNestedItemActive() {
     return this.getNestedItems().some((item) => item.active);
@@ -104,14 +129,26 @@ export class MenuCategory {
     });
   }
 
-  private onCategoryClicked(e?: MouseEvent) {
+  private onPointerEnter() {
+    if (this.ixMenu.expand) {
+      return;
+    }
+    this.closeOtherCategories.emit();
+    this.showDropdown = true;
+  }
+
+  @Listen('closeOtherCategories', { target: 'window' })
+  private onPointerLeave() {
+    this.showDropdown = false;
+  }
+
+  private onCategoryClick(e: MouseEvent) {
+    e.stopPropagation();
     if (this.ixMenu.expand) {
       e?.stopPropagation();
       this.onExpandCategory(!this.showItems);
       return;
     }
-
-    this.showDropdown = !this.showDropdown;
   }
 
   private onNestedItemsChanged() {
@@ -122,13 +159,18 @@ export class MenuCategory {
     return this.menuExpand && (this.showItems || this.isNestedItemActive());
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
     const closestMenu = closestIxMenu(this.hostElement);
     if (!closestMenu) {
       throw Error('ix-menu-category can only be used as a child of ix-menu');
     }
     this.ixMenu = closestMenu;
 
+    this.menuExpand = this.ixMenu.expand;
+    this.showItems = this.isCategoryItemListVisible();
+  }
+
+  componentDidLoad() {
     this.observer = createMutationObserver(() => this.onNestedItemsChanged());
     this.observer.observe(this.hostElement, {
       attributes: true,
@@ -144,10 +186,17 @@ export class MenuCategory {
       'expandChange',
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
-
+        if (!menuExpand) {
+          this.clearMenuItemStyles();
+        }
         this.showItems = this.isCategoryItemListVisible();
       }
     );
+  }
+
+  clearMenuItemStyles() {
+    this.menuItemsContainer.style.removeProperty('max-height');
+    this.menuItemsContainer.style.removeProperty('opacity');
   }
 
   disconnectedCallback() {
@@ -162,16 +211,27 @@ export class MenuCategory {
         class={{
           expanded: this.showItems,
         }}
+        onPointerEnter={() => {
+          this.enterLeaveDebounce.onEnter();
+        }}
+        onPointerLeave={(event: PointerEvent) => {
+          if (event.pointerType === 'touch') {
+            return;
+          }
+          this.enterLeaveDebounce.onLeave();
+        }}
       >
         <ix-menu-item
           class={'category-parent'}
           active={this.isNestedItemActive()}
           notifications={this.notifications}
           icon={this.icon}
-          onClick={(e) => this.onCategoryClicked(e)}
+          onClick={(e) => this.onCategoryClick(e)}
+          onFocus={() => this.onPointerEnter()}
+          isCategory
         >
           <div class="category">
-            {this.label}
+            <div class="category-text">{this.label}</div>
             <ix-icon
               name={'chevron-down-small'}
               class={{
@@ -186,6 +246,7 @@ export class MenuCategory {
           class={{
             'menu-items': true,
             'menu-items--expanded': this.showItems,
+            'menu-items--collapsed': !this.showItems,
           }}
         >
           {this.showItems ? <slot></slot> : null}

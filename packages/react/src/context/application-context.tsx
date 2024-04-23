@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -18,6 +18,7 @@ export class IxApplicationContext extends React.Component<IxApplicationContextPr
 
   constructor(props: IxApplicationContextProps) {
     super(props);
+    this.delegate.isUsingReactPortal = true;
   }
 
   render() {

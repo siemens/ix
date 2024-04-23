@@ -16,8 +16,9 @@
       ],
       "outputMode": "new-only"
     },
-    "test": {
-      "cache": false
+    "pkg": {
+      "dependsOn": ["^build"],
+      "cache": true
     },
     "start": {
       "dependsOn": ["^build"],
@@ -26,7 +27,12 @@
     "lint": {
       "cache": false
     },
-    "test:e2e": {
+    "visual-regression": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "test": {
+      "dependsOn": ["^build"],
       "cache": false
     }
   }

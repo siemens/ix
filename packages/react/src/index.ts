@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,6 +8,7 @@
  */
 export * from './components';
 export * from './context';
+export * from './internal-components';
 export * from './ix-icon';
 export * from './modal';
 export * from './toast';

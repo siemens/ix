@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2023 Siemens AG
+SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
 -->
@@ -50,6 +50,20 @@ SPDX-License-Identifier: MIT
     </ix-blind>
     <ix-blind icon="bulb" variant="primary" label="primary" sublabel="sublabel">
       <div>Primary content</div>
+    </ix-blind>
+    <ix-blind
+      icon="warning"
+      variant="warning"
+      label="A long asset name that does not fit to blind header"
+      subLabel="subLabel A long asset name that does not fit"
+      style="width: 300px"
+    >
+      <ix-icon-button
+        id="context-menu"
+        slot="header-actions"
+        ghost
+        icon="context-menu"
+      ></ix-icon-button>
     </ix-blind>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>

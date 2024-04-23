@@ -23,25 +23,22 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Method,
   Prop,
   Watch,
 } from '@stencil/core';
-import { OnListener } from '../utils/listener';
+import { ComponentInterface } from '@stencil/core/internal';
+import { ArrowFocusController } from '../utils/focus';
+import {
+  addDisposableEventListener,
+  CloseBehavior,
+  dropdownController,
+  DropdownInterface,
+  hasDropdownItemWrapperImplemented,
+} from './dropdown-controller';
 import { AlignedPlacement } from './placement';
 
-/**
- * @internal
- */
-export type DropdownTriggerEvent = 'click' | 'hover' | 'focus';
-
-type DisposeDropdown = () => void;
-type DropdownDisposerEntry = {
-  element: HTMLIxDropdownElement;
-  child: HTMLIxDropdownElement;
-  dispose: DisposeDropdown;
-};
-const dropdownDisposer = new Map<string, DropdownDisposerEntry>();
 let sequenceId = 0;
 
 @Component({
@@ -49,7 +46,7 @@ let sequenceId = 0;
   styleUrl: 'dropdown.scss',
   shadow: true,
 })
-export class Dropdown {
+export class Dropdown implements ComponentInterface, DropdownInterface {
   @Element() hostElement!: HTMLIxDropdownElement;
 
   /**
@@ -68,7 +65,7 @@ export class Dropdown {
    * Define an element that triggers the dropdown.
    * A trigger can either be a string that will be interpreted as id attribute or a DOM element.
    */
-  @Prop() trigger: string | HTMLElement;
+  @Prop() trigger: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Define an anchor element
@@ -77,8 +74,9 @@ export class Dropdown {
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+   * If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
    */
-  @Prop() closeBehavior: 'inside' | 'outside' | 'both' | boolean = 'both';
+  @Prop() closeBehavior: CloseBehavior = 'both';
 
   /**
    * Placement of the dropdown
@@ -107,18 +105,19 @@ export class Dropdown {
   };
 
   /**
-   * Define one or more events to open dropdown
-   * @internal
-   */
-  @Prop() triggerEvent: DropdownTriggerEvent | DropdownTriggerEvent[] = 'click';
-
-  /**
    * @internal
    */
   @Prop() overwriteDropdownStyle: (delegate: {
     dropdownRef: HTMLElement;
     triggerRef?: HTMLElement;
   }) => Promise<Partial<CSSStyleDeclaration>>;
+
+  /**
+   * @internal
+   * If initialisation of this dropdown is expected to be defered submenu discovery will have to be re-run globally by the controller.
+   * This property indicates the need for that to the controller.
+   */
+  @Prop() discoverAllSubmenus = false;
 
   /**
    * Fire event after visibility of dropdown has changed
@@ -131,57 +130,81 @@ export class Dropdown {
   private anchorElement?: Element;
 
   private dropdownRef: HTMLElement;
+  private localUId = `dropdown-${sequenceId++}`;
+  private assignedSubmenu: string[] = [];
 
-  private toggleBind: any;
-  private openBind: any;
+  private arrowFocusController: ArrowFocusController;
+  private focusDropdownItemBind = this.focusDropdownItem.bind(this);
 
-  private localUId = `dropdown-${sequenceId++}-${new Date().valueOf()}`;
+  private itemObserver = new MutationObserver(() => {
+    this.arrowFocusController.items = this.dropdownItems;
+  });
 
-  constructor() {
-    this.toggleBind = this.toggle.bind(this);
-    this.openBind = this.open.bind(this);
+  connectedCallback(): void {
+    dropdownController.connected(this);
 
-    if (dropdownDisposer.has(this.localUId)) {
-      console.warn('Dropdown with duplicated id detected');
-    }
-
-    dropdownDisposer.set(this.localUId, {
-      dispose: this.close.bind(this),
-      element: this.hostElement,
-      child: null,
-    });
-
-    const parentDropdown = this.closestPassShadow(
-      this.hostElement.parentNode,
-      'ix-dropdown'
-    );
-    if (parentDropdown) {
-      for (let entry of dropdownDisposer.values()) {
-        if (entry.element === parentDropdown) {
-          entry.child = this.hostElement;
-        }
-      }
+    if (this.trigger != undefined) {
+      this.registerListener(this.trigger);
     }
   }
 
-  closestPassShadow(node, selector) {
-    if (!node) {
-      return null;
+  @Listen('ix-assign-sub-menu')
+  cacheSubmenuId(event: CustomEvent<string>) {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+
+    const { detail } = event;
+
+    if (this.assignedSubmenu.indexOf(detail) === -1) {
+      this.assignedSubmenu.push(detail);
+    }
+  }
+
+  disconnectedCallback() {
+    dropdownController.dismiss(this);
+    dropdownController.disconnected(this);
+
+    if (this.disposeClickListener) {
+      this.disposeClickListener();
     }
 
-    if (node instanceof ShadowRoot) {
-      return this.closestPassShadow(node.host, selector);
+    if (this.disposeKeyListener) {
+      this.disposeKeyListener();
     }
 
-    if (node instanceof HTMLElement) {
-      if (node.matches(selector)) {
-        return node;
-      } else {
-        return this.closestPassShadow(node.parentNode, selector);
-      }
+    if (this.autoUpdateCleanup) {
+      this.autoUpdateCleanup();
     }
+  }
 
-    return this.closestPassShadow(node.parentNode, selector);
+  getAssignedSubmenuIds() {
+    return this.assignedSubmenu;
+  }
+
+  isPresent() {
+    return this.show;
+  }
+
+  present() {
+    this.show = true;
+  }
+
+  dismiss() {
+    this.show = false;
+  }
+
+  getId() {
+    return this.localUId;
+  }
+
+  willDismiss() {
+    const { defaultPrevented } = this.showChanged.emit(false);
+    return !defaultPrevented;
+  }
+
+  willPresent() {
+    const { defaultPrevented } = this.showChanged.emit(true);
+    return !defaultPrevented;
   }
 
   get dropdownItems() {
@@ -192,72 +215,124 @@ export class Dropdown {
     return this.hostElement.shadowRoot.querySelector('slot');
   }
 
-  private addEventListenersFor(triggerEvent: DropdownTriggerEvent) {
-    switch (triggerEvent) {
-      case 'click':
-        this.triggerElement.addEventListener('click', this.openBind);
-        break;
+  private disposeClickListener?: () => void;
+  private disposeKeyListener?: () => void;
 
-      case 'hover':
-        this.triggerElement.addEventListener('mouseenter', this.openBind);
-        break;
+  private addEventListenersFor() {
+    this.disposeClickListener?.();
+    this.disposeKeyListener?.();
 
-      case 'focus':
-        this.triggerElement.addEventListener('focusin', this.openBind);
-        break;
-    }
-  }
+    const toggleController = () => {
+      if (!this.isPresent()) {
+        dropdownController.present(this);
+      } else {
+        dropdownController.dismiss(this);
+      }
 
-  private removeEventListenersFor(
-    triggerEvent: DropdownTriggerEvent,
-    triggerElement: Element
-  ) {
-    switch (triggerEvent) {
-      case 'click':
-        if (this.closeBehavior === 'outside') {
-          triggerElement.removeEventListener('click', this.openBind);
-        } else {
-          triggerElement.removeEventListener('click', this.toggleBind);
+      dropdownController.dismissOthers(this.getId());
+    };
+
+    this.disposeClickListener = addDisposableEventListener(
+      this.triggerElement,
+      'click',
+      (event: PointerEvent) => {
+        if (!event.defaultPrevented) {
+          toggleController();
         }
-        break;
+      }
+    );
 
-      case 'hover':
-        triggerElement.removeEventListener('mouseenter', this.openBind);
-        break;
-
-      case 'focus':
-        triggerElement.removeEventListener('focusin', this.openBind);
-        break;
-    }
+    this.triggerElement?.setAttribute(
+      'data-ix-dropdown-trigger',
+      this.localUId
+    );
   }
 
-  private async registerListener(element: string | HTMLElement) {
+  /** @internal */
+  @Method()
+  async discoverSubmenu() {
+    this.triggerElement?.dispatchEvent(
+      new CustomEvent('ix-assign-sub-menu', {
+        bubbles: true,
+        composed: false,
+        cancelable: true,
+        detail: this.localUId,
+      })
+    );
+  }
+
+  private registerKeyListener() {
+    this.disposeKeyListener = addDisposableEventListener(
+      this.triggerElement,
+      'keydown',
+      (event: KeyboardEvent) => {
+        if (event.key !== 'ArrowDown') {
+          return;
+        }
+
+        if (document.activeElement !== this.triggerElement) {
+          return;
+        }
+
+        dropdownController.present(this);
+
+        setTimeout(() => {
+          this.focusDropdownItem(0);
+        });
+      }
+    );
+  }
+
+  private async registerListener(
+    element: string | HTMLElement | Promise<HTMLElement>
+  ) {
     this.triggerElement = await this.resolveElement(element);
     if (this.triggerElement) {
-      if (Array.isArray(this.triggerEvent)) {
-        this.triggerEvent.forEach((triggerEvent) => {
-          this.addEventListenersFor(triggerEvent);
-        });
-      } else {
-        this.addEventListenersFor(this.triggerEvent);
-      }
+      this.addEventListenersFor();
+      this.discoverSubmenu();
     }
   }
 
-  private async unregisterListener(element: string | HTMLElement) {
-    const trigger = await this.resolveElement(element);
-    if (Array.isArray(this.triggerEvent)) {
-      this.triggerEvent.forEach((triggerEvent) => {
-        this.removeEventListenersFor(triggerEvent, trigger);
-      });
-    } else {
-      this.removeEventListenersFor(this.triggerEvent, trigger);
-    }
+  private async resolveElement(
+    element: string | HTMLElement | Promise<HTMLElement>
+  ) {
+    const el = await this.findElement(element);
+
+    return this.checkForSubmenuAnchor(el);
   }
 
-  private resolveElement(element: string | HTMLElement): Promise<Element> {
-    if (typeof element !== 'string') {
+  private async checkForSubmenuAnchor(element: Element) {
+    if (!element) {
+      return null;
+    }
+
+    if (hasDropdownItemWrapperImplemented(element)) {
+      const dropdownItem = await element.getDropdownItemElement();
+      dropdownItem.isSubMenu = true;
+      this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
+    }
+
+    if (element.tagName === 'IX-DROPDOWN-ITEM') {
+      (element as HTMLIxDropdownItemElement).isSubMenu = true;
+      this.hostElement.style.zIndex = `var(--theme-z-index-dropdown)`;
+    }
+
+    return element;
+  }
+
+  private findElement(
+    element: string | HTMLElement | Promise<HTMLElement>
+  ): Promise<Element> {
+    if (element instanceof Promise) {
+      return element;
+    }
+
+    if (typeof element === 'object') {
       return Promise.resolve(element);
+    }
+
+    if (typeof element != 'string') {
+      return;
     }
 
     const selector = `#${element}`;
@@ -290,132 +365,45 @@ export class Dropdown {
       if (this.anchorElement) {
         this.applyDropdownPosition();
       }
-    }
 
-    if (newShow) {
-      dropdownDisposer.forEach((entry, id) => {
-        if (
-          id !== this.localUId &&
-          !this.isAnchorSubmenu() &&
-          entry.child !== this.hostElement
-        ) {
-          entry.dispose();
-        }
+      this.arrowFocusController = new ArrowFocusController(
+        this.dropdownItems,
+        this.dropdownRef,
+        this.focusDropdownItemBind
+      );
+
+      this.itemObserver.observe(this.dropdownRef, {
+        childList: true,
+        subtree: true,
       });
+
+      this.registerKeyListener();
+    } else {
+      this.arrowFocusController.disconnect();
+      this.itemObserver.disconnect();
+      this.disposeKeyListener?.();
     }
   }
 
   @Watch('trigger')
-  changedTrigger(
-    newTriggerValue: string | HTMLElement,
-    oldTriggerValue: string | HTMLElement
-  ) {
-    if (newTriggerValue) {
-      this.registerListener(newTriggerValue);
-    }
-
-    if (oldTriggerValue) {
-      this.unregisterListener(oldTriggerValue);
-    }
+  changedTrigger(newTriggerValue: string | HTMLElement | Promise<HTMLElement>) {
+    this.registerListener(newTriggerValue);
   }
 
-  @OnListener<Dropdown>('click', (self) => self.show)
-  clickOutside(event: PointerEvent) {
-    const target = event.target as HTMLElement;
-
-    if (event.defaultPrevented) {
-      return;
-    }
-
-    if (
-      this.show === false ||
-      this.closeBehavior === false ||
-      this.anchorElement?.contains(target) ||
-      this.triggerElement?.contains(target)
-    ) {
-      return;
-    }
-
-    const clickInsideDropdown = this.isClickInsideDropdown(event);
-
-    switch (this.closeBehavior) {
-      case 'outside':
-        if (!clickInsideDropdown || this.anchor === target) {
-          this.close();
-        }
-        break;
-      case 'inside':
-        if (clickInsideDropdown && this.hostElement !== target) {
-          this.close();
-        }
-        break;
-      case 'both':
-        if (this.hostElement !== target) {
-          this.close();
-        }
-        break;
-      default:
-        this.close();
-    }
-  }
-
-  @OnListener<Dropdown>('keydown', (self) => self.show)
-  keydown(event: KeyboardEvent) {
-    if (this.show === true && event.code === 'Escape') {
-      this.close();
-    }
-  }
-
-  private isNestedDropdown(element: Element) {
-    return element.closest('ix-dropdown');
-  }
-
-  private isAnchorSubmenu() {
-    const anchor = this.anchorElement?.closest('ix-dropdown-item');
-    if (!anchor) {
-      return false;
+  private isAnchorSubmenu(): boolean {
+    if (!hasDropdownItemWrapperImplemented(this.anchorElement)) {
+      // Is no official dropdown-item, but check if any dropdown-item
+      // is placed somewhere up the DOM
+      return !!this.anchorElement?.closest('ix-dropdown-item');
     }
 
     return true;
   }
 
-  private toggle(event: Event) {
-    event.preventDefault();
-
-    if (this.isNestedDropdown(event.target as HTMLElement)) {
-      event.stopPropagation();
-    }
-
-    const { defaultPrevented } = this.showChanged.emit(this.show);
-
-    if (!defaultPrevented) {
-      this.show = !this.show;
-    }
-  }
-
-  private open(event: Event) {
-    event.preventDefault();
-
-    if (this.isNestedDropdown(event.target as HTMLElement)) {
-      event.stopPropagation();
-    }
-
-    const { defaultPrevented } = this.showChanged.emit(true);
-
-    if (!defaultPrevented) {
-      this.show = true;
-    }
-  }
-
-  private close() {
-    const { defaultPrevented } = this.showChanged.emit(false);
-
-    if (!defaultPrevented) {
-      this.show = false;
-    }
-  }
-
   private async applyDropdownPosition() {
+    if (!this.show) {
+      return;
+    }
     if (!this.anchorElement) {
       return;
     }
@@ -461,7 +449,6 @@ export class Dropdown {
           this.dropdownRef,
           positionConfig
         );
-
         Object.assign(this.dropdownRef.style, {
           top: '0',
           left: '0',
@@ -486,8 +473,14 @@ export class Dropdown {
     );
   }
 
+  private focusDropdownItem(index: number) {
+    requestAnimationFrame(() => {
+      this.dropdownItems[index]?.shadowRoot.querySelector('button').focus();
+    });
+  }
+
   async componentDidLoad() {
-    this.changedTrigger(this.trigger, null);
+    this.changedTrigger(this.trigger);
   }
 
   async componentDidRender() {
@@ -495,33 +488,28 @@ export class Dropdown {
     this.anchorElement = await (this.anchor
       ? this.resolveElement(this.anchor)
       : this.resolveElement(this.trigger));
-
-    if (
-      this.isAnchorSubmenu() &&
-      this.anchorElement?.tagName === 'IX-DROPDOWN-ITEM'
-    ) {
-      (this.anchorElement as HTMLIxDropdownItemElement).isSubMenu = true;
-    }
   }
 
-  private isClickInsideDropdown(event: PointerEvent) {
-    const rect = this.dropdownRef.getBoundingClientRect();
-    return (
-      rect.top <= event.clientY &&
-      event.clientY <= rect.top + rect.height &&
-      rect.left <= event.clientX &&
-      event.clientX <= rect.left + rect.width
-    );
+  private isTriggerElement(element: HTMLElement) {
+    const trigger = !!element.hasAttribute('data-ix-dropdown-trigger');
+
+    return trigger;
   }
 
-  disconnectedCallback() {
-    if (this.autoUpdateCleanup) {
-      this.autoUpdateCleanup();
+  private onDropdownClick(event: PointerEvent) {
+    if (dropdownController.pathIncludesTrigger(event.composedPath())) {
+      event.preventDefault();
+
+      if (this.isTriggerElement(event.target as HTMLElement)) {
+        return;
+      }
     }
 
-    if (dropdownDisposer.has(this.localUId)) {
-      dropdownDisposer.delete(this.localUId);
+    if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
+      dropdownController.dismissAll([this.getId()]);
     }
+
+    dropdownController.dismissOthers(this.getId());
   }
 
   /**
@@ -535,6 +523,7 @@ export class Dropdown {
   render() {
     return (
       <Host
+        data-ix-dropdown={this.localUId}
         ref={(ref) => (this.dropdownRef = ref)}
         class={{
           'dropdown-menu': true,
@@ -547,9 +536,10 @@ export class Dropdown {
           position: this.positioningStrategy,
         }}
         role="list"
+        onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >
         <div style={{ display: 'contents' }}>
-          {this.header ? <div class="dropdown-header">{this.header}</div> : ''}
+          {this.header && <div class="dropdown-header">{this.header}</div>}
 
           <slot></slot>
         </div>

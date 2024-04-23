@@ -1,0 +1,38 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <body class="theme-classic-dark">
+    <!-- Preview code -->
+    <ix-application>
+      <ix-application-header name="My Application">
+        <placeholder-logo slot="logo"></placeholder-logo>
+      </ix-application-header>
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+      </ix-menu>
+
+      <ix-content>
+        <ix-content-header
+          slot="header"
+          header-title="My Content Page"
+        >
+        </ix-content-header>
+      </ix-content>
+    </ix-application>
+    <!-- Preview code -->
+    <script type="module">
+      (async () => {
+        await window.customElements.whenDefined('ix-application');
+        const menu = document.querySelector('ix-application');
+        menu.breakpoints = ['md'];
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

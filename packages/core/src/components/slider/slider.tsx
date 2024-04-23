@@ -50,7 +50,7 @@ export class Slider {
   /**
    * Legal number intervals
    *
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
+   * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
    */
   @Prop() step: number;
 
@@ -177,7 +177,7 @@ export class Slider {
   // Listen globally on window because sometimes the event listener
   // of the DOM element input itself is not called if the release
   // click is not inside the element anymore
-  @OnListener<Slider>('pointerUp', (self) => self.showTooltip)
+  @OnListener<Slider>('pointerup', (self) => self.showTooltip)
   onPointerUp() {
     this.showTooltip = false;
   }

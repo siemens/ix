@@ -71,9 +71,7 @@
   overflow: hidden;
 
   .blind-header-wrapper {
-    display: block;
     position: relative;
-    width: 100%;
     min-height: 3rem;
     height: 3rem;
     overflow: hidden;
@@ -87,7 +85,6 @@
 
     width: 100%;
     height: 100%;
-    z-index: 1;
 
     pointer-events: none;
     padding-left: 0.5rem;
@@ -98,8 +95,7 @@
     position: relative;
     align-items: center;
     flex-grow: 1;
-    flex-shrink: 0;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 
   .blind-header {
@@ -136,15 +132,15 @@
 
   .blind-header-title-row {
     display: flex;
-    flex-grow: 1;
+    width: 100%;
+    overflow: hidden;
   }
 
   .blind-header-title-col {
-    flex-grow: 1;
-    flex-basis: 0;
     display: inline-flex;
     align-items: center;
-    min-width: 0;
+    width: calc(100% - 1rem);
+    overflow: hidden;
   }
 
   .blind-header-title-col:not(:first-of-type) {
@@ -183,7 +179,7 @@
     display: block;
     padding: 1rem;
     transition-property: padding;
-    transition-duration: $default-time;
+    transition-duration: var(--theme-default-time);
     transition-timing-function: ease-in;
 
     &.hide {
@@ -195,6 +191,7 @@
 
   .header-actions {
     pointer-events: all;
+    margin-left: auto;
   }
 }
 

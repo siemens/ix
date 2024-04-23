@@ -1,0 +1,85 @@
+name: nightly
+
+on:
+  schedule:
+    - cron: '0 8,16 * * 1-5'
+  workflow_dispatch:
+    inputs:
+        message:
+          type: string
+          description: Additional commit message
+          default: ''
+        message_prefix:
+          type: string
+          description: Prefix commit message
+          default: 'Nightly build'
+
+jobs:
+  deploy_nightly:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'siemens/ix' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Store commit id
+        id: gitcommit
+        shell: bash
+        run: |
+          echo "GIT_COMMIT_ID=$(git log -1 --pretty=%h)" >> "$GITHUB_OUTPUT"
+
+      - name: Copy build files
+        shell: bash
+        run: |
+          rm -rf .git
+          rm -rf .gitignore
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --filter \!documentation
+
+      - name: Push to remote @siemens/ix
+        uses: ./.github/workflows/actions/push-remote
+        env:
+          GIT_COMMIT_ID: ${{ steps.gitcommit.outputs.GIT_COMMIT_ID }}
+          GIT_COMMIT_MESSAGE: ${{ inputs.message }}
+          GIT_COMMIT_MESSAGE_PREFIX: ${{ inputs.message_prefix }}
+        with:
+          internal-name: core
+          branch-name: ix
+          commit_id: $GIT_COMMIT_ID
+          commit_message_prefix: $GIT_COMMIT_MESSAGE_PREFIX
+          commit_message: $GIT_COMMIT_MESSAGE
+          token: ${{ secrets.NIGHTLY_STORE }}
+
+      - name: Push to remote @siemens/ix-react
+        uses: ./.github/workflows/actions/push-remote
+        env:
+          GIT_COMMIT_ID: ${{ steps.gitcommit.outputs.GIT_COMMIT_ID }}
+          GIT_COMMIT_MESSAGE: ${{ inputs.message }}
+          GIT_COMMIT_MESSAGE_PREFIX: ${{ inputs.message_prefix }}
+        with:
+          internal-name: react
+          branch-name: ix-react
+          commit_id: $GIT_COMMIT_ID
+          commit_message_prefix: $GIT_COMMIT_MESSAGE_PREFIX
+          commit_message: $GIT_COMMIT_MESSAGE
+          token: ${{ secrets.NIGHTLY_STORE }}
+
+      - name: Push to remote @siemens/ix-angular
+        uses: ./.github/workflows/actions/push-remote
+        env:
+          GIT_COMMIT_ID: ${{ steps.gitcommit.outputs.GIT_COMMIT_ID }}
+          GIT_COMMIT_MESSAGE: ${{ inputs.message }}
+          GIT_COMMIT_MESSAGE_PREFIX: ${{ inputs.message_prefix }}
+        with:
+          internal-name: angular
+          branch-name: ix-angular
+          commit_id: $GIT_COMMIT_ID
+          commit_message_prefix: $GIT_COMMIT_MESSAGE_PREFIX
+          commit_message: $GIT_COMMIT_MESSAGE
+          token: ${{ secrets.NIGHTLY_STORE }}
+

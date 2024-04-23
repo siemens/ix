@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
-  IxBasicNavigation,
+  IxApplication,
   IxMenu,
   IxMenuCategory,
   IxMenuItem,
@@ -16,7 +16,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <IxBasicNavigation>
+    <IxApplication>
       <IxMenu>
         <IxMenuItem home icon="home">
           Home
@@ -27,6 +27,6 @@ export default () => {
           <IxMenuItem icon="globe">Nested Tab</IxMenuItem>
         </IxMenuCategory>
       </IxMenu>
-    </IxBasicNavigation>
+    </IxApplication>
   );
 };

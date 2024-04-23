@@ -13,15 +13,18 @@ import {
   Event,
   EventEmitter,
   h,
+  Method,
   Prop,
 } from '@stencil/core';
+import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-menu-avatar-item',
   styleUrl: 'menu-avatar-item.scss',
   shadow: true,
 })
-export class MenuAvatarItem {
+export class MenuAvatarItem implements DropdownItemWrapper {
   /**
    * Avatar dropdown icon
    */
@@ -39,9 +42,18 @@ export class MenuAvatarItem {
 
   @Element() hostElement: HTMLIxMenuAvatarItemElement;
 
+  private dropdownItemRef = makeRef<HTMLIxDropdownItemElement>();
+
+  /** @internal */
+  @Method()
+  async getDropdownItemElement() {
+    return this.dropdownItemRef.waitForCurrent();
+  }
+
   render() {
     return (
       <ix-dropdown-item
+        ref={this.dropdownItemRef}
         icon={this.icon}
         label={this.label}
         onClick={(e) => this.itemClick.emit(e)}

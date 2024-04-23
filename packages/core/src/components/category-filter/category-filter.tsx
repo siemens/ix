@@ -31,6 +31,7 @@ import { LogicalFilterOperator } from './logical-filter-operator';
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
+  @State() showDropdown: boolean;
   @State() private textInput?: HTMLInputElement;
   private formElement?: HTMLFormElement;
   private isScrollStateDirty: boolean;
@@ -105,6 +106,14 @@ export class CategoryFilter {
    * Defaults to false
    */
   @Prop() hideIcon: boolean;
+
+  /**
+   * If set categories will always be filtered via the respective logical operator.
+   * Toggling of the operator will not be available to the user.
+   *
+   * @since 2.2.0
+   */
+  @Prop() staticOperator?: LogicalFilterOperator;
 
   /**
    * If set to true allows that a single category can be set more than once.
@@ -241,6 +250,7 @@ export class CategoryFilter {
         break;
 
       case 'ArrowDown':
+        this.showDropdown = true;
         this.focusNextItem();
         e.preventDefault();
         break;
@@ -389,7 +399,8 @@ export class CategoryFilter {
     this.categoryChanged.emit(category);
   }
 
-  private resetFilter() {
+  private resetFilter(e: Event) {
+    e.stopPropagation();
     this.closeDropdown();
     this.filterTokens = [];
     this.emitFilterEvent();
@@ -503,6 +514,10 @@ export class CategoryFilter {
   }
 
   private renderOperatorButton() {
+    if (this.staticOperator) {
+      return '';
+    }
+
     const params: BaseButtonProps = {
       type: 'button',
       variant: 'secondary',
@@ -511,7 +526,7 @@ export class CategoryFilter {
       iconOnly: true,
       iconOval: false,
       selected: false,
-      disabled: this.disabled,
+      disabled: this.disabled || this.staticOperator !== undefined,
       loading: false,
       icon: '',
       onClick: (e: Event) => {
@@ -533,6 +548,16 @@ export class CategoryFilter {
     );
   }
 
+  private getFilterOperatorString() {
+    let operator: LogicalFilterOperator;
+    if (this.staticOperator !== undefined) {
+      operator = this.staticOperator;
+    } else {
+      operator = this.categoryLogicalOperator;
+    }
+    return `${operator === LogicalFilterOperator.EQUAL ? '=' : '!='} `;
+  }
+
   private renderCategoryValues() {
     return (
       <div class="dropdown-item-container">
@@ -551,11 +576,7 @@ export class CategoryFilter {
               key={id}
               onClick={() => this.addToken(id, this.category)}
             >
-              {`${
-                this.categoryLogicalOperator === LogicalFilterOperator.EQUAL
-                  ? '='
-                  : '!='
-              } ${id}`}
+              {`${this.getFilterOperatorString()} ${id}`}
             </button>
           ))}
       </div>
@@ -621,7 +642,7 @@ export class CategoryFilter {
   private getResetButton() {
     return (
       <ix-icon-button
-        onClick={() => this.resetFilter()}
+        onClick={(e) => this.resetFilter(e)}
         class={{
           'reset-button': true,
           'hide-reset-button':
@@ -680,6 +701,7 @@ export class CategoryFilter {
                     <ix-filter-chip
                       disabled={this.disabled}
                       readonly={this.readonly}
+                      onClick={(e) => e.stopPropagation()}
                       onCloseClick={() => this.removeToken(index)}
                     >
                       {this.getFilterChipLabel(value)}
@@ -706,6 +728,8 @@ export class CategoryFilter {
                       this.disabled ||
                       this.category !== undefined,
                   }}
+                  autocomplete="off"
+                  name="category-filter-input"
                   disabled={this.disabled}
                   readonly={this.readonly}
                   ref={(el) => (this.textInput = el)}
@@ -714,7 +738,7 @@ export class CategoryFilter {
                 ></input>
               </ul>
             </div>
-            {this.getResetButton()}
+            {!this.readonly && !this.disabled && this.getResetButton()}
           </div>
         </form>
 
@@ -722,10 +746,11 @@ export class CategoryFilter {
           ''
         ) : (
           <ix-dropdown
+            show={this.showDropdown}
             closeBehavior="outside"
             offset={{ mainAxis: 2 }}
-            trigger={this.textInput}
-            triggerEvent={['click', 'focus']}
+            anchor={this.textInput}
+            trigger={this.hostElement}
             header={this.getDropdownHeader()}
           >
             {this.renderDropdownContent()}

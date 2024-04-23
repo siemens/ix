@@ -19,13 +19,14 @@ import {
   Watch,
 } from '@stencil/core';
 import { IxSelectItemLabelChangeEvent } from './events';
+import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
   shadow: true,
 })
-export class SelectItem {
+export class SelectItem implements DropdownItemWrapper {
   @Element() hostElement: HTMLIxSelectItemElement;
 
   /**
@@ -34,12 +35,15 @@ export class SelectItem {
   @Prop({ reflect: true }) label: string;
 
   /**
-   * Item value
+   * The value of the item.
+   * Important: The select component uses string values to handle selection and will call toString() on this value.
+   * Therefor a string should be passed to value to prevent unexpected behavior.
+   * @deprecated will be changed to type string with next major release (3.0.0)
    */
   @Prop({ reflect: true }) value!: any;
 
   /**
-   * Whether the item is selected.
+   * Flag indicating whether the item is selected
    */
   @Prop() selected = false;
 
@@ -53,6 +57,12 @@ export class SelectItem {
    */
   @Event() itemClick: EventEmitter<string>;
 
+  /** @internal */
+  @Method()
+  async getDropdownItemElement(): Promise<HTMLIxDropdownItemElement> {
+    return this.dropdownItem;
+  }
+
   /**
    * @internal
    * @param event
@@ -65,8 +75,12 @@ export class SelectItem {
     this.itemClick.emit(this.value);
   }
 
+  get dropdownItem() {
+    return this.hostElement.querySelector('ix-dropdown-item');
+  }
+
   componentDidRender() {
-    if (!this.value) {
+    if (this.value === undefined || this.value === null) {
       throw Error('ix-select-item must have a `value` property');
     }
   }

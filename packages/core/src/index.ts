@@ -1,16 +1,12 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type {
-  Components as IxIconsComponents,
-  JSX as IxIconsJSX,
-} from '@siemens/ix-icons';
-export * from './components';
+
 export * from './components/category-filter/filter-state';
 export * from './components/category-filter/input-state';
 export * from './components/category-filter/logical-filter-operator';
@@ -27,15 +23,3 @@ export {
   convertToRemString,
 } from './components/utils/rwd.util';
 export * from './components/utils/theme-switcher';
-
-declare module './components' {
-  export namespace Components {
-    export type IxIcon = IxIconsComponents.IxIcon;
-  }
-}
-
-declare module './components' {
-  export namespace JSX {
-    export type IxIcon = IxIconsJSX.IxIcon;
-  }
-}

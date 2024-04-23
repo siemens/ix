@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -8,7 +8,8 @@
  */
 
 import {
-  IxBasicNavigation,
+  IxApplication,
+  IxApplicationHeader,
   IxMenu,
   IxMenuAbout,
   IxMenuAboutItem,
@@ -18,8 +19,10 @@ import React from 'react';
 
 export default () => {
   return (
-    <IxBasicNavigation>
-      <div className="placeholder-logo" slot="logo"></div>
+    <IxApplication>
+      <IxApplicationHeader>
+        <div className="placeholder-logo" slot="logo"></div>
+      </IxApplicationHeader>
       <IxMenu>
         <IxMenuAbout>
           <IxMenuAboutItem label="Example"> </IxMenuAboutItem>
@@ -28,6 +31,6 @@ export default () => {
           Test
         </IxMenuAboutNews>
       </IxMenu>
-    </IxBasicNavigation>
+    </IxApplication>
   );
 };

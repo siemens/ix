@@ -31,35 +31,7 @@
     padding-left: 0.25rem;
     margin-left: 0.41rem;
     margin-right: 0.35rem;
-    transition: 0.15s;
-
-    > .avatar-image {
-      height: 2rem;
-      width: 2rem;
-      min-height: 2rem;
-      min-width: 2rem;
-      border-radius: 100px;
-    }
-
-    > .avatar-initials {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 2rem;
-      width: 2rem;
-      min-height: 2rem;
-      min-width: 2rem;
-      border-radius: 100px;
-      background-color: var(--theme-color-component-3);
-    }
-
-    #avatar-path-background {
-      fill: var(--theme-avatar--background);
-    }
-
-    #avatar-path-person {
-      fill: var(--theme-color-4);
-    }
+    transition: var(--theme-default-time);
 
     .avatar-name {
       display: flex;
@@ -70,6 +42,7 @@
       line-height: 1.14;
 
       .text-default-single {
+        color: var(--theme-nav-item-primary--color);
         @include ellipsis;
       }
     }

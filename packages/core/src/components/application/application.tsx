@@ -8,7 +8,10 @@
  */
 
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { ApplicationLayoutContext } from '../utils/application-layout/context';
+import {
+  ApplicationLayoutContext,
+  AppSwitchConfiguration,
+} from '../utils/application-layout/context';
 import { applicationLayoutService } from '../utils/application-layout/service';
 import { Breakpoint } from '../utils/breakpoints';
 import { ContextProvider, useContextProvider } from '../utils/context';
@@ -17,7 +20,9 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 import { IxTheme, themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
-/** @internal */
+/**
+ * @since 2.1.0
+ */
 @Component({
   tag: 'ix-application',
   styleUrl: 'application.scss',
@@ -59,6 +64,11 @@ export class Application {
     applicationLayoutService.setBreakpoints(breakpoints);
   }
 
+  /**
+   * Define application switch configuration
+   */
+  @Prop() appSwitchConfig: AppSwitchConfiguration;
+
   @State() breakpoint: Breakpoint = 'lg';
   @State() applicationSidebarSlotted = false;
 
@@ -93,6 +103,7 @@ export class Application {
         hideHeader: false,
         host: 'basic-navigation',
         sidebar: this.applicationSidebarSlotted,
+        appSwitchConfig: this.appSwitchConfig,
       }
     );
 
@@ -134,12 +145,14 @@ export class Application {
     );
   }
 
+  @Watch('appSwitchConfig')
   @Watch('applicationSidebarSlotted')
   onApplicationSidebarChange() {
     this.contextProvider.emit({
       hideHeader: false,
       host: 'basic-navigation',
       sidebar: this.applicationSidebarSlotted,
+      appSwitchConfig: this.appSwitchConfig,
     });
   }
 

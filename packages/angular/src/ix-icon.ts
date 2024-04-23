@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -21,13 +21,13 @@ export declare interface IxIcon extends Components.IxIcon {}
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
-  inputs: ['color', 'name'],
+  inputs: ['color', 'name', 'size'],
 })
 @Component({
   selector: 'ix-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['color', 'name'],
+  inputs: ['color', 'name', 'size'],
 })
 export class IxIcon {
   protected el: HTMLElement;

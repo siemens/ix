@@ -93,7 +93,6 @@ export async function showModal<T>(
     dialog.appendChild(config.content);
     dialogRef = await getCoreDelegate().attachView(dialog);
   }
-
   if (!dialogRef) {
     dialogRef = await delegate.attachView<HTMLIxModalElement>(config.content);
   }
@@ -101,9 +100,7 @@ export async function showModal<T>(
   setA11yAttributes(dialogRef, config);
   Object.assign(dialogRef, config);
 
-  dialogRef.setAttribute('ariaDescribedby', 'Test');
-
-  dialogRef.showModal();
+  await dialogRef.showModal();
   dialogRef.addEventListener('dialogClose', async ({ detail }: CustomEvent) => {
     onClose.emit(detail);
     await delegate.removeView(dialogRef);

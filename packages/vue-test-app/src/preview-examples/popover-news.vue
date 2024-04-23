@@ -1,5 +1,5 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -9,6 +9,8 @@
 
 <script setup lang="ts">
 import {
+IxApplication,
+  IxApplicationHeader,
   IxBasicNavigation,
   IxMenu,
   IxMenuAbout,
@@ -18,8 +20,10 @@ import {
 </script>
 
 <template>
-  <IxBasicNavigation>
-    <div className="placeholder-logo" slot="logo"></div>
+  <IxApplication>
+    <IxApplicationHeader>
+      <div className="placeholder-logo" slot="logo"></div>
+    </IxApplicationHeader>
     <IxMenu>
       <IxMenuAbout>
         <IxMenuAboutItem label="Example"> </IxMenuAboutItem>
@@ -28,5 +32,5 @@ import {
         Test
       </IxMenuAboutNews>
     </IxMenu>
-  </IxBasicNavigation>
+  </IxApplication>
 </template>

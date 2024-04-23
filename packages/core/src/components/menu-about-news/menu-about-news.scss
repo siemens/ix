@@ -8,6 +8,7 @@
  */
 
 @import 'common-variables';
+@import 'mixins/break-points';
 @import 'mixins/shadows';
 @import 'mixins/shadow-dom/component';
 $left: 3.4rem;
@@ -21,15 +22,14 @@ $left: 3.4rem;
   position: fixed;
   width: 20rem;
   height: auto;
-  background-color: var(--theme-color-1);
-  border: var(--theme-weak-bdr-1);
+  background-color: var(--theme-color-2);
   border-radius: $default-border-radius;
   padding: 1rem;
   left: $left;
   z-index: 10000;
-  transition: left var(--animate-duration);
+  transition: left var(--theme-default-time);
 
-  margin-left: var(--margin) !important;
+  margin-inline-start: var(--margin) !important;
 
   @include box-shadow(4);
 
@@ -57,8 +57,8 @@ $left: 3.4rem;
 
   .cui-popover-news-header {
     margin-bottom: 2.5rem;
-    margin-left: 4rem;
-    margin-top: -$tiny-space;
+    margin-inline-start: 4rem;
+    margin-block-start: -$tiny-space;
   }
 
   .popover-body {
@@ -81,9 +81,7 @@ $left: 3.4rem;
     position: absolute;
     width: 0.5rem;
     height: 0.5rem;
-    background-color: var(--theme-color-1);
-    border-left: var(--theme-weak-bdr-1);
-    border-bottom: var(--theme-weak-bdr-1);
+    background-color: var(--theme-color-2);
     transform: translateX(calc(var(--margin) * -1 - 0.8rem)) rotateZ(45deg);
   }
 }
@@ -94,4 +92,27 @@ $left: 3.4rem;
 
 :host(.show) {
   display: none;
+}
+
+@include media-breakpoint-match('sm') {
+  :host {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 4.75rem);
+    width: calc(100% - 2rem);
+    max-width: 30rem;
+    transform: translateX(calc(1rem - 50%));
+    left: calc(50% - 1rem) !important;
+    bottom: 1rem !important;
+    margin-inline: 0 !important;
+    z-index: calc(var(--theme-z-index-sticky) - 1);
+
+    .slot-container {
+      overflow-y: auto;
+    }
+
+    #arrow {
+      display: none;
+    }
+  }
 }

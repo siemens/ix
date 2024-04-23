@@ -14,6 +14,10 @@ import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
 import ActionCard from './preview-examples/action-card.vue';
 import AGGrid from './preview-examples/aggrid.vue';
+import ApplicationAppSwitch from './preview-examples/application-app-switch.vue';
+import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
+import ApplicationHeader from './preview-examples/application-header.vue';
+import Application from './preview-examples/application.vue';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header.vue';
 import BasicNavigation from './preview-examples/basic-navigation.vue';
 import Blind from './preview-examples/blind.vue';
@@ -23,18 +27,16 @@ import Breadcrumb from './preview-examples/breadcrumb.vue';
 import ButtonGroup from './preview-examples/button-group.vue';
 import ButtonWithIcon from './preview-examples/button-with-icon.vue';
 import Buttons from './preview-examples/buttons.vue';
+import Card from './preview-examples/card.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
-import MenuCategory from './preview-examples/menu-category.vue';
 import Chip from './preview-examples/chip.vue';
-import Slider from './preview-examples/slider.vue';
-import SliderTrace from './preview-examples/slider-trace.vue';
-import SliderMarker from './preview-examples/slider-marker.vue';
-import SliderError from './preview-examples/slider-error.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
-import DateDropdown from "./preview-examples/date-dropdown.vue";
-import DateDropdownUserRange from "./preview-examples/date-dropdown-user-range.vue";
+import content from './preview-examples/content.vue';
+import DateDropdownUserRange from './preview-examples/date-dropdown-user-range.vue';
+import DateDropdown from './preview-examples/date-dropdown.vue';
+import DatepickerLocale from './preview-examples/datepicker-locale.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
 import Datetimepicker from './preview-examples/datetimepicker.vue';
@@ -50,6 +52,9 @@ import EventListSelected from './preview-examples/event-list-selected.vue';
 import EventList from './preview-examples/event-list.vue';
 import ExpandingSearch from './preview-examples/expanding-search.vue';
 import FlipTile from './preview-examples/flip-tile.vue';
+import GridPadding from './preview-examples/grid-padding.vue';
+import GridSize from './preview-examples/grid-size.vue';
+import Grid from './preview-examples/grid.vue';
 import GroupContextMenu from './preview-examples/group-context-menu.vue';
 import GroupCustomEntry from './preview-examples/group-custom-entry.vue';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed.vue';
@@ -69,8 +74,12 @@ import KeyValue from './preview-examples/key-value.vue';
 import Kpi from './preview-examples/kpi.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
+import MenuCategory from './preview-examples/menu-category.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
+import Pane from './preview-examples/pane.vue';
+import PaneLayout from './preview-examples/pane-layout.vue';
+import PillVariants from './preview-examples/pill-variants.vue';
 import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
@@ -79,6 +88,10 @@ import SelectEditable from './preview-examples/select-editable.vue';
 import SelectMultiple from './preview-examples/select-multiple.vue';
 import Select from './preview-examples/select.vue';
 import Settings from './preview-examples/settings.vue';
+import SliderError from './preview-examples/slider-error.vue';
+import SliderMarker from './preview-examples/slider-marker.vue';
+import SliderTrace from './preview-examples/slider-trace.vue';
+import Slider from './preview-examples/slider.vue';
 import SpinnerLarge from './preview-examples/spinner-large.vue';
 import Spinner from './preview-examples/spinner.vue';
 import SplitbuttonIcons from './preview-examples/split-button-icons.vue';
@@ -102,12 +115,16 @@ import Tree from './preview-examples/tree.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
-import Grid from './preview-examples/grid.vue';
-import GridSize from './preview-examples/grid-size.vue';
-import GridPadding from './preview-examples/grid-padding.vue';
+import Echarts from './preview-examples/echarts.vue';
 
 const routes: any = {
   '/': App,
+  '/preview/application': Application,
+  '/preview/application-header': ApplicationHeader,
+  '/preview/application-breakpoints': ApplicationBreakpoints,
+  '/preview/application-app-switch': ApplicationAppSwitch,
+  '/preview/card': Card,
+  '/preview/content': content,
   '/preview/checkbox': Checkbox,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
   '/preview/buttons': Buttons,
@@ -123,11 +140,13 @@ const routes: any = {
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
   '/preview/datepicker': Datepicker,
+  '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datetimepicker': Datetimepicker,
   '/preview/drawer-full-height': DrawerFullHeight,
   '/preview/dropdown': Dropdown,
   '/preview/dropdown-icon': DropdownIcon,
+  '/preview/echarts': Echarts,
   '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomHeight,
@@ -144,10 +163,13 @@ const routes: any = {
   '/preview/input-with-icon': InputWithIcon,
   '/preview/message-bar': MessageBar,
   '/preview/pill': Pill,
+  '/preview/pill-variants': PillVariants,
   '/preview/radio-button': RadioButton,
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
   '/preview/select-multiple': SelectMultiple,
+  '/preview/pane': Pane,
+  '/preview/pane-layout': PaneLayout,
   '/preview/spinner': Spinner,
   '/preview/spinner-large': SpinnerLarge,
   '/preview/split-button': Splitbutton,

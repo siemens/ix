@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -13,8 +13,8 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-menu>
-      <ix-menu-avatar image="https://ui-avatars.com/api/?name=John+Doe">
-        <ix-menu-avatar-item label="Option 1"></ix-menu-avatar-item>
+      <ix-menu-avatar top="john.doe@company.com" bottom="Administrator" image="https://ui-avatars.com/api/?name=John+Doe">
+        <ix-menu-avatar-item icon="user-profile" label="User profile..."></ix-menu-avatar-item>
       </ix-menu-avatar>
       <ix-menu-item home-tab tab-icon="home"> Home </ix-menu-item>
       <ix-menu-item tab-icon="globe"> Normal Tab </ix-menu-item>

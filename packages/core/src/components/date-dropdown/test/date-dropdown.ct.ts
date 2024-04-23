@@ -6,17 +6,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { test } from '@utils/test';
-import dayjs from 'dayjs';
-import { DateRangeOption } from '../date-dropdown';
+import { DateTime } from 'luxon';
+import { DateDropdownOption } from '../date-dropdown';
 
 const DATE_DROPDOWN_SELECTOR = 'ix-date-dropdown';
-const getDateRange = async (page: Page) => {
-  return await page.$$eval(DATE_DROPDOWN_SELECTOR, (elements) => {
-    return Promise.all(elements.map((elem) => elem.getDateRange()));
-  });
-};
 
 test('renders', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown></ix-date-dropdown>`);
@@ -26,153 +21,197 @@ test('renders', async ({ mount, page }) => {
 
 test.describe('date dropdown tests', () => {
   test.beforeEach(async ({ mount, page }) => {
-    await mount(` <ix-date-dropdown></ix-date-dropdown> `);
+    await mount(`<ix-date-dropdown from="2023/11/01"></ix-date-dropdown>`);
 
-    // Load dayjs
-    await page.evaluate(() => {
-      return new Promise<void>((resolve) => {
-        const script = document.createElement('script');
-        script.onload = () => resolve();
-        script.src = 'https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js';
-        document.body.appendChild(script);
-      });
+    const today = DateTime.now();
+    const format = 'yyyy/LL/dd';
+    const prevWeek = today.minus({
+      day: 7,
     });
 
-    await page.$eval(
-      DATE_DROPDOWN_SELECTOR,
-      (el: HTMLIxDateDropdownElement) => {
-        el.initialSelectedDateRangeName = 'Today';
-        el.customRangeAllowed = true;
-        el.dateRangeOptions = [
-          {
-            label: 'No time limit',
-            getValue: (): DateRangeOption => {
-              const today = (window as any).dayjs();
-              return { from: undefined, to: today };
-            },
-          },
-          {
-            label: 'Today',
-            getValue: (): DateRangeOption => {
-              const today = (window as any).dayjs();
-              return { from: today, to: today };
-            },
-          },
-          {
-            label: 'Last 7 days',
-            getValue: (): DateRangeOption => {
-              const today = (window as any).dayjs();
-              return { from: today.subtract(7, 'day'), to: today };
-            },
-          },
-          {
-            label: 'Last week',
-            getValue: (): DateRangeOption => {
-              const today = (window as any).dayjs();
-              const prevWeek: dayjs.Dayjs = today.subtract(7, 'day');
-              return {
-                from: prevWeek.startOf('week'),
-                to: prevWeek.endOf('week'),
-              };
-            },
-          },
-          {
-            label: 'Current month',
-            getValue: (): DateRangeOption => {
-              const today = (window as any).dayjs();
-              return { from: today.startOf('month'), to: today.endOf('month') };
-            },
-          },
-        ];
-      }
+    const dateDropdown = page.locator('ix-date-dropdown');
+
+    const rangeOptions: DateDropdownOption[] = [
+      {
+        id: 'no-time',
+        label: 'No time limit',
+        from: undefined,
+        to: today.toFormat(format),
+      },
+      {
+        id: 'today',
+        label: 'Today',
+        from: today.toFormat(format),
+        to: today.toFormat(format),
+      },
+      {
+        id: 'last-7-days',
+        label: 'Last 7 days',
+        from: today
+          .minus({
+            day: 7,
+          })
+          .toFormat(format),
+        to: today.toFormat(format),
+      },
+      {
+        id: 'last-week',
+        label: 'Last week',
+        from: prevWeek.startOf('week').toFormat(format),
+        to: prevWeek.endOf('week').toFormat(format),
+      },
+      {
+        id: 'current-month',
+        label: 'Current month',
+        from: today.startOf('month').toFormat(format),
+        to: today.endOf('month').toFormat(format),
+      },
+    ];
+
+    await dateDropdown.evaluate(
+      (el, [dateRangeOptions]) => {
+        const elementToTest = el as HTMLIxDateDropdownElement;
+
+        elementToTest.dateRangeId = 'today';
+        elementToTest.customRangeAllowed = true;
+        elementToTest.dateRangeOptions = dateRangeOptions;
+      },
+      [rangeOptions]
     );
   });
 
   test('select different date interval and get date', async ({ page }) => {
-    await page.waitForSelector('ix-dropdown-button ix-icon');
+    const dateDropdown = page.locator('ix-date-dropdown');
+    await dateDropdown.click();
 
-    const dateDropDownButton = page.locator('ix-dropdown-button');
-    await dateDropDownButton.click();
-
-    const intervalOptionsButton = page.locator(
-      'ix-dropdown-item div.dropdown-item-text:has-text("Last 7 days")'
-    );
+    const intervalOptionsButton = dateDropdown.getByRole('button', {
+      name: 'Last 7 days',
+    });
     await intervalOptionsButton.click();
 
-    const dateDropDownButtonText = page.locator('div.content div.button-label');
+    const button = dateDropdown.locator('ix-button');
+    await expect(button).toContainText(/Last 7 days/);
 
-    const selectedDateRange = await getDateRange(page);
-    const endDate: dayjs.Dayjs = dayjs();
-    const startDate: dayjs.Dayjs = endDate.subtract(7, 'day');
+    const selectedDateRange = await dateDropdown.evaluate(
+      (el: HTMLIxDateDropdownElement) => el.getDateRange()
+    );
+    const endDate = DateTime.now();
+    const startDate = endDate.minus({
+      day: 7,
+    });
 
-    expect(await dateDropDownButtonText.textContent()).toEqual('Last 7 days');
-    expect(selectedDateRange[0]).toEqual({
-      from: startDate.format('YYYY-MM-DD'),
-      to: endDate.format('YYYY-MM-DD'),
+    expect(selectedDateRange).toStrictEqual({
+      from: startDate.toFormat('yyyy/LL/dd'),
+      to: endDate.toFormat('yyyy/LL/dd'),
+      id: 'last-7-days',
+      label: 'Last 7 days',
     });
   });
 
   test('select custom date interval and get time', async ({ page }) => {
-    await page.waitForSelector('ix-dropdown-button ix-icon');
-
-    const dateDropDownButton = page.locator('ix-dropdown-button');
+    const dateDropDownButton = page.locator('ix-date-dropdown');
     await dateDropDownButton.click();
 
-    const intervalOptionsButton = page.locator(
-      'ix-dropdown-item div.dropdown-item-text:has-text("Custom...")'
-    );
-    await intervalOptionsButton.click();
+    const dropdown = dateDropDownButton.locator('ix-dropdown');
+    await expect(dropdown).toHaveClass(/show/);
 
-    const startDateButton = page.locator(
-      'ix-date-picker ix-date-time-card div.grid div.calendar-item:not(.week-number):has-text("3")'
-    );
-    await startDateButton.first().click();
+    const customItem = dateDropDownButton.getByText('Custom...');
+    await customItem.click();
 
-    const endDateButton = page.locator(
-      'ix-date-picker ix-date-time-card div.grid div.calendar-item:not(.week-number):has-text("11")'
-    );
-    await endDateButton.click();
+    const datepicker = dateDropDownButton.locator('ix-date-picker');
+    await expect(datepicker).toBeVisible();
 
-    const doneButton = page.locator(
-      'ix-col div.pull-right ix-button:has-text("Done")'
-    );
-    await doneButton.click();
+    const startDay = datepicker
+      .locator('[date-calender-day]')
+      .getByText('3', { exact: true });
+    const endDay = datepicker
+      .locator('[date-calender-day]')
+      .getByText('11', { exact: true });
 
-    //TODO: EXCEPTION - MERGE REQUIRED FOR CORRECT DATE
-    expect(null).toEqual(null);
+    await startDay.click();
+    await endDay.click();
+
+    const dateDoneButton = dateDropDownButton.getByRole('button', {
+      name: 'Done',
+    });
+
+    await dateDoneButton.click();
+    await expect(datepicker).not.toBeVisible();
+
+    const button = dateDropDownButton.locator('[data-date-dropdown-trigger]');
+    await expect(button).toHaveText(/2023\/11\/03 \- 2023\/11\/11/);
   });
 
-  test('check if event is fired', async ({ page }) => {
-    await page.waitForSelector('ix-dropdown-button ix-icon');
+  test('check if dateRangeChange event is fired', async ({ page }) => {
+    const today = DateTime.now();
+    const format = 'yyyy/LL/dd';
 
-    const eventPromise = page.evaluate(() => {
-      return new Promise((f) => {
-        document.addEventListener('dateRangeChange', (data) => f(data));
+    const dateDropdown = page.locator('ix-date-dropdown');
+    await expect(dateDropdown).toHaveClass(/hydrated/);
+
+    const eventPromise = dateDropdown.evaluate((e) => {
+      return new Promise<any>((resolve) => {
+        e.addEventListener('dateRangeChange', (event: any) =>
+          // Using JSON.stringify to deserialize js object between chrome instance and test
+          resolve(JSON.stringify(event.detail))
+        );
       });
     });
 
-    const dateDropDownButton = page.locator('ix-dropdown-button');
-    await dateDropDownButton.click();
-
+    await dateDropdown.click();
     const intervalOptionsButton = page.locator(
       'ix-dropdown-item div.dropdown-item-text:has-text("Last 7 days")'
     );
     await intervalOptionsButton.click();
 
-    expect(await eventPromise).toBeTruthy();
+    const dateRangeChangeEvent = await eventPromise;
+    expect(JSON.parse(dateRangeChangeEvent)).toStrictEqual({
+      from: today
+        .minus({
+          day: 7,
+        })
+        .toFormat(format),
+      to: today.toFormat(format),
+      id: 'last-7-days',
+      label: 'Last 7 days',
+    });
   });
 
   test('check initial date', async ({ page }) => {
-    await page.waitForSelector('ix-dropdown-button ix-icon');
+    const dateDropDownButton = page.locator(DATE_DROPDOWN_SELECTOR);
+    await expect(dateDropDownButton).toHaveClass(/hydrated/);
 
-    const initialSetDate = await getDateRange(page);
+    const initialSetDate = await dateDropDownButton.evaluate(
+      (el: HTMLIxDateDropdownElement) => el.getDateRange()
+    );
 
-    const endDate = dayjs();
+    const endDate = DateTime.now();
     const startDate = endDate;
 
-    expect(initialSetDate[0]).toEqual({
-      from: startDate.format('YYYY-MM-DD'),
-      to: endDate.format('YYYY-MM-DD'),
+    expect(initialSetDate).toEqual({
+      from: startDate.toFormat('yyyy/LL/dd'),
+      to: endDate.toFormat('yyyy/LL/dd'),
+      id: 'today',
+      label: 'Today',
     });
   });
+});
+
+test('set date from a button', async ({ mount, page }) => {
+  await mount(
+    `<ix-date-dropdown from="2024/02/16"></ix-date-dropdown><ix-button id="set-tomorrow"></ix-button>`
+  );
+  const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+  const setButton = page.locator('#set-tomorrow');
+  await expect(dateDropdown).toHaveClass(/hydrated/);
+
+  await setButton.click();
+
+  await dateDropdown.evaluate((el: HTMLIxDateDropdownElement) => {
+    el.from = '2024/02/17';
+    el.to = '2024/02/27';
+    return el.getDateRange();
+  });
+  const button = dateDropdown.locator('[data-date-dropdown-trigger]');
+  await expect(button).toHaveText(/2024\/02\/17 \- 2024\/02\/27/);
 });
