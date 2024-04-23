@@ -19,7 +19,10 @@ import {
 <template>
   <IxMenu>
     <IxMenuAvatar top="john.doe@company.com" bottom="Administrator">
-      <IxMenuAvatarItem icon="user-profile" label="User profile..."></IxMenuAvatarItem>
+      <IxMenuAvatarItem
+        icon="user-profile"
+        label="User profile..."
+      ></IxMenuAvatarItem>
     </IxMenuAvatar>
     <IxMenuItem home-tab tab-icon="home"> &nbsp; Home&nbsp; </IxMenuItem>
     <IxMenuItem tab-icon="globe"> Normal Tab </IxMenuItem>

@@ -12,7 +12,7 @@ import { IxSplitButton, IxDropdownItem } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxSplitButton label="Action text">
+  <IxSplitButton label="Action text" splitIcon="chevron-down-small">
     <IxDropdownItem label="Item 1"></IxDropdownItem>
     <IxDropdownItem label="Item 2"></IxDropdownItem>
   </IxSplitButton>

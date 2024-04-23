@@ -36,13 +36,24 @@ const layout = ref<'full-horizontal' | 'full-vertical'>('full-horizontal');
 
     <div slot="content">
       <IxButton
-        @click="() => {variant = variant === 'inline' ? 'floating' : 'inline'}"
+        @click="
+          () => {
+            variant = variant === 'inline' ? 'floating' : 'inline';
+          }
+        "
         style="margin: 2.5rem"
       >
         Toggle Variant
       </IxButton>
       <IxButton
-        @click="() => {layout = layout === 'full-horizontal' ? 'full-vertical' : 'full-horizontal'}"
+        @click="
+          () => {
+            layout =
+              layout === 'full-horizontal'
+                ? 'full-vertical'
+                : 'full-horizontal';
+          }
+        "
         style="margin: 2.5rem"
       >
         Toggle Layout

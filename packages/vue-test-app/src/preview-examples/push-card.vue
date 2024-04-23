@@ -19,7 +19,6 @@ import { IxPushCard } from '@siemens/ix-vue';
     subheading="Subheading"
     variant="insight"
   >
-    <!-- Just example content -->
     <table class="table">
       <thead>
         <tr>

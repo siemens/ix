@@ -8,9 +8,9 @@
 -->
 
 <script setup lang="ts">
-import { IxToggle } from '@siemens/ix-vue';
+import { IxDivider } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxToggle color="warning" />
+  <IxDivider></IxDivider>
 </template>

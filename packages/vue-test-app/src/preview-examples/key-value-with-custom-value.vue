@@ -13,11 +13,6 @@ import { IxKeyValue } from '@siemens/ix-vue';
 
 <template>
   <IxKeyValue label="Label">
-    <input
-
-      placeholder="Enter text here"
-      type="text"
-      slot="custom-value"
-    />
+    <input placeholder="Enter text here" type="text" slot="custom-value" />
   </IxKeyValue>
 </template>

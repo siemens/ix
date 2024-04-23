@@ -11,9 +11,13 @@
 import { IxToggleButton } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./styles-auto-gen/toggle-button.css"></style>
+
 <template>
   <IxToggleButton outline variant="primary">Normal</IxToggleButton>
   <IxToggleButton outline variant="primary" pressed>Pressed</IxToggleButton>
   <IxToggleButton outline variant="primary" disabled>Disabled</IxToggleButton>
-  <IxToggleButton outline variant="primary" disabled loading>Loading</IxToggleButton>
+  <IxToggleButton outline variant="primary" disabled loading
+    >Loading</IxToggleButton
+  >
 </template>

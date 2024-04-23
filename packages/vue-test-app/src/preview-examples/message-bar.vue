@@ -13,13 +13,16 @@ import { IxButton, IxMessageBar } from '@siemens/ix-vue';
 
 <template>
   <div style="padding: 0.5rem">
-    <IxMessageBar style="margin-bottom: 0.5rem; display: block">Message text</IxMessageBar>
-    <IxMessageBar style="margin-bottom: 0.5rem; display: block" type="warning">Message text</IxMessageBar>
+    <IxMessageBar style="margin-bottom: 0.5rem; display: block"
+      >Message text</IxMessageBar
+    >
+    <IxMessageBar style="margin-bottom: 0.5rem; display: block" type="warning"
+      >Message text</IxMessageBar
+    >
     <IxMessageBar style="display: block" type="danger">
       <div className="d-flex align-items-center justify-content-between">
         Message text <IxButton>Action</IxButton>
       </div>
     </IxMessageBar>
   </div>
-
 </template>

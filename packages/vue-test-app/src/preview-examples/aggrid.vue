@@ -55,10 +55,10 @@ const gridOptions = {
 </script>
 
 <template>
-  <div
+  <AgGridVue
     style="height: 12rem; width: 100%"
-    className="ag-theme-alpine-dark ag-theme-ix"
+    class="ag-theme-alpine-dark ag-theme-ix"
+    :gridOptions="gridOptions"
   >
-    <AgGridVue :gridOptions="gridOptions" />
-  </div>
+  </AgGridVue>
 </template>
