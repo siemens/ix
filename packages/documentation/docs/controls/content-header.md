@@ -1,30 +1,8 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import DocsTabs from '@site/src/components/DocsTabs';
 
-import Props from './../auto-generated/ix-content-header/props.md';
-import Events from './../auto-generated/ix-content-header/events.md';
+import DocsUx from './\_content-header_styleguide.md'
+import DocsCode from './\_content-header_code.md'
 
-# Content Header
+# Content header
 
-## Usage
-
-<Playground
-name="content-header"
-examplesByName>
-</Playground>
-
-### No back button
-
-<Playground
-name="content-header-no-back"
-examplesByName>
-</Playground>
-
-## Properties
-
-### Props
-
-<Props />
-
-### Events
-
-<Events />
+<DocsTabs styleguide={DocsUx} code={DocsCode} />
