@@ -10,8 +10,7 @@
 @import 'mixins/fonts';
 
 @mixin element-input($feature-read-only: true) {
-  &,
-  &:-webkit-autofill {
+  & {
     @include typography-body;
     min-height: 2rem;
     width: 100%;
@@ -25,10 +24,14 @@
     box-shadow: var(--theme-input--box-shadow);
   }
 
-  &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px var(--theme-input--background) inset !important;
-    -webkit-text-fill-color: var(--theme-input--color) !important;
-    border-color: var(--theme-input--border-color) !important;
+  &:-webkit-autofill,
+  &:autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--theme-color-component-info) inset !important;
+    -webkit-text-fill-color: var(--theme-input--color--autofill) !important;
+    background-color: var(--theme-input--background--autofill) !important;
+    border: var(--theme-input--border-thickness, 1px) solid
+      var(--theme-input--border-color--autofill) !important;
+    color: var(--theme-input--color--autofill) !important;
   }
 
   &::placeholder {
@@ -37,7 +40,7 @@
 
   &.hover,
   &:hover {
-    border-color: var(--theme-input--border-color--hover);
+    border-color: var(--theme-input--border-color--hover) !important;
     background-color: var(--theme-input--background--hover);
   }
 
@@ -45,7 +48,7 @@
   &:focus {
     outline: 1px solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-input--focus--outline-offset);
-    border-color: var(--theme-input--border-color--focus);
+    border-color: var(--theme-input--border-color--focus) !important;
   }
 
   @if $feature-read-only == true {
