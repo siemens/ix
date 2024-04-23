@@ -24,4 +24,20 @@ regressionTest.describe('category-filter', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('category options', async ({ page }) => {
+    await page.goto('category-filter/categories');
+    await page.locator('input').first().click();
+    await page.locator('.category-item').first().click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('static operator', async ({ page }) => {
+    await page.goto('category-filter/static-operator');
+    await page.locator('input').first().click();
+    await page.locator('.category-item').first().click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
