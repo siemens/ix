@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,19 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
-import * as echarts from 'echarts';
-import { registerTheme } from '@siemens/ix-echarts';
+import * as echarts from 'echarts/core';
+import { EChartsOption } from 'echarts';
 
-export default function BarChart() {
-  const theme = document.body.className.replace('theme-', ''); // brand-dark, brand-light, classic-dark or classic-light
+export default function Echarts() {
+  registerTheme(echarts);
+
+  const [theme, setTheme] = useState(
+    convertThemeName(themeSwitcher.getCurrentTheme())
+  );
 
   useEffect(() => {
-    registerTheme(echarts);
+    themeSwitcher.themeChanged.on((theme: string) => {
+      setTheme(convertThemeName(theme));
+    });
   }, []);
 
-  const options = {
+  const options: EChartsOption = {
     tooltip: {
       trigger: 'axis',
       axisPointer: {
@@ -143,6 +151,7 @@ export default function BarChart() {
         position: 'relative',
         width: '100%',
         height: '40rem',
+        paddingTop: '1rem',
       }}
     />
   );
