@@ -317,10 +317,9 @@ export class Select {
 
     this.selectedLabels = this.selectedItems.map((item) => item.label);
 
-    if (this.isSingleMode) {
-      this.inputValue = this.selectedLabels?.length
-        ? this.selectedLabels[0]
-        : null;
+    if (this.isSingleMode && this.selectedLabels?.length) {
+      this.inputValue = this.selectedLabels[0];
+      this.inputRef && (this.inputRef.value = this.inputValue);
       return;
     }
 
@@ -382,6 +381,8 @@ export class Select {
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
     } else {
       this.navigationItem = undefined;
+      this.updateSelection();
+      this.inputFilterText = '';
     }
   }
 
