@@ -138,6 +138,7 @@ import InputTypes from './preview-examples/input-types.vue';
 import Kpi from './preview-examples/kpi.vue';
 import LinkButtonDisabled from './preview-examples/link-button-disabled.vue';
 import LinkButton from './preview-examples/link-button.vue';
+import Loading from './preview-examples/loading.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
 import Modal from './preview-examples/modal.vue';
@@ -261,6 +262,7 @@ const routes: any = {
   '/preview/kpi': Kpi,
   '/preview/link-button-disabled': LinkButtonDisabled,
   '/preview/link-button': LinkButton,
+  '/preview/loading': Loading,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
   '/preview/map-navigation': MapNavigation,
   '/preview/menu-category': MenuCategory,
