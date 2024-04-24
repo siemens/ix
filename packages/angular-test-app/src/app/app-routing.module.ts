@@ -104,6 +104,7 @@ import KeyValueWithLabelLeft from '../preview-examples/key-value-with-label-left
 import Kpi from '../preview-examples/kpi';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
+import Loading from '../preview-examples/loading';
 import MapNavigation from '../preview-examples/map-navigation';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
@@ -564,6 +565,10 @@ const routes: Routes = [
       {
         path: 'link-button',
         component: LinkButton,
+      },
+      {
+        path: 'loading',
+        component: Loading,
       },
       {
         path: 'map-navigation-overlay',

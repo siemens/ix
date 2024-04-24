@@ -110,6 +110,7 @@ import KeyValueWithLabelLeft from '../preview-examples/key-value-with-label-left
 import Kpi from '../preview-examples/kpi';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
+import Loading from '../preview-examples/loading';
 import MapNavigation from '../preview-examples/map-navigation';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
@@ -270,6 +271,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     Kpi,
     LinkButtonDisabled,
     LinkButton,
+    Loading,
     MapNavigationOverlay,
     MapNavigation,
     MenuCategory,
