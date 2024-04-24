@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -19,6 +19,38 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log('form submitted');
+            const formData = new FormData(e.target as HTMLFormElement);
+            for (const x of formData.keys()) {
+              console.log(x, formData.get(x));
+            }
+          }}
+        >
+          <ix-text-field
+            name="project"
+            placeholder="123"
+            onValueChanged={console.log}
+            onInput={console.log}
+          ></ix-text-field>
+
+          <ix-date-field
+            name="project_created"
+            value={'2024/05/05'}
+          ></ix-date-field>
+
+          <ix-custom-field>
+            <ix-date-field name="start" value={'2024/05/01'}></ix-date-field>
+            <ix-date-field name="end" value={'2024/05/05'}></ix-date-field>
+          </ix-custom-field>
+
+          <ix-button type="submit">Button</ix-button>
+        </form>
+      </Host>
+    );
   }
 }
