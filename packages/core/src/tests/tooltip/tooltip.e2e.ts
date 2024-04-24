@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -137,5 +137,37 @@ regressionTest.describe('tooltip', () => {
     await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+});
+
+regressionTest.describe('tooltip delay', () => {
+  ['top', 'right', 'bottom', 'left'].forEach((placement) => {
+    test(`tooltip placement ${placement} with delay`, async ({
+      mount,
+      page,
+    }) => {
+      const testDelayToShowTooltip = 1100;
+      await mount(`
+      <div style="margin: 20rem">
+        <ix-button>Long text</ix-button>
+        <ix-tooltip
+          for="ix-button"
+          title-content="Test"
+          showDelay="1000"
+          placement="${placement}"
+        >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+        </ix-tooltip>
+      </div>
+      `);
+
+      const tooltipTrigger = page.locator('ix-button');
+      await tooltipTrigger.hover();
+
+      await page.waitForTimeout(testDelayToShowTooltip);
+
+      expect(await page.screenshot()).toMatchSnapshot();
+    });
   });
 });

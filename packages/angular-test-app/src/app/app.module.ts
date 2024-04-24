@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
+import { NgxEchartsModule } from 'ngx-echarts';
 import AboutAndLegal from 'src/preview-examples/about-and-legal';
 import ActionCard from 'src/preview-examples/action-card';
 import AGGrid from 'src/preview-examples/aggrid';
@@ -150,6 +151,7 @@ import WorkflowVertical from 'src/preview-examples/workflow-vertical';
 import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
+import Echarts from 'src/preview-examples/echarts';
 
 @NgModule({
   declarations: [
@@ -194,6 +196,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     Dropdown,
     DropdownQuickActions,
     DropdownSubmenu,
+    Echarts,
     EventListCompact,
     EventListCustomItemHeight,
     EventListSelected,
@@ -295,6 +298,9 @@ import { NavigationTestComponent } from './components/navigation-test.component'
     IxModule.forRoot(),
     AgGridModule,
     FormsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

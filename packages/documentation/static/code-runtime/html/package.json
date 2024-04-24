@@ -9,9 +9,12 @@
   "files": [
     "dist"
   ],
-  "devDependencies": {
-    "vite": "^3.1.0",
+  "dependencies": {
     "@siemens/ix": "<VERSION>",
+    "@siemens/ix-echarts": "<VERSION>",
     "@siemens/ix-icons": "latest"
+  },
+  "devDependencies": {
+    "vite": "^3.1.0"
   }
 }

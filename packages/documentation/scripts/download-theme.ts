@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -15,7 +15,7 @@ import zlib from 'zlib';
 
 const pkgRoot = path.join(__dirname, '..');
 
-const version = "2.0.0";
+const version = '2.1.0';
 const token = process.env.CSC;
 const ci = process.env.CI;
 
@@ -37,20 +37,27 @@ const ci = process.env.CI;
   const response = await axios.get(
     `https://code.siemens.com/api/v4/projects/249177/packages/npm/@siemens/ix-brand-theme/-/@siemens/ix-brand-theme-${version}.tgz`,
     {
-      responseType: "arraybuffer", headers: {
-      "Authorization": `Bearer ${token}`
-    } }
+      responseType: 'arraybuffer',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
-  const fileData = Buffer.from(response.data, "binary");
+  const fileData = Buffer.from(response.data, 'binary');
   await fs.writeFile(file, fileData);
   await unpack(file);
-})()
+})();
 
 async function unpack(file: string) {
-  return new Promise(resolve => fs.createReadStream(file)
-  .pipe(zlib.createGunzip())
-    .pipe(tar.extract({
-      cwd: path.join(file, '..')
-  }))
-  .on('finish', resolve))
+  return new Promise((resolve) =>
+    fs
+      .createReadStream(file)
+      .pipe(zlib.createGunzip())
+      .pipe(
+        tar.extract({
+          cwd: path.join(file, '..'),
+        })
+      )
+      .on('finish', resolve)
+  );
 }

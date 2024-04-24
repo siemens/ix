@@ -94,6 +94,8 @@ export class Menu {
 
   /**
    *  If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+   *
+   *  @since 2.2.0
    */
   @Prop() startExpanded = false;
 
@@ -605,16 +607,17 @@ export class Menu {
             this.resetActiveTab();
           }}
         >
-          <div class={{ 'menu-buttons': this.breakpoint != 'sm' }}>
-            <ix-burger-menu
-              onClick={async () => this.toggleMenu()}
-              expanded={this.expand}
-              ixAriaLabel={this.i18nExpandSidebar}
-              pinned={true}
-              class={{
-                'burger-menu': true,
-              }}
-            ></ix-burger-menu>
+          <div class="menu-buttons">
+            {this.breakpoint !== 'sm' && (
+              <ix-menu-expand-icon
+                breakpoint={this.breakpoint}
+                expanded={this.expand}
+                pinned={this.pinned}
+                class="menu-expand-icon"
+                ixAriaLabel={this.i18nExpandSidebar}
+                onClick={async () => this.toggleMenu()}
+              ></ix-menu-expand-icon>
+            )}
             {this.breakpoint === 'sm' &&
               this.applicationLayoutContext.appSwitchConfig && (
                 <ix-icon-button
@@ -623,7 +626,6 @@ export class Menu {
                   }
                   icon="apps"
                   ghost
-                  class="app-switch"
                 ></ix-icon-button>
               )}
           </div>

@@ -14,6 +14,7 @@ import { ButtonVariant } from "./components/button/button";
 import { CardVariant } from "./components/card/card";
 import { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 import { FilterState } from "./components/category-filter/filter-state";
+import { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
@@ -53,6 +54,7 @@ export { ButtonVariant } from "./components/button/button";
 export { CardVariant } from "./components/card/card";
 export { CardAccordionExpandChangeEvent } from "./components/card-accordion/card-accordion";
 export { FilterState } from "./components/category-filter/filter-state";
+export { LogicalFilterOperator } from "./components/category-filter/logical-filter-operator";
 export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
@@ -244,20 +246,6 @@ export namespace Components {
         "showChevron": boolean;
         "visible": boolean;
     }
-    interface IxBurgerMenu {
-        /**
-          * Does burger menu button display the expanded or the not expanded state
-         */
-        "expanded": boolean;
-        /**
-          * Accessibility label for the burger menu button (MANDATORY)
-         */
-        "ixAriaLabel": string;
-        /**
-          * Display as pinned
-         */
-        "pinned": boolean;
-    }
     interface IxButton {
         "alignment": 'center' | 'start';
         /**
@@ -418,6 +406,11 @@ export namespace Components {
           * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
         "repeatCategories": boolean;
+        /**
+          * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
+          * @since 2.2.0
+         */
+        "staticOperator"?: LogicalFilterOperator;
         /**
           * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
          */
@@ -1382,6 +1375,7 @@ export namespace Components {
         "showSettings": boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+          * @since 2.2.0
          */
         "startExpanded": boolean;
         /**
@@ -1505,6 +1499,24 @@ export namespace Components {
          */
         "notifications": number;
     }
+    interface IxMenuExpandIcon {
+        /**
+          * Controls which icon is displayed
+         */
+        "breakpoint": Breakpoint;
+        /**
+          * Whether the menu expand icon displays the expanded state or not
+         */
+        "expanded": boolean;
+        /**
+          * Accessibility label for the menu expand icon (MANDATORY)
+         */
+        "ixAriaLabel": string;
+        /**
+          * Display as pinned
+         */
+        "pinned": boolean;
+    }
     interface IxMenuItem {
         /**
           * State to display active
@@ -1527,6 +1539,12 @@ export namespace Components {
           * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon": string;
+        "isCategory": boolean;
+        /**
+          * Label of the menu item. Will also be used as tooltip text
+          * @since 2.2.0
+         */
+        "label": string;
         /**
           * Show notification count on tab
          */
@@ -1877,6 +1895,7 @@ export namespace Components {
         "value"?: string | string[];
     }
     interface IxSelectItem {
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         "hover": boolean;
         /**
           * Displayed name of the item
@@ -2226,7 +2245,8 @@ export namespace Components {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for": string;
+        "for": string | HTMLElement | Promise<HTMLElement>;
+        "hideDelay": number;
         "hideTooltip": () => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
@@ -2237,6 +2257,7 @@ export namespace Components {
           * @since 1.5.0
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
+        "showDelay": number;
         "showTooltip": (anchorElement: any) => Promise<void>;
         /**
           * Title of the tooltip
@@ -2535,6 +2556,10 @@ export interface IxMenuAvatarItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuAvatarItemElement;
 }
+export interface IxMenuCategoryCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMenuCategoryElement;
+}
 export interface IxMenuSettingsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuSettingsElement;
@@ -2730,12 +2755,6 @@ declare global {
     var HTMLIxBreadcrumbItemElement: {
         prototype: HTMLIxBreadcrumbItemElement;
         new (): HTMLIxBreadcrumbItemElement;
-    };
-    interface HTMLIxBurgerMenuElement extends Components.IxBurgerMenu, HTMLStencilElement {
-    }
-    var HTMLIxBurgerMenuElement: {
-        prototype: HTMLIxBurgerMenuElement;
-        new (): HTMLIxBurgerMenuElement;
     };
     interface HTMLIxButtonElement extends Components.IxButton, HTMLStencilElement {
     }
@@ -3403,14 +3422,31 @@ declare global {
         prototype: HTMLIxMenuAvatarItemElement;
         new (): HTMLIxMenuAvatarItemElement;
     };
+    interface HTMLIxMenuCategoryElementEventMap {
+        "closeOtherCategories": any;
+    }
     /**
      * @since 2.0.0
      */
     interface HTMLIxMenuCategoryElement extends Components.IxMenuCategory, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMenuCategoryElementEventMap>(type: K, listener: (this: HTMLIxMenuCategoryElement, ev: IxMenuCategoryCustomEvent<HTMLIxMenuCategoryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMenuCategoryElementEventMap>(type: K, listener: (this: HTMLIxMenuCategoryElement, ev: IxMenuCategoryCustomEvent<HTMLIxMenuCategoryElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxMenuCategoryElement: {
         prototype: HTMLIxMenuCategoryElement;
         new (): HTMLIxMenuCategoryElement;
+    };
+    interface HTMLIxMenuExpandIconElement extends Components.IxMenuExpandIcon, HTMLStencilElement {
+    }
+    var HTMLIxMenuExpandIconElement: {
+        prototype: HTMLIxMenuExpandIconElement;
+        new (): HTMLIxMenuExpandIconElement;
     };
     interface HTMLIxMenuItemElement extends Components.IxMenuItem, HTMLStencilElement {
     }
@@ -3964,7 +4000,6 @@ declare global {
         "ix-blind": HTMLIxBlindElement;
         "ix-breadcrumb": HTMLIxBreadcrumbElement;
         "ix-breadcrumb-item": HTMLIxBreadcrumbItemElement;
-        "ix-burger-menu": HTMLIxBurgerMenuElement;
         "ix-button": HTMLIxButtonElement;
         "ix-card": HTMLIxCardElement;
         "ix-card-accordion": HTMLIxCardAccordionElement;
@@ -4017,6 +4052,7 @@ declare global {
         "ix-menu-avatar": HTMLIxMenuAvatarElement;
         "ix-menu-avatar-item": HTMLIxMenuAvatarItemElement;
         "ix-menu-category": HTMLIxMenuCategoryElement;
+        "ix-menu-expand-icon": HTMLIxMenuExpandIconElement;
         "ix-menu-item": HTMLIxMenuItemElement;
         "ix-menu-settings": HTMLIxMenuSettingsElement;
         "ix-menu-settings-item": HTMLIxMenuSettingsItemElement;
@@ -4232,20 +4268,6 @@ declare namespace LocalJSX {
         "showChevron"?: boolean;
         "visible"?: boolean;
     }
-    interface IxBurgerMenu {
-        /**
-          * Does burger menu button display the expanded or the not expanded state
-         */
-        "expanded"?: boolean;
-        /**
-          * Accessibility label for the burger menu button (MANDATORY)
-         */
-        "ixAriaLabel"?: string;
-        /**
-          * Display as pinned
-         */
-        "pinned"?: boolean;
-    }
     interface IxButton {
         "alignment"?: 'center' | 'start';
         /**
@@ -4435,6 +4457,11 @@ declare namespace LocalJSX {
           * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
         "repeatCategories"?: boolean;
+        /**
+          * If set categories will always be filtered via the respective logical operator. Toggling of the operator will not be available to the user.
+          * @since 2.2.0
+         */
+        "staticOperator"?: LogicalFilterOperator;
         /**
           * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
          */
@@ -5478,6 +5505,7 @@ declare namespace LocalJSX {
         "showSettings"?: boolean;
         /**
           * If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.
+          * @since 2.2.0
          */
         "startExpanded"?: boolean;
     }
@@ -5603,6 +5631,25 @@ declare namespace LocalJSX {
           * Show notification count on the category
          */
         "notifications"?: number;
+        "onCloseOtherCategories"?: (event: IxMenuCategoryCustomEvent<any>) => void;
+    }
+    interface IxMenuExpandIcon {
+        /**
+          * Controls which icon is displayed
+         */
+        "breakpoint"?: Breakpoint;
+        /**
+          * Whether the menu expand icon displays the expanded state or not
+         */
+        "expanded"?: boolean;
+        /**
+          * Accessibility label for the menu expand icon (MANDATORY)
+         */
+        "ixAriaLabel"?: string;
+        /**
+          * Display as pinned
+         */
+        "pinned"?: boolean;
     }
     interface IxMenuItem {
         /**
@@ -5626,6 +5673,12 @@ declare namespace LocalJSX {
           * @link https://ix.siemens.io/docs/icon-library/icons
          */
         "icon"?: string;
+        "isCategory"?: boolean;
+        /**
+          * Label of the menu item. Will also be used as tooltip text
+          * @since 2.2.0
+         */
+        "label"?: string;
         /**
           * Show notification count on tab
          */
@@ -6412,7 +6465,8 @@ declare namespace LocalJSX {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: string;
+        "for"?: string | HTMLElement | Promise<HTMLElement>;
+        "hideDelay"?: number;
         /**
           * Define if the user can access the tooltip via mouse.
          */
@@ -6422,6 +6476,7 @@ declare namespace LocalJSX {
           * @since 1.5.0
          */
         "placement"?: 'top' | 'right' | 'bottom' | 'left';
+        "showDelay"?: number;
         /**
           * Title of the tooltip
          */
@@ -6643,7 +6698,6 @@ declare namespace LocalJSX {
         "ix-blind": IxBlind;
         "ix-breadcrumb": IxBreadcrumb;
         "ix-breadcrumb-item": IxBreadcrumbItem;
-        "ix-burger-menu": IxBurgerMenu;
         "ix-button": IxButton;
         "ix-card": IxCard;
         "ix-card-accordion": IxCardAccordion;
@@ -6696,6 +6750,7 @@ declare namespace LocalJSX {
         "ix-menu-avatar": IxMenuAvatar;
         "ix-menu-avatar-item": IxMenuAvatarItem;
         "ix-menu-category": IxMenuCategory;
+        "ix-menu-expand-icon": IxMenuExpandIcon;
         "ix-menu-item": IxMenuItem;
         "ix-menu-settings": IxMenuSettings;
         "ix-menu-settings-item": IxMenuSettingsItem;
@@ -6760,7 +6815,6 @@ declare module "@stencil/core" {
             "ix-blind": LocalJSX.IxBlind & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             "ix-breadcrumb": LocalJSX.IxBreadcrumb & JSXBase.HTMLAttributes<HTMLIxBreadcrumbElement>;
             "ix-breadcrumb-item": LocalJSX.IxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIxBreadcrumbItemElement>;
-            "ix-burger-menu": LocalJSX.IxBurgerMenu & JSXBase.HTMLAttributes<HTMLIxBurgerMenuElement>;
             "ix-button": LocalJSX.IxButton & JSXBase.HTMLAttributes<HTMLIxButtonElement>;
             /**
              * @since 1.6.0
@@ -6870,6 +6924,7 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-menu-category": LocalJSX.IxMenuCategory & JSXBase.HTMLAttributes<HTMLIxMenuCategoryElement>;
+            "ix-menu-expand-icon": LocalJSX.IxMenuExpandIcon & JSXBase.HTMLAttributes<HTMLIxMenuExpandIconElement>;
             "ix-menu-item": LocalJSX.IxMenuItem & JSXBase.HTMLAttributes<HTMLIxMenuItemElement>;
             "ix-menu-settings": LocalJSX.IxMenuSettings & JSXBase.HTMLAttributes<HTMLIxMenuSettingsElement>;
             "ix-menu-settings-item": LocalJSX.IxMenuSettingsItem & JSXBase.HTMLAttributes<HTMLIxMenuSettingsItemElement>;

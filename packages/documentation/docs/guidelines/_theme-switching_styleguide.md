@@ -1,5 +1,3 @@
-
-
 # Selecting a theme for designing
 
 When working with our Figma library, you can apply a theme to either an entire page or an individual element, such as a frame or component:

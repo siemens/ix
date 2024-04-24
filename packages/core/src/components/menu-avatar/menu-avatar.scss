@@ -31,7 +31,7 @@
     padding-left: 0.25rem;
     margin-left: 0.41rem;
     margin-right: 0.35rem;
-    transition: 0.15s;
+    transition: var(--theme-default-time);
 
     .avatar-name {
       display: flex;

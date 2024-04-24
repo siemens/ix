@@ -344,14 +344,14 @@ export declare interface IxCardTitle extends Components.IxCardTitle {}
 
 
 @ProxyCmp({
-  inputs: ['categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'suggestions']
+  inputs: ['categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'staticOperator', 'suggestions']
 })
 @Component({
   selector: 'ix-category-filter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'suggestions'],
+  inputs: ['categories', 'disabled', 'filterState', 'hideIcon', 'i18nPlainText', 'icon', 'labelCategories', 'nonSelectableCategories', 'placeholder', 'readonly', 'repeatCategories', 'staticOperator', 'suggestions'],
 })
 export class IxCategoryFilter {
   protected el: HTMLElement;
@@ -1506,14 +1506,14 @@ export declare interface IxMenuCategory extends Components.IxMenuCategory {}
 
 
 @ProxyCmp({
-  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'notifications', 'tabIcon']
+  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'label', 'notifications', 'tabIcon']
 })
 @Component({
   selector: 'ix-menu-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'notifications', 'tabIcon'],
+  inputs: ['active', 'bottom', 'disabled', 'home', 'icon', 'label', 'notifications', 'tabIcon'],
 })
 export class IxMenuItem {
   protected el: HTMLElement;

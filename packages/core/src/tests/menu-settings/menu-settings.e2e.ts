@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -13,34 +13,46 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('menu-settings', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('menu-settings/basic');
-    await page.locator('ix-menu-item#settings').click();
+    const settings = page.locator('ix-menu-item#settings');
+    await settings.click();
     await page.waitForTimeout(500);
 
     //Click is needed otherwise tab item is still hovered
     await page.getByText('First Label - ').click();
+    await expect(settings.locator('ix-tooltip')).toBeVisible();
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot({
+      animations: 'disabled',
+    });
   });
 
   regressionTest('label', async ({ page }) => {
     await page.goto('menu-settings/basic');
-    await page.locator('ix-menu-item#settings').click();
+    const settings = page.locator('ix-menu-item#settings');
+    await settings.click();
     await page.waitForTimeout(500);
 
     await page.getByText('First Content').click();
+    await expect(settings.locator('ix-tooltip')).toBeVisible();
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(page).toHaveScreenshot({
+      animations: 'disabled',
+    });
   });
 
   regressionTest('switch', async ({ page }) => {
     await page.goto('menu-settings/basic');
-    await page.locator('ix-menu-item#settings').click();
+    const settings = page.locator('ix-menu-item#settings');
+    await settings.click();
     await page.waitForTimeout(500);
 
     await page.getByText('First Content').click();
-
     await page.getByText('Changed Label').click();
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await expect(settings.locator('ix-tooltip')).toBeVisible();
+
+    await expect(page).toHaveScreenshot({
+      animations: 'disabled',
+    });
   });
 });

@@ -179,7 +179,7 @@
     display: block;
     padding: 1rem;
     transition-property: padding;
-    transition-duration: $default-time;
+    transition-duration: var(--theme-default-time);
     transition-timing-function: ease-in;
 
     &.hide {

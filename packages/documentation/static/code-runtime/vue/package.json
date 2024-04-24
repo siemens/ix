@@ -10,8 +10,11 @@
   "dependencies": {
     "vue": "^3.2.6",
     "@siemens/ix": "<VERSION>",
-    "@siemens/ix-icons": "<VERSION>",
-    "@siemens/ix-vue": "<VERSION>"
+    "@siemens/ix-vue": "<VERSION>",
+    "@siemens/ix-echarts": "<VERSION>",
+    "@siemens/ix-icons": "latest",
+    "vue-echarts": "~6.6.9",
+    "echarts": "^5.4.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

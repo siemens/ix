@@ -400,17 +400,17 @@
         "ix-map-navigation"
       ],
       "dependencies": [
-        "ix-burger-menu",
+        "ix-menu-expand-icon",
         "ix-icon-button",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-application-header": [
-          "ix-burger-menu",
+          "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-dropdown"
         ],
-        "ix-burger-menu": [
+        "ix-menu-expand-icon": [
           "ix-icon-button",
           "ix-spinner"
         ],
@@ -620,11 +620,11 @@
           "ix-application-header"
         ],
         "ix-application-header": [
-          "ix-burger-menu",
+          "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-dropdown"
         ],
-        "ix-burger-menu": [
+        "ix-menu-expand-icon": [
           "ix-icon-button",
           "ix-spinner"
         ],
@@ -2296,6 +2296,41 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "staticOperator",
+          "type": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL",
+          "complexType": {
+            "original": "LogicalFilterOperator",
+            "resolved": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL",
+            "references": {
+              "LogicalFilterOperator": {
+                "location": "import",
+                "path": "logical-filter-operator",
+                "id": "src/components/category-filter/logical-filter-operator.ts::LogicalFilterOperator"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "static-operator",
+          "reflectToAttr": false,
+          "docs": "If set categories will always be filtered via the respective logical operator.\nToggling of the operator will not be available to the user.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.2.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "LogicalFilterOperator.EQUAL"
+            },
+            {
+              "type": "LogicalFilterOperator.NOT_EQUAL"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -7307,7 +7342,6 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-application-header",
-        "ix-burger-menu",
         "ix-card-list",
         "ix-category-filter",
         "ix-chip",
@@ -7324,6 +7358,7 @@
         "ix-menu",
         "ix-menu-about",
         "ix-menu-about-news",
+        "ix-menu-expand-icon",
         "ix-menu-settings",
         "ix-message-bar",
         "ix-modal-example",
@@ -7343,9 +7378,6 @@
           "ix-spinner"
         ],
         "ix-application-header": [
-          "ix-icon-button"
-        ],
-        "ix-burger-menu": [
           "ix-icon-button"
         ],
         "ix-card-list": [
@@ -7394,6 +7426,9 @@
           "ix-icon-button"
         ],
         "ix-menu-about-news": [
+          "ix-icon-button"
+        ],
+        "ix-menu-expand-icon": [
           "ix-icon-button"
         ],
         "ix-menu-settings": [
@@ -8600,11 +8635,11 @@
           "ix-spinner"
         ],
         "ix-application-header": [
-          "ix-burger-menu",
+          "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-dropdown"
         ],
-        "ix-burger-menu": [
+        "ix-menu-expand-icon": [
           "ix-icon-button",
           "ix-spinner"
         ]
@@ -9030,22 +9065,28 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-burger-menu",
+        "ix-menu-expand-icon",
         "ix-icon-button",
         "ix-menu-item"
       ],
       "dependencyGraph": {
         "ix-menu": [
-          "ix-burger-menu",
+          "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-menu-item"
         ],
-        "ix-burger-menu": [
+        "ix-menu-expand-icon": [
           "ix-icon-button",
           "ix-spinner"
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-menu-item": [
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ]
       },
       "props": [
@@ -9418,7 +9459,12 @@
           "attr": "start-expanded",
           "reflectToAttr": false,
           "docs": "If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.2.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -10357,6 +10403,12 @@
           "ix-dropdown-item",
           "ix-typography",
           "ix-divider"
+        ],
+        "ix-menu-item": [
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ]
       },
       "props": [
@@ -10429,7 +10481,14 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "closeOtherCategories",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/menu-item",
@@ -10452,8 +10511,16 @@
         "ix-menu",
         "ix-menu-category"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-tooltip"
+      ],
       "dependencyGraph": {
+        "ix-menu-item": [
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
         "ix-menu": [
           "ix-menu-item"
         ],
@@ -10564,6 +10631,32 @@
             {
               "name": "link",
               "text": "https://ix.siemens.io/docs/icon-library/icons"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label of the menu item. Will also be used as tooltip text",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.2.0"
             }
           ],
           "values": [
@@ -13562,11 +13655,11 @@
         "ix-application-switch-modal",
         "ix-avatar",
         "ix-breadcrumb-item",
-        "ix-burger-menu",
         "ix-button",
         "ix-category-filter",
         "ix-icon-button",
         "ix-icon-toggle-button",
+        "ix-menu-expand-icon",
         "ix-modal-loading",
         "ix-pagination",
         "ix-toggle-button",
@@ -13583,9 +13676,6 @@
         "ix-breadcrumb-item": [
           "ix-spinner"
         ],
-        "ix-burger-menu": [
-          "ix-spinner"
-        ],
         "ix-button": [
           "ix-spinner"
         ],
@@ -13596,6 +13686,9 @@
           "ix-spinner"
         ],
         "ix-icon-toggle-button": [
+          "ix-spinner"
+        ],
+        "ix-menu-expand-icon": [
           "ix-spinner"
         ],
         "ix-modal-loading": [
@@ -15788,6 +15881,7 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-menu-item",
         "ix-slider"
       ],
       "dependencies": [
@@ -15797,6 +15891,9 @@
         "ix-tooltip": [
           "ix-typography"
         ],
+        "ix-menu-item": [
+          "ix-tooltip"
+        ],
         "ix-slider": [
           "ix-tooltip"
         ]
@@ -15804,11 +15901,20 @@
       "props": [
         {
           "name": "for",
-          "type": "string",
+          "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
+            "original": "string | HTMLElement | Promise<HTMLElement>",
+            "resolved": "HTMLElement | Promise<HTMLElement> | string",
+            "references": {
+              "HTMLElement": {
+                "location": "global",
+                "id": "global::HTMLElement"
+              },
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            }
           },
           "mutable": false,
           "attr": "for",
@@ -15816,6 +15922,12 @@
           "docs": "CSS selector for hover trigger element e.g. `for=\"[data-my-custom-select]\"`",
           "docsTags": [],
           "values": [
+            {
+              "type": "HTMLElement"
+            },
+            {
+              "type": "Promise<HTMLElement>"
+            },
             {
               "type": "string"
             }
@@ -17544,6 +17656,11 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/filter-state.ts"
+    },
+    "src/components/category-filter/logical-filter-operator.ts::LogicalFilterOperator": {
+      "declaration": "export enum LogicalFilterOperator {\n  EQUAL = 'Equal',\n  NOT_EQUAL = 'Not equal',\n}",
+      "docstring": "",
+      "path": "src/components/category-filter/logical-filter-operator.ts"
     },
     "src/components/category-filter/input-state.ts::InputState": {
       "declaration": "any",
