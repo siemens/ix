@@ -262,6 +262,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private registerKeyListener() {
+    if (this.triggerElement === undefined || this.triggerElement === null) {
+      return;
+    }
+
     this.disposeKeyListener = addDisposableEventListener(
       this.triggerElement,
       'keydown',
