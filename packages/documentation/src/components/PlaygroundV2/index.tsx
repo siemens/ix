@@ -167,7 +167,7 @@ function getLanguage(filename: string) {
 type PlaygroundV2Props = {
   files: Record<TargetFramework, string[]>;
   examplesByName?: boolean;
-  blockStackBlitz?: boolean;
+  disableStackBlitz?: boolean;
 } & DemoProps;
 
 function SourceCodePreview(props: {
@@ -331,7 +331,7 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
             ></IxIconButton>
           ) : (
             <>
-              {!props.blockStackBlitz && (
+              {!props.disableStackBlitz && (
                 <IxIconButton
                   ghost
                   size="16"

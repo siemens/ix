@@ -66,5 +66,5 @@ e.g.:
 name="aggrid"
 height="14rem"
 examplesByName
-blockStackBlitz>
+disableStackBlitz>
 </Playground>
