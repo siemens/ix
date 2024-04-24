@@ -20,7 +20,6 @@ import { ProxyCmp } from './directives/angular-component-lib/utils';
 defineCustomElements();
 
 @ProxyCmp({
-  defineCustomElementFn: defineCustomElements,
   inputs: ['color', 'size', 'name', 'lazyLoading'],
 })
 @Component({
