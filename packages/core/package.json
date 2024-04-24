@@ -12,12 +12,11 @@
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
+  "es2015": "dist/esm/index.js",
+  "es2017": "dist/esm/index.js",
   "types": "dist/types/interfaces.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/siemens-ix/siemens-ix.esm.js",
   "files": [
     "LICENSE",
     "README.md",
@@ -43,7 +42,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.5.1",
-    "@stencil/core": "^4.13.0",
+    "@stencil/core": "^4.17.1",
     "@types/luxon": "^3.3.7",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",
@@ -54,10 +53,10 @@
     "@siemens/ix-icons": "v3-preview",
     "@stencil-community/eslint-plugin": "^0.7.1",
     "@stencil-community/postcss": "^2.2.0",
-    "@stencil/angular-output-target": "^0.8.3",
+    "@stencil/angular-output-target": "^0.8.4",
     "@stencil/react-output-target": "^0.5.3",
-    "@stencil/sass": "^3.0.8",
-    "@stencil/vue-output-target": "^0.8.7",
+    "@stencil/sass": "^3.0.11",
+    "@stencil/vue-output-target": "^0.8.8",
     "@testing-library/dom": "^8.11.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@types/animejs": "^3.1.4",
@@ -83,9 +82,8 @@
     "puppeteer": "21.1.1",
     "rimraf": "^5.0.5",
     "sass": "^1.58.3",
-    "start-server-and-test": "^1.14.0",
     "ts-node": "^10.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "~5.4.0"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.0",
