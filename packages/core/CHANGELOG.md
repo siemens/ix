@@ -1,0 +1,53 @@
+# @siemens/ix
+
+## 2.2.0
+
+### Minor Changes
+
+- [#1197](https://github.com/siemens/ix/pull/1197) [`3cd3da9802`](https://github.com/siemens/ix/commit/3cd3da980276a1f5c324200a1194b5427c83007a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/card-list): make show all button optional
+
+- [#1156](https://github.com/siemens/ix/pull/1156) [`1d278044d3`](https://github.com/siemens/ix/commit/1d278044d30efdb12dc1f46187327e435d652a40) Thanks [@jul-lam](https://github.com/jul-lam)! - feat(core/menu): make behavior at breakpoint 'lg' configurable and change 'md' breakpoint menu icons
+
+- [#1233](https://github.com/siemens/ix/pull/1233) [`830a65b7de`](https://github.com/siemens/ix/commit/830a65b7deb9013a6f1f1b4d288a4a49f625161e) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/category-filter): make logical operator optional
+
+- [#1200](https://github.com/siemens/ix/pull/1200) [`179ca17515`](https://github.com/siemens/ix/commit/179ca1751559b208f8215e237c3da030db3b6829) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(core/menu-item): show tooltip on hover
+
+### Patch Changes
+
+- [#1198](https://github.com/siemens/ix/pull/1198) [`87f0e37224`](https://github.com/siemens/ix/commit/87f0e37224bbe9b41db9d81b24d95dfbe3f71187) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/workflow-steps): fix initial layout shift
+
+- [#1212](https://github.com/siemens/ix/pull/1212) [`5b4e96e295`](https://github.com/siemens/ix/commit/5b4e96e2954d9c690158b0acf1eb927ac79f24b9) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - refactor(core): use custom properties for css transition times
+
+- [#1186](https://github.com/siemens/ix/pull/1186) [`b7a56fe19f`](https://github.com/siemens/ix/commit/b7a56fe19fdc0d0a233435561424ef96a5424c2c) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/blind): show ellipsis if text overflows
+
+- [#1218](https://github.com/siemens/ix/pull/1218) [`d95d5e9d6a`](https://github.com/siemens/ix/commit/d95d5e9d6af4e2213ec258e04bd8eae01c40d9d2) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/input-group): update margin
+
+- [#1201](https://github.com/siemens/ix/pull/1201) [`34b50efa59`](https://github.com/siemens/ix/commit/34b50efa59dfd4dbd10262ae8866f10efd1800c8) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/toast|react/toast|vue/toast): predefine custom elements before usage
+
+- [#1175](https://github.com/siemens/ix/pull/1175) [`f31adf04fd`](https://github.com/siemens/ix/commit/f31adf04fd9f400e5caa29a90e82e1fb32d00cc8) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/slider): adjust tick color
+
+- [#1184](https://github.com/siemens/ix/pull/1184) [`22b06f77d9`](https://github.com/siemens/ix/commit/22b06f77d9ff98ff96a90ca1d13b53523ac102d2) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core): update classic theme values
+
+- [#1196](https://github.com/siemens/ix/pull/1196) [`04b03d4d5d`](https://github.com/siemens/ix/commit/04b03d4d5dbef9256781b6d46e260847004e776a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/select): arrow key navigation
+
+- [#1178](https://github.com/siemens/ix/pull/1178) [`5b51722f58`](https://github.com/siemens/ix/commit/5b51722f58a5de6a29696eb585c166d98ee9331b) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/action-card): change subheading color
+
+- [#1139](https://github.com/siemens/ix/pull/1139) [`99886e0a5f`](https://github.com/siemens/ix/commit/99886e0a5ff84391c9e99e07a30bd4999e894125) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/date-dropdown): update the date when the props are changed
+
+- [#1151](https://github.com/siemens/ix/pull/1151) [`c87a28eede`](https://github.com/siemens/ix/commit/c87a28eede47152b5cb6b7529aa436966129e0b0) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(category-filter|input-group): align styling
+
+- [#1159](https://github.com/siemens/ix/pull/1159) [`f5e4c832f9`](https://github.com/siemens/ix/commit/f5e4c832f900e28bf072ecc411560fad94174678) Thanks [@jul-lam](https://github.com/jul-lam)! - fix(core/select): non string values for the "value" prop of select-items are not working
+
+- [#1221](https://github.com/siemens/ix/pull/1221) [`555a5a3bf1`](https://github.com/siemens/ix/commit/555a5a3bf18e8bfbbb7d14452974427f68e2cc67) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/tooltip): prevent focusin event call showTooltip
+
+- [#1195](https://github.com/siemens/ix/pull/1195) [`3542def781`](https://github.com/siemens/ix/commit/3542def7819b68ad7c93155a078058d9dbfcc309) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/select): reset input text on blur
+
+- [#1185](https://github.com/siemens/ix/pull/1185) [`cb46c070a2`](https://github.com/siemens/ix/commit/cb46c070a299bde7e7d403b0d97fbb8bfd481591) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/toggle): convert circle width and height to rem
+
+- [#1171](https://github.com/siemens/ix/pull/1171) [`4a8303f9f5`](https://github.com/siemens/ix/commit/4a8303f9f5a89fdbb017e1efddbf1bf15ea987f4) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/card): adjust selected background color
+
+- [#1214](https://github.com/siemens/ix/pull/1214) [`22a83d9196`](https://github.com/siemens/ix/commit/22a83d9196fc0537ee23db810e61f885689522c0) Thanks [@jul-lam](https://github.com/jul-lam)! - fix(core/select-item): check by undefined not by value
+
+- [#1192](https://github.com/siemens/ix/pull/1192) [`1876e96b6b`](https://github.com/siemens/ix/commit/1876e96b6b0acf8af8b001012dfb1a15550b3d8e) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/dropdown): resolve trigger during element connect phase
+
+- [#1158](https://github.com/siemens/ix/pull/1158) [`cba4a44cb0`](https://github.com/siemens/ix/commit/cba4a44cb00b701b2b03a012fd1bfff9891e4b3d) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/application-switch-modal): add border-radius to app icon

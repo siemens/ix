@@ -228,6 +228,7 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
   'suggestions',
   'icon',
   'hideIcon',
+  'staticOperator',
   'repeatCategories',
   'tmpDisableScrollIntoView',
   'labelCategories',
