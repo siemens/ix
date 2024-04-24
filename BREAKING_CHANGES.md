@@ -4,13 +4,17 @@
 
 ### Remove package from from library `@siemens/ix-icon`
 
-One major change is the removal of the package from the library `@siemens/ix-icon`. This change allows for more individual icons to be used in your applications. Please refer to the installation instructions for details on how to include the new icons.
+TODO: Rewrite this section to explain what is the impact of this change.
 
-TODO: Link to installation instruction
+- If you using angular/react/vue nothing changes
+- If you are using core package (@siemens/ix) you have to bootstrap the ix-icons on your own (see ix-icons repo for installation instruction or add this also to the icons documentation)
 
 #### Usage of icons inside  `@siemens/ix-react` and  `@siemens/ix-vue` changed
 
-TODO: Rewrite this section
+TODO: Rewrite this section to be more precise about what has to be adapted
+
+- Naming imports like `<IxIcon name="star" /> are not supported any more. (Reducing bundle size and chunk loading)
+- Can be still used if the svg are provided as assets see angular installation
 
 Import the icon you want
 ```tsx
@@ -24,13 +28,15 @@ React/Vue:
 
 #### Installation instruction of `@siemens/ix-angular` changed
 
-TODO: Rewrite this section
+TODO: Rewrite this section to be more precise about what has to be adapted
+
+- Naming imports like `<ix-icon name="star"></ix-icon>` requires a additional configuration entry inside the `angular.json`.
 
 Configuration
 ```json
 {
   "glob": "**/*.svg",
-  "input": "node_modules/@siemens/ix-icons/dist/svg",
+  "input": "node_modules/@siemens/ix-icons/svg",
   "output": "./svg"
 }
 ```
@@ -42,7 +48,7 @@ Add to assets property inside the `angular.json` file
   "src/assets",
   {
   "glob": "**/*.svg",
-  "input": "node_modules/@siemens/ix-icons/dist/svg",
+  "input": "node_modules/@siemens/ix-icons/svg",
   "output": "./svg"
   }
 ],
