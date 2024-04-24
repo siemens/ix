@@ -114,6 +114,7 @@ import MapNavigation from '../preview-examples/map-navigation';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
+import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
@@ -273,6 +274,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     MapNavigation,
     MenuCategory,
     MenuWithBottomTabs,
+    Message,
     MessageBar,
     ModalByInstanceContent,
     ModalByInstance,

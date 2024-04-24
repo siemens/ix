@@ -94,7 +94,6 @@ import KeyValueWithLabelLeft from './preview-examples/key-value-with-label-left.
 import KeyValue from './preview-examples/key-value.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
-import MessageBar from './preview-examples/message-bar.vue';
 import Pill from './preview-examples/pill.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
@@ -142,6 +141,8 @@ import LinkButton from './preview-examples/link-button.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
 import Modal from './preview-examples/modal.vue';
+import Message from './preview-examples/message.vue';
+import MessageBar from './preview-examples/message-bar.vue';
 import PaginationAdvanced from './preview-examples/pagination-advanced.vue';
 import Pagination from './preview-examples/pagination.vue';
 import Pane from './preview-examples/pane.vue';
@@ -264,6 +265,7 @@ const routes: any = {
   '/preview/map-navigation': MapNavigation,
   '/preview/menu-category': MenuCategory,
   '/preview/menu-with-bottom-tabs': MenuWithBottomTabs,
+  '/preview/message': Message,
   '/preview/message-bar': MessageBar,
   '/preview/modal-sizes': ModalSizes,
   '/preview/modal': Modal,
