@@ -1,5 +1,13 @@
 # @siemens/ix
 
+## 2.2.1
+
+### Patch Changes
+
+- [#1241](https://github.com/siemens/ix/pull/1241) [`b38d2d3506`](https://github.com/siemens/ix/commit/b38d2d350656034ef1926fdcf5db2ca9d4251403) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/dropdown): add null check for trigger element
+
+- [#1237](https://github.com/siemens/ix/pull/1237) [`707252448c`](https://github.com/siemens/ix/commit/707252448c470b1cf8a78f696146fddd55050336) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/input): update autofill styling
+
 ## 2.2.0
 
 ### Minor Changes
