@@ -86,7 +86,8 @@ export class EventListItem {
           disabled: this.disabled,
         }}
       >
-        <div
+        <li
+          aria-disabled={this.disabled ? 'true' : 'false'}
           class={{
             'event-list-item': true,
             selected: this.selected,
@@ -116,7 +117,7 @@ export class EventListItem {
               ></ix-icon>
             )}
           </div>
-        </div>
+        </li>
       </Host>
     );
   }
