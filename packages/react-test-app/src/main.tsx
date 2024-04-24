@@ -108,10 +108,12 @@ import KeyValueWithLabelLeft from './preview-examples/key-value-with-label-left'
 import Kpi from './preview-examples/kpi';
 import LinkButton from './preview-examples/link-button';
 import LinkButtonDisabled from './preview-examples/link-button-disabled';
+import Loading from './preview-examples/loading';
 import MapNavigation from './preview-examples/map-navigation';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay';
 import MenuCategory from './preview-examples/menu-category';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs';
+import Message from './preview-examples/message';
 import MessageBar from './preview-examples/message-bar';
 import Modal from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
@@ -168,8 +170,6 @@ import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import NavigationTest from './testing/NavigationTest';
-import Loading from './preview-examples/loading';
-import Message from './preview-examples/message';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
