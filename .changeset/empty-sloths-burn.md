@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-fix(core/dropdown): open dropdown on text input
+fix(core/category-filter): open dropdown on text input and keep it open
