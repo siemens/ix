@@ -1225,6 +1225,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1258,6 +1259,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -1414,10 +1418,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "ButtonVariant": {
                 "location": "local",
@@ -1433,6 +1437,10 @@
           "docsTags": [],
           "default": "'primary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -5638,10 +5646,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "DropdownButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "DropdownButtonVariant": {
                 "location": "local",
@@ -5657,6 +5665,10 @@
           "docsTags": [],
           "default": "'primary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -7740,10 +7752,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "IconButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "IconButtonVariant": {
                 "location": "local",
@@ -7759,6 +7771,10 @@
           "docsTags": [],
           "default": "'secondary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -7970,10 +7986,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -7989,6 +8005,10 @@
           "docsTags": [],
           "default": "'secondary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -14001,10 +14021,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "SplitButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "SplitButtonVariant": {
                 "location": "local",
@@ -14020,6 +14040,10 @@
           "docsTags": [],
           "default": "'primary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -15801,10 +15825,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -15820,6 +15844,10 @@
           "docsTags": [],
           "default": "'secondary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -17483,7 +17511,7 @@
       "path": "src/components/blind/blind.tsx"
     },
     "src/components/button/button.tsx::ButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
@@ -17538,7 +17566,7 @@
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
     "src/components/dropdown-button/dropdown-button.tsx::DropdownButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.tsx"
     },
@@ -17553,7 +17581,7 @@
       "path": "src/components/empty-state/empty-state.tsx"
     },
     "src/components/icon-button/icon-button.tsx::IconButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/icon-button/icon-button.tsx"
     },
@@ -17613,7 +17641,7 @@
       "path": "src/components/slider/slider.tsx"
     },
     "src/components/split-button/split-button.tsx::SplitButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/split-button/split-button.tsx"
     },

@@ -10,7 +10,7 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 
-export type ButtonVariant = 'primary' | 'secondary';
+export type ButtonVariant = 'danger' | 'primary' | 'secondary';
 
 @Component({
   tag: 'ix-button',

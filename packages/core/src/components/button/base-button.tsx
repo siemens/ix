@@ -12,6 +12,10 @@ import { ButtonVariant } from './button';
 
 export type ButtonAlignment = 'center' | 'start';
 
+const isDanger = (variant: string) => {
+  return variant.toUpperCase() === 'Danger'.toUpperCase();
+}
+
 const isPrimary = (variant: string) => {
   return variant.toUpperCase() === 'Primary'.toUpperCase();
 };
@@ -31,6 +35,9 @@ export const getButtonClasses = (
 ) => {
   return {
     btn: true,
+    'btn-danger': isDanger(variant) && !outline && !ghost,
+    'btn-outline-danger': isDanger(variant) && outline && !ghost,
+    'btn-invisible-danger': isDanger(variant) && !outline && ghost,
     'btn-primary': isPrimary(variant) && !outline && !ghost,
     'btn-outline-primary': isPrimary(variant) && outline && !ghost,
     'btn-invisible-primary': isPrimary(variant) && !outline && ghost,
