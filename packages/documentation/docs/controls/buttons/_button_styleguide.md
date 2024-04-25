@@ -9,7 +9,7 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 
 - **Primary button:** In our applications, we most often use the primary button variant.
 - **Secondary button:** The secondary button variant has a grayscale appearance to distinguish it from the primary button.
-- **Danger button:** We use the danger button variant to emphasize particularly dangerous, destructive or critical actions that cannot easily be undone,. Consider this especially in confirmation dialogs. 
+- **Danger button:** We use the danger button variant to emphasize particularly dangerous, destructive or critical actions that cannot easily be undone. Consider this especially in confirmation dialogs. 
 
 **Note:** Please be aware that the terms *primary* and *secondary* are not used in accordance to common UX terminology for primary, secondary and ghost button.
 
@@ -45,7 +45,7 @@ Buttons have six states: Default, hover, active, disabled, loading and focused. 
 - Do adjust default and outline button width to label length or container width
 - Don’t use the danger button excessively and repetitively as in lists or tables, use it carefully and very selectively instead
 - Don’t extend your ghost button width beyond the label’s available width
-- Don’t only rely on standard buttons when many actions/functions are necessary,. Consider dropdown, split or menu buttons or moving some functionality to a panel or a dialog
+- Don’t only rely on standard buttons when many actions/functions are necessary. Consider dropdown, split or menu buttons or moving some functionality to a panel or a dialog
 - Don’t use buttons for navigation
 
 ## Related patterns:
