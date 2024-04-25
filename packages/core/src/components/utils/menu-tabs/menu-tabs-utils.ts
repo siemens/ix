@@ -14,7 +14,7 @@ function getItems(
   context: MenuSettings | MenuAbout
 ): HTMLIxMenuSettingsItemElement[] | HTMLIxMenuAboutItemElement[] {
   return Array.from(
-    context.el.querySelectorAll(
+    context.hostElement.querySelectorAll(
       context instanceof MenuSettings
         ? 'ix-menu-settings-item'
         : 'ix-menu-about-item'

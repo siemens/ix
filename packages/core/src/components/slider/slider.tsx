@@ -52,7 +52,7 @@ export class Slider {
    *
    * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
    */
-  @Prop() step: number;
+  @Prop() step?: number;
 
   /**
    * Minimum slider value
@@ -72,7 +72,7 @@ export class Slider {
   /**
    * Define tick marker on the slider. Marker has to be within slider min/max
    */
-  @Prop() marker: SliderMarker;
+  @Prop() marker?: SliderMarker;
 
   /**
    * Show a trace line
@@ -92,12 +92,12 @@ export class Slider {
   /**
    * Show error state and message
    */
-  @Prop() error: boolean | string;
+  @Prop() error?: boolean | string;
 
   /**
    *
    */
-  @Event() valueChange: EventEmitter<number>;
+  @Event() valueChange!: EventEmitter<number>;
 
   @State() rangeInput = 0;
   @State() rangeMin = 0;
@@ -105,18 +105,18 @@ export class Slider {
   @State() rangeTraceReference = 0;
   @State() showTooltip = false;
 
-  private a11yAttributes: A11yAttributes;
+  private a11yAttributes?: A11yAttributes;
 
   get tooltip() {
-    return this.hostElement.shadowRoot.querySelector('ix-tooltip');
+    return this.hostElement.shadowRoot!.querySelector('ix-tooltip');
   }
 
   get pseudoThumb() {
-    return this.hostElement.shadowRoot.querySelector('.thumb') as HTMLElement;
+    return this.hostElement.shadowRoot!.querySelector('.thumb') as HTMLElement;
   }
 
   get slider() {
-    return this.hostElement.shadowRoot.getElementById(
+    return this.hostElement.shadowRoot!.getElementById(
       'slider'
     ) as HTMLInputElement;
   }
@@ -124,11 +124,11 @@ export class Slider {
   @Watch('showTooltip')
   onShowTooltipChange() {
     if (this.showTooltip) {
-      this.tooltip.showTooltip(this.pseudoThumb);
+      this.tooltip?.showTooltip(this.pseudoThumb);
       return;
     }
 
-    this.tooltip.hideTooltip();
+    this.tooltip?.hideTooltip();
   }
 
   componentWillLoad() {

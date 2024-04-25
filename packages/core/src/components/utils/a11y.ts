@@ -31,7 +31,7 @@ const kebabCaseToUpperCaseSentence = (kebabCase: string) => {
   return sentence;
 };
 
-export const getFallbackLabelFromIconName = (iconName: string) => {
+export const getFallbackLabelFromIconName = (iconName: string | undefined) => {
   if (!iconName) {
     return 'Unknown';
   }

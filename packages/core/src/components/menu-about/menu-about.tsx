@@ -31,13 +31,12 @@ import {
   shadow: true,
 })
 export class MenuAbout {
-  @Element() el!: HTMLIxMenuAboutElement;
+  @Element() hostElement!: HTMLIxMenuAboutElement;
 
   /**
    * Active tab
    */
-  // eslint-disable-next-line @stencil-community/strict-mutable
-  @Prop({ mutable: true }) activeTabLabel: string;
+  @Prop() activeTabLabel?: string;
 
   /**
    * Label of first tab
@@ -52,9 +51,9 @@ export class MenuAbout {
   /**
    * About and Legal closed
    */
-  @Event() close: EventEmitter<CustomCloseEvent>;
+  @Event() close!: EventEmitter<CustomCloseEvent>;
 
-  @State() items: HTMLIxMenuAboutItemElement[];
+  @State() items: HTMLIxMenuAboutItemElement[] = [];
 
   @Watch('activeTabLabel')
   updateTab(label: string) {
@@ -66,7 +65,7 @@ export class MenuAbout {
   }
 
   componentDidLoad() {
-    forceUpdate(this.el);
+    forceUpdate(this.hostElement);
   }
 
   render() {

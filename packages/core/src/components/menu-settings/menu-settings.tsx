@@ -31,13 +31,12 @@ import {
   shadow: true,
 })
 export class MenuSettings {
-  @Element() el!: HTMLIxMenuSettingsElement;
+  @Element() hostElement!: HTMLIxMenuSettingsElement;
 
   /**
    * Active tab
    */
-  // eslint-disable-next-line @stencil-community/strict-mutable
-  @Prop({ mutable: true }) activeTabLabel: string;
+  @Prop() activeTabLabel?: string;
 
   /**
    * Label of first tab
@@ -52,9 +51,9 @@ export class MenuSettings {
   /**
    * Popover closed
    */
-  @Event() close: EventEmitter<CustomCloseEvent>;
+  @Event() close!: EventEmitter<CustomCloseEvent>;
 
-  @State() items: HTMLIxMenuSettingsItemElement[];
+  @State() items: HTMLIxMenuSettingsItemElement[] = [];
 
   @Watch('activeTabLabel')
   updateTab(label: string) {
@@ -66,7 +65,7 @@ export class MenuSettings {
   }
 
   componentDidLoad() {
-    forceUpdate(this.el);
+    forceUpdate(this.hostElement);
   }
 
   render() {

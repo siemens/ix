@@ -25,23 +25,23 @@ import { matchBreakpoint } from '../utils/breakpoints';
 
 export type Composition = 'top' | 'left' | 'bottom' | 'right';
 export type ExpandedChangedEvent = {
-  slot: string;
+  slot: string | null;
   expanded: boolean;
 };
 export type SlotChangedEvent = {
-  slot: string;
-  newSlot: string;
+  slot: string | null;
+  newSlot: string | null;
 };
 export type HideOnCollapseChangedEvent = {
-  slot: string;
+  slot: string | null;
   hideOnCollapse: boolean;
 };
 export type VariantChangedEvent = {
-  slot: string;
+  slot: string | null;
   variant: 'floating' | 'inline';
 };
 export type BorderlessChangedEvent = {
-  slot: string;
+  slot: string | null;
   borderless: boolean;
 };
 
@@ -54,12 +54,12 @@ export type BorderlessChangedEvent = {
   shadow: true,
 })
 export class Pane {
-  @Element() hostElement: HTMLIxPaneElement;
+  @Element() hostElement!: HTMLIxPaneElement;
 
   /**
    * Title of the side panel
    */
-  @Prop() heading: string;
+  @Prop() heading?: string;
 
   /**
    * Variant of the side pane.
@@ -104,7 +104,7 @@ export class Pane {
   /**
    * Name of the icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * @internal
@@ -120,27 +120,27 @@ export class Pane {
   /**
    * This event is triggered when the pane either expands or contracts
    */
-  @Event() expandedChanged: EventEmitter<ExpandedChangedEvent>;
+  @Event() expandedChanged!: EventEmitter<ExpandedChangedEvent>;
 
   /**
    * This event is triggered when the variant of the pane is changed
    */
-  @Event() variantChanged: EventEmitter<VariantChangedEvent>;
+  @Event() variantChanged!: EventEmitter<VariantChangedEvent>;
 
   /**
    * This event is triggered when the variant of the pane is changed
    */
-  @Event() borderlessChanged: EventEmitter<BorderlessChangedEvent>;
+  @Event() borderlessChanged!: EventEmitter<BorderlessChangedEvent>;
 
   /**
    * @internal
    */
-  @Event() hideOnCollapseChanged: EventEmitter<HideOnCollapseChangedEvent>;
+  @Event() hideOnCollapseChanged!: EventEmitter<HideOnCollapseChangedEvent>;
 
   /**
    * @internal
    */
-  @Event() slotChanged: EventEmitter<SlotChangedEvent>;
+  @Event() slotChanged!: EventEmitter<SlotChangedEvent>;
 
   @State() private expandIcon = '';
   @State() private showContent = false;
@@ -155,8 +155,8 @@ export class Pane {
   private animations: Map<string, anime.AnimeInstance> = new Map();
   private animationCounter = 0;
 
-  private mutationObserver: MutationObserver;
-  private resizeObserver: ResizeObserver;
+  private mutationObserver?: MutationObserver;
+  private resizeObserver?: ResizeObserver;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -227,7 +227,10 @@ export class Pane {
     this.resizeObserver?.disconnect();
   }
 
-  private setPosition(value: string) {
+  private setPosition(value: string | null) {
+    if (!value) {
+      return;
+    }
     if (this.validPositions.includes(value)) {
       this.composition = value as Composition;
     }
@@ -377,7 +380,7 @@ export class Pane {
 
   private removePadding() {
     anime({
-      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
+      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
       duration: 0,
       paddingTop: 0,
       paddingBottom: 0,
@@ -393,7 +396,7 @@ export class Pane {
   ) {
     let key = this.getKey();
     let animation = anime({
-      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
+      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
       duration: duration,
       paddingTop: size,
       paddingBottom: size,
@@ -413,7 +416,7 @@ export class Pane {
   ) {
     let key = this.getKey();
     let animation = anime({
-      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
+      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
       duration: duration,
       paddingLeft: size,
       paddingRight: size,

@@ -38,7 +38,7 @@ import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
-import { TimePickerCorners } from "./components/time-picker/time-picker";
+import { TimePickerCorners, TimeReference } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -77,7 +77,7 @@ export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
-export { TimePickerCorners } from "./components/time-picker/time-picker";
+export { TimePickerCorners, TimeReference } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
@@ -910,15 +910,15 @@ export namespace Components {
         /**
           * Optional empty state action
          */
-        "action": string;
+        "action"?: string;
         /**
           * Empty state header
          */
-        "header": string;
+        "header"?: string;
         /**
           * Optional empty state icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
          */
@@ -926,7 +926,7 @@ export namespace Components {
         /**
           * Optional empty state sub header
          */
-        "subHeader": string;
+        "subHeader"?: string;
     }
     interface IxEventList {
         /**
@@ -1096,12 +1096,12 @@ export namespace Components {
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
           * @since 2.1.0
          */
-        "a11yLabel": string;
+        "a11yLabel"?: string;
         /**
           * Color of icon in  button
           * @deprecated since 2.1.0 use `icon-color`
          */
-        "color": string;
+        "color"?: string;
         /**
           * Disabled
          */
@@ -1113,11 +1113,11 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Color of icon in  button
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Loading button
           * @since 2.0.0
@@ -1191,11 +1191,11 @@ export namespace Components {
         /**
           * Optional key value icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Key value label
          */
-        "label": string;
+        "label"?: string;
         /**
           * Optional key value label position - 'top' or 'left'
          */
@@ -1203,7 +1203,7 @@ export namespace Components {
         /**
           * Optional key value text value
          */
-        "value": string;
+        "value"?: string;
     }
     /**
      * @since 1.6.0
@@ -1389,7 +1389,7 @@ export namespace Components {
         /**
           * Active tab
          */
-        "activeTabLabel": string;
+        "activeTabLabel"?: string;
         /**
           * Label of first tab
          */
@@ -1546,7 +1546,7 @@ export namespace Components {
         /**
           * Active tab
          */
-        "activeTabLabel": string;
+        "activeTabLabel"?: string;
         /**
           * Label of first tab
          */
@@ -1584,7 +1584,7 @@ export namespace Components {
         /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
-        "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
+        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
          */
@@ -1708,7 +1708,7 @@ export namespace Components {
         /**
           * Title of the side panel
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Define if the pane should have a collapsed state
          */
@@ -1716,7 +1716,7 @@ export namespace Components {
         /**
           * Name of the icon
          */
-        "icon": string;
+        "icon"?: string;
         "ignoreLayoutSettings": boolean;
         "isMobile": boolean;
         /**
@@ -1803,7 +1803,7 @@ export namespace Components {
         /**
           * Card heading
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Card icon
          */
@@ -1811,11 +1811,11 @@ export namespace Components {
         /**
           * Card KPI value
          */
-        "notification": string;
+        "notification"?: string;
         /**
           * Card subheading
          */
-        "subheading": string;
+        "subheading"?: string;
         /**
           * Card variant
          */
@@ -1912,11 +1912,11 @@ export namespace Components {
         /**
           * Show error state and message
          */
-        "error": boolean | string;
+        "error"?: boolean | string;
         /**
           * Define tick marker on the slider. Marker has to be within slider min/max
          */
-        "marker": SliderMarker;
+        "marker"?: SliderMarker;
         /**
           * Maximum slider value
          */
@@ -1929,7 +1929,7 @@ export namespace Components {
           * Legal number intervals
           * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step
          */
-        "step": number;
+        "step"?: number;
         /**
           * Show a trace line
          */
@@ -1970,7 +1970,7 @@ export namespace Components {
         /**
           * Button label
          */
-        "label": string;
+        "label"?: string;
         /**
           * Button outline variant
          */
@@ -2006,7 +2006,7 @@ export namespace Components {
         /**
           * Set counter value
          */
-        "counter": number;
+        "counter"?: number;
         /**
           * Set disabled tab
          */
@@ -2077,7 +2077,7 @@ export namespace Components {
         /**
           * Get the current time based on the wanted format
          */
-        "getCurrentTime": () => Promise<string>;
+        "getCurrentTime": () => Promise<string | undefined>;
         /**
           * @deprecated Not supported since 2.0.0.
          */
@@ -2122,7 +2122,7 @@ export namespace Components {
         /**
           * Set time reference
          */
-        "timeReference": 'AM' | 'PM' | undefined;
+        "timeReference"?: TimeReference;
     }
     interface IxToast {
         /**
@@ -4982,7 +4982,7 @@ declare namespace LocalJSX {
         /**
           * Empty state header
          */
-        "header": string;
+        "header"?: string;
         /**
           * Optional empty state icon
          */
@@ -5299,7 +5299,7 @@ declare namespace LocalJSX {
         /**
           * Key value label
          */
-        "label": string;
+        "label"?: string;
         /**
           * Optional key value label position - 'top' or 'left'
          */
@@ -6309,7 +6309,7 @@ declare namespace LocalJSX {
         /**
           * Set time reference
          */
-        "timeReference"?: 'AM' | 'PM' | undefined;
+        "timeReference"?: TimeReference;
     }
     interface IxToast {
         /**

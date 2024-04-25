@@ -25,12 +25,12 @@ export class KeyValue {
   /**
    * Optional key value icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Key value label
    */
-  @Prop() label!: string;
+  @Prop() label?: string;
 
   /**
    * Optional key value label position - 'top' or 'left'
@@ -40,15 +40,12 @@ export class KeyValue {
   /**
    * Optional key value text value
    */
-  @Prop() value: string;
+  @Prop() value?: string;
 
   render() {
+    const labelPosition = this.labelPosition === 'top' ? 'column' : 'row';
     return (
-      <Host
-        class={`keyValue keyValue--${
-          this.labelPosition === 'top' ? 'column' : 'row'
-        }`}
-      >
+      <Host class={`keyValue keyValue--${labelPosition}`}>
         {this.icon && (
           <ix-icon name={this.icon} size="24" class="keyValue__icon"></ix-icon>
         )}

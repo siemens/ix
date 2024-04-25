@@ -28,27 +28,27 @@ export class EmptyState {
   /**
    * Optional empty state icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Empty state header
    */
-  @Prop() header!: string;
+  @Prop() header?: string;
 
   /**
    * Optional empty state sub header
    */
-  @Prop() subHeader: string;
+  @Prop() subHeader?: string;
 
   /**
    * Optional empty state action
    */
-  @Prop() action: string;
+  @Prop() action?: string;
 
   /**
    * Empty state action click event
    */
-  @Event() actionClick: EventEmitter<void>;
+  @Event() actionClick!: EventEmitter<void>;
 
   render() {
     return (
