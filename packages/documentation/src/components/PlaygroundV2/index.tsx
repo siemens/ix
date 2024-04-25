@@ -167,6 +167,7 @@ function getLanguage(filename: string) {
 type PlaygroundV2Props = {
   files: Record<TargetFramework, string[]>;
   examplesByName?: boolean;
+  disableStackBlitz?: boolean;
 } & DemoProps;
 
 function SourceCodePreview(props: {
@@ -330,20 +331,22 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
             ></IxIconButton>
           ) : (
             <>
-              <IxIconButton
-                ghost
-                size="16"
-                icon={`${baseUrlAssets}/stackblitz.svg`}
-                onClick={() => {
-                  openStackBlitz({
-                    baseUrl: baseUrl,
-                    files: files,
-                    framework: tab,
-                    name: props.name,
-                    version: versionDeployment,
-                  });
-                }}
-              ></IxIconButton>
+              {!props.disableStackBlitz && (
+                <IxIconButton
+                  ghost
+                  size="16"
+                  icon={`${baseUrlAssets}/stackblitz.svg`}
+                  onClick={() => {
+                    openStackBlitz({
+                      baseUrl: baseUrl,
+                      files: files,
+                      framework: tab,
+                      name: props.name,
+                      version: versionDeployment,
+                    });
+                  }}
+                ></IxIconButton>
+              )}
 
               <IxIconButton
                 ghost
