@@ -18,7 +18,6 @@ import { LogicalFilterOperator } from "./components/category-filter/logical-filt
 import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
-import { CssGridTemplateType } from "./components/css-grid/css-grid";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent } from "./components/date-picker/date-picker";
@@ -58,7 +57,6 @@ export { LogicalFilterOperator } from "./components/category-filter/logical-filt
 export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
-export { CssGridTemplateType } from "./components/css-grid/css-grid";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent } from "./components/date-picker/date-picker";
@@ -93,7 +91,7 @@ export namespace Components {
         /**
           * Card heading
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Card icon
          */
@@ -105,7 +103,7 @@ export namespace Components {
         /**
           * Card subheading
          */
-        "subheading": string;
+        "subheading"?: string;
         /**
           * Card variant
          */
@@ -197,16 +195,16 @@ export namespace Components {
           * Optional icon to be displayed next to the header label
           * @since 1.5.0
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Label of blind
          */
-        "label": string;
+        "label"?: string;
         /**
           * Secondary label inside blind header
           * @since 2.0.0
          */
-        "sublabel": string;
+        "sublabel"?: string;
         /**
           * Blind variant
           * @since 2.0.0
@@ -259,7 +257,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         "iconSize": '12' | '16' | '24';
         /**
           * Loading button
@@ -497,23 +495,11 @@ export namespace Components {
         /**
           * Title of Header
          */
-        "headerTitle": string;
+        "headerTitle"?: string;
         /**
           * Variant of content header
          */
         "variant": ContentHeaderVariant;
-    }
-    interface IxCssGrid {
-        /**
-          * Define css grid template
-         */
-        "templates": Partial<Record<CssGridTemplateType, string[][]>>;
-    }
-    interface IxCssGridItem {
-        /**
-          * Grid item name
-         */
-        "itemName": string;
     }
     /**
      * @since 2.1.0
@@ -597,7 +583,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -611,17 +597,17 @@ export namespace Components {
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
          */
-        "locale": string;
+        "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
-        "maxDate": string;
+        "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
-        "minDate": string;
+        "minDate"?: string;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -632,7 +618,7 @@ export namespace Components {
           * @since 1.1.0
           * @deprecated since 2.1.0. Use `i18nDone`
          */
-        "textSelectDate": string;
+        "textSelectDate"?: string;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
@@ -654,7 +640,7 @@ export namespace Components {
           * set styles
          */
         "individual": boolean;
-        "standaloneAppearance": any;
+        "standaloneAppearance"?: boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -714,7 +700,7 @@ export namespace Components {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference": any;
+        "showTimeReference": undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -2314,15 +2300,15 @@ export namespace Components {
           * Text color based on theme variables
           * @deprecated since 2.1.0 use property `text-color`
          */
-        "color": TypographyColors;
+        "color"?: TypographyColors;
         /**
           * Text format
          */
-        "format": TypographyFormat;
+        "format"?: TypographyFormat;
         /**
           * Text color based on theme variables
          */
-        "textColor": TypographyColors;
+        "textColor"?: TypographyColors;
         /**
           * Text decoration
          */
@@ -2331,7 +2317,7 @@ export namespace Components {
           * Font variant based on theme variables
           * @deprecated Use `format` property
          */
-        "variant": TypographyVariants;
+        "variant"?: TypographyVariants;
     }
     interface IxUpload {
         /**
@@ -2905,18 +2891,6 @@ declare global {
     var HTMLIxContentHeaderElement: {
         prototype: HTMLIxContentHeaderElement;
         new (): HTMLIxContentHeaderElement;
-    };
-    interface HTMLIxCssGridElement extends Components.IxCssGrid, HTMLStencilElement {
-    }
-    var HTMLIxCssGridElement: {
-        prototype: HTMLIxCssGridElement;
-        new (): HTMLIxCssGridElement;
-    };
-    interface HTMLIxCssGridItemElement extends Components.IxCssGridItem, HTMLStencilElement {
-    }
-    var HTMLIxCssGridItemElement: {
-        prototype: HTMLIxCssGridItemElement;
-        new (): HTMLIxCssGridItemElement;
     };
     interface HTMLIxDateDropdownElementEventMap {
         "dateRangeChange": DateRangeChangeEvent;
@@ -4011,8 +3985,6 @@ declare global {
         "ix-col": HTMLIxColElement;
         "ix-content": HTMLIxContentElement;
         "ix-content-header": HTMLIxContentHeaderElement;
-        "ix-css-grid": HTMLIxCssGridElement;
-        "ix-css-grid-item": HTMLIxCssGridItemElement;
         "ix-date-dropdown": HTMLIxDateDropdownElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
@@ -4563,18 +4535,6 @@ declare namespace LocalJSX {
          */
         "variant"?: ContentHeaderVariant;
     }
-    interface IxCssGrid {
-        /**
-          * Define css grid template
-         */
-        "templates"?: Partial<Record<CssGridTemplateType, string[][]>>;
-    }
-    interface IxCssGridItem {
-        /**
-          * Grid item name
-         */
-        "itemName"?: string;
-    }
     /**
      * @since 2.1.0
      */
@@ -4730,7 +4690,7 @@ declare namespace LocalJSX {
           * set styles
          */
         "individual"?: boolean;
-        "standaloneAppearance"?: any;
+        "standaloneAppearance"?: boolean;
     }
     interface IxDatetimePicker {
         /**
@@ -4810,7 +4770,7 @@ declare namespace LocalJSX {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: any;
+        "showTimeReference"?: undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -6709,8 +6669,6 @@ declare namespace LocalJSX {
         "ix-col": IxCol;
         "ix-content": IxContent;
         "ix-content-header": IxContentHeader;
-        "ix-css-grid": IxCssGrid;
-        "ix-css-grid-item": IxCssGridItem;
         "ix-date-dropdown": IxDateDropdown;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
@@ -6847,8 +6805,6 @@ declare module "@stencil/core" {
              */
             "ix-content": LocalJSX.IxContent & JSXBase.HTMLAttributes<HTMLIxContentElement>;
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
-            "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
-            "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
             /**
              * @since 2.1.0
              */

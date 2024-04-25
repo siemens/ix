@@ -40,19 +40,19 @@ export class Blind {
   /**
    * Label of blind
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Secondary label inside blind header
    * @since 2.0.0
    */
-  @Prop() sublabel: string;
+  @Prop() sublabel?: string;
 
   /**
    * Optional icon to be displayed next to the header label
    * @since 1.5.0
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Blind variant
@@ -63,14 +63,12 @@ export class Blind {
   /**
    * Collapsed state changed
    */
-  @Event() collapsedChange: EventEmitter<boolean>;
+  @Event() collapsedChange!: EventEmitter<boolean>;
 
   @Element() hostElement!: HTMLIxBlindElement;
 
-  private chevronRef: HTMLElement;
+  private chevronRef?: HTMLElement;
   private blindId = ++sequentialInstanceId;
-
-  constructor() {}
 
   private onHeaderClick() {
     this.collapsed = !this.collapsed;
@@ -82,7 +80,7 @@ export class Blind {
   }
 
   get content() {
-    return this.hostElement.shadowRoot.querySelector('.blind-content');
+    return this.hostElement.shadowRoot!.querySelector('.blind-content');
   }
 
   @Watch('collapsed')

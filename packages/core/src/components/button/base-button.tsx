@@ -54,7 +54,7 @@ export type BaseButtonProps = {
   selected: boolean;
   disabled: boolean;
   loading: boolean;
-  icon: string;
+  icon?: string;
   onClick?: Function;
   ariaAttributes?: A11yAttributes;
   extraClasses?: { [key: string]: boolean };
@@ -65,7 +65,7 @@ export type BaseButtonProps = {
   afterContent?: any;
 };
 
-export function BaseButton(props: BaseButtonProps, children) {
+export function BaseButton(props: BaseButtonProps, children: unknown) {
   const extraClasses = props.extraClasses ?? {};
 
   return (

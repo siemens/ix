@@ -53,7 +53,7 @@ export class Button {
   /**
    * Icon name
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /** @internal */
   @Prop() alignment: 'center' | 'start' = 'center';
@@ -61,12 +61,12 @@ export class Button {
   /** @internal */
   @Prop() iconSize: '12' | '16' | '24' = '24';
 
-  @Element() hostElement: HTMLIxButtonElement;
+  @Element() hostElement!: HTMLIxButtonElement;
 
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
-  submitButtonElement: HTMLButtonElement;
+  submitButtonElement?: HTMLButtonElement;
 
   componentDidLoad() {
     if (this.type === 'submit') {

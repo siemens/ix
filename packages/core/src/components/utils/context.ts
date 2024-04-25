@@ -97,7 +97,7 @@ export function useContextConsumer<
   ) => void,
   subscribe?: boolean
 ): ContextConsumerSubscription {
-  let _unsubscribe: () => void;
+  let _unsubscribe: (() => void) | undefined;
   hostElement.dispatchEvent(
     new ContextEvent(
       context,
@@ -111,7 +111,9 @@ export function useContextConsumer<
 
   return {
     unsubscribe: () => {
-      _unsubscribe();
+      if (_unsubscribe) {
+        _unsubscribe();
+      }
     },
   };
 }
@@ -135,7 +137,7 @@ export function useContextProvider<
 
   hostElement.addEventListener(
     'context-request',
-    (requestContextEvent: ContextEvent<C>) => {
+    (requestContextEvent: ContextEvent<UnknownContext>) => {
       if (requestContextEvent?.context.name !== context.name) {
         return;
       }
@@ -145,7 +147,7 @@ export function useContextProvider<
       if (requestContextEvent.subscribe) {
         requests.add(requestContextEvent);
       }
-      requestContext.emit(requestContextEvent);
+      requestContext.emit(requestContextEvent as ContextEvent<C>);
 
       if (contextPayload) {
         requestContextEvent.callback(contextPayload, () => {

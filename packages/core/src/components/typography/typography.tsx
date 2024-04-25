@@ -73,12 +73,12 @@ export class IxTypography {
    * @deprecated Use `format` property
    * @internal
    */
-  @Prop() variant: TypographyVariants;
+  @Prop() variant?: TypographyVariants;
 
   /**
    * Text format
    */
-  @Prop() format: TypographyFormat;
+  @Prop() format?: TypographyFormat;
 
   /**
    * Text color based on theme variables
@@ -86,12 +86,12 @@ export class IxTypography {
    * @deprecated since 2.1.0 use property `text-color`
    */
   // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color: TypographyColors;
+  @Prop() color?: TypographyColors;
 
   /**
    * Text color based on theme variables
    */
-  @Prop() textColor: TypographyColors;
+  @Prop() textColor?: TypographyColors;
 
   /**
    * Display text bold
@@ -104,10 +104,12 @@ export class IxTypography {
   @Prop() textDecoration: TextDecoration = 'none';
 
   render() {
-    let typographyClass = {};
+    let typographyClass: Record<string, boolean> = {};
 
     if (this.variant) {
-      typographyClass[VariantsMapping[this.variant ?? 'default']] = true;
+      const key = (this.variant ?? 'default') as keyof typeof VariantsMapping;
+      const mappedVariant = VariantsMapping[key];
+      typographyClass[mappedVariant] = true;
     } else {
       typographyClass[`typography-${this.format ?? 'body'}`] = true;
     }
