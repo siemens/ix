@@ -9,6 +9,10 @@
 import { EventEmitter } from '@stencil/core';
 import { IxComponent } from '../internal';
 
+/*
+TODO
+Missing to expose all native input attributes
+*/
 export interface IxFieldComponent<T = any> extends IxComponent {
   /**
    * Add `@Prop({ reflect: true })` to the `name` prop

@@ -18,6 +18,7 @@ import {
   h,
 } from '@stencil/core';
 import { IxFieldComponent } from '../utils/field';
+import { InputElement } from './input-element';
 
 function formValidation(field: IxFieldComponent) {
   const form = field.formInternals.form;
@@ -97,23 +98,7 @@ export class TextField implements IxFieldComponent<string> {
   render() {
     return (
       <Host>
-        <input
-          class={{
-            'is-invalid': this.isInvalid,
-          }}
-          type="text"
-          required={this.required}
-          value={this.value}
-          placeholder={this.placeholder}
-          onChange={(changeEvent) => {
-            const target = changeEvent.target as HTMLInputElement;
-            this.valueChanged.emit(target.value);
-          }}
-          onInput={(inputEvent) => {
-            const target = inputEvent.target as HTMLInputElement;
-            this.updateFormInternalValue(target.value);
-          }}
-        ></input>
+        <InputElement field={this} type="text"></InputElement>
       </Host>
     );
   }
