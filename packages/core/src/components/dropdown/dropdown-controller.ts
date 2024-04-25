@@ -173,10 +173,6 @@ class DropdownController {
         this.dismissAll([...this.dropdowns.keys()]);
       }
     });
-
-    window.addEventListener('focusout', () => {
-      this.dismissAll();
-    });
   }
 }
 
