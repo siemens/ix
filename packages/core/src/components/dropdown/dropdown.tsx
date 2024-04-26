@@ -119,6 +119,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
    */
   @Prop() discoverAllSubmenus = false;
 
+  /** @internal */
+  @Prop() ignoreRelatedSubmenu = false;
+
   /**
    * Fire event after visibility of dropdown has changed
    */
@@ -254,7 +257,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.triggerElement?.dispatchEvent(
       new CustomEvent('ix-assign-sub-menu', {
         bubbles: true,
-        composed: false,
+        composed: true,
         cancelable: true,
         detail: this.localUId,
       })
@@ -501,16 +504,18 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private onDropdownClick(event: PointerEvent) {
-    if (dropdownController.pathIncludesTrigger(event.composedPath())) {
+    const target = dropdownController.pathIncludesTrigger(event.composedPath());
+    if (target) {
       event.preventDefault();
 
-      if (this.isTriggerElement(event.target as HTMLElement)) {
+      if (this.isTriggerElement(target)) {
         return;
       }
     }
 
     if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
-      dropdownController.dismissAll([this.getId()]);
+      dropdownController.dismissAll([this.getId()], this.ignoreRelatedSubmenu);
+      return;
     }
 
     dropdownController.dismissOthers(this.getId());
@@ -542,6 +547,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         role="list"
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >
+        {this.localUId}
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
 

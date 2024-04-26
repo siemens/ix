@@ -285,6 +285,7 @@ export class DateDropdown {
     return (
       <Host>
         <ix-button
+          data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
           variant="primary"
           icon="history"
@@ -293,10 +294,11 @@ export class DateDropdown {
           {this.getButtonLabel()}
         </ix-button>
         <ix-dropdown
+          data-testid="date-dropdown"
           data-date-dropdown
           class="min-width max-height"
           trigger={this.triggerRef}
-          close-behavior="outside"
+          closeBehavior="outside"
           placement="bottom-start"
           onShowChanged={({ detail: show }) => {
             if (
