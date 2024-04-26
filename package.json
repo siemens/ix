@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://www.github.com/siemens/ix/issues"
   },
-  "packageManager": "pnpm@8.9.2",
+  "packageManager": "^pnpm@9.0.6",
   "engines": {
     "npm": ">=8.x.x",
     "node": ">=16.16.x"
