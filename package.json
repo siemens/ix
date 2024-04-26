@@ -13,10 +13,9 @@
   "bugs": {
     "url": "https://www.github.com/siemens/ix/issues"
   },
-  "packageManager": "^pnpm@9.0.6",
   "engines": {
-    "npm": ">=8.x.x",
-    "node": ">=16.16.x"
+    "pnpm": ">=9.x.x",
+    "node": ">=18.x.x"
   },
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
@@ -30,7 +29,7 @@
     "test": "dotenv -- turbo run test",
     "prepare": "husky install",
     "ci:version": "pnpm changeset version && pnpm i --lockfile-only",
-    "ci:publish": "pnpm changeset publish"
+    "ci:publish": "pnpm changeset publish -r"
   },
   "dependencies": {
     "tslib": "^2.3.0"
