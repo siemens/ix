@@ -67,7 +67,7 @@ export class Menu {
   /**
    * Should only be set if you use ix-menu standalone
    */
-  @Prop() applicationName: string;
+  @Prop() applicationName?: string;
 
   /**
    * Should only be set if you use ix-menu standalone
@@ -142,20 +142,20 @@ export class Menu {
   /**
    * Menu expanded
    */
-  @Event() expandChange: EventEmitter<boolean>;
+  @Event() expandChange!: EventEmitter<boolean>;
 
   /**
    * Map Sidebar expanded
    */
-  @Event() mapExpandChange: EventEmitter<boolean>;
+  @Event() mapExpandChange!: EventEmitter<boolean>;
 
   @State() showPinned = false;
   @State() mapExpand = true;
-  @State() activeTab: HTMLIxMenuItemElement | null;
+  @State() activeTab?: HTMLIxMenuItemElement | null;
   @State() breakpoint: Breakpoint = 'lg';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
-  @State() applicationLayoutContext: ContextType<
+  @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
   private isTransitionDisabled = false;
@@ -181,22 +181,24 @@ export class Menu {
   }
 
   get overlayContainer() {
-    return this.hostElement.shadowRoot.querySelector(
+    return this.hostElement.shadowRoot!.querySelector(
       '.menu-overlay'
     ) as HTMLDivElement;
   }
 
   get menuItems() {
-    return Array.from(
-      this.hostElement.querySelectorAll(
+    const items = Array.from(
+      this.hostElement.querySelectorAll<HTMLElement>(
         'ix-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab):not([slot="bottom"])'
       )
-    ).filter(this.isVisible);
+    );
+
+    return items.filter(this.isVisible);
   }
 
   get menuBottomItems() {
     return Array.from(
-      this.hostElement.querySelectorAll(
+      this.hostElement.querySelectorAll<HTMLElement>(
         'ix-menu-item.bottom-tab:not(.internal-tab):not(.home-tab)'
       )
     ).filter(this.isVisible);
@@ -248,7 +250,7 @@ export class Menu {
   }
 
   get aboutTab(): HTMLElement {
-    return this.hostElement.shadowRoot!.querySelector('#aboutAndLegal');
+    return this.hostElement.shadowRoot!.querySelector('#aboutAndLegal')!;
   }
 
   get about(): HTMLIxMenuAboutElement | null {
@@ -619,11 +621,15 @@ export class Menu {
               ></ix-menu-expand-icon>
             )}
             {this.breakpoint === 'sm' &&
-              this.applicationLayoutContext.appSwitchConfig && (
+              this.applicationLayoutContext?.appSwitchConfig && (
                 <ix-icon-button
-                  onClick={() =>
-                    showAppSwitch(this.applicationLayoutContext.appSwitchConfig)
-                  }
+                  onClick={() => {
+                    if (this.applicationLayoutContext?.appSwitchConfig) {
+                      showAppSwitch(
+                        this.applicationLayoutContext.appSwitchConfig
+                      );
+                    }
+                  }}
                   icon="apps"
                   ghost
                 ></ix-icon-button>

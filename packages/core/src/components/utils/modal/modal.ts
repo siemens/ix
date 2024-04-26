@@ -75,7 +75,7 @@ export async function showModal<T>(
   config: ModalConfig<T>
 ): Promise<ModalInstance<T>> {
   const delegate = resolveDelegate();
-  let dialogRef: HTMLIxModalElement;
+  let dialogRef: HTMLIxModalElement | null = null;
   const onClose = new TypedEvent<T>();
   const onDismiss = new TypedEvent<T>();
 
@@ -93,6 +93,7 @@ export async function showModal<T>(
     dialog.appendChild(config.content);
     dialogRef = await getCoreDelegate().attachView(dialog);
   }
+
   if (!dialogRef) {
     dialogRef = await delegate.attachView<HTMLIxModalElement>(config.content);
   }

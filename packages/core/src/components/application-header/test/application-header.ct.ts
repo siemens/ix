@@ -180,7 +180,7 @@ test.describe('cross app navigation', () => {
           hideHeader: false,
           host: null,
           sidebar: false,
-          appSwitchConfig: null,
+          appSwitchConfig: undefined,
         } as ContextType<typeof ApplicationLayoutContext>);
       });
     });
@@ -415,7 +415,7 @@ test.describe('cross app navigation', () => {
       const avatar = page.locator('ix-avatar');
       await expect(avatar).toBeVisible();
 
-      await page.setViewportSize(viewPorts[key]);
+      await page.setViewportSize(viewPorts[key as keyof typeof viewPorts]);
       await expect(avatar).toBeVisible();
     });
   });

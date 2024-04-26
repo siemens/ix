@@ -23,3 +23,5 @@ export const viewPorts = {
     width: 1920,
   },
 } as const;
+
+export type ViewPorts = keyof typeof viewPorts;

@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export function closestElement(selector: string, el: any) {
+export function closestElement(selector: string, el: any): boolean | null {
   if (!el) {
     return null;
   }
@@ -37,7 +37,7 @@ export function containsElement(target: Element, element: Element) {
   return target.contains(element);
 }
 
-export function closestPassShadow(node: Node, selector: string) {
+export function closestPassShadow(node: Node | null, selector: string) {
   if (!node) {
     return null;
   }

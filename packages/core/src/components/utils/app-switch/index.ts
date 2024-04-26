@@ -23,7 +23,11 @@ export async function showAppSwitch(config: AppSwitchConfiguration) {
     'ix-application-switch-modal'
   );
 
-  return (updateAppSwitchConfig: AppSwitchConfiguration) => {
+  if (!appSwitchElement) {
+    throw Error('Cannot find ix-application-switch-modal');
+  }
+
+  return (updateAppSwitchConfig: AppSwitchConfiguration | undefined) => {
     appSwitchElement.config = updateAppSwitchConfig;
   };
 }

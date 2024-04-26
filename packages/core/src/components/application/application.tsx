@@ -29,12 +29,12 @@ import { Disposable } from '../utils/typed-event';
   shadow: true,
 })
 export class Application {
-  @Element() hostElement: HTMLIxApplicationElement;
+  @Element() hostElement!: HTMLIxApplicationElement;
 
   /**
    * Application theme
    */
-  @Prop() theme: IxTheme;
+  @Prop() theme?: IxTheme;
 
   /**
    * Use the system appearance dark or light
@@ -67,24 +67,24 @@ export class Application {
   /**
    * Define application switch configuration
    */
-  @Prop() appSwitchConfig: AppSwitchConfiguration;
+  @Prop() appSwitchConfig?: AppSwitchConfiguration;
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() applicationSidebarSlotted = false;
 
-  private contextProvider: ContextProvider<typeof ApplicationLayoutContext>;
+  private contextProvider?: ContextProvider<typeof ApplicationLayoutContext>;
 
   get menu(): HTMLIxMenuElement | null {
     return this.hostElement.querySelector('ix-menu');
   }
 
   get applicationSidebarSlot() {
-    return this.hostElement.shadowRoot.querySelector(
+    return this.hostElement.shadowRoot!.querySelector(
       '.application-sidebar slot'
     ) as HTMLSlotElement;
   }
 
-  private modeDisposable: Disposable;
+  private modeDisposable?: Disposable;
 
   private onContentClick() {
     if (menuController.isPinned) {
@@ -148,7 +148,7 @@ export class Application {
   @Watch('appSwitchConfig')
   @Watch('applicationSidebarSlotted')
   onApplicationSidebarChange() {
-    this.contextProvider.emit({
+    this.contextProvider?.emit({
       hideHeader: false,
       host: 'basic-navigation',
       sidebar: this.applicationSidebarSlotted,

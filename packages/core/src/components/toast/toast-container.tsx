@@ -63,6 +63,10 @@ export class ToastContainer {
   @Watch('position')
   onPositionChange(newPosition: string, oldPosition: string) {
     const toastContainer = document.getElementById(this.containerId);
+    if (!toastContainer) {
+      throw new Error('Toast container not found');
+    }
+
     toastContainer.classList.remove(
       `${this.PREFIX_POSITION_CLASS}${oldPosition}`
     );

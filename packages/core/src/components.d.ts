@@ -116,7 +116,7 @@ export namespace Components {
         /**
           * Define application switch configuration
          */
-        "appSwitchConfig": AppSwitchConfiguration;
+        "appSwitchConfig"?: AppSwitchConfiguration;
         /**
           * Supported layouts
          */
@@ -128,7 +128,7 @@ export namespace Components {
         /**
           * Application theme
          */
-        "theme": IxTheme;
+        "theme"?: IxTheme;
         /**
           * Use the system appearance dark or light
          */
@@ -138,12 +138,12 @@ export namespace Components {
         /**
           * Application name
          */
-        "name": string;
+        "name"?: string;
     }
     interface IxApplicationSidebar {
     }
     interface IxApplicationSwitchModal {
-        "config": AppSwitchConfiguration;
+        "config"?: AppSwitchConfiguration;
     }
     /**
      * @since 2.0.0
@@ -153,26 +153,26 @@ export namespace Components {
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
-        "extra": string;
+        "extra"?: string;
         /**
           * Display an avatar image
          */
-        "image": string;
+        "image"?: string;
         /**
           * Display the initials of the user. Will be overwritten by image
          */
-        "initials": string;
+        "initials"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
-        "username": string;
+        "username"?: string;
     }
     interface IxBasicNavigation {
         /**
           * Application name
          */
-        "applicationName": string;
+        "applicationName"?: string;
         /**
           * Supported layouts e.g ['sm', 'md']
          */
@@ -235,12 +235,12 @@ export namespace Components {
         /**
           * Icon to be displayed next ot the label
          */
-        "icon": string;
+        "icon"?: string;
         "isDropdownTrigger": boolean;
         /**
           * Breadcrumb label
          */
-        "label": string;
+        "label"?: string;
         "showChevron": boolean;
         "visible": boolean;
     }
@@ -329,7 +329,7 @@ export namespace Components {
         /**
           * Name the card list
          */
-        "label": string;
+        "label"?: string;
         /**
           * List style
          */
@@ -1316,7 +1316,7 @@ export namespace Components {
         /**
           * Should only be set if you use ix-menu standalone
          */
-        "applicationName": string;
+        "applicationName"?: string;
         /**
           * Internal
          */
@@ -2136,19 +2136,19 @@ export namespace Components {
         /**
           * Icon of toast
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Icon color of toast
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Toast title
          */
-        "toastTitle": string;
+        "toastTitle"?: string;
         /**
           * Toast type
          */
-        "type": ToastType;
+        "type"?: ToastType;
     }
     interface IxToastContainer {
         "containerClass": string;

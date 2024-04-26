@@ -31,8 +31,8 @@ function createConfirmButtons(
   textCancel?: string,
   payloadOkay?: any,
   payloadCancel?: any
-) {
-  let actions = [];
+): MessageAction[] {
+  let actions: MessageAction[] = [];
   if (textCancel !== undefined) {
     actions = [
       ...actions,
@@ -55,17 +55,19 @@ function createConfirmButtons(
   ];
 }
 
+export type MessageAction = {
+  id: string;
+  type: 'button-primary' | 'button-secondary' | 'okay' | 'cancel';
+  text: string;
+  payload?: any;
+};
+
 export type MessageContent = {
   icon: string;
   iconColor?: string;
   messageTitle: string;
   message: string;
-  actions: {
-    id: string;
-    type: 'button-primary' | 'button-secondary' | 'okay' | 'cancel';
-    text: string;
-    payload?: any;
-  }[];
+  actions: MessageAction[];
   ariaLabelledby?: string;
   ariaDescribedby?: string;
 };
@@ -121,8 +123,8 @@ export async function showMessage<T>(config: MessageContent) {
   dialog.appendChild(content);
   dialog.appendChild(footer);
 
-  const dialogRef =
-    await getCoreDelegate().attachView<HTMLIxModalElement>(dialog);
+  const delegate = getCoreDelegate();
+  const dialogRef = await delegate.attachView<HTMLIxModalElement>(dialog);
 
   dialogRef.addEventListener(
     'dialogClose',

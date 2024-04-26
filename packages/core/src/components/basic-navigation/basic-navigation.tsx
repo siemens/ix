@@ -21,12 +21,12 @@ import { Disposable } from '../utils/typed-event';
   shadow: true,
 })
 export class BasicNavigation {
-  @Element() hostElement: HTMLIxBasicNavigationElement;
+  @Element() hostElement!: HTMLIxBasicNavigationElement;
 
   /**
    * Application name
    */
-  @Prop() applicationName: string;
+  @Prop() applicationName?: string;
 
   /**
    * Hide application header. Will disable responsive feature of basic navigation.
@@ -71,8 +71,8 @@ export class BasicNavigation {
     return this.hostElement.querySelector('ix-menu');
   }
 
-  private modeDisposable: Disposable;
-  private contextProvider: ContextProvider<typeof ApplicationLayoutContext>;
+  private modeDisposable?: Disposable;
+  private contextProvider?: ContextProvider<typeof ApplicationLayoutContext>;
 
   private onContentClick() {
     if (menuController.isPinned) {

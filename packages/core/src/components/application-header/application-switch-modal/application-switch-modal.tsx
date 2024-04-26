@@ -85,7 +85,7 @@ export class ApplicationSwitchModal {
   @Element() hostElement!: HTMLIxApplicationSwitchModalElement;
 
   /** @internal */
-  @Prop() config: AppSwitchConfiguration;
+  @Prop() config?: AppSwitchConfiguration;
 
   componentWillLoad() {
     if (!this.config) {

@@ -17,7 +17,7 @@ describe('button', () => {
     });
 
     await page.waitForChanges();
-    const btn = page.doc.querySelector('ix-button');
+    const btn = page.doc.querySelector('ix-button')!;
     expect(btn.className).toContain('disabled');
   });
 
@@ -35,8 +35,8 @@ describe('button', () => {
     await page.waitForChanges();
 
     const btn = page.doc
-      .querySelector('ix-button')
-      .shadowRoot.querySelector('button');
+      .querySelector('ix-button')!
+      .shadowRoot!.querySelector('button');
     const shadowButton = page.doc.querySelector(
       'ix-button > button'
     ) as HTMLButtonElement;
@@ -59,8 +59,8 @@ describe('button', () => {
     await page.waitForChanges();
 
     const btn = page.doc
-      .querySelector('ix-button[type="submit"]')
-      .shadowRoot.querySelector('button');
+      .querySelector('ix-button[type="submit"]')!
+      .shadowRoot!.querySelector('button');
     const shadowButton = page.doc.querySelector(
       'ix-button[type="submit"] > button'
     ) as HTMLButtonElement;
@@ -75,7 +75,7 @@ describe('button', () => {
     expect(shadowButton.type).toStrictEqual('submit');
     expect(shadowButton.tabIndex).toStrictEqual(-1);
 
-    btn.click();
+    btn!.click();
     expect(onClick).toHaveBeenCalled();
   });
 });

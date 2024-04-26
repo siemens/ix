@@ -84,7 +84,7 @@ export const test = testBase.extend<{
       return page.evaluateHandle(
         async ({ componentSelector }) => {
           await window.customElements.whenDefined('ix-button');
-          const mount = document.querySelector('#mount');
+          const mount = document.querySelector('#mount')!;
           mount.innerHTML = componentSelector;
           return mount.children.item(0) as HTMLElement;
         },

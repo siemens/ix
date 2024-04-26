@@ -43,7 +43,7 @@ export class ApplicationHeader {
   /**
    * Application name
    */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
@@ -54,10 +54,10 @@ export class ApplicationHeader {
   private menuDisposable?: Disposable;
   private modeDisposable?: Disposable;
   private callbackUpdateAppSwitchModal?: (
-    config: AppSwitchConfiguration
+    config: AppSwitchConfiguration | undefined
   ) => void;
 
-  @State() applicationLayoutContext: ContextType<
+  @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
 
@@ -106,7 +106,7 @@ export class ApplicationHeader {
   }
 
   private isLogoSlotted() {
-    const slotElement = this.hostElement.shadowRoot.querySelector(
+    const slotElement = this.hostElement.shadowRoot!.querySelector(
       'slot[name="logo"]'
     ) as HTMLSlotElement;
     const nodes = slotElement.assignedNodes({
@@ -120,9 +120,8 @@ export class ApplicationHeader {
     await window.customElements.whenDefined('ix-siemens-logo');
     const logoElement = document.createElement('ix-siemens-logo');
     if (!this.isLogoSlotted()) {
-      this.hostElement.shadowRoot
-        .querySelector('.logo')
-        .appendChild(logoElement);
+      const logo = this.hostElement.shadowRoot!.querySelector('.logo')!;
+      logo.appendChild(logoElement);
     }
   }
 
@@ -134,7 +133,7 @@ export class ApplicationHeader {
     return new Promise<HTMLElement>((resolve) =>
       readTask(() =>
         resolve(
-          this.hostElement.shadowRoot.querySelector(
+          this.hostElement.shadowRoot!.querySelector(
             '[data-context-menu]'
           ) as HTMLElement
         )
@@ -153,14 +152,18 @@ export class ApplicationHeader {
   }
 
   private async showAppSwitch() {
-    this.callbackUpdateAppSwitchModal = await showAppSwitch(
-      this.applicationLayoutContext?.appSwitchConfig
-    );
+    const config = this.applicationLayoutContext?.appSwitchConfig;
+
+    if (!config) {
+      throw Error('App switch configuration is missing');
+    }
+
+    this.callbackUpdateAppSwitchModal = await showAppSwitch(config);
   }
 
   private updateIsSlottedContent() {
     const slotElement =
-      this.hostElement.shadowRoot.querySelector('.content slot');
+      this.hostElement.shadowRoot!.querySelector('.content slot');
 
     this.hasSlottedElements = hasSlottedElements(slotElement);
   }
