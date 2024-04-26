@@ -25,10 +25,10 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 ## Behavior in context
 - **Interaction:** Buttons can be triggered by pressing anywhere within the button container. When buttons are focused, they can be triggered by pressing `Space`.
 - **Text truncation:** Button labels are not truncated. All text on buttons is one line only. 
-- **Ellipsis (…):** We use ellipsis on the button label when the action requires further user input. Confirmation dialogs are excluded from this. For example, a button "Connect to…" might open a modal with a list of connection targets from which the user selects one.
+- **Ellipsis (…):** Ellipsis can be used to indicate that an action requires further input or choice from the user, such as "Save as…" which opens a further list of file types to choose from. Ellipses is typically not used for actions with a subsequent confirmation dialog.
 - **Alignment:** Buttons can be left-justified or right-justified or fully span a container’s width.
 - **Cluster buttons:** Buttons can be clustered in groups based on their relationship. A cluster can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons, and we typically cluster buttons if actions/functions are related but not excluding each other. Otherwise, consider using a `button group`. 
-- **Button width:** The button width depends on its content. In addition, buttons have a default minimum width of 5rem to layout common combinations such as "OK" and "Cancel" in a harmonic way with equal widths. The minimum width is customizable to accommodate other combinations.
+- **Button width:** Button width depends on its content. In addition, buttons have a default minimum width of 5rem to lay out common combinations such as "OK" and "Cancel" more harmoniously with equal widths. The minimum width is customizable to accommodate other combinations.
 
 ## States
 
@@ -43,9 +43,9 @@ Buttons have six states: Default, hover, active, disabled, loading and focused. 
 - Do use the danger button for destructive or critical actions like "delete" or "remove", especially in confirmation dialogs
 - Do use a default margin between adjacent buttons of at least `0.5rem`
 - Do adjust default and outline button width to label length or container width
-- Don’t use the danger button excessively and repetitively as in lists or tables, use it carefully and very selectively instead
+- Don’t use the danger button excessively or repetitively in lists or tables
 - Don’t extend your ghost button width beyond the label’s available width
-- Don’t only rely on standard buttons when many actions/functions are necessary. Consider dropdown, split or menu buttons or moving some functionality to a panel or a dialog
+- Don’t rely on standard buttons when many actions/functions are necessary (use dropdown, split or menu buttons or move some functionality to a panel or a dialog)
 - Don’t use buttons for navigation
 
 ## Related patterns:
