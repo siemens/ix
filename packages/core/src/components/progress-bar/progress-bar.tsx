@@ -58,16 +58,23 @@ export class ProgressBar {
   }
 
   render() {
+    const ceiledValue = this.ceilProgressValue();
     const customProgressStyle = {
       'background-color': `var(--theme-color-${this.variant}${
-        this.ceilProgressValue() === 100 ? '--active' : ''})`,
-      width: `${this.ceilProgressValue()}%`,
+         ceiledValue === 100 ? '--active' : ''})`,
+      width: `${ceiledValue}%`,
       transition : `width ${ this.disableAnimation ? '0' : '1'}s, background-color ${ this.disableAnimation ? '0' : '1'}s`
     };
     
     return (
       <Host title={this.el.textContent}>
-        <div class="progress-bar">
+        <div
+          class="progress-bar"
+          aria-valuenow={ceiledValue}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          role="progressbar"
+        >
           <div class="progress" style={{ ...customProgressStyle }}>
           </div>
         </div>
