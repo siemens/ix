@@ -21,7 +21,7 @@ const markdownMeta = [
 
 function getChangelogMarkdown(
   releases: {
-    url: string;
+    html_url: string;
     id: number;
     name: string | null;
     body?: string | null | undefined;
@@ -29,7 +29,7 @@ function getChangelogMarkdown(
   }[]
 ) {
   const markdownReleases = releases.map((release) => {
-    const markdownReleaseTitle = `## [${release.name}](${release.url}) (${release.published_at})`;
+    const markdownReleaseTitle = `## [${release.name}](${release.html_url}) (${release.published_at})`;
     const markdownReleaseBody = release.body;
     return [markdownReleaseTitle, markdownReleaseBody].join('\n');
   });
