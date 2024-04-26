@@ -13,10 +13,9 @@
   "bugs": {
     "url": "https://www.github.com/siemens/ix/issues"
   },
-  "packageManager": "pnpm@8.9.2",
   "engines": {
-    "npm": ">=8.x.x",
-    "node": ">=16.16.x"
+    "pnpm": ">=9.x.x",
+    "node": ">=18.x.x"
   },
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
