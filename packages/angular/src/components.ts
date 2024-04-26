@@ -1857,6 +1857,28 @@ export declare interface IxPill extends Components.IxPill {}
 
 
 @ProxyCmp({
+  inputs: ['disableAnimation', 'value', 'variant']
+})
+@Component({
+  selector: 'ix-progress-bar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disableAnimation', 'value', 'variant'],
+})
+export class IxProgressBar {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxProgressBar extends Components.IxProgressBar {}
+
+
+@ProxyCmp({
   inputs: ['collapse', 'heading', 'icon', 'notification', 'subheading', 'variant']
 })
 @Component({

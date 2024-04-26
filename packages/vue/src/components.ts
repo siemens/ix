@@ -75,6 +75,7 @@ import { defineCustomElement as defineIxPagination } from '@siemens/ix/component
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
+import { defineCustomElement as defineIxProgressBar } from '@siemens/ix/components/ix-progress-bar.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
@@ -766,6 +767,13 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', defin
   'color',
   'pillColor',
   'alignLeft'
+]);
+
+
+export const IxProgressBar = /*@__PURE__*/ defineContainer<JSX.IxProgressBar>('ix-progress-bar', defineIxProgressBar, [
+  'variant',
+  'value',
+  'disableAnimation'
 ]);
 
 

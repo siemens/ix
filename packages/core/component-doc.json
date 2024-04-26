@@ -12552,6 +12552,124 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/progress-bar",
+      "filePath": "src/components/progress-bar/progress-bar.tsx",
+      "fileName": "progress-bar.tsx",
+      "readmePath": "src/components/progress-bar/readme.md",
+      "usagesDir": "src/components/progress-bar/usage",
+      "tag": "ix-progress-bar",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "disableAnimation",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disable-animation",
+          "reflectToAttr": true,
+          "docs": "Disable progress value change animation",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number | string",
+          "complexType": {
+            "original": "string | number",
+            "resolved": "number | string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Progress value in percentage (0-100)",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"alarm\" | \"critical\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "complexType": {
+            "original": "| 'primary'\n    | 'alarm'\n    | 'critical'\n    | 'warning'\n    | 'info'\n    | 'neutral'\n    | 'success'",
+            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": true,
+          "docs": "Progress bar variant",
+          "docsTags": [],
+          "default": "'primary'",
+          "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "value": "warning",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/push-card",
       "filePath": "src/components/push-card/push-card.tsx",
       "fileName": "push-card.tsx",
