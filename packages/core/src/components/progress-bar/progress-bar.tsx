@@ -41,7 +41,8 @@ export class ProgressBar {
 
   private ceilProgressValue() {
     if (isNaN(+this.value)) {
-      throw new Error('Invalid value passed as \'currentProgress\'');
+      console.warn("Invalid value passed as 'value'");
+      return 0;
     }
 
     const progress = +this.value;
@@ -61,11 +62,14 @@ export class ProgressBar {
     const ceiledValue = this.ceilProgressValue();
     const customProgressStyle = {
       'background-color': `var(--theme-color-${this.variant}${
-         ceiledValue === 100 ? '--active' : ''})`,
+        ceiledValue === 100 ? '--active' : ''
+      })`,
       width: `${ceiledValue}%`,
-      transition : `width ${ this.disableAnimation ? '0' : '1'}s, background-color ${ this.disableAnimation ? '0' : '1'}s`
+      transition: `width ${
+        this.disableAnimation ? '0' : '1'
+      }s, background-color ${this.disableAnimation ? '0' : '1'}s`,
     };
-    
+
     return (
       <Host title={this.el.textContent}>
         <div
@@ -75,8 +79,7 @@ export class ProgressBar {
           aria-valuemax={100}
           role="progressbar"
         >
-          <div class="progress" style={{ ...customProgressStyle }}>
-          </div>
+          <div class="progress" style={{ ...customProgressStyle }}></div>
         </div>
       </Host>
     );
