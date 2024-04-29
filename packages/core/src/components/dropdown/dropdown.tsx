@@ -29,6 +29,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { ComponentInterface } from '@stencil/core/internal';
+import { ArrowFocusController } from '../utils/focus';
 import {
   addDisposableEventListener,
   CloseBehavior,
@@ -132,6 +133,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private localUId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
 
+  private arrowFocusController: ArrowFocusController;
+  private focusDropdownItemBind = this.focusDropdownItem.bind(this);
+
+  private itemObserver = new MutationObserver(() => {
+    this.arrowFocusController.items = this.dropdownItems;
+  });
+
   connectedCallback(): void {
     dropdownController.connected(this);
 
@@ -156,8 +164,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
 
-    if (this.disposeListener) {
-      this.disposeListener();
+    if (this.disposeClickListener) {
+      this.disposeClickListener();
+    }
+
+    if (this.disposeKeyListener) {
+      this.disposeKeyListener();
     }
 
     if (this.autoUpdateCleanup) {
@@ -203,10 +215,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return this.hostElement.shadowRoot.querySelector('slot');
   }
 
-  private disposeListener?: Function;
+  private disposeClickListener?: () => void;
+  private disposeKeyListener?: () => void;
 
   private addEventListenersFor() {
-    this.disposeListener?.();
+    this.disposeClickListener?.();
+    this.disposeKeyListener?.();
 
     const toggleController = () => {
       if (!this.isPresent()) {
@@ -218,7 +232,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       dropdownController.dismissOthers(this.getId());
     };
 
-    this.disposeListener = addDisposableEventListener(
+    this.disposeClickListener = addDisposableEventListener(
       this.triggerElement,
       'click',
       (event: PointerEvent) => {
@@ -244,6 +258,32 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         cancelable: true,
         detail: this.localUId,
       })
+    );
+  }
+
+  private registerKeyListener() {
+    if (!this.triggerElement) {
+      return;
+    }
+
+    this.disposeKeyListener = addDisposableEventListener(
+      this.triggerElement,
+      'keydown',
+      (event: KeyboardEvent) => {
+        if (event.key !== 'ArrowDown') {
+          return;
+        }
+
+        if (document.activeElement !== this.triggerElement) {
+          return;
+        }
+
+        dropdownController.present(this);
+
+        setTimeout(() => {
+          this.focusDropdownItem(0);
+        });
+      }
     );
   }
 
@@ -329,6 +369,23 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       if (this.anchorElement) {
         this.applyDropdownPosition();
       }
+
+      this.arrowFocusController = new ArrowFocusController(
+        this.dropdownItems,
+        this.dropdownRef,
+        this.focusDropdownItemBind
+      );
+
+      this.itemObserver.observe(this.dropdownRef, {
+        childList: true,
+        subtree: true,
+      });
+
+      this.registerKeyListener();
+    } else {
+      this.arrowFocusController.disconnect();
+      this.itemObserver.disconnect();
+      this.disposeKeyListener?.();
     }
   }
 
@@ -418,6 +475,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         elementResize: true,
       }
     );
+  }
+
+  private focusDropdownItem(index: number) {
+    requestAnimationFrame(() => {
+      this.dropdownItems[index]?.shadowRoot.querySelector('button').focus();
+    });
   }
 
   async componentDidLoad() {
