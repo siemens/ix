@@ -37,7 +37,7 @@ export function createListener(event: string, options: ListenerOptions = {}) {
 
     isEnabled: opts.defaultEnabled,
 
-    enable: (state: boolean) => {
+    enable: (state?: boolean) => {
       resultObject.isEnabled = state;
 
       if (state) {
@@ -64,7 +64,7 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
     if (fnExp) {
       proto.componentWillRender = function () {
         const host = getElement(this);
-        host[`__ix__${methodName}`]?.enable(fnExp(this));
+        (host as any)[`__ix__${methodName}`]?.enable(fnExp(this));
         return componentWillRender && componentWillRender.call(this);
       };
     }
@@ -74,7 +74,7 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
       const host = getElement(this);
       const method = this[methodName];
 
-      host[`__ix__${methodName}`] = listener;
+      (host as any)[`__ix__${methodName}`] = listener;
 
       listener.on(method.bind(this));
       return componentWillLoad && componentWillLoad.call(this);
@@ -83,9 +83,9 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
     proto.disconnectedCallback = function () {
       const host = getElement(this);
 
-      if (host && host[`__ix__${methodName}`]) {
-        host[`__ix__${methodName}`]?.destroy();
-        host[`__ix__${methodName}`] = null;
+      if (host && (host as any)[`__ix__${methodName}`]) {
+        (host as any)[`__ix__${methodName}`]?.destroy();
+        (host as any)[`__ix__${methodName}`] = null;
       }
 
       return disconnectedCallback && disconnectedCallback.call(this);

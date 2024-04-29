@@ -32,7 +32,7 @@ export function hasDropdownItemWrapperImplemented(
   item: unknown
 ): item is DropdownItemWrapper {
   return (
-    item &&
+    !!item &&
     (item as DropdownItemWrapper).getDropdownItemElement !== undefined &&
     typeof (item as DropdownItemWrapper).getDropdownItemElement === 'function'
   );
@@ -75,7 +75,7 @@ class DropdownController {
   }
 
   present(dropdown: DropdownInterface) {
-    if (!dropdown.isPresent() && dropdown.willPresent()) {
+    if (!dropdown.isPresent() && dropdown.willPresent?.()) {
       this.submenuIds[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
       dropdown.present();
     }
@@ -84,12 +84,16 @@ class DropdownController {
   dismissChildren(uid: string) {
     const childIds = this.submenuIds[uid] || [];
     for (const id of childIds) {
-      this.dismiss(this.dropdowns.get(id));
+      const dropdownId = this.dropdowns.get(id);
+
+      if (dropdownId) {
+        this.dismiss(dropdownId);
+      }
     }
   }
 
   dismiss(dropdown: DropdownInterface) {
-    if (dropdown.isPresent() && dropdown.willDismiss()) {
+    if (dropdown.isPresent() && dropdown.willDismiss?.()) {
       this.dismissChildren(dropdown.getId());
       dropdown.dismiss();
       delete this.submenuIds[dropdown.getId()];
@@ -138,7 +142,8 @@ class DropdownController {
 
   private pathIncludesDropdown(eventTargets: EventTarget[]) {
     return !!eventTargets.find(
-      (element: HTMLElement) => element.tagName === 'IX-DROPDOWN'
+      (element: EventTarget) =>
+        (element as HTMLElement).tagName === 'IX-DROPDOWN'
     );
   }
 
@@ -159,7 +164,7 @@ class DropdownController {
   private addOverlayListeners() {
     this.isWindowListenerActive = true;
 
-    window.addEventListener('click', (event: PointerEvent) => {
+    window.addEventListener('click', (event: Event) => {
       const hasTrigger = this.pathIncludesTrigger(event.composedPath());
       const hasDropdown = this.pathIncludesDropdown(event.composedPath());
 

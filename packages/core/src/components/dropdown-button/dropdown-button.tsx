@@ -47,12 +47,12 @@ export class DropdownButton {
   /**
    * Set label
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Button icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
@@ -65,9 +65,9 @@ export class DropdownButton {
    *
    * @since 2.0.0
    */
-  @Prop() placement: AlignedPlacement;
+  @Prop() placement?: AlignedPlacement;
 
-  @State() dropdownAnchor!: HTMLElement;
+  @State() dropdownAnchor?: HTMLIxDropdownButtonElement;
 
   private getTriangle() {
     return (
@@ -91,8 +91,8 @@ export class DropdownButton {
         class={{
           disabled: this.disabled,
         }}
-        ref={(ref) => {
-          this.dropdownAnchor = ref;
+        ref={(ref: HTMLElement | null) => {
+          this.dropdownAnchor = ref as HTMLIxDropdownButtonElement;
         }}
       >
         <div class="dropdown-button">

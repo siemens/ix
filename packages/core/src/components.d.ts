@@ -841,11 +841,11 @@ export namespace Components {
         /**
           * Button icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Set label
          */
-        "label": string;
+        "label"?: string;
         /**
           * Outline button
          */
@@ -854,7 +854,7 @@ export namespace Components {
           * Placement of the dropdown
           * @since 2.0.0
          */
-        "placement": AlignedPlacement;
+        "placement"?: AlignedPlacement;
         /**
           * Button variant
          */
