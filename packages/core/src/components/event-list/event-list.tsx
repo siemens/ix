@@ -47,7 +47,7 @@ export class EventList {
   /**
    * Display a chevron icon in list items. Defaults to 'false'
    */
-  @Prop() chevron: boolean;
+  @Prop() chevron?: boolean;
 
   @Watch('chevron')
   watchChevron(chevron: boolean | undefined) {
@@ -114,8 +114,8 @@ export class EventList {
       },
       { opacity: 0 },
     ];
-    const listElement = this.hostElement.shadowRoot.querySelector('ul');
-    return listElement.animate(keyframes, {
+    const listElement = this.hostElement.shadowRoot!.querySelector('ul');
+    return listElement!.animate(keyframes, {
       duration: EventList.fadeOutDuration,
     }).finished;
   }

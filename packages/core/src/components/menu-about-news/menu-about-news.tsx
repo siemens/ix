@@ -23,7 +23,7 @@ export class MenuAboutNews {
   /**
    * Title of the about news
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    *
@@ -33,7 +33,7 @@ export class MenuAboutNews {
   /**
    * Subtitle of the about news
    */
-  @Prop() aboutItemLabel: string;
+  @Prop() aboutItemLabel?: string;
 
   /**
    * Bottom offset
@@ -43,12 +43,12 @@ export class MenuAboutNews {
   /**
    * Show More button is pressed
    */
-  @Event() showMore: EventEmitter<MouseEvent>;
+  @Event() showMore!: EventEmitter<MouseEvent>;
 
   /**
    * Popover closed
    */
-  @Event() closePopover: EventEmitter<void>;
+  @Event() closePopover!: EventEmitter<void>;
 
   /**
    * Internal

@@ -33,7 +33,7 @@ export class EventListItem {
    * @deprecated since 2.1.0 use `item-color`
    */
   // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color: string;
+  @Prop() color?: string;
 
   /**
    * Color of the status indicator.
@@ -42,27 +42,27 @@ export class EventListItem {
    *
    * @link https://ix.siemens.io/docs/theming/colors/
    */
-  @Prop() itemColor: string;
+  @Prop() itemColor?: string;
 
   /**
    * Show event list item as selected
    */
-  @Prop() selected: boolean;
+  @Prop() selected?: boolean;
 
   /**
    * Disable event list item
    */
-  @Prop() disabled: boolean;
+  @Prop() disabled?: boolean;
 
   /**
    * Show chevron on right side of the event list item
    */
-  @Prop() chevron: boolean;
+  @Prop() chevron?: boolean;
 
   /**
    * Event list item click
    */
-  @Event() itemClick: EventEmitter;
+  @Event() itemClick!: EventEmitter;
 
   @Listen('click', { passive: true })
   handleItemClick() {
@@ -83,14 +83,14 @@ export class EventListItem {
     return (
       <Host
         class={{
-          disabled: this.disabled,
+          disabled: !!this.disabled,
         }}
       >
         <div
           class={{
             'event-list-item': true,
-            selected: this.selected,
-            disabled: this.disabled,
+            selected: !!this.selected,
+            disabled: !!this.disabled,
           }}
         >
           <div

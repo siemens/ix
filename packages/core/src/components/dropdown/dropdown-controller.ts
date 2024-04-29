@@ -39,7 +39,7 @@ export function hasDropdownItemWrapperImplemented(
 }
 
 export interface DropdownItemWrapper {
-  getDropdownItemElement(): Promise<HTMLIxDropdownItemElement>;
+  getDropdownItemElement(): Promise<HTMLIxDropdownItemElement | undefined>;
 }
 
 type SubmenuIds = Record<string, string[]>;

@@ -21,7 +21,7 @@ export class DropdownHeader {
   /**
    * Display name of the header
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   render() {
     return (

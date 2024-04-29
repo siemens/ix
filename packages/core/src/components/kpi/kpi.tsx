@@ -18,27 +18,27 @@ export class Kpi {
   /**
    *
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    *
    */
-  @Prop() value: string | number;
+  @Prop() value?: string | number;
 
   /**
    *
    */
-  @Prop() unit: string;
+  @Prop() unit?: string;
 
   /**
    *
    */
-  @Prop() state: 'neutral' | 'warning' | 'alarm' = 'neutral';
+  @Prop() state?: 'neutral' | 'warning' | 'alarm' = 'neutral';
 
   /**
    *
    */
-  @Prop() orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Prop() orientation?: 'horizontal' | 'vertical' = 'horizontal';
 
   private getStateIcon() {
     switch (this.state) {

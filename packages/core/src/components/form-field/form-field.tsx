@@ -19,19 +19,17 @@ export class FormField {
   /**
    * Label
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   private get inputElement() {
     return this.hostElement.querySelector('input');
   }
 
-  componentWillLoad() {}
-
   render() {
     return (
       <Host>
         {this.label ? (
-          <label htmlFor={this.inputElement.id}>{this.label}</label>
+          <label htmlFor={this.inputElement!.id}>{this.label}</label>
         ) : null}
         <slot></slot>
       </Host>

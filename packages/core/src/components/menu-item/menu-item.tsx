@@ -31,12 +31,14 @@ import { Disposable } from '../utils/typed-event';
   shadow: true,
 })
 export class MenuItem {
+  @Element() hostElement!: HTMLIxMenuItemElement;
+
   /**
    * Label of the menu item. Will also be used as tooltip text
    *
    * @since 2.2.0
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Move the Tab to a top position.
@@ -55,39 +57,37 @@ export class MenuItem {
    *
    * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
    */
-  @Prop({ mutable: true }) tabIcon: string;
+  @Prop({ mutable: true }) tabIcon?: string;
 
   /**
    * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
    */
-  @Prop({ mutable: true }) icon: string;
+  @Prop({ mutable: true }) icon?: string;
 
   /**
    * Show notification count on tab
    */
-  @Prop() notifications: number;
+  @Prop() notifications?: number;
 
   /**
    * State to display active
    */
-  @Prop() active: boolean;
+  @Prop() active?: boolean;
 
   /**
    * Disable tab and remove event handlers
    */
-  @Prop() disabled: boolean;
+  @Prop() disabled?: boolean;
 
   /** @internal */
-  @Prop() isCategory: boolean;
+  @Prop() isCategory?: boolean;
 
-  @Element() hostElement: HTMLIxMenuItemElement;
-
-  @State() tooltip: string;
-  @State() menuExpanded: boolean;
+  @State() tooltip?: string;
+  @State() menuExpanded?: boolean;
 
   private buttonRef = makeRef<HTMLButtonElement>();
   private isHostedInsideCategory = false;
-  private menuExpandedDisposer: Disposable;
+  private menuExpandedDisposer?: Disposable;
 
   private observer: MutationObserver = createMutationObserver(() => {
     this.tooltip = this.label ?? this.hostElement.innerText;
@@ -100,10 +100,13 @@ export class MenuItem {
     this.onIconChange();
     this.onTabIconChange();
 
-    this.menuExpanded = menuController.nativeElement.expand;
-    this.menuExpandedDisposer = menuController.expandChange.on(
-      (expand) => (this.menuExpanded = expand)
-    );
+    const nativeElement = menuController.nativeElement;
+    if (nativeElement) {
+      this.menuExpanded = nativeElement.expand;
+      this.menuExpandedDisposer = menuController.expandChange.on(
+        (expand) => (this.menuExpanded = expand)
+      );
+    }
   }
 
   componentWillRender() {
@@ -168,10 +171,10 @@ export class MenuItem {
     return (
       <Host
         class={{
-          disabled: this.disabled,
+          disabled: !!this.disabled,
           'home-tab': this.home,
           'bottom-tab': this.bottom,
-          active: this.active,
+          active: !!this.active,
           'tab-nested': this.isHostedInsideCategory,
         }}
         {...extendedAttributes}

@@ -21,12 +21,12 @@ export class KeyValueList {
   /**
    * Optional striped key value list style
    */
-  @Prop() striped: boolean;
+  @Prop() striped?: boolean;
 
   render() {
     return (
       <Host
-        class={{ keyValueList: true, 'keyValueList--striped': this.striped }}
+        class={{ keyValueList: true, 'keyValueList--striped': !!this.striped }}
       >
         <slot></slot>
       </Host>

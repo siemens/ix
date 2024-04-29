@@ -14,16 +14,16 @@ export type MakeRef<T> = {
 };
 
 export function makeRef<T>(
-  currentChangedCallback?: (element: T) => void
-): MakeRef<T> {
-  let resolve = null;
-  let currentPromise = new Promise((res) => (resolve = res));
-  let current: T = null;
+  currentChangedCallback?: (element: T | undefined) => void
+): MakeRef<T | undefined> {
+  let resolve: (value: void | PromiseLike<void>) => void;
+  let currentPromise = new Promise<void>((res) => (resolve = res));
+  let current: T | undefined;
 
-  const setRefFunction = (ref: T) => {
+  const setRefFunction = (ref: T | undefined) => {
     current = ref;
     currentChangedCallback?.(ref);
-    resolve();
+    resolve?.();
   };
 
   setRefFunction.current = current;

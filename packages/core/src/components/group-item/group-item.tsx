@@ -29,17 +29,17 @@ export class GroupItem {
   /**
    * Group item icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Group item text
    */
-  @Prop() text: string;
+  @Prop() text?: string;
 
   /**
    * Group item secondary text
    */
-  @Prop() secondaryText: string;
+  @Prop() secondaryText?: string;
 
   /**
    * Supress the selection of the group
@@ -49,7 +49,7 @@ export class GroupItem {
   /**
    * Show selected state
    */
-  @Prop() selected: boolean;
+  @Prop() selected?: boolean;
 
   /**
    * The elements tabindex attribute will get set accordingly.
@@ -58,14 +58,14 @@ export class GroupItem {
   @Prop() focusable = true;
 
   /**
-   * Selection changed
-   */
-  @Event() selectedChanged: EventEmitter<HTMLIxGroupItemElement>;
-
-  /**
    * Index
    */
-  @Prop() index: number;
+  @Prop() index?: number;
+
+  /**
+   * Selection changed
+   */
+  @Event() selectedChanged!: EventEmitter<HTMLIxGroupItemElement>;
 
   @Listen('click', { passive: true })
   clickListen() {
@@ -79,7 +79,7 @@ export class GroupItem {
     return (
       <Host
         class={{
-          selected: this.selected && !this.suppressSelection,
+          selected: !!(this.selected && !this.suppressSelection),
           'suppress-selection': this.suppressSelection,
         }}
       >
