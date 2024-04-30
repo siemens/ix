@@ -42,13 +42,13 @@ export function replaceStyleFilepath(
   sameFolder: boolean = false
 ) {
   var styleFileName: string | undefined;
-  const regex = /styles-auto-gen\/(.*\.(css|scss))/;
+  const regex = /example-styles\/dist\/(.*\.(css|scss))/;
   const match = source.match(regex);
   if (match && match.length > 1) {
     styleFileName = match[1];
   }
 
-  source = source.replace('./styles-auto-gen', sameFolder ? '.' : './styles');
+  source = source.replace('example-styles/dist', sameFolder ? '.' : './styles');
 
   return { source, styleFileName };
 }
@@ -102,11 +102,11 @@ async function openHtmlStackBlitz(
   sourceFiles: SourceFile[],
   version: string
 ) {
-  const styleFilePath: string = `${baseUrl}auto-generated/previews/web-components/styles-auto-gen/`;
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/styles/`;
 
   const [global_css, main_js, package_json, vite_config_ts] =
     await loadSourceCodeFromStatic([
-      `${styleFilePath}global.css`,
+      `${styleFilePath}global.css.txt`,
       `${baseUrl}code-runtime/html/src/main.js`,
       `${baseUrl}code-runtime/html/package.json`,
       `${baseUrl}code-runtime/html/vite.config.ts`,
@@ -121,7 +121,7 @@ async function openHtmlStackBlitz(
   const styleFile: Record<string, string> = {};
   if (styleFileName) {
     styleFile[`src/styles/${styleFileName}`] = (
-      await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
+      await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}.txt`])
     )[0];
   }
 
@@ -157,7 +157,7 @@ async function openAngularStackBlitz(
   sourceFiles: SourceFile[],
   version: string
 ) {
-  const styleFilePath: string = `${baseUrl}auto-generated/previews/angular/styles-auto-gen/`;
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/styles/`;
 
   const [
     global_css,
@@ -171,7 +171,7 @@ async function openAngularStackBlitz(
     tsconfig_app_json,
     tsconfig_json,
   ] = await loadSourceCodeFromStatic([
-    `${styleFilePath}global.css`,
+    `${styleFilePath}global.css.txt`,
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
@@ -221,7 +221,9 @@ async function openAngularStackBlitz(
       // get style file
       if (styleFileName) {
         styleFiles[`src/app/${styleFileName}`] = (
-          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
+          await loadSourceCodeFromStatic([
+            `${styleFilePath}${styleFileName}.txt`,
+          ])
         )[0];
       }
     }
@@ -261,7 +263,7 @@ async function openReactStackBlitz(
   sourceFiles: SourceFile[],
   version: string
 ) {
-  const styleFilePath: string = `${baseUrl}auto-generated/previews/react/styles-auto-gen/`;
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/styles/`;
 
   const [
     global_css,
@@ -271,7 +273,7 @@ async function openReactStackBlitz(
     package_json,
     tsconfig_json,
   ] = await loadSourceCodeFromStatic([
-    `${styleFilePath}global.css`,
+    `${styleFilePath}global.css.txt`,
     `${baseUrl}code-runtime/react/App.tsx`,
     `${baseUrl}code-runtime/react/index.html`,
     `${baseUrl}code-runtime/react/index.tsx`,
@@ -304,7 +306,9 @@ async function openReactStackBlitz(
 
       if (styleFileName) {
         styleFiles[`src/styles/${styleFileName}`] = (
-          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
+          await loadSourceCodeFromStatic([
+            `${styleFilePath}${styleFileName}.txt`,
+          ])
         )[0];
       }
     }
@@ -342,7 +346,7 @@ async function openVueStackBlitz(
   sourceFiles: SourceFile[],
   version: string
 ) {
-  const styleFilePath: string = `${baseUrl}auto-generated/previews/vue/styles-auto-gen/`;
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/styles/`;
 
   const [
     global_css,
@@ -354,7 +358,7 @@ async function openVueStackBlitz(
     viteconfig_ts,
     env_d_ts,
   ] = await loadSourceCodeFromStatic([
-    `${styleFilePath}global.css`,
+    `${styleFilePath}global.css.txt`,
     `${baseUrl}code-runtime/vue/App.vue`,
     `${baseUrl}code-runtime/vue/index.html`,
     `${baseUrl}code-runtime/vue/main.ts`,
@@ -386,7 +390,9 @@ async function openVueStackBlitz(
 
       if (styleFileName) {
         styleFiles[`src/styles/${styleFileName}`] = (
-          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
+          await loadSourceCodeFromStatic([
+            `${styleFilePath}${styleFileName}.txt`,
+          ])
         )[0];
       }
     }

@@ -131,9 +131,9 @@ async function fetchHTMLSource(
     files.map(async (file) => {
       try {
         const source = await fetchSource(
-          `${path}/previews/${frameworkPath}/${
-            getLanguage(file) === 'css' ? 'styles-auto-gen/' + file : file
-          }`
+          getLanguage(file) === 'css'
+            ? `${path}/previews/styles/${file}`
+            : `${path}/previews/${frameworkPath}/${file}`
         );
 
         if (!source) {
