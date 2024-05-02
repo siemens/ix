@@ -9741,7 +9741,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "Label of first tab",
+          "docs": "Content of the header",
           "docsTags": [],
           "default": "'About & legal information'",
           "values": [
