@@ -13,11 +13,13 @@
 :host(:not(.host-vertical)) {
   min-width: 2rem;
   min-height: 4rem;
+  max-width: 12.75rem;
 }
 
 :host(.host-vertical) {
   min-width: 4rem;
   min-height: 2rem;
+  max-height: 12.75em;
 }
 
 :host {

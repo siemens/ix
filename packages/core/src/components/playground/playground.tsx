@@ -19,6 +19,13 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-workflow-steps vertical>
+          <ix-workflow-step status="done">Step 1</ix-workflow-step>
+          <ix-workflow-step status="success">Step 2</ix-workflow-step>
+        </ix-workflow-steps>
+      </Host>
+    );
   }
 }
