@@ -21,7 +21,7 @@ const Index = () => {
   });
 
   return (
-    <>
+    <form>
       <IxValidationTooltip message="Error hint text">
         <label htmlFor="name">Name</label>
         <input
@@ -33,7 +33,7 @@ const Index = () => {
           })}
         />
       </IxValidationTooltip>
-    </>
+    </form>
   );
 };
 

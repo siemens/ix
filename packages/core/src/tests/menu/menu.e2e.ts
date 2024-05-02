@@ -136,7 +136,7 @@ test.describe('menu', () => {
       await page.setViewportSize(viewPorts.md);
       await page.goto('menu/overflow');
 
-      const collapseButton = page.locator('ix-burger-menu');
+      const collapseButton = page.locator('ix-menu-expand-icon');
       await collapseButton.click();
       await page.waitForTimeout(1000);
 
@@ -159,7 +159,7 @@ test.describe('menu', () => {
       await page.setViewportSize(viewPorts.sm);
       await page.goto('menu/overflow');
 
-      const collapseButton = page.locator('ix-burger-menu').first();
+      const collapseButton = page.locator('ix-menu-expand-icon').first();
       await collapseButton.click();
       await page.waitForTimeout(1000);
 
@@ -197,4 +197,27 @@ test.describe('menu', () => {
       ).toMatchSnapshot();
     }
   );
+
+  regressionTest('show tooltip', async ({ page }) => {
+    await page.setViewportSize(viewPorts.md);
+    await page.goto('menu/basic');
+
+    const menu = page.locator('ix-menu');
+
+    const toggle = menu.locator('ix-menu-expand-icon');
+    await toggle.click();
+
+    const item = page.locator('ix-menu-item').filter({
+      hasText: 'Item 1',
+    });
+
+    await toggle.click();
+
+    await expect(menu).not.toHaveClass('expanded');
+
+    await item.hover();
+    await page.waitForTimeout(1500);
+
+    await expect(page).toHaveScreenshot();
+  });
 });

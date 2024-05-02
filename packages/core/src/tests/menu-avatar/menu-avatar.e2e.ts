@@ -13,7 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('menu-avatar', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('menu-avatar/basic');
-    await page.locator('ix-burger-menu').click();
+    await page.locator('ix-menu-expand-icon').click();
     await page.waitForSelector('.expanded');
     await page.locator('ix-menu-avatar').click();
     await page.waitForSelector('ix-dropdown.show');
@@ -24,7 +24,7 @@ regressionTest.describe('menu-avatar', () => {
   regressionTest('image', async ({ page }) => {
     await page.goto('menu-avatar/image');
     const menu = page.locator('ix-menu');
-    await menu.locator('ix-burger-menu').click();
+    await menu.locator('ix-menu-expand-icon').click();
     expect(menu.locator('.menu.expand')).toBeDefined();
     const avatar = page.locator('ix-menu-avatar');
     await avatar.click();
@@ -36,7 +36,7 @@ regressionTest.describe('menu-avatar', () => {
   regressionTest('initials', async ({ page }) => {
     await page.goto('menu-avatar/initials');
     const menu = page.locator('ix-menu');
-    await menu.locator('ix-burger-menu').click();
+    await menu.locator('ix-menu-expand-icon').click();
     expect(menu.locator('.menu.expand')).toBeDefined();
     const avatar = page.locator('ix-menu-avatar');
     await avatar.click();
@@ -47,7 +47,7 @@ regressionTest.describe('menu-avatar', () => {
 
   regressionTest('no dropdown', async ({ page }) => {
     await page.goto('menu-avatar/no-dropdown');
-    await page.locator('ix-burger-menu').click();
+    await page.locator('ix-menu-expand-icon').click();
     await page.waitForSelector('.expanded');
     await page.locator('ix-menu-avatar').click();
 

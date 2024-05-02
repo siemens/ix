@@ -118,6 +118,7 @@ import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
+import Echarts from './preview-examples/echarts';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -200,6 +201,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/dropdown-button" element={<DropdownButton />} />
         <Route path="/preview/dropdown-submenu" element={<DropdownSubmenu />} />
         <Route path="/preview/dropdown-icon" element={<DropdownIcon />} />
+        <Route path="/preview/echarts" element={<Echarts />} />
         <Route path="/preview/event-list" element={<EventList />} />
         <Route
           path="/preview/event-list-compact"

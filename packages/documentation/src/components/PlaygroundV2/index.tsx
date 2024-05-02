@@ -8,13 +8,8 @@
  */
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import {
-  IxButton,
-  IxIconButton,
-  IxSpinner,
-  IxTabItem,
-  IxTabs,
-} from '@siemens/ix-react';
+import { themeSwitcher } from '@siemens/ix';
+import { IxIconButton, IxSpinner, IxTabItem, IxTabs } from '@siemens/ix-react';
 import CodeBlock from '@theme/CodeBlock';
 import { useEffect, useState } from 'react';
 import { TargetFramework } from './framework-types';
@@ -45,20 +40,45 @@ function getBranchPath(framework: TargetFramework) {
 
 function stripHeader(code: string) {
   return code
-    .replace(/\/\*\s*\n([^\*]|\*[^\/])*\*\/(\n)+/g, '')
-    .replace(/<!-.*SPD.*-->(\n)+/gms, '');
+    .replace(/\/\*[^]*?\*\//gs, '')
+    .replace(/<!--[^]*?-->/gs, '')
+    .trim();
 }
 
-function sliceHtmlCode(code: string) {
-  if (code.includes('<!-- Preview code -->')) {
-    const [__, source] = code.split('<!-- Preview code -->\n');
+function extractCodePart(code: string, limiter: RegExp) {
+  const limiterMatches = code.match(limiter);
+
+  if (limiterMatches && limiterMatches.length === 2) {
+    const [_, intermediate] = code.split(limiter);
+
     return stripHeader(
-      source
+      intermediate
         .split('\n')
         .map((line) => line.replace(/[ ]{4}/, ''))
         .join('\n')
-        .trimEnd()
+        .trim()
     );
+  }
+
+  return '';
+}
+
+function sliceHtmlCode(code: string) {
+  const previewCode = extractCodePart(code, /<!-- Preview code -->/g);
+
+  if (previewCode) {
+    const headerSources = extractCodePart(code, /<!-- Sources -->/g);
+
+    if (headerSources) {
+      return (
+        '<!-- Include in header -->\n' +
+        headerSources +
+        '\n<!-- Include in header -->\n\n' +
+        previewCode
+      );
+    }
+
+    return previewCode;
   }
 
   return stripHeader(code);
@@ -117,6 +137,7 @@ async function fetchHTMLSource(
         return {
           filename: file,
           source: sliceHtmlCode(source),
+          raw: source,
         };
       } catch (e) {
         console.warn(e);
@@ -146,6 +167,7 @@ function getLanguage(filename: string) {
 type PlaygroundV2Props = {
   files: Record<TargetFramework, string[]>;
   examplesByName?: boolean;
+  disableStackBlitz?: boolean;
 } & DemoProps;
 
 function SourceCodePreview(props: {
@@ -297,25 +319,34 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
               size="16"
               icon={`open-external`}
               onClick={() => {
-                window.open(`${iframe}/${props.name}.html`);
+                const theme: string = themeSwitcher.getCurrentTheme();
+                const noMargin: string = props.noMargin
+                  ? '&no-margin=true'
+                  : '';
+
+                window.open(
+                  `${iframe}/${props.name}.html?theme=${theme}${noMargin}`
+                );
               }}
             ></IxIconButton>
           ) : (
             <>
-              <IxIconButton
-                ghost
-                size="16"
-                icon={`${baseUrlAssets}/stackblitz.svg`}
-                onClick={() => {
-                  openStackBlitz({
-                    baseUrl: baseUrl,
-                    files: files,
-                    framework: tab,
-                    name: props.name,
-                    version: versionDeployment,
-                  });
-                }}
-              ></IxIconButton>
+              {!props.disableStackBlitz && (
+                <IxIconButton
+                  ghost
+                  size="16"
+                  icon={`${baseUrlAssets}/stackblitz.svg`}
+                  onClick={() => {
+                    openStackBlitz({
+                      baseUrl: baseUrl,
+                      files: files,
+                      framework: tab,
+                      name: props.name,
+                      version: versionDeployment,
+                    });
+                  }}
+                ></IxIconButton>
+              )}
 
               <IxIconButton
                 ghost

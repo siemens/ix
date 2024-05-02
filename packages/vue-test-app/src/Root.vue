@@ -27,6 +27,7 @@ import Breadcrumb from './preview-examples/breadcrumb.vue';
 import ButtonGroup from './preview-examples/button-group.vue';
 import ButtonWithIcon from './preview-examples/button-with-icon.vue';
 import Buttons from './preview-examples/buttons.vue';
+import Card from './preview-examples/card.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
 import Chip from './preview-examples/chip.vue';
@@ -114,6 +115,7 @@ import Tree from './preview-examples/tree.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
+import Echarts from './preview-examples/echarts.vue';
 
 const routes: any = {
   '/': App,
@@ -121,6 +123,7 @@ const routes: any = {
   '/preview/application-header': ApplicationHeader,
   '/preview/application-breakpoints': ApplicationBreakpoints,
   '/preview/application-app-switch': ApplicationAppSwitch,
+  '/preview/card': Card,
   '/preview/content': content,
   '/preview/checkbox': Checkbox,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
@@ -143,6 +146,7 @@ const routes: any = {
   '/preview/drawer-full-height': DrawerFullHeight,
   '/preview/dropdown': Dropdown,
   '/preview/dropdown-icon': DropdownIcon,
+  '/preview/echarts': Echarts,
   '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomHeight,

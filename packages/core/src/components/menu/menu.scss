@@ -97,7 +97,7 @@ $menu-expanded-width: 16rem;
     }
 
     background-color: var(--theme-nav--background);
-    transition: width var(--animate-duration) ease-in-out;
+    transition: width var(--theme-default-time) ease-in-out;
   }
 
   .menu-overlay {
@@ -109,7 +109,7 @@ $menu-expanded-width: 16rem;
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--theme-sidebar-overlay-blur);
-    transition: left var(--animate-duration) ease-in-out;
+    transition: left var(--theme-default-time) ease-in-out;
   }
 
   .menu-overlay.visible {
@@ -157,12 +157,7 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-buttons {
-    margin: 0.5rem 0 0 0.5rem;
-  }
-
-  .menu-buttons .burger-menu,
-  .menu-buttons .app-switch {
-    margin-left: 0.125rem;
+    margin: 0.5rem 0 0 0.625rem;
   }
 
   .menu-buttons > :last-child {
@@ -173,14 +168,6 @@ $menu-expanded-width: 16rem;
 :host(.breakpoint-sm) {
   .menu:not(.expanded) {
     width: 0;
-  }
-
-  .show-scrollbar {
-    padding-top: 1rem;
-  }
-
-  .menu .burger-menu {
-    display: none;
   }
 
   .menu-overlay {

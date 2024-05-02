@@ -611,3 +611,50 @@ test.describe('resolve during element connect', () => {
     await expect(dropdown).toBeVisible();
   });
 });
+
+test.describe('A11y', () => {
+  test.describe('Keyboard navigation', () => {
+    test.beforeEach(async ({ page, mount }) => {
+      await mount(`
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown trigger="trigger">
+        <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+        <ix-dropdown-item>Custom</ix-dropdown-item>
+      </ix-dropdown>
+      `);
+
+      await page.locator('#trigger').click();
+    });
+
+    test.describe('ArrowDown', () => {
+      test('trigger -> first item', async ({ page }) => {
+        await page.keyboard.press('ArrowDown');
+        await page.waitForTimeout(100);
+        const item = await page.locator('ix-dropdown-item').first();
+        await expect(item).toBeFocused();
+      });
+
+      test('first item -> second item', async ({ page }) => {
+        await page.keyboard.press('ArrowDown');
+        await page.waitForTimeout(100);
+        await page.keyboard.press('ArrowDown');
+        await page.waitForTimeout(100);
+        const item = await page.locator('ix-dropdown-item').nth(1);
+        await expect(item).toBeFocused();
+      });
+    });
+
+    test.describe('ArrowUp', () => {
+      test('second item -> fist item', async ({ page }) => {
+        await page.keyboard.press('ArrowDown');
+        await page.waitForTimeout(100);
+        await page.keyboard.press('ArrowDown');
+        await page.waitForTimeout(100);
+        await page.keyboard.press('ArrowUp');
+        const item = await page.locator('ix-dropdown-item').first();
+        await expect(item).toBeFocused();
+      });
+    });
+  });
+});

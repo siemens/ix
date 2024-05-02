@@ -23,6 +23,7 @@
     "preserveSymlinks": true,
     "skipLibCheck": false,
     "paths": {
+      "@angular/*": ["./node_modules/@angular"],
       "@siemens/ix-angular": ["./../angular/dist"],
       "@siemens/ix-angular/*": ["./../angular/dist"]
     }

@@ -25,7 +25,7 @@ $container-width: 11.5625rem;
   position: relative;
 
   .input-container {
-    transition: all 0.3s ease-in-out;
+    transition: all var(--theme-medium-time) ease-in-out;
   }
 
   input {
@@ -59,7 +59,7 @@ $container-width: 11.5625rem;
     max-width: $x-large-space;
     max-height: $x-large-space;
     border-radius: var(--theme-input--border-radius);
-    transition: all 0.15s ease-in-out;
+    transition: all var(--theme-default-time) ease-in-out;
     z-index: 1;
     align-items: center;
     position: relative;

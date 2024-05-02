@@ -228,6 +228,7 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
   'suggestions',
   'icon',
   'hideIcon',
+  'staticOperator',
   'repeatCategories',
   'tmpDisableScrollIntoView',
   'labelCategories',
@@ -647,18 +648,21 @@ export const IxMenuAvatarItem = /*@__PURE__*/ defineContainer<JSX.IxMenuAvatarIt
 export const IxMenuCategory = /*@__PURE__*/ defineContainer<JSX.IxMenuCategory>('ix-menu-category', defineIxMenuCategory, [
   'label',
   'icon',
-  'notifications'
+  'notifications',
+  'closeOtherCategories'
 ]);
 
 
 export const IxMenuItem = /*@__PURE__*/ defineContainer<JSX.IxMenuItem>('ix-menu-item', defineIxMenuItem, [
+  'label',
   'home',
   'bottom',
   'tabIcon',
   'icon',
   'notifications',
   'active',
-  'disabled'
+  'disabled',
+  'isCategory'
 ]);
 
 
@@ -942,6 +946,8 @@ export const IxTooltip = /*@__PURE__*/ defineContainer<JSX.IxTooltip>('ix-toolti
   'titleContent',
   'interactive',
   'placement',
+  'showDelay',
+  'hideDelay',
   'animationFrame'
 ]);
 

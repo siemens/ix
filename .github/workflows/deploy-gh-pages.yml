@@ -12,7 +12,7 @@ concurrency: deploy-gh-pages-${{ github.ref }}
 
 jobs:
   deploy-gh-pages:
-    if: ${{ inputs.confirm_deployment == true }}
+    if: ${{ inputs.confirm_deployment == true && github.repository == 'siemens/ix' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,8 +21,9 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Build
-        run: pnpm build --cache-dir=.turbo --filter documentation
+        run: pnpm build --cache-dir=.turbo --filter documentation --force
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           CSC: ${{ secrets.READ_CSC_TOKEN }}
 
@@ -30,5 +31,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./packages/documentation/build
-          clean-exclude: version-*
 

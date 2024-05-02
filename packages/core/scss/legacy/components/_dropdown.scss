@@ -57,7 +57,7 @@
   border-radius: var(--theme-menu--border-radius);
   max-width: 100vw;
   padding: $tiny-space 0;
-  transition: background-color $default-time;
+  transition: background-color var(--theme-default-time);
   box-shadow: var(--theme-menu--box-shadow);
 
   &.xl > .dropdown-item {
