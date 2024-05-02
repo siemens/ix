@@ -40,4 +40,32 @@ regressionTest.describe('category-filter', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest(
+    'dropdown stays open after filter selection',
+    async ({ page }) => {
+      await page.goto('category-filter/categories');
+      await page.locator('input').first().click();
+
+      const vendorButton = page.getByRole('button', { name: 'Vendor' });
+      await vendorButton.click();
+
+      const filterButton = page.getByRole('button', { name: '= Apple' });
+      await filterButton.click();
+
+      await expect(page).toHaveScreenshot();
+    }
+  );
+
+  regressionTest('dropdown opens on text input', async ({ page }) => {
+    await page.goto('category-filter/categories');
+    const input = page.locator('input').first();
+
+    await input.click();
+    // close dropdown
+    await input.click();
+    await input.fill('p');
+
+    await expect(page).toHaveScreenshot();
+  });
 });
