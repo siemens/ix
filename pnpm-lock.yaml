@@ -77,7 +77,7 @@ importers:
     dependencies:
       '@siemens/ix':
         specifier: ~2.2.0
-        version: 2.2.1(@popperjs/core@2.11.8)(@siemens/ix-icons@2.0.1)(bootstrap@5.2.3(@popperjs/core@2.11.8))
+        version: link:../core
     devDependencies:
       '@playwright/test':
         specifier: ^1.32.1
@@ -129,7 +129,7 @@ importers:
     dependencies:
       '@siemens/ix':
         specifier: ~2.2.1
-        version: 2.2.1(@popperjs/core@2.11.8)(@siemens/ix-icons@2.1.0)(bootstrap@5.2.3(@popperjs/core@2.11.8))
+        version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.1.0
@@ -612,7 +612,7 @@ importers:
     dependencies:
       '@siemens/ix':
         specifier: ~2.2.1
-        version: 2.2.1(@popperjs/core@2.11.8)(@siemens/ix-icons@2.0.1)(bootstrap@5.2.3(@popperjs/core@2.11.8))
+        version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
@@ -764,7 +764,7 @@ importers:
     dependencies:
       '@siemens/ix':
         specifier: ~2.2.1
-        version: 2.2.1(@popperjs/core@2.11.8)(@siemens/ix-icons@2.0.1)(bootstrap@5.2.3(@popperjs/core@2.11.8))
+        version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
@@ -3190,13 +3190,6 @@ packages:
   '@siemens/ix-icons@2.1.0':
     resolution: {integrity: sha512-PgBymG8wZIDwA5Ne02e55jkpZvTTMOa8A3UKoRDQ72CVsrbIGY9GtrYIZoIo8RjwNi/rAxdeYiUb6sGg76nU5g==}
     engines: {node: '>=16.16.x', npm: '>=8.x.x'}
-
-  '@siemens/ix@2.2.1':
-    resolution: {integrity: sha512-l4sw9B9rmdiPcOniU5orymCqJ1ntnRTTsQTuDphrZ/wS8wMfcjfMch47lYc/kkmDv0QWra7CpiWfNgR2wdaAgg==}
-    peerDependencies:
-      '@popperjs/core': ^2.11.0
-      '@siemens/ix-icons': ^2.0.0
-      bootstrap: ~5.2.0
 
   '@sinclair/typebox@0.24.51':
     resolution: {integrity: sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==}
@@ -17138,30 +17131,6 @@ snapshots:
   '@siemens/ix-icons@2.1.0':
     dependencies:
       '@stencil/core': 3.2.1
-
-  '@siemens/ix@2.2.1(@popperjs/core@2.11.8)(@siemens/ix-icons@2.0.1)(bootstrap@5.2.3(@popperjs/core@2.11.8))':
-    dependencies:
-      '@floating-ui/dom': 1.5.3
-      '@popperjs/core': 2.11.8
-      '@siemens/ix-icons': 2.0.1
-      '@stencil/core': 4.13.0
-      '@types/luxon': 3.3.7
-      animejs: 3.2.1
-      bootstrap: 5.2.3(@popperjs/core@2.11.8)
-      hyperlist: 1.0.0
-      luxon: 3.4.4
-
-  '@siemens/ix@2.2.1(@popperjs/core@2.11.8)(@siemens/ix-icons@2.1.0)(bootstrap@5.2.3(@popperjs/core@2.11.8))':
-    dependencies:
-      '@floating-ui/dom': 1.5.3
-      '@popperjs/core': 2.11.8
-      '@siemens/ix-icons': 2.1.0
-      '@stencil/core': 4.13.0
-      '@types/luxon': 3.3.7
-      animejs: 3.2.1
-      bootstrap: 5.2.3(@popperjs/core@2.11.8)
-      hyperlist: 1.0.0
-      luxon: 3.4.4
 
   '@sinclair/typebox@0.24.51': {}
 
