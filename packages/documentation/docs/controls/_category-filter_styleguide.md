@@ -15,13 +15,14 @@ The category filter component enhances data navigation and user experience. We t
 - **Placeholder**: Use to provide guidance or context to users when the category filter is empty.
 - **Icon**: The default icon is "search". Changing or hiding the icon within the category filter enhances the user experience and improves visual communication.
 - **Plain text**: Provides the possibility to do a plain text search without choosing a specific category.
+- **Static operator**: This option allows to restrict the filter condition to either equal (=) or not euqal (!=) for scenarios where other filter combinations don't make sense.
 
 
 ## Behaviour
 
 - **Default**: The category filter is designed to adapt to the user’s needs and the context it’s used in. As soon as the user starts typing, the filter begins to apply, narrowing down the available options based on user input. This provides a dynamic and responsive user experience.
 - **Filter conditions**: These are the operators that determine how the filter matches the user’s input against the available categories. Available are equals (=) and not equals (!=). These conditions provide flexibility and precision in filtering, allowing users to find exactly what they’re looking for.
-- **Display modes**: The different modes are automatically detected by the component itself. If the user enters more than one row of search terms it automatically increases the size. When it comes to more then two lines of search terms it applies automatically a scrollbar.
+- **Display modes**: The different modes are automatically detected by the component itself. If the user enters more than one row of search terms it automatically increases the size. When it comes to more then two lines of search terms it applies a scrollbar automatically.
 - **Autocomplete**: When the user starts typing it can automatically suggest possible matches. This helps with speeding up the input process and reducing potential errors.
 - **Category selection**: The behavior of category selection can vary. It can be configured as non-selectable, multi-selectable or single-selectable depending on the specific application needs and context.
 - **Without category selection**: Use without category selection if user input alone is sufficient to filter the data, such as when the data is not well-organized into distinct categories, or if the categories are too numerous/complex.
