@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { ShowToastResult } from './toast-container';
 export type ToastType = 'info' | 'success' | 'error' | 'warning';
 export type ToastPosition = 'bottom-right' | 'top-right';
 
@@ -41,13 +41,13 @@ export function getToastContainer() {
 }
 
 export function setToastPosition(position: ToastPosition) {
-  getToastContainer().position = position;
+  const container = getToastContainer();
+  container.position = position;
 }
 
-async function toast(config: ToastConfig) {
-  const context = getToastContainer();
-  const toast = await context.showToast(config);
-  return toast;
+function toast(config: ToastConfig): Promise<ShowToastResult> {
+  const container = getToastContainer();
+  return container.showToast(config);
 }
 
 toast.info = (config: ToastConfig) => {

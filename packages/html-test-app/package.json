@@ -1,11 +1,10 @@
 {
-  "name": "@siemens/html-test-app",
+  "name": "html-test-app",
   "private": true,
   "license": "MIT",
-  "version": "2.0.4",
+  "version": "2.1.2",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -15,9 +14,9 @@
   ],
   "devDependencies": {
     "vite": "^3.1.0",
-    "@siemens/ix": "~2.0.4",
-    "@siemens/ix-aggrid": "~2.0.4",
-    "@siemens/ix-echarts": "~2.0.4",
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-aggrid": "workspace:*",
+    "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-icons": "^2.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "angular-test-app",
-  "version": "2.0.4",
+  "version": "2.1.2",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -19,11 +19,14 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "@siemens/ix-icons": "^2.0.0",
-    "@siemens/ix": "~2.0.4",
-    "@siemens/ix-aggrid": "~2.0.4",
-    "@siemens/ix-angular": "~2.0.4",
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-angular": "workspace:*",
+    "@siemens/ix-aggrid": "workspace:*",
+    "@siemens/ix-echarts": "workspace:*",
     "ag-grid-angular": "^30.0.0",
     "ag-grid-community": "^30.2.0",
+    "ngx-echarts": "~14.0.0",
+    "echarts": "^5.4.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

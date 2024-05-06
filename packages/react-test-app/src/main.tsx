@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -49,7 +49,9 @@ import DatepickerRange from './preview-examples/datepicker-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import DrawerFullHeight from './preview-examples/drawer-full-height';
 import Dropdown from './preview-examples/dropdown';
+import DropdownButton from './preview-examples/dropdown-button';
 import DropdownIcon from './preview-examples/dropdown-icon';
+import DropdownSubmenu from './preview-examples/dropdown-submenu';
 import EventList from './preview-examples/event-list';
 import EventListCompact from './preview-examples/event-list-compact';
 import EventListCustomHeight from './preview-examples/event-list-custom-item-height';
@@ -116,6 +118,7 @@ import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
+import Echarts from './preview-examples/echarts';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -195,7 +198,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<DrawerFullHeight />}
         />
         <Route path="/preview/dropdown" element={<Dropdown />} />
+        <Route path="/preview/dropdown-button" element={<DropdownButton />} />
+        <Route path="/preview/dropdown-submenu" element={<DropdownSubmenu />} />
         <Route path="/preview/dropdown-icon" element={<DropdownIcon />} />
+        <Route path="/preview/echarts" element={<Echarts />} />
         <Route path="/preview/event-list" element={<EventList />} />
         <Route
           path="/preview/event-list-compact"

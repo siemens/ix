@@ -38,7 +38,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 ### Error messages
 
-- An errror message alerts user of a problem that exists and must be addressed
+- An error message alerts user of a problem that exists and must be addressed
 
 <div class="d-flex flex-wrap">
 <span class="m-2">

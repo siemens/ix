@@ -188,7 +188,7 @@ export async function showModal<T = any>(
 
 #### Container component `ix-modal-container` removed
 
-Container is not needed anymore because the iX modal system is using `HTMLDialog` now as
+Container is not needed anymore because the modal system is using `HTMLDialog` now as
 basic system to open modal dialogs
 
 #### Property `size` changed

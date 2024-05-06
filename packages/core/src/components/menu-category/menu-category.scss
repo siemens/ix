@@ -8,6 +8,7 @@
  */
 
 @import 'mixins/shadow-dom/component';
+@import 'mixins/text-truncation';
 
 :host {
   @include ix-component;
@@ -23,9 +24,15 @@
     height: 100%;
   }
 
+  .category-text {
+    width: 100%;
+    padding-right: 0.25rem;
+    @include ellipsis;
+  }
+
   .category-chevron {
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0;
     transition: var(--theme-default-time) transform ease-in-out;
   }
 
@@ -35,13 +42,17 @@
 
   .menu-items {
     overflow: hidden;
-    max-height: 0px;
+    max-height: 0;
     transition: var(--theme-default-time) max-height ease-in-out;
-    padding: 0.25rem 0 0.25rem 1.625rem;
   }
 
   .menu-items--expanded {
     max-height: 999999999px;
+    padding: 0.25rem 0 0.25rem 1.625rem;
+  }
+
+  .menu-items--collapsed {
+    display: none;
   }
 
   .category-dropdown {
@@ -52,6 +63,7 @@
 
   .category-dropdown-header {
     pointer-events: none;
+    padding-left: 0.125rem;
     min-width: 256px;
   }
 

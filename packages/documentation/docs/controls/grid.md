@@ -1,22 +1,18 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
-import SourceAggrid from './../auto-generated/previews/web-component/aggrid.md'
-import ReactSourceAggrid from './../auto-generated/previews/react/aggrid.md'
-import AngularSourceAggrid from './../auto-generated/previews/angular/aggrid.ts.md'
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Grid (AG Grid)
 
-Siemens Industrial Experience provides a theme for the populer data grid library [AG Grid](https://www.ag-grid.com).
-This lets you harness the power of AG Grid with seemless intergration into the Siemens Industrial Experience styleguide.
+Siemens Industrial Experience provides a theme for the popular data grid library [AG Grid](https://www.ag-grid.com).
+This lets you harness the power of AG Grid with seamless integration into the Siemens Industrial Experience styleguide.
 
 <div className="siemens-brand-section">
 AG Grid is a third party library that provides a feature rich data grid implementation.
 
 Its basic functionality is free and open source (distributed under the [MIT license](https://www.ag-grid.com/eula/AG-Grid-Community-License.html)).
 
-Please note that more advanced features like e.g. Row Grouping are only available with AG Grid Enterprise wich is a commercial product.
+Please note that more advanced features like e.g. Row Grouping are only available with AG Grid Enterprise which is a commercial product.
 
-More information can be found on the [AG Grid licences page](https://www.ag-grid.com/license-pricing).
+More information can be found on the [AG Grid licenses page](https://www.ag-grid.com/license-pricing).
 
 </div>
 
@@ -24,15 +20,19 @@ More information can be found on the [AG Grid licences page](https://www.ag-grid
 
 ### React
 
-Follow the offical AG Grid [installation instructions](https://www.ag-grid.com/react-data-grid/getting-started/) for React.
+Follow the official AG Grid [installation instructions](https://www.ag-grid.com/react-data-grid/getting-started/) for React.
 
 ### Angular
 
-Follow the offical AG Grid [installation instructions](https://www.ag-grid.com/angular-data-grid/getting-started/) for Angular.
+Follow the official AG Grid [installation instructions](https://www.ag-grid.com/angular-data-grid/getting-started/) for Angular.
+
+### Vue
+
+Follow the official AG Grid [installation instructions](https://www.ag-grid.com/vue-data-grid/getting-started/) for Vue.
 
 ### Javascript
 
-Follow the offical AG Grid [installation instruction](https://www.ag-grid.com/javascript-data-grid/getting-started/) for JavaScript.
+Follow the official AG Grid [installation instruction](https://www.ag-grid.com/javascript-data-grid/getting-started/) for JavaScript.
 
 ### Siemens Industrial Experience theme for AG Grid
 
@@ -62,14 +62,9 @@ e.g.:
 
 ## Usage
 
-<Preview name="aggrid" height="16rem">
-  <TabItem value="javascript">
-    <SourceAggrid />
-  </TabItem>
-  <TabItem value="react">
-    <ReactSourceAggrid />
-  </TabItem>
-  <TabItem value="angular">
-    <AngularSourceAggrid />
-  </TabItem>
-</Preview>
+<Playground
+name="aggrid"
+height="14rem"
+examplesByName
+disableStackBlitz>
+</Playground>

@@ -3,7 +3,7 @@ import Props from './../auto-generated/ix-typography/props.md';
 
 # Fonts
 
-iX provides utility CSS classes to style text.
+We use utility CSS classes to style text.
 Theme changes will apply to texts automatically (e.g. change color).
 
 ## Usage
@@ -16,7 +16,7 @@ Theme changes will apply to texts automatically (e.g. change color).
 
 ### Mixins
 
-IX provides additional SCSS mixins which can be used to create valid custom typography
+We provide additional SCSS mixins which can be used to create valid custom typography
 classes.
 
 ```scss

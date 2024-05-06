@@ -17,7 +17,7 @@
   height: $x-large-space;
   font-size: $font-size-default;
   font-weight: $font-weight-bold;
-  transition: $default-time;
+  transition: var(--theme-default-time);
   padding: 0 $small-space;
   min-width: 5rem;
   gap: $tiny-space;

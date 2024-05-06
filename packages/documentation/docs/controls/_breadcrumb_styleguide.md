@@ -5,7 +5,7 @@ Breadcrumb items are interactive. Users navigate to their respective location by
 
 ![Breadcrumb overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=20%3A8463&mode=design&t=JS1Aklcq48swr0Im-1)
 1. Breadcrumb item
-2. Seperator
+2. Separator
 3. Dropdown
 
 ## Variants
@@ -21,8 +21,8 @@ Breadcrumbs are available as a ghost and solid variant. Both variants differ in 
 
 ## Behavior in context
 
-- **Population**: As a general rule, we popluate breadcrumbs location-based to reflect the hierarchy of the application and the location of the user within it. We always include the current location in the breadcrumb.
-- **Overflow**: If the number of items exceeds the defined limit, items are hidden within a dropdown menu at the beginning of the path. The dropdown menu is triggered by pressing the respective item. The truncation is visualized with an ellipsis. The overflow behaviour can also be triggered if the available space does not allow the complete display of the breadcrumb in one line.
+- **Population**: As a general rule, we populate breadcrumbs location-based to reflect the hierarchy of the application and the location of the user within it. We always include the current location in the breadcrumb.
+- **Overflow**: If the number of items exceeds the defined limit, items are hidden within a dropdown menu at the beginning of the path. The dropdown menu is triggered by pressing the respective item. The truncation is visualized with an ellipsis. The overflow behavior can also be triggered if the available space does not allow the complete display of the breadcrumb in one line.
 - **Text truncation**: Truncation is applied to individual breadcrumb items if the maximum width of the breadcrumb item is exceeded. The label name is truncated with an ellipsis.
 - **Placement**: We typically place breadcrumbs at the top left side of the page/content area, below the header and above the page title.
 

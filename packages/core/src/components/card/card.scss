@@ -88,3 +88,121 @@
 :host(:not(.card-insight)) {
   --ix-card-border-color: transparent;
 }
+
+// ### Hover ###
+
+:host(.card-insight:hover) {
+  --ix-card-background: var(--theme-color-ghost--hover);
+}
+
+:host(.card-notification:hover) {
+  --ix-card-background: var(--theme-color-component-1--hover);
+}
+
+:host(.card-alarm:hover) {
+  --ix-card-background: var(--theme-color-alarm--hover);
+}
+
+:host(.card-critical:hover) {
+  --ix-card-background: var(--theme-color-critical--hover);
+}
+
+:host(.card-warning:hover) {
+  --ix-card-background: var(--theme-color-warning--hover);
+}
+
+:host(.card-success:hover) {
+  --ix-card-background: var(--theme-color-success--hover);
+}
+
+:host(.card-info:hover) {
+  --ix-card-background: var(--theme-color-info--hover);
+}
+
+:host(.card-neutral:hover) {
+  --ix-card-background: var(--theme-color-neutral--hover);
+}
+
+:host(.card-primary:hover) {
+  --ix-card-background: var(--theme-color-primary--hover);
+}
+
+// ### Active ###
+
+:host(.card-insight:active) {
+  --ix-card-background: var(--theme-color-ghost--active);
+}
+
+:host(.card-notification:active) {
+  --ix-card-background: var(--theme-color-component-1--active);
+}
+
+:host(.card-alarm:active) {
+  --ix-card-background: var(--theme-color-alarm--active);
+}
+
+:host(.card-critical:active) {
+  --ix-card-background: var(--theme-color-critical--active);
+}
+
+:host(.card-warning:active) {
+  --ix-card-background: var(--theme-color-warning--active);
+}
+
+:host(.card-success:active) {
+  --ix-card-background: var(--theme-color-success--active);
+}
+
+:host(.card-info:active) {
+  --ix-card-background: var(--theme-color-info--active);
+}
+
+:host(.card-neutral:active) {
+  --ix-card-background: var(--theme-color-neutral--active);
+}
+
+:host(.card-primary:active) {
+  --ix-card-background: var(--theme-color-primary--active);
+}
+
+// ### Selected ###
+
+:host(.selected) {
+  --ix-card-border-color: var(--theme-color-dynamic);
+}
+
+:host(.selected.card-insight) {
+  --ix-card-background: var(--theme-color-ghost--selected);
+}
+
+:host(.selected.card-notification) {
+  --ix-card-background: var(--theme-color-ghost--selected);
+}
+
+:host(.selected.card-alarm) {
+  --ix-card-background: var(--theme-color-alarm--active);
+}
+
+:host(.selected.card-critical) {
+  --ix-card-background: var(--theme-color-critical--active);
+}
+
+:host(.selected.card-warning) {
+  --ix-card-background: var(--theme-color-warning--active);
+}
+
+:host(.selected.card-success) {
+  --ix-card-background: var(--theme-color-success--active);
+}
+
+:host(.selected.card-info) {
+  --ix-card-background: var(--theme-color-info--active);
+}
+
+:host(.selected.card-neutral) {
+  --ix-card-background: var(--theme-color-neutral--active);
+}
+
+:host(.selected.card-primary) {
+  --ix-card-background: var(--theme-color-primary--active);
+}

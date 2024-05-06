@@ -1,0 +1,14 @@
+{
+  "name": "eslint-config-ix",
+  "license": "MIT",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "eslint": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-config-turbo": "latest",
+    "prettier": "latest"
+  }
+}

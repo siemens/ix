@@ -121,9 +121,8 @@ export async function showMessage<T>(config: MessageContent) {
   dialog.appendChild(content);
   dialog.appendChild(footer);
 
-  const dialogRef = await getCoreDelegate().attachView<HTMLIxModalElement>(
-    dialog
-  );
+  const dialogRef =
+    await getCoreDelegate().attachView<HTMLIxModalElement>(dialog);
 
   dialogRef.addEventListener(
     'dialogClose',

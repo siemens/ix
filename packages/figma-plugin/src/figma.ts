@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -33,17 +33,28 @@ async function getImageResource(
   nodeIds: string[],
   figmaToken: string
 ): Promise<Record<string, string>> {
-  const res = await axios.get(`https://api.figma.com/v1/images/${fileName}`, {
-    params: {
-      ids: nodeIds.join(','),
-    },
-    headers: {
-      'X-FIGMA-TOKEN': figmaToken,
-    },
-  });
+  const ids = nodeIds.join(',');
+  const response = await fetch(
+    `https://api.figma.com/v1/images/${fileName}?ids=${ids}`,
+    {
+      headers: {
+        'X-FIGMA-TOKEN': figmaToken,
+      },
+    }
+  );
 
-  const images = res.data.images;
-  return images;
+  if (response.status !== 200) {
+    console.log(
+      `🪲 Oops! Received unexpected status code ${response.status}`,
+      fileName,
+      'with node ids:',
+      ids
+    );
+    return null;
+  }
+
+  const data = await response.json();
+  return data.images;
 }
 
 function getFigmaMeta(node: FigmaNode): {
@@ -74,8 +85,15 @@ async function processImage(
   config: FigmaConfig
 ) {
   const { fileName, nodeId } = getFigmaMeta(node);
-
   let id = decodeURIComponent(nodeId).replace(/-/, ':');
+
+  if (!images) {
+    console.error(
+      `No image resource found for ${fileName} with node id ${nodeId}`
+    );
+    node.url = `${config.baseUrl}/${config.error_image}`;
+    return;
+  }
 
   const s3BucketUrl = images[id];
 
@@ -123,7 +141,6 @@ async function processImage(
 }
 
 export default (config: FigmaConfig) => {
-  let hasValidFigmaToken = true;
   if (config.apiToken === undefined || config.apiToken === '') {
     console.error('@siemens/figma-plugin no auth token provided');
     return () => {};
@@ -139,7 +156,7 @@ export default (config: FigmaConfig) => {
       const { visit } = await import('unist-util-visit');
       const fileNameIds = new Map<string, Set<string>>();
       const nodes: FigmaNode[] = [];
-      visit(ast, 'image', (node) => {
+      visit(ast, 'image', (node: any) => {
         const { fileName, nodeId } = getFigmaMeta(node);
         if (fileNameIds.has(fileName)) {
           if (!fileNameIds.get(fileName).has(nodeId)) {

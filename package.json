@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "mono-repo-ix",
-  "version": "2.0.4",
+  "version": "0.0.0",
   "license": "MIT",
   "description": "Siemens iX monorepo",
   "author": "Siemens AG",
@@ -13,36 +13,30 @@
   "bugs": {
     "url": "https://www.github.com/siemens/ix/issues"
   },
-  "packageManager": "yarn@1.22.15",
   "engines": {
-    "npm": ">=8.x.x",
-    "node": ">=16.16.x"
+    "pnpm": ">=9.x.x",
+    "node": ">=18.x.x"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
     "build": "dotenv -- turbo run build",
+    "pkg": "dotenv -- turbo run pkg",
     "start": "dotenv -- turbo run start",
-    "clean": "npx rimraf ./**/node_modules",
     "turbo": "dotenv -- turbo",
     "lint": "dotenv -- turbo run lint",
-    "generate-documentation-version": "yarn workspace documentation run generate-version",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "release": "node ./scripts/release.js",
-    "push-git": "node ./scripts/push-git.js",
-    "sonarqube": "sonar-scanner",
-    "visual-regression-ci": "npx playwright install chromium && yarn workspace @siemens/ix test:e2e && yarn workspace @siemens/ix-aggrid test:e2e",
-    "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\"",
-    "visual-regression-windows": "docker run --rm --network host -v %cd%:/work/ -w /work mcr.microsoft.com/playwright:v1.32.1-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\"",
-    "test": "turbo run test",
-    "prepare": "husky install"
+    "visual-regression": "dotenv -- turbo run visual-regression",
+    "test": "dotenv -- turbo run test",
+    "prepare": "husky install",
+    "ci:version": "pnpm changeset version && pnpm i --lockfile-only",
+    "ci:publish": "pnpm changeset publish"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/cli": "^2.26.2",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "colorette": "^2.0.19",
@@ -59,7 +53,7 @@
     "prettier-plugin-organize-imports": "^3.2.1",
     "semver": "^7.3.7",
     "sonarqube-scanner": "^2.8.1",
-    "turbo": "^1.4.3",
+    "turbo": "^1.10.16",
     "typescript": "~4.7.2"
   },
   "config": {

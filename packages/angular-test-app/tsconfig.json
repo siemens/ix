@@ -21,10 +21,11 @@
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "preserveSymlinks": true,
+    "skipLibCheck": true,
     "paths": {
+      "@angular/*": ["./node_modules/@angular"],
       "@siemens/ix-angular": ["./../angular/dist"],
-      "@siemens/ix-angular/*": ["./../angular/dist"],
-      "@angular/*": ["../node_modules/@angular/*"]
+      "@siemens/ix-angular/*": ["./../angular/dist"]
     }
   },
   "angularCompilerOptions": {

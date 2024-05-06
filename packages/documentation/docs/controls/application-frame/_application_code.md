@@ -1,6 +1,6 @@
 import Props from './../../auto-generated/ix-application/props.md';
 import Events from './../../auto-generated/ix-application/events.md';
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 
 The application component acts as a centralized hub for configuring aspects of your web-application, such as screen breakpoints, theming and app switch configuration. By consolidating these configuration points, it simplifies the management of application-wide settings and ensures a consistent user interface across different scenarios.
 

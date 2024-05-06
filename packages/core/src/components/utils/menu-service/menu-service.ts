@@ -10,20 +10,20 @@
 import { TypedEvent } from '../typed-event';
 
 class MenuService {
-  menuElement: HTMLIxMenuElement | null = null;
-  menuExpandChange = new TypedEvent<boolean>();
+  #menuElement: HTMLIxMenuElement | null = null;
+  #menuExpandChange = new TypedEvent<boolean>();
   #isPinned = false;
 
   register(menuElement: HTMLIxMenuElement) {
-    if (this.menuElement) {
+    if (this.#menuElement) {
       console.warn('Menu already defined');
       return;
     }
-    this.menuElement = menuElement;
-    this.menuElement.addEventListener(
+    this.#menuElement = menuElement;
+    this.#menuElement.addEventListener(
       'expandChange',
       (event: CustomEvent<boolean>) => {
-        this.menuExpandChange.emit(event.detail);
+        this.#menuExpandChange.emit(event.detail);
       }
     );
   }
@@ -33,8 +33,8 @@ class MenuService {
   }
 
   public async open() {
-    if (this.menuElement) {
-      this.menuElement.toggleMenu(true);
+    if (this.#menuElement) {
+      this.#menuElement.toggleMenu(true);
       return true;
     }
 
@@ -42,8 +42,8 @@ class MenuService {
   }
 
   public async close() {
-    if (this.menuElement) {
-      this.menuElement.toggleMenu(false);
+    if (this.#menuElement) {
+      this.#menuElement.toggleMenu(false);
       return true;
     }
 
@@ -51,8 +51,8 @@ class MenuService {
   }
 
   public async toggle() {
-    if (this.menuElement) {
-      this.menuElement.toggleMenu();
+    if (this.#menuElement) {
+      this.#menuElement.toggleMenu();
       return true;
     }
 
@@ -60,11 +60,11 @@ class MenuService {
   }
 
   get nativeElement() {
-    return this.menuElement;
+    return this.#menuElement;
   }
 
   get expandChange() {
-    return this.menuExpandChange;
+    return this.#menuExpandChange;
   }
 
   get isPinned() {

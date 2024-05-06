@@ -11,6 +11,11 @@ import { Component, h, Host, Method, Prop, Watch } from '@stencil/core';
 import { TypedEvent } from '../utils/typed-event';
 import { ToastConfig } from './toast-utils';
 
+export type ShowToastResult = {
+  onClose: TypedEvent<any | undefined>;
+  close: (result?: any) => void;
+};
+
 @Component({
   tag: 'ix-toast-container',
   styleUrl: './styles/toast-container.scss',
@@ -69,9 +74,8 @@ export class ToastContainer {
    * @param config
    */
   @Method()
-  async showToast(config: ToastConfig) {
+  async showToast(config: ToastConfig): Promise<ShowToastResult> {
     const toast = document.createElement('ix-toast');
-
     const onClose = new TypedEvent<any | undefined>();
 
     function removeToast(result?: any) {
@@ -117,7 +121,7 @@ export class ToastContainer {
           'toast-container--top-right': this.position === 'top-right',
         }}
       >
-        {/* <slot></slot> */}
+        <slot></slot>
       </Host>
     );
   }

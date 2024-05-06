@@ -15,6 +15,10 @@
     width: 100%;
   }
 
+  ix-dropdown-item {
+    color: var(--theme-color-std-text);
+  }
+
   .select-item-checked {
     background-color: var(--theme-select-list-item--background--selected);
     --ix-dropdown-item-checked-color: var(--theme-color-std-text);

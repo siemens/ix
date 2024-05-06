@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.12.0",
-    "typescriptVersion": "5.3.3"
+    "version": "4.13.0",
+    "typescriptVersion": "5.4.2"
   },
   "components": [
     {
@@ -400,17 +400,17 @@
         "ix-map-navigation"
       ],
       "dependencies": [
-        "ix-burger-menu",
+        "ix-menu-expand-icon",
         "ix-icon-button",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-application-header": [
-          "ix-burger-menu",
+          "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-dropdown"
         ],
-        "ix-burger-menu": [
+        "ix-menu-expand-icon": [
           "ix-icon-button",
           "ix-spinner"
         ],
@@ -620,11 +620,11 @@
           "ix-application-header"
         ],
         "ix-application-header": [
-          "ix-burger-menu",
+          "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-dropdown"
         ],
-        "ix-burger-menu": [
+        "ix-menu-expand-icon": [
           "ix-icon-button",
           "ix-spinner"
         ],
@@ -1489,6 +1489,32 @@
       },
       "props": [
         {
+          "name": "selected",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "selected",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.1.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "variant",
           "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
@@ -1715,6 +1741,33 @@
           "reflectToAttr": false,
           "docs": "Collapse the list",
           "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "hideShowAll",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-show-all",
+          "reflectToAttr": false,
+          "docs": "Hide the show all button",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.2.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -2243,6 +2296,41 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "staticOperator",
+          "type": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL",
+          "complexType": {
+            "original": "LogicalFilterOperator",
+            "resolved": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL",
+            "references": {
+              "LogicalFilterOperator": {
+                "location": "import",
+                "path": "logical-filter-operator",
+                "id": "src/components/category-filter/logical-filter-operator.ts::LogicalFilterOperator"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "static-operator",
+          "reflectToAttr": false,
+          "docs": "If set categories will always be filtered via the respective logical operator.\nToggling of the operator will not be available to the user.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.2.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "LogicalFilterOperator.EQUAL"
+            },
+            {
+              "type": "LogicalFilterOperator.NOT_EQUAL"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -5024,20 +5112,20 @@
           "name": "closeBehavior",
           "type": "\"both\" | \"inside\" | \"outside\" | boolean",
           "complexType": {
-            "original": "CloseBehaviour",
+            "original": "CloseBehavior",
             "resolved": "\"both\" | \"inside\" | \"outside\" | boolean",
             "references": {
-              "CloseBehaviour": {
+              "CloseBehavior": {
                 "location": "import",
                 "path": "dropdown-controller",
-                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehaviour"
+                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehavior"
               }
             }
           },
           "mutable": false,
           "attr": "close-behavior",
           "reflectToAttr": false,
-          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.\nIf the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.",
           "docsTags": [],
           "default": "'both'",
           "values": [
@@ -7254,7 +7342,6 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-application-header",
-        "ix-burger-menu",
         "ix-card-list",
         "ix-category-filter",
         "ix-chip",
@@ -7271,6 +7358,7 @@
         "ix-menu",
         "ix-menu-about",
         "ix-menu-about-news",
+        "ix-menu-expand-icon",
         "ix-menu-settings",
         "ix-message-bar",
         "ix-modal-example",
@@ -7290,9 +7378,6 @@
           "ix-spinner"
         ],
         "ix-application-header": [
-          "ix-icon-button"
-        ],
-        "ix-burger-menu": [
           "ix-icon-button"
         ],
         "ix-card-list": [
@@ -7341,6 +7426,9 @@
           "ix-icon-button"
         ],
         "ix-menu-about-news": [
+          "ix-icon-button"
+        ],
+        "ix-menu-expand-icon": [
           "ix-icon-button"
         ],
         "ix-menu-settings": [
@@ -8547,11 +8635,11 @@
           "ix-spinner"
         ],
         "ix-application-header": [
-          "ix-burger-menu",
+          "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-dropdown"
         ],
-        "ix-burger-menu": [
+        "ix-menu-expand-icon": [
           "ix-icon-button",
           "ix-spinner"
         ]
@@ -8977,22 +9065,28 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-burger-menu",
+        "ix-menu-expand-icon",
         "ix-icon-button",
         "ix-menu-item"
       ],
       "dependencyGraph": {
         "ix-menu": [
-          "ix-burger-menu",
+          "ix-menu-expand-icon",
           "ix-icon-button",
           "ix-menu-item"
         ],
-        "ix-burger-menu": [
+        "ix-menu-expand-icon": [
           "ix-icon-button",
           "ix-spinner"
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-menu-item": [
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ]
       },
       "props": [
@@ -9116,7 +9210,7 @@
           "mutable": true,
           "attr": "expand",
           "reflectToAttr": true,
-          "docs": "",
+          "docs": "Toggle the expand state of the menu",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -9344,6 +9438,33 @@
           "reflectToAttr": false,
           "docs": "Is settings tab visible",
           "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "startExpanded",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "start-expanded",
+          "reflectToAttr": false,
+          "docs": "If set the menu will be expanded initially. This will only take effect at the breakpoint 'lg'.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.2.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -9620,7 +9741,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "Label of first tab",
+          "docs": "Content of the header",
           "docsTags": [],
           "default": "'About & legal information'",
           "values": [
@@ -10282,6 +10403,12 @@
           "ix-dropdown-item",
           "ix-typography",
           "ix-divider"
+        ],
+        "ix-menu-item": [
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ]
       },
       "props": [
@@ -10354,7 +10481,14 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "closeOtherCategories",
+          "target": "window",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/menu-item",
@@ -10377,8 +10511,16 @@
         "ix-menu",
         "ix-menu-category"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "ix-tooltip"
+      ],
       "dependencyGraph": {
+        "ix-menu-item": [
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
         "ix-menu": [
           "ix-menu-item"
         ],
@@ -10481,7 +10623,7 @@
             "resolved": "string",
             "references": {}
           },
-          "mutable": false,
+          "mutable": true,
           "attr": "icon",
           "reflectToAttr": false,
           "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
@@ -10489,6 +10631,32 @@
             {
               "name": "link",
               "text": "https://ix.siemens.io/docs/icon-library/icons"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label of the menu item. Will also be used as tooltip text",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.2.0"
             }
           ],
           "values": [
@@ -10528,7 +10696,7 @@
             "resolved": "string",
             "references": {}
           },
-          "mutable": false,
+          "mutable": true,
           "attr": "tab-icon",
           "reflectToAttr": false,
           "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
@@ -10542,7 +10710,6 @@
               "text": "since 2.0.0 use `icon` property. Will be removed in 3.0.0"
             }
           ],
-          "default": "'document'",
           "deprecation": "since 2.0.0 use `icon` property. Will be removed in 3.0.0",
           "values": [
             {
@@ -13131,7 +13298,7 @@
           "mutable": false,
           "attr": "selected",
           "reflectToAttr": false,
-          "docs": "Whether the item is selected.",
+          "docs": "Flag indicating whether the item is selected",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -13153,8 +13320,14 @@
           "mutable": false,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "Item value",
-          "docsTags": [],
+          "docs": "The value of the item.\nImportant: The select component uses string values to handle selection and will call toString() on this value.\nTherefor a string should be passed to value to prevent unexpected behavior.",
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "will be changed to type string with next major release (3.0.0)"
+            }
+          ],
+          "deprecation": "will be changed to type string with next major release (3.0.0)",
           "values": [
             {
               "type": "any"
@@ -13482,11 +13655,11 @@
         "ix-application-switch-modal",
         "ix-avatar",
         "ix-breadcrumb-item",
-        "ix-burger-menu",
         "ix-button",
         "ix-category-filter",
         "ix-icon-button",
         "ix-icon-toggle-button",
+        "ix-menu-expand-icon",
         "ix-modal-loading",
         "ix-pagination",
         "ix-toggle-button",
@@ -13503,9 +13676,6 @@
         "ix-breadcrumb-item": [
           "ix-spinner"
         ],
-        "ix-burger-menu": [
-          "ix-spinner"
-        ],
         "ix-button": [
           "ix-spinner"
         ],
@@ -13516,6 +13686,9 @@
           "ix-spinner"
         ],
         "ix-icon-toggle-button": [
+          "ix-spinner"
+        ],
+        "ix-menu-expand-icon": [
           "ix-spinner"
         ],
         "ix-modal-loading": [
@@ -15218,11 +15391,11 @@
         {
           "name": "showToast",
           "returns": {
-            "type": "Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>",
+            "type": "Promise<ShowToastResult>",
             "docs": ""
           },
           "complexType": {
-            "signature": "(config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>",
+            "signature": "(config: ToastConfig) => Promise<ShowToastResult>",
             "parameters": [
               {
                 "name": "config",
@@ -15235,10 +15408,10 @@
                 "location": "global",
                 "id": "global::Promise"
               },
-              "TypedEvent": {
-                "location": "import",
-                "path": "../utils/typed-event",
-                "id": "src/components/utils/typed-event.ts::TypedEvent"
+              "ShowToastResult": {
+                "location": "local",
+                "path": "src/components/toast/toast-container.tsx",
+                "id": "src/components/toast/toast-container.tsx::ShowToastResult"
               },
               "ToastConfig": {
                 "location": "import",
@@ -15250,9 +15423,9 @@
                 "id": "global::CustomEvent"
               }
             },
-            "return": "Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>"
+            "return": "Promise<ShowToastResult>"
           },
-          "signature": "showToast(config: ToastConfig) => Promise<{ onClose: TypedEvent<any>; close: (result?: any) => void; }>",
+          "signature": "showToast(config: ToastConfig) => Promise<ShowToastResult>",
           "parameters": [
             {
               "name": "config",
@@ -15708,6 +15881,7 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-menu-item",
         "ix-slider"
       ],
       "dependencies": [
@@ -15717,6 +15891,9 @@
         "ix-tooltip": [
           "ix-typography"
         ],
+        "ix-menu-item": [
+          "ix-tooltip"
+        ],
         "ix-slider": [
           "ix-tooltip"
         ]
@@ -15724,11 +15901,20 @@
       "props": [
         {
           "name": "for",
-          "type": "string",
+          "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
+            "original": "string | HTMLElement | Promise<HTMLElement>",
+            "resolved": "HTMLElement | Promise<HTMLElement> | string",
+            "references": {
+              "HTMLElement": {
+                "location": "global",
+                "id": "global::HTMLElement"
+              },
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            }
           },
           "mutable": false,
           "attr": "for",
@@ -15736,6 +15922,12 @@
           "docs": "CSS selector for hover trigger element e.g. `for=\"[data-my-custom-select]\"`",
           "docsTags": [],
           "values": [
+            {
+              "type": "HTMLElement"
+            },
+            {
+              "type": "Promise<HTMLElement>"
+            },
             {
               "type": "string"
             }
@@ -17260,6 +17452,26 @@
       "docstring": "",
       "path": "src/components/card/card.tsx"
     },
+    "src/components/typography/typography.tsx::TypographyVariants": {
+      "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
+    "src/components/typography/typography.tsx::TypographyFormat": {
+      "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
+    "src/components/typography/typography.tsx::TypographyColors": {
+      "declaration": "export type TypographyColors =\n  | 'contrast'\n  | 'std'\n  | 'soft'\n  | 'weak'\n  | 'inv-contrast'\n  | 'inv-std'\n  | 'inv-soft'\n  | 'inv-weak'\n  | 'alarm';",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
+    "src/components/typography/typography.tsx::TextDecoration": {
+      "declaration": "export type TextDecoration = 'none' | 'underline' | 'line-through';",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
     "src/components/action-card/action-card.tsx::ActionCardVariant": {
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
       "docstring": "",
@@ -17390,26 +17602,6 @@
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },
-    "src/components/typography/typography.tsx::TypographyVariants": {
-      "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
-    "src/components/typography/typography.tsx::TypographyFormat": {
-      "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
-    "src/components/typography/typography.tsx::TypographyColors": {
-      "declaration": "export type TypographyColors =\n  | 'contrast'\n  | 'std'\n  | 'soft'\n  | 'weak'\n  | 'inv-contrast'\n  | 'inv-std'\n  | 'inv-soft'\n  | 'inv-weak'\n  | 'alarm';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
-    "src/components/typography/typography.tsx::TextDecoration": {
-      "declaration": "export type TextDecoration = 'none' | 'underline' | 'line-through';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
     "src/components/push-card/push-card.tsx::PushCardVariant": {
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
       "docstring": "",
@@ -17435,6 +17627,16 @@
       "docstring": "",
       "path": "src/components/time-picker/time-picker.tsx"
     },
+    "src/components/toast/toast-container.tsx::ShowToastResult": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components/toast/toast-container.tsx"
+    },
+    "src/components/toast/toast-utils.ts::ToastConfig": {
+      "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "docstring": "",
+      "path": "src/components/toast/toast-utils.ts"
+    },
     "src/components/utils/theme-switcher.ts::IxTheme": {
       "declaration": "export type IxTheme =\n  | 'classic'\n  | 'classic-dark'\n  | 'classic-light'\n  | (string & {});",
       "docstring": "",
@@ -17455,13 +17657,18 @@
       "docstring": "",
       "path": "src/components/category-filter/filter-state.ts"
     },
+    "src/components/category-filter/logical-filter-operator.ts::LogicalFilterOperator": {
+      "declaration": "export enum LogicalFilterOperator {\n  EQUAL = 'Equal',\n  NOT_EQUAL = 'Not equal',\n}",
+      "docstring": "",
+      "path": "src/components/category-filter/logical-filter-operator.ts"
+    },
     "src/components/category-filter/input-state.ts::InputState": {
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
     },
-    "src/components/dropdown/dropdown-controller.ts::CloseBehaviour": {
-      "declaration": "export type CloseBehaviour = 'inside' | 'outside' | 'both' | boolean;",
+    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
+      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
       "docstring": "",
       "path": "src/components/dropdown/dropdown-controller.ts"
     },
@@ -17474,16 +17681,6 @@
       "declaration": "export interface CustomLabelChangeEvent {\n  name: string;\n  oldLabel: string;\n  newLabel: string;\n}",
       "docstring": "",
       "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
-    },
-    "src/components/utils/typed-event.ts::TypedEvent": {
-      "declaration": "any",
-      "docstring": "",
-      "path": "src/components/utils/typed-event.ts"
-    },
-    "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
-      "docstring": "",
-      "path": "src/components/toast/toast-utils.ts"
     },
     "src/components/toast/toast-utils.ts::ToastType": {
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",

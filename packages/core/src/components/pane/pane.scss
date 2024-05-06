@@ -47,10 +47,6 @@
         overflow: hidden;
       }
     }
-
-    .title-text-left-right-expanded {
-      order: 1;
-    }
   }
 
   .header-gap {
@@ -101,6 +97,14 @@
       .title-text {
         flex-direction: row-reverse;
         justify-content: start;
+        flex-direction: row;
+      }
+
+      .rotate {
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        flex-direction: row-reverse;
       }
     }
 
@@ -127,12 +131,6 @@
     flex-direction: column;
   }
 
-  .rotate {
-    writing-mode: vertical-lr;
-    text-orientation: mixed;
-    transform: rotate(180deg);
-  }
-
   .mobile-pane {
     display: flex;
     flex-direction: column;
@@ -142,7 +140,6 @@
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
-      padding: 0 !important;
       margin: var(--theme-space-1) var(--theme-space-2);
     }
   }

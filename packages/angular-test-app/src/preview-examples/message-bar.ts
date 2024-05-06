@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -12,13 +12,15 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-message-bar>Message text</ix-message-bar>
-    <ix-message-bar type="warning">Message text</ix-message-bar>
-    <ix-message-bar type="danger">
-      <div class="d-flex align-items-center justify-content-between">
-        Message text <ix-button>Action</ix-button>
-      </div>
-    </ix-message-bar>
+    <div style='margin: 0.5rem'>
+      <ix-message-bar style="margin-bottom: 0.5rem; display: block">Message text</ix-message-bar>
+      <ix-message-bar style="margin-bottom: 0.5rem; display: block" type="warning">Message text</ix-message-bar>
+      <ix-message-bar style="display: block" type="danger">
+        <div class="d-flex align-items-center justify-content-between">
+          Message text <ix-button>Action</ix-button>
+        </div>
+      </ix-message-bar>
+    </div>
   `,
 })
 export default class MessageBar {}

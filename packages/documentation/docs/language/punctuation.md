@@ -51,7 +51,7 @@ Always consider whether necessary
 </div>
 
 <div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>*</span> Avoid asterixs in applications
+<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>*</span> Avoid asterisks in applications
 </div>
 
 <div class="mb-2">

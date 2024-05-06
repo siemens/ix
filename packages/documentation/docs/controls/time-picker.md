@@ -1,12 +1,7 @@
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 
 import Props from './../auto-generated/ix-time-picker/props.md';
 import Events from './../auto-generated/ix-time-picker/events.md';
-
-import SourceTimepicker from './../auto-generated/previews/web-component/timepicker.md'
-import SourceReactTimepicker from './../auto-generated/previews/react/timepicker.md'
-import SourceAngularTimepicker from './../auto-generated/previews/angular/timepicker.ts.md'
-import SourceVueTimepicker from './../auto-generated/previews/vue/timepicker.md'
 
 # Time picker
 
@@ -14,12 +9,7 @@ import SourceVueTimepicker from './../auto-generated/previews/vue/timepicker.md'
 
 <Playground
 name="timepicker" height="35rem"
-frameworks={{
-  react: SourceReactTimepicker,
-  angular: SourceAngularTimepicker,
-  javascript: SourceTimepicker,
-  vue: SourceVueTimepicker
-}}>
+examplesByName>
 </Playground>
 
 ## Properties

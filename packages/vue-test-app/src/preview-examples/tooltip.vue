@@ -1,5 +1,5 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -13,13 +13,13 @@ import { IxButton, IxTooltip } from '@siemens/ix-vue';
 
 <template>
   <div :style="{ padding: '4rem' }">
-    <IxButton class="any-class" :style="{ 'margin-right': '4rem' }">
+    <IxButton class="any-class" aria-describedby="tooltip-1">
       Hover me
     </IxButton>
-    <IxTooltip for=".any-class">Simple selector</IxTooltip>
+    <IxTooltip id="tooltip-1" for=".any-class">Simple selector</IxTooltip>
 
-    <IxButton my-custom-special-selector="any-value">Also hover me</IxButton>
-    <IxTooltip for="[my-custom-special-selector='any-value']">
+    <IxButton my-custom-special-selector="any-value" aria-describedby="tooltip-2">Also hover me</IxButton>
+    <IxTooltip id="tooltip-2" for="[my-custom-special-selector='any-value']">
       Custom selector
     </IxTooltip>
   </div>

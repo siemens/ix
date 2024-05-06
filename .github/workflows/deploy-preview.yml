@@ -1,0 +1,103 @@
+name: Deploy Preview
+
+on:
+  pull_request:
+    branches-ignore:
+      - changeset-release/main
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - labeled
+
+concurrency: pr-preview-${{ github.ref }}
+
+jobs:
+  changes:
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'Deploy Preview') }}
+    runs-on: ubuntu-latest
+    outputs:
+      core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
+      docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Track changes between commits
+      id: changes
+      uses: tj-actions/changed-files@v43
+      with:
+        files_yaml: |
+          core:
+            - packages/core/**
+          docs:
+            - packages/documentation/**
+            - packages/html-test-app/**
+            - packages/angular-test-app/**
+            - packages/react-test-app/**
+            - packages/vue-test-app/**
+
+  deploy-preview:
+    needs: changes
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.docs_any_changed == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --filter documentation
+        env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+          CSC: ${{ secrets.READ_CSC_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish
+        id: publish
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --message pr-preview-${{ github.event.pull_request.number }} --filter documentation --alias pr-preview-${{ github.event.pull_request.number }}
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Find comments
+        id: find_comments
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'find-comments'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-auth: 'github-actions[bot]'
+          body-includes: 'Deploy Preview for *industrial-experience* ready!'
+
+      - uses: actions/github-script@v7
+        id: filter-comment
+        env:
+          COMMENTS_RESULT: ${{ steps.find_comments.outputs.comments }}
+        with:
+          script: |
+            const { COMMENTS_RESULT } = process.env;
+            const comments = JSON.parse(COMMENTS_RESULT);
+            if (comments.length === 1) {
+              return comments[0].id;
+            }
+            return '';
+          result-encoding: string
+
+      - name: Create PR comment
+        if: ${{ steps.filter-comment.outputs.result == '' }}
+        uses: actions-cool/issues-helper@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          actions: 'create-comment'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            ### <span aria-hidden="true">✅</span> Deploy Preview for *industrial-experience* ready!
+
+
+            |  Name | Link |
+            |:-:|------------------------|
+            |<span aria-hidden="true">🔍</span> Latest deploy log | [${{ steps.publish.outputs.NETLIFY_LOGS_URL }}](${{ steps.publish.outputs.NETLIFY_LOGS_URL }}) |
+            |<span aria-hidden="true">😎</span> Deploy Preview | [${{ steps.publish.outputs.NETLIFY_URL }}](${{ steps.publish.outputs.NETLIFY_URL }}) |
+            ---

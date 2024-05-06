@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,21 +7,34 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import BrowserOnly from '@docusaurus/BrowserOnly';
-import React, { Suspense } from 'react';
-import Loader from './Loader';
+import { useLocation } from '@docusaurus/router';
+import React, { useEffect } from 'react';
+
+declare global {
+  interface Window {
+    ste_statistic: {
+      action: string;
+      data: unknown;
+    }[];
+  }
+}
 
 export default function Root({ children }) {
-  return (
-    <>
-      <BrowserOnly>
-        {() => (
-          <Suspense fallback={<></>}>
-            <Loader></Loader>
-          </Suspense>
-        )}
-      </BrowserOnly>
-      {children}
-    </>
-  );
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.ste_statistic = window.ste_statistic || [];
+    window.ste_statistic.push({
+      action: 'page.ready',
+      data: {
+        page: {
+          path: pathname,
+          country: 'de',
+          language: 'de',
+        },
+      },
+    });
+  }, [pathname]);
+
+  return <>{children}</>;
 }

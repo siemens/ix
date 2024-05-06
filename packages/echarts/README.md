@@ -1,4 +1,4 @@
-# Siemens iX ECharts Theme
+# Siemens Industrial Experience - Theme for ECharts
 
-This library is part of the Siemens iX mono repository.
+This library is part of the Siemens Industrial Experience mono repository.
 You can find the root README [here](https://github.com/siemens/ix/blob/main/README.md)

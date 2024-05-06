@@ -1,0 +1,188 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <style>
+      body {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+      }
+
+      #main {
+        min-height: 100%;
+        min-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type="module">
+      import { registerTheme } from '../dist/index.esm.js';
+
+      function getTheme() {
+        const searchParams = new URLSearchParams(location.search);
+
+        if (!searchParams.has('theme')) {
+          return 'brand-dark';
+        }
+
+        const theme = searchParams.get('theme');
+
+        return theme.substring('theme-'.length, theme.length);
+      }
+
+      registerTheme(echarts);
+
+      const theme = getTheme();
+
+      // Configure the background color to enhance contrast
+      document.body.style.backgroundColor = theme.includes('dark')
+        ? 'black'
+        : 'white';
+
+      var myChart = echarts.init(document.querySelector('#main'), theme);
+
+      myChart.setOption({
+        title: {
+          text: 'Main',
+          subtext: 'The main chart',
+        },
+        legend: {},
+        toolbox: {
+          show: true,
+          feature: {
+            saveAsImage: {},
+            dataZoom: {},
+          },
+        },
+        tooltip: {
+          trigger: 'axis',
+        },
+        timeline: {
+          axisType: 'category',
+          autoPlay: false,
+          playInterval: 1000,
+          data: ['1', '2', '3'],
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            name: 'Day',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: 'Amount',
+          },
+        ],
+        series: [
+          {
+            name: 'Direct',
+            type: 'bar',
+            emphasis: {
+              focus: 'series',
+            },
+            data: [320, 332, 301, 334, 390, 330, 320],
+          },
+          {
+            name: 'Email',
+            type: 'bar',
+            stack: 'Ad',
+            emphasis: {
+              focus: 'series',
+            },
+            data: [120, 132, 101, 134, 90, 230, 210],
+          },
+          {
+            name: 'Union Ads',
+            type: 'bar',
+            stack: 'Ad',
+            emphasis: {
+              focus: 'series',
+            },
+            data: [220, 182, 191, 234, 290, 330, 310],
+          },
+          {
+            name: 'Video Ads',
+            type: 'bar',
+            stack: 'Ad',
+            emphasis: {
+              focus: 'series',
+            },
+            data: [150, 232, 201, 154, 190, 330, 410],
+          },
+          {
+            name: 'Search Engine',
+            type: 'bar',
+            data: [862, 1018, 964, 1026, 1679, 1600, 1570],
+            emphasis: {
+              focus: 'series',
+            },
+            markLine: {
+              lineStyle: {
+                type: 'dashed',
+              },
+              data: [[{ type: 'min' }, { type: 'max' }]],
+            },
+          },
+          {
+            name: 'Baidu',
+            type: 'bar',
+            barWidth: 5,
+            stack: 'Search Engine',
+            emphasis: {
+              focus: 'series',
+            },
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+          },
+          {
+            name: 'Google',
+            type: 'bar',
+            stack: 'Search Engine',
+            emphasis: {
+              focus: 'series',
+            },
+            data: [120, 132, 101, 134, 290, 230, 220],
+          },
+          {
+            name: 'Bing',
+            type: 'bar',
+            stack: 'Search Engine',
+            emphasis: {
+              focus: 'series',
+            },
+            data: [60, 72, 71, 74, 190, 130, 110],
+          },
+          {
+            name: 'Others',
+            type: 'bar',
+            stack: 'Search Engine',
+            emphasis: {
+              focus: 'series',
+            },
+            data: [62, 82, 91, 84, 109, 110, 120],
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      ix-blind {
+        margin: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <ix-blind icon="bulb">
+      <div slot="custom-header"><ix-pill>Insight</ix-pill></div>
+    </ix-blind>
+    <ix-blind variant="outline" icon="bulb">
+      <div slot="custom-header"><ix-pill>Outline</ix-pill></div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="alarm">
+      <div slot="custom-header"><ix-pill>Alarm</ix-pill></div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="critical">
+      <div slot="custom-header"><ix-pill>Critical</ix-pill></div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="warning">
+      <div slot="custom-header"><ix-pill>Warning</ix-pill></div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="info">
+      <div slot="custom-header"><ix-pill>Info</ix-pill></div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="success">
+      <div slot="custom-header"><ix-pill>Success</ix-pill></div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="neutral">
+      <div slot="custom-header"><ix-pill>Neutral</ix-pill></div>
+    </ix-blind>
+    <ix-blind icon="bulb" variant="primary">
+      <div slot="custom-header"><ix-pill variant="info">Primary</ix-pill></div>
+    </ix-blind>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/Playground';
+import Playground from '@site/src/components/PlaygroundV2';
 import Tags from './../auto-generated/ix-slider/tags.md';
 import Props from './../auto-generated/ix-slider/props.md';
 import Events from './../auto-generated/ix-slider/events.md';

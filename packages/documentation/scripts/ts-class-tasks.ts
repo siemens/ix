@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -152,11 +152,8 @@ async function generateDocsForEntrypoint(
   return Promise.all(promises);
 }
 
-export async function writeTypeScriptFiles(
-  classPath: string[],
-  targetPath: string
-) {
+export function writeTypeScriptFiles(classPath: string[], targetPath: string) {
   return Promise.all(
-    classPath.map((e) => generateDocsForEntrypoint(e, targetPath))
+    classPath.flatMap((e) => generateDocsForEntrypoint(e, targetPath))
   );
 }

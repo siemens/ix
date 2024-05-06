@@ -22,7 +22,7 @@ Example: In a 12 column layout with 6 columns with equal width in place, each co
 
 ![Example for column size option](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=796%3A3&mode=design&t=R26qUrZCUTY2iIxG-1)
 
-- A column size ``auto`` is available. When set to ``auto``, column width is defined by the width of its content. The renmaining columns resize to fill the row.
+- A column size ``auto`` is available. When set to ``auto``, column width is defined by the width of its content. The remaining columns resize to fill the row.
 - Column size can be tailored to viewports. Three viewports are currently supported. The viewport size can't be adjusted at this point. When setting the size for one viewport, larger viewports are adjusted in the same way.
 
 | Viewport name              | Viewport size                     | Description                                 |
@@ -36,7 +36,7 @@ Example: Here is an example of a 12 column layout grid with 4 columns, each with
 ![Example for viewport-based column sizes](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=800%3A23920&mode=design&t=R26qUrZCUTY2iIxG-1)
 
 
-## Behaviour in context
+## Behavior in context
 
 Decreasing and increasing the viewport width influences the width of each column within a layout grid. When column width is decreased to the point that the minimum content width is reached for at least one column, the layout breaks into a second line. 
 

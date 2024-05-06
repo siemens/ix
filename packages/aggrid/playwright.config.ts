@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -72,7 +72,7 @@ const config: PlaywrightTestConfig = {
   /* Configure projects for major browsers */
   projects: buildProjectsWithThemes(),
   webServer: {
-    command: 'yarn host-root',
+    command: 'pnpm host-root',
     port: 8080,
   },
 };

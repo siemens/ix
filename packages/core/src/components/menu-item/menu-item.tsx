@@ -7,8 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Prop,
+  readTask,
+  State,
+  Watch,
+} from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { makeRef } from '../utils/make-ref';
+import { menuController } from '../utils/menu-service/menu-service';
+import { Disposable } from '../utils/typed-event';
 
 /**
  * @slot menu-item-label Custom label
@@ -19,6 +31,13 @@ import { createMutationObserver } from '../utils/mutation-observer';
   shadow: true,
 })
 export class MenuItem {
+  /**
+   * Label of the menu item. Will also be used as tooltip text
+   *
+   * @since 2.2.0
+   */
+  @Prop() label: string;
+
   /**
    * Move the Tab to a top position.
    */
@@ -36,12 +55,12 @@ export class MenuItem {
    *
    * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
    */
-  @Prop() tabIcon = 'document';
+  @Prop({ mutable: true }) tabIcon: string;
 
   /**
    * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
    */
-  @Prop() icon: string;
+  @Prop({ mutable: true }) icon: string;
 
   /**
    * Show notification count on tab
@@ -58,27 +77,42 @@ export class MenuItem {
    */
   @Prop() disabled: boolean;
 
+  /** @internal */
+  @Prop() isCategory: boolean;
+
   @Element() hostElement: HTMLIxMenuItemElement;
 
-  @State() title: string;
+  @State() tooltip: string;
+  @State() menuExpanded: boolean;
 
-  private observer: MutationObserver;
+  private buttonRef = makeRef<HTMLButtonElement>();
   private isHostedInsideCategory = false;
+  private menuExpandedDisposer: Disposable;
+
+  private observer: MutationObserver = createMutationObserver(() => {
+    this.tooltip = this.label ?? this.hostElement.innerText;
+  });
 
   componentWillLoad() {
     this.isHostedInsideCategory =
       !!this.hostElement.closest('ix-menu-category');
+
+    this.onIconChange();
+    this.onTabIconChange();
+
+    this.menuExpanded = menuController.nativeElement.expand;
+    this.menuExpandedDisposer = menuController.expandChange.on(
+      (expand) => (this.menuExpanded = expand)
+    );
   }
 
   componentWillRender() {
-    this.title = this.hostElement.innerText;
+    readTask(() => {
+      this.tooltip = this.label ?? this.hostElement.innerText;
+    });
   }
 
   connectedCallback() {
-    this.observer = createMutationObserver(() => {
-      this.title = this.hostElement.innerText;
-    });
-
     this.observer.observe(this.hostElement, {
       subtree: true,
       childList: true,
@@ -89,6 +123,32 @@ export class MenuItem {
   disconnectedCallback() {
     if (this.observer) {
       this.observer.disconnect();
+    }
+
+    if (this.menuExpandedDisposer) {
+      this.menuExpandedDisposer.dispose();
+    }
+  }
+
+  @Watch('icon')
+  onIconChange() {
+    if (
+      !this.isHostedInsideCategory &&
+      !this.hostElement.icon &&
+      !this.hostElement.tabIcon
+    ) {
+      this.icon = 'document';
+    }
+  }
+
+  @Watch('tabIcon')
+  onTabIconChange() {
+    if (
+      !this.isHostedInsideCategory &&
+      !this.hostElement.icon &&
+      !this.hostElement.tabIcon
+    ) {
+      this.tabIcon = 'document';
     }
   }
 
@@ -118,23 +178,36 @@ export class MenuItem {
       >
         <button
           class="tab"
-          title={this.title}
           tabIndex={this.disabled ? -1 : 0}
           role="listitem"
+          ref={this.buttonRef}
         >
-          <ix-icon
-            class={'tab-icon'}
-            name={this.icon ?? this.tabIcon}
-          ></ix-icon>
-          <div class="notification">
-            {this.notifications ? (
+          {(this.icon || this.tabIcon) && (
+            <ix-icon
+              class={'tab-icon'}
+              name={this.icon ?? this.tabIcon}
+            ></ix-icon>
+          )}
+          {this.notifications ? (
+            <div class="notification">
               <div class="pill">{this.notifications}</div>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
           <span class="tab-text text-default">
-            <slot></slot>
+            {this.label} <slot></slot>
           </span>
         </button>
+        {!this.isCategory &&
+          !this.isHostedInsideCategory &&
+          !this.menuExpanded && (
+            <ix-tooltip
+              for={this.buttonRef.waitForCurrent()}
+              placement={'right'}
+              showDelay={1000}
+            >
+              {this.tooltip}
+            </ix-tooltip>
+          )}
       </Host>
     );
   }

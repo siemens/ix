@@ -21,11 +21,11 @@ $menu-expanded-width: 16rem;
   flex-direction: row;
   position: absolute;
   height: 100%;
-  min-height: 22.75rem;
+  min-height: min-content;
   z-index: var(--theme-z-index-sticky);
   width: auto;
 
-  bottom: 0px;
+  bottom: 0;
 
   .tabs {
     height: 100%;
@@ -34,10 +34,19 @@ $menu-expanded-width: 16rem;
     pointer-events: all;
 
     -ms-overflow-style: none;
-    scrollbar-width: none;
+
+    scrollbar-width: inherit;
 
     &::-webkit-scrollbar {
       display: none;
+    }
+  }
+
+  .show-scrollbar {
+    scrollbar-width: inherit;
+
+    &::-webkit-scrollbar {
+      display: inherit;
     }
   }
 
@@ -45,7 +54,7 @@ $menu-expanded-width: 16rem;
     overflow: hidden;
     display: block;
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 0.75rem;
   }
 
   .tabs--shadow {
@@ -61,12 +70,12 @@ $menu-expanded-width: 16rem;
     transition: opacity var(--theme-default-time);
   }
   .tabs--shadow-top {
-    top: 0px;
+    top: 0;
     background: linear-gradient(var(--theme-color-shadow-1), transparent);
   }
 
   .tabs--shadow-bottom {
-    bottom: 0px;
+    bottom: 0;
     background: linear-gradient(transparent, var(--theme-color-shadow-1));
   }
 
@@ -88,7 +97,7 @@ $menu-expanded-width: 16rem;
     }
 
     background-color: var(--theme-nav--background);
-    transition: width var(--animate-duration) ease-in-out;
+    transition: width var(--theme-default-time) ease-in-out;
   }
 
   .menu-overlay {
@@ -100,7 +109,7 @@ $menu-expanded-width: 16rem;
     z-index: -1;
     backdrop-filter: blur(1rem);
     background-color: var(--theme-sidebar-overlay-blur);
-    transition: left var(--animate-duration) ease-in-out;
+    transition: left var(--theme-default-time) ease-in-out;
   }
 
   .menu-overlay.visible {
@@ -148,12 +157,7 @@ $menu-expanded-width: 16rem;
   }
 
   .menu-buttons {
-    margin: 0.5rem 0 0 0.5rem;
-  }
-
-  .menu-buttons .burger-menu,
-  .menu-buttons .app-switch {
-    margin-left: 0.125rem;
+    margin: 0.5rem 0 0 0.625rem;
   }
 
   .menu-buttons > :last-child {
@@ -166,16 +170,8 @@ $menu-expanded-width: 16rem;
     width: 0;
   }
 
-  .menu {
-    padding-top: 0.5rem;
-  }
-
-  .menu .burger-menu {
-    display: none;
-  }
-
   .menu-overlay {
-    left: 0px;
+    left: 0;
     width: 100vw;
   }
 }

@@ -38,7 +38,7 @@
     height: 2rem;
 
     ix-icon {
-      transition: transform $default-time ease-in-out;
+      transition: transform var(--theme-default-time) ease-in-out;
 
       &.icon-toggle-down {
         transform: rotate(90deg);

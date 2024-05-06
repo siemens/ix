@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { postcss } from '@stencil-community/postcss';
 import { angularOutputTarget } from '@stencil/angular-output-target';
 import { Config } from '@stencil/core';
 import { JsonDocs } from '@stencil/core/internal';
-import { postcss } from '@stencil/postcss';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import { vueOutputTarget } from '@stencil/vue-output-target';
@@ -163,7 +163,9 @@ function normalizeProperties(obj: JsonDocs, deleteProps: string[]) {
     if (obj[key] && typeof obj[key] === 'object') {
       normalizeProperties(obj[key], deleteProps);
     } else if (deleteProps.includes(key)) {
-      const posixPath = path.join(...path.relative(__dirname, obj[key]).split(path.sep)).toString();
+      const posixPath = path
+        .join(...path.relative(__dirname, obj[key]).split(path.sep))
+        .toString();
       obj[key] = posixPath.replace(/\\/g, '/');
     }
   }

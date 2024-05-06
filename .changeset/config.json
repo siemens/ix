@@ -1,0 +1,28 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "siemens/ix" }
+  ],
+  "commit": false,
+  "linked": [],
+  "fixed": [
+    [
+      "@siemens/ix",
+      "@siemens/ix-angular",
+      "@siemens/ix-react",
+      "@siemens/ix-vue"
+    ]
+  ],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "angular-test-app",
+    "react-test-app",
+    "vue-test-app",
+    "html-test-app",
+    "figma-plugin",
+    "documentation"
+  ]
+}

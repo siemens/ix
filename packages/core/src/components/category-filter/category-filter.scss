@@ -58,7 +58,7 @@
     display: flex;
     height: auto;
     max-height: 3.75rem;
-    padding: 1px $large-space 1px $x-large-space !important;
+    padding: 1px $large-space 1px 1.75rem !important;
 
     &.no-icon {
       padding-left: $tiny-space;
@@ -108,7 +108,7 @@
   }
 
   ix-filter-chip {
-    margin-right: $small-space;
+    margin-right: $tiny-space;
   }
 
   .category-preview {
@@ -128,6 +128,7 @@
 
   ul > li,
   input {
+    padding-inline-start: 0;
     padding-top: 2px;
     padding-bottom: 2px;
   }

@@ -10,7 +10,7 @@ import cssnano from 'cssnano';
 import fse from 'fs-extra';
 import path from 'path';
 import postcss from 'postcss';
-import rimraf from 'rimraf';
+import { rimraf } from 'rimraf';
 import sass from 'sass';
 
 const ROOT = path.join(__dirname, '..', '..');
@@ -21,8 +21,8 @@ const DIST = path.join(ROOT, 'dist', 'siemens-ix');
 const DIST_CSS = path.join(ROOT, 'dist-css');
 const DIST_THEME = path.join(ROOT, 'dist-css', 'theme');
 
-function setupDistFolder() {
-  rimraf.sync(DIST_CSS);
+async function setupDistFolder() {
+  await rimraf.sync(DIST_CSS);
   fse.ensureDirSync(DIST_CSS);
   fse.ensureDirSync(DIST_THEME);
 }
@@ -82,7 +82,7 @@ function copyDistCssToDist() {
 }
 
 (async () => {
-  setupDistFolder();
+  await setupDistFolder();
 
   let cssFiles: {
     path: string;

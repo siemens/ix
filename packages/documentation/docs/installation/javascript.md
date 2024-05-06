@@ -4,8 +4,7 @@ sidebar_title: Web Components
 title: Web Components
 ---
 
-import Playground from '@site/src/components/Playground';
-import WebComponentButtons from '../auto-generated/previews/web-component/buttons.md'
+import Playground from '@site/src/components/PlaygroundV2';
 
 ## Installation
 
@@ -65,8 +64,7 @@ import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix
 
 <Playground
 name="buttons"
-availableFrameworks={["javascript"]}
-frameworks={{
-  javascript: WebComponentButtons
+files={{
+  javascript: ['buttons.html']
 }}>
 </Playground>

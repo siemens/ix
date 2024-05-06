@@ -1,5 +1,5 @@
 <!--
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -18,8 +18,8 @@ import {
 
 <template>
   <IxMenu>
-    <IxMenuAvatar>
-      <IxMenuAvatarItem label="Option 1"></IxMenuAvatarItem>
+    <IxMenuAvatar top="john.doe@company.com" bottom="Administrator">
+      <IxMenuAvatarItem icon="user-profile" label="User profile..."></IxMenuAvatarItem>
     </IxMenuAvatar>
     <IxMenuItem home-tab tab-icon="home"> &nbsp; Home&nbsp; </IxMenuItem>
     <IxMenuItem tab-icon="globe"> Normal Tab </IxMenuItem>

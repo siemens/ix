@@ -8,9 +8,9 @@
  */
 
 import { FunctionalComponent, h, Host } from '@stencil/core';
-import { MenuAbout } from 'src/components/menu-about/menu-about';
-import { MenuSettings } from 'src/components/menu-settings/menu-settings';
 import { setTab } from './menu-tabs-utils';
+import { MenuAbout } from '../../menu-about/menu-about';
+import { MenuSettings } from '../../menu-settings/menu-settings';
 
 interface MenuTabsProps {
   context: MenuSettings | MenuAbout;

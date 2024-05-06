@@ -18,6 +18,8 @@ import { getSlottedElements } from '../utils/shadow-dom';
 export class InputGroup {
   @Element() hostElement!: HTMLIxInputGroupElement;
 
+  @State() disabled = false;
+
   @State() inputPaddingLeft = 0;
   @State() inputPaddingRight = 0;
 
@@ -46,6 +48,7 @@ export class InputGroup {
     valid ? this.onValidInput() : this.onInvalidInput();
 
     this.observer = new MutationObserver(() => {
+      this.slotChanged();
       this.startSlotChanged();
       this.endSlotChanged();
     });
@@ -92,6 +95,10 @@ export class InputGroup {
     }
   }
 
+  private slotChanged() {
+    this.disabled = this.inputElement?.disabled;
+  }
+
   private startSlotChanged() {
     const slot = this.hostElement.shadowRoot.querySelector(
       'slot[name="input-start"]'
@@ -101,7 +108,7 @@ export class InputGroup {
       const startPadding = this.getChildrenWidth(slot);
 
       if (startPadding !== 0) {
-        this.inputPaddingLeft = 15 + startPadding;
+        this.inputPaddingLeft = 11 + startPadding;
       } else {
         this.inputPaddingLeft = 0;
       }
@@ -119,9 +126,9 @@ export class InputGroup {
         this.inputElement.form?.noValidate === false;
 
       if (formWasValidated && isInputInvalid) {
-        const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 8;
+        const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 7;
         this.inputElement.style.backgroundPosition = `left ${left}px center`;
-        this.inputPaddingLeft += 32;
+        this.inputPaddingLeft += 26;
       }
     });
   }
@@ -157,7 +164,7 @@ export class InputGroup {
 
   render() {
     return (
-      <Host>
+      <Host class={{ disabled: this.disabled }}>
         <div class="group group-start">
           <slot name="input-start"></slot>
         </div>
