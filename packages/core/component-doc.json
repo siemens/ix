@@ -2299,6 +2299,41 @@
           "required": false
         },
         {
+          "name": "staticOperator",
+          "type": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL",
+          "complexType": {
+            "original": "LogicalFilterOperator",
+            "resolved": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL",
+            "references": {
+              "LogicalFilterOperator": {
+                "location": "import",
+                "path": "logical-filter-operator",
+                "id": "src/components/category-filter/logical-filter-operator.ts::LogicalFilterOperator"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "static-operator",
+          "reflectToAttr": false,
+          "docs": "If set categories will always be filtered via the respective logical operator.\nToggling of the operator will not be available to the user.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.2.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "LogicalFilterOperator.EQUAL"
+            },
+            {
+              "type": "LogicalFilterOperator.NOT_EQUAL"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "suggestions",
           "type": "string[]",
           "complexType": {
@@ -9706,7 +9741,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "Label of first tab",
+          "docs": "Content of the header",
           "docsTags": [],
           "default": "'About & legal information'",
           "values": [
@@ -17621,6 +17656,11 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/filter-state.ts"
+    },
+    "src/components/category-filter/logical-filter-operator.ts::LogicalFilterOperator": {
+      "declaration": "export enum LogicalFilterOperator {\n  EQUAL = 'Equal',\n  NOT_EQUAL = 'Not equal',\n}",
+      "docstring": "",
+      "path": "src/components/category-filter/logical-filter-operator.ts"
     },
     "src/components/category-filter/input-state.ts::InputState": {
       "declaration": "any",

@@ -1,8 +1,4 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
-import SourceAggrid from './../auto-generated/previews/web-component/aggrid.md'
-import ReactSourceAggrid from './../auto-generated/previews/react/aggrid.md'
-import AngularSourceAggrid from './../auto-generated/previews/angular/aggrid.ts.md'
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Grid (AG Grid)
 
@@ -29,6 +25,10 @@ Follow the official AG Grid [installation instructions](https://www.ag-grid.com/
 ### Angular
 
 Follow the official AG Grid [installation instructions](https://www.ag-grid.com/angular-data-grid/getting-started/) for Angular.
+
+### Vue
+
+Follow the official AG Grid [installation instructions](https://www.ag-grid.com/vue-data-grid/getting-started/) for Vue.
 
 ### Javascript
 
@@ -62,14 +62,9 @@ e.g.:
 
 ## Usage
 
-<Preview name="aggrid" height="16rem">
-  <TabItem value="javascript">
-    <SourceAggrid />
-  </TabItem>
-  <TabItem value="react">
-    <ReactSourceAggrid />
-  </TabItem>
-  <TabItem value="angular">
-    <AngularSourceAggrid />
-  </TabItem>
-</Preview>
+<Playground
+name="aggrid"
+height="14rem"
+examplesByName
+disableStackBlitz>
+</Playground>
