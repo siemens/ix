@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles-auto-gen/application.css';
+import 'example-styles/dist/application.css';
 
 import { Breakpoint } from '@siemens/ix';
 import {

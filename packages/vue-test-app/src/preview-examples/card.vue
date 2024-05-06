@@ -15,7 +15,7 @@ const onClick = (event: Event) => {
 };
 </script>
 
-<style scoped src="./styles-auto-gen/card.css"></style>
+<style scoped src="example-styles/dist/card.css"></style>
 
 <template>
   <IxCard variant="insight" @click="onClick">

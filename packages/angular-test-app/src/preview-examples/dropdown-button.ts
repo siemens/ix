@@ -11,7 +11,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: ['./styles-auto-gen/dropdown-button.css'],
+  styles: [
+    `
+      @import 'example-styles/dist/dropdown-button.css';
+    `,
+  ],
   template: `
     <div class="dropdown-button">
       <ix-dropdown-button label="Dropdown" icon="checkboxes">

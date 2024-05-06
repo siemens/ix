@@ -16,7 +16,7 @@ import {
 } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles-auto-gen/menu-category.css"></style>
+<style scoped src="example-styles/dist/menu-category.css"></style>
 
 <template>
   <IxApplication>

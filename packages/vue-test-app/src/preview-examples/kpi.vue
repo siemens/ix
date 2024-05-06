@@ -11,7 +11,7 @@
 import { IxKpi } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles-auto-gen/kpi.css"></style>
+<style scoped src="example-styles/dist/kpi.css"></style>
 
 <template>
   <div class="kpi">

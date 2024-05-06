@@ -12,7 +12,11 @@ import { IxModalSize, ModalService } from '@siemens/ix-angular';
 
 @Component({
   selector: 'app-example',
-  styleUrls: ['./styles-auto-gen/modal-sizes.css'],
+  styles: [
+    `
+      @import 'example-styles/dist/modal-sizes.css';
+    `,
+  ],
   templateUrl: './modal-sizes.html',
 })
 export default class ModalSizes {

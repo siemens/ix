@@ -11,7 +11,7 @@
 import { IxButton, IxTooltip } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles-auto-gen/tooltip.css"></style>
+<style scoped src="example-styles/dist/tooltip.css"></style>
 
 <template>
   <IxButton class="any-class" aria-describedby="tooltip-1"> Hover me </IxButton>

@@ -11,7 +11,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: ['./styles-auto-gen/radio-button.css'],
+  styles: [
+    `
+      @import 'example-styles/dist/radio-button.css';
+    `,
+  ],
   template: `
     <div class="radio-button">
       <input checked id="checkbox_1_1" name="group_1" type="radio" />

@@ -11,7 +11,7 @@
 import { IxPill } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles-auto-gen/icon-toggle-button.css"></style>
+<style scoped src="example-styles/dist/icon-toggle-button.css"></style>
 
 <template>
   <IxPill variant="custom" color="white" background="purple"> Label </IxPill>

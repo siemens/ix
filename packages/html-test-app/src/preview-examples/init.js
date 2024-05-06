@@ -9,7 +9,7 @@
 
 import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
 import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
-import './styles-auto-gen/global.css';
+import 'example-styles/dist/global.css';
 
 function loadAdditionalTheme() {
   const theme = __THEME__;

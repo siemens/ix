@@ -11,7 +11,7 @@
 import { IxDropdownButton } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles-auto-gen/dropdown-button.css"></style>
+<style scoped src="example-styles/dist/dropdown-button.css"></style>
 
 <template>
   <div class="dropdown-button">

@@ -11,7 +11,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: ['./styles-auto-gen/chip.css'],
+  styles: [
+    `
+      @import 'example-styles/dist/chip.css';
+    `,
+  ],
   template: `
     <div class="chip">
       <ix-chip closable outline> Primary </ix-chip>

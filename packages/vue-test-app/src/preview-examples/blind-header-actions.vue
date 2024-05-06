@@ -11,7 +11,7 @@
 import { IxBlind, IxDropdown, IxIconButton } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles-auto-gen/blind.css"></style>
+<style scoped src="example-styles/dist/blind.css"></style>
 
 <template>
   <IxBlind label="Example" icon="info">

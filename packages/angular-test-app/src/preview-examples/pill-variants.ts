@@ -11,7 +11,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: ['./styles-auto-gen/pill-variants.css'],
+  styles: [
+    `
+      @import 'example-styles/dist/pill-variants.css';
+    `,
+  ],
   template: `
     <ix-layout-grid>
       <ix-row>

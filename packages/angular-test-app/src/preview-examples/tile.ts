@@ -11,7 +11,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styleUrls: ['./styles-auto-gen/tile.css'],
+  styles: [
+    `
+      @import 'example-styles/dist/tile.css';
+    `,
+  ],
   template: `
     <ix-tile size="small">92.8 °C</ix-tile>
 

@@ -12,7 +12,7 @@ import { AppSwitchConfiguration } from '@siemens/ix';
 
 @Component({
   selector: 'app-example',
-  styleUrls: ['./styles-auto-gen/application.css'],
+  styles: [`@import 'example-styles/dist/application.css'`],
   templateUrl: './application-app-switch.html',
 })
 export default class ApplicationAppSwitchExample {
