@@ -1405,7 +1405,7 @@ export namespace Components {
          */
         "activeTabLabel": string;
         /**
-          * Label of first tab
+          * Content of the header
          */
         "label": string;
         /**
@@ -5515,7 +5515,7 @@ declare namespace LocalJSX {
          */
         "activeTabLabel"?: string;
         /**
-          * Label of first tab
+          * Content of the header
          */
         "label"?: string;
         /**

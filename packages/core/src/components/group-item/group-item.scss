@@ -32,6 +32,7 @@ $focusBorderWidth: 1px;
     background-color: var(--theme-group-item--background);
     border: 1px solid transparent;
     color: var(--theme-color-std-text);
+    cursor: pointer;
 
     padding-left: 2.5rem;
 
@@ -72,6 +73,10 @@ $focusBorderWidth: 1px;
   }
 }
 
+:host(.suppress-selection) {
+  pointer-events: none;
+}
+
 :host(.selected) {
   border-top-width: 0.062rem !important;
   background-color: var(--theme-color-ghost--selected);
@@ -81,20 +86,20 @@ $focusBorderWidth: 1px;
   }
 }
 
-:host(:not(.suppress-selection):hover) {
+:host(:hover) {
   background-color: var(--theme-color-ghost--selected-hover);
   border-color: var(--theme-group-item--border-color--hover);
 }
 
-:host(:not(.suppress-selection).selected:hover) {
+:host(.selected:hover) {
   background-color: var(--theme-color-ghost--selected-hover);
 }
 
-:host(:not(.suppress-selection):active) {
+:host(:active) {
   background-color: var(--theme-color-ghost--selected-active);
   border-color: var(--theme-group-item--border-color--active);
 }
 
-:host(:not(.suppress-selection).selected:active) {
+:host(.selected:active) {
   background-color: var(--theme-color-ghost--selected-active);
 }
