@@ -1,0 +1,36 @@
+@import 'mixins/shadow-dom/component';
+
+@import 'components/form/input';
+:host {
+  @include ix-component;
+
+  ::slotted(ix-chat-message) {
+    margin-block-end: 1rem;
+  }
+
+  ::slotted(ix-button) {
+    margin-block-end: 0.5rem;
+  }
+
+  ::slotted(ix-button:not(:last-of-type)) {
+    margin-inline-end: 0.5rem;
+  }
+
+  .chat-input {
+    display: flex;
+
+    textarea {
+      height: 2rem;
+    }
+
+    textarea,
+    .btn-upload-attachment {
+      margin-inline-end: 0.5rem;
+    }
+  }
+  .ai-disclaimer {
+    display: flex;
+    justify-content: center;
+    margin-block-start: 0.5rem;
+  }
+}

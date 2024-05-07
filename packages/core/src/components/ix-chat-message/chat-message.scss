@@ -1,0 +1,26 @@
+@import 'mixins/shadow-dom/component';
+@import 'mixins/text-truncation';
+
+:host {
+  @include ix-component;
+
+  display: block;
+
+  .content-container {
+    margin-inline-start: 2rem;
+  }
+
+  .sender {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+
+    ix-icon {
+      margin-right: 0.5rem;
+    }
+  }
+
+  ix-typography {
+    @include ellipsis;
+  }
+}
