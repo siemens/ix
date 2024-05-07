@@ -40,7 +40,7 @@ export class MenuAbout {
   @Prop({ mutable: true }) activeTabLabel: string;
 
   /**
-   * Label of first tab
+   * Content of the header
    */
   @Prop() label = 'About & legal information';
 
