@@ -106,7 +106,7 @@ async function openHtmlStackBlitz(
 
   const [global_css, main_js, package_json, vite_config_ts] =
     await loadSourceCodeFromStatic([
-      `${styleFilePath}global.css.txt`,
+      `${styleFilePath}global.css`,
       `${baseUrl}code-runtime/html/src/main.js`,
       `${baseUrl}code-runtime/html/package.json`,
       `${baseUrl}code-runtime/html/vite.config.ts`,
@@ -121,7 +121,7 @@ async function openHtmlStackBlitz(
   const styleFile: Record<string, string> = {};
   if (styleFileName) {
     styleFile[`src/styles/${styleFileName}`] = (
-      await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}.txt`])
+      await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
     )[0];
   }
 
@@ -171,7 +171,7 @@ async function openAngularStackBlitz(
     tsconfig_app_json,
     tsconfig_json,
   ] = await loadSourceCodeFromStatic([
-    `${styleFilePath}global.css.txt`,
+    `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
@@ -209,6 +209,10 @@ async function openAngularStackBlitz(
   const files: Record<string, string> = {};
   const styleFiles: Record<string, string> = {};
   const filePromises = sourceFiles.map(async ({ filename, raw }) => {
+    if (filename.endsWith('.css')) {
+      return;
+    }
+
     let source = raw;
     if (filename.endsWith('.ts')) {
       // set style filepath
@@ -221,9 +225,7 @@ async function openAngularStackBlitz(
       // get style file
       if (styleFileName) {
         styleFiles[`src/app/${styleFileName}`] = (
-          await loadSourceCodeFromStatic([
-            `${styleFilePath}${styleFileName}.txt`,
-          ])
+          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
         )[0];
       }
     }
@@ -273,7 +275,7 @@ async function openReactStackBlitz(
     package_json,
     tsconfig_json,
   ] = await loadSourceCodeFromStatic([
-    `${styleFilePath}global.css.txt`,
+    `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/react/App.tsx`,
     `${baseUrl}code-runtime/react/index.html`,
     `${baseUrl}code-runtime/react/index.tsx`,
@@ -298,6 +300,10 @@ async function openReactStackBlitz(
   const files: Record<string, string> = {};
   const styleFiles: Record<string, string> = {};
   const filePromises = sourceFiles.map(async ({ filename, raw }) => {
+    if (filename.endsWith('.css')) {
+      return;
+    }
+
     let source = raw;
     if (filename.endsWith('.tsx')) {
       const { source: adaptedSource, styleFileName } =
@@ -306,9 +312,7 @@ async function openReactStackBlitz(
 
       if (styleFileName) {
         styleFiles[`src/styles/${styleFileName}`] = (
-          await loadSourceCodeFromStatic([
-            `${styleFilePath}${styleFileName}.txt`,
-          ])
+          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
         )[0];
       }
     }
@@ -331,7 +335,7 @@ async function openReactStackBlitz(
         'package.json': patchPkgLibraryVersion(package_json, version),
         'tsconfig.json': tsconfig_json,
         '.stackblitzrc': `{
-          "startCommand": "yarn run start"
+          "startCommand": "pnpm run start"
         }`,
       },
     },
@@ -358,7 +362,7 @@ async function openVueStackBlitz(
     viteconfig_ts,
     env_d_ts,
   ] = await loadSourceCodeFromStatic([
-    `${styleFilePath}global.css.txt`,
+    `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/vue/App.vue`,
     `${baseUrl}code-runtime/vue/index.html`,
     `${baseUrl}code-runtime/vue/main.ts`,
@@ -382,6 +386,10 @@ async function openVueStackBlitz(
   const files: Record<string, string> = {};
   const styleFiles: Record<string, string> = {};
   const filePromises = sourceFiles.map(async ({ filename, raw }) => {
+    if (filename.endsWith('.css')) {
+      return;
+    }
+
     let source = raw;
     if (filename.endsWith('.vue')) {
       const { source: adaptedSource, styleFileName } =
@@ -390,9 +398,7 @@ async function openVueStackBlitz(
 
       if (styleFileName) {
         styleFiles[`src/styles/${styleFileName}`] = (
-          await loadSourceCodeFromStatic([
-            `${styleFilePath}${styleFileName}.txt`,
-          ])
+          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
         )[0];
       }
     }
@@ -417,7 +423,7 @@ async function openVueStackBlitz(
         'tsconfig.json': tsconfig_json,
         'vite.config.ts': viteconfig_ts,
         '.stackblitzrc': `{
-          "startCommand": "yarn run dev"
+          "startCommand": "pnpm run dev"
         }`,
       },
     },

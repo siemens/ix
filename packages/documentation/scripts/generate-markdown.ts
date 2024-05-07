@@ -179,41 +179,6 @@ const tasks = new Listr<Context>(
         return Promise.all(copy);
       },
     },
-    {
-      title: 'Rename code snippets',
-      task: async () => {
-        const renameFilesInDirectory = async (
-          directory: string
-        ): Promise<any[]> => {
-          const entries = await fsp.readdir(directory, { withFileTypes: true });
-
-          return Promise.all(
-            entries.flatMap((entry) => {
-              const entryPath = path.join(directory, entry.name);
-
-              if (entry.isDirectory()) {
-                return renameFilesInDirectory(entryPath);
-              }
-
-              return fs.rename(
-                entryPath,
-                path.join(directory, `${entry.name}.txt`)
-              );
-            })
-          );
-        };
-
-        return Promise.all(
-          [
-            docsStaticWebComponentExamples,
-            docsStaticAngularExamples,
-            docsStaticReactExamples,
-            docsStaticVueExamples,
-            docsStaticStyleExamples,
-          ].map(renameFilesInDirectory)
-        );
-      },
-    },
   ],
   { concurrent: false }
 );

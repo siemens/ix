@@ -90,7 +90,7 @@ function adaptCode(code: string) {
 
 async function fetchSource(path: string) {
   console.log('FETCH SOURCE FROM', path);
-  const response = await fetch(`${path}.txt`);
+  const response = await fetch(`${path}`);
   const source = await response.text();
 
   // Docusaurus don' throw a classic 404 if a sub route is not found
