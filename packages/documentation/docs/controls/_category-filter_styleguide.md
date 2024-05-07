@@ -15,10 +15,9 @@ The category filter component enhances data navigation and user experience. We t
 - **Placeholder**: Use to provide guidance or context to users when the category filter is empty.
 - **Icon**: The default icon is "search". Changing or hiding the icon within the category filter enhances the user experience and improves visual communication.
 - **Plain text**: Provides the possibility to do a plain text search without choosing a specific category.
-- **Static operator**: This option allows to restrict the filter condition to either equal (=) or not euqal (!=) for scenarios where other filter combinations don't make sense.
+- **Static operator**: Use to restrict the filter condition to either equal (=) or not equal (!=). This is useful when it doesn't make sense, or is not applicable, to let the user decide between equal and not equal. By default, the filter condition is without restriction.
 
-
-## Behaviour
+## Behavior
 
 - **Default**: The category filter is designed to adapt to the user’s needs and the context it’s used in. As soon as the user starts typing, the filter begins to apply, narrowing down the available options based on user input. This provides a dynamic and responsive user experience.
 - **Filter conditions**: These are the operators that determine how the filter matches the user’s input against the available categories. Available are equals (=) and not equals (!=). These conditions provide flexibility and precision in filtering, allowing users to find exactly what they’re looking for.
