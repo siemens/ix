@@ -335,7 +335,7 @@ async function openReactStackBlitz(
         'package.json': patchPkgLibraryVersion(package_json, version),
         'tsconfig.json': tsconfig_json,
         '.stackblitzrc': `{
-          "startCommand": "pnpm run start"
+          "startCommand": "npm run start"
         }`,
       },
     },
@@ -423,7 +423,7 @@ async function openVueStackBlitz(
         'tsconfig.json': tsconfig_json,
         'vite.config.ts': viteconfig_ts,
         '.stackblitzrc': `{
-          "startCommand": "pnpm run dev"
+          "startCommand": "npm run dev"
         }`,
       },
     },
