@@ -220,7 +220,7 @@ test('disabled', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown></ix-date-dropdown>`);
   const dateDropdown = page.locator('ix-date-dropdown');
   await dateDropdown.click();
-  await dateDropdown.evaluate((dd) => {
+  await dateDropdown.evaluate((dd: HTMLIxDateDropdownElement) => {
     dd.disabled = true;
   });
   const dropdown = dateDropdown.locator('[data-date-dropdown]');
