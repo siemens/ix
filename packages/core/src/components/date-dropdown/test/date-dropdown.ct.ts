@@ -215,3 +215,14 @@ test('set date from a button', async ({ mount, page }) => {
   const button = dateDropdown.locator('[data-date-dropdown-trigger]');
   await expect(button).toHaveText(/2024\/02\/17 \- 2024\/02\/27/);
 });
+
+test('disabled', async ({ mount, page }) => {
+  await mount(`<ix-date-dropdown></ix-date-dropdown>`);
+  const dateDropdown = page.locator('ix-date-dropdown');
+  await dateDropdown.click();
+  await dateDropdown.evaluate((dd) => {
+    dd.disabled = true;
+  });
+  const dropdown = dateDropdown.locator('[data-date-dropdown]');
+  await expect(dropdown).not.toBeVisible();
+});
