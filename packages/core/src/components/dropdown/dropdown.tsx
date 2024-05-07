@@ -547,7 +547,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         role="list"
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >
-        {this.localUId}
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
 
