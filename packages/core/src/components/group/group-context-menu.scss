@@ -20,4 +20,8 @@
   .hide {
     visibility: collapse;
   }
+
+  ::slotted(ix-dropdown) {
+    cursor: default;
+  }
 }
