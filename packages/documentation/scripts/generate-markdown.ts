@@ -54,6 +54,8 @@ const vueTestAppPath = path.join(
   'preview-examples'
 );
 
+const exampleStylesPath = path.join(examplePath, 'example-styles', 'src');
+
 const docsPath = path.join(rootPath, 'docs', 'auto-generated');
 
 const iframeExampleCodePath = path.join(
@@ -75,6 +77,7 @@ const docsStaticWebComponentExamples = path.join(
 const docsStaticAngularExamples = path.join(docsStaticExamples, 'angular');
 const docsStaticReactExamples = path.join(docsStaticExamples, 'react');
 const docsStaticVueExamples = path.join(docsStaticExamples, 'vue');
+const docsStaticStyleExamples = path.join(docsStaticExamples, 'styles');
 
 const iframeFrameDist = path.join(iframeExampleCodePath, 'dist');
 
@@ -98,6 +101,7 @@ const tasks = new Listr<Context>(
         await fs.ensureDir(docsStaticAngularExamples);
         await fs.ensureDir(docsStaticReactExamples);
         await fs.ensureDir(docsStaticVueExamples);
+        await fs.ensureDir(docsStaticStyleExamples);
 
         rimraf.sync(iframeExampleCodePath);
         await fs.ensureDir(iframeExampleCodePath);
@@ -153,6 +157,7 @@ const tasks = new Listr<Context>(
           fs.copy(angularTestAppPath, docsStaticAngularExamples),
           fs.copy(reactTestAppPath, docsStaticReactExamples),
           fs.copy(vueTestAppPath, docsStaticVueExamples),
+          fs.copy(exampleStylesPath, docsStaticStyleExamples),
         ];
 
         // Copy theme to examples folder
@@ -172,33 +177,6 @@ const tasks = new Listr<Context>(
         }
 
         return Promise.all(copy);
-      },
-    },
-    {
-      title: 'Rename code snippets',
-      task: async () => {
-        return Promise.all(
-          [
-            docsStaticWebComponentExamples,
-            docsStaticAngularExamples,
-            docsStaticReactExamples,
-            docsStaticVueExamples,
-          ].flatMap(async (snippetDirectory) => {
-            const files = await fsp.readdir(snippetDirectory);
-            return files.flatMap((filePath) => {
-              const file = path.join(snippetDirectory, filePath);
-
-              if (fs.lstatSync(file).isDirectory()) {
-                return Promise.resolve();
-              }
-
-              return fs.rename(
-                file,
-                path.join(snippetDirectory, `${filePath}.txt`)
-              );
-            });
-          })
-        );
       },
     },
   ],
