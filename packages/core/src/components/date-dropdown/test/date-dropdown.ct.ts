@@ -216,6 +216,41 @@ test('set date from a button', async ({ mount, page }) => {
   await expect(button).toHaveText(/2024\/02\/17 \- 2024\/02\/27/);
 });
 
+test('select different year', async ({ mount, page }) => {
+  await mount(`<ix-date-dropdown from="2024/02/16"></ix-date-dropdown>`);
+  const dateDropdown = page.locator(DATE_DROPDOWN_SELECTOR);
+
+  await expect(dateDropdown).toHaveClass(/hydrated/);
+  await expect(dateDropdown).toBeVisible();
+
+  const dateDropdownTrigger = dateDropdown.getByTestId('date-dropdown-trigger');
+  await dateDropdownTrigger.click();
+  await expect(dateDropdownTrigger).toBeVisible();
+
+  const datePickerDropdown = dateDropdown.getByTestId('date-dropdown');
+  await expect(datePickerDropdown).toBeVisible();
+
+  const datepicker = datePickerDropdown.locator('ix-date-picker');
+  const yearMonthButton = datepicker.getByTestId('year-month-button');
+  await yearMonthButton.click();
+
+  const yearMonthDropdown = datepicker.getByTestId('year-month-dropdown');
+  await expect(yearMonthDropdown).toBeVisible();
+
+  const yearContainer = yearMonthDropdown.getByTestId('year-container');
+  const year2020 = yearContainer.getByText('2020');
+
+  await year2020.click();
+
+  const monthContainer = yearMonthDropdown.getByTestId('month-container');
+  const march2020 = monthContainer.getByText('March 2020');
+
+  await march2020.click();
+
+  await expect(yearMonthDropdown).not.toBeVisible();
+  await expect(yearMonthButton).toHaveText('March 2020');
+});
+
 test('disable', async ({ mount, page }) => {
   await mount(`<ix-date-dropdown disabled></ix-date-dropdown>`);
   const dateDropdown = page.locator('ix-date-dropdown');
