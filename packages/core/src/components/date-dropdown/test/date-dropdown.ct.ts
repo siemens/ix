@@ -215,3 +215,30 @@ test('set date from a button', async ({ mount, page }) => {
   const button = dateDropdown.locator('[data-date-dropdown-trigger]');
   await expect(button).toHaveText(/2024\/02\/17 \- 2024\/02\/27/);
 });
+
+test('disable', async ({ mount, page }) => {
+  await mount(`<ix-date-dropdown disabled></ix-date-dropdown>`);
+  const dateDropdown = page.locator('ix-date-dropdown');
+
+  const trigger = page.locator('[data-date-dropdown-trigger]');
+  await expect(trigger).toHaveAttribute('disabled');
+
+  await dateDropdown.click();
+
+  const dropdown = dateDropdown.locator('[data-date-dropdown]');
+  await expect(dropdown).not.toBeVisible();
+});
+
+test('close dropdown after disabled property = true', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-date-dropdown></ix-date-dropdown>`);
+  const dateDropdown = page.locator('ix-date-dropdown');
+  await dateDropdown.click();
+  await dateDropdown.evaluate((dd: HTMLIxDateDropdownElement) => {
+    dd.disabled = true;
+  });
+  const dropdown = dateDropdown.locator('[data-date-dropdown]');
+  await expect(dropdown).not.toBeVisible();
+});

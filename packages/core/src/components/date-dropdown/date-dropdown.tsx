@@ -47,6 +47,13 @@ export class DateDropdown {
   @Element() hostElement: HTMLIxDateDropdownElement;
 
   /**
+   * Disable the button that opens the dropdown containing the date picker.
+   *
+   * @since 2.3.0
+   */
+  @Prop() disabled = false;
+
+  /**
    * Date format string.
    * See @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
    */
@@ -166,6 +173,12 @@ export class DateDropdown {
   };
   @State() private triggerRef: HTMLElement;
 
+  @Watch('disabled')
+  onDisabledChange() {
+    if (this.disabled) {
+      this.closeDropdown();
+    }
+  }
   private datePickerTouched = false;
 
   componentWillLoad() {
@@ -289,6 +302,7 @@ export class DateDropdown {
           variant="primary"
           icon="history"
           ref={(ref) => (this.triggerRef = ref)}
+          disabled={this.disabled}
         >
           {this.getButtonLabel()}
         </ix-button>
