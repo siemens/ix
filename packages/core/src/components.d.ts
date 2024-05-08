@@ -854,6 +854,7 @@ export namespace Components {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "ignoreRelatedSubmenu": boolean;
         /**
           * Move dropdown along main axis of alignment
          */
@@ -5130,6 +5131,7 @@ declare namespace LocalJSX {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "ignoreRelatedSubmenu"?: boolean;
         /**
           * Move dropdown along main axis of alignment
          */
