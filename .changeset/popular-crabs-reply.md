@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-fix(core/tooltip): null before register event listener to trigger
+fix(core/tooltip): null check before event listener gets registered on trigger
