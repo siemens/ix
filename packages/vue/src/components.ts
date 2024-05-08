@@ -24,7 +24,9 @@ import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-c
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
+import { defineCustomElement as defineIxCustomField } from '@siemens/ix/components/ix-custom-field.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
+import { defineCustomElement as defineIxDateField } from '@siemens/ix/components/ix-date-field.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
@@ -45,6 +47,7 @@ import { defineCustomElement as defineIxFormField } from '@siemens/ix/components
 import { defineCustomElement as defineIxGroup } from '@siemens/ix/components/ix-group.js';
 import { defineCustomElement as defineIxGroupContextMenu } from '@siemens/ix/components/ix-group-context-menu.js';
 import { defineCustomElement as defineIxGroupItem } from '@siemens/ix/components/ix-group-item.js';
+import { defineCustomElement as defineIxHelperTextWrapper } from '@siemens/ix/components/ix-helper-text-wrapper.js';
 import { defineCustomElement as defineIxIconButton } from '@siemens/ix/components/ix-icon-button.js';
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
 import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/components/ix-input-group.js';
@@ -85,6 +88,7 @@ import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/componen
 import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/components/ix-split-button-item.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
+import { defineCustomElement as defineIxTextField } from '@siemens/ix/components/ix-text-field.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
@@ -272,6 +276,12 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 ]);
 
 
+export const IxCustomField = /*@__PURE__*/ defineContainer<JSX.IxCustomField>('ix-custom-field', defineIxCustomField, [
+  'helperText',
+  'label'
+]);
+
+
 export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>('ix-date-dropdown', defineIxDateDropdown, [
   'disabled',
   'format',
@@ -288,6 +298,21 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'i18nNoRange',
   'today',
   'dateRangeChange'
+]);
+
+
+export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField>('ix-date-field', defineIxDateField, [
+  'name',
+  'placeholder',
+  'value',
+  'format',
+  'isInvalid',
+  'required',
+  'helperText',
+  'label',
+  'combineDateStart',
+  'combineDateEnd',
+  'valueChanged'
 ]);
 
 
@@ -490,6 +515,12 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
   'focusable',
   'index',
   'selectedChanged'
+]);
+
+
+export const IxHelperTextWrapper = /*@__PURE__*/ defineContainer<JSX.IxHelperTextWrapper>('ix-helper-text-wrapper', defineIxHelperTextWrapper, [
+  'helperText',
+  'label'
 ]);
 
 
@@ -873,6 +904,18 @@ export const IxTabs = /*@__PURE__*/ defineContainer<JSX.IxTabs>('ix-tabs', defin
   'layout',
   'placement',
   'selectedChange'
+]);
+
+
+export const IxTextField = /*@__PURE__*/ defineContainer<JSX.IxTextField>('ix-text-field', defineIxTextField, [
+  'name',
+  'placeholder',
+  'value',
+  'isInvalid',
+  'required',
+  'helperText',
+  'label',
+  'valueChanged'
 ]);
 
 

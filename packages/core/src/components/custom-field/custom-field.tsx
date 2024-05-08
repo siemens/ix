@@ -1,13 +1,24 @@
-import { Component, Element, Host, getElement, h } from '@stencil/core';
+import { Component, Element, Host, Prop, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
+import { HelperTextWrapper } from '../utils/field';
 
 @Component({
   tag: 'ix-custom-field',
   styleUrl: 'custom-field.scss',
   shadow: true,
 })
-export class CustomField implements IxComponent {
+export class CustomField implements IxComponent, HelperTextWrapper {
   @Element() hostElement: HTMLIxCustomFieldElement;
+  /**
+   * Show text below the field component
+   */
+  @Prop() helperText: string;
+
+  /**
+   * Label for the field component
+   */
+  @Prop() label: string;
+
   private mutationObserver: MutationObserver;
 
   constructor() {
@@ -45,7 +56,9 @@ export class CustomField implements IxComponent {
   render() {
     return (
       <Host>
-        <slot></slot>
+        <ix-helper-text-wrapper helperText={this.helperText} label={this.label}>
+          <slot></slot>
+        </ix-helper-text-wrapper>
       </Host>
     );
   }

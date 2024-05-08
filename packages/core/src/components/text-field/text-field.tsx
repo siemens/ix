@@ -72,6 +72,16 @@ export class TextField implements IxFieldComponent<string> {
   /**
    * tbd
    */
+  @Prop({ reflect: true }) helperText: string;
+
+  /**
+   * tbd
+   */
+  @Prop({ reflect: true }) label: string;
+
+  /**
+   * tbd
+   */
   @Event() valueChanged: EventEmitter<string>;
 
   private disposeFormValidation: () => void;
@@ -98,7 +108,9 @@ export class TextField implements IxFieldComponent<string> {
   render() {
     return (
       <Host>
-        <InputElement field={this} type="text"></InputElement>
+        <ix-helper-text-wrapper helperText={this.helperText} label={this.label}>
+          <InputElement field={this} type="text"></InputElement>
+        </ix-helper-text-wrapper>
       </Host>
     );
   }

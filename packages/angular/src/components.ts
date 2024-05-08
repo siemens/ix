@@ -482,6 +482,28 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
+  inputs: ['helperText', 'label']
+})
+@Component({
+  selector: 'ix-custom-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['helperText', 'label'],
+})
+export class IxCustomField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCustomField extends Components.IxCustomField {}
+
+
+@ProxyCmp({
   inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
   methods: ['getDateRange']
 })
@@ -512,6 +534,34 @@ This event is emitted when the date range changes within the component.
 The event payload contains information about the selected date range.
    */
   dateRangeChange: EventEmitter<CustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['format', 'helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value']
+})
+@Component({
+  selector: 'ix-date-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['format', 'helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value'],
+})
+export class IxDateField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChanged']);
+  }
+}
+
+
+export declare interface IxDateField extends Components.IxDateField {
+  /**
+   * tbd
+   */
+  valueChanged: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -1058,6 +1108,28 @@ export declare interface IxGroupItem extends Components.IxGroupItem {
    */
   selectedChanged: EventEmitter<CustomEvent<HTMLIxGroupItemElement>>;
 }
+
+
+@ProxyCmp({
+  inputs: ['helperText', 'label']
+})
+@Component({
+  selector: 'ix-helper-text-wrapper',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['helperText', 'label'],
+})
+export class IxHelperTextWrapper {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxHelperTextWrapper extends Components.IxHelperTextWrapper {}
 
 
 @ProxyCmp({
@@ -2126,6 +2198,34 @@ export declare interface IxTabs extends Components.IxTabs {
    * `selected` property changed @since 2.0.0
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value']
+})
+@Component({
+  selector: 'ix-text-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value'],
+})
+export class IxTextField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChanged']);
+  }
+}
+
+
+export declare interface IxTextField extends Components.IxTextField {
+  /**
+   * tbd
+   */
+  valueChanged: EventEmitter<CustomEvent<string>>;
 }
 
 

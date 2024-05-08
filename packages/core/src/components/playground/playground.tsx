@@ -32,18 +32,23 @@ export class PlaygroundInternal {
           }}
         >
           <ix-text-field
+            required
             name="project"
             placeholder="123"
             onValueChanged={console.log}
             onInput={console.log}
+            helperText="Helper text"
+            label="Project"
           ></ix-text-field>
 
           <ix-date-field
             name="project_created"
             value={'2024/05/05'}
+            helperText="Helper text"
+            label="Project"
           ></ix-date-field>
 
-          <ix-custom-field>
+          <ix-custom-field helperText="Helper text" label="Project">
             <ix-date-field name="start" value={'2024/05/01'}></ix-date-field>
             <ix-date-field name="end" value={'2024/05/05'}></ix-date-field>
           </ix-custom-field>

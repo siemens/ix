@@ -4,4 +4,8 @@ SPDX-FileCopyrightText: 2024 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+<form [formGroup]="profileForm">
+  <ix-text-field label="Project" formControlName="projectName"></ix-text-field>
+  <ix-button type="submit">Submit</ix-button>
+</form>

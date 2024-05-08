@@ -516,6 +516,14 @@ export namespace Components {
         "itemName": string;
     }
     interface IxCustomField {
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Label for the field component
+         */
+        "label": string;
     }
     /**
      * @since 2.1.0
@@ -591,7 +599,15 @@ export namespace Components {
         /**
           * tbd
          */
+        "helperText": string;
+        /**
+          * tbd
+         */
         "isInvalid": boolean;
+        /**
+          * tbd
+         */
+        "label": string;
         /**
           * tbd
          */
@@ -1139,6 +1155,16 @@ export namespace Components {
           * Group item text
          */
         "text": string;
+    }
+    interface IxHelperTextWrapper {
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Label for the field component
+         */
+        "label": string;
     }
     interface IxIconButton {
         /**
@@ -2111,7 +2137,15 @@ export namespace Components {
         /**
           * tbd
          */
+        "helperText": string;
+        /**
+          * tbd
+         */
         "isInvalid": boolean;
+        /**
+          * tbd
+         */
+        "label": string;
         /**
           * tbd
          */
@@ -3297,6 +3331,12 @@ declare global {
         prototype: HTMLIxGroupItemElement;
         new (): HTMLIxGroupItemElement;
     };
+    interface HTMLIxHelperTextWrapperElement extends Components.IxHelperTextWrapper, HTMLStencilElement {
+    }
+    var HTMLIxHelperTextWrapperElement: {
+        prototype: HTMLIxHelperTextWrapperElement;
+        new (): HTMLIxHelperTextWrapperElement;
+    };
     interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
     }
     var HTMLIxIconButtonElement: {
@@ -4142,6 +4182,7 @@ declare global {
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-item": HTMLIxGroupItemElement;
+        "ix-helper-text-wrapper": HTMLIxHelperTextWrapperElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
@@ -4684,6 +4725,14 @@ declare namespace LocalJSX {
         "itemName"?: string;
     }
     interface IxCustomField {
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
     }
     /**
      * @since 2.1.0
@@ -4759,7 +4808,15 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
         "isInvalid"?: boolean;
+        /**
+          * tbd
+         */
+        "label"?: string;
         /**
           * tbd
          */
@@ -5377,6 +5434,16 @@ declare namespace LocalJSX {
           * Group item text
          */
         "text"?: string;
+    }
+    interface IxHelperTextWrapper {
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
     }
     interface IxIconButton {
         /**
@@ -6427,7 +6494,15 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
         "isInvalid"?: boolean;
+        /**
+          * tbd
+         */
+        "label"?: string;
         /**
           * tbd
          */
@@ -6908,6 +6983,7 @@ declare namespace LocalJSX {
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-item": IxGroupItem;
+        "ix-helper-text-wrapper": IxHelperTextWrapper;
         "ix-icon-button": IxIconButton;
         "ix-icon-toggle-button": IxIconToggleButton;
         "ix-input-group": IxInputGroup;
@@ -7067,6 +7143,7 @@ declare module "@stencil/core" {
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
+            "ix-helper-text-wrapper": LocalJSX.IxHelperTextWrapper & JSXBase.HTMLAttributes<HTMLIxHelperTextWrapperElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             /**
              * @since 2.0.0

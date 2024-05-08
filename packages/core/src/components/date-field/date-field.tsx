@@ -56,6 +56,16 @@ export class DateField implements IxFieldComponent {
    */
   @Prop() required: boolean;
 
+  /**
+   * tbd
+   */
+  @Prop() helperText: string;
+
+  /**
+   * tbd
+   */
+  @Prop() label: string;
+
   /** @internal */
   @Prop() combineDateStart = false;
 
@@ -129,30 +139,32 @@ export class DateField implements IxFieldComponent {
   render() {
     return (
       <Host>
-        <input
-          class={{
-            'is-invalid': this.isInputInvalid,
-            'combine-start': this.combineDateStart,
-            'combine-end': this.combineDateEnd,
-          }}
-          required={this.required}
-          ref={this.inputElementRef}
-          type="text"
-          value={this.value}
-          onInput={(event) => {
-            const target = event.target as HTMLInputElement;
-            this.onInput(target.value);
-          }}
-          onClick={(event) => {
-            if (this.show) {
-              event.stopPropagation();
-              event.preventDefault();
-            }
-          }}
-          onFocus={async () => {
-            this.openDropdown();
-          }}
-        ></input>
+        <ix-helper-text-wrapper helperText={this.helperText} label={this.label}>
+          <input
+            class={{
+              'is-invalid': this.isInputInvalid,
+              'combine-start': this.combineDateStart,
+              'combine-end': this.combineDateEnd,
+            }}
+            required={this.required}
+            ref={this.inputElementRef}
+            type="text"
+            value={this.value}
+            onInput={(event) => {
+              const target = event.target as HTMLInputElement;
+              this.onInput(target.value);
+            }}
+            onClick={(event) => {
+              if (this.show) {
+                event.stopPropagation();
+                event.preventDefault();
+              }
+            }}
+            onFocus={async () => {
+              this.openDropdown();
+            }}
+          ></input>
+        </ix-helper-text-wrapper>
         <ix-dropdown
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}

@@ -1225,6 +1225,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1258,6 +1259,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -3212,6 +3216,86 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/custom-field",
+      "filePath": "src/components/custom-field/custom-field.tsx",
+      "fileName": "custom-field.tsx",
+      "readmePath": "src/components/custom-field/readme.md",
+      "usagesDir": "src/components/custom-field/usage",
+      "tag": "ix-custom-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-helper-text-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-custom-field": [
+          "ix-helper-text-wrapper"
+        ],
+        "ix-helper-text-wrapper": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-custom-field"
+        ]
+      },
+      "props": [
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/date-dropdown",
       "filePath": "src/components/date-dropdown/date-dropdown.tsx",
       "fileName": "date-dropdown.tsx",
@@ -3617,6 +3701,244 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/date-field",
+      "filePath": "src/components/date-field/date-field.tsx",
+      "fileName": "date-field.tsx",
+      "readmePath": "src/components/date-field/readme.md",
+      "usagesDir": "src/components/date-field/usage",
+      "tag": "ix-date-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-helper-text-wrapper",
+        "ix-dropdown",
+        "ix-date-picker"
+      ],
+      "dependencyGraph": {
+        "ix-date-field": [
+          "ix-helper-text-wrapper",
+          "ix-dropdown",
+          "ix-date-picker"
+        ],
+        "ix-helper-text-wrapper": [
+          "ix-typography"
+        ],
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-date-field"
+        ]
+      },
+      "props": [
+        {
+          "name": "format",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": false,
+          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docsTags": [],
+          "default": "'yyyy/LL/dd'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "isInvalid",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "is-invalid",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "any",
+          "complexType": {
+            "original": "any",
+            "resolved": "any",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "any"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "valueChanged",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "tbd",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/date-picker",
       "filePath": "src/components/date-picker/date-picker.tsx",
       "fileName": "date-picker.tsx",
@@ -3630,6 +3952,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
+        "ix-date-field",
         "ix-datetime-picker"
       ],
       "dependencies": [
@@ -3652,6 +3975,9 @@
           "ix-spinner"
         ],
         "ix-date-dropdown": [
+          "ix-date-picker"
+        ],
+        "ix-date-field": [
           "ix-date-picker"
         ],
         "ix-datetime-picker": [
@@ -5062,6 +5388,7 @@
         "ix-breadcrumb",
         "ix-category-filter",
         "ix-date-dropdown",
+        "ix-date-field",
         "ix-date-picker",
         "ix-dropdown-button",
         "ix-menu-avatar",
@@ -5084,6 +5411,9 @@
           "ix-dropdown"
         ],
         "ix-date-dropdown": [
+          "ix-dropdown"
+        ],
+        "ix-date-field": [
           "ix-dropdown"
         ],
         "ix-date-picker": [
@@ -7354,6 +7684,91 @@
           "passive": true
         }
       ]
+    },
+    {
+      "dirPath": "src/components/helper-text-wrapper",
+      "filePath": "src/components/helper-text-wrapper/helper-text-wrapper.tsx",
+      "fileName": "helper-text-wrapper.tsx",
+      "readmePath": "src/components/helper-text-wrapper/readme.md",
+      "usagesDir": "src/components/helper-text-wrapper/usage",
+      "tag": "ix-helper-text-wrapper",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-custom-field",
+        "ix-date-field",
+        "ix-text-field"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-helper-text-wrapper": [
+          "ix-typography"
+        ],
+        "ix-custom-field": [
+          "ix-helper-text-wrapper"
+        ],
+        "ix-date-field": [
+          "ix-helper-text-wrapper"
+        ],
+        "ix-text-field": [
+          "ix-helper-text-wrapper"
+        ]
+      },
+      "props": [
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
     },
     {
       "dirPath": "src/components/icon-button",
@@ -14617,6 +15032,208 @@
       ]
     },
     {
+      "dirPath": "src/components/text-field",
+      "filePath": "src/components/text-field/text-field.tsx",
+      "fileName": "text-field.tsx",
+      "readmePath": "src/components/text-field/readme.md",
+      "usagesDir": "src/components/text-field/usage",
+      "tag": "ix-text-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-helper-text-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-text-field": [
+          "ix-helper-text-wrapper"
+        ],
+        "ix-helper-text-wrapper": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-text-field"
+        ]
+      },
+      "props": [
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "isInvalid",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "is-invalid",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "valueChanged",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "tbd",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/tile",
       "filePath": "src/components/tile/tile.tsx",
       "fileName": "tile.tsx",
@@ -16435,6 +17052,7 @@
         "ix-content-header",
         "ix-dropdown-header",
         "ix-empty-state",
+        "ix-helper-text-wrapper",
         "ix-menu-about-news",
         "ix-menu-category",
         "ix-modal-header",
@@ -16469,6 +17087,9 @@
           "ix-typography"
         ],
         "ix-empty-state": [
+          "ix-typography"
+        ],
+        "ix-helper-text-wrapper": [
           "ix-typography"
         ],
         "ix-menu-about-news": [
