@@ -700,6 +700,8 @@ export namespace Components {
          */
         "weekStartIndex": number;
     }
+    interface IxDateRangeField {
+    }
     interface IxDateTimeCard {
         /**
           * Set corners style
@@ -3057,6 +3059,8 @@ declare global {
     };
     interface HTMLIxDateFieldElementEventMap {
         "valueChanged": string;
+        "ixFocus": void;
+        "ixBlur": void;
     }
     interface HTMLIxDateFieldElement extends Components.IxDateField, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDateFieldElementEventMap>(type: K, listener: (this: HTMLIxDateFieldElement, ev: IxDateFieldCustomEvent<HTMLIxDateFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3091,6 +3095,12 @@ declare global {
     var HTMLIxDatePickerElement: {
         prototype: HTMLIxDatePickerElement;
         new (): HTMLIxDatePickerElement;
+    };
+    interface HTMLIxDateRangeFieldElement extends Components.IxDateRangeField, HTMLStencilElement {
+    }
+    var HTMLIxDateRangeFieldElement: {
+        prototype: HTMLIxDateRangeFieldElement;
+        new (): HTMLIxDateRangeFieldElement;
     };
     interface HTMLIxDateTimeCardElement extends Components.IxDateTimeCard, HTMLStencilElement {
     }
@@ -4174,6 +4184,7 @@ declare global {
         "ix-date-dropdown": HTMLIxDateDropdownElement;
         "ix-date-field": HTMLIxDateFieldElement;
         "ix-date-picker": HTMLIxDatePickerElement;
+        "ix-date-range-field": HTMLIxDateRangeFieldElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
         "ix-divider": HTMLIxDividerElement;
@@ -4837,6 +4848,8 @@ declare namespace LocalJSX {
           * tbd
          */
         "name"?: string;
+        "onIxBlur"?: (event: IxDateFieldCustomEvent<void>) => void;
+        "onIxFocus"?: (event: IxDateFieldCustomEvent<void>) => void;
         /**
           * tbd
          */
@@ -4940,6 +4953,8 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "weekStartIndex"?: number;
+    }
+    interface IxDateRangeField {
     }
     interface IxDateTimeCard {
         /**
@@ -6987,6 +7002,7 @@ declare namespace LocalJSX {
         "ix-date-dropdown": IxDateDropdown;
         "ix-date-field": IxDateField;
         "ix-date-picker": IxDatePicker;
+        "ix-date-range-field": IxDateRangeField;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
         "ix-divider": IxDivider;
@@ -7132,6 +7148,7 @@ declare module "@stencil/core" {
             "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
             "ix-date-field": LocalJSX.IxDateField & JSXBase.HTMLAttributes<HTMLIxDateFieldElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
+            "ix-date-range-field": LocalJSX.IxDateRangeField & JSXBase.HTMLAttributes<HTMLIxDateRangeFieldElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             /**

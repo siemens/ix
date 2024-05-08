@@ -1,0 +1,28 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+ @import 'mixins/shadow-dom/component';
+
+:host {
+  @include ix-component;
+  display: inline-block;
+  position: relative;
+
+  .date-field-wrapper {
+    border: var(--theme-input--border-thickness, 1px) solid
+      var(--theme-input--border-color);
+    border-radius: var(--theme-input--border-radius);
+    box-shadow: var(--theme-input--box-shadow);
+  }
+
+  .date-field-wrapper.focus {
+    outline: 1px solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-input--focus--outline-offset);
+    border-color: var(--theme-input--border-color--focus) !important;
+  }
+}

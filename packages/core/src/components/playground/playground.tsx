@@ -50,13 +50,13 @@ export class PlaygroundInternal {
             value={'2024/05/05'}
             helperText="Helper text"
             label="Project"
-            errorText="only year 2023 allowed"
+            errorText="First of a month is not allowed"
             onValueChanged={({ detail }) => {
               this.hostElement
                 .querySelector('#xxx')
                 .classList.toggle(
                   'ix-invalid',
-                  DateTime.fromFormat(detail, 'yyyy/LL/dd').year === 2023
+                  DateTime.fromFormat(detail, 'yyyy/LL/dd').day === 1
                 );
             }}
           ></ix-date-field>
@@ -65,6 +65,11 @@ export class PlaygroundInternal {
             <ix-date-field name="start" value={'2024/05/01'}></ix-date-field>
             <ix-date-field name="end" value={'2024/05/05'}></ix-date-field>
           </ix-custom-field>
+
+          <ix-date-range-field>
+            <ix-date-field name="start1" value={'2024/05/01'}></ix-date-field>
+            <ix-date-field name="end1" value={'2024/05/05'}></ix-date-field>
+          </ix-date-range-field>
 
           <ix-button type="submit">Button</ix-button>
         </form>

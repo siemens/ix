@@ -32,15 +32,19 @@
   }
 
   input.combine-start {
-    border-right: none !important;
-    border-bottom-right-radius: 0 !important;
-    border-top-right-radius: 0 !important;
+    border: none;
+    box-shadow: none;
   }
 
   input.combine-end {
-    border-left: none !important;
-    border-bottom-left-radius: 0 !important;
-    border-top-left-radius: 0 !important;
+    border: none;
+    box-shadow: none;
+  }
+
+  input.combine-start, input.combine-end {
+    outline: none;
+    outline-offset: none;
+    border-color: none !important;
   }
  }
 

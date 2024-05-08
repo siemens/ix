@@ -1,3 +1,12 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import {
   AttachInternals,
   Component,
@@ -14,6 +23,27 @@ import { DateTime } from 'luxon';
 import { dropdownController } from '../dropdown/dropdown-controller';
 import { IxFieldComponent } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
+
+export type ClassMutationObserver = {
+  destroy: () => void;
+};
+
+function createClassMutationObserver(
+  element: HTMLElement,
+  callback: () => void
+): ClassMutationObserver {
+  const observer = new MutationObserver(callback);
+  observer.observe(element, {
+    attributes: true,
+    attributeFilter: ['class'],
+  });
+
+  return {
+    destroy() {
+      observer.disconnect();
+    },
+  };
+}
 
 @Component({
   tag: 'ix-date-field',
@@ -77,21 +107,34 @@ export class DateField implements IxFieldComponent {
    */
   @Event() valueChanged: EventEmitter<string>;
 
+  /** @internal */
+  @Event() ixFocus: EventEmitter<void>;
+
+  /** @internal */
+  @Event() ixBlur: EventEmitter<void>;
+
   @State() show = false;
   @State() from: string;
   @State() isInputInvalid = false;
   @State() isInvalid = false;
 
+  @State() focus = false;
+
   private inputElementRef = makeRef<HTMLInputElement>();
   private dropdownElementRef = makeRef<HTMLIxDropdownElement>();
-  classObserver = new MutationObserver(() => this.checkClassList());
-
+  private classObserver: ClassMutationObserver;
   /**
    * tbd
    */
   updateFormInternalValue(value: any): void {
     this.formInternals.setFormValue(value);
     this.value = value;
+  }
+
+  connectedCallback(): void {
+    this.classObserver = createClassMutationObserver(this.hostElement, () =>
+      this.checkClassList()
+    );
   }
 
   componentWillLoad(): void {
@@ -103,6 +146,12 @@ export class DateField implements IxFieldComponent {
     }
 
     this.checkClassList();
+  }
+
+  disconnectedCallback(): void {
+    if (this.classObserver) {
+      this.classObserver.destroy();
+    }
   }
 
   @Watch('value')
@@ -155,7 +204,7 @@ export class DateField implements IxFieldComponent {
         >
           <input
             class={{
-              // 'is-invalid': this.isInputInvalid,
+              'is-invalid': this.isInputInvalid,
               'combine-start': this.combineDateStart,
               'combine-end': this.combineDateEnd,
             }}
@@ -175,7 +224,9 @@ export class DateField implements IxFieldComponent {
             }}
             onFocus={async () => {
               this.openDropdown();
+              this.ixFocus.emit();
             }}
+            onBlur={() => this.ixBlur.emit()}
           ></input>
         </ix-helper-text-wrapper>
         <ix-dropdown
