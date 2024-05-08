@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { TextValueAccessorDirective } from './control-value-accessors/text-value-accessor';
 import { DOCUMENT } from '@angular/common';
 import {
   APP_INITIALIZER,
@@ -30,7 +30,8 @@ const DECLARATIONS = [
   IxDropdownTriggerDirective,
   IxIcon,
   SelectValueAccessor,
-  BooleanValueAccessor
+  BooleanValueAccessor,
+  TextValueAccessorDirective,
 ];
 
 @NgModule({

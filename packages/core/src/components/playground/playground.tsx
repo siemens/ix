@@ -7,7 +7,8 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host } from '@stencil/core';
+import { Component, Element, h, Host } from '@stencil/core';
+import { DateTime } from 'luxon';
 
 /** @internal */
 @Component({
@@ -18,6 +19,8 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class PlaygroundInternal {
+  @Element() hostElement: HTMLIxPlaygroundInternalElement;
+
   render() {
     return (
       <Host>
@@ -32,20 +35,30 @@ export class PlaygroundInternal {
           }}
         >
           <ix-text-field
-            required
             name="project"
             placeholder="123"
             onValueChanged={console.log}
             onInput={console.log}
             helperText="Helper text"
             label="Project"
+            errorText="Bla bla 123"
           ></ix-text-field>
 
           <ix-date-field
+            id="xxx"
             name="project_created"
             value={'2024/05/05'}
             helperText="Helper text"
             label="Project"
+            errorText="only year 2023 allowed"
+            onValueChanged={({ detail }) => {
+              this.hostElement
+                .querySelector('#xxx')
+                .classList.toggle(
+                  'ix-invalid',
+                  DateTime.fromFormat(detail, 'yyyy/LL/dd').year === 2023
+                );
+            }}
           ></ix-date-field>
 
           <ix-custom-field helperText="Helper text" label="Project">

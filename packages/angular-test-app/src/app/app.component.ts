@@ -8,7 +8,7 @@
  */
 
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   profileForm = new FormGroup({
-    projectName: new FormControl(''),
+    projectName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
   });
 }

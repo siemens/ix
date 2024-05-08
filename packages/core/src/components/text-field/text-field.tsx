@@ -15,24 +15,11 @@ import {
   EventEmitter,
   Host,
   Prop,
+  State,
   h,
 } from '@stencil/core';
 import { IxFieldComponent } from '../utils/field';
 import { InputElement } from './input-element';
-
-function formValidation(field: IxFieldComponent) {
-  const form = field.formInternals.form;
-
-  const onSubmit = () => {
-    console.log('form submitted check validation for field: ', field.name);
-  };
-
-  form.addEventListener('submit', onSubmit);
-
-  return () => {
-    form.removeEventListener('submit', onSubmit);
-  };
-}
 
 @Component({
   tag: 'ix-text-field',
@@ -62,11 +49,6 @@ export class TextField implements IxFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop() isInvalid = false;
-
-  /**
-   * tbd
-   */
   @Prop() required = false;
 
   /**
@@ -82,22 +64,27 @@ export class TextField implements IxFieldComponent<string> {
   /**
    * tbd
    */
+  @Prop({ reflect: true }) errorText: string;
+
+  /**
+   * tbd
+   */
   @Event() valueChanged: EventEmitter<string>;
 
-  private disposeFormValidation: () => void;
+  @State() isInvalid = false;
 
-  connectedCallback() {
-    this.disposeFormValidation = formValidation(this);
-  }
-
-  disconnectedCallback() {
-    if (this.disposeFormValidation) {
-      this.disposeFormValidation();
-    }
-  }
+  classObserver = new MutationObserver(() => this.checkClassList());
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+    this.checkClassList();
+  }
+
+  componentDidLoad(): void {
+    this.classObserver.observe(this.hostElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
   }
 
   updateFormInternalValue(value: string) {
@@ -105,10 +92,25 @@ export class TextField implements IxFieldComponent<string> {
     this.value = value;
   }
 
+  disconnectedCallback(): void {
+    if (this.classObserver) {
+      this.classObserver.disconnect();
+    }
+  }
+
+  private checkClassList() {
+    this.isInvalid = this.hostElement.classList.contains('ix-invalid');
+  }
+
   render() {
     return (
       <Host>
-        <ix-helper-text-wrapper helperText={this.helperText} label={this.label}>
+        <ix-helper-text-wrapper
+          helperText={this.helperText}
+          label={this.label}
+          errorText={this.errorText}
+          isInvalid={this.isInvalid}
+        >
           <InputElement field={this} type="text"></InputElement>
         </ix-helper-text-wrapper>
       </Host>

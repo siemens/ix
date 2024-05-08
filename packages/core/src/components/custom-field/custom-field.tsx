@@ -19,6 +19,13 @@ export class CustomField implements IxComponent, HelperTextWrapper {
    */
   @Prop() label: string;
 
+  /**
+   * tbd
+   *
+   * TODO validation observer needed
+   */
+  @Prop({ reflect: true }) errorText: string;
+
   private mutationObserver: MutationObserver;
 
   constructor() {

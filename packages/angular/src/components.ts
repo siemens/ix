@@ -482,14 +482,14 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['helperText', 'label']
+  inputs: ['errorText', 'helperText', 'label']
 })
 @Component({
   selector: 'ix-custom-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['helperText', 'label'],
+  inputs: ['errorText', 'helperText', 'label'],
 })
 export class IxCustomField {
   protected el: HTMLElement;
@@ -538,14 +538,14 @@ The event payload contains information about the selected date range.
 
 
 @ProxyCmp({
-  inputs: ['format', 'helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value']
+  inputs: ['errorText', 'format', 'helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value']
 })
 @Component({
   selector: 'ix-date-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['format', 'helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value'],
+  inputs: ['errorText', 'format', 'helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value'],
 })
 export class IxDateField {
   protected el: HTMLElement;
@@ -1111,14 +1111,14 @@ export declare interface IxGroupItem extends Components.IxGroupItem {
 
 
 @ProxyCmp({
-  inputs: ['helperText', 'label']
+  inputs: ['errorText', 'helperText', 'isInvalid', 'label']
 })
 @Component({
   selector: 'ix-helper-text-wrapper',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['helperText', 'label'],
+  inputs: ['errorText', 'helperText', 'isInvalid', 'label'],
 })
 export class IxHelperTextWrapper {
   protected el: HTMLElement;
@@ -2202,14 +2202,14 @@ export declare interface IxTabs extends Components.IxTabs {
 
 
 @ProxyCmp({
-  inputs: ['helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value']
+  inputs: ['errorText', 'helperText', 'label', 'name', 'placeholder', 'required', 'value']
 })
 @Component({
   selector: 'ix-text-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['helperText', 'isInvalid', 'label', 'name', 'placeholder', 'required', 'value'],
+  inputs: ['errorText', 'helperText', 'label', 'name', 'placeholder', 'required', 'value'],
 })
 export class IxTextField {
   protected el: HTMLElement;

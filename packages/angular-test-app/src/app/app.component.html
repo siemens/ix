@@ -6,6 +6,10 @@ SPDX-License-Identifier: MIT
 
 <!-- <router-outlet></router-outlet> -->
 <form [formGroup]="profileForm">
-  <ix-text-field label="Project" formControlName="projectName"></ix-text-field>
+  <ix-text-field
+    label="Project"
+    formControlName="projectName"
+    error-text="bla"
+  ></ix-text-field>
   <ix-button type="submit">Submit</ix-button>
 </form>

@@ -18,3 +18,4 @@ export * from './select-value-accessor';
 export * from './theme';
 export * from './toast';
 export * from './tree';
+export * from './control-value-accessors/text-value-accessor';

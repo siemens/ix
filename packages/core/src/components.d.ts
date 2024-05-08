@@ -517,6 +517,10 @@ export namespace Components {
     }
     interface IxCustomField {
         /**
+          * tbd  TODO validation observer needed
+         */
+        "errorText": string;
+        /**
           * Show text below the field component
          */
         "helperText": string;
@@ -593,6 +597,10 @@ export namespace Components {
         "combineDateEnd": boolean;
         "combineDateStart": boolean;
         /**
+          * tbd
+         */
+        "errorText": string;
+        /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format": string;
@@ -600,10 +608,6 @@ export namespace Components {
           * tbd
          */
         "helperText": string;
-        /**
-          * tbd
-         */
-        "isInvalid": boolean;
         /**
           * tbd
          */
@@ -1158,9 +1162,17 @@ export namespace Components {
     }
     interface IxHelperTextWrapper {
         /**
+          * Label for the field component
+         */
+        "errorText": string;
+        /**
           * Show text below the field component
          */
         "helperText": string;
+        /**
+          * Is the field component invalid
+         */
+        "isInvalid": boolean;
         /**
           * Label for the field component
          */
@@ -2137,11 +2149,11 @@ export namespace Components {
         /**
           * tbd
          */
-        "helperText": string;
+        "errorText": string;
         /**
           * tbd
          */
-        "isInvalid": boolean;
+        "helperText": string;
         /**
           * tbd
          */
@@ -4726,6 +4738,10 @@ declare namespace LocalJSX {
     }
     interface IxCustomField {
         /**
+          * tbd  TODO validation observer needed
+         */
+        "errorText"?: string;
+        /**
           * Show text below the field component
          */
         "helperText"?: string;
@@ -4802,6 +4818,10 @@ declare namespace LocalJSX {
         "combineDateEnd"?: boolean;
         "combineDateStart"?: boolean;
         /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format"?: string;
@@ -4809,10 +4829,6 @@ declare namespace LocalJSX {
           * tbd
          */
         "helperText"?: string;
-        /**
-          * tbd
-         */
-        "isInvalid"?: boolean;
         /**
           * tbd
          */
@@ -5437,9 +5453,17 @@ declare namespace LocalJSX {
     }
     interface IxHelperTextWrapper {
         /**
+          * Label for the field component
+         */
+        "errorText"?: string;
+        /**
           * Show text below the field component
          */
         "helperText"?: string;
+        /**
+          * Is the field component invalid
+         */
+        "isInvalid"?: boolean;
         /**
           * Label for the field component
          */
@@ -6494,11 +6518,11 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
-        "helperText"?: string;
+        "errorText"?: string;
         /**
           * tbd
          */
-        "isInvalid"?: boolean;
+        "helperText"?: string;
         /**
           * tbd
          */

@@ -49,11 +49,6 @@ export class DateField implements IxFieldComponent {
   /**
    * tbd
    */
-  @Prop() isInvalid: boolean;
-
-  /**
-   * tbd
-   */
   @Prop() required: boolean;
 
   /**
@@ -75,14 +70,21 @@ export class DateField implements IxFieldComponent {
   /**
    * tbd
    */
+  @Prop({ reflect: true }) errorText: string;
+
+  /**
+   * tbd
+   */
   @Event() valueChanged: EventEmitter<string>;
 
   @State() show = false;
   @State() from: string;
   @State() isInputInvalid = false;
+  @State() isInvalid = false;
 
   private inputElementRef = makeRef<HTMLInputElement>();
   private dropdownElementRef = makeRef<HTMLIxDropdownElement>();
+  classObserver = new MutationObserver(() => this.checkClassList());
 
   /**
    * tbd
@@ -99,6 +101,8 @@ export class DateField implements IxFieldComponent {
     } else {
       this.watchValue();
     }
+
+    this.checkClassList();
   }
 
   @Watch('value')
@@ -136,13 +140,22 @@ export class DateField implements IxFieldComponent {
     }
   }
 
+  private checkClassList() {
+    this.isInvalid = this.hostElement.classList.contains('ix-invalid');
+  }
+
   render() {
     return (
       <Host>
-        <ix-helper-text-wrapper helperText={this.helperText} label={this.label}>
+        <ix-helper-text-wrapper
+          helperText={this.helperText}
+          label={this.label}
+          isInvalid={this.isInvalid}
+          errorText={this.errorText}
+        >
           <input
             class={{
-              'is-invalid': this.isInputInvalid,
+              // 'is-invalid': this.isInputInvalid,
               'combine-start': this.combineDateStart,
               'combine-end': this.combineDateEnd,
             }}

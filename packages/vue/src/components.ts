@@ -278,7 +278,8 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 
 export const IxCustomField = /*@__PURE__*/ defineContainer<JSX.IxCustomField>('ix-custom-field', defineIxCustomField, [
   'helperText',
-  'label'
+  'label',
+  'errorText'
 ]);
 
 
@@ -312,6 +313,7 @@ export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField>('ix-da
   'label',
   'combineDateStart',
   'combineDateEnd',
+  'errorText',
   'valueChanged'
 ]);
 
@@ -520,7 +522,9 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
 
 export const IxHelperTextWrapper = /*@__PURE__*/ defineContainer<JSX.IxHelperTextWrapper>('ix-helper-text-wrapper', defineIxHelperTextWrapper, [
   'helperText',
-  'label'
+  'label',
+  'errorText',
+  'isInvalid'
 ]);
 
 
@@ -911,10 +915,10 @@ export const IxTextField = /*@__PURE__*/ defineContainer<JSX.IxTextField>('ix-te
   'name',
   'placeholder',
   'value',
-  'isInvalid',
   'required',
   'helperText',
   'label',
+  'errorText',
   'valueChanged'
 ]);
 

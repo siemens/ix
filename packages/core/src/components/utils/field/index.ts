@@ -12,6 +12,7 @@ import { IxComponent } from '../internal';
 export interface HelperTextWrapper {
   helperText: string;
   label: string;
+  errorText: string;
 }
 
 /*
@@ -39,15 +40,15 @@ export interface IxFieldComponent<T = any>
   /**
    * @Prop declaration to handle internal Attach element
    */
-  isInvalid: boolean;
-
-  /**
-   * @Prop declaration to handle internal Attach element
-   */
   required: boolean;
 
   valueChanged: EventEmitter<T>;
   formInternals: ElementInternals;
+
+  /**
+   * @State declaration to handle internal Attach element
+   */
+  isInvalid: boolean;
 
   updateFormInternalValue(value: T): void;
 

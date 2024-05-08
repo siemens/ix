@@ -15,6 +15,17 @@ export class HelperTextWrapper {
    * Label for the field component
    */
   @Prop() label: string;
+
+  /**
+   * Label for the field component
+   */
+  @Prop() errorText: string;
+
+  /**
+   * Is the field component invalid
+   */
+  @Prop() isInvalid: boolean;
+
   render() {
     return (
       <Host>
@@ -23,6 +34,9 @@ export class HelperTextWrapper {
         </ix-typography>
         <slot></slot>
         <ix-typography>{this.helperText}</ix-typography>
+        {this.isInvalid && (
+          <ix-typography color="alarm">{this.errorText}</ix-typography>
+        )}
       </Host>
     );
   }
