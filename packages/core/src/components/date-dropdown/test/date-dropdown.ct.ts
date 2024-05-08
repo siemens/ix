@@ -250,3 +250,30 @@ test('select different year', async ({ mount, page }) => {
   await expect(yearMonthDropdown).not.toBeVisible();
   await expect(yearMonthButton).toHaveText('March 2020');
 });
+
+test('disable', async ({ mount, page }) => {
+  await mount(`<ix-date-dropdown disabled></ix-date-dropdown>`);
+  const dateDropdown = page.locator('ix-date-dropdown');
+
+  const trigger = page.locator('[data-date-dropdown-trigger]');
+  await expect(trigger).toHaveAttribute('disabled');
+
+  await dateDropdown.click();
+
+  const dropdown = dateDropdown.locator('[data-date-dropdown]');
+  await expect(dropdown).not.toBeVisible();
+});
+
+test('close dropdown after disabled property = true', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-date-dropdown></ix-date-dropdown>`);
+  const dateDropdown = page.locator('ix-date-dropdown');
+  await dateDropdown.click();
+  await dateDropdown.evaluate((dd: HTMLIxDateDropdownElement) => {
+    dd.disabled = true;
+  });
+  const dropdown = dateDropdown.locator('[data-date-dropdown]');
+  await expect(dropdown).not.toBeVisible();
+});

@@ -532,6 +532,11 @@ export namespace Components {
          */
         "dateRangeOptions": DateDropdownOption[];
         /**
+          * Disable the button that opens the dropdown containing the date picker.
+          * @since 2.3.0
+         */
+        "disabled": boolean;
+        /**
           * Date format string. See
           * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
@@ -1406,7 +1411,7 @@ export namespace Components {
          */
         "activeTabLabel": string;
         /**
-          * Label of first tab
+          * Content of the header
          */
         "label": string;
         /**
@@ -4593,6 +4598,11 @@ declare namespace LocalJSX {
          */
         "dateRangeOptions"?: DateDropdownOption[];
         /**
+          * Disable the button that opens the dropdown containing the date picker.
+          * @since 2.3.0
+         */
+        "disabled"?: boolean;
+        /**
           * Date format string. See
           * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
          */
@@ -5517,7 +5527,7 @@ declare namespace LocalJSX {
          */
         "activeTabLabel"?: string;
         /**
-          * Label of first tab
+          * Content of the header
          */
         "label"?: string;
         /**

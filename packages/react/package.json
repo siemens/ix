@@ -39,7 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "babel-jest": "^29.7.0",
-    "eslint-config-ix": "*",
+    "eslint-config-ix": "workspace:*",
     "eslint-plugin-react": "^7.31.11",
     "happy-dom": "^14.7.1",
     "identity-obj-proxy": "^3.0.0",
