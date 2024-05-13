@@ -7,37 +7,58 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Host, h, Element, Listen, State } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Element,
+  Listen,
+  State,
+  Prop,
+} from '@stencil/core';
 import { IxComponent } from '../utils/internal';
+import {
+  ClassFieldMappingResult,
+  HelperText,
+  OnClassField,
+} from '../utils/field';
 
 @Component({
   tag: 'ix-date-range-field',
   styleUrl: 'date-range-field.scss',
   shadow: true,
 })
-export class DateRangeField implements IxComponent {
+export class DateRangeField implements IxComponent, HelperText {
   @Element() hostElement: HTMLIxDateRangeFieldElement;
 
+  /**
+   * tbd
+   */
+  @Prop() errorText: string;
+
+  /**
+   * tbd
+   */
+  @Prop() helperText: string;
+
+  /**
+   * tbd
+   */
+  @Prop() label: string;
+
   @State() focus = false;
+  @State() isInvalid = false;
 
   private dateField1: HTMLIxDateFieldElement;
   private dateField2: HTMLIxDateFieldElement;
 
-  observer = new MutationObserver(() => {
-    this.updateLocalElementRef();
-  });
-
   componentWillLoad(): void | Promise<void> {
     this.updateLocalElementRef();
-    this.observer.observe(this.hostElement, {
-      childList: true,
-    });
   }
 
-  disconnectedCallback(): void {
-    if (this.observer) {
-      this.observer.disconnect();
-    }
+  @OnClassField()
+  checkClassList({ isInvalid }: ClassFieldMappingResult) {
+    this.isInvalid = isInvalid;
   }
 
   private updateLocalElementRef() {
@@ -82,14 +103,20 @@ export class DateRangeField implements IxComponent {
   render() {
     return (
       <Host>
-        <div
-          class={{
-            'date-field-wrapper': true,
-            focus: this.focus,
-          }}
+        <ix-helper-text-wrapper
+          errorText={this.errorText}
+          helperText={this.helperText}
+          isInvalid={this.isInvalid}
         >
-          <slot></slot>
-        </div>
+          <div
+            class={{
+              'date-field-wrapper': true,
+              focus: this.focus,
+            }}
+          >
+            <slot></slot>
+          </div>
+        </ix-helper-text-wrapper>
       </Host>
     );
   }

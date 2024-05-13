@@ -86,6 +86,8 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
+    interface CheckboxGroup {
+    }
     /**
      * @since 1.6.0
      */
@@ -417,6 +419,8 @@ export namespace Components {
         "suggestions": string[];
         "tmpDisableScrollIntoView": boolean;
     }
+    interface IxCheckbox {
+    }
     interface IxChip {
         /**
           * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
@@ -517,7 +521,7 @@ export namespace Components {
     }
     interface IxCustomField {
         /**
-          * tbd  TODO validation observer needed
+          * tbd
          */
         "errorText": string;
         /**
@@ -701,6 +705,18 @@ export namespace Components {
         "weekStartIndex": number;
     }
     interface IxDateRangeField {
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * tbd
+         */
+        "helperText": string;
+        /**
+          * tbd
+         */
+        "label": string;
     }
     interface IxDateTimeCard {
         /**
@@ -1061,6 +1077,8 @@ export namespace Components {
           * Default value
          */
         "value": string;
+    }
+    interface IxFieldLabel {
     }
     interface IxFilterChip {
         /**
@@ -2767,6 +2785,12 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
+    interface HTMLCheckboxGroupElement extends Components.CheckboxGroup, HTMLStencilElement {
+    }
+    var HTMLCheckboxGroupElement: {
+        prototype: HTMLCheckboxGroupElement;
+        new (): HTMLCheckboxGroupElement;
+    };
     /**
      * @since 1.6.0
      */
@@ -2967,6 +2991,12 @@ declare global {
     var HTMLIxCategoryFilterElement: {
         prototype: HTMLIxCategoryFilterElement;
         new (): HTMLIxCategoryFilterElement;
+    };
+    interface HTMLIxCheckboxElement extends Components.IxCheckbox, HTMLStencilElement {
+    }
+    var HTMLIxCheckboxElement: {
+        prototype: HTMLIxCheckboxElement;
+        new (): HTMLIxCheckboxElement;
     };
     interface HTMLIxChipElementEventMap {
         "closeChip": any;
@@ -3276,6 +3306,12 @@ declare global {
     var HTMLIxExpandingSearchElement: {
         prototype: HTMLIxExpandingSearchElement;
         new (): HTMLIxExpandingSearchElement;
+    };
+    interface HTMLIxFieldLabelElement extends Components.IxFieldLabel, HTMLStencilElement {
+    }
+    var HTMLIxFieldLabelElement: {
+        prototype: HTMLIxFieldLabelElement;
+        new (): HTMLIxFieldLabelElement;
     };
     interface HTMLIxFilterChipElementEventMap {
         "closeClick": void;
@@ -4158,6 +4194,7 @@ declare global {
         new (): HTMLIxWorkflowStepsElement;
     };
     interface HTMLElementTagNameMap {
+        "checkbox-group": HTMLCheckboxGroupElement;
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
@@ -4175,6 +4212,7 @@ declare global {
         "ix-card-list": HTMLIxCardListElement;
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
+        "ix-checkbox": HTMLIxCheckboxElement;
         "ix-chip": HTMLIxChipElement;
         "ix-col": HTMLIxColElement;
         "ix-content": HTMLIxContentElement;
@@ -4199,6 +4237,7 @@ declare global {
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
         "ix-expanding-search": HTMLIxExpandingSearchElement;
+        "ix-field-label": HTMLIxFieldLabelElement;
         "ix-filter-chip": HTMLIxFilterChipElement;
         "ix-flip-tile": HTMLIxFlipTileElement;
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
@@ -4268,6 +4307,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface CheckboxGroup {
+    }
     /**
      * @since 1.6.0
      */
@@ -4641,6 +4682,8 @@ declare namespace LocalJSX {
         "suggestions"?: string[];
         "tmpDisableScrollIntoView"?: boolean;
     }
+    interface IxCheckbox {
+    }
     interface IxChip {
         /**
           * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
@@ -4750,7 +4793,7 @@ declare namespace LocalJSX {
     }
     interface IxCustomField {
         /**
-          * tbd  TODO validation observer needed
+          * tbd
          */
         "errorText"?: string;
         /**
@@ -4956,6 +4999,18 @@ declare namespace LocalJSX {
         "weekStartIndex"?: number;
     }
     interface IxDateRangeField {
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * tbd
+         */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
+        "label"?: string;
     }
     interface IxDateTimeCard {
         /**
@@ -5346,6 +5401,8 @@ declare namespace LocalJSX {
           * Default value
          */
         "value"?: string;
+    }
+    interface IxFieldLabel {
     }
     interface IxFilterChip {
         /**
@@ -6977,6 +7034,7 @@ declare namespace LocalJSX {
         "vertical"?: boolean;
     }
     interface IntrinsicElements {
+        "checkbox-group": CheckboxGroup;
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
         "ix-application-header": IxApplicationHeader;
@@ -6994,6 +7052,7 @@ declare namespace LocalJSX {
         "ix-card-list": IxCardList;
         "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
+        "ix-checkbox": IxCheckbox;
         "ix-chip": IxChip;
         "ix-col": IxCol;
         "ix-content": IxContent;
@@ -7018,6 +7077,7 @@ declare namespace LocalJSX {
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
         "ix-expanding-search": IxExpandingSearch;
+        "ix-field-label": IxFieldLabel;
         "ix-filter-chip": IxFilterChip;
         "ix-flip-tile": IxFlipTile;
         "ix-flip-tile-content": IxFlipTileContent;
@@ -7090,6 +7150,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "checkbox-group": LocalJSX.CheckboxGroup & JSXBase.HTMLAttributes<HTMLCheckboxGroupElement>;
             /**
              * @since 1.6.0
              */
@@ -7131,6 +7192,7 @@ declare module "@stencil/core" {
              */
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
+            "ix-checkbox": LocalJSX.IxCheckbox & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             /**
              * @since 2.0.0
@@ -7179,6 +7241,7 @@ declare module "@stencil/core" {
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
             "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
+            "ix-field-label": LocalJSX.IxFieldLabel & JSXBase.HTMLAttributes<HTMLIxFieldLabelElement>;
             "ix-filter-chip": LocalJSX.IxFilterChip & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;

@@ -23,27 +23,10 @@ import { DateTime } from 'luxon';
 import { dropdownController } from '../dropdown/dropdown-controller';
 import { IxFieldComponent } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
-
-export type ClassMutationObserver = {
-  destroy: () => void;
-};
-
-function createClassMutationObserver(
-  element: HTMLElement,
-  callback: () => void
-): ClassMutationObserver {
-  const observer = new MutationObserver(callback);
-  observer.observe(element, {
-    attributes: true,
-    attributeFilter: ['class'],
-  });
-
-  return {
-    destroy() {
-      observer.disconnect();
-    },
-  };
-}
+import {
+  ClassMutationObserver,
+  createClassMutationObserver,
+} from '../utils/field';
 
 @Component({
   tag: 'ix-date-field',
@@ -117,7 +100,6 @@ export class DateField implements IxFieldComponent {
   @State() from: string;
   @State() isInputInvalid = false;
   @State() isInvalid = false;
-
   @State() focus = false;
 
   private inputElementRef = makeRef<HTMLInputElement>();
@@ -193,42 +175,52 @@ export class DateField implements IxFieldComponent {
     this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
+  private renderInput() {
+    return (
+      <input
+        class={{
+          'is-invalid': this.isInputInvalid,
+          'combine-start': this.combineDateStart,
+          'combine-end': this.combineDateEnd,
+        }}
+        required={this.required}
+        ref={this.inputElementRef}
+        type="text"
+        value={this.value}
+        onInput={(event) => {
+          const target = event.target as HTMLInputElement;
+          this.onInput(target.value);
+        }}
+        onClick={(event) => {
+          if (this.show) {
+            event.stopPropagation();
+            event.preventDefault();
+          }
+        }}
+        onFocus={async () => {
+          this.openDropdown();
+          this.ixFocus.emit();
+        }}
+        onBlur={() => this.ixBlur.emit()}
+      ></input>
+    );
+  }
+
   render() {
     return (
       <Host>
-        <ix-helper-text-wrapper
-          helperText={this.helperText}
-          label={this.label}
-          isInvalid={this.isInvalid}
-          errorText={this.errorText}
-        >
-          <input
-            class={{
-              'is-invalid': this.isInputInvalid,
-              'combine-start': this.combineDateStart,
-              'combine-end': this.combineDateEnd,
-            }}
-            required={this.required}
-            ref={this.inputElementRef}
-            type="text"
-            value={this.value}
-            onInput={(event) => {
-              const target = event.target as HTMLInputElement;
-              this.onInput(target.value);
-            }}
-            onClick={(event) => {
-              if (this.show) {
-                event.stopPropagation();
-                event.preventDefault();
-              }
-            }}
-            onFocus={async () => {
-              this.openDropdown();
-              this.ixFocus.emit();
-            }}
-            onBlur={() => this.ixBlur.emit()}
-          ></input>
-        </ix-helper-text-wrapper>
+        {this.combineDateStart || this.combineDateEnd ? (
+          this.renderInput()
+        ) : (
+          <ix-helper-text-wrapper
+            helperText={this.helperText}
+            label={this.label}
+            isInvalid={this.isInvalid}
+            errorText={this.errorText}
+          >
+            {this.renderInput()}
+          </ix-helper-text-wrapper>
+        )}
         <ix-dropdown
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}

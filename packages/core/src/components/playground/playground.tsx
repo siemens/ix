@@ -21,6 +21,14 @@ import { DateTime } from 'luxon';
 export class PlaygroundInternal {
   @Element() hostElement: HTMLIxPlaygroundInternalElement;
 
+  componentDidLoad() {
+    setTimeout(() => {
+      this.hostElement
+        .querySelector('ix-text-field[name="project"]')
+        .classList.add('ix-invalid');
+    }, 3000);
+  }
+
   render() {
     return (
       <Host>
@@ -34,7 +42,34 @@ export class PlaygroundInternal {
             }
           }}
         >
-          <ix-text-field
+          <ix-layout-grid>
+            <ix-row>
+              <ix-col
+                size="1"
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <ix-field-label>Project:</ix-field-label>
+              </ix-col>
+              <ix-col>
+                <ix-text-field
+                  name="project"
+                  helperText="Name"
+                  errorText="Error"
+                ></ix-text-field>
+              </ix-col>
+            </ix-row>
+          </ix-layout-grid>
+
+          <ix-text-field label="test"></ix-text-field>
+
+          {/* <ix-custom-field
+            helperText="Helper text"
+            errorText="Error!"
+            label="My Label"
+          >
+            <ix-text-field name="project"></ix-text-field>
+          </ix-custom-field> */}
+          {/* <ix-text-field
             name="project"
             placeholder="123"
             onValueChanged={console.log}
@@ -60,16 +95,14 @@ export class PlaygroundInternal {
                 );
             }}
           ></ix-date-field>
-
           <ix-custom-field helperText="Helper text" label="Project">
-            <ix-date-field name="start" value={'2024/05/01'}></ix-date-field>
-            <ix-date-field name="end" value={'2024/05/05'}></ix-date-field>
+            <ix-text-field></ix-text-field>
           </ix-custom-field>
 
-          <ix-date-range-field>
+          <ix-date-range-field errorText="test">
             <ix-date-field name="start1" value={'2024/05/01'}></ix-date-field>
             <ix-date-field name="end1" value={'2024/05/05'}></ix-date-field>
-          </ix-date-range-field>
+          </ix-date-range-field> */}
 
           <ix-button type="submit">Button</ix-button>
         </form>

@@ -1,11 +1,12 @@
 import { Component, Host, Prop, h } from '@stencil/core';
+import { HelperText } from '../utils/field';
 
 @Component({
   tag: 'ix-helper-text-wrapper',
   styleUrl: 'helper-text-wrapper.css',
   shadow: true,
 })
-export class HelperTextWrapper {
+export class HelperTextWrapper implements HelperText {
   /**
    * Show text below the field component
    */
@@ -26,17 +27,20 @@ export class HelperTextWrapper {
    */
   @Prop() isInvalid: boolean;
 
+  private renderHelperText() {
+    if (this.isInvalid) {
+      return <ix-typography color="alarm">{this.errorText}</ix-typography>;
+    }
+
+    return <ix-typography>{this.helperText}</ix-typography>;
+  }
+
   render() {
     return (
       <Host>
-        <ix-typography color="soft" format="label">
-          {this.label}
-        </ix-typography>
+        <ix-field-label>{this.label}</ix-field-label>
         <slot></slot>
-        <ix-typography>{this.helperText}</ix-typography>
-        {this.isInvalid && (
-          <ix-typography color="alarm">{this.errorText}</ix-typography>
-        )}
+        {this.renderHelperText()}
       </Host>
     );
   }

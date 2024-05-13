@@ -20,6 +20,7 @@ import {
 } from '@stencil/core';
 import { IxFieldComponent } from '../utils/field';
 import { InputElement } from './input-element';
+import { ClassFieldMappingResult, OnClassField } from '../utils/field';
 
 @Component({
   tag: 'ix-text-field',
@@ -73,33 +74,22 @@ export class TextField implements IxFieldComponent<string> {
 
   @State() isInvalid = false;
 
-  classObserver = new MutationObserver(() => this.checkClassList());
+  connectedCallback(): void {
+    /** */
+  }
+
+  @OnClassField()
+  updateClassMappings({ isInvalid }: ClassFieldMappingResult) {
+    this.isInvalid = isInvalid;
+  }
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
-    this.checkClassList();
-  }
-
-  componentDidLoad(): void {
-    this.classObserver.observe(this.hostElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-    });
   }
 
   updateFormInternalValue(value: string) {
     this.formInternals.setFormValue(value);
     this.value = value;
-  }
-
-  disconnectedCallback(): void {
-    if (this.classObserver) {
-      this.classObserver.disconnect();
-    }
-  }
-
-  private checkClassList() {
-    this.isInvalid = this.hostElement.classList.contains('ix-invalid');
   }
 
   render() {

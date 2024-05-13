@@ -1,13 +1,13 @@
-import { Component, Element, Host, Prop, h } from '@stencil/core';
+import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
-import { HelperTextWrapper } from '../utils/field';
+import { HelperText, checkFieldClasses } from '../utils/field';
 
 @Component({
   tag: 'ix-custom-field',
   styleUrl: 'custom-field.scss',
   shadow: true,
 })
-export class CustomField implements IxComponent, HelperTextWrapper {
+export class CustomField implements IxComponent, HelperText {
   @Element() hostElement: HTMLIxCustomFieldElement;
   /**
    * Show text below the field component
@@ -21,10 +21,10 @@ export class CustomField implements IxComponent, HelperTextWrapper {
 
   /**
    * tbd
-   *
-   * TODO validation observer needed
    */
   @Prop({ reflect: true }) errorText: string;
+
+  @State() isInvalid: boolean;
 
   private mutationObserver: MutationObserver;
 
@@ -34,13 +34,9 @@ export class CustomField implements IxComponent, HelperTextWrapper {
 
   private onMutation() {
     Array.from(this.hostElement.children).forEach((child) => {
-      if (child.tagName === 'IX-DATE-FIELD') {
-        const nextSibling = child.nextElementSibling;
-        if (nextSibling && nextSibling.tagName === 'IX-DATE-FIELD') {
-          (child as HTMLIxDateFieldElement).combineDateStart = true;
-          (nextSibling as HTMLIxDateFieldElement).combineDateEnd = true;
-        }
-      }
+      const { isInvalid } = checkFieldClasses(child as HTMLElement);
+      this.isInvalid = isInvalid;
+      console.log(child, isInvalid);
     });
   }
 
@@ -51,6 +47,9 @@ export class CustomField implements IxComponent, HelperTextWrapper {
   connectedCallback() {
     this.mutationObserver.observe(this.hostElement, {
       childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class'],
     });
   }
 
@@ -63,7 +62,12 @@ export class CustomField implements IxComponent, HelperTextWrapper {
   render() {
     return (
       <Host>
-        <ix-helper-text-wrapper helperText={this.helperText} label={this.label}>
+        <ix-helper-text-wrapper
+          errorText={this.errorText}
+          helperText={this.helperText}
+          label={this.label}
+          isInvalid={this.isInvalid}
+        >
           <slot></slot>
         </ix-helper-text-wrapper>
       </Host>

@@ -21,6 +21,8 @@ import { Subscription } from 'rxjs';
 export class ValueAccessor
   implements ControlValueAccessor, AfterViewInit, OnDestroy
 {
+  public static readonly ANGULAR_CLASS_REFIX = 'ng-';
+
   private onChange: (value: any) => void = () => {
     /**/
   };
@@ -34,37 +36,24 @@ export class ValueAccessor
 
   writeValue(value: any): void {
     this.elementRef.nativeElement.value = this.lastValue = value;
-    setIonicClasses(this.elementRef);
+    mapNgToIxClassNames(this.elementRef);
   }
 
-  /**
-   * Notifies the ControlValueAccessor of a change in the value of the control.
-   *
-   * This is called by each of the ValueAccessor directives when we want to update
-   * the status and validity of the form control. For example with text components this
-   * is called when the ionInput event is fired. For select components this is called
-   * when the ionChange event is fired.
-   *
-   * This also updates the Ionic form status classes on the element.
-   *
-   * @param el The component element.
-   * @param value The new value of the control.
-   */
   handleValueChange(el: HTMLElement, value: any): void {
     if (el === this.elementRef.nativeElement) {
       if (value !== this.lastValue) {
         this.lastValue = value;
         this.onChange(value);
       }
-      setIonicClasses(this.elementRef);
+      mapNgToIxClassNames(this.elementRef);
     }
   }
 
-  @HostListener('ionBlur', ['$event.target'])
+  @HostListener('ixBlur', ['$event.target'])
   _handleBlurEvent(el: any): void {
     if (el === this.elementRef.nativeElement) {
       this.onTouched();
-      setIonicClasses(this.elementRef);
+      mapNgToIxClassNames(this.elementRef);
     }
   }
 
@@ -98,53 +87,55 @@ export class ValueAccessor
       return;
     }
 
-    // Listen for changes in validity, disabled, or pending states
     if (ngControl.statusChanges) {
       this.statusChanges = ngControl.statusChanges.subscribe(() => {
-        setIonicClasses(this.elementRef);
+        mapNgToIxClassNames(this.elementRef);
       });
     }
 
-    /**
-     * TODO FW-2787: Remove this in favor of https://github.com/angular/angular/issues/10887
-     * whenever it is implemented.
-     */
-    const formControl = ngControl.control as any;
-    if (formControl) {
-      const methodsToPatch = [
-        'markAsTouched',
-        'markAllAsTouched',
-        'markAsUntouched',
-        'markAsDirty',
-        'markAsPristine',
-      ];
-      methodsToPatch.forEach((method) => {
-        if (typeof formControl[method] !== 'undefined') {
-          const oldFn = formControl[method].bind(formControl);
-          formControl[method] = (...params: any[]) => {
-            oldFn(...params);
-            setIonicClasses(this.elementRef);
-          };
-        }
-      });
-    }
+    detourFormControlMethods(ngControl, this.elementRef);
   }
 }
 
-export const setIonicClasses = (element: ElementRef): void => {
+const detourFormControlMethods = (
+  ngControl: NgControl,
+  elementRef: ElementRef
+) => {
+  const formControl = ngControl.control as any;
+  if (formControl) {
+    const methodsToPatch = [
+      'markAsTouched',
+      'markAllAsTouched',
+      'markAsUntouched',
+      'markAsDirty',
+      'markAsPristine',
+    ];
+    methodsToPatch.forEach((method) => {
+      if (typeof formControl[method] !== 'undefined') {
+        const oldFn = formControl[method].bind(formControl);
+        formControl[method] = (...params: any[]) => {
+          oldFn(...params);
+          mapNgToIxClassNames(elementRef);
+        };
+      }
+    });
+  }
+};
+
+const mapNgToIxClassNames = (element: ElementRef): void => {
   setTimeout(() => {
     const input = element.nativeElement as HTMLInputElement;
-    // const hasValue = input.value != null && input.value.toString().length > 0;
     const classes = getClasses(input);
-    setClasses(input, classes);
-    // const item = input.closest('ion-item');
-    // if (item) {
-    //   if (hasValue) {
-    //     setClasses(item, [...classes, 'item-has-value']);
-    //   } else {
-    //     setClasses(item, classes);
-    //   }
-    // }
+    const classList = input.classList;
+    classList.remove(
+      'ix-valid',
+      'ix-invalid',
+      'ix-touched',
+      'ix-untouched',
+      'ix-dirty',
+      'ix-pristine'
+    );
+    classList.add(...classes);
   });
 };
 
@@ -153,26 +144,9 @@ const getClasses = (element: HTMLElement) => {
   const classes: string[] = [];
   for (let i = 0; i < classList.length; i++) {
     const item = classList.item(i);
-    if (item !== null && startsWith(item, 'ng-')) {
+    if (item !== null && item.startsWith(ValueAccessor.ANGULAR_CLASS_REFIX)) {
       classes.push(`ix-${item.substring(3)}`);
     }
   }
   return classes;
-};
-
-const setClasses = (element: HTMLElement, classes: string[]) => {
-  const classList = element.classList;
-  classList.remove(
-    'ix-valid',
-    'ix-invalid',
-    'ix-touched',
-    'ix-untouched',
-    'ix-dirty',
-    'ix-pristine'
-  );
-  classList.add(...classes);
-};
-
-const startsWith = (input: string, search: string): boolean => {
-  return input.substring(0, search.length) === search;
 };

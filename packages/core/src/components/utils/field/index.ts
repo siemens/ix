@@ -9,9 +9,11 @@
 import { EventEmitter } from '@stencil/core';
 import { IxComponent } from '../internal';
 
-export interface HelperTextWrapper {
-  helperText: string;
+export * from './field-mapping';
+
+export interface HelperText {
   label: string;
+  helperText: string;
   errorText: string;
 }
 
@@ -19,9 +21,7 @@ export interface HelperTextWrapper {
 TODO
 Missing to expose all native input attributes
 */
-export interface IxFieldComponent<T = any>
-  extends IxComponent,
-    HelperTextWrapper {
+export interface IxFieldComponent<T = any> extends IxComponent, HelperText {
   /**
    * Add `@Prop({ reflect: true })` to the `name` prop
    */
