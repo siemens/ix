@@ -75,6 +75,34 @@ name="button-grey-ghost"
 hideInitalCodePreview
 examplesByName></Playground>
 
+### Danger
+
+<Playground
+name="button-danger"
+hideInitalCodePreview
+examplesByName></Playground>
+
+### Danger Outline
+
+<Playground
+name="button-danger-outline"
+hideInitalCodePreview
+examplesByName></Playground>
+
+### Danger Ghost
+
+<Playground
+name="button-danger-ghost"
+hideInitalCodePreview
+examplesByName></Playground>
+
+### Button group
+
+<Playground
+name="button-group"
+hideInitalCodePreview
+examplesByName></Playground>
+
 ### Button group
 
 <Playground

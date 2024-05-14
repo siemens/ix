@@ -1225,7 +1225,6 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
-        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1259,9 +1258,6 @@
           "ix-button"
         ],
         "ix-modal-example": [
-          "ix-button"
-        ],
-        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
