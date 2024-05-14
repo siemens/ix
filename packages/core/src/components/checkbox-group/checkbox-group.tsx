@@ -1,6 +1,10 @@
-import { Component, Element, Host, Prop, h } from '@stencil/core';
+import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
-import { HelperText } from '../utils/field';
+import {
+  ClassFieldMappingResult,
+  HelperText,
+  OnClassField,
+} from '../utils/field';
 
 @Component({
   tag: 'ix-checkbox-group',
@@ -24,16 +28,26 @@ export class CheckboxGroup implements IxComponent, HelperText {
    */
   @Prop({ reflect: true }) errorText: string;
 
+  @State() isInvalid = false;
+
+  @OnClassField({
+    includeChildren: true,
+  })
+  onClassFieldUpdate({ isInvalid }: ClassFieldMappingResult) {
+    this.isInvalid = isInvalid;
+  }
+
   render() {
     return (
       <Host>
-        <ix-custom-field
+        <ix-helper-text-wrapper
           label={this.label}
           helperText={this.helperText}
           errorText={this.errorText}
+          isInvalid={this.isInvalid}
         >
           <slot></slot>
-        </ix-custom-field>
+        </ix-helper-text-wrapper>
       </Host>
     );
   }

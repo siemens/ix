@@ -120,7 +120,7 @@ export class Checkbox implements IxFormComponent<string> {
         >
           <path
             d="M3.65625 8.15625L8.4375 12.9375L14.625 3.9375"
-            stroke="var(--theme-color-primary--contrast)"
+            stroke="var(--ix-checkbox-check-color)"
             stroke-width="2"
           />
         </svg>
@@ -142,7 +142,7 @@ export class Checkbox implements IxFormComponent<string> {
             y="8"
             width="12"
             height="2"
-            fill="var(--theme-color-primary--contrast)"
+            fill="var(--ix-checkbox-check-color)"
           />
         </svg>
       );

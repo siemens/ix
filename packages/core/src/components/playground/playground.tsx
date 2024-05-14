@@ -24,8 +24,8 @@ export class PlaygroundInternal {
 
   @State() checked = true;
 
-  private selectRef = makeRef<HTMLIxSelectElement>();
   private checkboxGroupRef = makeRef<HTMLIxCheckboxGroupElement>();
+  private selectRef = makeRef<HTMLIxSelectElement>();
 
   render() {
     return (
@@ -44,6 +44,7 @@ export class PlaygroundInternal {
             <ix-row>
               <ix-field-label>test</ix-field-label>
               <ix-text-field
+                required
                 name="project"
                 helperText="Name"
                 errorText="Error"
@@ -89,24 +90,10 @@ export class PlaygroundInternal {
                 helperText="Info"
                 ref={this.checkboxGroupRef}
               >
-                <ix-checkbox
-                  name="vehicle"
-                  value="car"
-                  checked={this.checked}
-                  onCheckedChange={() => {
-                    // e.preventDefault();
-                  }}
-                >
+                <ix-checkbox name="vehicle" value="car" checked={this.checked}>
                   Car
                 </ix-checkbox>
-                <ix-checkbox
-                  name="vehicle2"
-                  value="boat"
-                  checked={this.checked}
-                  onCheckedChange={() => {
-                    // e.preventDefault();
-                  }}
-                >
+                <ix-checkbox name="vehicle2" value="boat">
                   Boat
                 </ix-checkbox>
 
@@ -114,9 +101,6 @@ export class PlaygroundInternal {
                   indeterminate
                   name="vehicle3"
                   value="indeterminate"
-                  onCheckedChange={() => {
-                    // e.preventDefault();
-                  }}
                 >
                   Boat
                 </ix-checkbox>
@@ -222,9 +206,9 @@ export class PlaygroundInternal {
             <ix-text-field></ix-text-field>
           </ix-custom-field>
 
-          <ix-date-range-field errorText="test">
-            <ix-date-field name="start1" value={'2024/05/01'}></ix-date-field>
-            <ix-date-field name="end1" value={'2024/05/05'}></ix-date-field>
+          <ix-date-range-field>
+            <ix-date-field name="holiday_start_date" value={'2024/05/01'}></ix-date-field>
+            <ix-date-field name="holiday_end_date" value={'2024/05/05'}></ix-date-field>
           </ix-date-range-field> */}
         </form>
       </Host>

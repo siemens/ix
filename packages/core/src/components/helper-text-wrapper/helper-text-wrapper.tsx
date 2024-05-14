@@ -28,7 +28,7 @@ export class HelperTextWrapper implements HelperText {
   @Prop() isInvalid: boolean;
 
   private renderHelperText() {
-    if (this.isInvalid) {
+    if (this.isInvalid && this.errorText) {
       return <ix-typography color="alarm">{this.errorText}</ix-typography>;
     }
 
