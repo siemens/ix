@@ -97,6 +97,53 @@ async function loadSourceCodeFromStatic(paths: string[]) {
   return Promise.all(sourceFiles.map((res) => res.text()));
 }
 
+async function getFiles(
+  sourceFiles: SourceFile[],
+  styleFilePath: string,
+  mainFileName: string,
+  framework: TargetFramework
+) {
+  const files: Record<string, string> = {};
+  const styleFiles: Record<string, string> = {};
+  const filePromises = sourceFiles.map(async ({ filename, raw }) => {
+    if (filename.endsWith('.css')) {
+      return;
+    }
+
+    let source = raw;
+    if (filename === mainFileName) {
+      if (framework === TargetFramework.JAVASCRIPT) {
+        source = replaceTheme(replaceScriptFilePath(source));
+        filename = 'index.html';
+      }
+
+      // set style filepath
+      const { source: adaptedSource, styleFileName } = replaceStyleFilepath(
+        source,
+        framework === TargetFramework.ANGULAR
+      );
+      source = adaptedSource;
+
+      // get style file
+      if (styleFileName) {
+        styleFiles[
+          `src/${
+            framework === TargetFramework.ANGULAR ? 'app' : 'styles'
+          }/${styleFileName}`
+        ] = (
+          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
+        )[0];
+      }
+    }
+    files[
+      `src${framework === TargetFramework.ANGULAR ? '/app' : ''}/${filename}`
+    ] = source;
+  });
+  await Promise.all(filePromises);
+
+  return { files, styleFiles };
+}
+
 async function openHtmlStackBlitz(
   baseUrl: string,
   sourceFiles: SourceFile[],
@@ -112,23 +159,14 @@ async function openHtmlStackBlitz(
       `${baseUrl}code-runtime/html/vite.config.ts`,
     ]);
 
-  const [renderFirstExample, ...additionalFiles] = sourceFiles;
+  const renderFirstExample = sourceFiles[0];
 
-  const { source: adaptedSource, styleFileName } = replaceStyleFilepath(
-    renderFirstExample.raw
+  const { files, styleFiles } = await getFiles(
+    sourceFiles,
+    styleFilePath,
+    renderFirstExample.filename,
+    TargetFramework.JAVASCRIPT
   );
-
-  const styleFile: Record<string, string> = {};
-  if (styleFileName) {
-    styleFile[`src/styles/${styleFileName}`] = (
-      await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
-    )[0];
-  }
-
-  const files: Record<string, string> = {};
-  additionalFiles.forEach((file) => {
-    files[`src/${file.filename}`] = file.raw;
-  });
 
   sdk.openProject(
     {
@@ -137,9 +175,8 @@ async function openHtmlStackBlitz(
       description: 'iX html playground',
       files: {
         ...files,
-        ...styleFile,
+        ...styleFiles,
         'src/styles/global.css': global_css,
-        'src/index.html': replaceTheme(replaceScriptFilePath(adaptedSource)),
         'src/main.js': main_js,
         'package.json': patchPkgLibraryVersion(package_json, version),
         'vite.config.ts': vite_config_ts,
@@ -183,6 +220,8 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/tsconfig.json`,
   ]);
 
+  const renderFirstExample = sourceFiles[0];
+
   const declareComponents: string[] = [];
   sourceFiles.forEach(({ filename, raw }) => {
     if (/@Component/gms.test(raw)) {
@@ -206,32 +245,12 @@ async function openAngularStackBlitz(
     ];
   `;
 
-  const files: Record<string, string> = {};
-  const styleFiles: Record<string, string> = {};
-  const filePromises = sourceFiles.map(async ({ filename, raw }) => {
-    if (filename.endsWith('.css')) {
-      return;
-    }
-
-    let source = raw;
-    if (filename.endsWith('.ts')) {
-      // set style filepath
-      const { source: adaptedSource, styleFileName } = replaceStyleFilepath(
-        source,
-        true
-      );
-      source = adaptedSource;
-
-      // get style file
-      if (styleFileName) {
-        styleFiles[`src/app/${styleFileName}`] = (
-          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
-        )[0];
-      }
-    }
-    files[`src/app/${filename}`] = source;
-  });
-  await Promise.all(filePromises);
+  const { files, styleFiles } = await getFiles(
+    sourceFiles,
+    styleFilePath,
+    renderFirstExample.filename,
+    TargetFramework.ANGULAR
+  );
 
   sdk.openProject(
     {
@@ -245,7 +264,7 @@ async function openAngularStackBlitz(
         'src/app/app.component.html': app_component_html,
         'src/app/app.component.ts': app_component_ts,
         'src/app/app.module.ts': app_module_ts,
-        'src/index.html': index_html,
+        'src/index.html': replaceTheme(index_html),
         'src/main.ts': main_ts,
         'src/styles.css': global_css,
         'angular.json': angular_json,
@@ -283,7 +302,7 @@ async function openReactStackBlitz(
     `${baseUrl}code-runtime/react/tsconfig.json`,
   ]);
 
-  const [renderFirstExample] = sourceFiles;
+  const renderFirstExample = sourceFiles[0];
 
   const patchAppTs = () => {
     return app_tsx
@@ -297,28 +316,12 @@ async function openReactStackBlitz(
       .replace(/\{\/\* @_RENDER_COMPONENT \*\/\}/gms, '\n<Example />\n');
   };
 
-  const files: Record<string, string> = {};
-  const styleFiles: Record<string, string> = {};
-  const filePromises = sourceFiles.map(async ({ filename, raw }) => {
-    if (filename.endsWith('.css')) {
-      return;
-    }
-
-    let source = raw;
-    if (filename.endsWith('.tsx')) {
-      const { source: adaptedSource, styleFileName } =
-        replaceStyleFilepath(source);
-      source = adaptedSource;
-
-      if (styleFileName) {
-        styleFiles[`src/styles/${styleFileName}`] = (
-          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
-        )[0];
-      }
-    }
-    files[`src/${filename}`] = source;
-  });
-  await Promise.all(filePromises);
+  const { files, styleFiles } = await getFiles(
+    sourceFiles,
+    styleFilePath,
+    renderFirstExample.filename,
+    TargetFramework.REACT
+  );
 
   sdk.openProject(
     {
@@ -329,7 +332,7 @@ async function openReactStackBlitz(
         ...files,
         ...styleFiles,
         'src/styles/global.css': global_css,
-        'public/index.html': index_html,
+        'public/index.html': replaceTheme(index_html),
         'src/index.tsx': index_tsx,
         'src/App.tsx': patchAppTs(),
         'package.json': patchPkgLibraryVersion(package_json, version),
@@ -372,7 +375,7 @@ async function openVueStackBlitz(
     `${baseUrl}code-runtime/vue/env.d.ts`,
   ]);
 
-  const [renderFirstExample] = sourceFiles;
+  const renderFirstExample = sourceFiles[0];
 
   const patchAppTs = () => {
     return app_vue
@@ -383,28 +386,12 @@ async function openVueStackBlitz(
       .replace(/<!-- @_RENDER_COMPONENT -->/gms, ' <Example />');
   };
 
-  const files: Record<string, string> = {};
-  const styleFiles: Record<string, string> = {};
-  const filePromises = sourceFiles.map(async ({ filename, raw }) => {
-    if (filename.endsWith('.css')) {
-      return;
-    }
-
-    let source = raw;
-    if (filename.endsWith('.vue')) {
-      const { source: adaptedSource, styleFileName } =
-        replaceStyleFilepath(source);
-      source = adaptedSource;
-
-      if (styleFileName) {
-        styleFiles[`src/styles/${styleFileName}`] = (
-          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
-        )[0];
-      }
-    }
-    files[`src/${filename}`] = source;
-  });
-  await Promise.all(filePromises);
+  const { files, styleFiles } = await getFiles(
+    sourceFiles,
+    styleFilePath,
+    renderFirstExample.filename,
+    TargetFramework.VUE
+  );
 
   sdk.openProject(
     {
@@ -415,7 +402,7 @@ async function openVueStackBlitz(
         ...files,
         ...styleFiles,
         'src/styles/global.css': global_css,
-        'index.html': index_html,
+        'index.html': replaceTheme(index_html),
         'src/main.ts': main_ts,
         'src/App.vue': patchAppTs(),
         'src/env.d.ts': env_d_ts,
