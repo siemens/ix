@@ -14,7 +14,7 @@ export type ButtonAlignment = 'center' | 'start';
 
 const isDanger = (variant: string) => {
   return variant.toUpperCase() === 'Danger'.toUpperCase();
-}
+};
 
 const isPrimary = (variant: string) => {
   return variant.toUpperCase() === 'Primary'.toUpperCase();
@@ -72,6 +72,21 @@ export type BaseButtonProps = {
   afterContent?: any;
 };
 
+const getSpinnerSize = (btnProps: BaseButtonProps) => {
+  if (btnProps.icon) {
+    switch (btnProps.iconSize) {
+      case '12':
+        return 'xx-small';
+      case '16':
+        return 'x-small';
+      default:
+        return 'small';
+    }
+  }
+
+  return 'small';
+};
+
 export function BaseButton(props: BaseButtonProps, children) {
   const extraClasses = props.extraClasses ?? {};
 
@@ -94,7 +109,9 @@ export function BaseButton(props: BaseButtonProps, children) {
         ...extraClasses,
       }}
     >
-      {props.loading ? <ix-spinner size="small" hideTrack></ix-spinner> : null}
+      {props.loading ? (
+        <ix-spinner size={getSpinnerSize(props)} hideTrack></ix-spinner>
+      ) : null}
       {props.icon && !props.loading ? (
         <ix-icon
           class="icon"
