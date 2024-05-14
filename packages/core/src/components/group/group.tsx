@@ -12,7 +12,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Fragment,
   h,
   Host,
   Prop,
@@ -84,6 +83,8 @@ export class Group {
   @State() dropdownTriggerRef: HTMLElement;
   @State() slotSize = this.groupItems.length;
   @State() footerVisible = false;
+
+  @State() showExpandCollapsedIcon = false;
 
   private observer: MutationObserver;
 
@@ -211,8 +212,9 @@ export class Group {
             ></div>
             <div class="btn-expand-header">
               <ix-icon
+                data-testid="expand-collapsed-icon"
                 class={{
-                  hidden: this.slotSize === 0,
+                  hidden: !this.showExpandCollapsedIcon,
                 }}
                 name={
                   this.collapsed ? 'chevron-right-small' : 'chevron-down-small'
@@ -244,24 +246,32 @@ export class Group {
             'group-content': true,
           }}
         >
-          {!this.collapsed ? (
-            <Fragment>
-              <slot></slot>
-              <ix-group-item
-                suppressSelection={true}
-                focusable={false}
-                class={{
-                  footer: true,
-                  'footer-visible': this.footerVisible,
-                }}
-              >
-                <slot
-                  name="footer"
-                  onSlotchange={() => this.onSlotChange()}
-                ></slot>
-              </ix-group-item>
-            </Fragment>
-          ) : null}
+          <div
+            style={{
+              display: this.collapsed ? 'none' : 'contents',
+            }}
+          >
+            <slot
+              onSlotchange={() => {
+                const slot =
+                  this.hostElement.shadowRoot.querySelector('slot:not([name])');
+                this.showExpandCollapsedIcon = hasSlottedElements(slot);
+              }}
+            ></slot>
+            <ix-group-item
+              suppressSelection={true}
+              focusable={false}
+              class={{
+                footer: true,
+                'footer-visible': this.footerVisible,
+              }}
+            >
+              <slot
+                name="footer"
+                onSlotchange={() => this.onSlotChange()}
+              ></slot>
+            </ix-group-item>
+          </div>
         </div>
       </Host>
     );
