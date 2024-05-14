@@ -88,7 +88,7 @@ export class DateField implements IxFieldComponent {
   /**
    * tbd
    */
-  @Event() valueChanged: EventEmitter<string>;
+  @Event() valueChange: EventEmitter<string>;
 
   /** @internal */
   @Event() ixFocus: EventEmitter<void>;
@@ -146,7 +146,7 @@ export class DateField implements IxFieldComponent {
       this.isInputInvalid = false;
 
       this.updateFormInternalValue(value);
-      this.valueChanged.emit(value);
+      this.valueChange.emit(value);
 
       this.closeDropdown();
     } else {

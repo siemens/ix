@@ -70,7 +70,7 @@ export class TextField implements IxFieldComponent<string> {
   /**
    * tbd
    */
-  @Event() valueChanged: EventEmitter<string>;
+  @Event() valueChange: EventEmitter<string>;
 
   @State() isInvalid = false;
 

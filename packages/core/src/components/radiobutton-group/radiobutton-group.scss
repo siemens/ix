@@ -6,12 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+@import 'mixins/shadow-dom/component';
 
 :host {
   display: inline-block;
   position: relative;
-
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.25rem;
 }

@@ -14,10 +14,15 @@ export type ClassMutationObserver = {
 
 export function createClassMutationObserver(
   element: HTMLElement,
-  callback: () => void
+  callback: () => void,
+  options?: {
+    includeChildren?: boolean;
+  }
 ): ClassMutationObserver {
   const observer = new MutationObserver(callback);
   observer.observe(element, {
+    subtree: options?.includeChildren,
+    childList: options?.includeChildren,
     attributes: true,
     attributeFilter: ['class'],
   });
@@ -34,24 +39,38 @@ export type ClassFieldMapping = typeof fieldMappingValues;
 export type ClassFieldMappingResult = Record<ClassFieldMapping, boolean>;
 
 export function checkFieldClasses(
-  hostElement: HTMLElement
+  hostElement: HTMLElement,
+  includeChildren = false
 ): ClassFieldMappingResult {
   return {
-    isInvalid: hostElement.classList.contains('ix-invalid'),
+    isInvalid:
+      hostElement.classList.contains('ix-invalid') || includeChildren
+        ? !!hostElement.querySelector('.ix-invalid')
+        : false,
   };
 }
 
-export function OnClassField() {
+export function OnClassField(options?: { includeChildren?: boolean }) {
   return (proto: any, methodName: string) => {
     let classMutationObserver: ClassMutationObserver;
     const { componentWillLoad, disconnectedCallback } = proto;
 
     proto.componentWillLoad = function () {
       const host = getElement(this);
-      classMutationObserver = createClassMutationObserver(host, () => {
-        proto[methodName].call(this, checkFieldClasses(host));
-      });
-      proto[methodName].call(this, checkFieldClasses(host));
+      classMutationObserver = createClassMutationObserver(
+        host,
+        () => {
+          proto[methodName].call(
+            this,
+            checkFieldClasses(host, options?.includeChildren)
+          );
+        },
+        options
+      );
+      proto[methodName].call(
+        this,
+        checkFieldClasses(host, options?.includeChildren)
+      );
       return componentWillLoad && componentWillLoad.call(this);
     };
 

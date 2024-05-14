@@ -1,6 +1,10 @@
 import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
-import { HelperText, checkFieldClasses } from '../utils/field';
+import {
+  ClassFieldMappingResult,
+  HelperText,
+  checkFieldClasses,
+} from '../utils/field';
 
 @Component({
   tag: 'ix-custom-field',
@@ -24,6 +28,9 @@ export class CustomField implements IxComponent, HelperText {
    */
   @Prop({ reflect: true }) errorText: string;
 
+  /** @internal */
+  @Prop() overwriteValidation?: ClassFieldMappingResult;
+
   @State() isInvalid: boolean;
 
   private mutationObserver: MutationObserver;
@@ -35,8 +42,9 @@ export class CustomField implements IxComponent, HelperText {
   private onMutation() {
     Array.from(this.hostElement.children).forEach((child) => {
       const { isInvalid } = checkFieldClasses(child as HTMLElement);
-      this.isInvalid = isInvalid;
-      console.log(child, isInvalid);
+      if (!this.isInvalid) {
+        this.isInvalid = isInvalid;
+      }
     });
   }
 

@@ -3,7 +3,7 @@ import { HelperText } from '../utils/field';
 
 @Component({
   tag: 'ix-helper-text-wrapper',
-  styleUrl: 'helper-text-wrapper.css',
+  styleUrl: 'helper-text-wrapper.scss',
   shadow: true,
 })
 export class HelperTextWrapper implements HelperText {
@@ -38,8 +38,10 @@ export class HelperTextWrapper implements HelperText {
   render() {
     return (
       <Host>
-        <ix-field-label>{this.label}</ix-field-label>
-        <slot></slot>
+        {this.label && <ix-field-label>{this.label}</ix-field-label>}
+        <div class={'slot-wrapper'}>
+          <slot></slot>
+        </div>
         {this.renderHelperText()}
       </Host>
     );

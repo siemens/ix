@@ -7,8 +7,9 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host } from '@stencil/core';
+import { Component, Element, h, Host, State } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { makeRef } from '../utils/make-ref';
 
 /** @internal */
 @Component({
@@ -21,13 +22,10 @@ import { DateTime } from 'luxon';
 export class PlaygroundInternal {
   @Element() hostElement: HTMLIxPlaygroundInternalElement;
 
-  componentDidLoad() {
-    setTimeout(() => {
-      this.hostElement
-        .querySelector('ix-text-field[name="project"]')
-        .classList.add('ix-invalid');
-    }, 3000);
-  }
+  @State() checked = true;
+
+  private selectRef = makeRef<HTMLIxSelectElement>();
+  private checkboxGroupRef = makeRef<HTMLIxCheckboxGroupElement>();
 
   render() {
     return (
@@ -44,23 +42,134 @@ export class PlaygroundInternal {
         >
           <ix-layout-grid>
             <ix-row>
-              <ix-col
-                size="1"
-                style={{ display: 'flex', justifyContent: 'center' }}
+              <ix-field-label>test</ix-field-label>
+              <ix-text-field
+                name="project"
+                helperText="Name"
+                errorText="Error"
+              ></ix-text-field>
+            </ix-row>
+
+            <ix-row>
+              <ix-text-field label="test"></ix-text-field>
+            </ix-row>
+
+            <ix-row>
+              <ix-date-field
+                id="xxx"
+                name="project_created"
+                value={'2024/05/05'}
+                helperText="Helper text"
+                label="Project"
+                errorText="First of a month is not allowed"
+                onValueChange={({ detail }) => {
+                  this.hostElement
+                    .querySelector('#xxx')
+                    .classList.toggle(
+                      'ix-invalid',
+                      DateTime.fromFormat(detail, 'yyyy/LL/dd').day === 1
+                    );
+                }}
+              ></ix-date-field>
+            </ix-row>
+
+            <ix-row>
+              <ix-date-range-field errorText="test">
+                <ix-date-field
+                  name="start1"
+                  value={'2024/05/01'}
+                ></ix-date-field>
+                <ix-date-field name="end1" value={'2024/05/05'}></ix-date-field>
+              </ix-date-range-field>
+            </ix-row>
+
+            <ix-row>
+              <ix-checkbox-group
+                label="Checkbox group"
+                helperText="Info"
+                ref={this.checkboxGroupRef}
               >
-                <ix-field-label>Project:</ix-field-label>
-              </ix-col>
-              <ix-col>
-                <ix-text-field
-                  name="project"
-                  helperText="Name"
-                  errorText="Error"
-                ></ix-text-field>
-              </ix-col>
+                <ix-checkbox
+                  name="vehicle"
+                  value="car"
+                  checked={this.checked}
+                  onCheckedChange={() => {
+                    // e.preventDefault();
+                  }}
+                >
+                  Car
+                </ix-checkbox>
+                <ix-checkbox
+                  name="vehicle2"
+                  value="boat"
+                  checked={this.checked}
+                  onCheckedChange={() => {
+                    // e.preventDefault();
+                  }}
+                >
+                  Boat
+                </ix-checkbox>
+              </ix-checkbox-group>
+            </ix-row>
+
+            <ix-row>
+              <ix-select value={'1'} name="option_sel_1">
+                <ix-select-item value="1" label="Option 1"></ix-select-item>
+                <ix-select-item value="2" label="Option 2"></ix-select-item>
+                <ix-select-item value="3" label="Option 3"></ix-select-item>
+              </ix-select>
+            </ix-row>
+
+            <ix-row>
+              <ix-custom-field
+                label="Test"
+                helperText="helper"
+                errorText="error"
+              >
+                <ix-checkbox>test</ix-checkbox>
+                <ix-select
+                  ref={this.selectRef}
+                  mode="multiple"
+                  value={'1'}
+                  name="option_sel_2"
+                  onValueChange={({ detail }) => {
+                    this.selectRef.current.classList.toggle(
+                      'ix-invalid',
+                      Array.isArray(detail)
+                        ? detail.includes('3')
+                        : detail === '3'
+                    );
+                  }}
+                >
+                  <ix-select-item value="1" label="Option 1"></ix-select-item>
+                  <ix-select-item value="2" label="Option 2"></ix-select-item>
+                  <ix-select-item value="3" label="Option 3"></ix-select-item>
+                </ix-select>
+              </ix-custom-field>
+            </ix-row>
+
+            <ix-row>
+              <ix-radiobutton-group
+                label="Radio Button Group"
+                helperText="Select blob type"
+                errorText="Some error"
+              >
+                <ix-radiobutton name="blob" value="x1">
+                  Type = x1
+                </ix-radiobutton>
+                <ix-radiobutton name="blob" value="x2">
+                  Type = x2
+                </ix-radiobutton>
+                <ix-radiobutton name="blob" value="x3" checked>
+                  Type = x3
+                </ix-radiobutton>
+              </ix-radiobutton-group>
+            </ix-row>
+
+            <ix-row>
+              <ix-button type="submit">Button</ix-button>
             </ix-row>
           </ix-layout-grid>
-
-          <ix-text-field label="test"></ix-text-field>
 
           {/* <ix-custom-field
             helperText="Helper text"
@@ -103,8 +212,6 @@ export class PlaygroundInternal {
             <ix-date-field name="start1" value={'2024/05/01'}></ix-date-field>
             <ix-date-field name="end1" value={'2024/05/05'}></ix-date-field>
           </ix-date-range-field> */}
-
-          <ix-button type="submit">Button</ix-button>
         </form>
       </Host>
     );

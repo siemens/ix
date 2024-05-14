@@ -25,7 +25,7 @@ export function InputElement(props: { field: IxFieldComponent; type: string }) {
       placeholder={props.field.placeholder}
       onChange={(changeEvent) => {
         const target = changeEvent.target as HTMLInputElement;
-        props.field.valueChanged.emit(target.value);
+        props.field.valueChange.emit(target.value);
       }}
       onInput={(inputEvent) => {
         const target = inputEvent.target as HTMLInputElement;

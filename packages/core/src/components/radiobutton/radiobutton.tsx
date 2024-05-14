@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconSingleCheck } from '@siemens/ix-icons/icons';
+import { iconErrorFilled } from '@siemens/ix-icons/icons';
 import {
   AttachInternals,
   Component,
@@ -22,49 +22,52 @@ import { makeRef } from '../utils/make-ref';
 import { IxFormComponent } from '../utils/field';
 
 @Component({
-  tag: 'ix-checkbox',
-  styleUrl: 'checkbox.scss',
+  tag: 'ix-radiobutton',
+  styleUrl: 'radiobutton.scss',
   shadow: true,
   formAssociated: true,
 })
-export class Checkbox implements IxFormComponent<string> {
+export class Radiobutton implements IxFormComponent<string> {
   @AttachInternals() formInternals: ElementInternals;
 
   /**
-   * Name of the checkbox component
+   * Name of the radiobutton component
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
-   * Value of the checkbox component
+   * Value of the radiobutton component
    */
   @Prop({ reflect: true }) value?: string;
 
   /**
-   * Label for the checkbox component
+   * Label for the radiobutton component
    */
   @Prop() label: string;
 
   /**
-   * Checked state of the checkbox component
+   * Checked state of the radiobutton component
    */
   @Prop({ reflect: true, mutable: true }) checked: boolean = false;
 
   /**
-   * Event emitted when the checked state of the checkbox changes
+   * Event emitted when the checked state of the radiobutton changes
    */
   @Event() checkedChange!: EventEmitter<boolean>;
 
   /**
-   * Event emitted when the value of the checkbox changes
+   * Event emitted when the value of the radiobutton changes
    */
   @Event() valueChange!: EventEmitter<string>;
 
-  private inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
-    checkboxRef.checked = this.checked;
+  private inputRef = makeRef<HTMLInputElement>((radiobuttonRef) => {
+    radiobuttonRef.checked = this.checked;
   });
 
   private setCheckedState(newChecked: boolean) {
+    if (this.checked) {
+      return;
+    }
     const result = this.checkedChange.emit(newChecked);
     if (result.defaultPrevented) {
       return;
@@ -75,8 +78,8 @@ export class Checkbox implements IxFormComponent<string> {
 
   @Watch('checked')
   onCheckedChange() {
-    const checkboxRef = this.inputRef.current;
-    checkboxRef.checked = this.checked;
+    const radiobuttonRef = this.inputRef.current;
+    radiobuttonRef.checked = this.checked;
 
     this.updateFormInternalValue();
   }
@@ -104,7 +107,7 @@ export class Checkbox implements IxFormComponent<string> {
         <label>
           <input
             ref={this.inputRef}
-            type="checkbox"
+            type="radio"
             onChange={() => {
               const ref = this.inputRef.current;
               this.setCheckedState(ref.checked);
@@ -116,7 +119,9 @@ export class Checkbox implements IxFormComponent<string> {
             }}
             onClick={() => this.setCheckedState(!this.checked)}
           >
-            {this.checked && <ix-icon name={iconSingleCheck}></ix-icon>}
+            {this.checked && (
+              <ix-icon name={iconErrorFilled} size="12"></ix-icon>
+            )}
           </button>
           {this.label}
           <slot></slot>

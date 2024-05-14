@@ -32,5 +32,11 @@ export function makeRef<T>(
     return current;
   };
 
+  Object.defineProperty(setRefFunction, 'current', {
+    get() {
+      return current;
+    },
+  });
+
   return setRefFunction;
 }

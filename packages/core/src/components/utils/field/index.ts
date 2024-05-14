@@ -12,45 +12,28 @@ import { IxComponent } from '../internal';
 export * from './field-mapping';
 
 export interface HelperText {
-  label: string;
-  helperText: string;
-  errorText: string;
+  label?: string;
+  helperText?: string;
+  errorText?: string;
 }
 
-/*
-TODO
-Missing to expose all native input attributes
-*/
-export interface IxFieldComponent<T = any> extends IxComponent, HelperText {
-  /**
-   * Add `@Prop({ reflect: true })` to the `name` prop
-   */
-  name: string;
-
-  /**
-   * @Prop declaration to handle internal Attach element
-   */
-  placeholder: string;
-
-  /**
-   * @Prop declaration to handle internal Attach element
-   */
-  value: T;
-
-  /**
-   * @Prop declaration to handle internal Attach element
-   */
-  required: boolean;
-
-  valueChanged: EventEmitter<T>;
+export interface IxFormComponent<T = any> {
   formInternals: ElementInternals;
 
-  /**
-   * @State declaration to handle internal Attach element
-   */
+  name?: string;
+  value?: T;
+
+  valueChange: EventEmitter<T>;
+  updateFormInternalValue(value: T): void;
+}
+
+export interface IxFieldComponent<T = any>
+  extends IxComponent,
+    HelperText,
+    IxFormComponent<T> {
+  placeholder?: string;
+  required?: boolean;
   isInvalid: boolean;
 
-  updateFormInternalValue(value: T): void;
-
-  componentWillLoad(): void;
+  // TODO: Should we add additional input properties here?
 }

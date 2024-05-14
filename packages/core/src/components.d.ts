@@ -19,6 +19,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
+import { ClassFieldMappingResult } from "./components/utils/field";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent } from "./components/date-picker/date-picker";
@@ -59,6 +60,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
+export { ClassFieldMappingResult } from "./components/utils/field";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent } from "./components/date-picker/date-picker";
@@ -86,8 +88,6 @@ export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./compo
 export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
-    interface CheckboxGroup {
-    }
     /**
      * @since 1.6.0
      */
@@ -420,6 +420,36 @@ export namespace Components {
         "tmpDisableScrollIntoView": boolean;
     }
     interface IxCheckbox {
+        /**
+          * Checked state of the checkbox component
+         */
+        "checked": boolean;
+        /**
+          * Label for the checkbox component
+         */
+        "label": string;
+        /**
+          * Name of the checkbox component
+         */
+        "name"?: string;
+        /**
+          * Value of the checkbox component
+         */
+        "value"?: string;
+    }
+    interface IxCheckboxGroup {
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Label for the field component
+         */
+        "label": string;
     }
     interface IxChip {
         /**
@@ -532,6 +562,7 @@ export namespace Components {
           * Label for the field component
          */
         "label": string;
+        "overwriteValidation"?: ClassFieldMappingResult;
     }
     /**
      * @since 2.1.0
@@ -1929,6 +1960,38 @@ export namespace Components {
          */
         "variant": PushCardVariant;
     }
+    interface IxRadiobutton {
+        /**
+          * Checked state of the radiobutton component
+         */
+        "checked": boolean;
+        /**
+          * Label for the radiobutton component
+         */
+        "label": string;
+        /**
+          * Name of the radiobutton component
+         */
+        "name"?: string;
+        /**
+          * Value of the radiobutton component
+         */
+        "value"?: string;
+    }
+    interface IxRadiobuttonGroup {
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Label for the field component
+         */
+        "label": string;
+    }
     /**
      * @since 2.0.0
      */
@@ -1973,6 +2036,11 @@ export namespace Components {
           * Selection mode
          */
         "mode": 'single' | 'multiple';
+        /**
+          * Name of the select component
+          * @since TODO: Add version
+         */
+        "name"?: string;
         /**
           * If true the select will be in readonly mode
          */
@@ -2588,6 +2656,10 @@ export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
 }
+export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxCheckboxElement;
+}
 export interface IxChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChipElement;
@@ -2716,6 +2788,10 @@ export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaneElement;
 }
+export interface IxRadiobuttonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxRadiobuttonElement;
+}
 export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectElement;
@@ -2785,12 +2861,6 @@ export interface IxWorkflowStepsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLIxWorkflowStepsElement;
 }
 declare global {
-    interface HTMLCheckboxGroupElement extends Components.CheckboxGroup, HTMLStencilElement {
-    }
-    var HTMLCheckboxGroupElement: {
-        prototype: HTMLCheckboxGroupElement;
-        new (): HTMLCheckboxGroupElement;
-    };
     /**
      * @since 1.6.0
      */
@@ -2992,11 +3062,29 @@ declare global {
         prototype: HTMLIxCategoryFilterElement;
         new (): HTMLIxCategoryFilterElement;
     };
+    interface HTMLIxCheckboxElementEventMap {
+        "checkedChange": boolean;
+        "valueChange": string;
+    }
     interface HTMLIxCheckboxElement extends Components.IxCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxCheckboxElement: {
         prototype: HTMLIxCheckboxElement;
         new (): HTMLIxCheckboxElement;
+    };
+    interface HTMLIxCheckboxGroupElement extends Components.IxCheckboxGroup, HTMLStencilElement {
+    }
+    var HTMLIxCheckboxGroupElement: {
+        prototype: HTMLIxCheckboxGroupElement;
+        new (): HTMLIxCheckboxGroupElement;
     };
     interface HTMLIxChipElementEventMap {
         "closeChip": any;
@@ -3089,7 +3177,7 @@ declare global {
         new (): HTMLIxDateDropdownElement;
     };
     interface HTMLIxDateFieldElementEventMap {
-        "valueChanged": string;
+        "valueChange": string;
         "ixFocus": void;
         "ixBlur": void;
     }
@@ -3835,6 +3923,30 @@ declare global {
         prototype: HTMLIxPushCardElement;
         new (): HTMLIxPushCardElement;
     };
+    interface HTMLIxRadiobuttonElementEventMap {
+        "checkedChange": boolean;
+        "valueChange": string;
+    }
+    interface HTMLIxRadiobuttonElement extends Components.IxRadiobutton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxRadiobuttonElementEventMap>(type: K, listener: (this: HTMLIxRadiobuttonElement, ev: IxRadiobuttonCustomEvent<HTMLIxRadiobuttonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxRadiobuttonElementEventMap>(type: K, listener: (this: HTMLIxRadiobuttonElement, ev: IxRadiobuttonCustomEvent<HTMLIxRadiobuttonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxRadiobuttonElement: {
+        prototype: HTMLIxRadiobuttonElement;
+        new (): HTMLIxRadiobuttonElement;
+    };
+    interface HTMLIxRadiobuttonGroupElement extends Components.IxRadiobuttonGroup, HTMLStencilElement {
+    }
+    var HTMLIxRadiobuttonGroupElement: {
+        prototype: HTMLIxRadiobuttonGroupElement;
+        new (): HTMLIxRadiobuttonGroupElement;
+    };
     /**
      * @since 2.0.0
      */
@@ -3979,7 +4091,7 @@ declare global {
         new (): HTMLIxTabsElement;
     };
     interface HTMLIxTextFieldElementEventMap {
-        "valueChanged": string;
+        "valueChange": string;
     }
     interface HTMLIxTextFieldElement extends Components.IxTextField, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTextFieldElementEventMap>(type: K, listener: (this: HTMLIxTextFieldElement, ev: IxTextFieldCustomEvent<HTMLIxTextFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4194,7 +4306,6 @@ declare global {
         new (): HTMLIxWorkflowStepsElement;
     };
     interface HTMLElementTagNameMap {
-        "checkbox-group": HTMLCheckboxGroupElement;
         "ix-action-card": HTMLIxActionCardElement;
         "ix-application": HTMLIxApplicationElement;
         "ix-application-header": HTMLIxApplicationHeaderElement;
@@ -4213,6 +4324,7 @@ declare global {
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-checkbox": HTMLIxCheckboxElement;
+        "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
         "ix-col": HTMLIxColElement;
         "ix-content": HTMLIxContentElement;
@@ -4280,6 +4392,8 @@ declare global {
         "ix-pill": HTMLIxPillElement;
         "ix-playground-internal": HTMLIxPlaygroundInternalElement;
         "ix-push-card": HTMLIxPushCardElement;
+        "ix-radiobutton": HTMLIxRadiobuttonElement;
+        "ix-radiobutton-group": HTMLIxRadiobuttonGroupElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
@@ -4307,8 +4421,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface CheckboxGroup {
-    }
     /**
      * @since 1.6.0
      */
@@ -4683,6 +4795,44 @@ declare namespace LocalJSX {
         "tmpDisableScrollIntoView"?: boolean;
     }
     interface IxCheckbox {
+        /**
+          * Checked state of the checkbox component
+         */
+        "checked"?: boolean;
+        /**
+          * Label for the checkbox component
+         */
+        "label"?: string;
+        /**
+          * Name of the checkbox component
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the checked state of the checkbox changes
+         */
+        "onCheckedChange"?: (event: IxCheckboxCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the value of the checkbox changes
+         */
+        "onValueChange"?: (event: IxCheckboxCustomEvent<string>) => void;
+        /**
+          * Value of the checkbox component
+         */
+        "value"?: string;
+    }
+    interface IxCheckboxGroup {
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
     }
     interface IxChip {
         /**
@@ -4804,6 +4954,7 @@ declare namespace LocalJSX {
           * Label for the field component
          */
         "label"?: string;
+        "overwriteValidation"?: ClassFieldMappingResult;
     }
     /**
      * @since 2.1.0
@@ -4897,7 +5048,7 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
-        "onValueChanged"?: (event: IxDateFieldCustomEvent<string>) => void;
+        "onValueChange"?: (event: IxDateFieldCustomEvent<string>) => void;
         /**
           * tbd
          */
@@ -6315,6 +6466,46 @@ declare namespace LocalJSX {
          */
         "variant"?: PushCardVariant;
     }
+    interface IxRadiobutton {
+        /**
+          * Checked state of the radiobutton component
+         */
+        "checked"?: boolean;
+        /**
+          * Label for the radiobutton component
+         */
+        "label"?: string;
+        /**
+          * Name of the radiobutton component
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the checked state of the radiobutton changes
+         */
+        "onCheckedChange"?: (event: IxRadiobuttonCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the value of the radiobutton changes
+         */
+        "onValueChange"?: (event: IxRadiobuttonCustomEvent<string>) => void;
+        /**
+          * Value of the radiobutton component
+         */
+        "value"?: string;
+    }
+    interface IxRadiobuttonGroup {
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
+    }
     /**
      * @since 2.0.0
      */
@@ -6359,6 +6550,11 @@ declare namespace LocalJSX {
           * Selection mode
          */
         "mode"?: 'single' | 'multiple';
+        /**
+          * Name of the select component
+          * @since TODO: Add version
+         */
+        "name"?: string;
         /**
           * Item added to selection
          */
@@ -6608,7 +6804,7 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
-        "onValueChanged"?: (event: IxTextFieldCustomEvent<string>) => void;
+        "onValueChange"?: (event: IxTextFieldCustomEvent<string>) => void;
         /**
           * tbd
          */
@@ -7034,7 +7230,6 @@ declare namespace LocalJSX {
         "vertical"?: boolean;
     }
     interface IntrinsicElements {
-        "checkbox-group": CheckboxGroup;
         "ix-action-card": IxActionCard;
         "ix-application": IxApplication;
         "ix-application-header": IxApplicationHeader;
@@ -7053,6 +7248,7 @@ declare namespace LocalJSX {
         "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
         "ix-checkbox": IxCheckbox;
+        "ix-checkbox-group": IxCheckboxGroup;
         "ix-chip": IxChip;
         "ix-col": IxCol;
         "ix-content": IxContent;
@@ -7120,6 +7316,8 @@ declare namespace LocalJSX {
         "ix-pill": IxPill;
         "ix-playground-internal": IxPlaygroundInternal;
         "ix-push-card": IxPushCard;
+        "ix-radiobutton": IxRadiobutton;
+        "ix-radiobutton-group": IxRadiobuttonGroup;
         "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
@@ -7150,7 +7348,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "checkbox-group": LocalJSX.CheckboxGroup & JSXBase.HTMLAttributes<HTMLCheckboxGroupElement>;
             /**
              * @since 1.6.0
              */
@@ -7193,6 +7390,7 @@ declare module "@stencil/core" {
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
             "ix-checkbox": LocalJSX.IxCheckbox & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
+            "ix-checkbox-group": LocalJSX.IxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             /**
              * @since 2.0.0
@@ -7323,6 +7521,8 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
+            "ix-radiobutton": LocalJSX.IxRadiobutton & JSXBase.HTMLAttributes<HTMLIxRadiobuttonElement>;
+            "ix-radiobutton-group": LocalJSX.IxRadiobuttonGroup & JSXBase.HTMLAttributes<HTMLIxRadiobuttonGroupElement>;
             /**
              * @since 2.0.0
              */
