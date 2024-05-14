@@ -96,13 +96,33 @@ class DropdownController {
     }
   }
 
-  dismissAll(ignoreBehaviorForIds: string[] = []) {
+  dismissAll(
+    ignoreBehaviorForIds: string[] = [],
+    ignoreRelatedDropdowns = false
+  ) {
     this.dropdowns.forEach((dropdown) => {
-      if (
-        !ignoreBehaviorForIds.includes(dropdown.getId()) &&
-        (dropdown.closeBehavior === 'inside' ||
-          dropdown.closeBehavior === false)
-      ) {
+      const preventClosing =
+        dropdown.closeBehavior === 'inside' || dropdown.closeBehavior === false;
+
+      const shouldIgnore = ignoreBehaviorForIds.includes(dropdown.getId());
+      const path = this.buildComposedPath(dropdown.getId(), new Set<string>());
+
+      if (ignoreBehaviorForIds.length > 0 && ignoreRelatedDropdowns) {
+        let skipRelatedDropdown = false;
+
+        ignoreBehaviorForIds.forEach((id) => {
+          if (path.has(id)) {
+            skipRelatedDropdown = true;
+            return;
+          }
+        });
+
+        if (!skipRelatedDropdown) {
+          return;
+        }
+      }
+
+      if (!shouldIgnore && preventClosing) {
         return;
       }
 
@@ -128,12 +148,12 @@ class DropdownController {
     for (let eventTarget of eventTargets) {
       if (eventTarget instanceof HTMLElement) {
         if (eventTarget.hasAttribute('data-ix-dropdown-trigger')) {
-          return true;
+          return eventTarget;
         }
       }
     }
 
-    return false;
+    return;
   }
 
   private pathIncludesDropdown(eventTargets: EventTarget[]) {
