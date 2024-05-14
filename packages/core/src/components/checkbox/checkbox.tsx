@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconSingleCheck } from '@siemens/ix-icons/icons';
+import { iconEye, iconSingleCheck } from '@siemens/ix-icons/icons';
 import {
   AttachInternals,
   Component,
@@ -49,6 +49,16 @@ export class Checkbox implements IxFormComponent<string> {
    * Checked state of the checkbox component
    */
   @Prop({ reflect: true, mutable: true }) checked: boolean = false;
+
+  /**
+   * Disabled state of the checkbox component
+   */
+  @Prop({ reflect: true }) disabled: boolean = false;
+
+  /**
+   * Indeterminate state of the checkbox component
+   */
+  @Prop({ reflect: true }) indeterminate: boolean = false;
 
   /**
    * Event emitted when the checked state of the checkbox changes
@@ -98,9 +108,54 @@ export class Checkbox implements IxFormComponent<string> {
     }
   }
 
+  private renderCheckmark() {
+    if (this.checked) {
+      return (
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3.65625 8.15625L8.4375 12.9375L14.625 3.9375"
+            stroke="var(--theme-color-primary--contrast)"
+            stroke-width="2"
+          />
+        </svg>
+      );
+    }
+
+    if (this.indeterminate) {
+      return (
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="18" height="18" fill="transparent" />
+          <rect
+            x="3"
+            y="8"
+            width="12"
+            height="2"
+            fill="var(--theme-color-primary--contrast)"
+          />
+        </svg>
+      );
+    }
+  }
+
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          disabled: this.disabled,
+        }}
+      >
         <label>
           <input
             ref={this.inputRef}
@@ -111,15 +166,21 @@ export class Checkbox implements IxFormComponent<string> {
             }}
           />
           <button
+            disabled={this.disabled}
             class={{
               checked: this.checked,
             }}
             onClick={() => this.setCheckedState(!this.checked)}
           >
-            {this.checked && <ix-icon name={iconSingleCheck}></ix-icon>}
+            {this.renderCheckmark()}
           </button>
-          {this.label}
-          <slot></slot>
+          <ix-typography
+            format="label"
+            textColor={this.disabled ? 'weak' : 'std'}
+          >
+            {this.label}
+            <slot></slot>
+          </ix-typography>
         </label>
       </Host>
     );

@@ -109,6 +109,17 @@ export class PlaygroundInternal {
                 >
                   Boat
                 </ix-checkbox>
+
+                <ix-checkbox
+                  indeterminate
+                  name="vehicle3"
+                  value="indeterminate"
+                  onCheckedChange={() => {
+                    // e.preventDefault();
+                  }}
+                >
+                  Boat
+                </ix-checkbox>
               </ix-checkbox-group>
             </ix-row>
 
@@ -127,6 +138,9 @@ export class PlaygroundInternal {
                 errorText="error"
               >
                 <ix-checkbox>test</ix-checkbox>
+                <ix-checkbox disabled checked>
+                  test
+                </ix-checkbox>
                 <ix-select
                   ref={this.selectRef}
                   mode="multiple"
