@@ -231,7 +231,7 @@ export class Tooltip implements IxOverlayComponent {
     }
   }
 
-  private async queryAnchorElements(): Promise<Array<HTMLElement>> {
+  private async queryAnchorElements(): Promise<Array<HTMLElement> | undefined> {
     if (typeof this.for === 'string') {
       return Promise.resolve(Array.from(document.querySelectorAll(this.for)));
     }
@@ -251,6 +251,10 @@ export class Tooltip implements IxOverlayComponent {
 
     if (this.disposeListener) {
       this.disposeListener();
+    }
+
+    if (!triggerElementList) {
+      return;
     }
 
     triggerElementList.forEach((element) => {
