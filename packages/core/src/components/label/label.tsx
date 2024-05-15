@@ -9,12 +9,13 @@
 
 import { Component, Host, h } from '@stencil/core';
 
+// TODO: Do we need this component?
 @Component({
-  tag: 'ix-field-label',
-  styleUrl: 'field-label.scss',
+  tag: 'ix-label',
+  styleUrl: 'label.scss',
   shadow: true,
 })
-export class FieldLabel {
+export class Label {
   render() {
     return (
       <Host>

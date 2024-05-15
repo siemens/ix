@@ -36,7 +36,7 @@ export class PlaygroundInternal {
           <ix-layout-grid gap="24">
             <ix-row>
               <ix-col size="1">
-                <ix-field-label>Project</ix-field-label>
+                <ix-label>Project</ix-label>
               </ix-col>
               <ix-col>
                 <ix-text-field
@@ -47,7 +47,7 @@ export class PlaygroundInternal {
             </ix-row>
             <ix-row>
               <ix-col size="1">
-                <ix-field-label>Asset</ix-field-label>
+                <ix-label>Asset</ix-label>
               </ix-col>
               <ix-col>
                 <ix-text-field
@@ -61,7 +61,7 @@ export class PlaygroundInternal {
 
             <ix-row>
               <ix-col size="1">
-                <ix-field-label>Radio Group</ix-field-label>
+                <ix-label>Radio Group</ix-label>
               </ix-col>
               <ix-col>
                 <ix-custom-field>
@@ -76,7 +76,7 @@ export class PlaygroundInternal {
 
             <ix-row>
               <ix-col size="1">
-                <ix-field-label>Radio Group</ix-field-label>
+                <ix-label>Radio Group</ix-label>
               </ix-col>
               <ix-col>
                 <ix-checkbox label="Agree"></ix-checkbox>

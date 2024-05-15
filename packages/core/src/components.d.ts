@@ -1117,8 +1117,6 @@ export namespace Components {
          */
         "value": string;
     }
-    interface IxFieldLabel {
-    }
     interface IxFilterChip {
         /**
           * If true the filter chip will be in disabled state
@@ -1367,6 +1365,8 @@ export namespace Components {
         "state": 'neutral' | 'warning' | 'alarm';
         "unit": string;
         "value": string | number;
+    }
+    interface IxLabel {
     }
     /**
      * @since 2.0.0
@@ -3411,12 +3411,6 @@ declare global {
         prototype: HTMLIxExpandingSearchElement;
         new (): HTMLIxExpandingSearchElement;
     };
-    interface HTMLIxFieldLabelElement extends Components.IxFieldLabel, HTMLStencilElement {
-    }
-    var HTMLIxFieldLabelElement: {
-        prototype: HTMLIxFieldLabelElement;
-        new (): HTMLIxFieldLabelElement;
-    };
     interface HTMLIxFilterChipElementEventMap {
         "closeClick": void;
     }
@@ -3555,6 +3549,12 @@ declare global {
     var HTMLIxKpiElement: {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
+    };
+    interface HTMLIxLabelElement extends Components.IxLabel, HTMLStencilElement {
+    }
+    var HTMLIxLabelElement: {
+        prototype: HTMLIxLabelElement;
+        new (): HTMLIxLabelElement;
     };
     /**
      * @since 2.0.0
@@ -4376,7 +4376,6 @@ declare global {
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
         "ix-expanding-search": HTMLIxExpandingSearchElement;
-        "ix-field-label": HTMLIxFieldLabelElement;
         "ix-filter-chip": HTMLIxFilterChipElement;
         "ix-flip-tile": HTMLIxFlipTileElement;
         "ix-flip-tile-content": HTMLIxFlipTileContentElement;
@@ -4391,6 +4390,7 @@ declare global {
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
+        "ix-label": HTMLIxLabelElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
@@ -5588,8 +5588,6 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
-    interface IxFieldLabel {
-    }
     interface IxFilterChip {
         /**
           * If true the filter chip will be in disabled state
@@ -5862,6 +5860,8 @@ declare namespace LocalJSX {
         "state"?: 'neutral' | 'warning' | 'alarm';
         "unit"?: string;
         "value"?: string | number;
+    }
+    interface IxLabel {
     }
     /**
      * @since 2.0.0
@@ -7316,7 +7316,6 @@ declare namespace LocalJSX {
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
         "ix-expanding-search": IxExpandingSearch;
-        "ix-field-label": IxFieldLabel;
         "ix-filter-chip": IxFilterChip;
         "ix-flip-tile": IxFlipTile;
         "ix-flip-tile-content": IxFlipTileContent;
@@ -7331,6 +7330,7 @@ declare namespace LocalJSX {
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
+        "ix-label": IxLabel;
         "ix-layout-grid": IxLayoutGrid;
         "ix-link-button": IxLinkButton;
         "ix-map-navigation": IxMapNavigation;
@@ -7482,7 +7482,6 @@ declare module "@stencil/core" {
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
             "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
-            "ix-field-label": LocalJSX.IxFieldLabel & JSXBase.HTMLAttributes<HTMLIxFieldLabelElement>;
             "ix-filter-chip": LocalJSX.IxFilterChip & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             "ix-flip-tile-content": LocalJSX.IxFlipTileContent & JSXBase.HTMLAttributes<HTMLIxFlipTileContentElement>;
@@ -7506,6 +7505,7 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            "ix-label": LocalJSX.IxLabel & JSXBase.HTMLAttributes<HTMLIxLabelElement>;
             /**
              * @since 2.0.0
              */
