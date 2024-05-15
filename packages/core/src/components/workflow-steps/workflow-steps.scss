@@ -12,7 +12,9 @@
 
 :host {
   @include ix-component;
-  width: 100%;
+  display: block;
+  position: relative;
+  width: fit-content;
   min-width: 2rem;
 
   .steps {
