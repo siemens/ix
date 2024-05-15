@@ -9,7 +9,7 @@
 import { EventEmitter } from '@stencil/core';
 import { IxComponent } from '../internal';
 
-export * from './field-mapping';
+export * from './validation';
 
 export interface HelperText {
   label?: string;

@@ -26,7 +26,7 @@ export class SelectValueAccessorDirective extends ValueAccessor {
   }
 
   @HostListener('valueChange', ['$event.target'])
-  _handleChangeEvent(el: any): void {
-    this.handleValueChange(el, el.value);
+  handleChangeEvent(el: any): void {
+    super.handleValueChange(el, el.value);
   }
 }

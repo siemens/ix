@@ -18,9 +18,9 @@ import {
 } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 import {
-  ClassFieldMappingResult,
+  ValidationResults,
   HelperText,
-  OnClassField,
+  ListenOnValidation,
 } from '../utils/field';
 
 @Component({
@@ -56,8 +56,8 @@ export class DateRangeField implements IxComponent, HelperText {
     this.updateLocalElementRef();
   }
 
-  @OnClassField()
-  checkClassList({ isInvalid }: ClassFieldMappingResult) {
+  @ListenOnValidation()
+  checkClassList({ isInvalid }: ValidationResults) {
     this.isInvalid = isInvalid;
   }
 

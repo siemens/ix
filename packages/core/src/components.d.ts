@@ -19,7 +19,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
-import { ClassFieldMappingResult } from "./components/utils/field";
+import { ValidationResults } from "./components/utils/field";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent } from "./components/date-picker/date-picker";
@@ -60,7 +60,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
-export { ClassFieldMappingResult } from "./components/utils/field";
+export { ValidationResults } from "./components/utils/field";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent } from "./components/date-picker/date-picker";
@@ -570,7 +570,7 @@ export namespace Components {
           * Label for the field component
          */
         "label": string;
-        "overwriteValidation"?: ClassFieldMappingResult;
+        "overwriteValidation"?: ValidationResults;
     }
     /**
      * @since 2.1.0
@@ -4989,7 +4989,7 @@ declare namespace LocalJSX {
           * Label for the field component
          */
         "label"?: string;
-        "overwriteValidation"?: ClassFieldMappingResult;
+        "overwriteValidation"?: ValidationResults;
     }
     /**
      * @since 2.1.0

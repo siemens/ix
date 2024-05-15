@@ -15,12 +15,12 @@ import { ValueAccessor, mapNgToIxClassNames } from './value-accessor';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: CheckboxValueAccessorDirective,
+      useExisting: BooleanValueAccessorDirective,
       multi: true,
     },
   ],
 })
-export class CheckboxValueAccessorDirective extends ValueAccessor {
+export class BooleanValueAccessorDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
   }

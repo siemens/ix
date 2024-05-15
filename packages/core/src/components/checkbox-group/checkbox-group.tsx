@@ -1,9 +1,9 @@
 import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 import {
-  ClassFieldMappingResult,
+  ValidationResults,
   HelperText,
-  OnClassField,
+  ListenOnValidation,
 } from '../utils/field';
 
 @Component({
@@ -30,10 +30,10 @@ export class CheckboxGroup implements IxComponent, HelperText {
 
   @State() isInvalid = false;
 
-  @OnClassField({
+  @ListenOnValidation({
     includeChildren: true,
   })
-  onClassFieldUpdate({ isInvalid }: ClassFieldMappingResult) {
+  onClassFieldUpdate({ isInvalid }: ValidationResults) {
     this.isInvalid = isInvalid;
   }
 

@@ -21,22 +21,6 @@ import { makeRef } from '../utils/make-ref';
 export class PlaygroundInternal {
   @Element() hostElement: HTMLIxPlaygroundInternalElement;
 
-  r1 = makeRef<any>();
-  r2 = makeRef<any>();
-  r3 = makeRef<any>();
-
-  // componentDidLoad() {
-  //   const refs = [this.r1.current, this.r2.current, this.r3.current];
-  //   let i = 0;
-  //   setInterval(() => {
-  //     refs[i].checked = true;
-  //     i++;
-  //     if (i === 3) {
-  //       i = 0;
-  //     }
-  //   }, 1000);
-  // }
-
   render() {
     return (
       <Host>
@@ -82,23 +66,9 @@ export class PlaygroundInternal {
               <ix-col>
                 <ix-custom-field>
                   <ix-radio-group>
-                    <ix-radio
-                      label="Test"
-                      value="test"
-                      ref={this.r1}
-                      checked
-                    ></ix-radio>
-                    <ix-radio
-                      ref={this.r2}
-                      label="Test2"
-                      value="test2"
-                      checked
-                    ></ix-radio>
-                    <ix-radio
-                      ref={this.r3}
-                      label="Test3"
-                      value="test3"
-                    ></ix-radio>
+                    <ix-radio label="Test"></ix-radio>
+                    <ix-radio label="Test2"></ix-radio>
+                    <ix-radio label="Test3"></ix-radio>
                   </ix-radio-group>
                 </ix-custom-field>
               </ix-col>
@@ -109,20 +79,8 @@ export class PlaygroundInternal {
                 <ix-field-label>Radio Group</ix-field-label>
               </ix-col>
               <ix-col>
-                <ix-checkbox
-                  label="Agree"
-                  onCheckedChange={(event) => {
-                    const target = event.target;
-                    console.log(target.checked);
-                  }}
-                ></ix-checkbox>
-                <ix-checkbox
-                  label="Agree2"
-                  onCheckedChange={(event) => {
-                    const target = event.target;
-                    console.log(target.checked);
-                  }}
-                ></ix-checkbox>
+                <ix-checkbox label="Agree"></ix-checkbox>
+                <ix-checkbox label="Agree2"></ix-checkbox>
               </ix-col>
             </ix-row>
 

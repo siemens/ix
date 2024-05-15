@@ -26,7 +26,7 @@ export class TextValueAccessorDirective extends ValueAccessor {
   }
 
   @HostListener('input', ['$event.target'])
-  _handleInputEvent(el: any): void {
-    this.handleValueChange(el, el.value);
+  handleInputEvent(el: any): void {
+    super.handleValueChange(el, el.value);
   }
 }

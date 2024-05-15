@@ -11,9 +11,9 @@ import {
   Watch,
 } from '@stencil/core';
 import {
-  ClassFieldMappingResult,
+  ValidationResults,
   HelperText,
-  OnClassField,
+  ListenOnValidation,
 } from '../utils/field';
 import { IxComponent } from '../utils/internal';
 
@@ -119,10 +119,10 @@ export class RadiobuttonGroup implements IxComponent, HelperText {
     });
   }
 
-  @OnClassField({
+  @ListenOnValidation({
     includeChildren: true,
   })
-  onClassField({ isInvalid }: ClassFieldMappingResult) {
+  onClassField({ isInvalid }: ValidationResults) {
     this.isInvalid = isInvalid;
   }
 

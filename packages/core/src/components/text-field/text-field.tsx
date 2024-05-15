@@ -19,9 +19,9 @@ import {
   h,
 } from '@stencil/core';
 import {
-  ClassFieldMappingResult,
+  ValidationResults,
   IxFieldComponent,
-  OnClassField,
+  ListenOnValidation,
 } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
 
@@ -79,8 +79,8 @@ export class TextField implements IxFieldComponent<string> {
 
   private inputRef = makeRef<HTMLInputElement>();
 
-  @OnClassField()
-  updateClassMappings({ isInvalid }: ClassFieldMappingResult) {
+  @ListenOnValidation()
+  updateClassMappings({ isInvalid }: ValidationResults) {
     this.isInvalid = isInvalid;
   }
 

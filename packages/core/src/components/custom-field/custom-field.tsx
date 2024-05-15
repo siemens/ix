@@ -1,7 +1,7 @@
 import { Component, Element, Host, Prop, State, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 import {
-  ClassFieldMappingResult,
+  ValidationResults,
   HelperText,
   checkFieldClasses,
 } from '../utils/field';
@@ -29,7 +29,7 @@ export class CustomField implements IxComponent, HelperText {
   @Prop({ reflect: true }) errorText: string;
 
   /** @internal */
-  @Prop() overwriteValidation?: ClassFieldMappingResult;
+  @Prop() overwriteValidation?: ValidationResults;
 
   @State() isInvalid: boolean;
 

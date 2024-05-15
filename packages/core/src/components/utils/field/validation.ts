@@ -34,14 +34,13 @@ export function createClassMutationObserver(
   };
 }
 
-const fieldMappingValues = 'isInvalid' as const;
-export type ClassFieldMapping = typeof fieldMappingValues;
-export type ClassFieldMappingResult = Record<ClassFieldMapping, boolean>;
+export type ValidationResultProperty = 'isInvalid';
+export type ValidationResults = Record<ValidationResultProperty, boolean>;
 
 export function checkFieldClasses(
   hostElement: HTMLElement,
   includeChildren = false
-): ClassFieldMappingResult {
+): ValidationResults {
   return {
     isInvalid:
       hostElement.classList.contains('ix-invalid') ||
@@ -49,7 +48,7 @@ export function checkFieldClasses(
   };
 }
 
-export function OnClassField(options?: { includeChildren?: boolean }) {
+export function ListenOnValidation(options?: { includeChildren?: boolean }) {
   return (proto: any, methodName: string) => {
     let classMutationObserver: ClassMutationObserver;
     const { componentWillLoad, disconnectedCallback } = proto;
