@@ -32,7 +32,6 @@ export interface IxFieldComponent<T = any>
     HelperText,
     IxFormComponent<T> {
   placeholder?: string;
-  required?: boolean;
   isInvalid: boolean;
 
   // TODO: Should we add additional input properties here?

@@ -20,6 +20,8 @@ import { defineCustomElement as defineIxCardContent } from '@siemens/ix/componen
 import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/ix-card-list.js';
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
+import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
+import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
@@ -28,6 +30,7 @@ import { defineCustomElement as defineIxCustomField } from '@siemens/ix/componen
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDateField } from '@siemens/ix/components/ix-date-field.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
+import { defineCustomElement as defineIxDateRangeField } from '@siemens/ix/components/ix-date-range-field.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
 import { defineCustomElement as defineIxDrawer } from '@siemens/ix/components/ix-drawer.js';
@@ -40,6 +43,7 @@ import { defineCustomElement as defineIxEmptyState } from '@siemens/ix/component
 import { defineCustomElement as defineIxEventList } from '@siemens/ix/components/ix-event-list.js';
 import { defineCustomElement as defineIxEventListItem } from '@siemens/ix/components/ix-event-list-item.js';
 import { defineCustomElement as defineIxExpandingSearch } from '@siemens/ix/components/ix-expanding-search.js';
+import { defineCustomElement as defineIxFieldLabel } from '@siemens/ix/components/ix-field-label.js';
 import { defineCustomElement as defineIxFilterChip } from '@siemens/ix/components/ix-filter-chip.js';
 import { defineCustomElement as defineIxFlipTile } from '@siemens/ix/components/ix-flip-tile.js';
 import { defineCustomElement as defineIxFlipTileContent } from '@siemens/ix/components/ix-flip-tile-content.js';
@@ -79,6 +83,8 @@ import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-p
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
+import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
+import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
@@ -117,6 +123,8 @@ export const IxCardContent = /*@__PURE__*/createReactComponent<JSX.IxCardContent
 export const IxCardList = /*@__PURE__*/createReactComponent<JSX.IxCardList, HTMLIxCardListElement>('ix-card-list', undefined, undefined, defineIxCardList);
 export const IxCardTitle = /*@__PURE__*/createReactComponent<JSX.IxCardTitle, HTMLIxCardTitleElement>('ix-card-title', undefined, undefined, defineIxCardTitle);
 export const IxCategoryFilter = /*@__PURE__*/createReactComponent<JSX.IxCategoryFilter, HTMLIxCategoryFilterElement>('ix-category-filter', undefined, undefined, defineIxCategoryFilter);
+export const IxCheckbox = /*@__PURE__*/createReactComponent<JSX.IxCheckbox, HTMLIxCheckboxElement>('ix-checkbox', undefined, undefined, defineIxCheckbox);
+export const IxCheckboxGroup = /*@__PURE__*/createReactComponent<JSX.IxCheckboxGroup, HTMLIxCheckboxGroupElement>('ix-checkbox-group', undefined, undefined, defineIxCheckboxGroup);
 export const IxChip = /*@__PURE__*/createReactComponent<JSX.IxChip, HTMLIxChipElement>('ix-chip', undefined, undefined, defineIxChip);
 export const IxCol = /*@__PURE__*/createReactComponent<JSX.IxCol, HTMLIxColElement>('ix-col', undefined, undefined, defineIxCol);
 export const IxContent = /*@__PURE__*/createReactComponent<JSX.IxContent, HTMLIxContentElement>('ix-content', undefined, undefined, defineIxContent);
@@ -125,6 +133,7 @@ export const IxCustomField = /*@__PURE__*/createReactComponent<JSX.IxCustomField
 export const IxDateDropdown = /*@__PURE__*/createReactComponent<JSX.IxDateDropdown, HTMLIxDateDropdownElement>('ix-date-dropdown', undefined, undefined, defineIxDateDropdown);
 export const IxDateField = /*@__PURE__*/createReactComponent<JSX.IxDateField, HTMLIxDateFieldElement>('ix-date-field', undefined, undefined, defineIxDateField);
 export const IxDatePicker = /*@__PURE__*/createReactComponent<JSX.IxDatePicker, HTMLIxDatePickerElement>('ix-date-picker', undefined, undefined, defineIxDatePicker);
+export const IxDateRangeField = /*@__PURE__*/createReactComponent<JSX.IxDateRangeField, HTMLIxDateRangeFieldElement>('ix-date-range-field', undefined, undefined, defineIxDateRangeField);
 export const IxDatetimePicker = /*@__PURE__*/createReactComponent<JSX.IxDatetimePicker, HTMLIxDatetimePickerElement>('ix-datetime-picker', undefined, undefined, defineIxDatetimePicker);
 export const IxDivider = /*@__PURE__*/createReactComponent<JSX.IxDivider, HTMLIxDividerElement>('ix-divider', undefined, undefined, defineIxDivider);
 export const IxDrawer = /*@__PURE__*/createReactComponent<JSX.IxDrawer, HTMLIxDrawerElement>('ix-drawer', undefined, undefined, defineIxDrawer);
@@ -137,6 +146,7 @@ export const IxEmptyState = /*@__PURE__*/createReactComponent<JSX.IxEmptyState, 
 export const IxEventList = /*@__PURE__*/createReactComponent<JSX.IxEventList, HTMLIxEventListElement>('ix-event-list', undefined, undefined, defineIxEventList);
 export const IxEventListItem = /*@__PURE__*/createReactComponent<JSX.IxEventListItem, HTMLIxEventListItemElement>('ix-event-list-item', undefined, undefined, defineIxEventListItem);
 export const IxExpandingSearch = /*@__PURE__*/createReactComponent<JSX.IxExpandingSearch, HTMLIxExpandingSearchElement>('ix-expanding-search', undefined, undefined, defineIxExpandingSearch);
+export const IxFieldLabel = /*@__PURE__*/createReactComponent<JSX.IxFieldLabel, HTMLIxFieldLabelElement>('ix-field-label', undefined, undefined, defineIxFieldLabel);
 export const IxFilterChip = /*@__PURE__*/createReactComponent<JSX.IxFilterChip, HTMLIxFilterChipElement>('ix-filter-chip', undefined, undefined, defineIxFilterChip);
 export const IxFlipTile = /*@__PURE__*/createReactComponent<JSX.IxFlipTile, HTMLIxFlipTileElement>('ix-flip-tile', undefined, undefined, defineIxFlipTile);
 export const IxFlipTileContent = /*@__PURE__*/createReactComponent<JSX.IxFlipTileContent, HTMLIxFlipTileContentElement>('ix-flip-tile-content', undefined, undefined, defineIxFlipTileContent);
@@ -176,6 +186,8 @@ export const IxPane = /*@__PURE__*/createReactComponent<JSX.IxPane, HTMLIxPaneEl
 export const IxPaneLayout = /*@__PURE__*/createReactComponent<JSX.IxPaneLayout, HTMLIxPaneLayoutElement>('ix-pane-layout', undefined, undefined, defineIxPaneLayout);
 export const IxPill = /*@__PURE__*/createReactComponent<JSX.IxPill, HTMLIxPillElement>('ix-pill', undefined, undefined, defineIxPill);
 export const IxPushCard = /*@__PURE__*/createReactComponent<JSX.IxPushCard, HTMLIxPushCardElement>('ix-push-card', undefined, undefined, defineIxPushCard);
+export const IxRadio = /*@__PURE__*/createReactComponent<JSX.IxRadio, HTMLIxRadioElement>('ix-radio', undefined, undefined, defineIxRadio);
+export const IxRadioGroup = /*@__PURE__*/createReactComponent<JSX.IxRadioGroup, HTMLIxRadioGroupElement>('ix-radio-group', undefined, undefined, defineIxRadioGroup);
 export const IxRow = /*@__PURE__*/createReactComponent<JSX.IxRow, HTMLIxRowElement>('ix-row', undefined, undefined, defineIxRow);
 export const IxSelect = /*@__PURE__*/createReactComponent<JSX.IxSelect, HTMLIxSelectElement>('ix-select', undefined, undefined, defineIxSelect);
 export const IxSelectItem = /*@__PURE__*/createReactComponent<JSX.IxSelectItem, HTMLIxSelectItemElement>('ix-select-item', undefined, undefined, defineIxSelectItem);

@@ -122,7 +122,7 @@ const detourFormControlMethods = (
   }
 };
 
-const mapNgToIxClassNames = (element: ElementRef): void => {
+export const mapNgToIxClassNames = (element: ElementRef): void => {
   setTimeout(() => {
     const input = element.nativeElement as HTMLInputElement;
     const classes = getClasses(input);

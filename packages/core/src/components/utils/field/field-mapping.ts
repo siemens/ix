@@ -44,9 +44,8 @@ export function checkFieldClasses(
 ): ClassFieldMappingResult {
   return {
     isInvalid:
-      hostElement.classList.contains('ix-invalid') || includeChildren
-        ? !!hostElement.querySelector('.ix-invalid')
-        : false,
+      hostElement.classList.contains('ix-invalid') ||
+      (includeChildren ? !!hostElement.querySelector('.ix-invalid') : false),
   };
 }
 

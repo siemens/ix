@@ -7,25 +7,35 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, State } from '@stencil/core';
-import { DateTime } from 'luxon';
+import { Component, Element, h, Host } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
 
 /** @internal */
 @Component({
   tag: 'ix-playground-internal',
   styleUrl: 'playground.scss',
-  // shadow: true,
+  shadow: true,
   // Set scoped=true and shadow=false to test global styles like checkbox etc
-  scoped: true,
+  // scoped: true,
 })
 export class PlaygroundInternal {
   @Element() hostElement: HTMLIxPlaygroundInternalElement;
 
-  @State() checked = true;
+  r1 = makeRef<any>();
+  r2 = makeRef<any>();
+  r3 = makeRef<any>();
 
-  private checkboxGroupRef = makeRef<HTMLIxCheckboxGroupElement>();
-  private selectRef = makeRef<HTMLIxSelectElement>();
+  // componentDidLoad() {
+  //   const refs = [this.r1.current, this.r2.current, this.r3.current];
+  //   let i = 0;
+  //   setInterval(() => {
+  //     refs[i].checked = true;
+  //     i++;
+  //     if (i === 3) {
+  //       i = 0;
+  //     }
+  //   }, 1000);
+  // }
 
   render() {
     return (
@@ -33,183 +43,99 @@ export class PlaygroundInternal {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            console.log('form submitted');
             const formData = new FormData(e.target as HTMLFormElement);
             for (const x of formData.keys()) {
               console.log(x, formData.get(x));
             }
           }}
         >
-          <ix-layout-grid>
+          <ix-layout-grid gap="24">
             <ix-row>
-              <ix-field-label>test</ix-field-label>
-              <ix-text-field
-                required
-                name="project"
-                helperText="Name"
-                errorText="Error"
-              ></ix-text-field>
+              <ix-col size="1">
+                <ix-field-label>Project</ix-field-label>
+              </ix-col>
+              <ix-col>
+                <ix-text-field
+                  name="project_name"
+                  helperText="Fill in a cool project name"
+                ></ix-text-field>
+              </ix-col>
+            </ix-row>
+            <ix-row>
+              <ix-col size="1">
+                <ix-field-label>Asset</ix-field-label>
+              </ix-col>
+              <ix-col>
+                <ix-text-field
+                  required
+                  name="asset_name"
+                  helperText="How is your asset called?"
+                  errorText="This field is required"
+                ></ix-text-field>
+              </ix-col>
             </ix-row>
 
             <ix-row>
-              <ix-text-field label="test"></ix-text-field>
+              <ix-col size="1">
+                <ix-field-label>Radio Group</ix-field-label>
+              </ix-col>
+              <ix-col>
+                <ix-custom-field>
+                  <ix-radio-group>
+                    <ix-radio
+                      label="Test"
+                      value="test"
+                      ref={this.r1}
+                      checked
+                    ></ix-radio>
+                    <ix-radio
+                      ref={this.r2}
+                      label="Test2"
+                      value="test2"
+                      checked
+                    ></ix-radio>
+                    <ix-radio
+                      ref={this.r3}
+                      label="Test3"
+                      value="test3"
+                    ></ix-radio>
+                  </ix-radio-group>
+                </ix-custom-field>
+              </ix-col>
             </ix-row>
 
             <ix-row>
-              <ix-date-field
-                id="xxx"
-                name="project_created"
-                value={'2024/05/05'}
-                helperText="Helper text"
-                label="Project"
-                errorText="First of a month is not allowed"
-                onValueChange={({ detail }) => {
-                  this.hostElement
-                    .querySelector('#xxx')
-                    .classList.toggle(
-                      'ix-invalid',
-                      DateTime.fromFormat(detail, 'yyyy/LL/dd').day === 1
-                    );
-                }}
-              ></ix-date-field>
-            </ix-row>
-
-            <ix-row>
-              <ix-date-range-field errorText="test">
-                <ix-date-field
-                  name="start1"
-                  value={'2024/05/01'}
-                ></ix-date-field>
-                <ix-date-field name="end1" value={'2024/05/05'}></ix-date-field>
-              </ix-date-range-field>
-            </ix-row>
-
-            <ix-row>
-              <ix-checkbox-group
-                label="Checkbox group"
-                helperText="Info"
-                ref={this.checkboxGroupRef}
-              >
-                <ix-checkbox name="vehicle" value="car" checked={this.checked}>
-                  Car
-                </ix-checkbox>
-                <ix-checkbox name="vehicle2" value="boat">
-                  Boat
-                </ix-checkbox>
-
+              <ix-col size="1">
+                <ix-field-label>Radio Group</ix-field-label>
+              </ix-col>
+              <ix-col>
                 <ix-checkbox
-                  indeterminate
-                  name="vehicle3"
-                  value="indeterminate"
-                >
-                  Boat
-                </ix-checkbox>
-              </ix-checkbox-group>
-            </ix-row>
-
-            <ix-row>
-              <ix-select value={'1'} name="option_sel_1">
-                <ix-select-item value="1" label="Option 1"></ix-select-item>
-                <ix-select-item value="2" label="Option 2"></ix-select-item>
-                <ix-select-item value="3" label="Option 3"></ix-select-item>
-              </ix-select>
-            </ix-row>
-
-            <ix-row>
-              <ix-custom-field
-                label="Test"
-                helperText="helper"
-                errorText="error"
-              >
-                <ix-checkbox>test</ix-checkbox>
-                <ix-checkbox disabled checked>
-                  test
-                </ix-checkbox>
-                <ix-select
-                  ref={this.selectRef}
-                  mode="multiple"
-                  value={'1'}
-                  name="option_sel_2"
-                  onValueChange={({ detail }) => {
-                    this.selectRef.current.classList.toggle(
-                      'ix-invalid',
-                      Array.isArray(detail)
-                        ? detail.includes('3')
-                        : detail === '3'
-                    );
+                  label="Agree"
+                  onCheckedChange={(event) => {
+                    const target = event.target;
+                    console.log(target.checked);
                   }}
-                >
-                  <ix-select-item value="1" label="Option 1"></ix-select-item>
-                  <ix-select-item value="2" label="Option 2"></ix-select-item>
-                  <ix-select-item value="3" label="Option 3"></ix-select-item>
-                </ix-select>
-              </ix-custom-field>
+                ></ix-checkbox>
+                <ix-checkbox
+                  label="Agree2"
+                  onCheckedChange={(event) => {
+                    const target = event.target;
+                    console.log(target.checked);
+                  }}
+                ></ix-checkbox>
+              </ix-col>
             </ix-row>
 
             <ix-row>
-              <ix-radiobutton-group
-                label="Radio Button Group"
-                helperText="Select blob type"
-                errorText="Some error"
-              >
-                <ix-radiobutton name="blob" value="x1">
-                  Type = x1
-                </ix-radiobutton>
-                <ix-radiobutton name="blob" value="x2">
-                  Type = x2
-                </ix-radiobutton>
-                <ix-radiobutton name="blob" value="x3" checked>
-                  Type = x3
-                </ix-radiobutton>
-              </ix-radiobutton-group>
+              <ix-button type="submit">Submit</ix-button>
             </ix-row>
 
             <ix-row>
-              <ix-button type="submit">Button</ix-button>
+              <ix-col>
+                <textarea></textarea>
+              </ix-col>
             </ix-row>
           </ix-layout-grid>
-
-          {/* <ix-custom-field
-            helperText="Helper text"
-            errorText="Error!"
-            label="My Label"
-          >
-            <ix-text-field name="project"></ix-text-field>
-          </ix-custom-field> */}
-          {/* <ix-text-field
-            name="project"
-            placeholder="123"
-            onValueChanged={console.log}
-            onInput={console.log}
-            helperText="Helper text"
-            label="Project"
-            errorText="Bla bla 123"
-          ></ix-text-field>
-
-          <ix-date-field
-            id="xxx"
-            name="project_created"
-            value={'2024/05/05'}
-            helperText="Helper text"
-            label="Project"
-            errorText="First of a month is not allowed"
-            onValueChanged={({ detail }) => {
-              this.hostElement
-                .querySelector('#xxx')
-                .classList.toggle(
-                  'ix-invalid',
-                  DateTime.fromFormat(detail, 'yyyy/LL/dd').day === 1
-                );
-            }}
-          ></ix-date-field>
-          <ix-custom-field helperText="Helper text" label="Project">
-            <ix-text-field></ix-text-field>
-          </ix-custom-field>
-
-          <ix-date-range-field>
-            <ix-date-field name="holiday_start_date" value={'2024/05/01'}></ix-date-field>
-            <ix-date-field name="holiday_end_date" value={'2024/05/05'}></ix-date-field>
-          </ix-date-range-field> */}
         </form>
       </Host>
     );

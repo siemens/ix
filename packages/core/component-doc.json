@@ -2421,6 +2421,299 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/checkbox",
+      "filePath": "src/components/checkbox/checkbox.tsx",
+      "fileName": "checkbox.tsx",
+      "readmePath": "src/components/checkbox/readme.md",
+      "usagesDir": "src/components/checkbox/usage",
+      "tag": "ix-checkbox",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-checkbox": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-checkbox"
+        ]
+      },
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "checked",
+          "reflectToAttr": true,
+          "docs": "Checked state of the checkbox component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Disabled state of the checkbox component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "indeterminate",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "indeterminate",
+          "reflectToAttr": true,
+          "docs": "Indeterminate state of the checkbox component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Value of the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "checkedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the checked state of the checkbox changes",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the checkbox changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/checkbox-group",
+      "filePath": "src/components/checkbox-group/checkbox-group.tsx",
+      "fileName": "checkbox-group.tsx",
+      "readmePath": "src/components/checkbox-group/readme.md",
+      "usagesDir": "src/components/checkbox-group/usage",
+      "tag": "ix-checkbox-group",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-helper-text-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-checkbox-group": [
+          "ix-helper-text-wrapper"
+        ],
+        "ix-helper-text-wrapper": [
+          "ix-typography",
+          "ix-field-label"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "errorText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "error-text",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/chip",
       "filePath": "src/components/chip/chip.tsx",
       "fileName": "chip.tsx",
@@ -2699,7 +2992,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2707,6 +3001,9 @@
           "ix-col"
         ],
         "ix-datetime-picker": [
+          "ix-col"
+        ],
+        "ix-playground-internal": [
           "ix-col"
         ]
       },
@@ -3238,6 +3535,10 @@
           "ix-helper-text-wrapper"
         ],
         "ix-helper-text-wrapper": [
+          "ix-typography",
+          "ix-field-label"
+        ],
+        "ix-field-label": [
           "ix-typography"
         ],
         "ix-playground-internal": [
@@ -3256,7 +3557,7 @@
           "mutable": false,
           "attr": "error-text",
           "reflectToAttr": true,
-          "docs": "tbd\n\nTODO validation observer needed",
+          "docs": "tbd",
           "docsTags": [],
           "values": [
             {
@@ -3733,9 +4034,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-helper-text-wrapper",
         "ix-dropdown",
@@ -3748,6 +4047,10 @@
           "ix-date-picker"
         ],
         "ix-helper-text-wrapper": [
+          "ix-typography",
+          "ix-field-label"
+        ],
+        "ix-field-label": [
           "ix-typography"
         ],
         "ix-date-picker": [
@@ -3761,9 +4064,6 @@
         ],
         "ix-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-date-field"
         ]
       },
       "props": [
@@ -3826,27 +4126,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "isInvalid",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "is-invalid",
-          "reflectToAttr": false,
-          "docs": "tbd",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -3961,7 +4240,7 @@
       "methods": [],
       "events": [
         {
-          "event": "valueChanged",
+          "event": "valueChange",
           "detail": "string",
           "bubbles": true,
           "complexType": {
@@ -4514,6 +4793,117 @@
       "slots": [],
       "parts": [],
       "listeners": []
+    },
+    {
+      "dirPath": "src/components/date-range-field",
+      "filePath": "src/components/date-range-field/date-range-field.tsx",
+      "fileName": "date-range-field.tsx",
+      "readmePath": "src/components/date-range-field/readme.md",
+      "usagesDir": "src/components/date-range-field/usage",
+      "tag": "ix-date-range-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-helper-text-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-date-range-field": [
+          "ix-helper-text-wrapper"
+        ],
+        "ix-helper-text-wrapper": [
+          "ix-typography",
+          "ix-field-label"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "errorText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "error-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "ixFocus",
+          "capture": false,
+          "passive": false
+        },
+        {
+          "event": "ixBlur",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/datetime-picker",
@@ -6947,6 +7337,44 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/field-label",
+      "filePath": "src/components/field-label/field-label.tsx",
+      "fileName": "field-label.tsx",
+      "readmePath": "src/components/field-label/readme.md",
+      "usagesDir": "src/components/field-label/usage",
+      "tag": "ix-field-label",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-helper-text-wrapper",
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-helper-text-wrapper": [
+          "ix-field-label"
+        ],
+        "ix-playground-internal": [
+          "ix-field-label"
+        ]
+      },
+      "props": [],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/filter-chip",
       "filePath": "src/components/filter-chip/filter-chip.tsx",
       "fileName": "filter-chip.tsx",
@@ -7740,21 +8168,38 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-checkbox-group",
         "ix-custom-field",
         "ix-date-field",
+        "ix-date-range-field",
+        "ix-radio-group",
         "ix-text-field"
       ],
       "dependencies": [
-        "ix-typography"
+        "ix-typography",
+        "ix-field-label"
       ],
       "dependencyGraph": {
         "ix-helper-text-wrapper": [
+          "ix-typography",
+          "ix-field-label"
+        ],
+        "ix-field-label": [
           "ix-typography"
+        ],
+        "ix-checkbox-group": [
+          "ix-helper-text-wrapper"
         ],
         "ix-custom-field": [
           "ix-helper-text-wrapper"
         ],
         "ix-date-field": [
+          "ix-helper-text-wrapper"
+        ],
+        "ix-date-range-field": [
+          "ix-helper-text-wrapper"
+        ],
+        "ix-radio-group": [
           "ix-helper-text-wrapper"
         ],
         "ix-text-field": [
@@ -8924,7 +9369,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -8932,6 +9378,9 @@
           "ix-layout-grid"
         ],
         "ix-datetime-picker": [
+          "ix-layout-grid"
+        ],
+        "ix-playground-internal": [
           "ix-layout-grid"
         ]
       },
@@ -13294,6 +13743,297 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/radio",
+      "filePath": "src/components/radio/radio.tsx",
+      "fileName": "radio.tsx",
+      "readmePath": "src/components/radio/readme.md",
+      "usagesDir": "src/components/radio/usage",
+      "tag": "ix-radio",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-radio"
+        ]
+      },
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "checked",
+          "reflectToAttr": true,
+          "docs": "Checked state of the radio component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Value of the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "checkedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the checked state of the radio changes",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the radio changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/radio-group",
+      "filePath": "src/components/radio-group/radio-group.tsx",
+      "fileName": "radio-group.tsx",
+      "readmePath": "src/components/radio-group/readme.md",
+      "usagesDir": "src/components/radio-group/usage",
+      "tag": "ix-radio-group",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-helper-text-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-radio-group": [
+          "ix-helper-text-wrapper"
+        ],
+        "ix-helper-text-wrapper": [
+          "ix-typography",
+          "ix-field-label"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-radio-group"
+        ]
+      },
+      "props": [
+        {
+          "name": "errorText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "error-text",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value of the radiobutton group component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the radiobutton group changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "checkedChange",
+          "capture": false,
+          "passive": false
+        }
+      ]
+    },
+    {
       "dirPath": "src/components/row",
       "filePath": "src/components/row/row.tsx",
       "fileName": "row.tsx",
@@ -13312,7 +14052,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -13320,6 +14061,9 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
+          "ix-row"
+        ],
+        "ix-playground-internal": [
           "ix-row"
         ]
       },
@@ -13586,6 +14330,32 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the select component",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "TODO: Add version"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -15138,6 +15908,10 @@
           "ix-helper-text-wrapper"
         ],
         "ix-helper-text-wrapper": [
+          "ix-typography",
+          "ix-field-label"
+        ],
+        "ix-field-label": [
           "ix-typography"
         ],
         "ix-playground-internal": [
@@ -15155,7 +15929,7 @@
           },
           "mutable": false,
           "attr": "error-text",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "tbd",
           "docsTags": [],
           "values": [
@@ -15260,10 +16034,9 @@
           },
           "mutable": false,
           "attr": "required",
-          "reflectToAttr": false,
+          "reflectToAttr": true,
           "docs": "tbd",
           "docsTags": [],
-          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -15297,7 +16070,7 @@
       "methods": [],
       "events": [
         {
-          "event": "valueChanged",
+          "event": "valueChange",
           "detail": "string",
           "bubbles": true,
           "complexType": {
@@ -17132,9 +17905,11 @@
         "ix-avatar",
         "ix-blind",
         "ix-card-list",
+        "ix-checkbox",
         "ix-content-header",
         "ix-dropdown-header",
         "ix-empty-state",
+        "ix-field-label",
         "ix-helper-text-wrapper",
         "ix-menu-about-news",
         "ix-menu-category",
@@ -17163,6 +17938,9 @@
         "ix-card-list": [
           "ix-typography"
         ],
+        "ix-checkbox": [
+          "ix-typography"
+        ],
         "ix-content-header": [
           "ix-typography"
         ],
@@ -17170,6 +17948,9 @@
           "ix-typography"
         ],
         "ix-empty-state": [
+          "ix-typography"
+        ],
+        "ix-field-label": [
           "ix-typography"
         ],
         "ix-helper-text-wrapper": [
@@ -18397,6 +19178,11 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
+    },
+    "src/components/utils/field/index.ts::ClassFieldMappingResult": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components/utils/field/index.ts"
     },
     "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
       "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",

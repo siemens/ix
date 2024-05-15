@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { iconEye, iconSingleCheck } from '@siemens/ix-icons/icons';
 import {
   AttachInternals,
   Component,
@@ -18,8 +17,8 @@ import {
   Watch,
   h,
 } from '@stencil/core';
-import { makeRef } from '../utils/make-ref';
 import { IxFormComponent } from '../utils/field';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-checkbox',
@@ -75,19 +74,12 @@ export class Checkbox implements IxFormComponent<string> {
   });
 
   private setCheckedState(newChecked: boolean) {
-    const result = this.checkedChange.emit(newChecked);
-    if (result.defaultPrevented) {
-      return;
-    }
-
     this.checked = newChecked;
+    this.checkedChange.emit(this.checked);
   }
 
   @Watch('checked')
   onCheckedChange() {
-    const checkboxRef = this.inputRef.current;
-    checkboxRef.checked = this.checked;
-
     this.updateFormInternalValue();
   }
 
@@ -159,11 +151,9 @@ export class Checkbox implements IxFormComponent<string> {
         <label>
           <input
             ref={this.inputRef}
+            checked={this.checked}
             type="checkbox"
-            onChange={() => {
-              const ref = this.inputRef.current;
-              this.setCheckedState(ref.checked);
-            }}
+            onChange={() => this.setCheckedState(!this.checked)}
           />
           <button
             disabled={this.disabled}

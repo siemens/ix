@@ -19,19 +19,22 @@ import { DIRECTIVES } from './declare-components';
 import { IxDropdownTriggerDirective } from './dropdown/trigger.directive';
 import { IxIcon } from './ix-icon';
 import { ModalService } from './modal';
-import { SelectValueAccessor } from './select-value-accessor';
-import { BooleanValueAccessor } from './boolean-value-accessor';
 import { ThemeService } from './theme';
 import { ToastService } from './toast';
 import * as tree from './tree';
+import { SelectValueAccessorDirective } from './control-value-accessors/select-value-accessor';
+import { RadioValueAccessorDirective } from './control-value-accessors/radio-value-accessor';
+import { CheckboxValueAccessorDirective } from './control-value-accessors/checkbox-value-accessor';
 const DECLARATIONS = [
   ...DIRECTIVES,
   tree.IxTree,
   IxDropdownTriggerDirective,
   IxIcon,
-  SelectValueAccessor,
-  BooleanValueAccessor,
+
   TextValueAccessorDirective,
+  SelectValueAccessorDirective,
+  RadioValueAccessorDirective,
+  CheckboxValueAccessorDirective,
 ];
 
 @NgModule({

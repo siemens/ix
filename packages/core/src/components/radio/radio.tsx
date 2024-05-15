@@ -22,41 +22,41 @@ import { makeRef } from '../utils/make-ref';
 import { IxFormComponent } from '../utils/field';
 
 @Component({
-  tag: 'ix-radiobutton',
-  styleUrl: 'radiobutton.scss',
+  tag: 'ix-radio',
+  styleUrl: 'radio.scss',
   shadow: true,
   formAssociated: true,
 })
-export class Radiobutton implements IxFormComponent<string> {
+export class Radio implements IxFormComponent<string> {
   @AttachInternals() formInternals: ElementInternals;
 
   /**
-   * Name of the radiobutton component
+   * Name of the radio component
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
-   * Value of the radiobutton component
+   * Value of the radio component
    */
   @Prop({ reflect: true }) value?: string;
 
   /**
-   * Label for the radiobutton component
+   * Label for the radio component
    */
   @Prop() label: string;
 
   /**
-   * Checked state of the radiobutton component
+   * Checked state of the radio component
    */
   @Prop({ reflect: true, mutable: true }) checked: boolean = false;
 
   /**
-   * Event emitted when the checked state of the radiobutton changes
+   * Event emitted when the checked state of the radio changes
    */
   @Event() checkedChange!: EventEmitter<boolean>;
 
   /**
-   * Event emitted when the value of the radiobutton changes
+   * Event emitted when the value of the radio changes
    */
   @Event() valueChange!: EventEmitter<string>;
 
@@ -77,8 +77,8 @@ export class Radiobutton implements IxFormComponent<string> {
   }
 
   @Watch('checked')
-  onCheckedChange() {
-    const radiobuttonRef = this.inputRef.current;
+  async onCheckedChange() {
+    const radiobuttonRef = await this.inputRef.waitForCurrent();
     radiobuttonRef.checked = this.checked;
 
     this.updateFormInternalValue();

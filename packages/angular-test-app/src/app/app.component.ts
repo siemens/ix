@@ -8,7 +8,6 @@
  */
 
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +15,5 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  profileForm = new FormGroup({
-    projectName: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
-  });
+  title = 'angular-test-app';
 }

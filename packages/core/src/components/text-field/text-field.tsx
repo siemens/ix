@@ -18,9 +18,12 @@ import {
   State,
   h,
 } from '@stencil/core';
-import { IxFieldComponent } from '../utils/field';
-import { InputElement } from './input-element';
-import { ClassFieldMappingResult, OnClassField } from '../utils/field';
+import {
+  ClassFieldMappingResult,
+  IxFieldComponent,
+  OnClassField,
+} from '../utils/field';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-text-field',
@@ -50,7 +53,7 @@ export class TextField implements IxFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop() required = false;
+  @Prop({ reflect: true }) required: boolean;
 
   /**
    * tbd
@@ -65,7 +68,7 @@ export class TextField implements IxFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop({ reflect: true }) errorText: string;
+  @Prop() errorText: string;
 
   /**
    * tbd
@@ -74,9 +77,7 @@ export class TextField implements IxFieldComponent<string> {
 
   @State() isInvalid = false;
 
-  connectedCallback(): void {
-    /** */
-  }
+  private inputRef = makeRef<HTMLInputElement>();
 
   @OnClassField()
   updateClassMappings({ isInvalid }: ClassFieldMappingResult) {
@@ -97,11 +98,28 @@ export class TextField implements IxFieldComponent<string> {
       <Host>
         <ix-helper-text-wrapper
           helperText={this.helperText}
-          label={this.label}
           errorText={this.errorText}
+          label={this.label}
           isInvalid={this.isInvalid}
         >
-          <InputElement field={this} type="text"></InputElement>
+          <input
+            ref={this.inputRef}
+            type="text"
+            class={{
+              'is-invalid': this.isInvalid,
+            }}
+            required={this.required}
+            value={this.value}
+            placeholder={this.placeholder}
+            onChange={(changeEvent) => {
+              const target = changeEvent.target as HTMLInputElement;
+              this.valueChange.emit(target.value);
+            }}
+            onInput={(inputEvent) => {
+              const target = inputEvent.target as HTMLInputElement;
+              this.updateFormInternalValue(target.value);
+            }}
+          ></input>
         </ix-helper-text-wrapper>
       </Host>
     );

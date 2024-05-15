@@ -1968,25 +1968,25 @@ export namespace Components {
          */
         "variant": PushCardVariant;
     }
-    interface IxRadiobutton {
+    interface IxRadio {
         /**
-          * Checked state of the radiobutton component
+          * Checked state of the radio component
          */
         "checked": boolean;
         /**
-          * Label for the radiobutton component
+          * Label for the radio component
          */
         "label": string;
         /**
-          * Name of the radiobutton component
+          * Name of the radio component
          */
         "name"?: string;
         /**
-          * Value of the radiobutton component
+          * Value of the radio component
          */
         "value"?: string;
     }
-    interface IxRadiobuttonGroup {
+    interface IxRadioGroup {
         /**
           * tbd
          */
@@ -1999,6 +1999,10 @@ export namespace Components {
           * Label for the field component
          */
         "label": string;
+        /**
+          * Value of the radiobutton group component
+         */
+        "value": string;
     }
     /**
      * @since 2.0.0
@@ -2796,9 +2800,13 @@ export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaneElement;
 }
-export interface IxRadiobuttonCustomEvent<T> extends CustomEvent<T> {
+export interface IxRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLIxRadiobuttonElement;
+    target: HTMLIxRadioElement;
+}
+export interface IxRadioGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxRadioGroupElement;
 }
 export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3931,29 +3939,40 @@ declare global {
         prototype: HTMLIxPushCardElement;
         new (): HTMLIxPushCardElement;
     };
-    interface HTMLIxRadiobuttonElementEventMap {
+    interface HTMLIxRadioElementEventMap {
         "checkedChange": boolean;
         "valueChange": string;
     }
-    interface HTMLIxRadiobuttonElement extends Components.IxRadiobutton, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxRadiobuttonElementEventMap>(type: K, listener: (this: HTMLIxRadiobuttonElement, ev: IxRadiobuttonCustomEvent<HTMLIxRadiobuttonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLIxRadioElement extends Components.IxRadio, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxRadiobuttonElementEventMap>(type: K, listener: (this: HTMLIxRadiobuttonElement, ev: IxRadiobuttonCustomEvent<HTMLIxRadiobuttonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLIxRadiobuttonElement: {
-        prototype: HTMLIxRadiobuttonElement;
-        new (): HTMLIxRadiobuttonElement;
+    var HTMLIxRadioElement: {
+        prototype: HTMLIxRadioElement;
+        new (): HTMLIxRadioElement;
     };
-    interface HTMLIxRadiobuttonGroupElement extends Components.IxRadiobuttonGroup, HTMLStencilElement {
+    interface HTMLIxRadioGroupElementEventMap {
+        "valueChange": string;
     }
-    var HTMLIxRadiobuttonGroupElement: {
-        prototype: HTMLIxRadiobuttonGroupElement;
-        new (): HTMLIxRadiobuttonGroupElement;
+    interface HTMLIxRadioGroupElement extends Components.IxRadioGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxRadioGroupElement: {
+        prototype: HTMLIxRadioGroupElement;
+        new (): HTMLIxRadioGroupElement;
     };
     /**
      * @since 2.0.0
@@ -4400,8 +4419,8 @@ declare global {
         "ix-pill": HTMLIxPillElement;
         "ix-playground-internal": HTMLIxPlaygroundInternalElement;
         "ix-push-card": HTMLIxPushCardElement;
-        "ix-radiobutton": HTMLIxRadiobuttonElement;
-        "ix-radiobutton-group": HTMLIxRadiobuttonGroupElement;
+        "ix-radio": HTMLIxRadioElement;
+        "ix-radio-group": HTMLIxRadioGroupElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
@@ -6482,33 +6501,33 @@ declare namespace LocalJSX {
          */
         "variant"?: PushCardVariant;
     }
-    interface IxRadiobutton {
+    interface IxRadio {
         /**
-          * Checked state of the radiobutton component
+          * Checked state of the radio component
          */
         "checked"?: boolean;
         /**
-          * Label for the radiobutton component
+          * Label for the radio component
          */
         "label"?: string;
         /**
-          * Name of the radiobutton component
+          * Name of the radio component
          */
         "name"?: string;
         /**
-          * Event emitted when the checked state of the radiobutton changes
+          * Event emitted when the checked state of the radio changes
          */
-        "onCheckedChange"?: (event: IxRadiobuttonCustomEvent<boolean>) => void;
+        "onCheckedChange"?: (event: IxRadioCustomEvent<boolean>) => void;
         /**
-          * Event emitted when the value of the radiobutton changes
+          * Event emitted when the value of the radio changes
          */
-        "onValueChange"?: (event: IxRadiobuttonCustomEvent<string>) => void;
+        "onValueChange"?: (event: IxRadioCustomEvent<string>) => void;
         /**
-          * Value of the radiobutton component
+          * Value of the radio component
          */
         "value"?: string;
     }
-    interface IxRadiobuttonGroup {
+    interface IxRadioGroup {
         /**
           * tbd
          */
@@ -6521,6 +6540,14 @@ declare namespace LocalJSX {
           * Label for the field component
          */
         "label"?: string;
+        /**
+          * Event emitted when the value of the radiobutton group changes
+         */
+        "onValueChange"?: (event: IxRadioGroupCustomEvent<string>) => void;
+        /**
+          * Value of the radiobutton group component
+         */
+        "value"?: string;
     }
     /**
      * @since 2.0.0
@@ -7332,8 +7359,8 @@ declare namespace LocalJSX {
         "ix-pill": IxPill;
         "ix-playground-internal": IxPlaygroundInternal;
         "ix-push-card": IxPushCard;
-        "ix-radiobutton": IxRadiobutton;
-        "ix-radiobutton-group": IxRadiobuttonGroup;
+        "ix-radio": IxRadio;
+        "ix-radio-group": IxRadioGroup;
         "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
@@ -7537,8 +7564,8 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
-            "ix-radiobutton": LocalJSX.IxRadiobutton & JSXBase.HTMLAttributes<HTMLIxRadiobuttonElement>;
-            "ix-radiobutton-group": LocalJSX.IxRadiobuttonGroup & JSXBase.HTMLAttributes<HTMLIxRadiobuttonGroupElement>;
+            "ix-radio": LocalJSX.IxRadio & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
+            "ix-radio-group": LocalJSX.IxRadioGroup & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
             /**
              * @since 2.0.0
              */
