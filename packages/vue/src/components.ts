@@ -43,7 +43,6 @@ import { defineCustomElement as defineIxEmptyState } from '@siemens/ix/component
 import { defineCustomElement as defineIxEventList } from '@siemens/ix/components/ix-event-list.js';
 import { defineCustomElement as defineIxEventListItem } from '@siemens/ix/components/ix-event-list-item.js';
 import { defineCustomElement as defineIxExpandingSearch } from '@siemens/ix/components/ix-expanding-search.js';
-import { defineCustomElement as defineIxFieldLabel } from '@siemens/ix/components/ix-field-label.js';
 import { defineCustomElement as defineIxFilterChip } from '@siemens/ix/components/ix-filter-chip.js';
 import { defineCustomElement as defineIxFlipTile } from '@siemens/ix/components/ix-flip-tile.js';
 import { defineCustomElement as defineIxFlipTileContent } from '@siemens/ix/components/ix-flip-tile-content.js';
@@ -58,6 +57,7 @@ import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/component
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
+import { defineCustomElement as defineIxLabel } from '@siemens/ix/components/ix-label.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
 import { defineCustomElement as defineIxMapNavigation } from '@siemens/ix/components/ix-map-navigation.js';
@@ -502,9 +502,6 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
 ]);
 
 
-export const IxFieldLabel = /*@__PURE__*/ defineContainer<JSX.IxFieldLabel>('ix-field-label', defineIxFieldLabel);
-
-
 export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-filter-chip', defineIxFilterChip, [
   'disabled',
   'readonly',
@@ -618,6 +615,9 @@ export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', defineIx
   'state',
   'orientation'
 ]);
+
+
+export const IxLabel = /*@__PURE__*/ defineContainer<JSX.IxLabel>('ix-label', defineIxLabel);
 
 
 export const IxLayoutGrid = /*@__PURE__*/ defineContainer<JSX.IxLayoutGrid>('ix-layout-grid', defineIxLayoutGrid, [

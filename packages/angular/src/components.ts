@@ -1009,27 +1009,6 @@ export declare interface IxExpandingSearch extends Components.IxExpandingSearch 
 
 
 @ProxyCmp({
-})
-@Component({
-  selector: 'ix-field-label',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-})
-export class IxFieldLabel {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxFieldLabel extends Components.IxFieldLabel {}
-
-
-@ProxyCmp({
   inputs: ['disabled', 'readonly']
 })
 @Component({
@@ -1364,6 +1343,27 @@ export class IxKpi {
 
 
 export declare interface IxKpi extends Components.IxKpi {}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-label',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class IxLabel {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxLabel extends Components.IxLabel {}
 
 
 @ProxyCmp({

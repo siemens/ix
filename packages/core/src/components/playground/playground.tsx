@@ -8,7 +8,6 @@
  */
 
 import { Component, Element, h, Host } from '@stencil/core';
-import { makeRef } from '../utils/make-ref';
 
 /** @internal */
 @Component({

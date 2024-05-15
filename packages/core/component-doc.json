@@ -2634,10 +2634,6 @@
           "ix-helper-text-wrapper"
         ],
         "ix-helper-text-wrapper": [
-          "ix-typography",
-          "ix-field-label"
-        ],
-        "ix-field-label": [
           "ix-typography"
         ]
       },
@@ -3535,10 +3531,6 @@
           "ix-helper-text-wrapper"
         ],
         "ix-helper-text-wrapper": [
-          "ix-typography",
-          "ix-field-label"
-        ],
-        "ix-field-label": [
           "ix-typography"
         ],
         "ix-playground-internal": [
@@ -4047,10 +4039,6 @@
           "ix-date-picker"
         ],
         "ix-helper-text-wrapper": [
-          "ix-typography",
-          "ix-field-label"
-        ],
-        "ix-field-label": [
           "ix-typography"
         ],
         "ix-date-picker": [
@@ -4815,10 +4803,6 @@
           "ix-helper-text-wrapper"
         ],
         "ix-helper-text-wrapper": [
-          "ix-typography",
-          "ix-field-label"
-        ],
-        "ix-field-label": [
           "ix-typography"
         ]
       },
@@ -7337,44 +7321,6 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/field-label",
-      "filePath": "src/components/field-label/field-label.tsx",
-      "fileName": "field-label.tsx",
-      "readmePath": "src/components/field-label/readme.md",
-      "usagesDir": "src/components/field-label/usage",
-      "tag": "ix-field-label",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-helper-text-wrapper",
-        "ix-playground-internal"
-      ],
-      "dependencies": [
-        "ix-typography"
-      ],
-      "dependencyGraph": {
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-helper-text-wrapper": [
-          "ix-field-label"
-        ],
-        "ix-playground-internal": [
-          "ix-field-label"
-        ]
-      },
-      "props": [],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
       "dirPath": "src/components/filter-chip",
       "filePath": "src/components/filter-chip/filter-chip.tsx",
       "fileName": "filter-chip.tsx",
@@ -8176,15 +8122,10 @@
         "ix-text-field"
       ],
       "dependencies": [
-        "ix-typography",
-        "ix-field-label"
+        "ix-typography"
       ],
       "dependencyGraph": {
         "ix-helper-text-wrapper": [
-          "ix-typography",
-          "ix-field-label"
-        ],
-        "ix-field-label": [
           "ix-typography"
         ],
         "ix-checkbox-group": [
@@ -9343,6 +9284,40 @@
           "required": false
         }
       ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/label",
+      "filePath": "src/components/label/label.tsx",
+      "fileName": "label.tsx",
+      "readmePath": "src/components/label/readme.md",
+      "usagesDir": "src/components/label/usage",
+      "tag": "ix-label",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-label": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-label"
+        ]
+      },
+      "props": [],
       "methods": [],
       "events": [],
       "styles": [],
@@ -13909,10 +13884,6 @@
           "ix-helper-text-wrapper"
         ],
         "ix-helper-text-wrapper": [
-          "ix-typography",
-          "ix-field-label"
-        ],
-        "ix-field-label": [
           "ix-typography"
         ],
         "ix-playground-internal": [
@@ -15908,10 +15879,6 @@
           "ix-helper-text-wrapper"
         ],
         "ix-helper-text-wrapper": [
-          "ix-typography",
-          "ix-field-label"
-        ],
-        "ix-field-label": [
           "ix-typography"
         ],
         "ix-playground-internal": [
@@ -17909,8 +17876,8 @@
         "ix-content-header",
         "ix-dropdown-header",
         "ix-empty-state",
-        "ix-field-label",
         "ix-helper-text-wrapper",
+        "ix-label",
         "ix-menu-about-news",
         "ix-menu-category",
         "ix-modal-header",
@@ -17950,10 +17917,10 @@
         "ix-empty-state": [
           "ix-typography"
         ],
-        "ix-field-label": [
+        "ix-helper-text-wrapper": [
           "ix-typography"
         ],
-        "ix-helper-text-wrapper": [
+        "ix-label": [
           "ix-typography"
         ],
         "ix-menu-about-news": [
@@ -19179,7 +19146,7 @@
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
     },
-    "src/components/utils/field/index.ts::ClassFieldMappingResult": {
+    "src/components/utils/field/index.ts::ValidationResults": {
       "declaration": "any",
       "docstring": "",
       "path": "src/components/utils/field/index.ts"
