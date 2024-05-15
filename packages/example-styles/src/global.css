@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,40 +7,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
- body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
+/* global imports only needed for AG-Grid */
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+@import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
+
+html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
   height: 100vh;
   width: 100vw;
 }
 
-#root {
-  width: 100%;
-  height: 100%;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.example {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  max-width: 20rem;
-}
-
-.example > * {
-  margin: 0.5rem;
-}
-
+/* placeholder-logo for usage in all files */
 .placeholder-logo {
   float: left;
   width: 8.625rem;

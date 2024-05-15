@@ -228,6 +228,9 @@ importers:
       echarts:
         specifier: ^5.4.1
         version: 5.4.3
+      example-styles:
+        specifier: workspace:*
+        version: link:../example-styles
       ngx-echarts:
         specifier: ~14.0.0
         version: 14.0.0(echarts@5.4.3)
@@ -571,6 +574,8 @@ importers:
         specifier: latest
         version: 3.0.3
 
+  packages/example-styles: {}
+
   packages/figma-plugin:
     dependencies:
       axios:
@@ -604,6 +609,9 @@ importers:
       '@siemens/ix-icons':
         specifier: ^2.0.0
         version: 2.0.1
+      example-styles:
+        specifier: workspace:*
+        version: link:../example-styles
       vite:
         specifier: ^3.1.0
         version: 3.2.7(@types/node@16.18.70)(less@4.2.0)(sass@1.69.5)(stylus@0.59.0)(terser@5.22.0)
@@ -728,6 +736,9 @@ importers:
       echarts-for-react:
         specifier: ~3.0.2
         version: 3.0.2(echarts@5.4.3)(react@18.2.0)
+      example-styles:
+        specifier: workspace:*
+        version: link:../example-styles
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -814,6 +825,9 @@ importers:
       echarts:
         specifier: ^5.4.1
         version: 5.4.3
+      example-styles:
+        specifier: workspace:*
+        version: link:../example-styles
       vue:
         specifier: ^3.2.45
         version: 3.3.7(typescript@4.9.5)
