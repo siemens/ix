@@ -76,6 +76,18 @@ export const config: Config = {
       includePolyfills: false,
       includeDefineCustomElements: false,
       excludeComponents: ['ix-playground-internal', 'ix-icon'],
+      componentModels: [
+        {
+          elements: ['ix-select'],
+          event: 'valueChange',
+          targetAttr: 'value',
+        },
+        {
+          elements: ['ix-toggle'],
+          event: 'checkedChange',
+          targetAttr: 'checked',
+        },
+      ]
     }),
     angularOutputTarget({
       componentCorePackage: '@siemens/ix',

@@ -784,7 +784,7 @@ export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push
 export const IxRow = /*@__PURE__*/ defineContainer<JSX.IxRow>('ix-row', defineIxRow);
 
 
-export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select', defineIxSelect, [
+export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect["value"]>('ix-select', defineIxSelect, [
   'selectedIndices',
   'value',
   'allowClear',
@@ -801,7 +801,8 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'itemSelectionChange',
   'inputChange',
   'addItem'
-]);
+],
+'value', 'valueChange');
 
 
 export const IxSelectItem = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
@@ -919,7 +920,7 @@ export const IxToastContainer = /*@__PURE__*/ defineContainer<JSX.IxToastContain
 ]);
 
 
-export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle', defineIxToggle, [
+export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle, JSX.IxToggle["checked"]>('ix-toggle', defineIxToggle, [
   'checked',
   'disabled',
   'indeterminate',
@@ -928,7 +929,8 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
   'textIndeterminate',
   'hideText',
   'checkedChange'
-]);
+],
+'checked', 'checkedChange');
 
 
 export const IxToggleButton = /*@__PURE__*/ defineContainer<JSX.IxToggleButton>('ix-toggle-button', defineIxToggleButton, [
