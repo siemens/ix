@@ -13,10 +13,10 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxButton class="m-1" variant="danger">
+      <IxButton style={{ margin: '0.25rem' }} variant="danger">
         Button
       </IxButton>
-      <IxButton class="m-1" disabled variant="danger">
+      <IxButton style={{ margin: '0.25rem' }} disabled variant="danger">
         Button
       </IxButton>
     </>

@@ -33,7 +33,7 @@ function load(value: string) {
     <IxButton
       :loading="toggle1"
       @click="load('1')"
-      class="m-1"
+      :style="{ margin: '0.25rem' }"
       outline
       variant="primary"
     >
@@ -42,7 +42,7 @@ function load(value: string) {
     <IxButton
       :loading="toggle2"
       @click="load('2')"
-      class="m-1"
+      :style="{ margin: '0.25rem' }"
       outline
       icon="star"
       variant="primary"
@@ -52,12 +52,19 @@ function load(value: string) {
     <IxIconButton
       :loading="toggle3"
       @click="load('3')"
-      class="m-1"
+      :style="{ margin: '0.25rem' }"
       outline
       icon="star"
       variant="primary"
     ></IxIconButton>
-    <IxButton loading class="m-1" outline variant="primary"> Button </IxButton>
-    <IxIconButton loading class="m-1" outline variant="primary"></IxIconButton>
+    <IxButton loading :style="{ margin: '0.25rem' }" outline variant="primary">
+      Button
+    </IxButton>
+    <IxIconButton
+      loading
+      :style="{ margin: '0.25rem' }"
+      outline
+      variant="primary"
+    ></IxIconButton>
   </div>
 </template>

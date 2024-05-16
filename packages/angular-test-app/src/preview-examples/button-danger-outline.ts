@@ -11,16 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: buttonGreySecondary(),
+  templateUrl: './button-danger-outline.html',
 })
 export default class Buttons {}
-function buttonGreySecondary(): string | undefined {
-  return `
-      <ix-button class="m-1" outline variant="danger">
-        Button
-      </ix-button>
-      <ix-button class="m-1" disabled outline variant="danger">
-        Button
-      </ix-button>
-  `;
-}

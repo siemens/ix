@@ -1430,7 +1430,12 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0 - variant danger"
+            }
+          ],
           "default": "'primary'",
           "values": [
             {
@@ -7791,7 +7796,12 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0 - variant danger"
+            }
+          ],
           "default": "'secondary'",
           "values": [
             {

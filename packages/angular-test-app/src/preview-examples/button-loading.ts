@@ -15,7 +15,7 @@ import { Component } from '@angular/core';
     <ix-button
       (click)="toggle()"
       [loading]="loading"
-      class="m-1"
+      style="margin: 0.25rem"
       outline
       variant="primary"
     >
@@ -26,7 +26,7 @@ import { Component } from '@angular/core';
       (click)="toggle2()"
       [loading]="loading2"
       icon="star"
-      class="m-1"
+      style="margin: 0.25rem"
       outline
       variant="primary"
     >
@@ -37,20 +37,20 @@ import { Component } from '@angular/core';
       (click)="toggle3()"
       [loading]="loading3"
       icon="star"
-      class="m-1"
+      style="margin: 0.25rem"
       outline
       variant="primary"
     >
     </ix-icon-button>
 
-    <ix-button loading class="m-1" outline variant="primary">
+    <ix-button loading style="margin: 0.25rem" outline variant="primary">
       Button
     </ix-button>
 
     <ix-icon-button
       loading
       icon="star"
-      class="m-1"
+      style="margin: 0.25rem"
       outline
       variant="primary"
     ></ix-icon-button>

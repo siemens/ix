@@ -11,56 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <div class="m-1">
-      <ix-icon-button
-        class="m-1"
-        icon="info"
-        variant="primary"
-      ></ix-icon-button>
-      <ix-icon-button
-        class="m-1"
-        icon="info"
-        variant="secondary"
-      ></ix-icon-button>
-      <ix-icon-button
-        class="m-1"
-        icon="info"
-        variant="danger"
-      ></ix-icon-button>
-      <ix-icon-button class="m-1" icon="info" outline></ix-icon-button>
-      <ix-icon-button class="m-1" icon="info" ghost></ix-icon-button>
-    </div>
-
-    <div class="m-1">
-      <ix-icon-button
-        class="m-1"
-        icon="info"
-        oval
-        variant="primary"
-      ></ix-icon-button>
-      <ix-icon-button
-        class="m-1"
-        icon="info"
-        oval
-        variant="secondary"
-      ></ix-icon-button>
-      <ix-icon-button
-        class="m-1"
-        icon="info"
-        oval
-        variant="danger"
-      ></ix-icon-button>
-      <ix-icon-button class="m-1" icon="info" oval outline></ix-icon-button>
-      <ix-icon-button class="m-1" icon="info" oval ghost></ix-icon-button>
-    </div>
-
-    <div class="m-1">
-      <ix-icon-button class="m-1" icon="info" size="12"></ix-icon-button>
-      <ix-icon-button class="m-1" icon="info" size="16"></ix-icon-button>
-      <ix-icon-button class="m-1" icon="info" size="24"></ix-icon-button>
-      <ix-icon-button class="m-1" icon="info" size="32"></ix-icon-button>
-    </div>
-  `,
+  templateUrl: './button-with-icon.html',
+  styles: ["div, ix-button { margin: 0.25rem; }"]
 })
 export default class ButtonWithIcon {}

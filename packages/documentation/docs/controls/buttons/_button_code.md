@@ -103,13 +103,6 @@ name="button-group"
 hideInitalCodePreview
 examplesByName></Playground>
 
-### Button group
-
-<Playground
-name="button-group"
-hideInitalCodePreview
-examplesByName></Playground>
-
 ### Button with text and icon
 
 <Playground

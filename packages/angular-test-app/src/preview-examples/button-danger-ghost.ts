@@ -11,16 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: buttonGreyGhost(),
+  templateUrl: './button-danger-ghost.html',
 })
 export default class Buttons {}
-function buttonGreyGhost(): string | undefined {
-  return `
-      <ix-button class="m-1" ghost variant="secondary">
-        Button
-      </ix-button>
-      <ix-button class="m-1" disabled ghost variant="secondary">
-        Button
-      </ix-button>
-  `;
-}

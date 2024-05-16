@@ -73,18 +73,18 @@ export type BaseButtonProps = {
 };
 
 const getSpinnerSize = (btnProps: BaseButtonProps) => {
-  if (btnProps.icon) {
-    switch (btnProps.iconSize) {
-      case '12':
-        return 'xx-small';
-      case '16':
-        return 'x-small';
-      default:
-        return 'small';
-    }
+  if (!btnProps.icon) {
+    return 'small';
   }
 
-  return 'small';
+  switch (btnProps.iconSize) {
+    case '12':
+      return 'xx-small';
+    case '16':
+      return 'x-small';
+    default:
+      return 'small';
+  }
 };
 
 export function BaseButton(props: BaseButtonProps, children) {

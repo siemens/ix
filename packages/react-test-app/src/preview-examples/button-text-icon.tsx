@@ -13,16 +13,16 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxButton class="m-1" variant="primary" icon="star">
+      <IxButton style={{ margin: '0.25rem' }} variant="primary" icon="star">
         Button
       </IxButton>
-      <IxButton class="m-1" variant="secondary" icon="star">
+      <IxButton style={{ margin: '0.25rem' }} variant="secondary" icon="star">
         Button
       </IxButton>
-      <IxButton class="m-1" outline icon="star">
+      <IxButton style={{ margin: '0.25rem' }} outline icon="star">
         Button
       </IxButton>
-      <IxButton class="m-1" ghost icon="star">
+      <IxButton style={{ margin: '0.25rem' }} ghost icon="star">
         Button
       </IxButton>
     </>

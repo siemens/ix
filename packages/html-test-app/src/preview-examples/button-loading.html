@@ -8,6 +8,11 @@ SPDX-License-Identifier: MIT
 <html>
   <head>
     <title>Loading button</title>
+    <style>
+      ix-button {
+        margin: 0.25rem;
+      }
+    </style>
   </head>
 
   <body class="theme-brand-dark">
@@ -22,37 +27,27 @@ SPDX-License-Identifier: MIT
       }
     </script>
 
-    <ix-button onclick="toggle(this)" class="m-1" outline variant="primary">
+    <ix-button onclick="toggle(this)" outline variant="primary">
       Button
     </ix-button>
 
-    <ix-button
-      onclick="toggle(this)"
-      icon="star"
-      class="m-1"
-      outline
-      variant="primary"
-    >
+    <ix-button onclick="toggle(this)" icon="star" outline variant="primary">
       Button
     </ix-button>
 
     <ix-icon-button
       onclick="toggle(this)"
       icon="star"
-      class="m-1"
       outline
       variant="primary"
     >
     </ix-icon-button>
 
-    <ix-button loading class="m-1" outline variant="primary">
-      Button
-    </ix-button>
+    <ix-button loading outline variant="primary"> Button </ix-button>
 
     <ix-icon-button
       loading
       icon="star"
-      class="m-1"
       outline
       variant="primary"
     ></ix-icon-button>

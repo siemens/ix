@@ -14,49 +14,87 @@ export default () => {
   return (
     <>
       <div>
-        <IxIconButton class="m-1" icon="info" variant="primary"></IxIconButton>
         <IxIconButton
-          class="m-1"
+          style={{ margin: '0.25rem' }}
+          icon="info"
+          variant="primary"
+        ></IxIconButton>
+        <IxIconButton
+          style={{ margin: '0.25rem' }}
           icon="info"
           variant="secondary"
         ></IxIconButton>
         <IxIconButton
-          class="m-1"
+          style={{ margin: '0.25rem' }}
           icon="info"
           variant="danger"
         ></IxIconButton>
-        <IxIconButton class="m-1" icon="info" outline></IxIconButton>
-        <IxIconButton class="m-1" icon="info" ghost></IxIconButton>
+        <IxIconButton
+          style={{ margin: '0.25rem' }}
+          icon="info"
+          outline
+        ></IxIconButton>
+        <IxIconButton
+          style={{ margin: '0.25rem' }}
+          icon="info"
+          ghost
+        ></IxIconButton>
       </div>
 
       <div>
         <IxIconButton
-          class="m-1"
+          style={{ margin: '0.25rem' }}
           icon="info"
           oval
           variant="primary"
         ></IxIconButton>
         <IxIconButton
-          class="m-1"
+          style={{ margin: '0.25rem' }}
           icon="info"
           oval
           variant="secondary"
         ></IxIconButton>
         <IxIconButton
-          class="m-1"
+          style={{ margin: '0.25rem' }}
           icon="info"
           oval
           variant="danger"
         ></IxIconButton>
-        <IxIconButton class="m-1" icon="info" oval outline></IxIconButton>
-        <IxIconButton class="m-1" icon="info" oval ghost></IxIconButton>
+        <IxIconButton
+          style={{ margin: '0.25rem' }}
+          icon="info"
+          oval
+          outline
+        ></IxIconButton>
+        <IxIconButton
+          style={{ margin: '0.25rem' }}
+          icon="info"
+          oval
+          ghost
+        ></IxIconButton>
       </div>
 
       <div>
-        <IxIconButton class="m-1" icon="info" size="12"></IxIconButton>
-        <IxIconButton class="m-1" icon="info" size="16"></IxIconButton>
-        <IxIconButton class="m-1" icon="info" size="24"></IxIconButton>
-        <IxIconButton class="m-1" icon="info" size="32"></IxIconButton>
+        <IxIconButton
+          style={{ margin: '0.25rem' }}
+          icon="info"
+          size="12"
+        ></IxIconButton>
+        <IxIconButton
+          style={{ margin: '0.25rem' }}
+          icon="info"
+          size="16"
+        ></IxIconButton>
+        <IxIconButton
+          style={{ margin: '0.25rem' }}
+          icon="info"
+          size="24"
+        ></IxIconButton>
+        <IxIconButton
+          style={{ margin: '0.25rem' }}
+          icon="info"
+          size="32"
+        ></IxIconButton>
       </div>
     </>
   );

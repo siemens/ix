@@ -16,10 +16,10 @@ import { Component } from '@angular/core';
 export default class Buttons {}
 function buttonGreyGhost(): string | undefined {
   return `
-      <ix-button class="m-1" ghost variant="secondary">
+      <ix-button style="margin: 0.25rem" ghost variant="secondary">
         Button
       </ix-button>
-      <ix-button class="m-1" disabled ghost variant="secondary">
+      <ix-button style="margin: 0.25rem" disabled ghost variant="secondary">
         Button
       </ix-button>
   `;

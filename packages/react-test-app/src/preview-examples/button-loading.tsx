@@ -24,7 +24,7 @@ export default () => {
           }, 2500);
         }}
         loading={toggle}
-        class="m-1"
+        style={{ margin: '0.25rem' }}
         outline
         variant="primary"
       >
@@ -39,7 +39,7 @@ export default () => {
           }, 2500);
         }}
         loading={toggle2}
-        class="m-1"
+        style={{ margin: '0.25rem' }}
         outline
         icon="star"
         variant="primary"
@@ -55,7 +55,7 @@ export default () => {
           }, 2500);
         }}
         loading={toggle3}
-        class="m-1"
+        style={{ margin: '0.25rem' }}
         outline
         icon="star"
         variant="primary"
@@ -69,17 +69,17 @@ export default () => {
           }, 2500);
         }}
         loading={toggle}
-        class="m-1"
+        style={{ margin: '0.25rem' }}
         outline
         icon="star"
         variant="primary"
       ></IxIconButton>
-      <IxButton loading class="m-1" outline variant="primary">
+      <IxButton loading style={{ margin: '0.25rem' }} outline variant="primary">
         Button
       </IxButton>
       <IxIconButton
         loading
-        class="m-1"
+        style={{ margin: '0.25rem' }}
         outline
         variant="primary"
       ></IxIconButton>

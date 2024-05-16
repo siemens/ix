@@ -20,6 +20,7 @@ export type ButtonVariant = 'danger' | 'primary' | 'secondary';
 export class Button {
   /**
    * Button variant
+   * @since 2.3.0 - variant danger
    */
   @Prop() variant: ButtonVariant = 'primary';
 
