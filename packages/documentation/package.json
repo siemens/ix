@@ -26,7 +26,7 @@
     "@mdx-js/react": "^3.0.0",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-icons": "latest",
+    "@siemens/ix-icons": "^2.0.0",
     "@siemens/ix-react": "workspace:*",
     "@stackblitz/sdk": "^1.8.1",
     "clsx": "^1.2.1",

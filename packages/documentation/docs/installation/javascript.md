@@ -57,13 +57,12 @@ In the following section we will describe how you can build an application with 
 
 ```javascript
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
-import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
+import { defineCustomElements } from '@siemens/ix/loader';
+import { defineCustomElements as defineIxIconCustomElement } from '@siemens/ix-icons/loader';
 
 (async () => {
-  await applyPolyfills();
-  await ixIconsDefineCustomElements();
-  await defineCustomElements();
+  defineIxIconCustomElement();
+  defineCustomElements();
 })();
 ```
 
