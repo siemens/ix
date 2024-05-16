@@ -15,14 +15,15 @@
   display: block;
   position: relative;
   width: fit-content;
+  height: fit-content;
   min-width: 2rem;
 
   .steps {
     display: flex;
+    height: 100%;
 
     &.vertical {
       flex-direction: column;
-      height: 100%;
     }
   }
 }
