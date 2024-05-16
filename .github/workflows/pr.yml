@@ -35,6 +35,7 @@ jobs:
               - packages/echarts/**
             docs:
               - packages/documentation/**
+              - packages/example-styles/**
               - packages/html-test-app/**
               - packages/angular-test-app/**
               - packages/react-test-app/**

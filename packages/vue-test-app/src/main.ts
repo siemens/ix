@@ -1,9 +1,13 @@
-import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
-import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-import './style.css';
+import 'example-styles/dist/global.css';
 
 import { ixPlugin } from '@siemens/ix-vue';
 import { createApp } from 'vue';
