@@ -2,4 +2,4 @@
 '@siemens/ix-angular': patch
 ---
 
-fix modal overflow issue in angular
+fix(angular/modal): avoid overflow of modal content
