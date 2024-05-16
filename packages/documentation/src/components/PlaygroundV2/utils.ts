@@ -37,6 +37,22 @@ function replaceScriptFilePath(source: string) {
   );
 }
 
+export function replaceStyleFilepath(
+  source: string,
+  sameFolder: boolean = false
+) {
+  var styleFileName: string | undefined;
+  const regex = /example-styles\/dist\/(.*\.(css|scss))/;
+  const match = source.match(regex);
+  if (match && match.length > 1) {
+    styleFileName = match[1];
+  }
+
+  source = source.replace('example-styles/dist', sameFolder ? '.' : './styles');
+
+  return { source, styleFileName };
+}
+
 function getSourceCodeFile({
   name,
   framework,
@@ -81,24 +97,76 @@ async function loadSourceCodeFromStatic(paths: string[]) {
   return Promise.all(sourceFiles.map((res) => res.text()));
 }
 
+async function getFiles(
+  sourceFiles: SourceFile[],
+  styleFilePath: string,
+  mainFileName: string,
+  framework: TargetFramework
+) {
+  const files: Record<string, string> = {};
+  const styleFiles: Record<string, string> = {};
+  const filePromises = sourceFiles.map(async ({ filename, raw }) => {
+    if (filename.endsWith('.css')) {
+      return;
+    }
+
+    let source = raw;
+    if (filename === mainFileName) {
+      if (framework === TargetFramework.JAVASCRIPT) {
+        source = replaceTheme(replaceScriptFilePath(source));
+        filename = 'index.html';
+      }
+
+      // set style filepath
+      const { source: adaptedSource, styleFileName } = replaceStyleFilepath(
+        source,
+        framework === TargetFramework.ANGULAR
+      );
+      source = adaptedSource;
+
+      // get style file
+      if (styleFileName) {
+        styleFiles[
+          `src/${
+            framework === TargetFramework.ANGULAR ? 'app' : 'styles'
+          }/${styleFileName}`
+        ] = (
+          await loadSourceCodeFromStatic([`${styleFilePath}${styleFileName}`])
+        )[0];
+      }
+    }
+    files[
+      `src${framework === TargetFramework.ANGULAR ? '/app' : ''}/${filename}`
+    ] = source;
+  });
+  await Promise.all(filePromises);
+
+  return { files, styleFiles };
+}
+
 async function openHtmlStackBlitz(
   baseUrl: string,
   sourceFiles: SourceFile[],
   version: string
 ) {
-  const [main_js, package_json, vite_config_ts] =
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/styles/`;
+
+  const [global_css, main_js, package_json, vite_config_ts] =
     await loadSourceCodeFromStatic([
+      `${styleFilePath}global.css`,
       `${baseUrl}code-runtime/html/src/main.js`,
       `${baseUrl}code-runtime/html/package.json`,
       `${baseUrl}code-runtime/html/vite.config.ts`,
     ]);
 
-  const [renderFirstExample, ...additionalFiles] = sourceFiles;
+  const renderFirstExample = sourceFiles[0];
 
-  const files = {};
-  additionalFiles.forEach((file) => {
-    files[`src/${file.filename}`] = file.source;
-  });
+  const { files, styleFiles } = await getFiles(
+    sourceFiles,
+    styleFilePath,
+    renderFirstExample.filename,
+    TargetFramework.JAVASCRIPT
+  );
 
   sdk.openProject(
     {
@@ -107,9 +175,8 @@ async function openHtmlStackBlitz(
       description: 'iX html playground',
       files: {
         ...files,
-        'src/index.html': replaceTheme(
-          replaceScriptFilePath(renderFirstExample.raw)
-        ),
+        ...styleFiles,
+        'src/styles/global.css': global_css,
         'src/main.js': main_js,
         'package.json': patchPkgLibraryVersion(package_json, version),
         'vite.config.ts': vite_config_ts,
@@ -124,38 +191,40 @@ async function openHtmlStackBlitz(
 async function openAngularStackBlitz(
   baseUrl: string,
   name: string,
-  additionalFiles: SourceFile[],
+  sourceFiles: SourceFile[],
   version: string
 ) {
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/styles/`;
+
   const [
-    app_component_css,
+    global_css,
     app_component_html,
     app_component_ts,
     app_module_ts,
     index_html,
     main_ts,
-    styles_css,
     angular_json,
     package_json,
     tsconfig_app_json,
     tsconfig_json,
   ] = await loadSourceCodeFromStatic([
-    `${baseUrl}code-runtime/angular/src/app/app.component.css`,
+    `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/angular/src/app/app.component.html`,
     `${baseUrl}code-runtime/angular/src/app/app.component.ts`,
     `${baseUrl}code-runtime/angular/src/app/app.module.ts`,
     `${baseUrl}code-runtime/angular/src/index.html`,
     `${baseUrl}code-runtime/angular/src/main.ts`,
-    `${baseUrl}code-runtime/angular/src/styles.css`,
     `${baseUrl}code-runtime/angular/angular.json`,
     `${baseUrl}code-runtime/angular/package.json`,
     `${baseUrl}code-runtime/angular/tsconfig.app.json`,
     `${baseUrl}code-runtime/angular/tsconfig.json`,
   ]);
 
+  const renderFirstExample = sourceFiles[0];
+
   const declareComponents: string[] = [];
-  additionalFiles.forEach(({ filename, source }) => {
-    if (/@Component/gms.test(source)) {
+  sourceFiles.forEach(({ filename, raw }) => {
+    if (/@Component/gms.test(raw)) {
       declareComponents.push(filename);
     }
   });
@@ -176,10 +245,12 @@ async function openAngularStackBlitz(
     ];
   `;
 
-  const exampleFiles = {};
-  additionalFiles.forEach(({ filename, source }) => {
-    exampleFiles[`src/app/${filename}`] = source;
-  });
+  const { files, styleFiles } = await getFiles(
+    sourceFiles,
+    styleFilePath,
+    renderFirstExample.filename,
+    TargetFramework.ANGULAR
+  );
 
   sdk.openProject(
     {
@@ -187,19 +258,19 @@ async function openAngularStackBlitz(
       title: 'iX angular app',
       description: 'iX angular playground',
       files: {
+        ...files,
+        ...styleFiles,
         'src/app/declare-component.ts': declare_component_ts,
-        'src/app/app.component.css': app_component_css,
         'src/app/app.component.html': app_component_html,
         'src/app/app.component.ts': app_component_ts,
         'src/app/app.module.ts': app_module_ts,
         'src/index.html': replaceTheme(index_html),
         'src/main.ts': main_ts,
-        'src/styles.css': styles_css,
+        'src/styles.css': global_css,
         'angular.json': angular_json,
         'package.json': patchPkgLibraryVersion(package_json, version),
         'tsconfig.app.json': tsconfig_app_json,
         'tsconfig.json': tsconfig_json,
-        ...exampleFiles,
       },
     },
     {
@@ -213,16 +284,25 @@ async function openReactStackBlitz(
   sourceFiles: SourceFile[],
   version: string
 ) {
-  const [app_tsx, index_html, index_tsx, package_json, tsconfig_json] =
-    await loadSourceCodeFromStatic([
-      `${baseUrl}code-runtime/react/App.tsx`,
-      `${baseUrl}code-runtime/react/index.html`,
-      `${baseUrl}code-runtime/react/index.tsx`,
-      `${baseUrl}code-runtime/react/package.json`,
-      `${baseUrl}code-runtime/react/tsconfig.json`,
-    ]);
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/styles/`;
 
-  const [renderFirstExample] = sourceFiles;
+  const [
+    global_css,
+    app_tsx,
+    index_html,
+    index_tsx,
+    package_json,
+    tsconfig_json,
+  ] = await loadSourceCodeFromStatic([
+    `${styleFilePath}global.css`,
+    `${baseUrl}code-runtime/react/App.tsx`,
+    `${baseUrl}code-runtime/react/index.html`,
+    `${baseUrl}code-runtime/react/index.tsx`,
+    `${baseUrl}code-runtime/react/package.json`,
+    `${baseUrl}code-runtime/react/tsconfig.json`,
+  ]);
+
+  const renderFirstExample = sourceFiles[0];
 
   const patchAppTs = () => {
     return app_tsx
@@ -236,11 +316,12 @@ async function openReactStackBlitz(
       .replace(/\{\/\* @_RENDER_COMPONENT \*\/\}/gms, '\n<Example />\n');
   };
 
-  const files: Record<string, string> = {};
-
-  sourceFiles.forEach(({ filename, source }) => {
-    files[`src/${filename}`] = source;
-  });
+  const { files, styleFiles } = await getFiles(
+    sourceFiles,
+    styleFilePath,
+    renderFirstExample.filename,
+    TargetFramework.REACT
+  );
 
   sdk.openProject(
     {
@@ -249,14 +330,16 @@ async function openReactStackBlitz(
       description: 'iX react playground',
       files: {
         ...files,
+        ...styleFiles,
+        'src/styles/global.css': global_css,
         'public/index.html': replaceTheme(index_html),
         'src/index.tsx': index_tsx,
         'src/App.tsx': patchAppTs(),
         'package.json': patchPkgLibraryVersion(package_json, version),
         'tsconfig.json': tsconfig_json,
         '.stackblitzrc': `{
-        "startCommand": "yarn run start"
-      }`,
+          "startCommand": "npm run start"
+        }`,
       },
     },
     {
@@ -270,15 +353,19 @@ async function openVueStackBlitz(
   sourceFiles: SourceFile[],
   version: string
 ) {
+  const styleFilePath: string = `${baseUrl}auto-generated/previews/styles/`;
+
   const [
+    global_css,
     app_vue,
     index_html,
-    index_ts,
+    main_ts,
     package_json,
     tsconfig_json,
     viteconfig_ts,
     env_d_ts,
   ] = await loadSourceCodeFromStatic([
+    `${styleFilePath}global.css`,
     `${baseUrl}code-runtime/vue/App.vue`,
     `${baseUrl}code-runtime/vue/index.html`,
     `${baseUrl}code-runtime/vue/main.ts`,
@@ -288,7 +375,7 @@ async function openVueStackBlitz(
     `${baseUrl}code-runtime/vue/env.d.ts`,
   ]);
 
-  const [renderFirstExample] = sourceFiles;
+  const renderFirstExample = sourceFiles[0];
 
   const patchAppTs = () => {
     return app_vue
@@ -299,11 +386,12 @@ async function openVueStackBlitz(
       .replace(/<!-- @_RENDER_COMPONENT -->/gms, ' <Example />');
   };
 
-  const files: Record<string, string> = {};
-
-  sourceFiles.forEach(({ filename, source }) => {
-    files[`src/${filename}`] = source;
-  });
+  const { files, styleFiles } = await getFiles(
+    sourceFiles,
+    styleFilePath,
+    renderFirstExample.filename,
+    TargetFramework.VUE
+  );
 
   sdk.openProject(
     {
@@ -312,15 +400,17 @@ async function openVueStackBlitz(
       description: 'iX vue playground',
       files: {
         ...files,
+        ...styleFiles,
+        'src/styles/global.css': global_css,
         'index.html': replaceTheme(index_html),
-        'src/main.ts': index_ts,
+        'src/main.ts': main_ts,
         'src/App.vue': patchAppTs(),
         'src/env.d.ts': env_d_ts,
         'package.json': patchPkgLibraryVersion(package_json, version),
         'tsconfig.json': tsconfig_json,
         'vite.config.ts': viteconfig_ts,
         '.stackblitzrc': `{
-          "startCommand": "yarn run dev"
+          "startCommand": "npm run dev"
         }`,
       },
     },
@@ -328,27 +418,6 @@ async function openVueStackBlitz(
       openFile: `src/${renderFirstExample.filename}`,
     }
   );
-}
-
-async function getSourceCodeFiles(
-  baseUrl: string,
-  framework: TargetFramework,
-  filenames: string[]
-) {
-  const getPath = (name: string) =>
-    `${baseUrl}auto-generated/previews/${framework}/${name}`;
-
-  const sourceFiles: { filename: string; sourceCode: string }[] = [];
-  const files = await loadSourceCodeFromStatic(filenames.map(getPath));
-
-  files.forEach((value, index) => {
-    sourceFiles.push({
-      filename: filenames[index],
-      sourceCode: value,
-    });
-  });
-
-  return sourceFiles;
 }
 
 export async function openStackBlitz({
