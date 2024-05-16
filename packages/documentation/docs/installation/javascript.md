@@ -3,24 +3,31 @@ sidebar_position: 3
 sidebar_title: Web Components
 title: Web Components
 ---
-
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import Playground from '@site/src/components/PlaygroundV2';
 
-## Installation
+### Library installation
 
 Install `@siemens/ix` and `@siemens/ix-icons` using a package manager:
 
-### npm
-
-```
-npm i -S @siemens/ix @siemens/ix-icons
-```
-
-### yarn
-
-```
-yarn add @siemens/ix @siemens/ix-icons
-```
+<Tabs>
+  <TabItem value="npm" label="NPM" default>
+    ```
+    npm install @siemens/ix @siemens/ix-icons
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```
+    yarn add @siemens/ix @siemens/ix-icons
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="PNPM">
+    ```
+    pnpm add @siemens/ix @siemens/ix-icons
+    ```
+  </TabItem>
+</Tabs>
 
 ## Build
 

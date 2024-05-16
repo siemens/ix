@@ -3,6 +3,8 @@ sidebar_position: 4
 sidebar_title: Vue
 title: Vue
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 :::caution Experimental disclaimer
 
@@ -12,21 +14,27 @@ Nevertheless feedback of any kind will be helpful.
 
 :::
 
-### Install dependencies
+### Library installation
 
-Install `@siemens/ix-vue` and `@siemens/ix-icons` using a package manager:
+Install `@siemens/ix`, `@siemens/ix-vue` and `@siemens/ix-icons` using a package manager:
 
-#### npm
-
-```
-npm i -S @siemens/ix-vue @siemens/ix-icons
-```
-
-#### yarn
-
-```
-yarn add @siemens/ix-vue@latest @siemens/ix-icons
-```
+<Tabs>
+  <TabItem value="npm" label="NPM" default>
+    ```
+    npm install @siemens/ix @siemens/ix-vue @siemens/ix-icons
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```
+    yarn add @siemens/ix @siemens/ix-vue @siemens/ix-icons
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="PNPM">
+    ```
+    pnpm add @siemens/ix @siemens/ix-vue @siemens/ix-icons
+    ```
+  </TabItem>
+</Tabs>
 
 ### Usage
 
