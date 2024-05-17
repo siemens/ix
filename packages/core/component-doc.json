@@ -3334,6 +3334,33 @@
           "required": false
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable the button that opens the dropdown containing the date picker.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "format",
           "type": "string",
           "complexType": {
@@ -9741,7 +9768,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "Label of first tab",
+          "docs": "Content of the header",
           "docsTags": [],
           "default": "'About & legal information'",
           "values": [

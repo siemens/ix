@@ -68,9 +68,14 @@ export type BaseButtonProps = {
 export function BaseButton(props: BaseButtonProps, children: unknown) {
   const extraClasses = props.extraClasses ?? {};
 
+  const ariaAttributes = props.ariaAttributes ?? {};
+  if (!ariaAttributes['aria-disabled'] && props.disabled) {
+    ariaAttributes['aria-disabled'] = 'true';
+  }
+
   return (
     <button
-      {...props.ariaAttributes}
+      {...ariaAttributes}
       onClick={(e: Event) => (props.onClick ? props.onClick(e) : undefined)}
       tabindex={props.disabled ? -1 : props.tabIndex ?? 0}
       type={props.type}

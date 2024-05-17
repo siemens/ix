@@ -10,6 +10,7 @@
 import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
+import anime from 'animejs';
 
 @Component({
   tag: 'ix-event-list',
@@ -102,22 +103,24 @@ export class EventList {
     item.style.setProperty('--event-list-item-height', height);
   }
 
-  private triggerFadeOut(): Promise<any> {
-    if (!this.animated) {
-      return Promise.resolve();
-    }
+  private triggerFadeOut(): Promise<void> {
+    return new Promise((resolve) => {
+      if (!this.animated) {
+        resolve();
+      }
 
-    const keyframes = [
-      {
-        opacity: 1,
-        easing: 'ease-in',
-      },
-      { opacity: 0 },
-    ];
-    const listElement = this.hostElement.shadowRoot!.querySelector('ul');
-    return listElement!.animate(keyframes, {
-      duration: EventList.fadeOutDuration,
-    }).finished;
+      const keyframes = [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }];
+      const listElement = this.hostElement.shadowRoot!.querySelector('ul');
+
+      anime({
+        targets: listElement,
+        opacity: keyframes,
+        duration: EventList.fadeOutDuration,
+        complete: () => {
+          resolve();
+        },
+      });
+    });
   }
 
   private triggerFadeIn() {
@@ -129,16 +132,15 @@ export class EventList {
     listItems.forEach((e, i) => {
       const delay = i * 80;
       const offset = delay / (delay + EventList.fadeInDuration);
-      const keyframes = [
-        { opacity: 0 },
-        { opacity: 0, easing: 'ease-out', offset },
-        { opacity: 1 },
-      ];
-      const options = {
+      anime({
+        targets: e,
+        offset: offset,
         duration: EventList.fadeInDuration + delay,
-        iterations: 1,
-      };
-      e.animate(keyframes, options);
+        opacity: [0, 1],
+        easing: 'easeInOutSine',
+        delay: delay,
+        autoplay: true,
+      });
     });
   }
 

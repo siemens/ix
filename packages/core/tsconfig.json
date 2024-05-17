@@ -21,6 +21,6 @@
       "@utils/test": ["src/tests/utils/test"]
     }
   },
-  "include": ["src", "playwright-ct.config.ts", "playwright.config.ts"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

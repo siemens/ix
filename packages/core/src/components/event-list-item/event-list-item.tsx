@@ -16,6 +16,7 @@ import {
   Listen,
   Prop,
 } from '@stencil/core';
+import { a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-event-list-item',
@@ -86,7 +87,8 @@ export class EventListItem {
           disabled: !!this.disabled,
         }}
       >
-        <div
+        <li
+          aria-disabled={a11yBoolean(this.disabled)}
           class={{
             'event-list-item': true,
             selected: !!this.selected,
@@ -116,7 +118,7 @@ export class EventListItem {
               ></ix-icon>
             )}
           </div>
-        </div>
+        </li>
       </Host>
     );
   }

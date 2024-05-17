@@ -39,7 +39,7 @@ export class MenuAbout {
   @Prop() activeTabLabel?: string;
 
   /**
-   * Label of first tab
+   * Content of the header
    */
   @Prop() label = 'About & legal information';
 

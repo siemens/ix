@@ -1,33 +1,8 @@
-import TabItem from '@theme/TabItem';
-import Preview from '@site/src/components/Preview';
-import Props from './../auto-generated/ix-category-filter/props.md';
-import Events from './../auto-generated/ix-category-filter/events.md';
+import DocsTabs from '@site/src/components/DocsTabs';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import DocsUx from './\_category-filter_styleguide.md'
+import DocsCode from './\_category-filter_code.md'
 
 # Category filter
 
-## Usage
-
-<Playground
-name="category-filter"
-height="12rem"
-examplesByName></Playground>
-
-### without categories
-
-<Playground
-name="category-filter-suggestions"
-hideInitalCodePreview
-height="12rem"
-examplesByName></Playground>
-
-## Properties
-
-### Props
-
-<Props />
-
-### Events
-
-<Events />
+<DocsTabs styleguide={DocsUx} code={DocsCode} />
