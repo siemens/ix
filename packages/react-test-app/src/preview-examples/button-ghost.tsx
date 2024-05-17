@@ -13,10 +13,10 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxButton class="m-1" ghost variant="primary">
+      <IxButton class="m-1" ghost>
         Button
       </IxButton>
-      <IxButton class="m-1" disabled ghost variant="primary">
+      <IxButton class="m-1" disabled ghost>
         Button
       </IxButton>
     </>

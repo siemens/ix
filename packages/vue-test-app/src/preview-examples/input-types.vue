@@ -9,44 +9,35 @@
 
 <script setup lang="ts">
 import { IxInputGroup } from '@siemens/ix-vue';
-
 </script>
 
 <template>
   <form className="needs-validation m-2">
     <IxInputGroup>
-        <span slot="input-start">Text:</span>
-        <input placeholder="Enter text" type="text" />
-      </IxInputGroup>
+      <span slot="input-start">Text:</span>
+      <input placeholder="Enter text" type="text" />
+    </IxInputGroup>
 
-      <IxInputGroup>
-        <span slot="input-start">Number:</span>
-        <input type="number" />
-        <span slot="input-end">.00</span>
-        <span slot="input-end">$</span>
-      </IxInputGroup>
+    <IxInputGroup>
+      <span slot="input-start">Number:</span>
+      <input type="number" />
+      <span slot="input-end">.00</span>
+      <span slot="input-end">$</span>
+    </IxInputGroup>
 
-      <IxInputGroup>
-        <span slot="input-start">Password:</span>
-        <input
-          placeholder="Enter password"
-          type="password"
+    <IxInputGroup>
+      <span slot="input-start">Password:</span>
+      <input placeholder="Enter password" type="password" />
+    </IxInputGroup>
 
-        />
-      </IxInputGroup>
+    <IxInputGroup>
+      <span slot="input-start">Email:</span>
+      <input placeholder="example@domain.com" type="email" />
+    </IxInputGroup>
 
-      <IxInputGroup>
-        <span slot="input-start">Email:</span>
-        <input
-          placeholder="example@domain.com"
-          type="email"
-
-        />
-      </IxInputGroup>
-
-      <IxInputGroup>
-        <span slot="input-start">Telephone:</span>
-        <input placeholder="111-111-111" type="tel" />
-      </IxInputGroup>
+    <IxInputGroup>
+      <span slot="input-start">Telephone:</span>
+      <input placeholder="111-111-111" type="tel" />
+    </IxInputGroup>
   </form>
 </template>

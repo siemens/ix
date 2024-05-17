@@ -14,19 +14,14 @@ import { IxIconButton } from '@siemens/ix-vue';
 <template>
   <div>
     <IxIconButton class="m-1" icon="info" variant="primary"></IxIconButton>
-    <IxIconButton class="m-1" icon="info" variant="secondary"></IxIconButton>
+    <IxIconButton class="m-1" icon="info"></IxIconButton>
     <IxIconButton class="m-1" icon="info" outline></IxIconButton>
     <IxIconButton class="m-1" icon="info" ghost></IxIconButton>
   </div>
 
   <div>
     <IxIconButton class="m-1" icon="info" oval variant="primary"></IxIconButton>
-    <IxIconButton
-      class="m-1"
-      icon="info"
-      oval
-      variant="secondary"
-    ></IxIconButton>
+    <IxIconButton class="m-1" icon="info" oval></IxIconButton>
     <IxIconButton class="m-1" icon="info" oval outline></IxIconButton>
     <IxIconButton class="m-1" icon="info" oval ghost></IxIconButton>
   </div>

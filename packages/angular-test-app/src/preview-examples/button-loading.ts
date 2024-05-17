@@ -12,13 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button
-      (click)="toggle()"
-      [loading]="loading"
-      class="m-1"
-      outline
-      variant="primary"
-    >
+    <ix-button (click)="toggle()" [loading]="loading" class="m-1" outline>
       Button
     </ix-button>
 
@@ -28,7 +22,6 @@ import { Component } from '@angular/core';
       icon="star"
       class="m-1"
       outline
-      variant="primary"
     >
       Button
     </ix-button>
@@ -43,9 +36,7 @@ import { Component } from '@angular/core';
     >
     </ix-icon-button>
 
-    <ix-button loading class="m-1" outline variant="primary">
-      Button
-    </ix-button>
+    <ix-button loading class="m-1" outline> Button </ix-button>
 
     <ix-icon-button
       loading

@@ -11,13 +11,19 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  styles: [
+    `
+      @import 'example-styles/dist/blind.css';
+    `,
+  ],
   template: `
-    <ix-blind label="Example" icon="info" sublabel="Sublabel">
+    <ix-blind label="Example" icon="info">
       <ix-icon-button
         id="context-menu"
         slot="header-actions"
         ghost
         icon="context-menu"
+        color="color-primary"
       ></ix-icon-button>
       <ix-dropdown trigger="context-menu">test</ix-dropdown>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy

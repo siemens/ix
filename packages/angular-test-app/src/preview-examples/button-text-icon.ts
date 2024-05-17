@@ -16,7 +16,7 @@ import { Component } from '@angular/core';
 export default class Buttons {}
 function buttonTextIcon(): string | undefined {
   return `
-      <ix-button class="m-1" variant="primary" icon="star">
+      <ix-button class="m-1" icon="star">
         Button
       </ix-button>
       <ix-button class="m-1" variant="secondary" icon="star">

@@ -12,16 +12,8 @@ import { IxButton, IxIcon } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxButton class="m-1" variant="primary" icon="star">
-    Button
-  </IxButton>
-  <IxButton class="m-1" variant="secondary" icon="star">
-    Button
-  </IxButton>
-  <IxButton class="m-1" outline icon="star">
-    Button
-  </IxButton>
-  <IxButton class="m-1" ghost icon="star">
-    Button
-  </IxButton>
+  <IxButton class="m-1" icon="star"> Button </IxButton>
+  <IxButton class="m-1" variant="secondary" icon="star"> Button </IxButton>
+  <IxButton class="m-1" outline icon="star"> Button </IxButton>
+  <IxButton class="m-1" ghost icon="star"> Button </IxButton>
 </template>

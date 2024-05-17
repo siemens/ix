@@ -22,7 +22,7 @@ export default () => {
       </IxMenuItem>
       <IxMenuItem tab-icon="star"> With other Icon </IxMenuItem>
       <IxMenuItem tab-icon="globe" style={{ display: 'none' }}>
-        Should not visible
+        Should not be visible
       </IxMenuItem>
     </IxMenu>
   );

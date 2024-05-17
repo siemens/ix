@@ -11,9 +11,14 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  styles: [
+    `
+      @import 'example-styles/dist/toggle-button.css';
+    `,
+  ],
   template: `
     <ix-toggle-button>Normal</ix-toggle-button>
-    <ix-toggle-button> Pressed </ix-toggle-button>
+    <ix-toggle-button pressed> Pressed </ix-toggle-button>
     <ix-toggle-button disabled> Disabled </ix-toggle-button>
     <ix-toggle-button disabled loading> Loading </ix-toggle-button>
   `,

@@ -13,7 +13,7 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxButton class="m-1" variant="primary" icon="star">
+      <IxButton class="m-1" icon="star">
         Button
       </IxButton>
       <IxButton class="m-1" variant="secondary" icon="star">

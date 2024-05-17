@@ -13,17 +13,11 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   styles: [
     `
-      :host {
-        .example {
-          display: block;
-          position: relative;
-          width: 100%;
-        }
-      }
+      @import 'example-styles/dist/tabs.css';
     `,
   ],
   template: `
-    <div class="example">
+    <div class="tabs">
       <ix-tabs [selected]="selectedTab">
         <ix-tab-item (click)="changeTab(0)">Tab 1</ix-tab-item>
         <ix-tab-item (click)="changeTab(1)">Tab 2</ix-tab-item>

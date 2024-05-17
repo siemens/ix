@@ -30,13 +30,7 @@ function load(value: string) {
 
 <template>
   <div>
-    <IxButton
-      :loading="toggle1"
-      @click="load('1')"
-      class="m-1"
-      outline
-      variant="primary"
-    >
+    <IxButton :loading="toggle1" @click="load('1')" class="m-1" outline>
       Button
     </IxButton>
     <IxButton
@@ -45,7 +39,6 @@ function load(value: string) {
       class="m-1"
       outline
       icon="star"
-      variant="primary"
     >
       Button
     </IxButton>
@@ -57,7 +50,7 @@ function load(value: string) {
       icon="star"
       variant="primary"
     ></IxIconButton>
-    <IxButton loading class="m-1" outline variant="primary"> Button </IxButton>
+    <IxButton loading class="m-1" outline> Button </IxButton>
     <IxIconButton loading class="m-1" outline variant="primary"></IxIconButton>
   </div>
 </template>

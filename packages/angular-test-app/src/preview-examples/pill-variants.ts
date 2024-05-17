@@ -11,6 +11,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  styles: [
+    `
+      @import 'example-styles/dist/pill-variants.css';
+    `,
+  ],
   template: `
     <ix-layout-grid>
       <ix-row>
@@ -101,6 +106,5 @@ import { Component } from '@angular/core';
       </ix-row>
     </ix-layout-grid>
   `,
-  styles: ['ix-pill { min-width: 7rem; }'],
 })
 export default class Pill {}

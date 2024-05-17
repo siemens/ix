@@ -7,10 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
+import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 import { NavLink, Outlet } from 'react-router-dom';
-export const NavigationTest: React.FC = () => {
+
+export default () => {
   return (
     <IxBasicNavigation>
       <IxMenu>

@@ -24,12 +24,7 @@ function clearInput() {
       <span slot="input-start">
         <IxIcon name="search" size="16"></IxIcon>
       </span>
-      <input
-        id="input-string"
-        type="string"
-
-        v-model="text"
-      />
+      <input id="input-string" type="string" v-model="text" />
       <span slot="input-end">
         <IxIconButton
           @click="clearInput"

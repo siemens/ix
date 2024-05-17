@@ -7,30 +7,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/dropdown-button.css';
+
 import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
   return (
-    <>
-      <IxDropdownButton label="" variant="primary" icon="checkboxes">
+    <div className="dropdown-button">
+      <IxDropdownButton label="" icon="checkboxes">
         <IxDropdownItem label="Item 1"></IxDropdownItem>
         <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
-      <IxDropdownButton label="" variant="primary" outline icon="checkboxes">
+      <IxDropdownButton label="" outline icon="checkboxes">
         <IxDropdownItem label="Item 1"></IxDropdownItem>
         <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
-      <IxDropdownButton label="" variant="primary" ghost icon="checkboxes">
+      <IxDropdownButton label="" ghost icon="checkboxes">
         <IxDropdownItem label="Item 1"></IxDropdownItem>
         <IxDropdownItem label="Item 2"></IxDropdownItem>
       </IxDropdownButton>
-      <IxDropdownButton
-        label=""
-        variant="primary"
-        disabled
-        icon="checkboxes"
-      ></IxDropdownButton>
-    </>
+      <IxDropdownButton label="" disabled icon="checkboxes"></IxDropdownButton>
+    </div>
   );
 };

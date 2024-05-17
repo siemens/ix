@@ -12,7 +12,7 @@ import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxBasicNavigation>
+  <IxBasicNavigation applicationName="Application name">
     <div className="placeholder-logo" slot="logo"></div>
     <IxMenu>
       <IxMenuItem>Item 1</IxMenuItem>
