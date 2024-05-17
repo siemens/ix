@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './button-with-icon.html',
-  styles: [`@import 'example-styles/dist/icon-buttons.css';`],
+  styles: [`@import 'example-styles/dist/icon-button.css';`],
 })
 export default class ButtonWithIcon {}

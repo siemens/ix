@@ -15,12 +15,12 @@ import { Component } from '@angular/core';
     <ix-icon-toggle-button ghost></ix-icon-toggle-button>
     <ix-icon-toggle-button ghost></ix-icon-toggle-button>
     <ix-icon-toggle-button ghost disabled></ix-icon-toggle-button>
-    <ix-icon-toggle-button
-      ghost
-      disabled
-      loading
-    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button ghost disabled loading></ix-icon-toggle-button>
   `,
-  styles: [`@import 'example-styles/dist/icon-toggle-button.css';`],
+  styles: [
+    `
+      @import 'example-styles/dist/icon-toggle-buttons.css';
+    `,
+  ],
 })
 export default class Buttons {}
