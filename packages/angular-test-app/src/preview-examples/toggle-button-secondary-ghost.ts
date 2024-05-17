@@ -17,5 +17,6 @@ import { Component } from '@angular/core';
     <ix-toggle-button disabled ghost> Disabled </ix-toggle-button>
     <ix-toggle-button disabled loading ghost> Loading </ix-toggle-button>
   `,
+  styles: [`@import 'example-styles/dist/toggle-button.css';`],
 })
 export default class Buttons {}

@@ -11,15 +11,11 @@
 import { IxButton, IxIcon } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="example-styles/dist/buttons.css"></style>
+
 <template>
-  <IxButton :style="{ margin: '0.25rem' }" variant="primary" icon="star">
-    Button
-  </IxButton>
-  <IxButton :style="{ margin: '0.25rem' }" variant="secondary" icon="star">
-    Button
-  </IxButton>
-  <IxButton :style="{ margin: '0.25rem' }" outline icon="star">
-    Button
-  </IxButton>
-  <IxButton :style="{ margin: '0.25rem' }" ghost icon="star"> Button </IxButton>
+  <IxButton variant="primary" icon="star"> Button </IxButton>
+  <IxButton variant="secondary" icon="star"> Button </IxButton>
+  <IxButton outline icon="star"> Button </IxButton>
+  <IxButton ghost icon="star"> Button </IxButton>
 </template>

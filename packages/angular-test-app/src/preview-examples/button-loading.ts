@@ -11,50 +11,12 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <ix-button
-      (click)="toggle()"
-      [loading]="loading"
-      style="margin: 0.25rem"
-      outline
-      variant="primary"
-    >
-      Button
-    </ix-button>
-
-    <ix-button
-      (click)="toggle2()"
-      [loading]="loading2"
-      icon="star"
-      style="margin: 0.25rem"
-      outline
-      variant="primary"
-    >
-      Button
-    </ix-button>
-
-    <ix-icon-button
-      (click)="toggle3()"
-      [loading]="loading3"
-      icon="star"
-      style="margin: 0.25rem"
-      outline
-      variant="primary"
-    >
-    </ix-icon-button>
-
-    <ix-button loading style="margin: 0.25rem" outline variant="primary">
-      Button
-    </ix-button>
-
-    <ix-icon-button
-      loading
-      icon="star"
-      style="margin: 0.25rem"
-      outline
-      variant="primary"
-    ></ix-icon-button>
-  `,
+  template: './button-loading.html',
+  styles: [
+    `
+      @import 'example-styles/dist/buttons.css';
+    `,
+  ],
 })
 export default class ButtonLoading {
   loading = false;

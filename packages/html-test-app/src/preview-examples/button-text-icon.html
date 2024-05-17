@@ -4,17 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <script type="module">
+      import 'example-styles/dist/buttons.css';
+    </script>
   </head>
   <body>
     <!-- Preview code -->
-    <ix-button style="margin: 0.25rem" variant="primary" icon="star">
-      Button
-    </ix-button>
-    <ix-button style="margin: 0.25rem" variant="secondary" icon="star">
-      Button
-    </ix-button>
-    <ix-button style="margin: 0.25rem" outline icon="star"> Button </ix-button>
-    <ix-button style="margin: 0.25rem" ghost icon="star"> Button </ix-button>
+    <ix-button variant="primary" icon="star"> Button </ix-button>
+    <ix-button variant="secondary" icon="star"> Button </ix-button>
+    <ix-button outline icon="star"> Button </ix-button>
+    <ix-button ghost icon="star"> Button </ix-button>
     <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>

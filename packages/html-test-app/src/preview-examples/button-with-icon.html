@@ -8,12 +8,9 @@ SPDX-License-Identifier: MIT
 <html>
   <head>
     <title>Button with icon example</title>
-    <style>
-      div,
-      ix-icon-button {
-        margin: 0.25rem;
-      }
-    </style>
+    <script type="module">
+      import 'example-styles/dist/icon-button.css';
+    </script>
   </head>
   <body class="theme-brand-dark">
     <!-- Preview code -->
@@ -22,23 +19,23 @@ SPDX-License-Identifier: MIT
       <ix-icon-button icon="info" variant="primary"></ix-icon-button>
       <ix-icon-button icon="info" variant="secondary"></ix-icon-button>
       <ix-icon-button icon="info" variant="danger"></ix-icon-button>
-      <ix-icon-button outline></ix-icon-button>
-      <ix-icon-button ghost></ix-icon-button>
+      <ix-icon-button icon="info" outline></ix-icon-button>
+      <ix-icon-button icon="info" ghost></ix-icon-button>
     </div>
 
     <div>
       <ix-icon-button icon="info" oval variant="primary"></ix-icon-button>
       <ix-icon-button icon="info" oval variant="secondary"></ix-icon-button>
       <ix-icon-button icon="info" oval variant="danger"></ix-icon-button>
-      <ix-icon-button oval outline></ix-icon-button>
-      <ix-icon-button oval ghost></ix-icon-button>
+      <ix-icon-button icon="info" oval outline></ix-icon-button>
+      <ix-icon-button icon="info" oval ghost></ix-icon-button>
     </div>
 
     <div>
-      <ix-icon-button></ix-icon-button>
-      <ix-icon-button></ix-icon-button>
-      <ix-icon-button></ix-icon-button>
-      <ix-icon-button></ix-icon-button>
+      <ix-icon-button icon="info" size="12"></ix-icon-button>
+      <ix-icon-button icon="info" size="16"></ix-icon-button>
+      <ix-icon-button icon="info" size="24"></ix-icon-button>
+      <ix-icon-button icon="info" size="32"></ix-icon-button>
     </div>
 
     <!-- Preview code -->

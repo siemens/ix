@@ -12,10 +12,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button style="margin: 0.25rem;" variant="primary">Button</ix-button>
-    <ix-button style="margin: 0.25rem;" variant="primary" disabled>
-      Button
-    </ix-button>
+    <ix-button variant="primary">Button</ix-button>
+    <ix-button variant="primary" disabled> Button </ix-button>
   `,
+  styles: [`@import 'example-styles/dist/buttons.css';`],
 })
 export default class Buttons {}

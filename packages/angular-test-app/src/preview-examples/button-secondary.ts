@@ -12,14 +12,15 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: buttonSecondary(),
+  styles: [`@import 'example-styles/dist/buttons.css';`],
 })
 export default class Buttons {}
 function buttonSecondary(): string | undefined {
   return `
-      <ix-button style="margin: 0.25rem" outline variant="primary">
+      <ix-button outline variant="primary">
         Button
       </ix-button>
-      <ix-button style="margin: 0.25rem" disabled outline variant="primary">
+      <ix-button disabled outline variant="primary">
         Button
       </ix-button>
   `;

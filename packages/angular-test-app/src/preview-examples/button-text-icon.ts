@@ -12,20 +12,21 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: buttonTextIcon(),
+  styles: [`@import 'example-styles/dist/buttons.css';`],
 })
 export default class Buttons {}
 function buttonTextIcon(): string | undefined {
   return `
-      <ix-button style="margin: 0.25rem" variant="primary" icon="star">
+      <ix-button variant="primary" icon="star">
         Button
       </ix-button>
-      <ix-button style="margin: 0.25rem" variant="secondary" icon="star">
+      <ix-button variant="secondary" icon="star">
         Button
       </ix-button>
-      <ix-button style="margin: 0.25rem" outline icon="star">
+      <ix-button outline icon="star">
         Button
       </ix-button>
-      <ix-button style="margin: 0.25rem" ghost icon="star">
+      <ix-button ghost icon="star">
         Button
       </ix-button>
   `;

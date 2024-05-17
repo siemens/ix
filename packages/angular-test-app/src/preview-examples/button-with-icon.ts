@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './button-with-icon.html',
-  styles: ["div, ix-button { margin: 0.25rem; }"]
+  styles: [`@import 'example-styles/dist/icon-buttons.css';`],
 })
 export default class ButtonWithIcon {}
