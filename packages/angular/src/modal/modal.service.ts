@@ -85,9 +85,7 @@ export class ModalService {
     this.appRef.attachView(instance.hostView);
 
     const element = instance.injector.get(ElementRef);
-    if (element.nativeElement.style) {
-      element.nativeElement.style.display = 'contents';
-    }
+    element.nativeElement.style.display = 'contents';
 
     const modalInstance = await this.createModalInstance<TData, TReason>(
       context,
