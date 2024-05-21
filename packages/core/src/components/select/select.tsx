@@ -305,14 +305,13 @@ export class Select {
     }
 
     this.items.forEach((item) => {
-      item.selected = ids.some(
-        // Check can be removed if value is type of string in future releases
-        (i) =>
-          i ===
-          (item.value !== undefined && item.value !== null
-            ? item.value.toString()
-            : '')
-      );
+      item.selected = ids.some((i) => {
+        if (typeof item.value !== 'string') {
+          return i === (item.value ? item.value.toString() : '');
+        } else {
+          return i === item.value;
+        }
+      });
     });
 
     this.selectedLabels = this.selectedItems.map((item) => item.label);
@@ -348,6 +347,12 @@ export class Select {
   componentWillLoad() {
     if (this.selectedIndices && !this.value) {
       this.value = this.selectedIndices;
+    }
+
+    if (typeof this.items[0].value !== 'object') {
+      console.warn(
+        'objects used in select, which is not supported and will be removed in 3.0'
+      );
     }
 
     this.updateSelection();
