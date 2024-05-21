@@ -13,7 +13,6 @@ export default function NavbarLogo(): JSX.Element {
   const base = useBaseUrl('/');
   const [logo, setLogo] = useState('');
 
-
   const updateLogo = () => {
     const theme = /theme-(.*)/g;
     const dark = /theme-(.*)-dark/g;
