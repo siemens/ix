@@ -1,5 +1,12 @@
 # @siemens/ix-vue
 
+## 2.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`b38d2d3506`](https://github.com/siemens/ix/commit/b38d2d350656034ef1926fdcf5db2ca9d4251403), [`707252448c`](https://github.com/siemens/ix/commit/707252448c470b1cf8a78f696146fddd55050336)]:
+  - @siemens/ix@2.2.1
+
 ## 2.2.0
 
 ### Minor Changes

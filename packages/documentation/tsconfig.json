@@ -4,7 +4,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "module": "NodeNext",
-    "moduleResolution": "Node16"
+    "moduleResolution": "Node16",
+    "resolveJsonModule": true
   },
   "include": ["**/**/*.tsx"]
 }

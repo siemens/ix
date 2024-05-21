@@ -47,3 +47,15 @@ test('should not fire event when disabled', async ({ mount, page }) => {
   await expect(button).toHaveClass(/hydrated/);
   await expect(button).toHaveCSS('pointer-events', 'none');
 });
+
+test.describe('A11y', () => {
+  test('disabled', async ({ mount, page }) => {
+    await mount('<ix-button disabled>Content</ix-button>');
+    const button = page.locator('button');
+    await expect(button).toHaveAttribute('aria-disabled');
+    await page.locator('ix-button').evaluate((btn: HTMLButtonElement) => {
+      btn.disabled = false;
+    });
+    await expect(button).not.toHaveAttribute('aria-disabled');
+  });
+});

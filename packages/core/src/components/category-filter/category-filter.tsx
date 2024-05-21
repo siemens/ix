@@ -154,6 +154,10 @@ export class CategoryFilter {
    */
   @Event() filterChanged: EventEmitter<FilterState>;
 
+  get dropdown() {
+    return this.hostElement.shadowRoot.querySelector('ix-dropdown');
+  }
+
   @Watch('filterState')
   watchFilterState(newValue) {
     this.setFilterState(newValue);
@@ -186,6 +190,10 @@ export class CategoryFilter {
       this.inputValue = this.textInput.value;
       const inputState = new InputState(this.inputValue, this.category);
       this.inputChanged.emit(inputState);
+
+      if (!this.dropdown.show) {
+        this.openDropdown();
+      }
     });
     this.textInput.addEventListener(
       'keydown',
@@ -217,7 +225,15 @@ export class CategoryFilter {
       return;
     }
 
-    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
+    this.dropdown.show = false;
+  }
+
+  private openDropdown() {
+    if (this.disabled || this.readonly) {
+      return;
+    }
+
+    this.dropdown.show = true;
   }
 
   private handleFormElementKeyDown(e: KeyboardEvent) {
@@ -372,8 +388,6 @@ export class CategoryFilter {
     if (emitEvent) {
       this.emitFilterEvent();
     }
-
-    this.closeDropdown();
   }
 
   private removeToken(index: number) {

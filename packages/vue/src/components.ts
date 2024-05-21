@@ -273,6 +273,7 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 
 
 export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>('ix-date-dropdown', defineIxDateDropdown, [
+  'disabled',
   'format',
   'range',
   'from',
@@ -366,6 +367,7 @@ export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-drop
   'offset',
   'overwriteDropdownStyle',
   'discoverAllSubmenus',
+  'ignoreRelatedSubmenu',
   'showChanged'
 ]);
 
