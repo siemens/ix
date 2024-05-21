@@ -11,6 +11,7 @@ import ICON_LIST from '@siemens/ix-icons/dist/sample.json';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
 import styles from './Icons.module.css';
+import { IxIcon } from '@siemens/ix-react';
 
 const Icons: React.FC = () => {
   const refs = useRef<{ [k: string]: any }>({});
@@ -38,10 +39,10 @@ const Icons: React.FC = () => {
             <div
               key={icon}
               className={clsx(styles.Icon__Tile)}
-              onClick={() => {}}
+              onClick={() => { }}
             >
               <div>
-                <ix-icon name={icon}></ix-icon>
+                <IxIcon name={icon}></IxIcon>
               </div>
               <input
                 ref={(r) => {
@@ -51,7 +52,7 @@ const Icons: React.FC = () => {
                 type="text"
                 readOnly
                 value={icon}
-                onChange={() => {}}
+                onChange={() => { }}
               ></input>
             </div>
           ))}

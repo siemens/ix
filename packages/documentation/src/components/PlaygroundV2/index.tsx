@@ -189,7 +189,7 @@ function SourceCodePreview(props: {
       let filesToFetch = [];
 
       if (props.framework === TargetFramework.ANGULAR) {
-        filesToFetch = [`${props.name}.ts`, `${props.name}.html`];
+        filesToFetch.push(...[`${props.name}.html`, `${props.name}.ts`]);
       }
 
       if (props.framework === TargetFramework.JAVASCRIPT) {
