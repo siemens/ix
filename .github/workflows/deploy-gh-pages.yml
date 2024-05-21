@@ -23,6 +23,7 @@ jobs:
       - name: Build
         run: pnpm build --cache-dir=.turbo --filter documentation --force
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           CSC: ${{ secrets.READ_CSC_TOKEN }}
 

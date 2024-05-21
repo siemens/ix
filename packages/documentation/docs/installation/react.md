@@ -3,22 +3,30 @@ sidebar_position: 2
 sidebar_title: React
 title: React
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-### Install dependencies
+### Library installation
 
-Install `@siemens/ix-react` and `@siemens/ix-icons` using a package manager:
+Install `@siemens/ix`, `@siemens/ix-react` and `@siemens/ix-icons` using a package manager:
 
-#### npm
-
-```
-npm i -S @siemens/ix-react @siemens/ix-icons
-```
-
-#### yarn
-
-```
-yarn add @siemens/ix-react@latest @siemens/ix-icons
-```
+<Tabs>
+  <TabItem value="npm" label="NPM" default>
+    ```
+    npm install @siemens/ix @siemens/ix-react @siemens/ix-icons
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```
+    yarn add @siemens/ix @siemens/ix-react @siemens/ix-icons
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="PNPM">
+    ```
+    pnpm add @siemens/ix @siemens/ix-react @siemens/ix-icons
+    ```
+  </TabItem>
+</Tabs>
 
 ### Import styles
 
