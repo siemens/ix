@@ -276,6 +276,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Button variant
+          * @since 2.3.0 - variant danger
          */
         "variant": ButtonVariant;
     }
@@ -1162,6 +1163,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Variant of button
+          * @since 2.3.0 - variant danger
          */
         "variant": IconButtonVariant;
     }
@@ -4304,6 +4306,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Button variant
+          * @since 2.3.0 - variant danger
          */
         "variant"?: ButtonVariant;
     }
@@ -5294,6 +5297,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Variant of button
+          * @since 2.3.0 - variant danger
          */
         "variant"?: IconButtonVariant;
     }

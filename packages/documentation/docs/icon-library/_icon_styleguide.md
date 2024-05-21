@@ -27,7 +27,7 @@ Before you start designing your specific icon set for your application, consider
 - Finally: Entrust a professional designer with the task of designing an icon
 
 ### Technical requirements
-Icons in in our design system are monochromatic. They will be colored during runtime, depending on the context they are being used in. For more technical requirements see the "Code" tab above.
+Icons in our design system are monochromatic. They will be colored during runtime, depending on the context they are being used in. For more technical requirements see the "Code" tab above.
 
 ### Formal requirements
 New icons should follow the app icon guidelines below for a consistent look & feel across applications. For Siemens applications it is mandatory to follow these guidelines.
