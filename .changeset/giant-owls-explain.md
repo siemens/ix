@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix(core/blind): avoid unnecessary warpping
+fix(core/blind): avoid unnecessary wrapping
