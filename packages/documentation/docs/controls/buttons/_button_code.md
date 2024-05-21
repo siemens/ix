@@ -78,7 +78,7 @@ examplesByName></Playground>
 
 ### Danger
 
-<ApiTableSinceTag message="2.2.0" />
+<ApiTableSinceTag message="2.3.0" />
 
 <Playground
 name="button-danger"
@@ -87,7 +87,7 @@ examplesByName></Playground>
 
 ### Danger Outline
 
-<ApiTableSinceTag message="2.2.0" />
+<ApiTableSinceTag message="2.3.0" />
 
 <Playground
 name="button-danger-outline"
@@ -96,7 +96,7 @@ examplesByName></Playground>
 
 ### Danger Ghost
 
-<ApiTableSinceTag message="2.2.0" />
+<ApiTableSinceTag message="2.3.0" />
 
 <Playground
 name="button-danger-ghost"
