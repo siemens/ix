@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { IxSelect, IxSelectItem } from '@siemens/ix-react';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 export default function FrameworkSelection(): JSX.Element {
@@ -35,18 +36,18 @@ export default function FrameworkSelection(): JSX.Element {
   }, [ref]);
 
   return (
-    <ix-select
+    <IxSelect
       ref={ref}
       default-value={framework}
       style={{
         width: '100%',
       }}
     >
-      <ix-select-item
+      <IxSelectItem
         value="webcomponent"
         label="Webcomponent"
-      ></ix-select-item>
-      <ix-select-item value="angular" label="Angular"></ix-select-item>
-    </ix-select>
+      ></IxSelectItem>
+      <IxSelectItem value="angular" label="Angular"></IxSelectItem>
+    </IxSelect>
   );
 }
