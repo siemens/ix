@@ -9,7 +9,9 @@ on:
       - reopened
       - synchronize
 
-concurrency: pr-${{ github.ref }}
+concurrency:
+  group: pr-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   changes:
