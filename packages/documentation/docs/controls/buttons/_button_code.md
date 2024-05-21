@@ -1,5 +1,6 @@
 import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../../auto-generated/ix-button/props.md';
+import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 
 ## Usage
 
@@ -77,6 +78,8 @@ examplesByName></Playground>
 
 ### Danger
 
+<ApiTableSinceTag message="2.2.0" />
+
 <Playground
 name="button-danger"
 hideInitalCodePreview
@@ -84,12 +87,16 @@ examplesByName></Playground>
 
 ### Danger Outline
 
+<ApiTableSinceTag message="2.2.0" />
+
 <Playground
 name="button-danger-outline"
 hideInitalCodePreview
 examplesByName></Playground>
 
 ### Danger Ghost
+
+<ApiTableSinceTag message="2.2.0" />
 
 <Playground
 name="button-danger-ghost"
