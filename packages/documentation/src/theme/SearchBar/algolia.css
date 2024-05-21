@@ -548,6 +548,6 @@ html[data-theme='dark'] .ds-cursor .algolia-docsearch-suggestion--wrapper {
     background: var(--ifm-background-surface-color) !important;
 }
 
-mark{
+mark {
   background-color: lightblue;
 }
