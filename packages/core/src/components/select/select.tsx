@@ -306,8 +306,8 @@ export class Select {
 
     this.items.forEach((item) => {
       item.selected = ids.some((i) => {
-        if (typeof item.value !== 'string') {
-          return i === (item.value ? item.value.toString() : '');
+        if (typeof i !== typeof item.value) {
+          return i.toString() === item.value.toString();
         } else {
           return i === item.value;
         }
@@ -349,9 +349,9 @@ export class Select {
       this.value = this.selectedIndices;
     }
 
-    if (typeof this.items[0].value !== 'object') {
+    if (typeof this.items[0].value !== 'string') {
       console.warn(
-        'objects used in select, which is not supported and will be removed in 3.0'
+        'Non string data types not supported and and will be removed in 3.0'
       );
     }
 
