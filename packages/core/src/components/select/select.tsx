@@ -349,7 +349,7 @@ export class Select {
       this.value = this.selectedIndices;
     }
 
-    if (typeof this.items[0].value !== 'string') {
+    if (typeof this.items[0]?.value !== 'string') {
       console.warn(
         'Non string data types not supported and and will be removed in 3.0'
       );
