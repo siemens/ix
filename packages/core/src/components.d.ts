@@ -1978,6 +1978,11 @@ export namespace Components {
     }
     interface IxSplitButton {
         /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.3.0
+         */
+        "closeBehavior": CloseBehavior;
+        /**
           * Disabled
          */
         "disabled": boolean;
@@ -6172,6 +6177,11 @@ declare namespace LocalJSX {
         "variant"?: 'primary' | 'secondary';
     }
     interface IxSplitButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.3.0
+         */
+        "closeBehavior"?: CloseBehavior;
         /**
           * Disabled
          */
