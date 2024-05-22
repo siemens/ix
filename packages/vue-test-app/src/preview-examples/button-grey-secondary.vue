@@ -11,7 +11,9 @@
 import { IxButton } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="example-styles/dist/buttons.css"></style>
+
 <template>
-  <IxButton class="m-1" outline variant="secondary"> Button </IxButton>
-  <IxButton class="m-1" disabled outline variant="secondary"> Button </IxButton>
+  <IxButton outline variant="secondary"> Button </IxButton>
+  <IxButton disabled outline variant="secondary"> Button </IxButton>
 </template>

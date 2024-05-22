@@ -10,8 +10,26 @@
 @import 'common-variables';
 @import 'mixins/shadow-dom/component';
 
+:host(:not(.host-vertical)) {
+  width: 12rem;
+  height: 4rem;
+  min-width: 2rem;
+  min-height: 4rem;
+  max-width: 12rem;
+}
+
+:host(.host-vertical) {
+  width: 100%;
+  height: 4rem;
+  min-width: 4rem;
+  min-height: 2rem;
+  max-height: 12rem;
+}
+
 :host {
   @include ix-component;
+  display: inline-block;
+  position: relative;
 
   .step {
     display: flex;
@@ -19,10 +37,7 @@
     align-items: center;
     background-color: var(--theme-workflow-step--background);
     border-radius: var(--theme-workflow--border-radius);
-    width: auto;
     padding: 1.125rem 0 $small-space 0;
-    height: 4rem;
-    width: 12.75rem;
 
     .wrapper {
       display: flex;
@@ -52,7 +67,7 @@
 
         &.selected {
           background-color: var(
-            --theme-workflow-step-icon-default--color--selected
+              --theme-workflow-step-icon-default--color--selected
           );
         }
 
@@ -61,7 +76,7 @@
 
           &.selected {
             background-color: var(
-              --theme-workflow-step-icon-done--color--selected
+                --theme-workflow-step-icon-done--color--selected
             );
           }
         }
@@ -93,18 +108,24 @@
 
     .text {
       margin-top: $default-space;
-      width: auto;
+      width: 100%;
       padding: 0 $small-space;
+
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      text-align: center;
     }
 
     &.vertical {
       flex-direction: row;
       padding: 0;
+      height: 100%;
 
       .wrapper {
         width: auto;
         padding-left: 1.125rem;
-        height: 4rem;
+        height: 100%;
 
         .line {
           width: 0.125rem;
@@ -127,9 +148,9 @@
       }
 
       .text {
-        margin-top: 0;
-        margin-left: $default-space;
+        margin: 0 $default-space;
         padding: 0;
+        width: auto;
       }
     }
 
