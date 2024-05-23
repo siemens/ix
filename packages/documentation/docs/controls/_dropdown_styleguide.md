@@ -53,7 +53,7 @@ Dropdown items have five states: Default, hover, active, disabled and focused. W
 - Do use dropdowns to showcase related actions
 - Do disable items that can't be used at the moment
 - Don’t use global navigation options in a dropdown
-- Don’t use too many dropdown items - we recommend 7 +/- 2
+- Don’t use too many dropdown items - we recommend a maximum of seven
 - Don’t insert the [date picker](date-picker.md) or [date time picker](date-time-picker.md) components into a dropdown (use the [date dropdown](date-dropdown.md) instead)
 
 ## Related patterns
