@@ -37,7 +37,7 @@ For information about the trigger element that opens the dropdown, please refer 
 ## Behavior in context
 - **Text truncation:** The labels of the items and the header only consist of one line. A truncation only occurs if there is not enough space on the screen.
 - **Scrollbar:** A dropdown is provided with a scrollbar when the dropdown takes up 50% of the screen.
-- **Placement:** The position depends on the trigger element (e.g. button). By default, the dropdown is displayed at the bottom right of trigger element. When there is not enough space for the selected placement, it will be corrected automatically. The placement of the submenu is always generated automatically. 
+- **Placement:** The position depends on the trigger/anchor element (e.g. button). By default, the dropdown is displayed at the bottom right of trigger element. When there is not enough space for the selected placement, it will be corrected automatically. The placement of the submenu is always generated automatically. 
 - **Quick actions:** Quick actions only consist of icons, therefore it is important to use icons that are understandable without a label or tooltip. A quick action bar can also be used without additional items in the dropdown. 
 
 ![Dropdown in Context](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2463-3302&t=QaiBJKNOwHMdBuk2-4)
