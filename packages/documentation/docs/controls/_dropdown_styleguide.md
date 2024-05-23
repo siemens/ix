@@ -20,7 +20,7 @@ Dropdown containers display a menu with additional items as soon as a user click
 - **Checked:** Mark selected items in the dropdown with a check mark. We typically use check marks when an item can be activated (e.g. for the dropdown "Sort by:" selection: name, modified date, create date).
 - **Submenu:** Add a submenu for a multi-level dropdown. We typically use a submenu when there is a long item list and different systematic categorization within the items.
 - **Separator:** Add a separator to visually divide items from each other. We normally use a separator to isolate individual elements from a cohesive item list.
-- **Icon:** Icons can also be displayed with item labels. We typically use an icon in addition to the label when it has a recognizable benefit.
+- **Icon:** Icons can be displayed to support the label and make the item more easy to discover by the user. The icon should be widely known for representing the action or function among your users.
 - **Label:** Set a label for the dropdown item. We typically use short labels including verbs.
 - **Trigger:** The trigger defines which element opens the dropdown. A trigger should also be defined for a dropdown submenu. We typically use a button as the trigger element.
 - **Anchor:** An anchor defines where the dropdown is placed. When no anchor is defined the trigger element is used as the anchor.
