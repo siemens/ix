@@ -4,4 +4,41 @@ SPDX-FileCopyrightText: 2024 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+<form [formGroup]="profileForm" (ngSubmit)="submit()">
+  <ix-text-field
+    label="Project"
+    formControlName="projectName"
+    error-text="bla"
+  ></ix-text-field>
+  <ix-radio-group label="Car" errorText="Required">
+    <ix-radio label="Audi" value="audi" formControlName="car"></ix-radio>
+    <ix-radio
+      label="Mercedes"
+      value="mercedes"
+      formControlName="car"
+    ></ix-radio>
+    <ix-radio label="VW" value="vw" formControlName="car"></ix-radio>
+  </ix-radio-group>
+  <ix-checkbox label="Agree 1" formControlName="agree1"></ix-checkbox>
+  <ix-toggle label="Agree 2" formControlName="agree2"></ix-toggle>
+
+  <ix-select formControlName="dreamCar" mode="multiple">
+    <ix-select-item value="renault" label="Renault"></ix-select-item>
+    <ix-select-item value="opel" label="Opel"></ix-select-item>
+    <ix-select-item value="porsche" label="Porsche"></ix-select-item>
+  </ix-select>
+  <!-- <ix-checkbox-group>
+    <ix-checkbox
+      label="Agree 1"
+      value="1"
+      formControlName="agree1"
+    ></ix-checkbox>
+    <ix-checkbox
+      label="Agree 2"
+      value="2"
+      formControlName="agree2"
+    ></ix-checkbox>
+  </ix-checkbox-group> -->
+  <ix-button type="submit">Submit</ix-button>
+</form>

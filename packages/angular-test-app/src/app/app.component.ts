@@ -8,6 +8,7 @@
  */
 
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -15,5 +16,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'angular-test-app';
+  profileForm = new FormGroup({
+    projectName: new FormControl('Demo Project', []),
+    car: new FormControl('', [Validators.required]),
+    agree1: new FormControl(false, []),
+    agree2: new FormControl(true, []),
+    dreamCar: new FormControl(['opel', 'porsche'], [Validators.required]),
+  });
+
+  submit() {
+    console.log(this.profileForm.value);
+  }
 }

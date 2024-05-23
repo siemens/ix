@@ -24,7 +24,7 @@ import { ToastService } from './toast';
 import * as tree from './tree';
 import { SelectValueAccessorDirective } from './control-value-accessors/select-value-accessor';
 import { RadioValueAccessorDirective } from './control-value-accessors/radio-value-accessor';
-import { CheckboxValueAccessorDirective } from './control-value-accessors/boolean-value-accessor';
+import { BooleanValueAccessorDirective } from './control-value-accessors/boolean-value-accessor';
 const DECLARATIONS = [
   ...DIRECTIVES,
   tree.IxTree,
@@ -34,7 +34,7 @@ const DECLARATIONS = [
   TextValueAccessorDirective,
   SelectValueAccessorDirective,
   RadioValueAccessorDirective,
-  CheckboxValueAccessorDirective,
+  BooleanValueAccessorDirective,
 ];
 
 @NgModule({

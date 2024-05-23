@@ -32,6 +32,10 @@ export class PlaygroundInternal {
             }
           }}
         >
+          <ix-custom-field label="xxx" helperText="123">
+            <input></input>
+          </ix-custom-field>
+
           <ix-layout-grid gap="24">
             <ix-row>
               <ix-col size="1">
@@ -65,9 +69,9 @@ export class PlaygroundInternal {
               <ix-col>
                 <ix-custom-field>
                   <ix-radio-group>
-                    <ix-radio label="Test"></ix-radio>
-                    <ix-radio label="Test2"></ix-radio>
-                    <ix-radio label="Test3"></ix-radio>
+                    <ix-radio label="Test" name="random" checked></ix-radio>
+                    <ix-radio label="Test2" name="random" checked></ix-radio>
+                    <ix-radio label="Test3" name="random"></ix-radio>
                   </ix-radio-group>
                 </ix-custom-field>
               </ix-col>
@@ -78,9 +82,17 @@ export class PlaygroundInternal {
                 <ix-label>Radio Group</ix-label>
               </ix-col>
               <ix-col>
-                <ix-checkbox label="Agree"></ix-checkbox>
-                <ix-checkbox label="Agree2"></ix-checkbox>
+                <ix-checkbox
+                  label="Agree"
+                  name="agree"
+                  class={'ix-invalid'}
+                ></ix-checkbox>
+                <ix-checkbox label="Agree2" name="agree2"></ix-checkbox>
               </ix-col>
+            </ix-row>
+
+            <ix-row>
+              {/* <ix-date-field nameTo="from" nameForm="urlaub_end" range></ix-date-field> */}
             </ix-row>
 
             <ix-row>

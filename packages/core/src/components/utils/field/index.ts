@@ -31,7 +31,10 @@ export interface IxFieldComponent<T = any>
   extends IxComponent,
     HelperText,
     IxFormComponent<T> {
+  // Property
   placeholder?: string;
+
+  //State
   isInvalid: boolean;
 
   // TODO: Should we add additional input properties here?
