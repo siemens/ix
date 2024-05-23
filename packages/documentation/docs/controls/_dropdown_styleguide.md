@@ -1,4 +1,4 @@
-Dropdown containers display a menu with additional items as soon as a user clicks on the trigger element, e.g. a dropdown button. Clicking on one of the items in the dropdown performs the action. We typically use dropdowns to allow users to select one option from a list of available choices.
+Dropdown containers display a menu with additional items when users click on the trigger element, e.g. a dropdown button. Clicking on one of the items in the dropdown performs the action. We typically use dropdowns to allow users to select one option from a list.
 
 
 ![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2353-2278&mode=design&t=OVHeXvLZYLkP2CzN-4)
@@ -37,8 +37,8 @@ Dropdown containers display a menu with additional items as soon as a user click
 ## Behavior in context
 - **Text truncation:** The labels of the items and the header only consist of one line. A truncation only occurs if there is not enough space on the screen.
 - **Scrollbar:** A dropdown is provided with a scrollbar when the dropdown takes up 50% of the screen.
-- **Placement:** The position depends on the trigger/anchor element (e.g. button). By default, the dropdown is displayed at the bottom right of trigger element. When there is not enough space for the selected placement, it will be corrected automatically. The placement of the submenu is always generated automatically. 
-- **Quick actions:** Quick actions only consist of icons, therefore it is important to use icons that are understandable without a label or tooltip. A quick action bar can also be used without additional items in the dropdown. 
+- **Placement:** The position depends on the trigger/anchor element (e.g. a button). By default, the dropdown is displayed at the bottom right of the trigger element. When there is not enough space for the selected placement, it is corrected automatically. The placement of the submenu is always generated automatically. 
+- **Quick actions:** Quick actions only consist of icons, therefore, it is important to use icons that are understandable without a label or tooltip. A quick action bar can also be used without additional items in the dropdown. 
 
 ![Dropdown in Context](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2463-3302&t=QaiBJKNOwHMdBuk2-4)
 
@@ -48,12 +48,12 @@ Dropdown items have five states: Default, hover, active, disabled and focused. W
 ![Item States](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2343-42235&mode=design&t=OVHeXvLZYLkP2CzN-4)
 
 ## Dos and Don’ts
-- Do structure the items in a dropdown in a coherent way; use submenus, quick actions and separators if beneficial
+- Do structure dropdown items coherently with submenus, quick actions and separators
 - Do use dropdowns to showcase related actions
-- Do disable items that can't be used at the moment
+- Do disable items that cannot be used at that moment
 - Don’t use global navigation options in a dropdown
 - Don’t use too many dropdown items - we recommend a maximum of seven
-- Don’t insert the [date picker](date-picker.md) or [date time picker](date-time-picker.md) components into a dropdown (use the [date dropdown](date-dropdown.md) instead)
+- Don’t insert the [date picker](date-picker.md) or [date time picker](date-time-picker.md) components into a dropdown (use [date dropdown](date-dropdown.md) instead)
 
 ## Related patterns
 - [Dropdown button](buttons/dropdown-button.md)
