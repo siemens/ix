@@ -29,7 +29,7 @@ For information about the trigger element that opens the dropdown, please refer 
     - Inside: clicking within the dropdown closes the dropdown.
     - Outside: clicking outside the dropdown closes the dropdown.
     - Both: clicking within and outside the dropdown closes the dropdown.
-- **Placement:** Place a dropdown at the top, bottom, left or right edge as well as at the beginning or end of the trigger element. The placement may be automatically adjusted in case it cannot be displayed correctly (detailed behavior described in the context). We typically use the default (bottom right) placement option to ensure consistency.
+- **Placement:** Place a dropdown at the top, bottom, left or right edge as well as at the beginning or end of the trigger/anchor element. The placement may be automatically adjusted in case it cannot be displayed correctly (detailed behavior described in the context section below). We typically use the default (bottom right) placement option to ensure consistency.
 - **Date Selection:** Use the component [date dropdown](date-dropdown.md) to get a date selection in the dropdown.
 
 ![Dropdown Examples](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2372-2696&mode=design&t=OVHeXvLZYLkP2CzN-4)
