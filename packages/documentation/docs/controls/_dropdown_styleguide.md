@@ -1,6 +1,5 @@
 Dropdown containers display a menu with additional items as soon as a user clicks on the trigger element, e.g. a dropdown button. Clicking on one of the items in the dropdown performs the action. We typically use dropdowns to allow users to select one option from a list of available choices.
 
-For information about the trigger element that opens the dropdown, please refer to our [dropdown button](buttons/dropdown-button.md) and [split button](buttons/split-button.md) components.
 
 ![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2353-2278&mode=design&t=OVHeXvLZYLkP2CzN-4)
 
