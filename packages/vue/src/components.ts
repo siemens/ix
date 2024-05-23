@@ -836,6 +836,7 @@ export const IxSpinner = /*@__PURE__*/ defineContainer<JSX.IxSpinner>('ix-spinne
 
 export const IxSplitButton = /*@__PURE__*/ defineContainer<JSX.IxSplitButton>('ix-split-button', defineIxSplitButton, [
   'variant',
+  'closeBehavior',
   'outline',
   'ghost',
   'label',
