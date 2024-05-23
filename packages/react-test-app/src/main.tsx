@@ -7,17 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
-import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+import 'example-styles/dist/global.css';
 
 import { IxApplicationContext } from '@siemens/ix-react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
-import './index.css';
 import AboutAndLegal from './preview-examples/about-and-legal';
 import ActionCard from './preview-examples/action-card';
 import AGGrid from './preview-examples/aggrid';

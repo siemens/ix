@@ -38,7 +38,7 @@
     "vue": "^3.2.45",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
-    "eslint-config-ix": "*",
+    "eslint-config-ix": "workspace:*",
     "eslint-plugin-vue": "^9.9.0"
   },
   "peerDependencies": {

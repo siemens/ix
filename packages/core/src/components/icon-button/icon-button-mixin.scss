@@ -26,7 +26,7 @@
   @include btn;
   @include ix-component;
 
-  $button-categories: (primary, secondary);
+  $button-categories: (danger, primary, secondary);
 
   @each $category in $button-categories {
     @include btn-variant($category);

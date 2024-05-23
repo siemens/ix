@@ -14,11 +14,14 @@ export default function NavbarLogo(): JSX.Element {
   const [logo, setLogo] = useState('');
 
   const updateLogo = () => {
-    if (!document.body.className.includes('theme-')) {
+    const theme = /theme-(.*)/g;
+    const dark = /theme-(.*)-dark/g;
+
+    if (!theme.test(document.body.className)) {
       setLogo(`${base}img/logo.svg`);
       return;
     }
-    if (document.body.className.includes('-dark')) {
+    if (dark.test(document.body.className)) {
       setLogo(`${base}img/logo.svg`);
     } else {
       setLogo(`${base}img/logo-dark.svg`);

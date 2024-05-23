@@ -7,51 +7,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-.aa-DetachedSearchButton {
-  background-color: var(--theme-color-2) !important;
-  border: none !important;
-
-  cursor: pointer !important;
-}
-
-.aa-DetachedSearchButton:focus {
-  box-shadow: none !important;
-}
-
-.aa-DetachedSearchButtonIcon {
-  color: var(--theme-color-std-text) !important;
-  cursor: pointer !important;
-  display: none !important;
-}
-
-.aa-DetachedSearchButtonPlaceholder {
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-  background-color: var(--theme-color-1);
-  width: 100%;
-  height: 1.875rem;
-  border-bottom: var(--theme-std-bdr-1);
-  padding-left: 0.5rem;
-
-  font-family: Siemens Sans, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: normal;
-  font-stretch: normal;
+ #search_input_react {
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Siemens Sans, Siemens Sans, Arial, Helvetica, sans-serif;
   font-style: normal;
-  line-height: 1.33;
-  letter-spacing: normal;
-  text-align: left;
+  font-size: var(--theme-ms-0);
+  line-height: var(--theme-line-height-md);
+  font-weight: var(--theme-font-weight-normal);
+  letter-spacing: var(--theme-letter-spacing-xl);
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smooting: grayscale;
+  min-height: 2rem;
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--theme-input--background);
+  color: var(--theme-input--color);
+  text-overflow: ellipsis;
+  border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+  border-radius: var(--theme-input--border-radius);
+  box-shadow: var(--theme-input--box-shadow);
 }
 
-.aa-DetachedSearchButtonPlaceholder:active {
-  outline: none;
-  box-shadow: none;
-}
-
-.aa-Label {
-  margin-bottom: 0px !important;
-}
 
 @media (max-width: 500px) {
   #search_input_react {
@@ -63,4 +40,26 @@
   .navbar__search {
     display: none;
   }
+}
+
+.ds-dropdown-menu {
+  color: var(--theme-color-std-text) !important;
+}
+.ds-dropdown-menu::before {
+  border-color: var(--theme-color-3) !important;
+  background-color: var(--theme-color-3) !important;
+}
+
+.algolia-docsearch-suggestion--no-results,
+.algolia-docsearch-suggestion--category-header {
+  color: var(--theme-input--color);
+  background-color: var(--theme-color-3) !important;
+}
+
+.algolia-docsearch-suggestion--wrapper {
+  background-color: var(--theme-color-0) !important;
+}
+
+.algolia-docsearch-suggestion--text {
+  color: var(--theme-input--color);
 }
