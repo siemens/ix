@@ -8,6 +8,7 @@
  */
 
 import {
+  AttachInternals,
   Component,
   Element,
   Event,
@@ -24,14 +25,24 @@ import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { IxFormComponent } from '../utils/field';
 
 @Component({
   tag: 'ix-select',
   styleUrl: 'select.scss',
   shadow: true,
+  formAssociated: true,
 })
-export class Select {
+export class Select implements IxFormComponent<string | string[]> {
   @Element() hostElement!: HTMLIxSelectElement;
+  @AttachInternals() formInternals!: ElementInternals;
+
+  /**
+   * Name of the select component
+   *
+   * @since TODO: Add version
+   */
+  @Prop({ reflect: true }) name?: string;
 
   /**
    * Indices of selected items.
@@ -238,6 +249,15 @@ export class Select {
     this.itemClick(newId);
   }
 
+  updateFormInternalValue(value: string | string[]): void {
+    if (Array.isArray(value)) {
+      this.formInternals.setFormValue(value.join(','));
+      return;
+    }
+
+    this.formInternals.setFormValue(value);
+  }
+
   private focusDropdownItem(index: number) {
     this.navigationItem = undefined;
 
@@ -256,7 +276,7 @@ export class Select {
   private itemClick(newId: string) {
     this.value = this.toggleValue(newId);
     this.updateSelection();
-    this.emitValueChange();
+    this.emitValueChange(this.value);
   }
 
   private emitAddItem(value: string) {
@@ -326,16 +346,16 @@ export class Select {
     this.inputValue = null;
   }
 
-  private emitValueChange() {
-    this.valueChange.emit(this.value);
+  private emitValueChange(value: string | string[]) {
+    this.valueChange.emit(value);
 
-    if (!this.value) {
+    if (!value) {
       this.itemSelectionChange.emit(null);
     } else {
-      this.itemSelectionChange.emit(
-        Array.isArray(this.value) ? this.value : [this.value]
-      );
+      this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
     }
+
+    this.updateFormInternalValue(value);
   }
 
   componentDidLoad() {
@@ -351,6 +371,7 @@ export class Select {
     }
 
     this.updateSelection();
+    this.updateFormInternalValue(this.value);
   }
 
   @Listen('ix-select-item:labelChange')
@@ -583,7 +604,7 @@ export class Select {
     this.clearInput();
     this.selectedLabels = [];
     this.value = [];
-    this.valueChange.emit(null);
+    this.emitValueChange(null);
     this.dropdownShow = false;
   }
 

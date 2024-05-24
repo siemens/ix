@@ -68,6 +68,10 @@ class DropdownController {
     this.dropdowns.delete(dropdown.getId());
   }
 
+  getDropdownById(id: string) {
+    return this.dropdowns.get(id);
+  }
+
   discoverSubmenus() {
     this.dropdowns.forEach((dropdown) => {
       dropdown.discoverSubmenu();

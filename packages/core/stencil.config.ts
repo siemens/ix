@@ -82,22 +82,6 @@ export const config: Config = {
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
       excludeComponents: ['ix-playground-internal', 'ix-tree', 'ix-icon'],
-      valueAccessorConfigs: [
-        {
-          elementSelectors:
-            'ix-select[ngModel],ix-select[formControlName],ix-select[formControl]',
-          event: 'valueChange',
-          targetAttr: 'value',
-          type: 'select',
-        },
-        {
-          elementSelectors:
-            'ix-toggle[ngModel],ix-toggle[formControlName],ix-toggle[formControl]',
-          event: 'checkedChange',
-          targetAttr: 'checked',
-          type: 'boolean',
-        },
-      ],
     }),
     reactOutputTarget({
       componentCorePackage: '@siemens/ix',

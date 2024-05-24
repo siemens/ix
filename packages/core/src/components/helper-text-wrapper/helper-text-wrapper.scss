@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  .slot-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem
+  }
+}

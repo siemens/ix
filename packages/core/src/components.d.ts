@@ -19,6 +19,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
+import { ValidationResults } from "./components/utils/field";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent } from "./components/date-picker/date-picker";
@@ -59,6 +60,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
+export { ValidationResults } from "./components/utils/field";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent } from "./components/date-picker/date-picker";
@@ -418,6 +420,46 @@ export namespace Components {
         "suggestions": string[];
         "tmpDisableScrollIntoView": boolean;
     }
+    interface IxCheckbox {
+        /**
+          * Checked state of the checkbox component
+         */
+        "checked": boolean;
+        /**
+          * Disabled state of the checkbox component
+         */
+        "disabled": boolean;
+        /**
+          * Indeterminate state of the checkbox component
+         */
+        "indeterminate": boolean;
+        /**
+          * Label for the checkbox component
+         */
+        "label": string;
+        /**
+          * Name of the checkbox component
+         */
+        "name"?: string;
+        /**
+          * Value of the checkbox component
+         */
+        "value"?: string;
+    }
+    interface IxCheckboxGroup {
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Label for the field component
+         */
+        "label": string;
+    }
     interface IxChip {
         /**
           * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
@@ -516,6 +558,21 @@ export namespace Components {
          */
         "itemName": string;
     }
+    interface IxCustomField {
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Label for the field component
+         */
+        "label": string;
+        "overwriteValidation"?: ValidationResults;
+    }
     /**
      * @since 2.1.0
      */
@@ -579,6 +636,42 @@ export namespace Components {
          */
         "to": string;
         "today": string;
+    }
+    interface IxDateField {
+        "combineDateEnd": boolean;
+        "combineDateStart": boolean;
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "format": string;
+        /**
+          * tbd
+         */
+        "helperText": string;
+        /**
+          * tbd
+         */
+        "label": string;
+        /**
+          * tbd
+         */
+        "name": string;
+        /**
+          * tbd
+         */
+        "placeholder": string;
+        /**
+          * tbd
+         */
+        "required": boolean;
+        /**
+          * tbd
+         */
+        "value": any;
     }
     interface IxDatePicker {
         /**
@@ -650,6 +743,20 @@ export namespace Components {
           * @since 2.1.0
          */
         "weekStartIndex": number;
+    }
+    interface IxDateRangeField {
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * tbd
+         */
+        "helperText": string;
+        /**
+          * tbd
+         */
+        "label": string;
     }
     interface IxDateTimeCard {
         /**
@@ -1112,6 +1219,24 @@ export namespace Components {
          */
         "text": string;
     }
+    interface IxHelperTextWrapper {
+        /**
+          * Label for the field component
+         */
+        "errorText": string;
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Is the field component invalid
+         */
+        "isInvalid": boolean;
+        /**
+          * Label for the field component
+         */
+        "label": string;
+    }
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
@@ -1242,6 +1367,8 @@ export namespace Components {
         "state": 'neutral' | 'warning' | 'alarm';
         "unit": string;
         "value": string | number;
+    }
+    interface IxLabel {
     }
     /**
      * @since 2.0.0
@@ -1843,6 +1970,42 @@ export namespace Components {
          */
         "variant": PushCardVariant;
     }
+    interface IxRadio {
+        /**
+          * Checked state of the radio component
+         */
+        "checked": boolean;
+        /**
+          * Label for the radio component
+         */
+        "label": string;
+        /**
+          * Name of the radio component
+         */
+        "name"?: string;
+        /**
+          * Value of the radio component
+         */
+        "value"?: string;
+    }
+    interface IxRadioGroup {
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Label for the field component
+         */
+        "label": string;
+        /**
+          * Value of the radiobutton group component
+         */
+        "value": string;
+    }
     /**
      * @since 2.0.0
      */
@@ -1887,6 +2050,11 @@ export namespace Components {
           * Selection mode
          */
         "mode": 'single' | 'multiple';
+        /**
+          * Name of the select component
+          * @since TODO: Add version
+         */
+        "name"?: string;
         /**
           * If true the select will be in readonly mode
          */
@@ -2084,6 +2252,36 @@ export namespace Components {
           * Set tab items to small size
          */
         "small": boolean;
+    }
+    interface IxTextField {
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * tbd
+         */
+        "helperText": string;
+        /**
+          * tbd
+         */
+        "label": string;
+        /**
+          * tbd
+         */
+        "name": string;
+        /**
+          * tbd
+         */
+        "placeholder": string;
+        /**
+          * tbd
+         */
+        "required": boolean;
+        /**
+          * tbd
+         */
+        "value": string;
     }
     interface IxTile {
         /**
@@ -2477,6 +2675,10 @@ export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
 }
+export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxCheckboxElement;
+}
 export interface IxChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChipElement;
@@ -2488,6 +2690,10 @@ export interface IxContentHeaderCustomEvent<T> extends CustomEvent<T> {
 export interface IxDateDropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDateDropdownElement;
+}
+export interface IxDateFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDateFieldElement;
 }
 export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2601,6 +2807,14 @@ export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaneElement;
 }
+export interface IxRadioCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxRadioElement;
+}
+export interface IxRadioGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxRadioGroupElement;
+}
 export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSelectElement;
@@ -2628,6 +2842,10 @@ export interface IxTabItemCustomEvent<T> extends CustomEvent<T> {
 export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTabsElement;
+}
+export interface IxTextFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTextFieldElement;
 }
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2867,6 +3085,30 @@ declare global {
         prototype: HTMLIxCategoryFilterElement;
         new (): HTMLIxCategoryFilterElement;
     };
+    interface HTMLIxCheckboxElementEventMap {
+        "checkedChange": boolean;
+        "valueChange": string;
+    }
+    interface HTMLIxCheckboxElement extends Components.IxCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxCheckboxElement: {
+        prototype: HTMLIxCheckboxElement;
+        new (): HTMLIxCheckboxElement;
+    };
+    interface HTMLIxCheckboxGroupElement extends Components.IxCheckboxGroup, HTMLStencilElement {
+    }
+    var HTMLIxCheckboxGroupElement: {
+        prototype: HTMLIxCheckboxGroupElement;
+        new (): HTMLIxCheckboxGroupElement;
+    };
     interface HTMLIxChipElementEventMap {
         "closeChip": any;
     }
@@ -2931,6 +3173,12 @@ declare global {
         prototype: HTMLIxCssGridItemElement;
         new (): HTMLIxCssGridItemElement;
     };
+    interface HTMLIxCustomFieldElement extends Components.IxCustomField, HTMLStencilElement {
+    }
+    var HTMLIxCustomFieldElement: {
+        prototype: HTMLIxCustomFieldElement;
+        new (): HTMLIxCustomFieldElement;
+    };
     interface HTMLIxDateDropdownElementEventMap {
         "dateRangeChange": DateRangeChangeEvent;
     }
@@ -2951,6 +3199,25 @@ declare global {
         prototype: HTMLIxDateDropdownElement;
         new (): HTMLIxDateDropdownElement;
     };
+    interface HTMLIxDateFieldElementEventMap {
+        "valueChange": string;
+        "ixFocus": void;
+        "ixBlur": void;
+    }
+    interface HTMLIxDateFieldElement extends Components.IxDateField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDateFieldElementEventMap>(type: K, listener: (this: HTMLIxDateFieldElement, ev: IxDateFieldCustomEvent<HTMLIxDateFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDateFieldElementEventMap>(type: K, listener: (this: HTMLIxDateFieldElement, ev: IxDateFieldCustomEvent<HTMLIxDateFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxDateFieldElement: {
+        prototype: HTMLIxDateFieldElement;
+        new (): HTMLIxDateFieldElement;
+    };
     interface HTMLIxDatePickerElementEventMap {
         "dateChange": DateChangeEvent;
         "dateRangeChange": DateChangeEvent;
@@ -2970,6 +3237,12 @@ declare global {
     var HTMLIxDatePickerElement: {
         prototype: HTMLIxDatePickerElement;
         new (): HTMLIxDatePickerElement;
+    };
+    interface HTMLIxDateRangeFieldElement extends Components.IxDateRangeField, HTMLStencilElement {
+    }
+    var HTMLIxDateRangeFieldElement: {
+        prototype: HTMLIxDateRangeFieldElement;
+        new (): HTMLIxDateRangeFieldElement;
     };
     interface HTMLIxDateTimeCardElement extends Components.IxDateTimeCard, HTMLStencilElement {
     }
@@ -3222,6 +3495,12 @@ declare global {
         prototype: HTMLIxGroupItemElement;
         new (): HTMLIxGroupItemElement;
     };
+    interface HTMLIxHelperTextWrapperElement extends Components.IxHelperTextWrapper, HTMLStencilElement {
+    }
+    var HTMLIxHelperTextWrapperElement: {
+        prototype: HTMLIxHelperTextWrapperElement;
+        new (): HTMLIxHelperTextWrapperElement;
+    };
     interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
     }
     var HTMLIxIconButtonElement: {
@@ -3277,6 +3556,12 @@ declare global {
     var HTMLIxKpiElement: {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
+    };
+    interface HTMLIxLabelElement extends Components.IxLabel, HTMLStencilElement {
+    }
+    var HTMLIxLabelElement: {
+        prototype: HTMLIxLabelElement;
+        new (): HTMLIxLabelElement;
     };
     /**
      * @since 2.0.0
@@ -3661,6 +3946,41 @@ declare global {
         prototype: HTMLIxPushCardElement;
         new (): HTMLIxPushCardElement;
     };
+    interface HTMLIxRadioElementEventMap {
+        "checkedChange": boolean;
+        "valueChange": string;
+    }
+    interface HTMLIxRadioElement extends Components.IxRadio, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxRadioElement: {
+        prototype: HTMLIxRadioElement;
+        new (): HTMLIxRadioElement;
+    };
+    interface HTMLIxRadioGroupElementEventMap {
+        "valueChange": string;
+    }
+    interface HTMLIxRadioGroupElement extends Components.IxRadioGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxRadioGroupElement: {
+        prototype: HTMLIxRadioGroupElement;
+        new (): HTMLIxRadioGroupElement;
+    };
     /**
      * @since 2.0.0
      */
@@ -3803,6 +4123,23 @@ declare global {
     var HTMLIxTabsElement: {
         prototype: HTMLIxTabsElement;
         new (): HTMLIxTabsElement;
+    };
+    interface HTMLIxTextFieldElementEventMap {
+        "valueChange": string;
+    }
+    interface HTMLIxTextFieldElement extends Components.IxTextField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTextFieldElementEventMap>(type: K, listener: (this: HTMLIxTextFieldElement, ev: IxTextFieldCustomEvent<HTMLIxTextFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTextFieldElementEventMap>(type: K, listener: (this: HTMLIxTextFieldElement, ev: IxTextFieldCustomEvent<HTMLIxTextFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxTextFieldElement: {
+        prototype: HTMLIxTextFieldElement;
+        new (): HTMLIxTextFieldElement;
     };
     interface HTMLIxTileElement extends Components.IxTile, HTMLStencilElement {
     }
@@ -4020,14 +4357,19 @@ declare global {
         "ix-card-list": HTMLIxCardListElement;
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
+        "ix-checkbox": HTMLIxCheckboxElement;
+        "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
         "ix-col": HTMLIxColElement;
         "ix-content": HTMLIxContentElement;
         "ix-content-header": HTMLIxContentHeaderElement;
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
+        "ix-custom-field": HTMLIxCustomFieldElement;
         "ix-date-dropdown": HTMLIxDateDropdownElement;
+        "ix-date-field": HTMLIxDateFieldElement;
         "ix-date-picker": HTMLIxDatePickerElement;
+        "ix-date-range-field": HTMLIxDateRangeFieldElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
         "ix-divider": HTMLIxDividerElement;
@@ -4048,12 +4390,14 @@ declare global {
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-item": HTMLIxGroupItemElement;
+        "ix-helper-text-wrapper": HTMLIxHelperTextWrapperElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
+        "ix-label": HTMLIxLabelElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
@@ -4082,6 +4426,8 @@ declare global {
         "ix-pill": HTMLIxPillElement;
         "ix-playground-internal": HTMLIxPlaygroundInternalElement;
         "ix-push-card": HTMLIxPushCardElement;
+        "ix-radio": HTMLIxRadioElement;
+        "ix-radio-group": HTMLIxRadioGroupElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
@@ -4091,6 +4437,7 @@ declare global {
         "ix-split-button-item": HTMLIxSplitButtonItemElement;
         "ix-tab-item": HTMLIxTabItemElement;
         "ix-tabs": HTMLIxTabsElement;
+        "ix-text-field": HTMLIxTextFieldElement;
         "ix-tile": HTMLIxTileElement;
         "ix-time-picker": HTMLIxTimePickerElement;
         "ix-toast": HTMLIxToastElement;
@@ -4482,6 +4829,54 @@ declare namespace LocalJSX {
         "suggestions"?: string[];
         "tmpDisableScrollIntoView"?: boolean;
     }
+    interface IxCheckbox {
+        /**
+          * Checked state of the checkbox component
+         */
+        "checked"?: boolean;
+        /**
+          * Disabled state of the checkbox component
+         */
+        "disabled"?: boolean;
+        /**
+          * Indeterminate state of the checkbox component
+         */
+        "indeterminate"?: boolean;
+        /**
+          * Label for the checkbox component
+         */
+        "label"?: string;
+        /**
+          * Name of the checkbox component
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the checked state of the checkbox changes
+         */
+        "onCheckedChange"?: (event: IxCheckboxCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the value of the checkbox changes
+         */
+        "onValueChange"?: (event: IxCheckboxCustomEvent<string>) => void;
+        /**
+          * Value of the checkbox component
+         */
+        "value"?: string;
+    }
+    interface IxCheckboxGroup {
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
+    }
     interface IxChip {
         /**
           * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
@@ -4589,6 +4984,21 @@ declare namespace LocalJSX {
          */
         "itemName"?: string;
     }
+    interface IxCustomField {
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
+        "overwriteValidation"?: ValidationResults;
+    }
     /**
      * @since 2.1.0
      */
@@ -4652,6 +5062,48 @@ declare namespace LocalJSX {
          */
         "to"?: string;
         "today"?: string;
+    }
+    interface IxDateField {
+        "combineDateEnd"?: boolean;
+        "combineDateStart"?: boolean;
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "format"?: string;
+        /**
+          * tbd
+         */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
+        "label"?: string;
+        /**
+          * tbd
+         */
+        "name"?: string;
+        "onIxBlur"?: (event: IxDateFieldCustomEvent<void>) => void;
+        "onIxFocus"?: (event: IxDateFieldCustomEvent<void>) => void;
+        /**
+          * tbd
+         */
+        "onValueChange"?: (event: IxDateFieldCustomEvent<string>) => void;
+        /**
+          * tbd
+         */
+        "placeholder"?: string;
+        /**
+          * tbd
+         */
+        "required"?: boolean;
+        /**
+          * tbd
+         */
+        "value"?: any;
     }
     interface IxDatePicker {
         /**
@@ -4739,6 +5191,20 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "weekStartIndex"?: number;
+    }
+    interface IxDateRangeField {
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * tbd
+         */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
+        "label"?: string;
     }
     interface IxDateTimeCard {
         /**
@@ -5251,6 +5717,24 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
+    interface IxHelperTextWrapper {
+        /**
+          * Label for the field component
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Is the field component invalid
+         */
+        "isInvalid"?: boolean;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
+    }
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
@@ -5385,6 +5869,8 @@ declare namespace LocalJSX {
         "state"?: 'neutral' | 'warning' | 'alarm';
         "unit"?: string;
         "value"?: string | number;
+    }
+    interface IxLabel {
     }
     /**
      * @since 2.0.0
@@ -6024,6 +6510,54 @@ declare namespace LocalJSX {
          */
         "variant"?: PushCardVariant;
     }
+    interface IxRadio {
+        /**
+          * Checked state of the radio component
+         */
+        "checked"?: boolean;
+        /**
+          * Label for the radio component
+         */
+        "label"?: string;
+        /**
+          * Name of the radio component
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the checked state of the radio changes
+         */
+        "onCheckedChange"?: (event: IxRadioCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the value of the radio changes
+         */
+        "onValueChange"?: (event: IxRadioCustomEvent<string>) => void;
+        /**
+          * Value of the radio component
+         */
+        "value"?: string;
+    }
+    interface IxRadioGroup {
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
+        /**
+          * Event emitted when the value of the radiobutton group changes
+         */
+        "onValueChange"?: (event: IxRadioGroupCustomEvent<string>) => void;
+        /**
+          * Value of the radiobutton group component
+         */
+        "value"?: string;
+    }
     /**
      * @since 2.0.0
      */
@@ -6068,6 +6602,11 @@ declare namespace LocalJSX {
           * Selection mode
          */
         "mode"?: 'single' | 'multiple';
+        /**
+          * Name of the select component
+          * @since TODO: Add version
+         */
+        "name"?: string;
         /**
           * Item added to selection
          */
@@ -6301,6 +6840,40 @@ declare namespace LocalJSX {
           * Set tab items to small size
          */
         "small"?: boolean;
+    }
+    interface IxTextField {
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * tbd
+         */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
+        "label"?: string;
+        /**
+          * tbd
+         */
+        "name"?: string;
+        /**
+          * tbd
+         */
+        "onValueChange"?: (event: IxTextFieldCustomEvent<string>) => void;
+        /**
+          * tbd
+         */
+        "placeholder"?: string;
+        /**
+          * tbd
+         */
+        "required"?: boolean;
+        /**
+          * tbd
+         */
+        "value"?: string;
     }
     interface IxTile {
         /**
@@ -6731,14 +7304,19 @@ declare namespace LocalJSX {
         "ix-card-list": IxCardList;
         "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
+        "ix-checkbox": IxCheckbox;
+        "ix-checkbox-group": IxCheckboxGroup;
         "ix-chip": IxChip;
         "ix-col": IxCol;
         "ix-content": IxContent;
         "ix-content-header": IxContentHeader;
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": IxCssGridItem;
+        "ix-custom-field": IxCustomField;
         "ix-date-dropdown": IxDateDropdown;
+        "ix-date-field": IxDateField;
         "ix-date-picker": IxDatePicker;
+        "ix-date-range-field": IxDateRangeField;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
         "ix-divider": IxDivider;
@@ -6759,12 +7337,14 @@ declare namespace LocalJSX {
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-item": IxGroupItem;
+        "ix-helper-text-wrapper": IxHelperTextWrapper;
         "ix-icon-button": IxIconButton;
         "ix-icon-toggle-button": IxIconToggleButton;
         "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
+        "ix-label": IxLabel;
         "ix-layout-grid": IxLayoutGrid;
         "ix-link-button": IxLinkButton;
         "ix-map-navigation": IxMapNavigation;
@@ -6793,6 +7373,8 @@ declare namespace LocalJSX {
         "ix-pill": IxPill;
         "ix-playground-internal": IxPlaygroundInternal;
         "ix-push-card": IxPushCard;
+        "ix-radio": IxRadio;
+        "ix-radio-group": IxRadioGroup;
         "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
@@ -6802,6 +7384,7 @@ declare namespace LocalJSX {
         "ix-split-button-item": IxSplitButtonItem;
         "ix-tab-item": IxTabItem;
         "ix-tabs": IxTabs;
+        "ix-text-field": IxTextField;
         "ix-tile": IxTile;
         "ix-time-picker": IxTimePicker;
         "ix-toast": IxToast;
@@ -6863,6 +7446,8 @@ declare module "@stencil/core" {
              */
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
+            "ix-checkbox": LocalJSX.IxCheckbox & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
+            "ix-checkbox-group": LocalJSX.IxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             /**
              * @since 2.0.0
@@ -6875,11 +7460,14 @@ declare module "@stencil/core" {
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
+            "ix-custom-field": LocalJSX.IxCustomField & JSXBase.HTMLAttributes<HTMLIxCustomFieldElement>;
             /**
              * @since 2.1.0
              */
             "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
+            "ix-date-field": LocalJSX.IxDateField & JSXBase.HTMLAttributes<HTMLIxDateFieldElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
+            "ix-date-range-field": LocalJSX.IxDateRangeField & JSXBase.HTMLAttributes<HTMLIxDateRangeFieldElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
             /**
@@ -6915,6 +7503,7 @@ declare module "@stencil/core" {
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
+            "ix-helper-text-wrapper": LocalJSX.IxHelperTextWrapper & JSXBase.HTMLAttributes<HTMLIxHelperTextWrapperElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             /**
              * @since 2.0.0
@@ -6930,6 +7519,7 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            "ix-label": LocalJSX.IxLabel & JSXBase.HTMLAttributes<HTMLIxLabelElement>;
             /**
              * @since 2.0.0
              */
@@ -6988,6 +7578,8 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
+            "ix-radio": LocalJSX.IxRadio & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
+            "ix-radio-group": LocalJSX.IxRadioGroup & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
             /**
              * @since 2.0.0
              */
@@ -7006,6 +7598,7 @@ declare module "@stencil/core" {
             "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
+            "ix-text-field": LocalJSX.IxTextField & JSXBase.HTMLAttributes<HTMLIxTextFieldElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;
