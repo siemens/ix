@@ -19,6 +19,7 @@ import {
 } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
+import { CloseBehavior } from '../dropdown/dropdown-controller';
 
 export type SplitButtonVariant = ButtonVariant;
 
@@ -34,6 +35,12 @@ export class SplitButton {
    * Color variant of button
    */
   @Prop() variant: SplitButtonVariant = 'primary';
+
+  /**
+   * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+   * @since 2.3.0
+   */
+  @Prop() closeBehavior: CloseBehavior = 'both';
 
   /**
    * Button outline variant
@@ -126,7 +133,10 @@ export class SplitButton {
           ></ix-icon-button>
         </div>
 
-        <ix-dropdown ref={(r) => (this.dropdownElement = r)}>
+        <ix-dropdown
+          ref={(r) => (this.dropdownElement = r)}
+          closeBehavior={this.closeBehavior}
+        >
           <slot></slot>
         </ix-dropdown>
       </Host>

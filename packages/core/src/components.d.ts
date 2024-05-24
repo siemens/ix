@@ -276,6 +276,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Button variant
+          * @since 2.3.0 - variant danger
          */
         "variant": ButtonVariant;
     }
@@ -531,6 +532,11 @@ export namespace Components {
           * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
         "dateRangeOptions": DateDropdownOption[];
+        /**
+          * Disable the button that opens the dropdown containing the date picker.
+          * @since 2.3.0
+         */
+        "disabled": boolean;
         /**
           * Date format string. See
           * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
@@ -797,6 +803,7 @@ export namespace Components {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "ignoreRelatedSubmenu": boolean;
         /**
           * Move dropdown along main axis of alignment
          */
@@ -1156,6 +1163,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Variant of button
+          * @since 2.3.0 - variant danger
          */
         "variant": IconButtonVariant;
     }
@@ -1405,7 +1413,7 @@ export namespace Components {
          */
         "activeTabLabel": string;
         /**
-          * Label of first tab
+          * Content of the header
          */
         "label": string;
         /**
@@ -1969,6 +1977,11 @@ export namespace Components {
         "variant": 'primary' | 'secondary';
     }
     interface IxSplitButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.3.0
+         */
+        "closeBehavior": CloseBehavior;
         /**
           * Disabled
          */
@@ -4298,6 +4311,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Button variant
+          * @since 2.3.0 - variant danger
          */
         "variant"?: ButtonVariant;
     }
@@ -4591,6 +4605,11 @@ declare namespace LocalJSX {
           * An array of predefined date range options for the date picker. Each option is an object with a label describing the range and a function that returns the start and end dates of the range as a DateRangeOption object.  Example format:   {     id: 'some unique id',     label: 'Name of the range',     from: undefined, to: '2023/03/29'   },   // ... other predefined date range options ...
          */
         "dateRangeOptions"?: DateDropdownOption[];
+        /**
+          * Disable the button that opens the dropdown containing the date picker.
+          * @since 2.3.0
+         */
+        "disabled"?: boolean;
         /**
           * Date format string. See
           * @link https://moment.github.io/luxon/#/formatting?id=table-of-tokens for all available tokens.
@@ -4895,6 +4914,7 @@ declare namespace LocalJSX {
           * An optional header shown at the top of the dropdown
          */
         "header"?: string;
+        "ignoreRelatedSubmenu"?: boolean;
         /**
           * Move dropdown along main axis of alignment
          */
@@ -5282,6 +5302,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Variant of button
+          * @since 2.3.0 - variant danger
          */
         "variant"?: IconButtonVariant;
     }
@@ -5515,7 +5536,7 @@ declare namespace LocalJSX {
          */
         "activeTabLabel"?: string;
         /**
-          * Label of first tab
+          * Content of the header
          */
         "label"?: string;
         /**
@@ -6156,6 +6177,11 @@ declare namespace LocalJSX {
         "variant"?: 'primary' | 'secondary';
     }
     interface IxSplitButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.3.0
+         */
+        "closeBehavior"?: CloseBehavior;
         /**
           * Disabled
          */

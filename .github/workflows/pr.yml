@@ -9,17 +9,19 @@ on:
       - reopened
       - synchronize
 
-concurrency: pr-${{ github.ref }}
+concurrency:
+  group: pr-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
       core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
-      angular_any_changed: ${{ steps.changes.outputs.angular_any_changed }}
       aggrid_any_changed: ${{ steps.changes.outputs.aggrid_any_changed }}
       echarts_any_changed: ${{ steps.changes.outputs.echarts_any_changed }}
       docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
+      unittests_any_changed: ${{ steps.changes.outputs.unittests_any_changed }}
     steps:
       - uses: actions/checkout@v3
       - name: Track changes between commits
@@ -29,18 +31,21 @@ jobs:
           files_yaml: |
             core:
               - packages/core/**
-            angular:
-              - packages/angular/**
             aggrid:
               - packages/aggrid/**
             echarts:
               - packages/echarts/**
             docs:
               - packages/documentation/**
+              - packages/example-styles/**
               - packages/html-test-app/**
               - packages/angular-test-app/**
               - packages/react-test-app/**
               - packages/vue-test-app/**
+            unittests:
+              - packages/core/**
+              - packages/angular/**
+              - packages/react/**
 
   build:
     needs: changes
@@ -56,6 +61,9 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+
+      - name: Check for local development changes
+        run: ./scripts/lint-build.sh
 
   build-docs:
     needs: [changes, build]
@@ -165,7 +173,7 @@ jobs:
           retention-days: 2
 
   unit:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.angular_any_changed == 'true' }}
+    if: ${{ needs.changes.outputs.unittests_any_changed == 'true' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest

@@ -12,6 +12,10 @@ import { ButtonVariant } from './button';
 
 export type ButtonAlignment = 'center' | 'start';
 
+const isDanger = (variant: string) => {
+  return variant.toUpperCase() === 'Danger'.toUpperCase();
+};
+
 const isPrimary = (variant: string) => {
   return variant.toUpperCase() === 'Primary'.toUpperCase();
 };
@@ -31,6 +35,9 @@ export const getButtonClasses = (
 ) => {
   return {
     btn: true,
+    'btn-danger': isDanger(variant) && !outline && !ghost,
+    'btn-outline-danger': isDanger(variant) && outline && !ghost,
+    'btn-invisible-danger': isDanger(variant) && !outline && ghost,
     'btn-primary': isPrimary(variant) && !outline && !ghost,
     'btn-outline-primary': isPrimary(variant) && outline && !ghost,
     'btn-invisible-primary': isPrimary(variant) && !outline && ghost,
@@ -65,12 +72,32 @@ export type BaseButtonProps = {
   afterContent?: any;
 };
 
+const getSpinnerSize = (btnProps: BaseButtonProps) => {
+  if (!btnProps.icon) {
+    return 'small';
+  }
+
+  switch (btnProps.iconSize) {
+    case '12':
+      return 'xx-small';
+    case '16':
+      return 'x-small';
+    default:
+      return 'small';
+  }
+};
+
 export function BaseButton(props: BaseButtonProps, children) {
   const extraClasses = props.extraClasses ?? {};
 
+  const ariaAttributes = props.ariaAttributes ?? {};
+  if (!ariaAttributes['aria-disabled'] && props.disabled) {
+    ariaAttributes['aria-disabled'] = 'true';
+  }
+
   return (
     <button
-      {...props.ariaAttributes}
+      {...ariaAttributes}
       onClick={(e: Event) => (props.onClick ? props.onClick(e) : undefined)}
       tabindex={props.disabled ? -1 : props.tabIndex ?? 0}
       type={props.type}
@@ -87,7 +114,9 @@ export function BaseButton(props: BaseButtonProps, children) {
         ...extraClasses,
       }}
     >
-      {props.loading ? <ix-spinner size="small" hideTrack></ix-spinner> : null}
+      {props.loading ? (
+        <ix-spinner size={getSpinnerSize(props)} hideTrack></ix-spinner>
+      ) : null}
       {props.icon && !props.loading ? (
         <ix-icon
           class="icon"

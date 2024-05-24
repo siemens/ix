@@ -16,7 +16,7 @@ import { ModalService } from '@siemens/ix-angular';
     <ix-button (click)="openModal()">Show modal</ix-button>
 
     <ng-template #customModal let-modal>
-      <div>
+      <ix-modal>
         <ix-modal-header> Message headline </ix-modal-header>
         <ix-modal-content
           >Message text lorem ipsum: {{ modal.data }}</ix-modal-content
@@ -33,7 +33,7 @@ import { ModalService } from '@siemens/ix-angular';
             OK
           </ix-button>
         </ix-modal-footer>
-      </div>
+      </ix-modal>
     </ng-template>
   `,
 })

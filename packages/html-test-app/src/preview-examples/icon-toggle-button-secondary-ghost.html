@@ -12,33 +12,29 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
-    <style>
-      ix-icon-toggle-button {
-        margin: 0.25rem;
-      }
-    </style>
+    <script type="module">
+      import 'example-styles/dist/icon-toggle-buttons.css';
+    </script>
   </head>
   <body>
     <!-- Preview code -->
-    <div>
-      <ix-icon-toggle-button ghost icon="checkboxes"></ix-icon-toggle-button>
-      <ix-icon-toggle-button
-        ghost
-        icon="checkboxes"
-        pressed
-      ></ix-icon-toggle-button>
-      <ix-icon-toggle-button
-        ghost
-        icon="checkboxes"
-        disabled
-      ></ix-icon-toggle-button>
-      <ix-icon-toggle-button
-        ghost
-        icon="checkboxes"
-        disabled
-        loading
-      ></ix-icon-toggle-button>
-    </div>
+    <ix-icon-toggle-button ghost icon="checkboxes"></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      ghost
+      icon="checkboxes"
+      pressed
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      ghost
+      icon="checkboxes"
+      disabled
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      ghost
+      icon="checkboxes"
+      disabled
+      loading
+    ></ix-icon-toggle-button>
     <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>

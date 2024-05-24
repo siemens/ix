@@ -9,7 +9,7 @@
 @import './button-mixin';
 
 @include btn;
-$button-categories: (primary, secondary);
+$button-categories: (danger, primary, secondary);
 @each $category in $button-categories {
   @include btn-variant($category);
   @include btn-variant('outline-#{$category}');
