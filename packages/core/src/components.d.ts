@@ -1908,6 +1908,9 @@ export namespace Components {
      */
     interface IxRow {
     }
+    /**
+     * @form-ready 
+     */
     interface IxSelect {
         /**
           * Show clear button
@@ -1923,12 +1926,14 @@ export namespace Components {
         "editable": boolean;
         /**
           * Error text for the select component
+          * @since 2.4.0
          */
         "errorText"?: string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * Helper text for the select component
+          * @since 2.4.0
          */
         "helperText"?: string;
         /**
@@ -1955,10 +1960,12 @@ export namespace Components {
         "i18nSelectListHeader": string;
         /**
           * Info text for the select component
+          * @since 2.4.0
          */
         "infoText"?: string;
         /**
           * Label for the select component
+          * @since 2.4.0
          */
         "label"?: string;
         /**
@@ -1976,6 +1983,7 @@ export namespace Components {
         "readonly": boolean;
         /**
           * A Boolean attribute indicating that an option with a non-empty string value must be selected
+          * @since 2.4.0
          */
         "required"?: boolean;
         /**
@@ -1985,10 +1993,12 @@ export namespace Components {
         "selectedIndices"?: string | string[];
         /**
           * Show helper, error, info, warning text as tooltip
+          * @since 2.4.0
          */
         "showTextAsTooltip"?: boolean;
         /**
           * Valid text for the select component
+          * @since 2.4.0
          */
         "validText"?: string;
         /**
@@ -1998,6 +2008,7 @@ export namespace Components {
         "value"?: string | string[];
         /**
           * Warning text for the select component
+          * @since 2.4.0
          */
         "warningText"?: string;
     }
@@ -3787,6 +3798,9 @@ declare global {
         "inputChange": string;
         "addItem": string;
     }
+    /**
+     * @form-ready 
+     */
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSelectElementEventMap>(type: K, listener: (this: HTMLIxSelectElement, ev: IxSelectCustomEvent<HTMLIxSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6202,6 +6216,9 @@ declare namespace LocalJSX {
      */
     interface IxRow {
     }
+    /**
+     * @form-ready 
+     */
     interface IxSelect {
         /**
           * Show clear button
@@ -6217,10 +6234,12 @@ declare namespace LocalJSX {
         "editable"?: boolean;
         /**
           * Error text for the select component
+          * @since 2.4.0
          */
         "errorText"?: string;
         /**
           * Helper text for the select component
+          * @since 2.4.0
          */
         "helperText"?: string;
         /**
@@ -6247,10 +6266,12 @@ declare namespace LocalJSX {
         "i18nSelectListHeader"?: string;
         /**
           * Info text for the select component
+          * @since 2.4.0
          */
         "infoText"?: string;
         /**
           * Label for the select component
+          * @since 2.4.0
          */
         "label"?: string;
         /**
@@ -6287,6 +6308,7 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         /**
           * A Boolean attribute indicating that an option with a non-empty string value must be selected
+          * @since 2.4.0
          */
         "required"?: boolean;
         /**
@@ -6296,10 +6318,12 @@ declare namespace LocalJSX {
         "selectedIndices"?: string | string[];
         /**
           * Show helper, error, info, warning text as tooltip
+          * @since 2.4.0
          */
         "showTextAsTooltip"?: boolean;
         /**
           * Valid text for the select component
+          * @since 2.4.0
          */
         "validText"?: string;
         /**
@@ -6309,6 +6333,7 @@ declare namespace LocalJSX {
         "value"?: string | string[];
         /**
           * Warning text for the select component
+          * @since 2.4.0
          */
         "warningText"?: string;
     }
@@ -7206,6 +7231,9 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
+            /**
+             * @form-ready 
+             */
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;
             /**

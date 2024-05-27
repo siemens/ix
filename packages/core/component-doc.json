@@ -2704,7 +2704,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2712,6 +2713,9 @@
           "ix-col"
         ],
         "ix-datetime-picker": [
+          "ix-col"
+        ],
+        "ix-playground-internal": [
           "ix-col"
         ]
       },
@@ -8532,7 +8536,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -8540,6 +8545,9 @@
           "ix-layout-grid"
         ],
         "ix-datetime-picker": [
+          "ix-layout-grid"
+        ],
+        "ix-playground-internal": [
           "ix-layout-grid"
         ]
       },
@@ -12932,7 +12940,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -12940,6 +12949,9 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
+          "ix-row"
+        ],
+        "ix-playground-internal": [
           "ix-row"
         ]
       },
@@ -12961,7 +12973,11 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-pagination",
@@ -13090,7 +13106,12 @@
           "attr": "error-text",
           "reflectToAttr": false,
           "docs": "Error text for the select component",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.4.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -13111,7 +13132,12 @@
           "attr": "helper-text",
           "reflectToAttr": false,
           "docs": "Helper text for the select component",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.4.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -13252,7 +13278,12 @@
           "attr": "info-text",
           "reflectToAttr": false,
           "docs": "Info text for the select component",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.4.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -13273,7 +13304,12 @@
           "attr": "label",
           "reflectToAttr": false,
           "docs": "Label for the select component",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.4.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -13369,7 +13405,12 @@
           "attr": "required",
           "reflectToAttr": true,
           "docs": "A Boolean attribute indicating that an option with a non-empty string value must be selected",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.4.0"
+            }
+          ],
           "values": [
             {
               "type": "boolean"
@@ -13420,7 +13461,12 @@
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
           "docs": "Show helper, error, info, warning text as tooltip",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.4.0"
+            }
+          ],
           "values": [
             {
               "type": "boolean"
@@ -13441,7 +13487,12 @@
           "attr": "valid-text",
           "reflectToAttr": false,
           "docs": "Valid text for the select component",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.4.0"
+            }
+          ],
           "values": [
             {
               "type": "string"
@@ -13491,7 +13542,12 @@
           "attr": "warning-text",
           "reflectToAttr": false,
           "docs": "Warning text for the select component",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.4.0"
+            }
+          ],
           "values": [
             {
               "type": "string"

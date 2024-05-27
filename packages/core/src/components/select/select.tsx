@@ -33,6 +33,9 @@ import {
   ValidationResults,
 } from '../utils/field';
 
+/**
+ * @form-ready
+ */
 @Component({
   tag: 'ix-select',
   styleUrl: 'select.scss',
@@ -55,41 +58,57 @@ export class Select
 
   /**
    * A Boolean attribute indicating that an option with a non-empty string value must be selected
+   *
+   * @since 2.4.0
    */
   @Prop({ reflect: true }) required?: boolean;
 
   /**
    * Label for the select component
+   *
+   *  @since 2.4.0
    */
   @Prop() label?: string;
 
   /**
    * Warning text for the select component
+   *
+   *  @since 2.4.0
    **/
   @Prop() warningText?: string;
 
   /**
    * Info text for the select component
+   *
+   *  @since 2.4.0
    **/
   @Prop() infoText?: string;
 
   /**
    * Error text for the select component
+   *
+   *  @since 2.4.0
    **/
   @Prop() errorText?: string;
 
   /**
    * Valid text for the select component
+   *
+   *  @since 2.4.0
    **/
   @Prop() validText?: string;
 
   /**
    * Helper text for the select component
+   *
+   *  @since 2.4.0
    **/
   @Prop() helperText?: string;
 
   /**
    * Show helper, error, info, warning text as tooltip
+   *
+   *  @since 2.4.0
    */
   @Prop() showTextAsTooltip?: boolean;
 

@@ -24,37 +24,52 @@ export class PlaygroundInternal {
     return (
       <Host>
         <form onSubmit={(e) => e.preventDefault()} data-ix-disable-valid>
-          <ix-label htmlFor="xxx">Test</ix-label>
-          <ix-select
-            id="xxx"
-            required={false}
-            helperText="Test"
-            errorText="error"
-            validText="okay"
-            warningText="warning"
-            infoText="info"
-            showTextAsTooltip={false}
-            allowClear={true}
-            class={'ix-valid'}
-            data-ix-disable-valid
-          >
-            <ix-select-item value={'xx'} label="123"></ix-select-item>
-          </ix-select>
-
-          <ix-select
-            label="test"
-            required={false}
-            helperText="Test"
-            errorText="error"
-            validText="okay"
-            warningText="warning"
-            infoText="info"
-            showTextAsTooltip={false}
-            allowClear={true}
-            class={'ix-valid'}
-          >
-            <ix-select-item value={'xx'} label="123"></ix-select-item>
-          </ix-select>
+          <ix-layout-grid>
+            <ix-row>
+              <ix-col size="2">
+                <ix-label htmlFor="my-select">Example</ix-label>
+              </ix-col>
+              <ix-col>
+                <ix-select
+                  id="my-select"
+                  required={false}
+                  helperText="Test"
+                  errorText="error"
+                  validText="okay"
+                  warningText="warning"
+                  infoText="info"
+                  showTextAsTooltip={false}
+                  allowClear={true}
+                  class={'ix-valid'}
+                  data-ix-disable-valid
+                >
+                  <ix-select-item value={'xx'} label="123"></ix-select-item>
+                </ix-select>
+              </ix-col>
+            </ix-row>
+            <ix-row>
+              <ix-col size="2">
+                <ix-label htmlFor="my-select">Example</ix-label>
+              </ix-col>
+              <ix-col>
+                <ix-select
+                  id="my-select"
+                  required={false}
+                  helperText="Test"
+                  errorText="error"
+                  validText="okay"
+                  warningText="warning"
+                  infoText="info"
+                  showTextAsTooltip={false}
+                  allowClear={true}
+                  class={'ix-valid'}
+                  data-ix-disable-valid
+                >
+                  <ix-select-item value={'xx'} label="123"></ix-select-item>
+                </ix-select>
+              </ix-col>
+            </ix-row>
+          </ix-layout-grid>
         </form>
       </Host>
     );
