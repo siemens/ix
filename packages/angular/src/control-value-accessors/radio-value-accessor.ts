@@ -33,7 +33,7 @@ export class RadioValueAccessorDirective extends ValueAccessor {
   }
 
   @HostListener('checkedChange', ['$event.target'])
-  handleChangeEvent(el: HTMLIxRadioElement): void {
+  handleChangeEvent(el: any): void {
     super.handleValueChange(el, el.value);
   }
 }

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { getElement } from '@stencil/core';
+import { HTMLIxFormComponentElement } from '.';
 
 export type ClassMutationObserver = {
   destroy: () => void;
@@ -34,27 +35,88 @@ export function createClassMutationObserver(
   };
 }
 
-export type ValidationResultProperty = 'isInvalid';
+export type ValidationResultProperty =
+  | 'isInvalid'
+  | 'isInvalidByRequired'
+  | 'isValid'
+  | 'isInfo'
+  | 'isWarning';
 export type ValidationResults = Record<ValidationResultProperty, boolean>;
 
-export function checkFieldClasses(
-  hostElement: HTMLElement,
+function containsClass(
+  hostElement: HTMLIxFormComponentElement<unknown>,
+  className: string,
+  includeChildren: boolean
+) {
+  return (
+    hostElement.classList.contains(`${className}`) ||
+    (includeChildren ? !!hostElement.querySelector(`.${className}`) : false)
+  );
+}
+
+export async function checkFieldClasses(
+  hostElement: HTMLIxFormComponentElement<unknown>,
   includeChildren = false
-): ValidationResults {
+): Promise<ValidationResults> {
+  const associatedFormElement = await hostElement.getAssociatedFormElement();
+  let suppressValidState = hostElement.hasAttribute('data-ix-disable-valid');
+  if (!suppressValidState && associatedFormElement) {
+    suppressValidState = associatedFormElement.hasAttribute(
+      'data-ix-disable-valid'
+    );
+  }
+
+  if (suppressValidState) {
+    hostElement.classList.toggle('ix-suppress-valid', suppressValidState);
+  }
+
   return {
-    isInvalid:
-      hostElement.classList.contains('ix-invalid') ||
-      (includeChildren ? !!hostElement.querySelector('.ix-invalid') : false),
+    isInvalid: containsClass(hostElement, 'ix-invalid', includeChildren),
+    isInvalidByRequired: containsClass(
+      hostElement,
+      'ix-invalid--required',
+      includeChildren
+    ),
+    isValid:
+      !suppressValidState &&
+      containsClass(hostElement, 'ix-valid', includeChildren),
+    isInfo: containsClass(hostElement, 'ix-info', includeChildren),
+    isWarning: containsClass(hostElement, 'ix-warning', includeChildren),
   };
 }
 
-export function ListenOnValidation(options?: { includeChildren?: boolean }) {
+export function HookValidationLifecycle(options?: {
+  includeChildren?: boolean;
+}) {
   return (proto: any, methodName: string) => {
+    let checkIfRequiredFunction: () => void;
     let classMutationObserver: ClassMutationObserver;
-    const { componentWillLoad, disconnectedCallback } = proto;
+    const { componentWillLoad, disconnectedCallback, connectedCallback } =
+      proto;
+
+    proto.connectedCallback = function () {
+      const host = getElement(
+        this
+      ) as unknown as HTMLIxFormComponentElement<unknown>;
+
+      checkIfRequiredFunction = async () => {
+        const hasValue = await host.hasValidValue();
+        if (host.required) {
+          host.classList.toggle('ix-invalid--required', !hasValue);
+        } else {
+          host.classList.remove('ix-invalid--required');
+        }
+      };
+
+      host.addEventListener('valueChange', checkIfRequiredFunction);
+      checkIfRequiredFunction();
+      return connectedCallback && connectedCallback.call(this);
+    };
 
     proto.componentWillLoad = function () {
-      const host = getElement(this);
+      const host = getElement(
+        this
+      ) as unknown as HTMLIxFormComponentElement<unknown>;
       classMutationObserver = createClassMutationObserver(
         host,
         () => {
@@ -78,6 +140,10 @@ export function ListenOnValidation(options?: { includeChildren?: boolean }) {
       if (host && classMutationObserver) {
         classMutationObserver.destroy();
         classMutationObserver = null;
+      }
+
+      if (host && checkIfRequiredFunction) {
+        host.removeEventListener('valueChange', checkIfRequiredFunction);
       }
 
       return disconnectedCallback && disconnectedCallback.call(this);

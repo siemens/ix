@@ -16,6 +16,7 @@ import {
   h,
   Host,
   Listen,
+  Method,
   Prop,
   State,
   Watch,
@@ -25,7 +26,12 @@ import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
-import { IxFormComponent } from '../utils/field';
+import {
+  FieldWrapperInterface,
+  IxFormComponent,
+  HookValidationLifecycle,
+  ValidationResults,
+} from '../utils/field';
 
 @Component({
   tag: 'ix-select',
@@ -33,16 +39,59 @@ import { IxFormComponent } from '../utils/field';
   shadow: true,
   formAssociated: true,
 })
-export class Select implements IxFormComponent<string | string[]> {
+export class Select
+  implements IxFormComponent<string | string[]>, FieldWrapperInterface
+{
   @Element() hostElement!: HTMLIxSelectElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
-   * Name of the select component
+   * A string that represents the element's name attribute,
+   * containing a name that identifies the element when submitting the form.
    *
-   * @since TODO: Add version
+   * @since 2.4.0
    */
   @Prop({ reflect: true }) name?: string;
+
+  /**
+   * A Boolean attribute indicating that an option with a non-empty string value must be selected
+   */
+  @Prop({ reflect: true }) required?: boolean;
+
+  /**
+   * Label for the select component
+   */
+  @Prop() label?: string;
+
+  /**
+   * Warning text for the select component
+   **/
+  @Prop() warningText?: string;
+
+  /**
+   * Info text for the select component
+   **/
+  @Prop() infoText?: string;
+
+  /**
+   * Error text for the select component
+   **/
+  @Prop() errorText?: string;
+
+  /**
+   * Valid text for the select component
+   **/
+  @Prop() validText?: string;
+
+  /**
+   * Helper text for the select component
+   **/
+  @Prop() helperText?: string;
+
+  /**
+   * Show helper, error, info, warning text as tooltip
+   */
+  @Prop() showTextAsTooltip?: boolean;
 
   /**
    * Indices of selected items.
@@ -144,6 +193,11 @@ export class Select implements IxFormComponent<string | string[]> {
   @State() navigationItem: DropdownItemWrapper;
   @State() inputFilterText: string;
   @State() inputValue: string;
+
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
 
   private inputRef!: HTMLInputElement;
   private dropdownRef!: HTMLIxDropdownElement;
@@ -249,13 +303,27 @@ export class Select implements IxFormComponent<string | string[]> {
     this.itemClick(newId);
   }
 
-  updateFormInternalValue(value: string | string[]): void {
+  async updateFormInternalValue(value: string | string[]) {
     if (Array.isArray(value)) {
       this.formInternals.setFormValue(value.join(','));
       return;
     }
 
     this.formInternals.setFormValue(value);
+  }
+
+  /** @internal */
+  @Method()
+  async hasValidValue(): Promise<boolean> {
+    return this.required && !!this.hasValue();
+  }
+
+  private hasValue() {
+    if (Array.isArray(this.value)) {
+      return !!this.value.length;
+    }
+
+    return !!this.value;
   }
 
   private focusDropdownItem(index: number) {
@@ -646,88 +714,123 @@ export class Select implements IxFormComponent<string | string[]> {
     );
   }
 
+  @HookValidationLifecycle()
+  onValidationChange({
+    isInvalid,
+    isInvalidByRequired,
+    isValid,
+    isInfo,
+    isWarning,
+  }: ValidationResults) {
+    this.isInvalid = isInvalid || isInvalidByRequired;
+    this.isValid = isValid;
+    this.isWarning = isWarning;
+    this.isInfo = isInfo;
+  }
+
+  /** @internal */
+  @Method()
+  async getAssociatedFormElement(): Promise<HTMLFormElement> {
+    return this.formInternals.form;
+  }
+
   render() {
     return (
       <Host>
-        <div
-          class={{
-            select: true,
-            disabled: this.disabled,
-            readonly: this.readonly,
-          }}
-          ref={(ref) => {
-            this.dropdownAnchor = ref;
-            if (!this.editable) this.dropdownWrapperRef = ref;
-          }}
+        <ix-field-wrapper
+          isRequired={this.required}
+          label={this.label}
+          helperText={this.helperText}
+          errorText={this.errorText}
+          infoText={this.infoText}
+          warningText={this.warningText}
+          validText={this.validText}
+          showTextAsTooltip={this.showTextAsTooltip}
+          isInvalid={this.isInvalid}
+          isValid={this.isValid}
+          isInfo={this.isInfo}
+          isWarning={this.isWarning}
         >
-          <div class="input-container">
-            <div class="chips">
-              {this.isMultipleMode
-                ? this.selectedItems?.map((item) => (
-                    <ix-filter-chip
-                      disabled={this.disabled || this.readonly}
-                      key={item.value}
-                      onCloseClick={(e) => {
+          <div
+            class={{
+              select: true,
+              disabled: this.disabled,
+              readonly: this.readonly,
+            }}
+            ref={(ref) => {
+              this.dropdownAnchor = ref;
+              if (!this.editable) this.dropdownWrapperRef = ref;
+            }}
+          >
+            <div class="input-container">
+              <div class="chips">
+                {this.isMultipleMode
+                  ? this.selectedItems?.map((item) => (
+                      <ix-filter-chip
+                        disabled={this.disabled || this.readonly}
+                        key={item.value}
+                        onCloseClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          this.itemClick(item.value);
+                        }}
+                      >
+                        {item.label}
+                      </ix-filter-chip>
+                    ))
+                  : ''}
+                <div class="trigger">
+                  <input
+                    autocomplete="off"
+                    data-testid="input"
+                    disabled={this.disabled}
+                    readOnly={this.readonly}
+                    type="text"
+                    class={{
+                      'allow-clear':
+                        this.allowClear && !!this.selectedLabels?.length,
+                    }}
+                    placeholder={this.placeholderValue()}
+                    value={this.inputValue}
+                    ref={(ref) => (this.inputRef = ref)}
+                    onBlur={(e) => this.onInputBlur(e)}
+                    onFocus={() => {
+                      this.navigationItem = undefined;
+                    }}
+                    onInput={() => this.filterItemsWithTypeahead()}
+                    onKeyDown={(e) => this.onKeyDown(e)}
+                  />
+                  {this.allowClear &&
+                  (this.selectedLabels?.length || this.inputFilterText) ? (
+                    <ix-icon-button
+                      class="clear"
+                      icon={'clear'}
+                      ghost
+                      oval
+                      size="16"
+                      onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        this.itemClick(item.value);
+                        this.clear();
                       }}
-                    >
-                      {item.label}
-                    </ix-filter-chip>
-                  ))
-                : ''}
-              <div class="trigger">
-                <input
-                  autocomplete="off"
-                  data-testid="input"
-                  disabled={this.disabled}
-                  readOnly={this.readonly}
-                  type="text"
-                  class={{
-                    'allow-clear':
-                      this.allowClear && !!this.selectedLabels?.length,
-                  }}
-                  placeholder={this.placeholderValue()}
-                  value={this.inputValue}
-                  ref={(ref) => (this.inputRef = ref)}
-                  onBlur={(e) => this.onInputBlur(e)}
-                  onFocus={() => {
-                    this.navigationItem = undefined;
-                  }}
-                  onInput={() => this.filterItemsWithTypeahead()}
-                  onKeyDown={(e) => this.onKeyDown(e)}
-                />
-                {this.allowClear &&
-                (this.selectedLabels?.length || this.inputFilterText) ? (
-                  <ix-icon-button
-                    class="clear"
-                    icon={'clear'}
-                    ghost
-                    oval
-                    size="16"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      this.clear();
-                    }}
-                  />
-                ) : null}
-                {this.disabled || this.readonly ? null : (
-                  <ix-icon-button
-                    data-select-dropdown
-                    class={{ 'dropdown-visible': this.dropdownShow }}
-                    icon="chevron-down-small"
-                    ghost
-                    ref={(ref) => {
-                      if (this.editable) this.dropdownWrapperRef = ref;
-                    }}
-                  ></ix-icon-button>
-                )}
+                    />
+                  ) : null}
+                  {this.disabled || this.readonly ? null : (
+                    <ix-icon-button
+                      data-select-dropdown
+                      class={{ 'dropdown-visible': this.dropdownShow }}
+                      icon="chevron-down-small"
+                      ghost
+                      ref={(ref) => {
+                        if (this.editable) this.dropdownWrapperRef = ref;
+                      }}
+                    ></ix-icon-button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ix-field-wrapper>
         <ix-dropdown
           ref={(ref) => (this.dropdownRef = ref)}
           show={this.dropdownShow}

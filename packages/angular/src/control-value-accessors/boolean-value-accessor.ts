@@ -31,7 +31,7 @@ export class BooleanValueAccessorDirective extends ValueAccessor {
   }
 
   @HostListener('checkedChange', ['$event.target'])
-  handleChangeEvent(el: HTMLIxCheckboxElement): void {
+  handleChangeEvent(el: any): void {
     super.handleValueChange(el, el.checked);
   }
 }

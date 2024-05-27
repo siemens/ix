@@ -173,7 +173,42 @@
   }
 }
 
-:host(.ix-invalid) {
+
+
+:host(.ix-valid:not(.ix-suppress-valid)) {
+  .select, .select:hover {
+    background-color: green !important;
+    border-color: green !important;
+  }
+
+  .input-container {
+    background-color: green;
+  }
+}
+
+:host(.ix-info) {
+  .select, .select:hover {
+    background-color: blue !important;
+    border-color: blue !important;
+  }
+
+  .input-container {
+    background-color: blue;
+  }
+}
+
+:host(.ix-warning) {
+  .select, .select:hover {
+    background-color: orange !important;
+    border-color: orange !important;
+  }
+
+  .input-container {
+    background-color: orange;
+  }
+}
+
+:host(.ix-invalid), :host(.ix-invalid--required) {
   .select, .select:hover {
     background-color: var(--theme-input-error--background) !important;
     border-color: var(--theme-input-error--border-color) !important;

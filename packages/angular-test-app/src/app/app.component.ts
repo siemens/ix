@@ -16,15 +16,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  profileForm = new FormGroup({
-    projectName: new FormControl('Demo Project', []),
-    car: new FormControl('', [Validators.required]),
-    agree1: new FormControl(false, []),
-    agree2: new FormControl(true, []),
-    dreamCar: new FormControl(['opel', 'porsche'], [Validators.required]),
+  title = 'angular-test-app';
+
+  formTest = new FormGroup({
+    test: new FormControl('2', [Validators.required]),
   });
 
   submit() {
-    console.log(this.profileForm.value);
+    console.log(this.formTest.value);
   }
 }

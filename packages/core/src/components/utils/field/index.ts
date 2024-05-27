@@ -11,31 +11,46 @@ import { IxComponent } from '../internal';
 
 export * from './validation';
 
-export interface HelperText {
+export interface FieldWrapperInterface {
   label?: string;
   helperText?: string;
+  infoText?: string;
+  warningText?: string;
   errorText?: string;
+  validText?: string;
+  showTextAsTooltip?: boolean;
 }
 
+export type HTMLIxFormComponentElement<T> = HTMLElement & IxFormComponent<T>;
+
 export interface IxFormComponent<T = any> {
+  // Private internal
   formInternals: ElementInternals;
 
+  // Annotate as @Prop({ reflect: true })
+  required?: boolean;
+  // Annotate as @Prop({ reflect: true })
   name?: string;
+  // Annotate as @Prop()
   value?: T;
+
+  // Annotate as @State()
+  isInvalid: boolean;
+  // Annotate as @State()
+  isValid: boolean;
 
   valueChange: EventEmitter<T>;
   updateFormInternalValue(value: T): void;
+  hasValidValue(): Promise<boolean>;
+  getAssociatedFormElement(): Promise<HTMLFormElement>;
 }
 
 export interface IxFieldComponent<T = any>
   extends IxComponent,
-    HelperText,
+    FieldWrapperInterface,
     IxFormComponent<T> {
-  // Property
+  // Annotate as @Prop()
   placeholder?: string;
-
-  //State
-  isInvalid: boolean;
 
   // TODO: Should we add additional input properties here?
 }
