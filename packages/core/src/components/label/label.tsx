@@ -7,18 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Host, Prop, h, Element } from '@stencil/core';
+import { Component, Host, Prop, h, Element, Watch } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 import { HTMLIxFormComponentElement } from '../utils/field';
 
-// TODO: Do we need this component?
 @Component({
-  tag: 'ix-label',
+  tag: 'ix-field-label',
   styleUrl: 'label.scss',
   shadow: true,
 })
-export class Label implements IxComponent {
-  @Element() hostElement: HTMLIxLabelElement;
+export class FormFieldLabel implements IxComponent {
+  @Element() hostElement: HTMLIxFieldLabelElement;
 
   /**
    * A value is required or must be checked for the form to be submittable
@@ -33,14 +32,39 @@ export class Label implements IxComponent {
   private observer = new MutationObserver(() => this.checkForRequired());
 
   connectedCallback() {
-    this.observer.observe(window.document, {
-      childList: true,
-      subtree: true,
-    });
+    this.registerObserver();
+  }
+
+  disconnectedCallback(): void {
+    this.destroyObserver();
   }
 
   componentWillRender() {
     this.checkForRequired();
+  }
+
+  private destroyObserver() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  @Watch('htmlFor')
+  private registerObserver() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    this.destroyObserver();
+
+    if (!this.htmlFor) {
+      return;
+    }
+
+    this.observer.observe(window.document, {
+      childList: true,
+      subtree: true,
+    });
   }
 
   private async checkForRequired() {

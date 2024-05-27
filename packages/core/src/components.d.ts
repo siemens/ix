@@ -1011,6 +1011,16 @@ export namespace Components {
          */
         "value": string;
     }
+    interface IxFieldLabel {
+        /**
+          * The id of the form element that the label is associated with
+         */
+        "htmlFor"?: string;
+        /**
+          * A value is required or must be checked for the form to be submittable
+         */
+        "required"?: boolean;
+    }
     interface IxFieldWrapper {
         /**
           * Error text for the field component
@@ -1166,6 +1176,32 @@ export namespace Components {
          */
         "text": string;
     }
+    interface IxHelperText {
+        /**
+          * Error text for the field component
+         */
+        "errorText": string;
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * The id of the form element that the label is associated with
+         */
+        "htmlFor"?: string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Valid text for the field component
+         */
+        "validText": string;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
+    }
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
@@ -1296,16 +1332,6 @@ export namespace Components {
         "state": 'neutral' | 'warning' | 'alarm';
         "unit": string;
         "value": string | number;
-    }
-    interface IxLabel {
-        /**
-          * The id of the form element that the label is associated with
-         */
-        "htmlFor"?: string;
-        /**
-          * A value is required or must be checked for the form to be submittable
-         */
-        "required"?: boolean;
     }
     /**
      * @since 2.0.0
@@ -3263,6 +3289,12 @@ declare global {
         prototype: HTMLIxExpandingSearchElement;
         new (): HTMLIxExpandingSearchElement;
     };
+    interface HTMLIxFieldLabelElement extends Components.IxFieldLabel, HTMLStencilElement {
+    }
+    var HTMLIxFieldLabelElement: {
+        prototype: HTMLIxFieldLabelElement;
+        new (): HTMLIxFieldLabelElement;
+    };
     interface HTMLIxFieldWrapperElement extends Components.IxFieldWrapper, HTMLStencilElement {
     }
     var HTMLIxFieldWrapperElement: {
@@ -3346,6 +3378,12 @@ declare global {
         prototype: HTMLIxGroupItemElement;
         new (): HTMLIxGroupItemElement;
     };
+    interface HTMLIxHelperTextElement extends Components.IxHelperText, HTMLStencilElement {
+    }
+    var HTMLIxHelperTextElement: {
+        prototype: HTMLIxHelperTextElement;
+        new (): HTMLIxHelperTextElement;
+    };
     interface HTMLIxIconButtonElement extends Components.IxIconButton, HTMLStencilElement {
     }
     var HTMLIxIconButtonElement: {
@@ -3401,12 +3439,6 @@ declare global {
     var HTMLIxKpiElement: {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
-    };
-    interface HTMLIxLabelElement extends Components.IxLabel, HTMLStencilElement {
-    }
-    var HTMLIxLabelElement: {
-        prototype: HTMLIxLabelElement;
-        new (): HTMLIxLabelElement;
     };
     /**
      * @since 2.0.0
@@ -4174,6 +4206,7 @@ declare global {
         "ix-event-list": HTMLIxEventListElement;
         "ix-event-list-item": HTMLIxEventListItemElement;
         "ix-expanding-search": HTMLIxExpandingSearchElement;
+        "ix-field-label": HTMLIxFieldLabelElement;
         "ix-field-wrapper": HTMLIxFieldWrapperElement;
         "ix-filter-chip": HTMLIxFilterChipElement;
         "ix-flip-tile": HTMLIxFlipTileElement;
@@ -4182,13 +4215,13 @@ declare global {
         "ix-group": HTMLIxGroupElement;
         "ix-group-context-menu": HTMLIxGroupContextMenuElement;
         "ix-group-item": HTMLIxGroupItemElement;
+        "ix-helper-text": HTMLIxHelperTextElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
-        "ix-label": HTMLIxLabelElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
@@ -5265,6 +5298,16 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface IxFieldLabel {
+        /**
+          * The id of the form element that the label is associated with
+         */
+        "htmlFor"?: string;
+        /**
+          * A value is required or must be checked for the form to be submittable
+         */
+        "required"?: boolean;
+    }
     interface IxFieldWrapper {
         /**
           * Error text for the field component
@@ -5440,6 +5483,32 @@ declare namespace LocalJSX {
          */
         "text"?: string;
     }
+    interface IxHelperText {
+        /**
+          * Error text for the field component
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * The id of the form element that the label is associated with
+         */
+        "htmlFor"?: string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Valid text for the field component
+         */
+        "validText"?: string;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
+    }
     interface IxIconButton {
         /**
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
@@ -5574,16 +5643,6 @@ declare namespace LocalJSX {
         "state"?: 'neutral' | 'warning' | 'alarm';
         "unit"?: string;
         "value"?: string | number;
-    }
-    interface IxLabel {
-        /**
-          * The id of the form element that the label is associated with
-         */
-        "htmlFor"?: string;
-        /**
-          * A value is required or must be checked for the form to be submittable
-         */
-        "required"?: boolean;
     }
     /**
      * @since 2.0.0
@@ -7003,6 +7062,7 @@ declare namespace LocalJSX {
         "ix-event-list": IxEventList;
         "ix-event-list-item": IxEventListItem;
         "ix-expanding-search": IxExpandingSearch;
+        "ix-field-label": IxFieldLabel;
         "ix-field-wrapper": IxFieldWrapper;
         "ix-filter-chip": IxFilterChip;
         "ix-flip-tile": IxFlipTile;
@@ -7011,13 +7071,13 @@ declare namespace LocalJSX {
         "ix-group": IxGroup;
         "ix-group-context-menu": IxGroupContextMenu;
         "ix-group-item": IxGroupItem;
+        "ix-helper-text": IxHelperText;
         "ix-icon-button": IxIconButton;
         "ix-icon-toggle-button": IxIconToggleButton;
         "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
-        "ix-label": IxLabel;
         "ix-layout-grid": IxLayoutGrid;
         "ix-link-button": IxLinkButton;
         "ix-map-navigation": IxMapNavigation;
@@ -7161,6 +7221,7 @@ declare module "@stencil/core" {
             "ix-event-list": LocalJSX.IxEventList & JSXBase.HTMLAttributes<HTMLIxEventListElement>;
             "ix-event-list-item": LocalJSX.IxEventListItem & JSXBase.HTMLAttributes<HTMLIxEventListItemElement>;
             "ix-expanding-search": LocalJSX.IxExpandingSearch & JSXBase.HTMLAttributes<HTMLIxExpandingSearchElement>;
+            "ix-field-label": LocalJSX.IxFieldLabel & JSXBase.HTMLAttributes<HTMLIxFieldLabelElement>;
             "ix-field-wrapper": LocalJSX.IxFieldWrapper & JSXBase.HTMLAttributes<HTMLIxFieldWrapperElement>;
             "ix-filter-chip": LocalJSX.IxFilterChip & JSXBase.HTMLAttributes<HTMLIxFilterChipElement>;
             "ix-flip-tile": LocalJSX.IxFlipTile & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
@@ -7169,6 +7230,7 @@ declare module "@stencil/core" {
             "ix-group": LocalJSX.IxGroup & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             "ix-group-context-menu": LocalJSX.IxGroupContextMenu & JSXBase.HTMLAttributes<HTMLIxGroupContextMenuElement>;
             "ix-group-item": LocalJSX.IxGroupItem & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
+            "ix-helper-text": LocalJSX.IxHelperText & JSXBase.HTMLAttributes<HTMLIxHelperTextElement>;
             "ix-icon-button": LocalJSX.IxIconButton & JSXBase.HTMLAttributes<HTMLIxIconButtonElement>;
             /**
              * @since 2.0.0
@@ -7184,7 +7246,6 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
-            "ix-label": LocalJSX.IxLabel & JSXBase.HTMLAttributes<HTMLIxLabelElement>;
             /**
              * @since 2.0.0
              */

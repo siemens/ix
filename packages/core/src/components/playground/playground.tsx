@@ -24,60 +24,54 @@ export class PlaygroundInternal {
     return (
       <Host>
         <form onSubmit={(e) => e.preventDefault()}>
-          <ix-select
-            helperText="Helper text with super link content 123 123 123 123"
-            errorText="Error text"
-            validText="Valid text"
-            warningText="Warning text"
-            infoText="Info text"
-            showTextBehind
-          >
-            <ix-select-item value={'xx'} label="123"></ix-select-item>
-          </ix-select>
-
-          {/* <ix-select
-            helperText="Helper text"
-            errorText="Error text"
-            validText="Valid text"
-            warningText="Warning text"
-            infoText="Info text 123 123 123 123 123 12"
-            class={'ix-info'}
-          >
-            <ix-select-item value={'xx'} label="123"></ix-select-item>
-          </ix-select>
-
-          <ix-select
-            helperText="Helper text"
-            errorText="Error text"
-            validText="Valid text"
-            warningText="Warning text"
-            infoText="Info text"
-            class={'ix-warning'}
-          >
-            <ix-select-item value={'xx'} label="123"></ix-select-item>
-          </ix-select>
-
-          <ix-select
-            helperText="Helper text"
-            errorText="Error text"
-            validText="Valid text"
-            warningText="Warning text"
-            infoText="Info text"
-            class={'ix-invalid'}
-          >
-            <ix-select-item value={'xx'} label="123"></ix-select-item>
-          </ix-select>
-
-          <ix-select
-            helperText="Helper text"
-            errorText="Error text"
-            validText="Valid text"
-            warningText="Warning text"
-            infoText="Info text"
-            class={'ix-valid'}
-          >
-            <ix-select-item value={'xx'} label="123"></ix-select-item>
-          </ix-select> */}
+          <ix-layout-grid>
+            <ix-row>
+              <ix-col size="1">
+                <ix-field-label htmlFor="select">Label</ix-field-label>
+              </ix-col>
+              <ix-col>
+                <ix-select
+                  required
+                  style={{ width: '100%' }}
+                  id="select"
+                  onValueChange={(e) => {
+                    e.target.classList.remove('ix-warning');
+                    e.target.classList.remove('ix-info');
+                    e.target.classList.remove('ix-valid');
+                    e.target.classList.remove('ix-invalid');
+                    e.target.classList.add(e.detail as string);
+                  }}
+                >
+                  <ix-select-item
+                    value={'ix-warning'}
+                    label="warning"
+                  ></ix-select-item>
+                  <ix-select-item
+                    value={'ix-info'}
+                    label="info"
+                  ></ix-select-item>
+                  <ix-select-item
+                    value={'ix-valid'}
+                    label="valid"
+                  ></ix-select-item>
+                  <ix-select-item
+                    value={'ix-invalid'}
+                    label="invalid"
+                  ></ix-select-item>
+                </ix-select>
+              </ix-col>
+              <ix-col>
+                <ix-helper-text
+                  htmlFor="select"
+                  helperText="Helper text with super link content 123 123 123 123"
+                  errorText="Error text"
+                  validText="Valid text"
+                  warningText="Warning text"
+                  infoText="Info text"
+                ></ix-helper-text>
+              </ix-col>
+            </ix-row>
+          </ix-layout-grid>
         </form>
       </Host>
     );

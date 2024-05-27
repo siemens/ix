@@ -1,12 +1,7 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
 import { FieldWrapperInterface } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
-import {
-  iconError,
-  iconInfo,
-  iconSuccess,
-  iconWarning,
-} from '@siemens/ix-icons/icons';
+import { renderHelperText } from './helper-text-util';
 
 /** @internal */
 @Component({
@@ -84,52 +79,18 @@ export class FieldWrapper implements FieldWrapperInterface {
 
   private slotRef = makeRef<HTMLDivElement>();
 
-  private renderHelperText() {
-    if (this.isInvalid && this.errorText) {
-      return (
-        <ix-typography color="alarm" class="bottom-text">
-          <ix-icon class="text-icon" name={iconError} size="16"></ix-icon>
-
-          {this.errorText}
-        </ix-typography>
-      );
-    }
-
-    if (this.isWarning && this.warningText) {
-      return (
-        <ix-typography color="std" class="bottom-text">
-          <ix-icon class="text-icon" name={iconWarning} size="16"></ix-icon>
-          {this.warningText}
-        </ix-typography>
-      );
-    }
-
-    if (this.isInfo && this.infoText) {
-      return (
-        <ix-typography color="std" class="bottom-text">
-          <ix-icon class="text-icon" name={iconInfo} size="16"></ix-icon>
-          {this.infoText}
-        </ix-typography>
-      );
-    }
-
-    if (this.isValid && this.validText) {
-      return (
-        <ix-typography color="std" class="bottom-text">
-          <ix-icon class="text-icon" name={iconSuccess} size="16"></ix-icon>
-          {this.validText}
-        </ix-typography>
-      );
-    }
-
-    return (
-      this.helperText && (
-        <ix-typography class="bottom-text">{this.helperText}</ix-typography>
-      )
-    );
-  }
-
   render() {
+    const textOptions = {
+      errorText: this.errorText,
+      isInvalid: this.isInvalid,
+      isValid: this.isValid,
+      validText: this.validText,
+      isWarning: this.isWarning,
+      warningText: this.warningText,
+      isInfo: this.isInfo,
+      infoText: this.infoText,
+      helperText: this.helperText,
+    };
     return (
       <Host
         class={{
@@ -147,10 +108,10 @@ export class FieldWrapper implements FieldWrapperInterface {
         >
           <slot></slot>
         </div>
-        {!this.showTextAsTooltip && this.renderHelperText()}
+        {!this.showTextAsTooltip && renderHelperText(textOptions)}
         {this.showTextAsTooltip === true && (
           <ix-tooltip for={this.slotRef.waitForCurrent()} showDelay={500}>
-            {this.renderHelperText()}
+            {renderHelperText(textOptions)}
           </ix-tooltip>
         )}
       </Host>

@@ -78,3 +78,12 @@ export interface IxFieldComponent<T = any> extends IxFormComponent<T> {
   placeholder?: string;
   // TODO: Should we add additional input properties here?
 }
+
+export function isIxFormComponent(
+  obj: HTMLElement
+): obj is HTMLIxFormComponentElement<any> {
+  return (
+    'getAssociatedFormElement' in obj &&
+    typeof obj.getAssociatedFormElement === 'function'
+  );
+}

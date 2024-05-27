@@ -1,3 +1,5 @@
+@import "./field-wrapper.mixins.scss";
+
 :host {
   display: flex;
   position: relative;
@@ -11,19 +13,7 @@
     gap: 1rem
   }
 
-  .bottom-text {
-    display: flex;
-    position: relative;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0.25rem;
-
-    margin-right: 0.25rem;
-  }
-
-  .text-icon {
-    margin: 0.125rem;
-  }
+  @include helper-text;
 }
 
 :host(.text-behind-slotted-element) {
