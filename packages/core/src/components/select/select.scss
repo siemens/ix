@@ -13,6 +13,7 @@
 @import 'mixins/text-truncation';
 @import 'mixins/shadow-dom/component';
 @import 'mixins/field';
+@import 'mixins/validation/form-component';
 
 :host {
   @include ix-component;
@@ -31,6 +32,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
     background-color: var(--theme-input--background);
     border: var(--theme-input--border-thickness) solid
       var(--theme-input--border-color);
@@ -175,7 +177,7 @@
 
 
 
-:host(.ix-valid:not(.ix-suppress-valid)) {
+@include host-valid {
   .select, .select:hover {
     background-color: green !important;
     border-color: green !important;
@@ -186,7 +188,7 @@
   }
 }
 
-:host(.ix-info) {
+@include host-info {
   .select, .select:hover {
     background-color: blue !important;
     border-color: blue !important;
@@ -197,7 +199,7 @@
   }
 }
 
-:host(.ix-warning) {
+@include host-warning {
   .select, .select:hover {
     background-color: orange !important;
     border-color: orange !important;
@@ -208,7 +210,7 @@
   }
 }
 
-:host(.ix-invalid), :host(.ix-invalid--required) {
+@include host-invalid {
   .select, .select:hover {
     background-color: var(--theme-input-error--background) !important;
     border-color: var(--theme-input-error--border-color) !important;

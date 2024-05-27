@@ -23,53 +23,60 @@ export class PlaygroundInternal {
   render() {
     return (
       <Host>
-        <form onSubmit={(e) => e.preventDefault()} data-ix-disable-valid>
-          <ix-layout-grid>
-            <ix-row>
-              <ix-col size="2">
-                <ix-label htmlFor="my-select">Example</ix-label>
-              </ix-col>
-              <ix-col>
-                <ix-select
-                  id="my-select"
-                  required={false}
-                  helperText="Test"
-                  errorText="error"
-                  validText="okay"
-                  warningText="warning"
-                  infoText="info"
-                  showTextAsTooltip={false}
-                  allowClear={true}
-                  class={'ix-valid'}
-                  data-ix-disable-valid
-                >
-                  <ix-select-item value={'xx'} label="123"></ix-select-item>
-                </ix-select>
-              </ix-col>
-            </ix-row>
-            <ix-row>
-              <ix-col size="2">
-                <ix-label htmlFor="my-select">Example</ix-label>
-              </ix-col>
-              <ix-col>
-                <ix-select
-                  id="my-select"
-                  required={false}
-                  helperText="Test"
-                  errorText="error"
-                  validText="okay"
-                  warningText="warning"
-                  infoText="info"
-                  showTextAsTooltip={false}
-                  allowClear={true}
-                  class={'ix-valid'}
-                  data-ix-disable-valid
-                >
-                  <ix-select-item value={'xx'} label="123"></ix-select-item>
-                </ix-select>
-              </ix-col>
-            </ix-row>
-          </ix-layout-grid>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <ix-select
+            helperText="Helper text with super link content 123 123 123 123"
+            errorText="Error text"
+            validText="Valid text"
+            warningText="Warning text"
+            infoText="Info text"
+          >
+            <ix-select-item value={'xx'} label="123"></ix-select-item>
+          </ix-select>
+
+          <ix-select
+            helperText="Helper text"
+            errorText="Error text"
+            validText="Valid text"
+            warningText="Warning text"
+            infoText="Info text 123 123 123 123 123 12"
+            class={'ix-info'}
+          >
+            <ix-select-item value={'xx'} label="123"></ix-select-item>
+          </ix-select>
+
+          <ix-select
+            helperText="Helper text"
+            errorText="Error text"
+            validText="Valid text"
+            warningText="Warning text"
+            infoText="Info text"
+            class={'ix-warning'}
+          >
+            <ix-select-item value={'xx'} label="123"></ix-select-item>
+          </ix-select>
+
+          <ix-select
+            helperText="Helper text"
+            errorText="Error text"
+            validText="Valid text"
+            warningText="Warning text"
+            infoText="Info text"
+            class={'ix-invalid'}
+          >
+            <ix-select-item value={'xx'} label="123"></ix-select-item>
+          </ix-select>
+
+          <ix-select
+            helperText="Helper text"
+            errorText="Error text"
+            validText="Valid text"
+            warningText="Warning text"
+            infoText="Info text"
+            class={'ix-valid'}
+          >
+            <ix-select-item value={'xx'} label="123"></ix-select-item>
+          </ix-select>
         </form>
       </Host>
     );

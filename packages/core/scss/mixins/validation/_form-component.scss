@@ -1,0 +1,32 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@mixin host-valid {
+  :host(.ix-valid:not(.ix-suppress-valid):not(.ix-invalid--required)) {
+    @content;
+  }
+}
+
+@mixin host-info {
+  :host(.ix-info) {
+    @content;
+  }
+}
+
+@mixin host-warning {
+  :host(.ix-warning) {
+    @content;
+  }
+}
+
+@mixin host-invalid {
+  :host(.ix-invalid),
+  :host(.ix-invalid--required) {
+    @content;
+  }
+}

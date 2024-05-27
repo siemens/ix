@@ -34,7 +34,7 @@ import {
 } from '../utils/field';
 
 /**
- * @form-ready
+ * @form-ready 2.4.0
  */
 @Component({
   tag: 'ix-select',

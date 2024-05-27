@@ -1,6 +1,12 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
 import { FieldWrapperInterface } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
+import {
+  iconError,
+  iconInfo,
+  iconSuccess,
+  iconWarning,
+} from '@siemens/ix-icons/icons';
 
 /** @internal */
 @Component({
@@ -76,27 +82,42 @@ export class FieldWrapper implements FieldWrapperInterface {
   private renderHelperText() {
     if (this.isInvalid && this.errorText) {
       return (
-        <ix-typography color="alarm">D: Error {this.errorText}</ix-typography>
+        <ix-typography color="alarm" class="bottom-text">
+          <ix-icon class="text-icon" name={iconError} size="16"></ix-icon>
+
+          {this.errorText}
+        </ix-typography>
       );
     }
 
     if (this.isWarning && this.warningText) {
       return (
-        <ix-typography color="std">D: Warning {this.warningText}</ix-typography>
+        <ix-typography color="std" class="bottom-text">
+          <ix-icon class="text-icon" name={iconWarning} size="16"></ix-icon>
+          {this.warningText}
+        </ix-typography>
       );
     }
 
     if (this.isInfo && this.infoText) {
-      return <ix-typography color="std">D: Info {this.infoText}</ix-typography>;
+      return (
+        <ix-typography color="std" class="bottom-text">
+          <ix-icon class="text-icon" name={iconInfo} size="16"></ix-icon>
+          {this.infoText}
+        </ix-typography>
+      );
     }
 
     if (this.isValid && this.validText) {
       return (
-        <ix-typography color="std">D: Valid {this.validText}</ix-typography>
+        <ix-typography color="std" class="bottom-text">
+          <ix-icon class="text-icon" name={iconSuccess} size="16"></ix-icon>
+          {this.validText}
+        </ix-typography>
       );
     }
 
-    return <ix-typography>D: Help{this.helperText}</ix-typography>;
+    return this.helperText && <ix-typography>{this.helperText}</ix-typography>;
   }
 
   render() {
@@ -110,7 +131,7 @@ export class FieldWrapper implements FieldWrapperInterface {
         </div>
         {!this.showTextAsTooltip && this.renderHelperText()}
         {this.showTextAsTooltip === true && (
-          <ix-tooltip for={this.slotRef.waitForCurrent()}>
+          <ix-tooltip for={this.slotRef.waitForCurrent()} showDelay={500}>
             {this.renderHelperText()}
           </ix-tooltip>
         )}

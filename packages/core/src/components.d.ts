@@ -1909,7 +1909,7 @@ export namespace Components {
     interface IxRow {
     }
     /**
-     * @form-ready 
+     * @form-ready 2.4.0
      */
     interface IxSelect {
         /**
@@ -3799,7 +3799,7 @@ declare global {
         "addItem": string;
     }
     /**
-     * @form-ready 
+     * @form-ready 2.4.0
      */
     interface HTMLIxSelectElement extends Components.IxSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxSelectElementEventMap>(type: K, listener: (this: HTMLIxSelectElement, ev: IxSelectCustomEvent<HTMLIxSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6217,7 +6217,7 @@ declare namespace LocalJSX {
     interface IxRow {
     }
     /**
-     * @form-ready 
+     * @form-ready 2.4.0
      */
     interface IxSelect {
         /**
@@ -7232,7 +7232,7 @@ declare module "@stencil/core" {
              */
             "ix-row": LocalJSX.IxRow & JSXBase.HTMLAttributes<HTMLIxRowElement>;
             /**
-             * @form-ready 
+             * @form-ready 2.4.0
              */
             "ix-select": LocalJSX.IxSelect & JSXBase.HTMLAttributes<HTMLIxSelectElement>;
             "ix-select-item": LocalJSX.IxSelectItem & JSXBase.HTMLAttributes<HTMLIxSelectItemElement>;

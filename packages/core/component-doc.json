@@ -12975,7 +12975,8 @@
       "docs": "",
       "docsTags": [
         {
-          "name": "form-ready"
+          "name": "form-ready",
+          "text": "2.4.0"
         }
       ],
       "encapsulation": "shadow",

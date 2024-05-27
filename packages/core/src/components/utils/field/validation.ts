@@ -54,21 +54,22 @@ function containsClass(
   );
 }
 
-export async function checkFieldClasses(
+export function checkFieldClasses(
   hostElement: HTMLIxFormComponentElement<unknown>,
   includeChildren = false
-): Promise<ValidationResults> {
-  const associatedFormElement = await hostElement.getAssociatedFormElement();
-  let suppressValidState = hostElement.hasAttribute('data-ix-disable-valid');
-  if (!suppressValidState && associatedFormElement) {
-    suppressValidState = associatedFormElement.hasAttribute(
-      'data-ix-disable-valid'
-    );
-  }
+): ValidationResults {
+  hostElement.getAssociatedFormElement().then((associatedFormElement) => {
+    let suppressValidState = hostElement.hasAttribute('data-ix-disable-valid');
+    if (!suppressValidState && associatedFormElement) {
+      suppressValidState = associatedFormElement.hasAttribute(
+        'data-ix-disable-valid'
+      );
+    }
 
-  if (suppressValidState) {
-    hostElement.classList.toggle('ix-suppress-valid', suppressValidState);
-  }
+    if (suppressValidState) {
+      hostElement.classList.toggle('ix-suppress-valid', suppressValidState);
+    }
+  });
 
   return {
     isInvalid: containsClass(hostElement, 'ix-invalid', includeChildren),
@@ -77,9 +78,7 @@ export async function checkFieldClasses(
       'ix-invalid--required',
       includeChildren
     ),
-    isValid:
-      !suppressValidState &&
-      containsClass(hostElement, 'ix-valid', includeChildren),
+    isValid: containsClass(hostElement, 'ix-valid', includeChildren),
     isInfo: containsClass(hostElement, 'ix-info', includeChildren),
     isWarning: containsClass(hostElement, 'ix-warning', includeChildren),
   };
