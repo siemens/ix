@@ -30,11 +30,12 @@ export class PlaygroundInternal {
             validText="Valid text"
             warningText="Warning text"
             infoText="Info text"
+            showTextBehind
           >
             <ix-select-item value={'xx'} label="123"></ix-select-item>
           </ix-select>
 
-          <ix-select
+          {/* <ix-select
             helperText="Helper text"
             errorText="Error text"
             validText="Valid text"
@@ -76,7 +77,7 @@ export class PlaygroundInternal {
             class={'ix-valid'}
           >
             <ix-select-item value={'xx'} label="123"></ix-select-item>
-          </ix-select>
+          </ix-select> */}
         </form>
       </Host>
     );

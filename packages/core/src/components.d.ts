@@ -1053,6 +1053,10 @@ export namespace Components {
          */
         "showTextAsTooltip": boolean;
         /**
+          * Show helper, error, info, warning text behind the component
+         */
+        "showTextBehind"?: boolean;
+        /**
           * Valid text for the field component
          */
         "validText": string;
@@ -1996,6 +2000,10 @@ export namespace Components {
           * @since 2.4.0
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * Show helper, error, info, warning text behind the component
+         */
+        "showTextBehind"?: boolean;
         /**
           * Valid text for the select component
           * @since 2.4.0
@@ -5299,6 +5307,10 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Show helper, error, info, warning text behind the component
+         */
+        "showTextBehind"?: boolean;
+        /**
           * Valid text for the field component
          */
         "validText"?: string;
@@ -6321,6 +6333,10 @@ declare namespace LocalJSX {
           * @since 2.4.0
          */
         "showTextAsTooltip"?: boolean;
+        /**
+          * Show helper, error, info, warning text behind the component
+         */
+        "showTextBehind"?: boolean;
         /**
           * Valid text for the select component
           * @since 2.4.0

@@ -40,11 +40,18 @@ export interface FieldWrapperInterface {
    * Show helper, info, warning, error and valid text as tooltip
    */
   showTextAsTooltip?: boolean;
+
+  /**
+   * Show helper, error, info, warning text behind the component
+   */
+  showTextBehind?: boolean;
 }
 
 export type HTMLIxFormComponentElement<T> = HTMLElement & IxFormComponent<T>;
 
-export interface IxFormComponent<T = any> {
+export interface IxFormComponent<T = any>
+  extends IxComponent,
+    FieldWrapperInterface {
   // Private internal
   formInternals: ElementInternals;
 
@@ -66,12 +73,8 @@ export interface IxFormComponent<T = any> {
   getAssociatedFormElement(): Promise<HTMLFormElement>;
 }
 
-export interface IxFieldComponent<T = any>
-  extends IxComponent,
-    FieldWrapperInterface,
-    IxFormComponent<T> {
+export interface IxFieldComponent<T = any> extends IxFormComponent<T> {
   // Annotate as @Prop()
   placeholder?: string;
-
   // TODO: Should we add additional input properties here?
 }

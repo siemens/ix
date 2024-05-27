@@ -77,6 +77,11 @@ export class FieldWrapper implements FieldWrapperInterface {
    */
   @Prop() isRequired: boolean;
 
+  /**
+   * Show helper, error, info, warning text behind the component
+   */
+  @Prop() showTextBehind?: boolean;
+
   private slotRef = makeRef<HTMLDivElement>();
 
   private renderHelperText() {
@@ -117,16 +122,29 @@ export class FieldWrapper implements FieldWrapperInterface {
       );
     }
 
-    return this.helperText && <ix-typography>{this.helperText}</ix-typography>;
+    return (
+      this.helperText && (
+        <ix-typography class="bottom-text">{this.helperText}</ix-typography>
+      )
+    );
   }
 
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          'text-behind-slotted-element': this.showTextBehind,
+        }}
+      >
         {this.label && (
           <ix-label required={this.isRequired}>{this.label}</ix-label>
         )}
-        <div class={'slot-wrapper'} ref={this.slotRef}>
+        <div
+          class={{
+            'slot-wrapper': true,
+          }}
+          ref={this.slotRef}
+        >
           <slot></slot>
         </div>
         {!this.showTextAsTooltip && this.renderHelperText()}

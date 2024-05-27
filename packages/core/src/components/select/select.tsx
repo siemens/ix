@@ -42,9 +42,7 @@ import {
   shadow: true,
   formAssociated: true,
 })
-export class Select
-  implements IxFormComponent<string | string[]>, FieldWrapperInterface
-{
+export class Select implements IxFormComponent<string | string[]> {
   @Element() hostElement!: HTMLIxSelectElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -111,6 +109,11 @@ export class Select
    *  @since 2.4.0
    */
   @Prop() showTextAsTooltip?: boolean;
+
+  /**
+   * Show helper, error, info, warning text behind the component
+   */
+  @Prop() showTextBehind?: boolean;
 
   /**
    * Indices of selected items.
@@ -769,6 +772,7 @@ export class Select
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
+          showTextBehind={this.showTextBehind}
         >
           <div
             class={{
@@ -863,7 +867,11 @@ export class Select
           placement="bottom-start"
           overwriteDropdownStyle={async () => {
             return {
-              minWidth: `${this.hostElement.clientWidth}px`,
+              minWidth: `${
+                this.hostElement.shadowRoot
+                  .querySelector('.select')
+                  .getBoundingClientRect().width
+              }px`,
             };
           }}
         >
