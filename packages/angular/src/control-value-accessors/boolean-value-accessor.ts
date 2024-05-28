@@ -25,7 +25,7 @@ export class BooleanValueAccessorDirective extends ValueAccessor {
     super(injector, el);
   }
 
-  writeValue(value: boolean): void {
+  override writeValue(value: boolean): void {
     this.elementRef.nativeElement.checked = this.lastValue = value;
     mapNgToIxClassNames(this.elementRef);
   }

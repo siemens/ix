@@ -25,7 +25,7 @@ export class RadioValueAccessorDirective extends ValueAccessor {
     super(injector, el);
   }
 
-  writeValue(value: string): void {
+  override writeValue(value: string): void {
     this.lastValue = value;
     this.elementRef.nativeElement.checked =
       this.elementRef.nativeElement.value === value;

@@ -93,7 +93,7 @@ export const config: Config = {
         'ix-playground-internal',
         'ix-tree',
         'ix-tree-item',
-        'ix-icon',
+        'ix-icon'
       ],
     }),
     {

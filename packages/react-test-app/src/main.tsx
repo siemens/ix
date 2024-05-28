@@ -115,6 +115,7 @@ import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
 import Echarts from './preview-examples/echarts';
+import ValidationSelect from './preview-examples/validation-select';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -326,6 +327,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/grid" element={<Grid />} />
         <Route path="/preview/grid-size" element={<GridSize />} />
         <Route path="/preview/grid-padding" element={<GridPadding />} />
+        <Route
+          path="/preview/validation-select"
+          element={<ValidationSelect />}
+        />
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>

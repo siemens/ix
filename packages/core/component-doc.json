@@ -6592,6 +6592,83 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/label",
+      "filePath": "src/components/label/label.tsx",
+      "fileName": "label.tsx",
+      "readmePath": "src/components/label/readme.md",
+      "usagesDir": "src/components/label/usage",
+      "tag": "ix-field-label",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-field-label"
+        ]
+      },
+      "props": [
+        {
+          "name": "htmlFor",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "html-for",
+          "reflectToAttr": false,
+          "docs": "The id of the form element that the label is associated with",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "A value is required or must be checked for the form to be submittable",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/filter-chip",
       "filePath": "src/components/filter-chip/filter-chip.tsx",
       "fileName": "filter-chip.tsx",
@@ -7371,6 +7448,167 @@
           "passive": true
         }
       ]
+    },
+    {
+      "dirPath": "src/components/helper-text",
+      "filePath": "src/components/helper-text/helper-text.tsx",
+      "fileName": "helper-text.tsx",
+      "readmePath": "src/components/helper-text/readme.md",
+      "usagesDir": "src/components/helper-text/usage",
+      "tag": "ix-helper-text",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-helper-text": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-helper-text"
+        ]
+      },
+      "props": [
+        {
+          "name": "errorText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "error-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "htmlFor",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "html-for",
+          "reflectToAttr": false,
+          "docs": "The id of the form element that the label is associated with",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "Info text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "Valid text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "Warning text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
     },
     {
       "dirPath": "src/components/icon-button",
@@ -8426,87 +8664,6 @@
             }
           ],
           "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "src/components/label",
-      "filePath": "src/components/label/label.tsx",
-      "fileName": "label.tsx",
-      "readmePath": "src/components/label/readme.md",
-      "usagesDir": "src/components/label/usage",
-      "tag": "ix-label",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-field-wrapper",
-        "ix-playground-internal"
-      ],
-      "dependencies": [
-        "ix-typography"
-      ],
-      "dependencyGraph": {
-        "ix-label": [
-          "ix-typography"
-        ],
-        "ix-field-wrapper": [
-          "ix-label"
-        ],
-        "ix-playground-internal": [
-          "ix-label"
-        ]
-      },
-      "props": [
-        {
-          "name": "htmlFor",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "html-for",
-          "reflectToAttr": false,
-          "docs": "The id of the form element that the label is associated with",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "required",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": true,
-          "attr": "required",
-          "reflectToAttr": true,
-          "docs": "A value is required or must be checked for the form to be submittable",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
           "required": false
         }
       ],
@@ -11825,11 +11982,7 @@
           "ix-dropdown-item"
         ],
         "ix-field-wrapper": [
-          "ix-typography",
-          "ix-label",
-          "ix-tooltip"
-        ],
-        "ix-label": [
+          "ix-tooltip",
           "ix-typography"
         ],
         "ix-tooltip": [
@@ -13005,11 +13158,7 @@
           "ix-dropdown-item"
         ],
         "ix-field-wrapper": [
-          "ix-typography",
-          "ix-label",
-          "ix-tooltip"
-        ],
-        "ix-label": [
+          "ix-tooltip",
           "ix-typography"
         ],
         "ix-tooltip": [
@@ -13468,6 +13617,27 @@
               "text": "2.4.0"
             }
           ],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "showTextBehind",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-behind",
+          "reflectToAttr": false,
+          "docs": "Show helper, error, info, warning text behind the component",
+          "docsTags": [],
           "values": [
             {
               "type": "boolean"
@@ -16883,8 +17053,9 @@
         "ix-content-header",
         "ix-dropdown-header",
         "ix-empty-state",
+        "ix-field-label",
         "ix-field-wrapper",
-        "ix-label",
+        "ix-helper-text",
         "ix-menu-about-news",
         "ix-menu-category",
         "ix-modal-header",
@@ -16921,10 +17092,13 @@
         "ix-empty-state": [
           "ix-typography"
         ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
         "ix-field-wrapper": [
           "ix-typography"
         ],
-        "ix-label": [
+        "ix-helper-text": [
           "ix-typography"
         ],
         "ix-menu-about-news": [

@@ -87,7 +87,6 @@ export class HelperText implements IxComponent {
       this.classObserver.destroy();
     }
     this.classObserver = createClassMutationObserver(forElement, () => {
-      console.log('classObserver');
       this.validationResults = checkFieldClasses(forElement);
     });
     this.validationResults = checkFieldClasses(forElement);

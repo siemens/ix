@@ -27,7 +27,6 @@ import { OnListener } from '../utils/listener';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import {
-  FieldWrapperInterface,
   IxFormComponent,
   HookValidationLifecycle,
   ValidationResults,

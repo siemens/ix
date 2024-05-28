@@ -38,6 +38,7 @@ import { defineCustomElement as defineIxEmptyState } from '@siemens/ix/component
 import { defineCustomElement as defineIxEventList } from '@siemens/ix/components/ix-event-list.js';
 import { defineCustomElement as defineIxEventListItem } from '@siemens/ix/components/ix-event-list-item.js';
 import { defineCustomElement as defineIxExpandingSearch } from '@siemens/ix/components/ix-expanding-search.js';
+import { defineCustomElement as defineIxFieldLabel } from '@siemens/ix/components/ix-field-label.js';
 import { defineCustomElement as defineIxFilterChip } from '@siemens/ix/components/ix-filter-chip.js';
 import { defineCustomElement as defineIxFlipTile } from '@siemens/ix/components/ix-flip-tile.js';
 import { defineCustomElement as defineIxFlipTileContent } from '@siemens/ix/components/ix-flip-tile-content.js';
@@ -45,13 +46,13 @@ import { defineCustomElement as defineIxFormField } from '@siemens/ix/components
 import { defineCustomElement as defineIxGroup } from '@siemens/ix/components/ix-group.js';
 import { defineCustomElement as defineIxGroupContextMenu } from '@siemens/ix/components/ix-group-context-menu.js';
 import { defineCustomElement as defineIxGroupItem } from '@siemens/ix/components/ix-group-item.js';
+import { defineCustomElement as defineIxHelperText } from '@siemens/ix/components/ix-helper-text.js';
 import { defineCustomElement as defineIxIconButton } from '@siemens/ix/components/ix-icon-button.js';
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
 import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/components/ix-input-group.js';
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
-import { defineCustomElement as defineIxLabel } from '@siemens/ix/components/ix-label.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
 import { defineCustomElement as defineIxMapNavigation } from '@siemens/ix/components/ix-map-navigation.js';
@@ -132,6 +133,7 @@ export const IxEmptyState = /*@__PURE__*/createReactComponent<JSX.IxEmptyState, 
 export const IxEventList = /*@__PURE__*/createReactComponent<JSX.IxEventList, HTMLIxEventListElement>('ix-event-list', undefined, undefined, defineIxEventList);
 export const IxEventListItem = /*@__PURE__*/createReactComponent<JSX.IxEventListItem, HTMLIxEventListItemElement>('ix-event-list-item', undefined, undefined, defineIxEventListItem);
 export const IxExpandingSearch = /*@__PURE__*/createReactComponent<JSX.IxExpandingSearch, HTMLIxExpandingSearchElement>('ix-expanding-search', undefined, undefined, defineIxExpandingSearch);
+export const IxFieldLabel = /*@__PURE__*/createReactComponent<JSX.IxFieldLabel, HTMLIxFieldLabelElement>('ix-field-label', undefined, undefined, defineIxFieldLabel);
 export const IxFilterChip = /*@__PURE__*/createReactComponent<JSX.IxFilterChip, HTMLIxFilterChipElement>('ix-filter-chip', undefined, undefined, defineIxFilterChip);
 export const IxFlipTile = /*@__PURE__*/createReactComponent<JSX.IxFlipTile, HTMLIxFlipTileElement>('ix-flip-tile', undefined, undefined, defineIxFlipTile);
 export const IxFlipTileContent = /*@__PURE__*/createReactComponent<JSX.IxFlipTileContent, HTMLIxFlipTileContentElement>('ix-flip-tile-content', undefined, undefined, defineIxFlipTileContent);
@@ -139,13 +141,13 @@ export const IxFormField = /*@__PURE__*/createReactComponent<JSX.IxFormField, HT
 export const IxGroup = /*@__PURE__*/createReactComponent<JSX.IxGroup, HTMLIxGroupElement>('ix-group', undefined, undefined, defineIxGroup);
 export const IxGroupContextMenu = /*@__PURE__*/createReactComponent<JSX.IxGroupContextMenu, HTMLIxGroupContextMenuElement>('ix-group-context-menu', undefined, undefined, defineIxGroupContextMenu);
 export const IxGroupItem = /*@__PURE__*/createReactComponent<JSX.IxGroupItem, HTMLIxGroupItemElement>('ix-group-item', undefined, undefined, defineIxGroupItem);
+export const IxHelperText = /*@__PURE__*/createReactComponent<JSX.IxHelperText, HTMLIxHelperTextElement>('ix-helper-text', undefined, undefined, defineIxHelperText);
 export const IxIconButton = /*@__PURE__*/createReactComponent<JSX.IxIconButton, HTMLIxIconButtonElement>('ix-icon-button', undefined, undefined, defineIxIconButton);
 export const IxIconToggleButton = /*@__PURE__*/createReactComponent<JSX.IxIconToggleButton, HTMLIxIconToggleButtonElement>('ix-icon-toggle-button', undefined, undefined, defineIxIconToggleButton);
 export const IxInputGroup = /*@__PURE__*/createReactComponent<JSX.IxInputGroup, HTMLIxInputGroupElement>('ix-input-group', undefined, undefined, defineIxInputGroup);
 export const IxKeyValue = /*@__PURE__*/createReactComponent<JSX.IxKeyValue, HTMLIxKeyValueElement>('ix-key-value', undefined, undefined, defineIxKeyValue);
 export const IxKeyValueList = /*@__PURE__*/createReactComponent<JSX.IxKeyValueList, HTMLIxKeyValueListElement>('ix-key-value-list', undefined, undefined, defineIxKeyValueList);
 export const IxKpi = /*@__PURE__*/createReactComponent<JSX.IxKpi, HTMLIxKpiElement>('ix-kpi', undefined, undefined, defineIxKpi);
-export const IxLabel = /*@__PURE__*/createReactComponent<JSX.IxLabel, HTMLIxLabelElement>('ix-label', undefined, undefined, defineIxLabel);
 export const IxLayoutGrid = /*@__PURE__*/createReactComponent<JSX.IxLayoutGrid, HTMLIxLayoutGridElement>('ix-layout-grid', undefined, undefined, defineIxLayoutGrid);
 export const IxLinkButton = /*@__PURE__*/createReactComponent<JSX.IxLinkButton, HTMLIxLinkButtonElement>('ix-link-button', undefined, undefined, defineIxLinkButton);
 export const IxMapNavigation = /*@__PURE__*/createReactComponent<JSX.IxMapNavigation, HTMLIxMapNavigationElement>('ix-map-navigation', undefined, undefined, defineIxMapNavigation);
