@@ -5,13 +5,20 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  ApplicationInitStatus,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IxModule } from '@siemens/ix-angular';
+import { By } from '@angular/platform-browser';
 
 @Component({
   selector: 'ix-example-form-select',
   template: ` <form [formGroup]="form">
+    <button>Test</button>
+    <ix-button>Test</ix-button>
     <ix-select formControlName="select">
       <ix-select-item label="Item 1" value="1"></ix-select-item>
       <ix-select-item label="Item 2" value="2"></ix-select-item>
@@ -30,25 +37,26 @@ describe('SelectFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectComponent ],
+      declarations: [SelectComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [FormsModule, ReactiveFormsModule, IxModule.forRoot()],
-      providers: [],
     }).compileComponents();
-    let element = await fixture<SelectComponent>(`<ix-example-form-select></ix-example-form-select>`);
+
     fixture = TestBed.createComponent(SelectComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  beforeEach(async () => {
+    // until https://github.com/angular/angular/issues/24218 is fixed
+    await TestBed.inject(ApplicationInitStatus).donePromise;
   });
 
-  it('should change the input value', () => {
+  it('should change the input value', async () => {
+    const select = fixture.debugElement.query(By.css('ix-select '));
     component.form.get('select')!.setValue('2');
-    const tst = fixture.debugElement.nativeElement.querySelector('ix-select').inputValue;
-    //TODO: Test shadow-root or check if the event is getting triggered (valueChange)
+    fixture.detectChanges();
+
+    expect(select.nativeElement.value).toBe('2');
     expect(component).toBeDefined();
   });
 });
