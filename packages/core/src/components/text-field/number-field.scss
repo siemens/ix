@@ -1,0 +1,40 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import "./text-field.mixins.scss";
+
+@include input-field;
+
+:host {
+  .input-wrapper.show-stepper-buttons {
+    width: calc(100% - 3rem);
+
+    input[type="number"] {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    input[type="number"] {
+      min-width: 6rem;
+    }
+  }
+
+  .number-stepper-button {
+    position: absolute;
+  }
+
+  .number-stepper-button.step-minus {
+    left: 0;
+    margin-left: 0.25rem;
+  }
+
+  .number-stepper-button.step-plus {
+    right: 0;
+    margin-right: 0.25rem;
+  }
+}

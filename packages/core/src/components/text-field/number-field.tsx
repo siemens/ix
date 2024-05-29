@@ -31,21 +31,17 @@ import {
   mapValidationResult,
   onInputBlur,
 } from './text-field.util';
+import { iconMinus, iconPlus } from '@siemens/ix-icons/icons';
 
 @Component({
-  tag: 'ix-text-field',
-  styleUrl: 'text-field.scss',
+  tag: 'ix-number-field',
+  styleUrl: 'number-field.scss',
   shadow: true,
   formAssociated: true,
 })
-export class TextField implements IxInputFieldComponent<string> {
-  @Element() hostElement: HTMLIxTextFieldElement;
+export class NumberField implements IxInputFieldComponent<string> {
+  @Element() hostElement: HTMLIxNumberFieldElement;
   @AttachInternals() formInternals: ElementInternals;
-
-  /**
-   * tbd
-   */
-  @Prop() type: 'text' | 'email' = 'text';
 
   /**
    * tbd
@@ -130,6 +126,11 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
+  @Prop() showStepperButtons?: boolean;
+
+  /**
+   * tbd
+   */
   @Event() valueChange: EventEmitter<string>;
 
   /**
@@ -194,18 +195,26 @@ export class TextField implements IxInputFieldComponent<string> {
           isWarning={this.isWarning}
           showTextBehind={this.showTextBehind}
         >
-          <div class="input-wrapper">
-            {/* <ix-icon-button
-              ghost
-              icon={iconMinus}
-              size="16"
-              class="number-stepper-button step-minus"
-            ></ix-icon-button> */}
+          <div
+            class={{
+              'input-wrapper': true,
+              'show-stepper-buttons': this.showStepperButtons,
+            }}
+          >
+            {this.showStepperButtons && (
+              <ix-icon-button
+                ghost
+                icon={iconMinus}
+                size="16"
+                class="number-stepper-button step-minus"
+                onClick={() => this.inputRef.current.stepDown()}
+              ></ix-icon-button>
+            )}
             <InputElement
               maxLength={this.maxLength}
               minLength={this.minLength}
               pattern={this.pattern}
-              type={this.type}
+              type={'number'}
               isInvalid={this.isInvalid}
               required={this.required}
               value={this.value}
@@ -218,12 +227,15 @@ export class TextField implements IxInputFieldComponent<string> {
               }
               onBlur={() => onInputBlur(this, this.inputRef.current)}
             ></InputElement>
-            {/* <ix-icon-button
-              ghost
-              icon={iconPlus}
-              size="16"
-              class="number-stepper-button step-plus"
-            ></ix-icon-button> */}
+            {this.showStepperButtons && (
+              <ix-icon-button
+                ghost
+                icon={iconPlus}
+                size="16"
+                class="number-stepper-button step-plus"
+                onClick={() => this.inputRef.current.stepUp()}
+              ></ix-icon-button>
+            )}
           </div>
         </ix-field-wrapper>
       </Host>

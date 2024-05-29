@@ -28,7 +28,22 @@ export class PlaygroundInternal {
         <form onSubmit={(e) => e.preventDefault()} style={{ margin: '2rem' }}>
           <ix-layout-grid>
             <ix-row>
+              <ix-number-field
+                name="text-field"
+                label="Text Field"
+                helperText="Helper text with super link content 123 123 123 123"
+                errorText="Error text"
+                validText="Valid text"
+                warningText="Warning text"
+                infoText="Info text"
+                class={this.validationState}
+                showTextAsTooltip={false}
+                showStepperButtons
+              ></ix-number-field>
+            </ix-row>
+            <ix-row>
               <ix-text-field
+                type="text"
                 name="text-field"
                 label="Text Field"
                 helperText="Helper text with super link content 123 123 123 123"

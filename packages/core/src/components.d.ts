@@ -1764,6 +1764,78 @@ export namespace Components {
     }
     interface IxModalLoading {
     }
+    interface IxNumberField {
+        /**
+          * tbd
+         */
+        "allowedCharactersPattern"?: string;
+        /**
+          * tbd
+         */
+        "errorText": string;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * tbd
+         */
+        "helperText": string;
+        /**
+          * tbd
+         */
+        "infoText"?: string;
+        /**
+          * tbd
+         */
+        "label": string;
+        /**
+          * tbd
+         */
+        "maxLength"?: number;
+        /**
+          * tbd
+         */
+        "minLength"?: number;
+        /**
+          * tbd
+         */
+        "name": string;
+        /**
+          * tbd
+         */
+        "pattern"?: string;
+        /**
+          * tbd
+         */
+        "placeholder": string;
+        /**
+          * tbd
+         */
+        "required": boolean;
+        /**
+          * tbd
+         */
+        "showStepperButtons"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextBehind"?: boolean;
+        /**
+          * tbd
+         */
+        "validText"?: string;
+        /**
+          * tbd
+         */
+        "value": string;
+        /**
+          * tbd
+         */
+        "warningText"?: string;
+    }
     /**
      * @since 1.5.0
      */
@@ -2809,6 +2881,10 @@ export interface IxModalHeaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalHeaderElement;
 }
+export interface IxNumberFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxNumberFieldElement;
+}
 export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaginationElement;
@@ -3824,6 +3900,25 @@ declare global {
         prototype: HTMLIxModalLoadingElement;
         new (): HTMLIxModalLoadingElement;
     };
+    interface HTMLIxNumberFieldElementEventMap {
+        "valueChange": string;
+        "validityStateChange": ValidityState;
+        "ixBlur": void;
+    }
+    interface HTMLIxNumberFieldElement extends Components.IxNumberField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxNumberFieldElementEventMap>(type: K, listener: (this: HTMLIxNumberFieldElement, ev: IxNumberFieldCustomEvent<HTMLIxNumberFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxNumberFieldElementEventMap>(type: K, listener: (this: HTMLIxNumberFieldElement, ev: IxNumberFieldCustomEvent<HTMLIxNumberFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxNumberFieldElement: {
+        prototype: HTMLIxNumberFieldElement;
+        new (): HTMLIxNumberFieldElement;
+    };
     interface HTMLIxPaginationElementEventMap {
         "pageSelected": number;
         "itemCountChanged": number;
@@ -4340,6 +4435,7 @@ declare global {
         "ix-modal-footer": HTMLIxModalFooterElement;
         "ix-modal-header": HTMLIxModalHeaderElement;
         "ix-modal-loading": HTMLIxModalLoadingElement;
+        "ix-number-field": HTMLIxNumberFieldElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
@@ -6188,6 +6284,88 @@ declare namespace LocalJSX {
     }
     interface IxModalLoading {
     }
+    interface IxNumberField {
+        /**
+          * tbd
+         */
+        "allowedCharactersPattern"?: string;
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * tbd
+         */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
+        "infoText"?: string;
+        /**
+          * tbd
+         */
+        "label"?: string;
+        /**
+          * tbd
+         */
+        "maxLength"?: number;
+        /**
+          * tbd
+         */
+        "minLength"?: number;
+        /**
+          * tbd
+         */
+        "name"?: string;
+        /**
+          * tbd
+         */
+        "onIxBlur"?: (event: IxNumberFieldCustomEvent<void>) => void;
+        /**
+          * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "onValidityStateChange"?: (event: IxNumberFieldCustomEvent<ValidityState>) => void;
+        /**
+          * tbd
+         */
+        "onValueChange"?: (event: IxNumberFieldCustomEvent<string>) => void;
+        /**
+          * tbd
+         */
+        "pattern"?: string;
+        /**
+          * tbd
+         */
+        "placeholder"?: string;
+        /**
+          * tbd
+         */
+        "required"?: boolean;
+        /**
+          * tbd
+         */
+        "showStepperButtons"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextBehind"?: boolean;
+        /**
+          * tbd
+         */
+        "validText"?: string;
+        /**
+          * tbd
+         */
+        "value"?: string;
+        /**
+          * tbd
+         */
+        "warningText"?: string;
+    }
     /**
      * @since 1.5.0
      */
@@ -7283,6 +7461,7 @@ declare namespace LocalJSX {
         "ix-modal-footer": IxModalFooter;
         "ix-modal-header": IxModalHeader;
         "ix-modal-loading": IxModalLoading;
+        "ix-number-field": IxNumberField;
         "ix-pagination": IxPagination;
         "ix-pane": IxPane;
         "ix-pane-layout": IxPaneLayout;
@@ -7470,6 +7649,7 @@ declare module "@stencil/core" {
              */
             "ix-modal-header": LocalJSX.IxModalHeader & JSXBase.HTMLAttributes<HTMLIxModalHeaderElement>;
             "ix-modal-loading": LocalJSX.IxModalLoading & JSXBase.HTMLAttributes<HTMLIxModalLoadingElement>;
+            "ix-number-field": LocalJSX.IxNumberField & JSXBase.HTMLAttributes<HTMLIxNumberFieldElement>;
             /**
              * @since 1.5.0
              */

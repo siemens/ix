@@ -119,17 +119,13 @@ export function HookValidationLifecycle(options?: {
       classMutationObserver = createClassMutationObserver(
         host,
         () => {
-          proto[methodName].call(
-            this,
-            checkFieldClasses(host, options?.includeChildren)
-          );
+          const result = checkFieldClasses(host, options?.includeChildren);
+          proto[methodName].call(this, result);
         },
         options
       );
-      proto[methodName].call(
-        this,
-        checkFieldClasses(host, options?.includeChildren)
-      );
+      const result = checkFieldClasses(host, options?.includeChildren);
+      proto[methodName].call(this, result);
       return componentWillLoad && componentWillLoad.call(this);
     };
 
