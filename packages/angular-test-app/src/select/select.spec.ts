@@ -52,7 +52,7 @@ describe('SelectFormComponent', () => {
   });
 
   it('should change the input value', async () => {
-    const select = fixture.debugElement.query(By.css('ix-select '));
+    const select = fixture.debugElement.query(By.css('ix-select'));
     component.form.get('select')!.setValue('2');
     fixture.detectChanges();
 
