@@ -152,6 +152,7 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 import Echarts from 'src/preview-examples/echarts';
+import ValidationSelect from 'src/preview-examples/validation-select';
 
 @NgModule({
   declarations: [
@@ -291,6 +292,7 @@ import Echarts from 'src/preview-examples/echarts';
     GridPadding,
     ModalSizes,
     DatepickerLocale,
+    ValidationSelect
   ],
   imports: [
     BrowserModule,

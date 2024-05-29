@@ -98,7 +98,9 @@ export class FieldWrapper implements FieldWrapperInterface {
         }}
       >
         {this.label && (
-          <ix-label required={this.isRequired}>{this.label}</ix-label>
+          <ix-field-label required={this.isRequired}>
+            {this.label}
+          </ix-field-label>
         )}
         <div
           class={{

@@ -14,6 +14,8 @@
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 @import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 
+@import 'validation.css';
+
 html {
   width: 100vw;
   height: 100vh;

@@ -179,6 +179,7 @@ type PlaygroundV2Props = {
   includeCssFile?: boolean;
   examplesByName?: boolean;
   disableStackBlitz?: boolean;
+  showOnly?: TargetFramework[];
 } & DemoProps;
 
 function SourceCodePreview(props: {
@@ -296,6 +297,24 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
   const context = useDocusaurusContext();
   const versionDeployment = context.siteConfig.customFields
     .playgroundVersion as 'latest' | (string & {});
+  const [tabs] = useState([
+    {
+      id: TargetFramework.ANGULAR,
+      label: 'Angular',
+    },
+    {
+      id: TargetFramework.REACT,
+      label: 'React',
+    },
+    {
+      id: TargetFramework.VUE,
+      label: 'Vue',
+    },
+    {
+      id: TargetFramework.JAVASCRIPT,
+      label: 'Javascript',
+    },
+  ]);
 
   const isTabVisible = (framework: TargetFramework) => {
     if (props.examplesByName) {
@@ -311,24 +330,23 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
         <IxTabItem onClick={() => setTab(TargetFramework.PREVIEW)}>
           Preview
         </IxTabItem>
-        {isTabVisible(TargetFramework.ANGULAR) && (
-          <IxTabItem onClick={() => setTab(TargetFramework.ANGULAR)}>
-            Angular
-          </IxTabItem>
-        )}
-        {isTabVisible(TargetFramework.REACT) && (
-          <IxTabItem onClick={() => setTab(TargetFramework.REACT)}>
-            React
-          </IxTabItem>
-        )}
-        {isTabVisible(TargetFramework.VUE) && (
-          <IxTabItem onClick={() => setTab(TargetFramework.VUE)}>Vue</IxTabItem>
-        )}
-        {isTabVisible(TargetFramework.JAVASCRIPT) && (
-          <IxTabItem onClick={() => setTab(TargetFramework.JAVASCRIPT)}>
-            Javascript
-          </IxTabItem>
-        )}
+        {tabs
+          .filter((tab) => {
+            if (props.showOnly?.length > 0) {
+              return props.showOnly.includes(tab.id);
+            }
+
+            return true;
+          })
+          .map((tab) => {
+            if (isTabVisible(tab.id)) {
+              return (
+                <IxTabItem key={tab.id} onClick={() => setTab(tab.id)}>
+                  {tab.label}
+                </IxTabItem>
+              );
+            }
+          })}
 
         <div className={styles.Files_Toolbar}>
           {tab === TargetFramework.PREVIEW ? (

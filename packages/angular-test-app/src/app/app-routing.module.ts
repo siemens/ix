@@ -143,6 +143,7 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 import Echarts from 'src/preview-examples/echarts';
+import ValidationSelect from 'src/preview-examples/validation-select';
 
 const routes: Routes = [
   {
@@ -435,6 +436,7 @@ const routes: Routes = [
       { path: 'grid-size', component: GridSize },
       { path: 'grid-padding', component: GridPadding },
       { path: 'modal-sizes', component: ModalSizes },
+      { path: 'validation-select', component: ValidationSelect },
     ],
   },
 ];

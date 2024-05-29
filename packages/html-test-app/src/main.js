@@ -12,5 +12,5 @@ import 'example-styles/dist/global.css';
 
 (async () => {
   await applyPolyfills();
-  await defineCustomElements();
+  defineCustomElements();
 })();

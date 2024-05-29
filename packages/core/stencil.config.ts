@@ -76,6 +76,13 @@ export const config: Config = {
       includePolyfills: false,
       includeDefineCustomElements: false,
       excludeComponents: ['ix-playground-internal', 'ix-icon'],
+      componentModels: [
+        {
+          elements: 'ix-select',
+          event: 'value-change',
+          targetAttr: 'value',
+        },
+      ],
     }),
     angularOutputTarget({
       componentCorePackage: '@siemens/ix',
@@ -93,7 +100,7 @@ export const config: Config = {
         'ix-playground-internal',
         'ix-tree',
         'ix-tree-item',
-        'ix-icon'
+        'ix-icon',
       ],
     }),
     {

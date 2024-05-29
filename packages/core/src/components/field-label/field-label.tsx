@@ -13,7 +13,7 @@ import { HTMLIxFormComponentElement } from '../utils/field';
 
 @Component({
   tag: 'ix-field-label',
-  styleUrl: 'label.scss',
+  styleUrl: 'field-label.scss',
   shadow: true,
 })
 export class FormFieldLabel implements IxComponent {

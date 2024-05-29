@@ -10,6 +10,7 @@
 import { IxButton, IxSelect, IxSelectItem } from '@siemens/ix-react';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
+
 export default function () {
   const {
     control,
@@ -30,7 +31,7 @@ export default function () {
         control={control}
         rules={{
           required: {
-            message: 'This is required',
+            message: 'Value is required',
             value: true,
           },
         }}

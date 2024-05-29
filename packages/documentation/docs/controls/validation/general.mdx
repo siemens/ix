@@ -1,4 +1,5 @@
 import Admonition from '@theme/Admonition';
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Validation
 
@@ -26,7 +27,7 @@ To align `form-ready` components in a complex form layout. You typically don't p
   <ix-layout-grid>
     <ix-row>
       <ix-col size="2">
-        <ix-label htmlFor="my-select-1">Example</ix-label>
+        <ix-field-label htmlFor="my-select-1">Example</ix-field-label>
       </ix-col>
       <ix-col>
         <ix-select id="my-select-1"></ix-select>
@@ -34,7 +35,7 @@ To align `form-ready` components in a complex form layout. You typically don't p
     </ix-row>
     <ix-row>
       <ix-col size="2">
-        <ix-label htmlFor="my-select-2">Example</ix-label>
+        <ix-field-label htmlFor="my-select-2">Example</ix-field-label>
       </ix-col>
       <ix-col>
         <ix-select id="my-select-2"></ix-select>
@@ -72,7 +73,7 @@ e.g
 
 Will show the component as `invalid` because `invalid` has a higher priority.
 
-<Admonition type="info" icon="💡" title="Did you using Angular?">
+<Admonition type="tip" icon="💡" title="Did you using Angular?">
   If you using Angular in combination with ReactiveForms, it is not necessary to apply the class `.ix-invalid` and `.ix-valid` this will be done automatically via value accessors.
 </Admonition>
 
@@ -90,3 +91,22 @@ component you want to disable the styling e.g
   </ix-select>
 </form>
 ```
+
+## Example
+
+<Admonition type="tip" icon="💡" title="Just an example">
+ Using `react-form-hook` is just an example to demonstrate how validation could be done
+ within react. You can use any other validation library or write your own validation logic.
+</Admonition>
+
+<Admonition type="tip" icon="💡" title="Just an example">
+ Using `@vuelidate/core` is just an example to demonstrate how validation could be done
+ within vue. You can use any other validation library or write your own validation logic.
+</Admonition>
+
+<Playground
+name="validation-select"
+hideInitalCodePreview
+height="16rem"
+examplesByName
+></Playground>

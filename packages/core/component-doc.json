@@ -6592,11 +6592,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/label",
-      "filePath": "src/components/label/label.tsx",
-      "fileName": "label.tsx",
-      "readmePath": "src/components/label/readme.md",
-      "usagesDir": "src/components/label/usage",
+      "dirPath": "src/components/field-label",
+      "filePath": "src/components/field-label/field-label.tsx",
+      "fileName": "field-label.tsx",
+      "readmePath": "src/components/field-label/readme.md",
+      "usagesDir": "src/components/field-label/usage",
       "tag": "ix-field-label",
       "overview": "",
       "usage": {},
@@ -6604,6 +6604,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-field-wrapper",
         "ix-playground-internal"
       ],
       "dependencies": [
@@ -6612,6 +6613,9 @@
       "dependencyGraph": {
         "ix-field-label": [
           "ix-typography"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label"
         ],
         "ix-playground-internal": [
           "ix-field-label"
@@ -11982,7 +11986,11 @@
           "ix-dropdown-item"
         ],
         "ix-field-wrapper": [
+          "ix-field-label",
           "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
           "ix-typography"
         ],
         "ix-tooltip": [
@@ -13158,7 +13166,11 @@
           "ix-dropdown-item"
         ],
         "ix-field-wrapper": [
+          "ix-field-label",
           "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
           "ix-typography"
         ],
         "ix-tooltip": [

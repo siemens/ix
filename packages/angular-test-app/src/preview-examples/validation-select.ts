@@ -11,10 +11,15 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-example',
+  templateUrl: `./validation-select.html`,
 })
-export class AppComponent {
-  title = 'angular-test-app';
+export default class ValidationSelect {
+  exampleForm = new FormGroup({
+    car: new FormControl('', [Validators.required]),
+  });
+
+  submit() {
+    console.log(this.exampleForm.value);
+  }
 }

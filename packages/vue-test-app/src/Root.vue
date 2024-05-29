@@ -116,6 +116,7 @@ import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
 import Echarts from './preview-examples/echarts.vue';
+import ValidationSelect from './preview-examples/validation-select.vue';
 
 const routes: any = {
   '/': App,
@@ -226,6 +227,7 @@ const routes: any = {
   '/preview/grid': Grid,
   '/preview/grid-size': GridSize,
   '/preview/grid-padding': GridPadding,
+  '/preview/validation-select': ValidationSelect,
 };
 
 const currentPath = ref(window.location.pathname);
