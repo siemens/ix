@@ -24,7 +24,7 @@ export const appInitialize = (doc: Document) => {
 
       await applyPolyfills();
       await iconsDefineCustomElements();
-      await defineCustomElements();
+      defineCustomElements();
     }
   };
 };
