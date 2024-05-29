@@ -32,11 +32,10 @@ export function checkAllowedKeys(
   }
 }
 
-export function onInputBlur(
+export function checkInternalValidity(
   comp: IxInputFieldComponent<unknown>,
   input: HTMLInputElement
 ) {
-  comp.ixBlur.emit();
   const validityState = input.validity;
 
   const eventResult = comp.validityStateChange.emit(validityState);
@@ -51,4 +50,12 @@ export function onInputBlur(
 
   const { valid } = validityState;
   comp.hostElement.classList.toggle('ix-invalid', !valid);
+}
+
+export function onInputBlur(
+  comp: IxInputFieldComponent<unknown>,
+  input: HTMLInputElement
+) {
+  comp.ixBlur.emit();
+  checkInternalValidity(comp, input);
 }

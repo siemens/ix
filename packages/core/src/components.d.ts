@@ -1790,11 +1790,11 @@ export namespace Components {
         /**
           * tbd
          */
-        "maxLength"?: number;
+        "max"?: number;
         /**
           * tbd
          */
-        "minLength"?: number;
+        "min"?: number;
         /**
           * tbd
          */
@@ -6308,11 +6308,11 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
-        "maxLength"?: number;
+        "max"?: number;
         /**
           * tbd
          */
-        "minLength"?: number;
+        "min"?: number;
         /**
           * tbd
          */

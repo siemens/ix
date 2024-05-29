@@ -29,6 +29,7 @@ export class PlaygroundInternal {
           <ix-layout-grid>
             <ix-row>
               <ix-number-field
+                max={5}
                 name="text-field"
                 label="Text Field"
                 helperText="Helper text with super link content 123 123 123 123"

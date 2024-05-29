@@ -9,8 +9,10 @@
 import { h } from '@stencil/core';
 
 export function InputElement(props: {
-  maxLength: number;
-  minLength: number;
+  maxLength?: number;
+  minLength?: number;
+  max?: number;
+  min?: number;
   pattern: string;
   type: string;
   isInvalid: boolean;
@@ -25,6 +27,8 @@ export function InputElement(props: {
 }) {
   return (
     <input
+      min={props.min}
+      max={props.max}
       maxLength={props.maxLength}
       minLength={props.minLength}
       ref={props.inputRef}

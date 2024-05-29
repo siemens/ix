@@ -28,6 +28,7 @@ import { makeRef } from '../utils/make-ref';
 import { InputElement } from './input.fc';
 import {
   checkAllowedKeys,
+  checkInternalValidity,
   mapValidationResult,
   onInputBlur,
 } from './text-field.util';
@@ -111,12 +112,12 @@ export class NumberField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop() maxLength?: number;
+  @Prop() min?: number;
 
   /**
    * tbd
    */
-  @Prop() minLength?: number;
+  @Prop() max?: number;
 
   /**
    * tbd
@@ -207,12 +208,15 @@ export class NumberField implements IxInputFieldComponent<string> {
                 icon={iconMinus}
                 size="16"
                 class="number-stepper-button step-minus"
-                onClick={() => this.inputRef.current.stepDown()}
+                onClick={() => {
+                  this.inputRef.current.stepDown();
+                  checkInternalValidity(this, this.inputRef.current);
+                }}
               ></ix-icon-button>
             )}
             <InputElement
-              maxLength={this.maxLength}
-              minLength={this.minLength}
+              min={this.min}
+              max={this.max}
               pattern={this.pattern}
               type={'number'}
               isInvalid={this.isInvalid}
@@ -233,7 +237,10 @@ export class NumberField implements IxInputFieldComponent<string> {
                 icon={iconPlus}
                 size="16"
                 class="number-stepper-button step-plus"
-                onClick={() => this.inputRef.current.stepUp()}
+                onClick={() => {
+                  this.inputRef.current.stepUp();
+                  checkInternalValidity(this, this.inputRef.current);
+                }}
               ></ix-icon-button>
             )}
           </div>
