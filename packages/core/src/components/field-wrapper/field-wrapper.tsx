@@ -1,7 +1,7 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
-import { FieldWrapperInterface } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
 import { renderHelperText } from './helper-text-util';
+import { FieldWrapperInterface } from '../utils/field';
 
 /** @internal */
 @Component({
@@ -35,12 +35,12 @@ export class FieldWrapper implements FieldWrapperInterface {
   /**
    * Info text for the field component
    */
-  @Prop() infoText?: string;
+  @Prop() infoText: string;
 
   /**
    * Warning text for the field component
    */
-  @Prop() warningText?: string;
+  @Prop() warningText: string;
 
   /**
    * Is the field component invalid
@@ -70,12 +70,12 @@ export class FieldWrapper implements FieldWrapperInterface {
   /**
    * Show label as required
    */
-  @Prop() isRequired: boolean;
+  @Prop() required: boolean;
 
   /**
    * Show helper, error, info, warning text behind the component
    */
-  @Prop() showTextBehind?: boolean;
+  @Prop() showTextBehind: boolean;
 
   private slotRef = makeRef<HTMLDivElement>();
 
@@ -98,9 +98,7 @@ export class FieldWrapper implements FieldWrapperInterface {
         }}
       >
         {this.label && (
-          <ix-field-label required={this.isRequired}>
-            {this.label}
-          </ix-field-label>
+          <ix-field-label required={this.required}>{this.label}</ix-field-label>
         )}
         <div
           class={{

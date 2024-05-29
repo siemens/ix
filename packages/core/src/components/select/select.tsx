@@ -206,6 +206,11 @@ export class Select implements IxFormComponent<string | string[]> {
    */
   @Event() addItem: EventEmitter<string>;
 
+  /**
+   * Blur input
+   */
+  @Event() ixBlur: EventEmitter<void>;
+
   @State() dropdownShow = false;
   @State() selectedLabels: string[];
   @State() dropdownWrapperRef!: HTMLElement;
@@ -697,7 +702,9 @@ export class Select implements IxFormComponent<string | string[]> {
     this.dropdownShow = false;
   }
 
-  private onInputBlur(e) {
+  private onInputBlur(event: Event) {
+    this.ixBlur.emit();
+
     if (this.editable) {
       return;
     }
@@ -707,7 +714,7 @@ export class Select implements IxFormComponent<string | string[]> {
     }
 
     if (!this.dropdownShow && this.mode !== 'multiple') {
-      e.target['value'] = this.selectedLabels;
+      event.target['value'] = this.selectedLabels;
     }
   }
 
@@ -759,7 +766,7 @@ export class Select implements IxFormComponent<string | string[]> {
     return (
       <Host>
         <ix-field-wrapper
-          isRequired={this.required}
+          required={this.required}
           label={this.label}
           helperText={this.helperText}
           errorText={this.errorText}

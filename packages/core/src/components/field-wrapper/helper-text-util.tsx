@@ -48,7 +48,11 @@ export function renderHelperText({
   if (isWarning && warningText) {
     return (
       <ix-typography color="std" class="bottom-text">
-        <ix-icon class="text-icon" name={iconWarning} size="16"></ix-icon>
+        <ix-icon
+          class="text-icon warning"
+          name={iconWarning}
+          size="16"
+        ></ix-icon>
         {warningText}
       </ix-typography>
     );
@@ -57,7 +61,7 @@ export function renderHelperText({
   if (isInfo && infoText) {
     return (
       <ix-typography color="std" class="bottom-text">
-        <ix-icon class="text-icon" name={iconInfo} size="16"></ix-icon>
+        <ix-icon class="text-icon info" name={iconInfo} size="16"></ix-icon>
         {infoText}
       </ix-typography>
     );
@@ -66,7 +70,7 @@ export function renderHelperText({
   if (isValid && validText) {
     return (
       <ix-typography color="std" class="bottom-text">
-        <ix-icon class="text-icon" name={iconSuccess} size="16"></ix-icon>
+        <ix-icon class="text-icon valid" name={iconSuccess} size="16"></ix-icon>
         {validText}
       </ix-typography>
     );

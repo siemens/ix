@@ -178,45 +178,48 @@
 
 
 @include host-valid {
-  .select, .select:hover {
-    background-color: green !important;
-    border-color: green !important;
-  }
-
-  .input-container {
-    background-color: green;
-  }
 }
 
 @include host-info {
-  .select, .select:hover {
-    background-color: blue !important;
-    border-color: blue !important;
+  .select {
+    border-color: var(--theme-input--border-color--info);
   }
 
-  .input-container {
-    background-color: blue;
+  .select:hover {
+    border-color: var(--theme-input--border-color--info--hover) !important;
+  }
+
+  .select:active {
+    border-color: var(--theme-input--border-color--info--active) !important;
   }
 }
 
 @include host-warning {
-  .select, .select:hover {
-    background-color: orange !important;
-    border-color: orange !important;
+  .select {
+    border-color: var(--theme-input--border-color--warning);
   }
 
-  .input-container {
-    background-color: orange;
+  .select:hover {
+    border-color: var(--theme-input--border-color--warning--hover) !important;
+  }
+
+  .select:active {
+    border-color: var(--theme-input--border-color--warning--active) !important;
   }
 }
 
 @include host-invalid {
-  .select, .select:hover {
-    background-color: var(--theme-input-error--background) !important;
-    border-color: var(--theme-input-error--border-color) !important;
+  .select {
+    border-color: var(--theme-input--border-color--invalid);
+    background-color: var(--theme-input--background--invalid);
+    box-shadow: none;
   }
 
-  .input-container {
-    background-color: var(--theme-input-error--background);
+  .select:hover {
+    border-color: var(--theme-input--border-color--invalid--hover) !important;
+  }
+
+  .select:active {
+    border-color: var(--theme-input--border-color--invalid--active) !important;
   }
 }

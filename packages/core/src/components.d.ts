@@ -1033,7 +1033,7 @@ export namespace Components {
         /**
           * Info text for the field component
          */
-        "infoText"?: string;
+        "infoText": string;
         /**
           * Is the field component info
          */
@@ -1042,10 +1042,6 @@ export namespace Components {
           * Is the field component invalid
          */
         "isInvalid": boolean;
-        /**
-          * Show label as required
-         */
-        "isRequired": boolean;
         /**
           * Is the field component valid
          */
@@ -1059,13 +1055,17 @@ export namespace Components {
          */
         "label": string;
         /**
+          * Show label as required
+         */
+        "required": boolean;
+        /**
           * Show helper, error, info, warning text as tooltip
          */
         "showTextAsTooltip": boolean;
         /**
           * Show helper, error, info, warning text behind the component
          */
-        "showTextBehind"?: boolean;
+        "showTextBehind": boolean;
         /**
           * Valid text for the field component
          */
@@ -1073,7 +1073,7 @@ export namespace Components {
         /**
           * Warning text for the field component
          */
-        "warningText"?: string;
+        "warningText": string;
     }
     interface IxFilterChip {
         /**
@@ -2229,6 +2229,78 @@ export namespace Components {
          */
         "small": boolean;
     }
+    interface IxTextField {
+        /**
+          * tbd
+         */
+        "allowedCharactersPattern"?: string;
+        /**
+          * tbd
+         */
+        "errorText": string;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * tbd
+         */
+        "helperText": string;
+        /**
+          * tbd
+         */
+        "infoText"?: string;
+        /**
+          * tbd
+         */
+        "label": string;
+        /**
+          * tbd
+         */
+        "maxLength"?: number;
+        /**
+          * tbd
+         */
+        "minLength"?: number;
+        /**
+          * tbd
+         */
+        "name": string;
+        /**
+          * tbd
+         */
+        "pattern"?: string;
+        /**
+          * tbd
+         */
+        "placeholder": string;
+        /**
+          * tbd
+         */
+        "required": boolean;
+        /**
+          * tbd
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextBehind"?: boolean;
+        /**
+          * tbd
+         */
+        "type": 'text' | 'email';
+        /**
+          * tbd
+         */
+        "validText"?: string;
+        /**
+          * tbd
+         */
+        "value": string;
+        /**
+          * tbd
+         */
+        "warningText"?: string;
+    }
     interface IxTile {
         /**
           * Size of the tile - one of 'small', 'medium' or 'large'
@@ -2772,6 +2844,10 @@ export interface IxTabItemCustomEvent<T> extends CustomEvent<T> {
 export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTabsElement;
+}
+export interface IxTextFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTextFieldElement;
 }
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3837,6 +3913,7 @@ declare global {
         "itemSelectionChange": string[];
         "inputChange": string;
         "addItem": string;
+        "ixBlur": void;
     }
     /**
      * @form-ready 2.4.0
@@ -3968,6 +4045,25 @@ declare global {
     var HTMLIxTabsElement: {
         prototype: HTMLIxTabsElement;
         new (): HTMLIxTabsElement;
+    };
+    interface HTMLIxTextFieldElementEventMap {
+        "valueChange": string;
+        "validityStateChange": ValidityState;
+        "ixBlur": void;
+    }
+    interface HTMLIxTextFieldElement extends Components.IxTextField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTextFieldElementEventMap>(type: K, listener: (this: HTMLIxTextFieldElement, ev: IxTextFieldCustomEvent<HTMLIxTextFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTextFieldElementEventMap>(type: K, listener: (this: HTMLIxTextFieldElement, ev: IxTextFieldCustomEvent<HTMLIxTextFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxTextFieldElement: {
+        prototype: HTMLIxTextFieldElement;
+        new (): HTMLIxTextFieldElement;
     };
     interface HTMLIxTileElement extends Components.IxTile, HTMLStencilElement {
     }
@@ -4259,6 +4355,7 @@ declare global {
         "ix-split-button-item": HTMLIxSplitButtonItemElement;
         "ix-tab-item": HTMLIxTabItemElement;
         "ix-tabs": HTMLIxTabsElement;
+        "ix-text-field": HTMLIxTextFieldElement;
         "ix-tile": HTMLIxTileElement;
         "ix-time-picker": HTMLIxTimePickerElement;
         "ix-toast": HTMLIxToastElement;
@@ -5330,10 +5427,6 @@ declare namespace LocalJSX {
          */
         "isInvalid"?: boolean;
         /**
-          * Show label as required
-         */
-        "isRequired"?: boolean;
-        /**
           * Is the field component valid
          */
         "isValid"?: boolean;
@@ -5345,6 +5438,10 @@ declare namespace LocalJSX {
           * Label for the field component
          */
         "label"?: string;
+        /**
+          * Show label as required
+         */
+        "required"?: boolean;
         /**
           * Show helper, error, info, warning text as tooltip
          */
@@ -6369,6 +6466,10 @@ declare namespace LocalJSX {
          */
         "onItemSelectionChange"?: (event: IxSelectCustomEvent<string[]>) => void;
         /**
+          * Blur input
+         */
+        "onIxBlur"?: (event: IxSelectCustomEvent<void>) => void;
+        /**
           * Value changed
           * @since 2.0.0
          */
@@ -6611,6 +6712,88 @@ declare namespace LocalJSX {
           * Set tab items to small size
          */
         "small"?: boolean;
+    }
+    interface IxTextField {
+        /**
+          * tbd
+         */
+        "allowedCharactersPattern"?: string;
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * tbd
+         */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
+        "infoText"?: string;
+        /**
+          * tbd
+         */
+        "label"?: string;
+        /**
+          * tbd
+         */
+        "maxLength"?: number;
+        /**
+          * tbd
+         */
+        "minLength"?: number;
+        /**
+          * tbd
+         */
+        "name"?: string;
+        /**
+          * tbd
+         */
+        "onIxBlur"?: (event: IxTextFieldCustomEvent<void>) => void;
+        /**
+          * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "onValidityStateChange"?: (event: IxTextFieldCustomEvent<ValidityState>) => void;
+        /**
+          * tbd
+         */
+        "onValueChange"?: (event: IxTextFieldCustomEvent<string>) => void;
+        /**
+          * tbd
+         */
+        "pattern"?: string;
+        /**
+          * tbd
+         */
+        "placeholder"?: string;
+        /**
+          * tbd
+         */
+        "required"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextBehind"?: boolean;
+        /**
+          * tbd
+         */
+        "type"?: 'text' | 'email';
+        /**
+          * tbd
+         */
+        "validText"?: string;
+        /**
+          * tbd
+         */
+        "value"?: string;
+        /**
+          * tbd
+         */
+        "warningText"?: string;
     }
     interface IxTile {
         /**
@@ -7115,6 +7298,7 @@ declare namespace LocalJSX {
         "ix-split-button-item": IxSplitButtonItem;
         "ix-tab-item": IxTabItem;
         "ix-tabs": IxTabs;
+        "ix-text-field": IxTextField;
         "ix-tile": IxTile;
         "ix-time-picker": IxTimePicker;
         "ix-toast": IxToast;
@@ -7325,6 +7509,7 @@ declare module "@stencil/core" {
             "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
+            "ix-text-field": LocalJSX.IxTextField & JSXBase.HTMLAttributes<HTMLIxTextFieldElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;

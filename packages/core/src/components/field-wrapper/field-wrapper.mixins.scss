@@ -20,4 +20,16 @@
   .text-icon {
     margin: 0.125rem;
   }
+
+  .text-icon.info {
+    color: var(--theme-helper-icon--color--info)
+  }
+
+  .text-icon.warning {
+    color: var(--theme-helper-icon--color--warning)
+  }
+
+  .text-icon.valid {
+    color: var(--theme-helper-icon--color--valid)
+  }
 }

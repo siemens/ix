@@ -66,17 +66,21 @@ export interface IxFormComponent<T = any>
   isInvalid: boolean;
   // Annotate as @State()
   isValid: boolean;
+  // Annotate as @State()
+  isInfo: boolean;
+  // Annotate as @State()
+  isWarning: boolean;
 
+  ixBlur: EventEmitter<void>;
   valueChange: EventEmitter<T>;
   updateFormInternalValue(value: T): void;
   hasValidValue(): Promise<boolean>;
   getAssociatedFormElement(): Promise<HTMLFormElement>;
 }
 
-export interface IxFieldComponent<T = any> extends IxFormComponent<T> {
+export interface IxInputFieldComponent<T = any> extends IxFormComponent<T> {
   // Annotate as @Prop()
   placeholder?: string;
-  // TODO: Should we add additional input properties here?
 }
 
 export function isIxFormComponent(
