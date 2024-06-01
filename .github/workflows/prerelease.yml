@@ -56,21 +56,15 @@ jobs:
           path: '.changeset/pre.json'
           prop_path: 'changesets'
 
-      - name: Get changesets array length
-        id: number-of-changesets
-        run: |
-          arrayLength=$(echo '${{steps.prerelease-changesets.outputs.prop}}' | jq '. | length')
-          echo "length=$arrayLength" >> "$GITHUB_OUTPUT"
-
       - name: Create prerelease PR
         # Only attempt to create a PR if:
         # 1. .changeset/pre.json exists
         # 2. we are not actively publishing after merging a Version Packages PR
         # 3. AND we have prerelease changesets to publish (otherwise it errors)
-        if: steps.check_files.outputs.files_exists == 'true' && !startsWith(github.event.head_commit.message, 'Version Packages') && steps.number-of-changesets.outputs.length > 0
+        if: steps.check_files.outputs.files_exists == 'true' && !startsWith(github.event.head_commit.message, 'Version Packages')
         uses: changesets/action@v1
         with:
-          version: pnpm changeset version && pnpm i --lockfile-only
+          version: pnpm ci:version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -82,7 +76,7 @@ jobs:
         uses: changesets/action@v1
         with:
           version: echo "This step should never version"
-          publish: pnpm ci:publish --tag beta
+          publish: pnpm ci:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
