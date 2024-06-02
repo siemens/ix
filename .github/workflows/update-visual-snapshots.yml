@@ -134,6 +134,9 @@ jobs:
       - name: Build
         run: pnpm build --cache-dir=.turbo --filter @siemens/ix
 
+      - name: Install Playwright Browsers
+        run: pnpm playwright install --with-deps
+
       - name: Visual Regression
         run: pnpm --filter @siemens/ix visual-regression ${{ steps.parse-command.outputs.args }} -u
 
