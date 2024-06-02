@@ -23,7 +23,7 @@ jobs:
         github.event.sender.login == 'danielleroux' ||
         github.event.sender.login == 'danielleroux'
       ) &&
-      startsWith(github.event.comment.body, '/snapshot:pr')
+      startsWith(github.event.comment.body, '/release:pr')
 
     steps:
       - uses: alessbell/pull-request-comment-branch@v2.1.0
@@ -38,7 +38,7 @@ jobs:
           else
             sha_from_comment="$(echo $COMMENT_BODY | tr -s ' ' | cut -d ' ' -f2)"
 
-            if [ $sha_from_comment == "/snapshot:pr" ]; then
+            if [ $sha_from_comment == "/release:pr" ]; then
               exit 1
             else
               echo "sha=$sha_from_comment" >> "${GITHUB_OUTPUT}"
@@ -53,7 +53,7 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Did you forget to add the sha? Please use `/snapshot:pr <sha>`
+            Did you forget to add the sha? Please use `/release:pr <sha>`
 
       - name: Fail job
         if: steps.parse-sha.outcome == 'failure'
@@ -83,7 +83,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v3.0.0
         with:
-          files: ".changeset/pre.json"
+          files: '.changeset/pre.json'
 
       - name: Exit pre mode if pre.json exists
         # Changesets prevents us from generating a snapshot release
@@ -106,7 +106,7 @@ jobs:
         run: |
           pnpm changeset version --snapshot pr-${{ github.event.issue.number }} && pnpm i --lockfile-only
           pnpm build --filter \!documentation
-        # pnpm changeset publish --no-git-tag --snapshot --tag snapshot --dry-run
+          pnpm changeset publish --no-git-tag --snapshot --tag snapshot --dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -143,4 +143,3 @@ jobs:
             ```
             npm i @siemens/ix-vue@${{ steps.get-version.outputs.version }}
             ```
-

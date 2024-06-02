@@ -1,0 +1,86 @@
+name: Update visual snapshots
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  release_next:
+    name: release:next
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.39.0-jammy
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1/4, 2/4, 3/4, 4/4]
+    # Permissions necessary for Changesets to push a new branch and open PRs
+    # (for automated Version Packages PRs), and request the JWT for provenance.
+    # More info: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#adding-permissions-settings
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    if: |
+      github.repository == 'danielleroux/ix' &&
+      github.event.issue.pull_request &&
+      (
+        github.event.sender.login == 'danielleroux' ||
+        github.event.sender.login == 'danielleroux'
+      ) &&
+      startsWith(github.event.comment.body, '/snapshots:approve')
+
+    steps:
+      - uses: alessbell/pull-request-comment-branch@v2.1.0
+        id: comment-branch
+
+      - name: Get sha
+        id: parse-sha
+        continue-on-error: true
+        run: |
+          if [ "${{ steps.comment-branch.outputs.head_owner }}" == "danielleroux" ]; then
+            node ./scripts/update-snapshots.mjs $COMMENT_BODY --sha ${{ steps.comment-branch.outputs.head_sha }}"
+          else
+            node ./scripts/update-snapshots.mjs $COMMENT_BODY
+          fi
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+
+      - name: Comment sha reminder
+        if: steps.parse-sha.outcome == 'failure'
+        uses: peter-evans/create-or-update-comment@v4.0.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Did you forget to add the sha? Please use `/snapshots:approve --sha <sha>`
+
+      - name: Fail job
+        if: steps.parse-sha.outcome == 'failure'
+        run: |
+          exit 1
+
+      - name: Checkout ref
+        uses: actions/checkout@v4
+        with:
+          ## specify the owner + repository in order to checkout the fork
+          ## for community PRs
+          repository: ${{ steps.comment-branch.outputs.head_owner }}/${{ steps.comment-branch.outputs.head_repo }}
+          ref: ${{ steps.parse-sha.outputs.sha }}
+          fetch-depth: 0
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --filter @siemens/ix
+
+      - name: Visual Regression
+        run: pnpm --filter @siemens/ix visual-regression ${{ steps.parse-sha.outputs.args }} -u
+
+      - name: Commit and push changes
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add -A
+          git commit -m "test: update snapshots (by ${{ github.event.sender.login }})"
+          git push
