@@ -3,6 +3,10 @@ const body = '/snapshot:approve --sha=value --args="bind.e2e"';
 
 const [command, ...commandArgs] = body.split(' ');
 
+console.log(body);
+console.log(command);
+console.log(commandArgs);
+
 function parseArgs() {
   const result = {};
   const arr = commandArgs.map((arg) => {
