@@ -75,6 +75,8 @@ playwright/.cache/
 node_modules/
 $RECYCLE.BIN/
 
+blob-report
+
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
