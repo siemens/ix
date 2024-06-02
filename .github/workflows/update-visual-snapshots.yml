@@ -125,6 +125,7 @@ jobs:
           ## for community PRs
           repository: ${{ steps.comment-branch.outputs.head_owner }}/${{ steps.comment-branch.outputs.head_repo }}
           ref: ${{ steps.parse-command.outputs.sha }}
+          fetch-depth: 0
 
       - uses: ./.github/workflows/actions/turbo
 
