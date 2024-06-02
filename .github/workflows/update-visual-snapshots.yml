@@ -139,9 +139,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git status
-          # git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # git config user.name "github-actions[bot]"
-          # git add -A
-          # git commit -m "test: update snapshots (by ${{ github.event.sender.login }})"
-          # git push
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add -A
+          git commit -m "test: update snapshots (by ${{ github.event.sender.login }})"
+          git push
