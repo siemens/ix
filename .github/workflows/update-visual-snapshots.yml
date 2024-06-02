@@ -100,7 +100,8 @@ jobs:
 
       - name: DEbug
         run: |
-          echo ${{ steps.parse-command.outputs }}
+          echo ${{ steps.parse-command.outputs.sha }}
+          echo ${{ steps.parse-command.outputs.args }}
 
       # - name: Comment sha reminder
       #   if: steps.parse-sha.outcome == 'failure'
