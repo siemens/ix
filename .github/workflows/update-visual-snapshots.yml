@@ -135,7 +135,7 @@ jobs:
         run: pnpm build --cache-dir=.turbo --filter @siemens/ix
 
       - name: Visual Regression
-        run: pnpm --filter @siemens/ix visual-regression ${{ steps.parse-sha.outputs.args }} -u
+        run: pnpm --filter @siemens/ix visual-regression ${{ steps.parse-command.outputs.args }} -u
 
       - name: Commit and push changes
         run: |
