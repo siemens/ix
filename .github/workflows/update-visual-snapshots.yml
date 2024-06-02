@@ -11,10 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.39.0-jammy
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [1/4, 2/4, 3/4, 4/4]
     # Permissions necessary for Changesets to push a new branch and open PRs
     # (for automated Version Packages PRs), and request the JWT for provenance.
     # More info: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#adding-permissions-settings
@@ -40,7 +36,7 @@ jobs:
         continue-on-error: true
         run: |
           if [ "${{ steps.comment-branch.outputs.head_owner }}" == "danielleroux" ]; then
-            node ./scripts/update-snapshots.mjs $COMMENT_BODY --sha ${{ steps.comment-branch.outputs.head_sha }}"
+            node ./scripts/update-snapshots.mjs $COMMENT_BODY --sha ${{ steps.comment-branch.outputs.head_sha }} --owner danielleroux
           else
             node ./scripts/update-snapshots.mjs $COMMENT_BODY
           fi
