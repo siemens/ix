@@ -55,7 +55,7 @@ jobs:
             console.log(command);
             console.log(commandArgs);
 
-            function parseArgs() {
+            function parseArgs(sha) {
               const result = {};
               const arr = commandArgs.map((arg) => {
                 const param = arg.substring(0, arg.indexOf('=')).replace('--', '');
@@ -67,6 +67,10 @@ jobs:
               });
 
               arr.forEach(({ param, value }) => {
+                if (param === 'sha' && sha) {
+                  result[param] = sha;
+                  return;
+                }
                 result[param] = value;
               });
 
@@ -83,7 +87,7 @@ jobs:
               throw Error('Invalid command', command);
             }
 
-            const args = parseArgs();
+            const args = parseArgs(${{ steps.comment-branch.outputs.head_sha }});
 
             if (owner === 'danielleroux') {
               setOutput(args);
