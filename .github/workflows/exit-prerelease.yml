@@ -33,19 +33,7 @@ jobs:
 
       - name: Write latest version to package.json and package-lock.json
         run: |
-          version=$(npm show @siemens/ix version)
-          version_angular=$(npm show @siemens/ix-angular version)
-          version_react=$(npm show @siemens/ix-react version)
-          version_vue=$(npm show @siemens/ix-vue version)
-          version_aggrid=$(npm show @siemens/ix-aggrid version)
-          version_echarts=$(npm show @siemens/ix-echarts version)
-
-          npm --prefix ./packages/core pkg set version="$version"
-          npm --prefix ./packages/angular pkg set version="$version_angular"
-          npm --prefix ./packages/react pkg set version="$version_react"
-          npm --prefix ./packages/vue pkg set version="$version_vue"
-          npm --prefix ./packages/aggrid pkg set version="$version_aggrid"
-          npm --prefix ./packages/echarts pkg set version="$version_echarts"
+          node ./scripts/exit-prerelease.js
           pnpm i --lockfile-only
 
       - name: Remove pre.json
