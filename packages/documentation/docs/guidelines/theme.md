@@ -11,25 +11,25 @@ Everyone can use the two embedded themes that already ship with Siemens Industri
 - Classic light (theme-classic-light)
 - Classic dark (theme-classic-dark)
 
-You can also create your own themes in order to customize the design system to your own brand.
+You can also create your own themes in order to customize the design system for your own brand.
 
 Siemens AG applications should utilize the exclusive Siemens AG Corporate Brand Theme.
 
 ## Using the old classic theme
 
 The original classic theme was deprecated in favor of an updated version that is more easily maintainable for us.
-The legacy theme is still available but no longer part of the main CSS file. In order to still apply it to your app you have to load it manually.
+The legacy theme is still available but no longer part of the main CSS file. In order to still apply it to your app, you have to load it manually.
 This can be done in various ways.
 
-The simplest way is to use the bundler/loader and just import the legacy styles inside of your global stylesheet.
+The simplest way is to use the bundler/loader and just import the legacy styles inside your global stylesheet.
 
-e.g. styles.css:
+e.g. styles.scss:
 ```
 @import '@siemens/ix/dist-css/theme/legacy-classic-dark.css';
 @import '@siemens/ix/dist-css/theme/legacy-classic-light.css';
 ```
 
-If this step is done you can set the theme name class on the body tag:
+If this step is done, you can set the theme name class on the body tag:
 
 ```html
 <html>
@@ -46,7 +46,7 @@ If this step is done you can set the theme name class on the body tag:
 
 <div className="siemens-brand-section">
 
-The Siemens AG Corporate Brand Theme is exclusively available to official Siemens AG products where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
+The Siemens AG Corporate Brand Theme is exclusively available for official Siemens AG products, where it should always be used as the default theme to reflect the latest Siemens AG Corporate Brand guidelines.
 
 Siemens AG employees can access the Corporate Brand Theme at [**https://code.siemens.com/siemens-ix/ix-brand-theme**](https://code.siemens.com/siemens-ix/ix-brand-theme).
 
@@ -55,7 +55,7 @@ Siemens AG employees can access the Corporate Brand Theme at [**https://code.sie
 
 ## How to set a theme
 
-The default theme is `theme-classic-dark`. To set a different theme change the `class` attribute of the `<body>` tag to contain e.g. `theme-classic-light` instead of `theme-classic-dark`.
+The default theme is `theme-classic-dark`. To set a different theme, change the `class` attribute of the `<body>` tag to contain e.g. `theme-classic-light` instead of `theme-classic-dark`.
 
 ```html
 <html>
@@ -67,7 +67,7 @@ The default theme is `theme-classic-dark`. To set a different theme change the `
 
 ## Applying only one theme to reduce build size
 
-Importing `siemens-ix-core.css` will load core related functionalities only, without preloading any theme or bootstrap.
+Importing `siemens-ix-core.css` will only load core related functionalities, without preloading any theme or bootstrap.
 
 You can load a specific theme by importing the corresponding CSS file.
 
