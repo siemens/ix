@@ -1,0 +1,272 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+ @import 'mixins/shadow-dom/component';
+
+:host {
+  --ix-checkbox-check-color: var(--theme-color-primary--contrast);
+
+  @include ix-component;
+  display: inline-block;
+  position: relative;
+
+  button {
+    all: unset;
+  }
+
+  button {
+    display: inline-flex;
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 1.125rem;
+    min-width: 1.125rem;
+    max-width: 1.125rem;
+    height: 1.125rem;
+    min-height: 1.125rem;
+    max-height: 1.125rem;
+    margin-right: 0.5rem;
+  }
+
+  button:disabled {
+    background-color: var(--theme-checkbox-unchecked--background--disabled);
+    border: var(--theme-checkbox--border-thickness) solid
+      var(--theme-checkbox-unchecked--border-color--disabled);
+  }
+
+  button:focus-visible {
+    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-checkbox--focus--outline-offset);
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  label {
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  ix-typography {
+    margin-top: 0.125rem;
+  }
+}
+
+@mixin checkbox-base() {
+  :host {
+    button {
+      background-color: var(--theme-checkbox-unchecked--background);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-unchecked--border-color);
+    }
+  }
+
+  :host(:hover) {
+    button {
+      background-color: var(--theme-checkbox-unchecked--background--hover);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-unchecked--border-color--hover);
+    }
+  }
+
+  :host(:active) {
+    button {
+      background-color: var(--theme-checkbox-unchecked--background--active);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-unchecked--border-color--active);
+    }
+  }
+
+  :host([checked]),
+  :host([indeterminate]) {
+    button {
+      background-color: var(--theme-checkbox-checked--background);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-checked--border-color);
+    }
+  }
+
+  :host([checked]:hover),
+  :host([indeterminate]:hover) {
+    button {
+      background-color: var(--theme-checkbox-checked--background--hover);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-checked--border-color--hover);
+    }
+  }
+
+  :host([checked]:active),
+  :host([indeterminate]:active) {
+    button {
+      background-color: var(--theme-checkbox-checked--background--active);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-checked--border-color--active);
+    }
+  }
+
+  :host(:disabled),
+  :host(.disabled) {
+    button {
+      background-color: var(--theme-checkbox-unchecked--background--disabled);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-unchecked--border-color--disabled);
+    }
+  }
+
+  :host([checked]:disabled),
+  :host([checked].disabled),
+  :host([indeterminate]:disabled),
+  :host([indeterminate].disabled) {
+    button {
+      background-color: var(--theme-checkbox-checked--background--disabled);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-checked--border-color--disabled);
+    }
+  }
+}
+
+@mixin checkbox-variant($selector) {
+  :host(#{$selector}) {
+    button {
+      @content;
+    }
+  }
+
+  :host(#{$selector}) {
+    button {
+      background-color: var(--theme-checkbox-unchecked--background);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-unchecked--border-color);
+    }
+  }
+
+  :host(#{$selector}:hover) {
+    button {
+      background-color: var(--theme-checkbox-unchecked--background--hover);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-unchecked--border-color--hover);
+    }
+  }
+
+  :host(#{$selector}:active) {
+    button {
+      background-color: var(--theme-checkbox-unchecked--background--active);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-unchecked--border-color--active);
+    }
+  }
+
+  :host(#{$selector}[checked]),
+  :host(#{$selector}[indeterminate]) {
+    button {
+      background-color: var(--theme-checkbox-checked--background);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-checked--border-color);
+    }
+  }
+
+  :host(#{$selector}[checked]:hover),
+  :host(#{$selector}[indeterminate]:hover) {
+    button {
+      background-color: var(--theme-checkbox-checked--background--hover);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-checked--border-color--hover);
+    }
+  }
+
+  :host(#{$selector}[checked]:active),
+  :host(#{$selector}[indeterminate]:active) {
+    button {
+      background-color: var(--theme-checkbox-checked--background--active);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-checked--border-color--active);
+    }
+  }
+
+  :host(#{$selector}:disabled),
+  :host(#{$selector}.disabled) {
+    button {
+      background-color: var(--theme-checkbox-unchecked--background--disabled);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-unchecked--border-color--disabled);
+    }
+  }
+
+  :host(#{$selector}[checked]:disabled),
+  :host(#{$selector}[checked].disabled),
+  :host(#{$selector}[indeterminate]:disabled),
+  :host(#{$selector}[indeterminate].disabled) {
+    button {
+      background-color: var(--theme-checkbox-checked--background--disabled);
+      border: var(--theme-checkbox--border-thickness) solid
+        var(--theme-checkbox-checked--border-color--disabled);
+    }
+  }
+}
+
+@mixin define-checkbox-vars($state, $type) {
+  --theme-checkbox-#{$state}--background: var(--theme-checkbox-#{$state}--background--#{$type});
+  --theme-checkbox-#{$state}--background--hover: var(--theme-checkbox-#{$state}--background--#{$type}--hover);
+  --theme-checkbox-#{$state}--background--active: var(--theme-checkbox-#{$state}--background--#{$type}--active);
+
+  --theme-checkbox-#{$state}--border-color: var(--theme-checkbox-#{$state}--border-color--#{$type});
+  --theme-checkbox-#{$state}--border-color--hover: var(--theme-checkbox-#{$state}--border-color--#{$type}--hover);
+  --theme-checkbox-#{$state}--border-color--active: var(--theme-checkbox-#{$state}--border-color--#{$type}--active);
+}
+
+@include checkbox-base();
+@include checkbox-variant(
+  $selector: '.ix-info',
+) {
+  @include define-checkbox-vars('unchecked', 'info');
+  @include define-checkbox-vars('checked', 'info');
+  @include define-checkbox-vars('mixed', 'info');
+}
+
+@include checkbox-variant(
+  $selector: '.ix-warning',
+) {
+  @include define-checkbox-vars('unchecked', 'warning');
+  @include define-checkbox-vars('checked', 'warning');
+  @include define-checkbox-vars('mixed', 'warning');
+}
+
+@include checkbox-variant(
+  $selector: '.ix-invalid--required',
+) {
+  @include define-checkbox-vars('unchecked', 'invalid');
+  @include define-checkbox-vars('checked', 'invalid');
+  @include define-checkbox-vars('mixed', 'invalid');
+}
+
+@include checkbox-variant(
+  $selector: '.ix-invalid',
+) {
+  @include define-checkbox-vars('unchecked', 'invalid');
+  @include define-checkbox-vars('checked', 'invalid');
+  @include define-checkbox-vars('mixed', 'invalid');
+}
+
+:host(:disabled),
+:host(.disabled) {
+  pointer-events: none;
+
+  button,
+  label,
+  input {
+    pointer-events: none;
+  }
+}

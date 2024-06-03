@@ -418,6 +418,64 @@ export namespace Components {
         "suggestions": string[];
         "tmpDisableScrollIntoView": boolean;
     }
+    interface IxCheckbox {
+        /**
+          * Checked state of the checkbox component
+         */
+        "checked": boolean;
+        /**
+          * Disabled state of the checkbox component
+         */
+        "disabled": boolean;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * Indeterminate state of the checkbox component
+         */
+        "indeterminate": boolean;
+        /**
+          * Label for the checkbox component
+         */
+        "label": string;
+        /**
+          * Name of the checkbox component
+         */
+        "name"?: string;
+        /**
+          * Required state of the checkbox component.  If true, checkbox needs to be checked to be valid
+         */
+        "required": boolean;
+        /**
+          * Value of the checkbox component
+         */
+        "value"?: string;
+    }
+    interface IxCheckboxGroup {
+        /**
+          * Error text for the field component
+         */
+        "errorText": string;
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label": string;
+        /**
+          * Valid text for the field component
+         */
+        "validText"?: string;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
+    }
     interface IxChip {
         /**
           * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
@@ -2765,6 +2823,10 @@ export interface IxCategoryFilterCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxCategoryFilterElement;
 }
+export interface IxCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxCheckboxElement;
+}
 export interface IxChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxChipElement;
@@ -3162,6 +3224,30 @@ declare global {
     var HTMLIxCategoryFilterElement: {
         prototype: HTMLIxCategoryFilterElement;
         new (): HTMLIxCategoryFilterElement;
+    };
+    interface HTMLIxCheckboxElementEventMap {
+        "checkedChange": boolean;
+        "valueChange": string;
+    }
+    interface HTMLIxCheckboxElement extends Components.IxCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxCheckboxElementEventMap>(type: K, listener: (this: HTMLIxCheckboxElement, ev: IxCheckboxCustomEvent<HTMLIxCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxCheckboxElement: {
+        prototype: HTMLIxCheckboxElement;
+        new (): HTMLIxCheckboxElement;
+    };
+    interface HTMLIxCheckboxGroupElement extends Components.IxCheckboxGroup, HTMLStencilElement {
+    }
+    var HTMLIxCheckboxGroupElement: {
+        prototype: HTMLIxCheckboxGroupElement;
+        new (): HTMLIxCheckboxGroupElement;
     };
     interface HTMLIxChipElementEventMap {
         "closeChip": any;
@@ -4376,6 +4462,8 @@ declare global {
         "ix-card-list": HTMLIxCardListElement;
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
+        "ix-checkbox": HTMLIxCheckboxElement;
+        "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
         "ix-col": HTMLIxColElement;
         "ix-content": HTMLIxContentElement;
@@ -4842,6 +4930,70 @@ declare namespace LocalJSX {
          */
         "suggestions"?: string[];
         "tmpDisableScrollIntoView"?: boolean;
+    }
+    interface IxCheckbox {
+        /**
+          * Checked state of the checkbox component
+         */
+        "checked"?: boolean;
+        /**
+          * Disabled state of the checkbox component
+         */
+        "disabled"?: boolean;
+        /**
+          * Indeterminate state of the checkbox component
+         */
+        "indeterminate"?: boolean;
+        /**
+          * Label for the checkbox component
+         */
+        "label"?: string;
+        /**
+          * Name of the checkbox component
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the checked state of the checkbox changes
+         */
+        "onCheckedChange"?: (event: IxCheckboxCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the value of the checkbox changes
+         */
+        "onValueChange"?: (event: IxCheckboxCustomEvent<string>) => void;
+        /**
+          * Required state of the checkbox component.  If true, checkbox needs to be checked to be valid
+         */
+        "required"?: boolean;
+        /**
+          * Value of the checkbox component
+         */
+        "value"?: string;
+    }
+    interface IxCheckboxGroup {
+        /**
+          * Error text for the field component
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
+        /**
+          * Valid text for the field component
+         */
+        "validText"?: string;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
     }
     interface IxChip {
         /**
@@ -7402,6 +7554,8 @@ declare namespace LocalJSX {
         "ix-card-list": IxCardList;
         "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
+        "ix-checkbox": IxCheckbox;
+        "ix-checkbox-group": IxCheckboxGroup;
         "ix-chip": IxChip;
         "ix-col": IxCol;
         "ix-content": IxContent;
@@ -7539,6 +7693,8 @@ declare module "@stencil/core" {
              */
             "ix-card-title": LocalJSX.IxCardTitle & JSXBase.HTMLAttributes<HTMLIxCardTitleElement>;
             "ix-category-filter": LocalJSX.IxCategoryFilter & JSXBase.HTMLAttributes<HTMLIxCategoryFilterElement>;
+            "ix-checkbox": LocalJSX.IxCheckbox & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
+            "ix-checkbox-group": LocalJSX.IxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             /**
              * @since 2.0.0

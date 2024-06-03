@@ -46,9 +46,6 @@ export class PlaygroundInternal {
                 allowedCharactersPattern="[1-4]"
               >
                 <ix-icon slot="prefix" name={iconBulb} size="16"></ix-icon>
-                {/* <ix-typography slot="postfix" color="weak">
-                  mm
-                </ix-typography> */}
               </ix-number-field>
 
               <ix-number-field
@@ -94,6 +91,24 @@ export class PlaygroundInternal {
               </ix-text-field>
             </ix-row>
             <ix-row>
+              <ix-checkbox-group
+                label="Text Field"
+                helperText="Helper text with super link content 123 123 123 123"
+                errorText="Error text"
+                validText="Valid text"
+                warningText="Warning text"
+                infoText="Info text"
+              >
+                <ix-checkbox
+                  style={{ width: '95px' }}
+                  label="Audi long long long lons"
+                  class={this.validationState}
+                ></ix-checkbox>
+                <ix-checkbox label="Porsche"></ix-checkbox>
+                <ix-checkbox label="VW"></ix-checkbox>
+              </ix-checkbox-group>
+            </ix-row>
+            <ix-row>
               <ix-select
                 name="select"
                 class={this.validationState}
@@ -124,6 +139,9 @@ export class PlaygroundInternal {
                   label="invalid"
                 ></ix-select-item>
               </ix-select>
+            </ix-row>
+            <ix-row>
+              <ix-button type="submit">Submit</ix-button>
             </ix-row>
           </ix-layout-grid>
         </form>

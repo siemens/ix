@@ -13,7 +13,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Fragment,
   Host,
   Method,
   Prop,

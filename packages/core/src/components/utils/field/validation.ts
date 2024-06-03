@@ -58,7 +58,7 @@ export function checkFieldClasses(
   hostElement: HTMLIxFormComponentElement<unknown>,
   includeChildren = false
 ): ValidationResults {
-  hostElement.getAssociatedFormElement().then((associatedFormElement) => {
+  const suppressValidStyles = (associatedFormElement: HTMLFormElement) => {
     let suppressValidState = hostElement.hasAttribute('data-ix-disable-valid');
     if (!suppressValidState && associatedFormElement) {
       suppressValidState = associatedFormElement.hasAttribute(
@@ -69,7 +69,16 @@ export function checkFieldClasses(
     if (suppressValidState) {
       hostElement.classList.toggle('ix-suppress-valid', suppressValidState);
     }
-  });
+  };
+
+  if (
+    hostElement.getAssociatedFormElement &&
+    typeof hostElement.getAssociatedFormElement === 'function'
+  ) {
+    hostElement.getAssociatedFormElement().then(suppressValidStyles);
+  } else {
+    suppressValidStyles(null);
+  }
 
   return {
     isInvalid: containsClass(hostElement, 'ix-invalid', includeChildren),
@@ -99,6 +108,10 @@ export function HookValidationLifecycle(options?: {
       ) as unknown as HTMLIxFormComponentElement<unknown>;
 
       checkIfRequiredFunction = async () => {
+        if (!host.hasValidValue) {
+          return;
+        }
+
         const hasValue = await host.hasValidValue();
         if (host.required) {
           host.classList.toggle('ix-invalid--required', !hasValue);

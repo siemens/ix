@@ -27,9 +27,9 @@ import { OnListener } from '../utils/listener';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import {
-  IxFormComponent,
   HookValidationLifecycle,
   ValidationResults,
+  IxInputFieldComponent,
 } from '../utils/field';
 
 /**
@@ -41,7 +41,7 @@ import {
   shadow: true,
   formAssociated: true,
 })
-export class Select implements IxFormComponent<string | string[]> {
+export class Select implements IxInputFieldComponent<string | string[]> {
   @Element() hostElement!: HTMLIxSelectElement;
   @AttachInternals() formInternals!: ElementInternals;
 

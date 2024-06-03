@@ -49,9 +49,18 @@ export interface FieldWrapperInterface {
 
 export type HTMLIxFormComponentElement<T> = HTMLElement & IxFormComponent<T>;
 
-export interface IxFormComponent<T = any>
-  extends IxComponent,
-    FieldWrapperInterface {
+export interface IxFormValidationState {
+  // Annotate as @State()
+  isInvalid: boolean;
+  // Annotate as @State()
+  isValid: boolean;
+  // Annotate as @State()
+  isInfo: boolean;
+  // Annotate as @State()
+  isWarning: boolean;
+}
+
+export interface IxFormComponent<T = any> extends IxComponent {
   // Private internal
   formInternals: ElementInternals;
 
@@ -62,25 +71,19 @@ export interface IxFormComponent<T = any>
   // Annotate as @Prop()
   value?: T;
 
-  // Annotate as @State()
-  isInvalid: boolean;
-  // Annotate as @State()
-  isValid: boolean;
-  // Annotate as @State()
-  isInfo: boolean;
-  // Annotate as @State()
-  isWarning: boolean;
-
-  ixBlur: EventEmitter<void>;
   valueChange: EventEmitter<T>;
   updateFormInternalValue(value: T): void;
   hasValidValue(): Promise<boolean>;
   getAssociatedFormElement(): Promise<HTMLFormElement>;
 }
 
-export interface IxInputFieldComponent<T = any> extends IxFormComponent<T> {
+export interface IxInputFieldComponent<T = any>
+  extends IxFormComponent<T>,
+    IxFormValidationState,
+    FieldWrapperInterface {
   // Annotate as @Prop()
   placeholder?: string;
+  ixBlur: EventEmitter<void>;
 }
 
 export function isIxFormComponent(
