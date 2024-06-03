@@ -8,6 +8,7 @@
  */
 
 import {
+  AttachInternals,
   Component,
   Element,
   Event,
@@ -15,17 +16,31 @@ import {
   Fragment,
   h,
   Host,
+  Method,
   Prop,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
+import { IxFormComponent } from '../utils/field';
 
 @Component({
   tag: 'ix-toggle',
   styleUrl: 'toggle.scss',
   shadow: true,
 })
-export class Toggle {
+export class Toggle implements IxFormComponent<string> {
+  @AttachInternals() formInternals: ElementInternals;
+
   @Element() hostElement!: HTMLIxToggleElement;
+
+  /**
+   * Name of the checkbox component
+   */
+  @Prop({ reflect: true }) name?: string;
+
+  /**
+   * Value of the checkbox component
+   */
+  @Prop({ reflect: true }) value?: string;
 
   /**
    * Whether the slide-toggle element is checked or not.
@@ -63,9 +78,19 @@ export class Toggle {
   @Prop() hideText = false;
 
   /**
+   * Required state of the checkbox component.
+   *
+   * If true, checkbox needs to be checked to be valid
+   */
+  @Prop({ reflect: true }) required = false;
+
+  /**
    * An event will be dispatched each time the slide-toggle changes its value.
    */
   @Event() checkedChange: EventEmitter<boolean>;
+
+  /** @internal */
+  @Event() valueChange: EventEmitter<string>;
 
   onCheckedChange(newChecked: boolean) {
     if (this.indeterminate) {
@@ -73,6 +98,26 @@ export class Toggle {
     }
     this.checked = newChecked;
     this.checkedChange.emit(this.checked);
+  }
+
+  updateFormInternalValue(): void {
+    if (this.checked) {
+      this.formInternals.setFormValue(this.value);
+    } else {
+      this.formInternals.setFormValue(undefined);
+    }
+  }
+
+  /** @internal */
+  @Method()
+  hasValidValue(): Promise<boolean> {
+    return Promise.resolve(this.checked);
+  }
+
+  /** @internal */
+  @Method()
+  getAssociatedFormElement(): Promise<HTMLFormElement> {
+    return Promise.resolve(this.formInternals.form);
   }
 
   render() {

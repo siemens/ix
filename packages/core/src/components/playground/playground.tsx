@@ -79,6 +79,7 @@ export class PlaygroundInternal {
                 validText="Valid text"
                 warningText="Warning text"
                 infoText="Info text"
+                maxLength={10}
                 class={this.validationState}
                 showTextAsTooltip={false}
                 style={{ width: '15rem' }}
@@ -107,6 +108,48 @@ export class PlaygroundInternal {
                 <ix-checkbox label="Porsche"></ix-checkbox>
                 <ix-checkbox label="VW"></ix-checkbox>
               </ix-checkbox-group>
+            </ix-row>
+            <ix-row>
+              <ix-radio-group
+                label="Radio"
+                helperText="Helper text"
+                errorText="Error text"
+                validText="Valid text"
+                warningText="Warning text"
+                infoText="Info text"
+              >
+                <ix-radio
+                  label="Audi long long long lons"
+                  name="random"
+                  checked
+                  class={this.validationState}
+                  style={{ width: '95px' }}
+                ></ix-radio>
+                <ix-radio
+                  label="Test2"
+                  name="random"
+                  checked
+                  class={this.validationState}
+                ></ix-radio>
+                <ix-radio
+                  label="Test3"
+                  name="random"
+                  class={this.validationState}
+                ></ix-radio>
+              </ix-radio-group>
+            </ix-row>
+            <ix-row>
+              <ix-toggle
+                class={this.validationState}
+                textOn="On"
+                textOff="Off"
+              ></ix-toggle>
+              <ix-toggle
+                class={this.validationState}
+                textOn="On"
+                textOff="Off"
+                checked
+              ></ix-toggle>
             </ix-row>
             <ix-row>
               <ix-select

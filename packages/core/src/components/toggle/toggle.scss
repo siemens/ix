@@ -47,6 +47,7 @@
     background-color: var(--theme-switch-off--background);
     transition: var(--theme-default-time);
     border-radius: 1.5rem;
+    border: 1px solid transparent;
   }
 
   .slider:before {
@@ -55,7 +56,7 @@
     height: 1.125rem;
     width: 1.125rem;
     left: 4px;
-    bottom: 3px;
+    bottom: 2px;
     background-color: var(--theme-switch-thumb-off--background);
     transition: var(--theme-default-time);
     border-radius: 50%;
@@ -87,8 +88,13 @@
   }
 
   // Toggle NOT checked
+  input + .switch > .slider {
+    border-color: var(--theme-switch-off--border-color);
+  }
+
   input + .switch:hover > .slider {
     background-color: var(--theme-switch-off--background--hover);
+    border-color: var(--theme-switch-off--border-color--hover);
   }
 
   input + .switch:hover > .slider:before {
@@ -97,6 +103,7 @@
 
   input + .switch:active > .slider {
     background-color: var(--theme-switch-off--background--active);
+    border-color: var(--theme-switch-off--border-color--active);
   }
 
   input + .switch:active > .slider:before {
@@ -104,8 +111,13 @@
   }
 
   // Toggle checked
+  input:checked + .switch > .slider {
+    border-color: var(--theme-switch-on--border-color);
+  }
+
   input:checked + .switch:hover > .slider {
     background-color: var(--theme-switch-on--background--hover);
+    border-color: var(--theme-switch-on--border-color--hover);
   }
 
   input:checked + .switch:hover > .slider:before {
@@ -114,6 +126,7 @@
 
   input:checked + .switch:active > .slider {
     background-color: var(--theme-switch-on--background--active);
+    border-color: var(--theme-switch-on--border-color--active);
   }
 
   input:checked + .switch:active > .slider:before {
@@ -157,4 +170,92 @@
   .toggle-text {
     color: var(--theme-color-weak-text);
   }
+}
+
+@mixin toggle-variant($selector) {
+  :host(#{$selector}) {
+    .slider {
+      @content;
+    }
+  }
+
+  // :host(#{$selector}) {
+  //   button {
+  //     background-color: var(--theme-checkbox-unchecked--background);
+  //     border: var(--theme-checkbox--border-thickness) solid
+  //       var(--theme-checkbox-unchecked--border-color);
+  //   }
+  // }
+
+  // :host(#{$selector}:hover) {
+  //   button {
+  //     background-color: var(--theme-checkbox-unchecked--background--hover);
+  //     border: var(--theme-checkbox--border-thickness) solid
+  //       var(--theme-checkbox-unchecked--border-color--hover);
+  //   }
+  // }
+
+  // :host(#{$selector}:active) {
+  //   button {
+  //     background-color: var(--theme-checkbox-unchecked--background--active);
+  //     border: var(--theme-checkbox--border-thickness) solid
+  //       var(--theme-checkbox-unchecked--border-color--active);
+  //   }
+  // }
+
+  // :host(#{$selector}:disabled),
+  // :host(#{$selector}.disabled) {
+  //   button {
+  //     background-color: var(--theme-checkbox-unchecked--background--disabled);
+  //     border: var(--theme-checkbox--border-thickness) solid
+  //       var(--theme-checkbox-unchecked--border-color--disabled);
+  //   }
+  // }
+
+}
+
+@mixin define-toggle-vars($state, $type) {
+  --theme-switch-#{$state}--background: var(--theme-switch-#{$state}--background--#{$type});
+  --theme-switch-#{$state}--background--hover: var(--theme-switch-#{$state}--background--#{$type}--hover);
+  --theme-switch-#{$state}--background--active: var(--theme-switch-#{$state}--background--#{$type}--active);
+
+  --theme-switch-thumb-#{$state}--background: var(--theme-switch-thumb-#{$state}--background--#{$type});
+  --theme-switch-thumb-#{$state}--background--hover: var(--theme-switch-thumb-#{$state}--background--#{$type}--hover);
+  --theme-switch-thumb-#{$state}--background--active: var(--theme-switch-thumb-#{$state}--background--#{$type}--active);
+
+  --theme-switch-#{$state}--border-color: var(--theme-switch-#{$state}--border-color--#{$type});
+  --theme-switch-#{$state}--border-color--hover: var(--theme-switch-#{$state}--border-color--#{$type}--hover);
+  --theme-switch-#{$state}--border-color--active: var(--theme-switch-#{$state}--border-color--#{$type}--active);
+}
+
+@include toggle-variant(
+  $selector: '.ix-info',
+) {
+  @include define-toggle-vars('off', 'info');
+  @include define-toggle-vars('on', 'info');
+  @include define-toggle-vars('mixed', 'info');
+}
+
+@include toggle-variant(
+  $selector: '.ix-warning',
+) {
+  @include define-toggle-vars('off', 'warning');
+  @include define-toggle-vars('on', 'warning');
+  @include define-toggle-vars('mixed', 'warning');
+}
+
+@include toggle-variant(
+  $selector: '.ix-invalid--required',
+) {
+  @include define-toggle-vars('off', 'invalid');
+  @include define-toggle-vars('on', 'invalid');
+  @include define-toggle-vars('mixed', 'invalid');
+}
+
+@include toggle-variant(
+  $selector: '.ix-invalid',
+) {
+  @include define-toggle-vars('off', 'invalid');
+  @include define-toggle-vars('on', 'invalid');
+  @include define-toggle-vars('mixed', 'invalid');
 }

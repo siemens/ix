@@ -1,0 +1,259 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+ @import 'mixins/shadow-dom/component';
+
+:host {
+  @include ix-component;
+  display: inline-block;
+  position: relative;
+
+  button {
+    all: unset;
+  }
+
+  button {
+    display: inline-flex;
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 1.125rem;
+    min-width: 1.125rem;
+    max-width: 1.125rem;
+    height: 1.125rem;
+    min-height: 1.125rem;
+    max-height: 1.125rem;
+
+    border: 1px solid white;
+    border-radius: 100px;
+
+    margin-right: 0.5rem;
+  }
+
+  button:focus-visible {
+    outline: 2px solid blue;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  label {
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  .checkmark {
+    border-radius: 100px;
+    background-color: var(--theme-color-primary--contrast);
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+}
+
+@mixin radio-base() {
+  :host {
+    button {
+      background-color: var(--theme-radiobtn-unchecked--background);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-unchecked--border-color);
+    }
+  }
+
+  :host(:hover) {
+    button {
+      background-color: var(--theme-radiobtn-unchecked--background--hover);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-unchecked--border-color--hover);
+    }
+  }
+
+  :host(:active) {
+    button {
+      background-color: var(--theme-radiobtn-unchecked--background--active);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-unchecked--border-color--active);
+    }
+  }
+
+  :host([checked]),
+  :host([indeterminate]) {
+    button {
+      background-color: var(--theme-radiobtn-checked--background);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-checked--border-color);
+    }
+  }
+
+  :host([checked]:hover),
+  :host([indeterminate]:hover) {
+    button {
+      background-color: var(--theme-radiobtn-checked--background--hover);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-checked--border-color--hover);
+    }
+  }
+
+  :host([checked]:active),
+  :host([indeterminate]:active) {
+    button {
+      background-color: var(--theme-radiobtn-checked--background--active);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-checked--border-color--active);
+    }
+  }
+
+  :host(:disabled),
+  :host(.disabled) {
+    button {
+      background-color: var(--theme-radiobtn-unchecked--background--disabled);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-unchecked--border-color--disabled);
+    }
+  }
+
+  :host([checked]:disabled),
+  :host([checked].disabled),
+  :host([indeterminate]:disabled),
+  :host([indeterminate].disabled) {
+    button {
+      background-color: var(--theme-radiobtn-checked--background--disabled);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-checked--border-color--disabled);
+    }
+  }
+}
+
+@mixin radio-variant($selector) {
+  :host(#{$selector}) {
+    button {
+      @content;
+    }
+  }
+
+  :host(#{$selector}) {
+    button {
+      background-color: var(--theme-radiobtn-unchecked--background);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-unchecked--border-color);
+    }
+  }
+
+  :host(#{$selector}:hover) {
+    button {
+      background-color: var(--theme-radiobtn-unchecked--background--hover);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-unchecked--border-color--hover);
+    }
+  }
+
+  :host(#{$selector}:active) {
+    button {
+      background-color: var(--theme-radiobtn-unchecked--background--active);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-unchecked--border-color--active);
+    }
+  }
+
+  :host(#{$selector}[checked]),
+  :host(#{$selector}[indeterminate]) {
+    button {
+      background-color: var(--theme-radiobtn-checked--background);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-checked--border-color);
+    }
+  }
+
+  :host(#{$selector}[checked]:hover),
+  :host(#{$selector}[indeterminate]:hover) {
+    button {
+      background-color: var(--theme-radiobtn-checked--background--hover);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-checked--border-color--hover);
+    }
+  }
+
+  :host(#{$selector}[checked]:active),
+  :host(#{$selector}[indeterminate]:active) {
+    button {
+      background-color: var(--theme-radiobtn-checked--background--active);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-checked--border-color--active);
+    }
+  }
+
+  :host(#{$selector}:disabled),
+  :host(#{$selector}.disabled) {
+    button {
+      background-color: var(--theme-radiobtn-unchecked--background--disabled);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-unchecked--border-color--disabled);
+    }
+  }
+
+  :host(#{$selector}[checked]:disabled),
+  :host(#{$selector}[checked].disabled),
+  :host(#{$selector}[indeterminate]:disabled),
+  :host(#{$selector}[indeterminate].disabled) {
+    button {
+      background-color: var(--theme-radiobtn-checked--background--disabled);
+      border: var(--theme-radiobtn--border-thickness) solid
+        var(--theme-radiobtn-checked--border-color--disabled);
+    }
+  }
+}
+
+@mixin define-radio-vars($state, $type) {
+  --theme-radiobtn-#{$state}--background: var(--theme-radiobtn-#{$state}--background--#{$type});
+  --theme-radiobtn-#{$state}--background--hover: var(--theme-radiobtn-#{$state}--background--#{$type}--hover);
+  --theme-radiobtn-#{$state}--background--active: var(--theme-radiobtn-#{$state}--background--#{$type}--active);
+
+  --theme-radiobtn-#{$state}--border-color: var(--theme-radiobtn-#{$state}--border-color--#{$type});
+  --theme-radiobtn-#{$state}--border-color--hover: var(--theme-radiobtn-#{$state}--border-color--#{$type}--hover);
+  --theme-radiobtn-#{$state}--border-color--active: var(--theme-radiobtn-#{$state}--border-color--#{$type}--active);
+}
+
+@include radio-base();
+@include radio-variant(
+  $selector: '.ix-info',
+) {
+  @include define-radio-vars('unchecked', 'info');
+  @include define-radio-vars('checked', 'info');
+  @include define-radio-vars('mixed', 'info');
+}
+
+@include radio-variant(
+  $selector: '.ix-warning',
+) {
+  @include define-radio-vars('unchecked', 'warning');
+  @include define-radio-vars('checked', 'warning');
+  @include define-radio-vars('mixed', 'warning');
+}
+
+@include radio-variant(
+  $selector: '.ix-invalid--required',
+) {
+  @include define-radio-vars('unchecked', 'invalid');
+  @include define-radio-vars('checked', 'invalid');
+  @include define-radio-vars('mixed', 'invalid');
+}
+
+@include radio-variant(
+  $selector: '.ix-invalid',
+) {
+  @include define-radio-vars('unchecked', 'invalid');
+  @include define-radio-vars('checked', 'invalid');
+  @include define-radio-vars('mixed', 'invalid');
+}

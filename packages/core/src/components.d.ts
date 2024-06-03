@@ -2063,6 +2063,60 @@ export namespace Components {
          */
         "variant": PushCardVariant;
     }
+    interface IxRadio {
+        /**
+          * Checked state of the radio component
+         */
+        "checked": boolean;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * Label for the radio component
+         */
+        "label": string;
+        /**
+          * Name of the radio component
+         */
+        "name"?: string;
+        /**
+          * Value of the radio component
+         */
+        "value"?: string;
+    }
+    interface IxRadioGroup {
+        /**
+          * Error text for the field component
+         */
+        "errorText": string;
+        /**
+          * Show text below the field component
+         */
+        "helperText": string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label": string;
+        /**
+          * Show helper, info, warning, error and valid text as tooltip
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * Valid text for the field component
+         */
+        "validText"?: string;
+        /**
+          * Value of the radiobutton group component
+         */
+        "value": string;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
+    }
     /**
      * @since 2.0.0
      */
@@ -2542,6 +2596,8 @@ export namespace Components {
           * Whether the slide-toggle element is disabled or not.
          */
         "disabled": boolean;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "hasValidValue": () => Promise<boolean>;
         /**
           * Hide `on` and `off` text
          */
@@ -2550,6 +2606,14 @@ export namespace Components {
           * If true the control is in indeterminate state
          */
         "indeterminate": boolean;
+        /**
+          * Name of the checkbox component
+         */
+        "name"?: string;
+        /**
+          * Required state of the checkbox component.  If true, checkbox needs to be checked to be valid
+         */
+        "required": boolean;
         /**
           * Text for indeterminate state
          */
@@ -2562,6 +2626,10 @@ export namespace Components {
           * Text for on state
          */
         "textOn": string;
+        /**
+          * Value of the checkbox component
+         */
+        "value"?: string;
     }
     /**
      * @since 2.0.0
@@ -2954,6 +3022,14 @@ export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
 export interface IxPaneCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxPaneElement;
+}
+export interface IxRadioCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxRadioElement;
+}
+export interface IxRadioGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxRadioGroupElement;
 }
 export interface IxSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4080,6 +4156,41 @@ declare global {
         prototype: HTMLIxPushCardElement;
         new (): HTMLIxPushCardElement;
     };
+    interface HTMLIxRadioElementEventMap {
+        "checkedChange": boolean;
+        "valueChange": string;
+    }
+    interface HTMLIxRadioElement extends Components.IxRadio, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxRadioElementEventMap>(type: K, listener: (this: HTMLIxRadioElement, ev: IxRadioCustomEvent<HTMLIxRadioElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxRadioElement: {
+        prototype: HTMLIxRadioElement;
+        new (): HTMLIxRadioElement;
+    };
+    interface HTMLIxRadioGroupElementEventMap {
+        "valueChange": string;
+    }
+    interface HTMLIxRadioGroupElement extends Components.IxRadioGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxRadioGroupElementEventMap>(type: K, listener: (this: HTMLIxRadioGroupElement, ev: IxRadioGroupCustomEvent<HTMLIxRadioGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxRadioGroupElement: {
+        prototype: HTMLIxRadioGroupElement;
+        new (): HTMLIxRadioGroupElement;
+    };
     /**
      * @since 2.0.0
      */
@@ -4296,6 +4407,7 @@ declare global {
     };
     interface HTMLIxToggleElementEventMap {
         "checkedChange": boolean;
+        "valueChange": string;
     }
     interface HTMLIxToggleElement extends Components.IxToggle, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxToggleElementEventMap>(type: K, listener: (this: HTMLIxToggleElement, ev: IxToggleCustomEvent<HTMLIxToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4530,6 +4642,8 @@ declare global {
         "ix-pill": HTMLIxPillElement;
         "ix-playground-internal": HTMLIxPlaygroundInternalElement;
         "ix-push-card": HTMLIxPushCardElement;
+        "ix-radio": HTMLIxRadioElement;
+        "ix-radio-group": HTMLIxRadioGroupElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
         "ix-select-item": HTMLIxSelectItemElement;
@@ -6709,6 +6823,70 @@ declare namespace LocalJSX {
          */
         "variant"?: PushCardVariant;
     }
+    interface IxRadio {
+        /**
+          * Checked state of the radio component
+         */
+        "checked"?: boolean;
+        /**
+          * Label for the radio component
+         */
+        "label"?: string;
+        /**
+          * Name of the radio component
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the checked state of the radio changes
+         */
+        "onCheckedChange"?: (event: IxRadioCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the value of the radio changes
+         */
+        "onValueChange"?: (event: IxRadioCustomEvent<string>) => void;
+        /**
+          * Value of the radio component
+         */
+        "value"?: string;
+    }
+    interface IxRadioGroup {
+        /**
+          * Error text for the field component
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component
+         */
+        "helperText"?: string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
+        /**
+          * Event emitted when the value of the radiobutton group changes
+         */
+        "onValueChange"?: (event: IxRadioGroupCustomEvent<string>) => void;
+        /**
+          * Show helper, info, warning, error and valid text as tooltip
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * Valid text for the field component
+         */
+        "validText"?: string;
+        /**
+          * Value of the radiobutton group component
+         */
+        "value"?: string;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
+    }
     /**
      * @since 2.0.0
      */
@@ -7253,9 +7431,18 @@ declare namespace LocalJSX {
          */
         "indeterminate"?: boolean;
         /**
+          * Name of the checkbox component
+         */
+        "name"?: string;
+        /**
           * An event will be dispatched each time the slide-toggle changes its value.
          */
         "onCheckedChange"?: (event: IxToggleCustomEvent<boolean>) => void;
+        "onValueChange"?: (event: IxToggleCustomEvent<string>) => void;
+        /**
+          * Required state of the checkbox component.  If true, checkbox needs to be checked to be valid
+         */
+        "required"?: boolean;
         /**
           * Text for indeterminate state
          */
@@ -7268,6 +7455,10 @@ declare namespace LocalJSX {
           * Text for on state
          */
         "textOn"?: string;
+        /**
+          * Value of the checkbox component
+         */
+        "value"?: string;
     }
     /**
      * @since 2.0.0
@@ -7622,6 +7813,8 @@ declare namespace LocalJSX {
         "ix-pill": IxPill;
         "ix-playground-internal": IxPlaygroundInternal;
         "ix-push-card": IxPushCard;
+        "ix-radio": IxRadio;
+        "ix-radio-group": IxRadioGroup;
         "ix-row": IxRow;
         "ix-select": IxSelect;
         "ix-select-item": IxSelectItem;
@@ -7824,6 +8017,8 @@ declare module "@stencil/core" {
              * @since 1.6.0
              */
             "ix-push-card": LocalJSX.IxPushCard & JSXBase.HTMLAttributes<HTMLIxPushCardElement>;
+            "ix-radio": LocalJSX.IxRadio & JSXBase.HTMLAttributes<HTMLIxRadioElement>;
+            "ix-radio-group": LocalJSX.IxRadioGroup & JSXBase.HTMLAttributes<HTMLIxRadioGroupElement>;
             /**
              * @since 2.0.0
              */

@@ -214,6 +214,11 @@ export class TextField implements IxInputFieldComponent<string> {
           isWarning={this.isWarning}
           showTextBehind={this.showTextBehind}
         >
+          {this.maxLength && (
+            <ix-typography slot="top-left" color="weak">
+              {this.value.length}/{this.maxLength}
+            </ix-typography>
+          )}
           <div class="input-wrapper">
             <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
             <InputElement

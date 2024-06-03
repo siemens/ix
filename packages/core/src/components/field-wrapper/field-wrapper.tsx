@@ -97,9 +97,14 @@ export class FieldWrapper implements FieldWrapperInterface {
           'text-behind-slotted-element': this.showTextBehind,
         }}
       >
-        {this.label && (
-          <ix-field-label required={this.required}>{this.label}</ix-field-label>
-        )}
+        <div class="field-top">
+          {this.label && (
+            <ix-field-label required={this.required}>
+              {this.label}
+            </ix-field-label>
+          )}
+          <slot name="top-left"></slot>
+        </div>
         <div
           class={{
             'slot-wrapper': true,
