@@ -9,7 +9,49 @@
 import { h } from '@stencil/core';
 import { MakeRef } from '../utils/make-ref';
 
+export function TextareaElement(props: {
+  disabled: boolean;
+  readonly: boolean;
+  maxLength?: number;
+  minLength?: number;
+  isInvalid: boolean;
+  required: boolean;
+  value: string;
+  placeholder: string;
+  textAreaRef: (el: HTMLTextAreaElement) => void;
+  valueChange: (value: string) => void;
+  updateFormInternalValue: (value: string) => void;
+  onBlur: () => void;
+}) {
+  return (
+    <textarea
+      readOnly={props.readonly}
+      disabled={props.disabled}
+      maxLength={props.maxLength}
+      minLength={props.minLength}
+      ref={props.textAreaRef}
+      class={{
+        'is-invalid': props.isInvalid,
+      }}
+      required={props.required}
+      value={props.value}
+      placeholder={props.placeholder}
+      onChange={(changeEvent) => {
+        const target = changeEvent.target as HTMLInputElement;
+        props.valueChange(target.value);
+      }}
+      onInput={(inputEvent) => {
+        const target = inputEvent.target as HTMLInputElement;
+        props.updateFormInternalValue(target.value);
+      }}
+      onBlur={() => props.onBlur()}
+    ></textarea>
+  );
+}
+
 export function InputElement(props: {
+  disabled: boolean;
+  readonly: boolean;
   maxLength?: number;
   minLength?: number;
   max?: number;
@@ -28,6 +70,8 @@ export function InputElement(props: {
 }) {
   return (
     <input
+      readOnly={props.readonly}
+      disabled={props.disabled}
       min={props.min}
       max={props.max}
       maxLength={props.maxLength}

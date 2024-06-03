@@ -61,9 +61,19 @@ export class NumberField implements IxInputFieldComponent<string> {
   @Prop({ reflect: true, mutable: true }) value: string;
 
   /**
-   * tbd
+   * Required field
    */
   @Prop({ reflect: true }) required: boolean;
+
+  /**
+   * Disables the input field
+   */
+  @Prop() disabled: boolean;
+
+  /**
+   * Read only field
+   */
+  @Prop() readonly: boolean;
 
   /**
    * tbd
@@ -201,7 +211,11 @@ export class NumberField implements IxInputFieldComponent<string> {
 
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          disabled: this.disabled,
+        }}
+      >
         <ix-field-wrapper
           required={this.required}
           label={this.label}
@@ -225,6 +239,8 @@ export class NumberField implements IxInputFieldComponent<string> {
           >
             <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
             <InputElement
+              readonly={this.readonly}
+              disabled={this.disabled}
               min={this.min}
               max={this.max}
               pattern={this.pattern}
@@ -252,6 +268,7 @@ export class NumberField implements IxInputFieldComponent<string> {
                     onClick={() => {
                       this.inputRef.current.stepDown();
                       checkInternalValidity(this, this.inputRef.current);
+                      this.updateFormInternalValue(this.inputRef.current.value);
                     }}
                   ></ix-icon-button>
                   <ix-icon-button
@@ -262,6 +279,7 @@ export class NumberField implements IxInputFieldComponent<string> {
                     onClick={() => {
                       this.inputRef.current.stepUp();
                       checkInternalValidity(this, this.inputRef.current);
+                      this.updateFormInternalValue(this.inputRef.current.value);
                     }}
                   ></ix-icon-button>
                 </div>

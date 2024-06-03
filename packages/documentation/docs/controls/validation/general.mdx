@@ -15,12 +15,9 @@ Each `form-ready` component comes with an attribute `label` to show a label abov
 
 The `label` attribute is optional and can be empty to show no label.
 
-## Form layout
+## Form layouting
 
-//TODO: Rewrite section
-//TODO: Should we provide a form layout could be similar to ix-layout-grid
-
-To align `form-ready` components in a complex form layout. You typically don't provide a `label` attribute to each component.
+To align `form-ready` components in a complex form layout. You typically omit the `label` attribute.
 
 ```html
 <form>
@@ -38,7 +35,7 @@ To align `form-ready` components in a complex form layout. You typically don't p
         <ix-field-label htmlFor="my-select-2">Example</ix-field-label>
       </ix-col>
       <ix-col>
-        <ix-select id="my-select-2"></ix-select>
+        <ix-text-field id="my-select-2"></ix-ix-text-field>
       </ix-col>
     </ix-row>
   </ix-layout-grid>
@@ -77,20 +74,6 @@ Will show the component as `invalid` because `invalid` has a higher priority.
   If you using Angular in combination with ReactiveForms, it is not necessary to apply the class `.ix-invalid` and `.ix-valid` this will be done automatically via value accessors.
 </Admonition>
 
-## Suppress valid styling
-
-To suppress the valid component styling you can apply `data-ix-disable-valid` to the `form` to disable
-valid styling for the complete form or you can apply the `data-ix-disable-valid` attribute only to the
-component you want to disable the styling e.g
-
-```html
-<form>
-  <ix-select data-ix-disable-valid>
-    <ix-select-item value="1" label="Label 1"></ix-select-item>
-    <ix-select-item value="2" label="Label 2"></ix-select-item>
-  </ix-select>
-</form>
-```
 
 ## Example
 

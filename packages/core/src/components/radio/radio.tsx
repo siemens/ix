@@ -30,7 +30,6 @@ import { IxFormComponent } from '../utils/field';
 })
 export class Radio implements IxFormComponent<string> {
   @Element() hostElement: HTMLIxRadioElement;
-
   @AttachInternals() formInternals: ElementInternals;
 
   /**
@@ -47,6 +46,11 @@ export class Radio implements IxFormComponent<string> {
    * Label for the radio component
    */
   @Prop() label: string;
+
+  /**
+   * Disabled state of the radio component
+   */
+  @Prop() disabled: boolean;
 
   /**
    * Checked state of the radio component
@@ -103,7 +107,7 @@ export class Radio implements IxFormComponent<string> {
 
   updateFormInternalValue() {
     if (this.checked) {
-      this.formInternals.setFormValue(this.value);
+      this.formInternals.setFormValue(this.value ?? 'on');
     } else {
       this.formInternals.setFormValue(undefined);
     }
@@ -123,7 +127,11 @@ export class Radio implements IxFormComponent<string> {
 
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          disabled: this.disabled,
+        }}
+      >
         <label>
           <input
             ref={this.inputRef}

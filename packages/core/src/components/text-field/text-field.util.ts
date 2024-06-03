@@ -34,7 +34,7 @@ export function checkAllowedKeys(
 
 export function checkInternalValidity(
   comp: IxInputFieldComponent<unknown>,
-  input: HTMLInputElement
+  input: HTMLInputElement | HTMLTextAreaElement
 ) {
   const validityState = input.validity;
 
@@ -54,7 +54,7 @@ export function checkInternalValidity(
 
 export function onInputBlur(
   comp: IxInputFieldComponent<unknown>,
-  input: HTMLInputElement
+  input: HTMLInputElement | HTMLTextAreaElement
 ) {
   comp.ixBlur.emit();
   checkInternalValidity(comp, input);

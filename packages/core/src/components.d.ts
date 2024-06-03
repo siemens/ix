@@ -1828,6 +1828,10 @@ export namespace Components {
          */
         "allowedCharactersPattern"?: string;
         /**
+          * Disables the input field
+         */
+        "disabled": boolean;
+        /**
           * tbd
          */
         "errorText": string;
@@ -1866,7 +1870,11 @@ export namespace Components {
          */
         "placeholder": string;
         /**
-          * tbd
+          * Read only field
+         */
+        "readonly": boolean;
+        /**
+          * Required field
          */
         "required": boolean;
         /**
@@ -2068,6 +2076,10 @@ export namespace Components {
           * Checked state of the radio component
          */
         "checked": boolean;
+        /**
+          * Disabled state of the radio component
+         */
+        "disabled": boolean;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
@@ -2421,6 +2433,10 @@ export namespace Components {
         /**
           * tbd
          */
+        "disabled": boolean;
+        /**
+          * tbd
+         */
         "errorText": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
@@ -2459,6 +2475,10 @@ export namespace Components {
         /**
           * tbd
          */
+        "readonly": boolean;
+        /**
+          * tbd
+         */
         "required": boolean;
         /**
           * tbd
@@ -2472,6 +2492,66 @@ export namespace Components {
           * tbd
          */
         "type": 'text' | 'email';
+        /**
+          * tbd
+         */
+        "validText"?: string;
+        /**
+          * tbd
+         */
+        "value": string;
+        /**
+          * tbd
+         */
+        "warningText"?: string;
+    }
+    interface IxTextareaField {
+        /**
+          * tbd
+         */
+        "disabled": boolean;
+        /**
+          * tbd
+         */
+        "errorText": string;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * tbd
+         */
+        "helperText": string;
+        /**
+          * tbd
+         */
+        "infoText"?: string;
+        /**
+          * tbd
+         */
+        "label": string;
+        /**
+          * tbd
+         */
+        "name": string;
+        /**
+          * tbd
+         */
+        "placeholder": string;
+        /**
+          * tbd
+         */
+        "readonly": boolean;
+        /**
+          * tbd
+         */
+        "required": boolean;
+        /**
+          * tbd
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextBehind"?: boolean;
         /**
           * tbd
          */
@@ -3062,6 +3142,10 @@ export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
 export interface IxTextFieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTextFieldElement;
+}
+export interface IxTextareaFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxTextareaFieldElement;
 }
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4357,6 +4441,25 @@ declare global {
         prototype: HTMLIxTextFieldElement;
         new (): HTMLIxTextFieldElement;
     };
+    interface HTMLIxTextareaFieldElementEventMap {
+        "valueChange": string;
+        "validityStateChange": ValidityState;
+        "ixBlur": void;
+    }
+    interface HTMLIxTextareaFieldElement extends Components.IxTextareaField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTextareaFieldElementEventMap>(type: K, listener: (this: HTMLIxTextareaFieldElement, ev: IxTextareaFieldCustomEvent<HTMLIxTextareaFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTextareaFieldElementEventMap>(type: K, listener: (this: HTMLIxTextareaFieldElement, ev: IxTextareaFieldCustomEvent<HTMLIxTextareaFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxTextareaFieldElement: {
+        prototype: HTMLIxTextareaFieldElement;
+        new (): HTMLIxTextareaFieldElement;
+    };
     interface HTMLIxTileElement extends Components.IxTile, HTMLStencilElement {
     }
     var HTMLIxTileElement: {
@@ -4654,6 +4757,7 @@ declare global {
         "ix-tab-item": HTMLIxTabItemElement;
         "ix-tabs": HTMLIxTabsElement;
         "ix-text-field": HTMLIxTextFieldElement;
+        "ix-textarea-field": HTMLIxTextareaFieldElement;
         "ix-tile": HTMLIxTileElement;
         "ix-time-picker": HTMLIxTimePickerElement;
         "ix-toast": HTMLIxToastElement;
@@ -6556,6 +6660,10 @@ declare namespace LocalJSX {
          */
         "allowedCharactersPattern"?: string;
         /**
+          * Disables the input field
+         */
+        "disabled"?: boolean;
+        /**
           * tbd
          */
         "errorText"?: string;
@@ -6604,7 +6712,11 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
-          * tbd
+          * Read only field
+         */
+        "readonly"?: boolean;
+        /**
+          * Required field
          */
         "required"?: boolean;
         /**
@@ -6828,6 +6940,10 @@ declare namespace LocalJSX {
           * Checked state of the radio component
          */
         "checked"?: boolean;
+        /**
+          * Disabled state of the radio component
+         */
+        "disabled"?: boolean;
         /**
           * Label for the radio component
          */
@@ -7229,6 +7345,10 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
+        "disabled"?: boolean;
+        /**
+          * tbd
+         */
         "errorText"?: string;
         /**
           * tbd
@@ -7277,6 +7397,10 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
+        "readonly"?: boolean;
+        /**
+          * tbd
+         */
         "required"?: boolean;
         /**
           * tbd
@@ -7290,6 +7414,76 @@ declare namespace LocalJSX {
           * tbd
          */
         "type"?: 'text' | 'email';
+        /**
+          * tbd
+         */
+        "validText"?: string;
+        /**
+          * tbd
+         */
+        "value"?: string;
+        /**
+          * tbd
+         */
+        "warningText"?: string;
+    }
+    interface IxTextareaField {
+        /**
+          * tbd
+         */
+        "disabled"?: boolean;
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * tbd
+         */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
+        "infoText"?: string;
+        /**
+          * tbd
+         */
+        "label"?: string;
+        /**
+          * tbd
+         */
+        "name"?: string;
+        /**
+          * tbd
+         */
+        "onIxBlur"?: (event: IxTextareaFieldCustomEvent<void>) => void;
+        /**
+          * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+         */
+        "onValidityStateChange"?: (event: IxTextareaFieldCustomEvent<ValidityState>) => void;
+        /**
+          * tbd
+         */
+        "onValueChange"?: (event: IxTextareaFieldCustomEvent<string>) => void;
+        /**
+          * tbd
+         */
+        "placeholder"?: string;
+        /**
+          * tbd
+         */
+        "readonly"?: boolean;
+        /**
+          * tbd
+         */
+        "required"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextBehind"?: boolean;
         /**
           * tbd
          */
@@ -7825,6 +8019,7 @@ declare namespace LocalJSX {
         "ix-tab-item": IxTabItem;
         "ix-tabs": IxTabs;
         "ix-text-field": IxTextField;
+        "ix-textarea-field": IxTextareaField;
         "ix-tile": IxTile;
         "ix-time-picker": IxTimePicker;
         "ix-toast": IxToast;
@@ -8041,6 +8236,7 @@ declare module "@stencil/core" {
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             "ix-text-field": LocalJSX.IxTextField & JSXBase.HTMLAttributes<HTMLIxTextFieldElement>;
+            "ix-textarea-field": LocalJSX.IxTextareaField & JSXBase.HTMLAttributes<HTMLIxTextareaFieldElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;

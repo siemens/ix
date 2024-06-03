@@ -70,6 +70,8 @@ export interface IxFormComponent<T = any> extends IxComponent {
   name?: string;
   // Annotate as @Prop()
   value?: T;
+  // Annotate as @Prop()
+  disabled: boolean;
 
   valueChange: EventEmitter<T>;
   updateFormInternalValue(value: T): void;
@@ -83,6 +85,9 @@ export interface IxInputFieldComponent<T = any>
     FieldWrapperInterface {
   // Annotate as @Prop()
   placeholder?: string;
+  // Annotate as @Prop()
+  readonly: boolean;
+
   ixBlur: EventEmitter<void>;
 }
 

@@ -105,7 +105,7 @@ export class Checkbox implements IxFormComponent<string> {
 
   updateFormInternalValue() {
     if (this.checked) {
-      this.formInternals.setFormValue(this.value);
+      this.formInternals.setFormValue(this.value ?? 'on');
     } else {
       this.formInternals.setFormValue(undefined);
     }

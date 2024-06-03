@@ -173,45 +173,11 @@
 }
 
 @mixin toggle-variant($selector) {
-  :host(#{$selector}) {
+  :host(#{$selector}:not(.disabled)) {
     .slider {
       @content;
     }
   }
-
-  // :host(#{$selector}) {
-  //   button {
-  //     background-color: var(--theme-checkbox-unchecked--background);
-  //     border: var(--theme-checkbox--border-thickness) solid
-  //       var(--theme-checkbox-unchecked--border-color);
-  //   }
-  // }
-
-  // :host(#{$selector}:hover) {
-  //   button {
-  //     background-color: var(--theme-checkbox-unchecked--background--hover);
-  //     border: var(--theme-checkbox--border-thickness) solid
-  //       var(--theme-checkbox-unchecked--border-color--hover);
-  //   }
-  // }
-
-  // :host(#{$selector}:active) {
-  //   button {
-  //     background-color: var(--theme-checkbox-unchecked--background--active);
-  //     border: var(--theme-checkbox--border-thickness) solid
-  //       var(--theme-checkbox-unchecked--border-color--active);
-  //   }
-  // }
-
-  // :host(#{$selector}:disabled),
-  // :host(#{$selector}.disabled) {
-  //   button {
-  //     background-color: var(--theme-checkbox-unchecked--background--disabled);
-  //     border: var(--theme-checkbox--border-thickness) solid
-  //       var(--theme-checkbox-unchecked--border-color--disabled);
-  //   }
-  // }
-
 }
 
 @mixin define-toggle-vars($state, $type) {

@@ -14,9 +14,9 @@ import { Component, Element, h, Host, State } from '@stencil/core';
 @Component({
   tag: 'ix-playground-internal',
   styleUrl: 'playground.scss',
-  // shadow: true,
+  shadow: true,
   // Set scoped=true and shadow=false to test global styles like checkbox etc
-  scoped: true,
+  // scoped: true,
 })
 export class PlaygroundInternal {
   @Element() hostElement: HTMLIxPlaygroundInternalElement;
@@ -26,13 +26,24 @@ export class PlaygroundInternal {
   render() {
     return (
       <Host>
-        <form onSubmit={(e) => e.preventDefault()} style={{ margin: '2rem' }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target as HTMLFormElement);
+            console.log('-----');
+            for (const [key, value] of formData.entries()) {
+              console.log(`${key}: ${value}`);
+            }
+            console.log('-----');
+          }}
+          style={{ margin: '2rem' }}
+        >
           <ix-layout-grid>
             <ix-row style={{ gap: '1rem' }}>
               <ix-number-field
                 max={5}
-                name="text-field"
-                label="Text Field"
+                name="number"
+                label="Number"
                 helperText="Helper text"
                 errorText="Error text"
                 validText="Valid text"
@@ -50,8 +61,8 @@ export class PlaygroundInternal {
 
               <ix-number-field
                 max={5}
-                name="text-field"
-                label="Text Field"
+                name="number-stepper"
+                label="Number (with stepper)"
                 helperText="Helper text"
                 errorText="Error text"
                 validText="Valid text"
@@ -71,6 +82,7 @@ export class PlaygroundInternal {
             </ix-row>
             <ix-row>
               <ix-text-field
+                disabled
                 type="text"
                 name="text-field"
                 label="Text Field"
@@ -93,7 +105,7 @@ export class PlaygroundInternal {
             </ix-row>
             <ix-row>
               <ix-checkbox-group
-                label="Text Field"
+                label="Checkbox"
                 helperText="Helper text with super link content 123 123 123 123"
                 errorText="Error text"
                 validText="Valid text"
@@ -104,9 +116,23 @@ export class PlaygroundInternal {
                   style={{ width: '95px' }}
                   label="Audi long long long lons"
                   class={this.validationState}
+                  name="audi"
+                  value="audi"
+                  disabled
+                  checked
                 ></ix-checkbox>
-                <ix-checkbox label="Porsche"></ix-checkbox>
-                <ix-checkbox label="VW"></ix-checkbox>
+                <ix-checkbox
+                  label="Porsche"
+                  name="porsche"
+                  value="porsche"
+                  class={this.validationState}
+                ></ix-checkbox>
+                <ix-checkbox
+                  label="VW"
+                  name="vw"
+                  value="vw"
+                  class={this.validationState}
+                ></ix-checkbox>
               </ix-checkbox-group>
             </ix-row>
             <ix-row>
@@ -120,36 +146,54 @@ export class PlaygroundInternal {
               >
                 <ix-radio
                   label="Audi long long long lons"
-                  name="random"
+                  name="radio"
                   checked
                   class={this.validationState}
                   style={{ width: '95px' }}
+                  value="test-1"
                 ></ix-radio>
                 <ix-radio
                   label="Test2"
-                  name="random"
+                  name="radio"
                   checked
                   class={this.validationState}
+                  value="test-2"
+                  disabled
                 ></ix-radio>
                 <ix-radio
                   label="Test3"
-                  name="random"
+                  name="radio"
                   class={this.validationState}
+                  value="test-3"
                 ></ix-radio>
               </ix-radio-group>
             </ix-row>
             <ix-row>
               <ix-toggle
+                name="toggle-1"
                 class={this.validationState}
                 textOn="On"
                 textOff="Off"
               ></ix-toggle>
               <ix-toggle
+                name="toggle-2"
                 class={this.validationState}
                 textOn="On"
                 textOff="Off"
                 checked
               ></ix-toggle>
+            </ix-row>
+            <ix-row>
+              <ix-textarea-field
+                name="textarea"
+                label="Textarea"
+                helperText="Helper text"
+                errorText="Error text"
+                validText="Valid text"
+                warningText="Warning text"
+                infoText="Info text"
+                class={this.validationState}
+              ></ix-textarea-field>
             </ix-row>
             <ix-row>
               <ix-select

@@ -20,33 +20,23 @@ import {
   h,
 } from '@stencil/core';
 import {
-  ValidationResults,
-  IxInputFieldComponent,
   HookValidationLifecycle,
+  IxInputFieldComponent,
+  ValidationResults,
 } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
-import { InputElement, PostfixSlot, PrefixSlot } from './input.fc';
-import {
-  checkAllowedKeys,
-  mapValidationResult,
-  onInputBlur,
-  applyPostfixPadding,
-} from './text-field.util';
+import { TextareaElement } from './input.fc';
+import { mapValidationResult, onInputBlur } from './text-field.util';
 
 @Component({
-  tag: 'ix-text-field',
-  styleUrl: 'text-field.scss',
+  tag: 'ix-textarea-field',
+  styleUrl: 'textarea-field.scss',
   shadow: true,
   formAssociated: true,
 })
-export class TextField implements IxInputFieldComponent<string> {
-  @Element() hostElement: HTMLIxTextFieldElement;
+export class TextareaField implements IxInputFieldComponent<string> {
+  @Element() hostElement: HTMLIxTextareaFieldElement;
   @AttachInternals() formInternals: ElementInternals;
-
-  /**
-   * tbd
-   */
-  @Prop() type: 'text' | 'email' = 'text';
 
   /**
    * tbd
@@ -71,12 +61,12 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop({ reflect: true }) disabled: boolean;
+  @Prop() disabled: boolean;
 
   /**
    * tbd
    */
-  @Prop({ reflect: true }) readonly: boolean;
+  @Prop() readonly: boolean;
 
   /**
    * tbd
@@ -121,26 +111,6 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop() pattern?: string;
-
-  /**
-   * tbd
-   */
-  @Prop() maxLength?: number;
-
-  /**
-   * tbd
-   */
-  @Prop() minLength?: number;
-
-  /**
-   * tbd
-   */
-  @Prop() allowedCharactersPattern?: string;
-
-  /**
-   * tbd
-   */
   @Event() valueChange: EventEmitter<string>;
 
   /**
@@ -159,9 +129,7 @@ export class TextField implements IxInputFieldComponent<string> {
   @State() isWarning: boolean;
   @State() isInvalidByRequired: boolean;
 
-  private inputRef = makeRef<HTMLInputElement>();
-  private postfixRef = makeRef<HTMLDivElement>();
-  private prefixRef = makeRef<HTMLDivElement>();
+  private textAreaRef = makeRef<HTMLTextAreaElement>();
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -170,23 +138,6 @@ export class TextField implements IxInputFieldComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
-  }
-
-  componentDidRender() {
-    applyPostfixPadding(
-      this.inputRef.current,
-      this.prefixRef.current?.getBoundingClientRect(),
-      {
-        postfix: false,
-      }
-    );
-    applyPostfixPadding(
-      this.inputRef.current,
-      this.postfixRef.current?.getBoundingClientRect(),
-      {
-        postfix: true,
-      }
-    );
   }
 
   updateFormInternalValue(value: string) {
@@ -229,33 +180,25 @@ export class TextField implements IxInputFieldComponent<string> {
           isWarning={this.isWarning}
           showTextBehind={this.showTextBehind}
         >
-          {this.maxLength && (
-            <ix-typography slot="top-left" color="weak">
-              {this.value.length}/{this.maxLength}
-            </ix-typography>
-          )}
-          <div class="input-wrapper">
-            <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
-            <InputElement
+          <div
+            class={{
+              'input-wrapper': true,
+            }}
+          >
+            <TextareaElement
               readonly={this.readonly}
               disabled={this.disabled}
-              maxLength={this.maxLength}
-              minLength={this.minLength}
-              pattern={this.pattern}
-              type={this.type}
               isInvalid={this.isInvalid}
               required={this.required}
               value={this.value}
               placeholder={this.placeholder}
-              inputRef={this.inputRef}
-              onKeyPress={(event) => checkAllowedKeys(this, event)}
+              textAreaRef={this.textAreaRef}
               valueChange={(value) => this.valueChange.emit(value)}
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
-              onBlur={() => onInputBlur(this, this.inputRef.current)}
-            ></InputElement>
-            <PostfixSlot postfixRef={this.postfixRef}></PostfixSlot>
+              onBlur={() => onInputBlur(this, this.textAreaRef.current)}
+            ></TextareaElement>
           </div>
         </ix-field-wrapper>
       </Host>

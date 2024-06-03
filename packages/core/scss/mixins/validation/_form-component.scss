@@ -6,27 +6,29 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+$notSelectors: ':not(.disabled):not(.readonly)';
+
 @mixin host-valid {
-  :host(.ix-valid:not(.ix-suppress-valid):not(.ix-invalid--required)) {
+  :host(.ix-valid#{$notSelectors}:not(.ix-suppress-valid):not(.ix-invalid--required)) {
     @content;
   }
 }
 
 @mixin host-info {
-  :host(.ix-info) {
+  :host(.ix-info#{$notSelectors}) {
     @content;
   }
 }
 
 @mixin host-warning {
-  :host(.ix-warning) {
+  :host(.ix-warning#{$notSelectors}) {
     @content;
   }
 }
 
 @mixin host-invalid {
-  :host(.ix-invalid),
-  :host(.ix-invalid--required) {
+  :host(.ix-invalid#{$notSelectors}),
+  :host(.ix-invalid--required#{$notSelectors}) {
     @content;
   }
 }

@@ -17,7 +17,7 @@
     display: inline-block;
     position: relative;
 
-    width: 8rem;
+    width: auto;
 
     .input-wrapper {
       display: flex;
@@ -47,6 +47,14 @@
 
     .postfix-container {
       right: 0.5rem;
+    }
+  }
+
+  :host(.disabled) {
+    pointer-events: none;
+
+    input, textarea {
+      pointer-events: none;
     }
   }
 
