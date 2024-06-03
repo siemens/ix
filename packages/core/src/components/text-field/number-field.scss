@@ -13,26 +13,15 @@
 :host {
   .input-wrapper.show-stepper-buttons {
     input[type="number"] {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-
-    input[type="number"] {
       min-width: 6rem;
     }
   }
 
-  .number-stepper-button {
-    position: absolute;
-  }
-
-  .number-stepper-button.step-minus {
-    left: 0;
-    margin-left: 0.25rem;
-  }
-
-  .number-stepper-button.step-plus {
-    right: 0;
-    margin-right: 0.25rem;
+  .number-stepper-container {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: 0.5rem;
   }
 }

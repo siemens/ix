@@ -7,6 +7,7 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
+import { iconBulb } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, State } from '@stencil/core';
 
 /** @internal */
@@ -39,8 +40,15 @@ export class PlaygroundInternal {
                 infoText="Info text"
                 class={this.validationState}
                 showTextAsTooltip={false}
-                showStepperButtons
-              ></ix-number-field>
+                showStepperButtons={true}
+                style={{ width: '15rem' }}
+                value="3"
+              >
+                <ix-icon slot="prefix" name={iconBulb} size="16"></ix-icon>
+                <ix-typography slot="postfix" color="weak">
+                  mm
+                </ix-typography>
+              </ix-number-field>
             </ix-row>
             <ix-row>
               <ix-text-field
@@ -54,7 +62,14 @@ export class PlaygroundInternal {
                 infoText="Info text"
                 class={this.validationState}
                 showTextAsTooltip={false}
-              ></ix-text-field>
+                style={{ width: '15rem' }}
+                value="test"
+              >
+                <ix-icon slot="prefix" name={iconBulb} size="16"></ix-icon>
+                <ix-typography slot="postfix" color="weak">
+                  mm
+                </ix-typography>
+              </ix-text-field>
             </ix-row>
             <ix-row>
               <ix-select

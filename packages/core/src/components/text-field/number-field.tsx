@@ -13,6 +13,7 @@ import {
   Element,
   Event,
   EventEmitter,
+  Fragment,
   Host,
   Method,
   Prop,
@@ -25,8 +26,9 @@ import {
   HookValidationLifecycle,
 } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
-import { InputElement } from './input.fc';
+import { InputElement, PostfixSlot, PrefixSlot } from './input.fc';
 import {
+  applyPostfixPadding,
   checkAllowedKeys,
   checkInternalValidity,
   mapValidationResult,
@@ -151,6 +153,8 @@ export class NumberField implements IxInputFieldComponent<string> {
   @State() isInvalidByRequired: boolean;
 
   private inputRef = makeRef<HTMLInputElement>();
+  private postfixRef = makeRef<HTMLDivElement>();
+  private prefixRef = makeRef<HTMLDivElement>();
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -159,6 +163,24 @@ export class NumberField implements IxInputFieldComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+  }
+
+  componentDidRender() {
+    applyPostfixPadding(
+      this.inputRef.current,
+      this.prefixRef.current.getBoundingClientRect(),
+      {
+        postfix: false,
+      }
+    );
+
+    applyPostfixPadding(
+      this.inputRef.current,
+      this.postfixRef.current.getBoundingClientRect(),
+      {
+        postfix: true,
+      }
+    );
   }
 
   updateFormInternalValue(value: string) {
@@ -202,18 +224,7 @@ export class NumberField implements IxInputFieldComponent<string> {
               'show-stepper-buttons': this.showStepperButtons,
             }}
           >
-            {this.showStepperButtons && (
-              <ix-icon-button
-                ghost
-                icon={iconMinus}
-                size="16"
-                class="number-stepper-button step-minus"
-                onClick={() => {
-                  this.inputRef.current.stepDown();
-                  checkInternalValidity(this, this.inputRef.current);
-                }}
-              ></ix-icon-button>
-            )}
+            <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
             <InputElement
               min={this.min}
               max={this.max}
@@ -231,18 +242,32 @@ export class NumberField implements IxInputFieldComponent<string> {
               }
               onBlur={() => onInputBlur(this, this.inputRef.current)}
             ></InputElement>
-            {this.showStepperButtons && (
-              <ix-icon-button
-                ghost
-                icon={iconPlus}
-                size="16"
-                class="number-stepper-button step-plus"
-                onClick={() => {
-                  this.inputRef.current.stepUp();
-                  checkInternalValidity(this, this.inputRef.current);
-                }}
-              ></ix-icon-button>
-            )}
+            <PostfixSlot postfixRef={this.postfixRef}>
+              {this.showStepperButtons && (
+                <div class="number-stepper-container">
+                  <ix-icon-button
+                    ghost
+                    icon={iconMinus}
+                    size="16"
+                    class="number-stepper-button step-minus"
+                    onClick={() => {
+                      this.inputRef.current.stepDown();
+                      checkInternalValidity(this, this.inputRef.current);
+                    }}
+                  ></ix-icon-button>
+                  <ix-icon-button
+                    ghost
+                    icon={iconPlus}
+                    size="16"
+                    class="number-stepper-button step-plus"
+                    onClick={() => {
+                      this.inputRef.current.stepUp();
+                      checkInternalValidity(this, this.inputRef.current);
+                    }}
+                  ></ix-icon-button>
+                </div>
+              )}
+            </PostfixSlot>
           </div>
         </ix-field-wrapper>
       </Host>

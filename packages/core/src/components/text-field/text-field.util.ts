@@ -59,3 +59,26 @@ export function onInputBlur(
   comp.ixBlur.emit();
   checkInternalValidity(comp, input);
 }
+
+export function applyPostfixPadding(
+  inputElement: HTMLInputElement,
+  boundingRect: DOMRect,
+  options: {
+    postfix: boolean;
+    additionalPaddingRight?: string;
+  }
+) {
+  if (!inputElement || !boundingRect) {
+    return;
+  }
+
+  const padding = `${(boundingRect.width + 12) / 16}rem`;
+
+  if (options.postfix) {
+    inputElement.style.paddingRight = `calc(${padding} + ${
+      options.additionalPaddingRight ?? '0rem'
+    })`;
+  } else {
+    inputElement.style.paddingLeft = padding;
+  }
+}

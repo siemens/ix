@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { h } from '@stencil/core';
+import { MakeRef } from '../utils/make-ref';
 
 export function InputElement(props: {
   maxLength?: number;
@@ -51,5 +52,25 @@ export function InputElement(props: {
       }}
       onBlur={() => props.onBlur()}
     ></input>
+  );
+}
+
+export function PostfixSlot(
+  props: { postfixRef: MakeRef<HTMLDivElement> },
+  children
+) {
+  return (
+    <div class="postfix-container" ref={props.postfixRef}>
+      <slot name="postfix"></slot>
+      {children}
+    </div>
+  );
+}
+
+export function PrefixSlot(props: { prefixRef: MakeRef<HTMLDivElement> }) {
+  return (
+    <div class="prefix-container" ref={props.prefixRef}>
+      <slot name="prefix"></slot>
+    </div>
   );
 }
