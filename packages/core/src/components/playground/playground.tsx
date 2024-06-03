@@ -28,12 +28,34 @@ export class PlaygroundInternal {
       <Host>
         <form onSubmit={(e) => e.preventDefault()} style={{ margin: '2rem' }}>
           <ix-layout-grid>
-            <ix-row>
+            <ix-row style={{ gap: '1rem' }}>
               <ix-number-field
                 max={5}
                 name="text-field"
                 label="Text Field"
-                helperText="Helper text with super link content 123 123 123 123"
+                helperText="Helper text"
+                errorText="Error text"
+                validText="Valid text"
+                warningText="Warning text"
+                infoText="Define a PIN number only using numbers 1-4"
+                class={this.validationState}
+                showTextAsTooltip={false}
+                showStepperButtons={false}
+                style={{ width: '15rem' }}
+                value="3"
+                allowedCharactersPattern="[1-4]"
+              >
+                <ix-icon slot="prefix" name={iconBulb} size="16"></ix-icon>
+                {/* <ix-typography slot="postfix" color="weak">
+                  mm
+                </ix-typography> */}
+              </ix-number-field>
+
+              <ix-number-field
+                max={5}
+                name="text-field"
+                label="Text Field"
+                helperText="Helper text"
                 errorText="Error text"
                 validText="Valid text"
                 warningText="Warning text"
