@@ -11,7 +11,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ValueAccessor } from './value-accessor';
 
 @Directive({
-  selector: 'ix-text-field',
+  selector: 'ix-text-field,ix-number-field,ix-textarea-field',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

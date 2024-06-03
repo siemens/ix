@@ -153,9 +153,11 @@ import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 import Echarts from 'src/preview-examples/echarts';
 import ValidationSelect from 'src/preview-examples/validation-select';
+import ValidationTextField from 'src/preview-examples/validation-text-field';
 
 @NgModule({
   declarations: [
+    ValidationTextField,
     ApplicationExample,
     ApplicationBreakpointExample,
     ApplicationAppSwitchExample,
@@ -292,7 +294,7 @@ import ValidationSelect from 'src/preview-examples/validation-select';
     GridPadding,
     ModalSizes,
     DatepickerLocale,
-    ValidationSelect
+    ValidationSelect,
   ],
   imports: [
     BrowserModule,

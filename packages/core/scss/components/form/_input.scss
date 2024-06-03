@@ -38,14 +38,14 @@
     color: var(--theme-input-hint--color);
   }
 
-  &.hover,
-  &:hover {
+  &:not(.readonly):not([readonly]):not([readOnly]):not(:read-only).hover,
+  &:not(.readonly):not([readonly]):not([readOnly]):not(:read-only):hover {
     border-color: var(--theme-input--border-color--hover) !important;
     background-color: var(--theme-input--background--hover);
   }
 
-  &.focus,
-  &:focus {
+  &:not(.readonly):not([readonly]):not([readOnly]):not(:read-only).focus,
+  &:not(.readonly):not([readonly]):not([readOnly]):not(:read-only):focus {
     outline: 1px solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-input--focus--outline-offset);
     border-color: var(--theme-input--border-color--focus) !important;

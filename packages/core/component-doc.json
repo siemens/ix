@@ -1225,6 +1225,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1258,6 +1259,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -2426,6 +2430,393 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/checkbox",
+      "filePath": "src/components/checkbox/checkbox.tsx",
+      "fileName": "checkbox.tsx",
+      "readmePath": "src/components/checkbox/readme.md",
+      "usagesDir": "src/components/checkbox/usage",
+      "tag": "ix-checkbox",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-checkbox": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-checkbox"
+        ]
+      },
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "checked",
+          "reflectToAttr": true,
+          "docs": "Checked state of the checkbox component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Disabled state of the checkbox component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "indeterminate",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "indeterminate",
+          "reflectToAttr": true,
+          "docs": "Indeterminate state of the checkbox component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Required state of the checkbox component.\n\nIf true, checkbox needs to be checked to be valid",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Value of the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "checkedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the checked state of the checkbox changes",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the checkbox changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/checkbox-group",
+      "filePath": "src/components/checkbox-group/checkbox-group.tsx",
+      "fileName": "checkbox-group.tsx",
+      "readmePath": "src/components/checkbox-group/readme.md",
+      "usagesDir": "src/components/checkbox-group/usage",
+      "tag": "ix-checkbox-group",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-field-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-checkbox-group": [
+          "ix-field-wrapper"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-checkbox-group"
+        ]
+      },
+      "props": [
+        {
+          "name": "errorText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "error-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "Info text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "Valid text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "Warning text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/chip",
       "filePath": "src/components/chip/chip.tsx",
       "fileName": "chip.tsx",
@@ -2704,8 +3095,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -2713,9 +3103,6 @@
           "ix-col"
         ],
         "ix-datetime-picker": [
-          "ix-col"
-        ],
-        "ix-playground-internal": [
           "ix-col"
         ]
       },
@@ -6604,8 +6991,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-field-wrapper",
-        "ix-playground-internal"
+        "ix-field-wrapper"
       ],
       "dependencies": [
         "ix-typography"
@@ -6615,9 +7001,6 @@
           "ix-typography"
         ],
         "ix-field-wrapper": [
-          "ix-field-label"
-        ],
-        "ix-playground-internal": [
           "ix-field-label"
         ]
       },
@@ -7465,18 +7848,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-helper-text": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-helper-text"
         ]
       },
       "props": [
@@ -7649,6 +8027,7 @@
         "ix-message-bar",
         "ix-modal-example",
         "ix-modal-header",
+        "ix-number-field",
         "ix-pagination",
         "ix-pane",
         "ix-select",
@@ -7727,6 +8106,9 @@
           "ix-icon-button"
         ],
         "ix-modal-header": [
+          "ix-icon-button"
+        ],
+        "ix-number-field": [
           "ix-icon-button"
         ],
         "ix-pagination": [
@@ -11939,6 +12321,504 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/text-field",
+      "filePath": "src/components/text-field/number-field.tsx",
+      "fileName": "number-field.tsx",
+      "readmePath": "src/components/text-field/readme.md",
+      "usagesDir": "src/components/text-field/usage",
+      "tag": "ix-number-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-field-wrapper",
+        "ix-icon-button"
+      ],
+      "dependencyGraph": {
+        "ix-number-field": [
+          "ix-field-wrapper",
+          "ix-icon-button"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-number-field"
+        ]
+      },
+      "props": [
+        {
+          "name": "allowedCharactersPattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "allowed-characters-pattern",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disables the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "errorText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "error-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "max",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "min",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "pattern",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "Read only field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Required field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showStepperButtons",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-stepper-buttons",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "showTextBehind",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-behind",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "tbd",
+          "docsTags": []
+        },
+        {
+          "event": "validityStateChange",
+          "detail": "ValidityState",
+          "bubbles": true,
+          "complexType": {
+            "original": "ValidityState",
+            "resolved": "ValidityState",
+            "references": {
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "tbd",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/pagination",
       "filePath": "src/components/pagination/pagination.tsx",
       "fileName": "pagination.tsx",
@@ -13083,6 +13963,406 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/radio",
+      "filePath": "src/components/radio/radio.tsx",
+      "fileName": "radio.tsx",
+      "readmePath": "src/components/radio/readme.md",
+      "usagesDir": "src/components/radio/usage",
+      "tag": "ix-radio",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-radio"
+        ]
+      },
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "checked",
+          "reflectToAttr": true,
+          "docs": "Checked state of the radio component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disabled state of the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Value of the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "checkedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the checked state of the radio changes",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the radio changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/radio-group",
+      "filePath": "src/components/radio-group/radio-group.tsx",
+      "fileName": "radio-group.tsx",
+      "readmePath": "src/components/radio-group/readme.md",
+      "usagesDir": "src/components/radio-group/usage",
+      "tag": "ix-radio-group",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-field-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-radio-group": [
+          "ix-field-wrapper"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-radio-group"
+        ]
+      },
+      "props": [
+        {
+          "name": "errorText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "error-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "Info text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Show helper, info, warning, error and valid text as tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "Valid text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value of the radiobutton group component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "Warning text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the radiobutton group changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "checkedChange",
+          "capture": false,
+          "passive": false
+        }
+      ]
+    },
+    {
       "dirPath": "src/components/row",
       "filePath": "src/components/row/row.tsx",
       "fileName": "row.tsx",
@@ -13794,6 +15074,20 @@
             }
           ],
           "deprecation": "since 2.0.0. Use `valueChange` instead."
+        },
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Blur input",
+          "docsTags": []
         },
         {
           "event": "valueChange",
@@ -15239,6 +16533,895 @@
       ]
     },
     {
+      "dirPath": "src/components/text-field",
+      "filePath": "src/components/text-field/text-field.tsx",
+      "fileName": "text-field.tsx",
+      "readmePath": "src/components/text-field/readme.md",
+      "usagesDir": "src/components/text-field/usage",
+      "tag": "ix-text-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-field-wrapper",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-text-field": [
+          "ix-field-wrapper",
+          "ix-typography"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-text-field"
+        ]
+      },
+      "props": [
+        {
+          "name": "allowedCharactersPattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "allowed-characters-pattern",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "errorText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "error-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "max-length",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "min-length",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "pattern",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "showTextBehind",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-behind",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"email\" | \"text\"",
+          "complexType": {
+            "original": "'text' | 'email'",
+            "resolved": "\"email\" | \"text\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "default": "'text'",
+          "values": [
+            {
+              "value": "email",
+              "type": "string"
+            },
+            {
+              "value": "text",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "tbd",
+          "docsTags": []
+        },
+        {
+          "event": "validityStateChange",
+          "detail": "ValidityState",
+          "bubbles": true,
+          "complexType": {
+            "original": "ValidityState",
+            "resolved": "ValidityState",
+            "references": {
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "tbd",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/text-field",
+      "filePath": "src/components/text-field/textarea-field.tsx",
+      "fileName": "textarea-field.tsx",
+      "readmePath": "src/components/text-field/readme.md",
+      "usagesDir": "src/components/text-field/usage",
+      "tag": "ix-textarea-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-field-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-textarea-field": [
+          "ix-field-wrapper"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-textarea-field"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "errorText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "error-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "showTextBehind",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-behind",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "tbd",
+          "docsTags": []
+        },
+        {
+          "event": "validityStateChange",
+          "detail": "ValidityState",
+          "bubbles": true,
+          "complexType": {
+            "original": "ValidityState",
+            "resolved": "ValidityState",
+            "references": {
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "tbd",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/tile",
       "filePath": "src/components/tile/tile.tsx",
       "fileName": "tile.tsx",
@@ -16109,9 +18292,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-toggle"
+        ]
+      },
       "props": [
         {
           "name": "checked",
@@ -16202,6 +18391,49 @@
           "required": false
         },
         {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Required state of the checkbox component.\n\nIf true, checkbox needs to be checked to be valid",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "textIndeterminate",
           "type": "string",
           "complexType": {
@@ -16265,6 +18497,27 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Value of the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
           "required": false
         }
       ],
@@ -17062,6 +19315,7 @@
         "ix-avatar",
         "ix-blind",
         "ix-card-list",
+        "ix-checkbox",
         "ix-content-header",
         "ix-dropdown-header",
         "ix-empty-state",
@@ -17073,8 +19327,10 @@
         "ix-modal-header",
         "ix-pagination",
         "ix-pane",
+        "ix-playground-internal",
         "ix-push-card",
         "ix-slider",
+        "ix-text-field",
         "ix-time-picker",
         "ix-tooltip"
       ],
@@ -17093,6 +19349,9 @@
           "ix-typography"
         ],
         "ix-card-list": [
+          "ix-typography"
+        ],
+        "ix-checkbox": [
           "ix-typography"
         ],
         "ix-content-header": [
@@ -17128,10 +19387,16 @@
         "ix-pane": [
           "ix-typography"
         ],
+        "ix-playground-internal": [
+          "ix-typography"
+        ],
         "ix-push-card": [
           "ix-typography"
         ],
         "ix-slider": [
+          "ix-typography"
+        ],
+        "ix-text-field": [
           "ix-typography"
         ],
         "ix-time-picker": [

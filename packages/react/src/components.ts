@@ -20,6 +20,8 @@ import { defineCustomElement as defineIxCardContent } from '@siemens/ix/componen
 import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/ix-card-list.js';
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
+import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
+import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
@@ -73,11 +75,14 @@ import { defineCustomElement as defineIxModalContent } from '@siemens/ix/compone
 import { defineCustomElement as defineIxModalExample } from '@siemens/ix/components/ix-modal-example.js';
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
+import { defineCustomElement as defineIxNumberField } from '@siemens/ix/components/ix-number-field.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
+import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
+import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
@@ -87,6 +92,8 @@ import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/componen
 import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/components/ix-split-button-item.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
+import { defineCustomElement as defineIxTextField } from '@siemens/ix/components/ix-text-field.js';
+import { defineCustomElement as defineIxTextareaField } from '@siemens/ix/components/ix-textarea-field.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
@@ -115,6 +122,8 @@ export const IxCardContent = /*@__PURE__*/createReactComponent<JSX.IxCardContent
 export const IxCardList = /*@__PURE__*/createReactComponent<JSX.IxCardList, HTMLIxCardListElement>('ix-card-list', undefined, undefined, defineIxCardList);
 export const IxCardTitle = /*@__PURE__*/createReactComponent<JSX.IxCardTitle, HTMLIxCardTitleElement>('ix-card-title', undefined, undefined, defineIxCardTitle);
 export const IxCategoryFilter = /*@__PURE__*/createReactComponent<JSX.IxCategoryFilter, HTMLIxCategoryFilterElement>('ix-category-filter', undefined, undefined, defineIxCategoryFilter);
+export const IxCheckbox = /*@__PURE__*/createReactComponent<JSX.IxCheckbox, HTMLIxCheckboxElement>('ix-checkbox', undefined, undefined, defineIxCheckbox);
+export const IxCheckboxGroup = /*@__PURE__*/createReactComponent<JSX.IxCheckboxGroup, HTMLIxCheckboxGroupElement>('ix-checkbox-group', undefined, undefined, defineIxCheckboxGroup);
 export const IxChip = /*@__PURE__*/createReactComponent<JSX.IxChip, HTMLIxChipElement>('ix-chip', undefined, undefined, defineIxChip);
 export const IxCol = /*@__PURE__*/createReactComponent<JSX.IxCol, HTMLIxColElement>('ix-col', undefined, undefined, defineIxCol);
 export const IxContent = /*@__PURE__*/createReactComponent<JSX.IxContent, HTMLIxContentElement>('ix-content', undefined, undefined, defineIxContent);
@@ -168,11 +177,14 @@ export const IxModalContent = /*@__PURE__*/createReactComponent<JSX.IxModalConte
 export const IxModalExample = /*@__PURE__*/createReactComponent<JSX.IxModalExample, HTMLIxModalExampleElement>('ix-modal-example', undefined, undefined, defineIxModalExample);
 export const IxModalFooter = /*@__PURE__*/createReactComponent<JSX.IxModalFooter, HTMLIxModalFooterElement>('ix-modal-footer', undefined, undefined, defineIxModalFooter);
 export const IxModalHeader = /*@__PURE__*/createReactComponent<JSX.IxModalHeader, HTMLIxModalHeaderElement>('ix-modal-header', undefined, undefined, defineIxModalHeader);
+export const IxNumberField = /*@__PURE__*/createReactComponent<JSX.IxNumberField, HTMLIxNumberFieldElement>('ix-number-field', undefined, undefined, defineIxNumberField);
 export const IxPagination = /*@__PURE__*/createReactComponent<JSX.IxPagination, HTMLIxPaginationElement>('ix-pagination', undefined, undefined, defineIxPagination);
 export const IxPane = /*@__PURE__*/createReactComponent<JSX.IxPane, HTMLIxPaneElement>('ix-pane', undefined, undefined, defineIxPane);
 export const IxPaneLayout = /*@__PURE__*/createReactComponent<JSX.IxPaneLayout, HTMLIxPaneLayoutElement>('ix-pane-layout', undefined, undefined, defineIxPaneLayout);
 export const IxPill = /*@__PURE__*/createReactComponent<JSX.IxPill, HTMLIxPillElement>('ix-pill', undefined, undefined, defineIxPill);
 export const IxPushCard = /*@__PURE__*/createReactComponent<JSX.IxPushCard, HTMLIxPushCardElement>('ix-push-card', undefined, undefined, defineIxPushCard);
+export const IxRadio = /*@__PURE__*/createReactComponent<JSX.IxRadio, HTMLIxRadioElement>('ix-radio', undefined, undefined, defineIxRadio);
+export const IxRadioGroup = /*@__PURE__*/createReactComponent<JSX.IxRadioGroup, HTMLIxRadioGroupElement>('ix-radio-group', undefined, undefined, defineIxRadioGroup);
 export const IxRow = /*@__PURE__*/createReactComponent<JSX.IxRow, HTMLIxRowElement>('ix-row', undefined, undefined, defineIxRow);
 export const IxSelect = /*@__PURE__*/createReactComponent<JSX.IxSelect, HTMLIxSelectElement>('ix-select', undefined, undefined, defineIxSelect);
 export const IxSelectItem = /*@__PURE__*/createReactComponent<JSX.IxSelectItem, HTMLIxSelectItemElement>('ix-select-item', undefined, undefined, defineIxSelectItem);
@@ -182,6 +194,8 @@ export const IxSplitButton = /*@__PURE__*/createReactComponent<JSX.IxSplitButton
 export const IxSplitButtonItem = /*@__PURE__*/createReactComponent<JSX.IxSplitButtonItem, HTMLIxSplitButtonItemElement>('ix-split-button-item', undefined, undefined, defineIxSplitButtonItem);
 export const IxTabItem = /*@__PURE__*/createReactComponent<JSX.IxTabItem, HTMLIxTabItemElement>('ix-tab-item', undefined, undefined, defineIxTabItem);
 export const IxTabs = /*@__PURE__*/createReactComponent<JSX.IxTabs, HTMLIxTabsElement>('ix-tabs', undefined, undefined, defineIxTabs);
+export const IxTextField = /*@__PURE__*/createReactComponent<JSX.IxTextField, HTMLIxTextFieldElement>('ix-text-field', undefined, undefined, defineIxTextField);
+export const IxTextareaField = /*@__PURE__*/createReactComponent<JSX.IxTextareaField, HTMLIxTextareaFieldElement>('ix-textarea-field', undefined, undefined, defineIxTextareaField);
 export const IxTile = /*@__PURE__*/createReactComponent<JSX.IxTile, HTMLIxTileElement>('ix-tile', undefined, undefined, defineIxTile);
 export const IxTimePicker = /*@__PURE__*/createReactComponent<JSX.IxTimePicker, HTMLIxTimePickerElement>('ix-time-picker', undefined, undefined, defineIxTimePicker);
 export const IxToast = /*@__PURE__*/createReactComponent<JSX.IxToast, HTMLIxToastElement>('ix-toast', undefined, undefined, defineIxToast);

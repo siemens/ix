@@ -62,17 +62,21 @@ export function onInputBlur(
 
 export function applyPostfixPadding(
   inputElement: HTMLInputElement,
-  boundingRect: DOMRect,
+  width: number,
   options: {
     postfix: boolean;
     additionalPaddingRight?: string;
   }
 ) {
-  if (!inputElement || !boundingRect) {
+  if (!inputElement) {
     return;
   }
 
-  const padding = `${(boundingRect.width + 12) / 16}rem`;
+  if (width === 0) {
+    return;
+  }
+
+  const padding = `${(width + 12) / 16}rem`;
 
   if (options.postfix) {
     inputElement.style.paddingRight = `calc(${padding} + ${

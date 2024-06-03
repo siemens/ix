@@ -68,12 +68,12 @@ export class NumberField implements IxInputFieldComponent<string> {
   /**
    * Disables the input field
    */
-  @Prop() disabled: boolean;
+  @Prop() disabled: boolean = false;
 
   /**
    * Read only field
    */
-  @Prop() readonly: boolean;
+  @Prop() readonly: boolean = false;
 
   /**
    * tbd
@@ -175,21 +175,21 @@ export class NumberField implements IxInputFieldComponent<string> {
   }
 
   componentDidRender() {
-    applyPostfixPadding(
-      this.inputRef.current,
-      this.prefixRef.current.getBoundingClientRect(),
-      {
-        postfix: false,
-      }
-    );
+    const prefixBoundingRect = this.prefixRef.current?.getBoundingClientRect();
+    const postfixBoundingRect =
+      this.postfixRef.current?.getBoundingClientRect();
 
-    applyPostfixPadding(
-      this.inputRef.current,
-      this.postfixRef.current.getBoundingClientRect(),
-      {
+    if (prefixBoundingRect) {
+      applyPostfixPadding(this.inputRef.current, prefixBoundingRect.width, {
+        postfix: false,
+      });
+    }
+
+    if (postfixBoundingRect) {
+      applyPostfixPadding(this.inputRef.current, postfixBoundingRect.width, {
         postfix: true,
-      }
-    );
+      });
+    }
   }
 
   updateFormInternalValue(value: string) {
@@ -210,10 +210,14 @@ export class NumberField implements IxInputFieldComponent<string> {
   }
 
   render() {
+    const showStepperButtons =
+      this.showStepperButtons && (this.disabled || this.readonly) === false;
+
     return (
       <Host
         class={{
           disabled: this.disabled,
+          readonly: this.readonly,
         }}
       >
         <ix-field-wrapper
@@ -258,7 +262,7 @@ export class NumberField implements IxInputFieldComponent<string> {
               onBlur={() => onInputBlur(this, this.inputRef.current)}
             ></InputElement>
             <PostfixSlot postfixRef={this.postfixRef}>
-              {this.showStepperButtons && (
+              {showStepperButtons && (
                 <div class="number-stepper-container">
                   <ix-icon-button
                     ghost

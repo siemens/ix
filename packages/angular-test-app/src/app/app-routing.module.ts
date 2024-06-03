@@ -144,6 +144,7 @@ import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 import Echarts from 'src/preview-examples/echarts';
 import ValidationSelect from 'src/preview-examples/validation-select';
+import ValidationTextField from 'src/preview-examples/validation-text-field';
 
 const routes: Routes = [
   {
@@ -437,6 +438,7 @@ const routes: Routes = [
       { path: 'grid-padding', component: GridPadding },
       { path: 'modal-sizes', component: ModalSizes },
       { path: 'validation-select', component: ValidationSelect },
+      { path: 'validation-text-field', component: ValidationTextField },
     ],
   },
 ];

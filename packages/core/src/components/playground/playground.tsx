@@ -61,6 +61,7 @@ export class PlaygroundInternal {
 
               <ix-number-field
                 max={5}
+                readonly
                 name="number-stepper"
                 label="Number (with stepper)"
                 helperText="Helper text"
@@ -82,7 +83,7 @@ export class PlaygroundInternal {
             </ix-row>
             <ix-row>
               <ix-text-field
-                disabled
+                readonly
                 type="text"
                 name="text-field"
                 label="Text Field"

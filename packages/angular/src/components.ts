@@ -383,6 +383,60 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 
 @ProxyCmp({
+  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value']
+})
+@Component({
+  selector: 'ix-checkbox',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'required', 'value'],
+})
+export class IxCheckbox {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['checkedChange', 'valueChange']);
+  }
+}
+
+
+export declare interface IxCheckbox extends Components.IxCheckbox {
+  /**
+   * Event emitted when the checked state of the checkbox changes
+   */
+  checkedChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Event emitted when the value of the checkbox changes
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['errorText', 'helperText', 'infoText', 'label', 'validText', 'warningText']
+})
+@Component({
+  selector: 'ix-checkbox-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['errorText', 'helperText', 'infoText', 'label', 'validText', 'warningText'],
+})
+export class IxCheckboxGroup {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCheckboxGroup extends Components.IxCheckboxGroup {}
+
+
+@ProxyCmp({
   inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'variant']
 })
 @Component({
@@ -1785,6 +1839,42 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 
 
 @ProxyCmp({
+  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText']
+})
+@Component({
+  selector: 'ix-number-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText'],
+})
+export class IxNumberField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+  }
+}
+
+
+export declare interface IxNumberField extends Components.IxNumberField {
+  /**
+   * tbd
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+   */
+  validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  /**
+   * tbd
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   inputs: ['advanced', 'count', 'i18nItems', 'i18nOf', 'i18nPage', 'itemCount', 'selectedPage', 'showItemCount']
 })
 @Component({
@@ -1923,6 +2013,66 @@ export declare interface IxPushCard extends Components.IxPushCard {}
 
 
 @ProxyCmp({
+  inputs: ['checked', 'disabled', 'label', 'name', 'value']
+})
+@Component({
+  selector: 'ix-radio',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['checked', 'disabled', 'label', 'name', 'value'],
+})
+export class IxRadio {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['checkedChange', 'valueChange']);
+  }
+}
+
+
+export declare interface IxRadio extends Components.IxRadio {
+  /**
+   * Event emitted when the checked state of the radio changes
+   */
+  checkedChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Event emitted when the value of the radio changes
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['errorText', 'helperText', 'infoText', 'label', 'showTextAsTooltip', 'validText', 'value', 'warningText']
+})
+@Component({
+  selector: 'ix-radio-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['errorText', 'helperText', 'infoText', 'label', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+})
+export class IxRadioGroup {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange']);
+  }
+}
+
+
+export declare interface IxRadioGroup extends Components.IxRadioGroup {
+  /**
+   * Event emitted when the value of the radiobutton group changes
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+}
+
+
+@ProxyCmp({
 })
 @Component({
   selector: 'ix-row',
@@ -1958,7 +2108,7 @@ export class IxSelect {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'itemSelectionChange', 'inputChange', 'addItem']);
+    proxyOutputs(this, this.el, ['valueChange', 'itemSelectionChange', 'inputChange', 'addItem', 'ixBlur']);
   }
 }
 
@@ -1980,6 +2130,10 @@ export declare interface IxSelect extends Components.IxSelect {
    * Item added to selection
    */
   addItem: EventEmitter<CustomEvent<string>>;
+  /**
+   * Blur input
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -2174,6 +2328,78 @@ export declare interface IxTabs extends Components.IxTabs {
 
 
 @ProxyCmp({
+  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'type', 'validText', 'value', 'warningText']
+})
+@Component({
+  selector: 'ix-text-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'type', 'validText', 'value', 'warningText'],
+})
+export class IxTextField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+  }
+}
+
+
+export declare interface IxTextField extends Components.IxTextField {
+  /**
+   * tbd
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+   */
+  validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  /**
+   * tbd
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText']
+})
+@Component({
+  selector: 'ix-textarea-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText'],
+})
+export class IxTextareaField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+  }
+}
+
+
+export declare interface IxTextareaField extends Components.IxTextareaField {
+  /**
+   * tbd
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+   */
+  validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  /**
+   * tbd
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   inputs: ['size']
 })
 @Component({
@@ -2284,14 +2510,14 @@ export declare interface IxToastContainer extends Components.IxToastContainer {}
 
 
 @ProxyCmp({
-  inputs: ['checked', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn']
+  inputs: ['checked', 'disabled', 'hideText', 'indeterminate', 'name', 'required', 'textIndeterminate', 'textOff', 'textOn', 'value']
 })
 @Component({
   selector: 'ix-toggle',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'hideText', 'indeterminate', 'textIndeterminate', 'textOff', 'textOn'],
+  inputs: ['checked', 'disabled', 'hideText', 'indeterminate', 'name', 'required', 'textIndeterminate', 'textOff', 'textOn', 'value'],
 })
 export class IxToggle {
   protected el: HTMLElement;

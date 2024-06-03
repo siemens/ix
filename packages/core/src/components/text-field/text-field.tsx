@@ -173,20 +173,21 @@ export class TextField implements IxInputFieldComponent<string> {
   }
 
   componentDidRender() {
-    applyPostfixPadding(
-      this.inputRef.current,
-      this.prefixRef.current?.getBoundingClientRect(),
-      {
+    const prefixBoundingRect = this.prefixRef.current?.getBoundingClientRect();
+    const postfixBoundingRect =
+      this.postfixRef.current?.getBoundingClientRect();
+
+    if (prefixBoundingRect) {
+      applyPostfixPadding(this.inputRef.current, prefixBoundingRect.width, {
         postfix: false,
-      }
-    );
-    applyPostfixPadding(
-      this.inputRef.current,
-      this.postfixRef.current?.getBoundingClientRect(),
-      {
+      });
+    }
+
+    if (postfixBoundingRect) {
+      applyPostfixPadding(this.inputRef.current, postfixBoundingRect.width, {
         postfix: true,
-      }
-    );
+      });
+    }
   }
 
   updateFormInternalValue(value: string) {
