@@ -78,7 +78,9 @@ export function renderHelperText({
 
   return (
     helperText && (
-      <ix-typography class="bottom-text">{helperText}</ix-typography>
+      <ix-typography class="bottom-text" color="weak">
+        {helperText}
+      </ix-typography>
     )
   );
 }

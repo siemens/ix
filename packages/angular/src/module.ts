@@ -25,6 +25,7 @@ import * as tree from './tree';
 import { SelectValueAccessorDirective } from './control-value-accessors/select-value-accessor';
 import { RadioValueAccessorDirective } from './control-value-accessors/radio-value-accessor';
 import { BooleanValueAccessorDirective } from './control-value-accessors/boolean-value-accessor';
+import { DateValueAccessorDirective } from './control-value-accessors';
 const DECLARATIONS = [
   ...DIRECTIVES,
   tree.IxTree,
@@ -35,6 +36,7 @@ const DECLARATIONS = [
   SelectValueAccessorDirective,
   RadioValueAccessorDirective,
   BooleanValueAccessorDirective,
+  DateValueAccessorDirective,
 ];
 
 @NgModule({

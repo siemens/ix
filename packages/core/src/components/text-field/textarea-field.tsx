@@ -51,7 +51,7 @@ export class TextareaField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop({ reflect: true, mutable: true }) value: string;
+  @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
    * tbd
@@ -112,6 +112,16 @@ export class TextareaField implements IxInputFieldComponent<string> {
    * Helpful if you want to set a initial height for the textarea
    */
   @Prop() textareaHeight: string;
+
+  /**
+   * tbd
+   */
+  @Prop() maxLength?: number;
+
+  /**
+   * tbd
+   */
+  @Prop() minLength?: number;
 
   /**
    * tbd
@@ -185,12 +195,19 @@ export class TextareaField implements IxInputFieldComponent<string> {
           isWarning={this.isWarning}
           showTextBehind={this.showTextBehind}
         >
+          {this.maxLength && (
+            <ix-typography slot="top-left" color="weak">
+              {this.value.length}/{this.maxLength}
+            </ix-typography>
+          )}
           <div
             class={{
               'input-wrapper': true,
             }}
           >
             <TextareaElement
+              minLength={this.minLength}
+              maxLength={this.maxLength}
               textareaHeight={this.textareaHeight}
               readonly={this.readonly}
               disabled={this.disabled}

@@ -2656,9 +2656,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -2676,9 +2674,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-checkbox-group"
         ]
       },
       "props": [
@@ -4156,6 +4151,28 @@
           "required": false
         },
         {
+          "name": "i18nErrorDateUnparsable",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-error-date-unparsable",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "default": "'Date is not valid'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "infoText",
           "type": "string",
           "complexType": {
@@ -4389,6 +4406,26 @@
       ],
       "methods": [],
       "events": [
+        {
+          "event": "validityStateChange",
+          "detail": "{ patternMismatch: boolean; invalidReason?: string; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "DateFieldValidityState",
+            "resolved": "{ patternMismatch: boolean; invalidReason?: string; }",
+            "references": {
+              "DateFieldValidityState": {
+                "location": "local",
+                "path": "src/components/date-field/date-field.tsx",
+                "id": "src/components/date-field/date-field.tsx::DateFieldValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Validation state change event.",
+          "docsTags": []
+        },
         {
           "event": "valueChange",
           "detail": "string",
@@ -7392,8 +7429,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-field-wrapper",
-        "ix-playground-internal"
+        "ix-field-wrapper"
       ],
       "dependencies": [
         "ix-typography"
@@ -7403,9 +7439,6 @@
           "ix-typography"
         ],
         "ix-field-wrapper": [
-          "ix-field-label"
-        ],
-        "ix-playground-internal": [
           "ix-field-label"
         ]
       },
@@ -8253,18 +8286,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-helper-text": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-helper-text"
         ]
       },
       "props": [
@@ -9475,6 +9503,57 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/layout-form",
+      "filePath": "src/components/layout-form/layout-form.tsx",
+      "fileName": "layout-form.tsx",
+      "readmePath": "src/components/layout-form/readme.md",
+      "usagesDir": "src/components/layout-form/usage",
+      "tag": "ix-layout-form",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-layout-form"
+        ]
+      },
+      "props": [
+        {
+          "name": "layout",
+          "type": "{ minWidth: string; columns: number; }[]",
+          "complexType": {
+            "original": "{\n    minWidth: string;\n    columns: number;\n  }[]",
+            "resolved": "{ minWidth: string; columns: number; }[]",
+            "references": {}
+          },
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Defines the layout of the form.",
+          "docsTags": [],
+          "default": "[\n    { minWidth: '0', columns: 1 },\n    { minWidth: '35rem', columns: 2 },\n  ]",
+          "values": [
+            {
+              "type": "{ minWidth: string; columns: number; }[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/grid",
       "filePath": "src/components/grid/layout-grid.tsx",
       "fileName": "layout-grid.tsx",
@@ -9493,8 +9572,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -9502,9 +9580,6 @@
           "ix-layout-grid"
         ],
         "ix-datetime-picker": [
-          "ix-layout-grid"
-        ],
-        "ix-playground-internal": [
           "ix-layout-grid"
         ]
       },
@@ -13149,6 +13224,7 @@
           "reflectToAttr": true,
           "docs": "tbd",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -14797,8 +14873,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -14806,9 +14881,6 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
-          "ix-row"
-        ],
-        "ix-playground-internal": [
           "ix-row"
         ]
       },
@@ -17373,6 +17445,7 @@
           "reflectToAttr": true,
           "docs": "tbd",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -17474,11 +17547,13 @@
         "ix-playground-internal"
       ],
       "dependencies": [
-        "ix-field-wrapper"
+        "ix-field-wrapper",
+        "ix-typography"
       ],
       "dependencyGraph": {
         "ix-textarea-field": [
-          "ix-field-wrapper"
+          "ix-field-wrapper",
+          "ix-typography"
         ],
         "ix-field-wrapper": [
           "ix-field-label",
@@ -17599,6 +17674,48 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "max-length",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "min-length",
+          "reflectToAttr": false,
+          "docs": "tbd",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -17728,6 +17845,27 @@
           "required": false
         },
         {
+          "name": "textareaHeight",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "textarea-height",
+          "reflectToAttr": false,
+          "docs": "Helpful if you want to set a initial height for the textarea",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "validText",
           "type": "string",
           "complexType": {
@@ -17761,6 +17899,7 @@
           "reflectToAttr": true,
           "docs": "tbd",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -18717,15 +18856,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-playground-internal": [
-          "ix-toggle"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "checked",
@@ -19756,6 +19889,7 @@
         "ix-push-card",
         "ix-slider",
         "ix-text-field",
+        "ix-textarea-field",
         "ix-time-picker",
         "ix-tooltip"
       ],
@@ -19822,6 +19956,9 @@
           "ix-typography"
         ],
         "ix-text-field": [
+          "ix-typography"
+        ],
+        "ix-textarea-field": [
           "ix-typography"
         ],
         "ix-time-picker": [
@@ -20875,6 +21012,11 @@
       "declaration": "{\n  id: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
+    },
+    "src/components/date-field/date-field.tsx::DateFieldValidityState": {
+      "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
+      "docstring": "",
+      "path": "src/components/date-field/date-field.tsx"
     },
     "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",

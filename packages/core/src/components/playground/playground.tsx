@@ -99,7 +99,12 @@ export class PlaygroundInternal {
               showStepperButtons
             ></ix-number-field>
 
-            <ix-date-field name="begin" label="Begin">
+            <ix-date-field
+              name="begin"
+              label="Begin"
+              onValueChange={console.log}
+              i18n-error-date-unparsable="Please enter a valid date"
+            >
               <ix-icon slot="prefix" name={iconCalendar} size="16"></ix-icon>
             </ix-date-field>
             <ix-date-field name="end" label="End">
@@ -107,6 +112,7 @@ export class PlaygroundInternal {
             </ix-date-field>
 
             <ix-textarea-field
+              maxLength={100}
               name="comment"
               label="Comment"
               data-colspan="2"

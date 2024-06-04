@@ -58,7 +58,7 @@ export class NumberField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop({ reflect: true, mutable: true }) value: string;
+  @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
    * Required field
@@ -243,7 +243,6 @@ export class NumberField implements IxInputFieldComponent<string> {
           >
             <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
             <InputElement
-              maxLength={4}
               readonly={this.readonly}
               disabled={this.disabled}
               min={this.min}
@@ -274,6 +273,7 @@ export class NumberField implements IxInputFieldComponent<string> {
                       this.inputRef.current.stepDown();
                       checkInternalValidity(this, this.inputRef.current);
                       this.updateFormInternalValue(this.inputRef.current.value);
+                      this.valueChange.emit(this.value);
                     }}
                   ></ix-icon-button>
                   <ix-icon-button
@@ -285,6 +285,7 @@ export class NumberField implements IxInputFieldComponent<string> {
                       this.inputRef.current.stepUp();
                       checkInternalValidity(this, this.inputRef.current);
                       this.updateFormInternalValue(this.inputRef.current.value);
+                      this.valueChange.emit(this.value);
                     }}
                   ></ix-icon-button>
                 </div>

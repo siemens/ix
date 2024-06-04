@@ -132,6 +132,12 @@ export class DateField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
+  @Prop({ attribute: 'i18n-error-date-unparsable' }) i18nErrorDateUnparsable =
+    'Date is not valid';
+
+  /**
+   * tbd
+   */
   @Event() valueChange: EventEmitter<string>;
 
   /**
@@ -219,7 +225,9 @@ export class DateField implements IxInputFieldComponent<string> {
   }
 
   async onInput(value: string) {
+    this.value = value;
     if (!value) {
+      this.valueChange.emit(value);
       return;
     }
 
@@ -228,7 +236,6 @@ export class DateField implements IxInputFieldComponent<string> {
     }
 
     const date = DateTime.fromFormat(value, this.format);
-
     if (date.isValid) {
       this.isInputInvalid = false;
 
@@ -341,6 +348,10 @@ export class DateField implements IxInputFieldComponent<string> {
   }
 
   render() {
+    const errorText = this.isInputInvalid
+      ? this.i18nErrorDateUnparsable
+      : this.errorText;
+
     return (
       <Host>
         {this.combineDateStart || this.combineDateEnd ? (
@@ -350,7 +361,7 @@ export class DateField implements IxInputFieldComponent<string> {
             label={this.label}
             helperText={this.helperText}
             isInvalid={this.isInvalid}
-            errorText={this.errorText}
+            errorText={errorText}
             infoText={this.infoText}
             isInfo={this.isInfo}
             isWarning={this.isWarning}

@@ -6,25 +6,97 @@ SPDX-License-Identifier: MIT
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
-<form class="form-validation-example" [formGroup]="exampleForm" (ngSubmit)="submit()" style="margin: 3rem; width: 100%;">
-  <!-- <ix-text-field
-    label="Name:"
-    formControlName="name"
-  >
-  </ix-text-field>
-  <ix-button type="submit">Submit</ix-button> -->
-  <ix-layout-grid>
-    <ix-row>
-      <ix-col size="6">
-        <ix-text-field
-          label="First name:">
-        </ix-text-field>
-      </ix-col>
-      <ix-col size="6">
-        <ix-text-field
-          label="Last name:">
-        </ix-text-field>
-      </ix-col>
-    </ix-row>
-  </ix-layout-grid>
+<form class="form-validation-example" [formGroup]="exampleForm" (ngSubmit)="submit()">
+  <ix-layout-form>
+    <ix-text-field label="Name" formControlName="name"></ix-text-field>
+    <ix-text-field label="Last Name" formControlName="last-name"></ix-text-field>
+    <ix-text-field label="Address" data-colspan="2" formControlName="address">
+      <ix-icon slot="prefix" name="location" size="16"></ix-icon>
+    </ix-text-field>
+
+    <ix-radio-group label="Booking option">
+      <ix-radio
+        label="Option 1"
+        value="1"
+        formControlName="booking-option"
+      ></ix-radio>
+      <ix-radio
+        label="Option 2"
+        value="2"
+        formControlName="booking-option"
+      ></ix-radio>
+      <ix-radio
+        label="Option 3"
+        value="3"
+        formControlName="booking-option"
+      ></ix-radio>
+    </ix-radio-group>
+
+    <ix-number-field label="Preferred room size" formControlName="room-size" class="ix-info" infoText="You can adjust the room size">
+      <ix-icon slot="prefix" name="bezier-curve" size="16"></ix-icon>
+      <ix-typography slot="postfix" color="weak">
+        m<sup>2</sup>
+      </ix-typography>
+    </ix-number-field>
+
+    <ix-select
+      label="Travel option"
+      data-colspan="2"
+      formControlName="travel-option"
+    >
+      <ix-select-item value="1" label="Option 1"></ix-select-item>
+      <ix-select-item value="2" label="Option 2"></ix-select-item>
+      <ix-select-item value="3" label="Option 3"></ix-select-item>
+    </ix-select>
+
+    <ix-number-field
+      formControlName="parents"
+      label="Parents"
+      data-colspan="1"
+      showStepperButtons
+      helperText="Max 5 children"
+      [errorText]="parentsErrorText"
+      max={3}
+    ></ix-number-field>
+
+    <ix-number-field
+      formControlName="children"
+      label="Children"
+      data-colspan="1"
+      showStepperButtons
+      [class.ix-warning]="warningChildren"
+      warningText="More then 5 children cannot be booked"
+    ></ix-number-field>
+
+    <ix-date-field
+      formControlName="begin"
+      label="Begin"
+      i18nErrorDateUnparsable="Please enter a valid date"
+      errorText="ERROR!"
+
+      >
+      <ix-icon slot="prefix" name="calendar" size="16"></ix-icon>
+    </ix-date-field>
+    <ix-date-field formControlName="end" label="End" [errorText]="beginErrorText">
+      <ix-icon slot="postfix" name="calendar" size="16"></ix-icon>
+    </ix-date-field>
+
+    <ix-textarea-field
+      max-length="100"
+      formControlName="comment"
+      label="Comment"
+      data-colspan="2"
+      textareaHeight="10rem"
+      helperText="Let us know if you have any special requests or comments. We will do our best to accommodate you."
+    ></ix-textarea-field>
+
+    <ix-checkbox label="I agree everything" formControlName="agreed" data-colspan="2"></ix-checkbox>
+
+    <ix-text-field type="email" label="Email" formControlName="email"></ix-text-field>
+    <ix-text-field type="password" label="PIN" formControlName="pin" helperText="Only numbers between 1 and 4 is allowed" allowedCharactersPattern="[1-4]" maxLength="4"></ix-text-field>
+
+    <ix-button type="submit" data-colspan="2">
+      Submit
+    </ix-button>
+  </ix-layout-form>
 </form>

@@ -63,7 +63,7 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop({ reflect: true, mutable: true }) value: string;
+  @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
    * tbd
@@ -242,7 +242,7 @@ export class TextField implements IxInputFieldComponent<string> {
         >
           {this.maxLength && (
             <ix-typography slot="top-left" color="weak">
-              {this.value.length}/{this.maxLength}
+              {this.value?.length}/{this.maxLength}
             </ix-typography>
           )}
           <div class="input-wrapper">

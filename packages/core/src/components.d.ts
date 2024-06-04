@@ -665,6 +665,10 @@ export namespace Components {
         /**
           * tbd
          */
+        "i18nErrorDateUnparsable": string;
+        /**
+          * tbd
+         */
         "infoText"?: string;
         /**
           * tbd
@@ -2606,6 +2610,14 @@ export namespace Components {
           * tbd
          */
         "label": string;
+        /**
+          * tbd
+         */
+        "maxLength"?: number;
+        /**
+          * tbd
+         */
+        "minLength"?: number;
         /**
           * tbd
          */
@@ -5520,6 +5532,10 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
+        "i18nErrorDateUnparsable"?: string;
+        /**
+          * tbd
+         */
         "infoText"?: string;
         /**
           * tbd
@@ -7645,6 +7661,14 @@ declare namespace LocalJSX {
           * tbd
          */
         "label"?: string;
+        /**
+          * tbd
+         */
+        "maxLength"?: number;
+        /**
+          * tbd
+         */
+        "minLength"?: number;
         /**
           * tbd
          */

@@ -56,6 +56,7 @@ import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/component
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
+import { defineCustomElement as defineIxLayoutForm } from '@siemens/ix/components/ix-layout-form.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
 import { defineCustomElement as defineIxMapNavigation } from '@siemens/ix/components/ix-map-navigation.js';
@@ -342,7 +343,9 @@ export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField>('ix-da
   'validText',
   'showTextAsTooltip',
   'showTextBehind',
+  'i18nErrorDateUnparsable',
   'valueChange',
+  'validityStateChange',
   'ixFocus',
   'ixBlur'
 ]);
@@ -618,6 +621,11 @@ export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', defineIx
   'unit',
   'state',
   'orientation'
+]);
+
+
+export const IxLayoutForm = /*@__PURE__*/ defineContainer<JSX.IxLayoutForm>('ix-layout-form', defineIxLayoutForm, [
+  'layout'
 ]);
 
 
@@ -1054,6 +1062,9 @@ export const IxTextareaField = /*@__PURE__*/ defineContainer<JSX.IxTextareaField
   'warningText',
   'label',
   'errorText',
+  'textareaHeight',
+  'maxLength',
+  'minLength',
   'valueChange',
   'validityStateChange',
   'ixBlur'

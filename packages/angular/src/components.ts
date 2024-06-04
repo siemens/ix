@@ -570,30 +570,36 @@ The event payload contains information about the selected date range.
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'errorText', 'format', 'helperText', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText']
+  inputs: ['disabled', 'errorText', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText']
 })
 @Component({
   selector: 'ix-date-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'errorText', 'format', 'helperText', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText'],
+  inputs: ['disabled', 'errorText', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText'],
 })
 export class IxDateField {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange']);
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange']);
   }
 }
 
+
+import type { DateFieldValidityState as IIxDateFieldDateFieldValidityState } from '@siemens/ix';
 
 export declare interface IxDateField extends Components.IxDateField {
   /**
    * tbd
    */
   valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Validation state change event.
+   */
+  validityStateChange: EventEmitter<CustomEvent<IIxDateFieldDateFieldValidityState>>;
 }
 
 
@@ -1321,6 +1327,28 @@ export class IxKpi {
 
 
 export declare interface IxKpi extends Components.IxKpi {}
+
+
+@ProxyCmp({
+  inputs: ['layout']
+})
+@Component({
+  selector: 'ix-layout-form',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['layout'],
+})
+export class IxLayoutForm {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxLayoutForm extends Components.IxLayoutForm {}
 
 
 @ProxyCmp({
@@ -2392,14 +2420,14 @@ export declare interface IxTextField extends Components.IxTextField {
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText']
+  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'textareaHeight', 'validText', 'value', 'warningText']
 })
 @Component({
   selector: 'ix-textarea-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText'],
+  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'textareaHeight', 'validText', 'value', 'warningText'],
 })
 export class IxTextareaField {
   protected el: HTMLElement;
