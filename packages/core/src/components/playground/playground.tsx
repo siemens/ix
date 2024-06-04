@@ -14,9 +14,9 @@ import { Component, Element, h, Host, State } from '@stencil/core';
 @Component({
   tag: 'ix-playground-internal',
   styleUrl: 'playground.scss',
-  shadow: true,
+  // shadow: true,
   // Set scoped=true and shadow=false to test global styles like checkbox etc
-  // scoped: true,
+  scoped: true,
 })
 export class PlaygroundInternal {
   @Element() hostElement: HTMLIxPlaygroundInternalElement;
@@ -41,7 +41,6 @@ export class PlaygroundInternal {
           <ix-layout-grid>
             <ix-row style={{ gap: '1rem' }}>
               <ix-number-field
-                max={5}
                 name="number"
                 label="Number"
                 helperText="Helper text"
@@ -83,8 +82,7 @@ export class PlaygroundInternal {
             </ix-row>
             <ix-row>
               <ix-text-field
-                readonly
-                type="text"
+                type="password"
                 name="text-field"
                 label="Text Field"
                 helperText="Helper text with super link content 123 123 123 123"
@@ -195,6 +193,33 @@ export class PlaygroundInternal {
                 infoText="Info text"
                 class={this.validationState}
               ></ix-textarea-field>
+            </ix-row>
+
+            <ix-row>
+              <ix-field-label htmlFor="mytest">Test</ix-field-label>
+              <ix-text-field
+                id="mytest"
+                class={this.validationState}
+              ></ix-text-field>
+              <ix-helper-text
+                htmlFor="mytest"
+                helperText="Helper text"
+                errorText="Error text"
+                validText="Valid text"
+                warningText="Warning text"
+                infoText="Info text"
+              ></ix-helper-text>
+            </ix-row>
+            <ix-row>
+              <ix-date-field
+                class={this.validationState}
+                label="Date"
+                helperText="Helper text"
+                errorText="Error text"
+                validText="Valid text"
+                warningText="Warning text"
+                infoText="Info text"
+              ></ix-date-field>
             </ix-row>
             <ix-row>
               <ix-select

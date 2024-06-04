@@ -12,3 +12,10 @@
 @import './text-field.mixins.scss';
 
 @include input-field;
+
+:host {
+  .password-eye {
+    margin-left: 0.125rem;
+    color: red;
+  }
+}

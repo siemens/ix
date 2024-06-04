@@ -27,6 +27,7 @@ import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-co
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
+import { defineCustomElement as defineIxDateField } from '@siemens/ix/components/ix-date-field.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
@@ -129,6 +130,7 @@ export const IxCol = /*@__PURE__*/createReactComponent<JSX.IxCol, HTMLIxColEleme
 export const IxContent = /*@__PURE__*/createReactComponent<JSX.IxContent, HTMLIxContentElement>('ix-content', undefined, undefined, defineIxContent);
 export const IxContentHeader = /*@__PURE__*/createReactComponent<JSX.IxContentHeader, HTMLIxContentHeaderElement>('ix-content-header', undefined, undefined, defineIxContentHeader);
 export const IxDateDropdown = /*@__PURE__*/createReactComponent<JSX.IxDateDropdown, HTMLIxDateDropdownElement>('ix-date-dropdown', undefined, undefined, defineIxDateDropdown);
+export const IxDateField = /*@__PURE__*/createReactComponent<JSX.IxDateField, HTMLIxDateFieldElement>('ix-date-field', undefined, undefined, defineIxDateField);
 export const IxDatePicker = /*@__PURE__*/createReactComponent<JSX.IxDatePicker, HTMLIxDatePickerElement>('ix-date-picker', undefined, undefined, defineIxDatePicker);
 export const IxDatetimePicker = /*@__PURE__*/createReactComponent<JSX.IxDatetimePicker, HTMLIxDatetimePickerElement>('ix-datetime-picker', undefined, undefined, defineIxDatetimePicker);
 export const IxDivider = /*@__PURE__*/createReactComponent<JSX.IxDivider, HTMLIxDividerElement>('ix-divider', undefined, undefined, defineIxDivider);

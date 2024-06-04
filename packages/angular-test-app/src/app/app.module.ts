@@ -154,9 +154,11 @@ import { NavigationTestComponent } from './components/navigation-test.component'
 import Echarts from 'src/preview-examples/echarts';
 import ValidationSelect from 'src/preview-examples/validation-select';
 import ValidationTextField from 'src/preview-examples/validation-text-field';
+import FormValidation from 'src/preview-examples/form-validation';
 
 @NgModule({
   declarations: [
+    FormValidation,
     ValidationTextField,
     ApplicationExample,
     ApplicationBreakpointExample,

@@ -38,7 +38,8 @@
   }
 
   button:focus-visible {
-    outline: 2px solid blue;
+    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+    outline-offset: var(--theme-radiobtn--focus--outline-offset);
   }
 
   input[type="radio"] {

@@ -570,6 +570,34 @@ The event payload contains information about the selected date range.
 
 
 @ProxyCmp({
+  inputs: ['disabled', 'errorText', 'format', 'helperText', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText']
+})
+@Component({
+  selector: 'ix-date-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'errorText', 'format', 'helperText', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText'],
+})
+export class IxDateField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange']);
+  }
+}
+
+
+export declare interface IxDateField extends Components.IxDateField {
+  /**
+   * tbd
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+}
+
+
+@ProxyCmp({
   inputs: ['corners', 'eventDelimiter', 'format', 'from', 'i18nDone', 'individual', 'locale', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
   methods: ['getCurrentDate']
 })

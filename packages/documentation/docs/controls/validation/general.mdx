@@ -17,7 +17,37 @@ The `label` attribute is optional and can be empty to show no label.
 
 ## Form layouting
 
-To align `form-ready` components in a complex form layout. You typically omit the `label` attribute.
+To align `form-ready` components in a complex form layout. You typically omit the `label` attribubte and define label
+as an `ix-field-label` component.
+
+You can follow the example here:
+
+1. Define the `ix-text-field` component with an `id` attribute.
+
+```html
+  <ix-text-field
+    id="mytest"
+  ></ix-text-field>
+```
+
+2. Define a `ix-field-label` component with a `for` attribute to link the label to the `ix-text-field` component.
+
+```html
+  <ix-field-label htmlFor="mytest">Test</ix-field-label>
+```
+
+3. Define a `ix-helper-text` component with the `for` attribute to link the helper text to the `ix-text-field` component.
+
+```html
+  <ix-helper-text
+    htmlFor="mytest"
+    helperText="Helper text"
+    errorText="Error text"
+    validText="Valid text"
+    warningText="Warning text"
+    infoText="Info text"
+  ></ix-helper-text>
+```
 
 ```html
 <form>
@@ -92,4 +122,6 @@ name="validation-select"
 hideInitalCodePreview
 height="16rem"
 examplesByName
-></Playground>
+></Playground>import { textChangeRangeIsUnchanged } from 'typescript';
+import { isLabeledStatement } from 'typescript';
+

@@ -243,6 +243,7 @@ export class NumberField implements IxInputFieldComponent<string> {
           >
             <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
             <InputElement
+              maxLength={4}
               readonly={this.readonly}
               disabled={this.disabled}
               min={this.min}

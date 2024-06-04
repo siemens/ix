@@ -27,6 +27,7 @@ import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-co
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
+import { defineCustomElement as defineIxDateField } from '@siemens/ix/components/ix-date-field.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
@@ -320,6 +321,30 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'i18nNoRange',
   'today',
   'dateRangeChange'
+]);
+
+
+export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField>('ix-date-field', defineIxDateField, [
+  'name',
+  'placeholder',
+  'value',
+  'format',
+  'required',
+  'helperText',
+  'label',
+  'combineDateStart',
+  'combineDateEnd',
+  'errorText',
+  'readonly',
+  'disabled',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
+  'showTextBehind',
+  'valueChange',
+  'ixFocus',
+  'ixBlur'
 ]);
 
 

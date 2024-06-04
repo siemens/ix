@@ -17,6 +17,7 @@ import {
   Method,
   Prop,
   State,
+  Watch,
   h,
 } from '@stencil/core';
 import {
@@ -32,6 +33,7 @@ import {
   onInputBlur,
   applyPostfixPadding,
 } from './text-field.util';
+import { iconEye, iconEyeCancelled } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-text-field',
@@ -46,7 +48,7 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop() type: 'text' | 'email' = 'text';
+  @Prop() type: 'text' | 'email' | 'password' = 'text';
 
   /**
    * tbd
@@ -159,6 +161,8 @@ export class TextField implements IxInputFieldComponent<string> {
   @State() isWarning: boolean;
   @State() isInvalidByRequired: boolean;
 
+  @State() inputType = 'text';
+
   private inputRef = makeRef<HTMLInputElement>();
   private postfixRef = makeRef<HTMLDivElement>();
   private prefixRef = makeRef<HTMLDivElement>();
@@ -168,8 +172,14 @@ export class TextField implements IxInputFieldComponent<string> {
     mapValidationResult(this, result);
   }
 
+  @Watch('type')
+  updateInputType() {
+    this.inputType = this.type;
+  }
+
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+    this.inputType = this.type;
   }
 
   componentDidRender() {
@@ -243,7 +253,7 @@ export class TextField implements IxInputFieldComponent<string> {
               maxLength={this.maxLength}
               minLength={this.minLength}
               pattern={this.pattern}
-              type={this.type}
+              type={this.inputType}
               isInvalid={this.isInvalid}
               required={this.required}
               value={this.value}
@@ -256,7 +266,26 @@ export class TextField implements IxInputFieldComponent<string> {
               }
               onBlur={() => onInputBlur(this, this.inputRef.current)}
             ></InputElement>
-            <PostfixSlot postfixRef={this.postfixRef}></PostfixSlot>
+            <PostfixSlot postfixRef={this.postfixRef}>
+              {this.type === 'password' && (
+                <ix-icon-button
+                  color="color-weak-text"
+                  class={'password-eye'}
+                  ghost
+                  icon={
+                    this.inputType === 'password' ? iconEye : iconEyeCancelled
+                  }
+                  onClick={() => {
+                    if (this.inputType === 'password') {
+                      this.inputType = 'text';
+                      return;
+                    }
+
+                    this.inputType = 'password';
+                  }}
+                ></ix-icon-button>
+              )}
+            </PostfixSlot>
           </div>
         </ix-field-wrapper>
       </Host>

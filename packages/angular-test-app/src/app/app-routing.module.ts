@@ -145,6 +145,7 @@ import { NavigationTestComponent } from './components/navigation-test.component'
 import Echarts from 'src/preview-examples/echarts';
 import ValidationSelect from 'src/preview-examples/validation-select';
 import ValidationTextField from 'src/preview-examples/validation-text-field';
+import FormValidation from 'src/preview-examples/form-validation';
 
 const routes: Routes = [
   {
@@ -439,6 +440,7 @@ const routes: Routes = [
       { path: 'modal-sizes', component: ModalSizes },
       { path: 'validation-select', component: ValidationSelect },
       { path: 'validation-text-field', component: ValidationTextField },
+      { path: 'form-validation', component: FormValidation },
     ],
   },
 ];

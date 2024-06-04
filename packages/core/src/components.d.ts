@@ -638,6 +638,72 @@ export namespace Components {
         "to": string;
         "today": string;
     }
+    interface IxDateField {
+        "combineDateEnd": boolean;
+        "combineDateStart": boolean;
+        /**
+          * tbd
+         */
+        "disabled": boolean;
+        /**
+          * tbd
+         */
+        "errorText": string;
+        /**
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "format": string;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * tbd
+         */
+        "helperText": string;
+        /**
+          * tbd
+         */
+        "infoText"?: string;
+        /**
+          * tbd
+         */
+        "label": string;
+        /**
+          * tbd
+         */
+        "name": string;
+        /**
+          * tbd
+         */
+        "placeholder": string;
+        /**
+          * tbd
+         */
+        "readonly": boolean;
+        /**
+          * tbd
+         */
+        "required": boolean;
+        /**
+          * tbd
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextBehind"?: boolean;
+        /**
+          * tbd
+         */
+        "validText"?: string;
+        /**
+          * tbd
+         */
+        "value": any;
+        /**
+          * tbd
+         */
+        "warningText"?: string;
+    }
     interface IxDatePicker {
         /**
           * Corner style
@@ -2491,7 +2557,7 @@ export namespace Components {
         /**
           * tbd
          */
-        "type": 'text' | 'email';
+        "type": 'text' | 'email' | 'password';
         /**
           * tbd
          */
@@ -2986,6 +3052,10 @@ export interface IxContentHeaderCustomEvent<T> extends CustomEvent<T> {
 export interface IxDateDropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDateDropdownElement;
+}
+export interface IxDateFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxDateFieldElement;
 }
 export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3492,6 +3562,25 @@ declare global {
     var HTMLIxDateDropdownElement: {
         prototype: HTMLIxDateDropdownElement;
         new (): HTMLIxDateDropdownElement;
+    };
+    interface HTMLIxDateFieldElementEventMap {
+        "valueChange": string;
+        "ixFocus": void;
+        "ixBlur": void;
+    }
+    interface HTMLIxDateFieldElement extends Components.IxDateField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDateFieldElementEventMap>(type: K, listener: (this: HTMLIxDateFieldElement, ev: IxDateFieldCustomEvent<HTMLIxDateFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDateFieldElementEventMap>(type: K, listener: (this: HTMLIxDateFieldElement, ev: IxDateFieldCustomEvent<HTMLIxDateFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxDateFieldElement: {
+        prototype: HTMLIxDateFieldElement;
+        new (): HTMLIxDateFieldElement;
     };
     interface HTMLIxDatePickerElementEventMap {
         "dateChange": DateChangeEvent;
@@ -4686,6 +4775,7 @@ declare global {
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
         "ix-date-dropdown": HTMLIxDateDropdownElement;
+        "ix-date-field": HTMLIxDateFieldElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
@@ -5383,6 +5473,76 @@ declare namespace LocalJSX {
          */
         "to"?: string;
         "today"?: string;
+    }
+    interface IxDateField {
+        "combineDateEnd"?: boolean;
+        "combineDateStart"?: boolean;
+        /**
+          * tbd
+         */
+        "disabled"?: boolean;
+        /**
+          * tbd
+         */
+        "errorText"?: string;
+        /**
+          * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+         */
+        "format"?: string;
+        /**
+          * tbd
+         */
+        "helperText"?: string;
+        /**
+          * tbd
+         */
+        "infoText"?: string;
+        /**
+          * tbd
+         */
+        "label"?: string;
+        /**
+          * tbd
+         */
+        "name"?: string;
+        "onIxBlur"?: (event: IxDateFieldCustomEvent<void>) => void;
+        "onIxFocus"?: (event: IxDateFieldCustomEvent<void>) => void;
+        /**
+          * tbd
+         */
+        "onValueChange"?: (event: IxDateFieldCustomEvent<string>) => void;
+        /**
+          * tbd
+         */
+        "placeholder"?: string;
+        /**
+          * tbd
+         */
+        "readonly"?: boolean;
+        /**
+          * tbd
+         */
+        "required"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * tbd
+         */
+        "showTextBehind"?: boolean;
+        /**
+          * tbd
+         */
+        "validText"?: string;
+        /**
+          * tbd
+         */
+        "value"?: any;
+        /**
+          * tbd
+         */
+        "warningText"?: string;
     }
     interface IxDatePicker {
         /**
@@ -7413,7 +7573,7 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
-        "type"?: 'text' | 'email';
+        "type"?: 'text' | 'email' | 'password';
         /**
           * tbd
          */
@@ -7948,6 +8108,7 @@ declare namespace LocalJSX {
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": IxCssGridItem;
         "ix-date-dropdown": IxDateDropdown;
+        "ix-date-field": IxDateField;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
@@ -8099,6 +8260,7 @@ declare module "@stencil/core" {
              * @since 2.1.0
              */
             "ix-date-dropdown": LocalJSX.IxDateDropdown & JSXBase.HTMLAttributes<HTMLIxDateDropdownElement>;
+            "ix-date-field": LocalJSX.IxDateField & JSXBase.HTMLAttributes<HTMLIxDateFieldElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;
