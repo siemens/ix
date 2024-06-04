@@ -76,6 +76,7 @@ export interface IxFormComponent<T = any> extends IxComponent {
   valueChange: EventEmitter<T>;
   updateFormInternalValue(value: T): void;
   hasValidValue(): Promise<boolean>;
+  getValidityState?(): Promise<ValidityState>;
   getAssociatedFormElement(): Promise<HTMLFormElement>;
 }
 

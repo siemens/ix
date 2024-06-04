@@ -31,6 +31,11 @@ import {
   createClassMutationObserver,
 } from '../utils/field';
 
+export type DateFieldValidityState = {
+  patternMismatch: boolean;
+  invalidReason?: string;
+};
+
 @Component({
   tag: 'ix-date-field',
   styleUrl: 'date-field.scss',
@@ -127,6 +132,11 @@ export class DateField implements IxInputFieldComponent<string> {
    */
   @Event() valueChange: EventEmitter<string>;
 
+  /**
+   * Validation state change event.
+   */
+  @Event() validityStateChange: EventEmitter<DateFieldValidityState>;
+
   /** @internal */
   @Event() ixFocus: EventEmitter<void>;
 
@@ -145,6 +155,8 @@ export class DateField implements IxInputFieldComponent<string> {
   private inputElementRef = makeRef<HTMLInputElement>();
   private dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver: ClassMutationObserver;
+  private invalidReason: string;
+
   /**
    * tbd
    */
@@ -194,16 +206,27 @@ export class DateField implements IxInputFieldComponent<string> {
   }
 
   async onInput(value: string) {
-    if (DateTime.fromFormat(value, this.format).isValid) {
+    if (!value) {
+      return;
+    }
+
+    if (!this.format) {
+      return;
+    }
+
+    const date = DateTime.fromFormat(value, this.format);
+
+    if (date.isValid) {
       this.isInputInvalid = false;
 
       this.updateFormInternalValue(value);
-      this.valueChange.emit(value);
-
       this.closeDropdown();
     } else {
       this.isInputInvalid = true;
+      this.invalidReason = date.invalidReason;
     }
+
+    this.valueChange.emit(value);
   }
 
   async openDropdown() {
@@ -266,10 +289,37 @@ export class DateField implements IxInputFieldComponent<string> {
     isValid,
     isWarning,
   }: ValidationResults) {
-    this.isInvalid = isInvalid || isInvalidByRequired;
+    this.isInvalid = isInvalid || isInvalidByRequired || this.isInputInvalid;
     this.isInfo = isInfo;
     this.isValid = isValid;
     this.isWarning = isWarning;
+  }
+
+  @Watch('isInputInvalid')
+  async onInputValidationChange() {
+    const state = await this.getValidityState();
+    this.validityStateChange.emit({
+      patternMismatch: state.patternMismatch,
+      invalidReason: this.invalidReason,
+    });
+  }
+
+  /** @internal */
+  @Method()
+  getValidityState(): Promise<ValidityState> {
+    return Promise.resolve({
+      badInput: false,
+      customError: false,
+      patternMismatch: this.isInputInvalid,
+      rangeOverflow: false,
+      rangeUnderflow: false,
+      stepMismatch: false,
+      tooLong: false,
+      tooShort: false,
+      typeMismatch: false,
+      valid: !this.isInputInvalid,
+      valueMissing: !!this.required && !this.value,
+    });
   }
 
   render() {

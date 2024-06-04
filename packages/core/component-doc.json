@@ -8442,6 +8442,7 @@
         "ix-pane",
         "ix-select",
         "ix-split-button",
+        "ix-text-field",
         "ix-time-picker",
         "ix-toast"
       ],
@@ -8531,6 +8532,9 @@
           "ix-icon-button"
         ],
         "ix-split-button": [
+          "ix-icon-button"
+        ],
+        "ix-text-field": [
           "ix-icon-button"
         ],
         "ix-time-picker": [
@@ -16961,12 +16965,14 @@
       ],
       "dependencies": [
         "ix-field-wrapper",
-        "ix-typography"
+        "ix-typography",
+        "ix-icon-button"
       ],
       "dependencyGraph": {
         "ix-text-field": [
           "ix-field-wrapper",
-          "ix-typography"
+          "ix-typography",
+          "ix-icon-button"
         ],
         "ix-field-wrapper": [
           "ix-field-label",
@@ -16978,6 +16984,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
         ],
         "ix-playground-internal": [
           "ix-text-field"
@@ -17301,10 +17310,10 @@
         },
         {
           "name": "type",
-          "type": "\"email\" | \"text\"",
+          "type": "\"email\" | \"password\" | \"text\"",
           "complexType": {
-            "original": "'text' | 'email'",
-            "resolved": "\"email\" | \"text\"",
+            "original": "'text' | 'email' | 'password'",
+            "resolved": "\"email\" | \"password\" | \"text\"",
             "references": {}
           },
           "mutable": false,
@@ -17316,6 +17325,10 @@
           "values": [
             {
               "value": "email",
+              "type": "string"
+            },
+            {
+              "value": "password",
               "type": "string"
             },
             {

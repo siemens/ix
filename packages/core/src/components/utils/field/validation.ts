@@ -108,15 +108,27 @@ export function HookValidationLifecycle(options?: {
       ) as unknown as HTMLIxFormComponentElement<unknown>;
 
       checkIfRequiredFunction = async () => {
-        if (!host.hasValidValue) {
-          return;
+        if (host.hasValidValue && typeof host.hasValidValue === 'function') {
+          const hasValue = await host.hasValidValue();
+          if (host.required) {
+            host.classList.toggle('ix-invalid--required', !hasValue);
+          } else {
+            host.classList.remove('ix-invalid--required');
+          }
         }
 
-        const hasValue = await host.hasValidValue();
-        if (host.required) {
-          host.classList.toggle('ix-invalid--required', !hasValue);
-        } else {
-          host.classList.remove('ix-invalid--required');
+        if (
+          host.getValidityState &&
+          typeof host.getValidityState === 'function'
+        ) {
+          const validityState = await host.getValidityState();
+          Object.keys(validityState)
+            // Use only the keys that are relevant for the validation state
+            // patternMismatch used for `ix-date-field`
+            .filter((key) => ['patternMismatch'].includes(key))
+            .forEach((key) => {
+              host.classList.toggle(`ix-invalid--${key}`, validityState[key]);
+            });
         }
       };
 

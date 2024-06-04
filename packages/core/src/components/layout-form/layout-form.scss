@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  position: relative;
+
+  margin: 0 0.5rem;
+
+  .container {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  ::slotted(*) {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}

@@ -7,7 +7,7 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
-import { iconBulb } from '@siemens/ix-icons/icons';
+import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, State } from '@stencil/core';
 
 /** @internal */
@@ -27,6 +27,98 @@ export class PlaygroundInternal {
     return (
       <Host>
         <form
+          onSubmit={(e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target as HTMLFormElement);
+
+            for (const [key, value] of formData.entries()) {
+              console.log(`${key}: ${value}`);
+            }
+          }}
+        >
+          <ix-layout-form
+            layout={[
+              { minWidth: '0', columns: 1 },
+              { minWidth: '35rem', columns: 2 },
+            ]}
+          >
+            <ix-text-field label="Name" name="name"></ix-text-field>
+            <ix-text-field label="Last Name" name="last-name"></ix-text-field>
+            <ix-text-field label="Address" data-colspan="2" name="address">
+              <ix-icon slot="prefix" name={iconLocation} size="16"></ix-icon>
+            </ix-text-field>
+
+            <ix-radio-group label="Booking option">
+              <ix-radio
+                label="Option 1"
+                value="1"
+                name="booking-option"
+              ></ix-radio>
+              <ix-radio
+                label="Option 2"
+                value="2"
+                name="booking-option"
+              ></ix-radio>
+              <ix-radio
+                label="Option 3"
+                value="3"
+                name="booking-option"
+              ></ix-radio>
+            </ix-radio-group>
+
+            <ix-number-field label="Preferred room size">
+              <ix-icon slot="prefix" name={iconBezierCurve} size="16"></ix-icon>
+              <ix-typography slot="postfix" color="weak">
+                m&sup2;
+              </ix-typography>
+            </ix-number-field>
+
+            <ix-select
+              label="Travel option"
+              data-colspan="2"
+              name="travel-option"
+            >
+              <ix-select-item value="1" label="Option 1"></ix-select-item>
+              <ix-select-item value="2" label="Option 2"></ix-select-item>
+              <ix-select-item value="3" label="Option 3"></ix-select-item>
+            </ix-select>
+
+            <ix-number-field
+              name="parents"
+              label="Parents"
+              data-colspan="1"
+              showStepperButtons
+              helperText="Max 3 children"
+              max={3}
+            ></ix-number-field>
+
+            <ix-number-field
+              name="children"
+              label="Children"
+              data-colspan="1"
+              showStepperButtons
+            ></ix-number-field>
+
+            <ix-date-field name="begin" label="Begin"></ix-date-field>
+            <ix-date-field name="end" label="End"></ix-date-field>
+
+            <ix-textarea-field
+              name="comment"
+              label="Comment"
+              data-colspan="2"
+              textareaHeight="10rem"
+              helperText="Let us know if you have any special requests or comments. We will do our best to accommodate you."
+            ></ix-textarea-field>
+
+            <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+
+            <ix-button type="submit" data-colspan="2">
+              Submit
+            </ix-button>
+          </ix-layout-form>
+        </form>
+        {/* <form
           onSubmit={(e) => {
             e.preventDefault();
             const formData = new FormData(e.target as HTMLFormElement);
@@ -257,7 +349,7 @@ export class PlaygroundInternal {
               <ix-button type="submit">Submit</ix-button>
             </ix-row>
           </ix-layout-grid>
-        </form>
+        </form> */}
       </Host>
     );
   }

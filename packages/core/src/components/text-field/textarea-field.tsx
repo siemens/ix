@@ -109,6 +109,11 @@ export class TextareaField implements IxInputFieldComponent<string> {
   @Prop() errorText: string;
 
   /**
+   * Helpful if you want to set a initial height for the textarea
+   */
+  @Prop() textareaHeight: string;
+
+  /**
    * tbd
    */
   @Event() valueChange: EventEmitter<string>;
@@ -186,6 +191,7 @@ export class TextareaField implements IxInputFieldComponent<string> {
             }}
           >
             <TextareaElement
+              textareaHeight={this.textareaHeight}
               readonly={this.readonly}
               disabled={this.disabled}
               isInvalid={this.isInvalid}

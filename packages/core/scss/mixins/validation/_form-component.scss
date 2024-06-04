@@ -27,7 +27,7 @@ $notSelectors: ':not(.disabled):not(.readonly)';
 }
 
 @mixin host-invalid {
-  :host(.ix-invalid#{$notSelectors}),
+  :host([class*='ix-invalid']#{$notSelectors}),
   :host(.ix-invalid--required#{$notSelectors}) {
     @content;
   }

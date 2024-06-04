@@ -10,6 +10,7 @@ import { h } from '@stencil/core';
 import { MakeRef } from '../utils/make-ref';
 
 export function TextareaElement(props: {
+  textareaHeight: string;
   disabled: boolean;
   readonly: boolean;
   maxLength?: number;
@@ -45,6 +46,7 @@ export function TextareaElement(props: {
         props.updateFormInternalValue(target.value);
       }}
       onBlur={() => props.onBlur()}
+      style={{ height: props.textareaHeight }}
     ></textarea>
   );
 }
