@@ -7,7 +7,11 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
-import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
+import {
+  iconBezierCurve,
+  iconCalendar,
+  iconLocation,
+} from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, State } from '@stencil/core';
 
 /** @internal */
@@ -37,12 +41,7 @@ export class PlaygroundInternal {
             }
           }}
         >
-          <ix-layout-form
-            layout={[
-              { minWidth: '0', columns: 1 },
-              { minWidth: '35rem', columns: 2 },
-            ]}
-          >
+          <ix-layout-form>
             <ix-text-field label="Name" name="name"></ix-text-field>
             <ix-text-field label="Last Name" name="last-name"></ix-text-field>
             <ix-text-field label="Address" data-colspan="2" name="address">
@@ -100,8 +99,12 @@ export class PlaygroundInternal {
               showStepperButtons
             ></ix-number-field>
 
-            <ix-date-field name="begin" label="Begin"></ix-date-field>
-            <ix-date-field name="end" label="End"></ix-date-field>
+            <ix-date-field name="begin" label="Begin">
+              <ix-icon slot="prefix" name={iconCalendar} size="16"></ix-icon>
+            </ix-date-field>
+            <ix-date-field name="end" label="End">
+              <ix-icon slot="postfix" name={iconCalendar} size="16"></ix-icon>
+            </ix-date-field>
 
             <ix-textarea-field
               name="comment"

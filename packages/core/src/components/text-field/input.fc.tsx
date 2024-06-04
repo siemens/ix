@@ -72,6 +72,7 @@ export function InputElement(props: {
 }) {
   return (
     <input
+      autoComplete="off"
       readOnly={props.readonly}
       disabled={props.disabled}
       min={props.min}

@@ -30,6 +30,8 @@ import {
   ValidationResults,
   createClassMutationObserver,
 } from '../utils/field';
+import { PostfixSlot, PrefixSlot } from '../text-field/input.fc';
+import { adjustPaddingForPrefixAndPostfix } from '../text-field/text-field.util';
 
 export type DateFieldValidityState = {
   patternMismatch: boolean;
@@ -152,6 +154,9 @@ export class DateField implements IxInputFieldComponent<string> {
   @State() isWarning = false;
   @State() focus = false;
 
+  private prefixRef = makeRef<HTMLDivElement>();
+  private postfixRef = makeRef<HTMLDivElement>();
+
   private inputElementRef = makeRef<HTMLInputElement>();
   private dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver: ClassMutationObserver;
@@ -180,6 +185,14 @@ export class DateField implements IxInputFieldComponent<string> {
     }
 
     this.checkClassList();
+  }
+
+  componentDidRender(): void {
+    adjustPaddingForPrefixAndPostfix(
+      this.prefixRef.current,
+      this.postfixRef.current,
+      this.inputElementRef.current
+    );
   }
 
   disconnectedCallback(): void {
@@ -252,32 +265,37 @@ export class DateField implements IxInputFieldComponent<string> {
 
   private renderInput() {
     return (
-      <input
-        class={{
-          'is-invalid': this.isInputInvalid,
-          'combine-start': this.combineDateStart,
-          'combine-end': this.combineDateEnd,
-        }}
-        required={this.required}
-        ref={this.inputElementRef}
-        type="text"
-        value={this.value}
-        onInput={(event) => {
-          const target = event.target as HTMLInputElement;
-          this.onInput(target.value);
-        }}
-        onClick={(event) => {
-          if (this.show) {
-            event.stopPropagation();
-            event.preventDefault();
-          }
-        }}
-        onFocus={async () => {
-          this.openDropdown();
-          this.ixFocus.emit();
-        }}
-        onBlur={() => this.ixBlur.emit()}
-      ></input>
+      <div class="input-wrapper">
+        <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
+        <input
+          autoComplete="off"
+          class={{
+            'is-invalid': this.isInputInvalid,
+            'combine-start': this.combineDateStart,
+            'combine-end': this.combineDateEnd,
+          }}
+          required={this.required}
+          ref={this.inputElementRef}
+          type="text"
+          value={this.value}
+          onInput={(event) => {
+            const target = event.target as HTMLInputElement;
+            this.onInput(target.value);
+          }}
+          onClick={(event) => {
+            if (this.show) {
+              event.stopPropagation();
+              event.preventDefault();
+            }
+          }}
+          onFocus={async () => {
+            this.openDropdown();
+            this.ixFocus.emit();
+          }}
+          onBlur={() => this.ixBlur.emit()}
+        ></input>
+        <PostfixSlot postfixRef={this.postfixRef}></PostfixSlot>
+      </div>
     );
   }
 

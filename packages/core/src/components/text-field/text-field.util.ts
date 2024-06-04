@@ -61,7 +61,7 @@ export function onInputBlur(
 }
 
 export function applyPostfixPadding(
-  inputElement: HTMLInputElement,
+  inputElement: HTMLElement,
   width: number,
   options: {
     postfix: boolean;
@@ -84,5 +84,26 @@ export function applyPostfixPadding(
     })`;
   } else {
     inputElement.style.paddingLeft = padding;
+  }
+}
+
+export function adjustPaddingForPrefixAndPostfix(
+  prefixElement: HTMLElement,
+  postfixElement: HTMLElement,
+  inputElement: HTMLElement
+) {
+  const prefixBoundingRect = prefixElement.getBoundingClientRect();
+  const postfixBoundingRect = postfixElement.getBoundingClientRect();
+
+  if (prefixBoundingRect) {
+    applyPostfixPadding(inputElement, prefixBoundingRect.width, {
+      postfix: false,
+    });
+  }
+
+  if (postfixBoundingRect) {
+    applyPostfixPadding(inputElement, postfixBoundingRect.width, {
+      postfix: true,
+    });
   }
 }

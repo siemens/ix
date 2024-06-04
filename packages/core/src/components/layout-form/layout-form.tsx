@@ -15,7 +15,10 @@ export class LayoutForm implements IxComponent {
   @Prop() layout: {
     minWidth: string;
     columns: number;
-  }[];
+  }[] = [
+    { minWidth: '0', columns: 1 },
+    { minWidth: '35rem', columns: 2 },
+  ];
 
   @State() gridTemplateColumns: string;
 
