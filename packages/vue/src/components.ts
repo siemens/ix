@@ -26,6 +26,7 @@ import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-c
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
+import { defineCustomElement as defineIxCustomField } from '@siemens/ix/components/ix-custom-field.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
 import { defineCustomElement as defineIxDateField } from '@siemens/ix/components/ix-date-field.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
@@ -303,6 +304,18 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
   'headerSubtitle',
   'hasBackButton',
   'backButtonClick'
+]);
+
+
+export const IxCustomField = /*@__PURE__*/ defineContainer<JSX.IxCustomField>('ix-custom-field', defineIxCustomField, [
+  'label',
+  'helperText',
+  'infoText',
+  'warningText',
+  'errorText',
+  'validText',
+  'showTextAsTooltip',
+  'showTextBehind'
 ]);
 
 

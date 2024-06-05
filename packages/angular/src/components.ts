@@ -536,6 +536,28 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
+  inputs: ['errorText', 'helperText', 'infoText', 'label', 'showTextAsTooltip', 'showTextBehind', 'validText', 'warningText']
+})
+@Component({
+  selector: 'ix-custom-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['errorText', 'helperText', 'infoText', 'label', 'showTextAsTooltip', 'showTextBehind', 'validText', 'warningText'],
+})
+export class IxCustomField {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxCustomField extends Components.IxCustomField {}
+
+
+@ProxyCmp({
   inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
   methods: ['getDateRange']
 })

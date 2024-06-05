@@ -50,22 +50,20 @@ LICENSE file in the root directory of this source tree.
     </ix-select>
 
     <ix-number-field
-      formControlName="parents"
-      label="Parents"
+      formControlName="thresholdLimitA"
+      label="Threshold limit A"
       data-colspan="1"
-      showStepperButtons
-      helperText="Max 5 children"
-      [errorText]="parentsErrorText"
-      max={3}
+      helperText="Max threshold is 5"
+      [errorText]="thresholdLimitAErrorText"
     ></ix-number-field>
 
     <ix-number-field
-      formControlName="children"
-      label="Children"
+      formControlName="thresholdLimitB"
+      label="Threshold limit B"
       data-colspan="1"
       showStepperButtons
-      [class.ix-warning]="warningChildren"
-      warningText="More then 5 children cannot be booked"
+      [class.ix-warning]="thresholdLimitBWarning"
+      warningText="A threshold greater than 5 is not recommended"
     ></ix-number-field>
 
     <ix-date-field
@@ -90,12 +88,12 @@ LICENSE file in the root directory of this source tree.
       helperText="Let us know if you have any special requests or comments. We will do our best to accommodate you."
     ></ix-textarea-field>
 
-    <ix-checkbox label="I agree everything" formControlName="agreed" data-colspan="2"></ix-checkbox>
 
     <ix-text-field type="email" label="Email" formControlName="email"></ix-text-field>
     <ix-text-field type="password" label="PIN" formControlName="pin" helperText="Only numbers between 1 and 4 is allowed" allowedCharactersPattern="[1-4]" maxLength="4"></ix-text-field>
 
-    <ix-button type="submit" data-colspan="2">
+    <ix-checkbox label="I agree everything" formControlName="agreed" data-colspan="2"></ix-checkbox>
+    <ix-button type="submit" data-colspan="1">
       Submit
     </ix-button>
   </ix-layout-form>

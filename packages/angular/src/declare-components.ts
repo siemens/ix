@@ -23,6 +23,7 @@ export const DIRECTIVES = [
   d.IxCol,
   d.IxContent,
   d.IxContentHeader,
+  d.IxCustomField,
   d.IxDateDropdown,
   d.IxDateField,
   d.IxDatePicker,

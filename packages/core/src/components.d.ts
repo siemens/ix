@@ -576,6 +576,40 @@ export namespace Components {
          */
         "itemName": string;
     }
+    interface IxCustomField {
+        /**
+          * Error text for the field component
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component which show additional information
+         */
+        "helperText"?: string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
+        /**
+          * Show helper, info, warning, error and valid text as tooltip
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * Show helper, error, info, warning text behind the component
+         */
+        "showTextBehind"?: boolean;
+        /**
+          * Valid text for the field component
+         */
+        "validText"?: string;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
+    }
     /**
      * @since 2.1.0
      */
@@ -3571,6 +3605,12 @@ declare global {
         prototype: HTMLIxCssGridItemElement;
         new (): HTMLIxCssGridItemElement;
     };
+    interface HTMLIxCustomFieldElement extends Components.IxCustomField, HTMLStencilElement {
+    }
+    var HTMLIxCustomFieldElement: {
+        prototype: HTMLIxCustomFieldElement;
+        new (): HTMLIxCustomFieldElement;
+    };
     interface HTMLIxDateDropdownElementEventMap {
         "dateRangeChange": DateRangeChangeEvent;
     }
@@ -4809,6 +4849,7 @@ declare global {
         "ix-content-header": HTMLIxContentHeaderElement;
         "ix-css-grid": HTMLIxCssGridElement;
         "ix-css-grid-item": HTMLIxCssGridItemElement;
+        "ix-custom-field": HTMLIxCustomFieldElement;
         "ix-date-dropdown": HTMLIxDateDropdownElement;
         "ix-date-field": HTMLIxDateFieldElement;
         "ix-date-picker": HTMLIxDatePickerElement;
@@ -5445,6 +5486,40 @@ declare namespace LocalJSX {
           * Grid item name
          */
         "itemName"?: string;
+    }
+    interface IxCustomField {
+        /**
+          * Error text for the field component
+         */
+        "errorText"?: string;
+        /**
+          * Show text below the field component which show additional information
+         */
+        "helperText"?: string;
+        /**
+          * Info text for the field component
+         */
+        "infoText"?: string;
+        /**
+          * Label for the field component
+         */
+        "label"?: string;
+        /**
+          * Show helper, info, warning, error and valid text as tooltip
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * Show helper, error, info, warning text behind the component
+         */
+        "showTextBehind"?: boolean;
+        /**
+          * Valid text for the field component
+         */
+        "validText"?: string;
+        /**
+          * Warning text for the field component
+         */
+        "warningText"?: string;
     }
     /**
      * @since 2.1.0
@@ -8172,6 +8247,7 @@ declare namespace LocalJSX {
         "ix-content-header": IxContentHeader;
         "ix-css-grid": IxCssGrid;
         "ix-css-grid-item": IxCssGridItem;
+        "ix-custom-field": IxCustomField;
         "ix-date-dropdown": IxDateDropdown;
         "ix-date-field": IxDateField;
         "ix-date-picker": IxDatePicker;
@@ -8322,6 +8398,7 @@ declare module "@stencil/core" {
             "ix-content-header": LocalJSX.IxContentHeader & JSXBase.HTMLAttributes<HTMLIxContentHeaderElement>;
             "ix-css-grid": LocalJSX.IxCssGrid & JSXBase.HTMLAttributes<HTMLIxCssGridElement>;
             "ix-css-grid-item": LocalJSX.IxCssGridItem & JSXBase.HTMLAttributes<HTMLIxCssGridItemElement>;
+            "ix-custom-field": LocalJSX.IxCustomField & JSXBase.HTMLAttributes<HTMLIxCustomFieldElement>;
             /**
              * @since 2.1.0
              */

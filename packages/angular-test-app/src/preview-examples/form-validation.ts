@@ -38,20 +38,23 @@ export function forbiddenDateValidator(nameRe: RegExp): ValidatorFn {
   templateUrl: `./form-validation.html`,
 })
 export default class FormValidation implements OnInit, OnDestroy {
-  parentsErrorText = '';
+  thresholdLimitAErrorText = '';
   beginErrorText = '';
 
   statusSubscription?: Subscription;
   valueSubscription?: Subscription;
 
-  warningChildren = false;
+  thresholdLimitBWarning = false;
 
   exampleForm = new FormGroup({
     name: new FormControl('John', [Validators.required]),
     'last-name': new FormControl('Muster', [Validators.required]),
     address: new FormControl('John Street 14', [Validators.required]),
-    parents: new FormControl(6, [Validators.required, Validators.max(5)]),
-    children: new FormControl(4, [Validators.required]),
+    thresholdLimitA: new FormControl(6, [
+      Validators.required,
+      Validators.max(5),
+    ]),
+    thresholdLimitB: new FormControl(7, [Validators.required]),
     begin: new FormControl('2024/05/05', [Validators.required]),
     end: new FormControl('2024/05/05', [
       Validators.required,
@@ -67,13 +70,14 @@ export default class FormValidation implements OnInit, OnDestroy {
   });
 
   private onValidationChange(value: typeof this.exampleForm.value) {
-    this.warningChildren = !!value.children && value.children > 5;
+    this.thresholdLimitBWarning =
+      !!value.thresholdLimitB && value.thresholdLimitB > 5;
   }
 
   private onStatusChange() {
-    if (this.exampleForm.controls['parents'].errors) {
+    if (this.exampleForm.controls['thresholdLimitA'].errors) {
       this.handleParentsValidationErrors(
-        this.exampleForm.controls['parents'].errors
+        this.exampleForm.controls['thresholdLimitA'].errors
       );
     }
 
@@ -84,7 +88,8 @@ export default class FormValidation implements OnInit, OnDestroy {
 
   handleParentsValidationErrors(errors: ValidationErrors) {
     if (errors['max']) {
-      this.parentsErrorText = 'The number of parents must be less than 5';
+      this.thresholdLimitAErrorText =
+        'The threshold must be equal or lesser than 5';
     }
   }
 

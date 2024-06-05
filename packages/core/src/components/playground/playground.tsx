@@ -84,8 +84,8 @@ export class PlaygroundInternal {
             </ix-select>
 
             <ix-number-field
-              name="parents"
-              label="Parents"
+              name="threshold-limit-a"
+              label="Threshold Limit A"
               data-colspan="1"
               showStepperButtons
               helperText="Max 3 children"
@@ -93,8 +93,8 @@ export class PlaygroundInternal {
             ></ix-number-field>
 
             <ix-number-field
-              name="children"
-              label="Children"
+              name="threshold-limit-b"
+              label="Threshold Limit B"
               data-colspan="1"
               showStepperButtons
             ></ix-number-field>
