@@ -196,7 +196,7 @@ export class TextareaField implements IxInputFieldComponent<string> {
           showTextBehind={this.showTextBehind}
         >
           {this.maxLength && (
-            <ix-typography slot="top-left" color="weak">
+            <ix-typography slot="bottom-right" color="weak">
               {this.value.length}/{this.maxLength}
             </ix-typography>
           )}

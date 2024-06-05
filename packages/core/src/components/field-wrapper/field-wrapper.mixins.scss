@@ -21,6 +21,10 @@
     margin: 0.125rem;
   }
 
+  .text-icon.invalid {
+    color: var(--theme-helper-icon--color--invalid)
+  }
+
   .text-icon.info {
     color: var(--theme-helper-icon--color--info)
   }

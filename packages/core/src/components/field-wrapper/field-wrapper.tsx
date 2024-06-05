@@ -103,7 +103,7 @@ export class FieldWrapper implements FieldWrapperInterface {
               {this.label}
             </ix-field-label>
           )}
-          <slot name="top-left"></slot>
+          <slot name="top-right"></slot>
         </div>
         <div
           class={{
@@ -113,7 +113,12 @@ export class FieldWrapper implements FieldWrapperInterface {
         >
           <slot></slot>
         </div>
-        {!this.showTextAsTooltip && renderHelperText(textOptions)}
+        <div class={'field-bottom'}>
+          {!this.showTextAsTooltip && renderHelperText(textOptions)}{' '}
+          <div class="bottom-right">
+            <slot name="bottom-right"></slot>
+          </div>
+        </div>
         {this.showTextAsTooltip === true && (
           <ix-tooltip for={this.slotRef.waitForCurrent()} showDelay={500}>
             {renderHelperText(textOptions)}

@@ -17,6 +17,8 @@ The `label` attribute is optional and can be empty to show no label.
 
 ## Form layouting
 
+### Using custom layout
+
 To align `form-ready` components in a complex form layout. You typically omit the `label` attribubte and define label
 as an `ix-field-label` component.
 
@@ -48,6 +50,8 @@ You can follow the example here:
     infoText="Info text"
   ></ix-helper-text>
 ```
+
+### Using `ix-layout-form`
 
 ```html
 <form>
@@ -118,10 +122,9 @@ Will show the component as `invalid` because `invalid` has a higher priority.
 </Admonition>
 
 <Playground
-name="validation-select"
+name="form-validation"
 hideInitalCodePreview
 height="16rem"
 examplesByName
-></Playground>import { textChangeRangeIsUnchanged } from 'typescript';
-import { isLabeledStatement } from 'typescript';
+></Playground>
 
