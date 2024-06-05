@@ -40,11 +40,6 @@ export interface FieldWrapperInterface {
    * Show helper, info, warning, error and valid text as tooltip
    */
   showTextAsTooltip?: boolean;
-
-  /**
-   * Show helper, error, info, warning text behind the component
-   */
-  showTextBehind?: boolean;
 }
 
 export type HTMLIxFormComponentElement<T> = HTMLElement & IxFormComponent<T>;

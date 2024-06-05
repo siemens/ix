@@ -58,11 +58,6 @@ export class CustomField
    */
   @Prop() showTextAsTooltip?: boolean;
 
-  /**
-   * Show helper, error, info, warning text behind the component
-   */
-  @Prop() showTextBehind?: boolean;
-
   @State() isInvalid: boolean;
   @State() isValid: boolean;
   @State() isInfo: boolean;
@@ -94,7 +89,6 @@ export class CustomField
           errorText={this.errorText}
           validText={this.validText}
           showTextAsTooltip={this.showTextAsTooltip}
-          showTextBehind={this.showTextBehind}
           isInvalid={this.isInvalid}
           isValid={this.isValid}
           isInfo={this.isInfo}

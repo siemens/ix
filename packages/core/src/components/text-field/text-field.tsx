@@ -98,11 +98,6 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop() showTextBehind?: boolean;
-
-  /**
-   * tbd
-   */
   @Prop() validText?: string;
 
   /**
@@ -238,7 +233,6 @@ export class TextField implements IxInputFieldComponent<string> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          showTextBehind={this.showTextBehind}
         >
           <div class="input-wrapper">
             <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>

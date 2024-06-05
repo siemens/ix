@@ -44,7 +44,6 @@ export class CheckboxGroup
   @Prop() warningText?: string;
 
   showTextAsTooltip = false;
-  showTextBehind = false;
 
   @State() isInvalid = false;
   @State() isInfo = false;
@@ -78,7 +77,6 @@ export class CheckboxGroup
           validText={this.validText}
           warningText={this.warningText}
           showTextAsTooltip={this.showTextAsTooltip}
-          showTextBehind={this.showTextBehind}
           isInvalid={this.isInvalid}
           isInfo={this.isInfo}
           isValid={this.isValid}

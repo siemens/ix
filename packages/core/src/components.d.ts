@@ -598,10 +598,6 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Show helper, error, info, warning text behind the component
-         */
-        "showTextBehind"?: boolean;
-        /**
           * Valid text for the field component
          */
         "validText"?: string;
@@ -728,10 +724,6 @@ export namespace Components {
           * tbd
          */
         "showTextAsTooltip"?: boolean;
-        /**
-          * tbd
-         */
-        "showTextBehind"?: boolean;
         /**
           * tbd
          */
@@ -1227,10 +1219,6 @@ export namespace Components {
           * Show helper, error, info, warning text as tooltip
          */
         "showTextAsTooltip": boolean;
-        /**
-          * Show helper, error, info, warning text behind the component
-         */
-        "showTextBehind": boolean;
         /**
           * Valid text for the field component
          */
@@ -2004,10 +1992,6 @@ export namespace Components {
         /**
           * tbd
          */
-        "showTextBehind"?: boolean;
-        /**
-          * tbd
-         */
         "validText"?: string;
         /**
           * tbd
@@ -2339,10 +2323,6 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Show helper, error, info, warning text behind the component
-         */
-        "showTextBehind"?: boolean;
-        /**
           * Valid text for the select component
           * @since 2.4.0
          */
@@ -2603,10 +2583,6 @@ export namespace Components {
         /**
           * tbd
          */
-        "showTextBehind"?: boolean;
-        /**
-          * tbd
-         */
         "type": 'text' | 'email' | 'password';
         /**
           * tbd
@@ -2672,10 +2648,6 @@ export namespace Components {
           * tbd
          */
         "showTextAsTooltip"?: boolean;
-        /**
-          * tbd
-         */
-        "showTextBehind"?: boolean;
         /**
           * Helpful if you want to set a initial height for the textarea
          */
@@ -5509,10 +5481,6 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Show helper, error, info, warning text behind the component
-         */
-        "showTextBehind"?: boolean;
-        /**
           * Valid text for the field component
          */
         "validText"?: string;
@@ -5646,10 +5614,6 @@ declare namespace LocalJSX {
           * tbd
          */
         "showTextAsTooltip"?: boolean;
-        /**
-          * tbd
-         */
-        "showTextBehind"?: boolean;
         /**
           * tbd
          */
@@ -6191,10 +6155,6 @@ declare namespace LocalJSX {
           * Show helper, error, info, warning text as tooltip
          */
         "showTextAsTooltip"?: boolean;
-        /**
-          * Show helper, error, info, warning text behind the component
-         */
-        "showTextBehind"?: boolean;
         /**
           * Valid text for the field component
          */
@@ -7018,10 +6978,6 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
-        "showTextBehind"?: boolean;
-        /**
-          * tbd
-         */
         "validText"?: string;
         /**
           * tbd
@@ -7406,10 +7362,6 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Show helper, error, info, warning text behind the component
-         */
-        "showTextBehind"?: boolean;
-        /**
           * Valid text for the select component
           * @since 2.4.0
          */
@@ -7697,10 +7649,6 @@ declare namespace LocalJSX {
         /**
           * tbd
          */
-        "showTextBehind"?: boolean;
-        /**
-          * tbd
-         */
         "type"?: 'text' | 'email' | 'password';
         /**
           * tbd
@@ -7776,10 +7724,6 @@ declare namespace LocalJSX {
           * tbd
          */
         "showTextAsTooltip"?: boolean;
-        /**
-          * tbd
-         */
-        "showTextBehind"?: boolean;
         /**
           * Helpful if you want to set a initial height for the textarea
          */

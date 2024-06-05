@@ -86,11 +86,6 @@ export class TextareaField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop() showTextBehind?: boolean;
-
-  /**
-   * tbd
-   */
   @Prop() validText?: string;
 
   /**
@@ -193,7 +188,6 @@ export class TextareaField implements IxInputFieldComponent<string> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          showTextBehind={this.showTextBehind}
         >
           {this.maxLength && (
             <ix-typography slot="bottom-right" color="weak">

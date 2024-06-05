@@ -72,11 +72,6 @@ export class FieldWrapper implements FieldWrapperInterface {
    */
   @Prop() required: boolean;
 
-  /**
-   * Show helper, error, info, warning text behind the component
-   */
-  @Prop() showTextBehind: boolean;
-
   private slotRef = makeRef<HTMLDivElement>();
 
   render() {
@@ -92,11 +87,7 @@ export class FieldWrapper implements FieldWrapperInterface {
       helperText: this.helperText,
     };
     return (
-      <Host
-        class={{
-          'text-behind-slotted-element': this.showTextBehind,
-        }}
-      >
+      <Host>
         <div class="field-top">
           {this.label && (
             <ix-field-label required={this.required}>

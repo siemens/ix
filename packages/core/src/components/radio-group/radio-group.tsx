@@ -76,8 +76,6 @@ export class RadiobuttonGroup
   @State() isInfo: boolean;
   @State() isWarning: boolean;
 
-  showTextBehind = false;
-
   private observer = new MutationObserver(() => {
     this.ensureOnlyLastRadioChecked();
   });
@@ -167,7 +165,6 @@ export class RadiobuttonGroup
           warningText={this.warningText}
           validText={this.validText}
           showTextAsTooltip={this.showTextAsTooltip}
-          showTextBehind={this.showTextBehind}
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}

@@ -127,11 +127,6 @@ export class DateField implements IxInputFieldComponent<string> {
   /**
    * tbd
    */
-  @Prop() showTextBehind?: boolean;
-
-  /**
-   * tbd
-   */
   @Prop({ attribute: 'i18n-error-date-unparsable' }) i18nErrorDateUnparsable =
     'Date is not valid';
 
@@ -368,7 +363,6 @@ export class DateField implements IxInputFieldComponent<string> {
             warningText={this.warningText}
             validText={this.validText}
             showTextAsTooltip={this.showTextAsTooltip}
-            showTextBehind={this.showTextBehind}
             required={this.required}
           >
             {this.renderInput()}

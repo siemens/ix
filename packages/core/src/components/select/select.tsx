@@ -110,11 +110,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * Show helper, error, info, warning text behind the component
-   */
-  @Prop() showTextBehind?: boolean;
-
-  /**
    * Indices of selected items.
    * This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
    * @deprecated since 2.0.0. Use the `value` property instead.
@@ -778,7 +773,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          showTextBehind={this.showTextBehind}
         >
           <div
             class={{
