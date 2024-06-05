@@ -674,11 +674,11 @@ export namespace Components {
         "combineDateEnd": boolean;
         "combineDateStart": boolean;
         /**
-          * tbd
+          * disabled attribute
          */
         "disabled": boolean;
         /**
-          * tbd
+          * error text below the input field
          */
         "errorText": string;
         /**
@@ -689,51 +689,51 @@ export namespace Components {
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * tbd
+          * helper text below the input field
          */
         "helperText": string;
         /**
-          * tbd
+          * i18n string for the error message when the date is not parsable
          */
         "i18nErrorDateUnparsable": string;
         /**
-          * tbd
+          * info text below the input field
          */
         "infoText"?: string;
         /**
-          * tbd
+          * label of the input field
          */
         "label": string;
         /**
-          * tbd
+          * name of the input element
          */
         "name": string;
         /**
-          * tbd
+          * placeholder of the input element
          */
         "placeholder": string;
         /**
-          * tbd
+          * readonly attribute
          */
         "readonly": boolean;
         /**
-          * tbd
+          * required attribute
          */
         "required": boolean;
         /**
-          * tbd
+          * show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * tbd
+          * valid text below the input field
          */
         "validText"?: string;
         /**
-          * tbd
+          * value of the input element
          */
         "value": any;
         /**
-          * tbd
+          * warning text below the input field
          */
         "warningText"?: string;
     }
@@ -1928,7 +1928,7 @@ export namespace Components {
     }
     interface IxNumberField {
         /**
-          * tbd
+          * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
         /**
@@ -1936,69 +1936,69 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * tbd
+          * The error text for the input field
          */
         "errorText": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * tbd
+          * The helper text for the input field
          */
         "helperText": string;
         /**
-          * tbd
+          * The info text for the input field
          */
         "infoText"?: string;
         /**
-          * tbd
+          * The label for the input field
          */
         "label": string;
         /**
-          * tbd
+          * The maximum value for the input field
          */
         "max"?: number;
         /**
-          * tbd
+          * The minimum value for the input field
          */
         "min"?: number;
         /**
-          * tbd
+          * name of the input element
          */
         "name": string;
         /**
-          * tbd
+          * The pattern for the input field
          */
         "pattern"?: string;
         /**
-          * tbd
+          * placeholder of the input element
          */
         "placeholder": string;
         /**
-          * Read only field
+          * Indicates if the field is read-only
          */
         "readonly": boolean;
         /**
-          * Required field
+          * Indicates if the field is required
          */
         "required": boolean;
         /**
-          * tbd
+          * Indicates if the stepper buttons should be shown
          */
         "showStepperButtons"?: boolean;
         /**
-          * tbd
+          * Indicates if the text should be shown as a tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * tbd
+          * The valid text for the input field
          */
         "validText"?: string;
         /**
-          * tbd
+          * The value of the input field
          */
         "value": string;
         /**
-          * tbd
+          * The warning text for the input field
          */
         "warningText"?: string;
     }
@@ -2523,145 +2523,145 @@ export namespace Components {
     }
     interface IxTextField {
         /**
-          * tbd
+          * The allowed characters pattern for the text field.
          */
         "allowedCharactersPattern"?: string;
         /**
-          * tbd
+          * Specifies whether the text field is disabled.
          */
         "disabled": boolean;
         /**
-          * tbd
+          * The error text for the text field.
          */
         "errorText": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * tbd
+          * The helper text for the text field.
          */
         "helperText": string;
         /**
-          * tbd
+          * The info text for the text field.
          */
         "infoText"?: string;
         /**
-          * tbd
+          * The label for the text field.
          */
         "label": string;
         /**
-          * tbd
+          * The maximum length of the text field.
          */
         "maxLength"?: number;
         /**
-          * tbd
+          * The minimum length of the text field.
          */
         "minLength"?: number;
         /**
-          * tbd
+          * The name of the text field.
          */
         "name": string;
         /**
-          * tbd
+          * The pattern for the text field.
          */
         "pattern"?: string;
         /**
-          * tbd
+          * The placeholder text for the text field.
          */
         "placeholder": string;
         /**
-          * tbd
+          * Specifies whether the text field is readonly.
          */
         "readonly": boolean;
         /**
-          * tbd
+          * Specifies whether the text field is required.
          */
         "required": boolean;
         /**
-          * tbd
+          * Specifies whether to show the text as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * tbd
+          * The type of the text field. Possible values are 'text', 'email', or 'password'.
          */
         "type": 'text' | 'email' | 'password';
         /**
-          * tbd
+          * The valid text for the text field.
          */
         "validText"?: string;
         /**
-          * tbd
+          * The value of the text field.
          */
         "value": string;
         /**
-          * tbd
+          * The warning text for the text field.
          */
         "warningText"?: string;
     }
     interface IxTextareaField {
         /**
-          * tbd
+          * Determines if the textarea field is disabled.
          */
         "disabled": boolean;
         /**
-          * tbd
+          * The error text for the textarea field.
          */
         "errorText": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
-          * tbd
+          * The helper text for the textarea field.
          */
         "helperText": string;
         /**
-          * tbd
+          * The info text for the textarea field.
          */
         "infoText"?: string;
         /**
-          * tbd
+          * The label for the textarea field.
          */
         "label": string;
         /**
-          * tbd
+          * The maximum length of the textarea field.
          */
         "maxLength"?: number;
         /**
-          * tbd
+          * The minimum length of the textarea field.
          */
         "minLength"?: number;
         /**
-          * tbd
+          * The name of the textarea field.
          */
         "name": string;
         /**
-          * tbd
+          * The placeholder text for the textarea field.
          */
         "placeholder": string;
         /**
-          * tbd
+          * Determines if the textarea field is readonly.
          */
         "readonly": boolean;
         /**
-          * tbd
+          * Determines if the textarea field is required.
          */
         "required": boolean;
         /**
-          * tbd
+          * Determines if the text should be displayed as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Helpful if you want to set a initial height for the textarea
+          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
          */
         "textareaHeight": string;
         /**
-          * tbd
+          * The valid text for the textarea field.
          */
         "validText"?: string;
         /**
-          * tbd
+          * The value of the textarea field.
          */
         "value": string;
         /**
-          * tbd
+          * The warning text for the textarea field.
          */
         "warningText"?: string;
     }
@@ -5557,11 +5557,11 @@ declare namespace LocalJSX {
         "combineDateEnd"?: boolean;
         "combineDateStart"?: boolean;
         /**
-          * tbd
+          * disabled attribute
          */
         "disabled"?: boolean;
         /**
-          * tbd
+          * error text below the input field
          */
         "errorText"?: string;
         /**
@@ -5569,23 +5569,23 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * tbd
+          * helper text below the input field
          */
         "helperText"?: string;
         /**
-          * tbd
+          * i18n string for the error message when the date is not parsable
          */
         "i18nErrorDateUnparsable"?: string;
         /**
-          * tbd
+          * info text below the input field
          */
         "infoText"?: string;
         /**
-          * tbd
+          * label of the input field
          */
         "label"?: string;
         /**
-          * tbd
+          * name of the input element
          */
         "name"?: string;
         "onIxBlur"?: (event: IxDateFieldCustomEvent<void>) => void;
@@ -5595,35 +5595,35 @@ declare namespace LocalJSX {
          */
         "onValidityStateChange"?: (event: IxDateFieldCustomEvent<DateFieldValidityState>) => void;
         /**
-          * tbd
+          * Input change event.
          */
         "onValueChange"?: (event: IxDateFieldCustomEvent<string>) => void;
         /**
-          * tbd
+          * placeholder of the input element
          */
         "placeholder"?: string;
         /**
-          * tbd
+          * readonly attribute
          */
         "readonly"?: boolean;
         /**
-          * tbd
+          * required attribute
          */
         "required"?: boolean;
         /**
-          * tbd
+          * show text as tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * tbd
+          * valid text below the input field
          */
         "validText"?: string;
         /**
-          * tbd
+          * value of the input element
          */
         "value"?: any;
         /**
-          * tbd
+          * warning text below the input field
          */
         "warningText"?: string;
     }
@@ -6904,7 +6904,7 @@ declare namespace LocalJSX {
     }
     interface IxNumberField {
         /**
-          * tbd
+          * The allowed characters pattern for the input field
          */
         "allowedCharactersPattern"?: string;
         /**
@@ -6912,79 +6912,79 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * tbd
+          * The error text for the input field
          */
         "errorText"?: string;
         /**
-          * tbd
+          * The helper text for the input field
          */
         "helperText"?: string;
         /**
-          * tbd
+          * The info text for the input field
          */
         "infoText"?: string;
         /**
-          * tbd
+          * The label for the input field
          */
         "label"?: string;
         /**
-          * tbd
+          * The maximum value for the input field
          */
         "max"?: number;
         /**
-          * tbd
+          * The minimum value for the input field
          */
         "min"?: number;
         /**
-          * tbd
+          * name of the input element
          */
         "name"?: string;
         /**
-          * tbd
+          * Event emitted when the input field loses focus
          */
         "onIxBlur"?: (event: IxNumberFieldCustomEvent<void>) => void;
         /**
-          * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+          * Event emitted when the validity state of the input field changes
          */
         "onValidityStateChange"?: (event: IxNumberFieldCustomEvent<ValidityState>) => void;
         /**
-          * tbd
+          * Event emitted when the value of the input field changes
          */
         "onValueChange"?: (event: IxNumberFieldCustomEvent<string>) => void;
         /**
-          * tbd
+          * The pattern for the input field
          */
         "pattern"?: string;
         /**
-          * tbd
+          * placeholder of the input element
          */
         "placeholder"?: string;
         /**
-          * Read only field
+          * Indicates if the field is read-only
          */
         "readonly"?: boolean;
         /**
-          * Required field
+          * Indicates if the field is required
          */
         "required"?: boolean;
         /**
-          * tbd
+          * Indicates if the stepper buttons should be shown
          */
         "showStepperButtons"?: boolean;
         /**
-          * tbd
+          * Indicates if the text should be shown as a tooltip
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * tbd
+          * The valid text for the input field
          */
         "validText"?: string;
         /**
-          * tbd
+          * The value of the input field
          */
         "value"?: string;
         /**
-          * tbd
+          * The warning text for the input field
          */
         "warningText"?: string;
     }
@@ -7579,165 +7579,165 @@ declare namespace LocalJSX {
     }
     interface IxTextField {
         /**
-          * tbd
+          * The allowed characters pattern for the text field.
          */
         "allowedCharactersPattern"?: string;
         /**
-          * tbd
+          * Specifies whether the text field is disabled.
          */
         "disabled"?: boolean;
         /**
-          * tbd
+          * The error text for the text field.
          */
         "errorText"?: string;
         /**
-          * tbd
+          * The helper text for the text field.
          */
         "helperText"?: string;
         /**
-          * tbd
+          * The info text for the text field.
          */
         "infoText"?: string;
         /**
-          * tbd
+          * The label for the text field.
          */
         "label"?: string;
         /**
-          * tbd
+          * The maximum length of the text field.
          */
         "maxLength"?: number;
         /**
-          * tbd
+          * The minimum length of the text field.
          */
         "minLength"?: number;
         /**
-          * tbd
+          * The name of the text field.
          */
         "name"?: string;
         /**
-          * tbd
+          * Event emitted when the text field loses focus.
          */
         "onIxBlur"?: (event: IxTextFieldCustomEvent<void>) => void;
         /**
-          * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+          * Event emitted when the validity state of the text field changes.
          */
         "onValidityStateChange"?: (event: IxTextFieldCustomEvent<ValidityState>) => void;
         /**
-          * tbd
+          * Event emitted when the value of the text field changes.
          */
         "onValueChange"?: (event: IxTextFieldCustomEvent<string>) => void;
         /**
-          * tbd
+          * The pattern for the text field.
          */
         "pattern"?: string;
         /**
-          * tbd
+          * The placeholder text for the text field.
          */
         "placeholder"?: string;
         /**
-          * tbd
+          * Specifies whether the text field is readonly.
          */
         "readonly"?: boolean;
         /**
-          * tbd
+          * Specifies whether the text field is required.
          */
         "required"?: boolean;
         /**
-          * tbd
+          * Specifies whether to show the text as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * tbd
+          * The type of the text field. Possible values are 'text', 'email', or 'password'.
          */
         "type"?: 'text' | 'email' | 'password';
         /**
-          * tbd
+          * The valid text for the text field.
          */
         "validText"?: string;
         /**
-          * tbd
+          * The value of the text field.
          */
         "value"?: string;
         /**
-          * tbd
+          * The warning text for the text field.
          */
         "warningText"?: string;
     }
     interface IxTextareaField {
         /**
-          * tbd
+          * Determines if the textarea field is disabled.
          */
         "disabled"?: boolean;
         /**
-          * tbd
+          * The error text for the textarea field.
          */
         "errorText"?: string;
         /**
-          * tbd
+          * The helper text for the textarea field.
          */
         "helperText"?: string;
         /**
-          * tbd
+          * The info text for the textarea field.
          */
         "infoText"?: string;
         /**
-          * tbd
+          * The label for the textarea field.
          */
         "label"?: string;
         /**
-          * tbd
+          * The maximum length of the textarea field.
          */
         "maxLength"?: number;
         /**
-          * tbd
+          * The minimum length of the textarea field.
          */
         "minLength"?: number;
         /**
-          * tbd
+          * The name of the textarea field.
          */
         "name"?: string;
         /**
-          * tbd
+          * Event emitted when the textarea field loses focus.
          */
         "onIxBlur"?: (event: IxTextareaFieldCustomEvent<void>) => void;
         /**
-          * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+          * Event emitted when the validity state of the textarea field changes.
          */
         "onValidityStateChange"?: (event: IxTextareaFieldCustomEvent<ValidityState>) => void;
         /**
-          * tbd
+          * Event emitted when the value of the textarea field changes.
          */
         "onValueChange"?: (event: IxTextareaFieldCustomEvent<string>) => void;
         /**
-          * tbd
+          * The placeholder text for the textarea field.
          */
         "placeholder"?: string;
         /**
-          * tbd
+          * Determines if the textarea field is readonly.
          */
         "readonly"?: boolean;
         /**
-          * tbd
+          * Determines if the textarea field is required.
          */
         "required"?: boolean;
         /**
-          * tbd
+          * Determines if the text should be displayed as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * Helpful if you want to set a initial height for the textarea
+          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
          */
         "textareaHeight"?: string;
         /**
-          * tbd
+          * The valid text for the textarea field.
          */
         "validText"?: string;
         /**
-          * tbd
+          * The value of the textarea field.
          */
         "value"?: string;
         /**
-          * tbd
+          * The warning text for the textarea field.
          */
         "warningText"?: string;
     }

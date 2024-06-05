@@ -314,8 +314,7 @@ export const IxCustomField = /*@__PURE__*/ defineContainer<JSX.IxCustomField>('i
   'warningText',
   'errorText',
   'validText',
-  'showTextAsTooltip',
-  'showTextBehind'
+  'showTextAsTooltip'
 ]);
 
 
@@ -355,7 +354,6 @@ export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField>('ix-da
   'warningText',
   'validText',
   'showTextAsTooltip',
-  'showTextBehind',
   'i18nErrorDateUnparsable',
   'valueChange',
   'validityStateChange',
@@ -824,7 +822,6 @@ export const IxNumberField = /*@__PURE__*/ defineContainer<JSX.IxNumberField>('i
   'helperText',
   'infoText',
   'showTextAsTooltip',
-  'showTextBehind',
   'validText',
   'warningText',
   'label',
@@ -938,7 +935,6 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect
   'validText',
   'helperText',
   'showTextAsTooltip',
-  'showTextBehind',
   'selectedIndices',
   'value',
   'allowClear',
@@ -1045,7 +1041,6 @@ export const IxTextField = /*@__PURE__*/ defineContainer<JSX.IxTextField>('ix-te
   'helperText',
   'infoText',
   'showTextAsTooltip',
-  'showTextBehind',
   'validText',
   'warningText',
   'label',
@@ -1070,7 +1065,6 @@ export const IxTextareaField = /*@__PURE__*/ defineContainer<JSX.IxTextareaField
   'helperText',
   'infoText',
   'showTextAsTooltip',
-  'showTextBehind',
   'validText',
   'warningText',
   'label',

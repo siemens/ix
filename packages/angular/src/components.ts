@@ -536,14 +536,14 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['errorText', 'helperText', 'infoText', 'label', 'showTextAsTooltip', 'showTextBehind', 'validText', 'warningText']
+  inputs: ['errorText', 'helperText', 'infoText', 'label', 'showTextAsTooltip', 'validText', 'warningText']
 })
 @Component({
   selector: 'ix-custom-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['errorText', 'helperText', 'infoText', 'label', 'showTextAsTooltip', 'showTextBehind', 'validText', 'warningText'],
+  inputs: ['errorText', 'helperText', 'infoText', 'label', 'showTextAsTooltip', 'validText', 'warningText'],
 })
 export class IxCustomField {
   protected el: HTMLElement;
@@ -592,14 +592,14 @@ The event payload contains information about the selected date range.
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'errorText', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText']
+  inputs: ['disabled', 'errorText', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText']
 })
 @Component({
   selector: 'ix-date-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'errorText', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText'],
+  inputs: ['disabled', 'errorText', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
 })
 export class IxDateField {
   protected el: HTMLElement;
@@ -615,7 +615,7 @@ import type { DateFieldValidityState as IIxDateFieldDateFieldValidityState } fro
 
 export declare interface IxDateField extends Components.IxDateField {
   /**
-   * tbd
+   * Input change event.
    */
   valueChange: EventEmitter<CustomEvent<string>>;
   /**
@@ -1917,14 +1917,14 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 
 
 @ProxyCmp({
-  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText']
+  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'validText', 'value', 'warningText']
 })
 @Component({
   selector: 'ix-number-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
 })
 export class IxNumberField {
   protected el: HTMLElement;
@@ -1938,15 +1938,15 @@ export class IxNumberField {
 
 export declare interface IxNumberField extends Components.IxNumberField {
   /**
-   * tbd
+   * Event emitted when the value of the input field changes
    */
   valueChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+   * Event emitted when the validity state of the input field changes
    */
   validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
   /**
-   * tbd
+   * Event emitted when the input field loses focus
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
 }
@@ -2172,14 +2172,14 @@ export declare interface IxRow extends Components.IxRow {}
 
 
 @ProxyCmp({
-  inputs: ['allowClear', 'disabled', 'editable', 'errorText', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'label', 'mode', 'name', 'readonly', 'required', 'selectedIndices', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText']
+  inputs: ['allowClear', 'disabled', 'editable', 'errorText', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'label', 'mode', 'name', 'readonly', 'required', 'selectedIndices', 'showTextAsTooltip', 'validText', 'value', 'warningText']
 })
 @Component({
   selector: 'ix-select',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowClear', 'disabled', 'editable', 'errorText', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'label', 'mode', 'name', 'readonly', 'required', 'selectedIndices', 'showTextAsTooltip', 'showTextBehind', 'validText', 'value', 'warningText'],
+  inputs: ['allowClear', 'disabled', 'editable', 'errorText', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'label', 'mode', 'name', 'readonly', 'required', 'selectedIndices', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
 })
 export class IxSelect {
   protected el: HTMLElement;
@@ -2406,14 +2406,14 @@ export declare interface IxTabs extends Components.IxTabs {
 
 
 @ProxyCmp({
-  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'type', 'validText', 'value', 'warningText']
+  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText']
 })
 @Component({
   selector: 'ix-text-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'type', 'validText', 'value', 'warningText'],
+  inputs: ['allowedCharactersPattern', 'disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
 })
 export class IxTextField {
   protected el: HTMLElement;
@@ -2427,29 +2427,29 @@ export class IxTextField {
 
 export declare interface IxTextField extends Components.IxTextField {
   /**
-   * tbd
+   * Event emitted when the value of the text field changes.
    */
   valueChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+   * Event emitted when the validity state of the text field changes.
    */
   validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
   /**
-   * tbd
+   * Event emitted when the text field loses focus.
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
 }
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'textareaHeight', 'validText', 'value', 'warningText']
+  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'textareaHeight', 'validText', 'value', 'warningText']
 })
 @Component({
   selector: 'ix-textarea-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'showTextBehind', 'textareaHeight', 'validText', 'value', 'warningText'],
+  inputs: ['disabled', 'errorText', 'helperText', 'infoText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'textareaHeight', 'validText', 'value', 'warningText'],
 })
 export class IxTextareaField {
   protected el: HTMLElement;
@@ -2463,15 +2463,15 @@ export class IxTextareaField {
 
 export declare interface IxTextareaField extends Components.IxTextareaField {
   /**
-   * tbd
+   * Event emitted when the value of the textarea field changes.
    */
   valueChange: EventEmitter<CustomEvent<string>>;
   /**
-   * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+   * Event emitted when the validity state of the textarea field changes.
    */
   validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
   /**
-   * tbd
+   * Event emitted when the textarea field loses focus.
    */
   ixBlur: EventEmitter<CustomEvent<void>>;
 }

@@ -44,6 +44,7 @@ export class PlaygroundInternal {
           <ix-layout-form>
             <ix-text-field label="Name" name="name"></ix-text-field>
             <ix-text-field label="Last Name" name="last-name"></ix-text-field>
+
             <ix-text-field label="Address" data-colspan="2" name="address">
               <ix-icon slot="prefix" name={iconLocation} size="16"></ix-icon>
             </ix-text-field>
@@ -66,12 +67,17 @@ export class PlaygroundInternal {
               ></ix-radio>
             </ix-radio-group>
 
-            <ix-number-field label="Preferred room size">
+            <ix-text-field label="Preferred room size" class={'ix-invalid'}>
               <ix-icon slot="prefix" name={iconBezierCurve} size="16"></ix-icon>
-              <ix-typography slot="postfix" color="weak">
+              <ix-icon slot="prefix" name={iconBezierCurve} size="16"></ix-icon>
+              <ix-icon slot="prefix" name={iconBezierCurve} size="16"></ix-icon>
+              <ix-icon slot="prefix" name={iconBezierCurve} size="16"></ix-icon>
+              <ix-icon slot="prefix" name={iconBezierCurve} size="16"></ix-icon>
+              <ix-button slot="prefix">test</ix-button>
+              <ix-typography slot="postfix" textColor="soft">
                 m&sup2;
               </ix-typography>
-            </ix-number-field>
+            </ix-text-field>
 
             <ix-select
               label="Travel option"
@@ -100,6 +106,7 @@ export class PlaygroundInternal {
             ></ix-number-field>
 
             <ix-date-field
+              helperText="test"
               name="begin"
               label="Begin"
               onValueChange={console.log}
@@ -110,7 +117,6 @@ export class PlaygroundInternal {
             <ix-date-field name="end" label="End">
               <ix-icon slot="postfix" name={iconCalendar} size="16"></ix-icon>
             </ix-date-field>
-
             <ix-textarea-field
               maxLength={100}
               name="comment"
@@ -121,6 +127,35 @@ export class PlaygroundInternal {
             ></ix-textarea-field>
 
             <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+
+            <ix-custom-field
+              label="Test"
+              helperText="helperText xyz"
+              errorText="errorText xyz"
+              warningText="warningText xyz"
+              infoText="infoText xyz"
+            >
+              <ix-text-field class={'ix-info'} readonly></ix-text-field>
+              <ix-icon-button
+                icon={iconLocation}
+                outline
+                onClick={() => {
+                  const up = this.hostElement.querySelector(
+                    '#file-upload'
+                  ) as HTMLInputElement;
+
+                  up.click();
+                }}
+              ></ix-icon-button>
+              <input
+                id="file-upload"
+                type="file"
+                style={{ display: 'none ' }}
+                onInput={(evt) => {
+                  console.log(evt);
+                }}
+              ></input>
+            </ix-custom-field>
 
             <ix-button type="submit" data-colspan="2">
               Submit
@@ -161,7 +196,6 @@ export class PlaygroundInternal {
 
               <ix-number-field
                 max={5}
-                readonly
                 name="number-stepper"
                 label="Number (with stepper)"
                 helperText="Helper text"
@@ -185,13 +219,13 @@ export class PlaygroundInternal {
               <ix-text-field
                 type="password"
                 name="text-field"
-                label="Text Field"
+                label="Text Field "
                 helperText="Helper text with super link content 123 123 123 123"
                 errorText="Error text"
                 validText="Valid text"
                 warningText="Warning text"
                 infoText="Info text"
-                maxLength={10}
+                maxLength={15}
                 class={this.validationState}
                 showTextAsTooltip={false}
                 style={{ width: '15rem' }}
@@ -301,6 +335,7 @@ export class PlaygroundInternal {
               <ix-text-field
                 id="mytest"
                 class={this.validationState}
+                maxLength={10}
               ></ix-text-field>
               <ix-helper-text
                 htmlFor="mytest"

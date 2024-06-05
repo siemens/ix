@@ -39,97 +39,98 @@ export class TextareaField implements IxInputFieldComponent<string> {
   @AttachInternals() formInternals: ElementInternals;
 
   /**
-   * tbd
+   * The name of the textarea field.
    */
   @Prop({ reflect: true }) name: string;
 
   /**
-   * tbd
+   * The placeholder text for the textarea field.
    */
   @Prop({ reflect: true }) placeholder: string;
 
   /**
-   * tbd
+   * The value of the textarea field.
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
-   * tbd
+   * Determines if the textarea field is required.
    */
   @Prop({ reflect: true }) required: boolean;
 
   /**
-   * tbd
+   * Determines if the textarea field is disabled.
    */
   @Prop() disabled: boolean;
 
   /**
-   * tbd
+   * Determines if the textarea field is readonly.
    */
   @Prop() readonly: boolean;
 
   /**
-   * tbd
+   * The helper text for the textarea field.
    */
   @Prop() helperText: string;
 
   /**
-   * tbd
+   * The info text for the textarea field.
    */
   @Prop() infoText?: string;
 
   /**
-   * tbd
+   * Determines if the text should be displayed as a tooltip.
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * tbd
+   * The valid text for the textarea field.
    */
   @Prop() validText?: string;
 
   /**
-   * tbd
+   * The warning text for the textarea field.
    */
   @Prop() warningText?: string;
 
   /**
-   * tbd
+   * The label for the textarea field.
    */
   @Prop({ reflect: true }) label: string;
 
   /**
-   * tbd
+   * The error text for the textarea field.
    */
   @Prop() errorText: string;
 
   /**
-   * Helpful if you want to set a initial height for the textarea
+   * The height of the textarea field.
+   * Helpful if you want to set an initial height for the textarea.
    */
   @Prop() textareaHeight: string;
 
   /**
-   * tbd
+   * The maximum length of the textarea field.
    */
   @Prop() maxLength?: number;
 
   /**
-   * tbd
+   * The minimum length of the textarea field.
    */
   @Prop() minLength?: number;
 
   /**
-   * tbd
+   * Event emitted when the value of the textarea field changes.
    */
   @Event() valueChange: EventEmitter<string>;
 
   /**
-   * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+   * Event emitted when the validity state of the textarea field changes.
    */
   @Event() validityStateChange: EventEmitter<ValidityState>;
 
   /**
-   * tbd
+   * Event emitted when the textarea field loses focus.
    */
   @Event() ixBlur: EventEmitter<void>;
 

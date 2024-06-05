@@ -3618,7 +3618,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -3636,6 +3638,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-custom-field"
         ]
       },
       "props": [
@@ -3735,27 +3740,6 @@
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
           "docs": "Show helper, info, warning, error and valid text as tooltip",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "showTextBehind",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-text-behind",
-          "reflectToAttr": false,
-          "docs": "Show helper, error, info, warning text behind the component",
           "docsTags": [],
           "values": [
             {
@@ -4285,7 +4269,7 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "disabled attribute",
           "docsTags": [],
           "values": [
             {
@@ -4306,7 +4290,7 @@
           "mutable": false,
           "attr": "error-text",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "error text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -4349,7 +4333,7 @@
           "mutable": false,
           "attr": "helper-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "helper text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -4370,7 +4354,7 @@
           "mutable": false,
           "attr": "i18n-error-date-unparsable",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "i18n string for the error message when the date is not parsable",
           "docsTags": [],
           "default": "'Date is not valid'",
           "values": [
@@ -4392,7 +4376,7 @@
           "mutable": false,
           "attr": "info-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "info text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -4413,7 +4397,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "label of the input field",
           "docsTags": [],
           "values": [
             {
@@ -4434,7 +4418,7 @@
           "mutable": false,
           "attr": "name",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "name of the input element",
           "docsTags": [],
           "values": [
             {
@@ -4455,7 +4439,7 @@
           "mutable": false,
           "attr": "placeholder",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "placeholder of the input element",
           "docsTags": [],
           "values": [
             {
@@ -4476,7 +4460,7 @@
           "mutable": false,
           "attr": "readonly",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "readonly attribute",
           "docsTags": [],
           "values": [
             {
@@ -4497,7 +4481,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "required attribute",
           "docsTags": [],
           "values": [
             {
@@ -4518,28 +4502,7 @@
           "mutable": false,
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
-          "docs": "tbd",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "showTextBehind",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-text-behind",
-          "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "show text as tooltip",
           "docsTags": [],
           "values": [
             {
@@ -4560,7 +4523,7 @@
           "mutable": false,
           "attr": "valid-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "valid text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -4581,7 +4544,7 @@
           "mutable": true,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "value of the input element",
           "docsTags": [],
           "values": [
             {
@@ -4602,7 +4565,7 @@
           "mutable": false,
           "attr": "warning-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "warning text below the input field",
           "docsTags": [],
           "values": [
             {
@@ -4646,7 +4609,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "tbd",
+          "docs": "Input change event.",
           "docsTags": []
         }
       ],
@@ -8677,6 +8640,7 @@
         "ix-number-field",
         "ix-pagination",
         "ix-pane",
+        "ix-playground-internal",
         "ix-select",
         "ix-split-button",
         "ix-text-field",
@@ -8763,6 +8727,9 @@
           "ix-icon-button"
         ],
         "ix-pane": [
+          "ix-icon-button"
+        ],
+        "ix-playground-internal": [
           "ix-icon-button"
         ],
         "ix-select": [
@@ -13072,7 +13039,7 @@
           "mutable": false,
           "attr": "allowed-characters-pattern",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The allowed characters pattern for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13115,7 +13082,7 @@
           "mutable": false,
           "attr": "error-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The error text for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13136,7 +13103,7 @@
           "mutable": false,
           "attr": "helper-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The helper text for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13157,7 +13124,7 @@
           "mutable": false,
           "attr": "info-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The info text for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13178,7 +13145,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The label for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13199,7 +13166,7 @@
           "mutable": false,
           "attr": "max",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The maximum value for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13220,7 +13187,7 @@
           "mutable": false,
           "attr": "min",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The minimum value for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13241,7 +13208,7 @@
           "mutable": false,
           "attr": "name",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "name of the input element",
           "docsTags": [],
           "values": [
             {
@@ -13262,7 +13229,7 @@
           "mutable": false,
           "attr": "pattern",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The pattern for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13283,7 +13250,7 @@
           "mutable": false,
           "attr": "placeholder",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "placeholder of the input element",
           "docsTags": [],
           "values": [
             {
@@ -13304,7 +13271,7 @@
           "mutable": false,
           "attr": "readonly",
           "reflectToAttr": false,
-          "docs": "Read only field",
+          "docs": "Indicates if the field is read-only",
           "docsTags": [],
           "default": "false",
           "values": [
@@ -13326,7 +13293,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": true,
-          "docs": "Required field",
+          "docs": "Indicates if the field is required",
           "docsTags": [],
           "values": [
             {
@@ -13347,7 +13314,7 @@
           "mutable": false,
           "attr": "show-stepper-buttons",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "Indicates if the stepper buttons should be shown",
           "docsTags": [],
           "values": [
             {
@@ -13368,28 +13335,7 @@
           "mutable": false,
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
-          "docs": "tbd",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "showTextBehind",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-text-behind",
-          "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "Indicates if the text should be shown as a tooltip",
           "docsTags": [],
           "values": [
             {
@@ -13410,7 +13356,7 @@
           "mutable": false,
           "attr": "valid-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The valid text for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13431,7 +13377,7 @@
           "mutable": true,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The value of the input field",
           "docsTags": [],
           "default": "''",
           "values": [
@@ -13453,7 +13399,7 @@
           "mutable": false,
           "attr": "warning-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The warning text for the input field",
           "docsTags": [],
           "values": [
             {
@@ -13477,7 +13423,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "tbd",
+          "docs": "Event emitted when the input field loses focus",
           "docsTags": []
         },
         {
@@ -13496,7 +13442,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+          "docs": "Event emitted when the validity state of the input field changes",
           "docsTags": []
         },
         {
@@ -13510,7 +13456,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "tbd",
+          "docs": "Event emitted when the value of the input field changes",
           "docsTags": []
         }
       ],
@@ -15615,27 +15561,6 @@
           "required": false
         },
         {
-          "name": "showTextBehind",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-text-behind",
-          "reflectToAttr": false,
-          "docs": "Show helper, error, info, warning text behind the component",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
           "name": "validText",
           "type": "string",
           "complexType": {
@@ -17246,14 +17171,14 @@
       ],
       "dependencies": [
         "ix-field-wrapper",
-        "ix-typography",
-        "ix-icon-button"
+        "ix-icon-button",
+        "ix-typography"
       ],
       "dependencyGraph": {
         "ix-text-field": [
           "ix-field-wrapper",
-          "ix-typography",
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-typography"
         ],
         "ix-field-wrapper": [
           "ix-field-label",
@@ -17285,7 +17210,7 @@
           "mutable": false,
           "attr": "allowed-characters-pattern",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The allowed characters pattern for the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17306,7 +17231,7 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "Specifies whether the text field is disabled.",
           "docsTags": [],
           "values": [
             {
@@ -17327,7 +17252,7 @@
           "mutable": false,
           "attr": "error-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The error text for the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17348,7 +17273,7 @@
           "mutable": false,
           "attr": "helper-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The helper text for the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17369,7 +17294,7 @@
           "mutable": false,
           "attr": "info-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The info text for the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17390,7 +17315,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The label for the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17411,7 +17336,7 @@
           "mutable": false,
           "attr": "max-length",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The maximum length of the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17432,7 +17357,7 @@
           "mutable": false,
           "attr": "min-length",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The minimum length of the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17453,7 +17378,7 @@
           "mutable": false,
           "attr": "name",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The name of the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17474,7 +17399,7 @@
           "mutable": false,
           "attr": "pattern",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The pattern for the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17495,7 +17420,7 @@
           "mutable": false,
           "attr": "placeholder",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The placeholder text for the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17516,7 +17441,7 @@
           "mutable": false,
           "attr": "readonly",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "Specifies whether the text field is readonly.",
           "docsTags": [],
           "values": [
             {
@@ -17537,7 +17462,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "Specifies whether the text field is required.",
           "docsTags": [],
           "values": [
             {
@@ -17558,28 +17483,7 @@
           "mutable": false,
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
-          "docs": "tbd",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "showTextBehind",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-text-behind",
-          "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "Specifies whether to show the text as a tooltip.",
           "docsTags": [],
           "values": [
             {
@@ -17600,7 +17504,7 @@
           "mutable": false,
           "attr": "type",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The type of the text field. Possible values are 'text', 'email', or 'password'.",
           "docsTags": [],
           "default": "'text'",
           "values": [
@@ -17631,7 +17535,7 @@
           "mutable": false,
           "attr": "valid-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The valid text for the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17652,7 +17556,7 @@
           "mutable": true,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The value of the text field.",
           "docsTags": [],
           "default": "''",
           "values": [
@@ -17674,7 +17578,7 @@
           "mutable": false,
           "attr": "warning-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The warning text for the text field.",
           "docsTags": [],
           "values": [
             {
@@ -17698,7 +17602,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "tbd",
+          "docs": "Event emitted when the text field loses focus.",
           "docsTags": []
         },
         {
@@ -17717,7 +17621,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+          "docs": "Event emitted when the validity state of the text field changes.",
           "docsTags": []
         },
         {
@@ -17731,7 +17635,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "tbd",
+          "docs": "Event emitted when the value of the text field changes.",
           "docsTags": []
         }
       ],
@@ -17791,7 +17695,7 @@
           "mutable": false,
           "attr": "disabled",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "Determines if the textarea field is disabled.",
           "docsTags": [],
           "values": [
             {
@@ -17812,7 +17716,7 @@
           "mutable": false,
           "attr": "error-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The error text for the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -17833,7 +17737,7 @@
           "mutable": false,
           "attr": "helper-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The helper text for the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -17854,7 +17758,7 @@
           "mutable": false,
           "attr": "info-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The info text for the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -17875,7 +17779,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The label for the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -17896,7 +17800,7 @@
           "mutable": false,
           "attr": "max-length",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The maximum length of the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -17917,7 +17821,7 @@
           "mutable": false,
           "attr": "min-length",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The minimum length of the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -17938,7 +17842,7 @@
           "mutable": false,
           "attr": "name",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The name of the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -17959,7 +17863,7 @@
           "mutable": false,
           "attr": "placeholder",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The placeholder text for the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -17980,7 +17884,7 @@
           "mutable": false,
           "attr": "readonly",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "Determines if the textarea field is readonly.",
           "docsTags": [],
           "values": [
             {
@@ -18001,7 +17905,7 @@
           "mutable": false,
           "attr": "required",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "Determines if the textarea field is required.",
           "docsTags": [],
           "values": [
             {
@@ -18022,28 +17926,7 @@
           "mutable": false,
           "attr": "show-text-as-tooltip",
           "reflectToAttr": false,
-          "docs": "tbd",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "showTextBehind",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-text-behind",
-          "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "Determines if the text should be displayed as a tooltip.",
           "docsTags": [],
           "values": [
             {
@@ -18064,7 +17947,7 @@
           "mutable": false,
           "attr": "textarea-height",
           "reflectToAttr": false,
-          "docs": "Helpful if you want to set a initial height for the textarea",
+          "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
           "docsTags": [],
           "values": [
             {
@@ -18085,7 +17968,7 @@
           "mutable": false,
           "attr": "valid-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The valid text for the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -18106,7 +17989,7 @@
           "mutable": true,
           "attr": "value",
           "reflectToAttr": true,
-          "docs": "tbd",
+          "docs": "The value of the textarea field.",
           "docsTags": [],
           "default": "''",
           "values": [
@@ -18128,7 +18011,7 @@
           "mutable": false,
           "attr": "warning-text",
           "reflectToAttr": false,
-          "docs": "tbd",
+          "docs": "The warning text for the textarea field.",
           "docsTags": [],
           "values": [
             {
@@ -18152,7 +18035,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "tbd",
+          "docs": "Event emitted when the textarea field loses focus.",
           "docsTags": []
         },
         {
@@ -18171,7 +18054,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState",
+          "docs": "Event emitted when the validity state of the textarea field changes.",
           "docsTags": []
         },
         {
@@ -18185,7 +18068,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "tbd",
+          "docs": "Event emitted when the value of the textarea field changes.",
           "docsTags": []
         }
       ],

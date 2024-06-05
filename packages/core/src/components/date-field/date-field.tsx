@@ -49,17 +49,17 @@ export class DateField implements IxInputFieldComponent<string> {
   @AttachInternals() formInternals: ElementInternals;
 
   /**
-   * tbd
+   * name of the input element
    */
   @Prop({ reflect: true }) name: string;
 
   /**
-   * tbd
+   * placeholder of the input element
    */
   @Prop({ reflect: true }) placeholder: string;
 
   /**
-   * tbd
+   * value of the input element
    */
   @Prop({ reflect: true, mutable: true }) value: any;
 
@@ -70,17 +70,17 @@ export class DateField implements IxInputFieldComponent<string> {
   @Prop() format: string = 'yyyy/LL/dd';
 
   /**
-   * tbd
+   * required attribute
    */
   @Prop() required: boolean;
 
   /**
-   * tbd
+   * helper text below the input field
    */
   @Prop() helperText: string;
 
   /**
-   * tbd
+   * label of the input field
    */
   @Prop() label: string;
 
@@ -91,47 +91,47 @@ export class DateField implements IxInputFieldComponent<string> {
   @Prop() combineDateEnd = false;
 
   /**
-   * tbd
+   * error text below the input field
    */
   @Prop({ reflect: true }) errorText: string;
 
   /**
-   * tbd
+   * readonly attribute
    */
   @Prop() readonly: boolean;
   /**
-   * tbd
+   * disabled attribute
    */
   @Prop() disabled: boolean;
 
   /**
-   * tbd
+   * info text below the input field
    */
   @Prop() infoText?: string;
 
   /**
-   * tbd
+   * warning text below the input field
    */
   @Prop() warningText?: string;
 
   /**
-   * tbd
+   * valid text below the input field
    */
   @Prop() validText?: string;
 
   /**
-   * tbd
+   * show text as tooltip
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * tbd
+   * i18n string for the error message when the date is not parsable
    */
   @Prop({ attribute: 'i18n-error-date-unparsable' }) i18nErrorDateUnparsable =
     'Date is not valid';
 
   /**
-   * tbd
+   * Input change event.
    */
   @Event() valueChange: EventEmitter<string>;
 
@@ -163,9 +163,6 @@ export class DateField implements IxInputFieldComponent<string> {
   private classObserver: ClassMutationObserver;
   private invalidReason: string;
 
-  /**
-   * tbd
-   */
   updateFormInternalValue(value: any): void {
     this.formInternals.setFormValue(value);
     this.value = value;

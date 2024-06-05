@@ -46,107 +46,107 @@ export class TextField implements IxInputFieldComponent<string> {
   @AttachInternals() formInternals: ElementInternals;
 
   /**
-   * tbd
+   * The type of the text field. Possible values are 'text', 'email', or 'password'.
    */
   @Prop() type: 'text' | 'email' | 'password' = 'text';
 
   /**
-   * tbd
+   * The name of the text field.
    */
   @Prop({ reflect: true }) name: string;
 
   /**
-   * tbd
+   * The placeholder text for the text field.
    */
   @Prop({ reflect: true }) placeholder: string;
 
   /**
-   * tbd
+   * The value of the text field.
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
-   * tbd
+   * Specifies whether the text field is required.
    */
   @Prop({ reflect: true }) required: boolean;
 
   /**
-   * tbd
+   * Specifies whether the text field is disabled.
    */
   @Prop({ reflect: true }) disabled: boolean;
 
   /**
-   * tbd
+   * Specifies whether the text field is readonly.
    */
   @Prop({ reflect: true }) readonly: boolean;
 
   /**
-   * tbd
+   * The helper text for the text field.
    */
   @Prop() helperText: string;
 
   /**
-   * tbd
+   * The info text for the text field.
    */
   @Prop() infoText?: string;
 
   /**
-   * tbd
+   * Specifies whether to show the text as a tooltip.
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * tbd
+   * The valid text for the text field.
    */
   @Prop() validText?: string;
 
   /**
-   * tbd
+   * The warning text for the text field.
    */
   @Prop() warningText?: string;
 
   /**
-   * tbd
+   * The label for the text field.
    */
   @Prop({ reflect: true }) label: string;
 
   /**
-   * tbd
+   * The error text for the text field.
    */
   @Prop() errorText: string;
 
   /**
-   * tbd
+   * The pattern for the text field.
    */
   @Prop() pattern?: string;
 
   /**
-   * tbd
+   * The maximum length of the text field.
    */
   @Prop() maxLength?: number;
 
   /**
-   * tbd
+   * The minimum length of the text field.
    */
   @Prop() minLength?: number;
 
   /**
-   * tbd
+   * The allowed characters pattern for the text field.
    */
   @Prop() allowedCharactersPattern?: string;
 
   /**
-   * tbd
+   * Event emitted when the value of the text field changes.
    */
   @Event() valueChange: EventEmitter<string>;
 
   /**
-   * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+   * Event emitted when the validity state of the text field changes.
    */
   @Event() validityStateChange: EventEmitter<ValidityState>;
 
   /**
-   * tbd
+   * Event emitted when the text field loses focus.
    */
   @Event() ixBlur: EventEmitter<void>;
 

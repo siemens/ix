@@ -46,22 +46,22 @@ export class NumberField implements IxInputFieldComponent<string> {
   @AttachInternals() formInternals: ElementInternals;
 
   /**
-   * tbd
+   * name of the input element
    */
   @Prop({ reflect: true }) name: string;
 
   /**
-   * tbd
+   * placeholder of the input element
    */
   @Prop({ reflect: true }) placeholder: string;
 
   /**
-   * tbd
+   * The value of the input field
    */
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
-   * Required field
+   * Indicates if the field is required
    */
   @Prop({ reflect: true }) required: boolean;
 
@@ -71,82 +71,82 @@ export class NumberField implements IxInputFieldComponent<string> {
   @Prop() disabled: boolean = false;
 
   /**
-   * Read only field
+   * Indicates if the field is read-only
    */
   @Prop() readonly: boolean = false;
 
   /**
-   * tbd
+   * The helper text for the input field
    */
   @Prop() helperText: string;
 
   /**
-   * tbd
+   * The info text for the input field
    */
   @Prop() infoText?: string;
 
   /**
-   * tbd
+   * Indicates if the text should be shown as a tooltip
    */
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * tbd
+   * The valid text for the input field
    */
   @Prop() validText?: string;
 
   /**
-   * tbd
+   * The warning text for the input field
    */
   @Prop() warningText?: string;
 
   /**
-   * tbd
+   * The label for the input field
    */
   @Prop({ reflect: true }) label: string;
 
   /**
-   * tbd
+   * The error text for the input field
    */
   @Prop() errorText: string;
 
   /**
-   * tbd
+   * The pattern for the input field
    */
   @Prop() pattern?: string;
 
   /**
-   * tbd
+   * The minimum value for the input field
    */
   @Prop() min?: number;
 
   /**
-   * tbd
+   * The maximum value for the input field
    */
   @Prop() max?: number;
 
   /**
-   * tbd
+   * The allowed characters pattern for the input field
    */
   @Prop() allowedCharactersPattern?: string;
 
   /**
-   * tbd
+   * Indicates if the stepper buttons should be shown
    */
   @Prop() showStepperButtons?: boolean;
 
   /**
-   * tbd
+   * Event emitted when the value of the input field changes
    */
   @Event() valueChange: EventEmitter<string>;
 
   /**
-   * Expose the validation state https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+   * Event emitted when the validity state of the input field changes
    */
   @Event() validityStateChange: EventEmitter<ValidityState>;
 
   /**
-   * tbd
+   * Event emitted when the input field loses focus
    */
   @Event() ixBlur: EventEmitter<void>;
 
