@@ -36,10 +36,10 @@ const additionalTheme = {
 const brandTheme = await resolve('@siemens/ix-brand-theme');
 
 if (brandTheme) {
-  const themeFolder = path.join(brandTheme, '..', '..');
+  const themeFolder = path.join(brandTheme.replace('file:', ''), '..', '..');
   fs.copySync(
     themeFolder,
-    path.join(__dirname, 'src', 'public', 'additional-theme')
+    path.join(__dirname, 'src', 'public', 'additional-theme', 'ix-brand-theme')
   );
 }
 
