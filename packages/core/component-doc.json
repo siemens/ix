@@ -2656,7 +2656,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -2674,6 +2676,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-checkbox-group"
         ]
       },
       "props": [
@@ -4220,15 +4225,20 @@
         "ix-playground-internal"
       ],
       "dependencies": [
+        "ix-icon-button",
         "ix-field-wrapper",
         "ix-dropdown",
         "ix-date-picker"
       ],
       "dependencyGraph": {
         "ix-date-field": [
+          "ix-icon-button",
           "ix-field-wrapper",
           "ix-dropdown",
           "ix-date-picker"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
         ],
         "ix-field-wrapper": [
           "ix-field-label",
@@ -4246,9 +4256,6 @@
           "ix-icon-button",
           "ix-button",
           "ix-dropdown"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
         ],
         "ix-button": [
           "ix-spinner"
@@ -8620,6 +8627,7 @@
         "ix-category-filter",
         "ix-chip",
         "ix-content-header",
+        "ix-date-field",
         "ix-date-picker",
         "ix-drawer",
         "ix-dropdown-button",
@@ -8667,6 +8675,9 @@
           "ix-icon-button"
         ],
         "ix-content-header": [
+          "ix-icon-button"
+        ],
+        "ix-date-field": [
           "ix-icon-button"
         ],
         "ix-date-picker": [

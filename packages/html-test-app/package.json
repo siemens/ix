@@ -13,11 +13,14 @@
     "dist"
   ],
   "devDependencies": {
-    "vite": "^3.1.0",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
+    "@siemens/ix-icons": "^2.0.0",
     "example-styles": "workspace:*",
-    "@siemens/ix-icons": "^2.0.0"
+    "vite": "^3.1.0"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0"
   }
 }

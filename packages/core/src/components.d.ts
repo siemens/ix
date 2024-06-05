@@ -671,8 +671,6 @@ export namespace Components {
         "today": string;
     }
     interface IxDateField {
-        "combineDateEnd": boolean;
-        "combineDateStart": boolean;
         /**
           * disabled attribute
          */
@@ -5554,8 +5552,6 @@ declare namespace LocalJSX {
         "today"?: string;
     }
     interface IxDateField {
-        "combineDateEnd"?: boolean;
-        "combineDateStart"?: boolean;
         /**
           * disabled attribute
          */

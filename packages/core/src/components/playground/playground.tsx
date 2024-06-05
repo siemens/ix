@@ -7,11 +7,7 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
-import {
-  iconBezierCurve,
-  iconCalendar,
-  iconLocation,
-} from '@siemens/ix-icons/icons';
+import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
 import { Component, Element, h, Host, State } from '@stencil/core';
 
 /** @internal */
@@ -111,12 +107,8 @@ export class PlaygroundInternal {
               label="Begin"
               onValueChange={console.log}
               i18n-error-date-unparsable="Please enter a valid date"
-            >
-              <ix-icon slot="prefix" name={iconCalendar} size="16"></ix-icon>
-            </ix-date-field>
-            <ix-date-field name="end" label="End">
-              <ix-icon slot="postfix" name={iconCalendar} size="16"></ix-icon>
-            </ix-date-field>
+            ></ix-date-field>
+            <ix-date-field name="end" label="End"></ix-date-field>
             <ix-textarea-field
               maxLength={100}
               name="comment"
@@ -126,7 +118,12 @@ export class PlaygroundInternal {
               helperText="Let us know if you have any special requests or comments. We will do our best to accommodate you."
             ></ix-textarea-field>
 
-            <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+            <ix-checkbox-group label="Terms of something">
+              <ix-checkbox
+                label="I agree everything"
+                name="agreed"
+              ></ix-checkbox>
+            </ix-checkbox-group>
 
             <ix-custom-field
               label="Test"

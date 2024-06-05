@@ -32,6 +32,7 @@ import {
 } from '../utils/field';
 import { PostfixSlot, PrefixSlot } from '../text-field/input.fc';
 import { adjustPaddingForPrefixAndPostfix } from '../text-field/text-field.util';
+import { iconCalendar } from '@siemens/ix-icons/icons';
 
 export type DateFieldValidityState = {
   patternMismatch: boolean;
@@ -83,12 +84,6 @@ export class DateField implements IxInputFieldComponent<string> {
    * label of the input field
    */
   @Prop() label: string;
-
-  /** @internal */
-  @Prop() combineDateStart = false;
-
-  /** @internal */
-  @Prop() combineDateEnd = false;
 
   /**
    * error text below the input field
@@ -157,6 +152,8 @@ export class DateField implements IxInputFieldComponent<string> {
 
   private prefixRef = makeRef<HTMLDivElement>();
   private postfixRef = makeRef<HTMLDivElement>();
+
+  private datepickerRef = makeRef<HTMLIxDatePickerElement>();
 
   private inputElementRef = makeRef<HTMLInputElement>();
   private dropdownElementRef = makeRef<HTMLIxDropdownElement>();
@@ -270,8 +267,6 @@ export class DateField implements IxInputFieldComponent<string> {
           autoComplete="off"
           class={{
             'is-invalid': this.isInputInvalid,
-            'combine-start': this.combineDateStart,
-            'combine-end': this.combineDateEnd,
           }}
           required={this.required}
           ref={this.inputElementRef}
@@ -293,7 +288,20 @@ export class DateField implements IxInputFieldComponent<string> {
           }}
           onBlur={() => this.ixBlur.emit()}
         ></input>
-        <PostfixSlot postfixRef={this.postfixRef}></PostfixSlot>
+        <PostfixSlot postfixRef={this.postfixRef}>
+          <ix-icon-button
+            ghost
+            icon={iconCalendar}
+            onClick={(event) => {
+              if (!this.show) {
+                event.stopPropagation();
+                event.preventDefault();
+                this.openDropdown();
+                this.inputElementRef.current.focus();
+              }
+            }}
+          ></ix-icon-button>
+        </PostfixSlot>
       </div>
     );
   }
@@ -346,25 +354,21 @@ export class DateField implements IxInputFieldComponent<string> {
 
     return (
       <Host>
-        {this.combineDateStart || this.combineDateEnd ? (
-          this.renderInput()
-        ) : (
-          <ix-field-wrapper
-            label={this.label}
-            helperText={this.helperText}
-            isInvalid={this.isInvalid}
-            errorText={errorText}
-            infoText={this.infoText}
-            isInfo={this.isInfo}
-            isWarning={this.isWarning}
-            warningText={this.warningText}
-            validText={this.validText}
-            showTextAsTooltip={this.showTextAsTooltip}
-            required={this.required}
-          >
-            {this.renderInput()}
-          </ix-field-wrapper>
-        )}
+        <ix-field-wrapper
+          label={this.label}
+          helperText={this.helperText}
+          isInvalid={this.isInvalid}
+          errorText={errorText}
+          infoText={this.infoText}
+          isInfo={this.isInfo}
+          isWarning={this.isWarning}
+          warningText={this.warningText}
+          validText={this.validText}
+          showTextAsTooltip={this.showTextAsTooltip}
+          required={this.required}
+        >
+          {this.renderInput()}
+        </ix-field-wrapper>
         <ix-dropdown
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
@@ -375,6 +379,7 @@ export class DateField implements IxInputFieldComponent<string> {
           }}
         >
           <ix-date-picker
+            ref={this.datepickerRef}
             format={this.format}
             range={false}
             from={this.from}

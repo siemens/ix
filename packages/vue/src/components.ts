@@ -345,8 +345,6 @@ export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField>('ix-da
   'required',
   'helperText',
   'label',
-  'combineDateStart',
-  'combineDateEnd',
   'errorText',
   'readonly',
   'disabled',
