@@ -44,7 +44,7 @@ export class RadiobuttonGroup
   /**
    * Error text for the field component
    */
-  @Prop() errorText: string;
+  @Prop() invalidText: string;
 
   /**
    * Info text for the field component
@@ -160,7 +160,7 @@ export class RadiobuttonGroup
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}
-          errorText={this.errorText}
+          invalidText={this.invalidText}
           infoText={this.infoText}
           warningText={this.warningText}
           validText={this.validText}

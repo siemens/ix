@@ -54,7 +54,7 @@ LICENSE file in the root directory of this source tree.
       label="Threshold limit A"
       data-colspan="1"
       helperText="Max threshold is 5"
-      [errorText]="thresholdLimitAErrorText"
+      [invalidText]="thresholdLimitAErrorText"
     ></ix-number-field>
 
     <ix-number-field
@@ -70,12 +70,11 @@ LICENSE file in the root directory of this source tree.
       formControlName="begin"
       label="Begin"
       i18nErrorDateUnparsable="Please enter a valid date"
-      errorText="ERROR!"
-
+      invalidText="ERROR!"
       >
       <ix-icon slot="prefix" name="calendar" size="16"></ix-icon>
     </ix-date-field>
-    <ix-date-field formControlName="end" label="End" [errorText]="beginErrorText">
+    <ix-date-field formControlName="end" label="End" [invalidText]="beginErrorText">
       <ix-icon slot="postfix" name="calendar" size="16"></ix-icon>
     </ix-date-field>
 
@@ -93,7 +92,7 @@ LICENSE file in the root directory of this source tree.
 
 
     <!-- Implement custom form component -->
-    <ix-custom-field label="Upload" errorText="You need to upload a file">
+    <ix-custom-field label="Upload" invalidText="You need to upload a file">
       <ix-text-field type="text" readonly style="width: 100%;" formControlName="uploadPath"></ix-text-field>
       <input #upload type="file" style="display: none;" (change)="onFileSelected($event)" formControlName="upload"/>
       <ix-icon-button outline variant="primary" icon="star" (click)="upload.click()"></ix-icon-button>

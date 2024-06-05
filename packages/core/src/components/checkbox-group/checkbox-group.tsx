@@ -28,7 +28,7 @@ export class CheckboxGroup
   /**
    * Error text for the field component
    */
-  @Prop() errorText: string;
+  @Prop() invalidText: string;
 
   /**
    * Info text for the field component
@@ -72,7 +72,7 @@ export class CheckboxGroup
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}
-          errorText={this.errorText}
+          invalidText={this.invalidText}
           infoText={this.infoText}
           validText={this.validText}
           warningText={this.warningText}

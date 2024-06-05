@@ -16,7 +16,7 @@ import {
 
 export function renderHelperText({
   isInvalid,
-  errorText,
+  invalidText,
   isWarning,
   warningText,
   isInfo,
@@ -26,7 +26,7 @@ export function renderHelperText({
   helperText,
 }: {
   isInvalid: boolean;
-  errorText: string;
+  invalidText: string;
   isWarning: boolean;
   warningText: string;
   isInfo: boolean;
@@ -35,12 +35,12 @@ export function renderHelperText({
   validText: string;
   helperText: string;
 }) {
-  if (isInvalid && errorText !== undefined) {
+  if (isInvalid && invalidText !== undefined) {
     return (
       <ix-typography color="alarm" class="bottom-text">
         <ix-icon class="text-icon invalid" name={iconError} size="16"></ix-icon>
 
-        {errorText}
+        {invalidText}
       </ix-typography>
     );
   }

@@ -101,7 +101,7 @@ export class TextareaField implements IxInputFieldComponent<string> {
   /**
    * The error text for the textarea field.
    */
-  @Prop() errorText: string;
+  @Prop() invalidText: string;
 
   /**
    * The height of the textarea field.
@@ -180,7 +180,7 @@ export class TextareaField implements IxInputFieldComponent<string> {
           required={this.required}
           label={this.label}
           helperText={this.helperText}
-          errorText={this.errorText}
+          invalidText={this.invalidText}
           infoText={this.infoText}
           warningText={this.warningText}
           validText={this.validText}

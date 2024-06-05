@@ -454,10 +454,6 @@ export namespace Components {
     }
     interface IxCheckboxGroup {
         /**
-          * Error text for the field component
-         */
-        "errorText": string;
-        /**
           * Show text below the field component
          */
         "helperText": string;
@@ -465,6 +461,10 @@ export namespace Components {
           * Info text for the field component
          */
         "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText": string;
         /**
           * Label for the field component
          */
@@ -578,10 +578,6 @@ export namespace Components {
     }
     interface IxCustomField {
         /**
-          * Error text for the field component
-         */
-        "errorText"?: string;
-        /**
           * Show text below the field component which show additional information
          */
         "helperText"?: string;
@@ -589,6 +585,10 @@ export namespace Components {
           * Info text for the field component
          */
         "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText"?: string;
         /**
           * Label for the field component
          */
@@ -676,10 +676,6 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * error text below the input field
-         */
-        "errorText": string;
-        /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format": string;
@@ -698,6 +694,10 @@ export namespace Components {
           * info text below the input field
          */
         "infoText"?: string;
+        /**
+          * error text below the input field
+         */
+        "invalidText": string;
         /**
           * label of the input field
          */
@@ -1178,10 +1178,6 @@ export namespace Components {
     }
     interface IxFieldWrapper {
         /**
-          * Error text for the field component
-         */
-        "errorText": string;
-        /**
           * Show text below the field component
          */
         "helperText": string;
@@ -1189,6 +1185,10 @@ export namespace Components {
           * Info text for the field component
          */
         "infoText": string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText": string;
         /**
           * Is the field component info
          */
@@ -1329,10 +1329,6 @@ export namespace Components {
     }
     interface IxHelperText {
         /**
-          * Error text for the field component
-         */
-        "errorText": string;
-        /**
           * Show text below the field component
          */
         "helperText": string;
@@ -1344,6 +1340,10 @@ export namespace Components {
           * Info text for the field component
          */
         "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText": string;
         /**
           * Valid text for the field component
          */
@@ -1933,10 +1933,6 @@ export namespace Components {
           * Disables the input field
          */
         "disabled": boolean;
-        /**
-          * The error text for the input field
-         */
-        "errorText": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
@@ -1947,6 +1943,10 @@ export namespace Components {
           * The info text for the input field
          */
         "infoText"?: string;
+        /**
+          * The error text for the input field
+         */
+        "invalidText": string;
         /**
           * The label for the input field
          */
@@ -2195,10 +2195,6 @@ export namespace Components {
     }
     interface IxRadioGroup {
         /**
-          * Error text for the field component
-         */
-        "errorText": string;
-        /**
           * Show text below the field component
          */
         "helperText": string;
@@ -2206,6 +2202,10 @@ export namespace Components {
           * Info text for the field component
          */
         "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText": string;
         /**
           * Label for the field component
          */
@@ -2248,11 +2248,6 @@ export namespace Components {
           * Select is extendable
          */
         "editable": boolean;
-        /**
-          * Error text for the select component
-          * @since 2.4.0
-         */
-        "errorText"?: string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
@@ -2287,6 +2282,11 @@ export namespace Components {
           * @since 2.4.0
          */
         "infoText"?: string;
+        /**
+          * Error text for the select component
+          * @since 2.4.0
+         */
+        "invalidText"?: string;
         /**
           * Label for the select component
           * @since 2.4.0
@@ -2528,10 +2528,6 @@ export namespace Components {
           * Specifies whether the text field is disabled.
          */
         "disabled": boolean;
-        /**
-          * The error text for the text field.
-         */
-        "errorText": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
@@ -2542,6 +2538,10 @@ export namespace Components {
           * The info text for the text field.
          */
         "infoText"?: string;
+        /**
+          * The error text for the text field.
+         */
+        "invalidText": string;
         /**
           * The label for the text field.
          */
@@ -2600,10 +2600,6 @@ export namespace Components {
           * Determines if the textarea field is disabled.
          */
         "disabled": boolean;
-        /**
-          * The error text for the textarea field.
-         */
-        "errorText": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
@@ -2614,6 +2610,10 @@ export namespace Components {
           * The info text for the textarea field.
          */
         "infoText"?: string;
+        /**
+          * The error text for the textarea field.
+         */
+        "invalidText": string;
         /**
           * The label for the textarea field.
          */
@@ -5326,10 +5326,6 @@ declare namespace LocalJSX {
     }
     interface IxCheckboxGroup {
         /**
-          * Error text for the field component
-         */
-        "errorText"?: string;
-        /**
           * Show text below the field component
          */
         "helperText"?: string;
@@ -5337,6 +5333,10 @@ declare namespace LocalJSX {
           * Info text for the field component
          */
         "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText"?: string;
         /**
           * Label for the field component
          */
@@ -5459,10 +5459,6 @@ declare namespace LocalJSX {
     }
     interface IxCustomField {
         /**
-          * Error text for the field component
-         */
-        "errorText"?: string;
-        /**
           * Show text below the field component which show additional information
          */
         "helperText"?: string;
@@ -5470,6 +5466,10 @@ declare namespace LocalJSX {
           * Info text for the field component
          */
         "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText"?: string;
         /**
           * Label for the field component
          */
@@ -5557,10 +5557,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * error text below the input field
-         */
-        "errorText"?: string;
-        /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format"?: string;
@@ -5576,6 +5572,10 @@ declare namespace LocalJSX {
           * info text below the input field
          */
         "infoText"?: string;
+        /**
+          * error text below the input field
+         */
+        "invalidText"?: string;
         /**
           * label of the input field
          */
@@ -6112,10 +6112,6 @@ declare namespace LocalJSX {
     }
     interface IxFieldWrapper {
         /**
-          * Error text for the field component
-         */
-        "errorText"?: string;
-        /**
           * Show text below the field component
          */
         "helperText"?: string;
@@ -6123,6 +6119,10 @@ declare namespace LocalJSX {
           * Info text for the field component
          */
         "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText"?: string;
         /**
           * Is the field component info
          */
@@ -6283,10 +6283,6 @@ declare namespace LocalJSX {
     }
     interface IxHelperText {
         /**
-          * Error text for the field component
-         */
-        "errorText"?: string;
-        /**
           * Show text below the field component
          */
         "helperText"?: string;
@@ -6298,6 +6294,10 @@ declare namespace LocalJSX {
           * Info text for the field component
          */
         "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText"?: string;
         /**
           * Valid text for the field component
          */
@@ -6908,10 +6908,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * The error text for the input field
-         */
-        "errorText"?: string;
-        /**
           * The helper text for the input field
          */
         "helperText"?: string;
@@ -6919,6 +6915,10 @@ declare namespace LocalJSX {
           * The info text for the input field
          */
         "infoText"?: string;
+        /**
+          * The error text for the input field
+         */
+        "invalidText"?: string;
         /**
           * The label for the input field
          */
@@ -7207,10 +7207,6 @@ declare namespace LocalJSX {
     }
     interface IxRadioGroup {
         /**
-          * Error text for the field component
-         */
-        "errorText"?: string;
-        /**
           * Show text below the field component
          */
         "helperText"?: string;
@@ -7218,6 +7214,10 @@ declare namespace LocalJSX {
           * Info text for the field component
          */
         "infoText"?: string;
+        /**
+          * Error text for the field component
+         */
+        "invalidText"?: string;
         /**
           * Label for the field component
          */
@@ -7265,11 +7265,6 @@ declare namespace LocalJSX {
          */
         "editable"?: boolean;
         /**
-          * Error text for the select component
-          * @since 2.4.0
-         */
-        "errorText"?: string;
-        /**
           * Helper text for the select component
           * @since 2.4.0
          */
@@ -7301,6 +7296,11 @@ declare namespace LocalJSX {
           * @since 2.4.0
          */
         "infoText"?: string;
+        /**
+          * Error text for the select component
+          * @since 2.4.0
+         */
+        "invalidText"?: string;
         /**
           * Label for the select component
           * @since 2.4.0
@@ -7583,10 +7583,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * The error text for the text field.
-         */
-        "errorText"?: string;
-        /**
           * The helper text for the text field.
          */
         "helperText"?: string;
@@ -7594,6 +7590,10 @@ declare namespace LocalJSX {
           * The info text for the text field.
          */
         "infoText"?: string;
+        /**
+          * The error text for the text field.
+         */
+        "invalidText"?: string;
         /**
           * The label for the text field.
          */
@@ -7665,10 +7665,6 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * The error text for the textarea field.
-         */
-        "errorText"?: string;
-        /**
           * The helper text for the textarea field.
          */
         "helperText"?: string;
@@ -7676,6 +7672,10 @@ declare namespace LocalJSX {
           * The info text for the textarea field.
          */
         "infoText"?: string;
+        /**
+          * The error text for the textarea field.
+         */
+        "invalidText"?: string;
         /**
           * The label for the textarea field.
          */

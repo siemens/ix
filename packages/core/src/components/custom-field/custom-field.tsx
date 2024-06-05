@@ -46,7 +46,7 @@ export class CustomField
   /**
    * Error text for the field component
    */
-  @Prop() errorText?: string;
+  @Prop() invalidText?: string;
 
   /**
    * Valid text for the field component
@@ -86,7 +86,7 @@ export class CustomField
           helperText={this.helperText}
           infoText={this.infoText}
           warningText={this.warningText}
-          errorText={this.errorText}
+          invalidText={this.invalidText}
           validText={this.validText}
           showTextAsTooltip={this.showTextAsTooltip}
           isInvalid={this.isInvalid}

@@ -113,7 +113,7 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * The error text for the text field.
    */
-  @Prop() errorText: string;
+  @Prop() invalidText: string;
 
   /**
    * The pattern for the text field.
@@ -224,7 +224,7 @@ export class TextField implements IxInputFieldComponent<string> {
           required={this.required}
           label={this.label}
           helperText={this.helperText}
-          errorText={this.errorText}
+          invalidText={this.invalidText}
           infoText={this.infoText}
           warningText={this.warningText}
           validText={this.validText}

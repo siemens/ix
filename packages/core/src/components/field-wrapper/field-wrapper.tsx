@@ -25,7 +25,7 @@ export class FieldWrapper implements FieldWrapperInterface {
   /**
    * Error text for the field component
    */
-  @Prop() errorText: string;
+  @Prop() invalidText: string;
 
   /**
    * Valid text for the field component
@@ -76,7 +76,7 @@ export class FieldWrapper implements FieldWrapperInterface {
 
   render() {
     const textOptions = {
-      errorText: this.errorText,
+      invalidText: this.invalidText,
       isInvalid: this.isInvalid,
       isValid: this.isValid,
       validText: this.validText,

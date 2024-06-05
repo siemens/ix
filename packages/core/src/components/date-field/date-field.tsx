@@ -88,7 +88,7 @@ export class DateField implements IxInputFieldComponent<string> {
   /**
    * error text below the input field
    */
-  @Prop({ reflect: true }) errorText: string;
+  @Prop({ reflect: true }) invalidText: string;
 
   /**
    * readonly attribute
@@ -348,9 +348,9 @@ export class DateField implements IxInputFieldComponent<string> {
   }
 
   render() {
-    const errorText = this.isInputInvalid
+    const invalidText = this.isInputInvalid
       ? this.i18nErrorDateUnparsable
-      : this.errorText;
+      : this.invalidText;
 
     return (
       <Host>
@@ -358,7 +358,7 @@ export class DateField implements IxInputFieldComponent<string> {
           label={this.label}
           helperText={this.helperText}
           isInvalid={this.isInvalid}
-          errorText={errorText}
+          invalidText={invalidText}
           infoText={this.infoText}
           isInfo={this.isInfo}
           isWarning={this.isWarning}

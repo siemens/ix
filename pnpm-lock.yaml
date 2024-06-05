@@ -596,10 +596,6 @@ importers:
         version: 5.2.2
 
   packages/html-test-app:
-    dependencies:
-      fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
     devDependencies:
       '@siemens/ix':
         specifier: workspace:*
@@ -616,6 +612,12 @@ importers:
       example-styles:
         specifier: workspace:*
         version: link:../example-styles
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.2.0
+      rimraf:
+        specifier: ^5.0.7
+        version: 5.0.7
       vite:
         specifier: ^3.1.0
         version: 3.2.7(@types/node@20.8.9)(less@4.2.0)(sass@1.69.5)(stylus@0.59.0)(terser@5.22.0)
@@ -7060,6 +7062,7 @@ packages:
 
   glob@7.1.6:
     resolution: {integrity: sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
@@ -11116,6 +11119,11 @@ packages:
   rimraf@5.0.5:
     resolution: {integrity: sha512-CqDakW+hMe/Bz202FPEymy68P+G50RfMQK+Qo5YUqc9SPipvbGjCGKd0RSKEelbsfQuw3g5NZDSrlZZAJurH1A==}
     engines: {node: '>=14'}
+    hasBin: true
+
+  rimraf@5.0.7:
+    resolution: {integrity: sha512-nV6YcJo5wbLW77m+8KjH8aB/7/rxQy9SZ0HY5shnwULfS+9nmTtVXAJET5NdZmCzA4fPI/Hm1wo/Po/4mopOdg==}
+    engines: {node: '>=14.18'}
     hasBin: true
 
   rollup-plugin-dts@4.2.3:
@@ -27978,6 +27986,10 @@ snapshots:
       glob: 7.2.3
 
   rimraf@5.0.5:
+    dependencies:
+      glob: 10.3.10
+
+  rimraf@5.0.7:
     dependencies:
       glob: 10.3.10
 

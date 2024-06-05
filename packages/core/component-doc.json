@@ -2683,27 +2683,6 @@
       },
       "props": [
         {
-          "name": "errorText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "error-text",
-          "reflectToAttr": false,
-          "docs": "Error text for the field component",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "helperText",
           "type": "string",
           "complexType": {
@@ -2743,6 +2722,27 @@
             }
           ],
           "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false
         },
         {
@@ -3650,27 +3650,6 @@
       },
       "props": [
         {
-          "name": "errorText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "error-text",
-          "reflectToAttr": false,
-          "docs": "Error text for the field component",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
           "name": "helperText",
           "type": "string",
           "complexType": {
@@ -3703,6 +3682,27 @@
           "attr": "info-text",
           "reflectToAttr": false,
           "docs": "Info text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
           "docsTags": [],
           "values": [
             {
@@ -4287,27 +4287,6 @@
           "required": false
         },
         {
-          "name": "errorText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "error-text",
-          "reflectToAttr": true,
-          "docs": "error text below the input field",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "format",
           "type": "string",
           "complexType": {
@@ -4391,6 +4370,27 @@
             }
           ],
           "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": true,
+          "docs": "error text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false
         },
         {
@@ -8476,27 +8476,6 @@
       },
       "props": [
         {
-          "name": "errorText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "error-text",
-          "reflectToAttr": false,
-          "docs": "Error text for the field component",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "helperText",
           "type": "string",
           "complexType": {
@@ -8557,6 +8536,27 @@
             }
           ],
           "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false
         },
         {
@@ -13083,27 +13083,6 @@
           "required": false
         },
         {
-          "name": "errorText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "error-text",
-          "reflectToAttr": false,
-          "docs": "The error text for the input field",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "helperText",
           "type": "string",
           "complexType": {
@@ -13143,6 +13122,27 @@
             }
           ],
           "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "The error text for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false
         },
         {
@@ -14824,27 +14824,6 @@
       },
       "props": [
         {
-          "name": "errorText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "error-text",
-          "reflectToAttr": false,
-          "docs": "Error text for the field component",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "helperText",
           "type": "string",
           "complexType": {
@@ -14884,6 +14863,27 @@
             }
           ],
           "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false
         },
         {
@@ -15191,32 +15191,6 @@
           "required": false
         },
         {
-          "name": "errorText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "error-text",
-          "reflectToAttr": false,
-          "docs": "Error text for the select component",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.4.0"
-            }
-          ],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
           "name": "helperText",
           "type": "string",
           "complexType": {
@@ -15374,6 +15348,32 @@
           "attr": "info-text",
           "reflectToAttr": false,
           "docs": "Info text for the select component",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.4.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the select component",
           "docsTags": [
             {
               "name": "since",
@@ -17253,27 +17253,6 @@
           "required": false
         },
         {
-          "name": "errorText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "error-text",
-          "reflectToAttr": false,
-          "docs": "The error text for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "helperText",
           "type": "string",
           "complexType": {
@@ -17313,6 +17292,27 @@
             }
           ],
           "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "The error text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false
         },
         {
@@ -17717,27 +17717,6 @@
           "required": false
         },
         {
-          "name": "errorText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "error-text",
-          "reflectToAttr": false,
-          "docs": "The error text for the textarea field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "helperText",
           "type": "string",
           "complexType": {
@@ -17777,6 +17756,27 @@
             }
           ],
           "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "The error text for the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
           "required": false
         },
         {

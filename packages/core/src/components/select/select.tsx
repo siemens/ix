@@ -86,7 +86,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    *
    *  @since 2.4.0
    **/
-  @Prop() errorText?: string;
+  @Prop() invalidText?: string;
 
   /**
    * Valid text for the select component
@@ -764,7 +764,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           required={this.required}
           label={this.label}
           helperText={this.helperText}
-          errorText={this.errorText}
+          invalidText={this.invalidText}
           infoText={this.infoText}
           warningText={this.warningText}
           validText={this.validText}

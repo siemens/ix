@@ -30,7 +30,7 @@ export class HelperText implements IxComponent {
   /**
    * Error text for the field component
    */
-  @Prop() errorText: string;
+  @Prop() invalidText: string;
 
   /**
    * Valid text for the field component
@@ -97,7 +97,7 @@ export class HelperText implements IxComponent {
       <Host>
         {renderHelperText({
           helperText: this.helperText,
-          errorText: this.errorText,
+          invalidText: this.invalidText,
           validText: this.validText,
           infoText: this.infoText,
           warningText: this.warningText,

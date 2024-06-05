@@ -31,7 +31,7 @@ export interface FieldWrapperInterface {
   /**
    * Error text for the field component
    */
-  errorText?: string;
+  invalidText?: string;
   /**
    * Valid text for the field component
    */
