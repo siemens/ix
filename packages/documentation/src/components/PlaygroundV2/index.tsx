@@ -15,7 +15,14 @@ import { useEffect, useState } from 'react';
 import { TargetFramework } from './framework-types';
 import Demo, { DemoProps } from './../Demo';
 import styles from './styles.module.css';
-import { openStackBlitz, replaceStyleFilepath, SourceFile } from './utils';
+import {
+  fetchSourceFilesByFileName,
+  fetchSourceFilesFromExample,
+  getLanguage,
+  openStackBlitz,
+  replaceStyleFilepath,
+  SourceFile,
+} from './utils';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 function getBranchPath(framework: TargetFramework) {
@@ -36,142 +43,6 @@ function getBranchPath(framework: TargetFramework) {
   }
 
   return `siemens/ix/tree/${branch}/packages/${path}-test-app`;
-}
-
-function stripComments(code: string) {
-  return code
-    .replace(/\/\*[^]*?\*\//gs, '')
-    .replace(/<!--[^]*?-->/gs, '')
-    .trim();
-}
-
-function extractCodePart(code: string, limiter: RegExp) {
-  const limiterMatches = code.match(limiter);
-
-  if (limiterMatches && limiterMatches.length === 2) {
-    const [_, intermediate] = code.split(limiter);
-
-    return stripComments(
-      intermediate
-        .split('\n')
-        .map((line) => line.replace(/[ ]{4}/, ''))
-        .join('\n')
-        .trim()
-    );
-  }
-
-  return '';
-}
-
-function sliceCode(code: string) {
-  const previewCode = extractCodePart(code, /<!-- Preview code -->/g);
-
-  if (previewCode) {
-    const headerSources = extractCodePart(code, /<!-- Sources -->/g);
-
-    if (headerSources) {
-      return (
-        '<!-- Include in header -->\n' +
-        headerSources +
-        '\n<!-- Include in header -->\n\n' +
-        previewCode
-      );
-    }
-
-    return previewCode;
-  }
-
-  return stripComments(code);
-}
-
-function adaptCode(code: string) {
-  return replaceStyleFilepath(sliceCode(code), true).source;
-}
-
-async function fetchSource(path: string) {
-  console.log('FETCH SOURCE FROM', path);
-  const response = await fetch(`${path}`);
-  const source = await response.text();
-
-  // Docusaurus don' throw a classic 404 if a sub route is not found
-  // Check if the response is the bootstrap code of docusaurus
-  // If this is the case the resource is not existing
-  console.log(source);
-  if (
-    !source ||
-    source?.includes('<div id="__docusaurus"></div>') ||
-    source?.includes('Page Not Found')
-  ) {
-    return null;
-  }
-
-  return source;
-}
-
-async function fetchHTMLSource(
-  path: string,
-  framework: TargetFramework,
-  files: string[]
-) {
-  let frameworkPath = 'web-components';
-
-  if (framework === TargetFramework.ANGULAR) {
-    frameworkPath = 'angular';
-  }
-
-  if (framework === TargetFramework.REACT) {
-    frameworkPath = 'react';
-  }
-
-  if (framework === TargetFramework.VUE) {
-    frameworkPath = 'vue';
-  }
-
-  return Promise.all(
-    files.map(async (file) => {
-      try {
-        const source = await fetchSource(
-          getLanguage(file) === 'css'
-            ? `${path}/previews/styles/${file}`
-            : `${path}/previews/${frameworkPath}/${file}`
-        );
-
-        if (!source) {
-          return null;
-        }
-
-        return {
-          filename: file,
-          source: adaptCode(source),
-          raw: source,
-        };
-      } catch (e) {
-        console.warn(e);
-      }
-    })
-  );
-}
-
-function getLanguage(filename: string) {
-  if (filename.endsWith('.html')) {
-    return 'html';
-  }
-
-  if (filename.endsWith('.ts')) {
-    return 'ts';
-  }
-
-  if (filename.endsWith('.tsx')) {
-    return 'tsx';
-  }
-
-  if (filename.endsWith('.vue')) {
-    return 'tsx';
-  }
-
-  if (filename.endsWith('.css')) {
-    return 'css';
-  }
 }
 
 type PlaygroundV2Props = {
@@ -199,30 +70,12 @@ function SourceCodePreview(props: {
 
   useEffect(() => {
     if (props.examplesByName) {
-      const filesToFetch = [];
-
-      if (props.framework === TargetFramework.ANGULAR) {
-        filesToFetch.push(...[`${props.name}.html`, `${props.name}.ts`]);
-      }
-
-      if (props.framework === TargetFramework.JAVASCRIPT) {
-        filesToFetch.push(`${props.name}.html`);
-      }
-
-      if (props.framework === TargetFramework.REACT) {
-        filesToFetch.push(`${props.name}.tsx`);
-      }
-
-      if (props.framework === TargetFramework.VUE) {
-        filesToFetch.push(`${props.name}.vue`);
-      }
-
-      if (props.includeCssFile) {
-        filesToFetch.push(`${props.name}.css`);
-      }
-
-      setFetching(true);
-      fetchHTMLSource(baseUrl, props.framework, filesToFetch).then((files) => {
+      fetchSourceFilesFromExample(
+        baseUrl,
+        props.name,
+        props.framework,
+        props.includeCssFile
+      ).then((files) => {
         setSelectedFile(0);
         setFiles(files.filter((f) => f));
         setFetching(false);
@@ -233,11 +86,13 @@ function SourceCodePreview(props: {
       const filesToFetch = props.files[props.framework];
 
       setFetching(true);
-      fetchHTMLSource(baseUrl, props.framework, filesToFetch).then((files) => {
-        setSelectedFile(0);
-        setFiles(files.filter((f) => f));
-        setFetching(false);
-      });
+      fetchSourceFilesByFileName(baseUrl, props.framework, filesToFetch).then(
+        (files) => {
+          setSelectedFile(0);
+          setFiles(files.filter((f) => f));
+          setFetching(false);
+        }
+      );
     }
   }, [props.framework]);
 

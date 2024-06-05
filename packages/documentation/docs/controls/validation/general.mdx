@@ -1,5 +1,8 @@
 import Admonition from '@theme/Admonition';
 import Playground from '@site/src/components/PlaygroundV2';
+import StackblitzEmbedded from '@site/src/components/StackblitzEmbedded';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Validation
 
@@ -27,28 +30,26 @@ You can follow the example here:
 1. Define the `ix-text-field` component with an `id` attribute.
 
 ```html
-  <ix-text-field
-    id="mytest"
-  ></ix-text-field>
+<ix-text-field id="mytest"></ix-text-field>
 ```
 
 2. Define a `ix-field-label` component with a `for` attribute to link the label to the `ix-text-field` component.
 
 ```html
-  <ix-field-label htmlFor="mytest">Test</ix-field-label>
+<ix-field-label htmlFor="mytest">Test</ix-field-label>
 ```
 
 3. Define a `ix-helper-text` component with the `for` attribute to link the helper text to the `ix-text-field` component.
 
 ```html
-  <ix-helper-text
-    htmlFor="mytest"
-    helperText="Helper text"
-    errorText="Error text"
-    validText="Valid text"
-    warningText="Warning text"
-    infoText="Info text"
-  ></ix-helper-text>
+<ix-helper-text
+  htmlFor="mytest"
+  helperText="Helper text"
+  errorText="Error text"
+  validText="Valid text"
+  warningText="Warning text"
+  infoText="Info text"
+></ix-helper-text>
 ```
 
 ### Using `ix-layout-form`
@@ -111,20 +112,26 @@ Will show the component as `invalid` because `invalid` has a higher priority.
 
 ## Example
 
-<Admonition type="tip" icon="💡" title="Just an example">
- Using `react-form-hook` is just an example to demonstrate how validation could be done
- within react. You can use any other validation library or write your own validation logic.
-</Admonition>
 
-<Admonition type="tip" icon="💡" title="Just an example">
- Using `@vuelidate/core` is just an example to demonstrate how validation could be done
- within vue. You can use any other validation library or write your own validation logic.
-</Admonition>
 
-<Playground
-name="form-validation"
-hideInitalCodePreview
-height="16rem"
-examplesByName
-></Playground>
 
+<Tabs>
+  <TabItem value="angular" label="Angular" default>
+    <StackblitzEmbedded exampleName="blind" height="800px" framework="angular" />
+  </TabItem>
+  <TabItem value="react" label="React">
+    <Admonition type="tip" icon="💡" title="Just an example">
+      Using `react-form-hook` is just an example to demonstrate how validation could be done
+      within react. You can use any other validation library or write your own validation logic.
+    </Admonition>
+    <StackblitzEmbedded exampleName="blind" height="800px" framework="react" />
+  </TabItem>
+  <TabItem value="vue" label="Vue">
+  <Admonition type="tip" icon="💡" title="Just an example">
+      Using `@vuelidate/core` is just an example to demonstrate how validation could be done
+      within vue. You can use any other validation library or write your own validation logic.
+    </Admonition>
+
+    <StackblitzEmbedded exampleName="blind" height="800px" framework="vue" />
+  </TabItem>
+</Tabs>

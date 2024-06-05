@@ -90,7 +90,17 @@ LICENSE file in the root directory of this source tree.
 
 
     <ix-text-field type="email" label="Email" formControlName="email"></ix-text-field>
+
+
+    <!-- Implement custom form component -->
+    <ix-custom-field label="Upload" errorText="You need to upload a file">
+      <ix-text-field type="text" readonly style="width: 100%;" formControlName="uploadPath"></ix-text-field>
+      <input #upload type="file" style="display: none;" (change)="onFileSelected($event)" formControlName="upload"/>
+      <ix-icon-button outline variant="primary" icon="star" (click)="upload.click()"></ix-icon-button>
+    </ix-custom-field>
+
     <ix-text-field type="password" label="PIN" formControlName="pin" helperText="Only numbers between 1 and 4 is allowed" allowedCharactersPattern="[1-4]" maxLength="4"></ix-text-field>
+    <ix-text-field type="password" label="PIN" helperText="Confirm password" allowedCharactersPattern="[1-4]" maxLength="4"></ix-text-field>
 
     <ix-checkbox label="I agree everything" formControlName="agreed" data-colspan="2"></ix-checkbox>
     <ix-button type="submit" data-colspan="1">

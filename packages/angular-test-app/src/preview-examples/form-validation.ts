@@ -7,7 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -16,8 +23,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { DateFieldValidityState } from '@siemens/ix';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 export function forbiddenDateValidator(nameRe: RegExp): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -38,6 +44,8 @@ export function forbiddenDateValidator(nameRe: RegExp): ValidatorFn {
   templateUrl: `./form-validation.html`,
 })
 export default class FormValidation implements OnInit, OnDestroy {
+  @ViewChild('upload') upload?: ElementRef<HTMLInputElement>;
+
   thresholdLimitAErrorText = '';
   beginErrorText = '';
 
@@ -67,6 +75,8 @@ export default class FormValidation implements OnInit, OnDestroy {
     'room-size': new FormControl(100, [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     pin: new FormControl('', [Validators.required]),
+    upload: new FormControl('', []),
+    uploadPath: new FormControl('', [Validators.required]),
   });
 
   private onValidationChange(value: typeof this.exampleForm.value) {
@@ -125,6 +135,24 @@ export default class FormValidation implements OnInit, OnDestroy {
     if (this.valueSubscription) {
       this.valueSubscription.unsubscribe();
     }
+  }
+
+  openFileUpload() {
+    this.upload?.nativeElement.click();
+  }
+
+  onFileSelected(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (!target) {
+      return;
+    }
+    // Store the file somewhere to upload the asset after the form is submitted
+    const file = target.files?.[0];
+    if (!file) {
+      return;
+    }
+
+    this.exampleForm.controls['uploadPath'].setValue(file.name);
   }
 
   submit() {
