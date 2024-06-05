@@ -1225,6 +1225,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1258,6 +1259,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -15988,6 +15992,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-item",
+        "ix-playground-internal",
         "ix-slider"
       ],
       "dependencies": [
@@ -15998,6 +16003,9 @@
           "ix-typography"
         ],
         "ix-menu-item": [
+          "ix-tooltip"
+        ],
+        "ix-playground-internal": [
           "ix-tooltip"
         ],
         "ix-slider": [

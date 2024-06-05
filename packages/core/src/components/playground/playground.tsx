@@ -19,6 +19,30 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <div style={{ padding: '4rem' }}>
+          <ix-button class="any-class" aria-describedby="tooltip-1">
+            Hover me
+          </ix-button>
+          <ix-tooltip id="tooltip-1" for=".any-class" placement="left">
+            Simple selector
+          </ix-tooltip>
+
+          <ix-button
+            my-custom-special-selector="any-value"
+            aria-describedby="tooltip-2"
+          >
+            Also hover me
+          </ix-button>
+          <ix-tooltip
+            id="tooltip-2"
+            for="[my-custom-special-selector='any-value']"
+          >
+            Custom selector
+          </ix-tooltip>
+        </div>
+      </Host>
+    );
   }
 }
