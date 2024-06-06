@@ -10,6 +10,7 @@
 import { Component, Host, Prop, h, Element, Watch } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 import { HTMLIxFormComponentElement } from '../utils/field';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-field-label',
@@ -27,9 +28,10 @@ export class FormFieldLabel implements IxComponent {
   /**
    * The id of the form element that the label is associated with
    */
-  @Prop() htmlFor?: string;
+  @Prop({ reflect: true }) htmlFor?: string;
 
   private observer = new MutationObserver(() => this.checkForRequired());
+  private a11yAttributes: A11yAttributes = {};
 
   connectedCallback() {
     this.registerObserver();
@@ -41,6 +43,10 @@ export class FormFieldLabel implements IxComponent {
 
   componentWillRender() {
     this.checkForRequired();
+  }
+
+  componentWillLoad(): void | Promise<void> {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
   }
 
   private destroyObserver() {
@@ -79,10 +85,12 @@ export class FormFieldLabel implements IxComponent {
   render() {
     return (
       <Host>
-        <ix-typography color="soft" format="label">
-          <slot></slot>
-          {this.required && <span>&nbsp;*</span>}
-        </ix-typography>
+        <label htmlFor={this.htmlFor} {...this.a11yAttributes}>
+          <ix-typography color="soft" format="label">
+            <slot></slot>
+            {this.required && <span>&nbsp;*</span>}
+          </ix-typography>
+        </label>
       </Host>
     );
   }

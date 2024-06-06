@@ -52,6 +52,7 @@ export function TextareaElement(props: {
 }
 
 export function InputElement(props: {
+  id: string;
   disabled: boolean;
   readonly: boolean;
   maxLength?: number;
@@ -72,6 +73,7 @@ export function InputElement(props: {
 }) {
   return (
     <input
+      id={props.id}
       autoComplete="off"
       readOnly={props.readonly}
       disabled={props.disabled}

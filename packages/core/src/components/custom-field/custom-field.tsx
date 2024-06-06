@@ -94,6 +94,8 @@ export class CustomField
           isInfo={this.isInfo}
           isWarning={this.isWarning}
         >
+          <slot name="label" slot="label"></slot>
+
           <slot></slot>
         </ix-field-wrapper>
       </Host>

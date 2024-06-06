@@ -43,6 +43,8 @@ export interface FieldWrapperInterface {
 }
 
 export type HTMLIxFormComponentElement<T> = HTMLElement & IxFormComponent<T>;
+export type HTMLIxInputFieldComponentElement<T> =
+  HTMLIxFormComponentElement<T> & IxInputFieldComponent<T>;
 
 export interface IxFormValidationState {
   // Annotate as @State()

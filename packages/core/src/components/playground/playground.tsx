@@ -37,7 +37,10 @@ export class PlaygroundInternal {
             }
           }}
         >
-          <ix-layout-form>
+          <ix-text-field>
+            <ix-field-label slot="label">Test</ix-field-label>
+          </ix-text-field>
+          {/* <ix-layout-form>
             <ix-text-field label="Name" name="name"></ix-text-field>
             <ix-text-field label="Last Name" name="last-name"></ix-text-field>
 
@@ -157,7 +160,7 @@ export class PlaygroundInternal {
             <ix-button type="submit" data-colspan="2">
               Submit
             </ix-button>
-          </ix-layout-form>
+          </ix-layout-form> */}
         </form>
         {/* <form
           onSubmit={(e) => {

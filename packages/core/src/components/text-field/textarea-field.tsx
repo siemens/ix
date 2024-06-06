@@ -190,6 +190,8 @@ export class TextareaField implements IxInputFieldComponent<string> {
           isInfo={this.isInfo}
           isWarning={this.isWarning}
         >
+          <slot name="label" slot="label"></slot>
+
           {this.maxLength && (
             <ix-typography slot="bottom-right" color="weak">
               {this.value.length}/{this.maxLength}

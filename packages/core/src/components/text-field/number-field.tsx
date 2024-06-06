@@ -34,6 +34,7 @@ import {
   onInputBlur,
 } from './text-field.util';
 import { iconMinus, iconPlus } from '@siemens/ix-icons/icons';
+import { generateUUID } from '../utils/uuid';
 
 @Component({
   tag: 'ix-number-field',
@@ -159,6 +160,7 @@ export class NumberField implements IxInputFieldComponent<string> {
   private inputRef = makeRef<HTMLInputElement>();
   private postfixRef = makeRef<HTMLDivElement>();
   private prefixRef = makeRef<HTMLDivElement>();
+  private id = generateUUID();
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -205,6 +207,7 @@ export class NumberField implements IxInputFieldComponent<string> {
   }
 
   render() {
+    const id = this.hostElement.id ?? this.id;
     const showStepperButtons =
       this.showStepperButtons && (this.disabled || this.readonly) === false;
 
@@ -216,6 +219,7 @@ export class NumberField implements IxInputFieldComponent<string> {
         }}
       >
         <ix-field-wrapper
+          id={id}
           required={this.required}
           label={this.label}
           helperText={this.helperText}
@@ -229,6 +233,7 @@ export class NumberField implements IxInputFieldComponent<string> {
           isInfo={this.isInfo}
           isWarning={this.isWarning}
         >
+          <slot name="label" slot="label"></slot>
           <div
             class={{
               'input-wrapper': true,
@@ -237,6 +242,7 @@ export class NumberField implements IxInputFieldComponent<string> {
           >
             <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
             <InputElement
+              id={id}
               readonly={this.readonly}
               disabled={this.disabled}
               min={this.min}

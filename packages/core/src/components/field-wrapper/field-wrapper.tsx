@@ -72,6 +72,11 @@ export class FieldWrapper implements FieldWrapperInterface {
    */
   @Prop() required: boolean;
 
+  /**
+   * The id of the form element that the label is associated with
+   */
+  @Prop() htmlForLabel: string;
+
   private slotRef = makeRef<HTMLDivElement>();
 
   render() {
@@ -90,10 +95,14 @@ export class FieldWrapper implements FieldWrapperInterface {
       <Host>
         <div class="field-top">
           {this.label && (
-            <ix-field-label required={this.required}>
+            <ix-field-label
+              required={this.required}
+              htmlFor={this.htmlForLabel}
+            >
               {this.label}
             </ix-field-label>
           )}
+          <slot name="label"></slot>
           <slot name="top-right"></slot>
         </div>
         <div

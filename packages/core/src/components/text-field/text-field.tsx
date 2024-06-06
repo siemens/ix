@@ -34,6 +34,7 @@ import {
   applyPostfixPadding,
 } from './text-field.util';
 import { iconEye, iconEyeCancelled } from '@siemens/ix-icons/icons';
+import { generateUUID } from '../utils/uuid';
 
 @Component({
   tag: 'ix-text-field',
@@ -162,6 +163,8 @@ export class TextField implements IxInputFieldComponent<string> {
   private postfixRef = makeRef<HTMLDivElement>();
   private prefixRef = makeRef<HTMLDivElement>();
 
+  private id = `text-field-${generateUUID()}`;
+
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
@@ -213,6 +216,7 @@ export class TextField implements IxInputFieldComponent<string> {
   }
 
   render() {
+    const id = this.hostElement.id.length > 0 ? this.hostElement.id : this.id;
     return (
       <Host
         class={{
@@ -221,6 +225,7 @@ export class TextField implements IxInputFieldComponent<string> {
         }}
       >
         <ix-field-wrapper
+          htmlForLabel={id}
           required={this.required}
           label={this.label}
           helperText={this.helperText}
@@ -234,9 +239,11 @@ export class TextField implements IxInputFieldComponent<string> {
           isInfo={this.isInfo}
           isWarning={this.isWarning}
         >
+          <slot name="label" slot="label"></slot>
           <div class="input-wrapper">
             <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
             <InputElement
+              id={id}
               readonly={this.readonly}
               disabled={this.disabled}
               maxLength={this.maxLength}

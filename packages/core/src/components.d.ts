@@ -1182,6 +1182,10 @@ export namespace Components {
          */
         "helperText": string;
         /**
+          * The id of the form element that the label is associated with
+         */
+        "htmlForLabel": string;
+        /**
           * Info text for the field component
          */
         "infoText": string;
@@ -6115,6 +6119,10 @@ declare namespace LocalJSX {
           * Show text below the field component
          */
         "helperText"?: string;
+        /**
+          * The id of the form element that the label is associated with
+         */
+        "htmlForLabel"?: string;
         /**
           * Info text for the field component
          */

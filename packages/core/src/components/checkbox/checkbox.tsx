@@ -170,12 +170,17 @@ export class Checkbox implements IxFormComponent<string> {
   render() {
     return (
       <Host
+        aria-checked={`${this.checked}`}
+        aria-disabled={`${this.disabled}`}
+        role="checkbox"
         class={{
           disabled: this.disabled,
         }}
       >
         <label>
           <input
+            aria-checked={`${this.checked}`}
+            disabled={this.disabled}
             ref={this.inputRef}
             checked={this.checked}
             type="checkbox"

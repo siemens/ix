@@ -1,4 +1,8 @@
-import { IxInputFieldComponent, ValidationResults } from '../utils/field';
+import {
+  HTMLIxInputFieldComponentElement,
+  IxInputFieldComponent,
+  ValidationResults,
+} from '../utils/field';
 import { shakeInput } from './text-field.animation';
 
 /*

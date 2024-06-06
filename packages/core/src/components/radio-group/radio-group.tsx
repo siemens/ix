@@ -170,6 +170,8 @@ export class RadiobuttonGroup
           isWarning={this.isWarning}
           isInvalid={this.isInvalid}
         >
+          <slot name="label" slot="label"></slot>
+
           <div class={'checkbox-container'}>
             <slot></slot>
           </div>
