@@ -2,6 +2,7 @@ import { Component, Element, Host, Prop, h } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
 import { renderHelperText } from './helper-text-util';
 import { FieldWrapperInterface } from '../utils/field';
+import { getSlottedElements } from '../utils/shadow-dom';
 
 /** @internal */
 @Component({
@@ -79,6 +80,28 @@ export class FieldWrapper implements FieldWrapperInterface {
 
   private slotRef = makeRef<HTMLDivElement>();
 
+  private checkSlottedLabel(e: Event) {
+    const target = e.target as HTMLSlotElement;
+    const elements = getSlottedElements(target);
+
+    if (elements.length > 0) {
+      console.warn('Only one element is allowed in the label slot.');
+      return;
+    }
+
+    if (elements.length === 0) {
+      return;
+    }
+
+    const element = elements[0];
+
+    if (element.tagName !== 'IX-FIELD-LABEL') {
+      console.warn(
+        'Only ix-field-label elements are allowed in the label slot.'
+      );
+    }
+  }
+
   render() {
     const textOptions = {
       invalidText: this.invalidText,
@@ -102,7 +125,10 @@ export class FieldWrapper implements FieldWrapperInterface {
               {this.label}
             </ix-field-label>
           )}
-          <slot name="label"></slot>
+          <slot
+            name="label"
+            onSlotchange={(event) => this.checkSlottedLabel(event)}
+          ></slot>
           <slot name="top-right"></slot>
         </div>
         <div

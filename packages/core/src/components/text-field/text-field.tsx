@@ -32,9 +32,11 @@ import {
   mapValidationResult,
   onInputBlur,
   applyPostfixPadding,
+  getAriaAttributesForInput,
 } from './text-field.util';
 import { iconEye, iconEyeCancelled } from '@siemens/ix-icons/icons';
 import { generateUUID } from '../utils/uuid';
+import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 
 @Component({
   tag: 'ix-text-field',
@@ -217,6 +219,8 @@ export class TextField implements IxInputFieldComponent<string> {
 
   render() {
     const id = this.hostElement.id.length > 0 ? this.hostElement.id : this.id;
+    const inputAria: A11yAttributes = getAriaAttributesForInput(this);
+
     return (
       <Host
         class={{
@@ -261,6 +265,7 @@ export class TextField implements IxInputFieldComponent<string> {
                 this.updateFormInternalValue(value)
               }
               onBlur={() => onInputBlur(this, this.inputRef.current)}
+              ariaAttributes={inputAria}
             ></InputElement>
             <PostfixSlot postfixRef={this.postfixRef}>
               {this.type === 'password' && (

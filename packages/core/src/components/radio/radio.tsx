@@ -128,12 +128,18 @@ export class Radio implements IxFormComponent<string> {
   render() {
     return (
       <Host
+        aria-checked={`${this.checked}`}
+        aria-disabled={`${this.disabled}`}
+        role="radio"
         class={{
           disabled: this.disabled,
         }}
       >
         <label>
           <input
+            aria-checked={`${this.checked}`}
+            disabled={this.disabled}
+            checked={this.checked}
             ref={this.inputRef}
             type="radio"
             onChange={() => {

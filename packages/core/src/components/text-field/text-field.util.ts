@@ -1,3 +1,4 @@
+import { A11yAttributes, a11yBoolean } from '../utils/a11y';
 import {
   HTMLIxInputFieldComponentElement,
   IxInputFieldComponent,
@@ -110,4 +111,18 @@ export function adjustPaddingForPrefixAndPostfix(
       postfix: true,
     });
   }
+}
+
+export function getAriaAttributesForInput(
+  component: IxInputFieldComponent
+): A11yAttributes {
+  const inputAria: A11yAttributes = {
+    'aria-invalid': `${a11yBoolean(component.isInvalid)}`,
+    'aria-required': `${a11yBoolean(component.required)}`,
+  };
+
+  if (component.isInvalid && component.invalidText) {
+    inputAria['aria-errormessage'] = component.invalidText;
+  }
+  return inputAria;
 }
