@@ -1,5 +1,5 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import { renderHelperText } from './helper-text-util';
 import { FieldWrapperInterface } from '../utils/field';
 import { getSlottedElements } from '../utils/shadow-dom';
@@ -78,29 +78,12 @@ export class FieldWrapper implements FieldWrapperInterface {
    */
   @Prop() htmlForLabel: string;
 
+  /**
+   * The control element that the label is associated with
+   */
+  @Prop() controlRef: MakeRef<HTMLElement>;
+
   private slotRef = makeRef<HTMLDivElement>();
-
-  private checkSlottedLabel(e: Event) {
-    const target = e.target as HTMLSlotElement;
-    const elements = getSlottedElements(target);
-
-    if (elements.length > 0) {
-      console.warn('Only one element is allowed in the label slot.');
-      return;
-    }
-
-    if (elements.length === 0) {
-      return;
-    }
-
-    const element = elements[0];
-
-    if (element.tagName !== 'IX-FIELD-LABEL') {
-      console.warn(
-        'Only ix-field-label elements are allowed in the label slot.'
-      );
-    }
-  }
 
   render() {
     const textOptions = {
@@ -121,14 +104,12 @@ export class FieldWrapper implements FieldWrapperInterface {
             <ix-field-label
               required={this.required}
               htmlFor={this.htmlForLabel}
+              controlRef={this.controlRef}
             >
               {this.label}
             </ix-field-label>
           )}
-          <slot
-            name="label"
-            onSlotchange={(event) => this.checkSlottedLabel(event)}
-          ></slot>
+          <slot name="label"></slot>
           <slot name="top-right"></slot>
         </div>
         <div

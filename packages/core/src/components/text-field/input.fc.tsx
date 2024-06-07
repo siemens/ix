@@ -8,7 +8,7 @@
  */
 import { h } from '@stencil/core';
 import { MakeRef } from '../utils/make-ref';
-import { A11yAttributes, a11yBoolean } from '../utils/a11y';
+import { A11yAttributes } from '../utils/a11y';
 
 export function TextareaElement(props: {
   textareaHeight: string;
@@ -24,6 +24,7 @@ export function TextareaElement(props: {
   valueChange: (value: string) => void;
   updateFormInternalValue: (value: string) => void;
   onBlur: () => void;
+  ariaAttributes?: A11yAttributes;
 }) {
   return (
     <textarea
@@ -48,6 +49,7 @@ export function TextareaElement(props: {
       }}
       onBlur={() => props.onBlur()}
       style={{ height: props.textareaHeight }}
+      {...props.ariaAttributes}
     ></textarea>
   );
 }
@@ -71,7 +73,7 @@ export function InputElement(props: {
   valueChange: (value: string) => void;
   updateFormInternalValue: (value: string) => void;
   onBlur: () => void;
-  ariaAttributes?: Pick<A11yAttributes, 'aria-invalid' | 'aria-required'>;
+  ariaAttributes?: A11yAttributes;
 }) {
   return (
     <input

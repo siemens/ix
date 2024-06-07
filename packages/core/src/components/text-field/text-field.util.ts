@@ -1,11 +1,3 @@
-import { A11yAttributes, a11yBoolean } from '../utils/a11y';
-import {
-  HTMLIxInputFieldComponentElement,
-  IxInputFieldComponent,
-  ValidationResults,
-} from '../utils/field';
-import { shakeInput } from './text-field.animation';
-
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
@@ -14,6 +6,25 @@ import { shakeInput } from './text-field.animation';
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+import { A11yAttributes, a11yBoolean } from '../utils/a11y';
+import {
+  IxFormComponent,
+  IxInputFieldComponent,
+  ValidationResults,
+} from '../utils/field';
+import { generateUUID } from '../utils/uuid';
+import { shakeInput } from './text-field.animation';
+
+export function createIdIfNotExists(
+  element: IxFormComponent,
+  idPrefix: string = 'field'
+) {
+  return element.hasAttribute('id')
+    ? element.getAttribute('id')
+    : `${idPrefix}-${generateUUID()}`;
+}
+
 export function mapValidationResult(
   ref: IxInputFieldComponent<unknown>,
   result: ValidationResults

@@ -29,6 +29,7 @@ import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 import { EmptyStateLayout } from "./components/empty-state/empty-state";
+import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
 import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
@@ -70,6 +71,7 @@ export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
 export { EmptyStateLayout } from "./components/empty-state/empty-state";
+export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
 export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
@@ -680,6 +682,10 @@ export namespace Components {
          */
         "format": string;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        /**
+          * Get the native input element
+         */
+        "getNativeInputElement": () => Promise<HTMLInputElement>;
         "getValidityState": () => Promise<ValidityState>;
         "hasValidValue": () => Promise<boolean>;
         /**
@@ -1167,6 +1173,7 @@ export namespace Components {
         "value": string;
     }
     interface IxFieldLabel {
+        "controlRef"?: MakeRef<HTMLElement>;
         /**
           * The id of the form element that the label is associated with
          */
@@ -1177,6 +1184,10 @@ export namespace Components {
         "required"?: boolean;
     }
     interface IxFieldWrapper {
+        /**
+          * The control element that the label is associated with
+         */
+        "controlRef": MakeRef<HTMLElement>;
         /**
           * Show text below the field component
          */
@@ -1938,6 +1949,10 @@ export namespace Components {
          */
         "disabled": boolean;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        /**
+          * Returns the native input element used under the hood
+         */
+        "getNativeInputElement": () => Promise<HTMLInputElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the input field
@@ -2253,6 +2268,10 @@ export namespace Components {
          */
         "editable": boolean;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        /**
+          * Returns the native input element used in the component.
+         */
+        "getNativeInputElement": () => Promise<HTMLInputElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * Helper text for the select component
@@ -2533,6 +2552,10 @@ export namespace Components {
          */
         "disabled": boolean;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        /**
+          * Returns the native input element used in the text field.
+         */
+        "getNativeInputElement": () => Promise<HTMLInputElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the text field.
@@ -2605,6 +2628,10 @@ export namespace Components {
          */
         "disabled": boolean;
         "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        /**
+          * Get the native textarea element.
+         */
+        "getNativeInputElement": () => Promise<HTMLTextAreaElement>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * The helper text for the textarea field.
@@ -6105,6 +6132,7 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IxFieldLabel {
+        "controlRef"?: MakeRef<HTMLElement>;
         /**
           * The id of the form element that the label is associated with
          */
@@ -6115,6 +6143,10 @@ declare namespace LocalJSX {
         "required"?: boolean;
     }
     interface IxFieldWrapper {
+        /**
+          * The control element that the label is associated with
+         */
+        "controlRef"?: MakeRef<HTMLElement>;
         /**
           * Show text below the field component
          */

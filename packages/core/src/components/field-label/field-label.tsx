@@ -9,8 +9,12 @@
 
 import { Component, Host, Prop, h, Element, Watch } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
-import { HTMLIxFormComponentElement } from '../utils/field';
+import {
+  HTMLIxFormComponentElement,
+  isIxInputFieldComponent,
+} from '../utils/field';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
+import { MakeRef, makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-field-label',
@@ -30,8 +34,12 @@ export class FormFieldLabel implements IxComponent {
    */
   @Prop({ reflect: true }) htmlFor?: string;
 
+  /** @internal */
+  @Prop() controlRef?: MakeRef<HTMLElement>;
+
   private observer = new MutationObserver(() => this.checkForRequired());
   private a11yAttributes: A11yAttributes = {};
+  private labelRef = makeRef<HTMLLabelElement>();
 
   connectedCallback() {
     this.registerObserver();
@@ -82,10 +90,26 @@ export class FormFieldLabel implements IxComponent {
     }
   }
 
+  private async focusOnClick() {
+    const target = document.getElementById(this.htmlFor);
+    if (target && isIxInputFieldComponent(target)) {
+      const input = await target.getNativeInputElement();
+      input.focus();
+    }
+
+    if (this.controlRef) {
+      (await this.controlRef.waitForCurrent()).focus();
+    }
+  }
+
   render() {
     return (
-      <Host>
-        <label htmlFor={this.htmlFor} {...this.a11yAttributes}>
+      <Host onClick={() => this.focusOnClick()}>
+        <label
+          htmlFor={this.htmlFor}
+          {...this.a11yAttributes}
+          ref={this.labelRef}
+        >
           <ix-typography color="soft" format="label">
             <slot></slot>
             {this.required && <span>&nbsp;*</span>}

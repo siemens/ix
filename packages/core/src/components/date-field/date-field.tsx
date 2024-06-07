@@ -347,6 +347,14 @@ export class DateField implements IxInputFieldComponent<string> {
     });
   }
 
+  /**
+   * Get the native input element
+   */
+  @Method()
+  getNativeInputElement(): Promise<HTMLInputElement> {
+    return this.inputElementRef.waitForCurrent();
+  }
+
   render() {
     const invalidText = this.isInputInvalid
       ? this.i18nErrorDateUnparsable
@@ -366,6 +374,7 @@ export class DateField implements IxInputFieldComponent<string> {
           validText={this.validText}
           showTextAsTooltip={this.showTextAsTooltip}
           required={this.required}
+          controlRef={this.inputElementRef}
         >
           <slot name="label" slot="label"></slot>
 

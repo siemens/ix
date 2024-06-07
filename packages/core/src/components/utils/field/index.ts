@@ -87,13 +87,28 @@ export interface IxInputFieldComponent<T = any>
   readonly: boolean;
 
   ixBlur: EventEmitter<void>;
+
+  // Annotate as @Method()
+  getNativeInputElement(): Promise<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 export function isIxFormComponent(
   obj: HTMLElement
-): obj is HTMLIxFormComponentElement<any> {
+): obj is HTMLIxFormComponentElement<unknown> {
   return (
     'getAssociatedFormElement' in obj &&
     typeof obj.getAssociatedFormElement === 'function'
+  );
+}
+
+export function isIxInputFieldComponent(
+  obj: HTMLElement
+): obj is HTMLIxInputFieldComponentElement<unknown> {
+  return (
+    obj &&
+    'getAssociatedFormElement' in obj &&
+    typeof obj.getAssociatedFormElement === 'function' &&
+    'getNativeInputElement' in obj &&
+    typeof obj.getNativeInputElement === 'function'
   );
 }

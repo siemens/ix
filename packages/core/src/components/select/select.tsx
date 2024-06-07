@@ -31,6 +31,7 @@ import {
   ValidationResults,
   IxInputFieldComponent,
 } from '../utils/field';
+import { makeRef } from '../utils/make-ref';
 
 /**
  * @form-ready 2.4.0
@@ -220,7 +221,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() isInfo = false;
   @State() isWarning = false;
 
-  private inputRef!: HTMLInputElement;
+  private input!: HTMLInputElement;
+  private inputRef = makeRef<HTMLInputElement>();
   private dropdownRef!: HTMLIxDropdownElement;
   private customItemsContainerRef!: HTMLDivElement;
   private addItemRef!: HTMLIxDropdownItemElement;
@@ -428,7 +430,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     if (this.isSingleMode && this.selectedLabels?.length) {
       this.inputValue = this.selectedLabels[0];
-      this.inputRef && (this.inputRef.value = this.inputValue);
+      this.input && (this.input.value = this.inputValue);
       return;
     }
 
@@ -448,9 +450,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   componentDidLoad() {
-    this.inputRef.addEventListener('input', () => {
+    this.input.addEventListener('input', () => {
       this.dropdownShow = true;
-      this.inputChange.emit(this.inputRef.value);
+      this.inputChange.emit(this.input.value);
     });
   }
 
@@ -484,8 +486,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.dropdownShow = event.detail;
 
     if (event.detail) {
-      this.inputRef.focus();
-      this.inputRef.select();
+      this.input.focus();
+      this.input.select();
 
       this.removeHiddenFromItems();
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
@@ -652,7 +654,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private filterItemsWithTypeahead() {
-    this.inputFilterText = this.inputRef.value;
+    this.inputFilterText = this.input.value;
 
     if (this.isSingleMode && this.inputFilterText === this.selectedLabels[0]) {
       return;
@@ -685,7 +687,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private clearInput() {
-    this.inputRef.value = '';
+    this.input.value = '';
     this.inputFilterText = '';
   }
 
@@ -757,6 +759,14 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return this.formInternals.form;
   }
 
+  /**
+   * Returns the native input element used in the component.
+   */
+  @Method()
+  getNativeInputElement(): Promise<HTMLInputElement> {
+    return Promise.resolve(this.input);
+  }
+
   render() {
     return (
       <Host>
@@ -773,6 +783,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
+          controlRef={this.inputRef}
         >
           <slot name="label" slot="label"></slot>
 
@@ -817,7 +828,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     }}
                     placeholder={this.placeholderValue()}
                     value={this.inputValue}
-                    ref={(ref) => (this.inputRef = ref)}
+                    ref={(ref) => {
+                      this.input = ref;
+                      this.inputRef(ref);
+                    }}
                     onBlur={(e) => this.onInputBlur(e)}
                     onFocus={() => {
                       this.navigationItem = undefined;

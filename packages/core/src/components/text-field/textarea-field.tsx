@@ -168,6 +168,14 @@ export class TextareaField implements IxInputFieldComponent<string> {
     return Promise.resolve(!!this.value);
   }
 
+  /**
+   * Get the native textarea element.
+   */
+  @Method()
+  getNativeInputElement(): Promise<HTMLTextAreaElement> {
+    return this.textAreaRef.waitForCurrent();
+  }
+
   render() {
     return (
       <Host
@@ -189,6 +197,7 @@ export class TextareaField implements IxInputFieldComponent<string> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
+          controlRef={this.textAreaRef}
         >
           <slot name="label" slot="label"></slot>
 

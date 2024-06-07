@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconEye, iconEyeCancelled } from '@siemens/ix-icons/icons';
 import {
   AttachInternals,
   Component,
@@ -20,23 +21,23 @@ import {
   Watch,
   h,
 } from '@stencil/core';
+import { A11yAttributes } from '../utils/a11y';
 import {
-  ValidationResults,
-  IxInputFieldComponent,
   HookValidationLifecycle,
+  IxInputFieldComponent,
+  ValidationResults,
 } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, PostfixSlot, PrefixSlot } from './input.fc';
 import {
+  applyPostfixPadding,
   checkAllowedKeys,
+  getAriaAttributesForInput,
   mapValidationResult,
   onInputBlur,
-  applyPostfixPadding,
-  getAriaAttributesForInput,
 } from './text-field.util';
-import { iconEye, iconEyeCancelled } from '@siemens/ix-icons/icons';
-import { generateUUID } from '../utils/uuid';
-import { A11yAttributes, a11yBoolean } from '../utils/a11y';
+
+let textFieldIds = 0;
 
 @Component({
   tag: 'ix-text-field',
@@ -165,7 +166,7 @@ export class TextField implements IxInputFieldComponent<string> {
   private postfixRef = makeRef<HTMLDivElement>();
   private prefixRef = makeRef<HTMLDivElement>();
 
-  private id = `text-field-${generateUUID()}`;
+  private textFieldId = `text-field-${textFieldIds++}`;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -217,8 +218,15 @@ export class TextField implements IxInputFieldComponent<string> {
     return Promise.resolve(!!this.value);
   }
 
+  /**
+   * Returns the native input element used in the text field.
+   */
+  @Method()
+  getNativeInputElement() {
+    return this.inputRef.waitForCurrent();
+  }
+
   render() {
-    const id = this.hostElement.id.length > 0 ? this.hostElement.id : this.id;
     const inputAria: A11yAttributes = getAriaAttributesForInput(this);
 
     return (
@@ -229,7 +237,7 @@ export class TextField implements IxInputFieldComponent<string> {
         }}
       >
         <ix-field-wrapper
-          htmlForLabel={id}
+          htmlForLabel={this.textFieldId}
           required={this.required}
           label={this.label}
           helperText={this.helperText}
@@ -242,12 +250,13 @@ export class TextField implements IxInputFieldComponent<string> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
+          controlRef={this.inputRef}
         >
           <slot name="label" slot="label"></slot>
           <div class="input-wrapper">
             <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
             <InputElement
-              id={id}
+              id={this.textFieldId}
               readonly={this.readonly}
               disabled={this.disabled}
               maxLength={this.maxLength}

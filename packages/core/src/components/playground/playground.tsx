@@ -43,7 +43,7 @@ export class PlaygroundInternal {
             </ix-field-label>
           </ix-text-field>
 
-          <ix-text-field></ix-text-field>
+          <ix-text-field label="test xzs"></ix-text-field>
           {/* <ix-layout-form>
             <ix-text-field label="Name" name="name"></ix-text-field>
             <ix-text-field label="Last Name" name="last-name"></ix-text-field>

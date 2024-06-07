@@ -36,6 +36,8 @@ import {
 import { iconMinus, iconPlus } from '@siemens/ix-icons/icons';
 import { generateUUID } from '../utils/uuid';
 
+let numberFieldIds = 0;
+
 @Component({
   tag: 'ix-number-field',
   styleUrl: 'number-field.scss',
@@ -160,7 +162,7 @@ export class NumberField implements IxInputFieldComponent<string> {
   private inputRef = makeRef<HTMLInputElement>();
   private postfixRef = makeRef<HTMLDivElement>();
   private prefixRef = makeRef<HTMLDivElement>();
-  private id = generateUUID();
+  private numberFieldId = `number-field-${numberFieldIds++}`;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -206,8 +208,15 @@ export class NumberField implements IxInputFieldComponent<string> {
     return Promise.resolve(!!this.value);
   }
 
+  /**
+   * Returns the native input element used under the hood
+   */
+  @Method()
+  getNativeInputElement(): Promise<HTMLInputElement> {
+    return this.inputRef.waitForCurrent();
+  }
+
   render() {
-    const id = this.hostElement.id ?? this.id;
     const showStepperButtons =
       this.showStepperButtons && (this.disabled || this.readonly) === false;
 
@@ -219,7 +228,7 @@ export class NumberField implements IxInputFieldComponent<string> {
         }}
       >
         <ix-field-wrapper
-          id={id}
+          id={this.numberFieldId}
           required={this.required}
           label={this.label}
           helperText={this.helperText}
@@ -232,6 +241,7 @@ export class NumberField implements IxInputFieldComponent<string> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
+          controlRef={this.inputRef}
         >
           <slot name="label" slot="label"></slot>
           <div
@@ -242,7 +252,7 @@ export class NumberField implements IxInputFieldComponent<string> {
           >
             <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
             <InputElement
-              id={id}
+              id={this.numberFieldId}
               readonly={this.readonly}
               disabled={this.disabled}
               min={this.min}
