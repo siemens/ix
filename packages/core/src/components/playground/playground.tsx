@@ -36,11 +36,13 @@ export class PlaygroundInternal {
             }
           }}
         >
-          <ix-text-field id="mytest">
+          <ix-number-field id="mytest" value={123}>
             <ix-field-label aria-label="test" slot="label" htmlFor="mytest">
               Test
             </ix-field-label>
-          </ix-text-field>
+
+            <ix-button slot="postfix">test</ix-button>
+          </ix-number-field>
 
           <ix-text-field label="test xzs"></ix-text-field>
           {/* <ix-layout-form>

@@ -1,12 +1,20 @@
 import React, { createElement } from 'react';
 
-import { attachProps, camelToDashCase, createForwardRef, dashToPascalCase, isCoveredByReact, mergeRefs } from './utils';
+import {
+  attachProps,
+  camelToDashCase,
+  createForwardRef,
+  dashToPascalCase,
+  isCoveredByReact,
+  mergeRefs,
+} from './utils';
 
 export interface HTMLStencilElement extends HTMLElement {
   componentOnReady(): Promise<this>;
 }
 
-interface StencilReactInternalProps<ElementType> extends React.HTMLAttributes<ElementType> {
+interface StencilReactInternalProps<ElementType>
+  extends React.HTMLAttributes<ElementType> {
   forwardedRef: React.RefObject<ElementType>;
   ref?: React.Ref<any>;
 }
@@ -30,7 +38,9 @@ export const createReactComponent = <
   }
 
   const displayName = dashToPascalCase(tagName);
-  const ReactComponent = class extends React.Component<StencilReactInternalProps<ElementType>> {
+  const ReactComponent = class extends React.Component<
+    StencilReactInternalProps<ElementType>
+  > {
     componentEl!: ElementType;
 
     setComponentElRef = (element: ElementType) => {
@@ -50,7 +60,8 @@ export const createReactComponent = <
     }
 
     render() {
-      const { children, forwardedRef, style, className, ref, ...cProps } = this.props;
+      const { children, forwardedRef, style, className, ref, ...cProps } =
+        this.props;
 
       let propsToPass = Object.keys(cProps).reduce((acc: any, name) => {
         const value = (cProps as any)[name];
@@ -76,7 +87,10 @@ export const createReactComponent = <
         propsToPass = manipulatePropsFunction(this.props, propsToPass);
       }
 
-      const newProps: Omit<StencilReactInternalProps<ElementType>, 'forwardedRef'> = {
+      const newProps: Omit<
+        StencilReactInternalProps<ElementType>,
+        'forwardedRef'
+      > = {
         ...propsToPass,
         ref: mergeRefs(forwardedRef, this.setComponentElRef),
         style,
@@ -89,6 +103,7 @@ export const createReactComponent = <
        * React.createElement causes all elements to be rendered
        * as <tagname> instead of the actual Web Component.
        */
+      console.log(newProps);
       return createElement(tagName, newProps, children);
     }
 

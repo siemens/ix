@@ -43,7 +43,7 @@ let numberFieldIds = 0;
   shadow: true,
   formAssociated: true,
 })
-export class NumberField implements IxInputFieldComponent<string> {
+export class NumberField implements IxInputFieldComponent<number> {
   @Element() hostElement: HTMLIxNumberFieldElement;
   @AttachInternals() formInternals: ElementInternals;
 
@@ -60,7 +60,7 @@ export class NumberField implements IxInputFieldComponent<string> {
   /**
    * The value of the input field
    */
-  @Prop({ reflect: true, mutable: true }) value: string = '';
+  @Prop({ reflect: true, mutable: true }) value: number = 0;
 
   /**
    * Indicates if the field is required
@@ -120,12 +120,12 @@ export class NumberField implements IxInputFieldComponent<string> {
   /**
    * The minimum value for the input field
    */
-  @Prop() min?: number;
+  @Prop() min?: string | number;
 
   /**
    * The maximum value for the input field
    */
-  @Prop() max?: number;
+  @Prop() max?: string | number;
 
   /**
    * The allowed characters pattern for the input field
@@ -140,7 +140,7 @@ export class NumberField implements IxInputFieldComponent<string> {
   /**
    * Event emitted when the value of the input field changes
    */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange: EventEmitter<number>;
 
   /**
    * Event emitted when the validity state of the input field changes
@@ -173,6 +173,10 @@ export class NumberField implements IxInputFieldComponent<string> {
   }
 
   componentDidRender() {
+    setTimeout(() => this.updatePaddings());
+  }
+
+  private updatePaddings() {
     const prefixBoundingRect = this.prefixRef.current?.getBoundingClientRect();
     const postfixBoundingRect =
       this.postfixRef.current?.getBoundingClientRect();
@@ -190,8 +194,8 @@ export class NumberField implements IxInputFieldComponent<string> {
     }
   }
 
-  updateFormInternalValue(value: string) {
-    this.formInternals.setFormValue(value);
+  updateFormInternalValue(value: number) {
+    this.formInternals.setFormValue(value.toString());
     this.value = value;
   }
 
@@ -249,7 +253,10 @@ export class NumberField implements IxInputFieldComponent<string> {
               'show-stepper-buttons': this.showStepperButtons,
             }}
           >
-            <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
+            <PrefixSlot
+              prefixRef={this.prefixRef}
+              onSlotChange={() => this.updatePaddings()}
+            ></PrefixSlot>
             <InputElement
               id={this.numberFieldId}
               readonly={this.readonly}
@@ -264,13 +271,16 @@ export class NumberField implements IxInputFieldComponent<string> {
               placeholder={this.placeholder}
               inputRef={this.inputRef}
               onKeyPress={(event) => checkAllowedKeys(this, event)}
-              valueChange={(value) => this.valueChange.emit(value)}
+              valueChange={(value) => this.valueChange.emit(Number(value))}
               updateFormInternalValue={(value) =>
-                this.updateFormInternalValue(value)
+                this.updateFormInternalValue(Number(value))
               }
               onBlur={() => onInputBlur(this, this.inputRef.current)}
             ></InputElement>
-            <PostfixSlot postfixRef={this.postfixRef}>
+            <PostfixSlot
+              postfixRef={this.postfixRef}
+              onSlotChange={() => this.updatePaddings()}
+            >
               {showStepperButtons && (
                 <div class="number-stepper-container">
                   <ix-icon-button
@@ -281,7 +291,9 @@ export class NumberField implements IxInputFieldComponent<string> {
                     onClick={() => {
                       this.inputRef.current.stepDown();
                       checkInternalValidity(this, this.inputRef.current);
-                      this.updateFormInternalValue(this.inputRef.current.value);
+                      this.updateFormInternalValue(
+                        Number(this.inputRef.current.value)
+                      );
                       this.valueChange.emit(this.value);
                     }}
                   ></ix-icon-button>
@@ -293,7 +305,9 @@ export class NumberField implements IxInputFieldComponent<string> {
                     onClick={() => {
                       this.inputRef.current.stepUp();
                       checkInternalValidity(this, this.inputRef.current);
-                      this.updateFormInternalValue(this.inputRef.current.value);
+                      this.updateFormInternalValue(
+                        Number(this.inputRef.current.value)
+                      );
                       this.valueChange.emit(this.value);
                     }}
                   ></ix-icon-button>

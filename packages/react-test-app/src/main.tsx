@@ -116,6 +116,7 @@ import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
 import Echarts from './preview-examples/echarts';
 import ValidationSelect from './preview-examples/validation-select';
+import FormValidation from './preview-examples/form-validation';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -331,6 +332,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/validation-select"
           element={<ValidationSelect />}
         />
+        <Route path="/preview/form-validation" element={<FormValidation />} />
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>

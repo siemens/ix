@@ -1225,6 +1225,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1258,6 +1259,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -13005,7 +13009,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper",
         "ix-icon-button"
@@ -13028,6 +13034,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-number-field"
         ]
       },
       "props": [
@@ -13160,10 +13169,10 @@
         },
         {
           "name": "max",
-          "type": "number",
+          "type": "number | string",
           "complexType": {
-            "original": "number",
-            "resolved": "number",
+            "original": "string | number",
+            "resolved": "number | string",
             "references": {}
           },
           "mutable": false,
@@ -13174,6 +13183,9 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -13181,10 +13193,10 @@
         },
         {
           "name": "min",
-          "type": "number",
+          "type": "number | string",
           "complexType": {
-            "original": "number",
-            "resolved": "number",
+            "original": "string | number",
+            "resolved": "number | string",
             "references": {}
           },
           "mutable": false,
@@ -13195,6 +13207,9 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -13371,10 +13386,10 @@
         },
         {
           "name": "value",
-          "type": "string",
+          "type": "number",
           "complexType": {
-            "original": "string",
-            "resolved": "string",
+            "original": "number",
+            "resolved": "number",
             "references": {}
           },
           "mutable": true,
@@ -13382,10 +13397,10 @@
           "reflectToAttr": true,
           "docs": "The value of the input field",
           "docsTags": [],
-          "default": "''",
+          "default": "0",
           "values": [
             {
-              "type": "string"
+              "type": "number"
             }
           ],
           "optional": false,
@@ -13477,11 +13492,11 @@
         },
         {
           "event": "valueChange",
-          "detail": "string",
+          "detail": "number",
           "bubbles": true,
           "complexType": {
-            "original": "string",
-            "resolved": "string",
+            "original": "number",
+            "resolved": "number",
             "references": {}
           },
           "cancelable": true,

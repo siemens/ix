@@ -183,6 +183,10 @@ export class DateField implements IxInputFieldComponent<string> {
   }
 
   componentDidRender(): void {
+    setTimeout(() => this.updatePaddings());
+  }
+
+  private updatePaddings() {
     adjustPaddingForPrefixAndPostfix(
       this.prefixRef.current,
       this.postfixRef.current,
@@ -262,7 +266,10 @@ export class DateField implements IxInputFieldComponent<string> {
   private renderInput() {
     return (
       <div class="input-wrapper">
-        <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
+        <PrefixSlot
+          prefixRef={this.prefixRef}
+          onSlotChange={() => this.updatePaddings()}
+        ></PrefixSlot>
         <input
           autoComplete="off"
           class={{
@@ -288,7 +295,10 @@ export class DateField implements IxInputFieldComponent<string> {
           }}
           onBlur={() => this.ixBlur.emit()}
         ></input>
-        <PostfixSlot postfixRef={this.postfixRef}>
+        <PostfixSlot
+          postfixRef={this.postfixRef}
+          onSlotChange={() => this.updatePaddings()}
+        >
           <ix-icon-button
             ghost
             icon={iconCalendar}

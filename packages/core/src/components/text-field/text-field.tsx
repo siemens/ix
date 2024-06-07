@@ -184,6 +184,10 @@ export class TextField implements IxInputFieldComponent<string> {
   }
 
   componentDidRender() {
+    setTimeout(() => this.updatePaddings());
+  }
+
+  private updatePaddings() {
     const prefixBoundingRect = this.prefixRef.current?.getBoundingClientRect();
     const postfixBoundingRect =
       this.postfixRef.current?.getBoundingClientRect();
@@ -254,7 +258,10 @@ export class TextField implements IxInputFieldComponent<string> {
         >
           <slot name="label" slot="label"></slot>
           <div class="input-wrapper">
-            <PrefixSlot prefixRef={this.prefixRef}></PrefixSlot>
+            <PrefixSlot
+              prefixRef={this.prefixRef}
+              onSlotChange={() => this.updatePaddings()}
+            ></PrefixSlot>
             <InputElement
               id={this.textFieldId}
               readonly={this.readonly}
@@ -276,7 +283,10 @@ export class TextField implements IxInputFieldComponent<string> {
               onBlur={() => onInputBlur(this, this.inputRef.current)}
               ariaAttributes={inputAria}
             ></InputElement>
-            <PostfixSlot postfixRef={this.postfixRef}>
+            <PostfixSlot
+              postfixRef={this.postfixRef}
+              onSlotChange={() => this.updatePaddings()}
+            >
               {this.type === 'password' && (
                 <ix-icon-button
                   color="color-weak-text"

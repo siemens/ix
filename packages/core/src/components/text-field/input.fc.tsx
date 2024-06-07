@@ -58,15 +58,15 @@ export function InputElement(props: {
   id: string;
   disabled: boolean;
   readonly: boolean;
-  maxLength?: number;
-  minLength?: number;
-  max?: number;
-  min?: number;
+  maxLength?: string | number;
+  minLength?: string | number;
+  max?: string | number;
+  min?: string | number;
   pattern: string;
   type: string;
   isInvalid: boolean;
   required: boolean;
-  value: string;
+  value: string | number;
   placeholder: string;
   inputRef: (el: HTMLInputElement) => void;
   onKeyPress: (event: KeyboardEvent) => void;
@@ -83,8 +83,8 @@ export function InputElement(props: {
       disabled={props.disabled}
       min={props.min}
       max={props.max}
-      maxLength={props.maxLength}
-      minLength={props.minLength}
+      maxLength={props.maxLength && Number(props.maxLength)}
+      minLength={props.maxLength && Number(props.minLength)}
       ref={props.inputRef}
       pattern={props.pattern}
       type={props.type}
@@ -110,21 +110,27 @@ export function InputElement(props: {
 }
 
 export function PostfixSlot(
-  props: { postfixRef: MakeRef<HTMLDivElement> },
+  props: {
+    postfixRef: MakeRef<HTMLDivElement>;
+    onSlotChange?: (e: Event) => void;
+  },
   children
 ) {
   return (
     <div class="postfix-container" ref={props.postfixRef}>
-      <slot name="postfix"></slot>
+      <slot name="postfix" onSlotchange={props.onSlotChange}></slot>
       {children}
     </div>
   );
 }
 
-export function PrefixSlot(props: { prefixRef: MakeRef<HTMLDivElement> }) {
+export function PrefixSlot(props: {
+  prefixRef: MakeRef<HTMLDivElement>;
+  onSlotChange?: (e: Event) => void;
+}) {
   return (
     <div class="prefix-container" ref={props.prefixRef}>
-      <slot name="prefix"></slot>
+      <slot name="prefix" onSlotchange={props.onSlotChange}></slot>
     </div>
   );
 }

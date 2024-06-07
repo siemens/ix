@@ -1973,11 +1973,11 @@ export namespace Components {
         /**
           * The maximum value for the input field
          */
-        "max"?: number;
+        "max"?: string | number;
         /**
           * The minimum value for the input field
          */
-        "min"?: number;
+        "min"?: string | number;
         /**
           * name of the input element
          */
@@ -2013,7 +2013,7 @@ export namespace Components {
         /**
           * The value of the input field
          */
-        "value": string;
+        "value": number;
         /**
           * The warning text for the input field
          */
@@ -4312,7 +4312,7 @@ declare global {
         new (): HTMLIxModalLoadingElement;
     };
     interface HTMLIxNumberFieldElementEventMap {
-        "valueChange": string;
+        "valueChange": number;
         "validityStateChange": ValidityState;
         "ixBlur": void;
     }
@@ -6966,11 +6966,11 @@ declare namespace LocalJSX {
         /**
           * The maximum value for the input field
          */
-        "max"?: number;
+        "max"?: string | number;
         /**
           * The minimum value for the input field
          */
-        "min"?: number;
+        "min"?: string | number;
         /**
           * name of the input element
          */
@@ -6986,7 +6986,7 @@ declare namespace LocalJSX {
         /**
           * Event emitted when the value of the input field changes
          */
-        "onValueChange"?: (event: IxNumberFieldCustomEvent<string>) => void;
+        "onValueChange"?: (event: IxNumberFieldCustomEvent<number>) => void;
         /**
           * The pattern for the input field
          */
@@ -7018,7 +7018,7 @@ declare namespace LocalJSX {
         /**
           * The value of the input field
          */
-        "value"?: string;
+        "value"?: number;
         /**
           * The warning text for the input field
          */

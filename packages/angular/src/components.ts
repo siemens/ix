@@ -1942,7 +1942,7 @@ export declare interface IxNumberField extends Components.IxNumberField {
   /**
    * Event emitted when the value of the input field changes
    */
-  valueChange: EventEmitter<CustomEvent<string>>;
+  valueChange: EventEmitter<CustomEvent<number>>;
   /**
    * Event emitted when the validity state of the input field changes
    */
