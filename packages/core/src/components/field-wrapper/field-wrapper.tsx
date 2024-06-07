@@ -1,8 +1,7 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
+import { FieldWrapperInterface } from '../utils/field';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { renderHelperText } from './helper-text-util';
-import { FieldWrapperInterface } from '../utils/field';
-import { getSlottedElements } from '../utils/shadow-dom';
 
 /** @internal */
 @Component({

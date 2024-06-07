@@ -1225,7 +1225,6 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
-        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1259,9 +1258,6 @@
           "ix-button"
         ],
         "ix-modal-example": [
-          "ix-button"
-        ],
-        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -2441,18 +2437,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-checkbox": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-checkbox"
         ]
       },
       "props": [
@@ -2656,9 +2647,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -2676,9 +2665,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-checkbox-group"
         ]
       },
       "props": [
@@ -3623,9 +3609,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -3643,9 +3627,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-custom-field"
         ]
       },
       "props": [
@@ -4221,9 +4202,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-icon-button",
         "ix-field-wrapper",
@@ -4259,9 +4238,6 @@
         ],
         "ix-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-date-field"
         ]
       },
       "props": [
@@ -4583,7 +4559,34 @@
           "required": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Get the native input element",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "validityStateChange",
@@ -7608,7 +7611,8 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-field-wrapper"
+        "ix-field-wrapper",
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-typography"
@@ -7618,6 +7622,9 @@
           "ix-typography"
         ],
         "ix-field-wrapper": [
+          "ix-field-label"
+        ],
+        "ix-playground-internal": [
           "ix-field-label"
         ]
       },
@@ -7632,7 +7639,7 @@
           },
           "mutable": false,
           "attr": "html-for",
-          "reflectToAttr": false,
+          "reflectToAttr": true,
           "docs": "The id of the form element that the label is associated with",
           "docsTags": [],
           "values": [
@@ -8648,7 +8655,6 @@
         "ix-number-field",
         "ix-pagination",
         "ix-pane",
-        "ix-playground-internal",
         "ix-select",
         "ix-split-button",
         "ix-text-field",
@@ -8738,9 +8744,6 @@
           "ix-icon-button"
         ],
         "ix-pane": [
-          "ix-icon-button"
-        ],
-        "ix-playground-internal": [
           "ix-icon-button"
         ],
         "ix-select": [
@@ -9701,15 +9704,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-playground-internal": [
-          "ix-layout-form"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "layout",
@@ -13008,9 +13005,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper",
         "ix-icon-button"
@@ -13033,9 +13028,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-number-field"
         ]
       },
       "props": [
@@ -13421,7 +13413,34 @@
           "required": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Returns the native input element used under the hood",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "ixBlur",
@@ -14632,15 +14651,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-playground-internal": [
-          "ix-radio"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "checked",
@@ -14797,9 +14810,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -14817,9 +14828,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-radio-group"
         ]
       },
       "props": [
@@ -15076,8 +15084,7 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-pagination",
-        "ix-playground-internal"
+        "ix-pagination"
       ],
       "dependencies": [
         "ix-select-item",
@@ -15117,9 +15124,6 @@
           "ix-spinner"
         ],
         "ix-pagination": [
-          "ix-select"
-        ],
-        "ix-playground-internal": [
           "ix-select"
         ]
       },
@@ -15653,7 +15657,34 @@
           "required": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Returns the native input element used in the component.",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "addItem",
@@ -15772,7 +15803,6 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-pagination",
-        "ix-playground-internal",
         "ix-select"
       ],
       "dependencies": [
@@ -15783,9 +15813,6 @@
           "ix-dropdown-item"
         ],
         "ix-pagination": [
-          "ix-select-item"
-        ],
-        "ix-playground-internal": [
           "ix-select-item"
         ],
         "ix-select": [
@@ -17600,7 +17627,34 @@
           "required": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Returns the native input element used in the text field.",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "ixBlur",
@@ -17667,9 +17721,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper",
         "ix-typography"
@@ -17689,9 +17741,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-textarea-field"
         ]
       },
       "props": [
@@ -18033,7 +18082,34 @@
           "required": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLTextAreaElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLTextAreaElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLTextAreaElement": {
+                "location": "global",
+                "id": "global::HTMLTextAreaElement"
+              }
+            },
+            "return": "Promise<HTMLTextAreaElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLTextAreaElement>",
+          "parameters": [],
+          "docs": "Get the native textarea element.",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "ixBlur",
@@ -19988,7 +20064,6 @@
         "ix-modal-header",
         "ix-pagination",
         "ix-pane",
-        "ix-playground-internal",
         "ix-push-card",
         "ix-slider",
         "ix-text-field",
@@ -20047,9 +20122,6 @@
           "ix-typography"
         ],
         "ix-pane": [
-          "ix-typography"
-        ],
-        "ix-playground-internal": [
           "ix-typography"
         ],
         "ix-push-card": [
@@ -21275,6 +21347,11 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
+    },
+    "src/components/utils/make-ref.ts::MakeRef": {
+      "declaration": "{\n  (ref: T): void;\n  current: T;\n  waitForCurrent(): Promise<T>;\n}",
+      "docstring": "",
+      "path": "src/components/utils/make-ref.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",

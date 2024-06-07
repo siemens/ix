@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconMinus, iconPlus } from '@siemens/ix-icons/icons';
 import {
   AttachInternals,
   Component,
@@ -20,9 +21,9 @@ import {
   h,
 } from '@stencil/core';
 import {
-  ValidationResults,
-  IxInputFieldComponent,
   HookValidationLifecycle,
+  IxInputFieldComponent,
+  ValidationResults,
 } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, PostfixSlot, PrefixSlot } from './input.fc';
@@ -33,8 +34,6 @@ import {
   mapValidationResult,
   onInputBlur,
 } from './text-field.util';
-import { iconMinus, iconPlus } from '@siemens/ix-icons/icons';
-import { generateUUID } from '../utils/uuid';
 
 let numberFieldIds = 0;
 

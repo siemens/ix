@@ -7,8 +7,7 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
-import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
-import { Component, Element, h, Host, State } from '@stencil/core';
+import { Component, Element, Host, State, h } from '@stencil/core';
 
 /** @internal */
 @Component({
