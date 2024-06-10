@@ -50,9 +50,27 @@ $border-radius: 100px;
     }
   }
 
-  .container.icon {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+  .container {
+    &.outline {
+      padding-left: calc(0.75rem - 1px);
+
+      &.closable {
+        padding-right: calc(0.25rem - 1px);
+      }
+      &:not(.closable) {
+        padding-right: calc(0.75rem - 1px);
+      }
+    }
+    &:not(.outline) {
+      padding-left: 0.75rem;
+
+      &.closable {
+        padding-right: calc(0.25rem);
+      }
+      &:not(.closable) {
+        padding-right: calc(0.75rem);
+      }
+    }
   }
 
   .container.closable {
@@ -109,15 +127,6 @@ $border-radius: 100px;
   .container.outline {
       border-width: 1px;
       border-style: solid;
-
-      .icon {
-        padding-right: calc(0.75rem - 1px);
-        padding-left: calc(0.75rem - 1px);
-      }
-      &:not(.icon) {
-        padding-right: calc(0.5rem - 1px);
-        padding-left: calc(0.5rem - 1px);
-      }
   }
 
   @each $color in $predefined-chips {
