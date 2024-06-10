@@ -35,8 +35,8 @@ $border-radius: 100px;
 
     .hidden {
       display: none;
-      width: 0px;
-      margin-right: 0px;
+      width: 0;
+      margin-right: 0;
     }
 
     .close-button-container {
@@ -50,31 +50,56 @@ $border-radius: 100px;
     }
   }
 
-  .container {
+  .container:not(.icon) {
     &.outline {
-      padding-left: calc(0.75rem - 1px);
+      padding-left: calc(0.5rem - 1px);
 
-      &.closable {
+      &.closable:not(.inactive) {
         padding-right: calc(0.25rem - 1px);
       }
-      &:not(.closable) {
-        padding-right: calc(0.75rem - 1px);
+
+      &.closable.inactive, &:not(.closable) {
+        padding-right: calc(0.5rem - 1px);
       }
     }
-    &:not(.outline) {
-      padding-left: 0.75rem;
 
-      &.closable {
-        padding-right: calc(0.25rem);
+    &:not(.outline) {
+      padding-left: 0.5rem;
+
+      &.closable:not(.inactive) {
+        padding-right: 0.25rem;
       }
-      &:not(.closable) {
-        padding-right: calc(0.75rem);
+
+      &.closable.inactive, &:not(.closable) {
+        padding-right: 0.5rem;
       }
     }
   }
 
-  .container.closable {
-    padding-right: 0.25rem;
+  .container.icon {
+    &.outline {
+      padding-left: calc(0.75rem - 1px);
+
+      &.closable:not(.inactive) {
+        padding-right: calc(0.25rem - 1px);
+      }
+
+      &.closable.inactive, &:not(.closable) {
+        padding-right: calc(0.5rem - 1px);
+      }
+    }
+
+    &:not(.outline) {
+      padding-left: 0.75rem;
+
+      &.closable:not(.inactive) {
+        padding-right: 0.25rem;
+      }
+
+      &.closable.inactive, &:not(.closable) {
+        padding-right: 0.75rem;
+      }
+    }
   }
 
   .container.primary {
@@ -125,8 +150,8 @@ $border-radius: 100px;
   }
 
   .container.outline {
-      border-width: 1px;
-      border-style: solid;
+    border-width: 1px;
+    border-style: solid;
   }
 
   @each $color in $predefined-chips {
