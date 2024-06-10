@@ -7,6 +7,11 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
+import {
+  iconBezierCurve,
+  iconBulb,
+  iconLocation,
+} from '@siemens/ix-icons/icons';
 import { Component, Element, Host, State, h } from '@stencil/core';
 
 /** @internal */
@@ -45,7 +50,7 @@ export class PlaygroundInternal {
           </ix-number-field>
 
           <ix-text-field label="test xzs"></ix-text-field>
-          {/* <ix-layout-form>
+          <ix-layout-form>
             <ix-text-field label="Name" name="name"></ix-text-field>
             <ix-text-field label="Last Name" name="last-name"></ix-text-field>
 
@@ -165,9 +170,9 @@ export class PlaygroundInternal {
             <ix-button type="submit" data-colspan="2">
               Submit
             </ix-button>
-          </ix-layout-form> */}
+          </ix-layout-form>
         </form>
-        {/* <form
+        <form
           onSubmit={(e) => {
             e.preventDefault();
             const formData = new FormData(e.target as HTMLFormElement);
@@ -193,7 +198,7 @@ export class PlaygroundInternal {
                 showTextAsTooltip={false}
                 showStepperButtons={false}
                 style={{ width: '15rem' }}
-                value="3"
+                value={3}
                 allowedCharactersPattern="[1-4]"
               >
                 <ix-icon slot="prefix" name={iconBulb} size="16"></ix-icon>
@@ -212,7 +217,7 @@ export class PlaygroundInternal {
                 showTextAsTooltip={false}
                 showStepperButtons={true}
                 style={{ width: '15rem' }}
-                value="3"
+                value={3}
               >
                 <ix-icon slot="prefix" name={iconBulb} size="16"></ix-icon>
                 <ix-typography slot="postfix" color="weak">
@@ -398,7 +403,7 @@ export class PlaygroundInternal {
               <ix-button type="submit">Submit</ix-button>
             </ix-row>
           </ix-layout-grid>
-        </form> */}
+        </form>
       </Host>
     );
   }

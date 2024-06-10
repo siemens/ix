@@ -133,6 +133,7 @@ export class Radio implements IxFormComponent<string> {
         role="radio"
         class={{
           disabled: this.disabled,
+          checked: this.checked,
         }}
       >
         <label>

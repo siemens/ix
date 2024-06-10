@@ -175,6 +175,7 @@ export class Checkbox implements IxFormComponent<string> {
         role="checkbox"
         class={{
           disabled: this.disabled,
+          checked: this.checked,
         }}
       >
         <label>

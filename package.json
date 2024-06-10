@@ -61,5 +61,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@stencil/react-output-target@0.5.3": "patches/@stencil__react-output-target@0.5.3.patch"
+    }
   }
 }

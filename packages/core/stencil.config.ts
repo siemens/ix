@@ -46,10 +46,7 @@ try {
 export const config: Config = {
   globalScript: './src/setup.ts',
   extras: {
-    appendChildSlotFix: true,
-    slotChildNodesFix: true,
     enableImportInjection: true,
-    scopedSlotTextContentFix: true,
   },
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],

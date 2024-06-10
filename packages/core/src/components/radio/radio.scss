@@ -89,7 +89,7 @@
     }
   }
 
-  :host([checked]),
+  :host(.checked),
   :host([indeterminate]) {
     button {
       background-color: var(--theme-radiobtn-checked--background);
@@ -98,7 +98,7 @@
     }
   }
 
-  :host([checked]:hover),
+  :host(.checked:hover),
   :host([indeterminate]:hover) {
     button {
       background-color: var(--theme-radiobtn-checked--background--hover);
@@ -107,7 +107,7 @@
     }
   }
 
-  :host([checked]:active),
+  :host(.checked:active),
   :host([indeterminate]:active) {
     button {
       background-color: var(--theme-radiobtn-checked--background--active);
@@ -126,8 +126,8 @@
     }
   }
 
-  :host([checked]:disabled),
-  :host([checked].disabled),
+  :host(.checked:disabled),
+  :host(.checked.disabled),
   :host([indeterminate]:disabled),
   :host([indeterminate].disabled) {
     button {
@@ -169,7 +169,7 @@
     }
   }
 
-  :host(#{$selector}[checked]),
+  :host(#{$selector}.checked),
   :host(#{$selector}[indeterminate]) {
     button {
       background-color: var(--theme-radiobtn-checked--background);
@@ -178,7 +178,7 @@
     }
   }
 
-  :host(#{$selector}[checked]:hover),
+  :host(#{$selector}.checked:hover),
   :host(#{$selector}[indeterminate]:hover) {
     button {
       background-color: var(--theme-radiobtn-checked--background--hover);
@@ -187,7 +187,7 @@
     }
   }
 
-  :host(#{$selector}[checked]:active),
+  :host(#{$selector}.checked:active),
   :host(#{$selector}[indeterminate]:active) {
     button {
       background-color: var(--theme-radiobtn-checked--background--active);
@@ -205,8 +205,8 @@
     }
   }
 
-  :host(#{$selector}[checked]:disabled),
-  :host(#{$selector}[checked].disabled),
+  :host(#{$selector}.checked:disabled),
+  :host(#{$selector}.checked.disabled),
   :host(#{$selector}[indeterminate]:disabled),
   :host(#{$selector}[indeterminate].disabled) {
     button {

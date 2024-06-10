@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.5.1",
-    "@stencil/core": "^4.13.0",
+    "@stencil/core": "^4.18.3",
     "@types/luxon": "^3.3.7",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",
@@ -55,7 +55,7 @@
     "@stencil-community/eslint-plugin": "^0.7.1",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "^0.8.3",
-    "@stencil/react-output-target": "^0.5.3",
+    "@stencil/react-output-target": "0.5.3",
     "@stencil/sass": "^3.0.8",
     "@stencil/vue-output-target": "^0.8.8",
     "@testing-library/dom": "^8.11.0",

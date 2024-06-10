@@ -7,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxTextField } from '@siemens/ix-react';
-import React from 'react';
+import { IxTextField, MyTest } from '@siemens/ix-react';
+import React, { createElement } from 'react';
 
 function App() {
   const [value, setValue] = React.useState(false);
@@ -25,10 +25,17 @@ function App() {
 
   return (
     <div>
-      <IxTextField
+      {createElement('ix-button')}
+      {/* <IxTextField
         className={value ? 'ix-warning' : ''}
         warningText="test"
-      ></IxTextField>
+      ></IxTextField> */}
+
+      <MyTest className={value ? 'is-red' : ''}>
+        {value ? 'true' : 'false'}
+      </MyTest>
+
+      <button onClick={() => setValue(!value)}>t</button>
     </div>
   );
 }

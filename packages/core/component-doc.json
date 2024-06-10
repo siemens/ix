@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.13.0",
-    "typescriptVersion": "5.4.2"
+    "version": "4.18.3",
+    "typescriptVersion": "5.4.5"
   },
   "components": [
     {
@@ -2441,13 +2441,18 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-checkbox": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-checkbox"
         ]
       },
       "props": [
@@ -2651,7 +2656,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -2669,6 +2676,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-checkbox-group"
         ]
       },
       "props": [
@@ -3613,7 +3623,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -3631,6 +3643,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-custom-field"
         ]
       },
       "props": [
@@ -4206,7 +4221,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-icon-button",
         "ix-field-wrapper",
@@ -4242,6 +4259,9 @@
         ],
         "ix-button": [
           "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-date-field"
         ]
       },
       "props": [
@@ -8476,13 +8496,18 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-helper-text": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-helper-text"
         ]
       },
       "props": [
@@ -8659,6 +8684,7 @@
         "ix-number-field",
         "ix-pagination",
         "ix-pane",
+        "ix-playground-internal",
         "ix-select",
         "ix-split-button",
         "ix-text-field",
@@ -8748,6 +8774,9 @@
           "ix-icon-button"
         ],
         "ix-pane": [
+          "ix-icon-button"
+        ],
+        "ix-playground-internal": [
           "ix-icon-button"
         ],
         "ix-select": [
@@ -9708,9 +9737,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-layout-form"
+        ]
+      },
       "props": [
         {
           "name": "layout",
@@ -9760,7 +9795,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -9768,6 +9804,9 @@
           "ix-layout-grid"
         ],
         "ix-datetime-picker": [
+          "ix-layout-grid"
+        ],
+        "ix-playground-internal": [
           "ix-layout-grid"
         ]
       },
@@ -14666,9 +14705,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-radio"
+        ]
+      },
       "props": [
         {
           "name": "checked",
@@ -14825,7 +14870,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -14843,6 +14890,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-radio-group"
         ]
       },
       "props": [
@@ -15062,7 +15112,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -15070,6 +15121,9 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
+          "ix-row"
+        ],
+        "ix-playground-internal": [
           "ix-row"
         ]
       },
@@ -15099,7 +15153,8 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-pagination"
+        "ix-pagination",
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-select-item",
@@ -15139,6 +15194,9 @@
           "ix-spinner"
         ],
         "ix-pagination": [
+          "ix-select"
+        ],
+        "ix-playground-internal": [
           "ix-select"
         ]
       },
@@ -15818,6 +15876,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-pagination",
+        "ix-playground-internal",
         "ix-select"
       ],
       "dependencies": [
@@ -15828,6 +15887,9 @@
           "ix-dropdown-item"
         ],
         "ix-pagination": [
+          "ix-select-item"
+        ],
+        "ix-playground-internal": [
           "ix-select-item"
         ],
         "ix-select": [
@@ -17736,7 +17798,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper",
         "ix-typography"
@@ -17756,6 +17820,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-textarea-field"
         ]
       },
       "props": [
@@ -19050,9 +19117,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-toggle"
+        ]
+      },
       "props": [
         {
           "name": "checked",
@@ -20079,6 +20152,7 @@
         "ix-modal-header",
         "ix-pagination",
         "ix-pane",
+        "ix-playground-internal",
         "ix-push-card",
         "ix-slider",
         "ix-text-field",
@@ -20137,6 +20211,9 @@
           "ix-typography"
         ],
         "ix-pane": [
+          "ix-typography"
+        ],
+        "ix-playground-internal": [
           "ix-typography"
         ],
         "ix-push-card": [
