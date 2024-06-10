@@ -50,57 +50,49 @@ $border-radius: 100px;
     }
   }
 
-  .container:not(.icon) {
+  .container {
     &.outline {
-      padding-left: calc(0.5rem - 1px);
-
+      &.icon {
+        padding-left: calc(0.75rem - 1px);
+      }
+      &:not(.icon) {
+        padding-left: calc(0.5rem - 1px);
+      }
       &.closable:not(.inactive) {
         padding-right: calc(0.25rem - 1px);
       }
-
       &.closable.inactive, &:not(.closable) {
         padding-right: calc(0.5rem - 1px);
+      }
+      &.icon:not(.closable) {
+        padding-right: calc(0.75rem - 1px);
       }
     }
 
     &:not(.outline) {
-      padding-left: 0.5rem;
-
+      &.icon {
+        padding-left: 0.75rem;
+      }
+      &:not(.icon) {
+        padding-left: 0.5rem;
+      }
       &.closable:not(.inactive) {
         padding-right: 0.25rem;
       }
-
-      &.closable.inactive, &:not(.closable) {
+      &.closable.inactive {
         padding-right: 0.5rem;
       }
-    }
-  }
-
-  .container.icon {
-    &.outline {
-      padding-left: calc(0.75rem - 1px);
-
-      &.closable:not(.inactive) {
-        padding-right: calc(0.25rem - 1px);
-      }
-
-      &.closable.inactive, &:not(.closable) {
-        padding-right: calc(0.5rem - 1px);
-      }
-    }
-
-    &:not(.outline) {
-      padding-left: 0.75rem;
-
-      &.closable:not(.inactive) {
-        padding-right: 0.25rem;
-      }
-
-      &.closable.inactive, &:not(.closable) {
-        padding-right: 0.75rem;
+      &:not(.closable) {
+        &.icon {
+          padding-right: 0.75rem;
+        }
+        &:not(.icon) {
+          padding-right: 0.5rem;
+        }
       }
     }
   }
+
 
   .container.primary {
     background-color: var(--theme-color-primary);
