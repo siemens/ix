@@ -168,6 +168,13 @@ export class Tabs {
     ].join('');
 
     tabWrapper.setAttribute('style', styles);
+    const dropdown = tabWrapper.querySelector('ix-dropdown');
+
+    if (dropdown) {
+      const parentElement = dropdown.parentElement;
+      dropdown.remove();
+      parentElement?.parentElement?.appendChild(dropdown);
+    }
 
     if (click) this.currentScrollAmount = this.scrollActionAmount = amount;
     else this.scrollActionAmount = amount;
