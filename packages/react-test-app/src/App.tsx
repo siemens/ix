@@ -7,10 +7,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { IxTextField } from '@siemens/ix-react';
 import React from 'react';
 
 function App() {
-  return <div></div>;
+  const [value, setValue] = React.useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setValue(true);
+
+      setTimeout(() => {
+        setValue(false);
+      }, 1000);
+    }, 1000);
+  }, []);
+
+  return (
+    <div>
+      <IxTextField
+        className={value ? 'ix-warning' : ''}
+        warningText="test"
+      ></IxTextField>
+    </div>
+  );
 }
 
 export default App;

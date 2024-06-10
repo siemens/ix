@@ -133,7 +133,7 @@ export function HookValidationLifecycle(options?: {
       };
 
       host.addEventListener('valueChange', checkIfRequiredFunction);
-      checkIfRequiredFunction();
+      setTimeout(checkIfRequiredFunction);
       return connectedCallback && connectedCallback.call(this);
     };
 

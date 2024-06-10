@@ -17,7 +17,6 @@ import {
   IxCustomField,
   IxDateField,
   IxIcon,
-  IxIconButton,
   IxLayoutForm,
   IxNumberField,
   IxRadio,
@@ -28,17 +27,48 @@ import {
   IxTextareaField,
   IxTypography,
 } from '@siemens/ix-react';
-import React, { useMemo, useRef } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import clsx from 'clsx';
-import { Controller, useForm } from 'react-hook-form';
+import { FormState, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const validationSchema = yup.object({
+  name: yup.string().required('Name is required'),
+  'last-name': yup.string(),
+  address: yup.string(),
+  thresholdLimitA: yup
+    .number()
+    .max(5, 'The threshold must be equal or lesser than 5'),
+  thresholdLimitB: yup
+    .number()
+    .lessThan(5, 'A threshold greater than 5 is not recommended'),
+  begin: yup.string(),
+  end: yup.string(),
+  comment: yup.string(),
+  agreed: yup.boolean().isTrue('You need to agree'),
+  'booking-option': yup.string(),
+  'travel-option': yup.string(),
+  'room-size': yup.number(),
+  email: yup.string(),
+  pin: yup.string(),
+  upload: yup.string(),
+  'upload-path': yup.string(),
+});
 
 export default function FormValidation() {
   const uploadRef = useRef<HTMLInputElement>(null);
   const {
     register,
-    control,
     handleSubmit,
     formState: { errors },
+    trigger,
   } = useForm({
     defaultValues: {
       name: 'John',
@@ -58,22 +88,29 @@ export default function FormValidation() {
       upload: '',
       'upload-path': '',
     },
+    resolver: yupResolver(validationSchema),
   });
 
-  const thresholdLimitB = useMemo(() => {}, [errors.thresholdLimitB]);
+  useLayoutEffect(() => {
+    // Do instant validation after rendering
+    trigger();
+  }, [trigger]);
 
   const onSubmit = (data: any) => {
     console.log(data);
   };
+
+  const [isBla, setBla] = React.useState(false);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <IxLayoutForm>
         <IxTextField
           label="Name"
-          {...register('name', { required: true })}
-          required
+          {...register('name')}
           className={clsx({ 'ix-invalid': errors.name })}
+          invalidText={errors.name && errors.name.message}
+          required
         />
         <IxTextField
           label="Last Name"
@@ -122,29 +159,19 @@ export default function FormValidation() {
           label="Threshold limit A"
           data-colspan="1"
           helperText="Max threshold is 5"
-          invalidText={errors.thresholdLimitA && 'thresholdLimitAErrorText'}
           {...register('thresholdLimitA', { required: false, max: '5' })}
+          className={clsx({ 'ix-invalid': errors.thresholdLimitA })}
+          invalidText={errors.thresholdLimitA && errors.thresholdLimitA.message}
         ></IxNumberField>
 
-        <Controller
-          name="thresholdLimitB"
-          control={control}
-          render={({ field: { value, onChange } }) => {
-            const showWarning = value > 5;
-            const className = showWarning ? 'ix-warning' : '';
-            return (
-              <IxNumberField
-                label="Threshold limit B"
-                data-colspan="1"
-                showStepperButtons
-                className={className}
-                warningText={`A threshold greater than 5 is not recommended`}
-                value={value}
-                onValueChange={onChange}
-              ></IxNumberField>
-            );
-          }}
-        ></Controller>
+        <IxNumberField
+          label="Threshold limit B"
+          data-colspan="1"
+          showStepperButtons
+          {...register('thresholdLimitB')}
+          className={errors.thresholdLimitB ? 'ix-warning' : ''}
+          warningText={errors.thresholdLimitB && errors.thresholdLimitB.message}
+        ></IxNumberField>
 
         <IxDateField
           label="Begin"
