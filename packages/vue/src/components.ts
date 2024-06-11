@@ -811,7 +811,7 @@ export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('i
 ]);
 
 
-export const IxNumberField = /*@__PURE__*/ defineContainer<JSX.IxNumberField>('ix-number-field', defineIxNumberField, [
+export const IxNumberField = /*@__PURE__*/ defineContainer<JSX.IxNumberField, JSX.IxNumberField["value"]>('ix-number-field', defineIxNumberField, [
   'name',
   'placeholder',
   'value',
@@ -833,7 +833,8 @@ export const IxNumberField = /*@__PURE__*/ defineContainer<JSX.IxNumberField>('i
   'valueChange',
   'validityStateChange',
   'ixBlur'
-]);
+],
+'value', 'value-change');
 
 
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', defineIxPagination, [
@@ -1029,7 +1030,7 @@ export const IxTabs = /*@__PURE__*/ defineContainer<JSX.IxTabs>('ix-tabs', defin
 ]);
 
 
-export const IxTextField = /*@__PURE__*/ defineContainer<JSX.IxTextField>('ix-text-field', defineIxTextField, [
+export const IxTextField = /*@__PURE__*/ defineContainer<JSX.IxTextField, JSX.IxTextField["value"]>('ix-text-field', defineIxTextField, [
   'type',
   'name',
   'placeholder',
@@ -1051,10 +1052,11 @@ export const IxTextField = /*@__PURE__*/ defineContainer<JSX.IxTextField>('ix-te
   'valueChange',
   'validityStateChange',
   'ixBlur'
-]);
+],
+'value', 'value-change');
 
 
-export const IxTextareaField = /*@__PURE__*/ defineContainer<JSX.IxTextareaField>('ix-textarea-field', defineIxTextareaField, [
+export const IxTextareaField = /*@__PURE__*/ defineContainer<JSX.IxTextareaField, JSX.IxTextareaField["value"]>('ix-textarea-field', defineIxTextareaField, [
   'name',
   'placeholder',
   'value',
@@ -1074,7 +1076,8 @@ export const IxTextareaField = /*@__PURE__*/ defineContainer<JSX.IxTextareaField
   'valueChange',
   'validityStateChange',
   'ixBlur'
-]);
+],
+'value', 'value-change');
 
 
 export const IxTile = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defineIxTile, [

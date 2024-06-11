@@ -75,7 +75,12 @@ export const config: Config = {
       excludeComponents: ['ix-playground-internal', 'ix-icon'],
       componentModels: [
         {
-          elements: 'ix-select',
+          elements: [
+            'ix-select',
+            'ix-text-field',
+            'ix-textarea-field',
+            'ix-number-field',
+          ],
           event: 'value-change',
           targetAttr: 'value',
         },
@@ -86,6 +91,9 @@ export const config: Config = {
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
       excludeComponents: ['ix-playground-internal', 'ix-tree', 'ix-icon'],
+      valueAccessorConfigs: [
+        /** Value accessors should not be generated */
+      ],
     }),
     reactOutputTarget({
       componentCorePackage: '@siemens/ix',
