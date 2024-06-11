@@ -34,6 +34,7 @@ export class PushCard {
 
   /**
    * Card KPI value
+   * @deprecated will be removed in 3.0. Use heading instead.
    */
   @Prop() header: string;
 
@@ -49,6 +50,7 @@ export class PushCard {
 
   /**
    * Card variant
+   * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
    */
   @Prop() variant: PushCardVariant = 'insight';
 

@@ -141,8 +141,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
           "values": [
             {
               "value": "alarm",
@@ -1553,8 +1559,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.",
           "values": [
             {
               "value": "alarm",
@@ -12698,7 +12710,13 @@
           "attr": "header",
           "reflectToAttr": false,
           "docs": "Card KPI value",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "will be removed in 3.0. Use heading instead."
+            }
+          ],
+          "deprecation": "will be removed in 3.0. Use heading instead.",
           "values": [
             {
               "type": "string"
@@ -12810,8 +12828,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
           "values": [
             {
               "value": "alarm",
