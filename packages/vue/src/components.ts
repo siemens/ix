@@ -774,6 +774,7 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', defin
 export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push-card', defineIxPushCard, [
   'icon',
   'notification',
+  'header',
   'heading',
   'subheading',
   'variant',
