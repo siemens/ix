@@ -292,8 +292,8 @@ importers:
         specifier: ^2.11.0
         version: 2.11.8
       '@stencil/core':
-        specifier: ^4.18.3
-        version: 4.18.3
+        specifier: ~4.17.0
+        version: 4.17.2
       '@types/luxon':
         specifier: ^3.3.7
         version: 3.3.7
@@ -318,19 +318,19 @@ importers:
         version: 0.7.1(@typescript-eslint/eslint-plugin@6.18.1(@typescript-eslint/parser@6.18.1(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0)(typescript@5.3.3))(@typescript-eslint/parser@6.18.1(eslint@8.56.0)(typescript@5.3.3))(eslint-plugin-react@7.33.2(eslint@8.56.0))(eslint@8.56.0)(typescript@5.3.3)
       '@stencil-community/postcss':
         specifier: ^2.2.0
-        version: 2.2.0(@stencil/core@4.18.3)
+        version: 2.2.0(@stencil/core@4.17.2)
       '@stencil/angular-output-target':
         specifier: ^0.8.3
-        version: 0.8.3(@stencil/core@4.18.3)
+        version: 0.8.3(@stencil/core@4.17.2)
       '@stencil/react-output-target':
         specifier: 0.5.3
-        version: 0.5.3(patch_hash=dojyovnqujhwcowpgsckwfls6e)(@stencil/core@4.18.3)
+        version: 0.5.3(patch_hash=dojyovnqujhwcowpgsckwfls6e)(@stencil/core@4.17.2)
       '@stencil/sass':
         specifier: ^3.0.8
-        version: 3.0.8(@stencil/core@4.18.3)
+        version: 3.0.8(@stencil/core@4.17.2)
       '@stencil/vue-output-target':
         specifier: ^0.8.8
-        version: 0.8.8(@stencil/core@4.18.3)
+        version: 0.8.8(@stencil/core@4.17.2)
       '@testing-library/dom':
         specifier: ^8.11.0
         version: 8.20.1
@@ -2980,6 +2980,7 @@ packages:
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -2990,6 +2991,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.2':
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+    deprecated: Use @eslint/object-schema instead
 
   '@hutson/parse-repository-url@3.0.2':
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
@@ -3553,8 +3555,8 @@ packages:
     engines: {node: '>=14.10.0', npm: '>=6.0.0'}
     hasBin: true
 
-  '@stencil/core@4.18.3':
-    resolution: {integrity: sha512-8yoG5AFQYEPocVtuoc5kvRS0Hku0MoDWDUpADRaXPVHsOFLmxR16LJENj25ucCz5GEfeTGQ/tCE8JAypPmr/fQ==}
+  '@stencil/core@4.17.2':
+    resolution: {integrity: sha512-MX7yaLmpTU9iZvCire9nhecTcE0qBlV0vPWrLMeIXewYN7/hb8B3NjnhQyBKC93FDPI8NBRmt6KIugLw9zcRZg==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -17907,30 +17909,30 @@ snapshots:
       tsutils: 3.21.0(typescript@5.3.3)
       typescript: 5.3.3
 
-  '@stencil-community/postcss@2.2.0(@stencil/core@4.18.3)':
+  '@stencil-community/postcss@2.2.0(@stencil/core@4.17.2)':
     dependencies:
-      '@stencil/core': 4.18.3
+      '@stencil/core': 4.17.2
       postcss: 8.4.31
 
-  '@stencil/angular-output-target@0.8.3(@stencil/core@4.18.3)':
+  '@stencil/angular-output-target@0.8.3(@stencil/core@4.17.2)':
     dependencies:
-      '@stencil/core': 4.18.3
+      '@stencil/core': 4.17.2
 
   '@stencil/core@3.2.1': {}
 
-  '@stencil/core@4.18.3': {}
+  '@stencil/core@4.17.2': {}
 
-  '@stencil/react-output-target@0.5.3(patch_hash=dojyovnqujhwcowpgsckwfls6e)(@stencil/core@4.18.3)':
+  '@stencil/react-output-target@0.5.3(patch_hash=dojyovnqujhwcowpgsckwfls6e)(@stencil/core@4.17.2)':
     dependencies:
-      '@stencil/core': 4.18.3
+      '@stencil/core': 4.17.2
 
-  '@stencil/sass@3.0.8(@stencil/core@4.18.3)':
+  '@stencil/sass@3.0.8(@stencil/core@4.17.2)':
     dependencies:
-      '@stencil/core': 4.18.3
+      '@stencil/core': 4.17.2
 
-  '@stencil/vue-output-target@0.8.8(@stencil/core@4.18.3)':
+  '@stencil/vue-output-target@0.8.8(@stencil/core@4.17.2)':
     dependencies:
-      '@stencil/core': 4.18.3
+      '@stencil/core': 4.17.2
 
   '@svgr/babel-plugin-add-jsx-attribute@8.0.0(@babel/core@7.23.7)':
     dependencies:

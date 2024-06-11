@@ -7,11 +7,7 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
-import {
-  iconBezierCurve,
-  iconBulb,
-  iconLocation,
-} from '@siemens/ix-icons/icons';
+import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
 import { Component, Element, Host, State, h } from '@stencil/core';
 
 /** @internal */
@@ -41,7 +37,7 @@ export class PlaygroundInternal {
             }
           }}
         >
-          <ix-number-field id="mytest" value={123}>
+          {/* <ix-number-field id="mytest" value={123}>
             <ix-field-label aria-label="test" slot="label" htmlFor="mytest">
               Test
             </ix-field-label>
@@ -49,7 +45,7 @@ export class PlaygroundInternal {
             <ix-button slot="postfix">test</ix-button>
           </ix-number-field>
 
-          <ix-text-field label="test xzs"></ix-text-field>
+          <ix-text-field label="test xzs"></ix-text-field> */}
           <ix-layout-form>
             <ix-text-field label="Name" name="name"></ix-text-field>
             <ix-text-field label="Last Name" name="last-name"></ix-text-field>
@@ -172,7 +168,7 @@ export class PlaygroundInternal {
             </ix-button>
           </ix-layout-form>
         </form>
-        <form
+        {/* <form
           onSubmit={(e) => {
             e.preventDefault();
             const formData = new FormData(e.target as HTMLFormElement);
@@ -403,7 +399,7 @@ export class PlaygroundInternal {
               <ix-button type="submit">Submit</ix-button>
             </ix-row>
           </ix-layout-grid>
-        </form>
+        </form> */}
       </Host>
     );
   }

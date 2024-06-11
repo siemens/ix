@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.18.3",
+    "version": "4.17.2",
     "typescriptVersion": "5.4.5"
   },
   "components": [
@@ -7635,8 +7635,7 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-field-wrapper",
-        "ix-playground-internal"
+        "ix-field-wrapper"
       ],
       "dependencies": [
         "ix-typography"
@@ -7646,9 +7645,6 @@
           "ix-typography"
         ],
         "ix-field-wrapper": [
-          "ix-field-label"
-        ],
-        "ix-playground-internal": [
           "ix-field-label"
         ]
       },
@@ -8496,18 +8492,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-helper-text": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-helper-text"
         ]
       },
       "props": [
@@ -9795,8 +9786,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -9804,9 +9794,6 @@
           "ix-layout-grid"
         ],
         "ix-datetime-picker": [
-          "ix-layout-grid"
-        ],
-        "ix-playground-internal": [
           "ix-layout-grid"
         ]
       },
@@ -15112,8 +15099,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -15121,9 +15107,6 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
-          "ix-row"
-        ],
-        "ix-playground-internal": [
           "ix-row"
         ]
       },
@@ -19117,15 +19100,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-playground-internal": [
-          "ix-toggle"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "checked",
