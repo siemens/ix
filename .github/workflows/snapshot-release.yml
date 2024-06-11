@@ -17,7 +17,7 @@ jobs:
       pull-requests: write
       id-token: write
     if: |
-      github.repository == 'danielleroux/ix' &&
+      github.repository == 'siemens/ix' &&
       github.event.issue.pull_request &&
       (
         github.event.sender.login == 'danielleroux' ||
@@ -33,7 +33,7 @@ jobs:
         id: parse-sha
         continue-on-error: true
         run: |
-          if [ "${{ steps.comment-branch.outputs.head_owner }}" == "danielleroux" ]; then
+          if [ "${{ steps.comment-branch.outputs.head_owner }}" == "siemens" ]; then
             echo "sha=${{ steps.comment-branch.outputs.head_sha }}" >> "${GITHUB_OUTPUT}"
           else
             sha_from_comment="$(echo $COMMENT_BODY | tr -s ' ' | cut -d ' ' -f2)"
@@ -106,7 +106,7 @@ jobs:
         run: |
           pnpm changeset version --snapshot pr-${{ github.event.issue.number }} && pnpm i --lockfile-only
           pnpm build --filter \!documentation
-          pnpm changeset publish --no-git-tag --snapshot --tag snapshot --dry-run
+          pnpm changeset publish --no-git-tag --snapshot --tag snapshot
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

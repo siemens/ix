@@ -16,7 +16,7 @@ jobs:
       pull-requests: write
       id-token: write
     if: |
-      github.repository == 'danielleroux/ix' &&
+      github.repository == 'siemens/ix' &&
       github.event.issue.pull_request &&
       (
         github.event.sender.login == 'danielleroux' ||
@@ -75,7 +75,7 @@ jobs:
 
             const args = parseArgs();
 
-            if (owner === 'danielleroux') {
+            if (owner === 'siemens') {
               setOutput(args, "${{ steps.comment-branch.outputs.head_sha }}");
               return;
             }

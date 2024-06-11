@@ -12,7 +12,7 @@ jobs:
   prerelease:
     name: Changesets Prerelease
     # Prevents changesets action from creating a PR on forks
-    if: github.repository == 'danielleroux/ix'
+    if: github.repository == 'siemens/ix'
     runs-on: ubuntu-latest
     # Permissions necessary for Changesets to push a new branch and open PRs
     # (for automated Version Packages PRs), and request the JWT for provenance.
