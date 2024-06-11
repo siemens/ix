@@ -1,5 +1,6 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 
+//TODO: Remove insight, notification,
 export type CardVariant =
   | 'insight'
   | 'notification'
@@ -9,7 +10,9 @@ export type CardVariant =
   | 'info'
   | 'neutral'
   | 'success'
-  | 'primary';
+  | 'primary'
+  | 'outline'
+  | 'filled';
 
 /**
  * @since 1.6.0

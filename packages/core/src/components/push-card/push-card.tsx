@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host, Prop, Watch } from '@stencil/core';
 import { CardVariant } from '../card/card';
 import { TypographyColors } from '../typography/typography';
 
@@ -33,6 +33,11 @@ export class PushCard {
   @Prop() notification: string;
 
   /**
+   * Card KPI value
+   */
+  @Prop() header: string;
+
+  /**
    * Card heading
    */
   @Prop() heading: string;
@@ -52,6 +57,11 @@ export class PushCard {
    * @since 2.1.0
    */
   @Prop() collapse: boolean = true;
+
+  @Watch('header')
+  onHeaderChange() {
+    this.notification = this.header;
+  }
 
   render() {
     const color: TypographyColors =
