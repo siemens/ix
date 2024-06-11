@@ -113,6 +113,7 @@ jobs:
           ## for community PRs
           repository: ${{ steps.comment-branch.outputs.head_owner }}/${{ steps.comment-branch.outputs.head_repo }}
           ref: ${{ steps.comment-branch.outputs.head_ref }}
+          token: ${{ secrets.UPDATE_SNAPSHOT_TOKEN }}
 
       - uses: ./.github/workflows/actions/turbo
 
