@@ -108,16 +108,10 @@
 
     &.selected {
       border-color: var(--theme-tab-pill--border-color--selected);
-
-      &::after {
-      }
     }
 
     &.disabled {
       border-color: var(--theme-tab-pill--border-color--disabled);
-    }
-
-    &::after {
     }
   }
 
