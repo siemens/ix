@@ -730,6 +730,7 @@ export class Select {
               hidden: this.hideListHeader || this.isDropdownEmpty,
             }}
             title={this.i18nSelectListHeader}
+            onClick={e => e.preventDefault()}
           >
             {this.i18nSelectListHeader}
           </div>

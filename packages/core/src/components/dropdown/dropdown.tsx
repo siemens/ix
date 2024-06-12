@@ -513,7 +513,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       }
     }
 
-    if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
+    if (
+      !event.defaultPrevented &&
+      (this.closeBehavior === 'inside' || this.closeBehavior === 'both')
+    ) {
       dropdownController.dismissAll([this.getId()], this.ignoreRelatedSubmenu);
       return;
     }
@@ -549,7 +552,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       >
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
-
           <slot></slot>
         </div>
       </Host>
