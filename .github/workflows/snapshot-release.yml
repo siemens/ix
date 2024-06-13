@@ -93,7 +93,7 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: rm .changeset/pre.json
 
-      - name: Add comment if no new changesets exist
+      - name: Add comment if no new changeset exists
         if: ${{ steps.added-files.outputs.changesets == '' }}
         uses: peter-evans/create-or-update-comment@v4.0.0
         with:
