@@ -34,28 +34,29 @@ const additionalTheme = {
   css: 'ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css',
 };
 
-const brandTheme = await resolve('@siemens/ix-brand-theme');
+try {
+  const brandTheme = await resolve('@siemens/ix-brand-theme');
+  if (brandTheme) {
+    const target = path.join(
+      __dirname,
+      'src',
+      'public',
+      'additional-theme',
+      'ix-brand-theme'
+    );
+    const themeFolder = path.join(brandTheme.replace('file:', ''), '..', '..');
 
-if (brandTheme) {
-  const target = path.join(
-    __dirname,
-    'src',
-    'public',
-    'additional-theme',
-    'ix-brand-theme'
-  );
-  const themeFolder = path.join(brandTheme.replace('file:', ''), '..', '..');
-
-  await rimraf(target);
-  fs.copySync(themeFolder, target, {
-    filter: (src, dest) => {
-      if (src.includes('node_modules')) {
-        return false;
-      }
-      return true;
-    },
-  });
-}
+    await rimraf(target);
+    fs.copySync(themeFolder, target, {
+      filter: (src, dest) => {
+        if (src.includes('node_modules')) {
+          return false;
+        }
+        return true;
+      },
+    });
+  }
+} catch (e) {}
 
 // https://vitejs.dev/config/
 export default defineConfig({
