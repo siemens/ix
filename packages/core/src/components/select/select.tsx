@@ -32,6 +32,7 @@ import {
   IxInputFieldComponent,
 } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @form-ready 2.4.0
@@ -769,7 +770,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   render() {
     return (
-      <Host>
+      <Host
+        aria-disabled={a11yBoolean(this.disabled)}
+        class={{
+          disabled: this.disabled,
+        }}
+      >
         <ix-field-wrapper
           required={this.required}
           label={this.label}

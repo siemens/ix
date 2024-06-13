@@ -3632,7 +3632,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -3650,6 +3652,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-custom-field"
         ]
       },
       "props": [
@@ -7643,7 +7648,8 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-field-wrapper"
+        "ix-field-wrapper",
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-typography"
@@ -7653,6 +7659,9 @@
           "ix-typography"
         ],
         "ix-field-wrapper": [
+          "ix-field-label"
+        ],
+        "ix-playground-internal": [
           "ix-field-label"
         ]
       },

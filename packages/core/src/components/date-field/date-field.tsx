@@ -279,6 +279,9 @@ export class DateField implements IxInputFieldComponent<string> {
           class={{
             'is-invalid': this.isInputInvalid,
           }}
+          disabled={this.disabled}
+          readOnly={this.readonly}
+          readonly={this.readonly}
           required={this.required}
           ref={this.inputElementRef}
           type="text"
@@ -303,18 +306,20 @@ export class DateField implements IxInputFieldComponent<string> {
           postfixRef={this.postfixRef}
           onSlotChange={() => this.updatePaddings()}
         >
-          <ix-icon-button
-            ghost
-            icon={iconCalendar}
-            onClick={(event) => {
-              if (!this.show) {
-                event.stopPropagation();
-                event.preventDefault();
-                this.openDropdown();
-                this.inputElementRef.current.focus();
-              }
-            }}
-          ></ix-icon-button>
+          {this.disabled || this.readonly ? null : (
+            <ix-icon-button
+              ghost
+              icon={iconCalendar}
+              onClick={(event) => {
+                if (!this.show) {
+                  event.stopPropagation();
+                  event.preventDefault();
+                  this.openDropdown();
+                  this.inputElementRef.current.focus();
+                }
+              }}
+            ></ix-icon-button>
+          )}
         </PostfixSlot>
       </div>
     );
@@ -375,7 +380,12 @@ export class DateField implements IxInputFieldComponent<string> {
       : this.invalidText;
 
     return (
-      <Host>
+      <Host
+        class={{
+          disabled: this.disabled,
+          readonly: this.readonly,
+        }}
+      >
         <ix-field-wrapper
           label={this.label}
           helperText={this.helperText}

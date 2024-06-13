@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-$notSelectors: ':not(.disabled)';
+$notSelectors: ':not(.disabled):not(:disabled):not([disabled])';
 
 @mixin host-valid {
   :host(.ix-valid#{$notSelectors}:not(.ix-suppress-valid):not(.ix-invalid--required)) {
@@ -29,6 +29,35 @@ $notSelectors: ':not(.disabled)';
 @mixin host-invalid {
   :host([class*='ix-invalid']#{$notSelectors}),
   :host(.ix-invalid--required#{$notSelectors}) {
+    @content;
+  }
+}
+
+
+@mixin input-valid {
+  textarea.ix-valid#{$notSelectors}:not(.ix-suppress-valid):not(.ix-invalid--required),
+  input.ix-valid#{$notSelectors}:not(.ix-suppress-valid):not(.ix-invalid--required) {
+    @content;
+  }
+}
+
+@mixin input-info {
+  textarea.ix-info#{$notSelectors},
+  input.ix-info#{$notSelectors} {
+    @content;
+  }
+}
+
+@mixin input-warning {
+  textarea.ix-warning#{$notSelectors},
+  input.ix-warning#{$notSelectors} {
+    @content;
+  }
+}
+
+@mixin input-invalid {
+  textarea[class*='ix-invalid']#{$notSelectors},
+  input[class*='ix-invalid']#{$notSelectors} {
     @content;
   }
 }

@@ -21,6 +21,11 @@ export async function shouldSuppressInternalValidation(
     typeof host.getAssociatedFormElement === 'function'
   ) {
     const form = await host.getAssociatedFormElement();
+
+    if (!form) {
+      return false;
+    }
+
     return form.noValidate;
   }
 

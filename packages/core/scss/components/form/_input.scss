@@ -8,6 +8,7 @@
  */
 @import 'common-variables';
 @import 'mixins/fonts';
+@import 'mixins/validation/form-component';
 
 @mixin element-input($feature-read-only: true) {
   & {
@@ -174,6 +175,56 @@
     .invalid-feedback,
     .valid-feedback {
       display: none !important;
+    }
+  }
+
+  @include input-valid {
+  }
+
+  @include input-info {
+    & {
+      border-color: var(--theme-input--border-color--info);
+    }
+
+    &:hover {
+      border-color: var(--theme-input--border-color--info--hover) !important;
+    }
+
+    &:active {
+      border-color: var(--theme-input--border-color--info--active) !important;
+    }
+  }
+
+  @include input-warning {
+    & {
+      border-color: var(--theme-input--border-color--warning--active) !important;
+    }
+
+    &:hover {
+      border-color: var(--theme-input--border-color--warning--active) !important;
+    }
+
+    &:active {
+      border-color: var(--theme-input--border-color--warning--active) !important;
+    }
+  }
+
+  @include input-invalid {
+    & {
+      background-color: var(--theme-input--background--invalid);
+      border-color: var(--theme-input--border-color--invalid);
+    }
+
+    & {
+      border-color: var(--theme-input--border-color--invalid) !important;
+    }
+
+    &:hover {
+      border-color: var(--theme-input--border-color--invalid--hover) !important;
+    }
+
+    &:active {
+      border-color: var(--theme-input--border-color--invalid--active) !important;
     }
   }
 }

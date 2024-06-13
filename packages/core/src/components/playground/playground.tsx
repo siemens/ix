@@ -34,16 +34,11 @@ export class PlaygroundInternal {
             }
           }}
         >
-          {/* <ix-text-field label="Test" required></ix-text-field> */}
-          {/* <ix-number-field id="mytest" value={123}>
-            <ix-field-label aria-label="test" slot="label" htmlFor="mytest">
-              Test
-            </ix-field-label>
+          <ix-field-label htmlFor="test">Test</ix-field-label>
+          <ix-custom-field infoText="Test">
+            <input id="test" class={'ix-valid'}></input>
+          </ix-custom-field>
 
-            <ix-button slot="postfix">test</ix-button>
-          </ix-number-field>
-
-          <ix-text-field label="test xzs"></ix-text-field> */}
           {/* <ix-layout-form>
             <ix-text-field label="Name" name="name"></ix-text-field>
             <ix-text-field label="Last Name" name="last-name"></ix-text-field>
