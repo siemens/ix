@@ -14,7 +14,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { IxTextareaField } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (

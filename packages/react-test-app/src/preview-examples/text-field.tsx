@@ -8,15 +8,12 @@
  */
 
 import { IxTextField } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (
     <>
       <div>
-        <IxTextField
-          placeholder="Enter your Username"
-        ></IxTextField>
+        <IxTextField placeholder="Enter your Username"></IxTextField>
       </div>
     </>
   );
