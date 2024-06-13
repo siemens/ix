@@ -152,6 +152,9 @@ export const config: Config = {
       serviceWorker: null,
       copy: copyAssets,
     },
+    {
+      type: 'dist-hydrate-script',
+    },
   ],
 };
 
