@@ -20,7 +20,7 @@ jobs:
       github.event.issue.pull_request &&
       (
         github.event.sender.login == 'danielleroux' ||
-        github.event.sender.login == 'danielleroux'
+        github.event.sender.login == 'nuke-ellington'
       ) &&
       startsWith(github.event.comment.body, '/snapshots:approve')
 
