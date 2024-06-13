@@ -1,0 +1,48 @@
+name: Exit Prerelease Mode
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Exit prerelease mode on release branch'
+        type: string
+        default: 'release-'
+        required: true
+
+jobs:
+  exit_prerelease:
+    name: Changesets Exit Prerelease
+    runs-on: ubuntu-latest
+    # Allow GITHUB_TOKEN to have write permissions
+    permissions:
+      contents: write
+
+    steps:
+      # Check out the repository, using the Github Actions Bot app's token so
+      # that we can push later.
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          # Checkout release branch entered when workflow was kicked off
+          ref: ${{ github.event.inputs.branch }}
+          # Fetch entire git history so  Changesets can generate changelogs
+          # with the correct commits
+          fetch-depth: 0
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Write latest version to package.json and package-lock.json
+        run: |
+          node ./scripts/exit-prerelease.js
+          pnpm i --lockfile-only
+
+      - name: Remove pre.json
+        run: pnpm rimraf .changeset/pre.json
+
+      - name: Commit and push changes
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add -A
+          git commit -m "Exit prerelease mode"
+          git push
