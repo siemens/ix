@@ -10,7 +10,6 @@
 import 'example-styles/dist/icon-toggle-button.css';
 
 import { IxIconToggleButton } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (
@@ -22,11 +21,21 @@ export default () => {
 
       <IxIconToggleButton size="16" outline></IxIconToggleButton>
       <IxIconToggleButton size="16" pressed outline></IxIconToggleButton>
-      <IxIconToggleButton size="16" disabled loading outline></IxIconToggleButton>
+      <IxIconToggleButton
+        size="16"
+        disabled
+        loading
+        outline
+      ></IxIconToggleButton>
 
       <IxIconToggleButton size="12" outline></IxIconToggleButton>
       <IxIconToggleButton size="12" pressed outline></IxIconToggleButton>
-      <IxIconToggleButton size="12" disabled loading outline></IxIconToggleButton>
+      <IxIconToggleButton
+        size="12"
+        disabled
+        loading
+        outline
+      ></IxIconToggleButton>
     </>
   );
 };

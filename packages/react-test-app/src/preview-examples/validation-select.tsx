@@ -8,7 +8,7 @@
  */
 
 import { IxButton, IxSelect, IxSelectItem } from '@siemens/ix-react';
-import React from 'react';
+
 import { Controller, useForm } from 'react-hook-form';
 
 export default function () {
@@ -43,7 +43,7 @@ export default function () {
               value={field.value}
               onValueChange={field.onChange}
               helperText="Select your car brand"
-              errorText={errors.car?.message?.toString()}
+              invalidText={errors.car?.message?.toString()}
               className={`${errors.car ? 'ix-invalid' : undefined}`}
             >
               <IxSelectItem value="audi" label="Audi"></IxSelectItem>

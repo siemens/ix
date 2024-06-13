@@ -45,8 +45,8 @@ export default {
     <IxSelect
       allowClear
       label="Select Car"
-      helperText="Select your car brand"
-      :errorText="v$.car.$errors[0]?.$message"
+      helper-text="Select your car brand"
+      :invalid-text="v$.car.$errors[0]?.$message"
       v-model="car"
       :class="{ 'ix-invalid': v$.$error }"
       >

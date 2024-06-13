@@ -14,7 +14,7 @@ import {
   IxMenu,
   IxMenuItem,
 } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [overlay, setOverlay] = useState(false);

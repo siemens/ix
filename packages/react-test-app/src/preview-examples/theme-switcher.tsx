@@ -15,7 +15,7 @@ import {
   IxSelect,
   IxSelectItem,
 } from '@siemens/ix-react';
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import './styles/theme-switcher.css';
 
 export default () => {

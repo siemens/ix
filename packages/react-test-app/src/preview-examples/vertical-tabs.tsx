@@ -8,7 +8,6 @@
  */
 
 import { IxMenu, IxMenuItem } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (

@@ -8,7 +8,7 @@
  */
 
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-react';
-import React from 'react';
+
 // Example styling for documentation
 import './styles/grid.css';
 

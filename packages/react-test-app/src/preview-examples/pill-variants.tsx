@@ -8,7 +8,7 @@
  */
 
 import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-react';
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 
 export default () => {
   const styled: CSSProperties = {
@@ -115,7 +115,7 @@ export default () => {
               variant="custom"
               color="color-soft-text"
               background="purple"
-              icon='info'
+              icon="info"
               style={styled}
             >
               Custom
@@ -126,7 +126,7 @@ export default () => {
               variant="custom"
               color="color-soft-text"
               background="purple"
-              icon='info'
+              icon="info"
               outline
               style={styled}
             >

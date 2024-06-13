@@ -16,7 +16,7 @@ import {
   ModalRef,
   showModal,
 } from '@siemens/ix-react';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 function CustomModal() {
   const modalRef = useRef<ModalRef>(null);

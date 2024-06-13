@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-
 export default () => {
   return (
     <form className="needs-validation m-2">

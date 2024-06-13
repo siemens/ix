@@ -14,7 +14,7 @@ import {
   IxMenuSettings,
   IxMenuSettingsItem,
 } from '@siemens/ix-react';
-import React, { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
 export default () => {
   const ref = useRef<HTMLIxMenuElement>(null);

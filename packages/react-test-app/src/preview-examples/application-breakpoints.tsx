@@ -20,7 +20,7 @@ import {
   IxMenuItem,
 } from '@siemens/ix-react';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [breakpoints, setBreakpoints] = useState<Breakpoint[]>(['md']);
