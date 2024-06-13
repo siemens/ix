@@ -337,7 +337,7 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
 ]);
 
 
-export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField>('ix-date-field', defineIxDateField, [
+export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField, JSX.IxDateField["value"]>('ix-date-field', defineIxDateField, [
   'name',
   'placeholder',
   'value',
@@ -357,7 +357,8 @@ export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField>('ix-da
   'validityStateChange',
   'ixFocus',
   'ixBlur'
-]);
+],
+'value', 'valueChange');
 
 
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
@@ -834,7 +835,7 @@ export const IxNumberField = /*@__PURE__*/ defineContainer<JSX.IxNumberField, JS
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'value-change');
+'value', 'valueChange');
 
 
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', defineIxPagination, [
@@ -953,7 +954,7 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect
   'addItem',
   'ixBlur'
 ],
-'value', 'value-change');
+'value', 'valueChange');
 
 
 export const IxSelectItem = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
@@ -1053,7 +1054,7 @@ export const IxTextField = /*@__PURE__*/ defineContainer<JSX.IxTextField, JSX.Ix
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'value-change');
+'value', 'valueChange');
 
 
 export const IxTextareaField = /*@__PURE__*/ defineContainer<JSX.IxTextareaField, JSX.IxTextareaField["value"]>('ix-textarea-field', defineIxTextareaField, [
@@ -1077,7 +1078,7 @@ export const IxTextareaField = /*@__PURE__*/ defineContainer<JSX.IxTextareaField
   'validityStateChange',
   'ixBlur'
 ],
-'value', 'value-change');
+'value', 'valueChange');
 
 
 export const IxTile = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defineIxTile, [

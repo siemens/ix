@@ -64,6 +64,13 @@ export function checkInternalValidity(
     return;
   }
 
+  const shouldInternalValidate =
+    comp.required || comp.pattern || comp.min || comp.max;
+
+  if (!shouldInternalValidate) {
+    return;
+  }
+
   const { valid } = validityState;
   comp.hostElement.classList.toggle('ix-invalid', !valid);
 }

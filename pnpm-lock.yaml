@@ -8,6 +8,9 @@ patchedDependencies:
   '@stencil/react-output-target@0.5.3':
     hash: dojyovnqujhwcowpgsckwfls6e
     path: patches/@stencil__react-output-target@0.5.3.patch
+  '@stencil/vue-output-target@0.8.8':
+    hash: 5yvuqqkqemceot6njn3c7dgkpi
+    path: patches/@stencil__vue-output-target@0.8.8.patch
 
 importers:
 
@@ -329,8 +332,8 @@ importers:
         specifier: ^3.0.8
         version: 3.0.8(@stencil/core@4.17.2)
       '@stencil/vue-output-target':
-        specifier: ^0.8.8
-        version: 0.8.8(@stencil/core@4.17.2)
+        specifier: 0.8.8
+        version: 0.8.8(patch_hash=5yvuqqkqemceot6njn3c7dgkpi)(@stencil/core@4.17.2)
       '@testing-library/dom':
         specifier: ^8.11.0
         version: 8.20.1
@@ -17930,7 +17933,7 @@ snapshots:
     dependencies:
       '@stencil/core': 4.17.2
 
-  '@stencil/vue-output-target@0.8.8(@stencil/core@4.17.2)':
+  '@stencil/vue-output-target@0.8.8(patch_hash=5yvuqqkqemceot6njn3c7dgkpi)(@stencil/core@4.17.2)':
     dependencies:
       '@stencil/core': 4.17.2
 

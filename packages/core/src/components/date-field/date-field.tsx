@@ -128,7 +128,7 @@ export class DateField implements IxInputFieldComponent<string> {
   /**
    * Input change event.
    */
-  @Event() valueChange: EventEmitter<string>;
+  @Event({ cancelable: false }) valueChange: EventEmitter<string>;
 
   /**
    * Validation state change event.

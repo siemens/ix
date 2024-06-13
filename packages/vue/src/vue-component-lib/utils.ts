@@ -90,7 +90,8 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
       created: (el: HTMLElement) => {
         const eventsNames = Array.isArray(modelUpdateEvent) ? modelUpdateEvent : [modelUpdateEvent];
         eventsNames.forEach((eventName: string) => {
-          el.addEventListener(eventName.toLowerCase(), (e: Event) => {
+          // Remove eventName.toLowerCase() from original 0.8.8 to not mutate event naming
+          el.addEventListener(eventName, (e: Event) => {
             /**
              * Only update the v-model binding if the event's target is the element we are
              * listening on. For example, Component A could emit ionChange, but it could also

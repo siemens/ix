@@ -4641,7 +4641,7 @@
             "resolved": "string",
             "references": {}
           },
-          "cancelable": true,
+          "cancelable": false,
           "composed": true,
           "docs": "Input change event.",
           "docsTags": []
