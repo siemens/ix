@@ -9,42 +9,44 @@ SPDX-License-Identifier: MIT
   <head>
     <title>Test example</title>
   </head>
-  <body class="theme-brand-dark">
+  <body class='theme-brand-dark'>
     <!-- Preview code -->
-    <ix-text-field
-      label="Username"
-      placeholder="Enter your Username"
-      helper-text="Helper text"
-    ></ix-text-field>
+    <div>
+      <ix-text-field
+        label="Username"
+        placeholder="Enter your Username"
+        info-text="Info text"
+        class="ix-info"
+      ></ix-text-field>
+    </div>
 
-    <ix-text-field
-      label="Username"
-      placeholder="Enter your Username"
-      info-text="Info text"
-      class="ix-info"
-    ></ix-text-field>
+    <div>
+      <ix-text-field
+        label="Username"
+        placeholder="Enter your Username"
+        warning-text="Warning text"
+        class="ix-warning"
+      ></ix-text-field>
+    </div>
 
-    <ix-text-field
-      label="Username"
-      placeholder="Enter your Username"
-      warning-text="Warning text"
-      class="ix-warning"
-    ></ix-text-field>
+    <div>
+      <ix-text-field
+        label="Username"
+        placeholder="Enter your Username"
+        valid-text="Valid text"
+        class="ix-valid"
+      ></ix-text-field>
+    </div>
 
-    <ix-text-field
-      label="Username"
-      placeholder="Enter your Username"
-      valid-text="Valid text"
-      class="ix-valid"
-    ></ix-text-field>
-
-    <ix-text-field
-      label="Username"
-      placeholder="Enter your Username"
-      invalid-text="Invalid text"
-      class="ix-invalid"
-    ></ix-text-field>
+    <div>
+      <ix-text-field
+        label="Username"
+        placeholder="Enter your Username"
+        invalid-text="Invalid text"
+        class="ix-invalid"
+      ></ix-text-field>
+    </div>
     <!-- Preview code -->
-    <script type="module" src="./init.js"></script>
+  <script type='module' src='./init.js'></script>
   </body>
 </html>

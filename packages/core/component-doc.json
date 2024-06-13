@@ -18059,6 +18059,33 @@
           "required": false
         },
         {
+          "name": "resizeBehavior",
+          "type": "\"dimensions\" | \"rowsCols\"",
+          "complexType": {
+            "original": "'dimensions' | 'rowsCols'",
+            "resolved": "\"dimensions\" | \"rowsCols\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "resize-behavior",
+          "reflectToAttr": false,
+          "docs": "Determines the resize behavior of the textarea field.\n'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth.\n'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.",
+          "docsTags": [],
+          "default": "'rowsCols'",
+          "values": [
+            {
+              "value": "dimensions",
+              "type": "string"
+            },
+            {
+              "value": "rowsCols",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "showTextAsTooltip",
           "type": "boolean",
           "complexType": {
@@ -18080,6 +18107,28 @@
           "required": false
         },
         {
+          "name": "textareaCols",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "textarea-cols",
+          "reflectToAttr": true,
+          "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docsTags": [],
+          "default": "'20'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "textareaHeight",
           "type": "string",
           "complexType": {
@@ -18092,6 +18141,51 @@
           "reflectToAttr": false,
           "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
           "docsTags": [],
+          "default": "'300px'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textareaRows",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "textarea-rows",
+          "reflectToAttr": false,
+          "docs": "The number of rows of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docsTags": [],
+          "default": "'5'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "textareaWidth",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "textarea-width",
+          "reflectToAttr": false,
+          "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docsTags": [],
+          "default": "'100%'",
           "values": [
             {
               "type": "string"

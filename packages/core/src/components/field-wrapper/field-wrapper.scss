@@ -21,6 +21,8 @@
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
+    width: min-content;
+    min-width: 100%;
   }
 
   .field-bottom .bottom-right {

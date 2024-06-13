@@ -97,9 +97,21 @@ import Spinner from './preview-examples/spinner.vue';
 import SplitbuttonIcons from './preview-examples/split-button-icons.vue';
 import Splitbutton from './preview-examples/split-button.vue';
 import Tabs from './preview-examples/tabs.vue';
+import Textarea from './preview-examples/textarea.vue';
 import TextareaDisabled from './preview-examples/textarea-disabled.vue';
 import TextareaReadonly from './preview-examples/textarea-readonly.vue';
-import Textarea from './preview-examples/textarea.vue';
+import TextareaField from './preview-examples/textarea-field.vue';
+import TextareaFieldDisabled from './preview-examples/textarea-field-disabled.vue';
+import TextareaFieldReadonly from './preview-examples/textarea-field-readonly.vue';
+import TextareaFieldRowsCols from './preview-examples/textarea-field-rows-cols.vue';
+import TextareaFieldValidation from './preview-examples/textarea-field-validation.vue';
+import TextField from './preview-examples/text-field.vue';
+import TextFieldDisabled from './preview-examples/text-field-disabled.vue';
+import TextFieldLabel from './preview-examples/text-field-label.vue';
+import TextFieldPattern from './preview-examples/text-field-pattern.vue';
+import TextFieldReadonly from './preview-examples/text-field-readonly.vue';
+import TextFieldTypes from './preview-examples/text-field-types.vue';
+import TextFieldValidation from './preview-examples/text-field-validation.vue';
 import Tile from './preview-examples/tile.vue';
 import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
@@ -145,6 +157,7 @@ const routes: any = {
   '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datetimepicker': Datetimepicker,
+  '/preview/datetimepicker': Datetimepicker,
   '/preview/drawer-full-height': DrawerFullHeight,
   '/preview/dropdown': Dropdown,
   '/preview/dropdown-icon': DropdownIcon,
@@ -180,6 +193,18 @@ const routes: any = {
   '/preview/textarea': Textarea,
   '/preview/textarea-disabled': TextareaDisabled,
   '/preview/textarea-readonly': TextareaReadonly,
+  '/preview/textarea-field': TextareaField,
+  '/preview/textarea-field-readonly': TextareaFieldReadonly,
+  '/preview/textarea-field-disabled': TextareaFieldDisabled,
+  '/preview/textarea-field-rows-cols': TextareaFieldRowsCols,
+  '/preview/textarea-field-validation': TextareaFieldValidation,
+  '/preview/text-field': TextField,
+  '/preview/text-field-disabled': TextFieldDisabled,
+  '/preview/text-field-label': TextFieldLabel,
+  '/preview/text-field-pattern': TextFieldPattern,
+  '/preview/text-field-readonly': TextFieldReadonly,
+  '/preview/text-field-types': TextFieldTypes,
+  '/preview/text-field-validation': TextFieldValidation,
   '/preview/tile': Tile,
   '/preview/timepicker': Timepicker,
   '/preview/toast': Toast,

@@ -2709,13 +2709,29 @@ export namespace Components {
          */
         "required": boolean;
         /**
+          * Determines the resize behavior of the textarea field. 'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth. 'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.
+         */
+        "resizeBehavior": 'dimensions' | 'rowsCols';
+        /**
           * Determines if the text should be displayed as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
           * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
          */
+        "textareaCols": string;
+        /**
+          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+         */
         "textareaHeight": string;
+        /**
+          * The number of rows of the textarea field. Helpful if you want to set an initial height for the textarea.
+         */
+        "textareaRows": string;
+        /**
+          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+         */
+        "textareaWidth": string;
         /**
           * The valid text for the textarea field.
          */
@@ -7868,13 +7884,29 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
+          * Determines the resize behavior of the textarea field. 'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth. 'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.
+         */
+        "resizeBehavior"?: 'dimensions' | 'rowsCols';
+        /**
           * Determines if the text should be displayed as a tooltip.
          */
         "showTextAsTooltip"?: boolean;
         /**
           * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
          */
+        "textareaCols"?: string;
+        /**
+          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+         */
         "textareaHeight"?: string;
+        /**
+          * The number of rows of the textarea field. Helpful if you want to set an initial height for the textarea.
+         */
+        "textareaRows"?: string;
+        /**
+          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+         */
+        "textareaWidth"?: string;
         /**
           * The valid text for the textarea field.
          */

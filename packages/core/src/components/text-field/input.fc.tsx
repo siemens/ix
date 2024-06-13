@@ -12,6 +12,9 @@ import { A11yAttributes } from '../utils/a11y';
 
 export function TextareaElement(props: {
   textareaHeight: string;
+  textareaWidth: string;
+  textareaRows: string;
+  textareaCols: string;
   disabled: boolean;
   readonly: boolean;
   maxLength?: number;
@@ -32,6 +35,8 @@ export function TextareaElement(props: {
       disabled={props.disabled}
       maxLength={props.maxLength}
       minLength={props.minLength}
+      cols={Number(props.textareaCols)}
+      rows={Number(props.textareaRows)}
       ref={props.textAreaRef}
       class={{
         'is-invalid': props.isInvalid,
@@ -48,7 +53,7 @@ export function TextareaElement(props: {
         props.updateFormInternalValue(target.value);
       }}
       onBlur={() => props.onBlur()}
-      style={{ height: props.textareaHeight }}
+      style={{ height: props.textareaHeight, width: props.textareaWidth }}
       {...props.ariaAttributes}
     ></textarea>
   );

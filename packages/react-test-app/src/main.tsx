@@ -94,6 +94,18 @@ import Tabs from './preview-examples/tabs';
 import Textarea from './preview-examples/textarea';
 import TextareaDisabled from './preview-examples/textarea-disabled';
 import TextareaReadonly from './preview-examples/textarea-readonly';
+import TextareaField from './preview-examples/textarea-field';
+import TextareaFieldDisabled from './preview-examples/textarea-field-disabled';
+import TextareaFieldReadonly from './preview-examples/textarea-field-readonly';
+import TextareaFieldRowCols from './preview-examples/textarea-field-rows-cols';
+import TextareaFieldValidation from './preview-examples/textarea-field-validation';
+import TextField from './preview-examples/text-field';
+import TextFieldDisabled from './preview-examples/text-field-disabled';
+import TextFieldLabel from './preview-examples/text-field-label';
+import TextFieldPattern from './preview-examples/text-field-pattern';
+import TextFieldReadonly from './preview-examples/text-field-readonly';
+import TextFieldTypes from './preview-examples/text-field-types';
+import TextFieldValidation from './preview-examples/text-field-validation';
 import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
 import Timepicker from './preview-examples/timepicker';
@@ -257,6 +269,33 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/textarea-readonly"
           element={<TextareaReadonly />}
         />
+        <Route
+          path="/preview/textarea-field"
+          element={<TextareaField />}
+        />
+        <Route
+          path="/preview/textarea-field-disabled"
+          element={<TextareaFieldDisabled />}
+        />
+        <Route
+          path="/preview/textarea-readonly"
+          element={<TextareaFieldReadonly />}
+        />
+        <Route
+          path="/preview/textarea-field-rows-cols"
+          element={<TextareaFieldRowCols />}
+        />
+        <Route
+          path="/preview/textarea-field-validation"
+          element={<TextareaFieldValidation />}
+        />
+        <Route path="/preview/text-field" element={<TextField />} />
+        <Route path="/preview/text-field-disabled" element={<TextFieldDisabled />} />
+        <Route path="/preview/text-field-label" element={<TextFieldLabel />} />
+        <Route path="/preview/text-field-pattern" element={<TextFieldPattern />} />
+        <Route path="/preview/text-field-readonly" element={<TextFieldReadonly />} />
+        <Route path="/preview/text-field-types" element={<TextFieldTypes />} />
+        <Route path="/preview/text-field-validation" element={<TextFieldValidation />} />
         <Route path="/preview/tile" element={<Tile />} />
         <Route path="/preview/timepicker" element={<Timepicker />} />
         <Route path="/preview/toast" element={<Toast />} />

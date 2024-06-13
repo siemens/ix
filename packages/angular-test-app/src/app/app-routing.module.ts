@@ -114,6 +114,18 @@ import TabsRounded from 'src/preview-examples/tabs-rounded';
 import Textarea from 'src/preview-examples/textarea';
 import TextareaDisabled from 'src/preview-examples/textarea-disabled';
 import TextareaReadonly from 'src/preview-examples/textarea-readonly';
+import TextareaField from '../preview-examples/textarea-field';
+import TextareaFieldDisabled from '../preview-examples/textarea-field-disabled';
+import TextareaFieldReadonly from '../preview-examples/textarea-field-readonly';
+import TextareaFieldRowsCols from '../preview-examples/textarea-field-rows-cols';
+import TextareaFieldValidation from '../preview-examples/textarea-field-validation';
+import TextField from '../preview-examples/text-field';
+import TextFieldDisabled from '../preview-examples/text-field-disabled';
+import TextFieldLabel from '../preview-examples/text-field-label';
+import TextFieldPattern from '../preview-examples/text-field-pattern';
+import TextFieldReadonly from '../preview-examples/text-field-readonly';
+import TextFieldTypes from '../preview-examples/text-field-types';
+import TextFieldValidation from '../preview-examples/text-field-validation';
 import ThemeService from 'src/preview-examples/theme-switcher';
 import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
@@ -371,6 +383,18 @@ const routes: Routes = [
       { path: 'textarea', component: Textarea },
       { path: 'textarea-disabled', component: TextareaDisabled },
       { path: 'textarea-readonly', component: TextareaReadonly },
+      { path: 'textarea-field', component: TextareaField },
+      { path: 'textarea-field-disabled', component: TextareaFieldDisabled },
+      { path: 'textarea-field-disabled', component: TextareaFieldReadonly },
+      { path: 'textarea-field-rows-cols', component: TextareaFieldRowsCols },
+      { path: 'textarea-field-validation', component: TextareaFieldValidation },
+      { path: 'text-field', component: TextField },
+      { path: 'text-field-disabled', component: TextFieldDisabled },
+      { path: 'text-field-label', component: TextFieldLabel },
+      { path: 'text-field-label', component: TextFieldPattern },
+      { path: 'text-field-readonly', component: TextFieldReadonly },
+      { path: 'text-field-types', component: TextFieldTypes },
+      { path: 'text-field-types', component: TextFieldValidation },
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
