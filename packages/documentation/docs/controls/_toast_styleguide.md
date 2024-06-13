@@ -21,7 +21,7 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
 - **Message:** Add a message to explain the toast event in more detail. We typically describe the event precisely and without too many words to keep the sentence as short as possible, e.g., the message was successfully deleted vs. message deleted
 - **Button:** Add a button to toasts to add an option for the user. We typically add a button if a further step is possible for the user to change or continue the workflow, e.g., an undo button or a follow link. 
 
-![Toast Types](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2552-64766&t=LITgbzwcgm87dQXa-4)
+![Toast Types](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2552-64766&t=VfiuoHWd1VYl1GYb-4)
 
 ## Behavior in context
 - **Auto closure:** Toasts should only be displayed on the screen for a few seconds. A timer is displayed to visualize the closing time. We typically give the toast 3 to 8 seconds on the screen.
