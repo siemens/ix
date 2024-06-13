@@ -157,7 +157,6 @@ const routes: any = {
   '/preview/datepicker-locale': DatepickerLocale,
   '/preview/datepicker-range': DatepickerRange,
   '/preview/datetimepicker': Datetimepicker,
-  '/preview/datetimepicker': Datetimepicker,
   '/preview/drawer-full-height': DrawerFullHeight,
   '/preview/dropdown': Dropdown,
   '/preview/dropdown-icon': DropdownIcon,

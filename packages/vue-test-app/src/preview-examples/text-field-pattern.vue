@@ -17,7 +17,7 @@ import { IxTextField } from '@siemens/ix-vue';
     <IxTextField
       helper-text="Only characters a-d are allowed"
       allowed-characters-pattern="[a-d]"
-      max-length="4"
+      :max-length="4"
     ></IxTextField>
   </div>
 </template>
