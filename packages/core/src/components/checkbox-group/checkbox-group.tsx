@@ -6,6 +6,10 @@ import {
   ValidationResults,
 } from '../utils/field';
 
+/**
+ * @since 2.4.0
+ * @form-ready 2.4.0
+ */
 @Component({
   tag: 'ix-checkbox-group',
   styleUrl: 'checkbox-group.scss',

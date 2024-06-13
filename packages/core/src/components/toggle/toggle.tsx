@@ -22,10 +22,14 @@ import {
 import { a11yBoolean } from '../utils/a11y';
 import { IxFormComponent } from '../utils/field';
 
+/**
+ * @form-ready 2.4.0
+ * */
 @Component({
   tag: 'ix-toggle',
   styleUrl: 'toggle.scss',
   shadow: true,
+  formAssociated: true,
 })
 export class Toggle implements IxFormComponent<string> {
   @AttachInternals() formInternals: ElementInternals;

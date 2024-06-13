@@ -1225,7 +1225,6 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
-        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1259,9 +1258,6 @@
           "ix-button"
         ],
         "ix-modal-example": [
-          "ix-button"
-        ],
-        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -2439,20 +2435,24 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.4.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.4.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-checkbox": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-checkbox"
         ]
       },
       "props": [
@@ -2654,11 +2654,18 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.4.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.4.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -2676,9 +2683,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-checkbox-group"
         ]
       },
       "props": [
@@ -3621,11 +3625,14 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.4.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -3643,9 +3650,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-custom-field"
         ]
       },
       "props": [
@@ -4219,11 +4223,18 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.4.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.4.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [
         "ix-icon-button",
         "ix-field-wrapper",
@@ -4259,9 +4270,6 @@
         ],
         "ix-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-date-field"
         ]
       },
       "props": [
@@ -8675,7 +8683,6 @@
         "ix-number-field",
         "ix-pagination",
         "ix-pane",
-        "ix-playground-internal",
         "ix-select",
         "ix-split-button",
         "ix-text-field",
@@ -8765,9 +8772,6 @@
           "ix-icon-button"
         ],
         "ix-pane": [
-          "ix-icon-button"
-        ],
-        "ix-playground-internal": [
           "ix-icon-button"
         ],
         "ix-select": [
@@ -9728,15 +9732,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-playground-internal": [
-          "ix-layout-form"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "layout",
@@ -13033,11 +13031,18 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.4.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.4.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper",
         "ix-icon-button"
@@ -13060,9 +13065,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-number-field"
         ]
       },
       "props": [
@@ -14690,17 +14692,20 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.4.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.4.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-playground-internal": [
-          "ix-radio"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "checked",
@@ -14855,11 +14860,18 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.4.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.4.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -14877,9 +14889,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-radio-group"
         ]
       },
       "props": [
@@ -15136,8 +15145,7 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-pagination",
-        "ix-playground-internal"
+        "ix-pagination"
       ],
       "dependencies": [
         "ix-select-item",
@@ -15177,9 +15185,6 @@
           "ix-spinner"
         ],
         "ix-pagination": [
-          "ix-select"
-        ],
-        "ix-playground-internal": [
           "ix-select"
         ]
       },
@@ -15859,7 +15864,6 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-pagination",
-        "ix-playground-internal",
         "ix-select"
       ],
       "dependencies": [
@@ -15870,9 +15874,6 @@
           "ix-dropdown-item"
         ],
         "ix-pagination": [
-          "ix-select-item"
-        ],
-        "ix-playground-internal": [
           "ix-select-item"
         ],
         "ix-select": [
@@ -17262,11 +17263,18 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.4.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.4.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper",
         "ix-icon-button",
@@ -17291,9 +17299,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-text-field"
         ]
       },
       "props": [
@@ -17779,11 +17784,18 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.4.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.4.0"
+        }
       ],
+      "encapsulation": "shadow",
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper",
         "ix-typography"
@@ -17803,9 +17815,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-textarea-field"
         ]
       },
       "props": [
@@ -19098,7 +19107,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready",
+          "text": "2.4.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -20129,7 +20143,6 @@
         "ix-modal-header",
         "ix-pagination",
         "ix-pane",
-        "ix-playground-internal",
         "ix-push-card",
         "ix-slider",
         "ix-text-field",
@@ -20188,9 +20201,6 @@
           "ix-typography"
         ],
         "ix-pane": [
-          "ix-typography"
-        ],
-        "ix-playground-internal": [
           "ix-typography"
         ],
         "ix-push-card": [

@@ -39,6 +39,10 @@ export type DateFieldValidityState = {
   invalidReason?: string;
 };
 
+/**
+ * @since 2.4.0
+ * @form-ready 2.4.0
+ */
 @Component({
   tag: 'ix-date-field',
   styleUrl: 'date-field.scss',

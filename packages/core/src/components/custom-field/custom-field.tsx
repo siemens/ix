@@ -15,6 +15,9 @@ import {
   ValidationResults,
 } from '../utils/field';
 
+/**
+ * @since 2.4.0
+ */
 @Component({
   tag: 'ix-custom-field',
   styleUrl: 'custom-field.scss',

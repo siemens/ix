@@ -28,6 +28,10 @@ import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import { mapValidationResult, onInputBlur } from './text-field.util';
 
+/**
+ * @since 2.4.0
+ * @form-ready 2.4.0
+ */
 @Component({
   tag: 'ix-textarea-field',
   styleUrl: 'textarea-field.scss',

@@ -39,6 +39,10 @@ import {
 
 let textFieldIds = 0;
 
+/**
+ * @since 2.4.0
+ * @form-ready 2.4.0
+ */
 @Component({
   tag: 'ix-text-field',
   styleUrl: 'text-field.scss',

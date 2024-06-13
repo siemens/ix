@@ -53,13 +53,13 @@ type PlaygroundV2Props = {
   showOnly?: TargetFramework[];
 } & DemoProps;
 
-function SourceCodePreview(props: {
+export function SourceCodePreview(props: {
   framework: TargetFramework;
   name: string;
   files?: Record<TargetFramework, string[]>;
   includeCssFile?: boolean;
   examplesByName?: boolean;
-  onSourceCodeFetched: (files: SourceFile[]) => void;
+  onSourceCodeFetched?: (files: SourceFile[]) => void;
 }) {
   const [isFetching, setFetching] = useState(true);
 
@@ -97,7 +97,9 @@ function SourceCodePreview(props: {
   }, [props.framework]);
 
   useEffect(() => {
-    props.onSourceCodeFetched(files);
+    if (props.onSourceCodeFetched) {
+      props.onSourceCodeFetched(files);
+    }
   }, [files]);
 
   if (isFetching) {

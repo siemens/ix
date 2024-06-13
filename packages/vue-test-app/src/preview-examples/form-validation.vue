@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import {
-IxCustomField,
+  IxCustomField,
   IxDateField,
   IxIcon,
   IxIconButton,
@@ -47,7 +47,7 @@ export default {
     IxDateField,
     IxTextareaField,
     IxCustomField,
-    IxIconButton
+    IxIconButton,
   },
   setup() {
     /**
@@ -103,11 +103,12 @@ export default {
         email,
       },
       pin: {
-        required
+        required,
       },
       pinConfirm: {
-        required, sameAsPin: helpers.withMessage('PINs do not match', sameAs(this.pin))
-      }
+        required,
+        sameAsPin: helpers.withMessage('PINs do not match', sameAs(this.pin)),
+      },
     };
   },
   watch: {
@@ -232,49 +233,51 @@ export default {
       ></IxTextField>
 
       <!-- Implement custom form component -->
-        <IxCustomField label="Upload" invalidText="You need to upload a file">
-          <IxTextField
-            type="text"
-            readonly
-            style="width: 100%"
-            v-model="uploadPath"
-             @click="uploadRef?.click()"
-          ></IxTextField>
-          <input
-            ref="uploadRef"
-            type="file"
-            style="display: none;"
-            @change="uploadPath = ($event.target as HTMLInputElement).value"
-          />
-          <IxIconButton
-            outline
-            variant="primary"
-            icon="star"
-            @click="uploadRef?.click()"
-          ></IxIconButton>
-        </IxCustomField>
-
+      <IxCustomField label="Upload" invalidText="You need to upload a file">
         <IxTextField
-          type="password"
-          label="PIN"
-          helperText="Only numbers between 1 and 4 is allowed"
-          allowedCharactersPattern="[1-4]"
-          :max-length="4"
-          v-model="pin"
-          :class="{ 'ix-invalid': v$.pin.$invalid }"
+          type="text"
+          readonly
+          style="width: 100%"
+          v-model="uploadPath"
+          @click="uploadRef?.click()"
         ></IxTextField>
 
-        <IxTextField
-          required
-          type="password"
-          label="PIN"
-          helperText="Confirm password"
-          allowedCharactersPattern="[1-4]"
-          :max-length="4"
-          v-model="pinConfirm"
-          :class="{ 'ix-invalid': v$.pinConfirm.sameAsPin.$invalid }"
-          :invalid-text="v$.pinConfirm.sameAsPin.$message"
-        ></IxTextField>
+        <input
+          ref="uploadRef"
+          type="file"
+          style="display: none"
+          @change="uploadPath = ($event.target as HTMLInputElement).value"
+        />
+
+        <IxIconButton
+          outline
+          variant="primary"
+          icon="star"
+          @click="uploadRef?.click()"
+        ></IxIconButton>
+      </IxCustomField>
+
+      <IxTextField
+        type="password"
+        label="PIN"
+        helperText="Only numbers between 1 and 4 is allowed"
+        allowedCharactersPattern="[1-4]"
+        :max-length="4"
+        v-model="pin"
+        :class="{ 'ix-invalid': v$.pin.$invalid }"
+      ></IxTextField>
+
+      <IxTextField
+        required
+        type="password"
+        label="PIN"
+        helperText="Confirm password"
+        allowedCharactersPattern="[1-4]"
+        :max-length="4"
+        v-model="pinConfirm"
+        :class="{ 'ix-invalid': v$.pinConfirm.sameAsPin.$invalid }"
+        :invalid-text="v$.pinConfirm.sameAsPin.$message"
+      ></IxTextField>
       <IxButton type="submit">Submit</IxButton>
     </IxLayoutForm>
   </form>

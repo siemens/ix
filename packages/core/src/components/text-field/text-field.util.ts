@@ -12,6 +12,7 @@ import {
   IxFormComponent,
   IxInputFieldComponent,
   ValidationResults,
+  shouldSuppressInternalValidation,
 } from '../utils/field';
 import { generateUUID } from '../utils/uuid';
 import { shakeInput } from './text-field.animation';
@@ -48,8 +49,8 @@ export function checkAllowedKeys(
   }
 }
 
-export function checkInternalValidity(
-  comp: IxInputFieldComponent<unknown>,
+export async function checkInternalValidity(
+  comp: IxFormComponent<unknown>,
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
   const validityState = input.validity;
@@ -64,10 +65,8 @@ export function checkInternalValidity(
     return;
   }
 
-  const shouldInternalValidate =
-    comp.required || comp.pattern || comp.min || comp.max;
-
-  if (!shouldInternalValidate) {
+  const skipValidation = await shouldSuppressInternalValidation(comp);
+  if (skipValidation) {
     return;
   }
 

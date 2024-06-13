@@ -22,6 +22,10 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { IxFormComponent } from '../utils/field';
 
+/**
+ * @since 2.4.0
+ * @form-ready 2.4.0
+ */
 @Component({
   tag: 'ix-radio',
   styleUrl: 'radio.scss',
