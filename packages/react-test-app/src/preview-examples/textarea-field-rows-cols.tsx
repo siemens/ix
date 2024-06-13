@@ -19,7 +19,7 @@ export default () => {
   return (
     <>
       <IxTextareaField
-        maxLength="100"
+        maxLength={100}
         name="comment"
         label="Comment"
         resizeBehavior="rowsCols"

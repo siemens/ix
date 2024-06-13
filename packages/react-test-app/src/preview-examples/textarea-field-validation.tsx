@@ -20,7 +20,7 @@ export default () => {
     <>
       <div>
         <IxTextareaField
-          maxLength="100"
+          maxLength={100}
           name="comment"
           label="Comment"
           resizeBehavior="dimensions"
@@ -33,7 +33,7 @@ export default () => {
 
       <div>
         <IxTextareaField
-          maxLength="100"
+          maxLength={100}
           name="comment"
           label="Comment"
           resizeBehavior="dimensions"
@@ -46,7 +46,7 @@ export default () => {
 
       <div>
         <IxTextareaField
-          maxLength="100"
+          maxLength={100}
           name="comment"
           label="Comment"
           resizeBehavior="dimensions"
@@ -59,7 +59,7 @@ export default () => {
 
       <div>
         <IxTextareaField
-          maxLength="100"
+          maxLength={100}
           name="comment"
           label="Comment"
           resizeBehavior="dimensions"
