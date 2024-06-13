@@ -99,7 +99,7 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Did you forget to add the sha? Please use `/snapshots:approve --sha <sha>`
+            Did you forget to add the SHA? Please use `/snapshots:approve --sha <sha>`
 
       - name: Fail job
         if: steps.parse-command.outcome == 'failure'
