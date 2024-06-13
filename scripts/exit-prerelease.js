@@ -14,7 +14,7 @@ const PROJECT = [
 ].map(([pkg, p]) => [pkg, path.join(cwdPath, 'packages', p, 'package.json')]);
 
 if (!fs.existsSync(prePath)) {
-  throw Error('pre.json not exist.');
+  throw Error('pre.json does not exist.');
 }
 
 const pre = JSON.parse(fs.readFileSync(prePath).toString());
