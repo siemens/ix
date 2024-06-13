@@ -53,7 +53,7 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Did you forget to add the sha? Please use `/release:pr <sha>`
+            Did you forget to add the SHA? Please use `/release:pr <sha>`
 
       - name: Fail job
         if: steps.parse-sha.outcome == 'failure'
