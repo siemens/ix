@@ -158,10 +158,14 @@ function printNewErrors() {
       const prErrors = errorInPR.get(key)!;
 
       if (prErrors.count > mainErrors.count) {
-        const lines: string[] = [];
+        const lines: string[] = [
+          '| Message | TSError | Line:Col |',
+          '|---------|---------|----------|',
+        ];
+
         prErrors.errors.forEach((error) => {
           lines.push(
-            `Error: ${error.message.value} at line ${error.cursor.value.line}, col ${error.cursor.value.col}`
+            `| ${error.message.value} | ${error.tsError.type} | ${error.cursor.value.line}:${error.cursor.value.col}|`
           );
         });
 
