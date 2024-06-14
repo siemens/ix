@@ -65,8 +65,8 @@ importers:
         specifier: ^1.32.1
         version: 1.39.0
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.1.0
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       '@types/gulp':
         specifier: ^4.0.14
         version: 4.0.16
@@ -113,8 +113,8 @@ importers:
         specifier: ~2.2.1
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.1.0
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
     devDependencies:
       '@angular/common':
         specifier: v13-lts
@@ -199,8 +199,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.1.0
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       ag-grid-angular:
         specifier: ^30.0.0
         version: 30.2.1(@angular/common@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8))(rxjs@7.5.7))(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8))(ag-grid-community@30.2.0)
@@ -288,8 +288,8 @@ importers:
         specifier: ^1.32.1
         version: 1.39.0
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.1.0
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       '@stencil-community/eslint-plugin':
         specifier: ^0.7.1
         version: 0.7.1(@typescript-eslint/eslint-plugin@6.18.1(@typescript-eslint/parser@6.18.1(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0)(typescript@5.3.3))(@typescript-eslint/parser@6.18.1(eslint@8.56.0)(typescript@5.3.3))(eslint-plugin-react@7.33.2(eslint@8.56.0))(eslint@8.56.0)(typescript@5.3.3)
@@ -589,8 +589,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.1.0
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       example-styles:
         specifier: workspace:*
         version: link:../example-styles
@@ -604,8 +604,8 @@ importers:
         specifier: ~2.2.1
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.1.0
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.4.0
@@ -701,8 +701,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.1.0
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -759,8 +759,8 @@ importers:
         specifier: ~2.2.1
         version: link:../core
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.1.0
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.45.0
@@ -793,8 +793,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: ^2.0.0
-        version: 2.1.0
+        specifier: v3-preview
+        version: 0.0.0-20240422125504
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../vue
@@ -3171,6 +3171,10 @@ packages:
 
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
+
+  '@siemens/ix-icons@0.0.0-20240422125504':
+    resolution: {integrity: sha512-ORnrzFCnSCbEQ6UTflYhD2j9W40dQ+re2Khgdcv9Iz4usYIOF4MCLEb3uFtGhhbABuHphR6wEcm5ovn15YyCjw==}
+    engines: {node: '>=16.16.x', npm: '>=8.x.x'}
 
   '@siemens/ix-icons@2.1.0':
     resolution: {integrity: sha512-PgBymG8wZIDwA5Ne02e55jkpZvTTMOa8A3UKoRDQ72CVsrbIGY9GtrYIZoIo8RjwNi/rAxdeYiUb6sGg76nU5g==}
@@ -16822,6 +16826,10 @@ snapshots:
   '@sideway/formula@3.0.1': {}
 
   '@sideway/pinpoint@2.0.0': {}
+
+  '@siemens/ix-icons@0.0.0-20240422125504':
+    dependencies:
+      '@stencil/core': 4.13.0
 
   '@siemens/ix-icons@2.1.0':
     dependencies:

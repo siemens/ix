@@ -38,7 +38,7 @@ export class Pill {
   /**
    * Show icon
    */
-  @Prop() icon: string | undefined;
+  @Prop() icon?: string;
 
   /**
    * Custom color for pill. Only working for `variant='custom'`
