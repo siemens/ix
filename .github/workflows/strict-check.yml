@@ -11,9 +11,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    if: |
-      github.repository == 'danielleroux/ix' &&
-      github.event.issue.pull_request
     strategy:
       matrix:
         branch: ['main', 'pr']
@@ -53,9 +50,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    if: |
-      github.repository == 'danielleroux/ix' &&
-      github.event.issue.pull_request
     needs: ['strict_check']
     runs-on: ubuntu-latest
     steps:
