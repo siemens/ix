@@ -144,7 +144,7 @@ function printNewErrors() {
 
       value.errors.forEach((error) => {
         lines.push(
-          `| ${error.message.value.replace(/\n/g, '')} | ${
+          `| \`${error.message.value.replace(/\n/g, '')}\` | ${
             error.tsError.type
           } | ${error.cursor.value.line}:${error.cursor.value.col}|`
         );
@@ -171,7 +171,7 @@ function printNewErrors() {
 
         prErrors.errors.forEach((error) => {
           lines.push(
-            `| ${error.message.value.replace(/\n/g, '')} | ${
+            `| \`${error.message.value.replace(/\n/g, '')}\` | ${
               error.tsError.errorString
             } | ${error.cursor.value.line}:${error.cursor.value.col} |`
           );
@@ -194,5 +194,9 @@ function printNewErrors() {
   return output.join('\n');
 }
 
-const output = ['### Report of `strict` check', checkTotal(), printNewErrors()];
+const output = [
+  '### Report of `strictNullChecks` check',
+  checkTotal(),
+  printNewErrors(),
+];
 core.setOutput('body', output.join('\n'));

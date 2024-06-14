@@ -37,7 +37,7 @@ jobs:
           ROOT=$(pwd)
           npm install -g @aivenio/tsc-output-parser@2.1.1
           cd ./packages/core
-          npx tsc --strict --noEmit --pretty false | npx tsc-output-parser > $ROOT/strict_${{ matrix.branch }}.json
+          npx tsc --strictNullChecks --noEmit --pretty false | npx tsc-output-parser > $ROOT/strict_${{ matrix.branch }}.json
           cd $ROOT
 
       - name: Upload strict_${{ matrix.branch }}.json
