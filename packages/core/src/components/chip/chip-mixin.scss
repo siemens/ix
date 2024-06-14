@@ -35,8 +35,8 @@ $border-radius: 100px;
 
     .hidden {
       display: none;
-      width: 0px;
-      margin-right: 0px;
+      width: 0;
+      margin-right: 0;
     }
 
     .close-button-container {
@@ -50,14 +50,49 @@ $border-radius: 100px;
     }
   }
 
-  .container.icon {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+  .container {
+    &.outline {
+      &.icon {
+        padding-left: calc(0.75rem - 1px);
+      }
+      &:not(.icon) {
+        padding-left: calc(0.5rem - 1px);
+      }
+      &.closable:not(.inactive) {
+        padding-right: calc(0.25rem - 1px);
+      }
+      &.closable.inactive, &:not(.closable) {
+        padding-right: calc(0.5rem - 1px);
+      }
+      &.icon:not(.closable) {
+        padding-right: calc(0.75rem - 1px);
+      }
+    }
+
+    &:not(.outline) {
+      &.icon {
+        padding-left: 0.75rem;
+      }
+      &:not(.icon) {
+        padding-left: 0.5rem;
+      }
+      &.closable:not(.inactive) {
+        padding-right: 0.25rem;
+      }
+      &.closable.inactive {
+        padding-right: 0.5rem;
+      }
+      &:not(.closable) {
+        &.icon {
+          padding-right: 0.75rem;
+        }
+        &:not(.icon) {
+          padding-right: 0.5rem;
+        }
+      }
+    }
   }
 
-  .container.closable {
-    padding-right: 0.25rem;
-  }
 
   .container.primary {
     background-color: var(--theme-color-primary);
@@ -107,8 +142,8 @@ $border-radius: 100px;
   }
 
   .container.outline {
-      border-width: 1px;
-      border-style: solid;
+    border-width: 1px;
+    border-style: solid;
   }
 
   @each $color in $predefined-chips {
