@@ -58,9 +58,6 @@ const totalErrorsPR = strictCheck.length;
 function checkTotal() {
   let output: string[] = [];
 
-  output.push(`Total errors in main branch: ${totalErrorsMain}`);
-  output.push(`Total errors in PR branch: ${totalErrorsPR}\n`);
-
   if (totalErrorsPR > totalErrorsMain) {
     output.push(
       `😢 Total errors increased in PR branch: ${
@@ -68,7 +65,11 @@ function checkTotal() {
       }`
     );
   } else if (totalErrorsPR < totalErrorsMain) {
-    output.push(`You decreased the total number of errors in PR branch 🎉`);
+    output.push(
+      `You decreased the total number of errors in PR branch by ${
+        totalErrorsMain - totalErrorsPR
+      } 🎉`
+    );
   } else {
     output.push(`Total errors are the same in both branches`);
   }
