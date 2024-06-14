@@ -137,6 +137,7 @@ function printNewErrors() {
   errorInPR.forEach((value, key) => {
     if (!errorInMain.has(key)) {
       const lines: string[] = [
+        '',
         '| Message | TSError | Line:Col |',
         '|---------|---------|----------|',
       ];
@@ -146,6 +147,8 @@ function printNewErrors() {
           `| ${error.message.value} | ${error.tsError.type} | ${error.cursor.value.line}:${error.cursor.value.col}|`
         );
       });
+
+      lines.push('');
 
       output.push(
         collapsableMarkdown(
@@ -159,15 +162,18 @@ function printNewErrors() {
 
       if (prErrors.count > mainErrors.count) {
         const lines: string[] = [
+          '',
           '| Message | TSError | Line:Col |',
           '|---------|---------|----------|',
         ];
 
         prErrors.errors.forEach((error) => {
           lines.push(
-            `| ${error.message.value} | ${error.tsError.type} | ${error.cursor.value.line}:${error.cursor.value.col}|`
+            `| ${error.message.value} | ${error.tsError.type} | ${error.cursor.value.line}:${error.cursor.value.col} |`
           );
         });
+
+        lines.push('');
 
         output.push(
           collapsableMarkdown(
