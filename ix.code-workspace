@@ -49,6 +49,10 @@
       "path": "./packages/eslint-config-ix"
     },
     {
+      "name": "example-styles",
+      "path": "./packages/example-styles"
+    },
+    {
       "name": "figma-plugin",
       "path": "./packages/figma-plugin"
     },

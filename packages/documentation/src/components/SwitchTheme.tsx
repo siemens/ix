@@ -14,6 +14,12 @@ import { ThemeChangeEvent } from '../utils/theme-change-event';
 import { getDefaultTheme } from './config';
 import styles from './SwitchTheme.module.css';
 
+function applyThemeToBody(themes: string[], theme: string) {
+  themes.forEach((t) => document.body.classList.remove(t));
+
+  setTimeout(() => document.body.classList.add(theme), 0)
+}
+
 function ThemeEntry(props: {
   label: string;
   color: string;
@@ -58,21 +64,6 @@ export function SwitchTheme(props: {
   ]);
 
   useEffect(() => {
-    let storedTheme = localStorage.getItem('theme');
-
-    if (!storedTheme) {
-      const theme = getDefaultTheme(context);
-      setTheme(theme);
-      localStorage.setItem('theme', theme);
-      storedTheme = theme;
-    } else {
-      setTheme(storedTheme);
-    }
-
-    document.body.className = storedTheme;
-  }, []);
-
-  useEffect(() => {
     if (context.siteConfig.customFields.withBrandTheme) {
       setRegisteredThemes([
         ...registeredThemes,
@@ -88,16 +79,19 @@ export function SwitchTheme(props: {
         },
       ]);
     }
+
+    let storedTheme = window.localStorage.getItem('docusaurus-theme');
+
+    onThemeChange(storedTheme || getDefaultTheme(context));
   }, []);
 
   const onThemeChange = (theme: string) => {
     setTheme(theme);
-    localStorage.setItem('theme', theme);
-    document.body.className = theme;
-
+    window.localStorage.setItem('docusaurus-theme', theme);
     dispatchThemeChange(theme);
-
     setOpen(false);
+
+    applyThemeToBody(registeredThemes.map((t) => t.id), theme);
   };
 
   function getLabel(id: string = 'theme-classic-dark') {

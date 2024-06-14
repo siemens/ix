@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { TargetFramework } from './framework-types';
 import Demo, { DemoProps } from './../Demo';
 import styles from './styles.module.css';
-import { openStackBlitz, SourceFile } from './utils';
+import { openStackBlitz, replaceStyleFilepath, SourceFile } from './utils';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 function getBranchPath(framework: TargetFramework) {
@@ -38,7 +38,7 @@ function getBranchPath(framework: TargetFramework) {
   return `siemens/ix/tree/${branch}/packages/${path}-test-app`;
 }
 
-function stripHeader(code: string) {
+function stripComments(code: string) {
   return code
     .replace(/\/\*[^]*?\*\//gs, '')
     .replace(/<!--[^]*?-->/gs, '')
@@ -51,7 +51,7 @@ function extractCodePart(code: string, limiter: RegExp) {
   if (limiterMatches && limiterMatches.length === 2) {
     const [_, intermediate] = code.split(limiter);
 
-    return stripHeader(
+    return stripComments(
       intermediate
         .split('\n')
         .map((line) => line.replace(/[ ]{4}/, ''))
@@ -63,7 +63,7 @@ function extractCodePart(code: string, limiter: RegExp) {
   return '';
 }
 
-function sliceHtmlCode(code: string) {
+function sliceCode(code: string) {
   const previewCode = extractCodePart(code, /<!-- Preview code -->/g);
 
   if (previewCode) {
@@ -81,12 +81,16 @@ function sliceHtmlCode(code: string) {
     return previewCode;
   }
 
-  return stripHeader(code);
+  return stripComments(code);
+}
+
+function adaptCode(code: string) {
+  return replaceStyleFilepath(sliceCode(code), true).source;
 }
 
 async function fetchSource(path: string) {
   console.log('FETCH SOURCE FROM', path);
-  const response = await fetch(`${path}.txt`);
+  const response = await fetch(`${path}`);
   const source = await response.text();
 
   // Docusaurus don' throw a classic 404 if a sub route is not found
@@ -127,7 +131,9 @@ async function fetchHTMLSource(
     files.map(async (file) => {
       try {
         const source = await fetchSource(
-          `${path}/previews/${frameworkPath}/${file}`
+          getLanguage(file) === 'css'
+            ? `${path}/previews/styles/${file}`
+            : `${path}/previews/${frameworkPath}/${file}`
         );
 
         if (!source) {
@@ -136,7 +142,7 @@ async function fetchHTMLSource(
 
         return {
           filename: file,
-          source: sliceHtmlCode(source),
+          source: adaptCode(source),
           raw: source,
         };
       } catch (e) {
@@ -162,10 +168,15 @@ function getLanguage(filename: string) {
   if (filename.endsWith('.vue')) {
     return 'tsx';
   }
+
+  if (filename.endsWith('.css')) {
+    return 'css';
+  }
 }
 
 type PlaygroundV2Props = {
   files: Record<TargetFramework, string[]>;
+  includeCssFile?: boolean;
   examplesByName?: boolean;
   disableStackBlitz?: boolean;
 } & DemoProps;
@@ -174,6 +185,7 @@ function SourceCodePreview(props: {
   framework: TargetFramework;
   name: string;
   files?: Record<TargetFramework, string[]>;
+  includeCssFile?: boolean;
   examplesByName?: boolean;
   onSourceCodeFetched: (files: SourceFile[]) => void;
 }) {
@@ -186,26 +198,31 @@ function SourceCodePreview(props: {
 
   useEffect(() => {
     if (props.examplesByName) {
-      let filesToFetch = [];
+      const filesToFetch = [];
 
       if (props.framework === TargetFramework.ANGULAR) {
-        filesToFetch = [`${props.name}.ts`, `${props.name}.html`];
+        filesToFetch.push(...[`${props.name}.html`, `${props.name}.ts`]);
       }
 
       if (props.framework === TargetFramework.JAVASCRIPT) {
-        filesToFetch = [`${props.name}.html`];
+        filesToFetch.push(`${props.name}.html`);
       }
 
       if (props.framework === TargetFramework.REACT) {
-        filesToFetch = [`${props.name}.tsx`];
+        filesToFetch.push(`${props.name}.tsx`);
       }
 
       if (props.framework === TargetFramework.VUE) {
-        filesToFetch = [`${props.name}.vue`];
+        filesToFetch.push(`${props.name}.vue`);
+      }
+
+      if (props.includeCssFile) {
+        filesToFetch.push(`${props.name}.css`);
       }
 
       setFetching(true);
       fetchHTMLSource(baseUrl, props.framework, filesToFetch).then((files) => {
+        setSelectedFile(0);
         setFiles(files.filter((f) => f));
         setFetching(false);
       });
@@ -216,6 +233,7 @@ function SourceCodePreview(props: {
 
       setFetching(true);
       fetchHTMLSource(baseUrl, props.framework, filesToFetch).then((files) => {
+        setSelectedFile(0);
         setFiles(files.filter((f) => f));
         setFetching(false);
       });
@@ -367,6 +385,7 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
           framework={tab}
           name={props.name}
           files={props.files}
+          includeCssFile={props.includeCssFile}
           examplesByName={props.examplesByName}
         ></SourceCodePreview>
       ) : null}

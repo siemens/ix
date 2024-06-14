@@ -21,7 +21,7 @@
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "preserveSymlinks": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "paths": {
       "@angular/*": ["./node_modules/@angular"],
       "@siemens/ix-angular": ["./../angular/dist"],

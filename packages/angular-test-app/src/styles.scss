@@ -7,17 +7,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/* You can add global styles to this file, and also import other style files */
-
-@import 'ag-grid-community/styles/ag-grid.css';
-@import 'ag-grid-community/styles/ag-theme-alpine.css';
-
-@import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
-@import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-
-@import './preview-examples/placeholder-logo.css';
-
-body {
-  height: 100vh;
-  width: 100vw;
-}
+@import 'example-styles/dist/global.css';
