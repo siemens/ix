@@ -62,6 +62,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Check for local development changes
+        run: ./scripts/lint-build.sh
+
   build-docs:
     needs: [changes, build]
     if: ${{ needs.changes.outputs.docs_any_changed == 'true' }}

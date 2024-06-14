@@ -75,6 +75,8 @@ playwright/.cache/
 node_modules/
 $RECYCLE.BIN/
 
+blob-report
+
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
@@ -148,6 +150,7 @@ yarn-error.log*
 # Build output
 ##
 packages/core/components/
+packages/core/hydrate/
 packages/*/dist/
 packages/*/www/
 packages/*/loader/

@@ -129,7 +129,7 @@ export class WorkflowStep {
     }
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.watchPropHandler();
     this.selectedHandler();
 
