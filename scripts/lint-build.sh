@@ -17,7 +17,7 @@ then
     exit 0
 fi
 
-echo There are some changed files after 'yarn build'
+echo There are some changed files after 'pnpm build'
 echo $RESULT
 
 exit 1

@@ -68,7 +68,7 @@ test('should create modal by component typ', async () => {
       },
       injector: {
         get: jest.fn(() => ({
-          nativeElement: {}
+          nativeElement: { style: {} }
         })),
       },
     })),

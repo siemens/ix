@@ -145,7 +145,7 @@ export class Tooltip implements IxOverlayComponent {
 
     if (placement.startsWith('right')) {
       return {
-        left: numberToPixel(-4),
+        left: numberToPixel(-6),
         top: numberToPixel(y),
       };
     }
@@ -153,13 +153,13 @@ export class Tooltip implements IxOverlayComponent {
     if (placement.startsWith('bottom')) {
       return {
         left: numberToPixel(x),
-        top: numberToPixel(-4),
+        top: numberToPixel(-6),
       };
     }
 
     if (placement.startsWith('left')) {
       return {
-        right: numberToPixel(-4),
+        right: numberToPixel(-6),
         top: numberToPixel(y),
       };
     }
@@ -171,7 +171,7 @@ export class Tooltip implements IxOverlayComponent {
       placement: this.placement,
       middleware: [
         shift(),
-        offset(8),
+        offset(12),
         arrow({
           element: this.arrowElement,
         }),
@@ -231,7 +231,7 @@ export class Tooltip implements IxOverlayComponent {
     }
   }
 
-  private async queryAnchorElements(): Promise<Array<HTMLElement>> {
+  private async queryAnchorElements(): Promise<Array<HTMLElement> | undefined> {
     if (typeof this.for === 'string') {
       return Promise.resolve(Array.from(document.querySelectorAll(this.for)));
     }
@@ -251,6 +251,10 @@ export class Tooltip implements IxOverlayComponent {
 
     if (this.disposeListener) {
       this.disposeListener();
+    }
+
+    if (!triggerElementList) {
+      return;
     }
 
     triggerElementList.forEach((element) => {

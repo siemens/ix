@@ -1414,10 +1414,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "ButtonVariant": {
                 "location": "local",
@@ -1430,9 +1430,18 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0 - variant danger"
+            }
+          ],
           "default": "'primary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -3327,6 +3336,33 @@
           "values": [
             {
               "type": "DateDropdownOption[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disable the button that opens the dropdown containing the date picker.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -5637,10 +5673,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "DropdownButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "DropdownButtonVariant": {
                 "location": "local",
@@ -5656,6 +5692,10 @@
           "docsTags": [],
           "default": "'primary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -7738,10 +7778,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "IconButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "IconButtonVariant": {
                 "location": "local",
@@ -7754,9 +7794,18 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0 - variant danger"
+            }
+          ],
           "default": "'secondary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -7968,10 +8017,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -7987,6 +8036,10 @@
           "docsTags": [],
           "default": "'secondary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -9739,7 +9792,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "Label of first tab",
+          "docs": "Content of the header",
           "docsTags": [],
           "default": "'About & legal information'",
           "values": [
@@ -13809,6 +13862,51 @@
       },
       "props": [
         {
+          "name": "closeBehavior",
+          "type": "\"both\" | \"inside\" | \"outside\" | boolean",
+          "complexType": {
+            "original": "CloseBehavior",
+            "resolved": "\"both\" | \"inside\" | \"outside\" | boolean",
+            "references": {
+              "CloseBehavior": {
+                "location": "import",
+                "path": "../dropdown/dropdown-controller",
+                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehavior"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "close-behavior",
+          "reflectToAttr": false,
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0"
+            }
+          ],
+          "default": "'both'",
+          "values": [
+            {
+              "value": "both",
+              "type": "string"
+            },
+            {
+              "value": "inside",
+              "type": "string"
+            },
+            {
+              "value": "outside",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "disabled",
           "type": "boolean",
           "complexType": {
@@ -13996,10 +14094,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "SplitButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "SplitButtonVariant": {
                 "location": "local",
@@ -14015,6 +14113,10 @@
           "docsTags": [],
           "default": "'primary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -15796,10 +15898,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -15815,6 +15917,10 @@
           "docsTags": [],
           "default": "'secondary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -17478,7 +17584,7 @@
       "path": "src/components/blind/blind.tsx"
     },
     "src/components/button/button.tsx::ButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
@@ -17533,7 +17639,7 @@
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
     "src/components/dropdown-button/dropdown-button.tsx::DropdownButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.tsx"
     },
@@ -17548,7 +17654,7 @@
       "path": "src/components/empty-state/empty-state.tsx"
     },
     "src/components/icon-button/icon-button.tsx::IconButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/icon-button/icon-button.tsx"
     },
@@ -17608,9 +17714,14 @@
       "path": "src/components/slider/slider.tsx"
     },
     "src/components/split-button/split-button.tsx::SplitButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/split-button/split-button.tsx"
+    },
+    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
+      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
+      "docstring": "",
+      "path": "src/components/dropdown/dropdown-controller.ts"
     },
     "src/components/tab-item/tab-item.tsx::TabClickDetail": {
       "declaration": "{\n  nativeEvent: MouseEvent;\n}",
@@ -17661,11 +17772,6 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
-    },
-    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
-      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
-      "docstring": "",
-      "path": "src/components/dropdown/dropdown-controller.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",

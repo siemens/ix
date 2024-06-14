@@ -33,6 +33,7 @@ export class IconButton {
 
   /**
    * Variant of button
+   * @since 2.3.0 - variant danger
    */
   @Prop() variant: IconButtonVariant = 'secondary';
 

@@ -694,25 +694,32 @@ export class DatePicker {
               class="arrows"
             ></ix-icon-button>
             <div class="selector">
-              <ix-button ghost ref={(ref) => (this.dropdownButtonRef = ref)}>
+              <ix-button
+                ghost
+                ref={(ref) => (this.dropdownButtonRef = ref)}
+                data-testid="year-month-button"
+              >
                 <span class="fontSize capitalize">
                   {this.monthNames[this.selectedMonth]} {this.selectedYear}
                 </span>
               </ix-button>
               <ix-dropdown
+                data-testid="year-month-dropdown"
                 class="dropdown"
                 trigger={this.dropdownButtonRef}
+                ignoreRelatedSubmenu
                 placement="bottom-start"
               >
                 <div class="wrapper">
                   <div
+                    data-testid="year-container"
                     class="overflow"
                     onScroll={() => this.infiniteScrollYears()}
                     ref={(ref) => (this.yearContainerRef = ref)}
                   >
                     {this.renderYears()}
                   </div>
-                  <div class="overflow">
+                  <div class="overflow" data-testid="month-container">
                     {this.monthNames.map((month, index) => (
                       <div
                         key={month}

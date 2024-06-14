@@ -482,7 +482,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
 
 
 @ProxyCmp({
-  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
   methods: ['getDateRange']
 })
 @Component({
@@ -490,7 +490,7 @@ export declare interface IxContentHeader extends Components.IxContentHeader {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'maxDate', 'minDate', 'range', 'to'],
 })
 export class IxDateDropdown {
   protected el: HTMLElement;
@@ -2016,14 +2016,14 @@ export declare interface IxSpinner extends Components.IxSpinner {}
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant']
+  inputs: ['closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant']
 })
 @Component({
   selector: 'ix-split-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant'],
+  inputs: ['closeBehavior', 'disabled', 'ghost', 'icon', 'label', 'outline', 'placement', 'splitIcon', 'variant'],
 })
 export class IxSplitButton {
   protected el: HTMLElement;

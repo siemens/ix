@@ -15,6 +15,7 @@
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-icons": "v3-preview",
+    "example-styles": "workspace:*",
     "ag-grid-community": "^30.2.0",
     "ag-grid-react": "^29.1.0",
     "echarts-for-react": "~3.0.2",
