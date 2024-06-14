@@ -150,7 +150,7 @@ function printNewErrors() {
       lines.push('');
 
       output.push(
-        collapsableMarkdown(
+        collapsibleMarkdown(
           lines.join('/n'),
           `New errors in PR branch: ${key} - ${value.count} errors`
         )
