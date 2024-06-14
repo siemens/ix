@@ -10,7 +10,6 @@
   "version": "2.2.1",
   "description": "Siemens iX for React",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "LICENSE",
