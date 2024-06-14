@@ -8,12 +8,12 @@
  */
 
 import { defineCustomElements as iconsDefineCustomElements } from '@siemens/ix-icons/loader';
-import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
+import { defineCustomElements } from '@siemens/ix/loader';
 
 let didInitialize = false;
 
 export const appInitialize = (doc: Document) => {
-  return async () => {
+  return () => {
     const win: Window | undefined = doc.defaultView as any;
     if (win && typeof (window as any) !== 'undefined') {
       if (didInitialize) {
@@ -22,9 +22,8 @@ export const appInitialize = (doc: Document) => {
 
       didInitialize = true;
 
-      await applyPolyfills();
-      await iconsDefineCustomElements();
-      await defineCustomElements();
+      iconsDefineCustomElements();
+      defineCustomElements();
     }
   };
 };

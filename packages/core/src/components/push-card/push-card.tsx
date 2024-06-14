@@ -25,7 +25,7 @@ export class PushCard {
   /**
    * Card icon
    */
-  @Prop() icon: string | undefined = undefined;
+  @Prop() icon?: string;
 
   /**
    * Card KPI value

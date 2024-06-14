@@ -20,6 +20,7 @@ import {
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
+import { iconChevronDown, iconChevronUp } from '@siemens/ix-icons/icons';
 
 export type TimePickerCorners = DateTimeCardCorners;
 
@@ -263,7 +264,7 @@ export class TimePicker {
                       }))
                     }
                     ghost
-                    icon="chevron-up"
+                    icon={iconChevronUp}
                     variant="primary"
                     class="arrows"
                   ></ix-icon-button>
@@ -304,7 +305,7 @@ export class TimePicker {
                       }))
                     }
                     ghost
-                    icon="chevron-down"
+                    icon={iconChevronDown}
                     variant="primary"
                     class="arrows"
                   ></ix-icon-button>
@@ -334,7 +335,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.changeTimeReference()}
                 ghost
-                icon="chevron-up"
+                icon={iconChevronUp}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>
@@ -343,7 +344,7 @@ export class TimePicker {
                 size="16"
                 onClick={() => this.changeTimeReference()}
                 ghost
-                icon="chevron-down"
+                icon={iconChevronDown}
                 variant="primary"
                 class="arrows"
               ></ix-icon-button>

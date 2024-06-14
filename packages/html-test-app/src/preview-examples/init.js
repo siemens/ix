@@ -8,7 +8,7 @@
  */
 
 import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
-import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
+import { defineCustomElements } from '@siemens/ix/loader';
 import 'example-styles/dist/global.css';
 import './placeholder-logo';
 
@@ -71,9 +71,8 @@ function setBodySizes() {
 }
 
 (async function init() {
-  await applyPolyfills();
-  await ixIconsDefineCustomElements();
-  await defineCustomElements();
+  ixIconsDefineCustomElements();
+  defineCustomElements();
 
   detectThemeSwitching();
   setBodySizes();

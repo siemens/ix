@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconCloseSmall } from '@siemens/ix-icons/icons';
 import {
   Component,
   Element,
@@ -93,7 +94,7 @@ export class Chip {
         <ix-icon-button
           type="button"
           variant="secondary"
-          icon={'close-small'}
+          icon={iconCloseSmall}
           class="close-button"
           oval
           size="16"

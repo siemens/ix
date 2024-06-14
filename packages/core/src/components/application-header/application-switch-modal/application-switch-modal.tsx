@@ -13,6 +13,7 @@ import {
   AppSwitchConfigurationTarget,
 } from '../../utils/application-layout/context';
 import { dismissModal } from '../../utils/modal';
+import { iconOpenExternal } from '@siemens/ix-icons/icons';
 
 function ApplicationItem(props: {
   host: HTMLIxApplicationSwitchModalElement;
@@ -62,7 +63,7 @@ function ApplicationItem(props: {
           {isExternal(props.target) && (
             <ix-icon
               size="12"
-              name="open-external"
+              name={iconOpenExternal}
               color="color-soft-text"
             ></ix-icon>
           )}
