@@ -13870,6 +13870,51 @@
       },
       "props": [
         {
+          "name": "closeBehavior",
+          "type": "\"both\" | \"inside\" | \"outside\" | boolean",
+          "complexType": {
+            "original": "CloseBehavior",
+            "resolved": "\"both\" | \"inside\" | \"outside\" | boolean",
+            "references": {
+              "CloseBehavior": {
+                "location": "import",
+                "path": "../dropdown/dropdown-controller",
+                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehavior"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "close-behavior",
+          "reflectToAttr": false,
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0"
+            }
+          ],
+          "default": "'both'",
+          "values": [
+            {
+              "value": "both",
+              "type": "string"
+            },
+            {
+              "value": "inside",
+              "type": "string"
+            },
+            {
+              "value": "outside",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "disabled",
           "type": "boolean",
           "complexType": {
@@ -17683,6 +17728,11 @@
       "docstring": "",
       "path": "src/components/split-button/split-button.tsx"
     },
+    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
+      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
+      "docstring": "",
+      "path": "src/components/dropdown/dropdown-controller.ts"
+    },
     "src/components/tab-item/tab-item.tsx::TabClickDetail": {
       "declaration": "{\n  nativeEvent: MouseEvent;\n}",
       "docstring": "",
@@ -17732,11 +17782,6 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
-    },
-    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
-      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
-      "docstring": "",
-      "path": "src/components/dropdown/dropdown-controller.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
