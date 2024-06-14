@@ -136,17 +136,13 @@ function printNewErrors() {
   let output: string[] = [];
   errorInPR.forEach((value, key) => {
     if (!errorInMain.has(key)) {
-      const lines: string[] = [
-        '',
-        '| Message | TSError | Line:Col |',
-        '|---------|---------|----------|',
-      ];
+      const lines: string[] = [];
 
       value.errors.forEach((error) => {
         lines.push(
-          `| \`${error.message.value.replace(/\n/g, '')}\` | ${
-            error.tsError.type
-          } | ${error.cursor.value.line}:${error.cursor.value.col}|`
+          `- \`${key}\`: ${error.cursor.value.line}: ${
+            error.cursor.value.col
+          } ~ \`${error.message.value.replace(/\n/g, '')}\``
         );
       });
 
@@ -163,17 +159,13 @@ function printNewErrors() {
       const prErrors = errorInPR.get(key)!;
 
       if (prErrors.count > mainErrors.count) {
-        const lines: string[] = [
-          '',
-          '| Message | TSError | Line:Col |',
-          '|---------|---------|----------|',
-        ];
+        const lines: string[] = [];
 
         prErrors.errors.forEach((error) => {
           lines.push(
-            `| \`${error.message.value.replace(/\n/g, '')}\` | ${
-              error.tsError.errorString
-            } | ${error.cursor.value.line}:${error.cursor.value.col} |`
+            `- \`${key}\`: ${error.cursor.value.line}: ${
+              error.cursor.value.col
+            } ~ \`${error.message.value.replace(/\n/g, '')}\``
           );
         });
 
