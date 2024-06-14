@@ -188,7 +188,7 @@ function printNewErrors() {
 }
 
 const output = [
-  '### Report of `strictNullChecks` check',
+  '### Report of `strictNullChecks (strictPropertyInitialization)` check',
   checkTotal(),
   printNewErrors(),
 ];
