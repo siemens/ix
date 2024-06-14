@@ -173,7 +173,7 @@ function printNewErrors() {
         lines.push('');
 
         output.push(
-          collapsableMarkdown(
+          collapsibleMarkdown(
             lines.join('\n'),
             `Increased errors in PR branch: ${key} - ${
               prErrors.count - mainErrors.count
