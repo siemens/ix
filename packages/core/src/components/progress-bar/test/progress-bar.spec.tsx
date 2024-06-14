@@ -27,7 +27,23 @@ describe('ix-progress-bar', () => {
     );
   });
 
-  it('has correct values with invalid inputs', async () => {
+  it('has correct values with lower bound inputs', async () => {
+    await newSpecPage({
+      components: [ProgressBar],
+      html: '<ix-progress-bar value="-20"></ix-progress-bar>',
+    });
+
+    const progressBar = document.querySelector('ix-progress-bar');
+    const progressBarDiv = progressBar.shadowRoot.querySelector(
+      '.progress'
+    ) as HTMLElement;
+    expect(progressBarDiv.style.width).toBe('0%');
+    expect(progressBarDiv.style.backgroundColor).toBe(
+      'var(--theme-color-primary)'
+    );
+  });
+
+  it('has correct values with upper bound inputs', async () => {
     await newSpecPage({
       components: [ProgressBar],
       html: '<ix-progress-bar value="120" variant="critical"></ix-progress-bar>',
