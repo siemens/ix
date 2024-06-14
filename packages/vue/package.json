@@ -11,7 +11,6 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/vue"
   },
-  "module": "dist/index.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -19,14 +18,8 @@
     "README.md",
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/index.js"
-    }
-  },
   "scripts": {
-    "build": "pnpm clean && pnpm compile",
-    "compile": "pnpm tsc",
+    "build": "pnpm clean && rollup --config rollup.config.mjs",
     "clean": "rimraf dist",
     "lint": "eslint src"
   },
@@ -34,15 +27,18 @@
     "@siemens/ix": "~2.2.1"
   },
   "devDependencies": {
-    "rimraf": "^3.0.2",
-    "vue": "^3.2.45",
+    "@rollup/plugin-typescript": "^8.4.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint-config-ix": "workspace:*",
-    "eslint-plugin-vue": "^9.9.0"
+    "eslint-plugin-vue": "^9.9.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^4.18.0",
+    "typescript": "^5.4.5",
+    "vue": "^3.2.45"
   },
   "peerDependencies": {
-    "vue": ">=3.2.45",
-    "@siemens/ix-icons": "^2.0.0"
+    "@siemens/ix-icons": "^2.0.0",
+    "vue": ">=3.2.45"
   }
 }
