@@ -136,13 +136,13 @@ function printNewErrors() {
   let output: string[] = [];
   errorInPR.forEach((value, key) => {
     if (!errorInMain.has(key)) {
-      const lines: string[] = [];
+      const lines: string[] = ['\n'];
 
       value.errors.forEach((error) => {
         lines.push(
-          `- \`${key}\`: ${error.cursor.value.line}: ${
+          `- ${key}:${error.cursor.value.line}:${
             error.cursor.value.col
-          } ~ \`${error.message.value.replace(/\n/g, '')}\``
+          } \`${error.message.value.replace(/\n/g, '')}\``
         );
       });
 
@@ -159,13 +159,13 @@ function printNewErrors() {
       const prErrors = errorInPR.get(key)!;
 
       if (prErrors.count > mainErrors.count) {
-        const lines: string[] = [];
+        const lines: string[] = ['\n'];
 
         prErrors.errors.forEach((error) => {
           lines.push(
-            `- \`${key}\`: ${error.cursor.value.line}: ${
+            `- ${key}:${error.cursor.value.line}:${
               error.cursor.value.col
-            } ~ \`${error.message.value.replace(/\n/g, '')}\``
+            } \`${error.message.value.replace(/\n/g, '')}\``
           );
         });
 
