@@ -1,0 +1,21 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@siemens/ix-aggrid": "2.1.3",
+    "@siemens/ix-angular": "2.2.1",
+    "angular-test-app": "2.1.2",
+    "@siemens/ix": "2.2.1",
+    "documentation": "2.1.2",
+    "@siemens/ix-echarts": "2.2.0",
+    "eslint-config-ix": "1.0.0",
+    "example-styles": "1.0.0",
+    "figma-plugin": "1.0.0",
+    "html-test-app": "2.1.2",
+    "@siemens/ix-react": "2.2.1",
+    "react-test-app": "2.1.2",
+    "@siemens/ix-vue": "2.2.1",
+    "vue-test-app": "2.1.2"
+  },
+  "changesets": []
+}
