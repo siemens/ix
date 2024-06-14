@@ -144,7 +144,9 @@ function printNewErrors() {
 
       value.errors.forEach((error) => {
         lines.push(
-          `| ${error.message.value} | ${error.tsError.type} | ${error.cursor.value.line}:${error.cursor.value.col}|`
+          `| ${error.message.value.replace(/\n/g, '')} | ${
+            error.tsError.type
+          } | ${error.cursor.value.line}:${error.cursor.value.col}|`
         );
       });
 
@@ -169,7 +171,9 @@ function printNewErrors() {
 
         prErrors.errors.forEach((error) => {
           lines.push(
-            `| ${error.message.value} | ${error.tsError.type} | ${error.cursor.value.line}:${error.cursor.value.col} |`
+            `| ${error.message.value.replace(/\n/g, '')} | ${
+              error.tsError.errorString
+            } | ${error.cursor.value.line}:${error.cursor.value.col} |`
           );
         });
 
