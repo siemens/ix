@@ -125,7 +125,7 @@ function collectErrors(errors: Item[]) {
 const errorInMain = collectErrors(strictCheckMain);
 const errorInPR = collectErrors(strictCheck);
 
-function collapsableMarkdown(detail: string, summary: string) {
+function collapsibleMarkdown(detail: string, summary: string) {
   const output: string[] = [`<details><summary>${summary}</summary>`];
   output.push(detail);
   output.push('</details>');
