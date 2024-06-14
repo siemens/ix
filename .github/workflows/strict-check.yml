@@ -9,6 +9,7 @@ on:
 jobs:
   strict_check:
     permissions:
+      contents: read
       pull-requests: write
     if: |
       github.repository == 'siemens/ix' &&
@@ -52,7 +53,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-      id-token: read
     if: |
       github.repository == 'siemens/ix' &&
       github.event.issue.pull_request
