@@ -18,9 +18,13 @@ describe('ix-progress-bar', () => {
     });
 
     const progressBar = document.querySelector('ix-progress-bar');
-    const progressBarDiv = progressBar.shadowRoot.querySelector('.progress') as HTMLElement;
+    const progressBarDiv = progressBar.shadowRoot.querySelector(
+      '.progress'
+    ) as HTMLElement;
     expect(progressBarDiv.style.width).toBe('0%');
-    expect(progressBarDiv.style.backgroundColor).toBe('var(--theme-color-primary)');
+    expect(progressBarDiv.style.backgroundColor).toBe(
+      'var(--theme-color-primary)'
+    );
   });
 
   it('has correct values with invalid inputs', async () => {
@@ -30,8 +34,12 @@ describe('ix-progress-bar', () => {
     });
 
     const progressBar = document.querySelector('ix-progress-bar');
-    const progressBarDiv = progressBar.shadowRoot.querySelector('.progress') as HTMLElement;
+    const progressBarDiv = progressBar.shadowRoot.querySelector(
+      '.progress'
+    ) as HTMLElement;
     expect(progressBarDiv.style.width).toBe('100%');
-    expect(progressBarDiv.style.backgroundColor).toBe('var(--theme-color-critical--active)');
+    expect(progressBarDiv.style.backgroundColor).toBe(
+      'var(--theme-color-critical--active)'
+    );
   });
 });
