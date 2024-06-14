@@ -124,33 +124,55 @@ function collectErrors(errors: Item[]) {
 const errorInMain = collectErrors(strictCheckMain);
 const errorInPR = collectErrors(strictCheck);
 
+function collapsableMarkdown(detail: string, summary: string) {
+  const output: string[] = [`<details><summary>${summary}</summary>`];
+  output.push(detail);
+  output.push('</details>');
+
+  return output.join('\n');
+}
+
 function printNewErrors() {
   let output: string[] = [];
   errorInPR.forEach((value, key) => {
     if (!errorInMain.has(key)) {
-      output.push(`New errors in PR branch: ${key} - ${value.count} errors`);
-      output.push('------ Error details ------');
+      const lines: string[] = [
+        '| Message | TSError | Line:Col |',
+        '|---------|---------|----------|',
+      ];
+
       value.errors.forEach((error) => {
-        output.push(
-          `Error: ${error.message.value} at line ${error.cursor.value.line}, col ${error.cursor.value.col}`
+        lines.push(
+          `| ${error.message.value} | ${error.tsError.type} | ${error.cursor.value.line}:${error.cursor.value.col}|`
         );
       });
+
+      output.push(
+        collapsableMarkdown(
+          lines.join('/n'),
+          `New errors in PR branch: ${key} - ${value.count} errors`
+        )
+      );
     } else {
       const mainErrors = errorInMain.get(key)!;
       const prErrors = errorInPR.get(key)!;
 
       if (prErrors.count > mainErrors.count) {
-        output.push(
-          `Increased errors in PR branch: ${key} - ${
-            prErrors.count - mainErrors.count
-          } errors`
-        );
-        output.push('------ Error details ------');
+        const lines: string[] = [];
         prErrors.errors.forEach((error) => {
-          output.push(
+          lines.push(
             `Error: ${error.message.value} at line ${error.cursor.value.line}, col ${error.cursor.value.col}`
           );
         });
+
+        output.push(
+          collapsableMarkdown(
+            lines.join('\n'),
+            `Increased errors in PR branch: ${key} - ${
+              prErrors.count - mainErrors.count
+            } errors`
+          )
+        );
       }
     }
   });
@@ -158,5 +180,5 @@ function printNewErrors() {
   return output.join('\n');
 }
 
-const output = [checkTotal(), printNewErrors()];
+const output = ['### Report of `strict` check', checkTotal(), printNewErrors()];
 core.setOutput('body', output.join('\n'));
