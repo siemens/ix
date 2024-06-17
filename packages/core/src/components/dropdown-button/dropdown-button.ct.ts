@@ -23,4 +23,3 @@ test('renders', async ({ mount, page }) => {
   await item.click();
   await expect(item).not.toBeVisible();
 });
-
