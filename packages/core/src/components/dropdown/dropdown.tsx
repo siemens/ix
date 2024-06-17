@@ -506,7 +506,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private onDropdownClick(event: PointerEvent) {
     const target = dropdownController.pathIncludesTrigger(event.composedPath());
     if (target) {
-      event.preventDefault();
+      if (target !== this.triggerElement) {
+        event.preventDefault();
+      }
 
       if (this.isTriggerElement(target)) {
         return;
