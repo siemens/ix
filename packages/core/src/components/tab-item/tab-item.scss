@@ -25,7 +25,7 @@
   background-color: var(--theme-tab--background);
   color: var(--theme-tab--color);
 
-  ::after {
+  &::after {
     content: '';
     position: absolute;
     background-color: var(--theme-tab-indicator--background);
@@ -108,18 +108,10 @@
 
     &.selected {
       border-color: var(--theme-tab-pill--border-color--selected);
-
-      &::after {
-        display: none;
-      }
     }
 
     &.disabled {
       border-color: var(--theme-tab-pill--border-color--disabled);
-    }
-
-    &::after {
-      display: none;
     }
   }
 
@@ -133,13 +125,13 @@
 }
 
 :host(.top) {
-  ::after {
+  &::after {
     top: 0;
   }
 }
 
 :host(.bottom) {
-  ::after {
+  &::after {
     bottom: 0;
   }
 }
@@ -155,7 +147,7 @@
   color: var(--theme-tab-color-hover);
   cursor: pointer;
 
-  ::after {
+  &::after {
     background-color: var(--theme-tab-indicator--background--hover);
   }
 }
@@ -164,7 +156,7 @@
   background-color: var(--theme-tab--background--active);
   color: var(--theme-tab-color--active);
 
-  ::after {
+  &::after {
     background-color: var(--theme-tab-indicator--background--active);
   }
 }
@@ -186,7 +178,7 @@
   color: var(--theme-tab--color--disabled);
   background-color: var(--theme-tab--background--disabled);
 
-  ::after {
+  &::after {
     background-color: var(--theme-tab-indicator--background--disabled);
   }
 }
@@ -195,7 +187,7 @@
   background-color: var(--theme-tab--background--selected);
   color: var(--theme-tab--color--selected);
 
-  ::after {
+  &::after {
     background-color: var(--theme-tab-indicator--background--selected);
   }
 }
