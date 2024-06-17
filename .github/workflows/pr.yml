@@ -83,8 +83,6 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     strategy:
       fail-fast: false
       matrix:
@@ -112,8 +110,6 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
@@ -137,8 +133,6 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
