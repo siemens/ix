@@ -38,3 +38,7 @@ runs:
     - name: Install dependencies
       run: pnpm install
       shell: bash
+
+    - name: Install Playwright Browsers
+      run: pnpm playwright install chromium --with-deps
+      shell: bash
