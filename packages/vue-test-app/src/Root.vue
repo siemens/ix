@@ -52,6 +52,10 @@ import EventListSelected from './preview-examples/event-list-selected.vue';
 import EventList from './preview-examples/event-list.vue';
 import ExpandingSearch from './preview-examples/expanding-search.vue';
 import FlipTile from './preview-examples/flip-tile.vue';
+import FormCheckbox from './preview-examples/form-checkbox.vue';
+import FormCheckboxDisabled from './preview-examples/form-checkbox-disabled.vue';
+import FormCheckboxGroup from './preview-examples/form-checkbox-group.vue';
+import FormCheckboxValidation from './preview-examples/form-checkbox-group-validation.vue';
 import GridPadding from './preview-examples/grid-padding.vue';
 import GridSize from './preview-examples/grid-size.vue';
 import Grid from './preview-examples/grid.vue';
@@ -173,6 +177,10 @@ const routes: any = {
   '/preview/event-list-selected': EventListSelected,
   '/preview/expanding-search': ExpandingSearch,
   '/preview/flip-tile': FlipTile,
+  '/preview/form-checkbox': FormCheckbox,
+  '/preview/form-checkbox-disabled': FormCheckboxDisabled,
+  '/preview/form-checkbox-group': FormCheckboxGroup,
+  '/preview/form-checkbox-validation': FormCheckboxValidation,
   '/preview/group': Group,
   '/preview/group-context-menu': GroupContextMenu,
   '/preview/group-custom-entry': GroupCustomEntry,

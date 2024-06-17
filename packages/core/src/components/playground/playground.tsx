@@ -25,42 +25,142 @@ export class PlaygroundInternal {
   render() {
     return (
       <Host>
-        {/*BASIC*/}
-        <ix-date-field></ix-date-field>
-        {/*LABEL*/}
-        <ix-date-field
-          label="Begin"
-          name="begin"
-          helperText="Some helper text"
-        ></ix-date-field>
-        {/*DISABLED*/}
-        <ix-date-field value="1970/01/02" disabled></ix-date-field>
-        {/*READONLY*/}
-        <ix-date-field value="1970/01/01" readonly></ix-date-field>
+
+        <div>
+          <ix-checkbox-group
+            label="Terms of something"
+            infoText="Info text"
+            class="ix-info"
+          >
+            <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+            <ix-checkbox
+              label="I disagree everything"
+              name="agreed"
+            ></ix-checkbox>
+          </ix-checkbox-group>
+        </div>
+
+        <div>
+          <ix-checkbox-group
+            label="Terms of something"
+            warningText="Warning text"
+            class="ix-warning"
+          >
+            <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+            <ix-checkbox
+              label="I disagree everything"
+              name="agreed"
+            ></ix-checkbox>
+          </ix-checkbox-group>
+        </div>
+
+        <div>
+          <ix-checkbox-group
+            label="Terms of something"
+            validText="Invalid text"
+            class="ix-invalid"
+          >
+            <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+            <ix-checkbox
+              label="I disagree everything"
+              name="agreed"
+            ></ix-checkbox>
+          </ix-checkbox-group>
+        </div>
+
+        <div>
+          <ix-checkbox-group
+            label="Terms of something"
+            validText="Valid text"
+            class="ix-valid"
+          >
+            <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+            <ix-checkbox
+              label="I disagree everything"
+              name="agreed"
+            ></ix-checkbox>
+          </ix-checkbox-group>
+        </div>
+
+        <br />
+
+        {/*BASIC - CHECKBOX*/}
+        <ix-checkbox
+          label="I agree everything"
+          name="agreed"
+          valid-text="Valid text"
+          class="ix-valid"
+        ></ix-checkbox>
+
+        {/*BASIC - CHECKBOX - DISABLED */}
+        <ix-checkbox
+          label="I agree everything"
+          name="agreed"
+          disabled
+        ></ix-checkbox>
+
+        {/*BASIC CHECKBOX - GROUP WITH LABEL*/}
+        <ix-checkbox-group label="Terms of something">
+          <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+          <ix-checkbox
+            label="I disagree everything"
+            name="agreed"
+            disabled
+          ></ix-checkbox>
+        </ix-checkbox-group>
+
         {/*VALIDATION*/}
-        <ix-date-field
-          value="1970/01/01"
+        <ix-checkbox-group
+          label="Terms of something"
           infoText="Info text"
           class="ix-info"
-        ></ix-date-field>
+        >
+          <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+          <ix-checkbox
+            label="I disagree everything"
+            name="agreed"
+            disabled
+          ></ix-checkbox>
+        </ix-checkbox-group>
 
-        <ix-date-field
-          value="1970/01/01"
+        <ix-checkbox-group
+          label="Terms of something"
           warningText="Warning text"
           class="ix-warning"
-        ></ix-date-field>
+        >
+          <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+          <ix-checkbox
+            label="I disagree everything"
+            name="agreed"
+            disabled
+          ></ix-checkbox>
+        </ix-checkbox-group>
 
-        <ix-date-field
-          value="1970/01/01"
+        <ix-checkbox-group
+          label="Terms of something"
+          validText="Invalid text"
+          class="ix-invalid"
+        >
+          <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+          <ix-checkbox
+            label="I disagree everything"
+            name="agreed"
+            disabled
+          ></ix-checkbox>
+        </ix-checkbox-group>
+
+        <ix-checkbox-group
+          label="Terms of something"
           validText="Valid text"
           class="ix-valid"
-        ></ix-date-field>
-
-        <ix-date-field
-          value="1970/01/01"
-          invalidText="Invalid text"
-          class="ix-invalid"
-        ></ix-date-field>
+        >
+          <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+          <ix-checkbox
+            label="I disagree everything"
+            name="agreed"
+            disabled
+          ></ix-checkbox>
+        </ix-checkbox-group>
 
         <form
           onSubmit={(e) => {

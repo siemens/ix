@@ -53,6 +53,10 @@ import EventListCustomHeight from './preview-examples/event-list-custom-item-hei
 import EventListSelected from './preview-examples/event-list-selected';
 import ExpandingSearch from './preview-examples/expanding-search';
 import FlipTile from './preview-examples/flip-tile';
+import FormCheckbox from './preview-examples/form-checkbox';
+import FormCheckboxDisabled from './preview-examples/form-checkbox-disabled';
+import FormCheckboxGroup from './preview-examples/form-checkbox-group';
+import FormCheckboxValidation from './preview-examples/form-checkbox-validation';
 import Grid from './preview-examples/grid';
 import GridPadding from './preview-examples/grid-padding';
 import GridSize from './preview-examples/grid-size';
@@ -232,6 +236,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
         <Route path="/preview/flip-tile" element={<FlipTile />} />
+        <Route path="/preview/form-checkbox" element={<FormCheckbox />} />
+        <Route path="/preview/form-checkbox-disabled" element={<FormCheckboxDisabled />} />
+        <Route path="/preview/form-checkbox-group" element={<FormCheckboxGroup />} />
+        <Route path="/preview/form-checkbox-validation" element={<FormCheckboxValidation />} />
         <Route path="/preview/group" element={<Group />} />
         <Route
           path="/preview/group-context-menu"
