@@ -37,6 +37,11 @@ import PageHeader from 'src/preview-examples/content-header';
 import PageHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import DateDropdown from 'src/preview-examples/date-dropdown';
 import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
+import DateField from '../preview-examples/date-field';
+import DateFieldDisabled from '../preview-examples/date-field-disabled';
+import DateFieldLabel from '../preview-examples/date-field-label';
+import DateFieldReadonly from '../preview-examples/date-field-readonly';
+import DateFieldValidation from '../preview-examples/date-field-validation';
 import Datepicker from 'src/preview-examples/datepicker';
 import DatepickerLocale from 'src/preview-examples/datepicker-locale';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
@@ -296,6 +301,26 @@ const routes: Routes = [
       {
         path: 'date-dropdown-user-range',
         component: DateDropdownUserRange,
+      },
+      {
+        path: 'date-field',
+        component: DateField,
+      },
+      {
+        path: 'date-field-disabled',
+        component: DateFieldDisabled,
+      },
+      {
+        path: 'date-field-label',
+        component: DateFieldLabel,
+      },
+      {
+        path: 'date-field-readonly',
+        component: DateFieldReadonly,
+      },
+      {
+        path: 'date-field-validation',
+        component: DateFieldValidation,
       },
       {
         path: 'datepicker',

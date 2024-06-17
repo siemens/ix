@@ -25,6 +25,43 @@ export class PlaygroundInternal {
   render() {
     return (
       <Host>
+        {/*BASIC*/}
+        <ix-date-field></ix-date-field>
+        {/*LABEL*/}
+        <ix-date-field
+          label="Begin"
+          name="begin"
+          helperText="Some helper text"
+        ></ix-date-field>
+        {/*DISABLED*/}
+        <ix-date-field value="1970/01/02" disabled></ix-date-field>
+        {/*READONLY*/}
+        <ix-date-field value="1970/01/01" readonly></ix-date-field>
+        {/*VALIDATION*/}
+        <ix-date-field
+          value="1970/01/01"
+          infoText="Info text"
+          class="ix-info"
+        ></ix-date-field>
+
+        <ix-date-field
+          value="1970/01/01"
+          warningText="Warning text"
+          class="ix-warning"
+        ></ix-date-field>
+
+        <ix-date-field
+          value="1970/01/01"
+          validText="Valid text"
+          class="ix-valid"
+        ></ix-date-field>
+
+        <ix-date-field
+          value="1970/01/01"
+          invalidText="Invalid text"
+          class="ix-invalid"
+        ></ix-date-field>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -39,7 +76,7 @@ export class PlaygroundInternal {
             <input id="test" class={'ix-valid'}></input>
           </ix-custom-field>
 
-          {/* <ix-layout-form>
+          <ix-layout-form>
             <ix-text-field label="Name" name="name"></ix-text-field>
             <ix-text-field label="Last Name" name="last-name"></ix-text-field>
 
