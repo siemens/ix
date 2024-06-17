@@ -30,7 +30,7 @@
     "@angular/core": "v13-lts",
     "@angular/forms": "v13-lts",
     "@jest/globals": "^29.3.1",
-    "@siemens/ix": "~2.2.1",
+    "@siemens/ix": "workspace:*",
     "@types/jest": "^29.2.3",
     "fs-extra": "^10.1.0",
     "jest": "^29.3.1",

@@ -30,7 +30,7 @@
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.4.0",
-    "@siemens/ix": "~2.2.1",
+    "@siemens/ix": "workspace:*",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/estree": "~0.0.51",
