@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, Host, State, h } from '@stencil/core';
+import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
 
 /** @internal */
 @Component({
@@ -296,7 +297,7 @@ export class PlaygroundInternal {
             <ix-button type="submit" data-colspan="2">
               Submit
             </ix-button>
-          </ix-layout-form> */}
+          </ix-layout-form>
         </form>
         {/* <form
           onSubmit={(e) => {
