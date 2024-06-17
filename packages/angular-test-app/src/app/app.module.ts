@@ -99,6 +99,12 @@ import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
 import Modal from 'src/preview-examples/modal-by-template';
 import ModalSizes from 'src/preview-examples/modal-sizes';
+import NumberField from '../preview-examples/number-field';
+import NumberFieldDisabled from '../preview-examples/number-field-disabled';
+import NumberFieldLabel from '../preview-examples/number-field-label';
+import NumberFieldReadonly from '../preview-examples/number-field-readonly';
+import NumberFieldStepperButton from '../preview-examples/number-field-stepper-button';
+import NumberFieldValidation from '../preview-examples/number-field-validation';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
 import PillVariants from 'src/preview-examples/pill-variants';
@@ -285,6 +291,12 @@ import FormValidation from 'src/preview-examples/form-validation';
     WorkflowVertical,
     MapNavigation,
     MapNavigationOverlay,
+    NumberField,
+    NumberFieldDisabled,
+    NumberFieldLabel,
+    NumberFieldReadonly,
+    NumberFieldStepperButton,
+    NumberFieldValidation,
     TabsRounded,
     DatepickerRange,
     Tooltip,

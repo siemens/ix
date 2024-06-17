@@ -11,14 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <div>
-      <ix-text-field
-        helperText='Only characters a-d are allowed'
-        allowedCharactersPattern='[a-d]'
-        maxLength='4'
-      ></ix-text-field>
-    </div>
-  `,
+  templateUrl: './text-field-pattern.html'
 })
 export default class TextFieldPattern {}

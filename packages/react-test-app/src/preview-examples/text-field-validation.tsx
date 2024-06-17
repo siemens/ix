@@ -16,7 +16,7 @@ export default () => {
         <IxTextField
           label="Username"
           placeholder="Enter your Username"
-          info-text="Info text"
+          infoText="Info text"
           className="ix-info"
         ></IxTextField>
       </div>
@@ -25,7 +25,7 @@ export default () => {
         <IxTextField
           label="Username"
           placeholder="Enter your Username"
-          warning-text="Warning text"
+          warningText="Warning text"
           className="ix-warning"
         ></IxTextField>
       </div>
@@ -34,7 +34,7 @@ export default () => {
         <IxTextField
           label="Username"
           placeholder="Enter your Username"
-          valid-text="Valid text"
+          validText="Valid text"
           className="ix-valid"
         ></IxTextField>
       </div>
@@ -43,7 +43,7 @@ export default () => {
         <IxTextField
           label="Username"
           placeholder="Enter your Username"
-          invalid-text="Invalid text"
+          invalidText="Invalid text"
           className="ix-invalid"
         ></IxTextField>
       </div>

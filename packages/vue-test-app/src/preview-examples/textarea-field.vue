@@ -18,8 +18,8 @@ export default {
 
 <template>
   <IxTextareaField
-    resizeBehavior="dimensions"
-    textareaHeight="100px"
-    textareaWidth="300px"
+    resize-behavior="dimensions"
+    textarea-height="100px"
+    textarea-width="300px"
   ></IxTextareaField>
 </template>

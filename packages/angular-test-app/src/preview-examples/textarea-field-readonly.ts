@@ -11,12 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <ix-textarea-field
-      resizeBehavior='dimensions'
-      textareaHeight='100px'
-      textareaWidth='300px'
-      readonly
-    ></ix-textarea-field>`,
+  templateUrl: './textarea-field-readonly.html'
 })
 export default class TextareaFieldReadonly {}

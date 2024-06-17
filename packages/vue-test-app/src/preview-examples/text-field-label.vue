@@ -7,18 +7,15 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { IxTextField } from '@siemens/ix-vue';
-
 </script>
 
 <template>
-  <div>
-    <IxTextField
-      label="Some label"
-      placeholder="Some placeholder"
-      value="Some example text"
-      helperText="Some helper text"
-    ></IxTextField>
-  </div>
+  <IxTextField
+    label="Some label"
+    placeholder="Some placeholder"
+    value="Some example text"
+    helper-text="Some helper text"
+  ></IxTextField>
 </template>

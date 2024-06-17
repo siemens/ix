@@ -11,14 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <div>
-      <ix-text-field
-        placeholder='Some placeholder'
-        value='Some example text'
-        readonly
-      ></ix-text-field>
-    </div>
-  `,
+  templateUrl: './text-field-readonly.html'
 })
 export default class TextFieldReadonly {}

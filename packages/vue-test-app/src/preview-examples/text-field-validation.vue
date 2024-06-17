@@ -18,7 +18,7 @@ import { IxTextField } from '@siemens/ix-vue';
       label="Username"
       placeholder="Enter your Username"
       info-text="Info text"
-      className="ix-info"
+      class="ix-info"
     ></IxTextField>
   </div>
 
@@ -27,7 +27,7 @@ import { IxTextField } from '@siemens/ix-vue';
       label="Username"
       placeholder="Enter your Username"
       warning-text="Warning text"
-      className="ix-warning"
+      class="ix-warning"
     ></IxTextField>
   </div>
 
@@ -36,7 +36,7 @@ import { IxTextField } from '@siemens/ix-vue';
       label="Username"
       placeholder="Enter your Username"
       valid-text="Valid text"
-      className="ix-valid"
+      class="ix-valid"
     ></IxTextField>
   </div>
 
@@ -45,7 +45,7 @@ import { IxTextField } from '@siemens/ix-vue';
       label="Username"
       placeholder="Enter your Username"
       invalid-text="Invalid text"
-      className="ix-invalid"
+      class="ix-invalid"
     ></IxTextField>
   </div>
 </template>

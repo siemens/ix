@@ -11,31 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <div>
-      <ix-text-field
-        type='text'
-        label='Username'
-        value='MaxMuster1'
-      ></ix-text-field>
-    </div>
-
-    <div>
-      <ix-text-field
-        type='email'
-        label='Email'
-        value='example@example.com'
-      ></ix-text-field>
-    </div>
-
-    <div>
-      <ix-text-field
-        type='password'
-        label='Password'
-        placeholder='Enter your password'
-        value='1234'
-      ></ix-text-field>
-    </div>
-  `,
+  templateUrl: './text-field-types.html'
 })
 export default class TextField {}

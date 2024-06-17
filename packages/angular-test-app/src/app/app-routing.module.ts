@@ -90,6 +90,12 @@ import MessageBar from 'src/preview-examples/message-bar';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import Modal from 'src/preview-examples/modal-by-template';
 import ModalSizes from 'src/preview-examples/modal-sizes';
+import NumberField from '../preview-examples/number-field';
+import NumberFieldDisabled from '../preview-examples/number-field-disabled';
+import NumberFieldLabel from '../preview-examples/number-field-label';
+import NumberFieldReadonly from '../preview-examples/number-field-readonly';
+import NumberFieldStepperButton from '../preview-examples/number-field-stepper-button';
+import NumberFieldValidation from '../preview-examples/number-field-validation';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
 import PillVariants from 'src/preview-examples/pill-variants';
@@ -427,6 +433,12 @@ const routes: Routes = [
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
       { path: 'map-navigation-overlay', component: MapNavigationOverlay },
+      { path: 'number-field', component: NumberField },
+      { path: 'number-field-disabled', component: NumberFieldDisabled },
+      { path: 'number-field-label', component: NumberFieldLabel },
+      { path: 'number-field-readonly', component: NumberFieldReadonly },
+      { path: 'number-field-stepper-button', component: NumberFieldStepperButton },
+      { path: 'number-field-validation', component: NumberFieldValidation },
       { path: 'tooltip', component: Tooltip },
       { path: 'tooltip-title', component: TooltipTitle },
       { path: 'modal-by-instance', component: ModalByInstance },

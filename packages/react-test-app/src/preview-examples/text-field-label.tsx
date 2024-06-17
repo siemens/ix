@@ -12,14 +12,12 @@ import { IxTextField } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <div>
-        <IxTextField
-          label="Some label"
-          placeholder="Some placeholder"
-          value="Some example text"
-          helperText="Some helper text"
-        ></IxTextField>
-      </div>
+      <IxTextField
+        label="Some label"
+        placeholder="Some placeholder"
+        value="Some example text"
+        helperText="Some helper text"
+      ></IxTextField>
     </>
   );
 };

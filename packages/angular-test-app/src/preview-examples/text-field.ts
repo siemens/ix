@@ -11,12 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <div>
-      <ix-text-field
-        placeholder='Enter your Username'
-      ></ix-text-field>
-    </div>
-  `,
+  templateUrl: './text-field.html'
 })
 export default class TextField {}

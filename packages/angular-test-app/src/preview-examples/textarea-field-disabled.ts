@@ -11,15 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <div>
-      <ix-textarea-field
-        resizeBehavior='dimensions'
-        textareaHeight='100px'
-        textareaWidth='300px'
-        value='Some text'
-        disabled
-      ></ix-textarea-field>
-    </div>`,
+  templateUrl: './textarea-field-disabled.html'
 })
 export default class TextareaFieldDisabled {}

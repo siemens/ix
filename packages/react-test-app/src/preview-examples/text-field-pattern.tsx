@@ -12,13 +12,11 @@ import { IxTextField } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <div>
-        <IxTextField
-          helper-text="Only characters a-d are allowed"
-          allowed-characters-pattern="[a-d]"
-          max-length="4"
-        ></IxTextField>
-      </div>
+      <IxTextField
+        helperText="Only characters a-d are allowed"
+        allowedCharactersPattern="[a-d]"
+        maxLength="4"
+      ></IxTextField>
     </>
   );
 };

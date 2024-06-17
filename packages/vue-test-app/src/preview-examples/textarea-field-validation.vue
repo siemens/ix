@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script lang="ts">
+<script lang='ts'>
 import { IxTextareaField } from '@siemens/ix-vue';
 
 export default {
@@ -19,52 +19,52 @@ export default {
 <template>
   <div>
     <IxTextareaField
-      :maxLength="100"
+      :max-length="100"
       name="comment"
       label="Comment"
-      resizeBehavior="dimensions"
-      textareaHeight="50px"
-      textareaWidth="200px"
-      infoText="Info text"
+      resize-behavior="dimensions"
+      textarea-height="50px"
+      textarea-width="200px"
+      info-text="Info text"
       class="ix-info"
     ></IxTextareaField>
   </div>
 
   <div>
     <IxTextareaField
-      :maxLength="100"
+      :max-length="100"
       name="comment"
       label="Comment"
-      resizeBehavior="dimensions"
-      textareaHeight="50px"
-      textareaWidth="200px"
-      warningText="Warning text"
+      resize-behavior="dimensions"
+      textarea-height="50px"
+      textarea-width="200px"
+      warning-text="Warning text"
       class="ix-warning"
     ></IxTextareaField>
   </div>
 
   <div>
     <IxTextareaField
-      :maxLength="100"
+      :max-length="100"
       name="comment"
       label="Comment"
-      resizeBehavior="dimensions"
-      textareaHeight="50px"
-      textareaWidth="200px"
-      validText="Valid text"
-      className="valid"
+      resize-behavior="dimensions"
+      textarea-height="50px"
+      textarea-width="200px"
+      valid-text="Valid text"
+      class="valid"
     ></IxTextareaField>
   </div>
 
   <div>
     <IxTextareaField
-      :maxLength="100"
+      :max-length="100"
       name="comment"
       label="Comment"
-      resizeBehavior="dimensions"
-      textareaHeight="50px"
-      textareaWidth="200px"
-      invalidText="Invalid text"
+      resize-behavior="dimensions"
+      textarea-height="50px"
+      textarea-width="200px"
+      invalid-text="Invalid text"
       class="ix-invalid"
     ></IxTextareaField>
   </div>

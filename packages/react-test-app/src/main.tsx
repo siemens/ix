@@ -71,6 +71,12 @@ import MenuCategory from './preview-examples/menu-category';
 import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
+import NumberField from './preview-examples/number-field';
+import NumberFieldDisabled from './preview-examples/number-field-disabled';
+import NumberFieldLabel from './preview-examples/number-field-label';
+import NumberFieldReadonly from './preview-examples/number-field-readonly';
+import NumberFieldStepperButton from './preview-examples/number-field-stepper-button';
+import NumberFieldValidation from './preview-examples/number-field-validation';
 import Pane from './preview-examples/pane';
 import PaneLayout from './preview-examples/pane-layout';
 import Pill from './preview-examples/pill';
@@ -315,6 +321,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/kpi" element={<Kpi />} />
         <Route path="/preview/modal" element={<ModalExample />} />
         <Route path="/preview/modal-sizes" element={<ModalSizes />} />
+        <Route path="/preview/number-field" element={<NumberField />} />
+        <Route path="/preview/number-field-disabled" element={<NumberFieldDisabled />} />
+        <Route path="/preview/number-field-label" element={<NumberFieldLabel />} />
+        <Route path="/preview/number-field-readonly" element={<NumberFieldReadonly />} />
+        <Route path="/preview/number-field-stepper-button" element={<NumberFieldStepperButton />} />
+        <Route path="/preview/number-field-validation" element={<NumberFieldValidation />} />
         <Route path="/preview/validation" element={<Validation />} />
         <Route path="/preview/workflow" element={<Workflow />} />
         <Route

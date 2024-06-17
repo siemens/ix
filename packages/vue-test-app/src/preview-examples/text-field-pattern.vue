@@ -7,17 +7,14 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { IxTextField } from '@siemens/ix-vue';
-
 </script>
 
 <template>
-  <div>
-    <IxTextField
-      helper-text="Only characters a-d are allowed"
-      allowed-characters-pattern="[a-d]"
-      :max-length="4"
-    ></IxTextField>
-  </div>
+  <IxTextField
+    helper-text="Only characters a-d are allowed"
+    allowed-characters-pattern="[a-d]"
+    :max-length="4"
+  ></IxTextField>
 </template>

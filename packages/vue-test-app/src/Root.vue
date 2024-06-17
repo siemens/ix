@@ -77,6 +77,12 @@ import MapNavigation from './preview-examples/map-navigation.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
+import NumberField from './preview-examples/number-field.vue';
+import NumberFieldLabel from './preview-examples/number-field-label.vue';
+import NumberFieldDisabled from './preview-examples/number-field-disabled.vue';
+import NumberFieldReadOnly from './preview-examples/number-field-readonly.vue.vue';
+import NumberFieldStepperButton from './preview-examples/number-field-stepper-button.vue';
+import NumberFieldValidation from './preview-examples/validation.vue';
 import Pane from './preview-examples/pane.vue';
 import PaneLayout from './preview-examples/pane-layout.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
@@ -219,6 +225,12 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
+  '/preview/number-field': NumberField,
+  '/preview/number-field-disabled': NumberFieldDisabled,
+  '/preview/number-field-label': NumberFieldLabel,
+  '/preview/number-field-readonly': NumberFieldReadOnly,
+  '/preview/number-field-stepper-button': NumberFieldStepperButton,
+  '/preview/number-field-validation': NumberFieldValidation,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/basic-navigation': BasicNavigation,

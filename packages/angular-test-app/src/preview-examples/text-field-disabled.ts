@@ -11,14 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <div>
-      <ix-text-field
-        placeholder='Some placeholder'
-        value='Some example text'
-        disabled
-      ></ix-text-field>
-    </div>
-  `,
+  templateUrl: './text-field-disabled.html.html'
+
 })
 export default class TextFieldDisabled {}

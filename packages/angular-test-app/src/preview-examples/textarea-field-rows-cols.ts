@@ -11,14 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `<ix-textarea-field
-    maxLength='100'
-    name="comment"
-    label="Comment"
-    resizeBehavior="rowsCols"
-    textareaRows="15"
-    textareaCols="20"
-    helperText="Let us know if you have any special requests or comments. We will do our best to accommodate you."
-  ></ix-textarea-field>`,
+  templateUrl: './textarea-field-rows-cols.html'
 })
 export default class TextareaFieldRowsCols {}
