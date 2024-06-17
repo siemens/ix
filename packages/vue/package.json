@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.4.0",
+    "@siemens/ix": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint-config-ix": "workspace:*",
