@@ -544,16 +544,19 @@ importers:
         specifier: latest
         version: 8.52.0
       eslint-config-prettier:
-        specifier: latest
+        specifier: ^9.0.0
         version: 9.0.0(eslint@8.52.0)
       eslint-config-turbo:
-        specifier: latest
+        specifier: ^1.10.16
         version: 1.10.16(eslint@8.52.0)
       eslint-plugin-prettier:
-        specifier: latest
+        specifier: ^5.0.1
         version: 5.0.1(@types/eslint@8.44.6)(eslint-config-prettier@9.0.0(eslint@8.52.0))(eslint@8.52.0)(prettier@3.0.3)
+      eslint-plugin-turbo:
+        specifier: ^2.0.4
+        version: 2.0.4(eslint@8.52.0)
       prettier:
-        specifier: latest
+        specifier: ^3.0.3
         version: 3.0.3
 
   packages/example-styles: {}
@@ -6228,6 +6231,11 @@ packages:
 
   eslint-plugin-turbo@1.10.16:
     resolution: {integrity: sha512-ZjrR88MTN64PNGufSEcM0tf+V1xFYVbeiMeuIqr0aiABGomxFLo4DBkQ7WI4WzkZtWQSIA2sP+yxqSboEfL9MQ==}
+    peerDependencies:
+      eslint: '>6.6.0'
+
+  eslint-plugin-turbo@2.0.4:
+    resolution: {integrity: sha512-Ozn//vTXJeqIEvEkThM2vuuldMckPqAne7vg/S3GxF+BBY516cjdp7+dYpCU5Q0083hVm638c8542ubccNE+8w==}
     peerDependencies:
       eslint: '>6.6.0'
 
@@ -20691,6 +20699,11 @@ snapshots:
       string.prototype.matchall: 4.0.10
 
   eslint-plugin-turbo@1.10.16(eslint@8.52.0):
+    dependencies:
+      dotenv: 16.0.3
+      eslint: 8.52.0
+
+  eslint-plugin-turbo@2.0.4(eslint@8.52.0):
     dependencies:
       dotenv: 16.0.3
       eslint: 8.52.0
