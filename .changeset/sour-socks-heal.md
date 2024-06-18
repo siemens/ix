@@ -1,5 +1,5 @@
 ---
-"@siemens/ix": patch
+"@siemens/ix": minor
 ---
 
-feat(core): update theme variables
+feat(core/theme): sync css variables
