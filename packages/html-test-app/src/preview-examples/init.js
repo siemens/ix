@@ -8,8 +8,8 @@
  */
 import '@siemens/ix-aggrid/dist/ix-aggrid/ix-aggrid.css';
 import { defineCustomElements as ixIconsDefineCustomElements } from '@siemens/ix-icons/loader';
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
+import { defineCustomElements } from '@siemens/ix/loader';
+import 'example-styles/dist/global.css';
 import './placeholder-logo';
 
 function loadAdditionalTheme() {
@@ -69,9 +69,8 @@ function setBodySizes() {
 }
 
 (async function init() {
-  await applyPolyfills();
   await ixIconsDefineCustomElements();
-  await defineCustomElements();
+  defineCustomElements();
 
   detectThemeSwitching();
   setBodySizes();
