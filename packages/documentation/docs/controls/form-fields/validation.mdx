@@ -6,23 +6,23 @@ import TabItem from '@theme/TabItem';
 
 # Validation
 
-All components which are tagged via `form-ready` are usable inside a `form` without to manual integration.
+All components which are tagged via `form-ready` are usable inside a `form` without requiring manual integration.
 
 ## Label
 
-Each `form-ready` component comes with an attribute `label` to show a label above the component.
+Each `form-ready` component includes a `label` attribute that displays a label above the component.
 
 ```html
 <ix-select label="Demo"></ix-select>
 ```
 
-The `label` attribute is optional and can be empty to show no label.
+The `label` attribute is optional and can be left empty to display no label.
 
 ## Form layouting
 
 ### Using custom layout
 
-To align `form-ready` components in a complex form layout. You typically omit the `label` attribubte and define label
+To align `form-ready` components in a complex form layout, you typically omit the `label` attribute and define the label
 as an `ix-field-label` component.
 
 You can follow the example here:
@@ -33,13 +33,13 @@ You can follow the example here:
 <ix-text-field id="mytest"></ix-text-field>
 ```
 
-2. Define a `ix-field-label` component with a `for` attribute to link the label to the `ix-text-field` component.
+2. Define an `ix-field-label` component with a `for` attribute to link the label to the `ix-text-field` component.
 
 ```html
 <ix-field-label htmlFor="mytest">Test</ix-field-label>
 ```
 
-3. Define a `ix-helper-text` component with the `for` attribute to link the helper text to the `ix-text-field` component.
+3. Define an `ix-helper-text` component with a `for` attribute to link the helper text to the `ix-text-field` component.
 
 ```html
 <ix-helper-text
@@ -88,14 +88,14 @@ You can follow the example here:
 
 ## Validation states
 
-To change the validation representation you have to apply the corresponding classes to the component.
+To change the validation representation, you have to apply the corresponding classes to the component.
 
 - `ix-valid`: To show component as valid (Priority 1)
 - `ix-info`: To show component as info (Priority 2)
 - `ix-warning`: To show component as warning (Priority 3)
 - `ix-invalid`: To show component as invalid (Priority 4)
 
-The classes have different priority levels which define in which order the styling is applied to the component. (`1` is the lowest priority and `3` the highest)
+The classes have different priority levels, which define in which order the styling is applied to the component. (`1` is the lowest priority and `3` the highest)
 
 e.g
 
@@ -103,15 +103,15 @@ e.g
 <ix-select class="ix-invalid ix-info"></ix-select>
 ```
 
-Will show the component as `invalid` because `invalid` has a higher priority.
+Above example will result in displaying the component as `invalid`, because `invalid` has a higher priority than `info`.
 
 <Admonition type="tip" icon="💡" title="Did you using Angular?">
-  If you using Angular in combination with ReactiveForms, it is not necessary to apply the class `.ix-invalid` and `.ix-valid` this will be done automatically via value accessors.
+  When using Angular in combination with ReactiveForms, it is not necessary to manually apply the classes `.ix-invalid` and `.ix-valid`. This will be done automatically through value accessors.
 </Admonition>
 
 ## Suppress internal validation
 
-To suppress the internal validation of a component you have to provide the `novalidate` attribute to the [form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#novalidate).
+To suppress the internal validation of a component, you have to provide the `novalidate` attribute to the [form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#novalidate).
 
 ```html
 <form novalidate>
@@ -133,7 +133,7 @@ To suppress the internal validation of a component you have to provide the `nova
   <TabItem value="react" label="React">
     <Admonition type="tip" icon="💡" title="Just an example">
       Using `react-form-hook` is just an example to demonstrate how validation could be done
-      within react. You can use any other validation library or write your own validation logic.
+      within React. You can use any other validation library or write your own validation logic.
     </Admonition>
 
     <details>
@@ -146,7 +146,7 @@ To suppress the internal validation of a component you have to provide the `nova
   <TabItem value="vue" label="Vue">
   <Admonition type="tip" icon="💡" title="Just an example">
       Using `@vuelidate/core` is just an example to demonstrate how validation could be done
-      within vue. You can use any other validation library or write your own validation logic.
+      within Vue. You can use any other validation library or write your own validation logic.
     </Admonition>
 
     <details>
