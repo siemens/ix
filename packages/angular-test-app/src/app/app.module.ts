@@ -116,6 +116,10 @@ import PillVariants from 'src/preview-examples/pill-variants';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
+import Radio from 'src/preview-examples/radio';
+import RadioDisabled from 'src/preview-examples/radio-disabled';
+import RadioGroup from 'src/preview-examples/radio-group';
+import RadioValidation from 'src/preview-examples/radio-validation';
 import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
@@ -255,6 +259,10 @@ import FormValidation from 'src/preview-examples/form-validation';
     PillVariants,
     PopoverNews,
     Radiobutton,
+    Radio,
+    RadioDisabled,
+    RadioGroup,
+    RadioValidation,
     SelectEditable,
     SelectMultiple,
     SelectNgModel,

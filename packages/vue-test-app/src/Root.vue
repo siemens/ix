@@ -94,6 +94,10 @@ import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
+import Radio from './preview-examples/radio.vue';
+import RadioDisabled from './preview-examples/radio-disabled.vue';
+import RadioGroup from './preview-examples/radio-group.vue';
+import RadioValidation from './preview-examples/radio-validation.vue';
 import SelectEditable from './preview-examples/select-editable.vue';
 import SelectMultiple from './preview-examples/select-multiple.vue';
 import Select from './preview-examples/select.vue';
@@ -193,6 +197,10 @@ const routes: any = {
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
   '/preview/radio-button': RadioButton,
+  '/preview/radio': Radio,
+  '/preview/radio-disabled': RadioDisabled,
+  '/preview/radio-group': RadioGroup,
+  '/preview/radio-validation': RadioValidation,
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
   '/preview/select-multiple': SelectMultiple,
