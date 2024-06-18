@@ -11,6 +11,13 @@
     display: none;
   }
 
+  @-moz-document url-prefix() {
+    * {
+      scrollbar-color: var(--theme-scrollbar-thumb--background) var(--theme-scrollbar-track--background);
+      scrollbar-width: thin;
+    }
+  }
+
   /* width */
   ::-webkit-scrollbar {
     width: 0.5rem;
