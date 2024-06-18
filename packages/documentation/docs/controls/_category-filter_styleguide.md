@@ -51,5 +51,5 @@ Category filter has six states: Default, hover, active, disabled, read-only and 
 
 - [Expanding search](expanding-search.md)
 - [Input](input.md)
-- [Select](select.md)
+- [Select](select.mdx)
 - [Dropdown button](./buttons/dropdown-button.md)

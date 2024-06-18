@@ -39,7 +39,7 @@ export default () => {
       <div>
         <IxCheckboxGroup
           label="Terms of something"
-          validText="Invalid text"
+          invalidText="Invalid text"
           class="ix-invalid"
         >
           <IxCheckbox label="I agree everything" name="agreed"></IxCheckbox>

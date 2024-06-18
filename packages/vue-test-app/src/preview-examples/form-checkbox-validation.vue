@@ -36,7 +36,7 @@ import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
   <div>
     <IxCheckboxGroup
       label="Terms of something"
-      valid-text="Invalid text"
+      invalid-text="Invalid text"
       class="ix-invalid"
     >
       <IxCheckbox label="I agree everything" name="agreed"></IxCheckbox>

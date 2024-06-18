@@ -98,9 +98,10 @@ import Radio from './preview-examples/radio.vue';
 import RadioDisabled from './preview-examples/radio-disabled.vue';
 import RadioGroup from './preview-examples/radio-group.vue';
 import RadioValidation from './preview-examples/radio-validation.vue';
+import Select from './preview-examples/select.vue';
 import SelectEditable from './preview-examples/select-editable.vue';
 import SelectMultiple from './preview-examples/select-multiple.vue';
-import Select from './preview-examples/select.vue';
+import SelectValidation from './preview-examples/select-validation.vue';
 import Settings from './preview-examples/settings.vue';
 import SliderError from './preview-examples/slider-error.vue';
 import SliderMarker from './preview-examples/slider-marker.vue';
@@ -204,6 +205,7 @@ const routes: any = {
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
   '/preview/select-multiple': SelectMultiple,
+  '/preview/select-validation': SelectValidation,
   '/preview/pane': Pane,
   '/preview/pane-layout': PaneLayout,
   '/preview/spinner': Spinner,

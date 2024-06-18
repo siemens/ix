@@ -124,6 +124,7 @@ import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
 import SelectNgModel from 'src/preview-examples/select-ng-model';
+import SelectValidation from 'src/preview-examples/select-validation';
 import Settings from 'src/preview-examples/settings';
 import Slider from 'src/preview-examples/slider';
 import SliderError from 'src/preview-examples/slider-error';
@@ -266,6 +267,7 @@ import FormValidation from 'src/preview-examples/form-validation';
     SelectEditable,
     SelectMultiple,
     SelectNgModel,
+    SelectValidation,
     Select,
     Settings,
     Pane,

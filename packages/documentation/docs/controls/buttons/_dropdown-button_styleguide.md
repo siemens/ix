@@ -30,5 +30,5 @@ Dropdown buttons have five states: Default, hover, active, disabled and focused.
 ## Related patterns
 - [Button](button.md)
 - [Dropdown](../dropdown.md)
-- [Select](../select.md)
+- [Select](../select.mdx)
 - [Split button](split-button.md) 

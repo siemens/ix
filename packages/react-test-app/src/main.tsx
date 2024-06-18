@@ -95,6 +95,7 @@ import RadioValidation from './preview-examples/radio-validation';
 import Select from './preview-examples/select';
 import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
+import SelecValidation from './preview-examples/select-validation';
 import Settings from './preview-examples/settings';
 import Slider from './preview-examples/slider';
 import SliderError from './preview-examples/slider-error';
@@ -272,6 +273,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/select" element={<Select />} />
         <Route path="/preview/select-editable" element={<SelectEditable />} />
         <Route path="/preview/select-multiple" element={<SelectMultiple />} />
+        <Route path="/preview/select-validation" element={<SelecValidation />} />
         <Route path="/preview/pane" element={<Pane />} />
         <Route path="/preview/pane-layout" element={<PaneLayout />} />
         <Route path="/preview/spinner" element={<Spinner />} />
