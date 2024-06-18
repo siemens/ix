@@ -1,5 +1,5 @@
 /*
- * COPYRIGHT (c) Siemens AG 2018-2023 ALL RIGHTS RESERVED.
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
 :root {
   .theme-classic-dark {
@@ -253,9 +253,8 @@
       --theme-checkbox-unchecked--background--info--hover: var(--theme-color-secondary--hover);
       --theme-checkbox-unchecked--background--info--active: var(--theme-color-secondary--active);
       --theme-checkbox-unchecked--border-color: var(--theme-color-contrast-bdr);
-      --theme-checkbox-unchecked--border-color--active: var(--theme-color-dynamic);
       --theme-checkbox-unchecked--border-color--hover: var(--theme-color-dynamic);
-      --theme-heckbox-unchecked--background--active: var(--theme-color-secondary--active);
+      --theme-checkbox-unchecked--border-color--active: var(--theme-color-dynamic);
       --theme-checkbox-unchecked--border-color--disabled: var(--theme-color-component-4);
       --theme-checkbox-unchecked--border-color--invalid: var(--theme-color-alarm);
       --theme-checkbox-unchecked--border-color--invalid--hover: var(--theme-color-alarm--hover);
@@ -699,15 +698,15 @@
       --theme-switch-off--border-color--hover: var(--theme-color-0);
       --theme-switch-off--border-color--active: var(--theme-color-0);
       --theme-switch-off--border-color--disabled: var(--theme-color-0);
-      --theme-switch-off--border-color-invalid: var(--theme-color-alarm);
-      --theme-switch-off--border-color-invalid--hover: var(--theme-color-alarm--hover);
-      --theme-switch-off--border-color-invalid--active: var(--theme-color-alarm--active);
-      --theme-switch-off--border-color-warning: var(--theme-color-warning);
-      --theme-switch-off--border-color-warning--hover: var(--theme-color-warning--hover);
-      --theme-switch-off--border-color-warning--active: var(--theme-color-warning--active);
-      --theme-switch-off--border-color-info: var(--theme-color-info);
-      --theme-switch-off--border-color-info--hover: var(--theme-color-info--hover);
-      --theme-switch-off--border-color-info--active: var(--theme-color-info--active);
+      --theme-switch-off--border-color--invalid: var(--theme-color-alarm);
+      --theme-switch-off--border-color--invalid--hover: var(--theme-color-alarm--hover);
+      --theme-switch-off--border-color--invalid--active: var(--theme-color-alarm--active);
+      --theme-switch-off--border-color--warning: var(--theme-color-warning);
+      --theme-switch-off--border-color--warning--hover: var(--theme-color-warning--hover);
+      --theme-switch-off--border-color--warning--active: var(--theme-color-warning--active);
+      --theme-switch-off--border-color--info: var(--theme-color-info);
+      --theme-switch-off--border-color--info--hover: var(--theme-color-info--hover);
+      --theme-switch-off--border-color--info--active: var(--theme-color-info--active);
       --theme-switch-on--background: var(--theme-color-dynamic);
       --theme-switch-on--background--hover: var(--theme-color-dynamic--hover);
       --theme-switch-on--background--active: var(--theme-color-dynamic--active);
