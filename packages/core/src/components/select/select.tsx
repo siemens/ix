@@ -305,11 +305,6 @@ export class Select {
     }
 
     this.items.forEach((item) => {
-      if (typeof item.value !== 'string') {
-        console.warn(
-          'Non string data types not supported and and will be removed in 3.0'
-        );
-      }
       item.selected = ids.some((i) => {
         if (typeof i !== typeof item.value) {
           return i.toString() === item.value.toString();
