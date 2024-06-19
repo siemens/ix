@@ -46,6 +46,8 @@ jobs:
               - packages/core/**
               - packages/angular/**
               - packages/react/**
+              - packages/angular-test-app/**
+              - packages/react-test-app/**
 
   build:
     needs: changes
