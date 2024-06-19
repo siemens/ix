@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build --preserve-symlinks -c production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --no-watch"
   },
   "private": true,
   "dependencies": {
