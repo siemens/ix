@@ -36,6 +36,7 @@
   "devDependencies": {
     "rimraf": "^3.0.2",
     "vue": "^3.2.45",
+    "@siemens/ix": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint-config-ix": "workspace:*",
