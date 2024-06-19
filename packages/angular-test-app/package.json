@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build --preserve-symlinks -c production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --no-watch"
+    "test": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI"
   },
   "private": true,
   "dependencies": {
