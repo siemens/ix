@@ -8,7 +8,8 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 ## Variants
 
 - **Primary button:** In our applications, we most often use the primary button variant.
-- **Secondary button:** The secondary button variant has a grayscale appearance to distinguish it from the primary button. 
+- **Secondary button:** The secondary button variant has a grayscale appearance to distinguish it from the primary button.
+- **Danger button:** We use the danger button variant to emphasize particularly dangerous, destructive or critical actions that cannot easily be undone. Consider this especially in confirmation dialogs. 
 
 **Note:** Please be aware that the terms *primary* and *secondary* are not used in accordance to common UX terminology for primary, secondary and ghost button.
 
@@ -24,24 +25,28 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 ## Behavior in context
 - **Interaction:** Buttons can be triggered by pressing anywhere within the button container. When buttons are focused, they can be triggered by pressing `Space`.
 - **Text truncation:** Button labels are not truncated. All text on buttons is one line only. 
-- **Alignment:** Buttons can be left-justified or right-justified or fully span a container's width.
+- **Ellipsis (…):** Ellipsis can be used to indicate that an action requires further input or choice from the user, such as "Save as…" which opens a further list of file types to choose from. Ellipses is typically not used for actions with a subsequent confirmation dialog.
+- **Alignment:** Buttons can be left-justified or right-justified or fully span a container’s width.
 - **Cluster buttons:** Buttons can be clustered in groups based on their relationship. A cluster can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons, and we typically cluster buttons if actions/functions are related but not excluding each other. Otherwise, consider using a `button group`. 
+- **Button width:** Button width depends on its content. In addition, buttons have a default minimum width of 5rem to lay out common combinations such as "OK" and "Cancel" more harmoniously with equal widths. The minimum width is customizable to accommodate other combinations.
 
 ## States
 
-Buttons have six states: Default, hover, active, disabled, loading and focused. In a disabled state, buttons are visually displayed but don't offer any user interaction.
+Buttons have six states: Default, hover, active, disabled, loading and focused. In a disabled state, buttons are visually displayed but don’t offer any user interaction.
 
 ![Button states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
 
-## Dos and Don'ts
+## Dos and Don’ts
 
 - Do use short button labels to allow users to quickly scan, understand and remember them (follow our writing style guide for more support)
 - Do use only one primary (default) button in one visual unit for a clear and singular focus on the main call to action
+- Do use the danger button for destructive or critical actions like "delete" or "remove", especially in confirmation dialogs
 - Do use a default margin between adjacent buttons of at least `0.5rem`
-- Do adjust default and outline button width to label length or container width 
-- Don't extend your ghost button width beyond the label's available width
-- Don't only rely on standard buttons when many actions/functions are necessary, consider dropdown, split or menu buttons or moving some functionality to a panel or a dialog
-- Don't use buttons for navigation
+- Do adjust default and outline button width to label length or container width
+- Don’t use the danger button excessively or repetitively in lists or tables
+- Don’t extend your ghost button width beyond the label’s available width
+- Don’t rely on standard buttons when many actions/functions are necessary (use dropdown, split or menu buttons or move some functionality to a panel or a dialog)
+- Don’t use buttons for navigation
 
 ## Related patterns:
 

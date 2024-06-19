@@ -4,15 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <script type="module">
+      import 'example-styles/dist/buttons.css';
+    </script>
   </head>
   <body>
     <!-- Preview code -->
-    <div>
-      <ix-button class="m-1" ghost variant="primary"> Button </ix-button>
-      <ix-button class="m-1" disabled ghost variant="primary">
-        Button
-      </ix-button>
-    </div>
+    <ix-button ghost variant="primary"> Button </ix-button>
+    <ix-button disabled ghost variant="primary"> Button </ix-button>
     <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>

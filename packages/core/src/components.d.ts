@@ -276,6 +276,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Button variant
+          * @since 2.3.0 - variant danger
          */
         "variant": ButtonVariant;
     }
@@ -1162,6 +1163,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Variant of button
+          * @since 2.3.0 - variant danger
          */
         "variant": IconButtonVariant;
     }
@@ -1975,6 +1977,11 @@ export namespace Components {
         "variant": 'primary' | 'secondary';
     }
     interface IxSplitButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.3.0
+         */
+        "closeBehavior": CloseBehavior;
         /**
           * Disabled
          */
@@ -4304,6 +4311,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Button variant
+          * @since 2.3.0 - variant danger
          */
         "variant"?: ButtonVariant;
     }
@@ -5294,6 +5302,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Variant of button
+          * @since 2.3.0 - variant danger
          */
         "variant"?: IconButtonVariant;
     }
@@ -6168,6 +6177,11 @@ declare namespace LocalJSX {
         "variant"?: 'primary' | 'secondary';
     }
     interface IxSplitButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.3.0
+         */
+        "closeBehavior"?: CloseBehavior;
         /**
           * Disabled
          */
