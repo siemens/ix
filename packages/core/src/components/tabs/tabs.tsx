@@ -163,18 +163,12 @@ export class Tabs {
     amount = amount > 0 ? 0 : amount < maxScrollWidth ? maxScrollWidth : amount;
 
     const styles = [
-      `transform: translateX(${amount}px);`,
+      `position: relative;`,
+      `left: ${amount}px;`,
       click ? 'transition: all ease-in-out 400ms;' : '',
     ].join('');
 
     tabWrapper.setAttribute('style', styles);
-    const dropdown = tabWrapper.querySelector('ix-dropdown');
-
-    if (dropdown) {
-      const parentElement = dropdown.parentElement;
-      dropdown.remove();
-      parentElement?.parentElement?.appendChild(dropdown);
-    }
 
     if (click) this.currentScrollAmount = this.scrollActionAmount = amount;
     else this.scrollActionAmount = amount;
