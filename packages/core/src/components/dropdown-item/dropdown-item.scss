@@ -68,7 +68,7 @@ $focusBorder: 0.0625rem;
 
   .dropdown-item-icon {
     margin-right: 0.25rem;
-    color: var(--theme-color-soft-text);
+    color: var(--theme-color-std-text);
   }
 
   .dropdown-item-text {
@@ -77,6 +77,7 @@ $focusBorder: 0.0625rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    padding-left: 0.25rem;
   }
 
   .dropdown-item:focus-visible {
