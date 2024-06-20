@@ -103,6 +103,7 @@ export class Menu {
    * Menu stays pinned to the left
    */
   @Prop() pinned = false;
+
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
     if (this.applicationLayoutContext?.host === 'map-navigation') {
@@ -522,6 +523,7 @@ export class Menu {
   @Listen('resize', { target: 'window' })
   private handleOverflowIndicator() {
     const { clientHeight, scrollTop, scrollHeight } = this.menuItemsContainer;
+
     this.itemsScrollShadowTop = scrollTop > 0;
     this.itemsScrollShadowBottom =
       Math.round(scrollTop + clientHeight) < scrollHeight;
