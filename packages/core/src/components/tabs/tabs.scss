@@ -68,6 +68,7 @@
     width: 100%;
     pointer-events: all;
     mask-clip: no-clip;
+    background-clip: padding-box;
 
     &.shadow-left {
       mask-image: linear-gradient(90deg, transparent 0px, black 45px);
