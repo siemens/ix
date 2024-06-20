@@ -24,7 +24,8 @@
     "components/",
     "dist/",
     "loader/",
-    "scss/"
+    "scss/",
+    "hydrate/"
   ],
   "scripts": {
     "build": "stencil build --prod && npm run build:scss",

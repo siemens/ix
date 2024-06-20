@@ -386,7 +386,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       this.registerKeyListener();
     } else {
-      this.arrowFocusController.disconnect();
+      this.arrowFocusController?.disconnect();
       this.itemObserver.disconnect();
       this.disposeKeyListener?.();
     }

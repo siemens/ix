@@ -1,5 +1,5 @@
 ---
-"@siemens/ix": patch
+"@siemens/ix": minor
 "@siemens/ix-angular": patch
 "@siemens/ix-vue": patch
 
