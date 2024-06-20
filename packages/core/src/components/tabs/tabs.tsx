@@ -163,7 +163,8 @@ export class Tabs {
     amount = amount > 0 ? 0 : amount < maxScrollWidth ? maxScrollWidth : amount;
 
     const styles = [
-      `transform: translateX(${amount}px);`,
+      `position: relative;`,
+      `left: ${amount}px;`,
       click ? 'transition: all ease-in-out 400ms;' : '',
     ].join('');
 
