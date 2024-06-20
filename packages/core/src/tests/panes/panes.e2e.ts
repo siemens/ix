@@ -106,6 +106,13 @@ test.describe('pane', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('layout, inline, icon, collapsed', async ({ page }) => {
+    await page.goto('panes/icon');
+    await page.waitForTimeout(1000);
+
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest('layout, inline, expanded', async ({ page }) => {
     await page.goto('panes/layout');
     await page.locator('ix-button').first().click();

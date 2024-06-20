@@ -264,6 +264,45 @@ test('type in a novel item name in editable mode, click outside and reopen the s
   await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
 });
 
+test('pass object as value and check if it is selectable', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select>
+          <ix-select-item label="Item 1">Test</ix-select-item>
+          <ix-select-item label="Item 2">Test</ix-select-item>
+          <ix-select-item label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+  const selectElement = page.locator('ix-select');
+  await expect(selectElement).toHaveClass(/hydrated/);
+
+  async function setSelectItemValue(index: number): Promise<void> {
+    await page
+      .locator('ix-select-item')
+      .nth(index)
+      .evaluate((e: HTMLIxSelectItemElement, index) => {
+        e.value = { selectLabel: `Item ${index}`, selectValue: `${index}` };
+      });
+  }
+
+  for (let index = 0; index < 3; index++) {
+    await setSelectItemValue(index);
+  }
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.locator('ix-select-item').last().click();
+  await page.locator('[data-select-dropdown]').click();
+
+  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Item 3' }).locator('ix-icon')
+  ).toBeVisible();
+});
+
 test.describe('arrow key navigation', () => {
   test.describe('ArrowDown', () => {
     test('input -> slotted item', async ({ mount, page }) => {
