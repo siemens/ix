@@ -24,6 +24,7 @@
     }
   },
   "rules": {
-    "react/display-name": 0
+    "react/display-name": 0,
+    "@typescript-eslint/no-explicit-any": "warn"
   }
 }
