@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,11 +11,15 @@ import { regressionTest } from "../utils/test/index";
 regressionTest.describe('date picker', () => {
     regressionTest('basic', async ({ page }) => {
         await page.goto('date-picker/basic');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+            maxDiffPixels: 4,
+        });
     });
     regressionTest('range', async ({ page }) => {
         await page.goto('date-picker/range');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+            maxDiffPixels: 4,
+        });
     });
 });
 //# sourceMappingURL=date-picker.e2e.js.map

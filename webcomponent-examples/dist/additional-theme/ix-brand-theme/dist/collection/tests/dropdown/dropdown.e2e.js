@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -13,9 +13,7 @@ regressionTest.describe('dropdown', () => {
         await page.goto('dropdown/basic');
         await page.locator('ix-button').click();
         await page.waitForSelector('.dropdown-menu.show');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-            maxDiffPixelRatio: 0.05,
-        });
+        await expect(page).toHaveScreenshot();
     });
     regressionTest('overflow', async ({ page }) => {
         await page.goto('dropdown/overflow');
@@ -25,25 +23,13 @@ regressionTest.describe('dropdown', () => {
             menuElement.classList.add('__SCROLLED__');
         }, menuHandle);
         await page.waitForSelector('.dropdown-menu.show.__SCROLLED__');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-            maxDiffPixelRatio: 0.02,
-        });
-    });
-    regressionTest('tigger events', async ({ page }) => {
-        await page.goto('dropdown/trigger-events');
-        await page.locator('input').focus();
-        await page.waitForSelector('.dropdown-menu.show');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-            maxDiffPixelRatio: 0.05,
-        });
+        await expect(page).toHaveScreenshot();
     });
     regressionTest('disabled', async ({ page }) => {
         await page.goto('dropdown/disabled');
         await page.locator('ix-button').click();
         await page.waitForSelector('.dropdown-menu.show');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-            maxDiffPixelRatio: 0.05,
-        });
+        await expect(page).toHaveScreenshot();
     });
     regressionTest('handle multiple', async ({ page }) => {
         await page.goto('dropdown/multiple');
@@ -51,7 +37,18 @@ regressionTest.describe('dropdown', () => {
         await page.waitForSelector('.dropdown-menu.show');
         await page.locator('#trigger-b').click();
         await page.waitForSelector('.dropdown-menu.show');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+        await expect(page).toHaveScreenshot();
+    });
+    regressionTest('zoom', async ({ page }) => {
+        await page.goto('dropdown/basic');
+        // Set the zoom
+        await page.setViewportSize({ width: 1280, height: 720 });
+        await page.evaluate(() => {
+            document.body.style.zoom = '110%';
+        });
+        await page.locator('ix-button').click();
+        await page.waitForSelector('.dropdown-menu.show');
+        await expect(page).toHaveScreenshot();
     });
 });
 //# sourceMappingURL=dropdown.e2e.js.map

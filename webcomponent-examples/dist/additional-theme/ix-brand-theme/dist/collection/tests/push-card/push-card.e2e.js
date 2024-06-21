@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from "@playwright/test";
-import { regressionTest } from "../utils/test/index";
+import { regressionTest, test } from "../utils/test/index";
 regressionTest.describe('push-card: basic', () => {
     regressionTest('should not have visual regressions', async ({ page }) => {
         await page.goto('push-card/basic');
@@ -23,5 +23,19 @@ regressionTest.describe('push-card: basic', () => {
         await page.waitForTimeout(500);
         expect(await page.screenshot({ fullPage: true, animations: 'disabled' })).toMatchSnapshot();
     });
+});
+test('push card expand', async ({ page, mount }) => {
+    await mount(`
+      <ix-push-card
+        icon="bulb"
+        notification="99"
+        heading="Heading content"
+        subheading="Subheading"
+        variant="insight"
+        collapse="false"
+      > </ix-push-card>
+  `);
+    await page.waitForSelector('ix-push-card');
+    expect(await page.screenshot({ fullPage: true, animations: 'disabled' })).toMatchSnapshot();
 });
 //# sourceMappingURL=push-card.e2e.js.map

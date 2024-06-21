@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,36 +11,36 @@ import { regressionTest } from "../utils/test/index";
 regressionTest.describe('input', () => {
     regressionTest('basic', async ({ page }) => {
         await page.goto('input/basic');
-        expect(await page.screenshot()).toMatchSnapshot();
+        await expect(page).toHaveScreenshot();
     });
     regressionTest('hover', async ({ page }) => {
         await page.goto('input/basic');
         const input = await page.waitForSelector('input');
         await input.hover();
         await page.waitForTimeout(1000);
-        expect(await page.screenshot()).toMatchSnapshot();
+        await expect(page).toHaveScreenshot();
     });
     regressionTest('focus', async ({ page }) => {
         await page.goto('input/basic');
         const input = await page.waitForSelector('input');
         await input.focus();
         await page.waitForTimeout(1000);
-        expect(await page.screenshot()).toMatchSnapshot();
+        await expect(page).toHaveScreenshot();
     });
     regressionTest('with value', async ({ page }) => {
         await page.goto('input/basic');
         const input = await page.waitForSelector('input');
         await input.fill('Example content');
         await page.waitForTimeout(1000);
-        expect(await page.screenshot()).toMatchSnapshot();
+        await expect(page).toHaveScreenshot();
     });
     regressionTest('readonly', async ({ page }) => {
         await page.goto('input/readonly');
-        expect(await page.screenshot()).toMatchSnapshot();
+        await expect(page).toHaveScreenshot();
     });
     regressionTest('disabled', async ({ page }) => {
         await page.goto('input/disabled');
-        expect(await page.screenshot()).toMatchSnapshot();
+        await expect(page).toHaveScreenshot();
     });
 });
 //# sourceMappingURL=input.e2e.js.map

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -24,7 +24,7 @@ regressionTest.describe('tree', () => {
             tree.model = Object.assign({}, model);
         }, treeViewportHandle);
         await page.waitForTimeout(500);
-        await page.evaluate(treeViewport => {
+        await page.evaluate((treeViewport) => {
             treeViewport.scrollTop = 32 * 999;
         }, treeViewportHandle);
         expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -32,7 +32,7 @@ regressionTest.describe('tree', () => {
     regressionTest('should keep scroll state', async ({ page }) => {
         await page.goto('tree/basic');
         const treeViewportHandle = await page.waitForSelector('ix-tree');
-        await page.evaluate(treeViewport => {
+        await page.evaluate((treeViewport) => {
             treeViewport.scrollTop = 32 * 50;
         }, treeViewportHandle);
         await page.evaluate((tree) => {
@@ -43,7 +43,7 @@ regressionTest.describe('tree', () => {
                 hasChildren: false,
                 data: { name: 'insert-below-50' },
             };
-            const indexOfItem50 = tree.model.sample.children.findIndex(id => id === 'sample-child-50');
+            const indexOfItem50 = tree.model.sample.children.findIndex((id) => id === 'sample-child-50');
             model['sample'].children.splice(indexOfItem50 + 1, 0, 'insert-below-50');
             tree.model = Object.assign({}, model);
         }, treeViewportHandle);

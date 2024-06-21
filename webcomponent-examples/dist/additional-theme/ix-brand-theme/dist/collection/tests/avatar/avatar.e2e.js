@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,15 +11,21 @@ import { regressionTest } from "../utils/test/index";
 regressionTest.describe('avatar', () => {
     regressionTest('basic', async ({ page }) => {
         await page.goto('avatar/basic');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+        await expect(page).toHaveScreenshot({ fullPage: true });
     });
     regressionTest('image', async ({ page }) => {
         await page.goto('avatar/image');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+        await expect(page).toHaveScreenshot({ fullPage: true });
     });
     regressionTest('initials', async ({ page }) => {
         await page.goto('avatar/initials');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+        await expect(page).toHaveScreenshot({ fullPage: true });
+    });
+    regressionTest('user-info', async ({ page }) => {
+        await page.goto('avatar/user-info');
+        const avatar = page.locator('ix-avatar');
+        await avatar.click();
+        await expect(page).toHaveScreenshot({ fullPage: true });
     });
 });
 //# sourceMappingURL=avatar.e2e.js.map

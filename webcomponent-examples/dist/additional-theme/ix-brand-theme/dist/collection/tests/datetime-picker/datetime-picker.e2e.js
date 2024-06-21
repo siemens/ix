@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,7 +11,9 @@ import { regressionTest } from "../utils/test/index";
 regressionTest.describe('datetime picker', () => {
     regressionTest('basic', async ({ page }) => {
         await page.goto('datetime-picker/basic');
-        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+            maxDiffPixels: 5,
+        });
     });
 });
 //# sourceMappingURL=datetime-picker.e2e.js.map

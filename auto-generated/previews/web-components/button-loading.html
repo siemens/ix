@@ -1,0 +1,55 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loading button</title>
+    <script type="module">
+      import 'example-styles/dist/button-loading.css';
+    </script>
+  </head>
+
+  <body class="theme-brand-dark">
+    <!-- Preview code -->
+    <script>
+      function toggle(obj) {
+        obj.loading = true;
+
+        setTimeout(() => {
+          obj.loading = false;
+        }, 2500);
+      }
+    </script>
+
+    <ix-button onclick="toggle(this)" outline variant="primary">
+      Button
+    </ix-button>
+
+    <ix-button onclick="toggle(this)" icon="star" outline variant="primary">
+      Button
+    </ix-button>
+
+    <ix-icon-button
+      onclick="toggle(this)"
+      icon="star"
+      outline
+      variant="primary"
+    >
+    </ix-icon-button>
+
+    <ix-button loading outline variant="primary"> Button </ix-button>
+
+    <ix-icon-button
+      loading
+      icon="star"
+      outline
+      variant="primary"
+    ></ix-icon-button>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

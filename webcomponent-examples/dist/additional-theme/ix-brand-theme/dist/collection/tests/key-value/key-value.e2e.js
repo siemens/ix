@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,6 +11,10 @@ import { regressionTest } from "../utils/test/index";
 regressionTest.describe('key value', () => {
     regressionTest('basic', async ({ page }) => {
         await page.goto('key-value/basic');
+        expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+    regressionTest('overflow', async ({ page }) => {
+        await page.goto('key-value/overflow');
         expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
 });

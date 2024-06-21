@@ -1,5 +1,5 @@
 /*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
 import { h } from "@stencil/core";
 import { resolveLink } from "./imprint-language";

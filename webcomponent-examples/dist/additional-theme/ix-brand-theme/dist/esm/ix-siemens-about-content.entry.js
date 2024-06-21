@@ -1,7 +1,7 @@
 import { r as registerInstance, h, H as Host } from './index-03e55534.js';
 
 /*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
 const languageRegister = {
     'cn/zh': {

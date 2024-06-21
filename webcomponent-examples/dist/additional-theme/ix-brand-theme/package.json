@@ -1,6 +1,6 @@
 {
   "name": "@siemens/ix-brand-theme",
-  "version": "2.1.0",
+  "version": "2.2.0-beta.0",
   "description": "Theme for Siemens ix",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.32.1",
-    "@siemens/ix": "^2.0.0",
+    "@siemens/ix": "0.0.0-20240522074328",
     "@siemens/ix-icons": "^2.0.0",
     "@stencil/core": "^4.7.0",
     "@stencil/sass": "^3.0.0",

@@ -8,10 +8,12 @@ SPDX-License-Identifier: MIT
 <html>
   <head>
     <title>Loading button</title>
-    <script type="module" crossorigin src="../assets/index.918151cc.js"></script>
-    <script type="module" crossorigin src="../assets/init.59b0ab29.js"></script>
-    <link rel="stylesheet" href="../assets/index.233f6315.css">
-    <link rel="stylesheet" href="../assets/init.fae1a088.css">
+    
+    <script type="module" crossorigin src="../assets/button-loading.9e45a356.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.8b5b8f81.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.fa571866.js">
+    <link rel="stylesheet" href="../assets/global.cc75495d.css">
+    <link rel="stylesheet" href="../assets/button-loading.9b1c578f.css">
   </head>
 
   <body class="theme-brand-dark">
@@ -26,37 +28,27 @@ SPDX-License-Identifier: MIT
       }
     </script>
 
-    <ix-button onclick="toggle(this)" class="m-1" outline variant="primary">
+    <ix-button onclick="toggle(this)" outline variant="primary">
       Button
     </ix-button>
 
-    <ix-button
-      onclick="toggle(this)"
-      icon="star"
-      class="m-1"
-      outline
-      variant="primary"
-    >
+    <ix-button onclick="toggle(this)" icon="star" outline variant="primary">
       Button
     </ix-button>
 
     <ix-icon-button
       onclick="toggle(this)"
       icon="star"
-      class="m-1"
       outline
       variant="primary"
     >
     </ix-icon-button>
 
-    <ix-button loading class="m-1" outline variant="primary">
-      Button
-    </ix-button>
+    <ix-button loading outline variant="primary"> Button </ix-button>
 
     <ix-icon-button
       loading
       icon="star"
-      class="m-1"
       outline
       variant="primary"
     ></ix-icon-button>
