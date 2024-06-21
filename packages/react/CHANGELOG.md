@@ -1,5 +1,16 @@
 # @siemens/ix-react
 
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1326](https://github.com/siemens/ix/pull/1326) [`23307a0bed`](https://github.com/siemens/ix/commit/23307a0bed36c61da3ca3b77bad99d71f8b18f3c) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(react): remove commonjs support
+
+### Patch Changes
+
+- Updated dependencies [[`e8f825f7f4`](https://github.com/siemens/ix/commit/e8f825f7f494c8cc05dcce075afcff77839f8096)]:
+  - @siemens/ix@3.0.0-alpha.0
+
 ## 2.3.0
 
 ### Patch Changes

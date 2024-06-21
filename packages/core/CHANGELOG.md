@@ -1,5 +1,11 @@
 # @siemens/ix
 
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1273](https://github.com/siemens/ix/pull/1273) [`e8f825f7f4`](https://github.com/siemens/ix/commit/e8f825f7f494c8cc05dcce075afcff77839f8096) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/checkbox): allow multiline labels and align checkbox at the top
+
 ## 2.3.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # @siemens/ix-vue
 
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1328](https://github.com/siemens/ix/pull/1328) [`c17750dfad`](https://github.com/siemens/ix/commit/c17750dfad2fe69854f52fe56a447302c9ff4cc8) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(vue): remove commonjs
+
+### Patch Changes
+
+- Updated dependencies [[`e8f825f7f4`](https://github.com/siemens/ix/commit/e8f825f7f494c8cc05dcce075afcff77839f8096)]:
+  - @siemens/ix@3.0.0-alpha.0
+
 ## 2.3.0
 
 ### Patch Changes
