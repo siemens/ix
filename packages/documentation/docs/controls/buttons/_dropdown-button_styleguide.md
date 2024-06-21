@@ -1,6 +1,6 @@
 Dropdown buttons are button elements that allow users to select an action from a list of options by clicking on a button and revealing a dropdown. Clicking on one of the exposed options triggers the action. We typically use dropdown buttons when no default action is available. Dropdown buttons typically group similar or related actions.
 
-![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1477-13932&mode=design&t=97WS5dUS2rk3MCp2-11)
+![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1477-13932&mode=design&t=97WS5dUS2rk3MCp2-11)
 
 1. Button container
 2. Button label
@@ -13,7 +13,7 @@ All the variants, options and states of the ix button component apply to the dro
 - **Label:** Set a label for the dropdown button. We typically use short labels including verbs.
 - **Placement:** Define where the dropdown appears when the button is active. Choose between different directions (top, bottom, left, right) and two options for alignment with the button (start, end). When there isn't enough space for the chosen placement, it's automatically corrected.
 
-![Placement example](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1504-2203&mode=design&t=5MYmq6zAbfw7xIkC-11)
+![Placement example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1504-2203&mode=design&t=5MYmq6zAbfw7xIkC-11)
 1. Bottom-end placement
 2. Bottom-start placement
 

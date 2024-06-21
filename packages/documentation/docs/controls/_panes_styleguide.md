@@ -2,7 +2,7 @@ Panes are interactive components that allow users to access content that isn't c
 
 Panes help users focus on tasks as related controls are visually grouped and the main content has less information. They are also beneficial for compact and hierarchically organized content and provide a more dynamic layout.
 
-![Pane overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1680-22044&mode=design&t=iP7h44Wf17P209P7-4)
+![Pane overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1680-22044&mode=design&t=iP7h44Wf17P209P7-4)
 
 1. Left pane, inline
 2. Top pane, inline
@@ -20,7 +20,7 @@ Panes help users focus on tasks as related controls are visually grouped and the
 - **Variant**: When used within a layout, floating panes are placed above (z-axis) the main content but below the navigation menu and header. When expanded, they cover a part of the main content. Inline panes are placed on one level with the main content. When expanded, they move the main content and reduce its available space.
 - **Layout**: Depending on which pane needs more focus, the top/bottom or left/right panes can use more space.
 
-![Pane layouts](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1681-28910&mode=design&t=iP7h44Wf17P209P7-4)
+![Pane layouts](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1681-28910&mode=design&t=iP7h44Wf17P209P7-4)
 
 1. Full height (left/right)
 2. Full width (top/bottom)
@@ -33,7 +33,7 @@ Panes help users focus on tasks as related controls are visually grouped and the
 - **Placement**: We typically fit a pane layout within the complete content area of a page bounded by the application header on top and the navigation menu on the left.
 - **Responsiveness**: On large and medium size screens, all panes have a maximum width or height of `50%` of the available space. On small screens, all panes have full width and expand to full height, but the header and navigation menu remain visible. We show collapsed left and right panes on the top and bottom for a more efficient use of space.
 
-![Pane small viewport](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1680-26548&mode=design&t=iP7h44Wf17P209P7-4)
+![Pane small viewport](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1680-26548&mode=design&t=iP7h44Wf17P209P7-4)
 
 1. Inline panes in collapsed state
 2. Inline or floating pane in expanded state

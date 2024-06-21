@@ -7,7 +7,7 @@ Blinds are UI controls that allow the users to hide or reveal content by clickin
 
 Blinds consist of a header section on the top and a content section below. The header section contains a chevron on the left followed by the blind's label. Within the content section, content can be placed freely.
 
-![Blind overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2%3A2&mode=design&t=9faEnH99BaAxqCGM-1)
+![Blind overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2-2&mode=design&t=9faEnH99BaAxqCGM-1)
 
 1. Header section
 2. Content section
@@ -16,7 +16,7 @@ Blinds consist of a header section on the top and a content section below. The h
 
 Multiple blinds can be placed below each other to create an accordion. The recommended distance between the blinds is `0.5rem`. Typically, only one blind can be opened within an accordion but users can be allowed to open multiple blinds at a time.
 
-![Accordion](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2%3A655&mode=design&t=9faEnH99BaAxqCGM-1)
+![Accordion](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2-655&mode=design&t=9faEnH99BaAxqCGM-1)
 
 ## Variants
 
@@ -27,7 +27,7 @@ Multiple blind variants are available:
 - **Primary**: Variant for high visual emphasis
 - **State-related variants**: Alarm, critical, warning, success, info, neutral
 
-![Blind variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=929%3A47485&mode=design&t=9faEnH99BaAxqCGM-1)
+![Blind variants](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=929-47485&mode=design&t=9faEnH99BaAxqCGM-1)
 
 ## Options
 
@@ -43,7 +43,7 @@ The user expands and collapses the blind by pressing anywhere in the header sect
 
 For all blind variants, a default, hover, active and focused state is available.
 
-![Blind states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2%3A352&mode=design&t=9faEnH99BaAxqCGM-1)
+![Blind states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2-352&mode=design&t=9faEnH99BaAxqCGM-1)
 
 ## Dos and don'ts
 
