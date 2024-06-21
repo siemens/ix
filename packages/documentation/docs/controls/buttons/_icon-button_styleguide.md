@@ -1,6 +1,6 @@
 Icon buttons are button elements containing only an icon and no text. Due to their small size, icon buttons are often used in complex layouts. We only use icon buttons if a well-known icon is available or the meaning of the icon metaphor is clear from the context. 
 
-![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1477%3A1714&mode=design&t=97WS5dUS2rk3MCp2-1)
+![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1477-1714&mode=design&t=97WS5dUS2rk3MCp2-1)
 
 1. Container
 2. Icon

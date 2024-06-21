@@ -501,16 +501,23 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private onDropdownClick(event: PointerEvent) {
-    if (dropdownController.pathIncludesTrigger(event.composedPath())) {
-      event.preventDefault();
+    const target = dropdownController.pathIncludesTrigger(event.composedPath());
+    if (target) {
+      if (target !== this.triggerElement) {
+        event.preventDefault();
+      }
 
       if (this.isTriggerElement(event.target as HTMLElement)) {
         return;
       }
     }
 
-    if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
-      dropdownController.dismissAll([this.getId()]);
+    if (
+      !event.defaultPrevented &&
+      (this.closeBehavior === 'inside' || this.closeBehavior === 'both')
+    ) {
+      dropdownController.dismissAll([this.getId()], this.ignoreRelatedSubmenu);
+      return;
     }
 
     dropdownController.dismissOthers(this.getId());
@@ -544,7 +551,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       >
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
-
           <slot></slot>
         </div>
       </Host>

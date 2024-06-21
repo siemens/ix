@@ -41,6 +41,13 @@ jobs:
               - packages/angular-test-app/**
               - packages/react-test-app/**
               - packages/vue-test-app/**
+            unittests:
+              - packages/core/**
+              - packages/angular/**
+              - packages/react/**
+              - packages/angular-test-app/**
+              - packages/react-test-app/**
+              - packages/figma-plugin/**
 
   build:
     needs: changes

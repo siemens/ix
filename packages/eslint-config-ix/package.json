@@ -5,10 +5,11 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
-    "eslint": "latest",
-    "eslint-config-prettier": "latest",
-    "eslint-plugin-prettier": "latest",
-    "eslint-config-turbo": "latest",
-    "prettier": "latest"
+    "eslint": "~8.21.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-turbo": "^1.10.16",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-turbo": "^2.0.4",
+    "prettier": "^3.0.3"
   }
 }

@@ -34,14 +34,15 @@ async function getImageResource(
   figmaToken: string
 ): Promise<Record<string, string>> {
   const ids = nodeIds.join(',');
-  const response = await fetch(
-    `https://api.figma.com/v1/images/${fileName}?ids=${ids}`,
-    {
-      headers: {
-        'X-FIGMA-TOKEN': figmaToken,
-      },
-    }
-  );
+
+  const url = `https://api.figma.com/v1/images/${fileName}?ids=${ids}`;
+  const response = await fetch(url, {
+    headers: {
+      'X-FIGMA-TOKEN': figmaToken,
+    },
+  });
+
+  console.log('Fetch image resource for', url);
 
   if (response.status !== 200) {
     console.log(
@@ -57,7 +58,7 @@ async function getImageResource(
   return data.images;
 }
 
-function getFigmaMeta(node: FigmaNode): {
+export function getFigmaMeta(node: FigmaNode): {
   fileName: string;
   nodeId: string;
 } {
@@ -65,10 +66,18 @@ function getFigmaMeta(node: FigmaNode): {
   const urlPath = url.pathname;
   const urlPaths = urlPath.split('/');
   const fileIndex = urlPaths.findIndex((segment) => segment === 'file');
+  const designIndex = urlPaths.findIndex((segment) => segment === 'design');
   const branchIndex = urlPaths.findIndex((segment) => segment === 'branch');
 
-  const fileName =
-    branchIndex !== -1 ? urlPaths[branchIndex + 1] : urlPaths[fileIndex + 1];
+  let file = '';
+
+  if (designIndex !== -1 && fileIndex === -1) {
+    file = urlPaths[designIndex + 1];
+  } else {
+    file = urlPaths[fileIndex + 1];
+  }
+
+  const fileName = branchIndex !== -1 ? urlPaths[branchIndex + 1] : file;
 
   const nodeId = url.searchParams.get('node-id');
   return {
