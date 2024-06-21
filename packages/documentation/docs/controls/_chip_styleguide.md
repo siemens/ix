@@ -1,6 +1,6 @@
 Chips are components used to display small pieces of information in a compact and visually appealing way. Typically chips contain a concise label and sometimes an icon, and they are clickable and closable.
 
-![Chip overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1149%3A41643&mode=design&t=ruQOzpPQJMKwnk8f-1)
+![Chip overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1149-41643&mode=design&t=ruQOzpPQJMKwnk8f-1)
  
 1. Container 
 2. Label text 
@@ -17,7 +17,7 @@ Chip variants:
 - **State-related variants**: Alarm, critical, warning, success, info and neutral
 - **Custom**: For a customized background and label color 
 
-![Chip variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1201%3A9512&mode=design&t=ruQOzpPQJMKwnk8f-1)
+![Chip variants](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1201-9512&mode=design&t=ruQOzpPQJMKwnk8f-1)
 
 
 ## Options
@@ -42,7 +42,7 @@ Chip variants:
 
 Chips take a default, hover, focused or active state with a varying background color. For the custom chip variant, the specified colors for font and background are applied to all states.
 
-![Chip states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1246%3A6190&mode=design&t=GHOok90R6TcaUrYi-1)
+![Chip states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1246-6190&mode=design&t=GHOok90R6TcaUrYi-1)
 
 ## Dos and Don'ts
 

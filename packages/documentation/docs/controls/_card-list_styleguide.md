@@ -2,7 +2,7 @@ Card lists are UI controls that display a large number of cards or items of the 
 
 Card lists consist of a header section at the top and a content section below. The header section includes an icon button with a chevron on the left, followed by the card list's label. In the content section, items of the same type can be arranged in two different layout styles: stack and scroll.
 
-![Card list overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=897%3A31906&mode=design&t=2pf1CqY5ifYKN3F2-1)
+![Card list overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=897-31906&mode=design&t=2pf1CqY5ifYKN3F2-1)
 
 1. Header section
 2. Content section
@@ -11,11 +11,11 @@ Card lists consist of a header section at the top and a content section below. T
 ## Types
 The stack card list style displays content items from left to right next to each other and wraps them into a new line when space runs out. This means the height of the section can dynamically change.
 
-![Card list - stack style](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=910%3A8581&mode=design&t=2pf1CqY5ifYKN3F2-1)
+![Card list - stack style](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=910-8581&mode=design&t=2pf1CqY5ifYKN3F2-1)
 
 The scroll card list style displays the content items from left to right next to each other in a single row. When the space runs out, horizontal scrolling is enabled, indicated by a semi-transparent area on the left or right end of the content section.
 
-![Card list - scroll style](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=915%3A8647&mode=design&t=2pf1CqY5ifYKN3F2-1)
+![Card list - scroll style](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=915-8647&mode=design&t=2pf1CqY5ifYKN3F2-1)
 
 ## Options
 - **Label**: Card lists can include a label in the header section. The label is positioned right next to the chevron.

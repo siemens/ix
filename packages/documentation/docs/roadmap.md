@@ -6,7 +6,7 @@ title: Roadmap
 
 # Siemens Industrial Experience Roadmap
 
-![Roadmap](https://www.figma.com/file/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?type=design&node-id=694-130&mode=design&t=7oYieUSvKMurFcpx-11)
+![Roadmap](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?type=design&node-id=694-130&mode=design&t=7oYieUSvKMurFcpx-11)
 
 <p className="text-l-title">
 We’re constantly improving our design system for you by extending the component library, developing our user guidance and ensuring the system is reliable and easy to use.  
