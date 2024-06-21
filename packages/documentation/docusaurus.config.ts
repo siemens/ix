@@ -154,7 +154,7 @@ const config: Config = {
               figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
               error_image: path.join('..', 'img', 'figma_error.png'),
               apiToken: process.env.FIGMA_API_TOKEN!,
-              rimraf: false,
+              rimraf: true,
             }),
           ],
         },
