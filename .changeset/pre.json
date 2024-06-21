@@ -17,5 +17,9 @@
     "@siemens/ix-vue": "2.2.1",
     "vue-test-app": "2.1.2"
   },
-  "changesets": []
+  "changesets": [
+    "cool-keys-shout",
+    "rare-numbers-double",
+    "wicked-windows-approve"
+  ]
 }
