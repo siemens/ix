@@ -237,6 +237,28 @@ test.describe('Close behavior', () => {
   });
 });
 
+test('Prevent closing', async ({ page, mount }) => {
+  await mount(`
+    <ix-button id="trigger">Open</ix-button>
+    <ix-dropdown trigger="trigger">
+      <ix-dropdown-header id="header">Header</ix-dropdown-header>
+      <ix-dropdown-item id="item-1">Item 1</ix-dropdown-item>
+    </ix-dropdown>`);
+
+  const header = await page.locator('ix-dropdown-header');
+  header.evaluate((h) =>
+    h.addEventListener('click', (event) => {
+      event.preventDefault();
+    })
+  );
+  await page.locator('#trigger').click();
+  await expect(header).toBeVisible();
+  await header.click();
+  await expect(header).toBeVisible();
+  await page.locator('#item-1').click();
+  await expect(header).not.toBeVisible();
+});
+
 test.describe('Nested dropdowns 1/3', () => {
   function mountDropdown(
     mount: (selector: string) => Promise<ElementHandle<HTMLElement>>,

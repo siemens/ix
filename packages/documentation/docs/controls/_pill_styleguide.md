@@ -1,7 +1,7 @@
 Pills are components used to display small pieces of information in a compact and visually appealing way. Typically pills contain a concise label and sometimes an icon, and they aren't clickable or closable.
 
 
-![Pill overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1377%3A3110&mode=design&t=ZmcRP4ggXtr8b7vZ-1)
+![Pill overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1377-3110&mode=design&t=ZmcRP4ggXtr8b7vZ-1)
 
 1. Container
 2. Icon
@@ -16,7 +16,7 @@ Pill variants:
 - **State-related variants**: Alarm, critical, warning, success, info and neutral.
 - **Custom**: For a customized background and label color.
 
-![Pill variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1375%3A1985&mode=design&t=ZmcRP4ggXtr8b7vZ-1)
+![Pill variants](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1375-1985&mode=design&t=ZmcRP4ggXtr8b7vZ-1)
 
 ## Options
 

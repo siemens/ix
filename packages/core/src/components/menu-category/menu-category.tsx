@@ -268,6 +268,8 @@ export class MenuCategory {
             if (e.target instanceof HTMLElement) {
               if (e.target.tagName === 'IX-MENU-ITEM') {
                 this.showDropdown = false;
+              } else {
+                e.preventDefault();
               }
             }
           }}

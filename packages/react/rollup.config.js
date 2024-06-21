@@ -18,14 +18,10 @@ export default {
   output: [
     {
       dir: 'dist/',
-      entryFileNames: '[name].esm.js',
-      chunkFileNames: '[name]-[hash].esm.js',
+      entryFileNames: '[name].js',
+      chunkFileNames: '[name]-[hash].js',
       format: 'es',
-    },
-    {
-      dir: 'dist/',
-      format: 'commonjs',
-      preferConst: true,
+      sourcemap: true,
     },
   ],
   external: Object.keys(pkg.dependencies),

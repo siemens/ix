@@ -46,6 +46,9 @@ jobs:
               - packages/core/**
               - packages/angular/**
               - packages/react/**
+              - packages/angular-test-app/**
+              - packages/react-test-app/**
+              - packages/figma-plugin/**
 
   build:
     needs: changes
@@ -83,8 +86,6 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     strategy:
       fail-fast: false
       matrix:
@@ -92,6 +93,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard ${{ matrix.shard }}
@@ -109,11 +113,12 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
@@ -131,11 +136,12 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
@@ -177,11 +183,12 @@ jobs:
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation

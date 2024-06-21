@@ -589,7 +589,10 @@ export class CategoryFilter {
               data-id={id}
               title={id}
               key={id}
-              onClick={() => this.addToken(id, this.category)}
+              onClick={(e) => {
+                e.preventDefault();
+                this.addToken(id, this.category);
+              }}
             >
               {`${this.getFilterOperatorString()} ${id}`}
             </button>

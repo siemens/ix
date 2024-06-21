@@ -1,5 +1,63 @@
 # @siemens/ix
 
+## 2.3.0
+
+### Minor Changes
+
+- [#1264](https://github.com/siemens/ix/pull/1264) [`57fa02891e`](https://github.com/siemens/ix/commit/57fa02891e0d81a44a470a4e3c17fe116af36925) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/date-dropdown): add disabled property
+
+- [#1320](https://github.com/siemens/ix/pull/1320) [`bace31f8d5`](https://github.com/siemens/ix/commit/bace31f8d596ea00c75626110dbdf029c211fdbd) Thanks [@PhentomPT](https://github.com/PhentomPT)! - feat(core): add hydrate output target
+
+- [#1277](https://github.com/siemens/ix/pull/1277) [`55d9fca5b4`](https://github.com/siemens/ix/commit/55d9fca5b41c1ae6fa257a4a1da69e4a0efaad34) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/button|icon-button): add danger variant
+
+- [#1306](https://github.com/siemens/ix/pull/1306) [`6118ff3e83`](https://github.com/siemens/ix/commit/6118ff3e834e4c148bb5616e7fa6c4d48b8b8801) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/theme): sync css variables
+
+- [#1292](https://github.com/siemens/ix/pull/1292) [`c1d4f7d6b9`](https://github.com/siemens/ix/commit/c1d4f7d6b977945ded8e2f718d7b6df1f71f0557) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core/split-button): add close behavior
+
+### Patch Changes
+
+- [#1336](https://github.com/siemens/ix/pull/1336) [`1db5a061f5`](https://github.com/siemens/ix/commit/1db5a061f56af548aedf5e86049a4e26ccd4f44d) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/panes): rotate icon at left and right pane
+
+- [#1261](https://github.com/siemens/ix/pull/1261) [`c025a49c02`](https://github.com/siemens/ix/commit/c025a49c0216800274581ee67884e488c1bfdfce) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/date-dropdown): show year and month dropdown
+
+- [#1312](https://github.com/siemens/ix/pull/1312) [`f4eeebfd5e`](https://github.com/siemens/ix/commit/f4eeebfd5e5ad3a582b98816270ac9cf400d2933) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/chip): adjust width on outline variant
+
+- [#1243](https://github.com/siemens/ix/pull/1243) [`b4b06a6b40`](https://github.com/siemens/ix/commit/b4b06a6b40a76e2749aad7134efeb53904b4dc8c) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/event-list-item): add aria-disabled attribute to list element
+
+- [#1246](https://github.com/siemens/ix/pull/1246) [`756bc424a8`](https://github.com/siemens/ix/commit/756bc424a8e0a1d26cb7058dfce5e5418e9ab569) Thanks [@jul-lam](https://github.com/jul-lam)! - fix(core/category-filter): open dropdown on text input and keep it open
+
+- [#1285](https://github.com/siemens/ix/pull/1285) [`9ee4aab8fa`](https://github.com/siemens/ix/commit/9ee4aab8faa483cd3e066c353bfc34527ad88aa3) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/blind): avoid unnecessary wrapping
+
+- [#1274](https://github.com/siemens/ix/pull/1274) [`4418b8cebd`](https://github.com/siemens/ix/commit/4418b8cebda2f7dd475cfaba72e2240137fa5973) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/base-button): set aria disabled
+
+- [#1260](https://github.com/siemens/ix/pull/1260) [`90a7b71940`](https://github.com/siemens/ix/commit/90a7b719405df0885823836964a0db99966fe458) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/group): show expand-collapse icon
+
+- [#1313](https://github.com/siemens/ix/pull/1313) [`e74e830308`](https://github.com/siemens/ix/commit/e74e830308bca2dc532d6321e17acfa518d178d1) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/scrollbar): fix firefox appearance (scrollbar & input & tabs)
+
+- [#1262](https://github.com/siemens/ix/pull/1262) [`5eea8d18bf`](https://github.com/siemens/ix/commit/5eea8d18bfe80eaad111cb38b880f6a0a9cd0bd6) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/group-context-menu): set default cursor
+
+- [#1297](https://github.com/siemens/ix/pull/1297) [`7f31b94599`](https://github.com/siemens/ix/commit/7f31b945994c6ca24550a2b7fac07d9a8db8fcb3) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/workflow-step): load icon names before component is initialized
+
+- [#1230](https://github.com/siemens/ix/pull/1230) [`5b2df0c4d4`](https://github.com/siemens/ix/commit/5b2df0c4d4e35a7224ac70cef22a1b89fef4a222) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/event-list): event-list-items not selectabe in chrome
+
+- [#1251](https://github.com/siemens/ix/pull/1251) [`346fb9a2de`](https://github.com/siemens/ix/commit/346fb9a2dedf1f37d8c952b84567545b174eed10) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/tooltip): null check before event listener gets registered on trigger
+
+- [#1311](https://github.com/siemens/ix/pull/1311) [`70ec75b65d`](https://github.com/siemens/ix/commit/70ec75b65d3540dc6c9bd9369222a43ede81eac7) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/tooltip): adjust arrow height
+
+- [#1334](https://github.com/siemens/ix/pull/1334) [`5149f1a535`](https://github.com/siemens/ix/commit/5149f1a535b041d469e23bd2221d12e4b639d73c) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/dropdown): prevent closing
+
+- [#1244](https://github.com/siemens/ix/pull/1244) [`1a0175f11e`](https://github.com/siemens/ix/commit/1a0175f11e20afcd3e6d357a856c9c8764cfa390) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - docs(core/menu-about): update jsdocs for label property
+
+- [#1225](https://github.com/siemens/ix/pull/1225) [`a35859addc`](https://github.com/siemens/ix/commit/a35859addcccffd56bc5844f0455decbdbcc11d2) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - fix(core/group): use correct cursors
+
+- [#1287](https://github.com/siemens/ix/pull/1287) [`bee3696005`](https://github.com/siemens/ix/commit/bee3696005a284707118d7e6e3155ede54886140) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/select): rollback and fix object iteration
+
+- [#1293](https://github.com/siemens/ix/pull/1293) [`fb48f05e57`](https://github.com/siemens/ix/commit/fb48f05e570e61a42ddd7cf3dae1eafafe236945) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/menu): use label property to render internal menu items
+
+- [#1339](https://github.com/siemens/ix/pull/1339) [`9e75d7bd2d`](https://github.com/siemens/ix/commit/9e75d7bd2df4222913a093d7f4e899e4dc5fcb43) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/menu): fix firefox overflow behavior and input styling
+
+- [#1219](https://github.com/siemens/ix/pull/1219) [`544ceed834`](https://github.com/siemens/ix/commit/544ceed8349d94fe060dfcbd8d5f45526ec75dff) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/workflow): add flexible layout
+
 ## 2.2.1
 
 ### Patch Changes
