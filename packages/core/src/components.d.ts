@@ -1967,7 +1967,7 @@ export namespace Components {
           * Disables the input field
          */
         "disabled": boolean;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Returns the native input element used under the hood
          */
@@ -1976,7 +1976,7 @@ export namespace Components {
         /**
           * The helper text for the input field
          */
-        "helperText": string;
+        "helperText"?: string;
         /**
           * The info text for the input field
          */
@@ -1984,11 +1984,11 @@ export namespace Components {
         /**
           * The error text for the input field
          */
-        "invalidText": string;
+        "invalidText"?: string;
         /**
           * The label for the input field
          */
-        "label": string;
+        "label"?: string;
         /**
           * The maximum value for the input field
          */
@@ -2000,7 +2000,7 @@ export namespace Components {
         /**
           * name of the input element
          */
-        "name": string;
+        "name"?: string;
         /**
           * The pattern for the input field
          */
@@ -2008,7 +2008,7 @@ export namespace Components {
         /**
           * placeholder of the input element
          */
-        "placeholder": string;
+        "placeholder"?: string;
         /**
           * Indicates if the field is read-only
          */

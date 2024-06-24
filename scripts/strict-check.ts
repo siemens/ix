@@ -137,7 +137,7 @@ function printNewErrors() {
   let output: string[] = [];
   errorInPR.forEach((value, key) => {
     if (!errorInMain.has(key)) {
-      const lines: string[] = ['\n'];
+      const lines: string[] = [];
 
       value.errors.forEach((error) => {
         lines.push(

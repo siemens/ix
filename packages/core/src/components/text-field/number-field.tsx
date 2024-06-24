@@ -48,18 +48,18 @@ let numberFieldIds = 0;
   formAssociated: true,
 })
 export class NumberField implements IxInputFieldComponent<number> {
-  @Element() hostElement: HTMLIxNumberFieldElement;
-  @AttachInternals() formInternals: ElementInternals;
+  @Element() hostElement!: HTMLIxNumberFieldElement;
+  @AttachInternals() formInternals!: ElementInternals;
 
   /**
    * name of the input element
    */
-  @Prop({ reflect: true }) name: string;
+  @Prop({ reflect: true }) name?: string;
 
   /**
    * placeholder of the input element
    */
-  @Prop({ reflect: true }) placeholder: string;
+  @Prop({ reflect: true }) placeholder?: string;
 
   /**
    * The value of the input field
@@ -69,7 +69,7 @@ export class NumberField implements IxInputFieldComponent<number> {
   /**
    * Indicates if the field is required
    */
-  @Prop({ reflect: true }) required: boolean;
+  @Prop({ reflect: true }) required: boolean = false;
 
   /**
    * Disables the input field
@@ -84,7 +84,7 @@ export class NumberField implements IxInputFieldComponent<number> {
   /**
    * The helper text for the input field
    */
-  @Prop() helperText: string;
+  @Prop() helperText?: string;
 
   /**
    * The info text for the input field
@@ -109,12 +109,12 @@ export class NumberField implements IxInputFieldComponent<number> {
   /**
    * The label for the input field
    */
-  @Prop({ reflect: true }) label: string;
+  @Prop({ reflect: true }) label?: string;
 
   /**
    * The error text for the input field
    */
-  @Prop() invalidText: string;
+  @Prop() invalidText?: string;
 
   /**
    * The pattern for the input field
@@ -144,23 +144,23 @@ export class NumberField implements IxInputFieldComponent<number> {
   /**
    * Event emitted when the value of the input field changes
    */
-  @Event() valueChange: EventEmitter<number>;
+  @Event() valueChange!: EventEmitter<number>;
 
   /**
    * Event emitted when the validity state of the input field changes
    */
-  @Event() validityStateChange: EventEmitter<ValidityState>;
+  @Event() validityStateChange!: EventEmitter<ValidityState>;
 
   /**
    * Event emitted when the input field loses focus
    */
-  @Event() ixBlur: EventEmitter<void>;
+  @Event() ixBlur!: EventEmitter<void>;
 
   @State() isInvalid = false;
-  @State() isValid: boolean;
-  @State() isInfo: boolean;
-  @State() isWarning: boolean;
-  @State() isInvalidByRequired: boolean;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
+  @State() isInvalidByRequired = false;
 
   private inputRef = makeRef<HTMLInputElement>();
   private postfixRef = makeRef<HTMLDivElement>();
@@ -205,7 +205,7 @@ export class NumberField implements IxInputFieldComponent<number> {
 
   /** @internal */
   @Method()
-  async getAssociatedFormElement(): Promise<HTMLFormElement> {
+  async getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return this.formInternals.form;
   }
 
@@ -254,7 +254,7 @@ export class NumberField implements IxInputFieldComponent<number> {
           <div
             class={{
               'input-wrapper': true,
-              'show-stepper-buttons': this.showStepperButtons,
+              'show-stepper-buttons': !!this.showStepperButtons,
             }}
           >
             <PrefixSlot

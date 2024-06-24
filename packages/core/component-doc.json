@@ -13175,7 +13175,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13217,7 +13217,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13238,7 +13238,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13307,7 +13307,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13349,7 +13349,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13387,6 +13387,7 @@
           "reflectToAttr": true,
           "docs": "Indicates if the field is required",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
