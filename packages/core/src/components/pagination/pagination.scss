@@ -34,6 +34,8 @@
     width: 4.125rem;
     text-align: center;
     margin: 0 $small-space;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
   }
 
   .page-buttons {

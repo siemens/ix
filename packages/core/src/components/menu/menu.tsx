@@ -103,6 +103,7 @@ export class Menu {
    * Menu stays pinned to the left
    */
   @Prop() pinned = false;
+
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
     if (this.applicationLayoutContext?.host === 'map-navigation') {

@@ -131,6 +131,7 @@ export class Avatar {
   @State() hasSlottedElements = false;
 
   private slotElement: HTMLSlotElement;
+  private dropdownElement: HTMLIxDropdownElement;
 
   componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
@@ -147,6 +148,12 @@ export class Avatar {
         resolve(this.hostElement.shadowRoot.querySelector('button'))
       );
     });
+  }
+
+  private onDropdownClick(event: MouseEvent) {
+    if (event.target === this.dropdownElement) {
+      event.preventDefault();
+    }
   }
 
   render() {
@@ -168,8 +175,10 @@ export class Avatar {
             <AvatarImage image={this.image} initials={this.initials} />
           </BaseButton>
           <ix-dropdown
+            ref={(ref: HTMLIxDropdownElement) => (this.dropdownElement = ref)}
             trigger={this.resolveAvatarTrigger()}
             class="avatar-dropdown"
+            onClick={(e) => this.onDropdownClick(e)}
           >
             {this.username && (
               <Fragment>
@@ -179,7 +188,9 @@ export class Avatar {
                   initials={this.initials}
                   userName={this.username}
                 />
-                {this.hasSlottedElements && <ix-divider></ix-divider>}
+                {this.hasSlottedElements && (
+                  <ix-divider onClick={(e) => e.preventDefault()}></ix-divider>
+                )}
               </Fragment>
             )}
             <slot
