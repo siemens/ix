@@ -26,17 +26,12 @@
       ],
       "outputLogs": "new-only"
     },
-    "pkg": {
-      "dependsOn": [
-        "^build"
-      ],
-      "cache": true
-    },
     "start": {
       "dependsOn": [
         "^build"
       ],
-      "cache": true
+      "cache": true,
+      "persistent": true
     },
     "lint": {
       "cache": false
