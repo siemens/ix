@@ -26,7 +26,6 @@ export class PlaygroundInternal {
   render() {
     return (
       <Host>
-
         <div>
           <ix-checkbox-group
             label="Terms of something"
