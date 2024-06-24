@@ -2,7 +2,7 @@ Cards are UI controls used to neatly organize and group related information abou
 
 Cards are interactive elements. The entire container is clickable and triggers a single action.
 
-![Card overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858%3A4956&mode=design&t=RDimbEsIHFIXIByo-1)
+![Card overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858-4956&mode=design&t=RDimbEsIHFIXIByo-1)
 1. Icon
 2. Notification
 3. Heading
@@ -19,17 +19,17 @@ Action cards have an icon, a heading and a subheading. We use them to trigger ke
 
 Push cards contain a notification value in addition to the icon, heading, and subheading. These cards have an expandable section placed at the bottom of the container. When clicked, the expandable section displays additional content. The notification value is logically related to the items shown in the expandable area. Push cards have a fixed content height of 11rem that cannot be changed.
 
-![Card types](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858%3A4953&mode=design&t=RDimbEsIHFIXIByo-1)
+![Card types](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858-4953&mode=design&t=RDimbEsIHFIXIByo-1)
 
 ## Customization
 We also offer a card container component that enables designers to display various types of content, such as images, charts or key data. Some small rules apply: Background images can stretch over the complete size of the container, whereas the card content must maintain a default padding of at least `1rem`.
 
-![Card examples](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1329%3A26613&mode=design&t=sOZRNgWt7R52iLSF-1)
+![Card examples](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1329-26613&mode=design&t=sOZRNgWt7R52iLSF-1)
 
 ## Variants
 Cards are available in nine variants: Insight (outline style), notification (filled style), alarm, critical, warning, success, info, neutral and primary. Each variant emphasizes different aspects to guide the user's attention. These variants differ visually through the presence of an outline and a distinct container fill color, but they all follow the same interaction pattern. We typically use the insight variant as the default choice as we find this creates a more balanced and subtle appearance for users.
 
-![Card variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858%3A4969&mode=design&t=RDimbEsIHFIXIByo-1)
+![Card variants](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858-4969&mode=design&t=RDimbEsIHFIXIByo-1)
 
 ## Options
 
@@ -47,7 +47,7 @@ Cards are available in nine variants: Insight (outline style), notification (fil
 ## States 
 Cards can take one of three states: Default, hover and active. Action cards also offer a selected state.
 
-![Card states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858%3A4979&mode=design&t=RDimbEsIHFIXIByo-1)
+![Card states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858-4979&mode=design&t=RDimbEsIHFIXIByo-1)
 
 ## Dos and don'ts
 - Do group cards in lists or grids (use the [card list](card-list.md) control)

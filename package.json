@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://www.github.com/siemens/ix/issues"
   },
-  "packageManager": "pnpm@9.1.2",
+  "packageManager": "pnpm@9.3.0",
   "engines": {
     "pnpm": ">=9.x.x",
     "node": ">=18.x.x"
@@ -51,7 +51,7 @@
     "prettier": "^2.6.2",
     "prettier-plugin-organize-imports": "^3.2.1",
     "tsx": "^4.15.4",
-    "turbo": "^1.10.16",
+    "turbo": "^2.0.4",
     "typescript": "^5.4.5"
   },
   "config": {
