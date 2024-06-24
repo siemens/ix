@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxCheckbox, IxCheckboxGroup } from "@siemens/ix-react";
+import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-react';
 
 export default () => {
   return (
@@ -29,10 +29,7 @@ export default () => {
           class="ix-warning"
         >
           <IxCheckbox label="I agree everything" name="agreed"></IxCheckbox>
-          <IxCheckbox
-            label="I disagree everything"
-            name="agreed"
-          ></IxCheckbox>
+          <IxCheckbox label="I disagree everything" name="agreed"></IxCheckbox>
         </IxCheckboxGroup>
       </div>
 
@@ -43,10 +40,7 @@ export default () => {
           class="ix-invalid"
         >
           <IxCheckbox label="I agree everything" name="agreed"></IxCheckbox>
-          <IxCheckbox
-            label="I disagree everything"
-            name="agreed"
-          ></IxCheckbox>
+          <IxCheckbox label="I disagree everything" name="agreed"></IxCheckbox>
         </IxCheckboxGroup>
       </div>
 
@@ -57,13 +51,9 @@ export default () => {
           class="ix-valid"
         >
           <IxCheckbox label="I agree everything" name="agreed"></IxCheckbox>
-          <IxCheckbox
-            label="I disagree everything"
-            name="agreed"
-          ></IxCheckbox>
+          <IxCheckbox label="I disagree everything" name="agreed"></IxCheckbox>
         </IxCheckboxGroup>
       </div>
-      <!-- Preview code -->
     </>
   );
 };

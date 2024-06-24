@@ -55,7 +55,6 @@ import FlipTile from './preview-examples/flip-tile.vue';
 import FormCheckbox from './preview-examples/form-checkbox.vue';
 import FormCheckboxDisabled from './preview-examples/form-checkbox-disabled.vue';
 import FormCheckboxGroup from './preview-examples/form-checkbox-group.vue';
-import FormCheckboxValidation from './preview-examples/form-checkbox-group-validation.vue';
 import GridPadding from './preview-examples/grid-padding.vue';
 import GridSize from './preview-examples/grid-size.vue';
 import Grid from './preview-examples/grid.vue';
@@ -84,9 +83,8 @@ import ModalExample from './preview-examples/modal.vue';
 import NumberField from './preview-examples/number-field.vue';
 import NumberFieldLabel from './preview-examples/number-field-label.vue';
 import NumberFieldDisabled from './preview-examples/number-field-disabled.vue';
-import NumberFieldReadOnly from './preview-examples/number-field-readonly.vue.vue';
+import NumberFieldReadOnly from './preview-examples/number-field-readonly.vue';
 import NumberFieldStepperButton from './preview-examples/number-field-stepper-button.vue';
-import NumberFieldValidation from './preview-examples/validation.vue';
 import Pane from './preview-examples/pane.vue';
 import PaneLayout from './preview-examples/pane-layout.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
@@ -185,7 +183,6 @@ const routes: any = {
   '/preview/form-checkbox': FormCheckbox,
   '/preview/form-checkbox-disabled': FormCheckboxDisabled,
   '/preview/form-checkbox-group': FormCheckboxGroup,
-  '/preview/form-checkbox-validation': FormCheckboxValidation,
   '/preview/group': Group,
   '/preview/group-context-menu': GroupContextMenu,
   '/preview/group-custom-entry': GroupCustomEntry,
@@ -248,7 +245,6 @@ const routes: any = {
   '/preview/number-field-label': NumberFieldLabel,
   '/preview/number-field-readonly': NumberFieldReadOnly,
   '/preview/number-field-stepper-button': NumberFieldStepperButton,
-  '/preview/number-field-validation': NumberFieldValidation,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/basic-navigation': BasicNavigation,

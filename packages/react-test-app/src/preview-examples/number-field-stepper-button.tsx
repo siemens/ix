@@ -12,10 +12,7 @@ import { IxNumberField } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxNumberField
-        value={0}
-        showStepperButton
-      ></IxNumberField>
+      <IxNumberField value={0} showStepperButtons></IxNumberField>
     </>
   );
 };

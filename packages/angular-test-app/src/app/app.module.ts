@@ -182,6 +182,7 @@ import Echarts from 'src/preview-examples/echarts';
 import ValidationSelect from 'src/preview-examples/validation-select';
 import ValidationTextField from 'src/preview-examples/validation-text-field';
 import FormValidation from 'src/preview-examples/form-validation';
+import TextFieldPattern from 'src/preview-examples/text-field-pattern';
 
 @NgModule({
   declarations: [
@@ -291,6 +292,7 @@ import FormValidation from 'src/preview-examples/form-validation';
     TextFieldReadonly,
     TextFieldTypes,
     TextFieldValidation,
+    TextFieldPattern,
     ThemeSwitcherExample,
     Tile,
     Timepicker,

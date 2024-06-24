@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './date-field.ts'
+  templateUrl: './date-field.html',
 })
 export default class DateField {}
