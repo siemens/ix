@@ -24,13 +24,14 @@ import { BooleanValueAccessor } from './boolean-value-accessor';
 import { ThemeService } from './theme';
 import { ToastService } from './toast';
 import * as tree from './tree';
+
 const DECLARATIONS = [
   ...DIRECTIVES,
   tree.IxTree,
   IxDropdownTriggerDirective,
   IxIcon,
   SelectValueAccessor,
-  BooleanValueAccessor
+  BooleanValueAccessor,
 ];
 
 @NgModule({
