@@ -1,2 +1,3 @@
 playwright-ct.config.ts
 playwright.config.ts
+stencil.config.ts
