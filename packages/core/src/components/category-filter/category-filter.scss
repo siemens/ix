@@ -36,7 +36,9 @@
   }
 
   .input-container {
-    @include element-input(false);
+    &:not(.readonly):not(.disabled) {
+      @include element-input('false');
+    }
 
     &:not(.readonly):not(.disabled):hover {
       border-color: var(--theme-input--border-color--hover) !important;
@@ -86,9 +88,10 @@
 
     &,
     &:hover,
+    &:focus
     &:focus-visible {
-      border: none;
-      outline: none;
+      border: none !important;
+      outline: none !important;
     }
 
     &.hide-placeholder::placeholder {
