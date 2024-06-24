@@ -74,7 +74,7 @@ export interface IxFormComponent<T = any> extends IxComponent {
   updateFormInternalValue(value: T): void;
   hasValidValue(): Promise<boolean>;
   getValidityState?(): Promise<ValidityState>;
-  getAssociatedFormElement(): Promise<HTMLFormElement>;
+  getAssociatedFormElement(): Promise<HTMLFormElement | null>;
 }
 
 export interface IxInputFieldComponent<T = any>

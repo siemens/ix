@@ -2549,7 +2549,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2608,12 +2608,13 @@
           "reflectToAttr": true,
           "docs": "Value of the checkbox component",
           "docsTags": [],
+          "default": "'on'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         }
       ],
@@ -2718,7 +2719,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2760,7 +2761,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2781,7 +2782,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4310,6 +4311,7 @@
           "reflectToAttr": false,
           "docs": "disabled attribute",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -4358,7 +4360,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4422,7 +4424,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4443,7 +4445,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4464,7 +4466,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4485,7 +4487,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4501,6 +4503,7 @@
           "reflectToAttr": false,
           "docs": "readonly attribute",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -4527,7 +4530,7 @@
               "type": "boolean"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -8556,7 +8559,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -8619,7 +8622,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -8640,7 +8643,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -14791,6 +14794,7 @@
           "reflectToAttr": false,
           "docs": "Disabled state of the radio component",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -14817,7 +14821,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -14964,7 +14968,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -15006,7 +15010,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -15027,7 +15031,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -15090,7 +15094,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17403,6 +17407,7 @@
           "reflectToAttr": true,
           "docs": "Specifies whether the text field is disabled.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -17429,7 +17434,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17471,7 +17476,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17492,7 +17497,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17555,7 +17560,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17597,7 +17602,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17613,6 +17618,7 @@
           "reflectToAttr": true,
           "docs": "Specifies whether the text field is readonly.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -17634,6 +17640,7 @@
           "reflectToAttr": true,
           "docs": "Specifies whether the text field is required.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -17903,6 +17910,7 @@
           "reflectToAttr": false,
           "docs": "Determines if the textarea field is disabled.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -17929,7 +17937,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17971,7 +17979,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17992,7 +18000,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -18055,7 +18063,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -18076,7 +18084,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -18092,6 +18100,7 @@
           "reflectToAttr": false,
           "docs": "Determines if the textarea field is readonly.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -18113,6 +18122,7 @@
           "reflectToAttr": true,
           "docs": "Determines if the textarea field is required.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -19494,12 +19504,13 @@
           "reflectToAttr": true,
           "docs": "Value of the checkbox component",
           "docsTags": [],
+          "default": "'on'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         }
       ],

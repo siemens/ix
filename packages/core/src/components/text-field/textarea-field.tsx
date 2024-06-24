@@ -39,18 +39,18 @@ import { mapValidationResult, onInputBlur } from './text-field.util';
   formAssociated: true,
 })
 export class TextareaField implements IxInputFieldComponent<string> {
-  @Element() hostElement: HTMLIxTextareaFieldElement;
-  @AttachInternals() formInternals: ElementInternals;
+  @Element() hostElement!: HTMLIxTextareaFieldElement;
+  @AttachInternals() formInternals!: ElementInternals;
 
   /**
    * The name of the textarea field.
    */
-  @Prop({ reflect: true }) name: string;
+  @Prop({ reflect: true }) name?: string;
 
   /**
    * The placeholder text for the textarea field.
    */
-  @Prop({ reflect: true }) placeholder: string;
+  @Prop({ reflect: true }) placeholder?: string;
 
   /**
    * The value of the textarea field.
@@ -60,22 +60,22 @@ export class TextareaField implements IxInputFieldComponent<string> {
   /**
    * Determines if the textarea field is required.
    */
-  @Prop({ reflect: true }) required: boolean;
+  @Prop({ reflect: true }) required: boolean = false;
 
   /**
    * Determines if the textarea field is disabled.
    */
-  @Prop() disabled: boolean;
+  @Prop() disabled: boolean = false;
 
   /**
    * Determines if the textarea field is readonly.
    */
-  @Prop() readonly: boolean;
+  @Prop() readonly: boolean = false;
 
   /**
    * The helper text for the textarea field.
    */
-  @Prop() helperText: string;
+  @Prop() helperText?: string;
 
   /**
    * The info text for the textarea field.
@@ -100,12 +100,12 @@ export class TextareaField implements IxInputFieldComponent<string> {
   /**
    * The label for the textarea field.
    */
-  @Prop({ reflect: true }) label: string;
+  @Prop({ reflect: true }) label?: string;
 
   /**
    * The error text for the textarea field.
    */
-  @Prop() invalidText: string;
+  @Prop() invalidText?: string;
 
   /**
    * The height of the textarea field.
@@ -151,23 +151,23 @@ export class TextareaField implements IxInputFieldComponent<string> {
   /**
    * Event emitted when the value of the textarea field changes.
    */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange!: EventEmitter<string>;
 
   /**
    * Event emitted when the validity state of the textarea field changes.
    */
-  @Event() validityStateChange: EventEmitter<ValidityState>;
+  @Event() validityStateChange!: EventEmitter<ValidityState>;
 
   /**
    * Event emitted when the textarea field loses focus.
    */
-  @Event() ixBlur: EventEmitter<void>;
+  @Event() ixBlur!: EventEmitter<void>;
 
   @State() isInvalid = false;
-  @State() isValid: boolean;
-  @State() isInfo: boolean;
-  @State() isWarning: boolean;
-  @State() isInvalidByRequired: boolean;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
+  @State() isInvalidByRequired = false;
 
   private textAreaRef = makeRef<HTMLTextAreaElement>();
 
@@ -187,7 +187,7 @@ export class TextareaField implements IxInputFieldComponent<string> {
 
   /** @internal */
   @Method()
-  async getAssociatedFormElement(): Promise<HTMLFormElement> {
+  async getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return this.formInternals.form;
   }
 
@@ -206,8 +206,7 @@ export class TextareaField implements IxInputFieldComponent<string> {
   }
 
   getSizeValue(behavior: string, value: string) {
-    console.log(this.resizeBehavior === behavior ? value : null);
-    return this.resizeBehavior === behavior ? value : null;
+    return this.resizeBehavior === behavior ? value : undefined;
   }
 
   render() {

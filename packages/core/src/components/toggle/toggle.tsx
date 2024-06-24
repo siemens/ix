@@ -32,7 +32,7 @@ import { IxFormComponent } from '../utils/field';
   formAssociated: true,
 })
 export class Toggle implements IxFormComponent<string> {
-  @AttachInternals() formInternals: ElementInternals;
+  @AttachInternals() formInternals!: ElementInternals;
 
   @Element() hostElement!: HTMLIxToggleElement;
 
@@ -44,7 +44,7 @@ export class Toggle implements IxFormComponent<string> {
   /**
    * Value of the checkbox component
    */
-  @Prop({ reflect: true }) value?: string;
+  @Prop({ reflect: true }) value: string = 'on';
 
   /**
    * Whether the slide-toggle element is checked or not.
@@ -91,10 +91,10 @@ export class Toggle implements IxFormComponent<string> {
   /**
    * An event will be dispatched each time the slide-toggle changes its value.
    */
-  @Event() checkedChange: EventEmitter<boolean>;
+  @Event() checkedChange!: EventEmitter<boolean>;
 
   /** @internal */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange!: EventEmitter<string>;
 
   onCheckedChange(newChecked: boolean) {
     if (this.indeterminate) {
@@ -108,7 +108,7 @@ export class Toggle implements IxFormComponent<string> {
     if (this.checked) {
       this.formInternals.setFormValue(this.value);
     } else {
-      this.formInternals.setFormValue(undefined);
+      this.formInternals.setFormValue(null);
     }
   }
 
@@ -120,7 +120,7 @@ export class Toggle implements IxFormComponent<string> {
 
   /** @internal */
   @Method()
-  getAssociatedFormElement(): Promise<HTMLFormElement> {
+  getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return Promise.resolve(this.formInternals.form);
   }
 

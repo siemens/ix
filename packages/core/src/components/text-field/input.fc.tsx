@@ -11,10 +11,10 @@ import { MakeRef } from '../utils/make-ref';
 import { A11yAttributes } from '../utils/a11y';
 
 export function TextareaElement(props: {
-  textareaHeight: string;
-  textareaWidth: string;
-  textareaRows: string;
-  textareaCols: string;
+  textareaHeight?: string;
+  textareaWidth?: string;
+  textareaRows?: string;
+  textareaCols?: string;
   disabled: boolean;
   readonly: boolean;
   maxLength?: number;
@@ -22,7 +22,7 @@ export function TextareaElement(props: {
   isInvalid: boolean;
   required: boolean;
   value: string;
-  placeholder: string;
+  placeholder?: string;
   textAreaRef: (el: HTMLTextAreaElement) => void;
   valueChange: (value: string) => void;
   updateFormInternalValue: (value: string) => void;
@@ -67,12 +67,12 @@ export function InputElement(props: {
   minLength?: string | number;
   max?: string | number;
   min?: string | number;
-  pattern: string;
+  pattern?: string;
   type: string;
   isInvalid: boolean;
   required: boolean;
   value: string | number;
-  placeholder: string;
+  placeholder?: string;
   inputRef: (el: HTMLInputElement) => void;
   onKeyPress: (event: KeyboardEvent) => void;
   valueChange: (value: string) => void;
@@ -88,8 +88,8 @@ export function InputElement(props: {
       disabled={props.disabled}
       min={props.min}
       max={props.max}
-      maxLength={props.maxLength && Number(props.maxLength)}
-      minLength={props.maxLength && Number(props.minLength)}
+      maxLength={props.maxLength ? Number(props.maxLength) : undefined}
+      minLength={props.maxLength ? Number(props.minLength) : undefined}
       ref={props.inputRef}
       pattern={props.pattern}
       type={props.type}

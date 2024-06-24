@@ -50,18 +50,18 @@ export type DateFieldValidityState = {
   formAssociated: true,
 })
 export class DateField implements IxInputFieldComponent<string> {
-  @Element() hostElement: HTMLIxDateFieldElement;
-  @AttachInternals() formInternals: ElementInternals;
+  @Element() hostElement!: HTMLIxDateFieldElement;
+  @AttachInternals() formInternals!: ElementInternals;
 
   /**
    * name of the input element
    */
-  @Prop({ reflect: true }) name: string;
+  @Prop({ reflect: true }) name?: string;
 
   /**
    * placeholder of the input element
    */
-  @Prop({ reflect: true }) placeholder: string;
+  @Prop({ reflect: true }) placeholder?: string;
 
   /**
    * value of the input element
@@ -77,31 +77,31 @@ export class DateField implements IxInputFieldComponent<string> {
   /**
    * required attribute
    */
-  @Prop() required: boolean;
+  @Prop() required?: boolean;
 
   /**
    * helper text below the input field
    */
-  @Prop() helperText: string;
+  @Prop() helperText?: string;
 
   /**
    * label of the input field
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * error text below the input field
    */
-  @Prop({ reflect: true }) invalidText: string;
+  @Prop({ reflect: true }) invalidText?: string;
 
   /**
    * readonly attribute
    */
-  @Prop() readonly: boolean;
+  @Prop() readonly: boolean = false;
   /**
    * disabled attribute
    */
-  @Prop() disabled: boolean;
+  @Prop() disabled: boolean = false;
 
   /**
    * info text below the input field
@@ -132,21 +132,21 @@ export class DateField implements IxInputFieldComponent<string> {
   /**
    * Input change event.
    */
-  @Event({ cancelable: false }) valueChange: EventEmitter<string>;
+  @Event({ cancelable: false }) valueChange!: EventEmitter<string>;
 
   /**
    * Validation state change event.
    */
-  @Event() validityStateChange: EventEmitter<DateFieldValidityState>;
+  @Event() validityStateChange!: EventEmitter<DateFieldValidityState>;
 
   /** @internal */
-  @Event() ixFocus: EventEmitter<void>;
+  @Event() ixFocus!: EventEmitter<void>;
 
   /** @internal */
-  @Event() ixBlur: EventEmitter<void>;
+  @Event() ixBlur!: EventEmitter<void>;
 
   @State() show = false;
-  @State() from: string;
+  @State() from: string | null = null;
   @State() isInputInvalid = false;
   @State() isInvalid = false;
   @State() isValid = false;
@@ -161,8 +161,8 @@ export class DateField implements IxInputFieldComponent<string> {
 
   private inputElementRef = makeRef<HTMLInputElement>();
   private dropdownElementRef = makeRef<HTMLIxDropdownElement>();
-  private classObserver: ClassMutationObserver;
-  private invalidReason: string;
+  private classObserver?: ClassMutationObserver;
+  private invalidReason?: string;
 
   updateFormInternalValue(value: any): void {
     this.formInternals.setFormValue(value);
@@ -217,7 +217,7 @@ export class DateField implements IxInputFieldComponent<string> {
 
   /** @internal */
   @Method()
-  getAssociatedFormElement(): Promise<HTMLFormElement> {
+  getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return Promise.resolve(this.formInternals.form);
   }
 
@@ -251,16 +251,30 @@ export class DateField implements IxInputFieldComponent<string> {
     const id = dropdownElement.getAttribute('data-ix-dropdown');
 
     dropdownController.dismissAll();
-    dropdownController.present(dropdownController.getDropdownById(id));
+    if (!id) {
+      return;
+    }
+
+    const dropdown = dropdownController.getDropdownById(id);
+    if (!dropdown) {
+      return;
+    }
+    dropdownController.present(dropdown);
   }
 
   async closeDropdown() {
     const dropdownElement = await this.dropdownElementRef.waitForCurrent();
     const id = dropdownElement.getAttribute('data-ix-dropdown');
 
-    if (id) {
-      dropdownController.dismiss(dropdownController.getDropdownById(id));
+    if (!id) {
+      return;
     }
+
+    const dropdown = dropdownController.getDropdownById(id);
+    if (!dropdown) {
+      return;
+    }
+    dropdownController.dismiss(dropdown);
   }
 
   private checkClassList() {
@@ -417,7 +431,7 @@ export class DateField implements IxInputFieldComponent<string> {
             ref={this.datepickerRef}
             format={this.format}
             range={false}
-            from={this.from}
+            from={this.from ?? ''}
             onDateChange={(event) => {
               const { from } = event.detail;
               this.onInput(from);

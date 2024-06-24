@@ -29,26 +29,26 @@ import {
 export class RadiobuttonGroup
   implements FieldWrapperInterface, IxFormValidationState
 {
-  @Element() hostElement: HTMLIxRadioGroupElement;
+  @Element() hostElement!: HTMLIxRadioGroupElement;
   /**
    * Show text below the field component
    */
-  @Prop() helperText: string;
+  @Prop() helperText?: string;
 
   /**
    * Label for the field component
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Value of the radiobutton group component
    */
-  @Prop() value: string;
+  @Prop() value?: string;
 
   /**
    * Error text for the field component
    */
-  @Prop() invalidText: string;
+  @Prop() invalidText?: string;
 
   /**
    * Info text for the field component
@@ -75,10 +75,10 @@ export class RadiobuttonGroup
    */
   @Event() valueChange!: EventEmitter<string>;
 
-  @State() isInvalid: boolean;
-  @State() isValid: boolean;
-  @State() isInfo: boolean;
-  @State() isWarning: boolean;
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
 
   private observer = new MutationObserver(() => {
     this.ensureOnlyLastRadioChecked();

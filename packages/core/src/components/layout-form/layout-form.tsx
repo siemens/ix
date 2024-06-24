@@ -7,7 +7,7 @@ import { IxComponent } from '../utils/internal';
   shadow: true,
 })
 export class LayoutForm implements IxComponent {
-  @Element() hostElement: HTMLIxLayoutFormElement;
+  @Element() hostElement!: HTMLIxLayoutFormElement;
 
   /**
    * Defines the layout of the form.
@@ -20,7 +20,7 @@ export class LayoutForm implements IxComponent {
     { minWidth: '35rem', columns: 2 },
   ];
 
-  @State() gridTemplateColumns: string;
+  @State() gridTemplateColumns?: string;
 
   private mediaQueryList: {
     mediaQuery: MediaQueryList;
@@ -76,7 +76,11 @@ export class LayoutForm implements IxComponent {
     });
   }
 
-  private parseNumber(number: string) {
+  private parseNumber(number: string | null) {
+    if (!number) {
+      return 1;
+    }
+
     const result = parseInt(number);
     if (isNaN(result)) {
       return 1;

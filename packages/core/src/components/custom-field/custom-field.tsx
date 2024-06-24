@@ -61,10 +61,10 @@ export class CustomField
    */
   @Prop() showTextAsTooltip?: boolean;
 
-  @State() isInvalid: boolean;
-  @State() isValid: boolean;
-  @State() isInfo: boolean;
-  @State() isWarning: boolean;
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
 
   @HookValidationLifecycle({
     includeChildren: true,

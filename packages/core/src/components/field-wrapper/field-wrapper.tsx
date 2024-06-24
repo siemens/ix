@@ -10,77 +10,77 @@ import { renderHelperText } from './helper-text-util';
   shadow: true,
 })
 export class FieldWrapper implements FieldWrapperInterface {
-  @Element() hostElement: HTMLIxFieldWrapperElement;
+  @Element() hostElement!: HTMLIxFieldWrapperElement;
 
   /**
    * Show text below the field component
    */
-  @Prop() helperText: string;
+  @Prop() helperText?: string;
 
   /**
    * Label for the field component
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Error text for the field component
    */
-  @Prop() invalidText: string;
+  @Prop() invalidText?: string;
 
   /**
    * Valid text for the field component
    */
-  @Prop() validText: string;
+  @Prop() validText?: string;
 
   /**
    * Info text for the field component
    */
-  @Prop() infoText: string;
+  @Prop() infoText?: string;
 
   /**
    * Warning text for the field component
    */
-  @Prop() warningText: string;
+  @Prop() warningText?: string;
 
   /**
    * Is the field component invalid
    */
-  @Prop() isInvalid: boolean;
+  @Prop() isInvalid: boolean = false;
 
   /**
    * Is the field component valid
    */
-  @Prop() isValid: boolean;
+  @Prop() isValid: boolean = false;
 
   /**
    * Is the field component info
    */
-  @Prop() isInfo: boolean;
+  @Prop() isInfo: boolean = false;
 
   /**
    * Is the field component warning
    */
-  @Prop() isWarning: boolean;
+  @Prop() isWarning: boolean = false;
 
   /**
    * Show helper, error, info, warning text as tooltip
    */
-  @Prop() showTextAsTooltip: boolean;
+  @Prop() showTextAsTooltip: boolean = false;
 
   /**
    * Show label as required
    */
-  @Prop() required: boolean;
+  @Prop() required: boolean = false;
 
   /**
    * The id of the form element that the label is associated with
    */
-  @Prop() htmlForLabel: string;
+  @Prop() htmlForLabel?: string;
 
   /**
    * The control element that the label is associated with
    */
-  @Prop() controlRef: MakeRef<HTMLElement>;
+  @Prop() controlRef?: MakeRef<HTMLElement>;
 
   private slotRef = makeRef<HTMLDivElement>();
 
@@ -120,7 +120,7 @@ export class FieldWrapper implements FieldWrapperInterface {
           <slot></slot>
         </div>
         <div class={'field-bottom'}>
-          {!this.showTextAsTooltip && renderHelperText(textOptions)}{' '}
+          {!this.showTextAsTooltip && renderHelperText(textOptions)}
           <div class="bottom-right">
             <slot name="bottom-right"></slot>
           </div>

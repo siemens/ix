@@ -19,7 +19,11 @@ export const inheritAttributes = (
     if (element.hasAttribute(attr)) {
       const value = element.getAttribute(attr);
       if (value !== null) {
-        attributeObject[attr] = element.getAttribute(attr);
+        const attributeValue = element.getAttribute(attr);
+
+        if (attributeValue) {
+          attributeObject[attr] = attributeValue;
+        }
       }
       element.removeAttribute(attr);
     }

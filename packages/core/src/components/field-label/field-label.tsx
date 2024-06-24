@@ -22,7 +22,7 @@ import { MakeRef, makeRef } from '../utils/make-ref';
   shadow: true,
 })
 export class FormFieldLabel implements IxComponent {
-  @Element() hostElement: HTMLIxFieldLabelElement;
+  @Element() hostElement!: HTMLIxFieldLabelElement;
 
   /**
    * A value is required or must be checked for the form to be submittable
@@ -82,6 +82,10 @@ export class FormFieldLabel implements IxComponent {
   }
 
   private async checkForRequired() {
+    if (!this.htmlFor) {
+      return;
+    }
+
     const forElement = document.getElementById(
       this.htmlFor
     ) as HTMLIxFormComponentElement<unknown>;
@@ -91,6 +95,9 @@ export class FormFieldLabel implements IxComponent {
   }
 
   private async focusOnClick() {
+    if (!this.htmlFor) {
+      return;
+    }
     const target = document.getElementById(this.htmlFor);
     if (target && isIxInputFieldComponent(target)) {
       const input = await target.getNativeInputElement();

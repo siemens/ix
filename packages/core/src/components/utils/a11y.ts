@@ -9,7 +9,8 @@
 
 import { isHttpUrl, isSvgDataUrl } from './condition-checks';
 
-export const a11yBoolean = (value: boolean) => (value ? 'true' : 'false');
+export const a11yBoolean = (value: boolean | undefined) =>
+  value ? 'true' : 'false';
 
 const kebabCaseToUpperCaseSentence = (kebabCase: string) => {
   const withoutFilledSuffix = kebabCase.replace('-filled', '');

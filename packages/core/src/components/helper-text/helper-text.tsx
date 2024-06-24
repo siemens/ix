@@ -16,7 +16,7 @@ import { IxComponent } from '../utils/internal';
   shadow: true,
 })
 export class HelperText implements IxComponent {
-  @Element() hostElement: HTMLIxHelperTextElement;
+  @Element() hostElement!: HTMLIxHelperTextElement;
   /**
    * The id of the form element that the label is associated with
    */
@@ -25,17 +25,17 @@ export class HelperText implements IxComponent {
   /**
    * Show text below the field component
    */
-  @Prop() helperText: string;
+  @Prop() helperText?: string;
 
   /**
    * Error text for the field component
    */
-  @Prop() invalidText: string;
+  @Prop() invalidText?: string;
 
   /**
    * Valid text for the field component
    */
-  @Prop() validText: string;
+  @Prop() validText?: string;
 
   /**
    * Info text for the field component
@@ -47,7 +47,13 @@ export class HelperText implements IxComponent {
    */
   @Prop() warningText?: string;
 
-  @State() validationResults: ValidationResults;
+  @State() validationResults: ValidationResults = {
+    isInfo: false,
+    isInvalid: false,
+    isValid: false,
+    isWarning: false,
+    isInvalidByRequired: false,
+  };
 
   private observer = new MutationObserver(() => this.checkForRequired());
   private classObserver?: ClassMutationObserver;
@@ -70,6 +76,9 @@ export class HelperText implements IxComponent {
   }
 
   private async checkForRequired() {
+    if (!this.htmlFor) {
+      return;
+    }
     const forElement = document.getElementById(
       this.htmlFor
     ) as HTMLIxFormComponentElement<unknown>;

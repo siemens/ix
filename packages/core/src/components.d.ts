@@ -435,7 +435,7 @@ export namespace Components {
           * Disabled state of the checkbox component
          */
         "disabled": boolean;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * Indeterminate state of the checkbox component
@@ -444,7 +444,7 @@ export namespace Components {
         /**
           * Label for the checkbox component
          */
-        "label": string;
+        "label"?: string;
         /**
           * Name of the checkbox component
          */
@@ -456,7 +456,7 @@ export namespace Components {
         /**
           * Value of the checkbox component
          */
-        "value"?: string;
+        "value": string;
     }
     /**
      * @since 2.4.0
@@ -466,7 +466,7 @@ export namespace Components {
         /**
           * Show text below the field component
          */
-        "helperText": string;
+        "helperText"?: string;
         /**
           * Info text for the field component
          */
@@ -474,11 +474,11 @@ export namespace Components {
         /**
           * Error text for the field component
          */
-        "invalidText": string;
+        "invalidText"?: string;
         /**
           * Label for the field component
          */
-        "label": string;
+        "label"?: string;
         /**
           * Valid text for the field component
          */
@@ -696,7 +696,7 @@ export namespace Components {
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format": string;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Get the native input element
          */
@@ -706,7 +706,7 @@ export namespace Components {
         /**
           * helper text below the input field
          */
-        "helperText": string;
+        "helperText"?: string;
         /**
           * i18n string for the error message when the date is not parsable
          */
@@ -718,19 +718,19 @@ export namespace Components {
         /**
           * error text below the input field
          */
-        "invalidText": string;
+        "invalidText"?: string;
         /**
           * label of the input field
          */
-        "label": string;
+        "label"?: string;
         /**
           * name of the input element
          */
-        "name": string;
+        "name"?: string;
         /**
           * placeholder of the input element
          */
-        "placeholder": string;
+        "placeholder"?: string;
         /**
           * readonly attribute
          */
@@ -738,7 +738,7 @@ export namespace Components {
         /**
           * required attribute
          */
-        "required": boolean;
+        "required"?: boolean;
         /**
           * show text as tooltip
          */
@@ -1202,23 +1202,23 @@ export namespace Components {
         /**
           * The control element that the label is associated with
          */
-        "controlRef": MakeRef<HTMLElement>;
+        "controlRef"?: MakeRef<HTMLElement>;
         /**
           * Show text below the field component
          */
-        "helperText": string;
+        "helperText"?: string;
         /**
           * The id of the form element that the label is associated with
          */
-        "htmlForLabel": string;
+        "htmlForLabel"?: string;
         /**
           * Info text for the field component
          */
-        "infoText": string;
+        "infoText"?: string;
         /**
           * Error text for the field component
          */
-        "invalidText": string;
+        "invalidText"?: string;
         /**
           * Is the field component info
          */
@@ -1238,7 +1238,7 @@ export namespace Components {
         /**
           * Label for the field component
          */
-        "label": string;
+        "label"?: string;
         /**
           * Show label as required
          */
@@ -1250,11 +1250,11 @@ export namespace Components {
         /**
           * Valid text for the field component
          */
-        "validText": string;
+        "validText"?: string;
         /**
           * Warning text for the field component
          */
-        "warningText": string;
+        "warningText"?: string;
     }
     interface IxFilterChip {
         /**
@@ -1361,7 +1361,7 @@ export namespace Components {
         /**
           * Show text below the field component
          */
-        "helperText": string;
+        "helperText"?: string;
         /**
           * The id of the form element that the label is associated with
          */
@@ -1373,11 +1373,11 @@ export namespace Components {
         /**
           * Error text for the field component
          */
-        "invalidText": string;
+        "invalidText"?: string;
         /**
           * Valid text for the field component
          */
-        "validText": string;
+        "validText"?: string;
         /**
           * Warning text for the field component
          */
@@ -2225,7 +2225,7 @@ export namespace Components {
         /**
           * Label for the radio component
          */
-        "label": string;
+        "label"?: string;
         /**
           * Name of the radio component
          */
@@ -2243,7 +2243,7 @@ export namespace Components {
         /**
           * Show text below the field component
          */
-        "helperText": string;
+        "helperText"?: string;
         /**
           * Info text for the field component
          */
@@ -2251,11 +2251,11 @@ export namespace Components {
         /**
           * Error text for the field component
          */
-        "invalidText": string;
+        "invalidText"?: string;
         /**
           * Label for the field component
          */
-        "label": string;
+        "label"?: string;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */
@@ -2267,7 +2267,7 @@ export namespace Components {
         /**
           * Value of the radiobutton group component
          */
-        "value": string;
+        "value"?: string;
         /**
           * Warning text for the field component
          */
@@ -2294,7 +2294,7 @@ export namespace Components {
           * Select is extendable
          */
         "editable": boolean;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Returns the native input element used in the component.
          */
@@ -2582,7 +2582,7 @@ export namespace Components {
           * Specifies whether the text field is disabled.
          */
         "disabled": boolean;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Returns the native input element used in the text field.
          */
@@ -2591,7 +2591,7 @@ export namespace Components {
         /**
           * The helper text for the text field.
          */
-        "helperText": string;
+        "helperText"?: string;
         /**
           * The info text for the text field.
          */
@@ -2599,11 +2599,11 @@ export namespace Components {
         /**
           * The error text for the text field.
          */
-        "invalidText": string;
+        "invalidText"?: string;
         /**
           * The label for the text field.
          */
-        "label": string;
+        "label"?: string;
         /**
           * The maximum length of the text field.
          */
@@ -2615,7 +2615,7 @@ export namespace Components {
         /**
           * The name of the text field.
          */
-        "name": string;
+        "name"?: string;
         /**
           * The pattern for the text field.
          */
@@ -2623,7 +2623,7 @@ export namespace Components {
         /**
           * The placeholder text for the text field.
          */
-        "placeholder": string;
+        "placeholder"?: string;
         /**
           * Specifies whether the text field is readonly.
          */
@@ -2662,7 +2662,7 @@ export namespace Components {
           * Determines if the textarea field is disabled.
          */
         "disabled": boolean;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Get the native textarea element.
          */
@@ -2671,7 +2671,7 @@ export namespace Components {
         /**
           * The helper text for the textarea field.
          */
-        "helperText": string;
+        "helperText"?: string;
         /**
           * The info text for the textarea field.
          */
@@ -2679,11 +2679,11 @@ export namespace Components {
         /**
           * The error text for the textarea field.
          */
-        "invalidText": string;
+        "invalidText"?: string;
         /**
           * The label for the textarea field.
          */
-        "label": string;
+        "label"?: string;
         /**
           * The maximum length of the textarea field.
          */
@@ -2695,11 +2695,11 @@ export namespace Components {
         /**
           * The name of the textarea field.
          */
-        "name": string;
+        "name"?: string;
         /**
           * The placeholder text for the textarea field.
          */
-        "placeholder": string;
+        "placeholder"?: string;
         /**
           * Determines if the textarea field is readonly.
          */
@@ -2859,7 +2859,7 @@ export namespace Components {
           * Whether the slide-toggle element is disabled or not.
          */
         "disabled": boolean;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * Hide `on` and `off` text
@@ -2892,7 +2892,7 @@ export namespace Components {
         /**
           * Value of the checkbox component
          */
-        "value"?: string;
+        "value": string;
     }
     /**
      * @since 2.0.0

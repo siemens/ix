@@ -26,14 +26,14 @@ export function renderHelperText({
   helperText,
 }: {
   isInvalid: boolean;
-  invalidText: string;
+  invalidText?: string;
   isWarning: boolean;
-  warningText: string;
+  warningText?: string;
   isInfo: boolean;
-  infoText: string;
+  infoText?: string;
   isValid: boolean;
-  validText: string;
-  helperText: string;
+  validText?: string;
+  helperText?: string;
 }) {
   if (isInvalid && invalidText !== undefined) {
     return (

@@ -18,21 +18,21 @@ import {
 export class CheckboxGroup
   implements FieldWrapperInterface, IxFormValidationState
 {
-  @Element() hostElement: HTMLIxCheckboxGroupElement;
+  @Element() hostElement!: HTMLIxCheckboxGroupElement;
   /**
    * Show text below the field component
    */
-  @Prop() helperText: string;
+  @Prop() helperText?: string;
 
   /**
    * Label for the field component
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Error text for the field component
    */
-  @Prop() invalidText: string;
+  @Prop() invalidText?: string;
 
   /**
    * Info text for the field component

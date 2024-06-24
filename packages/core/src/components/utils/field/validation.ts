@@ -77,7 +77,9 @@ export function checkFieldClasses(
   hostElement: HTMLIxFormComponentElement<unknown>,
   includeChildren = false
 ): ValidationResults {
-  const suppressValidStyles = (associatedFormElement: HTMLFormElement) => {
+  const suppressValidStyles = (
+    associatedFormElement: HTMLFormElement | null
+  ) => {
     let suppressValidState = hostElement.hasAttribute('data-ix-disable-valid');
     if (!suppressValidState && associatedFormElement) {
       suppressValidState = associatedFormElement.hasAttribute(
@@ -117,7 +119,7 @@ export function HookValidationLifecycle(options?: {
 }) {
   return (proto: any, methodName: string) => {
     let checkIfRequiredFunction: () => void;
-    let classMutationObserver: ClassMutationObserver;
+    let classMutationObserver: ClassMutationObserver | null;
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
       proto;
 

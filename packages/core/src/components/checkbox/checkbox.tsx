@@ -33,9 +33,9 @@ import { makeRef } from '../utils/make-ref';
   formAssociated: true,
 })
 export class Checkbox implements IxFormComponent<string> {
-  @Element() hostElement: HTMLIxCheckboxElement;
+  @Element() hostElement!: HTMLIxCheckboxElement;
 
-  @AttachInternals() formInternals: ElementInternals;
+  @AttachInternals() formInternals!: ElementInternals;
 
   /**
    * Name of the checkbox component
@@ -45,12 +45,12 @@ export class Checkbox implements IxFormComponent<string> {
   /**
    * Value of the checkbox component
    */
-  @Prop({ reflect: true }) value?: string;
+  @Prop({ reflect: true }) value: string = 'on';
 
   /**
    * Label for the checkbox component
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Checked state of the checkbox component
@@ -111,7 +111,7 @@ export class Checkbox implements IxFormComponent<string> {
     if (this.checked) {
       this.formInternals.setFormValue(this.value ?? 'on');
     } else {
-      this.formInternals.setFormValue(undefined);
+      this.formInternals.setFormValue(null);
     }
   }
 
@@ -123,7 +123,7 @@ export class Checkbox implements IxFormComponent<string> {
 
   /** @internal */
   @Method()
-  getAssociatedFormElement(): Promise<HTMLFormElement> {
+  getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return Promise.resolve(this.formInternals.form);
   }
 

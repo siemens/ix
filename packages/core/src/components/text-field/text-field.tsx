@@ -50,8 +50,8 @@ let textFieldIds = 0;
   formAssociated: true,
 })
 export class TextField implements IxInputFieldComponent<string> {
-  @Element() hostElement: HTMLIxTextFieldElement;
-  @AttachInternals() formInternals: ElementInternals;
+  @Element() hostElement!: HTMLIxTextFieldElement;
+  @AttachInternals() formInternals!: ElementInternals;
 
   /**
    * The type of the text field. Possible values are 'text', 'email', or 'password'.
@@ -61,12 +61,12 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * The name of the text field.
    */
-  @Prop({ reflect: true }) name: string;
+  @Prop({ reflect: true }) name?: string;
 
   /**
    * The placeholder text for the text field.
    */
-  @Prop({ reflect: true }) placeholder: string;
+  @Prop({ reflect: true }) placeholder?: string;
 
   /**
    * The value of the text field.
@@ -76,22 +76,22 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * Specifies whether the text field is required.
    */
-  @Prop({ reflect: true }) required: boolean;
+  @Prop({ reflect: true }) required: boolean = false;
 
   /**
    * Specifies whether the text field is disabled.
    */
-  @Prop({ reflect: true }) disabled: boolean;
+  @Prop({ reflect: true }) disabled: boolean = false;
 
   /**
    * Specifies whether the text field is readonly.
    */
-  @Prop({ reflect: true }) readonly: boolean;
+  @Prop({ reflect: true }) readonly: boolean = false;
 
   /**
    * The helper text for the text field.
    */
-  @Prop() helperText: string;
+  @Prop() helperText?: string;
 
   /**
    * The info text for the text field.
@@ -116,12 +116,12 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * The label for the text field.
    */
-  @Prop({ reflect: true }) label: string;
+  @Prop({ reflect: true }) label?: string;
 
   /**
    * The error text for the text field.
    */
-  @Prop() invalidText: string;
+  @Prop() invalidText?: string;
 
   /**
    * The pattern for the text field.
@@ -146,23 +146,23 @@ export class TextField implements IxInputFieldComponent<string> {
   /**
    * Event emitted when the value of the text field changes.
    */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange!: EventEmitter<string>;
 
   /**
    * Event emitted when the validity state of the text field changes.
    */
-  @Event() validityStateChange: EventEmitter<ValidityState>;
+  @Event() validityStateChange!: EventEmitter<ValidityState>;
 
   /**
    * Event emitted when the text field loses focus.
    */
-  @Event() ixBlur: EventEmitter<void>;
+  @Event() ixBlur!: EventEmitter<void>;
 
   @State() isInvalid = false;
-  @State() isValid: boolean;
-  @State() isInfo: boolean;
-  @State() isWarning: boolean;
-  @State() isInvalidByRequired: boolean;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
+  @State() isInvalidByRequired = false;
 
   @State() inputType = 'text';
 
@@ -216,7 +216,7 @@ export class TextField implements IxInputFieldComponent<string> {
 
   /** @internal */
   @Method()
-  async getAssociatedFormElement(): Promise<HTMLFormElement> {
+  async getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return this.formInternals.form;
   }
 
