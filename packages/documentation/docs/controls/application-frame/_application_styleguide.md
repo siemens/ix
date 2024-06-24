@@ -3,7 +3,7 @@ Application is a technical and infrastructural component without a direct visual
 
 ### Application switch
 
-![Application switch and modal](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1665-19417&mode=design&t=I0iEEuzKJJPK4Sum-11)
+![Application switch and modal](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1665-19417&mode=design&t=I0iEEuzKJJPK4Sum-11)
 
 1. Application switch button opens the modal
 2. Application switch modal with a list of applications

@@ -1,6 +1,6 @@
 The category filter component enhances data navigation and user experience. We typically use a category filter to efficiently navigate large data sets, allowing users to quickly narrow their search by selecting predefined categories. It’s particularly useful in scenarios with complex data. The filter also enhances user experience by providing autocomplete suggestions and customizable filter conditions.
 
-![Category filter overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1799%3A38402&mode=design&t=hgAA8GogE70JbHHy-1)
+![Category filter overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1799-38402&mode=design&t=hgAA8GogE70JbHHy-1)
 1. Container 
 2. Search icon 
 3. Input chip 
@@ -31,7 +31,7 @@ The category filter component enhances data navigation and user experience. We t
 
 Category filter has six states: Default, hover, active, disabled, read-only and focused.
 
-![Category filter states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1799-38415&mode=design&t=1vxCdaFjmBNHp8Sk-4)
+![Category filter states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1799-38415&mode=design&t=1vxCdaFjmBNHp8Sk-4)
 
 - **Read-only**: By setting the category filter to read-only, accidental data modifications or deletions can be prevented. This can be particularly useful when dealing with critical or sensitive information that should not be altered without proper authorization. 
 - **Disabled**: This state is typically applied when the element is not applicable to the current context or when certain conditions must be met before the category filter can be enabled.  

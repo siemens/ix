@@ -417,14 +417,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
 
     this.items.forEach((item) => {
-      item.selected = ids.some(
-        // Check can be removed if value is type of string in future releases
-        (i) =>
-          i ===
-          (item.value !== undefined && item.value !== null
-            ? item.value.toString()
-            : '')
-      );
+      item.selected = ids.some((i) => {
+        if (typeof i !== typeof item.value) {
+          return i.toString() === item.value.toString();
+        } else {
+          return i === item.value;
+        }
+      });
     });
 
     this.selectedLabels = this.selectedItems.map((item) => item.label);
@@ -903,6 +902,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               hidden: this.hideListHeader || this.isDropdownEmpty,
             }}
             title={this.i18nSelectListHeader}
+            onClick={(e) => e.preventDefault()}
           >
             {this.i18nSelectListHeader}
           </div>

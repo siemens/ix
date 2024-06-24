@@ -7,10 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
+import { defineCustomElements } from '@siemens/ix/loader';
 import 'example-styles/dist/global.css';
 
 (async () => {
-  await applyPolyfills();
   defineCustomElements();
 })();
