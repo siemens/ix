@@ -7,7 +7,7 @@ title: Versioning and releases
 # Siemens Industrial Experience versioning and releases
 
 <p className="text-l-title">
-Our Siemens Industrial Experience design team strive to provide a stable and reliable system that's constantly evolving to meet your needs. This section describes our practices for new features and changes, deprecating and removing outdated features, and our long-term support for older versions. 
+Our Siemens Industrial Experience design team strives to provide a stable and reliable system that's constantly evolving to meet your needs. This section describes our practices for new features and changes, deprecating and removing outdated features, and our long-term support for older versions. 
 </p>
 
 ### Versioning
