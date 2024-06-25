@@ -322,6 +322,7 @@ export class DateField implements IxInputFieldComponent<string> {
         >
           {this.disabled || this.readonly ? null : (
             <ix-icon-button
+              data-testid="open-calendar"
               ghost
               icon={iconCalendar}
               onClick={(event) => {
@@ -419,6 +420,7 @@ export class DateField implements IxInputFieldComponent<string> {
           {this.renderInput()}
         </ix-field-wrapper>
         <ix-dropdown
+          data-testid="date-dropdown"
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"

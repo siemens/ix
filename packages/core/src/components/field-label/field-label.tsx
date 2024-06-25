@@ -99,9 +99,16 @@ export class FormFieldLabel implements IxComponent {
       return;
     }
     const target = document.getElementById(this.htmlFor);
-    if (target && isIxInputFieldComponent(target)) {
-      const input = await target.getNativeInputElement();
-      input.focus();
+    if (target) {
+      let input: HTMLElement | null = null;
+      if (isIxInputFieldComponent(target)) {
+        input = await target.getNativeInputElement();
+      } else {
+        input = target;
+      }
+      if (typeof input.focus === 'function') {
+        input.focus();
+      }
     }
 
     if (this.controlRef) {

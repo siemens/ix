@@ -607,6 +607,10 @@ export namespace Components {
          */
         "label"?: string;
         /**
+          * A value is required or must be checked for the form to be submittable
+         */
+        "required": boolean;
+        /**
           * Show helper, info, warning, error and valid text as tooltip
          */
         "showTextAsTooltip"?: boolean;
@@ -5608,6 +5612,10 @@ declare namespace LocalJSX {
           * Label for the field component
          */
         "label"?: string;
+        /**
+          * A value is required or must be checked for the form to be submittable
+         */
+        "required"?: boolean;
         /**
           * Show helper, info, warning, error and valid text as tooltip
          */

@@ -27,6 +27,11 @@ export class CustomField
   implements FieldWrapperInterface, IxFormValidationState
 {
   /**
+   * A value is required or must be checked for the form to be submittable
+   */
+  @Prop() required: boolean = false;
+
+  /**
    * Label for the field component
    */
   @Prop() label?: string;
@@ -96,6 +101,7 @@ export class CustomField
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
+          required={this.required}
         >
           <slot name="label" slot="label"></slot>
 
