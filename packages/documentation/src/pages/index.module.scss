@@ -228,6 +228,11 @@
         left: -10%;
         width: auto !important;
       }
+
+      .device_headline {
+        position: relative;
+        z-index: 1;
+      }
     }
 
     @media (max-width: 768px) {
@@ -239,7 +244,7 @@
       }
 
       .text_2 {
-        width: 340px !important;
+        width: 300px !important;
       }
     }
 
@@ -318,7 +323,7 @@
 
     @media (max-width: 428px) {
       .text_2 {
-        width: 348px !important;
+        width: 300px !important;
       }
     }
   }
@@ -328,7 +333,7 @@
 
     @media (max-width: 768px) {
       .text_2 {
-        width: 340px !important;
+        width: 300px !important;
       }
     }
 
@@ -351,11 +356,10 @@
     min-height: 100vh;
     background-color: #000028;
 
+
     .images {
       display: flex;
       flex-direction: column;
-      gap: 88px;
-      margin-left: 20px;
       margin-top: 39px;
       padding-bottom: 108.8px;
     }
@@ -387,7 +391,7 @@
     @media (max-width: 1280px) {
       .images {
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
       }
 
       .row {
@@ -398,7 +402,7 @@
 
     @media (max-width: 768px) {
       .text_2 {
-        width: 340px !important;
+        width: 300px !important;
       }
 
       .icon_main {
@@ -546,6 +550,8 @@
     padding: 140px 90px;
     min-height: 100vh;
     align-items: center;
+    background-image: url('/img/Screen_09_background_image.png');
+    background-size: contain;
 
     @media (max-width: 768px) {
       .card {
@@ -561,7 +567,7 @@
       }
     }
 
-    @media (max-width: 428px) {
+    @media (max-width: 768px) {
       .column {
         flex-direction: column !important;
         align-items: center !important;
@@ -592,7 +598,7 @@
       width: 365px;
       height: 365px;
       background-color: #23233c;
-      box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
       align-items: center;
       padding: 90px 20px 20px 20px;
 
@@ -1005,7 +1011,7 @@
   padding-right: 20px;
   gap: 10px;
   text-decoration: none !important;
-  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
 
   &.Justify {
     justify-content: center;
