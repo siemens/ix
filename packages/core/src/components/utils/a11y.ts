@@ -57,13 +57,13 @@ export const getFallbackLabelFromIconName = (iconName: string) => {
 export const a11yHostAttributes = (
   hostElement: HTMLElement,
   ignoreAttributes: A11yAttributeName[] = []
-): Record<A11yAttributeName, string | null> => {
-  const attributeObject: Record<string, string | null> = {};
+): Record<A11yAttributeName, string> => {
+  const attributeObject: Record<string, string> = {};
   a11yAttributes.forEach((attr) => {
     if (hostElement.hasAttribute(attr)) {
       const value = hostElement.getAttribute(attr);
       if (value !== null && !ignoreAttributes.includes(attr)) {
-        attributeObject[attr] = hostElement.getAttribute(attr);
+        attributeObject[attr] = hostElement.getAttribute(attr) ?? '';
         hostElement.removeAttribute(attr);
       }
     }

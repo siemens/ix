@@ -210,7 +210,7 @@ function checkTsc() {
 
         output.push(
           collapsibleMarkdown(
-            lines.join('/n'),
+            lines.join(''),
             `New errors in PR branch: ${key} - ${value.count} errors`
           )
         );
