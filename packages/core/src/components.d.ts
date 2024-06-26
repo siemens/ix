@@ -2218,7 +2218,7 @@ export namespace Components {
           * Disabled state of the radio component
          */
         "disabled": boolean;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         "hasValidValue": () => Promise<boolean>;
         /**
           * Label for the radio component
