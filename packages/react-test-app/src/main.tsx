@@ -35,6 +35,8 @@ import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
 import Content from './preview-examples/content';
+import CustomField from './preview-examples/custom-field';
+import CustomFieldValidation from './preview-examples/custom-field-validation';
 import PageHeader from './preview-examples/content-header';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
@@ -174,6 +176,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/checkbox-indeterminate"
           element={<CheckboxIndeterminate />}
         />
+        <Route path="/preview/custom-field" element={<CustomField />} />
+        <Route path="/preview/custom-field-validation" element={<CustomFieldValidation />} />
         <Route path="/preview/buttons" element={<Buttons />} />
         <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
         <Route path="/preview/button-group" element={<ButtonGroup />} />

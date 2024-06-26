@@ -33,6 +33,8 @@ import Checkbox from 'src/preview-examples/checkbox';
 import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
 import ContentExample from 'src/preview-examples/content';
+import CustomField from 'src/preview-examples/custom-field';
+import CustomFieldValidation from 'src/preview-examples/custom-field-validation';
 import PageHeader from 'src/preview-examples/content-header';
 import PageHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import DateDropdown from 'src/preview-examples/date-dropdown';
@@ -222,6 +224,14 @@ const routes: Routes = [
       {
         path: 'content',
         component: ContentExample,
+      },
+      {
+        path: 'custom-field',
+        component: CustomField,
+      },
+      {
+        path: 'custom-field-validation',
+        component: CustomFieldValidation,
       },
       {
         path: 'buttons',

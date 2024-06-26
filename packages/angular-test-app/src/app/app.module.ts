@@ -43,6 +43,8 @@ import Chip from 'src/preview-examples/chip';
 import ContentExample from 'src/preview-examples/content';
 import ContentHeader from 'src/preview-examples/content-header';
 import ContentHeaderNoBack from 'src/preview-examples/content-header-no-back';
+import CustomField from 'src/preview-examples/custom-field';
+import CustomFieldValidation from 'src/preview-examples/custom-field-validation';
 import DateDropdown from 'src/preview-examples/date-dropdown';
 import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
 import DateField from '../preview-examples/date-field';
@@ -217,6 +219,8 @@ import TextFieldPattern from 'src/preview-examples/text-field-pattern';
     CheckboxIndeterminate,
     Checkbox,
     Chip,
+    CustomField,
+    CustomFieldValidation,
     DateDropdown,
     DateDropdownUserRange,
     DateField,

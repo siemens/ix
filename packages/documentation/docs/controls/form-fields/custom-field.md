@@ -1,21 +1,40 @@
+iimport Playground from '@site/src/components/PlaygroundV2';
+import Props from './../../auto-generated/ix-date-field/props.md';
+import Events from './../../auto-generated/ix-date-field/events.md';
 import Tags from '@site/docs/auto-generated/ix-custom-field/tags.md';
 
 # Custom Field
 
 <Tags />
 
-`ix-custom-field` allows you to create form fields with all available validation states and all familiar field text inputs like `helper-text`, `valid-text`, `info-text`, `warning-text` or `invalid-text`.
-The component will check if one of the children has the classes `ix-valid, ix-info, ix-warning or ix-invalid` is provided, if this is the case
-the component will show the corresponding text.
+With the help of `ix-custom-field` you are able to create form fields that can host any component / markup, while still having access to all validation states as well as ascociated explanatory texts like `helper-text`, `valid-text`, `info-text`, `warning-text` or `invalid-text`.
+The component will check if any of its children has one of these classes set:
+`ix-valid, ix-info, ix-warning or ix-invalid`
+If this is the case the custom field will display the corresponding text.
 
-Custom fields a be used to migrate from existing input concept (native inputs) to the new validation / from look.
+Custom fields can be used to migrate from the existing input validation (native inputs) to the new validation / froms concept.
 
-A typical example would be:
+### Basic
 
-<!-- TODO: Add example here html code is just an placeholder/example -->
+<Playground
+  name="custom-field"
+  examplesByName
+></Playground>
 
-```html
-<ix-custom-field helper-text="Add your name here" invalid-text="The name is already taken!">
-  <input type="text" class="form-control ix-invalid" />
-</ix-custom-field>
-```
+### Validation
+
+<Playground
+  name="custom-field-validation"
+  examplesByName
+  height="24rem"
+></Playground>
+
+## API
+
+### Properties
+
+<Props />
+
+### Events
+
+<Events/>

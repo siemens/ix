@@ -34,6 +34,8 @@ import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
 import content from './preview-examples/content.vue';
+import CustomField from './preview-examples/custom-field.vue';
+import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range.vue';
 import DateDropdown from './preview-examples/date-dropdown.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
@@ -164,6 +166,8 @@ const routes: any = {
   '/preview/about-and-legal': AboutAndLegal,
   '/preview/aggrid': AGGrid,
   '/preview/chip': Chip,
+  '/preview/custom-field': CustomField,
+  '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
   '/preview/datepicker': Datepicker,

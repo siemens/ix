@@ -98,6 +98,7 @@ export class DateField implements IxInputFieldComponent<string> {
    * readonly attribute
    */
   @Prop() readonly: boolean = false;
+
   /**
    * disabled attribute
    */
