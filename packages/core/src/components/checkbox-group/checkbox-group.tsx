@@ -5,6 +5,7 @@ import {
   IxFormValidationState,
   ValidationResults,
 } from '../utils/field';
+import { IxComponent } from '../utils/internal';
 
 /**
  * @since 2.4.0
@@ -16,7 +17,7 @@ import {
   shadow: true,
 })
 export class CheckboxGroup
-  implements FieldWrapperInterface, IxFormValidationState
+  implements FieldWrapperInterface, IxFormValidationState, IxComponent
 {
   @Element() hostElement!: HTMLIxCheckboxGroupElement;
   /**

@@ -151,7 +151,7 @@ export class Toggle implements IxFormComponent<string> {
           type="checkbox"
           aria-checked={a11yBoolean(this.checked)}
           onChange={(event) =>
-            this.onCheckedChange((event.target as any).checked)
+            this.onCheckedChange((event.target as HTMLInputElement).checked)
           }
         ></input>
         <label class="switch" tabIndex={-1}>

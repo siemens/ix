@@ -7,13 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Host, Prop, State, h } from '@stencil/core';
+import { Component, Host, Prop, State, h, Element } from '@stencil/core';
 import {
   FieldWrapperInterface,
   HookValidationLifecycle,
   IxFormValidationState,
   ValidationResults,
 } from '../utils/field';
+import { IxComponent } from '../utils/internal';
 
 /**
  * @since 2.4.0
@@ -24,8 +25,9 @@ import {
   shadow: true,
 })
 export class CustomField
-  implements FieldWrapperInterface, IxFormValidationState
+  implements FieldWrapperInterface, IxFormValidationState, IxComponent
 {
+  @Element() hostElement: HTMLIxCustomFieldElement;
   /**
    * A value is required or must be checked for the form to be submittable
    */

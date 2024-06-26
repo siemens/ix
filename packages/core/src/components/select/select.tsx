@@ -570,7 +570,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     const moveUp = key === 'ArrowUp';
     const indexNonShadow = this.visibleNonShadowItems.indexOf(
-      document.activeElement as any
+      document.activeElement as HTMLIxSelectItemElement
     );
 
     // Slotted select items
@@ -612,7 +612,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     // Custom select items
     const indexShadow = this.visibleShadowItems.indexOf(
-      this.navigationItem as any
+      this.navigationItem as HTMLIxSelectItemElement
     );
 
     if (moveUp) {

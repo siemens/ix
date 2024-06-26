@@ -57,7 +57,7 @@ export interface IxFormValidationState {
   isWarning: boolean;
 }
 
-export interface IxFormComponent<T = any> extends IxComponent {
+export interface IxFormComponent<T = string> extends IxComponent {
   // Private internal
   formInternals: ElementInternals;
 
@@ -77,7 +77,7 @@ export interface IxFormComponent<T = any> extends IxComponent {
   getAssociatedFormElement(): Promise<HTMLFormElement | null>;
 }
 
-export interface IxInputFieldComponent<T = any>
+export interface IxInputFieldComponent<T = string>
   extends IxFormComponent<T>,
     IxFormValidationState,
     FieldWrapperInterface {

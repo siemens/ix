@@ -66,7 +66,7 @@ export class DateField implements IxInputFieldComponent<string> {
   /**
    * value of the input element
    */
-  @Prop({ reflect: true, mutable: true }) value: any;
+  @Prop({ reflect: true, mutable: true }) value: string;
 
   /**
    * Date format string.
@@ -164,7 +164,7 @@ export class DateField implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
 
-  updateFormInternalValue(value: any): void {
+  updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
     this.value = value;
   }

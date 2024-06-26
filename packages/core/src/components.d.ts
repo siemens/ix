@@ -754,7 +754,7 @@ export namespace Components {
         /**
           * value of the input element
          */
-        "value": any;
+        "value": string;
         /**
           * warning text below the input field
          */
@@ -5750,7 +5750,7 @@ declare namespace LocalJSX {
         /**
           * value of the input element
          */
-        "value"?: any;
+        "value"?: string;
         /**
           * warning text below the input field
          */

@@ -4575,10 +4575,10 @@
         },
         {
           "name": "value",
-          "type": "any",
+          "type": "string",
           "complexType": {
-            "original": "any",
-            "resolved": "any",
+            "original": "string",
+            "resolved": "string",
             "references": {}
           },
           "mutable": true,
@@ -4588,7 +4588,7 @@
           "docsTags": [],
           "values": [
             {
-              "type": "any"
+              "type": "string"
             }
           ],
           "optional": false,
