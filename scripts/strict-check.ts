@@ -101,7 +101,7 @@ function collapsibleMarkdown(detail: string, summary: string) {
   output.push(detail);
   output.push('');
   output.push('</details>');
-
+  output.push('\n');
   return output.join('\n');
 }
 
@@ -346,7 +346,9 @@ function checkEsLint() {
 
   return [
     checkTotal(),
-    collapsibleMarkdown(findNewErrorsOnEsLintPr(), 'ESLint warnings'),
+    totalWarningsPR > totalWarningsMain
+      ? collapsibleMarkdown(findNewErrorsOnEsLintPr(), 'ESLint warnings')
+      : '',
   ].join('\n');
 }
 
