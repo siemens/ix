@@ -125,7 +125,7 @@ export class Radio implements IxFormComponent<string> {
 
   /** @internal */
   @Method()
-  getAssociatedFormElement(): Promise<HTMLFormElement> {
+  getAssociatedFormElement(): Promise<HTMLFormElement | null> {
     return Promise.resolve(this.formInternals.form);
   }
 
