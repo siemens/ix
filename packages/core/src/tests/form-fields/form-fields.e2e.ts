@@ -34,6 +34,7 @@ async function changeToReadonly(page: Page) {
     );
     Array.from(elements).forEach((element: HTMLInputElement) => {
       element.readOnly = true;
+      element.setAttribute('readonly', '');
     });
   });
 }
