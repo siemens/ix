@@ -97,7 +97,9 @@ function getReportLine(
 
 function collapsibleMarkdown(detail: string, summary: string) {
   const output: string[] = [`<details><summary>${summary}</summary>`];
+  output.push('');
   output.push(detail);
+  output.push('');
   output.push('</details>');
 
   return output.join('\n');
