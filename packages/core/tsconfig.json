@@ -20,7 +20,7 @@
     },
     // Strict check uncomment to check for strict
     // "strictNullChecks": true,
-    // "strictPropertyInitialization": true
+    // "strictPropertyInitialization": true,
     // "noImplicitAny": true,
   },
   "include": ["src"],

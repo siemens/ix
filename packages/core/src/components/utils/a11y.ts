@@ -57,8 +57,8 @@ export const getFallbackLabelFromIconName = (iconName: string) => {
 export const a11yHostAttributes = (
   hostElement: HTMLElement,
   ignoreAttributes: A11yAttributeName[] = []
-): Record<A11yAttributeName, string> => {
-  const attributeObject: Record<string, string> = {};
+): Record<A11yAttributeName, string | null> => {
+  const attributeObject: Record<string, string | null> = {};
   a11yAttributes.forEach((attr) => {
     if (hostElement.hasAttribute(attr)) {
       const value = hostElement.getAttribute(attr);

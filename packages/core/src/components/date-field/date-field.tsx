@@ -66,7 +66,7 @@ export class DateField implements IxInputFieldComponent<string> {
   /**
    * value of the input element
    */
-  @Prop({ reflect: true, mutable: true }) value: string;
+  @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
    * Date format string.

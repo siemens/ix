@@ -27,7 +27,7 @@ import { IxComponent } from '../utils/internal';
 export class CustomField
   implements FieldWrapperInterface, IxFormValidationState, IxComponent
 {
-  @Element() hostElement: HTMLIxCustomFieldElement;
+  @Element() hostElement!: HTMLIxCustomFieldElement;
   /**
    * A value is required or must be checked for the form to be submittable
    */
