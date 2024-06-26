@@ -350,7 +350,7 @@ function checkEsLint() {
   ].join('\n');
 }
 
-const output = [
+const body = [
   '### Report of `strictNullChecks (strictPropertyInitialization)` check',
   `#### Typescript check`,
   checkTsc(),
@@ -358,6 +358,6 @@ const output = [
   checkEsLint(),
 ];
 
-fs.writeFileSync(path.join(cwd, 'strict_check.md'), output.join('\n'));
+fs.writeFileSync(path.join(cwd, 'strict_check.md'), body.join('\n'));
 
-core.setOutput('body', output.join('\n'));
+core.setOutput('body', body.join('\n'));
