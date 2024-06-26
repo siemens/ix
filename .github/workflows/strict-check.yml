@@ -32,22 +32,32 @@ jobs:
 
       - uses: ./.github/workflows/actions/turbo
 
-      - name: Collect metrics
+      - name: ESLint check
+        run: |
+          ROOT=$(pwd)
+          cd ./packages/core
+          pnpm lint --format json -o $ROOT/eslint_${{ matrix.branch }}.json
+          cd $ROOT
+
+      - name: Upload eslint_${{ matrix.branch }}.json
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint_${{ matrix.branch }}
+          path: 'eslint_${{ matrix.branch }}.json'
+
+      - name: TSC Check
         run: |
           ROOT=$(pwd)
           npm install -g @aivenio/tsc-output-parser@2.1.1
           cd ./packages/core
           npx tsc --strictNullChecks --strictPropertyInitialization --noEmit --pretty false | npx tsc-output-parser > $ROOT/strict_${{ matrix.branch }}.json
-          pnpm lint --format json -o $ROOT/eslint_${{ matrix.branch }}.json
           cd $ROOT
 
       - name: Upload strict_${{ matrix.branch }}.json
         uses: actions/upload-artifact@v4
         with:
           name: strict_${{ matrix.branch }}
-          path: |
-            'strict_${{ matrix.branch }}.json'
-            'eslint_${{ matrix.branch }}.json'
+          path: 'strict_${{ matrix.branch }}.json'
 
   comment_on_pr:
     permissions:
@@ -73,6 +83,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: strict_pr
+
+      - name: Download eslint error json for main branch
+        uses: actions/download-artifact@v4
+        with:
+          name: eslint_main
+
+      - name: Download eslint error json for pr branch
+        uses: actions/download-artifact@v4
+        with:
+          name: eslint_pr
 
       - name: Set comment body
         id: report-body
