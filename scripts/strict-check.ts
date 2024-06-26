@@ -86,6 +86,15 @@ export interface EsLintUsedDeprecatedRule {
   replacedBy: any[];
 }
 
+function getReportLine(
+  path: string,
+  line: string,
+  column: string,
+  message: string
+) {
+  return `- \`${path}:${line}:${column}\`\n  - ${message}\n`;
+}
+
 function collapsibleMarkdown(detail: string, summary: string) {
   const output: string[] = [`<details><summary>${summary}</summary>`];
   output.push(detail);
@@ -186,9 +195,12 @@ function checkTsc() {
 
         value.errors.forEach((error) => {
           lines.push(
-            `- ${key}:${error.cursor.value.line}:${
-              error.cursor.value.col
-            } \`${error.message.value.replace(/\n/g, '')}\``
+            getReportLine(
+              key,
+              error.cursor.value.line.toString(),
+              error.cursor.value.col.toString(),
+              error.message.value.replace(/\n/g, '')
+            )
           );
         });
 
@@ -209,9 +221,12 @@ function checkTsc() {
 
           prErrors.errors.forEach((error) => {
             lines.push(
-              `- ${key}:${error.cursor.value.line}:${
-                error.cursor.value.col
-              } \`${error.message.value.replace(/\n/g, '')}\``
+              getReportLine(
+                key,
+                error.cursor.value.line.toString(),
+                error.cursor.value.col.toString(),
+                error.message.value.replace(/\n/g, '')
+              )
             );
           });
 
@@ -232,13 +247,9 @@ function checkTsc() {
     return output.join('\n');
   }
 
-  const output = [
-    '### Report of `strictNullChecks (strictPropertyInitialization)` check',
-    checkTotal(),
-    printNewErrors(),
-  ];
+  const output = [checkTotal(), printNewErrors()];
 
-  return output;
+  return output.join('\n');
 }
 
 function checkEsLint() {
@@ -287,10 +298,17 @@ function checkEsLint() {
         (mainEslint) => mainEslint.filePath === result.filePath
       );
 
+      const prFilePathFromRoot = result.filePath.replace(process.cwd(), '');
+
       if (!esLintMain) {
         result.messages.forEach((message) => {
           output.push(
-            `- ${result.filePath}:${message.line}:${message.column} \`${message.message}\``
+            getReportLine(
+              prFilePathFromRoot,
+              message.line.toString(),
+              message.column.toString(),
+              message.message
+            )
           );
         });
       } else {
@@ -307,7 +325,12 @@ function checkEsLint() {
 
           newErrors.forEach((error) => {
             lines.push(
-              `- ${result.filePath}:${error.line}:${error.column} \`${error.message}\``
+              getReportLine(
+                prFilePathFromRoot,
+                error.line.toString(),
+                error.column.toString(),
+                error.message
+              )
             );
           });
 
@@ -325,6 +348,14 @@ function checkEsLint() {
   ].join('\n');
 }
 
-const output = [checkTsc(), checkEsLint()];
+const output = [
+  '### Report of `strictNullChecks (strictPropertyInitialization)` check',
+  `#### Typescript check`,
+  checkTsc(),
+  `#### ESLint check`,
+  checkEsLint(),
+];
+
+fs.writeFileSync(path.join(cwd, 'strict_check.md'), output.join('\n'));
 
 core.setOutput('body', output.join('\n'));
