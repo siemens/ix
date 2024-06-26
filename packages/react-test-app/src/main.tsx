@@ -177,7 +177,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<CheckboxIndeterminate />}
         />
         <Route path="/preview/custom-field" element={<CustomField />} />
-        <Route path="/preview/custom-field-validation" element={<CustomFieldValidation />} />
+        <Route
+          path="/preview/custom-field-validation"
+          element={<CustomFieldValidation />}
+        />
         <Route path="/preview/buttons" element={<Buttons />} />
         <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
         <Route path="/preview/button-group" element={<ButtonGroup />} />
@@ -246,9 +249,18 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
         <Route path="/preview/flip-tile" element={<FlipTile />} />
         <Route path="/preview/form-checkbox" element={<FormCheckbox />} />
-        <Route path="/preview/form-checkbox-disabled" element={<FormCheckboxDisabled />} />
-        <Route path="/preview/form-checkbox-group" element={<FormCheckboxGroup />} />
-        <Route path="/preview/form-checkbox-validation" element={<FormCheckboxValidation />} />
+        <Route
+          path="/preview/form-checkbox-disabled"
+          element={<FormCheckboxDisabled />}
+        />
+        <Route
+          path="/preview/form-checkbox-group"
+          element={<FormCheckboxGroup />}
+        />
+        <Route
+          path="/preview/form-checkbox-validation"
+          element={<FormCheckboxValidation />}
+        />
         <Route path="/preview/group" element={<Group />} />
         <Route
           path="/preview/group-context-menu"
@@ -277,7 +289,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/select" element={<Select />} />
         <Route path="/preview/select-editable" element={<SelectEditable />} />
         <Route path="/preview/select-multiple" element={<SelectMultiple />} />
-        <Route path="/preview/select-validation" element={<SelecValidation />} />
+        <Route
+          path="/preview/select-validation"
+          element={<SelecValidation />}
+        />
         <Route path="/preview/pane" element={<Pane />} />
         <Route path="/preview/pane-layout" element={<PaneLayout />} />
         <Route path="/preview/spinner" element={<Spinner />} />
@@ -297,10 +312,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/textarea-readonly"
           element={<TextareaReadonly />}
         />
-        <Route
-          path="/preview/textarea-field"
-          element={<TextareaField />}
-        />
+        <Route path="/preview/textarea-field" element={<TextareaField />} />
         <Route
           path="/preview/textarea-field-disabled"
           element={<TextareaFieldDisabled />}
@@ -318,12 +330,24 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<TextareaFieldValidation />}
         />
         <Route path="/preview/text-field" element={<TextField />} />
-        <Route path="/preview/text-field-disabled" element={<TextFieldDisabled />} />
+        <Route
+          path="/preview/text-field-disabled"
+          element={<TextFieldDisabled />}
+        />
         <Route path="/preview/text-field-label" element={<TextFieldLabel />} />
-        <Route path="/preview/text-field-pattern" element={<TextFieldPattern />} />
-        <Route path="/preview/text-field-readonly" element={<TextFieldReadonly />} />
+        <Route
+          path="/preview/text-field-pattern"
+          element={<TextFieldPattern />}
+        />
+        <Route
+          path="/preview/text-field-readonly"
+          element={<TextFieldReadonly />}
+        />
         <Route path="/preview/text-field-types" element={<TextFieldTypes />} />
-        <Route path="/preview/text-field-validation" element={<TextFieldValidation />} />
+        <Route
+          path="/preview/text-field-validation"
+          element={<TextFieldValidation />}
+        />
         <Route path="/preview/tile" element={<Tile />} />
         <Route path="/preview/timepicker" element={<Timepicker />} />
         <Route path="/preview/toast" element={<Toast />} />
@@ -344,11 +368,26 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/modal" element={<ModalExample />} />
         <Route path="/preview/modal-sizes" element={<ModalSizes />} />
         <Route path="/preview/number-field" element={<NumberField />} />
-        <Route path="/preview/number-field-disabled" element={<NumberFieldDisabled />} />
-        <Route path="/preview/number-field-label" element={<NumberFieldLabel />} />
-        <Route path="/preview/number-field-readonly" element={<NumberFieldReadonly />} />
-        <Route path="/preview/number-field-stepper-button" element={<NumberFieldStepperButton />} />
-        <Route path="/preview/number-field-validation" element={<NumberFieldValidation />} />
+        <Route
+          path="/preview/number-field-disabled"
+          element={<NumberFieldDisabled />}
+        />
+        <Route
+          path="/preview/number-field-label"
+          element={<NumberFieldLabel />}
+        />
+        <Route
+          path="/preview/number-field-readonly"
+          element={<NumberFieldReadonly />}
+        />
+        <Route
+          path="/preview/number-field-stepper-button"
+          element={<NumberFieldStepperButton />}
+        />
+        <Route
+          path="/preview/number-field-validation"
+          element={<NumberFieldValidation />}
+        />
         <Route path="/preview/validation" element={<Validation />} />
         <Route path="/preview/workflow" element={<Workflow />} />
         <Route

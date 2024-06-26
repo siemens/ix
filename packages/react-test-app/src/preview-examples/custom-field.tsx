@@ -25,9 +25,17 @@ export default () => {
           icon="open-file"
           variant="primary"
           outline
-          onClick={() => {ref.current?.click();}}
+          onClick={() => {
+            ref.current?.click();
+          }}
         ></IxIconButton>
-        <input ref={ref} id="file-upload" type="file" style={{ display: 'none' }} onInput={(e: any) => console.log(e.target.files)} />
+        <input
+          ref={ref}
+          id="file-upload"
+          type="file"
+          style={{ display: 'none' }}
+          onInput={(e: any) => console.log(e.target.files)}
+        />
       </IxCustomField>
     </>
   );

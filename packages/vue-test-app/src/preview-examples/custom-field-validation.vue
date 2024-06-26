@@ -11,7 +11,6 @@
 import { IxCustomField, IxFieldLabel } from '@siemens/ix-vue';
 </script>
 
-
 <template>
   <div>
     <IxFieldLabel htmlFor="first-name">First name</IxFieldLabel>
