@@ -120,13 +120,13 @@ export class Radio implements IxFormComponent<string> {
   /** @internal */
   @Method()
   hasValidValue(): Promise<boolean> {
-    throw new Error('Method not implemented.');
+    return Promise.resolve(this.checked);
   }
 
   /** @internal */
   @Method()
   getAssociatedFormElement(): Promise<HTMLFormElement> {
-    throw new Error('Method not implemented.');
+    return Promise.resolve(this.formInternals.form);
   }
 
   render() {

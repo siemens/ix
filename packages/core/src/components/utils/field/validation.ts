@@ -77,30 +77,6 @@ export function checkFieldClasses(
   hostElement: HTMLIxFormComponentElement<unknown>,
   includeChildren = false
 ): ValidationResults {
-  const suppressValidStyles = (
-    associatedFormElement: HTMLFormElement | null
-  ) => {
-    let suppressValidState = hostElement.hasAttribute('data-ix-disable-valid');
-    if (!suppressValidState && associatedFormElement) {
-      suppressValidState = associatedFormElement.hasAttribute(
-        'data-ix-disable-valid'
-      );
-    }
-
-    if (suppressValidState) {
-      hostElement.classList.toggle('ix-suppress-valid', suppressValidState);
-    }
-  };
-
-  if (
-    hostElement.getAssociatedFormElement &&
-    typeof hostElement.getAssociatedFormElement === 'function'
-  ) {
-    hostElement.getAssociatedFormElement().then(suppressValidStyles);
-  } else {
-    suppressValidStyles(null);
-  }
-
   return {
     isInvalid: containsClass(hostElement, 'ix-invalid', includeChildren),
     isInvalidByRequired: containsClass(

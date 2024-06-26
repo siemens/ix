@@ -46,7 +46,6 @@ import { defineCustomElement as defineIxFieldLabel } from '@siemens/ix/component
 import { defineCustomElement as defineIxFilterChip } from '@siemens/ix/components/ix-filter-chip.js';
 import { defineCustomElement as defineIxFlipTile } from '@siemens/ix/components/ix-flip-tile.js';
 import { defineCustomElement as defineIxFlipTileContent } from '@siemens/ix/components/ix-flip-tile-content.js';
-import { defineCustomElement as defineIxFormField } from '@siemens/ix/components/ix-form-field.js';
 import { defineCustomElement as defineIxGroup } from '@siemens/ix/components/ix-group.js';
 import { defineCustomElement as defineIxGroupContextMenu } from '@siemens/ix/components/ix-group-context-menu.js';
 import { defineCustomElement as defineIxGroupItem } from '@siemens/ix/components/ix-group-item.js';
@@ -151,7 +150,6 @@ export const IxFieldLabel = /*@__PURE__*/createReactComponent<JSX.IxFieldLabel, 
 export const IxFilterChip = /*@__PURE__*/createReactComponent<JSX.IxFilterChip, HTMLIxFilterChipElement>('ix-filter-chip', undefined, undefined, defineIxFilterChip);
 export const IxFlipTile = /*@__PURE__*/createReactComponent<JSX.IxFlipTile, HTMLIxFlipTileElement>('ix-flip-tile', undefined, undefined, defineIxFlipTile);
 export const IxFlipTileContent = /*@__PURE__*/createReactComponent<JSX.IxFlipTileContent, HTMLIxFlipTileContentElement>('ix-flip-tile-content', undefined, undefined, defineIxFlipTileContent);
-export const IxFormField = /*@__PURE__*/createReactComponent<JSX.IxFormField, HTMLIxFormFieldElement>('ix-form-field', undefined, undefined, defineIxFormField);
 export const IxGroup = /*@__PURE__*/createReactComponent<JSX.IxGroup, HTMLIxGroupElement>('ix-group', undefined, undefined, defineIxGroup);
 export const IxGroupContextMenu = /*@__PURE__*/createReactComponent<JSX.IxGroupContextMenu, HTMLIxGroupContextMenuElement>('ix-group-context-menu', undefined, undefined, defineIxGroupContextMenu);
 export const IxGroupItem = /*@__PURE__*/createReactComponent<JSX.IxGroupItem, HTMLIxGroupItemElement>('ix-group-item', undefined, undefined, defineIxGroupItem);

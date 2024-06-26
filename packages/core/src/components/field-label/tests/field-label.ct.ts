@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Locator, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
 test('renders', async ({ mount, page }) => {
@@ -27,7 +27,7 @@ test('required', async ({ mount, page }) => {
   await expect(labelElement).toHaveText('MyLabel *');
 });
 
-test('htmlFor', async ({ mount, page }) => {
+test('focus native input by label click', async ({ mount, page }) => {
   await mount(`
     <ix-field-label html-for="input">MyLabel</ix-field-label>
     <input data-testid="input" id="input" />
@@ -37,4 +37,57 @@ test('htmlFor', async ({ mount, page }) => {
 
   const inputElement = page.getByTestId('input');
   await expect(inputElement).toBeFocused();
+});
+
+test.describe('click label', () => {
+  [
+    'ix-text-field',
+    'ix-number-field',
+    'ix-date-field',
+    'ix-textarea-field',
+  ].forEach((selector) => {
+    test(`focus ${selector} by external label click`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(`
+        <ix-field-label html-for="input">MyLabel</ix-field-label>
+        <${selector} id="input"></${selector}>
+      `);
+      const labelElement = page.locator('ix-field-label');
+      await labelElement.click();
+
+      const component = page.locator(selector);
+      const focusElement =
+        selector !== 'ix-textarea-field'
+          ? component.locator('input')
+          : component.locator('textarea');
+      await expect(focusElement).toBeFocused();
+    });
+
+    test(`focus ${selector} by embedded label click`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(`
+        <${selector} label="MyLabel"></${selector}>
+      `);
+
+      const component = page.locator(selector);
+      await expect(component).toHaveClass(/hydrated/);
+
+      const labelElement = component
+        .locator('ix-field-wrapper')
+        .locator('ix-field-label');
+
+      await labelElement.click();
+
+      const focusElement =
+        selector !== 'ix-textarea-field'
+          ? component.locator('input')
+          : component.locator('textarea');
+
+      await expect(focusElement).toBeFocused();
+    });
+  });
 });

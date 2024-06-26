@@ -19,11 +19,6 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return (
-      <Host>
-        <ix-field-label htmlFor="input">MyLabel</ix-field-label>
-        <input data-testid="input" id="input" />
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

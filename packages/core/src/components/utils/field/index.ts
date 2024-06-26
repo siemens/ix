@@ -92,15 +92,6 @@ export interface IxInputFieldComponent<T = any>
   getNativeInputElement(): Promise<HTMLInputElement | HTMLTextAreaElement>;
 }
 
-export function isIxFormComponent(
-  obj: HTMLElement
-): obj is HTMLIxFormComponentElement<unknown> {
-  return (
-    'getAssociatedFormElement' in obj &&
-    typeof obj.getAssociatedFormElement === 'function'
-  );
-}
-
 export function isIxInputFieldComponent(
   obj: HTMLElement
 ): obj is HTMLIxInputFieldComponentElement<unknown> {

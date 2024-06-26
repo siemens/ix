@@ -5,7 +5,6 @@ import {
   ValidationResults,
   checkFieldClasses,
   createClassMutationObserver,
-  isIxFormComponent,
 } from '../utils/field';
 import { renderHelperText } from '../field-wrapper/helper-text-util';
 import { IxComponent } from '../utils/internal';
@@ -84,12 +83,6 @@ export class HelperText implements IxComponent {
     ) as HTMLIxFormComponentElement<unknown>;
     if (!forElement) {
       return;
-    }
-
-    if (!isIxFormComponent(forElement)) {
-      throw Error(
-        'The element with the id provided in the htmlFor attribute is not an form-ready component'
-      );
     }
 
     if (this.classObserver) {

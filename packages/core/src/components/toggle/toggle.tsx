@@ -18,6 +18,7 @@ import {
   Host,
   Method,
   Prop,
+  Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import { IxFormComponent } from '../utils/field';
@@ -104,12 +105,21 @@ export class Toggle implements IxFormComponent<string> {
     this.checkedChange.emit(this.checked);
   }
 
+  componentWillLoad() {
+    this.updateFormInternalValue();
+  }
+
   updateFormInternalValue(): void {
     if (this.checked) {
       this.formInternals.setFormValue(this.value);
     } else {
       this.formInternals.setFormValue(null);
     }
+  }
+
+  @Watch('checked')
+  watchCheckedChange() {
+    this.updateFormInternalValue();
   }
 
   /** @internal */

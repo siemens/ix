@@ -184,6 +184,7 @@ export class DateField implements IxInputFieldComponent<string> {
     }
 
     this.checkClassList();
+    this.updateFormInternalValue(this.value);
   }
 
   componentDidRender(): void {

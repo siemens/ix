@@ -46,7 +46,6 @@ import { defineCustomElement as defineIxFieldLabel } from '@siemens/ix/component
 import { defineCustomElement as defineIxFilterChip } from '@siemens/ix/components/ix-filter-chip.js';
 import { defineCustomElement as defineIxFlipTile } from '@siemens/ix/components/ix-flip-tile.js';
 import { defineCustomElement as defineIxFlipTileContent } from '@siemens/ix/components/ix-flip-tile-content.js';
-import { defineCustomElement as defineIxFormField } from '@siemens/ix/components/ix-form-field.js';
 import { defineCustomElement as defineIxGroup } from '@siemens/ix/components/ix-group.js';
 import { defineCustomElement as defineIxGroupContextMenu } from '@siemens/ix/components/ix-group-context-menu.js';
 import { defineCustomElement as defineIxGroupItem } from '@siemens/ix/components/ix-group-item.js';
@@ -308,6 +307,7 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 
 
 export const IxCustomField = /*@__PURE__*/ defineContainer<JSX.IxCustomField>('ix-custom-field', defineIxCustomField, [
+  'required',
   'label',
   'helperText',
   'infoText',
@@ -534,11 +534,6 @@ export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip
 
 export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', defineIxFlipTileContent, [
   'contentVisible'
-]);
-
-
-export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-form-field', defineIxFormField, [
-  'label'
 ]);
 
 

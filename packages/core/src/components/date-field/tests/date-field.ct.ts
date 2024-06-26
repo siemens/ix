@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Locator, expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { getFormValue, preventFormSubmission, test } from '@utils/test';
 
 const createDateFieldAccessor = async (dateField: Locator) => {
   const handle = {
@@ -135,4 +135,30 @@ test('required', async ({ mount, page }) => {
   );
 
   await expect(dateFieldElement).toHaveClass(/ix-invalid--required/);
+});
+
+test(`form-ready - ix-date-field`, async ({ mount, page }) => {
+  await mount(
+    `<form><ix-date-field name="my-field-name"></ix-date-field></form>`
+  );
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+  const input = page.locator('ix-date-field').locator('input');
+  await input.fill('2024/05/05');
+  await input.blur();
+
+  const formData = await getFormValue(formElement, 'my-field-name');
+  expect(formData).toBe('2024/05/05');
+});
+
+test(`form-ready - ix-date-field initial value`, async ({ mount, page }) => {
+  await mount(
+    `<form><ix-date-field name="my-field-name" value="2024/12/12"></ix-date-field></form>`
+  );
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+  const formData = await getFormValue(formElement, 'my-field-name');
+  expect(formData).toBe('2024/12/12');
 });
