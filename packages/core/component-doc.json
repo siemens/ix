@@ -3237,7 +3237,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-button",
         "ix-dropdown",
@@ -3268,6 +3270,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-date-dropdown"
         ]
       },
       "props": [
@@ -3639,7 +3644,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-date-time-card",
@@ -3664,6 +3670,9 @@
           "ix-date-picker"
         ],
         "ix-datetime-picker": [
+          "ix-date-picker"
+        ],
+        "ix-playground-internal": [
           "ix-date-picker"
         ]
       },
@@ -5444,7 +5453,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-button",
         "ix-icon-button",
@@ -5461,6 +5472,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-dropdown-button"
         ]
       },
       "props": [
@@ -5790,6 +5804,7 @@
         "ix-date-dropdown",
         "ix-menu-avatar-item",
         "ix-menu-category",
+        "ix-playground-internal",
         "ix-select",
         "ix-select-item",
         "ix-split-button-item"
@@ -5806,6 +5821,9 @@
           "ix-dropdown-item"
         ],
         "ix-menu-category": [
+          "ix-dropdown-item"
+        ],
+        "ix-playground-internal": [
           "ix-dropdown-item"
         ],
         "ix-select": [

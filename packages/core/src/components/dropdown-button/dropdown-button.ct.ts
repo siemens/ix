@@ -23,3 +23,18 @@ test('renders', async ({ mount, page }) => {
   await item.click();
   await expect(item).not.toBeVisible();
 });
+
+test('close behavior - outside', async ({ mount, page }) => {
+  await mount(`
+  <ix-dropdown-button close-behavior="outside" label="Open">
+    <ix-dropdown-item label="Test"></ix-dropdown-item>
+  </ix-dropdown-button>
+  `);
+
+  await page.locator('ix-dropdown-button').click();
+  const item = page.locator('ix-dropdown-item');
+  await expect(item).toBeVisible();
+
+  await item.click();
+  await expect(item).toBeVisible();
+});
