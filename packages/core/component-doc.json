@@ -15555,12 +15555,13 @@
               "text": "2.4.0"
             }
           ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -15663,6 +15664,7 @@
               "text": "2.0.0"
             }
           ],
+          "default": "[]",
           "values": [
             {
               "type": "string"
@@ -15671,7 +15673,7 @@
               "type": "string[]"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {

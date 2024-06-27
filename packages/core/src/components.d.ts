@@ -2357,7 +2357,7 @@ export namespace Components {
           * A Boolean attribute indicating that an option with a non-empty string value must be selected
           * @since 2.4.0
          */
-        "required"?: boolean;
+        "required": boolean;
         /**
           * Indices of selected items. This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
           * @deprecated since 2.0.0. Use the `value` property instead.
@@ -2377,7 +2377,7 @@ export namespace Components {
           * Current selected value. This corresponds to the value property of ix-select-items
           * @since 2.0.0
          */
-        "value"?: string | string[];
+        "value": string | string[];
         /**
           * Warning text for the select component
           * @since 2.4.0
