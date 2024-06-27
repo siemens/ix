@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
- #search_input_react {
+#search_input_react {
   font-feature-settings: "clig" off, "liga" off;
-  font-family: Siemens Sans, Siemens Sans, Arial, Helvetica, sans-serif;
+  font-family: Siemens Sans, Arial, Helvetica, sans-serif;
   font-style: normal;
   font-size: var(--theme-ms-0);
   line-height: var(--theme-line-height-md);
@@ -42,9 +42,12 @@
   }
 }
 
+/*Container*/
 .ds-dropdown-menu {
   color: var(--theme-color-std-text) !important;
+  box-shadow: var(--theme-shadow-4) !important;
 }
+
 .ds-dropdown-menu::before {
   border-color: var(--theme-color-3) !important;
   background-color: var(--theme-color-3) !important;
@@ -62,4 +65,59 @@
 
 .algolia-docsearch-suggestion--text {
   color: var(--theme-input--color);
+}
+
+.algolia-autocomplete {
+
+  .algolia-docsearch-suggestion--category-header-lvl0{
+    color: var(--theme-color-std-text) !important;
+    text-transform: none;
+    letter-spacing: 0;
+    font-kerning: normal;
+
+    > i{
+      color: var(--theme-color-weak-text);
+      font-size: var(--theme-font-size-s);
+      font-weight: var(--theme-font-weight-normal);
+    }
+  }
+
+  .ds-dropdown-menu [class^=ds-dataset-],
+  .algolia-docsearch-footer {
+    background-color: var(--theme-color-2) !important;
+  }
+
+  .algolia-docsearch-suggestion--subcategory-column-text {
+    color: var(--theme-color-weak-text) !important;
+  }
+  
+  .algolia-docsearch-suggestion--subcategory-column,
+  .algolia-docsearch-suggestion--content {
+    ::before {
+      background-color: var(--theme-color-weak-bdr);
+    }
+    
+    .algolia-docsearch-suggestion--title {
+      color: var(--theme-color-std-text) !important;
+
+      .algolia-docsearch-suggestion--highlight {
+        color: var(--theme-color-contrast-text);
+        background-color: var(--theme-color-warning-40);
+      }
+    }
+
+    .algolia-docsearch-suggestion--text {
+      color: var(--theme-color-soft-text) !important;
+
+      .algolia-docsearch-suggestion--highlight {
+        box-shadow: var(--theme-color-info);
+      }
+    }
+
+    .algolia-docsearch-suggestion--version {
+      color: var(--theme-color-weak-text);
+    }
+  }
+
+
 }
