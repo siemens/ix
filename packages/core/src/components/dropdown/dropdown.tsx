@@ -511,7 +511,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       }
 
       if (this.isTriggerElement(target)) {
-        if (this.closeBehavior === 'outside' ) {
+        if (this.closeBehavior === 'outside') {
           event.preventDefault();
         }
         return;
