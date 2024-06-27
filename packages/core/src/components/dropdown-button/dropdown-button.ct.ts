@@ -38,3 +38,22 @@ test('close behavior - outside', async ({ mount, page }) => {
   await item.click();
   await expect(item).toBeVisible();
 });
+
+test('submenu', async ({ mount, page }) => {
+  await mount(`
+    <ix-dropdown-button close-behavior="outside" label="Open">
+      <ix-dropdown-item label="Test" id="submenu"></ix-dropdown-item>
+    </ix-dropdown-button>
+    <ix-dropdown close-behavior="outside" trigger="submenu">
+      <ix-dropdown-item label="Subitem"></ix-dropdown-item>
+    </ix-dropdown>
+  `);
+
+  await page.locator('ix-dropdown-button').click();
+  const item = page.locator('ix-dropdown-item').first();
+  await item.click();
+  const subItem = page.locator('ix-dropdown-item').last();
+  await subItem.click();
+
+  await expect(subItem).toBeVisible();
+});

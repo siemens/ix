@@ -20,38 +20,7 @@ import { Component, h, Host } from '@stencil/core';
 export class PlaygroundInternal {
   render() {
     return (
-      <Host>
-        <ix-dropdown-button
-          closeBehavior="outside"
-          label="Dropdown"
-          variant="primary"
-          icon="checkboxes"
-        >
-          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
-        </ix-dropdown-button>
-        <ix-dropdown-button
-          label="Dropdown"
-          variant="primary"
-          outline
-          icon="checkboxes"
-        >
-          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
-        </ix-dropdown-button>
-        <ix-dropdown-button
-          closeBehavior="inside"
-          label="Dropdown"
-          variant="primary"
-          ghost
-          icon="checkboxes"
-        >
-          <ix-dropdown-item label="Item 1"></ix-dropdown-item>
-          <ix-dropdown-item label="Item 2"></ix-dropdown-item>
-        </ix-dropdown-button>
-        <ix-date-picker></ix-date-picker>
-        <ix-date-dropdown></ix-date-dropdown>
-      </Host>
+      <Host></Host>
     );
   }
 }
