@@ -13210,7 +13210,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Item added to selection",
+          "docs": "Item added to selection\nThe item will not be added if default is prevented.",
           "docsTags": []
         },
         {
@@ -13263,7 +13263,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Value changed",
+          "docs": "Value changed\nThe value will not be changed if default is prevented.",
           "docsTags": [
             {
               "name": "since",
@@ -14491,7 +14491,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "On tab click",
+          "docs": "Emitted when the tab is clicked.\nWill stop further event propagation if default is prevented.",
           "docsTags": [
             {
               "name": "since",
@@ -14665,7 +14665,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "`selected` property changed",
+          "docs": "`selected` property changed\nSelection will not change if default is prevented.",
           "docsTags": [
             {
               "name": "since",

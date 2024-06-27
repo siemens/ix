@@ -6069,7 +6069,7 @@ declare namespace LocalJSX {
          */
         "mode"?: 'single' | 'multiple';
         /**
-          * Item added to selection
+          * Item added to selection The item will not be added if default is prevented.
          */
         "onAddItem"?: (event: IxSelectCustomEvent<string>) => void;
         /**
@@ -6083,7 +6083,7 @@ declare namespace LocalJSX {
          */
         "onItemSelectionChange"?: (event: IxSelectCustomEvent<string[]>) => void;
         /**
-          * Value changed
+          * Value changed The value will not be changed if default is prevented.
           * @since 2.0.0
          */
         "onValueChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
@@ -6254,7 +6254,7 @@ declare namespace LocalJSX {
          */
         "layout"?: 'auto' | 'stretched';
         /**
-          * On tab click
+          * Emitted when the tab is clicked. Will stop further event propagation if default is prevented.
           * @since 2.0.0
          */
         "onTabClick"?: (event: IxTabItemCustomEvent<TabClickDetail>) => void;
@@ -6281,7 +6281,7 @@ declare namespace LocalJSX {
          */
         "layout"?: 'auto' | 'stretched';
         /**
-          * `selected` property changed
+          * `selected` property changed Selection will not change if default is prevented.
           * @since 2.0.0
          */
         "onSelectedChange"?: (event: IxTabsCustomEvent<number>) => void;

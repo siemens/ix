@@ -1921,7 +1921,8 @@ export class IxSelect {
 
 export declare interface IxSelect extends Components.IxSelect {
   /**
-   * Value changed @since 2.0.0
+   * Value changed
+The value will not be changed if default is prevented. @since 2.0.0
    */
   valueChange: EventEmitter<CustomEvent<string | string[]>>;
   /**
@@ -1934,6 +1935,7 @@ export declare interface IxSelect extends Components.IxSelect {
   inputChange: EventEmitter<CustomEvent<string>>;
   /**
    * Item added to selection
+The item will not be added if default is prevented.
    */
   addItem: EventEmitter<CustomEvent<string>>;
 }
@@ -2095,7 +2097,8 @@ import type { TabClickDetail as IIxTabItemTabClickDetail } from '@siemens/ix';
 
 export declare interface IxTabItem extends Components.IxTabItem {
   /**
-   * On tab click @since 2.0.0
+   * Emitted when the tab is clicked.
+Will stop further event propagation if default is prevented. @since 2.0.0
    */
   tabClick: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
 }
@@ -2123,7 +2126,8 @@ export class IxTabs {
 
 export declare interface IxTabs extends Components.IxTabs {
   /**
-   * `selected` property changed @since 2.0.0
+   * `selected` property changed
+Selection will not change if default is prevented. @since 2.0.0
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
 }

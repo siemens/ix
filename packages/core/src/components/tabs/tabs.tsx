@@ -55,6 +55,7 @@ export class Tabs {
 
   /**
    * `selected` property changed
+   * Selection will not change if default is prevented.
    *
    * @since 2.0.0
    */

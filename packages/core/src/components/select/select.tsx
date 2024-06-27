@@ -103,6 +103,7 @@ export class Select {
 
   /**
    * Value changed
+   * The value will not be changed if default is prevented.
    * @since 2.0.0
    */
   @Event() valueChange: EventEmitter<string | string[]>;
@@ -122,6 +123,7 @@ export class Select {
 
   /**
    * Item added to selection
+   * The item will not be added if default is prevented.
    */
   @Event() addItem: EventEmitter<string>;
 
@@ -254,14 +256,23 @@ export class Select {
   }
 
   private itemClick(newId: string) {
+    const defaultPrevented = this.emitValueChange();
+    if (defaultPrevented) {
+      return;
+    }
+
     this.value = this.toggleValue(newId);
     this.updateSelection();
-    this.emitValueChange();
   }
 
   private emitAddItem(value: string) {
     if (value === undefined || value.trim() === '') {
-      return;
+      return false;
+    }
+
+    const { defaultPrevented } = this.addItem.emit(value);
+    if (defaultPrevented) {
+      return true;
     }
 
     const newItem = document.createElement('ix-select-item');
@@ -272,7 +283,8 @@ export class Select {
 
     this.clearInput();
     this.itemClick(value);
-    this.addItem.emit(value);
+
+    return false;
   }
 
   private toggleValue(itemValue: string) {
@@ -326,7 +338,11 @@ export class Select {
   }
 
   private emitValueChange() {
-    this.valueChange.emit(this.value);
+    const { defaultPrevented } = this.valueChange.emit(this.value);
+
+    if (defaultPrevented) {
+      return true;
+    }
 
     if (!this.value) {
       this.itemSelectionChange.emit(null);
@@ -335,6 +351,8 @@ export class Select {
         Array.isArray(this.value) ? this.value : [this.value]
       );
     }
+
+    return false;
   }
 
   componentDidLoad() {
@@ -412,7 +430,11 @@ export class Select {
     let item: HTMLIxSelectItemElement;
 
     if (this.editable && !this.itemExists(this.inputFilterText)) {
-      this.emitAddItem(this.inputFilterText);
+      const defaultPrevented = this.emitAddItem(this.inputFilterText);
+      if (defaultPrevented) {
+        return;
+      }
+
       item = this.items[this.items.length - 1];
     }
 
@@ -748,8 +770,9 @@ export class Select {
               label={this.inputFilterText}
               onItemClick={(e) => {
                 e.preventDefault();
-                e.stopPropagation();
-                this.emitAddItem(this.inputFilterText);
+                if (this.emitAddItem(this.inputFilterText)) {
+                  e.stopPropagation();
+                }
               }}
               onFocus={() => (this.navigationItem = this.addItemRef)}
               ref={(ref) => {
