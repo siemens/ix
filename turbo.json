@@ -4,7 +4,8 @@
     "CI",
     "FIGMA_API_TOKEN",
     "GITHUB_TOKEN",
-    "CSC"
+    "CSC",
+    "FAST_START"
   ],
   "globalDependencies": [
     ".env"
@@ -26,17 +27,12 @@
       ],
       "outputLogs": "new-only"
     },
-    "pkg": {
-      "dependsOn": [
-        "^build"
-      ],
-      "cache": true
-    },
     "start": {
       "dependsOn": [
         "^build"
       ],
-      "cache": true
+      "cache": true,
+      "persistent": true
     },
     "lint": {
       "cache": false

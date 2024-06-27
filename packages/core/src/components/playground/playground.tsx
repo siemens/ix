@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,7 +7,7 @@
  * LICENxSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host } from '@stencil/core';
+import { Component, Host, h } from '@stencil/core';
 
 /** @internal */
 @Component({

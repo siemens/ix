@@ -8,7 +8,7 @@
  */
 
 import { IxBreadcrumb, IxBreadcrumbItem } from '@siemens/ix-react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default () => {
   const [nextItems, setNextItems] = useState<string[]>([]);

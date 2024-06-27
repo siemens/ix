@@ -59,4 +59,4 @@ Dropdown items have five states: Default, hover, active, disabled and focused. W
 - [Dropdown button](buttons/dropdown-button.md)
 - [Split button](buttons/split-button.md) 
 - [Date dropdown](date-dropdown.md) 
-- [Select](select.md)
+- [Select](select.mdx)

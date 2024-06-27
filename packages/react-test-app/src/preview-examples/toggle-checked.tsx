@@ -8,7 +8,6 @@
  */
 
 import { IxToggle } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return <IxToggle checked />;

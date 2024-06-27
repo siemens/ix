@@ -60,5 +60,11 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@stencil/react-output-target@0.5.3": "patches/@stencil__react-output-target@0.5.3.patch",
+      "@stencil/vue-output-target@0.8.8": "patches/@stencil__vue-output-target@0.8.8.patch"
+    }
   }
 }

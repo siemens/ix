@@ -17,6 +17,10 @@ import { escapeMarkdown } from './utils';
 
 type DocsTag = { name: string; text: string };
 
+function htmlFormReadyTag(value: string) {
+  return `<span className="Api__Table Docs__Tag">Form-ready since ${value}</span>`;
+}
+
 function htmlSinceTag(value: string) {
   return `<span className="Api__Table Docs__Tag">Since: ${value}</span>`;
 }
@@ -201,6 +205,10 @@ function writeTags(component: { docsTags: DocsTag[] }) {
 
   const renderedDocsTags = docsTags
     .map((tag) => {
+      if (tag.name === 'form-ready') {
+        return htmlFormReadyTag(tag.text);
+      }
+
       if (tag.name === 'since') {
         return htmlSinceTag(tag.text);
       }

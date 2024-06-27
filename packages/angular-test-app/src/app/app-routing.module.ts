@@ -33,10 +33,17 @@ import Checkbox from 'src/preview-examples/checkbox';
 import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
 import Chip from 'src/preview-examples/chip';
 import ContentExample from 'src/preview-examples/content';
+import CustomField from 'src/preview-examples/custom-field';
+import CustomFieldValidation from 'src/preview-examples/custom-field-validation';
 import PageHeader from 'src/preview-examples/content-header';
 import PageHeaderNoBack from 'src/preview-examples/content-header-no-back';
 import DateDropdown from 'src/preview-examples/date-dropdown';
 import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
+import DateField from '../preview-examples/date-field';
+import DateFieldDisabled from '../preview-examples/date-field-disabled';
+import DateFieldLabel from '../preview-examples/date-field-label';
+import DateFieldReadonly from '../preview-examples/date-field-readonly';
+import DateFieldValidation from '../preview-examples/date-field-validation';
 import Datepicker from 'src/preview-examples/datepicker';
 import DatepickerLocale from 'src/preview-examples/datepicker-locale';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
@@ -90,16 +97,27 @@ import MessageBar from 'src/preview-examples/message-bar';
 import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import Modal from 'src/preview-examples/modal-by-template';
 import ModalSizes from 'src/preview-examples/modal-sizes';
+import NumberField from '../preview-examples/number-field';
+import NumberFieldDisabled from '../preview-examples/number-field-disabled';
+import NumberFieldLabel from '../preview-examples/number-field-label';
+import NumberFieldReadonly from '../preview-examples/number-field-readonly';
+import NumberFieldStepperButton from '../preview-examples/number-field-stepper-button';
+import NumberFieldValidation from '../preview-examples/number-field-validation';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
 import PillVariants from 'src/preview-examples/pill-variants';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
+import Radio from 'src/preview-examples/radio';
+import RadioDisabled from 'src/preview-examples/radio-disabled';
+import RadioGroup from 'src/preview-examples/radio-group';
+import RadioValidation from 'src/preview-examples/radio-validation';
 import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
 import SelectNgModel from 'src/preview-examples/select-ng-model';
+import SelectValidation from '../preview-examples/select-validation';
 import Settings from 'src/preview-examples/settings';
 import Slider from 'src/preview-examples/slider';
 import SliderError from 'src/preview-examples/slider-error';
@@ -114,6 +132,18 @@ import TabsRounded from 'src/preview-examples/tabs-rounded';
 import Textarea from 'src/preview-examples/textarea';
 import TextareaDisabled from 'src/preview-examples/textarea-disabled';
 import TextareaReadonly from 'src/preview-examples/textarea-readonly';
+import TextareaField from '../preview-examples/textarea-field';
+import TextareaFieldDisabled from '../preview-examples/textarea-field-disabled';
+import TextareaFieldReadonly from '../preview-examples/textarea-field-readonly';
+import TextareaFieldRowsCols from '../preview-examples/textarea-field-rows-cols';
+import TextareaFieldValidation from '../preview-examples/textarea-field-validation';
+import TextField from '../preview-examples/text-field';
+import TextFieldDisabled from '../preview-examples/text-field-disabled';
+import TextFieldLabel from '../preview-examples/text-field-label';
+import TextFieldPattern from '../preview-examples/text-field-pattern';
+import TextFieldReadonly from '../preview-examples/text-field-readonly';
+import TextFieldTypes from '../preview-examples/text-field-types';
+import TextFieldValidation from '../preview-examples/text-field-validation';
 import ThemeService from 'src/preview-examples/theme-switcher';
 import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
@@ -143,6 +173,9 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 import Echarts from 'src/preview-examples/echarts';
+import ValidationSelect from 'src/preview-examples/validation-select';
+import ValidationTextField from 'src/preview-examples/validation-text-field';
+import FormValidation from 'src/preview-examples/form-validation';
 
 const routes: Routes = [
   {
@@ -191,6 +224,14 @@ const routes: Routes = [
       {
         path: 'content',
         component: ContentExample,
+      },
+      {
+        path: 'custom-field',
+        component: CustomField,
+      },
+      {
+        path: 'custom-field-validation',
+        component: CustomFieldValidation,
       },
       {
         path: 'buttons',
@@ -277,6 +318,26 @@ const routes: Routes = [
         component: DateDropdownUserRange,
       },
       {
+        path: 'date-field',
+        component: DateField,
+      },
+      {
+        path: 'date-field-disabled',
+        component: DateFieldDisabled,
+      },
+      {
+        path: 'date-field-label',
+        component: DateFieldLabel,
+      },
+      {
+        path: 'date-field-readonly',
+        component: DateFieldReadonly,
+      },
+      {
+        path: 'date-field-validation',
+        component: DateFieldValidation,
+      },
+      {
         path: 'datepicker',
         component: Datepicker,
       },
@@ -354,9 +415,14 @@ const routes: Routes = [
       { path: 'pill-variants', component: PillVariants },
       { path: 'popover-news', component: PopoverNews },
       { path: 'radio-button', component: Radiobutton },
+      { path: 'radio', component: Radio },
+      { path: 'radio-disabled', component: RadioDisabled },
+      { path: 'radio-group', component: RadioGroup },
+      { path: 'radio-validation', component: RadioValidation },
       { path: 'select-editable', component: SelectEditable },
       { path: 'select-multiple', component: SelectMultiple },
       { path: 'select-ng-model', component: SelectNgModel },
+      { path: 'select-validation', component: SelectValidation },
       { path: 'select', component: Select },
       { path: 'settings', component: Settings },
       { path: 'spinner', component: Spinner },
@@ -368,6 +434,18 @@ const routes: Routes = [
       { path: 'textarea', component: Textarea },
       { path: 'textarea-disabled', component: TextareaDisabled },
       { path: 'textarea-readonly', component: TextareaReadonly },
+      { path: 'textarea-field', component: TextareaField },
+      { path: 'textarea-field-disabled', component: TextareaFieldDisabled },
+      { path: 'textarea-field-disabled', component: TextareaFieldReadonly },
+      { path: 'textarea-field-rows-cols', component: TextareaFieldRowsCols },
+      { path: 'textarea-field-validation', component: TextareaFieldValidation },
+      { path: 'text-field', component: TextField },
+      { path: 'text-field-disabled', component: TextFieldDisabled },
+      { path: 'text-field-label', component: TextFieldLabel },
+      { path: 'text-field-label', component: TextFieldPattern },
+      { path: 'text-field-readonly', component: TextFieldReadonly },
+      { path: 'text-field-types', component: TextFieldTypes },
+      { path: 'text-field-types', component: TextFieldValidation },
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
@@ -400,6 +478,12 @@ const routes: Routes = [
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
       { path: 'map-navigation-overlay', component: MapNavigationOverlay },
+      { path: 'number-field', component: NumberField },
+      { path: 'number-field-disabled', component: NumberFieldDisabled },
+      { path: 'number-field-label', component: NumberFieldLabel },
+      { path: 'number-field-readonly', component: NumberFieldReadonly },
+      { path: 'number-field-stepper-button', component: NumberFieldStepperButton },
+      { path: 'number-field-validation', component: NumberFieldValidation },
       { path: 'tooltip', component: Tooltip },
       { path: 'tooltip-title', component: TooltipTitle },
       { path: 'modal-by-instance', component: ModalByInstance },
@@ -435,6 +519,9 @@ const routes: Routes = [
       { path: 'grid-size', component: GridSize },
       { path: 'grid-padding', component: GridPadding },
       { path: 'modal-sizes', component: ModalSizes },
+      { path: 'validation-select', component: ValidationSelect },
+      { path: 'validation-text-field', component: ValidationTextField },
+      { path: 'form-validation', component: FormValidation },
     ],
   },
 ];

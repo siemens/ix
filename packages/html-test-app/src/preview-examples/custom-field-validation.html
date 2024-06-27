@@ -1,0 +1,45 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Custom field example</title>
+  </head>
+  <body>
+    <!-- Preview code -->
+    <div>
+      <ix-field-label htmlFor="first-name">First name</ix-field-label>
+      <ix-custom-field helper-text="Add your first name here" valid-text="Valid first name">
+        <input id="first-name" type="text" class='form-control ix-valid' value="Jane" />
+      </ix-custom-field>
+    </div>
+
+    <div>
+      <ix-field-label  htmlFor="last-name">Last name</ix-field-label>
+      <ix-custom-field info-text="Family name">
+        <input id="last-name" type="text" class='form-control ix-info' value="Doe" />
+      </ix-custom-field>
+    </div>
+
+    <div>
+      <ix-field-label htmlFor="email">Email</ix-field-label>
+      <ix-custom-field warning-Text="Not a valid email address">
+        <input id="email" type="email" class='form-control ix-warning' value="info@" />
+      </ix-custom-field>
+    </div>
+
+    <div>
+      <ix-field-label htmlFor="address">Address</ix-field-label>
+      <ix-custom-field invalid-text="Required">
+        <input id="address" type="text" class='form-control ix-invalid' />
+      </ix-custom-field>
+    </div>
+
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

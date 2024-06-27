@@ -10,7 +10,6 @@
 import 'example-styles/dist/global.css';
 
 import { IxApplicationContext } from '@siemens/ix-react';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
@@ -36,6 +35,8 @@ import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
 import Content from './preview-examples/content';
+import CustomField from './preview-examples/custom-field';
+import CustomFieldValidation from './preview-examples/custom-field-validation';
 import PageHeader from './preview-examples/content-header';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range';
@@ -54,6 +55,10 @@ import EventListCustomHeight from './preview-examples/event-list-custom-item-hei
 import EventListSelected from './preview-examples/event-list-selected';
 import ExpandingSearch from './preview-examples/expanding-search';
 import FlipTile from './preview-examples/flip-tile';
+import FormCheckbox from './preview-examples/form-checkbox';
+import FormCheckboxDisabled from './preview-examples/form-checkbox-disabled';
+import FormCheckboxGroup from './preview-examples/form-checkbox-group';
+import FormCheckboxValidation from './preview-examples/form-checkbox-validation';
 import Grid from './preview-examples/grid';
 import GridPadding from './preview-examples/grid-padding';
 import GridSize from './preview-examples/grid-size';
@@ -72,6 +77,12 @@ import MenuCategory from './preview-examples/menu-category';
 import MessageBar from './preview-examples/message-bar';
 import ModalExample from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
+import NumberField from './preview-examples/number-field';
+import NumberFieldDisabled from './preview-examples/number-field-disabled';
+import NumberFieldLabel from './preview-examples/number-field-label';
+import NumberFieldReadonly from './preview-examples/number-field-readonly';
+import NumberFieldStepperButton from './preview-examples/number-field-stepper-button';
+import NumberFieldValidation from './preview-examples/number-field-validation';
 import Pane from './preview-examples/pane';
 import PaneLayout from './preview-examples/pane-layout';
 import Pill from './preview-examples/pill';
@@ -79,9 +90,14 @@ import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
 import PushCard from './preview-examples/push-card';
 import RadioButton from './preview-examples/radio-button';
+import Radio from './preview-examples/radio';
+import RadioDisabled from './preview-examples/radio-disabled';
+import RadioGroup from './preview-examples/radio-group';
+import RadioValidation from './preview-examples/radio-validation';
 import Select from './preview-examples/select';
 import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
+import SelecValidation from './preview-examples/select-validation';
 import Settings from './preview-examples/settings';
 import Slider from './preview-examples/slider';
 import SliderError from './preview-examples/slider-error';
@@ -95,6 +111,18 @@ import Tabs from './preview-examples/tabs';
 import Textarea from './preview-examples/textarea';
 import TextareaDisabled from './preview-examples/textarea-disabled';
 import TextareaReadonly from './preview-examples/textarea-readonly';
+import TextareaField from './preview-examples/textarea-field';
+import TextareaFieldDisabled from './preview-examples/textarea-field-disabled';
+import TextareaFieldReadonly from './preview-examples/textarea-field-readonly';
+import TextareaFieldRowCols from './preview-examples/textarea-field-rows-cols';
+import TextareaFieldValidation from './preview-examples/textarea-field-validation';
+import TextField from './preview-examples/text-field';
+import TextFieldDisabled from './preview-examples/text-field-disabled';
+import TextFieldLabel from './preview-examples/text-field-label';
+import TextFieldPattern from './preview-examples/text-field-pattern';
+import TextFieldReadonly from './preview-examples/text-field-readonly';
+import TextFieldTypes from './preview-examples/text-field-types';
+import TextFieldValidation from './preview-examples/text-field-validation';
 import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
 import Timepicker from './preview-examples/timepicker';
@@ -115,6 +143,8 @@ import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
 import Echarts from './preview-examples/echarts';
+import ValidationSelect from './preview-examples/validation-select';
+import FormValidation from './preview-examples/form-validation';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -145,6 +175,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route
           path="/preview/checkbox-indeterminate"
           element={<CheckboxIndeterminate />}
+        />
+        <Route path="/preview/custom-field" element={<CustomField />} />
+        <Route
+          path="/preview/custom-field-validation"
+          element={<CustomFieldValidation />}
         />
         <Route path="/preview/buttons" element={<Buttons />} />
         <Route path="/preview/button-with-icon" element={<ButtonWithIcon />} />
@@ -213,6 +248,19 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
         <Route path="/preview/flip-tile" element={<FlipTile />} />
+        <Route path="/preview/form-checkbox" element={<FormCheckbox />} />
+        <Route
+          path="/preview/form-checkbox-disabled"
+          element={<FormCheckboxDisabled />}
+        />
+        <Route
+          path="/preview/form-checkbox-group"
+          element={<FormCheckboxGroup />}
+        />
+        <Route
+          path="/preview/form-checkbox-validation"
+          element={<FormCheckboxValidation />}
+        />
         <Route path="/preview/group" element={<Group />} />
         <Route
           path="/preview/group-context-menu"
@@ -234,9 +282,17 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/pill" element={<Pill />} />
         <Route path="/preview/pill-variants" element={<PillVariants />} />
         <Route path="/preview/radio-button" element={<RadioButton />} />
+        <Route path="/preview/radio" element={<Radio />} />
+        <Route path="/preview/radio-disabled" element={<RadioDisabled />} />
+        <Route path="/preview/radio-group" element={<RadioGroup />} />
+        <Route path="/preview/radio-validation" element={<RadioValidation />} />
         <Route path="/preview/select" element={<Select />} />
         <Route path="/preview/select-editable" element={<SelectEditable />} />
         <Route path="/preview/select-multiple" element={<SelectMultiple />} />
+        <Route
+          path="/preview/select-validation"
+          element={<SelecValidation />}
+        />
         <Route path="/preview/pane" element={<Pane />} />
         <Route path="/preview/pane-layout" element={<PaneLayout />} />
         <Route path="/preview/spinner" element={<Spinner />} />
@@ -255,6 +311,42 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route
           path="/preview/textarea-readonly"
           element={<TextareaReadonly />}
+        />
+        <Route path="/preview/textarea-field" element={<TextareaField />} />
+        <Route
+          path="/preview/textarea-field-disabled"
+          element={<TextareaFieldDisabled />}
+        />
+        <Route
+          path="/preview/textarea-readonly"
+          element={<TextareaFieldReadonly />}
+        />
+        <Route
+          path="/preview/textarea-field-rows-cols"
+          element={<TextareaFieldRowCols />}
+        />
+        <Route
+          path="/preview/textarea-field-validation"
+          element={<TextareaFieldValidation />}
+        />
+        <Route path="/preview/text-field" element={<TextField />} />
+        <Route
+          path="/preview/text-field-disabled"
+          element={<TextFieldDisabled />}
+        />
+        <Route path="/preview/text-field-label" element={<TextFieldLabel />} />
+        <Route
+          path="/preview/text-field-pattern"
+          element={<TextFieldPattern />}
+        />
+        <Route
+          path="/preview/text-field-readonly"
+          element={<TextFieldReadonly />}
+        />
+        <Route path="/preview/text-field-types" element={<TextFieldTypes />} />
+        <Route
+          path="/preview/text-field-validation"
+          element={<TextFieldValidation />}
         />
         <Route path="/preview/tile" element={<Tile />} />
         <Route path="/preview/timepicker" element={<Timepicker />} />
@@ -275,6 +367,27 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/kpi" element={<Kpi />} />
         <Route path="/preview/modal" element={<ModalExample />} />
         <Route path="/preview/modal-sizes" element={<ModalSizes />} />
+        <Route path="/preview/number-field" element={<NumberField />} />
+        <Route
+          path="/preview/number-field-disabled"
+          element={<NumberFieldDisabled />}
+        />
+        <Route
+          path="/preview/number-field-label"
+          element={<NumberFieldLabel />}
+        />
+        <Route
+          path="/preview/number-field-readonly"
+          element={<NumberFieldReadonly />}
+        />
+        <Route
+          path="/preview/number-field-stepper-button"
+          element={<NumberFieldStepperButton />}
+        />
+        <Route
+          path="/preview/number-field-validation"
+          element={<NumberFieldValidation />}
+        />
         <Route path="/preview/validation" element={<Validation />} />
         <Route path="/preview/workflow" element={<Workflow />} />
         <Route
@@ -326,6 +439,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/grid" element={<Grid />} />
         <Route path="/preview/grid-size" element={<GridSize />} />
         <Route path="/preview/grid-padding" element={<GridPadding />} />
+        <Route
+          path="/preview/validation-select"
+          element={<ValidationSelect />}
+        />
+        <Route path="/preview/form-validation" element={<FormValidation />} />
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>

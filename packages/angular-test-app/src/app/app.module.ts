@@ -13,7 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -43,8 +43,15 @@ import Chip from 'src/preview-examples/chip';
 import ContentExample from 'src/preview-examples/content';
 import ContentHeader from 'src/preview-examples/content-header';
 import ContentHeaderNoBack from 'src/preview-examples/content-header-no-back';
+import CustomField from 'src/preview-examples/custom-field';
+import CustomFieldValidation from 'src/preview-examples/custom-field-validation';
 import DateDropdown from 'src/preview-examples/date-dropdown';
 import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
+import DateField from '../preview-examples/date-field';
+import DateFieldDisabled from '../preview-examples/date-field-disabled';
+import DateFieldLabel from '../preview-examples/date-field-label';
+import DateFieldReadonly from '../preview-examples/date-field-readonly';
+import DateFieldValidation from '../preview-examples/date-field-validation';
 import Datepicker from 'src/preview-examples/datepicker';
 import DatepickerLocale from 'src/preview-examples/datepicker-locale';
 import DatepickerRange from 'src/preview-examples/datepicker-range';
@@ -99,16 +106,27 @@ import ModalByInstance from 'src/preview-examples/modal-by-instance';
 import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
 import Modal from 'src/preview-examples/modal-by-template';
 import ModalSizes from 'src/preview-examples/modal-sizes';
+import NumberField from '../preview-examples/number-field';
+import NumberFieldDisabled from '../preview-examples/number-field-disabled';
+import NumberFieldLabel from '../preview-examples/number-field-label';
+import NumberFieldReadonly from '../preview-examples/number-field-readonly';
+import NumberFieldStepperButton from '../preview-examples/number-field-stepper-button';
+import NumberFieldValidation from '../preview-examples/number-field-validation';
 import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
 import PillVariants from 'src/preview-examples/pill-variants';
 import PopoverNews from 'src/preview-examples/popover-news';
 import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
+import Radio from 'src/preview-examples/radio';
+import RadioDisabled from 'src/preview-examples/radio-disabled';
+import RadioGroup from 'src/preview-examples/radio-group';
+import RadioValidation from 'src/preview-examples/radio-validation';
 import Select from 'src/preview-examples/select';
 import SelectEditable from 'src/preview-examples/select-editable';
 import SelectMultiple from 'src/preview-examples/select-multiple';
 import SelectNgModel from 'src/preview-examples/select-ng-model';
+import SelectValidation from 'src/preview-examples/select-validation';
 import Settings from 'src/preview-examples/settings';
 import Slider from 'src/preview-examples/slider';
 import SliderError from 'src/preview-examples/slider-error';
@@ -123,6 +141,17 @@ import TabsRounded from 'src/preview-examples/tabs-rounded';
 import Textarea from 'src/preview-examples/textarea';
 import TextareaDisabled from 'src/preview-examples/textarea-disabled';
 import TextareaReadonly from 'src/preview-examples/textarea-readonly';
+import TextareaField from '../preview-examples/textarea-field';
+import TextareaFieldDisabled from '../preview-examples/textarea-field-disabled';
+import TextareaFieldReadonly from '../preview-examples/textarea-field-readonly';
+import TextareaFieldRowsCols from '../preview-examples/textarea-field-rows-cols';
+import TextareaFieldValidation from '../preview-examples/textarea-field-validation';
+import TextField from '../preview-examples/text-field';
+import TextFieldDisabled from '../preview-examples/text-field-disabled';
+import TextFieldLabel from '../preview-examples/text-field-label';
+import TextFieldReadonly from '../preview-examples/text-field-readonly';
+import TextFieldTypes from '../preview-examples/text-field-types';
+import TextFieldValidation from '../preview-examples/text-field-validation';
 import ThemeSwitcherExample from 'src/preview-examples/theme-switcher';
 import Tile from 'src/preview-examples/tile';
 import Timepicker from 'src/preview-examples/timepicker';
@@ -152,9 +181,15 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 import Echarts from 'src/preview-examples/echarts';
+import ValidationSelect from 'src/preview-examples/validation-select';
+import ValidationTextField from 'src/preview-examples/validation-text-field';
+import FormValidation from 'src/preview-examples/form-validation';
+import TextFieldPattern from 'src/preview-examples/text-field-pattern';
 
 @NgModule({
   declarations: [
+    FormValidation,
+    ValidationTextField,
     ApplicationExample,
     ApplicationBreakpointExample,
     ApplicationAppSwitchExample,
@@ -184,8 +219,15 @@ import Echarts from 'src/preview-examples/echarts';
     CheckboxIndeterminate,
     Checkbox,
     Chip,
+    CustomField,
+    CustomFieldValidation,
     DateDropdown,
     DateDropdownUserRange,
+    DateField,
+    DateFieldDisabled,
+    DateFieldLabel,
+    DateFieldReadonly,
+    DateFieldValidation,
     Datepicker,
     Datetimepicker,
     DrawerFullHeight,
@@ -223,9 +265,14 @@ import Echarts from 'src/preview-examples/echarts';
     PillVariants,
     PopoverNews,
     Radiobutton,
+    Radio,
+    RadioDisabled,
+    RadioGroup,
+    RadioValidation,
     SelectEditable,
     SelectMultiple,
     SelectNgModel,
+    SelectValidation,
     Select,
     Settings,
     Pane,
@@ -238,6 +285,18 @@ import Echarts from 'src/preview-examples/echarts';
     Textarea,
     TextareaReadonly,
     TextareaDisabled,
+    TextareaField,
+    TextareaFieldDisabled,
+    TextareaFieldReadonly,
+    TextareaFieldRowsCols,
+    TextareaFieldValidation,
+    TextField,
+    TextFieldDisabled,
+    TextFieldLabel,
+    TextFieldReadonly,
+    TextFieldTypes,
+    TextFieldValidation,
+    TextFieldPattern,
     ThemeSwitcherExample,
     Tile,
     Timepicker,
@@ -258,6 +317,12 @@ import Echarts from 'src/preview-examples/echarts';
     WorkflowVertical,
     MapNavigation,
     MapNavigationOverlay,
+    NumberField,
+    NumberFieldDisabled,
+    NumberFieldLabel,
+    NumberFieldReadonly,
+    NumberFieldStepperButton,
+    NumberFieldValidation,
     TabsRounded,
     DatepickerRange,
     Tooltip,
@@ -291,6 +356,7 @@ import Echarts from 'src/preview-examples/echarts';
     GridPadding,
     ModalSizes,
     DatepickerLocale,
+    ValidationSelect,
   ],
   imports: [
     BrowserModule,
@@ -298,6 +364,7 @@ import Echarts from 'src/preview-examples/echarts';
     IxModule.forRoot(),
     AgGridModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),

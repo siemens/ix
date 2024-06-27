@@ -9,9 +9,8 @@
 
 <script setup lang="ts">
 import {
-IxApplication,
+  IxApplication,
   IxApplicationHeader,
-  IxBasicNavigation,
   IxMenu,
   IxMenuAbout,
   IxMenuAboutItem,
