@@ -324,8 +324,9 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
      `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -338,8 +339,9 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
       `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.keyboard.down('Enter');
       await page.waitForSelector('.checkmark');
 
@@ -356,8 +358,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.keyboard.down('Enter');
       await page.waitForSelector('.checkmark');
 
@@ -380,8 +383,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -402,13 +406,14 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('Item 2');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('Item 2');
       await page.keyboard.down('Enter');
       await page.waitForSelector('.checkmark');
 
-      await page.locator('input').clear();
-      await page.keyboard.type('I');
+      await input.clear();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -429,8 +434,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
      `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('Item 2');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('Item 2');
       await page.keyboard.press('Enter');
       await page.locator('input').clear();
 
@@ -456,8 +462,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
      `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -480,13 +487,14 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
      `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('Item 1');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('Item 1');
       await page.keyboard.press('Enter');
       await page.waitForSelector('.checkmark');
 
-      await page.locator('input').clear();
-      await page.keyboard.type('I');
+      await input.clear();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -513,8 +521,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.keyboard.down('Enter');
       await page.waitForSelector('.checkmark');
 
@@ -540,8 +549,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -564,13 +574,14 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
       `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('Item 1');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('Item 1');
       await page.keyboard.press('Enter');
       await page.waitForSelector('.checkmark');
 
-      await page.locator('input').clear();
-      await page.keyboard.type('I');
+      await input.clear();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -595,8 +606,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
      `);
 
-      await page.locator('input').focus();
-      await page.keyboard.type('Item 2');
+      const input = await page.locator('input');
+      await input.focus();
+      await input.fill('Item 2');
       await page.keyboard.press('Enter');
       await page.locator('input').clear();
 
@@ -616,8 +628,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
      `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -634,13 +647,14 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
      `);
 
-      await page.locator('ix-select input').focus();
-      await page.keyboard.type('Item 1');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('Item 1');
       await page.keyboard.press('Enter');
       await page.waitForSelector('.checkmark');
 
-      await page.locator('input').clear();
-      await page.keyboard.type('I');
+      await input.clear();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -685,8 +699,9 @@ test.describe('Events', () => {
         elm.addEventListener('addItem', (e: CustomEvent) => resolve(e.detail));
       });
     });
-    await page.locator('input').focus();
-    await page.keyboard.type(itemText);
+    const input = await page.locator('input');
+    await input.focus();
+    await input.fill(itemText);
     await page.keyboard.press('Enter');
 
     await expect(select).toHaveClass(/hydrated/);
@@ -714,8 +729,9 @@ test.describe('Events', () => {
       await select.evaluate((i) =>
         i.addEventListener('addItem', (e) => e.preventDefault())
       );
-      await page.locator('input').focus();
-      await page.keyboard.type('test');
+      const input = await page.locator('input');
+      await input.focus();
+      await input.fill('test');
       await page.keyboard.press('Enter');
       const count = await page.locator('ix-select-item').count();
       await expect(count).toBe(0);
