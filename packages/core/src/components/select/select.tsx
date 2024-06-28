@@ -209,12 +209,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Event() ixBlur!: EventEmitter<void>;
 
   @State() dropdownShow = false;
-  @State() selectedLabels: string[];
+  @State() selectedLabels: string[] = [];
   @State() dropdownWrapperRef!: HTMLElement;
   @State() dropdownAnchor!: HTMLElement;
   @State() isDropdownEmpty = false;
   @State() navigationItem: DropdownItemWrapper | null = null;
-  @State() inputFilterText: string;
+  @State() inputFilterText: string = '';
   @State() inputValue: string | null = null;
 
   @State() isInvalid = false;
@@ -228,9 +228,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private customItemsContainerRef!: HTMLDivElement;
   private addItemRef!: HTMLIxDropdownItemElement;
 
-  private itemMutationObserver: MutationObserver;
-
-  private arrowFocusController: ArrowFocusController;
+  private arrowFocusController!: ArrowFocusController;
   private focusControllerCallbackBind = this.focusDropdownItem.bind(this);
 
   private itemObserver = createMutationObserver(() => {
@@ -358,8 +356,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           'ix-dropdown-item'
         );
 
+      if (!nestedDropdownItem) {
+        return;
+      }
+
       requestAnimationFrame(() => {
-        nestedDropdownItem.shadowRoot.querySelector('button').focus();
+        nestedDropdownItem.shadowRoot?.querySelector('button')?.focus();
       });
     }
   }
@@ -469,12 +471,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     event.preventDefault();
     event.stopImmediatePropagation();
     this.updateSelection();
-  }
-
-  disconnectedCallback() {
-    if (this.itemMutationObserver) {
-      this.itemMutationObserver.disconnect();
-    }
   }
 
   private itemExists(item: string) {
@@ -644,10 +640,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.navigationItem = element;
 
     setTimeout(() => {
-      element.shadowRoot
-        .querySelector('ix-dropdown-item')
-        .shadowRoot.querySelector('button')
-        .focus();
+      const item = element.shadowRoot?.querySelector('ix-dropdown-item');
+
+      if (item) {
+        item.shadowRoot?.querySelector('button')?.focus();
+      }
     });
   }
 
