@@ -256,12 +256,14 @@ export class Select {
   }
 
   private itemClick(newId: string) {
-    const defaultPrevented = this.emitValueChange();
+    const value = this.toggleValue(newId);
+    const defaultPrevented = this.emitValueChange(value);
+
     if (defaultPrevented) {
       return;
     }
 
-    this.value = this.toggleValue(newId);
+    this.value = value;
     this.updateSelection();
   }
 
@@ -337,19 +339,17 @@ export class Select {
     this.inputValue = null;
   }
 
-  private emitValueChange() {
-    const { defaultPrevented } = this.valueChange.emit(this.value);
+  private emitValueChange(value: string | string[]) {
+    const { defaultPrevented } = this.valueChange.emit(value);
 
     if (defaultPrevented) {
       return true;
     }
 
-    if (!this.value) {
+    if (!value) {
       this.itemSelectionChange.emit(null);
     } else {
-      this.itemSelectionChange.emit(
-        Array.isArray(this.value) ? this.value : [this.value]
-      );
+      this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
     }
 
     return false;

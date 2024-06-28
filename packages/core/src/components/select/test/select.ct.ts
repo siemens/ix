@@ -654,31 +654,71 @@ test.describe('arrow key navigation', () => {
   });
 });
 
-test.describe('Prevent default', () => {
+test.describe('Events', () => {
   test('value change', async ({ mount, page }) => {
     await mount(`<ix-select>
       <ix-select-item value="1" label="Item 1"></ix-select-item>
       </ix-select>`);
+
     const select = await page.locator('ix-select');
-    await select.evaluate((i) =>
-      i.addEventListener('vauleChange', (e) => e.preventDefault())
-    );
+    const valueChanged = select.evaluate((elm) => {
+      return new Promise<number>((resolve) => {
+        elm.addEventListener('valueChange', (e: CustomEvent) =>
+          resolve(e.detail)
+        );
+      });
+    });
+
     await page.locator('ix-icon-button').click();
-    const item = await page.locator('ix-select-item');
-    item.click();
-    await expect(item).not.toHaveClass('selected');
+    await page.locator('ix-select-item').click();
+
+    await expect(select).toHaveClass(/hydrated/);
+    expect(await valueChanged).toBe('1');
   });
 
   test('add item', async ({ mount, page }) => {
+    const itemText = 'test';
     await mount(`<ix-select editable></ix-select>`);
     const select = await page.locator('ix-select');
-    await select.evaluate((i) =>
-      i.addEventListener('addItem', (e) => e.preventDefault())
-    );
+    const itemAdded = select.evaluate((elm) => {
+      return new Promise<number>((resolve) => {
+        elm.addEventListener('addItem', (e: CustomEvent) => resolve(e.detail));
+      });
+    });
     await page.locator('input').focus();
-    await page.keyboard.type('test');
+    await page.keyboard.type(itemText);
     await page.keyboard.press('Enter');
-    const count = await page.locator('ix-select-item').count();
-    await expect(count).toBe(0);
+
+    await expect(select).toHaveClass(/hydrated/);
+    expect(await itemAdded).toBe(itemText);
+  });
+
+  test.describe('prevent default', () => {
+    test('value change', async ({ mount, page }) => {
+      await mount(`<ix-select>
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      </ix-select>`);
+      const select = await page.locator('ix-select');
+      await select.evaluate((i) =>
+        i.addEventListener('vauleChange', (e) => e.preventDefault())
+      );
+      await page.locator('ix-icon-button').click();
+      const item = await page.locator('ix-select-item');
+      item.click();
+      await expect(item).not.toHaveClass('selected');
+    });
+
+    test('add item', async ({ mount, page }) => {
+      await mount(`<ix-select editable></ix-select>`);
+      const select = await page.locator('ix-select');
+      await select.evaluate((i) =>
+        i.addEventListener('addItem', (e) => e.preventDefault())
+      );
+      await page.locator('input').focus();
+      await page.keyboard.type('test');
+      await page.keyboard.press('Enter');
+      const count = await page.locator('ix-select-item').count();
+      await expect(count).toBe(0);
+    });
   });
 });
