@@ -28,7 +28,7 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
 - **Auto closure:** Toasts should only be displayed on the screen for a few seconds. A timer is displayed to visualize the closing time. We typically give the toast 3 to 8 seconds on the screen.
 - **Manual closure:** Toasts can also be closed manually at any time. However, a purely manual closure can also be used; we typically use a purely manual closure of the toast if the workflow is continued by using the toast, e.g., downloading files.
 - **Multiple toasts:** Toasts are stacked on top of each other, with the newest at the bottom.
-- **Modal vs. Toast:** If both the modal and the toast are triggered simultaneously, the toast will appear below the modal. Due to the transparent layer, the toast will be visible but blurred. If automatic closing has been set for the toast, it closes itself even if the modal is open. This is currently not technically solvable in a different way.
+- **Modal vs. Toast:** When both the modal and the toast are triggered simultaneously, the toast will appear below the modal. The toast will be visible but blurred due to the transparent layer, and it will eventually close if not prevented by the auto-closing option.
 
 ![Toast in Context](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2589-2697&t=Ysb6WohsxOfZv2ls-4)
 
@@ -37,7 +37,7 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
 - Do use toasts to instantly inform a user about the outcome of an action
 - Do include shortcuts to undo an action immediately after it is taken
 - Do stick with a consistent position for toasts within the same app and avoid interchanging their positions.
-- Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work. Instead, use a [modal](modal.md) or [message bar](messagebar.md) for important information that needs to be prominently displayed
+- Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work (use a [modal](modal.md) or a [message bar](messagebar.md) instead)
 - Don’t edit or reuse any icons or icon colors from the predefined toast types (info, success, warning, error) to create a custom toast type
 
 
