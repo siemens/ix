@@ -36,7 +36,9 @@ function CardListTitle(props: {
           CardList__Title__Button__Collapsed: props.isCollapsed,
         }}
       ></ix-icon-button>
-      <ix-typography variant="large-single">{props.label}</ix-typography>
+      <ix-typography class="CardList_Title__Label" variant="large-single">
+        {props.label}
+      </ix-typography>
       {!props.hideShowAll && (
         <ix-button
           class="CardList__Title__Show__All"

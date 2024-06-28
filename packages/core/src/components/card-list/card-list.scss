@@ -26,6 +26,12 @@ $CardList__Title__Height: 1.5rem;
     align-items: center;
     width: 100%;
     margin-bottom: 0.5rem;
+
+    &__Label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 
   .CardList__Title__Button {
@@ -41,6 +47,7 @@ $CardList__Title__Height: 1.5rem;
     align-self: center;
     margin-left: auto;
     margin-right: 0px;
+    flex-shrink: 0;
   }
 
   .CardList__Content {
