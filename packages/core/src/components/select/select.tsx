@@ -103,7 +103,6 @@ export class Select {
 
   /**
    * Value changed
-   * The value will not be changed if default is prevented.
    * @since 2.0.0
    */
   @Event() valueChange: EventEmitter<string | string[]>;
@@ -123,7 +122,6 @@ export class Select {
 
   /**
    * Item added to selection
-   * The item will not be added if default is prevented.
    */
   @Event() addItem: EventEmitter<string>;
 
