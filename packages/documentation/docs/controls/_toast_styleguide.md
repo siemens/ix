@@ -1,4 +1,4 @@
-Toasts are small pop-ups that provide simple feedback on a process. They are UI elements where an event causes a small text field to appear screen. Toasts are informative, only last a few seconds, and only take up a very small part of the screen to avoid interrupting the workflow. They usually follow an action performed by the user and provide information about the success or failure of that action. We typically use toasts for immediate feedback or tips on actions that a user performs, e.g., successful deletion.
+Toasts are small pop-ups that provide simple feedback on a process. They are UI elements where an event causes a small text field to appear on screen. Toasts are informative, last for a few seconds only, and take up a very small part of the screen to avoid interrupting the workflow. They usually follow an action performed by the user and provide information about the success or failure of that action. We typically use toasts for immediate feedback or tips on actions that a user performs (e.g. successful deletion).
 
 ![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2550-58743&t=LITgbzwcgm87dQXa-4)
 
