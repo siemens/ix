@@ -61,14 +61,14 @@ $focusBorder: 0.0625rem;
     height: 100%;
     width: 1rem;
     min-width: 1rem;
-    margin-right: 0.25rem;
+    margin-right: 0.5rem;
 
     color: var(--ix-dropdown-item-checked-color);
   }
 
   .dropdown-item-icon {
-    margin-right: 0.25rem;
-    color: var(--theme-color-soft-text);
+    margin-right: 0.5rem;
+    color: var(--theme-color-std-text);
   }
 
   .dropdown-item-text {
