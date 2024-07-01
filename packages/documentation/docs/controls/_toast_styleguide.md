@@ -39,9 +39,6 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
 - Do stick with a consistent position for toasts within the same app and avoid interchanging their positions.
 - Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work (use a [modal](modal.md) or a [message bar](messagebar.md) instead)
 - Don’t edit or reuse any icons or icon colors from the predefined toast types (info, success, warning, error) to create a custom toast type
-
-
-
 ## Related patterns
 - [Modal](modal.md)
 - [Message bar](messagebar.md)
