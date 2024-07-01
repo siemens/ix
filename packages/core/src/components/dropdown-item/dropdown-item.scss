@@ -11,7 +11,7 @@
 @import 'mixins/shadow-dom/hover';
 
 $itemPadding: 0.5rem;
-$itemPaddingRight: 1.5rem;
+$itemPaddingRight: 0.5rem;
 $focusBorder: 0.0625rem;
 
 @mixin applyItemWidth($padding, $paddingRight) {
@@ -61,13 +61,13 @@ $focusBorder: 0.0625rem;
     height: 100%;
     width: 1rem;
     min-width: 1rem;
-    margin-right: 0.25rem;
+    margin-right: 0.5rem;
 
     color: var(--ix-dropdown-item-checked-color);
   }
 
   .dropdown-item-icon {
-    margin-right: 0.25rem;
+    margin-right: 0.5rem;
     color: var(--theme-color-std-text);
   }
 
@@ -77,7 +77,6 @@ $focusBorder: 0.0625rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding-left: 0.25rem;
   }
 
   .dropdown-item:focus-visible {
