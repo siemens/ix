@@ -69,7 +69,7 @@ export class CategoryFilter {
   @Prop() placeholder: string;
 
   /**
-   * Configuration object hash is used to populate the dropdown menu for type-ahead and quick selection functionality.
+   * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.
    * Each ID maps to an object with a label and an array of options to select from.
    */
   @Prop() categories: {
@@ -139,7 +139,7 @@ export class CategoryFilter {
   @Prop() i18nPlainText = 'Filter by text';
 
   /**
-   * Event dispatched whenever the category gets selected in the dropdown
+   * Event dispatched whenever a category gets selected in the dropdown
    */
   @Event() categoryChanged: EventEmitter<string>;
 
