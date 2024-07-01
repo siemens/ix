@@ -1813,6 +1813,26 @@ export namespace Components {
     }
     interface IxPlaygroundInternal {
     }
+    interface IxProgressBar {
+        /**
+          * Disable progress value change animation
+         */
+        "disableAnimation": boolean;
+        /**
+          * Progress value in percentage (0-100)
+         */
+        "value": string | number;
+        /**
+          * Progress bar variant
+         */
+        "variant": | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success';
+    }
     /**
      * @since 1.6.0
      */
@@ -3652,6 +3672,12 @@ declare global {
         prototype: HTMLIxPlaygroundInternalElement;
         new (): HTMLIxPlaygroundInternalElement;
     };
+    interface HTMLIxProgressBarElement extends Components.IxProgressBar, HTMLStencilElement {
+    }
+    var HTMLIxProgressBarElement: {
+        prototype: HTMLIxProgressBarElement;
+        new (): HTMLIxProgressBarElement;
+    };
     /**
      * @since 1.6.0
      */
@@ -4081,6 +4107,7 @@ declare global {
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
         "ix-playground-internal": HTMLIxPlaygroundInternalElement;
+        "ix-progress-bar": HTMLIxProgressBarElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
@@ -5994,6 +6021,26 @@ declare namespace LocalJSX {
     }
     interface IxPlaygroundInternal {
     }
+    interface IxProgressBar {
+        /**
+          * Disable progress value change animation
+         */
+        "disableAnimation"?: boolean;
+        /**
+          * Progress value in percentage (0-100)
+         */
+        "value"?: string | number;
+        /**
+          * Progress bar variant
+         */
+        "variant"?: | 'primary'
+    | 'alarm'
+    | 'critical'
+    | 'warning'
+    | 'info'
+    | 'neutral'
+    | 'success';
+    }
     /**
      * @since 1.6.0
      */
@@ -6792,6 +6839,7 @@ declare namespace LocalJSX {
         "ix-pane-layout": IxPaneLayout;
         "ix-pill": IxPill;
         "ix-playground-internal": IxPlaygroundInternal;
+        "ix-progress-bar": IxProgressBar;
         "ix-push-card": IxPushCard;
         "ix-row": IxRow;
         "ix-select": IxSelect;
@@ -6984,6 +7032,7 @@ declare module "@stencil/core" {
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
             "ix-playground-internal": LocalJSX.IxPlaygroundInternal & JSXBase.HTMLAttributes<HTMLIxPlaygroundInternalElement>;
+            "ix-progress-bar": LocalJSX.IxProgressBar & JSXBase.HTMLAttributes<HTMLIxProgressBarElement>;
             /**
              * @since 1.6.0
              */

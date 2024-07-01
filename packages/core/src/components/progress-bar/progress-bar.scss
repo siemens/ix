@@ -1,0 +1,32 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import 'mixins/shadow-dom/component';
+@import 'common-variables';
+@import 'mixins/text-truncation';
+
+:host {
+  @include ix-component;
+  display: block;
+  min-width: 20px;
+  height: 1.25rem;
+  max-height: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  width: 100%;
+  min-height: 1.25rem;
+  background-color: var(--theme-color-component-2);
+  border: 1px solid var(--theme-color-component-1);
+}
+
+.progress {
+  min-height: 1.25rem;
+}

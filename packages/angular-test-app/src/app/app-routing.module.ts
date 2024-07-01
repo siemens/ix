@@ -94,6 +94,8 @@ import Pagination from 'src/preview-examples/pagination';
 import Pill from 'src/preview-examples/pill';
 import PillVariants from 'src/preview-examples/pill-variants';
 import PopoverNews from 'src/preview-examples/popover-news';
+import ProgressBar from 'src/preview-examples/progress-bar';
+import ProgressBarVariants from 'src/preview-examples/progress-bar-variants';
 import PushCard from 'src/preview-examples/push-card';
 import Radiobutton from 'src/preview-examples/radio-button';
 import Select from 'src/preview-examples/select';
@@ -353,6 +355,8 @@ const routes: Routes = [
       { path: 'pill', component: Pill },
       { path: 'pill-variants', component: PillVariants },
       { path: 'popover-news', component: PopoverNews },
+      { path: 'progress-bar', component: ProgressBar },
+      { path: 'progress-bar-variants', component: ProgressBarVariants },
       { path: 'radio-button', component: Radiobutton },
       { path: 'select-editable', component: SelectEditable },
       { path: 'select-multiple', component: SelectMultiple },
