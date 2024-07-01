@@ -8,7 +8,7 @@
  */
 
 import { useLocation } from '@docusaurus/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 
 declare global {
   interface Window {
@@ -35,6 +35,34 @@ export default function Root({ children }) {
       },
     });
   }, [pathname]);
+
+  useLayoutEffect(() => {
+    const isAlreadyLoaded = document.head.querySelector(
+      'meta[name="adobe-loaded"]'
+    );
+    if (!isAlreadyLoaded) {
+      const script = document.createElement('script');
+      script.setAttribute('no-cors', '');
+      script.src = '//w3.siemens.com/ote/ote_config.js';
+      document.head.appendChild(script);
+
+      const script2 = document.createElement('script');
+      script2.src = '//w3.siemens.com/ote/global/ote.js';
+      document.head.appendChild(script2);
+
+      const script3 = document.createElement('script');
+      script3.src =
+        'https://assets.adobedtm.com/5dfc7d97c6fb/7699a47b720a/launch-2157063140e5.min.js';
+      script3.async = true;
+      document.head.appendChild(script3);
+
+      const meta = document.createElement('meta');
+      meta.name = 'adobe-loaded';
+      meta.content = 'true';
+
+      document.head.appendChild(meta);
+    }
+  }, []);
 
   return <>{children}</>;
 }

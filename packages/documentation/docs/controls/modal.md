@@ -107,7 +107,7 @@ files={{
 
 ### Loading
 
-How to open a loading modal is independent from the framework in use. Note that you have to import `showLoadingModal` from the core package `@siemens/ix`.
+How to open a loading modal is independent from the framework in use. Note that you have to import `showModalLoading` from the core package `@siemens/ix`.
 
 <Playground name="loading" files={{
 react: ['loading.tsx'],

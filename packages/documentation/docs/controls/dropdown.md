@@ -1,65 +1,12 @@
-import Props from './../auto-generated/ix-dropdown/props.md';
-import Events from './../auto-generated/ix-dropdown/events.md';
+---
+title: Dropdown
+---
 
-import ItemProps from './../auto-generated/ix-dropdown-item/props.md';
-import ItemEvents from './../auto-generated/ix-dropdown-item/events.md';
+import DocsTabs from '@site/src/components/DocsTabs';
 
-import TagsQuickActions from './../auto-generated/ix-dropdown-quick-actions/tags.md';
-
-import Playground from '@site/src/components/PlaygroundV2';
+import DocsUx from './\_dropdown_styleguide.md';
+import DocsCode from './\_dropdown_code.md';
 
 # Dropdown
 
-## Examples
-
-<Playground
-  name="dropdown" 
-  height="28rem"
-  examplesByName>
-</Playground>
-
-### Dropdown with icon
-
-<Playground
-  name="dropdown-icon" 
-  height="18rem"
-  examplesByName>
-</Playground>
-
-### Dropdown with quick actions menu
-
-<TagsQuickActions />
-
-<Playground
-  name="dropdown-quick-actions" 
-  height="22rem"
-  examplesByName>
-</Playground>
-
-### Dropdown with submenu
-
-<Playground
-  name="dropdown-submenu" 
-  height="22rem"
-  examplesByName>
-</Playground>
-
-## API (ix-dropdown)
-
-### Properties
-
-<Props />
-
-### Events
-
-<Events />
-
-## API (ix-dropdown-item)
-
-### Properties
-
-<ItemProps />
-
-### Events
-
-<ItemEvents />
+<DocsTabs styleguide={DocsUx} code={DocsCode} />

@@ -13,6 +13,7 @@
     "react/jsx-no-bind": 0,
     "react/jsx-uses-react": 0,
     "react/react-in-jsx-scope": 0,
-    "@typescript-eslint/no-confusing-non-null-assertion": "error"
+    "@typescript-eslint/no-confusing-non-null-assertion": "error",
+    "@typescript-eslint/no-explicit-any": "warn"
   }
 }

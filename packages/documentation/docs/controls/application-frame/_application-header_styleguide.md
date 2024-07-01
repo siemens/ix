@@ -1,6 +1,6 @@
 import Playground from '@site/src/components/PlaygroundV2';
 
-![Application header with different options](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1634-56424&mode=design&t=4XzscFw57dE7McUX-11)
+![Application header with different options](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1634-56424&mode=design&t=4XzscFw57dE7McUX-11)
 
 1. [Application switch](#application-switch) (optional)
 2. [Brand logo](#brand-logo)
@@ -24,7 +24,7 @@ The application name (3) shows the official name of the application. It can be e
 
 ### Slot
 
-![Examples of slot usages](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1679-19526&mode=design&t=UPXhDWuRHtygtfFI-11)
+![Examples of slot usages](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1679-19526&mode=design&t=UPXhDWuRHtygtfFI-11)
 
 We use this slot to provide additional high-level information or actions and functions which may impact the application context, e.g. mode switching. Note that overflows are not handled automatically; at breakpoint sm the slot collapses and is only accessible via the overflow icon.
 
@@ -40,7 +40,7 @@ We typically use the slot for:
 
 With the new modular application frame we moved the avatar from the navigation menu to the application header. This ensures the avatar has security-relevant information available at all breakpoints. Nonetheless, if you still use the [basic navigation](./basic-navigation.md) or the [map navigation](./map-navigation.md), the avatar is still in the navigation menu for compatibility reasons.
 
-![Avatar and avatar dropdown](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1635-60462&mode=design&t=UPXhDWuRHtygtfFI-11)
+![Avatar and avatar dropdown](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1635-60462&mode=design&t=UPXhDWuRHtygtfFI-11)
 
 6. Avatar dropdown
 7. User avatar
@@ -51,7 +51,7 @@ The avatar is an optional element and indicates the current logged in user. If y
 
 Clicking the avatar opens a dropdown (6) with additional user information (7, 8, 9) and possibly other user related actions like log out, profile settings or user settings.
 
-![Examples of access login](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1636-62468&mode=design&t=4XzscFw57dE7McUX-11)
+![Examples of access login](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1636-62468&mode=design&t=4XzscFw57dE7McUX-11)
 
 If your application can be used without being logged in to, you can offer access to a login process in different ways, for example:
 - Show a log in button in the [slot for additional elements](#slot) and hide the avatar
@@ -65,7 +65,7 @@ If the application is hosted inside a framework that comes with its own header, 
 
 The header automatically adapts the breakpoints defined in the [application](./application.md).
 
-![Application header at breakpoints lg/md and sm](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1636-62980&mode=design&t=4XzscFw57dE7McUX-11)
+![Application header at breakpoints lg/md and sm](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1636-62980&mode=design&t=4XzscFw57dE7McUX-11)
 
 10. Layout at breakpoint lg and md
 11. Layout at breakpoint (sm) 
