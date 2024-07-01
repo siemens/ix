@@ -1,103 +1,110 @@
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
-import Playground from '@site/src/components/PlaygroundV2';
-
-import Tags from './../../auto-generated/ix-toggle-button/tags.md';
-
-import EventsToggleButton from './../../auto-generated/ix-toggle-button/events.md';
 
 import EventsIconToggleButton from './../../auto-generated/ix-icon-toggle-button/events.md';
-
-import PropsToggleButton from './../../auto-generated/ix-toggle-button/props.md';
-
 import PropsIconToggleButton from './../../auto-generated/ix-icon-toggle-button/props.md';
+import TagsIconToggleButton from './../../auto-generated/ix-icon-toggle-button/tags.md';
 
+import EventsToggleButton from './../../auto-generated/ix-toggle-button/events.md';
+import PropsToggleButton from './../../auto-generated/ix-toggle-button/props.md';
+import TagsToggleButton from './../../auto-generated/ix-toggle-button/tags.md';
 
-<Tags />
+import Playground from '@site/src/components/PlaygroundV2';
 
-## Toggle button secondary outline
+## Examples
 
-<Playground
-name="toggle-button-secondary-outline"
-examplesByName>
-</Playground>
-
-## Toggle button secondary ghost
-
-<Playground
-name="toggle-button-secondary-ghost"
-examplesByName>
-</Playground>
-
-## Toggle button secondary
+### Toggle button primary
 
 <Playground
-name="toggle-button-secondary"
-examplesByName>
+  name="toggle-button-primary"
+  examplesByName>
 </Playground>
 
-## Toggle button primary outline
+### Toggle button primary outline
 
 <Playground
-name="toggle-button-primary-outline"
-examplesByName>
+  name="toggle-button-primary-outline"
+  examplesByName>
 </Playground>
 
-## Toggle button primary ghost
+### Toggle button primary ghost
 
 <Playground
-name="toggle-button-primary-ghost"
-examplesByName>
+  name="toggle-button-primary-ghost"
+  examplesByName>
 </Playground>
 
-<Tags />
-
-## Icon Toggle button secondary outline
+### Toggle button secondary
 
 <Playground
-name="icon-toggle-button-secondary-outline"
-examplesByName>
+  name="toggle-button-secondary"
+  examplesByName>
 </Playground>
 
-## Icon Toggle button secondary ghost
+### Toggle button secondary outline
 
 <Playground
-name="icon-toggle-button-secondary-ghost"
-examplesByName>
+  name="toggle-button-secondary-outline"
+  examplesByName>
 </Playground>
 
-## Icon Toggle Button secondary
+### Toggle button secondary ghost
 
 <Playground
-name="icon-toggle-button-secondary"
-examplesByName>
+  name="toggle-button-secondary-ghost"
+  examplesByName>
 </Playground>
 
-## Icon Toggle button primary outline
+### Icon Toggle button secondary outline
 
 <Playground
-name="icon-toggle-button-primary-outline"
-examplesByName>
+  name="icon-toggle-button-secondary-outline"
+  examplesByName>
 </Playground>
 
-## Icon Toggle Button primary ghost
+### Icon Toggle button secondary ghost
 
 <Playground
-name="icon-toggle-button-primary-ghost"
-examplesByName>
+  name="icon-toggle-button-secondary-ghost"
+  examplesByName>
 </Playground>
 
-## Properties (ix-toggle-button)
+### Icon Toggle Button secondary
+
+<Playground
+  name="icon-toggle-button-secondary"
+  examplesByName>
+</Playground>
+
+### Icon Toggle button primary outline
+
+<Playground
+  name="icon-toggle-button-primary-outline"
+  examplesByName>
+</Playground>
+
+### Icon Toggle Button primary ghost
+
+<Playground
+  name="icon-toggle-button-primary-ghost"
+  examplesByName>
+</Playground>
+
+## API (ix-toggle-button)
+
+### Properties 
 
 <PropsToggleButton />
 
-## Events (ix-toggle-button)
+### Events
 
 <EventsToggleButton />
 
-## Properties (ix-icon-toggle-button)
+## API (ix-icon-toggle-button)
+
+### Properties 
 
 <PropsIconToggleButton />
 
-## Events (ix-icon-toggle-button)
+### Events
 
 <EventsIconToggleButton />

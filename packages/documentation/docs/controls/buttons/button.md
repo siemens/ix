@@ -1,5 +1,5 @@
 ---
-title: Button
+sidebar_position: 0
 ---
 
 import DocsTabs from '@site/src/components/DocsTabs';

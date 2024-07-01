@@ -1,3 +1,7 @@
+---
+title: Chip
+---
+
 import DocsTabs from '@site/src/components/DocsTabs';
 
 import DocsUx from './\_chip_styleguide.md'

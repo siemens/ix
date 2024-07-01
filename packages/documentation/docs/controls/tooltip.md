@@ -1,3 +1,4 @@
+import Events from './../auto-generated/ix-tooltip/events.md';
 import Tags from './../auto-generated/ix-tooltip/tags.md';
 import Props from './../auto-generated/ix-tooltip/props.md';
 import Slots from './../auto-generated/ix-tooltip/slots.md';
@@ -8,19 +9,23 @@ import Playground from '@site/src/components/PlaygroundV2'
 
 <Tags />
 
-## Usage
+## Examples
 
 <Playground
-name="tooltip"
-height="16rem"
-examplesByName>
+  name="tooltip"
+  height="16rem"
+  examplesByName>
 </Playground>
 
-## Properties
+## API
 
-### Props
+### Properties
 
 <Props />
+
+### Events
+
+<Events />
 
 ### Slots
 

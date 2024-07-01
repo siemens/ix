@@ -1,19 +1,23 @@
-import Playground from '@site/src/components/PlaygroundV2';
-import Props from './../auto-generated/ix-expanding-search/props.md';
 import Events from './../auto-generated/ix-expanding-search/events.md';
+import Props from './../auto-generated/ix-expanding-search/props.md';
+
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Expanding search
 
-## Usage
+## Examples
+
+### Basic
 
 <Playground
-name="expanding-search" height="5rem"
-examplesByName>
+  name="expanding-search" 
+  height="5rem"
+  examplesByName>
 </Playground>
 
-## Properties
+## API
 
-### Props
+### Properties
 
 <Props />
 

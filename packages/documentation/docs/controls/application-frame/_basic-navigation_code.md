@@ -1,20 +1,35 @@
-import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../../auto-generated/ix-basic-navigation/props.md';
+import Events from './../../auto-generated/ix-basic-navigation/events.md';
 
-## Usage
+import Playground from '@site/src/components/PlaygroundV2';
 
-<Playground name="basic-navigation" height="30rem" noMargin examplesByName></Playground>
+## Examples
+
+### Basic
+
+<Playground 
+  name="basic-navigation" 
+  height="30rem" 
+  noMargin 
+  examplesByName>
+</Playground>
 
 ### Without header
 
 <Playground
-name="basic-navigation-without-header" height="30rem" noMargin
-hideInitalCodePreview
-examplesByName
-></Playground>
+  name="basic-navigation-without-header" 
+  height="30rem" 
+  noMargin
+  hideInitalCodePreview
+  examplesByName>
+</Playground>
 
-### ix-basic-navigation
+## API
 
-#### Props
+### Properties
 
 <Props />
+
+### Events
+
+<Events />

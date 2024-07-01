@@ -47,6 +47,11 @@ Basic navigation automatically adapts, by default, to the three breakpoints lg (
 - The navigation menu disappears and the icon moves into the application header
 - Clicking the icon displays the navigation menu as an overlay
 
-### Example
+### Examples
 
-<Playground name="application-breakpoints" height="30rem" noMargin frameworks={{}}></Playground>
+<Playground 
+  name="application-breakpoints" 
+  height="30rem" 
+  noMargin 
+  frameworks={{}}>
+</Playground>

@@ -2,8 +2,8 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 # ECharts
 
-Siemens Industrial Experience provides a theme for the populer chart library [ECharts](https://echarts.apache.org/handbook/en/get-started).
-This lets you harness the power of ECharts with seemless intergration into the Siemens Industrial Experience styleguide.
+Siemens Industrial Experience provides a theme for the popular chart library [ECharts](https://echarts.apache.org/handbook/en/get-started).
+This lets you harness the power of ECharts with seamless integration into the Siemens Industrial Experience styleguide.
 
 <div className="siemens-brand-section">
 

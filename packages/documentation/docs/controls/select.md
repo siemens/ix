@@ -1,36 +1,44 @@
-import Playground from '@site/src/components/PlaygroundV2';
-
 import Props from './../auto-generated/ix-select/props.md';
 import Events from './../auto-generated/ix-select/events.md';
 
 import ItemProps from './../auto-generated/ix-select-item/props.md';
 import ItemEvents from './../auto-generated/ix-select-item/events.md';
 
+import Playground from '@site/src/components/PlaygroundV2';
+
 # Select
 
-## Usage
+## Examples
+
+### Basic 
 
 <Playground
-name="select" height="18rem"
-examplesByName></Playground>
+  name="select" 
+  height="18rem"
+  examplesByName>
+</Playground>
 
 ### Editable
 
 <Playground
-name="select-editable" height="18rem"
-hideInitalCodePreview
-examplesByName></Playground>
+  name="select-editable" 
+  height="18rem"
+  hideInitalCodePreview
+  examplesByName>
+</Playground>
 
 ### Multiselect
 
 <Playground
-name="select-multiple" height="18rem"
-hideInitalCodePreview
-examplesByName></Playground>
+  name="select-multiple" 
+  height="18rem"
+  hideInitalCodePreview
+  examplesByName>
+</Playground>
 
-## Properties (ix-select)
+## API (ix-select)
 
-### Props
+### Properties
 
 <Props />
 
@@ -38,9 +46,9 @@ examplesByName></Playground>
 
 <Events />
 
-## Properties (ix-select-item)
+## API (ix-select-item)
 
-### Props
+### Properties
 
 <ItemProps />
 

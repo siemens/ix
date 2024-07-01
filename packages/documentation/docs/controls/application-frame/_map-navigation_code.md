@@ -1,30 +1,48 @@
-import Playground from '@site/src/components/PlaygroundV2';
-
 import Props from './../../auto-generated/ix-map-navigation/props.md';
 import Events from './../../auto-generated/ix-map-navigation/events.md';
 import PropsOverlay from './../../auto-generated/ix-map-navigation-overlay/props.md';
 import EventsOverlay from './../../auto-generated/ix-map-navigation-overlay/events.md';
 
-## Usage
+import Playground from '@site/src/components/PlaygroundV2';
+
+## Examples
+
+### Basic 
 
 <Playground
-name="map-navigation" height="35rem" noMargin
-hideInitalCodePreview
-examplesByName></Playground>
+  name="map-navigation" 
+  height="35rem" 
+  oMargin
+  hideInitalCodePreview
+  examplesByName>
+</Playground>
 
-## Custom overlay
+### Custom overlay
 
 <Playground
-name="map-navigation-overlay" height="35rem" noMargin
-hideInitalCodePreview
-examplesByName></Playground>
+  name="map-navigation-overlay" 
+  height="35rem" 
+  noMargin
+  hideInitalCodePreview
+  examplesByName>
+</Playground>
 
-## Properties (ix-map-navigation)
+## API (ix-map-navigation)
 
-#### Props
+### Properties
 
 <Props />
 
-#### Events
+### Events
 
 <Events />
+
+## API (ix-map-navigation-overlay)
+
+### Properties
+
+<PropsOverlay/>
+
+### Events
+
+<EventsOverlay/>

@@ -1,20 +1,23 @@
-import Playground from '@site/src/components/PlaygroundV2';
-
 import Props from './../auto-generated/ix-time-picker/props.md';
 import Events from './../auto-generated/ix-time-picker/events.md';
 
+import Playground from '@site/src/components/PlaygroundV2';
+
 # Time picker
 
-## Usage
+## Examples
+
+### Basic
 
 <Playground
-name="timepicker" height="35rem"
-examplesByName>
+  name="timepicker" 
+  height="25rem"
+  examplesByName>
 </Playground>
 
-## Properties
+## API 
 
-### Props
+### Properties
 
 <Props />
 

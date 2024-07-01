@@ -2,36 +2,39 @@ import Props from './../auto-generated/ix-breadcrumb/props.md';
 import Events from './../auto-generated/ix-breadcrumb/events.md';
 
 import ItemProps from './../auto-generated/ix-breadcrumb-item/props.md';
+import ItemEvents from './../auto-generated/ix-breadcrumb-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV2'
 
+## Examples
+
 <Playground
-name="breadcrumb"
-height="8rem"
-examplesByName>
+  name="breadcrumb"
+  height="8rem"
+  examplesByName>
 </Playground>
 
 ### Truncate
 
 <Playground
-name="breadcrumb-truncate"
-height="10rem"
-hideInitalCodePreview
-examplesByName>
+  name="breadcrumb-truncate"
+  height="10rem"
+  hideInitalCodePreview
+  examplesByName>
 </Playground>
 
 ### Lazy loaded next items
 
 <Playground
-name="breadcrumb-next-items"
-height="8rem"
-hideInitalCodePreview
-examplesByName>
+  name="breadcrumb-next-items"
+  height="8rem"
+  hideInitalCodePreview
+  examplesByName>
 </Playground>
 
-## Properties (ix-breadcrumb)
+## API (ix-breadcrumb)
 
-### Props
+### Properties
 
 <Props />
 
@@ -39,8 +42,12 @@ examplesByName>
 
 <Events />
 
-## Properties (ix-breadcrumb-item)
+## API (ix-breadcrumb-item)
 
-### Props
+### Properties
 
 <ItemProps />
+
+#### Events
+
+<ItemEvents />

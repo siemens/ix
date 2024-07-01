@@ -1,41 +1,48 @@
-import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../auto-generated/ix-avatar/props.md';
 import Events from './../auto-generated/ix-avatar/events.md';
-import Tags from './../auto-generated/ix-avatar/tags.md';
 
-# Avatar
+import Playground from '@site/src/components/PlaygroundV2';
 
-<Tags />
+## Examples
 
-## Default
-
-<Playground
-name="avatar"
-examplesByName>
-</Playground>
-
-## Initials
+### Basic
 
 <Playground
-name="avatar-initials"
-examplesByName>
+  name="avatar"
+  examplesByName>
 </Playground>
 
-## Image
+### Initials
 
 <Playground
-name="avatar-image"
-examplesByName>
+  name="avatar-initials"
+  examplesByName>
 </Playground>
 
-## Header
+### Image
 
-You can also add the avatar to the header which will turn it into a clickable button.
+<Playground
+  name="avatar-image"
+  examplesByName>
+</Playground>
 
-<Playground name="application-header" examplesByName noMargin height="21rem"></Playground>
+### Header
 
-## Properties
+You can also add the avatar to the header, which will turn it into a clickable button.
 
-### Props
+<Playground 
+  name="application-header" 
+  examplesByName 
+  noMargin 
+  height="21rem">
+</Playground>
+
+## API
+
+### Properties
 
 <Props />
+
+### Events 
+
+<Events />

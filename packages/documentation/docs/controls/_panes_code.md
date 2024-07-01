@@ -1,41 +1,49 @@
-import Playground from '@site/src/components/PlaygroundV2';
-
 import PaneProps from './../auto-generated/ix-pane/props.md';
 import PaneEvents from './../auto-generated/ix-pane/events.md';
 import PaneLayoutProps from './../auto-generated/ix-pane-layout/props.md';
 import PaneLayoutEvents from './../auto-generated/ix-pane-layout/events.md';
 import Tags from './../auto-generated/ix-pane/tags.md';
 
-## Pane
+import Playground from '@site/src/components/PlaygroundV2';
+
+## Example
+
+### Basic
 
 <Playground
-name="pane" height="24rem" noMargin
-examplesByName>
+  name="pane" 
+  height="24rem" 
+  noMargin
+  examplesByName>
 </Playground>
 
-## Pane Layout
+### Pane Layout
+
+<Tags />
 
 <Playground
-name="pane-layout" height="24rem" noMargin
-examplesByName>
+  name="pane-layout" 
+  height="24rem" 
+  noMargin 
+  examplesByName>
 </Playground>
 
-## Properties
+## API (ix-pane)
 
-### Pane
+### Properties
 
 <PaneProps />
 
-### Pane Layout
-
-<PaneLayoutProps />
-
-## Events
-
-### Pane
+### Events
 
 <PaneEvents />
 
-### Pane Layout
+## API (ix-pane-layout)
+
+### Properties
+
+<PaneLayoutProps />
+
+### Events
 
 <PaneLayoutEvents />

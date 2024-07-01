@@ -1,19 +1,21 @@
-import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../auto-generated/ix-layout-grid/props.md';
 import Events from './../auto-generated/ix-layout-grid/events.md';
-
 
 import ColProps from './../auto-generated/ix-col/props.md';
 import ColEvents from './../auto-generated/ix-col/events.md';
 
+import Playground from '@site/src/components/PlaygroundV2'
 
-## Usage
+# Message bar
+
+## Examples
+
+### Basic
 
 <Playground
   height="15rem"
   name="grid"
-  examplesByName
->
+  examplesByName>
 </Playground>
 
 ### Size
@@ -32,9 +34,9 @@ import ColEvents from './../auto-generated/ix-col/events.md';
   examplesByName>
 </Playground>
 
-## Properties (ix-layout-grid)
+## API (ix-layout-grid)
 
-### Props 
+### Properties
 
 <Props />
 
@@ -42,9 +44,9 @@ import ColEvents from './../auto-generated/ix-col/events.md';
 
 <Events />
 
-## Properties (ix-col)
+## API (ix-col)
 
-### Props
+### Properties
 
 <ColProps />
 

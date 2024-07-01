@@ -1,29 +1,33 @@
-import Playground from '@site/src/components/PlaygroundV2';
-
 import Props from './../auto-generated/ix-tabs/props.md';
 import Events from './../auto-generated/ix-tabs/events.md';
 
 import ItemProps from './../auto-generated/ix-tab-item/props.md';
 import ItemEvents from './../auto-generated/ix-tab-item/events.md';
 
+import Playground from '@site/src/components/PlaygroundV2';
+
 # Tabs
 
-## Usage
+## Examples
+
+### Basic
 
 <Playground
-name="tabs" height="20rem"
-examplesByName></Playground>
+  name="tabs" 
+  examplesByName>
+</Playground>
 
 ### Tabs Rounded
 
 <Playground
-name="tabs-rounded"
-hideInitalCodePreview
-examplesByName></Playground>
+  name="tabs-rounded"
+  hideInitalCodePreview
+  examplesByName>
+</Playground>
 
-## Properties (ix-tabs)
+## API (ix-tabs)
 
-### Props
+### Properties
 
 <Props />
 
@@ -31,9 +35,9 @@ examplesByName></Playground>
 
 <Events />
 
-## Properties (ix-tab-item)
+## API (ix-tab-item)
 
-### Props
+### Properties
 
 <ItemProps />
 

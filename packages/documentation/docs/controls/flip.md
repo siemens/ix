@@ -1,19 +1,23 @@
-import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../auto-generated/ix-flip-tile/props.md';
 import Events from './../auto-generated/ix-flip-tile/events.md';
 
+import Playground from '@site/src/components/PlaygroundV2';
+
 # Flip
 
-## Usage
+## Examples
+
+### Basic
 
 <Playground
-name="flip-tile" height="20rem"
-examplesByName>
+  name="flip-tile" 
+  height="35rem"
+  examplesByName>
 </Playground>
 
-## Properties
+## API
 
-### Props
+### Properties
 
 <Props />
 
