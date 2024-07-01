@@ -4,7 +4,7 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
 
 1. Icon
 2. Button
-3. Timer
+3. Progress Bar
 4. Header
 5. Message
 6. Close action
@@ -19,8 +19,8 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
     - Custom: To create your own toast type, adjust the icon and its color yourself. We typically use a custom toast type when the predefined types are not suitable for the specific usage.
 - **Header:** Add a header for the toast. Use short and concise words. We typically use 1 to 3 keywords, such as "Error occurred" or "Action completed".
 - **Message:** Add a clear and concise message providing more detailed information about the toast event. We typically use it to provide additional context or instructions related to the event e.g, "Please check your email for further instructions" or "Your changes have been saved successfully".
-- **Button:** Include a button in toasts to provide users with an option to take further action. This can be useful if there is a next step or if the user needs to undo the action that triggered the toast. We typically use a button to give the user an option to undo the action or to provide a link for further information.
-- **Position:** The toast can be positioned at the bottom right or the top right. The default position is "bottom-right". We typically change the default position if it would cover important elements for the workflow.
+- **Button:** Include a button in toasts to provide users with an option to take further action. We typically use a button to give the user an option to undo the action or to provide a link for further information.
+- **Position:** The toast can be positioned at the bottom right or the top right. The default position is "bottom-right". This position is configured globally, which means all toasts will appear from the same position. We typically change the default position if it would cover important workflow elements.
 
 ![Toast Types](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2552-64766&t=VfiuoHWd1VYl1GYb-4)
 
@@ -39,6 +39,7 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
 - Do stick with a consistent position for toasts within the same app and avoid interchanging their positions.
 - Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work (use a [modal](modal.md) or a [message bar](messagebar.md) instead)
 - Don’t edit or reuse any icons or icon colors from the predefined toast types (info, success, warning, error) to create a custom toast type
+
 ## Related patterns
 - [Modal](modal.md)
 - [Message bar](messagebar.md)
