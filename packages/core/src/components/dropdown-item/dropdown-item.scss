@@ -11,7 +11,7 @@
 @import 'mixins/shadow-dom/hover';
 
 $itemPadding: 0.5rem;
-$itemPaddingRight: 0.5rem;
+$itemPaddingRight: 1.5rem;
 $focusBorder: 0.0625rem;
 
 @mixin applyItemWidth($padding, $paddingRight) {
