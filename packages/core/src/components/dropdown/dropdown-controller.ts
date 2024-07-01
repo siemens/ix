@@ -132,6 +132,7 @@ class DropdownController {
 
   dismissOthers(uid: string) {
     let path = this.buildComposedPath(uid, new Set<string>());
+    path.add(uid);
 
     this.dropdowns.forEach((dropdown) => {
       if (
