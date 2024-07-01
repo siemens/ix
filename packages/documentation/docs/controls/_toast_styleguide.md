@@ -26,7 +26,7 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
 
 ## Behavior in context
 - **Auto closure:** Toasts should only be displayed on the screen for a few seconds. A progress bar is displayed to visualize the time left until the toast will disappear. We typically give the toast 3 to 8 seconds on the screen.
-- **Manual closure:** Toasts can also be closed manually at any time. However, a purely manual closure can also be used; we typically use a purely manual closure of the toast if the workflow is continued by using the toast, e.g., downloading files.
+- **Manual closure:** Toasts can be closed manually at any time. It is also possible to suppress the automatic closing so that the user has to actively close the toast; we typically use a purely manual closure of the toast if the workflow is continued by using the toast (e.g. downloading files).
 - **Multiple toasts:** Toasts are stacked on top of each other, with the newest at the bottom.
 - **Modal vs. Toast:** When both the modal and the toast are triggered simultaneously, the toast will appear below the modal. The toast will be visible but blurred due to the transparent layer, and it will eventually close if not prevented by the auto-closing option.
 
