@@ -357,7 +357,7 @@ export namespace Components {
     }
     interface IxCategoryFilter {
         /**
-          * Configuration object hash is used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
+          * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
         "categories": {
     [id: string]: {
@@ -4409,7 +4409,7 @@ declare namespace LocalJSX {
     }
     interface IxCategoryFilter {
         /**
-          * Configuration object hash is used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
+          * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
         "categories"?: {
     [id: string]: {
@@ -4448,7 +4448,7 @@ declare namespace LocalJSX {
     [id: string]: string;
   };
         /**
-          * Event dispatched whenever the category gets selected in the dropdown
+          * Event dispatched whenever a category gets selected in the dropdown
          */
         "onCategoryChanged"?: (event: IxCategoryFilterCustomEvent<string>) => void;
         /**

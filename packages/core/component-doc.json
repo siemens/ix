@@ -2076,7 +2076,7 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Configuration object hash is used to populate the dropdown menu for type-ahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
+          "docs": "Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
           "docsTags": [],
           "values": [
             {
@@ -2376,7 +2376,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event dispatched whenever the category gets selected in the dropdown",
+          "docs": "Event dispatched whenever a category gets selected in the dropdown",
           "docsTags": []
         },
         {
