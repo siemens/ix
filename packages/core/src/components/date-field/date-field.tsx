@@ -412,6 +412,7 @@ export class DateField implements IxInputFieldComponent<string> {
           isInfo={this.isInfo}
           isWarning={this.isWarning}
           warningText={this.warningText}
+          isValid={this.isValid}
           validText={this.validText}
           showTextAsTooltip={this.showTextAsTooltip}
           required={this.required}
