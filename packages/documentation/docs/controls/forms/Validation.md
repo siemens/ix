@@ -1,6 +1,6 @@
 Form validation gives a user feedback on their input to ensure accurate, consistent data submitted. If requirements aren’t met or data is incorrect, it’s rejected.
 
-![Invalid state]()
+![Invalid state](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2767-5955&t=IIgjTqoOEP524yAH-4)
 
 Key aspects:
 
@@ -18,18 +18,17 @@ Key aspects:
 - Warning: A non-critical issue or suggestion related to the input (e.g., a weak password).
 - Info: Provides additional context or guidance to the user (e.g., password strength requirements).
 
-![States]()
+![States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2767-5681&t=IIgjTqoOEP524yAH-4)
 
 ## Behavior in context
 - Validation: A validation can occur when a user interacts with a form field, such as submitting a form or moving to the next field. For more details, refer to the Behavior chapter.
-
 - Override behavior: When multiple validation states are present, only the message with the highest priority state is shown. The order of priority, from lowest to highest, is: valid, info, warning, and invalid.
 
-## os and Don’ts
-- Do include validation feedback icons inside of components.
-- Do ensure that validation feedback remains visible on hover, active, and when focused.
-- Do show the "invalid" color on the label, component, and help text.
-- Don’t show valid feedback on components, only in the input help component.
+## Dos and Don’ts
+- Do include validation feedback icons inside of components
+- Do ensure that validation feedback remains visible on hover, active, and when focused
+- Do show the "invalid" color on the label, component, and help text
+- Don’t show valid feedback on components, only in the input help component
 
 ## Related patterns:
 - [Field]()
