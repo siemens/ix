@@ -66,7 +66,7 @@ export class PushCard {
   }
 
   render() {
-    const color: TypographyColors =
+    const color: TypographyColors | undefined =
       this.variant === 'insight' || this.variant === 'notification'
         ? 'std'
         : undefined;
