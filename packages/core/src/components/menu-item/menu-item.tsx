@@ -107,8 +107,11 @@ export class MenuItem {
   }
 
   componentWillRender() {
-    readTask(() => {
-      this.tooltip = this.label ?? this.hostElement.innerText;
+    this.hostElement.componentOnReady().then(() => {
+      readTask(() => {
+        this.tooltip = this.label ?? this.hostElement.innerText;
+        console.log(this.tooltip);
+      });
     });
   }
 
@@ -194,7 +197,8 @@ export class MenuItem {
             </div>
           ) : null}
           <span class="tab-text text-default">
-            {this.label} <slot></slot>
+            {this.label}
+            <slot></slot>
           </span>
         </button>
         {!this.isCategory &&
