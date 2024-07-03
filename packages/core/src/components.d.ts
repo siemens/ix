@@ -605,7 +605,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -662,7 +662,7 @@ export namespace Components {
           * set styles
          */
         "individual": boolean;
-        "standaloneAppearance": any;
+        "standaloneAppearance": undefined;
     }
     interface IxDatetimePicker {
         /**
@@ -722,7 +722,7 @@ export namespace Components {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference": any;
+        "showTimeReference": undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -1828,11 +1828,11 @@ export namespace Components {
           * Card KPI value
           * @deprecated will be removed in 3.0. Use heading instead.
          */
-        "header": string;
+        "header"?: string;
         /**
           * Card heading
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Card icon
          */
@@ -1840,11 +1840,11 @@ export namespace Components {
         /**
           * Card KPI value
          */
-        "notification": string;
+        "notification"?: string;
         /**
           * Card subheading
          */
-        "subheading": string;
+        "subheading"?: string;
         /**
           * Card variant
           * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
@@ -4759,7 +4759,7 @@ declare namespace LocalJSX {
           * set styles
          */
         "individual"?: boolean;
-        "standaloneAppearance"?: any;
+        "standaloneAppearance"?: undefined;
     }
     interface IxDatetimePicker {
         /**
@@ -4839,7 +4839,7 @@ declare namespace LocalJSX {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: any;
+        "showTimeReference"?: undefined;
         /**
           * Text of date select button
           * @since 1.1.0

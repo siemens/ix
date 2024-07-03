@@ -60,10 +60,10 @@
         },
         {
           "name": "icon",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -75,6 +75,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -229,10 +232,10 @@
       "props": [
         {
           "name": "appSwitchConfig",
-          "type": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string; i18nLoadingApps?: string; }",
+          "type": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string | undefined; i18nLoadingApps?: string | undefined; }",
           "complexType": {
             "original": "AppSwitchConfiguration",
-            "resolved": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string; i18nLoadingApps?: string; }",
+            "resolved": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string | undefined; i18nLoadingApps?: string | undefined; }",
             "references": {
               "AppSwitchConfiguration": {
                 "location": "import",
@@ -247,7 +250,13 @@
           "docsTags": [],
           "values": [
             {
-              "type": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string; i18nLoadingApps?: string; }"
+              "type": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string"
+            },
+            {
+              "type": "undefined; i18nLoadingApps?: string"
+            },
+            {
+              "type": "undefined; }"
             }
           ],
           "optional": false,
@@ -289,10 +298,10 @@
         },
         {
           "name": "forceBreakpoint",
-          "type": "\"lg\" | \"md\" | \"sm\"",
+          "type": "\"lg\" | \"md\" | \"sm\" | undefined",
           "complexType": {
             "original": "Breakpoint | undefined",
-            "resolved": "\"lg\" | \"md\" | \"sm\"",
+            "resolved": "\"lg\" | \"md\" | \"sm\" | undefined",
             "references": {
               "Breakpoint": {
                 "location": "import",
@@ -318,6 +327,9 @@
             {
               "value": "sm",
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -704,10 +716,10 @@
         },
         {
           "name": "forceBreakpoint",
-          "type": "\"lg\" | \"md\" | \"sm\"",
+          "type": "\"lg\" | \"md\" | \"sm\" | undefined",
           "complexType": {
             "original": "Breakpoint | undefined",
-            "resolved": "\"lg\" | \"md\" | \"sm\"",
+            "resolved": "\"lg\" | \"md\" | \"sm\" | undefined",
             "references": {
               "Breakpoint": {
                 "location": "import",
@@ -733,6 +745,9 @@
             {
               "value": "sm",
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -1912,10 +1927,10 @@
         },
         {
           "name": "showAllCount",
-          "type": "number",
+          "type": "number | undefined",
           "complexType": {
             "original": "number | undefined",
-            "resolved": "number",
+            "resolved": "number | undefined",
             "references": {}
           },
           "mutable": false,
@@ -1926,6 +1941,9 @@
           "values": [
             {
               "type": "number"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -2255,10 +2273,10 @@
         },
         {
           "name": "nonSelectableCategories",
-          "type": "{ [id: string]: string; }",
+          "type": "undefined | { [id: string]: string; }",
           "complexType": {
             "original": "{\n    [id: string]: string;\n  }",
-            "resolved": "{ [id: string]: string; }",
+            "resolved": "undefined | { [id: string]: string; }",
             "references": {}
           },
           "mutable": false,
@@ -2267,6 +2285,9 @@
           "docsTags": [],
           "default": "{}",
           "values": [
+            {
+              "type": "undefined"
+            },
             {
               "type": "{ [id: string]: string; }"
             }
@@ -2341,10 +2362,10 @@
         },
         {
           "name": "staticOperator",
-          "type": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL",
+          "type": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL | undefined",
           "complexType": {
             "original": "LogicalFilterOperator",
-            "resolved": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL",
+            "resolved": "LogicalFilterOperator.EQUAL | LogicalFilterOperator.NOT_EQUAL | undefined",
             "references": {
               "LogicalFilterOperator": {
                 "location": "import",
@@ -2369,6 +2390,9 @@
             },
             {
               "type": "LogicalFilterOperator.NOT_EQUAL"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -2506,10 +2530,10 @@
         },
         {
           "name": "background",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -2520,6 +2544,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -2527,10 +2554,10 @@
         },
         {
           "name": "chipColor",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -2541,6 +2568,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -2570,10 +2600,10 @@
         },
         {
           "name": "color",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -2590,6 +2620,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -2750,10 +2783,10 @@
       "props": [
         {
           "name": "size",
-          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\" | undefined",
           "complexType": {
             "original": "ColumnSize",
-            "resolved": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+            "resolved": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\" | undefined",
             "references": {
               "ColumnSize": {
                 "location": "local",
@@ -2819,6 +2852,9 @@
             {
               "value": "auto",
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -2826,10 +2862,10 @@
         },
         {
           "name": "sizeLg",
-          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\" | undefined",
           "complexType": {
             "original": "ColumnSize",
-            "resolved": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+            "resolved": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\" | undefined",
             "references": {
               "ColumnSize": {
                 "location": "local",
@@ -2895,6 +2931,9 @@
             {
               "value": "auto",
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -2902,10 +2941,10 @@
         },
         {
           "name": "sizeMd",
-          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\" | undefined",
           "complexType": {
             "original": "ColumnSize",
-            "resolved": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+            "resolved": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\" | undefined",
             "references": {
               "ColumnSize": {
                 "location": "local",
@@ -2971,6 +3010,9 @@
             {
               "value": "auto",
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -2978,10 +3020,10 @@
         },
         {
           "name": "sizeSm",
-          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+          "type": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\" | undefined",
           "complexType": {
             "original": "ColumnSize",
-            "resolved": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\"",
+            "resolved": "\"1\" | \"10\" | \"11\" | \"12\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\" | \"auto\" | undefined",
             "references": {
               "ColumnSize": {
                 "location": "local",
@@ -3047,6 +3089,9 @@
             {
               "value": "auto",
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -3155,10 +3200,10 @@
         },
         {
           "name": "headerSubtitle",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -3170,6 +3215,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -3797,10 +3845,10 @@
         },
         {
           "name": "from",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -3816,6 +3864,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -4010,10 +4061,10 @@
         },
         {
           "name": "to",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -4029,6 +4080,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -4066,11 +4120,11 @@
         {
           "name": "getCurrentDate",
           "returns": {
-            "type": "Promise<{ from: string; to: string; }>",
+            "type": "Promise<{ from: string | undefined; to: string | undefined; }>",
             "docs": ""
           },
           "complexType": {
-            "signature": "() => Promise<{ from: string; to: string; }>",
+            "signature": "() => Promise<{ from: string | undefined; to: string | undefined; }>",
             "parameters": [],
             "references": {
               "Promise": {
@@ -4078,9 +4132,9 @@
                 "id": "global::Promise"
               }
             },
-            "return": "Promise<{ from: string; to: string; }>"
+            "return": "Promise<{ from: string | undefined; to: string | undefined; }>"
           },
-          "signature": "getCurrentDate() => Promise<{ from: string; to: string; }>",
+          "signature": "getCurrentDate() => Promise<{ from: string | undefined; to: string | undefined; }>",
           "parameters": [],
           "docs": "Get the currently selected date-range.",
           "docsTags": []
@@ -4299,10 +4353,10 @@
         },
         {
           "name": "from",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -4318,6 +4372,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -4519,14 +4576,13 @@
         },
         {
           "name": "showTimeReference",
-          "type": "any",
+          "type": "undefined",
           "complexType": {
-            "original": "any",
-            "resolved": "any",
+            "original": "undefined",
+            "resolved": "undefined",
             "references": {}
           },
           "mutable": false,
-          "attr": "show-time-reference",
           "reflectToAttr": false,
           "docs": "Show time reference input\nTime reference is default aligned with",
           "docsTags": [
@@ -4542,7 +4598,7 @@
           "default": "undefined",
           "values": [
             {
-              "type": "any"
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -4660,10 +4716,10 @@
         },
         {
           "name": "to",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -4679,6 +4735,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -5021,7 +5080,7 @@
             "parameters": [
               {
                 "name": "show",
-                "type": "boolean",
+                "type": "boolean | undefined",
                 "docs": "Overwrite toggle state with boolean"
               }
             ],
@@ -5037,7 +5096,7 @@
           "parameters": [
             {
               "name": "show",
-              "type": "boolean",
+              "type": "boolean | undefined",
               "docs": "Overwrite toggle state with boolean"
             }
           ],
@@ -5218,10 +5277,10 @@
         },
         {
           "name": "header",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -5232,6 +5291,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -8845,12 +8907,12 @@
               },
               {
                 "name": "icon",
-                "type": "string",
+                "type": "string | undefined",
                 "docs": ""
               },
               {
                 "name": "color",
-                "type": "string",
+                "type": "string | undefined",
                 "docs": ""
               }
             ],
@@ -8880,12 +8942,12 @@
             },
             {
               "name": "icon",
-              "type": "string",
+              "type": "string | undefined",
               "docs": ""
             },
             {
               "name": "color",
-              "type": "string",
+              "type": "string | undefined",
               "docs": ""
             }
           ],
@@ -8925,7 +8987,7 @@
             "parameters": [
               {
                 "name": "show",
-                "type": "boolean",
+                "type": "boolean | undefined",
                 "docs": "new visibility state"
               }
             ],
@@ -8941,7 +9003,7 @@
           "parameters": [
             {
               "name": "show",
-              "type": "boolean",
+              "type": "boolean | undefined",
               "docs": "new visibility state"
             }
           ],
@@ -9611,7 +9673,7 @@
             "parameters": [
               {
                 "name": "show",
-                "type": "boolean",
+                "type": "boolean | undefined",
                 "docs": ""
               }
             ],
@@ -9627,7 +9689,7 @@
           "parameters": [
             {
               "name": "show",
-              "type": "boolean",
+              "type": "boolean | undefined",
               "docs": ""
             }
           ],
@@ -9650,7 +9712,7 @@
             "parameters": [
               {
                 "name": "show",
-                "type": "boolean",
+                "type": "boolean | undefined",
                 "docs": ""
               }
             ],
@@ -9666,7 +9728,7 @@
           "parameters": [
             {
               "name": "show",
-              "type": "boolean",
+              "type": "boolean | undefined",
               "docs": ""
             }
           ],
@@ -11403,7 +11465,7 @@
             "parameters": [
               {
                 "name": "reason",
-                "type": "T",
+                "type": "T | undefined",
                 "docs": ""
               }
             ],
@@ -11423,7 +11485,7 @@
           "parameters": [
             {
               "name": "reason",
-              "type": "T",
+              "type": "T | undefined",
               "docs": ""
             }
           ],
@@ -12467,10 +12529,10 @@
         },
         {
           "name": "background",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -12481,6 +12543,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -12488,10 +12553,10 @@
         },
         {
           "name": "color",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -12508,6 +12573,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -12515,10 +12583,10 @@
         },
         {
           "name": "icon",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -12529,6 +12597,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -12558,10 +12629,10 @@
         },
         {
           "name": "pillColor",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -12572,6 +12643,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -12700,10 +12774,10 @@
         },
         {
           "name": "header",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -12720,17 +12794,20 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
           "name": "heading",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -12741,17 +12818,20 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
           "name": "icon",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string | undefined",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -12763,6 +12843,9 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
@@ -12770,10 +12853,10 @@
         },
         {
           "name": "notification",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -12784,17 +12867,20 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
           "name": "subheading",
-          "type": "string",
+          "type": "string | undefined",
           "complexType": {
             "original": "string",
-            "resolved": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
@@ -12805,9 +12891,12 @@
           "values": [
             {
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13212,10 +13301,10 @@
         },
         {
           "name": "selectedIndices",
-          "type": "string | string[]",
+          "type": "string | string[] | undefined",
           "complexType": {
             "original": "string | string[]",
-            "resolved": "string | string[]",
+            "resolved": "string | string[] | undefined",
             "references": {}
           },
           "mutable": true,
@@ -13235,6 +13324,9 @@
             },
             {
               "type": "string[]"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -13242,10 +13334,10 @@
         },
         {
           "name": "value",
-          "type": "string | string[]",
+          "type": "string | string[] | undefined",
           "complexType": {
             "original": "string | string[]",
-            "resolved": "string | string[]",
+            "resolved": "string | string[] | undefined",
             "references": {}
           },
           "mutable": true,
@@ -13264,6 +13356,9 @@
             },
             {
               "type": "string[]"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -15022,10 +15117,10 @@
         },
         {
           "name": "showTimeReference",
-          "type": "boolean",
+          "type": "boolean | undefined",
           "complexType": {
             "original": "boolean",
-            "resolved": "boolean",
+            "resolved": "boolean | undefined",
             "references": {}
           },
           "mutable": true,
@@ -15047,6 +15142,9 @@
           "values": [
             {
               "type": "boolean"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": true,
@@ -15157,10 +15255,10 @@
         },
         {
           "name": "timeReference",
-          "type": "\"AM\" | \"PM\"",
+          "type": "\"AM\" | \"PM\" | undefined",
           "complexType": {
             "original": "'AM' | 'PM' | undefined",
-            "resolved": "\"AM\" | \"PM\"",
+            "resolved": "\"AM\" | \"PM\" | undefined",
             "references": {}
           },
           "mutable": false,
@@ -15176,6 +15274,9 @@
             {
               "value": "PM",
               "type": "string"
+            },
+            {
+              "type": "undefined"
             }
           ],
           "optional": false,
