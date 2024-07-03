@@ -30,23 +30,23 @@ export class PushCard {
   /**
    * Card KPI value
    */
-  @Prop() notification: string;
+  @Prop() notification?: string;
 
   /**
    * Card KPI value
    * @deprecated will be removed in 3.0. Use heading instead.
    */
-  @Prop() header: string;
+  @Prop() header?: string;
 
   /**
    * Card heading
    */
-  @Prop() heading: string;
+  @Prop() heading?: string;
 
   /**
    * Card subheading
    */
-  @Prop() subheading: string;
+  @Prop() subheading?: string;
 
   /**
    * Card variant
