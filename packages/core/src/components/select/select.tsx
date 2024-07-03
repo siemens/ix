@@ -367,14 +367,25 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private itemClick(newId: string) {
-    this.value = this.toggleValue(newId);
+    const value = this.toggleValue(newId);
+    const defaultPrevented = this.emitValueChange(value);
+
+    if (defaultPrevented) {
+      return;
+    }
+
+    this.value = value;
     this.updateSelection();
-    this.emitValueChange(this.value);
   }
 
   private emitAddItem(value: string) {
     if (value === undefined || value.trim() === '') {
-      return;
+      return false;
+    }
+
+    const { defaultPrevented } = this.addItem.emit(value);
+    if (defaultPrevented) {
+      return true;
     }
 
     const newItem = document.createElement('ix-select-item');
@@ -385,7 +396,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     this.clearInput();
     this.itemClick(value);
-    this.addItem.emit(value);
+
+    return false;
   }
 
   private toggleValue(itemValue: string) {
@@ -439,15 +451,20 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private emitValueChange(value: string | string[]) {
-    this.valueChange.emit(value);
+    const { defaultPrevented } = this.valueChange.emit(value);
+
+    if (defaultPrevented) {
+      return true;
+    }
 
     if (!value) {
-      this.itemSelectionChange.emit([]);
+      this.itemSelectionChange.emit(null);
     } else {
       this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
     }
 
     this.updateFormInternalValue(value);
+    return false;
   }
 
   componentDidLoad() {
@@ -520,7 +537,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     let item: HTMLIxSelectItemElement | undefined;
 
     if (this.editable && !this.itemExists(this.inputFilterText)) {
-      this.emitAddItem(this.inputFilterText);
+      const defaultPrevented = this.emitAddItem(this.inputFilterText);
+      if (defaultPrevented) {
+        return;
+      }
+
       item = this.items[this.items.length - 1];
     }
 
@@ -925,8 +946,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               label={this.inputFilterText}
               onItemClick={(e) => {
                 e.preventDefault();
-                e.stopPropagation();
-                this.emitAddItem(this.inputFilterText);
+                if (this.emitAddItem(this.inputFilterText)) {
+                  e.stopPropagation();
+                }
               }}
               onFocus={() => (this.navigationItem = this.addItemRef)}
               ref={(ref) => {

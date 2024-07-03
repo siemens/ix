@@ -783,7 +783,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -900,7 +900,7 @@ export namespace Components {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference": any;
+        "showTimeReference": undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -5932,7 +5932,7 @@ declare namespace LocalJSX {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: any;
+        "showTimeReference"?: undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -7673,7 +7673,7 @@ declare namespace LocalJSX {
          */
         "layout"?: 'auto' | 'stretched';
         /**
-          * On tab click
+          * Emitted when the tab is clicked.
           * @since 2.0.0
          */
         "onTabClick"?: (event: IxTabItemCustomEvent<TabClickDetail>) => void;

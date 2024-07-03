@@ -325,10 +325,9 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
      `);
 
-      const select = page.locator('ix-select');
-
-      await select.locator('input').focus();
-      await select.locator('input').fill('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -341,10 +340,9 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
       `);
 
-      const select = page.locator('ix-select');
-
-      await select.locator('input').focus();
-      await select.locator('input').fill('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.keyboard.down('Enter');
       await page.waitForSelector('.checkmark');
 
@@ -361,10 +359,7 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      const select = page.locator('ix-select');
-
-      const input = select.locator('input');
-
+      const input = await page.locator('ix-select input');
       await input.focus();
       await input.fill('I');
       await page.keyboard.down('Enter');
@@ -389,10 +384,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      const select = page.locator('ix-select');
-
-      await select.locator('input').focus();
-      await select.locator('input').fill('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -413,15 +407,13 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      const select = page.locator('ix-select');
-      const input = select.locator('input');
-
+      const input = await page.locator('ix-select input');
       await input.focus();
       await input.fill('Item 2');
       await page.keyboard.down('Enter');
       await page.waitForSelector('.checkmark');
 
-      await page.locator('input').clear();
+      await input.clear();
       await input.fill('I');
       await page.waitForSelector('.add-item');
 
@@ -443,9 +435,7 @@ test.describe('arrow key navigation', () => {
         </ix-select>
      `);
 
-      const select = page.locator('ix-select');
-      const input = select.locator('input');
-
+      const input = await page.locator('ix-select input');
       await input.focus();
       await input.fill('Item 2');
       await page.keyboard.press('Enter');
@@ -473,10 +463,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
      `);
 
-      const select = page.locator('ix-select');
-
-      await select.locator('input').focus();
-      await select.locator('input').fill('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -499,9 +488,7 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
      `);
 
-      const select = page.locator('ix-select');
-      const input = select.locator('input');
-
+      const input = await page.locator('ix-select input');
       await input.focus();
       await input.fill('Item 1');
       await page.keyboard.press('Enter');
@@ -535,10 +522,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      const select = page.locator('ix-select');
-
-      await select.locator('input').focus();
-      await select.locator('input').fill('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.keyboard.down('Enter');
       await page.waitForSelector('.checkmark');
 
@@ -564,10 +550,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
       `);
 
-      const select = page.locator('ix-select');
-
-      await select.locator('input').focus();
-      await select.locator('input').fill('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -590,18 +575,13 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
       `);
 
-      const select = page.locator('ix-select');
-
-      const input = select.locator('input');
-
+      const input = await page.locator('ix-select input');
       await input.focus();
-      await input.fill('Item 1');
-
       await input.fill('Item 1');
       await page.keyboard.press('Enter');
       await page.waitForSelector('.checkmark');
 
-      await page.locator('input').clear();
+      await input.clear();
       await input.fill('I');
       await page.waitForSelector('.add-item');
 
@@ -627,9 +607,7 @@ test.describe('arrow key navigation', () => {
         </ix-select>
      `);
 
-      const select = page.locator('ix-select');
-      const input = select.locator('input');
-
+      const input = await page.locator('input');
       await input.focus();
       await input.fill('Item 2');
       await page.keyboard.press('Enter');
@@ -651,10 +629,9 @@ test.describe('arrow key navigation', () => {
         </ix-select>
      `);
 
-      const select = page.locator('ix-select');
-
-      await select.locator('input').focus();
-      await select.locator('input').fill('I');
+      const input = await page.locator('ix-select input');
+      await input.focus();
+      await input.fill('I');
       await page.waitForSelector('.add-item');
 
       await page.keyboard.down('ArrowDown');
@@ -671,9 +648,7 @@ test.describe('arrow key navigation', () => {
         <ix-select editable></ix-select>
      `);
 
-      const select = page.locator('ix-select');
-      const input = select.locator('input');
-
+      const input = await page.locator('ix-select input');
       await input.focus();
       await input.fill('Item 1');
       await page.keyboard.press('Enter');
@@ -732,4 +707,75 @@ test('form-ready - with initial value', async ({ mount, page }) => {
   await preventFormSubmission(formElement);
   const formData = await getFormValue(formElement, 'my-custom-entry');
   expect(formData).toEqual('some other');
+});
+
+test.describe('Events', () => {
+  test('value change', async ({ mount, page }) => {
+    await mount(`<ix-select>
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      </ix-select>`);
+
+    const select = await page.locator('ix-select');
+    const valueChanged = select.evaluate((elm) => {
+      return new Promise<number>((resolve) => {
+        elm.addEventListener('valueChange', (e: CustomEvent) =>
+          resolve(e.detail)
+        );
+      });
+    });
+
+    await page.locator('ix-icon-button').click();
+    await page.locator('ix-select-item').click();
+
+    await expect(select).toHaveClass(/hydrated/);
+    expect(await valueChanged).toBe('1');
+  });
+
+  test('add item', async ({ mount, page }) => {
+    const itemText = 'test';
+    await mount(`<ix-select editable></ix-select>`);
+    const select = await page.locator('ix-select');
+    const itemAdded = select.evaluate((elm) => {
+      return new Promise<number>((resolve) => {
+        elm.addEventListener('addItem', (e: CustomEvent) => resolve(e.detail));
+      });
+    });
+    const input = await page.locator('input');
+    await input.focus();
+    await input.fill(itemText);
+    await page.keyboard.press('Enter');
+
+    await expect(select).toHaveClass(/hydrated/);
+    expect(await itemAdded).toBe(itemText);
+  });
+
+  test.describe('prevent default', () => {
+    test('value change', async ({ mount, page }) => {
+      await mount(`<ix-select>
+      <ix-select-item value="1" label="Item 1"></ix-select-item>
+      </ix-select>`);
+      const select = await page.locator('ix-select');
+      await select.evaluate((i) =>
+        i.addEventListener('vauleChange', (e) => e.preventDefault())
+      );
+      await page.locator('ix-icon-button').click();
+      const item = await page.locator('ix-select-item');
+      item.click();
+      await expect(item).not.toHaveClass('selected');
+    });
+
+    test('add item', async ({ mount, page }) => {
+      await mount(`<ix-select editable></ix-select>`);
+      const select = await page.locator('ix-select');
+      await select.evaluate((i) =>
+        i.addEventListener('addItem', (e) => e.preventDefault())
+      );
+      const input = await page.locator('input');
+      await input.focus();
+      await input.fill('test');
+      await page.keyboard.press('Enter');
+      const count = await page.locator('ix-select-item').count();
+      await expect(count).toBe(0);
+    });
+  });
 });

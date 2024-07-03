@@ -28,7 +28,9 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "visual-regression": "dotenv -- turbo run visual-regression",
     "test": "dotenv -- turbo run test",
-    "prepare": "husky install",
+    "prepare": "pnpm git-hooks && pnpm disable-telemetry",
+    "disable-telemetry": "turbo telemetry disable",
+    "git-hooks": "husky install",
     "ci:version": "pnpm changeset version && pnpm i --lockfile-only",
     "ci:publish": "pnpm changeset publish",
     "ts-run": "tsx"

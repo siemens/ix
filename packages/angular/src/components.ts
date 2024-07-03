@@ -2352,7 +2352,7 @@ import type { TabClickDetail as IIxTabItemTabClickDetail } from '@siemens/ix';
 
 export declare interface IxTabItem extends Components.IxTabItem {
   /**
-   * On tab click @since 2.0.0
+   * Emitted when the tab is clicked. @since 2.0.0
    */
   tabClick: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
 }
