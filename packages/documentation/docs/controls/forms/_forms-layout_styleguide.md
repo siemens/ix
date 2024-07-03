@@ -1,49 +1,40 @@
-**TBD**! A field is a form element when user input is needed. It is typically used with other form elements in a fieldset.
+Beyond the visual appeal, effective form layouts play a crucial role in usability. In this chapter, we dissect the anatomy of well-structured forms. Explore fieldsets, consider the hierarchy of information, and understand how to strike the right balance between aesthetics and functionality.
 
-![Field](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2781-323&t=pKzFQBhaXmjTsR8P-4)
+![Modal](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2781-323&t=pKzFQBhaXmjTsR8P-4)
 
-1. Label
-2. Form component
-3. Hint or feedback text
-4. Mandatory indicator
-5. Counter (input and textarea field only)
+1. Small form (modal)
+2. Medium form
+3. Big form (page)
 
-**Note:** In this chapter, we focus exclusively on describing the default field component. For details about custom fields, please refer to the [layouts](forms-layouts.md) chapter.
+## Structuring a form
+In this section, we explore effective ways to organize form elements. From fieldsets to section headings, discover techniques for enhancing user comprehension and interaction within your forms.
 
-## Options
-- **Label:** Add a label for the field that provides context to your users.
-- **Mandatory:** The asterisk states whether user input is required on the field before submitting the form.
-- **Field:** Use the appropriate field depending on the type of input data, e.g. [text input](../input.md), [checkbox](../checkbox.md) or [toggle switch](../toogle.md).
-- **Hint text:** Provide additional information or context about the field. Display the message directly below the input field.
-- **Feedback message or tooltip:** Display validation feedback directly below the input field or as tooltip when users hover over the form field or the field is focused.
-- **Hint or feedback copy:** Use a different copy for hints to provide additional information or context about the field, and the individual validation states that apply (see [validation](forms-validation.md)).
-- **Counter:** Display the number of characters entered in the field.
+- **Single-column layout:** Ideal for short forms with a few fields, or small viewports.
+- **Multi-column layout:** Suitable for long forms with multiple fields to save vertical space.
+- **Tabbed layout**: Use [tabs](../tabs.md) to break up long forms into manageable sections. This helps users focus on one part of the form at a time.
+- **Stepped layout:** Use our workflow pattern to guide users through multi-step forms.
+- **Fieldset:** Group related fields together using fieldsets. This helps users understand the context of the information they are providing. Add a legend (title) to describe the group of fields.
+- **Section heading:** Use section headings to break up long forms into manageable sections. This helps users focus on one part of the form at a time.
+- **Blind:** Use a [blind](../blind.md) to hide optional fields and reveal them when the user selects a specific option.
 
-## Behavior in context
-- **Interaction:** see [validation](forms-validation.md)
-- **Behavior of a field as part of a form:** see [behavior](forms-validation)
-- **Label and message text overflow:** Labels, feedback and hint texts are not truncated but will break into multiple lines if needed.
-
-## States
-Interaction states: Default, hover, active, disabled, readonly, focus. If a feedback tooltip is chosen over a message, the field shows a tooltip when in focus or hovered in specific validation states.
-
-Validation states: Default, valid, info, warning, invalid (see [validation](forms-validation.md)).
-
-![States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2767-5681&t=IIgjTqoOEP524yAH-4)
+## Best practices
+- **Z and F shape pattern:** Follow the natural reading pattern to guide users through the form (right-to-left languages). Consider a clear order of fields to ensure users don’t forget to fill in fields and improve data quality.
+- **Button alignment:** Position primary action buttons (e.g. submit and cancel) consistently, we recommend the following:
+	- Bottom left: Short forms (up to 5 fields)
+	- Bottom right: Long forms (more than 5 fields)
+	- Bottom right and sticky: Long forms that are already filled (e.g. edit) with a large number of fields
+	- Top right: ???
+- **Label alignment:** By default, the label is positioned above its input field. In case of long forms with a lot of fields, positioning the label on the left saves vertical space. Use a custom field component for this.
+- **Grouping fields:** In some cases, it makes sense to combine multiple fields in one [custom field](custom-field.md) with a single label that are connected contextually or through validation e.g. entering the value and unit of an entity, selecting start and end date. It allows a clearer validation, e.g. the end date must be after the start date.
+- **Field width:** Use a consistent width for input fields to create a harmonious layout. For example, use a width of 100% for full-width fields and 50% for two-column fields.
+- **Responsive behavior**: xxx
+    - layout grid or flexbox
+    - should I use 1 or 2 columns?
 
 ## Dos and Don’ts
-- Do use a label for every field
-- Do use a counter for fields with a character limit
-- Do use hint text to provide additional information or context about the field
-- Don’t use placeholder text or hint text as a replacement for labels
+- Do use a consistent width for input fields to create a harmonious layout (e.g. a width of 100% for full-width fields and 50% for two-column fields)
+- Don’t xxx
 
 ## Related patterns
 - [Validation](forms-validation.md)
 - [Behavior](forms-behavior.md)
-- [Input](input.md)
-- [Textarea](textarea.md)
-- [Select](select.md)
-- [Checkbox](checkbox.md)
-- [Radio button](radio-button.md)
-- [Toggle switch](toogle.md)
-- [Upload](upload.md)
