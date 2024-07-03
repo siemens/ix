@@ -1,6 +1,6 @@
 The navigation menu is an essential part of your application. It offers a way to directly navigate to the main application parts and it can give your users access to legal and version information, and access to settings.
 
-![Navigation menu collapsed and expanded](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=990-122297&mode=design&t=JbZngO5IAS8hvpTb-11)
+![Navigation menu collapsed and expanded](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=990-122297&mode=design&t=JbZngO5IAS8hvpTb-11)
 
 1. Expand/collapse icon button: Expands and collapses the navigation menu.
 2. [Avatar button](#avatar-button,): Shows the logged-in user and provides access to user-related actions (optional)  
@@ -13,7 +13,7 @@ The navigation menu is an essential part of your application. It offers a way to
 The avatar button is optional. It shows information about the logged-in user. When collapsed it shows only the avatar, and when expanded it shows additional user information. A dropdown menu with user-related actions appears when selecting (note the available actions are specific to each application). The log out item is available by default.  
 **Please note:** Only basic navigation and map navigation still use the avatar in the navigation menu. The new [application](./application.md) frame uses the avatar inside the [application header](./application-header.md).
 
-![Avatar dropdown menu](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-70909&mode=design&t=Ch2wsi2EtQ3sPBpS-11)
+![Avatar dropdown menu](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-70909&mode=design&t=Ch2wsi2EtQ3sPBpS-11)
 
 ### Avatar button options
 - **top:** Defines the first line of the additional user information. We typically use this to show primary user information (first and last name or username), depending on the available information. Overflows are clipped with an ellipsis (...).  
@@ -26,7 +26,7 @@ Menu items represent the main parts of an application. They have an icon for qui
 
 Menu categories can host menu items as a second navigation level.
 
-![Navigation item](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=998-67465&mode=design&t=puecEZZMJ24R1ngI-11)
+![Navigation item](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=998-67465&mode=design&t=puecEZZMJ24R1ngI-11)
 
 1. Selected item
 2. Item with notification
@@ -35,12 +35,12 @@ Menu categories can host menu items as a second navigation level.
 5. Second level navigation menu, appears when navigation menu is collapsed
 6. Second level navigation expanded inline, appears when navigation menu is expanded
 
-![Selected navigation item with sub-items](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1005-10267&mode=design&t=ljAWsgheUZngQeQG-11)
+![Selected navigation item with sub-items](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1005-10267&mode=design&t=ljAWsgheUZngQeQG-11)
 
 7. Menu category appears selected if one of its children items is selected
 8. When second level menu items are visible, the currently selected item also appears selected
 
-![Second level items with icons](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2062-21146&mode=design&t=E5f1YhpwznaV7Qjk-11)
+![Second level items with icons](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2062-21146&mode=design&t=E5f1YhpwznaV7Qjk-11)
 
 Second level items with icons in collapsed (9) and expanded (10) navigation menu
 
@@ -55,7 +55,7 @@ We usually don’t use icons on the second navigation level as in most cases it 
 ### Bottom section
 Items in this section do not navigate away from the current content. They either  toggle states, e.g. light and dark mode, or open a layer over the current content. This means users do not lose their current workflow by interacting with these items.
 
-![Bottom section icons](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1005-10817&mode=design&t=ljAWsgheUZngQeQG-11)
+![Bottom section icons](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1005-10817&mode=design&t=ljAWsgheUZngQeQG-11)
 
 1. Settings: Opens the [settings](./settings.md) overlay.
 2. Toggle theme: Toggles between light and dark themes.
@@ -77,7 +77,7 @@ See the code tab for more information and other options available.
 
 ## Behavior
 
-![Navigation menu overflow behavior](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-68267&mode=design&t=RG8M7S3eIKxiDqv5-11)
+![Navigation menu overflow behavior](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-68267&mode=design&t=RG8M7S3eIKxiDqv5-11)
 
 - Navigation menu expands and collapses with a transition
 - The width of the collapse and expand state are fixed and cannot be configured

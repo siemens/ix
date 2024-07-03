@@ -3,7 +3,7 @@ Avatars are visual or textual representations of individual identities and they 
 
 ## Options
 
-![Avatar overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=963-565&mode=design&t=M9CowfOcGyqnSycV-4)
+![Avatar overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=963-565&mode=design&t=M9CowfOcGyqnSycV-4)
 
 | Option                    | Description and usage                                                                                        |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -16,6 +16,6 @@ The avatar is a display-only component with no further interactions. Images prov
 
 ## Dos and Don’ts
 
-![Avatar dos and Don‘ts](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=975-13&mode=design&t=SxUA6AcHswBAiIzi-4)
+![Avatar dos and Don‘ts](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=975-13&mode=design&t=SxUA6AcHswBAiIzi-4)
 
 - Don't use more than 2 characters when using the "Initials" option
