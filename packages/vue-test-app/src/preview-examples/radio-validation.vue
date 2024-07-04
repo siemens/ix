@@ -96,4 +96,3 @@ import { IxRadio, IxRadioGroup } from '@siemens/ix-vue';
     </IxRadioGroup>
   </div>
 </template>
-</template>
