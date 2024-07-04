@@ -14686,8 +14686,14 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-radio": [
+          "ix-typography"
+        ]
+      },
       "props": [
         {
           "name": "checked",
@@ -20230,6 +20236,7 @@
         "ix-pagination",
         "ix-pane",
         "ix-push-card",
+        "ix-radio",
         "ix-slider",
         "ix-text-field",
         "ix-textarea-field",
@@ -20290,6 +20297,9 @@
           "ix-typography"
         ],
         "ix-push-card": [
+          "ix-typography"
+        ],
+        "ix-radio": [
           "ix-typography"
         ],
         "ix-slider": [

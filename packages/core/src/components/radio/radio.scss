@@ -136,6 +136,10 @@
         var(--theme-radiobtn-checked--border-color--disabled);
     }
   }
+
+  ix-typography {
+    margin-top: 0.125rem;
+  }
 }
 
 @mixin radio-variant($selector) {

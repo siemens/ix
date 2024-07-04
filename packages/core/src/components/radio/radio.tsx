@@ -160,8 +160,13 @@ export class Radio implements IxFormComponent<string> {
           >
             {this.checked && <div class="checkmark"></div>}
           </button>
-          {this.label}
-          <slot></slot>
+          <ix-typography
+            format="label"
+            textColor={this.disabled ? 'weak' : 'std'}
+          >
+            {this.label}
+            <slot></slot>
+          </ix-typography>
         </label>
       </Host>
     );
