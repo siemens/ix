@@ -4,7 +4,7 @@ A field is a form element when user input is needed. It is typically used with o
 
 1. Label
 2. Form component
-3. help or feedback text
+3. Help or feedback text
 4. Mandatory indicator
 5. Counter (input and textarea field only)
 
@@ -14,7 +14,7 @@ A field is a form element when user input is needed. It is typically used with o
 - **Label:** Add a label for the field that provides context to your users.
 - **Mandatory:** The asterisk states whether user input is required on the field before submitting the form.
 - **Field:** Use the appropriate field based on the type of input data, e.g. use  [text inputs](../input.md) for text-based data, [checkboxes](../checkbox.md) for selecting from a list of predefined options, or [toggle switches](../toogle.md) for a binary choice.
-- **Help text:** Use a hint text to help users to understand the field better. We typically use it when there are input restrictions or the label is not self-explanatory.
+- **Help text:** Use a help text to help users to understand the field better. We typically use it when there are input restrictions or the label is not self-explanatory.
 - **Feedback message or tooltip:** Display validation feedback either below the input field or as tooltip when users hovers or focusses the form field. Use a different text for the individual validation states that apply (see [validation](forms-validation.md)).
 - **Counter:** Use a counter to show the number of characters entered in the field and the maximum number of characters allowed. We typically use it for [text input](../input.md) or [textarea](../textarea.md) fields.
 

@@ -1,7 +1,6 @@
 ---
 title: Behavior
 ---
-R
 import DocsTabs from '@site/src/components/DocsTabs';
 
 import DocsUx from './\_forms-behavior_styleguide.md';
