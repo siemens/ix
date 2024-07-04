@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-fix(core/application-layout): notify listener through requestAnimationFrame
+fix(core/application-header): prevent chrome crash after resize window
