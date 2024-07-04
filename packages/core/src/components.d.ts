@@ -605,7 +605,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
+        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -662,7 +662,7 @@ export namespace Components {
           * set styles
          */
         "individual": boolean;
-        "standaloneAppearance": undefined;
+        "standaloneAppearance": any;
     }
     interface IxDatetimePicker {
         /**
@@ -722,7 +722,7 @@ export namespace Components {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference": undefined;
+        "showTimeReference": any;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -4759,7 +4759,7 @@ declare namespace LocalJSX {
           * set styles
          */
         "individual"?: boolean;
-        "standaloneAppearance"?: undefined;
+        "standaloneAppearance"?: any;
     }
     interface IxDatetimePicker {
         /**
@@ -4839,7 +4839,7 @@ declare namespace LocalJSX {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: undefined;
+        "showTimeReference"?: any;
         /**
           * Text of date select button
           * @since 1.1.0
