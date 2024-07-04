@@ -12,6 +12,7 @@ import {
   computePosition,
   ComputePositionReturn,
   flip,
+  hide,
   offset,
   shift,
 } from '@floating-ui/dom';
@@ -89,6 +90,9 @@ export class Tooltip implements IxOverlayComponent {
   private showTooltipTimeout: NodeJS.Timeout;
   private disposeAutoUpdate?: () => void;
   private disposeListener: () => void;
+
+  private tooltipVisible = false;
+  private intersectionObserver: IntersectionObserver;
 
   private get arrowElement(): HTMLElement {
     return this.hostElement.shadowRoot.querySelector('.arrow');
@@ -170,6 +174,7 @@ export class Tooltip implements IxOverlayComponent {
       strategy: 'fixed',
       placement: this.placement,
       middleware: [
+        hide(),
         shift(),
         offset(12),
         arrow({
@@ -189,6 +194,30 @@ export class Tooltip implements IxOverlayComponent {
     Object.assign(this.arrowElement.style, arrowPosition);
   }
 
+  private initializeIntersectionObserver() {
+    this.intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(
+        (entry) => {
+          console.log('intersecting', this.for, entry.isIntersecting);
+          if (!entry.isIntersecting) {
+            if (this.disposeAutoUpdate) {
+              clearTimeout(this.hideTooltipTimeout);
+              this.disposeAutoUpdate();
+            }
+          }
+          this.tooltipVisible = entry.isIntersecting;
+        },
+        {
+          root: document.querySelector('ix-event-list'),
+          threshold: 1.0,
+        }
+      );
+    });
+
+    const elementsToObserve = document.querySelector(this.for.toString());
+    this.intersectionObserver.observe(elementsToObserve);
+  }
+
   private async applyTooltipPosition(target: Element) {
     if (!target) {
       return;
@@ -199,21 +228,27 @@ export class Tooltip implements IxOverlayComponent {
         target,
         this.hostElement,
         async () => {
-          setTimeout(async () => {
-            const computeResponse = await this.computeTooltipPosition(target);
+          if (this.tooltipVisible) {
+            setTimeout(async () => {
+              const computeResponse = await this.computeTooltipPosition(target);
 
-            if (computeResponse.middlewareData.arrow) {
-              this.applyTooltipArrowPosition(computeResponse);
-            }
+              if (computeResponse.middlewareData.arrow) {
+                this.applyTooltipArrowPosition(computeResponse);
+              }
 
-            const { x, y } = computeResponse;
-            Object.assign(this.hostElement.style, {
-              left: x !== null ? `${x}px` : '',
-              top: y !== null ? `${y}px` : '',
+              console.log(this.for);
+
+              const { x, y } = computeResponse;
+              Object.assign(this.hostElement.style, {
+                left: x !== null ? `${x}px` : '',
+                top: y !== null ? `${y}px` : '',
+              });
+
+              resolve(computeResponse);
             });
-
-            resolve(computeResponse);
-          });
+          } else {
+            this.disposeAutoUpdate();
+          }
         },
         {
           ancestorResize: true,
@@ -329,12 +364,14 @@ export class Tooltip implements IxOverlayComponent {
 
   connectedCallback() {
     tooltipController.connected(this);
+    this.initializeIntersectionObserver();
   }
 
   disconnectedCallback() {
     this.observer?.disconnect();
     this.destroyAutoUpdate();
     tooltipController.disconnected(this);
+    this.intersectionObserver.disconnect();
   }
 
   isPresent(): boolean {
