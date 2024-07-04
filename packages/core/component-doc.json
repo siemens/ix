@@ -16074,7 +16074,7 @@
           "mutable": false,
           "attr": "placement",
           "reflectToAttr": false,
-          "docs": "Initial placement of the tooltip. If the placement don\"t have enough space,\nthe tooltip will placed on another location.",
+          "docs": "Initial placement of the tooltip. If the placement don\"t have enough space,\nthe tooltip will be placed on another location.",
           "docsTags": [
             {
               "name": "since",

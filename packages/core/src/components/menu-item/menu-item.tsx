@@ -110,7 +110,6 @@ export class MenuItem {
     this.hostElement.componentOnReady().then(() => {
       readTask(() => {
         this.tooltip = this.label ?? this.hostElement.innerText;
-        console.log(this.tooltip);
       });
     });
   }
