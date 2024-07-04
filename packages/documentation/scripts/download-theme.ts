@@ -15,7 +15,7 @@ import zlib from 'zlib';
 
 const pkgRoot = path.join(__dirname, '..');
 
-const version = '2.2.0-beta.0';
+const version = '2.2.0';
 const token = process.env.CSC;
 const ci = process.env.CI;
 
