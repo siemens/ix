@@ -1013,6 +1013,7 @@ export namespace Components {
           * @since 2.0.0
          */
         "suppressAutomaticPlacement": boolean;
+        "suppressOverflowBehavior": boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
@@ -6051,6 +6052,7 @@ declare namespace LocalJSX {
           * @since 2.0.0
          */
         "suppressAutomaticPlacement"?: boolean;
+        "suppressOverflowBehavior"?: boolean;
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */

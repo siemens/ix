@@ -122,6 +122,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   /** @internal */
   @Prop() ignoreRelatedSubmenu = false;
 
+  /** @internal */
+  @Prop() suppressOverflowBehavior = false;
+
   /**
    * Fire event after visibility of dropdown has changed
    */
@@ -545,7 +548,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         class={{
           'dropdown-menu': true,
           show: this.show,
-          overflow: true,
+          overflow: !this.suppressOverflowBehavior,
         }}
         style={{
           margin: '0',

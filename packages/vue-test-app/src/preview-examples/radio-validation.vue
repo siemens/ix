@@ -15,7 +15,6 @@ import { IxRadio, IxRadioGroup } from '@siemens/ix-vue';
   <div>
     <IxRadioGroup
       label="Storage options"
-      class="ix-info"
       info-text="Storage options might differ in speed."
     >
       <IxRadio
@@ -23,11 +22,13 @@ import { IxRadio, IxRadioGroup } from '@siemens/ix-vue';
         value="256"
         name="storage-256gb"
         checked
+        class="ix-info"
       ></IxRadio>
       <IxRadio
         label="512GB SSD storage"
         value="512"
         name="storage-512gb"
+        class="ix-info"
       ></IxRadio>
     </IxRadioGroup>
   </div>
@@ -35,7 +36,6 @@ import { IxRadio, IxRadioGroup } from '@siemens/ix-vue';
   <div>
     <IxRadioGroup
       label="Storage options"
-      class="ix-warning"
       warning-text="Storage options might not be available."
     >
       <IxRadio
@@ -43,11 +43,13 @@ import { IxRadio, IxRadioGroup } from '@siemens/ix-vue';
         value="256"
         name="storage-256gb"
         checked
+        class="ix-warning"
       ></IxRadio>
       <IxRadio
         label="512GB SSD storage"
         value="512"
         name="storage-512gb"
+        class="ix-warning"
       ></IxRadio>
     </IxRadioGroup>
   </div>
@@ -55,7 +57,6 @@ import { IxRadio, IxRadioGroup } from '@siemens/ix-vue';
   <div>
     <IxRadioGroup
       label="Storage options"
-      class="ix-valid"
       valid-text="Storage option is available."
     >
       <IxRadio
@@ -63,11 +64,13 @@ import { IxRadio, IxRadioGroup } from '@siemens/ix-vue';
         value="256"
         name="storage-256gb"
         checked
+        class="ix-valid"
       ></IxRadio>
       <IxRadio
         label="512GB SSD storage"
         value="512"
         name="storage-512gb"
+        class="ix-valid"
       ></IxRadio>
     </IxRadioGroup>
   </div>
@@ -75,7 +78,6 @@ import { IxRadio, IxRadioGroup } from '@siemens/ix-vue';
   <div>
     <IxRadioGroup
       label="Storage options"
-      class="ix-invalid"
       invalid-text="Storage option is not available."
     >
       <IxRadio
@@ -83,12 +85,15 @@ import { IxRadio, IxRadioGroup } from '@siemens/ix-vue';
         value="256"
         name="storage-256gb"
         checked
+        class="ix-invalid"
       ></IxRadio>
       <IxRadio
         label="512GB SSD storage"
         value="512"
         name="storage-512gb"
+        class="ix-invalid"
       ></IxRadio>
     </IxRadioGroup>
   </div>
+</template>
 </template>

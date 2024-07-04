@@ -427,6 +427,7 @@ export class DateField implements IxInputFieldComponent<string> {
           trigger={this.inputElementRef.waitForCurrent()}
           ref={this.dropdownElementRef}
           closeBehavior="outside"
+          suppressOverflowBehavior={true}
           show={this.show}
           onShowChanged={(event) => {
             this.show = event.detail;

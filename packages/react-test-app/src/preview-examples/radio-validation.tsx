@@ -15,7 +15,6 @@ export default () => {
       <div>
         <IxRadioGroup
           label="Storage options"
-          class="ix-info"
           infoText="Storage options might differ in speed."
         >
           <IxRadio
@@ -23,11 +22,13 @@ export default () => {
             value="256"
             name="storage-256gb"
             checked
+            className="ix-info"
           ></IxRadio>
           <IxRadio
             label="512GB SSD storage"
             value="512"
             name="storage-512gb"
+            className="ix-info"
           ></IxRadio>
         </IxRadioGroup>
       </div>
@@ -35,7 +36,6 @@ export default () => {
       <div>
         <IxRadioGroup
           label="Storage options"
-          class="ix-warning"
           warningText="Storage options might not be available."
         >
           <IxRadio
@@ -43,11 +43,13 @@ export default () => {
             value="256"
             name="storage-256gb"
             checked
+            className="ix-warning"
           ></IxRadio>
           <IxRadio
             label="512GB SSD storage"
             value="512"
             name="storage-512gb"
+            className="ix-warning"
           ></IxRadio>
         </IxRadioGroup>
       </div>
@@ -55,7 +57,6 @@ export default () => {
       <div>
         <IxRadioGroup
           label="Storage options"
-          class="ix-valid"
           validText="Storage option is available."
         >
           <IxRadio
@@ -63,11 +64,13 @@ export default () => {
             value="256"
             name="storage-256gb"
             checked
+            className="ix-valid"
           ></IxRadio>
           <IxRadio
             label="512GB SSD storage"
             value="512"
             name="storage-512gb"
+            className="ix-valid"
           ></IxRadio>
         </IxRadioGroup>
       </div>
@@ -75,7 +78,6 @@ export default () => {
       <div>
         <IxRadioGroup
           label="Storage options"
-          class="ix-invalid"
           invalidText="Storage option is not available."
         >
           <IxRadio
@@ -83,11 +85,13 @@ export default () => {
             value="256"
             name="storage-256gb"
             checked
+            className="ix-invalid"
           ></IxRadio>
           <IxRadio
             label="512GB SSD storage"
             value="512"
             name="storage-512gb"
+            className="ix-invalid"
           ></IxRadio>
         </IxRadioGroup>
       </div>
