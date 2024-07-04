@@ -6270,7 +6270,7 @@ declare namespace LocalJSX {
          */
         "layout"?: 'auto' | 'stretched';
         /**
-          * On tab click
+          * Emitted when the tab is clicked.
           * @since 2.0.0
          */
         "onTabClick"?: (event: IxTabItemCustomEvent<TabClickDetail>) => void;

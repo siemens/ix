@@ -14564,7 +14564,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "On tab click",
+          "docs": "Emitted when the tab is clicked.",
           "docsTags": [
             {
               "name": "since",
