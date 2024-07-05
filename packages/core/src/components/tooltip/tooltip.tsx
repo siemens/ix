@@ -16,7 +16,15 @@ import {
   offset,
   shift,
 } from '@floating-ui/dom';
-import { Component, Element, h, Host, Method, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core';
 import { OnListener } from '../utils/listener';
 import { tooltipController } from './tooltip-controller';
 import { IxOverlayComponent } from '../utils/overlay';
@@ -44,12 +52,12 @@ export class Tooltip implements IxOverlayComponent {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
-  @Prop() for: string | HTMLElement | Promise<HTMLElement>;
+  @Prop() for?: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Title of the tooltip
    */
-  @Prop() titleContent: string;
+  @Prop() titleContent?: string;
 
   /**
    * Define if the user can access the tooltip via mouse.
