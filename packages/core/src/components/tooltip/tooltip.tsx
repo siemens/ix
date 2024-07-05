@@ -183,9 +183,7 @@ export class Tooltip implements IxOverlayComponent {
         {
           name: 'overflowMiddleware',
           async fn(state) {
-            const overflow = await detectOverflow(state, {
-              boundary: document.querySelector('ix-event-list'),
-            });
+            const overflow = await detectOverflow(state);
             return {
               data: { overflowMiddleware: overflow.top == 0 },
             };
