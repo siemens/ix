@@ -15988,6 +15988,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-menu-item",
+        "ix-playground-internal",
         "ix-slider"
       ],
       "dependencies": [
@@ -15998,6 +15999,9 @@
           "ix-typography"
         ],
         "ix-menu-item": [
+          "ix-tooltip"
+        ],
+        "ix-playground-internal": [
           "ix-tooltip"
         ],
         "ix-slider": [
@@ -16038,7 +16042,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16121,7 +16125,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
