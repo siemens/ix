@@ -83,13 +83,13 @@ export class Tooltip implements IxOverlayComponent {
 
   @State() visible = false;
 
-  @Element() hostElement: HTMLIxTooltipElement;
+  @Element() hostElement!: HTMLIxTooltipElement;
 
-  private observer: MutationObserver;
-  private hideTooltipTimeout: NodeJS.Timeout;
-  private showTooltipTimeout: NodeJS.Timeout;
+  private observer?: MutationObserver;
+  private hideTooltipTimeout?: NodeJS.Timeout;
+  private showTooltipTimeout?: NodeJS.Timeout;
   private disposeAutoUpdate?: () => void;
-  private disposeListener: () => void;
+  private disposeListener?: () => void;
 
   private get arrowElement(): HTMLElement {
     return this.hostElement.shadowRoot.querySelector('.arrow');
@@ -103,7 +103,7 @@ export class Tooltip implements IxOverlayComponent {
 
   /** @internal */
   @Method()
-  async showTooltip(anchorElement: any) {
+  async showTooltip(anchorElement: Element) {
     clearTimeout(this.hideTooltipTimeout);
     await this.applyTooltipPosition(anchorElement);
 
