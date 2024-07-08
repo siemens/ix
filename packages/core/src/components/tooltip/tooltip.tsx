@@ -25,9 +25,9 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import {OnListener} from '../utils/listener';
-import {tooltipController} from './tooltip-controller';
-import {IxOverlayComponent} from '../utils/overlay';
+import { OnListener } from '../utils/listener';
+import { tooltipController } from './tooltip-controller';
+import { IxOverlayComponent } from '../utils/overlay';
 
 type ArrowPosition = {
   top?: string;
@@ -135,7 +135,7 @@ export class Tooltip implements IxOverlayComponent {
     placement,
     middlewareData,
   }: ComputePositionReturn): ArrowPosition {
-    let {x, y} = middlewareData.arrow;
+    let { x, y } = middlewareData.arrow;
 
     if (placement.startsWith('top')) {
       return {
@@ -221,7 +221,7 @@ export class Tooltip implements IxOverlayComponent {
               this.applyTooltipArrowPosition(computeResponse);
             }
 
-            const {x, y} = computeResponse;
+            const { x, y } = computeResponse;
             Object.assign(this.hostElement.style, {
               left: x !== null ? `${x}px` : '',
               top: y !== null ? `${y}px` : '',
@@ -309,7 +309,7 @@ export class Tooltip implements IxOverlayComponent {
   }
 
   private registerTooltipListener() {
-    const {hostElement} = this;
+    const { hostElement } = this;
     hostElement.addEventListener('mouseenter', () => this.clearHideTimeout());
     hostElement.addEventListener('focusin', () => this.clearHideTimeout());
 
