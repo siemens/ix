@@ -1,6 +1,6 @@
 Split buttons are button elements that allow users to either trigger an action with one click or select an action from a list of options. They consist of two parts: a button labeled with text and/or an icon on the left and a dropdown button labeled with an icon on the right. We typically use split buttons when a default action is available but more options need to be offered. Split buttons group similar or related actions.
 
-![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1480-30799&mode=design&t=97WS5dUS2rk3MCp2-11)
+![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1480-30799&mode=design&t=97WS5dUS2rk3MCp2-11)
 
 1. Button
 2. Dropdown button
@@ -15,7 +15,7 @@ All the variants, options and states of the ix button and the ix dropdown button
 - **Label:** Set a label for the button component (left side). We typically use short labels that contain a verb.
 - **Placement:** Define where the flyout appears which is triggered when the dropdown button is active. You can choose between different directions (top, bottom, left, right) and two options for alignment with the button (start, end). When there is not enough space for the chosen setting, the placement is corrected automatically.
 
-![Placement example](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1504-2203&mode=design&t=5MYmq6zAbfw7xIkC-11)
+![Placement example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1504-2203&mode=design&t=5MYmq6zAbfw7xIkC-11)
 1. Bottom-end placement
 2. Bottom-start placement   
 

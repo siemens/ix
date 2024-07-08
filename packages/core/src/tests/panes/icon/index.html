@@ -1,0 +1,33 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+      name="viewport"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body style="width: 100vw; height: 100vh">
+    <ix-pane-layout
+      id="pane-layout"
+      variant="floating"
+      layout="full-horizontal"
+      borderless="true"
+    >
+      <ix-pane heading="Pane Left" slot="left" icon="about" size="33%">
+        <p>This is the left pane.</p>
+      </ix-pane>
+      <ix-pane heading="Pane Right" slot="right" icon="about" size="33%">
+        <p>This is the right pane.</p>
+      </ix-pane>
+    </ix-pane-layout>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 Buttons initiate actions, apply actions to selected objects and activate/deactivate functions. We typically use buttons to trigger an immediate action, and you can place them within dialogs, forms, modal windows and other containers. 
 
-![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1097-5037&mode=design&t=KAxDgJoFX436Uk0b-11)
+![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1097-5037&mode=design&t=KAxDgJoFX436Uk0b-11)
 
 1. Button label
 2. Button icon
@@ -34,7 +34,7 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 
 Buttons have six states: Default, hover, active, disabled, loading and focused. In a disabled state, buttons are visually displayed but don’t offer any user interaction.
 
-![Button states](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
+![Button states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
 
 ## Dos and Don’ts
 
