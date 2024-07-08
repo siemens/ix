@@ -185,7 +185,7 @@ export class Tooltip implements IxOverlayComponent {
           async fn(state) {
             const overflow = await detectOverflow(state);
             return {
-              data: { overflowMiddleware: overflow.top == 0 },
+              data: { data: overflow.top == 0 },
             };
           },
         },
@@ -211,7 +211,7 @@ export class Tooltip implements IxOverlayComponent {
           setTimeout(async () => {
             const computeResponse = await this.computeTooltipPosition(target);
 
-            if (computeResponse.middlewareData.overflowMiddleware) {
+            if (computeResponse.middlewareData.overflowMiddleware.data) {
               this.disposeAutoUpdate();
               resolve(computeResponse);
             }
