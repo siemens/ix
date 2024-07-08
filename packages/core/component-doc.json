@@ -3100,7 +3100,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3108,6 +3109,9 @@
           "ix-col"
         ],
         "ix-datetime-picker": [
+          "ix-col"
+        ],
+        "ix-playground-internal": [
           "ix-col"
         ]
       },
@@ -9713,9 +9717,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-layout-form"
+        ]
+      },
       "props": [
         {
           "name": "layout",
@@ -9729,7 +9739,7 @@
           "reflectToAttr": false,
           "docs": "Defines the layout of the form.",
           "docsTags": [],
-          "default": "[\n    { minWidth: '0', columns: 1 },\n    { minWidth: '35rem', columns: 2 },\n  ]",
+          "default": "[\n    { minWidth: '0', columns: 1 },\n    { minWidth: '48em', columns: 2 },\n  ]",
           "values": [
             {
               "type": "{ minWidth: string; columns: number; }[]"
@@ -9765,7 +9775,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -9773,6 +9784,9 @@
           "ix-layout-grid"
         ],
         "ix-datetime-picker": [
+          "ix-layout-grid"
+        ],
+        "ix-playground-internal": [
           "ix-layout-grid"
         ]
       },
@@ -15097,7 +15111,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker"
+        "ix-datetime-picker",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -15105,6 +15120,9 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
+          "ix-row"
+        ],
+        "ix-playground-internal": [
           "ix-row"
         ]
       },
@@ -17265,7 +17283,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper",
         "ix-icon-button",
@@ -17290,6 +17310,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-text-field"
         ]
       },
       "props": [
@@ -18048,25 +18071,39 @@
         },
         {
           "name": "resizeBehavior",
-          "type": "\"dimensions\" | \"rowsCols\"",
+          "type": "\"both\" | \"horizontal\" | \"none\" | \"vertical\"",
           "complexType": {
-            "original": "'dimensions' | 'rowsCols'",
-            "resolved": "\"dimensions\" | \"rowsCols\"",
-            "references": {}
+            "original": "TextareaFieldResizeBehavior",
+            "resolved": "\"both\" | \"horizontal\" | \"none\" | \"vertical\"",
+            "references": {
+              "TextareaFieldResizeBehavior": {
+                "location": "local",
+                "path": "src/components/text-field/textarea-field.tsx",
+                "id": "src/components/text-field/textarea-field.tsx::TextareaFieldResizeBehavior"
+              }
+            }
           },
           "mutable": false,
           "attr": "resize-behavior",
           "reflectToAttr": false,
           "docs": "Determines the resize behavior of the textarea field.\n'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth.\n'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.",
           "docsTags": [],
-          "default": "'rowsCols'",
+          "default": "'both'",
           "values": [
             {
-              "value": "dimensions",
+              "value": "both",
               "type": "string"
             },
             {
-              "value": "rowsCols",
+              "value": "horizontal",
+              "type": "string"
+            },
+            {
+              "value": "none",
+              "type": "string"
+            },
+            {
+              "value": "vertical",
               "type": "string"
             }
           ],
@@ -18096,24 +18133,23 @@
         },
         {
           "name": "textareaCols",
-          "type": "string",
+          "type": "number",
           "complexType": {
-            "original": "string",
-            "resolved": "string",
+            "original": "number",
+            "resolved": "number",
             "references": {}
           },
           "mutable": false,
           "attr": "textarea-cols",
-          "reflectToAttr": true,
+          "reflectToAttr": false,
           "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
           "docsTags": [],
-          "default": "'20'",
           "values": [
             {
-              "type": "string"
+              "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -18129,21 +18165,20 @@
           "reflectToAttr": false,
           "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
           "docsTags": [],
-          "default": "'300px'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
           "name": "textareaRows",
-          "type": "string",
+          "type": "number",
           "complexType": {
-            "original": "string",
-            "resolved": "string",
+            "original": "number",
+            "resolved": "number",
             "references": {}
           },
           "mutable": false,
@@ -18151,13 +18186,12 @@
           "reflectToAttr": false,
           "docs": "The number of rows of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
           "docsTags": [],
-          "default": "'5'",
           "values": [
             {
-              "type": "string"
+              "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -18173,13 +18207,12 @@
           "reflectToAttr": false,
           "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
           "docsTags": [],
-          "default": "'100%'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -21477,6 +21510,11 @@
       "declaration": "{\n  nativeEvent: MouseEvent;\n}",
       "docstring": "",
       "path": "src/components/tab-item/tab-item.tsx"
+    },
+    "src/components/text-field/textarea-field.tsx::TextareaFieldResizeBehavior": {
+      "declaration": "export type TextareaFieldResizeBehavior =\n  | 'both'\n  | 'horizontal'\n  | 'vertical'\n  | 'none';",
+      "docstring": "",
+      "path": "src/components/text-field/textarea-field.tsx"
     },
     "src/components/time-picker/time-picker.tsx::TimePickerCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",

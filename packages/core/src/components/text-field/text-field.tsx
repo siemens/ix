@@ -236,7 +236,6 @@ export class TextField implements IxInputFieldComponent<string> {
 
   render() {
     const inputAria: A11yAttributes = getAriaAttributesForInput(this);
-
     return (
       <Host
         class={{

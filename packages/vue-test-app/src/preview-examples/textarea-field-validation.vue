@@ -22,9 +22,6 @@ export default {
       :max-length="100"
       name="comment"
       label="Comment"
-      resize-behavior="dimensions"
-      textarea-height="50px"
-      textarea-width="200px"
       info-text="Info text"
       class="ix-info"
     ></IxTextareaField>
@@ -35,9 +32,6 @@ export default {
       :max-length="100"
       name="comment"
       label="Comment"
-      resize-behavior="dimensions"
-      textarea-height="50px"
-      textarea-width="200px"
       warning-text="Warning text"
       class="ix-warning"
     ></IxTextareaField>
@@ -48,9 +42,6 @@ export default {
       :max-length="100"
       name="comment"
       label="Comment"
-      resize-behavior="dimensions"
-      textarea-height="50px"
-      textarea-width="200px"
       valid-text="Valid text"
       class="valid"
     ></IxTextareaField>
@@ -61,9 +52,6 @@ export default {
       :max-length="100"
       name="comment"
       label="Comment"
-      resize-behavior="dimensions"
-      textarea-height="50px"
-      textarea-width="200px"
       invalid-text="Invalid text"
       class="ix-invalid"
     ></IxTextareaField>

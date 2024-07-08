@@ -1,4 +1,4 @@
-import { Component, Element, Host, Prop, State, Watch, h } from '@stencil/core';
+import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 
 @Component({
@@ -17,10 +17,8 @@ export class LayoutForm implements IxComponent {
     columns: number;
   }[] = [
     { minWidth: '0', columns: 1 },
-    { minWidth: '35rem', columns: 2 },
+    { minWidth: '48em', columns: 2 },
   ];
-
-  @State() gridTemplateColumns?: string;
 
   private mediaQueryList: {
     mediaQuery: MediaQueryList;
@@ -120,12 +118,7 @@ export class LayoutForm implements IxComponent {
   render() {
     return (
       <Host>
-        <div
-          class="container"
-          style={{
-            gridTemplateColumns: this.gridTemplateColumns,
-          }}
-        >
+        <div class="container">
           <slot></slot>
         </div>
       </Host>

@@ -28,6 +28,12 @@ import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import { mapValidationResult, onInputBlur } from './text-field.util';
 
+export type TextareaFieldResizeBehavior =
+  | 'both'
+  | 'horizontal'
+  | 'vertical'
+  | 'none';
+
 /**
  * @since 2.4.0
  * @form-ready 2.4.0
@@ -111,32 +117,32 @@ export class TextareaField implements IxInputFieldComponent<string> {
    * The height of the textarea field.
    * Helpful if you want to set an initial height for the textarea.
    */
-  @Prop() textareaHeight: string = '300px';
+  @Prop() textareaHeight?: string;
 
   /**
    * The height of the textarea field.
    * Helpful if you want to set an initial height for the textarea.
    */
-  @Prop() textareaWidth: string = '100%';
+  @Prop() textareaWidth?: string;
 
   /**
    * The number of rows of the textarea field.
    * Helpful if you want to set an initial height for the textarea.
    */
-  @Prop() textareaRows: string = '5';
+  @Prop() textareaRows?: number;
 
   /**
    * The height of the textarea field.
    * Helpful if you want to set an initial height for the textarea.
    */
-  @Prop({ reflect: true }) textareaCols: string = '20';
+  @Prop() textareaCols?: number;
 
   /**
    * Determines the resize behavior of the textarea field.
    * 'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth.
    * 'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.
    */
-  @Prop() resizeBehavior: 'dimensions' | 'rowsCols' = 'rowsCols';
+  @Prop() resizeBehavior: TextareaFieldResizeBehavior = 'both';
 
   /**
    * The maximum length of the textarea field.
@@ -205,10 +211,6 @@ export class TextareaField implements IxInputFieldComponent<string> {
     return this.textAreaRef.waitForCurrent();
   }
 
-  getSizeValue(behavior: string, value: string) {
-    return this.resizeBehavior === behavior ? value : undefined;
-  }
-
   render() {
     return (
       <Host
@@ -239,24 +241,15 @@ export class TextareaField implements IxInputFieldComponent<string> {
               {this.value.length}/{this.maxLength}
             </ix-typography>
           )}
-          <div
-            class={{
-              'input-wrapper': true,
-            }}
-          >
+          <div class="input-wrapper">
             <TextareaElement
               minLength={this.minLength}
               maxLength={this.maxLength}
-              textareaHeight={this.getSizeValue(
-                'dimensions',
-                this.textareaHeight
-              )}
-              textareaWidth={this.getSizeValue(
-                'dimensions',
-                this.textareaWidth
-              )}
-              textareaCols={this.getSizeValue('rowsCols', this.textareaCols)}
-              textareaRows={this.getSizeValue('rowsCols', this.textareaRows)}
+              textareaCols={this.textareaCols}
+              textareaRows={this.textareaRows}
+              textareaHeight={this.textareaHeight}
+              textareaWidth={this.textareaWidth}
+              resizeBehavior={this.resizeBehavior}
               readonly={this.readonly}
               disabled={this.disabled}
               isInvalid={this.isInvalid}
