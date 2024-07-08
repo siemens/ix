@@ -11,10 +11,10 @@
 @import 'mixins/text-truncation';
 @import 'mixins/hover';
 @import './../button/button-mixin';
-@import 'mixins/shadow-dom/component';
+@import 'mixins/scrollbar';
 
 :host {
-  @include ix-component;
+  @include scrollbar();
   display: flex;
   position: relative;
   width: fit-content;
