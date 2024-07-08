@@ -191,26 +191,30 @@ pnpm test
 **_Docker cli must be installed on your system_**  
 If you execute the visual-regression tests, please be sure to execute the build step before.
 
-1. Build the library `pnpm build --filter \!documentation`
+1. Build the library: `pnpm build --filter \!documentation`
 
-2. Start playwright docker container. (Currently v1.30.0-focal but can be a newer version)
+2. Start the playwright docker container (Currently *v1.45.1-jammy*, but can be a newer version) mounting the current working directory into the containers *work* directory:
 
 ```sh
-docker run -p 8080:8080 -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
+docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.45.1-jammy /bin/bash
 ```
 
-3. Start the test suite
-  - All tests run `pnpm visual-regression`
-  - Workspace run `pnpm visual-regression --filter @siemens/ix`
+3. Install *pnpm* within the container: `npm install -g pnpm`
 
-- Check the results in `packages/<workspace>/playwright-report/index.html`
-- Adapt and update snapshots with `pnpm --filter @siemens/ix run visual-regression <test name> -u`
+4. Install the chromium browser within the container: `pnpm playwright install chromium`
+
+5. Run the test suite:
+  - Run all tests: `pnpm visual-regression`
+  - Run workspace: `pnpm visual-regression --filter @siemens/ix`
+
+- Check the results in: `packages/<workspace>/playwright-report/index.html`
+- Adapt and update snapshots with: `pnpm --filter @siemens/ix run visual-regression <test name> -u`
 - Check the git diff and commit changes 🎉
 
 ### Modify and preview documentation
 
 1. Run `pnpm start --filter documentation` from within the `root` directory.
-2. Locate the docs(s) to modify inside `/packages/documentation/docs/`.
+2. Locate the docs to modify inside `/packages/documentation/docs/`.
 
 #### Preview and example code
 
