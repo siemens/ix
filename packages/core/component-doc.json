@@ -9706,12 +9706,12 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/layout-form",
-      "filePath": "src/components/layout-form/layout-form.tsx",
-      "fileName": "layout-form.tsx",
-      "readmePath": "src/components/layout-form/readme.md",
-      "usagesDir": "src/components/layout-form/usage",
-      "tag": "ix-layout-form",
+      "dirPath": "src/components/layout-auto",
+      "filePath": "src/components/layout-auto/layout-auto.tsx",
+      "fileName": "layout-auto.tsx",
+      "readmePath": "src/components/layout-auto/readme.md",
+      "usagesDir": "src/components/layout-auto/usage",
+      "tag": "ix-layout-auto",
       "overview": "",
       "usage": {},
       "docs": "",
@@ -9723,7 +9723,7 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-playground-internal": [
-          "ix-layout-form"
+          "ix-layout-auto"
         ]
       },
       "props": [
@@ -9757,11 +9757,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/grid",
-      "filePath": "src/components/grid/layout-grid.tsx",
+      "dirPath": "src/components/layout-grid",
+      "filePath": "src/components/layout-grid/layout-grid.tsx",
       "fileName": "layout-grid.tsx",
-      "readmePath": "src/components/grid/readme.md",
-      "usagesDir": "src/components/grid/usage",
+      "readmePath": "src/components/layout-grid/readme.md",
+      "usagesDir": "src/components/layout-grid/usage",
       "tag": "ix-layout-grid",
       "overview": "",
       "usage": {},
@@ -14699,13 +14699,18 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-radio": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-radio"
         ]
       },
       "props": [
@@ -14874,7 +14879,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -14892,6 +14899,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-radio-group"
         ]
       },
       "props": [

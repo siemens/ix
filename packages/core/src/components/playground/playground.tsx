@@ -22,15 +22,25 @@ export class PlaygroundInternal {
     return (
       <Host>
         <h1>Layout Form</h1>
-        <ix-layout-form>
-          <ix-text-field type="text" label="Text Field"></ix-text-field>
-          <ix-text-field type="text" label="Text Field"></ix-text-field>
+        <ix-layout-auto
+          layout={[
+            { minWidth: '0', columns: 1 },
+            { minWidth: '48em', columns: 2 },
+          ]}
+        >
           <ix-text-field
             type="text"
             label="Text Field"
-            data-colspan="2"
+            helperText="Helper Text"
+            value="123456789"
           ></ix-text-field>
-        </ix-layout-form>
+          <ix-text-field type="text" label="Text Field"></ix-text-field>
+          <ix-radio-group data-colspan="2" label="123">
+            <ix-radio label="Test 1"></ix-radio>
+            <ix-radio label="Test 2"></ix-radio>
+            <ix-radio label="Test 3"></ix-radio>
+          </ix-radio-group>
+        </ix-layout-auto>
 
         <h1>Layout Grid</h1>
         <ix-layout-grid noMargin>
@@ -54,7 +64,6 @@ export class PlaygroundInternal {
             <ix-col size="12" sizeSm="12">
               <ix-text-field
                 type="text"
-                label="Text Field"
                 style={{ width: '100%' }}
               ></ix-text-field>
             </ix-col>

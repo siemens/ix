@@ -815,8 +815,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           isWarning={this.isWarning}
           controlRef={this.inputRef}
         >
-          <slot name="label" slot="label"></slot>
-
           <div
             class={{
               select: true,

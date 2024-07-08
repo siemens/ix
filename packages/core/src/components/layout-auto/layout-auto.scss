@@ -1,14 +1,15 @@
 :host {
   display: block;
   position: relative;
-
   margin: 0 0.75rem;
+
+  --ix-layout-grid-gap: 1.5rem;
 
   .container {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: var(--ix-layout-grid-gap);
   }
 
   ::slotted(*) {

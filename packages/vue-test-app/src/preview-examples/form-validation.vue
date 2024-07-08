@@ -23,7 +23,7 @@ import {
   IxSelect,
   IxSelectItem,
   IxButton,
-  IxLayoutForm,
+  IxLayoutAuto,
   IxTextField,
 } from '@siemens/ix-vue';
 import { iconLocation, iconBezierCurve } from '@siemens/ix-icons/icons';
@@ -38,7 +38,7 @@ export default {
     IxSelect,
     IxSelectItem,
     IxButton,
-    IxLayoutForm,
+    IxLayoutAuto,
     IxTextField,
     IxRadio,
     IxRadioGroup,
@@ -125,7 +125,7 @@ export default {
     @submit.prevent
     @submit="submitForm"
   >
-    <IxLayoutForm>
+    <IxLayoutAuto>
       <IxTextField v-model="name" label="Name"></IxTextField>
 
       <IxTextField v-model="lastName" label="Last Name"></IxTextField>
@@ -279,6 +279,6 @@ export default {
         :invalid-text="v$.pinConfirm.sameAsPin.$message"
       ></IxTextField>
       <IxButton type="submit">Submit</IxButton>
-    </IxLayoutForm>
+    </IxLayoutAuto>
   </form>
 </template>

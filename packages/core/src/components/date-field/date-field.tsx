@@ -418,8 +418,6 @@ export class DateField implements IxInputFieldComponent<string> {
           required={this.required}
           controlRef={this.inputElementRef}
         >
-          <slot name="label" slot="label"></slot>
-
           {this.renderInput()}
         </ix-field-wrapper>
         <ix-dropdown

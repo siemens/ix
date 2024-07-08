@@ -259,7 +259,6 @@ export class TextField implements IxInputFieldComponent<string> {
           isWarning={this.isWarning}
           controlRef={this.inputRef}
         >
-          <slot name="label" slot="label"></slot>
           <div class="input-wrapper">
             <PrefixSlot
               prefixRef={this.prefixRef}

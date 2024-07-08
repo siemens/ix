@@ -1515,7 +1515,7 @@ export namespace Components {
         "unit": string;
         "value": string | number;
     }
-    interface IxLayoutForm {
+    interface IxLayoutAuto {
         /**
           * Defines the layout of the form.
          */
@@ -4061,11 +4061,11 @@ declare global {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
     };
-    interface HTMLIxLayoutFormElement extends Components.IxLayoutForm, HTMLStencilElement {
+    interface HTMLIxLayoutAutoElement extends Components.IxLayoutAuto, HTMLStencilElement {
     }
-    var HTMLIxLayoutFormElement: {
-        prototype: HTMLIxLayoutFormElement;
-        new (): HTMLIxLayoutFormElement;
+    var HTMLIxLayoutAutoElement: {
+        prototype: HTMLIxLayoutAutoElement;
+        new (): HTMLIxLayoutAutoElement;
     };
     /**
      * @since 2.0.0
@@ -4969,7 +4969,7 @@ declare global {
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
         "ix-kpi": HTMLIxKpiElement;
-        "ix-layout-form": HTMLIxLayoutFormElement;
+        "ix-layout-auto": HTMLIxLayoutAutoElement;
         "ix-layout-grid": HTMLIxLayoutGridElement;
         "ix-link-button": HTMLIxLinkButtonElement;
         "ix-map-navigation": HTMLIxMapNavigationElement;
@@ -6582,7 +6582,7 @@ declare namespace LocalJSX {
         "unit"?: string;
         "value"?: string | number;
     }
-    interface IxLayoutForm {
+    interface IxLayoutAuto {
         /**
           * Defines the layout of the form.
          */
@@ -8398,7 +8398,7 @@ declare namespace LocalJSX {
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
         "ix-kpi": IxKpi;
-        "ix-layout-form": IxLayoutForm;
+        "ix-layout-auto": IxLayoutAuto;
         "ix-layout-grid": IxLayoutGrid;
         "ix-link-button": IxLinkButton;
         "ix-map-navigation": IxMapNavigation;
@@ -8590,7 +8590,7 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
-            "ix-layout-form": LocalJSX.IxLayoutForm & JSXBase.HTMLAttributes<HTMLIxLayoutFormElement>;
+            "ix-layout-auto": LocalJSX.IxLayoutAuto & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
             /**
              * @since 2.0.0
              */

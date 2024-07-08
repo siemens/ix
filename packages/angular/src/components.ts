@@ -1334,13 +1334,13 @@ export declare interface IxKpi extends Components.IxKpi {}
   inputs: ['layout']
 })
 @Component({
-  selector: 'ix-layout-form',
+  selector: 'ix-layout-auto',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['layout'],
 })
-export class IxLayoutForm {
+export class IxLayoutAuto {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1349,7 +1349,7 @@ export class IxLayoutForm {
 }
 
 
-export declare interface IxLayoutForm extends Components.IxLayoutForm {}
+export declare interface IxLayoutAuto extends Components.IxLayoutAuto {}
 
 
 @ProxyCmp({

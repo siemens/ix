@@ -119,6 +119,7 @@
   :host(:disabled),
   :host(.disabled) {
     pointer-events: none;
+
     button {
       background-color: var(--theme-radiobtn-unchecked--background--disabled);
       border: var(--theme-radiobtn--border-thickness) solid

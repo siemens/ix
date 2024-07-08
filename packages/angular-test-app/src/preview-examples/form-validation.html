@@ -7,7 +7,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 <form class="form-validation-example" [formGroup]="exampleForm" (ngSubmit)="submit()">
-  <ix-layout-form>
+  <ix-layout-auto>
     <ix-text-field label="Name" formControlName="name"></ix-text-field>
     <ix-text-field label="Last Name" formControlName="last-name"></ix-text-field>
     <ix-text-field label="Address" data-colspan="2" formControlName="address">
@@ -105,5 +105,5 @@ LICENSE file in the root directory of this source tree.
     <ix-button type="submit" data-colspan="1">
       Submit
     </ix-button>
-  </ix-layout-form>
+  </ix-layout-auto>
 </form>

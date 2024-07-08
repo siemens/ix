@@ -87,8 +87,6 @@ export class CheckboxGroup
           isValid={this.isValid}
           isWarning={this.isWarning}
         >
-          <slot name="label" slot="label"></slot>
-
           <div class={'checkbox-container'}>
             <slot></slot>
           </div>

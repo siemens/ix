@@ -2,12 +2,12 @@ import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 
 @Component({
-  tag: 'ix-layout-form',
-  styleUrl: 'layout-form.scss',
+  tag: 'ix-layout-auto',
+  styleUrl: 'layout-auto.scss',
   shadow: true,
 })
 export class LayoutForm implements IxComponent {
-  @Element() hostElement!: HTMLIxLayoutFormElement;
+  @Element() hostElement!: HTMLIxLayoutAutoElement;
 
   /**
    * Defines the layout of the form.
@@ -89,7 +89,7 @@ export class LayoutForm implements IxComponent {
 
   private calculateGridTemplateColumns() {
     let layoutColumns = 1;
-    let columnSpacing = '0.5rem';
+    let columnSpacing = 'var(--ix-layout-grid-gap)';
 
     this.mediaQueryList.forEach((mediaQuery) => {
       if (mediaQuery.mediaQuery.matches) {

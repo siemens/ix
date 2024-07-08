@@ -16,7 +16,7 @@ import {
   IxDateField,
   IxIcon,
   IxIconButton,
-  IxLayoutForm,
+  IxLayoutAuto,
   IxNumberField,
   IxRadio,
   IxRadioGroup,
@@ -105,7 +105,7 @@ export default function FormValidation() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <IxLayoutForm>
+      <IxLayoutAuto>
         <IxTextField
           label="Name"
           {...register('name')}
@@ -277,7 +277,7 @@ export default function FormValidation() {
         <IxButton type="submit" data-colspan="1">
           Submit
         </IxButton>
-      </IxLayoutForm>
+      </IxLayoutAuto>
     </form>
   );
 }

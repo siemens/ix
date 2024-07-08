@@ -56,7 +56,7 @@ import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/component
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
-import { defineCustomElement as defineIxLayoutForm } from '@siemens/ix/components/ix-layout-form.js';
+import { defineCustomElement as defineIxLayoutAuto } from '@siemens/ix/components/ix-layout-auto.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
 import { defineCustomElement as defineIxMapNavigation } from '@siemens/ix/components/ix-map-navigation.js';
@@ -160,7 +160,7 @@ export const IxInputGroup = /*@__PURE__*/createReactComponent<JSX.IxInputGroup, 
 export const IxKeyValue = /*@__PURE__*/createReactComponent<JSX.IxKeyValue, HTMLIxKeyValueElement>('ix-key-value', undefined, undefined, defineIxKeyValue);
 export const IxKeyValueList = /*@__PURE__*/createReactComponent<JSX.IxKeyValueList, HTMLIxKeyValueListElement>('ix-key-value-list', undefined, undefined, defineIxKeyValueList);
 export const IxKpi = /*@__PURE__*/createReactComponent<JSX.IxKpi, HTMLIxKpiElement>('ix-kpi', undefined, undefined, defineIxKpi);
-export const IxLayoutForm = /*@__PURE__*/createReactComponent<JSX.IxLayoutForm, HTMLIxLayoutFormElement>('ix-layout-form', undefined, undefined, defineIxLayoutForm);
+export const IxLayoutAuto = /*@__PURE__*/createReactComponent<JSX.IxLayoutAuto, HTMLIxLayoutAutoElement>('ix-layout-auto', undefined, undefined, defineIxLayoutAuto);
 export const IxLayoutGrid = /*@__PURE__*/createReactComponent<JSX.IxLayoutGrid, HTMLIxLayoutGridElement>('ix-layout-grid', undefined, undefined, defineIxLayoutGrid);
 export const IxLinkButton = /*@__PURE__*/createReactComponent<JSX.IxLinkButton, HTMLIxLinkButtonElement>('ix-link-button', undefined, undefined, defineIxLinkButton);
 export const IxMapNavigation = /*@__PURE__*/createReactComponent<JSX.IxMapNavigation, HTMLIxMapNavigationElement>('ix-map-navigation', undefined, undefined, defineIxMapNavigation);

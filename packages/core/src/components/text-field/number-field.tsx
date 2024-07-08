@@ -250,7 +250,6 @@ export class NumberField implements IxInputFieldComponent<number> {
           isWarning={this.isWarning}
           controlRef={this.inputRef}
         >
-          <slot name="label" slot="label"></slot>
           <div
             class={{
               'input-wrapper': true,

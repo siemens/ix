@@ -98,8 +98,8 @@ export class FieldWrapper implements FieldWrapperInterface {
     };
     return (
       <Host>
-        <div class="field-top">
-          {this.label && (
+        {this.label && (
+          <div class="field-top">
             <ix-field-label
               required={this.required}
               htmlFor={this.htmlForLabel}
@@ -107,10 +107,8 @@ export class FieldWrapper implements FieldWrapperInterface {
             >
               {this.label}
             </ix-field-label>
-          )}
-          <slot name="label"></slot>
-          <slot name="top-right"></slot>
-        </div>
+          </div>
+        )}
         <div
           class={{
             'slot-wrapper': true,
@@ -125,6 +123,7 @@ export class FieldWrapper implements FieldWrapperInterface {
             <slot name="bottom-right"></slot>
           </div>
         </div>
+
         {this.showTextAsTooltip === true && (
           <ix-tooltip for={this.slotRef.waitForCurrent()} showDelay={500}>
             {renderHelperText(textOptions)}
