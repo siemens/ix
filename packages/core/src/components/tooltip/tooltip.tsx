@@ -11,7 +11,6 @@ import {
   autoUpdate,
   computePosition,
   ComputePositionReturn,
-  detectOverflow,
   flip,
   offset,
   shift,
@@ -180,15 +179,6 @@ export class Tooltip implements IxOverlayComponent {
           fallbackStrategy: 'initialPlacement',
           padding: 10,
         }),
-        {
-          name: 'overflowMiddleware',
-          async fn(state) {
-            const overflow = await detectOverflow(state);
-            return {
-              data: { data: overflow.top == 0 },
-            };
-          },
-        },
       ],
     });
   }
@@ -204,18 +194,13 @@ export class Tooltip implements IxOverlayComponent {
     }
 
     return new Promise<ComputePositionReturn>((resolve) => {
+      this.destroyAutoUpdate();
       this.disposeAutoUpdate = autoUpdate(
         target,
         this.hostElement,
         async () => {
           setTimeout(async () => {
             const computeResponse = await this.computeTooltipPosition(target);
-
-            if (computeResponse.middlewareData.overflowMiddleware.data) {
-              this.disposeAutoUpdate();
-              this.hostElement.style.cssText = null;
-              resolve(computeResponse);
-            }
 
             if (computeResponse.middlewareData.arrow) {
               this.applyTooltipArrowPosition(computeResponse);
@@ -235,7 +220,6 @@ export class Tooltip implements IxOverlayComponent {
           ancestorScroll: true,
           elementResize: true,
           animationFrame: this.animationFrame,
-          layoutShift: false,
         }
       );
     });
