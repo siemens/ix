@@ -27,6 +27,9 @@ function buildProjectsWithThemes() {
         name: `chromium - ${theme}`,
         use: {
           ...devices['Desktop Chrome'],
+          launchOptions: {
+            ignoreDefaultArgs: ['--hide-scrollbars'],
+          },
         },
         metadata: {
           theme,
