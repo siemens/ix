@@ -1,7 +1,7 @@
 Dropdown containers display a menu with additional items when users click on the trigger element, e.g. a dropdown button. Clicking on one of the items in the dropdown performs the action. We typically use dropdowns to allow users to select one option from a list.
 
 
-![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2353-2278&mode=design&t=OVHeXvLZYLkP2CzN-4)
+![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2353-2278&mode=design&t=OVHeXvLZYLkP2CzN-4)
 
 1. Dropdown container
 2. Item
@@ -28,11 +28,11 @@ Dropdown containers display a menu with additional items when users click on the
     - Inside: clicking within the dropdown closes the dropdown.
     - Outside: clicking outside the dropdown closes the dropdown.
     - Both: clicking within and outside the dropdown closes the dropdown.
-    - false: dropdown will only close if it's parent gets closed
+    - False: dropdown will only close if it's parent gets closed
 - **Placement:** Place a dropdown at the top, bottom, left or right edge as well as at the beginning or end of the trigger/anchor element. The placement may be automatically adjusted in case it cannot be displayed correctly (detailed behavior described in the context section below). We typically use the default (bottom right) placement option to ensure consistency.
 - **Date Selection:** Use the component [date dropdown](date-dropdown.md) to get a date selection in the dropdown.
 
-![Dropdown Examples](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2372-2696&mode=design&t=OVHeXvLZYLkP2CzN-4)
+![Dropdown Examples](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2372-2696&mode=design&t=OVHeXvLZYLkP2CzN-4)
 
 ## Behavior in context
 - **Text truncation:** The labels of the items and the header only consist of one line. A truncation only occurs if there is not enough space on the screen.
@@ -45,7 +45,7 @@ Dropdown containers display a menu with additional items when users click on the
 ## States
 Dropdown items have five states: Default, hover, active, disabled and focused. When a submenu is in an active state, the submenu displays an additional dropdown with selectable options.
 
-![Item States](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2343-42235&mode=design&t=OVHeXvLZYLkP2CzN-4)
+![Item States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2343-42235&mode=design&t=OVHeXvLZYLkP2CzN-4)
 
 ## Dos and Don’ts
 - Do structure dropdown items coherently with submenus, quick actions and separators

@@ -4,7 +4,7 @@ import Playground from '@site/src/components/Demo';
 Basic navigation is a combination of essential infrastructure components forming the basic application layout structure. Alternatively, the [map navigation](./map-navigation.md) offers an additional but less flexible layout.  
 The new [application](./application.md) component released February 2024 is even more flexible, has a modular approach and introduces new features. Hence, we highly recommend using the new application frame.
 
-![Basic navigation overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-33226&mode=design&t=SxUA6AcHswBAiIzi-11)
+![Basic navigation overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-33226&mode=design&t=SxUA6AcHswBAiIzi-11)
 
 Basic navigation has:
 1. Application header
@@ -13,7 +13,7 @@ Basic navigation has:
 
 ### Application header
 
-![Application header](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=987-122161&mode=design&t=SxUA6AcHswBAiIzi-11)
+![Application header](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=987-122161&mode=design&t=SxUA6AcHswBAiIzi-11)
 
 4. Brand logo
 5. Application name
@@ -30,7 +30,7 @@ If the application is hosted inside a framework that comes with its own header, 
 ## Behavior
 Basic navigation automatically adapts, by default, to the three breakpoints lg (large), md (medium) and sm (small). Depending on the breakpoint, the behavior of the navigation menu is different.
 
-![Behavior at different breakpoints](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-57503&mode=design&t=SxUA6AcHswBAiIzi-11)
+![Behavior at different breakpoints](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-57503&mode=design&t=SxUA6AcHswBAiIzi-11)
 
 ### 6. and 7. Breakpoint lg
 - `only screen and (min-width: 62em)`

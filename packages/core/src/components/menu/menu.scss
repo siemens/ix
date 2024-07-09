@@ -35,11 +35,12 @@ $menu-expanded-width: 16rem;
 
     -ms-overflow-style: none;
 
-    scrollbar-width: inherit;
+    scrollbar-width: none;
 
     &::-webkit-scrollbar {
       display: none;
     }
+
   }
 
   .show-scrollbar {

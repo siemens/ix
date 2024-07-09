@@ -60,7 +60,7 @@ export class TabItem {
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
   /**
-   * On tab click
+   * Emitted when the tab is clicked.
    *
    * @since 2.0.0
    */

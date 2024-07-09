@@ -8,7 +8,7 @@
  */
 
 import { defineCustomElements as iconsDefineCustomElements } from '@siemens/ix-icons/loader';
-import { applyPolyfills, defineCustomElements } from '@siemens/ix/loader';
+import { defineCustomElements } from '@siemens/ix/loader';
 
 let didInitialize = false;
 
@@ -22,9 +22,8 @@ export const appInitialize = (doc: Document) => {
 
       didInitialize = true;
 
-      await applyPolyfills();
+      defineCustomElements();
       await iconsDefineCustomElements();
-      await defineCustomElements();
     }
   };
 };
