@@ -176,6 +176,8 @@ import Echarts from 'src/preview-examples/echarts';
 import ValidationSelect from 'src/preview-examples/validation-select';
 import ValidationTextField from 'src/preview-examples/validation-text-field';
 import FormValidation from 'src/preview-examples/form-validation';
+import LayoutAuto from 'src/preview-examples/layout-auto';
+import LayoutAutoCustom from 'src/preview-examples/layout-auto-custom';
 
 const routes: Routes = [
   {
@@ -482,7 +484,10 @@ const routes: Routes = [
       { path: 'number-field-disabled', component: NumberFieldDisabled },
       { path: 'number-field-label', component: NumberFieldLabel },
       { path: 'number-field-readonly', component: NumberFieldReadonly },
-      { path: 'number-field-stepper-button', component: NumberFieldStepperButton },
+      {
+        path: 'number-field-stepper-button',
+        component: NumberFieldStepperButton,
+      },
       { path: 'number-field-validation', component: NumberFieldValidation },
       { path: 'tooltip', component: Tooltip },
       { path: 'tooltip-title', component: TooltipTitle },
@@ -522,6 +527,8 @@ const routes: Routes = [
       { path: 'validation-select', component: ValidationSelect },
       { path: 'validation-text-field', component: ValidationTextField },
       { path: 'form-validation', component: FormValidation },
+      { path: 'layout-auto', component: LayoutAuto },
+      { path: 'layout-auto-custom', component: LayoutAutoCustom },
     ],
   },
 ];

@@ -185,6 +185,8 @@ import ValidationSelect from 'src/preview-examples/validation-select';
 import ValidationTextField from 'src/preview-examples/validation-text-field';
 import FormValidation from 'src/preview-examples/form-validation';
 import TextFieldPattern from 'src/preview-examples/text-field-pattern';
+import LayoutAuto from 'src/preview-examples/layout-auto';
+import LayoutAutoCustom from 'src/preview-examples/layout-auto-custom';
 
 @NgModule({
   declarations: [
@@ -357,6 +359,8 @@ import TextFieldPattern from 'src/preview-examples/text-field-pattern';
     ModalSizes,
     DatepickerLocale,
     ValidationSelect,
+    LayoutAuto,
+    LayoutAutoCustom,
   ],
   imports: [
     BrowserModule,

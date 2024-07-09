@@ -145,6 +145,8 @@ import NavigationTest from './testing/NavigationTest.vue';
 import Echarts from './preview-examples/echarts.vue';
 import ValidationSelect from './preview-examples/validation-select.vue';
 import FormValidation from './preview-examples/form-validation.vue';
+import LayoutAuto from './preview-examples/layout-auto.vue';
+import LayoutAutoCustom from './preview-examples/layout-auto-custom.vue';
 
 const routes: any = {
   '/': App,
@@ -284,6 +286,8 @@ const routes: any = {
   '/preview/grid-padding': GridPadding,
   '/preview/validation-select': ValidationSelect,
   '/preview/form-validation': FormValidation,
+  '/preview/layout-auto': LayoutAuto,
+  '/preview/layout-auto-custom': LayoutAutoCustom,
 };
 
 const currentPath = ref(window.location.pathname);
@@ -295,4 +299,5 @@ const currentView = computed(() => {
 
 <template>
   <component :is="currentView"></component>
-</template>
+</template>import layoutAutoVue from './preview-examples/layout-auto.vue';
+
