@@ -9715,7 +9715,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.5.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-playground-internal"

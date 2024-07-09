@@ -14,6 +14,19 @@
   background: var(--theme-color-ghost);
   border-radius: 3px;
 }
+
+.LayoutExample ix-typography {
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border: 1px solid var(--theme-color-soft-bdr);
+  background: var(--theme-color-ghost);
+  border-radius: 3px;
+}
+
 .example-parent {
   padding-top: 1rem;
   padding-bottom: 0.25rem;

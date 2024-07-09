@@ -1515,6 +1515,9 @@ export namespace Components {
         "unit": string;
         "value": string | number;
     }
+    /**
+     * @since 2.5.0
+     */
     interface IxLayoutAuto {
         /**
           * Defines the layout of the form.
@@ -4061,6 +4064,9 @@ declare global {
         prototype: HTMLIxKpiElement;
         new (): HTMLIxKpiElement;
     };
+    /**
+     * @since 2.5.0
+     */
     interface HTMLIxLayoutAutoElement extends Components.IxLayoutAuto, HTMLStencilElement {
     }
     var HTMLIxLayoutAutoElement: {
@@ -6582,6 +6588,9 @@ declare namespace LocalJSX {
         "unit"?: string;
         "value"?: string | number;
     }
+    /**
+     * @since 2.5.0
+     */
     interface IxLayoutAuto {
         /**
           * Defines the layout of the form.
@@ -8590,6 +8599,9 @@ declare module "@stencil/core" {
              */
             "ix-key-value-list": LocalJSX.IxKeyValueList & JSXBase.HTMLAttributes<HTMLIxKeyValueListElement>;
             "ix-kpi": LocalJSX.IxKpi & JSXBase.HTMLAttributes<HTMLIxKpiElement>;
+            /**
+             * @since 2.5.0
+             */
             "ix-layout-auto": LocalJSX.IxLayoutAuto & JSXBase.HTMLAttributes<HTMLIxLayoutAutoElement>;
             /**
              * @since 2.0.0

@@ -145,6 +145,8 @@ import { NavigationTest } from './testing/NavigationTest';
 import Echarts from './preview-examples/echarts';
 import ValidationSelect from './preview-examples/validation-select';
 import FormValidation from './preview-examples/form-validation';
+import LayoutAuto from './preview-examples/layout-auto';
+import LayoutAutoCustom from './preview-examples/layout-auto-custom';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -444,6 +446,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<ValidationSelect />}
         />
         <Route path="/preview/form-validation" element={<FormValidation />} />
+        <Route path="/preview/layout-auto" element={<LayoutAuto />} />
+        <Route
+          path="/preview/layout-auto-custom"
+          element={<LayoutAutoCustom />}
+        />
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>

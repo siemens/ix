@@ -1,6 +1,9 @@
 import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 
+/**
+ * @since 2.5.0
+ */
 @Component({
   tag: 'ix-layout-auto',
   styleUrl: 'layout-auto.scss',
@@ -45,7 +48,7 @@ export class LayoutForm implements IxComponent {
     });
     this.resizeObserver.observe(this.hostElement);
 
-    this.updateMediaQueryList();
+    this.calculateGridTemplateColumns();
   }
 
   componentWillLoad(): void | Promise<void> {
@@ -88,6 +91,8 @@ export class LayoutForm implements IxComponent {
   }
 
   private calculateGridTemplateColumns() {
+    this.updateMediaQueryList();
+
     let layoutColumns = 1;
     let columnSpacing = 'var(--ix-layout-grid-gap)';
 
