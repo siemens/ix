@@ -30,12 +30,12 @@ export class DropdownItem implements DropdownItemWrapper {
   /**
    * Label of dropdown item
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Icon of dropdown item
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Display hover state
@@ -59,7 +59,7 @@ export class DropdownItem implements DropdownItemWrapper {
   @Prop() suppressChecked = false;
 
   /** @internal */
-  @Event() itemClick: EventEmitter<HTMLIxDropdownItemElement>;
+  @Event() itemClick?: EventEmitter<HTMLIxDropdownItemElement>;
 
   /**
    * Internal usage only
