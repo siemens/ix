@@ -6907,7 +6907,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-group-context-menu",
         "ix-group-item"
@@ -6922,6 +6924,9 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-group"
         ]
       },
       "props": [
@@ -7176,11 +7181,15 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-group"
+        "ix-group",
+        "ix-playground-internal"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-group": [
+          "ix-group-item"
+        ],
+        "ix-playground-internal": [
           "ix-group-item"
         ]
       },
@@ -7225,7 +7234,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7246,7 +7255,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7267,7 +7276,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7288,7 +7297,7 @@
               "type": "boolean"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7331,7 +7340,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],

@@ -1090,19 +1090,19 @@ export namespace Components {
         /**
           * Group item icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Index
          */
-        "index": number;
+        "index"?: number;
         /**
           * Group item secondary text
          */
-        "secondaryText": string;
+        "secondaryText"?: string;
         /**
           * Show selected state
          */
-        "selected": boolean;
+        "selected"?: boolean;
         /**
           * Supress the selection of the group
          */
@@ -1110,7 +1110,7 @@ export namespace Components {
         /**
           * Group item text
          */
-        "text": string;
+        "text"?: string;
     }
     interface IxIconButton {
         /**
