@@ -56,17 +56,17 @@ export class SplitButton {
   /**
    * Button label
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Button icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Icon of the button on the right
    */
-  @Prop() splitIcon: string;
+  @Prop() splitIcon?: string;
 
   /**
    * Disabled

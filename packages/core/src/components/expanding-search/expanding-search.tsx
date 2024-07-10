@@ -27,7 +27,7 @@ export class ExpandingSearch {
   /**
    * Search icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Placeholder text
