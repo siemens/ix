@@ -1,0 +1,6 @@
+<span style="margin-right: 1rem;">Language:</span>
+<ix-select style="margin: 1rem 0;" [value]="locale" (valueChange)="setLocale($event)">
+  <ix-select-item value="de" label="de"></ix-select-item>
+  <ix-select-item value="en" label="en"></ix-select-item>
+</ix-select>
+<ix-date-picker range="false" [locale]="locale"></ix-date-picker>

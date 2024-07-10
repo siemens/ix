@@ -20,6 +20,10 @@
     "@angular/router": "^18.0.0",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
+    "ag-grid-angular": "^30.0.0",
+    "ag-grid-community": "^32.0.1",
+    "echarts": "^5.4.1",
+    "ngx-echarts": "~14.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

@@ -225,7 +225,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^17.3.5
-        version: 17.3.8(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(@types/express@4.17.20)(@types/node@20.8.9)(chokidar@3.6.0)(html-webpack-plugin@5.5.3(webpack@5.90.3))(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.7.4)))(karma@6.4.2)(ng-packagr@17.3.0(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(tslib@2.6.2)(typescript@5.4.5))(stylus@0.59.0)(typescript@5.4.5)
+        version: 17.3.8(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(@types/express@4.17.20)(@types/node@20.8.9)(chokidar@3.6.0)(html-webpack-plugin@5.5.3(webpack@5.90.3))(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.9.5)))(karma@6.4.2)(ng-packagr@17.3.0(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(tslib@2.6.2)(typescript@5.4.5))(stylus@0.59.0)(typescript@5.4.5)
       '@angular/cli':
         specifier: ^17.3.5
         version: 17.3.8(chokidar@3.6.0)
@@ -389,6 +389,18 @@ importers:
       '@siemens/ix-angular':
         specifier: workspace:*
         version: link:../angular/dist
+      ag-grid-angular:
+        specifier: ^30.0.0
+        version: 30.2.1(@angular/common@18.0.4(@angular/core@18.0.4(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@18.0.4(rxjs@7.8.1)(zone.js@0.14.7))(ag-grid-community@32.0.1)
+      ag-grid-community:
+        specifier: ^32.0.1
+        version: 32.0.1
+      echarts:
+        specifier: ^5.4.1
+        version: 5.4.3
+      ngx-echarts:
+        specifier: ~14.0.0
+        version: 14.0.0(echarts@5.4.3)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.1
@@ -5857,6 +5869,9 @@ packages:
     resolution: {integrity: sha512-OXwN5b9pCUXNQHJpwwD2qP40byEmSgzj8B4ydSN0uMNYWiFmJ6x6KwUllMmfk8Rwu/HJDFR7U8ubsWBoN0Xp0A==}
     engines: {node: '>=8.9'}
 
+  ag-charts-types@10.0.1:
+    resolution: {integrity: sha512-o8aXJfO5lsLGu4jE/2MiTogLCfdJ8UCmrWNPb+AWU0YutCrBHO0uWbSuqzabZxZ4WHxwwRtTllZMT6WqTdz+qg==}
+
   ag-grid-angular@30.2.1:
     resolution: {integrity: sha512-wDYs4UWmkgboEFJ18TRLxTyQ1u60cPm4rxlrhU18z0iE8720dJHdFZUME8FOgjTrcla9DheXXSCjkS0TItO65A==}
     peerDependencies:
@@ -5866,6 +5881,9 @@ packages:
 
   ag-grid-community@30.2.0:
     resolution: {integrity: sha512-Gd6GXmtzEQSCDloBdRxxCDqnjTBRAOf/zzlaxxyyVBJgc+cePuNgGdplRUhT/rwIiDwvyuoynvxelVE/iYdXsA==}
+
+  ag-grid-community@32.0.1:
+    resolution: {integrity: sha512-/eimCgJqMeyFxpJMTQuCtedKzk+BIInqhRdKdoQG8MD3yjrs/AWQFAcT6MP0T64CuNd85mxwB2t+3Ggb+S8hdA==}
 
   ag-grid-react@29.3.5:
     resolution: {integrity: sha512-Eg0GJ8hEBuxdVaN5g+qITOzhw0MGL9avL0Oaajr+p7QRtq2pIFHLZSknWsCBzUTjidiu75WZMKwlZjtGEuafdQ==}
@@ -15441,7 +15459,7 @@ snapshots:
       - utf-8-validate
       - webpack-cli
 
-  '@angular-devkit/build-angular@17.3.8(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(@types/express@4.17.20)(@types/node@20.8.9)(chokidar@3.6.0)(html-webpack-plugin@5.5.3(webpack@5.90.3))(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.7.4)))(karma@6.4.2)(ng-packagr@17.3.0(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(tslib@2.6.2)(typescript@5.4.5))(stylus@0.59.0)(typescript@5.4.5)':
+  '@angular-devkit/build-angular@17.3.8(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(@types/express@4.17.20)(@types/node@20.8.9)(chokidar@3.6.0)(html-webpack-plugin@5.5.3(webpack@5.90.3))(jest-environment-jsdom@29.7.0)(jest@29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.9.5)))(karma@6.4.2)(ng-packagr@17.3.0(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(tslib@2.6.2)(typescript@5.4.5))(stylus@0.59.0)(typescript@5.4.5)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1703.8(chokidar@3.6.0)
@@ -15510,7 +15528,7 @@ snapshots:
       webpack-subresource-integrity: 5.1.0(html-webpack-plugin@5.5.3(webpack@5.90.3))(webpack@5.90.3(esbuild@0.20.1))
     optionalDependencies:
       esbuild: 0.20.1
-      jest: 29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.7.4))
+      jest: 29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.9.5))
       jest-environment-jsdom: 29.7.0
       karma: 6.4.2
       ng-packagr: 17.3.0(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(tslib@2.6.2)(typescript@5.4.5)
@@ -15688,7 +15706,7 @@ snapshots:
       undici: 6.18.0
       vite: 5.2.11(@types/node@20.8.9)(less@4.2.0)(sass@1.77.2)(stylus@0.59.0)(terser@5.31.0)
       watchpack: 2.4.1
-      webpack: 5.91.0
+      webpack: 5.91.0(esbuild@0.21.3)
       webpack-dev-middleware: 7.2.1(webpack@5.91.0(esbuild@0.21.3))
       webpack-dev-server: 5.0.4(webpack@5.91.0(esbuild@0.21.3))
       webpack-merge: 5.10.0
@@ -21443,7 +21461,7 @@ snapshots:
     dependencies:
       '@angular/compiler-cli': 18.0.4(@angular/compiler@18.0.4(@angular/core@18.0.4(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5)
       typescript: 5.4.5
-      webpack: 5.91.0
+      webpack: 5.91.0(esbuild@0.21.3)
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -23243,6 +23261,8 @@ snapshots:
       loader-utils: 2.0.4
       regex-parser: 2.2.11
 
+  ag-charts-types@10.0.1: {}
+
   ag-grid-angular@30.2.1(@angular/common@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8))(rxjs@7.5.7))(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8))(ag-grid-community@30.2.0):
     dependencies:
       '@angular/common': 14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8))(rxjs@7.5.7)
@@ -23250,7 +23270,18 @@ snapshots:
       ag-grid-community: 30.2.0
       tslib: 2.6.2
 
+  ag-grid-angular@30.2.1(@angular/common@18.0.4(@angular/core@18.0.4(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@18.0.4(rxjs@7.8.1)(zone.js@0.14.7))(ag-grid-community@32.0.1):
+    dependencies:
+      '@angular/common': 18.0.4(@angular/core@18.0.4(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)
+      '@angular/core': 18.0.4(rxjs@7.8.1)(zone.js@0.14.7)
+      ag-grid-community: 32.0.1
+      tslib: 2.6.2
+
   ag-grid-community@30.2.0: {}
+
+  ag-grid-community@32.0.1:
+    dependencies:
+      ag-charts-types: 10.0.1
 
   ag-grid-react@29.3.5(ag-grid-community@30.2.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
@@ -27759,7 +27790,7 @@ snapshots:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.91.0
+      webpack: 5.91.0(esbuild@0.21.3)
     optional: true
 
   htmlparser2@6.1.0:
@@ -28556,6 +28587,26 @@ snapshots:
       - ts-node
     optional: true
 
+  jest-cli@29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.9.5)):
+    dependencies:
+      '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.7.4))
+      '@jest/test-result': 29.7.0
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      create-jest: 29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.7.4))
+      exit: 0.1.2
+      import-local: 3.1.0
+      jest-config: 29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.7.4))
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+    optional: true
+
   jest-cli@29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.8.9)(typescript@4.9.5)):
     dependencies:
       '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@20.8.9)(typescript@4.9.5))
@@ -29060,6 +29111,19 @@ snapshots:
       '@jest/types': 29.6.3
       import-local: 3.1.0
       jest-cli: 29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.7.4))
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+    optional: true
+
+  jest@29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.9.5)):
+    dependencies:
+      '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.7.4))
+      '@jest/types': 29.6.3
+      import-local: 3.1.0
+      jest-cli: 29.7.0(@types/node@20.8.9)(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.9.5))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -34391,15 +34455,6 @@ snapshots:
     optionalDependencies:
       esbuild: 0.21.3
 
-  terser-webpack-plugin@5.3.10(webpack@5.91.0(esbuild@0.21.3)):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.20
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.1
-      terser: 5.29.1
-      webpack: 5.91.0
-
   terser-webpack-plugin@5.3.9(esbuild@0.15.5)(webpack@5.76.1(esbuild@0.15.5)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.20
@@ -35721,7 +35776,7 @@ snapshots:
   webpack-subresource-integrity@5.1.0(html-webpack-plugin@5.5.3(webpack@5.91.0))(webpack@5.91.0(esbuild@0.21.3)):
     dependencies:
       typed-assert: 1.0.9
-      webpack: 5.91.0
+      webpack: 5.91.0(esbuild@0.21.3)
     optionalDependencies:
       html-webpack-plugin: 5.5.3(webpack@5.91.0)
 
@@ -35819,37 +35874,6 @@ snapshots:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.10(esbuild@0.20.1)(webpack@5.90.3(esbuild@0.20.1))
       watchpack: 2.4.0
-      webpack-sources: 3.2.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-
-  webpack@5.91.0:
-    dependencies:
-      '@types/eslint-scope': 3.7.6
-      '@types/estree': 1.0.5
-      '@webassemblyjs/ast': 1.12.1
-      '@webassemblyjs/wasm-edit': 1.12.1
-      '@webassemblyjs/wasm-parser': 1.12.1
-      acorn: 8.12.0
-      acorn-import-assertions: 1.9.0(acorn@8.12.0)
-      browserslist: 4.23.0
-      chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.17.0
-      es-module-lexer: 1.3.1
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(webpack@5.91.0(esbuild@0.21.3))
-      watchpack: 2.4.1
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
