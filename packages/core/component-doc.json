@@ -6907,9 +6907,7 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-group-context-menu",
         "ix-group-item"
@@ -6924,9 +6922,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-group"
         ]
       },
       "props": [
@@ -7181,15 +7176,11 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [
-        "ix-group",
-        "ix-playground-internal"
+        "ix-group"
       ],
       "dependencies": [],
       "dependencyGraph": {
         "ix-group": [
-          "ix-group-item"
-        ],
-        "ix-playground-internal": [
           "ix-group-item"
         ]
       },
