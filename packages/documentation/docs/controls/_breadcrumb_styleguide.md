@@ -3,7 +3,7 @@ Breadcrumbs make the structure of applications transparent to users. We typicall
 
 Breadcrumb items are interactive. Users navigate to their respective location by pressing the item. Each item contains a breadcrumb label. All items in the breadcrumb path are always followed by a chevron icon except for the last item.
 
-![Breadcrumb overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=20%3A8463&mode=design&t=JS1Aklcq48swr0Im-1)
+![Breadcrumb overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=20-8463&mode=design&t=JS1Aklcq48swr0Im-1)
 1. Breadcrumb item
 2. Separator
 3. Dropdown
@@ -12,7 +12,7 @@ Breadcrumb items are interactive. Users navigate to their respective location by
 
 Breadcrumbs are available as a ghost and solid variant. Both variants differ in font and fill color but interact in the same pattern. We typically use the ghost variant to create a lower visual emphasis for users.
 
-![Breadcrumb variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=20%3A352&mode=design&t=JS1Aklcq48swr0Im-1)
+![Breadcrumb variants](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=20-352&mode=design&t=JS1Aklcq48swr0Im-1)
 
 ## Options
 - **Icon**: Breadcrumb items can, but don't have to, include an icon. The icon is positioned before the breadcrumb label. Icons can be included for each item or only for specific items (e.g. the root item).
@@ -30,7 +30,7 @@ Breadcrumbs are available as a ghost and solid variant. Both variants differ in 
 
 Interactive items can take one of four states: Default, hover, active and focused. Non-interactive items are always in default state.
 
-![States of breadcrumb items](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=120%3A7463&mode=design&t=JS1Aklcq48swr0Im-1)
+![States of breadcrumb items](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=120-7463&mode=design&t=JS1Aklcq48swr0Im-1)
 
 ## Dos and don'ts
 

@@ -17,6 +17,7 @@
     padding: 0.25rem 0.5rem;
     background-color: var(--theme-input--background);
     color: var(--theme-input--color);
+    -moz-appearance: textfield;
     text-overflow: ellipsis;
     border: var(--theme-input--border-thickness, 1px) solid
       var(--theme-input--border-color);

@@ -1,6 +1,6 @@
 Toggle buttons are button elements which allow the user to activate/deactivate a function. Toggle buttons with and without text labels are available. We typically use toggle buttons within button groups when users can chose between more than two options or when two available options don't follow the on/off metaphor. 
 
-![Overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1480-33046&mode=design&t=iUJlfIvOwhKY3qk9-4)
+![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1480-33046&mode=design&t=iUJlfIvOwhKY3qk9-4)
 
 Variants, options and states of the ix button and the ix icon button components apply. Only additional, deviating or detailing specifications are listed here.
 

@@ -386,7 +386,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       this.registerKeyListener();
     } else {
-      this.arrowFocusController.disconnect();
+      this.arrowFocusController?.disconnect();
       this.itemObserver.disconnect();
       this.disposeKeyListener?.();
     }
@@ -506,14 +506,19 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private onDropdownClick(event: PointerEvent) {
     const target = dropdownController.pathIncludesTrigger(event.composedPath());
     if (target) {
-      event.preventDefault();
+      if (target !== this.triggerElement) {
+        event.preventDefault();
+      }
 
       if (this.isTriggerElement(target)) {
         return;
       }
     }
 
-    if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
+    if (
+      !event.defaultPrevented &&
+      (this.closeBehavior === 'inside' || this.closeBehavior === 'both')
+    ) {
       dropdownController.dismissAll([this.getId()], this.ignoreRelatedSubmenu);
       return;
     }
@@ -549,7 +554,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       >
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
-
           <slot></slot>
         </div>
       </Host>

@@ -27,8 +27,6 @@ jobs:
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     strategy:
       fail-fast: false
       matrix:
@@ -36,6 +34,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard ${{ matrix.shard }}
@@ -52,11 +53,12 @@ jobs:
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
@@ -73,11 +75,12 @@ jobs:
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
@@ -114,14 +117,17 @@ jobs:
           name: core-html-report--attempt-${{ github.run_attempt }}
           path: playwright-report
           retention-days: 2
+
   unit:
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/actions/turbo
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
+
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
