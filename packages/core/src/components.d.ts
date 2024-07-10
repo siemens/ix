@@ -911,12 +911,12 @@ export namespace Components {
         /**
           * Icon of dropdown item
          */
-        "icon": string;
+        "icon"?: string;
         "isSubMenu": boolean;
         /**
           * Label of dropdown item
          */
-        "label": string;
+        "label"?: string;
         "suppressChecked": boolean;
     }
     /**
