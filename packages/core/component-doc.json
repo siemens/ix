@@ -397,17 +397,20 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
-        "ix-map-navigation"
+        "ix-map-navigation",
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-menu-expand-icon",
         "ix-icon-button",
+        "ix-typography",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -421,6 +424,9 @@
           "ix-application-header"
         ],
         "ix-map-navigation": [
+          "ix-application-header"
+        ],
+        "ix-playground-internal": [
           "ix-application-header"
         ]
       },
@@ -443,7 +449,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -622,6 +628,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -8690,6 +8697,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -16507,6 +16515,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-application-header",
         "ix-application-switch-modal",
         "ix-avatar",
         "ix-blind",
@@ -16527,6 +16536,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-application-header": [
           "ix-typography"
         ],
         "ix-application-switch-modal": [

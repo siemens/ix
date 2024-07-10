@@ -140,7 +140,7 @@ export namespace Components {
         /**
           * Application name
          */
-        "name": string;
+        "name"?: string;
     }
     interface IxApplicationSidebar {
     }
