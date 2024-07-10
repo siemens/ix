@@ -33,16 +33,6 @@ TODO: Rewrite this section to be more precise about what has to be adapted
 
 - To use imports by name (e.g. `<ix-icon name="star"></ix-icon>`) an additional configuration entry is required inside of `angular.json`:
 
-Configuration
-```json
-{
-  "glob": "**/*.svg",
-  "input": "node_modules/@siemens/ix-icons/svg",
-  "output": "./svg"
-}
-```
-
-Add to assets property inside the `angular.json` file
 ```json
 "assets": [
   "src/favicon.ico",
