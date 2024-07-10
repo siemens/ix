@@ -9,31 +9,18 @@ Key aspects:
 - User Experience: Improve by guiding users and saving time.
 
 ## Options
-- Tooltip and feedback options can be found in the Field chapter
-- Validation options: There are 4 options
-	- Validate during input (on value changed)
-		- gives instant feedback
-		- used to check if the input fulfills certain character rules (example: password creation)
-		- don’t use it to validate specific input patterns like email or IPV4 addresses as they are turning invalid with the first keystroke and only turn valid with the last few.
-	- Validate on leave (on blur)
-		- Validates after the users left an input control
-		- gives feedback right after finishing the input
-		- used to check if a required input is filled
-		- used to check if a specific data pattern is met (example: email address)
-		- used to compare input with server data (example: check if username is free)
-		- Don’t use it if combinations of dependent inputs must be validated. As long as the focus  Like setting lower and upper limits in combination with lower and upper thresholds.
-	- Validate after user pressed the submit button
-		- validates all relevant user inputs (again) for completeness and plausibility
-		- gives feedback after pressing the submit button
-		- Invalid input controls can potentially outside of the current viewport
-		- Used to check data before sent to server
-		- Validation on server side used for a final validation of input data before they are going to be processed
-		- Server side validation can be used to check against rules and data that are only available on the server (example: existing usernames, most recent process values)
-	- Validate on leaving a certain part of the form
-		- Stichwort dependencies ;) e.g. date range
-		- validates multiple input controls
-		- gives feedback only when users leave this part of the form
-		- can be used to check data plausibility of multiple dependent inputs (example: lower limit is smaller than the upper limit)
+- Tooltip and feedback options can be found in the [Field](forms-field.md) chapter
+
+- Validation options:
+
+  - **Validate during input (on value changed):** This option provides instant feedback to the user as they type, making it suitable for checking character rules. For example, as the user types a password, it can instantly show whether the password meets the required length or contains special characters.
+
+  - **Validate on leave (on blur):** With this option, validation occurs after the user finishes inputting and leaves the control. It provides immediate feedback and is commonly used for checking required input, specific data patterns, and comparing input with server data. For example, when the user enters an email address and moves to the next field, it can validate if the email format is correct.
+
+  - **Validate after user pressed the submit button:** This option validates all relevant user inputs for completeness and plausibility after the user presses the submit button. It is useful for checking data before sending it to the server and for final validation on the server side. For example, when the user fills out a registration form and clicks the submit button, it can validate if all required fields are filled and if the data is valid.
+
+  - **Validate on leaving a certain part of the form:** This option validates multiple input controls when users leave a specific part of the form. It provides feedback on the plausibility of multiple dependent inputs. For example, when the user completes the shipping address section of an e-commerce checkout form and moves to the payment section, it can validate if the shipping address is complete and valid.
+
 
 ## Behavior in context
 - **Validation:** A validation can occur when a user interacts with a form field, such as submitting a form or moving to the next field. For more details, refer to the Behavior chapter.
@@ -55,5 +42,5 @@ Key aspects:
 - Don’t show valid feedback on components, only in the input help component
 
 ## Related patterns
-- [Field]()
-- [Behavior]()
+- [Field](forms-field.md)
+- [Behavior](forms-behavior.md)
