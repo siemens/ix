@@ -10,8 +10,8 @@ Beyond the visual appeal, effective form layouts play a crucial role in usabilit
 In this section, we explore effective ways to organize form elements. From fieldsets to section headings, discover techniques for enhancing user comprehension and interaction within your forms.
 
 - **Single-column layout:** Ideal for short forms with a few fields, or small viewports.
-- **Multi-column layout:** Suitable for long forms with multiple fields to save vertical space.
-- **Tabbed layout**: Use [tabs](../tabs.md) to break up long forms into manageable sections. This helps users focus on one part of the form at a time.
+- **Multi-column layout:** Suitable for long forms with multiple fields to save vertical space. Use a [layout grid](../layout-grid.md) or flexbox to align fields.
+- **Tabbed layout:** Use [tabs](../tabs.md) to break up long forms into manageable sections. This helps users focus on one part of the form at a time.
 - **Stepped layout:** Use our workflow pattern to guide users through multi-step forms.
 - **Fieldset:** Group related fields together using fieldsets. This helps users understand the context of the information they are providing. Add a legend (title) to describe the group of fields.
 - **Section heading:** Use section headings to break up long forms into manageable sections. This helps users focus on one part of the form at a time.
@@ -23,17 +23,13 @@ In this section, we explore effective ways to organize form elements. From field
 	- Bottom left: Short forms (up to 5 fields)
 	- Bottom right: Long forms (more than 5 fields)
 	- Bottom right and sticky: Long forms that are already filled (e.g. edit) with a large number of fields
-	- Top right: ???
+%% 	- Top right: ??? %%
 - **Label alignment:** By default, the label is positioned above its input field. In case of long forms with a lot of fields, positioning the label on the left saves vertical space. Use a custom field component for this.
 - **Grouping fields:** In some cases, it makes sense to combine multiple fields in one [custom field](custom-field.md) with a single label that are connected contextually or through validation e.g. entering the value and unit of an entity, selecting start and end date. It allows a clearer validation, e.g. the end date must be after the start date.
 - **Field width:** Use a consistent width for input fields to create a harmonious layout. For example, use a width of 100% for full-width fields and 50% for two-column fields.
-- **Responsive behavior**: xxx
+%% - **Responsive behavior**: xxx
     - layout grid or flexbox
-    - should I use 1 or 2 columns?
-
-## Dos and Don’ts
-- Do use a consistent width for input fields to create a harmonious layout (e.g. a width of 100% for full-width fields and 50% for two-column fields)
-- Don’t xxx
+    - should I use 1 or 2 columns? %%
 
 ## Related patterns
 - [Validation](forms-validation.md)
