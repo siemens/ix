@@ -2,7 +2,7 @@
 
 ## v3.0.0
 
-### Remove package from from library `@siemens/ix-icon`
+### Remove package `@siemens/ix-icons` from library
 
 TODO: Rewrite this section to explain what is the impact of this change.
 
