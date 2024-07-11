@@ -145,30 +145,30 @@ Read more about the [Stencil Output Targets here](https://stenciljs.com/docs/ove
 
 #### Angular
 
-1. Run `pnpm start --filter @siemens/angular-test-app` from within the `root` directory.
-2. A browser should open at `http://localhost:4200/previews/button`.
+1. Run `pnpm start --filter angular-test-app` from within the `root` directory.
+2. A browser should open at `http://localhost:4200/preview/button`.
 3. Edit or add an example in `packages/angular-test-app/src/preview-examples`.
-4. Navigate to `http://localhost:4200/previews/{your-example-file-name}` to review your changes.
+4. Navigate to `http://localhost:4200/preview/{your-example-file-name}` to review your changes.
 
 #### React
 
-1. Run `pnpm start --filter @siemens/react-test-app` from within the `root` directory.
-2. A browser should open at `http://localhost:5173/previews/buttons`.
+1. Run `pnpm start --filter react-test-app` from within the `root` directory.
+2. A browser should open at `http://localhost:5173/preview/buttons`.
 3. Edit or add an example in `packages/react-test-app/src/preview-examples/buttons`.
-4. Navigate to `http://localhost:5173/previews/{your-example-file-name}` to review your changes.
+4. Navigate to `http://localhost:5173/preview/{your-example-file-name}` to review your changes.
 
 #### Vue
 
-1. Run `pnpm start --filter @siemens/angular-test-app` from within the `root` directory.
-2. A browser should open at `http://localhost:5173/previews/buttons`.
+1. Run `pnpm start --filter vue-test-app` from within the `root` directory.
+2. A browser should open at `http://localhost:5173/preview/buttons`.
 3. Edit or add an example in `packages/vue-test-app/src/preview-examples/buttons`.
-4. Navigate to `http://localhost:5173/previews/{your-example-file-name}` to review your changes.
+4. Navigate to `http://localhost:5173/preview/{your-example-file-name}` to review your changes.
 
 #### Web Components
 
-1. Run `pnpm start --filter @siemens/html-test-app` from within the `root` directory.
+1. Run `pnpm start --filter html-test-app` from within the `root` directory.
 2. A browser should open at `http://localhost:5173/preview-examples/buttons.html`.
-3. Edit or add an example in `packages/vue-test-app/src/preview-examples/buttons`.
+3. Edit or add an example in `packages/html-test-app/src/preview-examples/buttons`.
 4. Navigate to `http://localhost:5173/preview-examples/{your-example-file-name}.html` to test and preview your changes.
 
 #### Lint changes
