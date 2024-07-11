@@ -177,7 +177,9 @@ export class Group {
     this.groupContent.addEventListener(
       'selectedChanged',
       (evt: CustomEvent<HTMLIxGroupItemElement>) => {
-        this.onItemClick(evt.detail.index);
+        if (!evt.detail.suppressSelection) {
+          this.onItemClick(evt.detail.index);
+        }
       }
     );
   }

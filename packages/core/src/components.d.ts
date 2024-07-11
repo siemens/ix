@@ -1102,7 +1102,7 @@ export namespace Components {
         /**
           * Show selected state
          */
-        "selected"?: boolean;
+        "selected": boolean;
         /**
           * Supress the selection of the group
          */

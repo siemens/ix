@@ -7286,12 +7286,13 @@
           "reflectToAttr": false,
           "docs": "Show selected state",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {

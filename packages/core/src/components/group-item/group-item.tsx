@@ -49,7 +49,7 @@ export class GroupItem {
   /**
    * Show selected state
    */
-  @Prop() selected?: boolean;
+  @Prop() selected: boolean = false;
 
   /**
    * The elements tabindex attribute will get set accordingly.
@@ -60,7 +60,7 @@ export class GroupItem {
   /**
    * Selection changed
    */
-  @Event() selectedChanged?: EventEmitter<HTMLIxGroupItemElement>;
+  @Event() selectedChanged!: EventEmitter<HTMLIxGroupItemElement>;
 
   /**
    * Index
