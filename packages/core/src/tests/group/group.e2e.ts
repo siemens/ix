@@ -44,4 +44,11 @@ regressionTest.describe('group', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+  regressionTest('item selected', async ({ page }) => {
+    await page.goto('group/suppressSelection');
+    await page.locator('.btn-expand-header ix-icon').click();
+    await page.locator('text=Example text 1').first().click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

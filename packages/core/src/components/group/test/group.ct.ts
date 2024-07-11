@@ -54,3 +54,22 @@ test('show expand icon initial', async ({ mount, page }) => {
 
   await expect(expandIcon).not.toBeVisible();
 });
+
+test('show expand icon initial', async ({ mount, page }) => {
+  await mount(`
+    <ix-group>
+      <ix-group-item suppress-selection>Item 1</ix-group-item>
+      <ix-group-item suppress-selection>Item 2</ix-group-item>
+    </ix-group>
+  `);
+  const group = page.locator('ix-group');
+  const groupItem = page.locator('ix-group-item');
+  await expect(group).toHaveClass(/hydrated/);
+
+  await groupItem.evaluate((item) => {
+    item.addEventListener('click', () => (item.innerHTML += 'Clicked'));
+  });
+
+  await groupItem.first().click();
+  await expect(groupItem).toHaveText('Text 1Clicked');
+});

@@ -69,9 +69,6 @@ export class GroupItem {
 
   @Listen('click', { passive: true })
   clickListen() {
-    if (this.suppressSelection) {
-      return;
-    }
     this.selectedChanged.emit(this.hostElement);
   }
 
@@ -80,7 +77,6 @@ export class GroupItem {
       <Host
         class={{
           selected: this.selected && !this.suppressSelection,
-          'suppress-selection': this.suppressSelection,
         }}
       >
         <button tabindex={this.focusable ? 0 : -1}>
