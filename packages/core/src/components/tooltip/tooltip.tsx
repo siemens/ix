@@ -166,7 +166,7 @@ export class Tooltip implements IxOverlayComponent {
   }
 
   private async computeTooltipPosition(target: Element) {
-    return await computePosition(target, this.hostElement, {
+    return computePosition(target, this.hostElement, {
       strategy: 'fixed',
       placement: this.placement,
       middleware: [
