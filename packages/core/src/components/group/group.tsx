@@ -179,6 +179,8 @@ export class Group {
       (evt: CustomEvent<HTMLIxGroupItemElement>) => {
         if (!evt.detail.suppressSelection) {
           this.onItemClick(evt.detail.index);
+        } else {
+          evt.stopPropagation();
         }
       }
     );
