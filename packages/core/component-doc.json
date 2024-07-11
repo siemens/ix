@@ -397,8 +397,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
-        "ix-map-navigation",
-        "ix-playground-internal"
+        "ix-map-navigation"
       ],
       "dependencies": [
         "ix-menu-expand-icon",
@@ -424,9 +423,6 @@
           "ix-application-header"
         ],
         "ix-map-navigation": [
-          "ix-application-header"
-        ],
-        "ix-playground-internal": [
           "ix-application-header"
         ]
       },

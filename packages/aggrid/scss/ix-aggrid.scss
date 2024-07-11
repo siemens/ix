@@ -102,6 +102,10 @@
     background-color: var(--theme-table-data-row--background--active);
   }
 
+  .ag-row-hover.ag-row-selected {
+    background-color: var(--theme-table-data-row--background--selected-hover);
+  }
+
   .ag-row-hover.ag-row-selected:active {
     background-color: var(--theme-table-data-row--background--selected-active);
   }
