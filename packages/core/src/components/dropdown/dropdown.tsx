@@ -557,7 +557,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       >
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
-          <slot></slot>
+          {this.show && <slot></slot>}
         </div>
       </Host>
     );
