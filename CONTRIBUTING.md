@@ -207,9 +207,11 @@ docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.45.1-ja
   - Run all tests: `pnpm visual-regression`
   - Run workspace: `pnpm visual-regression --filter @siemens/ix`
 
-- Check the results in: `packages/<workspace>/playwright-report/index.html`
-- Adapt and update snapshots with: `pnpm --filter @siemens/ix run visual-regression <test name> -u`
-- Check the git diff and commit changes 🎉
+6. Adapt and update snapshots with: `pnpm --filter @siemens/ix run visual-regression <test name> -u`
+
+7. Check the results by opening the test report in your browser: `packages/<workspace>/playwright-report/index.html`
+
+8. Check the git diff and commit changes 🎉
 
 ### Modify and preview documentation
 
