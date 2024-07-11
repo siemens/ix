@@ -55,7 +55,7 @@ test('show expand icon initial', async ({ mount, page }) => {
   await expect(expandIcon).not.toBeVisible();
 });
 
-test('show expand icon initial', async ({ mount, page }) => {
+test('test if event is fired on suppressed item', async ({ mount, page }) => {
   await mount(`
     <ix-group>
       <ix-group-item suppress-selection>Item 1</ix-group-item>
@@ -63,13 +63,16 @@ test('show expand icon initial', async ({ mount, page }) => {
     </ix-group>
   `);
   const group = page.locator('ix-group');
-  const groupItem = page.locator('ix-group-item');
+  const expandIcon = group.getByTestId('expand-collapsed-icon');
+  await expandIcon.click();
+
+  const groupItem = page.locator('ix-group-item').first();
   await expect(group).toHaveClass(/hydrated/);
 
   await groupItem.evaluate((item) => {
     item.addEventListener('click', () => (item.innerHTML += 'Clicked'));
   });
 
-  await groupItem.first().click();
-  await expect(groupItem).toHaveText('Text 1Clicked');
+  await groupItem.click();
+  await expect(groupItem).toHaveText('Item 1Clicked');
 });
