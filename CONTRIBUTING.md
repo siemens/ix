@@ -193,7 +193,7 @@ If you execute the visual-regression tests, please be sure to execute the build 
 
 1. Build the library: `pnpm build --filter \!documentation`
 
-2. Start the playwright docker container (Currently *v1.45.1-jammy*, but can be a newer version) mounting the current working directory into the containers *work* directory:
+2. Start the playwright docker container (Currently *v1.45.1-jammy*, but can be a newer version) mounting the current working directory into the container's *work* directory:
 
 ```sh
 docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.45.1-jammy /bin/bash
