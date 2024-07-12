@@ -36,7 +36,6 @@ Key aspects:
 ![States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2767-5681&t=IIgjTqoOEP524yAH-4)
 
 ## Dos and Don’ts
-- Do include validation feedback icons inside of components
 - Do ensure that validation feedback remains visible on hover, active, and when focused
 - Do show the "invalid" color on the label, component, and help text
 - Don’t show valid feedback on components, only in the input help component

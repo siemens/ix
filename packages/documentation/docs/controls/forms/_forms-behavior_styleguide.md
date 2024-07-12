@@ -6,37 +6,48 @@ When data is validated, a validation result is provided to guide users in correc
 We support 4 types of validation feedback.
 
 ##### Valid
-- native HTML status
 - data meets all validity criteria
 ##### Invalid
-- native HTML status
 - the data violates at least one validity criterion
 - invalid inputs must be corrected before they can be used
 ##### Warning
-- Custom status
 - The data is valid in general but violates a specific security or safety related rule
 - Example: the entered rotation speed is beyond a safety threshold and can cause higher wear
 ##### Info
-- Custom status
 - The data is valid but fulfills a certain criterion
 - Example: highlight all inputs that has been changed compared to a saved configuration
 - For more information see #Validation
 
-## Submit Button Strategies
+## Form Submission Strategies
 
-When it comes to handling the submit button, there are various strategies that can be employed. These strategies determine how the submit button behaves and what actions are taken when it is clicked. Choosing the right strategy for a specific use case is crucial for providing a seamless user experience and ensuring the integrity of the submitted data.
+When it comes to handling form submissions, it's important to choose the right strategy to ensure a seamless user experience and maintain data integrity. Here are three common strategies:
 
-- **Strategy 1:** Disable the submit button until all required input controls are filled or controls are valid.
+ **Strategy 1: Disable Submit Button**
+  In this strategy, the submit button is disabled until all required input controls are filled or controls are valid. This helps prevent users from submitting invalid data to the server.
   - Pro: Prevents sending invalid data to the server.
-  - Pro: Communicates that there are issues with the form.
-  - Con: Doesn't specify what is missing or incorrect, which can be frustrating for users.
-  - Con: Some screen readers may not read out the disabled submit button, causing confusion for those users.
+  - Pro: Communicates issues with the form.
+  - Con: Doesn't specify missing or incorrect fields, which can be frustrating.
+  - Con: Some screen readers may not read out the disabled submit button, causing confusion.
 
-- **Strategy 2:** Always provide an enabled submit button.
+ **Strategy 2: Always Enable Submit Button**
+  In this strategy, the submit button is always enabled, allowing users to click it at any time.
   - Pro: Users can always click the submit button and receive feedback on missing or invalid data.
-  - Con: The form may appear complete with the enabled button, even if data is missing or invalid.
+  - Con: The form may appear complete even with missing or invalid data.
   - Con: Unnecessary data may be sent to the server, consuming resources.
+
+ **Strategy 3: Submit on Blur**
+  In this strategy, there is no need for a submit button. The form is automatically submitted after the user finishes inputting and leaves the control.
+  - Pro: Provides a seamless user experience by automatically submitting the form when the user moves away from a field.
+  - Pro: Provides immediate feedback without the need for a submit button.
+  - Con: Users may accidentally trigger form submission by navigating away from a field unintentionally.
+  - Con: Handling validation and error messages without a submit button can be challenging.
+  - Con: Users may not have a chance to review and confirm their inputs before submission.
+  
+A combination of strategy 1 and 3 is possible.
+
+For more information on form validation, please refer to the [Validation](forms-validation.md) chapter.
+
 
 ## Patterns
 - [Validation](forms-validation.md)
-- [Behavior](forms-behavior.md)
+- [Layout](forms-layout.md)
