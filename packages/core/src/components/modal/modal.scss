@@ -71,13 +71,13 @@
     top: 0 !important;
     transform: none !important;
 
-    width: calc(100% - 28px);
-    min-width: calc(100% - 28px);
-    max-width: calc(100% - 28px);
+    width: calc(100% - 2rem);
+    min-width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
 
-    height: calc(100% - 28px);
-    min-height: calc(100% - 28px);
-    max-height: calc(100% - 28px);
+    height: calc(100% - 2rem);
+    min-height: calc(100% - 2rem);
+    max-height: calc(100% - 2rem);
   }
 
   .dialog-backdrop {
