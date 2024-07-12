@@ -222,7 +222,7 @@ export class Tabs {
 
   private dragStop() {
     if (this.clickAction.timeout) {
-    clearTimeout(this.clickAction.timeout);
+      clearTimeout(this.clickAction.timeout);
     }
     this.clickAction.timeout = null;
 
@@ -313,8 +313,8 @@ export class Tabs {
       <Host>
         {this.showArrowPrevious && (
           <div class="arrow" onClick={() => this.move(this.scrollAmount, true)}>
-          <ix-icon name={'chevron-left-small'}></ix-icon>
-        </div>
+            <ix-icon name={'chevron-left-small'}></ix-icon>
+          </div>
         )}
         <div
           class={{
@@ -330,12 +330,12 @@ export class Tabs {
           </div>
         </div>
         {this.showArrowNext && (
-        <div
-          class="arrow right"
-          onClick={() => this.move(-this.scrollAmount, true)}
-        >
-          <ix-icon name={'chevron-right-small'}></ix-icon>
-        </div>
+          <div
+            class="arrow right"
+            onClick={() => this.move(-this.scrollAmount, true)}
+          >
+            <ix-icon name={'chevron-right-small'}></ix-icon>
+          </div>
         )}
       </Host>
     );
