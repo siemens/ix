@@ -1936,11 +1936,11 @@ export namespace Components {
         /**
           * Show error state and message
          */
-        "error": boolean | string;
+        "error"?: boolean | string;
         /**
           * Define tick marker on the slider. Marker has to be within slider min/max
          */
-        "marker": SliderMarker;
+        "marker"?: SliderMarker;
         /**
           * Maximum slider value
          */
