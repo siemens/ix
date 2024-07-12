@@ -13500,7 +13500,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13526,7 +13526,7 @@
               "type": "number[]"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13591,6 +13591,7 @@
               "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
             }
           ],
+          "default": "1",
           "values": [
             {
               "type": "number"
