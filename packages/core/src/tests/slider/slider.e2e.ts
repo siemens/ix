@@ -39,6 +39,20 @@ test('should show reference value', async ({ page, mount }) => {
         trace
         trace-reference="75"
       ></ix-slider>
+
+      <ix-slider
+        style="width: 20rem"
+        trace
+        value="50"
+      ></ix-slider>
+
+
+      <ix-slider
+        style="width: 20rem"
+        trace
+        trace-reference="100"
+        value="50"
+      ></ix-slider>
     </div>
   `);
 
