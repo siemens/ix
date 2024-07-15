@@ -17,6 +17,7 @@ import {
   Listen,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
@@ -126,7 +127,7 @@ export class Tabs {
 
   private showPreviousArrow() {
     try {
-      return this.showArrows() && this.scrollActionAmount < 0;
+      return this.showArrows() === true && this.scrollActionAmount < 0;
     } catch (error) {
       return false;
     }
@@ -143,7 +144,7 @@ export class Tabs {
       const tabWrapperRect = tabWrapper.getBoundingClientRect();
 
       return (
-        this.showArrows() &&
+        this.showArrows() === true &&
         this.scrollActionAmount >
           (tabWrapper.scrollWidth - tabWrapperRect.width) * -1
       );
@@ -153,30 +154,44 @@ export class Tabs {
   }
 
   private move(amount: number, click = false) {
-    const tabWrapper = this.getTabsWrapper();
-    const maxScrollWidth =
-      (tabWrapper.scrollWidth - tabWrapper.getBoundingClientRect().width) * -1;
+    const tabsWrapper = this.getTabsWrapper();
 
-    amount = this.currentScrollAmount + amount;
-    amount = amount > 0 ? 0 : amount < maxScrollWidth ? maxScrollWidth : amount;
+    if (!tabsWrapper) {
+      return;
+    }
+
+    const tabsWrapperWidth = tabsWrapper.getBoundingClientRect().width;
+    const maxScrollWidth =
+      -this.currentScrollAmount + tabsWrapperWidth - tabsWrapper.scrollWidth;
+
+    amount = amount < maxScrollWidth ? maxScrollWidth : amount;
+    amount += this.currentScrollAmount;
+    amount = Math.min(amount, 0);
 
     const styles = [
       `transform: translateX(${amount}px);`,
       click ? 'transition: all ease-in-out 400ms;' : '',
     ].join('');
 
-    tabWrapper.setAttribute('style', styles);
+    tabsWrapper.setAttribute('style', styles);
 
     if (click) this.currentScrollAmount = this.scrollActionAmount = amount;
     else this.scrollActionAmount = amount;
   }
 
-  private moveTabToView(tabIndex: number) {
+  @Watch('selected')
+  onSelectedChange(newValue: number) {
     if (!this.showArrows()) return;
 
-    const tab = this.getTab(tabIndex).getBoundingClientRect();
-    const amount = tab.x * -1;
-    this.move(amount, true);
+    const tab = this.getTab(newValue);
+    const tabRect = tab.getBoundingClientRect();
+    const warpperWidth = this.getTabsWrapper()?.clientWidth;
+
+    if (tabRect.left < 32) {
+      this.move(-tabRect.left + 32, true);
+    } else if (warpperWidth && tabRect.right > warpperWidth - 32) {
+      this.move(warpperWidth - tabRect.right - 32, true);
+    }
   }
 
   private setSelected(index: number) {
@@ -184,7 +199,7 @@ export class Tabs {
   }
 
   private clickTab(index: number) {
-    if (this.dragStop()) {
+    if (!this.clickAction.isClick || this.dragStop()) {
       return;
     }
 
@@ -194,7 +209,6 @@ export class Tabs {
     }
 
     this.setSelected(index);
-    this.moveTabToView(index);
   }
 
   private dragStart(element: HTMLIxTabItemElement, event: MouseEvent) {
@@ -210,11 +224,12 @@ export class Tabs {
     const mousedownPositionX = event.clientX;
     const move = (event: MouseEvent) =>
       this.dragMove(event, tabPositionX, mousedownPositionX);
-
-    window.addEventListener('mouseup', () => {
+    const windowClick = () => {
       window.removeEventListener('mousemove', move, false);
+      window.removeEventListener('click', windowClick, false);
       this.dragStop();
-    });
+    };
+    window.addEventListener('click', windowClick);
     window.addEventListener('mousemove', move, false);
   }
 
@@ -225,8 +240,8 @@ export class Tabs {
   private dragStop() {
     if (this.clickAction.timeout) {
       clearTimeout(this.clickAction.timeout);
+      this.clickAction.timeout = null;
     }
-    this.clickAction.timeout = null;
 
     if (this.clickAction.isClick) return false;
 
