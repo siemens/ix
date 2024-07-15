@@ -9,8 +9,7 @@ Key aspects:
 - User Experience: Improve by guiding users and saving time.
 
 ## Options
-- Tooltip and feedback options can be found in the [Field](forms-field.md) chapter
-
+- Tooltip and feedback: See [Field](forms-field.md) chapter
 - Validation options:
 
   - **Validate during input (on value changed):** This option provides instant feedback to the user as they type, making it suitable for checking character rules. For example, as the user types a password, it can instantly show whether the password meets the required length or contains special characters.
@@ -20,7 +19,6 @@ Key aspects:
   - **Validate after user pressed the submit button:** This option validates all relevant user inputs for completeness and plausibility after the user presses the submit button. It is useful for checking data before sending it to the server and for final validation on the server side. For example, when the user fills out a registration form and clicks the submit button, it can validate if all required fields are filled and if the data is valid.
 
   - **Validate on leaving a certain part of the form:** This option validates multiple input controls when users leave a specific part of the form. It provides feedback on the plausibility of multiple dependent inputs. For example, when the user completes the shipping address section of an e-commerce checkout form and moves to the payment section, it can validate if the shipping address is complete and valid.
-
 
 ## Behavior in context
 - **Validation:** A validation can occur when a user interacts with a form field, such as submitting a form or moving to the next field. For more details, refer to the Behavior chapter.
