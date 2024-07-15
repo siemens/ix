@@ -105,7 +105,6 @@ export class Tabs {
     const parentElement = this.hostElement.parentElement;
     if (!parentElement) return;
     this.resizeObserver = new ResizeObserver(() => {
-      console.log('resizeObserver');
       this.renderArrows();
     });
     this.resizeObserver.observe(parentElement);
@@ -136,9 +135,12 @@ export class Tabs {
   private showNextArrow() {
     try {
       const tabWrapper = this.getTabsWrapper();
-      const tabWrapperRect = tabWrapper?.getBoundingClientRect();
 
-      if (!tabWrapper || !tabWrapperRect) return false;
+      if (!tabWrapper) {
+        return false;
+      }
+
+      const tabWrapperRect = tabWrapper.getBoundingClientRect();
 
       return (
         this.showArrows() &&
@@ -267,7 +269,6 @@ export class Tabs {
   }
 
   componentWillRender() {
-    console.log('will render');
     this.renderArrows();
   }
 
@@ -275,7 +276,6 @@ export class Tabs {
     requestAnimationFrameNoNgZone(() => {
       this.showArrowNext = this.showNextArrow();
       this.showArrowPrevious = this.showPreviousArrow();
-      // console.log('renderArrows', this.showArrowNext, this.showArrowPrevious);
     });
   }
 
