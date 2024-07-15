@@ -6,17 +6,20 @@ When data is validated, a validation result is provided to guide users in correc
 We support 4 types of validation feedback.
 
 ##### Valid
-- data meets all validity criteria
+- Data that meets all validity criteria.
+- Example: Indicating that the password meets all the criteria for a strong password.
 ##### Invalid
-- the data violates at least one validity criterion
-- invalid inputs must be corrected before they can be used
+- Data that violates at least one validity criterion.
+- Invalid inputs must be corrected before they can be used.
+- Example: Entering an email address without the "@" symbol.
 ##### Warning
-- The data is valid in general but violates a specific security or safety related rule
-- Example: the entered rotation speed is beyond a safety threshold and can cause higher wear
+- Data that is valid in general but violates a specific security or safety related rule.
+- Example: The entered rotation speed is beyond a safety threshold and can cause higher wear.
 ##### Info
-- The data is valid but fulfills a certain criterion
-- Example: highlight all inputs that has been changed compared to a saved configuration
-- For more information see [Validation](forms-validation.md)
+- Data that is valid but fulfills a certain criterion.
+- Example: Highlight all inputs that have been changed compared to a saved configuration.
+
+ For more information see the [Validation](forms-validation.md) chapter
 
 ## Form Submission Strategies
 
