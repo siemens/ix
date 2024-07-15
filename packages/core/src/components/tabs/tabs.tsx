@@ -185,12 +185,12 @@ export class Tabs {
 
     const tab = this.getTab(newValue);
     const tabRect = tab.getBoundingClientRect();
-    const warpperWidth = this.getTabsWrapper()?.clientWidth;
+    const wrapperWidth = this.getTabsWrapper()?.clientWidth;
 
     if (tabRect.left < 32) {
       this.move(-tabRect.left + 32, true);
-    } else if (warpperWidth && tabRect.right > warpperWidth - 32) {
-      this.move(warpperWidth - tabRect.right - 32, true);
+    } else if (wrapperWidth && tabRect.right > wrapperWidth - 32) {
+      this.move(wrapperWidth - tabRect.right - 32, true);
     }
   }
 
