@@ -11,17 +11,33 @@ Key aspects:
 ## Options
 - Tooltip and feedback: See [Field](forms-field.md) chapter
 - Validation options:
+	- On value change (validate during input)
+	- On blur (validate on leave)
+	- On blur of a certain part of the form (validate on leaving a certain part of the form)
+	- On click on submit button (validate after user pressed the submit button)
 
-  - **Validate during input (on value changed):** This option provides instant feedback to the user as they type, making it suitable for checking character rules. For example, as the user types a password, it can instantly show whether the password meets the required length or contains special characters.
+### On value change
+This option provides instant feedback to the user as they type, making it suitable for checking character rules.
 
-  - **Validate on leave (on blur):** With this option, validation occurs after the user finishes inputting and leaves the control. It provides immediate feedback and is commonly used for checking required input, specific data patterns, and comparing input with server data. For example, when the user enters an email address and moves to the next field, it can validate if the email format is correct.
+Examples: As the user types a password, it can instantly show whether the password meets the required length or contains special characters. In case of an e-mail address, it can validate if the email format is correct.
 
-  - **Validate after user pressed the submit button:** This option validates all relevant user inputs for completeness and plausibility after the user presses the submit button. It is useful for checking data before sending it to the server and for final validation on the server side. For example, when the user fills out a registration form and clicks the submit button, it can validate if all required fields are filled and if the data is valid.
+### On blur
+With this option, validation occurs after the user finishes inputting and leaves the control. It provides immediate feedback and is commonly used for checking required inputs, specific data patterns, and comparing input with server data.
 
-  - **Validate on leaving a certain part of the form:** This option validates multiple input controls when users leave a specific part of the form. It provides feedback on the plausibility of multiple dependent inputs. For example, when the user completes the shipping address section of an e-commerce checkout form and moves to the payment section, it can validate if the shipping address is complete and valid.
+Example: When the user enters an email address and moves to the next field, it can validate if the email format is correct.
+
+### On click on submit button
+This option validates all relevant user inputs for completeness and plausibility after the user presses the submit button. It is useful for checking data before sending it to the server and for final validation on the server side. 
+
+Example: When the user fills out a registration form and clicks the submit button, it can validate if all required fields are filled and if the data is valid.
+
+### On blur of a certain part of the form
+This option validates multiple input controls when users leave a specific part of the form. It provides feedback on the plausibility of multiple dependent inputs. 
+
+Example: When the user completes the shipping address section of an e-commerce checkout form and moves to the payment section, it can validate if the shipping address is complete and valid.
 
 ## Behavior in context
-- **Validation:** A validation can occur when a user interacts with a form field, such as submitting a form or moving to the next field. For more details, refer to the Behavior chapter.
+- **Validation:** A validation can occur when a user interacts with a form field, such as submitting a form or moving to the next field.
 - **Override behavior:** When multiple validation states are present, only the message with the highest priority state is shown. The order of priority, from lowest to highest, is: valid, info, warning, and invalid.
 
 ## States
