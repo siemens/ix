@@ -1,13 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-/*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -95,4 +87,21 @@ test('should not change tab by tabs event', async ({ mount, page }) => {
   await expect(tabs).toHaveClass(/hydrated/);
   await expect(firstTab).toHaveClass(/selected/);
   await expect(lastTab).not.toHaveClass(/selected/);
+});
+
+test('should update layout on resize', async ({ mount, page }) => {
+  await mount(`
+    <ix-tabs>
+      <ix-tab-item>Item 1</ix-tab-item>
+      <ix-tab-item>Item 2</ix-tab-item>
+      <ix-tab-item>Item 3</ix-tab-item>
+    </ix-tabs>
+    `);
+  const tabs = page.locator('ix-tabs');
+  await page.setViewportSize({ width: 200, height: 100 });
+  const arrowNext = tabs.locator('.arrow.right');
+  await expect(arrowNext).toBeVisible();
+
+  await page.setViewportSize({ width: 1000, height: 100 });
+  await expect(arrowNext).not.toBeVisible();
 });
