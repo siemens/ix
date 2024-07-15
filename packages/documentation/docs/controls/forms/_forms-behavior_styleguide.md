@@ -19,7 +19,7 @@ We support 4 types of validation feedback.
 - Data that is valid but fulfills a certain criterion.
 - Example: Highlight all inputs that have been changed compared to a saved configuration.
 
- For more information see the [Validation](forms-validation.md) chapter
+ For more information please refer to the [validation](forms-validation.md) chapter.
 
 ## Form Submission Strategies
 
