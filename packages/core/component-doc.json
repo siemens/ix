@@ -6990,7 +6990,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7011,7 +7011,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7027,6 +7027,7 @@
           "reflectToAttr": true,
           "docs": "Whether the group is selected.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7053,7 +7054,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {

@@ -1062,11 +1062,11 @@ export namespace Components {
         /**
           * Group header
          */
-        "header": string;
+        "header"?: string;
         /**
           * The index of the selected group entry. If undefined no group item is selected.
          */
-        "index": number;
+        "index"?: number;
         /**
           * Whether the group is selected.
          */
@@ -1074,7 +1074,7 @@ export namespace Components {
         /**
           * Group header subtitle
          */
-        "subHeader": string;
+        "subHeader"?: string;
         /**
           * Prevent header from being selectable
          */
