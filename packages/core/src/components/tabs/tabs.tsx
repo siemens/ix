@@ -183,14 +183,14 @@ export class Tabs {
   onSelectedChange(newValue: number) {
     if (!this.showArrows()) return;
 
-    const tab = this.getTab(newValue);
-    const tabRect = tab.getBoundingClientRect();
+    const tabRect = this.getTab(newValue).getBoundingClientRect();
     const wrapperWidth = this.getTabsWrapper()?.clientWidth;
+    const arrowWidth = 32;
 
-    if (tabRect.left < 32) {
-      this.move(-tabRect.left + 32, true);
-    } else if (wrapperWidth && tabRect.right > wrapperWidth - 32) {
-      this.move(wrapperWidth - tabRect.right - 32, true);
+    if (tabRect.left < arrowWidth) {
+      this.move(-tabRect.left + arrowWidth, true);
+    } else if (wrapperWidth && tabRect.right > wrapperWidth - arrowWidth) {
+      this.move(wrapperWidth - tabRect.right - arrowWidth, true);
     }
   }
 
