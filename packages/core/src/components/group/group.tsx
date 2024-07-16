@@ -124,7 +124,7 @@ export class Group {
 
     this.index = newIndex;
 
-    if (this.index && this.index >= 0) {
+    if (this.index !== undefined && this.index >= 0) {
       this.itemSelected = true;
     } else this.itemSelected = false;
 
