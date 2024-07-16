@@ -160,9 +160,11 @@ export class Tabs {
       return;
     }
 
-    const tabsWrapperWidth = tabsWrapper.getBoundingClientRect().width;
+    const tabsWrapperVisibleWidth = tabsWrapper.getBoundingClientRect().width;
     const maxScrollWidth =
-      -this.currentScrollAmount + tabsWrapperWidth - tabsWrapper.scrollWidth;
+      -this.currentScrollAmount +
+      tabsWrapperVisibleWidth -
+      tabsWrapper.scrollWidth;
 
     amount = amount < maxScrollWidth ? maxScrollWidth : amount;
     amount += this.currentScrollAmount;
