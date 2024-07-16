@@ -36,12 +36,12 @@ export class Group {
   /**
    * Group header
    */
-  @Prop() header: string;
+  @Prop() header?: string;
 
   /**
    * Group header subtitle
    */
-  @Prop() subHeader: string;
+  @Prop() subHeader?: string;
 
   /**
    * Whether the group is collapsed or expanded. Defaults to true.
@@ -51,13 +51,13 @@ export class Group {
   /**
    * Whether the group is selected.
    */
-  @Prop({ mutable: true, reflect: true }) selected: boolean;
+  @Prop({ mutable: true, reflect: true }) selected = false;
 
   /**
    * The index of the selected group entry.
    * If undefined no group item is selected.
    */
-  @Prop({ mutable: true, reflect: true }) index: number;
+  @Prop({ mutable: true, reflect: true }) index?: number;
 
   /**
    * Expand the group if the header is clicked
@@ -67,26 +67,25 @@ export class Group {
   /**
    * Emits when whole group gets selected.
    */
-  @Event() selectGroup: EventEmitter<boolean>;
+  @Event() selectGroup!: EventEmitter<boolean>;
 
   /**
    * Emits when group item gets selected.
    */
-  @Event() selectItem: EventEmitter<number>;
+  @Event() selectItem!: EventEmitter<number>;
 
   /**
    * Group collapsed
    */
-  @Event() collapsedChanged: EventEmitter<boolean>;
+  @Event() collapsedChanged!: EventEmitter<boolean>;
 
   @State() itemSelected = false;
-  @State() dropdownTriggerRef: HTMLElement;
   @State() slotSize = this.groupItems.length;
   @State() footerVisible = false;
 
   @State() showExpandCollapsedIcon = false;
 
-  private observer: MutationObserver;
+  private observer: MutationObserver = null!;
 
   get dropdownItems() {
     return Array.from(
@@ -101,7 +100,7 @@ export class Group {
   }
 
   get groupContent() {
-    return this.hostElement.shadowRoot.querySelector('.group-content');
+    return this.hostElement.shadowRoot?.querySelector('.group-content');
   }
 
   private onExpandClick(event: Event) {
@@ -119,16 +118,13 @@ export class Group {
     }
   }
 
-  private onItemClick(index: number) {
-    if (index === this.index) {
-      this.index = undefined;
-      this.selectItem.emit(undefined);
-    } else {
-      this.index = index;
-      this.selectItem.emit(index);
-    }
+  private onItemClick(index?: number) {
+    const newIndex = index === this.index ? undefined : index;
+    this.selectItem.emit(newIndex);
 
-    if (this.index >= 0) {
+    this.index = newIndex;
+
+    if (this.index && this.index >= 0) {
       this.itemSelected = true;
     } else this.itemSelected = false;
 
@@ -143,7 +139,7 @@ export class Group {
   }
 
   private onSlotChange() {
-    const slot = this.hostElement.shadowRoot.querySelector(
+    const slot = this.hostElement.shadowRoot?.querySelector(
       'slot[name="footer"]'
     );
 
@@ -170,18 +166,23 @@ export class Group {
       this.slotSize = this.groupItems.length;
     });
 
+    if (!this.groupContent) {
+      return;
+    }
+
     this.observer.observe(this.groupContent, {
       childList: true,
     });
 
-    this.groupContent.addEventListener(
+    this.groupContent?.addEventListener(
       'selectedChanged',
       (evt: CustomEvent<HTMLIxGroupItemElement>) => {
-        if (!evt.detail.suppressSelection) {
-          this.onItemClick(evt.detail.index);
-        } else {
+        if (evt.detail.suppressSelection) {
           evt.stopPropagation();
+          return;
         }
+
+        this.onItemClick(evt.detail.index);
       }
     );
   }
@@ -258,7 +259,9 @@ export class Group {
             <slot
               onSlotchange={() => {
                 const slot =
-                  this.hostElement.shadowRoot.querySelector('slot:not([name])');
+                  this.hostElement.shadowRoot?.querySelector(
+                    'slot:not([name])'
+                  );
                 this.showExpandCollapsedIcon = hasSlottedElements(slot);
               }}
             ></slot>
