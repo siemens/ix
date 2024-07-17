@@ -11752,6 +11752,7 @@
           "reflectToAttr": false,
           "docs": "Advanced mode",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
