@@ -29,10 +29,7 @@ regressionTest.describe('tabs', () => {
   regressionTest('overflow', async ({ page }) => {
     await page.goto('tabs/overflow');
 
-    const selectItem = await page.waitForSelector("[data-tab-id='7']");
-    await selectItem.click();
-
-    await page.waitForTimeout(500);
+    (await page.waitForSelector('div.arrow.right')).click({ clickCount: 3 });
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
