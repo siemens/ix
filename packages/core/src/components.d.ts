@@ -142,7 +142,7 @@ export namespace Components {
         /**
           * Application name
          */
-        "name": string;
+        "name"?: string;
     }
     interface IxApplicationSidebar {
     }
@@ -1064,11 +1064,11 @@ export namespace Components {
         /**
           * Group header
          */
-        "header": string;
+        "header"?: string;
         /**
           * The index of the selected group entry. If undefined no group item is selected.
          */
-        "index": number;
+        "index"?: number;
         /**
           * Whether the group is selected.
          */
@@ -1076,7 +1076,7 @@ export namespace Components {
         /**
           * Group header subtitle
          */
-        "subHeader": string;
+        "subHeader"?: string;
         /**
           * Prevent header from being selectable
          */
@@ -1092,15 +1092,15 @@ export namespace Components {
         /**
           * Group item icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Index
          */
-        "index": number;
+        "index"?: number;
         /**
           * Group item secondary text
          */
-        "secondaryText": string;
+        "secondaryText"?: string;
         /**
           * Show selected state
          */
@@ -1112,7 +1112,7 @@ export namespace Components {
         /**
           * Group item text
          */
-        "text": string;
+        "text"?: string;
     }
     interface IxIconButton {
         /**

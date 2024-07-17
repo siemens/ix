@@ -402,12 +402,14 @@
       "dependencies": [
         "ix-menu-expand-icon",
         "ix-icon-button",
+        "ix-typography",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -443,7 +445,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -622,6 +624,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -6987,7 +6990,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7008,7 +7011,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7024,6 +7027,7 @@
           "reflectToAttr": true,
           "docs": "Whether the group is selected.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7050,7 +7054,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7225,7 +7229,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7246,7 +7250,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7267,7 +7271,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7283,6 +7287,7 @@
           "reflectToAttr": false,
           "docs": "Show selected state",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7331,7 +7336,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -8690,6 +8695,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -16509,6 +16515,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-application-header",
         "ix-application-switch-modal",
         "ix-avatar",
         "ix-blind",
@@ -16529,6 +16536,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-application-header": [
           "ix-typography"
         ],
         "ix-application-switch-modal": [

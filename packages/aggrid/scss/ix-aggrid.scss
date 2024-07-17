@@ -18,6 +18,7 @@
   --ag-odd-row-background-color: transparent;
   --ag-row-hover-color: var(--theme-table-data-row--background--hover);
   --ag-selected-row-background-color: var(--theme-table-data-row--background--selected);
+  --ag-selected-hover-row-background-color: var(--theme-table-data-row--background--selected-hover);
 
   --ag-range-selection-background-color: var(--theme-table-data-row--background--selected);
   --ag-range-selection-border-color: var(--theme-input--border-color--focus);
@@ -42,6 +43,11 @@
       position: inherit !important;
       white-space: inherit !important;
     }
+  }
+
+  .ag-row-hover.ag-row-selected::before {
+    background-color: var(--ag-selected-hover-row-background-color);
+    background-image: unset;
   }
 
   .ag-root-wrapper {
@@ -94,16 +100,16 @@
     background-color: var(--theme-table-header-splitter--background--hover);
   }
 
+  .ag-row-hover.ag-row-selected {
+    background-color: unset;
+  }
+
   .ag-row-focus::before {
     border: 1px solid var(--theme-color-input--focus);
   }
 
   .ag-row-hover:active {
     background-color: var(--theme-table-data-row--background--active);
-  }
-
-  .ag-row-hover.ag-row-selected {
-    background-color: var(--theme-table-data-row--background--selected-hover);
   }
 
   .ag-row-hover.ag-row-selected:active {
