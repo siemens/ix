@@ -18,7 +18,7 @@ In this section, we explore effective ways to organize form elements. From field
 - **Blind:** Use a [blind](../blind.md) to hide optional fields and reveal them when the user selects a specific option.
 
 ## Best practices
-- **Z and F shape pattern:** Follow the natural reading pattern to guide users through the form (right-to-left languages). Consider a clear order of fields to ensure users don’t forget to fill in fields and improve data quality.
+- **Z and F shape pattern:** Follow the natural reading pattern to guide users through the form (left-to-right languages). Consider a clear order of fields to ensure users don’t forget to fill in fields and improve data quality.
 - **Button alignment:** Position primary action buttons (e.g. submit and cancel) consistently, we recommend the following:
 	- Bottom left: Short forms (up to 5 fields)
 	- Bottom right: Long forms (more than 5 fields)

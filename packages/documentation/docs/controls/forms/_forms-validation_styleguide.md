@@ -12,7 +12,7 @@ Key aspects:
 - Tooltip and feedback: See [Field](forms-field.md) chapter
 - Validation options:
 	- On value change (validate during input)
-	- On blur (validate on leave)
+	- On blur (validate on leaving a field)
 	- On blur of a certain part of the form (validate on leaving a certain part of the form)
 	- On click on submit button (validate after user pressed the submit button)
 
