@@ -2035,7 +2035,7 @@ export namespace Components {
         /**
           * Set counter value
          */
-        "counter": number;
+        "counter"?: number;
         /**
           * Set disabled tab
          */

@@ -105,3 +105,23 @@ test('should update layout on resize', async ({ mount, page }) => {
   await page.setViewportSize({ width: 1000, height: 100 });
   await expect(arrowNext).not.toBeVisible();
 });
+
+test('should scroll selected tab into view', async ({ mount, page }) => {
+  await mount(`
+    <ix-tabs>
+      <ix-tab-item>Item 1</ix-tab-item>
+      <ix-tab-item>Item 2</ix-tab-item>
+      <ix-tab-item>Item 3</ix-tab-item>
+      <ix-tab-item>Item 4</ix-tab-item>
+      <ix-tab-item>Item 5</ix-tab-item>
+      <ix-tab-item>Item 6</ix-tab-item>
+    </ix-tabs>
+  `);
+  await page.setViewportSize({ width: 300, height: 100 });
+  const clickedTab = page.locator('ix-tab-item').nth(3);
+  const lastTab = page.locator('ix-tab-item').last();
+  await clickedTab.click();
+  await page.waitForTimeout(500);
+  await expect(clickedTab).toBeInViewport();
+  await expect(lastTab).not.toBeInViewport();
+});
