@@ -73,10 +73,6 @@ $focusBorderWidth: 1px;
   }
 }
 
-:host(.suppress-selection) {
-  pointer-events: none;
-}
-
 :host(.selected) {
   border-top-width: 0.062rem !important;
   background-color: var(--theme-color-ghost--selected);
