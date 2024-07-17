@@ -1201,6 +1201,10 @@ export namespace Components {
          */
         "htmlFor"?: string;
         /**
+          * Is the field component invalid
+         */
+        "isInvalid": boolean;
+        /**
           * A value is required or must be checked for the form to be submittable
          */
         "required"?: boolean;
@@ -6249,6 +6253,10 @@ declare namespace LocalJSX {
           * The id of the form element that the label is associated with
          */
         "htmlFor"?: string;
+        /**
+          * Is the field component invalid
+         */
+        "isInvalid"?: boolean;
         /**
           * A value is required or must be checked for the form to be submittable
          */

@@ -514,6 +514,7 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
 
 export const IxFieldLabel = /*@__PURE__*/ defineContainer<JSX.IxFieldLabel>('ix-field-label', defineIxFieldLabel, [
   'required',
+  'isInvalid',
   'htmlFor',
   'controlRef'
 ]);

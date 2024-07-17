@@ -994,14 +994,14 @@ export declare interface IxExpandingSearch extends Components.IxExpandingSearch 
 
 
 @ProxyCmp({
-  inputs: ['htmlFor', 'required']
+  inputs: ['htmlFor', 'isInvalid', 'required']
 })
 @Component({
   selector: 'ix-field-label',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['htmlFor', 'required'],
+  inputs: ['htmlFor', 'isInvalid', 'required'],
 })
 export class IxFieldLabel {
   protected el: HTMLElement;

@@ -30,6 +30,11 @@ export class FormFieldLabel implements IxComponent {
   @Prop({ reflect: true, mutable: true }) required?: boolean;
 
   /**
+   * Is the field component invalid
+   */
+  @Prop() isInvalid: boolean = false;
+
+  /**
    * The id of the form element that the label is associated with
    */
   @Prop({ reflect: true }) htmlFor?: string;
@@ -128,7 +133,10 @@ export class FormFieldLabel implements IxComponent {
           {...this.a11yAttributes}
           ref={this.labelRef}
         >
-          <ix-typography color="soft" format="label">
+          <ix-typography
+            color={!this.isInvalid ? 'soft' : 'alarm'}
+            format="label"
+          >
             <slot></slot>
             {this.required && <span>&nbsp;*</span>}
           </ix-typography>
