@@ -11752,6 +11752,7 @@
           "reflectToAttr": false,
           "docs": "Advanced mode",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -16039,7 +16040,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16122,7 +16123,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
