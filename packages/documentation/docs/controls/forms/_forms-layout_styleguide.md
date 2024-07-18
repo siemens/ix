@@ -1,6 +1,6 @@
 Beyond the visual appeal, effective form layouts play a crucial role in usability. In this chapter, we dissect the anatomy of well-structured forms. Explore fieldsets, consider the hierarchy of information, and understand how to strike the right balance between aesthetics and functionality.
 
-![Modal](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2781-323&t=pKzFQBhaXmjTsR8P-4)
+![Form layout examples](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2781-323&t=pKzFQBhaXmjTsR8P-4)
 
 1. Small form (modal)
 2. Medium form
@@ -24,7 +24,7 @@ In this section, we explore effective ways to organize form elements. From field
 	- Bottom right: Long forms (more than 5 fields)
 	- Bottom right and sticky: Long forms that are already filled (e.g. edit) with a large number of fields
 %% 	- Top right: ??? %%
-- **Label alignment:** By default, the label is positioned above its input field. In case of long forms with a lot of fields, positioning the label on the left saves vertical space. Use a custom field component for this.
+- **Label alignment:** By default, the label is positioned above its input field. Use a custom field component for long forms with a lot of fields to position the label on the left which saves vertical space.
 - **Grouping fields:** In some cases, it makes sense to combine multiple fields in one [custom field](custom-field.md) with a single label that are connected contextually or through validation e.g. entering the value and unit of an entity, selecting start and end date. It allows a clearer validation, e.g. the end date must be after the start date.
 - **Field width:** Use a consistent width for input fields to create a harmonious layout. For example, use a width of 100% for full-width fields and 50% for two-column fields.
 %% - **Responsive behavior**: xxx

@@ -3,7 +3,6 @@ Form validation gives a user feedback on their input to ensure accurate, consist
 ![Invalid state](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2767-5955&t=IIgjTqoOEP524yAH-4)
 
 Key aspects:
-
 - Data Accuracy: Collect precise information for informed decisions.
 - Security: Prevent malicious submissions.
 - User Experience: Improve by guiding users and saving time.
@@ -41,17 +40,22 @@ Example: When the user completes the shipping address section of an e-commerce c
 - **Override behavior:** When multiple validation states are present, only the message with the highest priority state is shown. The order of priority, from lowest to highest, is: valid, info, warning, and invalid.
 
 ## States
-- Default: The initial state of a form field, often before any user interaction.
-- Invalid: Indicates that the user input does not meet the specified requirements (e.g. missing data, incorrect format).
+- Default: The initial state of a form field, often before any user interaction or validation.
+	- Example: Helper text with password strength requirements.
 - Valid: Indicates that the user input meets all validation criteria and is acceptable.
-- Warning: A non-critical issue or suggestion related to the input (e.g. a weak password).
-- Info: Provides additional context or guidance to the user (e.g. password strength requirements).
+	- Example: User enters a password that meets all the criteria for a strong password.
+- Info: Provides additional context or guidance to the user.
+	- Example: User changes a field that has a dependency to another field or did not save yet.
+- Warning: A non-critical issue or suggestion related to the input.
+	- Examples: User enters a weak password, or a rotation speed that is beyond a safety threshold.
+- Invalid: Indicates that the user input does not meet the specified requirements.
+	- Examples: User enters an e-mail address without the "@" symbol, or misses a required input.
 
 ![States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2767-5681&t=IIgjTqoOEP524yAH-4)
 
 ## Dos and Don’ts
-- Do ensure that validation feedback remains visible on hover, active, and when focused
-- Do show the "invalid" color on the label, component, and help text
+- Do use a short and helpful copy for validation
+- Do include all relevant information in the validation message, including context
 - Don’t show valid feedback on components, only in the input help component
 
 ## Related patterns
