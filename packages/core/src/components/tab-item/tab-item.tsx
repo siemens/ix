@@ -47,7 +47,7 @@ export class TabItem {
   /**
    * Set counter value
    */
-  @Prop() counter: number;
+  @Prop() counter?: number;
 
   /**
    * Set layout width style
@@ -60,11 +60,11 @@ export class TabItem {
   @Prop() placement: 'bottom' | 'top' = 'bottom';
 
   /**
-   * On tab click
+   * Emitted when the tab is clicked.
    *
    * @since 2.0.0
    */
-  @Event() tabClick: EventEmitter<TabClickDetail>;
+  @Event() tabClick!: EventEmitter<TabClickDetail>;
 
   private tabItemClasses(props: {
     selected: boolean;
