@@ -134,7 +134,7 @@ export class FormFieldLabel implements IxComponent {
           ref={this.labelRef}
         >
           <ix-typography
-            color={!this.isInvalid ? 'soft' : 'alarm'}
+            color={this.isInvalid ? 'alarm' : 'soft'}
             format="label"
           >
             <slot></slot>
