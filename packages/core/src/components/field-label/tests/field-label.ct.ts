@@ -91,3 +91,27 @@ test.describe('click label', () => {
     });
   });
 });
+
+test('valid color', async ({ mount, page }) => {
+  await mount(`<ix-field-label>LabelValid</ix-field-label>`);
+
+  const labelElement = page.locator('ix-field-label');
+
+  await expect(labelElement).not.toHaveAttribute('is-invalid');
+  await expect(labelElement.locator('ix-typography')).toHaveAttribute(
+    'style',
+    'color: var(--theme-color-soft-text);'
+  );
+});
+
+test('invalid color', async ({ mount, page }) => {
+  await mount(`<ix-field-label is-invalid>LabelInvalid</ix-field-label>`);
+
+  const labelElement = page.locator('ix-field-label');
+
+  await expect(labelElement).toHaveAttribute('is-invalid');
+  await expect(labelElement.locator('ix-typography')).toHaveAttribute(
+    'style',
+    'color: var(--theme-color-alarm-text);'
+  );
+});
