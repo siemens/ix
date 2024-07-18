@@ -59,9 +59,7 @@ export class Menu {
    */
   @Prop() enableSettings = true;
 
-  /**
-   * Internal
-   */
+  /** @internal */
   @Prop() enableMapExpand = false;
 
   /**

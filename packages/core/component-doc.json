@@ -5931,30 +5931,7 @@
           "required": false
         }
       ],
-      "methods": [
-        {
-          "name": "emitItemClick",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "complexType": {
-            "signature": "() => Promise<void>",
-            "parameters": [],
-            "references": {
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
-              }
-            },
-            "return": "Promise<void>"
-          },
-          "signature": "emitItemClick() => Promise<void>",
-          "parameters": [],
-          "docs": "Internal usage only",
-          "docsTags": []
-        }
-      ],
+      "methods": [],
       "events": [],
       "styles": [],
       "slots": [],
@@ -9193,28 +9170,6 @@
           "required": false
         },
         {
-          "name": "enableMapExpand",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "enable-map-expand",
-          "reflectToAttr": false,
-          "docs": "Internal",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "enableSettings",
           "type": "boolean",
           "complexType": {
@@ -9810,28 +9765,6 @@
           ],
           "optional": false,
           "required": false
-        },
-        {
-          "name": "show",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show",
-          "reflectToAttr": false,
-          "docs": "Internal",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
         }
       ],
       "methods": [],
@@ -9976,28 +9909,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "expanded",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "expanded",
-          "reflectToAttr": false,
-          "docs": "Internal",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -10858,28 +10769,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "show",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show",
-          "reflectToAttr": false,
-          "docs": "Internal",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
