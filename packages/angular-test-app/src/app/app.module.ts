@@ -152,6 +152,8 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 import Echarts from 'src/preview-examples/echarts';
+import ProgressBar from 'src/preview-examples/progress-bar';
+import ProgressBarVariants from 'src/preview-examples/progress-bar-variants';
 
 @NgModule({
   declarations: [
@@ -222,6 +224,8 @@ import Echarts from 'src/preview-examples/echarts';
     Pill,
     PillVariants,
     PopoverNews,
+    ProgressBar,
+    ProgressBarVariants,
     Radiobutton,
     SelectEditable,
     SelectMultiple,
