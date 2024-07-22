@@ -59,7 +59,7 @@ export class DropdownItem implements DropdownItemWrapper {
   @Prop() suppressChecked = false;
 
   /** @internal */
-  @Event() itemClick?: EventEmitter<HTMLIxDropdownItemElement>;
+  @Event() itemClick!: EventEmitter<HTMLIxDropdownItemElement>;
 
   /**
    * Internal usage only
