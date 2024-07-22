@@ -142,7 +142,7 @@
   }
 
   // Trace reference
-  input[type='range'].trace::after {
+  input[type='range'].trace:not(.hide-trace-reference)::after {
     content: '';
     position: absolute;
     display: block;

@@ -35,4 +35,13 @@ regressionTest.describe('avatar', () => {
 
     await expect(page).toHaveScreenshot({ fullPage: true });
   });
+
+  regressionTest('scrollbar', async ({ page }) => {
+    await page.goto('avatar/scrollbar');
+
+    await page.locator('ix-avatar').click();
+    await page.locator('ix-dropdown-item').last().hover();
+
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
 });
