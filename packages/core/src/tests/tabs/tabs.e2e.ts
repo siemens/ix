@@ -29,7 +29,7 @@ regressionTest.describe('tabs', () => {
   regressionTest('overflow', async ({ page }) => {
     await page.goto('tabs/overflow');
 
-    const selectItem = await page.waitForSelector("[data-tab-id='7']");
+    const selectItem = await page.waitForSelector("[data-tab-id='5']");
     await selectItem.click();
 
     await page.waitForTimeout(500);

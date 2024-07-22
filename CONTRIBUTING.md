@@ -76,7 +76,7 @@ Once it's filed:
 <!-- omit in toc -->
 #### Before Submitting an Enhancement
 
-- Read the [documentation](https://ix.siemens.io/version-dev/docs/getting-started/) carefully and find out if the functionality is already covered, maybe by an individual configuration.
+- Read the [documentation](https://ix.siemens.io/docs/getting-started/) carefully and find out if the functionality is already covered, maybe by an individual configuration.
 - Perform a [search](https://github.com/siemens/ix/issues) to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
 - Find out whether your idea fits with the scope and aims of the project. It's up to you to make a strong case to convince the project's developers of the merits of this feature. Keep in mind that we want features that will be useful to the majority of our users and not just a small subset. If you're just targeting a minority of users, consider writing an add-on/plugin library.
 
@@ -148,30 +148,30 @@ Read more about the [Stencil Output Targets here](https://stenciljs.com/docs/ove
 
 #### Angular
 
-1. Run `pnpm start --filter @siemens/angular-test-app` from within the `root` directory.
-2. A browser should open at `http://localhost:4200/previews/button`.
+1. Run `pnpm start --filter angular-test-app` from within the `root` directory.
+2. A browser should open at `http://localhost:4200/preview/button`.
 3. Edit or add an example in `packages/angular-test-app/src/preview-examples`.
-4. Navigate to `http://localhost:4200/previews/{your-example-file-name}` to review your changes.
+4. Navigate to `http://localhost:4200/preview/{your-example-file-name}` to review your changes.
 
 #### React
 
-1. Run `pnpm start --filter @siemens/react-test-app` from within the `root` directory.
-2. A browser should open at `http://localhost:5173/previews/buttons`.
+1. Run `pnpm start --filter react-test-app` from within the `root` directory.
+2. A browser should open at `http://localhost:5173/preview/buttons`.
 3. Edit or add an example in `packages/react-test-app/src/preview-examples/buttons`.
-4. Navigate to `http://localhost:5173/previews/{your-example-file-name}` to review your changes.
+4. Navigate to `http://localhost:5173/preview/{your-example-file-name}` to review your changes.
 
 #### Vue
 
-1. Run `pnpm start --filter @siemens/angular-test-app` from within the `root` directory.
-2. A browser should open at `http://localhost:5173/previews/buttons`.
+1. Run `pnpm start --filter vue-test-app` from within the `root` directory.
+2. A browser should open at `http://localhost:5173/preview/buttons`.
 3. Edit or add an example in `packages/vue-test-app/src/preview-examples/buttons`.
-4. Navigate to `http://localhost:5173/previews/{your-example-file-name}` to review your changes.
+4. Navigate to `http://localhost:5173/preview/{your-example-file-name}` to review your changes.
 
 #### Web Components
 
-1. Run `pnpm start --filter @siemens/html-test-app` from within the `root` directory.
+1. Run `pnpm start --filter html-test-app` from within the `root` directory.
 2. A browser should open at `http://localhost:5173/preview-examples/buttons.html`.
-3. Edit or add an example in `packages/vue-test-app/src/preview-examples/buttons`.
+3. Edit or add an example in `packages/html-test-app/src/preview-examples/buttons`.
 4. Navigate to `http://localhost:5173/preview-examples/{your-example-file-name}.html` to test and preview your changes.
 
 #### Lint changes
@@ -194,26 +194,32 @@ pnpm test
 **_Docker cli must be installed on your system_**  
 If you execute the visual-regression tests, please be sure to execute the build step before.
 
-1. Build the library `pnpm build --filter \!documentation`
+1. Build the library: `pnpm build --filter \!documentation`
 
-2. Start playwright docker container. (Currently v1.30.0-focal but can be a newer version)
+2. Start the playwright docker container (Currently *v1.45.1-jammy*, but can be a newer version) mounting the current working directory into the container's *work* directory:
 
 ```sh
-docker run -p 8080:8080 -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.30.0-focal /bin/bash
+docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.45.1-jammy /bin/bash
 ```
 
-3. Start the test suite
-  - All tests run `pnpm visual-regression`
-  - Workspace run `pnpm visual-regression --filter @siemens/ix`
+3. Install *pnpm* within the container: `npm install -g pnpm`
 
-- Check the results in `packages/<workspace>/playwright-report/index.html`
-- Adapt and update snapshots with `pnpm --filter @siemens/ix run visual-regression <test name> -u`
-- Check the git diff and commit changes 🎉
+4. Install the chromium browser within the container: `pnpm playwright install chromium`
+
+5. Run the test suite:
+  - Run all tests: `pnpm visual-regression`
+  - Run workspace: `pnpm visual-regression --filter @siemens/ix`
+
+6. Adapt and update snapshots with: `pnpm --filter @siemens/ix run visual-regression <test name> -u`
+
+7. Check the results by opening the test report in your browser: `packages/<workspace>/playwright-report/index.html`
+
+8. Check the git diff and commit changes 🎉
 
 ### Modify and preview documentation
 
 1. Run `pnpm start --filter documentation` from within the `root` directory.
-2. Locate the docs(s) to modify inside `/packages/documentation/docs/`.
+2. Locate the docs to modify inside `/packages/documentation/docs/`.
 
 #### Preview and example code
 
