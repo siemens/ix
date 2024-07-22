@@ -542,7 +542,7 @@
     padding: 140px 90px;
     min-height: 100vh;
     align-items: center;
-    background-image: url('/img/Screen_09_background_image.png');
+    background: #595972;
     background-size: contain;
 
     @media (max-width: 768px) {
@@ -776,6 +776,18 @@
   z-index: -1;
   bottom: 0;
   top: 0;
+}
+
+.information_cards_background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .brand_desgin_background_color {

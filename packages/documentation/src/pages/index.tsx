@@ -604,6 +604,11 @@ function InformationCards() {
   return (
     <div>
       <div className={clsx(styles.container, styles.information_cards)}>
+        <img
+          src={useBaseUrl('/img/Screen_09_background_image.png')}
+          alt=""
+          className={styles.information_cards_background}
+        ></img>
         <div className={styles.content}>
           <div className={clsx(styles.column)}>
             {icons.map((cardLine, index) => (
