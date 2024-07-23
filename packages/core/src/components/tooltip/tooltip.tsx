@@ -51,12 +51,12 @@ export class Tooltip implements IxOverlayComponent {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
-  @Prop() for: string | HTMLElement | Promise<HTMLElement>;
+  @Prop() for?: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Title of the tooltip
    */
-  @Prop() titleContent: string;
+  @Prop() titleContent?: string;
 
   /**
    * Define if the user can access the tooltip via mouse.
@@ -82,13 +82,13 @@ export class Tooltip implements IxOverlayComponent {
 
   @State() visible = false;
 
-  @Element() hostElement: HTMLIxTooltipElement;
+  @Element() hostElement!: HTMLIxTooltipElement;
 
-  private observer: MutationObserver;
-  private hideTooltipTimeout: NodeJS.Timeout;
-  private showTooltipTimeout: NodeJS.Timeout;
+  private observer?: MutationObserver;
+  private hideTooltipTimeout?: NodeJS.Timeout;
+  private showTooltipTimeout?: NodeJS.Timeout;
   private disposeAutoUpdate?: () => void;
-  private disposeListener: () => void;
+  private disposeListener?: () => void;
 
   private get arrowElement(): HTMLElement {
     return this.hostElement.shadowRoot.querySelector('.arrow');
@@ -102,7 +102,7 @@ export class Tooltip implements IxOverlayComponent {
 
   /** @internal */
   @Method()
-  async showTooltip(anchorElement: any) {
+  async showTooltip(anchorElement: Element) {
     clearTimeout(this.hideTooltipTimeout);
     await this.applyTooltipPosition(anchorElement);
 
@@ -166,7 +166,7 @@ export class Tooltip implements IxOverlayComponent {
   }
 
   private async computeTooltipPosition(target: Element) {
-    const computeResponse = await computePosition(target, this.hostElement, {
+    return computePosition(target, this.hostElement, {
       strategy: 'fixed',
       placement: this.placement,
       middleware: [
@@ -181,7 +181,6 @@ export class Tooltip implements IxOverlayComponent {
         }),
       ],
     });
-    return computeResponse;
   }
 
   private applyTooltipArrowPosition(computeResponse: ComputePositionReturn) {
@@ -195,6 +194,7 @@ export class Tooltip implements IxOverlayComponent {
     }
 
     return new Promise<ComputePositionReturn>((resolve) => {
+      this.destroyAutoUpdate();
       this.disposeAutoUpdate = autoUpdate(
         target,
         this.hostElement,
