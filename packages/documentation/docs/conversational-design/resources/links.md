@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: Links
 ---
-# Resources 
+# Links 
 
 We’ve created a set of useful resources for you to further research the topic of conversational design.  
 
@@ -12,7 +12,7 @@ The following resources are available for Siemens employees and business partner
 
 [Generative AI Guidelines](https://sway.cloud.microsoft/RHOFNEXR9NpIBKw6?ref=Link) Information about the ethics of generative AI 
 
-The ***Mendix AI Design Playbook on Conversational Design*** created by the Central Design Team at Mendix RnD, Insuk Ko, Paula Rodriguez, Filippos Petridis (URL coming soon) 
+The ***Mendix AI Design Playbook on Conversational Design*** created by the Central Design Team at Mendix RnD, Insuk Ko, Paula Rodriguez, Filippos Petridis
 
 
 ## Other resources 

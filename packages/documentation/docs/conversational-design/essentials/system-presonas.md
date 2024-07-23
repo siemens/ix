@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-title: System persona
+sidebar_position: 3
+title: System personas
 ---
 
 # System personas

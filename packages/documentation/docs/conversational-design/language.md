@@ -1,12 +1,12 @@
 ---
 sidebar_position: 5
-title: Grammar
+title: Language
 ---
-# Wording and grammar
+# Language
 
 ## Overview 
 
-The key to chatbot wording and grammar use in industrial contexts is simplicity. Use clear and concise grammar and wording for all responses without idiomatic language or slang. Instead, focus on domain-specific vocabulary. We recommend using both the Defining conversations section to support your creation of sample dialogs and our UX Writing style guide for grammar and wording support.   
+The key to chatbot language use in industrial contexts is simplicity. Use clear and concise grammar and wording for all responses without idiomatic language or slang. Instead, focus on domain-specific vocabulary. We recommend using both the Defining conversations section to support your creation of sample dialogs and our UX Writing style guide for grammar and wording support.   
 
 ## Generative AI and language 
 

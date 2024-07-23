@@ -1,6 +1,6 @@
 ---
-sidebar_position: 4
-title: Understanding intent
+sidebar_position: 2
+title: User intent
 ---
 # User intent
 

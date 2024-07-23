@@ -1,7 +1,9 @@
 ---
 sidebar_position: 1
-title: Step by step checklist
----# Guide to creating industrial chatbots
+title: Chatbot checklist
+---
+
+# Chatbot checklist
 
 ## Assumptions
 
