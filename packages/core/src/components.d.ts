@@ -42,6 +42,7 @@ import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
+import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
@@ -82,6 +83,7 @@ export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
+export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
@@ -140,7 +142,7 @@ export namespace Components {
         /**
           * Application name
          */
-        "name": string;
+        "name"?: string;
     }
     interface IxApplicationSidebar {
     }
@@ -276,6 +278,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Button variant
+          * @since 2.3.0 - variant danger
          */
         "variant": ButtonVariant;
     }
@@ -1061,11 +1064,11 @@ export namespace Components {
         /**
           * Group header
          */
-        "header": string;
+        "header"?: string;
         /**
           * The index of the selected group entry. If undefined no group item is selected.
          */
-        "index": number;
+        "index"?: number;
         /**
           * Whether the group is selected.
          */
@@ -1073,7 +1076,7 @@ export namespace Components {
         /**
           * Group header subtitle
          */
-        "subHeader": string;
+        "subHeader"?: string;
         /**
           * Prevent header from being selectable
          */
@@ -1089,15 +1092,15 @@ export namespace Components {
         /**
           * Group item icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Index
          */
-        "index": number;
+        "index"?: number;
         /**
           * Group item secondary text
          */
-        "secondaryText": string;
+        "secondaryText"?: string;
         /**
           * Show selected state
          */
@@ -1109,7 +1112,7 @@ export namespace Components {
         /**
           * Group item text
          */
-        "text": string;
+        "text"?: string;
     }
     interface IxIconButton {
         /**
@@ -1162,6 +1165,7 @@ export namespace Components {
         "type": 'button' | 'submit';
         /**
           * Variant of button
+          * @since 2.3.0 - variant danger
          */
         "variant": IconButtonVariant;
     }
@@ -1932,11 +1936,11 @@ export namespace Components {
         /**
           * Show error state and message
          */
-        "error": boolean | string;
+        "error"?: boolean | string;
         /**
           * Define tick marker on the slider. Marker has to be within slider min/max
          */
-        "marker": SliderMarker;
+        "marker"?: SliderMarker;
         /**
           * Maximum slider value
          */
@@ -1975,6 +1979,11 @@ export namespace Components {
         "variant": 'primary' | 'secondary';
     }
     interface IxSplitButton {
+        /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.3.0
+         */
+        "closeBehavior": CloseBehavior;
         /**
           * Disabled
          */
@@ -2026,7 +2035,7 @@ export namespace Components {
         /**
           * Set counter value
          */
-        "counter": number;
+        "counter"?: number;
         /**
           * Set disabled tab
          */
@@ -2251,7 +2260,7 @@ export namespace Components {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for": string | HTMLElement | Promise<HTMLElement>;
+        "for"?: string | HTMLElement | Promise<HTMLElement>;
         "hideDelay": number;
         "hideTooltip": () => Promise<void>;
         /**
@@ -2264,11 +2273,11 @@ export namespace Components {
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
         "showDelay": number;
-        "showTooltip": (anchorElement: any) => Promise<void>;
+        "showTooltip": (anchorElement: Element) => Promise<void>;
         /**
           * Title of the tooltip
          */
-        "titleContent": string;
+        "titleContent"?: string;
     }
     interface IxTree {
         /**
@@ -4304,6 +4313,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Button variant
+          * @since 2.3.0 - variant danger
          */
         "variant"?: ButtonVariant;
     }
@@ -5294,6 +5304,7 @@ declare namespace LocalJSX {
         "type"?: 'button' | 'submit';
         /**
           * Variant of button
+          * @since 2.3.0 - variant danger
          */
         "variant"?: IconButtonVariant;
     }
@@ -6169,6 +6180,11 @@ declare namespace LocalJSX {
     }
     interface IxSplitButton {
         /**
+          * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
+          * @since 2.3.0
+         */
+        "closeBehavior"?: CloseBehavior;
+        /**
           * Disabled
          */
         "disabled"?: boolean;
@@ -6240,7 +6256,7 @@ declare namespace LocalJSX {
          */
         "layout"?: 'auto' | 'stretched';
         /**
-          * On tab click
+          * Emitted when the tab is clicked.
           * @since 2.0.0
          */
         "onTabClick"?: (event: IxTabItemCustomEvent<TabClickDetail>) => void;

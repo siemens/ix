@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "2.2.1",
+  "version": "2.4.1",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
@@ -24,7 +24,8 @@
     "components/",
     "dist/",
     "loader/",
-    "scss/"
+    "scss/",
+    "hydrate/"
   ],
   "scripts": {
     "build": "stencil build --prod && npm run build:scss",
@@ -43,7 +44,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.5.1",
-    "@stencil/core": "^4.13.0",
+    "@stencil/core": "~4.17.0",
     "@types/luxon": "^3.3.7",
     "animejs": "~3.2.1",
     "hyperlist": "^1.0.0",

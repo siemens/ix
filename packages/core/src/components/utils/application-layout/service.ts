@@ -61,14 +61,18 @@ class ApplicationLayoutService {
       }
 
       const [breakpoint, _] = matchBreakpoints[breakPointIndex];
-      this.#breakpointChangeListener.emit(breakpoint);
+      requestAnimationFrame(() =>
+        this.#breakpointChangeListener.emit(breakpoint)
+      );
       this.#breakpoint = breakpoint;
       return;
     }
 
     for (const [breakpoint, match] of matchBreakpoints.reverse()) {
       if (match) {
-        this.#breakpointChangeListener.emit(breakpoint);
+        requestAnimationFrame(() =>
+          this.#breakpointChangeListener.emit(breakpoint)
+        );
         this.#breakpoint = breakpoint;
         break;
       }

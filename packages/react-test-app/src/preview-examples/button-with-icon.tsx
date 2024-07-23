@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/icon-button.css';
+
 import { IxIconButton } from '@siemens/ix-react';
 import React from 'react';
 
@@ -14,29 +16,26 @@ export default () => {
   return (
     <>
       <div>
-        <IxIconButton class="m-1" icon="info" variant="primary"></IxIconButton>
-        <IxIconButton class="m-1" icon="info"></IxIconButton>
-        <IxIconButton class="m-1" icon="info" outline></IxIconButton>
-        <IxIconButton class="m-1" icon="info" ghost></IxIconButton>
+        <IxIconButton icon="info" variant="primary"></IxIconButton>
+        <IxIconButton icon="info" variant="secondary"></IxIconButton>
+        <IxIconButton icon="info" variant="danger"></IxIconButton>
+        <IxIconButton icon="info" outline></IxIconButton>
+        <IxIconButton icon="info" ghost></IxIconButton>
       </div>
 
       <div>
-        <IxIconButton
-          class="m-1"
-          icon="info"
-          oval
-          variant="primary"
-        ></IxIconButton>
-        <IxIconButton class="m-1" icon="info" oval></IxIconButton>
-        <IxIconButton class="m-1" icon="info" oval outline></IxIconButton>
-        <IxIconButton class="m-1" icon="info" oval ghost></IxIconButton>
+        <IxIconButton icon="info" oval variant="primary"></IxIconButton>
+        <IxIconButton icon="info" oval variant="secondary"></IxIconButton>
+        <IxIconButton icon="info" oval variant="danger"></IxIconButton>
+        <IxIconButton icon="info" oval outline></IxIconButton>
+        <IxIconButton icon="info" oval ghost></IxIconButton>
       </div>
 
       <div>
-        <IxIconButton class="m-1" icon="info" size="12"></IxIconButton>
-        <IxIconButton class="m-1" icon="info" size="16"></IxIconButton>
-        <IxIconButton class="m-1" icon="info" size="24"></IxIconButton>
-        <IxIconButton class="m-1" icon="info" size="32"></IxIconButton>
+        <IxIconButton icon="info" size="12"></IxIconButton>
+        <IxIconButton icon="info" size="16"></IxIconButton>
+        <IxIconButton icon="info" size="24"></IxIconButton>
+        <IxIconButton icon="info" size="32"></IxIconButton>
       </div>
     </>
   );

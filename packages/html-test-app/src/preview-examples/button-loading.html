@@ -13,8 +13,11 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loading button example</title>
+    <script type="module">
+      import 'example-styles/dist/button-loading.css';
+    </script>
   </head>
-  <body class="">
+  <body>
     <script>
       function toggle(obj) {
         obj.loading = true;
@@ -25,27 +28,33 @@ LICENSE file in the root directory of this source tree.
       }
     </script>
     <!-- Preview code -->
-    <ix-button onclick="toggle(this)" class="m-1" outline> Button </ix-button>
+    <ix-button onclick="toggle(this)" outline> Button </ix-button>
 
-    <ix-button onclick="toggle(this)" icon="star" class="m-1" outline>
+    <ix-button onclick="toggle(this)" outline>
+      Button
+    </ix-button>
+
+    <ix-button
+      onclick="toggle(this)"
+      icon="star"
+      outline
+    >
       Button
     </ix-button>
 
     <ix-icon-button
       onclick="toggle(this)"
       icon="star"
-      class="m-1"
       outline
       variant="primary"
     >
     </ix-icon-button>
 
-    <ix-button loading class="m-1" outline> Button </ix-button>
+    <ix-button loading  outline> Button </ix-button>
 
     <ix-icon-button
       loading
       icon="star"
-      class="m-1"
       outline
       variant="primary"
     ></ix-icon-button>

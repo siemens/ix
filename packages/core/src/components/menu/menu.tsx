@@ -103,6 +103,7 @@ export class Menu {
    * Menu stays pinned to the left
    */
   @Prop() pinned = false;
+
   @Watch('pinned')
   pinnedChange(newPinned: boolean) {
     if (this.applicationLayoutContext?.host === 'map-navigation') {
@@ -681,9 +682,8 @@ export class Menu {
               }}
               icon={'cogwheel'}
               onClick={async () => this.toggleSettings(!this.showSettings)}
-            >
-              {this.i18nSettings}
-            </ix-menu-item>
+              label={this.i18nSettings}
+            ></ix-menu-item>
           ) : null}
           <div onClick={(e) => this.onMenuItemsClick(e)}>
             <slot name="bottom"></slot>
@@ -701,9 +701,8 @@ export class Menu {
               }}
               icon={'info'}
               onClick={async () => this.toggleAbout(!this.showAbout)}
-            >
-              {this.i18nLegal}
-            </ix-menu-item>
+              label={this.i18nLegal}
+            ></ix-menu-item>
           ) : null}
           {this.enableToggleTheme ? (
             <ix-menu-item
@@ -712,9 +711,8 @@ export class Menu {
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
               icon={'light-dark'}
-            >
-              {this.i18nToggleTheme}
-            </ix-menu-item>
+              label={this.i18nToggleTheme}
+            ></ix-menu-item>
           ) : null}
           {this.enableMapExpand || this.applicationLayoutContext?.sidebar ? (
             <ix-menu-item
@@ -723,9 +721,8 @@ export class Menu {
               onClick={() => this.sidebarToggle()}
               class="internal-tab bottom-tab"
               icon={`${this.getCollapseIcon()}`}
-            >
-              {this.getCollapseText()}
-            </ix-menu-item>
+              label={this.getCollapseText()}
+            ></ix-menu-item>
           ) : null}
         </aside>
         <div

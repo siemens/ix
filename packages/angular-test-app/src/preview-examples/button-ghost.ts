@@ -12,14 +12,15 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: buttonGhost(),
+  styles: [`@import 'example-styles/dist/buttons.css';`],
 })
 export default class Buttons {}
 function buttonGhost(): string | undefined {
   return `
-      <ix-button class="m-1" ghost>
+      <ix-button ghost>
         Button
       </ix-button>
-      <ix-button class="m-1" disabled ghost>
+      <ix-button disabled ghost>
         Button
       </ix-button>
   `;

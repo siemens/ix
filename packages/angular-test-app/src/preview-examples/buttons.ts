@@ -12,8 +12,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button class="m-1">Button</ix-button>
-    <ix-button class="m-1" disabled>Button</ix-button>
+    <ix-button>Button</ix-button>
+    <ix-button disabled>Button</ix-button>
   `,
+  styles: [`@import 'example-styles/dist/buttons.css';`],
 })
 export default class Buttons {}

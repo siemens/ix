@@ -1,7 +1,7 @@
 The content header provides a brief overview of the content on a page. It helps our users understand what the page is about.
 We typically use it at the very top of the page to show a clear hierarchy of the page.
 
-![Content header overview](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2250-4784&mode=design&t=XmCepM9jPR9PImPw-4)
+![Content header overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2250-4784&mode=design&t=XmCepM9jPR9PImPw-4)
  
 1. Back button 
 2. Content title
@@ -14,7 +14,7 @@ Our content header variants makes it easier to achieve a well-balanced visual hi
 * Primary: In our applications, we most often use the primary variant for main pages or primary sections.
 * Secondary: We typically use this variant when we want to provide context or actions for a specific section of a page, such as when displaying detailed information related to a selected item from a list.
 
-![Content header variants](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2250-9102&mode=design&t=XmCepM9jPR9PImPw-4)
+![Content header variants](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2250-9102&mode=design&t=XmCepM9jPR9PImPw-4)
 
 ## Options
 - **Back button**: Enable if you want to provide a way for the user to navigate back.

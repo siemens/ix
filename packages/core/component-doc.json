@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.13.0",
-    "typescriptVersion": "5.4.2"
+    "version": "4.17.2",
+    "typescriptVersion": "5.4.5"
   },
   "components": [
     {
@@ -402,12 +402,14 @@
       "dependencies": [
         "ix-menu-expand-icon",
         "ix-icon-button",
+        "ix-typography",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -443,7 +445,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -622,6 +624,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -1414,10 +1417,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "ButtonVariant": {
                 "location": "local",
@@ -1430,9 +1433,18 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Button variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0 - variant danger"
+            }
+          ],
           "default": "'primary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -5665,10 +5677,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "DropdownButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "DropdownButtonVariant": {
                 "location": "local",
@@ -5684,6 +5696,10 @@
           "docsTags": [],
           "default": "'primary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -6974,7 +6990,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6995,7 +7011,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7011,6 +7027,7 @@
           "reflectToAttr": true,
           "docs": "Whether the group is selected.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7037,7 +7054,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7212,7 +7229,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7233,7 +7250,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7254,7 +7271,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7270,6 +7287,7 @@
           "reflectToAttr": false,
           "docs": "Show selected state",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7318,7 +7336,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -7767,10 +7785,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "IconButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "IconButtonVariant": {
                 "location": "local",
@@ -7783,9 +7801,18 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Variant of button",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0 - variant danger"
+            }
+          ],
           "default": "'secondary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -7997,10 +8024,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -8016,6 +8043,10 @@
           "docsTags": [],
           "default": "'secondary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -8664,6 +8695,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -11726,6 +11758,7 @@
           "reflectToAttr": false,
           "docs": "Advanced mode",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -13469,7 +13502,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13495,7 +13528,7 @@
               "type": "number[]"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13560,6 +13593,7 @@
               "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
             }
           ],
+          "default": "1",
           "values": [
             {
               "type": "number"
@@ -13839,6 +13873,51 @@
       },
       "props": [
         {
+          "name": "closeBehavior",
+          "type": "\"both\" | \"inside\" | \"outside\" | boolean",
+          "complexType": {
+            "original": "CloseBehavior",
+            "resolved": "\"both\" | \"inside\" | \"outside\" | boolean",
+            "references": {
+              "CloseBehavior": {
+                "location": "import",
+                "path": "../dropdown/dropdown-controller",
+                "id": "src/components/dropdown/dropdown-controller.ts::CloseBehavior"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "close-behavior",
+          "reflectToAttr": false,
+          "docs": "Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.3.0"
+            }
+          ],
+          "default": "'both'",
+          "values": [
+            {
+              "value": "both",
+              "type": "string"
+            },
+            {
+              "value": "inside",
+              "type": "string"
+            },
+            {
+              "value": "outside",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "disabled",
           "type": "boolean",
           "complexType": {
@@ -14028,10 +14107,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "SplitButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "SplitButtonVariant": {
                 "location": "local",
@@ -14047,6 +14126,10 @@
           "docsTags": [],
           "default": "'primary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -14229,7 +14312,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -14416,7 +14499,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "On tab click",
+          "docs": "Emitted when the tab is clicked.",
           "docsTags": [
             {
               "name": "since",
@@ -15828,10 +15911,10 @@
         },
         {
           "name": "variant",
-          "type": "\"primary\" | \"secondary\"",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
           "complexType": {
             "original": "ButtonVariant",
-            "resolved": "\"primary\" | \"secondary\"",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
             "references": {
               "ButtonVariant": {
                 "location": "import",
@@ -15847,6 +15930,10 @@
           "docsTags": [],
           "default": "'secondary'",
           "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
             {
               "value": "primary",
               "type": "string"
@@ -15959,7 +16046,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16042,7 +16129,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -16428,6 +16515,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-application-header",
         "ix-application-switch-modal",
         "ix-avatar",
         "ix-blind",
@@ -16448,6 +16536,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-application-header": [
           "ix-typography"
         ],
         "ix-application-switch-modal": [
@@ -17510,7 +17601,7 @@
       "path": "src/components/blind/blind.tsx"
     },
     "src/components/button/button.tsx::ButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
@@ -17565,7 +17656,7 @@
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
     "src/components/dropdown-button/dropdown-button.tsx::DropdownButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.tsx"
     },
@@ -17580,7 +17671,7 @@
       "path": "src/components/empty-state/empty-state.tsx"
     },
     "src/components/icon-button/icon-button.tsx::IconButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/icon-button/icon-button.tsx"
     },
@@ -17640,9 +17731,14 @@
       "path": "src/components/slider/slider.tsx"
     },
     "src/components/split-button/split-button.tsx::SplitButtonVariant": {
-      "declaration": "export type ButtonVariant = 'primary' | 'secondary';",
+      "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/split-button/split-button.tsx"
+    },
+    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
+      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
+      "docstring": "",
+      "path": "src/components/dropdown/dropdown-controller.ts"
     },
     "src/components/tab-item/tab-item.tsx::TabClickDetail": {
       "declaration": "{\n  nativeEvent: MouseEvent;\n}",
@@ -17693,11 +17789,6 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
-    },
-    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
-      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
-      "docstring": "",
-      "path": "src/components/dropdown/dropdown-controller.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",

@@ -1,0 +1,135 @@
+name: Update visual snapshots
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  update-visual-snapshots:
+    runs-on: ubuntu-latest
+    # Permissions necessary for Changesets to push a new branch and open PRs
+    # (for automated Version Packages PRs), and request the JWT for provenance.
+    # More info: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#adding-permissions-settings
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    if: |
+      github.repository == 'siemens/ix' &&
+      github.event.issue.pull_request &&
+      (
+        github.event.sender.login == 'danielleroux' ||
+        github.event.sender.login == 'nuke-ellington'
+      ) &&
+      startsWith(github.event.comment.body, '/snapshots:approve')
+
+    steps:
+      - uses: alessbell/pull-request-comment-branch@v2.1.0
+        id: comment-branch
+
+      - uses: actions/github-script@v7
+        id: parse-command
+        with:
+          script: |
+            const owner = "${{ steps.comment-branch.outputs.head_owner }}";
+            const body = process.env.COMMENT_BODY;
+
+            const [command, ...commandArgs] = body.split(' ');
+
+            console.log(body);
+            console.log(command);
+            console.log(commandArgs);
+
+            function parseArgs() {
+              const result = {};
+              const arr = commandArgs.map((arg) => {
+                const param = arg.substring(0, arg.indexOf('=')).replace('--', '');
+                const value = arg.substring(arg.indexOf('=') + 1);
+                return {
+                  param,
+                  value,
+                };
+              });
+
+              arr.forEach(({ param, value }) => {
+                result[param] = value;
+              });
+
+              return result;
+            }
+
+            function setOutput(args, sha) {
+              Object.keys(args).forEach((key) => {
+                core.setOutput(key, args[key]);
+              });
+
+              if (sha) {
+                core.setOutput('sha', sha);
+              }
+            }
+
+            if (command !== '/snapshots:approve') {
+              throw Error('Invalid command', command);
+            }
+
+            const args = parseArgs();
+
+            if (owner === 'siemens') {
+              setOutput(args, "${{ steps.comment-branch.outputs.head_sha }}");
+              return;
+            }
+
+            if (!args['sha']) {
+              throw Error('No sha provided');
+            }
+
+            setOutput(args);
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+
+      - name: Debug
+        run: |
+          echo ${{ steps.parse-command.outputs.sha }}
+          echo ${{ steps.parse-command.outputs.args }}
+
+      - name: Comment sha reminder
+        if: steps.parse-command.outcome == 'failure'
+        uses: peter-evans/create-or-update-comment@v4.0.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Did you forget to add the SHA? Please use `/snapshots:approve --sha <sha>`
+
+      - name: Fail job
+        if: steps.parse-command.outcome == 'failure'
+        run: |
+          exit 1
+
+      - name: Checkout ref
+        uses: actions/checkout@v4
+        with:
+          ## specify the owner + repository in order to checkout the fork
+          ## for community PRs
+          repository: ${{ steps.comment-branch.outputs.head_owner }}/${{ steps.comment-branch.outputs.head_repo }}
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
+          token: ${{ secrets.UPDATE_SNAPSHOT_TOKEN }}
+
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --filter @siemens/ix
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
+
+      - name: Visual Regression
+        run: pnpm --filter @siemens/ix visual-regression ${{ steps.parse-command.outputs.args }} -u
+
+      - name: Commit and push changes
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add -A
+          git commit -m "test: update snapshots (by ${{ github.event.sender.login }})"
+          git push

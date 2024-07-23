@@ -2,7 +2,7 @@
 
 When working with our Figma library, you can apply a theme to either an entire page or an individual element, such as a frame or component:
 
-![Applying a theme](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2232-192&mode=design&t=C6IjeY71MP4uA7vZ-4)
+![Applying a theme](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2232-192&mode=design&t=C6IjeY71MP4uA7vZ-4)
 ## Applying one theme to a whole page
 
 1. First ensure there are no selected elements on the page by pressing the "Esc" key to deselect them.
@@ -21,7 +21,7 @@ For more information see the official [Figma documentation](https://help.figma.c
 
 # Changing theme variables
 
-![Changing theme variables](https://www.figma.com/file/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2232-101&mode=design&t=C6IjeY71MP4uA7vZ-4)
+![Changing theme variables](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2232-101&mode=design&t=C6IjeY71MP4uA7vZ-4)
 
 If want to adapt the classic theme to your own brand design, follow these steps to modify the colors and other theme values within the Figma library:
 
