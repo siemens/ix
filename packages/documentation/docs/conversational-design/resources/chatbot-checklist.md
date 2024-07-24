@@ -13,33 +13,33 @@ title: Chatbot checklist
 4. You work in a team with developers, designers, and writers.
 5. You test continuously or iteratively.
 
-## Follow these steps and answer the questions with your teams to create your industrial chatbot
+### Follow these steps and answer the questions with your teams to create your industrial chatbot
 
-1. **Define your industrial use case**
+**1. Define your industrial use case**
    - What is the purpose and scope of the chatbot?
    - Which resources does it need to access?
    - What constraints or limitations does it have?
 
-2. **Create your system persona** (follow our steps)
+**2. Create your system persona** (follow our steps)
 
-3. **Decide on the right technology stack**
+**3. Decide on the right technology stack**
    - Which technology is most appropriate? Consider programming language, framework, NLP model/tools and deployment options.
 
-4. **Create user journeys**
+**4. Create user journeys**
    - Where is our chatbot used inside the user workflow?
    - What is the intent of our users? Use sample dialogs to clarify explicit and implicit intent.
 
-5. **Develop chatbot with your technology stack**
+**5. Develop chatbot with your technology stack**
    - How does the chatbot integrate into existing systems?
    - How does the chatbot scale as use cases increase?
    - How do we implement authentication and authorization with various user roles?
 
-6. **Train your chatbot**
+**6. Train your chatbot**
    - How do we gather relevant industry-specific data?
    - How do we annotate our data?
    - How do we monitor and update our chatbot?
 
-7. **Test your chatbot**
+**7. Test your chatbot**
    - Does the chatbot respond with natural language? Assess NLP model and tool.
    - Does the chatbot use your brand's voice and tone?
    - Does it respond appropriately? Test error handling, task efficiency, and handling vague requests.
