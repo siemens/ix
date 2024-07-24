@@ -31,6 +31,11 @@ export class CheckboxGroup
   @Prop() label?: string;
 
   /**
+   * Alignment of the check boxes in the group
+   */
+  @Prop() direction: 'row' | 'column' = 'column';
+
+  /**
    * Error text for the field component
    */
   @Prop() invalidText?: string;
@@ -87,7 +92,12 @@ export class CheckboxGroup
           isValid={this.isValid}
           isWarning={this.isWarning}
         >
-          <div class={'checkbox-container'}>
+          <div
+            class={{
+              'checkbox-container': true,
+              'row-layout': this.direction === 'row',
+            }}
+          >
             <slot></slot>
           </div>
         </ix-field-wrapper>

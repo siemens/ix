@@ -466,6 +466,10 @@ export namespace Components {
      */
     interface IxCheckboxGroup {
         /**
+          * Alignment of the check boxes in the group
+         */
+        "direction": 'row' | 'column';
+        /**
           * Show text below the field component
          */
         "helperText"?: string;
@@ -5464,6 +5468,10 @@ declare namespace LocalJSX {
      * @form-ready 2.4.0
      */
     interface IxCheckboxGroup {
+        /**
+          * Alignment of the check boxes in the group
+         */
+        "direction"?: 'row' | 'column';
         /**
           * Show text below the field component
          */
