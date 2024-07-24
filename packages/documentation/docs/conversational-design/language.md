@@ -26,7 +26,7 @@ Use concise and short responses while considering device type and use case. Leng
 Although the chatbot responds accurately and concisely, it’s robotic, unnatural and does not encourage engagement. 
 
 **User:** Is there maintenance scheduled today?   
-**Chatbot:** Yes. Zone 1 and 3 have maintenance today. Shall I open the maintenance log? 
+**Chatbot:** Yes. Zone 1 and 3 have maintenance today. Shall I open the maintenance log?   
 **User:** Yes please. 
 
 Here the chatbot knows to be concise but informative, based on its knowledge of the user’s working environment. 
@@ -67,15 +67,15 @@ Use well-structured questions forms in your chatbot responses to clarify user in
 
 Chatbots should use questions to engage the user and move interactions forward: 
 
-How can I assist you today?   
-Is there anything else I can assist you with?   
-Would you like me to …?   
-Shall I continue?   
+- How can I assist you today?   
+- Is there anything else I can assist you with?   
+- Would you like me to …?   
+- Shall I continue?   
 
 For more question examples within specific communicative functions, see the designing conversations section.
 
 ### Contractions 
-We recommend using contractions (connecting words such as it is – it’s) as these sound less formal and more conversational. Unlike in our UI writing rules, we recommend using negative contractions such as “can’t” instead of “cannot” as these sound more personable and natural within chatbots.  
+We recommend using contractions (connecting words such as it is – it’s) as these sound less formal and more conversational. Unlike in our UX Writing style guide, we recommend using negative contractions such as “can’t” instead of “cannot” as these sound more personable and natural within chatbots.  
 
 **User:** Show me my tasks for today  
 **Chatbot:** I cannot process your request at the moment.  
