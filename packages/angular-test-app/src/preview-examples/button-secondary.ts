@@ -11,17 +11,13 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: buttonSecondary(),
+  template: `
+    <ix-button outline>
+      Button
+    </ix-button>
+    <ix-button disabled outline>
+      Button
+    </ix-button>`,
   styles: [`@import 'example-styles/dist/buttons.css';`],
 })
 export default class Buttons {}
-function buttonSecondary(): string | undefined {
-  return `
-      <ix-button outline>
-        Button
-      </ix-button>
-      <ix-button disabled outline>
-        Button
-      </ix-button>
-  `;
-}

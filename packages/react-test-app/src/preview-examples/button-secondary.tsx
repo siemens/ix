@@ -15,10 +15,10 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxButton outline variant="secondary">
+      <IxButton outline>
         Button
       </IxButton>
-      <IxButton disabled outline variant="secondary">
+      <IxButton disabled outline>
         Button
       </IxButton>
     </>

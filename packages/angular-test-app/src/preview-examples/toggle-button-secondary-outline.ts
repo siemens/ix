@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   styles: [
     `
-      @import 'example-styles/dist/toggle-button.css';
+      @import 'example-styles/dist/toggle-buttons.css';
     `,
   ],
   template: `
@@ -21,11 +21,6 @@ import { Component } from '@angular/core';
     <ix-toggle-button outline pressed>Pressed</ix-toggle-button>
     <ix-toggle-button outline disabled>Disabled</ix-toggle-button>
     <ix-toggle-button outline disabled loading>Loading</ix-toggle-button>
-  `,
-  styles: [
-    `
-      @import 'example-styles/dist/toggle-buttons.css';
-    `,
-  ],
+  `
 })
 export default class Buttons {}

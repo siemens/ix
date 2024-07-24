@@ -48,9 +48,8 @@ function load(value: string) {
       @click="load('3')"
       outline
       icon="star"
-      variant="primary"
     ></IxIconButton>
     <IxButton loading outline> Button </IxButton>
-    <IxIconButton loading outline variant="primary"></IxIconButton>
+    <IxIconButton loading outline ></IxIconButton>
   </div>
 </template>
