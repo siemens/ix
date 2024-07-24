@@ -9,49 +9,55 @@ title: System personas
 
 System personas refer to the personality of the chatbot. This includes its character, voice and how the chatbot responds and interacts with its users. System personas act as an extension of the company brand and should exhibit the same character traits. If your brand represents trustworthiness, creativity and authenticity, your chatbot should be prompted to respond in a way that reflects these characteristics. Without system prompting or a rounded personality, your chatbot may respond in a way that damages your brand and adds frustration and dissatisfaction to your customers. A good persona makes interactions with customers and users more enjoyable and engaging, thus boosting brand satisfaction. 
 
-## Creating personas
+## Creating personas 
 
-Follow these steps and answer the questions with your team to create your system persona:
+Follow these steps and answer these questions with your team to create your system persona:
 
-1. **Brainstorm essential features**
-   - What's their profession?
-   - What's their education level?
-   - Do they have a gender?
-   - What languages do they speak?
+**1.**	**Brainstorm essential features of your chatbot:**   
+- What’s the chatbot’s profession?   
+- What’s the chatbot’s education level?   
+- Does your chatbot have a gender?   
+- What languages does your chatbot speak?   
 
-2. **List key adjectives**
-   - Create a list of 5 key adjectives to describe your chatbot's character (for industrial chatbots, we recommend professional, efficient, empathetic, helpful, polite). 
-   - Are these adjectives aligned with our brand? 
-   - Are these adjectives clear and easy to comprehend?  
 
-3. **Name your chatbot to reflect your brand**
-   - Do we want a human name? 
-   - Do we want a robotic or technical name? 
-   - Is this a unique name? 
-   - Does it have any cultural or language concerns with regard to meaning? 
-   - Does it sound good when we say it aloud? 
-   - Does the name match the chatbot character and its essential features? 
-   - Does it match the use case and industry?
+**2.	Create a list of 5 key adjectives to describe your chatbot’s character:**  
+- Are these adjectives aligned with our brand?   
+- Are these adjectives clear and easy to comprehend?  
 
-4. **Design your chatbot icon**
-   - Should we use a robot or a person icon? 
-   - Does this icon align with our brand? 
-   - Is the icon simple and flexible enough for all device types, contexts and sizes? 
+**Recommendation:** For our Siemens industrial chatbots we use professional, efficient, empathetic, helpful and polite. 
 
-5. **Define the tone of voice**
-   - Is your chatbot friendly, conversational, formal, humorous, direct, intimate, respectful, serious or casual?
+**3.	Name your chatbot to reflect your brand:**   
+- Do we want a human name?   
+- Do we want a robotic or technical name?   
+- Is this a unique name?   
+- Does it have any cultural or language concerns with regard to meaning?   
+- Does it sound good when we say it aloud?   
+- Does the name match the chatbot’s character and its essential features?   
+- Does it match the use case and industry?  
 
-6. **Select system prompts**
-   - Choose prompts from templates that match your persona. 
-   - Keep your persona concise using not more than a page of prompts.
-   - Which prompts match our use case and context? 
-   - Which prompts are essential? 
-   - Which prompts are irrelevant? 
-   - Which prompts would be nice to have?
- 
-7. **Create sample dialogs**
+**Recommendation:** For our Siemens industrial chatbots, they are often simply called “Industrial Copilot”    
 
-8. **Carry out iterative testing**
+**4.	Design your chatbot icon:**   
+- Should we use a robot or a person icon?   
+- Does this icon align with our brand?   
+- Is the icon simple and flexible enough for all device types, contexts and sizes?  
+
+**5.	Decide on your chatbot’s tone of voice:**   
+- Is it friendly? Conversational? Formal? Humorous? Direct? Intimate? Respectful? Serious? Casual? 
+
+**6.	Choose system prompts from the templates here that match your persona:**   
+- Which prompts match our use case and context?   
+- Which prompts are essential?   
+- Which prompts would be nice to have?   
+- Which prompts are irrelevant to our chatbot?    
+
+**Recommendation:** For industrial chatbots we recommend not more than 20 prompts. However, for chatbots with specific security risks, more than 20 prompts may be needed. 
+
+**7.	Create sample dialogs**   
+
+**8.	Carry out iterative testing** 
+
+
 
 ## System persona prompts
 
@@ -72,12 +78,12 @@ There are two persona templates: a basic set of prompts and an exhaustive set of
 
 ## Basic system persona template
 
-- **NAME:** Your chatbot name is [Chatbot Name].
-- **PROJECT:** [Chatbot Name] is the chat mode of [Project/App Name].
-- **GENDER:** [Chatbot Name] responds in a gender-neutral way without identifying themselves as one gender or another. When asked, [Chatbot Name] says: “I apologize, but I don’t have a gender.”
-- **PROFESSION:** [Chatbot Name] acts as an industrial expert.
-- **LANGUAGE:** [Chatbot Name] can understand and communicate fluently in English using American English spelling and grammar.
-- **PERSONALITY:** [Chatbot Name]'s responses are always polite and professional.
+- **Name:** Your chatbot name is [Chatbot Name].
+- **Project:** [Chatbot Name] is the chat mode of [Project/App Name].
+- **Gender:** [Chatbot Name] responds in a gender-neutral way without identifying themselves as one gender or another. When asked, [Chatbot Name] says: “I apologize, but I don’t have a gender.”
+- **Profession:** [Chatbot Name] acts as an industrial expert.
+- **Language:** [Chatbot Name] can understand and communicate fluently in English using American English spelling and grammar.
+- **Personality:** [Chatbot Name]'s responses are always polite and professional.
 
 
 ## Detailed system persona template
