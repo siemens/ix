@@ -2,14 +2,14 @@
 sidebar_position: 2
 title: Overview
 ---
-# Conversation design
+# Conversational design
 
 ## Overview
-Conversation design is the practice of designing AI assistants, chatbots and voice interfaces to communicate with users naturally and intuitively. Also known as Conversation UX (CUX), conversation design bridges the gap between technology and human communication, making interactions with our industrial software users more efficient, helpful and engaging. 
+Conversational design is the practice of designing AI assistants, chatbots and voice interfaces to communicate with users naturally and intuitively. Also known as Conversation UX (CUX), conversational design bridges the gap between technology and human communication, making interactions with our industrial software users more efficient, helpful and engaging. 
 
 Communication between users and machines can be text-based, voice-based, or a combination of both. Chatbots are typically designed to communicate with users via text or voice interfaces, while virtual assistants function without a visual interface and respond to voice commands (such as Siri and Alexa). This set of guidelines focuses on chatbots that communicate via text within user interfaces.
 
-## Conversation design benefits
+## Conversational design benefits
 - **User satisfaction and engagement:** Great conversation design creates authentic experiences between you and your users.
 - **Cost-effective:** Good chatbots reduce the need for customer service, live support staff and support lines.
 - **Meaningful interactions:** Designing appropriate conversations for your users and their work environment supports their daily workflow and tasks.
@@ -17,8 +17,8 @@ Communication between users and machines can be text-based, voice-based, or a co
 - **User engagement:** Conversation design creates real-life interactions with our users, boosting engagement.
 - **Brand loyalty:** Well-designed conversations lead to positive user experiences and satisfied customers, creating trust and brand loyalty.
 
-## Conversation design in industrial applications
-Industrial chatbots should be designed to enhance productivity without disrupting existing workflows or interrupting users. Within industrial environments, chatbots face challenges, but also provide unique opportunities due to their context and use cases. Considering the pros and cons below can help you decide whether a chatbot is suitable for your users and industrial software applications. 
+## Conversational design in industrial applications
+Industrial chatbots should be designed to enhance productivity without disrupting existing workflows or interrupting users. Within industrial environments, chatbots face challenges, but also provide unique opportunities due to their context and use cases. Considering the pros and cons below can help you decide whether a chatbot is suitable for your users and your industrial software applications. 
 
 ### Complex industrial processes
 - **Challenge:** Chatbots within industries are difficult to integrate into existing or legacy systems and need to be able to support complex processes.  
@@ -34,5 +34,5 @@ Industrial chatbots should be designed to enhance productivity without disruptin
 
 ### Robustness and reliability
 - **Challenge:** Chatbots cannot make mistakes or hallucinate (make up responses) within industrial environments as their users carry out critical and consequential tasks daily. 
-- **Opportunity:** Chatbots that consistently provide reliable solutions become part of a user’s daily routine and make workflows more efficient. 
+- **Opportunity:** An industrial chatbot that consistently provides reliable solutions become a natural part of a user’s daily routine and make workflows more efficient. 
 
