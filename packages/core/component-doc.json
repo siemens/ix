@@ -14933,6 +14933,33 @@
       },
       "props": [
         {
+          "name": "direction",
+          "type": "\"column\" | \"row\"",
+          "complexType": {
+            "original": "'column' | 'row'",
+            "resolved": "\"column\" | \"row\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "direction",
+          "reflectToAttr": false,
+          "docs": "Alignment of the radio buttons in the group",
+          "docsTags": [],
+          "default": "'column'",
+          "values": [
+            {
+              "value": "column",
+              "type": "string"
+            },
+            {
+              "value": "row",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "helperText",
           "type": "string",
           "complexType": {

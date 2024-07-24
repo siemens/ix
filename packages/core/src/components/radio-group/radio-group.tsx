@@ -1,3 +1,11 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import {
   Component,
   Element,
@@ -69,6 +77,11 @@ export class RadiobuttonGroup
    * Show helper, info, warning, error and valid text as tooltip
    */
   @Prop() showTextAsTooltip?: boolean;
+
+  /**
+   * Alignment of the radio buttons in the group
+   */
+  @Prop() direction: 'column' | 'row' = 'column';
 
   /**
    * Event emitted when the value of the radiobutton group changes
@@ -174,7 +187,12 @@ export class RadiobuttonGroup
           isWarning={this.isWarning}
           isInvalid={this.isInvalid}
         >
-          <div class={'checkbox-container'}>
+          <div
+            class={{
+              'checkbox-container': true,
+              'row-layout': this.direction === 'row',
+            }}
+          >
             <slot></slot>
           </div>
         </ix-field-wrapper>

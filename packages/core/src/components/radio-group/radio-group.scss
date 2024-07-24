@@ -11,12 +11,17 @@
 :host {
   display: inline-block;
   position: relative;
+  overflow-y: auto;
 
   .checkbox-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 0.5rem;
     margin: 0.35rem 0;
     flex-wrap: wrap;
+
+    &.row-layout {
+      flex-direction: row;
+    }
   }
 }

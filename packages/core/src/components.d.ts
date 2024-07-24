@@ -2249,6 +2249,10 @@ export namespace Components {
      */
     interface IxRadioGroup {
         /**
+          * Alignment of the radio buttons in the group
+         */
+        "direction": 'column' | 'row';
+        /**
           * Show text below the field component
          */
         "helperText"?: string;
@@ -7375,6 +7379,10 @@ declare namespace LocalJSX {
      * @form-ready 2.4.0
      */
     interface IxRadioGroup {
+        /**
+          * Alignment of the radio buttons in the group
+         */
+        "direction"?: 'column' | 'row';
         /**
           * Show text below the field component
          */

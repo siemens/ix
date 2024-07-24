@@ -916,6 +916,7 @@ export const IxRadioGroup = /*@__PURE__*/ defineContainer<JSX.IxRadioGroup>('ix-
   'warningText',
   'validText',
   'showTextAsTooltip',
+  'direction',
   'valueChange'
 ]);
 
