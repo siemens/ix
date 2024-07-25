@@ -1,6 +1,6 @@
 Beyond the visual appeal, effective form layouts play a crucial role in usability. In this chapter, we dissect the anatomy of well-structured forms. Explore fieldsets, consider the hierarchy of information, and understand how to strike the right balance between aesthetics and functionality.
 
-![Form layout examples](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2781-323&t=pKzFQBhaXmjTsR8P-4)
+![Form layout examples](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3046-516&t=kneyH2DQ9aKpFhdv-4)
 
 1. Small form (modal)
 2. Medium form
