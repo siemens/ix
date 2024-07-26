@@ -21,6 +21,6 @@ import { Component } from '@angular/core';
     `
       @import 'example-styles/dist/toggle-buttons.css';
     `,
-  ]
+  ],
 })
 export default class Buttons {}

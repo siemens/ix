@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `<ix-workflow-steps>
+  template: ` <ix-workflow-steps>
     <ix-workflow-step status="done">Step 1</ix-workflow-step>
     <ix-workflow-step status="success">Step 2</ix-workflow-step>
     <ix-workflow-step status="open">Step 3</ix-workflow-step>
@@ -23,6 +23,6 @@ import { Component } from '@angular/core';
     `
       @import 'example-styles/dist/workflow.css';
     `,
-  ]
+  ],
 })
 export default class Workflow {}
