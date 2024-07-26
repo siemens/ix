@@ -60,8 +60,10 @@ const systemChange = (event: Event) => {
 };
 </script>
 
+<style scoped src="example-styles/dist/theme-switcher.css"></style>
+
 <template>
-  <IxLayoutGrid>
+  <IxLayoutGrid class="theme-switcher">
     <IxRow>
       <IxCol :size="'2'">
         <span>Light/Dark</span>

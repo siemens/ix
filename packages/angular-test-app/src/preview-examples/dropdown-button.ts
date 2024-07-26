@@ -11,13 +11,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styles: [
-    `
-      @import 'example-styles/dist/dropdown-button.css';
-    `,
-  ],
   template: `
-    <div class="dropdown-button">
+    <div class="example">
       <ix-dropdown-button label="Dropdown" icon="checkboxes">
         <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
@@ -34,5 +29,10 @@ import { Component } from '@angular/core';
       </ix-dropdown-button>
     </div>
   `,
+  styles: [
+    `
+      @import 'example-styles/dist/dropdown-button.css';
+    `,
+  ]
 })
 export default class Dropdown {}

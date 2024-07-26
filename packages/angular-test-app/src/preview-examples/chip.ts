@@ -11,11 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styles: [
-    `
-      @import 'example-styles/dist/chip.css';
-    `,
-  ],
   template: `
     <div class="chip">
       <ix-chip closable outline> Primary </ix-chip>
@@ -42,5 +37,10 @@ import { Component } from '@angular/core';
       </ix-chip>
     </div>
   `,
+  styles: [
+    `
+      @import 'example-styles/dist/chip.css';
+    `,
+  ],
 })
 export default class Chip {}

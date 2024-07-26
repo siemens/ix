@@ -11,11 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styles: [
-    `
-      @import 'example-styles/dist/kpi.css';
-    `,
-  ],
   template: `
     <div class="kpi">
       <ix-kpi label="Motor speed" value="Nominal"></ix-kpi>
@@ -37,5 +32,10 @@ import { Component } from '@angular/core';
       ></ix-kpi>
     </div>
   `,
+  styles: [
+    `
+      @import 'example-styles/dist/kpi.css';
+    `,
+  ],
 })
 export default class Kpi {}

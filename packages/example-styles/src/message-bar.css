@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,7 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-ix-application {
-  width: 100vw;
-  height: 100vh;
+.message-bar {
+  margin: 0.5rem
+}
+
+.message-bar > ix-message-bar {
+  margin-bottom: 0.5rem;
+  display: block
 }

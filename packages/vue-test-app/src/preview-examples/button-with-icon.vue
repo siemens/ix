@@ -15,8 +15,8 @@ import { IxIconButton } from '@siemens/ix-vue';
 
 <template>
   <div>
-    <IxIconButton icon="info"></IxIconButton>
-    <IxIconButton icon="info"></IxIconButton>
+    <IxIconButton icon="info" variant="primary"></IxIconButton>
+    <IxIconButton icon="info" variant="secondary"></IxIconButton>
     <IxIconButton icon="info" variant="danger"></IxIconButton>
     <IxIconButton icon="info" outline></IxIconButton>
     <IxIconButton icon="info" ghost></IxIconButton>

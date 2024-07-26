@@ -11,11 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styles: [
-    `
-      @import 'example-styles/dist/flip-tile.css';
-    `,
-  ],
   template: `
     <div class="flip-tile">
       <ix-flip-tile>
@@ -81,5 +76,10 @@ import { Component } from '@angular/core';
       </ix-flip-tile>
     </div>
   `,
+  styles: [
+    `
+      @import 'example-styles/dist/flip-tile.css';
+    `,
+  ],
 })
 export default class FlipTile {}

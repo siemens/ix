@@ -11,11 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styles: [
-    `
-      @import 'example-styles/dist/icon-toggle-buttons.css';
-    `,
-  ],
   template: `
     <ix-icon-toggle-button icon="checkboxes"></ix-icon-toggle-button>
     <ix-icon-toggle-button pressed icon="checkboxes"></ix-icon-toggle-button>
@@ -25,6 +20,11 @@ import { Component } from '@angular/core';
       loading
       icon="checkboxes"
     ></ix-icon-toggle-button>
-  `
+  `,
+  styles: [
+    `
+      @import 'example-styles/dist/icon-toggle-buttons.css';
+    `,
+  ]
 })
 export default class Buttons {}

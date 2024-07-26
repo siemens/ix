@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-example-ng-model',
+  selector: 'app-example',
   template: `
     <ix-select [(ngModel)]="value">
       <ix-select-item label="Item 1" value="1"></ix-select-item>

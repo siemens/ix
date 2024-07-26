@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/theme-switcher.css';
+
 import { IxSelectCustomEvent, themeSwitcher } from '@siemens/ix';
 import {
   IxButton,
@@ -42,7 +44,7 @@ export default () => {
   };
 
   return (
-    <IxLayoutGrid>
+    <IxLayoutGrid class="theme-switcher">
       <IxRow>
         <IxCol size="2">
           <span>Light/Dark</span>

@@ -11,11 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styles: [
-    `
-      @import 'example-styles/dist/tabs.css';
-    `,
-  ],
   template: `
     <div class="tabs">
       <ix-tabs [selected]="selectedTab">
@@ -28,6 +23,11 @@ import { Component } from '@angular/core';
       <div *ngIf="selectedTab === 2">Content Tab 3</div>
     </div>
   `,
+  styles: [
+    `
+      @import 'example-styles/dist/tabs.css';
+    `,
+  ],
 })
 export default class Tabs {
   selectedTab = 1;

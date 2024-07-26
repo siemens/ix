@@ -22,7 +22,6 @@ import {
   IxMenu,
   IxMenuItem,
 } from '@siemens/ix-react';
-
 import React from 'react';
 
 const appSwitchConfig: AppSwitchConfiguration = {

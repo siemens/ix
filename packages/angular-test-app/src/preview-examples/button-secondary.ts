@@ -12,10 +12,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button outline>
+    <ix-button outline variant="secondary">
       Button
     </ix-button>
-    <ix-button disabled outline>
+    <ix-button disabled outline variant="secondary">
       Button
     </ix-button>`,
   styles: [`@import 'example-styles/dist/buttons.css';`],

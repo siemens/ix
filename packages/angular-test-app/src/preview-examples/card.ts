@@ -11,12 +11,12 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  templateUrl: './card.html',
   styles: [
     `
       @import 'example-styles/dist/card.css';
     `,
   ],
-  templateUrl: './card.html',
 })
 export default class Card {
   onClick(event: Event) {

@@ -23,6 +23,8 @@ height="16rem"
 examplesByName>
 </Playground>
 
+### Sublabel
+
 <ApiTableSinceTag message="2.0.0" />
 
 <Playground

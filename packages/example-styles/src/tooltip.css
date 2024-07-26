@@ -7,6 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-ix-button:first-child {
-  margin-right: 4rem;
+ix-button {
+  margin: 4rem;
 }

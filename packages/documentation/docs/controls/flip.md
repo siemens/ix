@@ -7,7 +7,7 @@ import Events from './../auto-generated/ix-flip-tile/events.md';
 ## Usage
 
 <Playground
-name="flip-tile" height="20rem"
+name="flip-tile" height="50rem"
 examplesByName>
 </Playground>
 

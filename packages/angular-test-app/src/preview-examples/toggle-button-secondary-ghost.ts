@@ -11,16 +11,16 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styles: [
-    `
-      @import 'example-styles/dist/toggle-buttons.css';
-    `,
-  ],
   template: `
     <ix-toggle-button ghost> Normal </ix-toggle-button>
     <ix-toggle-button pressed ghost> Pressed </ix-toggle-button>
     <ix-toggle-button disabled ghost> Disabled </ix-toggle-button>
     <ix-toggle-button disabled loading ghost> Loading </ix-toggle-button>
-  `
+  `,
+  styles: [
+    `
+      @import 'example-styles/dist/toggle-buttons.css';
+    `,
+  ]
 })
 export default class Buttons {}

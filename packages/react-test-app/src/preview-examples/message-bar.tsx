@@ -7,20 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/message-bar.css';
+
 import { IxButton, IxMessageBar } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
   return (
     <>
-      <div style={{ padding: '0.5rem' }}>
-        <IxMessageBar style={{ marginBottom: '0.5rem', display: 'block' }}>
+      <div className="message-bar">
+        <IxMessageBar>
           Message text
         </IxMessageBar>
-        <IxMessageBar style={{ marginBottom: '0.5rem', display: 'block' }}>
+        <IxMessageBar type="warning">
           Message text
         </IxMessageBar>
-        <IxMessageBar style={{ display: 'block' }} type="danger">
+        <IxMessageBar type="danger">
           <div className="d-flex align-items-center justify-content-between">
             Message text <IxButton>Action</IxButton>
           </div>

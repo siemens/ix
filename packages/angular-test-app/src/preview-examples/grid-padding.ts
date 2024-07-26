@@ -11,11 +11,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  templateUrl: './grid-padding.html',
   styles: [
     `
       @import 'example-styles/dist/grid.css';
     `,
   ],
-  templateUrl: './grid-padding.html',
 })
 export default class GridPadding {}
