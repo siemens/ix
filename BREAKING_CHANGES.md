@@ -53,7 +53,7 @@ IxModule.forRoot({
 }),
 ```
 
-This will preload all icons without providing the svg's as assets. Downside of this way is the increased bundle size. **not recommended**
+This will preload all icons without providing the SVGs as assets. The downside of doing this that it results in a larger bundle size. **not recommended**
 
 ## v2.0.0
 
