@@ -42,11 +42,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*.svg",
-                "input": "node_modules/@siemens/ix-icons/dist/svg",
-                "output": "./svg"
               }
             ],
             "styles": [

@@ -295,7 +295,9 @@ import Echarts from '../preview-examples/echarts';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    IxModule.forRoot(),
+    IxModule.forRoot({
+      preloadIcons: false,
+    }),
     AgGridModule,
     FormsModule,
     NgxEchartsModule.forRoot({
