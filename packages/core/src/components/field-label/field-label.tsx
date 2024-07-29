@@ -10,6 +10,8 @@
 import { Component, Host, Prop, h, Element, Watch } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 import {
+  ClassMutationObserver,
+  createClassMutationObserver,
   HTMLIxFormComponentElement,
   isIxInputFieldComponent,
 } from '../utils/field';
@@ -30,11 +32,6 @@ export class FormFieldLabel implements IxComponent {
   @Prop({ reflect: true, mutable: true }) required?: boolean;
 
   /**
-   * Is the field component invalid
-   */
-  @Prop() isInvalid: boolean = false;
-
-  /**
    * The id of the form element that the label is associated with
    */
   @Prop({ reflect: true }) htmlFor?: string;
@@ -42,57 +39,105 @@ export class FormFieldLabel implements IxComponent {
   /** @internal */
   @Prop() controlRef?: MakeRef<HTMLElement>;
 
-  private observer = new MutationObserver(() => this.checkForRequired());
+  /** @internal */
+  @Prop({ mutable: true }) isInvalid: boolean = false;
+
+  private htmlForObserver = new MutationObserver(() =>
+    this.checkForInternalState()
+  );
+  private htmlForClassObserver: ClassMutationObserver;
+  private controlRefClassObserver?: ClassMutationObserver;
   private a11yAttributes: A11yAttributes = {};
   private labelRef = makeRef<HTMLLabelElement>();
 
   connectedCallback() {
-    this.registerObserver();
+    this.registerHtmlForObserver();
+    this.registerControlRefObserver();
   }
 
   disconnectedCallback(): void {
-    this.destroyObserver();
+    if (this.htmlForObserver) {
+      this.htmlForObserver.disconnect();
+    }
+    if (this.htmlForClassObserver) {
+      this.htmlForClassObserver.destroy();
+    }
+    if (this.controlRefClassObserver) {
+      this.controlRefClassObserver.destroy();
+    }
   }
 
   componentWillRender() {
-    this.checkForRequired();
+    this.checkForInternalState();
   }
 
   componentWillLoad(): void | Promise<void> {
     this.a11yAttributes = a11yHostAttributes(this.hostElement);
   }
 
-  private destroyObserver() {
-    if (this.observer) {
-      this.observer.disconnect();
-    }
-  }
-
   @Watch('htmlFor')
-  private registerObserver() {
+  private registerHtmlForObserver() {
     if (typeof window === 'undefined') {
       return;
     }
 
-    this.destroyObserver();
+    if (this.htmlForObserver) {
+      this.htmlForObserver.disconnect();
+    }
 
-    if (!this.htmlFor) {
+    if (this.htmlFor) {
+      this.htmlForObserver.observe(window.document, {
+        childList: true,
+        subtree: true,
+      });
+    }
+  }
+
+  @Watch('controlRef')
+  private async registerControlRefObserver() {
+    if (typeof window === 'undefined') {
       return;
     }
 
-    this.observer.observe(window.document, {
-      childList: true,
-      subtree: true,
-    });
+    if (this.controlRefClassObserver) {
+      this.controlRefClassObserver.destroy();
+    }
+
+    if (this.controlRef) {
+      const input = await this.controlRef.waitForCurrent();
+
+      this.controlRefClassObserver = createClassMutationObserver(input, () =>
+        this.checkForInvalidState(input)
+      );
+    }
   }
 
-  private async checkForRequired() {
+  private async checkForInvalidState(elementToCheck: HTMLElement) {
+    this.isInvalid =
+      elementToCheck.classList.contains('is-invalid') ||
+      elementToCheck.classList.contains('ix-invalid');
+  }
+
+  private async checkForInternalState() {
     if (this.htmlFor) {
       const forElement = document.getElementById(
         this.htmlFor
       ) as HTMLIxFormComponentElement<unknown>;
       if (forElement && typeof forElement.required === 'boolean') {
         this.required = forElement.required;
+      }
+
+      if (forElement) {
+        if (this.htmlForClassObserver) {
+          this.htmlForClassObserver.destroy();
+        }
+
+        this.htmlForClassObserver = createClassMutationObserver(
+          forElement,
+          () => this.checkForInvalidState(forElement)
+        );
+
+        this.checkForInvalidState(forElement);
       }
     }
 

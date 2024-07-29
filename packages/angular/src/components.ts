@@ -415,14 +415,14 @@ export declare interface IxCheckbox extends Components.IxCheckbox {
 
 
 @ProxyCmp({
-  inputs: ['helperText', 'infoText', 'invalidText', 'label', 'validText', 'warningText']
+  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'validText', 'warningText']
 })
 @Component({
   selector: 'ix-checkbox-group',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['helperText', 'infoText', 'invalidText', 'label', 'validText', 'warningText'],
+  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'validText', 'warningText'],
 })
 export class IxCheckboxGroup {
   protected el: HTMLElement;
@@ -994,14 +994,14 @@ export declare interface IxExpandingSearch extends Components.IxExpandingSearch 
 
 
 @ProxyCmp({
-  inputs: ['htmlFor', 'isInvalid', 'required']
+  inputs: ['htmlFor', 'required']
 })
 @Component({
   selector: 'ix-field-label',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['htmlFor', 'isInvalid', 'required'],
+  inputs: ['htmlFor', 'required'],
 })
 export class IxFieldLabel {
   protected el: HTMLElement;

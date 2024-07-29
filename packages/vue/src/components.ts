@@ -266,6 +266,7 @@ export const IxCheckbox = /*@__PURE__*/ defineContainer<JSX.IxCheckbox>('ix-chec
 export const IxCheckboxGroup = /*@__PURE__*/ defineContainer<JSX.IxCheckboxGroup>('ix-checkbox-group', defineIxCheckboxGroup, [
   'helperText',
   'label',
+  'direction',
   'invalidText',
   'infoText',
   'validText',
@@ -514,9 +515,9 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
 
 export const IxFieldLabel = /*@__PURE__*/ defineContainer<JSX.IxFieldLabel>('ix-field-label', defineIxFieldLabel, [
   'required',
-  'isInvalid',
   'htmlFor',
-  'controlRef'
+  'controlRef',
+  'isInvalid'
 ]);
 
 

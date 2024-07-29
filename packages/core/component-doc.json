@@ -2688,6 +2688,33 @@
       },
       "props": [
         {
+          "name": "direction",
+          "type": "\"column\" | \"row\"",
+          "complexType": {
+            "original": "'row' | 'column'",
+            "resolved": "\"column\" | \"row\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "direction",
+          "reflectToAttr": false,
+          "docs": "Alignment of the check boxes in the group",
+          "docsTags": [],
+          "default": "'column'",
+          "values": [
+            {
+              "value": "column",
+              "type": "string"
+            },
+            {
+              "value": "row",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "helperText",
           "type": "string",
           "complexType": {
@@ -7706,28 +7733,6 @@
             }
           ],
           "optional": true,
-          "required": false
-        },
-        {
-          "name": "isInvalid",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "is-invalid",
-          "reflectToAttr": false,
-          "docs": "Is the field component invalid",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
           "required": false
         },
         {
