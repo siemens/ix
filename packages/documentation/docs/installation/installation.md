@@ -28,7 +28,7 @@ Follow the links below to the respective installation guides:
 
    
 **Experience the Industrial Experience style while coding**  
-We have designed a VS Code theme for our Siemens AG employees and partners to experience the Industrial Experience style while coding. 
+We have designed a VS Code theme for our Siemens AG employees and business partners to experience the Industrial Experience style while coding. 
 Download it here:
 
 <Card link="https://code.siemens.com/siemens-ix/ix-for-vs-code/ix-theme-for-vs-code/-/releases"><VSCodeIcon class="Card_Icon" />VS Code theme</Card>
