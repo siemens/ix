@@ -19,6 +19,10 @@ import { Component, h, Host, Prop } from '@stencil/core';
 import { getButtonClasses } from '../button/base-button';
 import { a11yBoolean } from '../utils/a11y';
 import { Breakpoint } from '../utils/breakpoints';
+import {
+  iconDoubleChevronLeft,
+  iconDoubleChevronRight,
+} from '@siemens/ix-icons/icons';
 
 /**
  * @internal
@@ -56,9 +60,6 @@ export class MenuExpandIcon {
           ),
           'menu-expand-button': true,
         }}
-        type="button"
-        aria-label={this.ixAriaLabel ? this.ixAriaLabel : null}
-        aria-pressed={a11yBoolean(this.expanded)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +78,7 @@ export class MenuExpandIcon {
   getLargeScreenIcon() {
     return (
       <ix-icon-button
-        icon={`double-chevron-${this.expanded ? 'left' : 'right'}`}
+        icon={this.expanded ? iconDoubleChevronLeft : iconDoubleChevronRight}
         ghost
       ></ix-icon-button>
     );
@@ -105,6 +106,9 @@ export class MenuExpandIcon {
         class={{
           expanded: this.expanded,
         }}
+        type="button"
+        aria-label={this.ixAriaLabel}
+        aria-pressed={a11yBoolean(this.expanded)}
       >
         {this.getMenuIcon()}
       </Host>

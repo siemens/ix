@@ -38,7 +38,7 @@
     "test:spec": "stencil test --spec",
     "test:ct": "playwright test --config playwright-ct.config.ts --reporter list",
     "visual-regression": "playwright test",
-    "host-root": "http-server ./ -a 127.0.0.1 -p 8080 -c-1",
+    "host-root": "http-server -a 127.0.0.1 -p 8080 -c-1",
     "generate": "stencil generate",
     "pkg": "pnpm pack"
   },
@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.32.1",
-    "@siemens/ix-icons": "^2.0.0",
+    "@siemens/ix-icons": "v3-preview",
     "@stencil-community/eslint-plugin": "^0.7.1",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "^0.8.3",
@@ -90,7 +90,7 @@
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.0",
-    "@siemens/ix-icons": "^2.0.0",
+    "@siemens/ix-icons": "v3-preview",
     "bootstrap": "~5.2.0"
   },
   "config": {

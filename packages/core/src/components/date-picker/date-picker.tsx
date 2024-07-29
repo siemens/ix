@@ -24,6 +24,11 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 import { DateTime, Info } from 'luxon';
 import { OnListener } from '../utils/listener';
+import {
+  iconChevronLeft,
+  iconChevronRight,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
 
 export type DateChangeEvent = {
   from: string;
@@ -662,7 +667,7 @@ export class DatePicker {
               hidden: this.tempYear !== year,
               arrowPosition: true,
             }}
-            name="chevron-right"
+            name={iconChevronRight}
             size="12"
           ></ix-icon>
           <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
@@ -684,7 +689,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(-1)}
               ghost
-              icon="chevron-left"
+              icon={iconChevronLeft}
               variant="primary"
               class="arrows"
             ></ix-icon-button>
@@ -744,7 +749,7 @@ export class DatePicker {
                               this.tempMonth !== index,
                             checkPosition: true,
                           }}
-                          name="single-check"
+                          name={iconSingleCheck}
                           size="16"
                         ></ix-icon>
                         <div>
@@ -759,7 +764,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(1)}
               ghost
-              icon="chevron-right"
+              icon={iconChevronRight}
               variant="primary"
               class="arrows"
             ></ix-icon-button>

@@ -18,6 +18,10 @@ import {
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { a11yBoolean } from '../utils/a11y';
+import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
 
 /**
  * @since 1.5.0
@@ -213,7 +217,7 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === 0}
           ghost
-          icon={'chevron-left-small'}
+          icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
         ></ix-icon-button>
 
@@ -244,7 +248,7 @@ export class Pagination {
         <ix-icon-button
           disabled={this.selectedPage === this.count - 1}
           ghost
-          icon={'chevron-right-small'}
+          icon={iconChevronRightSmall}
           onClick={() => this.increase()}
         ></ix-icon-button>
 

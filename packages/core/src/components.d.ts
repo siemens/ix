@@ -384,7 +384,7 @@ export namespace Components {
         /**
           * The icon next to the actual text input Defaults to 'search'
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * i18n
          */
@@ -1001,7 +1001,7 @@ export namespace Components {
         /**
           * Search icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Placeholder text
          */
@@ -1790,7 +1790,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string | undefined;
+        "icon"?: string;
         /**
           * Show pill as outline
          */
@@ -1829,7 +1829,7 @@ export namespace Components {
         /**
           * Card icon
          */
-        "icon": string | undefined;
+        "icon"?: string;
         /**
           * Card KPI value
          */
@@ -1993,11 +1993,11 @@ export namespace Components {
         /**
           * Button icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Button label
          */
-        "label": string;
+        "label"?: string;
         /**
           * Button outline variant
          */
@@ -2009,7 +2009,7 @@ export namespace Components {
         /**
           * Icon of the button on the right
          */
-        "splitIcon": string;
+        "splitIcon"?: string;
         /**
           * Color variant of button
          */
@@ -5971,7 +5971,7 @@ declare namespace LocalJSX {
         /**
           * Show icon
          */
-        "icon"?: string | undefined;
+        "icon"?: string;
         /**
           * Show pill as outline
          */
@@ -6010,7 +6010,7 @@ declare namespace LocalJSX {
         /**
           * Card icon
          */
-        "icon"?: string | undefined;
+        "icon"?: string;
         /**
           * Card KPI value
          */

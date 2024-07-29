@@ -6,12 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 async function setupIcons() {
-  if (typeof window === 'undefined') {
-    return;
-  }
-
   const iconComponent = window.customElements.get('ix-icon');
   if (iconComponent) {
     return;
@@ -22,9 +17,12 @@ async function setupIcons() {
   );
 
   const ixIcons = await import('@siemens/ix-icons/loader');
-  await ixIcons.defineCustomElements();
+  ixIcons.defineCustomElements();
 }
 
 export default async function () {
+  if (typeof window === 'undefined') {
+    return;
+  }
   await setupIcons();
 }

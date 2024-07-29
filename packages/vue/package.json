@@ -38,7 +38,7 @@
     "typescript": "^4.5.4"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "^2.0.0",
+    "@siemens/ix-icons": "v3-preview",
     "vue": ">=3.2.45"
   }
 }

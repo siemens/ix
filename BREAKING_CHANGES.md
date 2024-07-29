@@ -1,5 +1,50 @@
 # Breaking Changes
 
+## v3.0.0
+
+### Remove package `@siemens/ix-icons` from library
+
+TODO: Rewrite this section to explain what is the impact of this change.
+
+- **Web Components** (`@siemens/ix`): The icons package (`@siemens/ix-icons`) has to be bootstrapped manually (TODO: see [ix-icons repo](https://github.com/siemens/ix-icons) for installation instruction or add this also to the icons documentation)
+- **Angular** (`@siemens/ix-angular`): no changes
+- **React** (`@siemens/ix-react`): no changes
+- **Vue** (`@siemens/ix-vue`): no changes
+
+#### Usage of icons inside  `@siemens/ix-react` and  `@siemens/ix-vue` changed
+
+TODO: Rewrite this section to be more precise about what has to be adapted
+
+- Icon imports by name (e.g. `<IxIcon name="star" />`) are not supported any more. This will reduce bundle size and enable chunk loading.
+- It is still possible to use imports by name if the SVGs are provided as assets (see [Angular installation section](url)):
+
+```tsx
+import { iconStar } from '@siemens/ix-icons/icons';
+```
+
+React/Vue:
+```tsx
+<IxIcon name={iconStar} />
+```
+
+#### Installation instruction of `@siemens/ix-angular` changed
+
+TODO: Rewrite this section to be more precise about what has to be adapted
+
+- To use imports by name (e.g. `<ix-icon name="star"></ix-icon>`) an additional configuration entry is required inside of `angular.json`:
+
+```json
+"assets": [
+  "src/favicon.ico",
+  "src/assets",
+  {
+  "glob": "**/*.svg",
+  "input": "node_modules/@siemens/ix-icons/svg",
+  "output": "./svg"
+  }
+],
+```
+
 ## v2.0.0
 
 ### `input[class="form-control"]` and `textarea[class="form-control"]` are deprecated
