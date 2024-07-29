@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "@siemens/ix-icons": "v3-preview",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
     "ag-grid-angular": "^30.0.0",

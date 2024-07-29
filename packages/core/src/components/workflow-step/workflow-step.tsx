@@ -69,16 +69,16 @@ export class WorkflowStep {
    */
   @Prop() position: 'first' | 'last' | 'single' | 'undefined' = 'undefined';
 
-  @State() iconName: string;
+  @State() iconName?: string;
 
   @State() iconColor: string = 'workflow-step-icon-default--color';
 
   /**
    * @internal
    */
-  @Event() selectedChanged: EventEmitter<HTMLIxWorkflowStepElement>;
+  @Event() selectedChanged!: EventEmitter<HTMLIxWorkflowStepElement>;
 
-  private customIconSlot: boolean;
+  private customIconSlot: boolean = false;
 
   @Watch('selected')
   selectedHandler() {

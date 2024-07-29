@@ -100,7 +100,7 @@ export class CategoryFilter {
    * The icon next to the actual text input
    * Defaults to 'search'
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Allows to hide the icon inside the text input.

@@ -2,21 +2,22 @@
 
 ## v3.0.0
 
-### Remove package from from library `@siemens/ix-icon`
+### Remove package `@siemens/ix-icons` from library
 
 TODO: Rewrite this section to explain what is the impact of this change.
 
-- If you using angular/react/vue nothing changes
-- If you are using core package (@siemens/ix) you have to bootstrap the ix-icons on your own (see ix-icons repo for installation instruction or add this also to the icons documentation)
+- **Web Components** (`@siemens/ix`): The icons package (`@siemens/ix-icons`) has to be bootstrapped manually (TODO: see [ix-icons repo](https://github.com/siemens/ix-icons) for installation instruction or add this also to the icons documentation)
+- **Angular** (`@siemens/ix-angular`): no changes
+- **React** (`@siemens/ix-react`): no changes
+- **Vue** (`@siemens/ix-vue`): no changes
 
 #### Usage of icons inside  `@siemens/ix-react` and  `@siemens/ix-vue` changed
 
 TODO: Rewrite this section to be more precise about what has to be adapted
 
-- Naming imports like `<IxIcon name="star" /> are not supported any more. (Reducing bundle size and chunk loading)
-- Can be still used if the svg are provided as assets see angular installation
+- Icon imports by name (e.g. `<IxIcon name="star" />`) are not supported any more. This will reduce bundle size and enable chunk loading.
+- It is still possible to use imports by name if the SVGs are provided as assets (see [Angular installation section](url)):
 
-Import the icon you want
 ```tsx
 import { iconStar } from '@siemens/ix-icons/icons';
 ```
@@ -30,18 +31,8 @@ React/Vue:
 
 TODO: Rewrite this section to be more precise about what has to be adapted
 
-- Naming imports like `<ix-icon name="star"></ix-icon>` requires a additional configuration entry inside the `angular.json`.
+To use imports by name (e.g. `<ix-icon name="star"></ix-icon>`) an additional configuration entry is required inside of `angular.json`:
 
-Configuration
-```json
-{
-  "glob": "**/*.svg",
-  "input": "node_modules/@siemens/ix-icons/svg",
-  "output": "./svg"
-}
-```
-
-Add to assets property inside the `angular.json` file
 ```json
 "assets": [
   "src/favicon.ico",
