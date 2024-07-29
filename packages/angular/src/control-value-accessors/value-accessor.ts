@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
 export class ValueAccessor
   implements ControlValueAccessor, AfterViewInit, OnDestroy
 {
-  public static readonly ANGULAR_CLASS_REFIX = 'ng-';
+  public static readonly ANGULAR_CLASS_PREFIX = 'ng-';
 
   private onChange: (value: any) => void = () => {
     /**/
@@ -144,7 +144,7 @@ const getClasses = (element: HTMLElement) => {
   const classes: string[] = [];
   for (let i = 0; i < classList.length; i++) {
     const item = classList.item(i);
-    if (item !== null && item.startsWith(ValueAccessor.ANGULAR_CLASS_REFIX)) {
+    if (item !== null && item.startsWith(ValueAccessor.ANGULAR_CLASS_PREFIX)) {
       classes.push(`ix-${item.substring(3)}`);
     }
   }
