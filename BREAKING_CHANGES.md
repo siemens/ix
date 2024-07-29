@@ -45,6 +45,16 @@ To use imports by name (e.g. `<ix-icon name="star"></ix-icon>`) an additional co
 ],
 ```
 
+To re-enable the preloaded icons you can provide the `preloadIcons` function as configuration to the module import.
+
+```ts
+IxModule.forRoot({
+  preloadIcons,
+}),
+```
+
+This will preload all icons without providing the svg's as assets. Downside of this way is the increased bundle size. **not recommended**
+
 ## v2.0.0
 
 ### `input[class="form-control"]` and `textarea[class="form-control"]` are deprecated

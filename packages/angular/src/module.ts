@@ -39,15 +39,15 @@ const DECLARATIONS = [
   exports: DECLARATIONS,
 })
 export class IxModule {
-  static forRoot(option?: {
-    preloadIcons?: boolean;
+  static forRoot(options?: {
+    preloadIcons?: () => void;
   }): ModuleWithProviders<IxModule> {
     return {
       ngModule: IxModule,
       providers: [
         {
           provide: APP_INITIALIZER,
-          useFactory: appInitialize(option?.preloadIcons),
+          useFactory: appInitialize(options?.preloadIcons),
           multi: true,
           deps: [DOCUMENT, NgZone],
         },

@@ -9,28 +9,25 @@
 
 import { defineCustomElements as iconsDefineCustomElements } from '@siemens/ix-icons/loader';
 import { defineCustomElements } from '@siemens/ix/loader';
-import { preloadIconMap } from '@siemens/ix-icons';
 
 let didInitialize = false;
 
-export const appInitialize =
-  (preloadIcons: boolean = false) =>
-  (doc: Document) => {
-    return () => {
-      const win: Window | undefined = doc.defaultView as any;
-      if (win && typeof (window as any) !== 'undefined') {
-        if (didInitialize) {
-          return;
-        }
-
-        if (preloadIcons) {
-          preloadIconMap();
-        }
-
-        didInitialize = true;
-
-        iconsDefineCustomElements();
-        defineCustomElements();
+export const appInitialize = (preloadIcons?: () => void) => (doc: Document) => {
+  return () => {
+    const win: Window | undefined = doc.defaultView as any;
+    if (win && typeof (window as any) !== 'undefined') {
+      if (didInitialize) {
+        return;
       }
-    };
+
+      if (preloadIcons) {
+        preloadIcons();
+      }
+
+      didInitialize = true;
+
+      iconsDefineCustomElements();
+      defineCustomElements();
+    }
   };
+};

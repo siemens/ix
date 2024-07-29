@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { IxModule } from '@siemens/ix-angular';
+import { preloadIcons } from '@siemens/ix-angular/legacy';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
 import AboutAndLegal from '../preview-examples/about-and-legal';
@@ -295,9 +296,7 @@ import Echarts from '../preview-examples/echarts';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    IxModule.forRoot({
-      preloadIcons: false,
-    }),
+    IxModule.forRoot(),
     AgGridModule,
     FormsModule,
     NgxEchartsModule.forRoot({

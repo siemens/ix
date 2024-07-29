@@ -42,6 +42,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/@siemens/ix-icons/svg",
+                "output": "./svg"
               }
             ],
             "styles": [
@@ -56,7 +61,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "2.3MB"
                 },
                 {
                   "type": "anyComponentStyle",

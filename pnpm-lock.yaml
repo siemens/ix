@@ -72,7 +72,7 @@ importers:
         version: 1.45.3
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
       '@types/gulp':
         specifier: ^4.0.17
         version: 4.0.17
@@ -120,7 +120,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
       tslib:
         specifier: ^2.6.3
         version: 2.6.3
@@ -218,7 +218,7 @@ importers:
         version: link:../angular/dist
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
       rxjs:
         specifier: ~7.8.1
         version: 7.8.1
@@ -297,7 +297,7 @@ importers:
         version: link:../angular/dist
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
       ag-grid-angular:
         specifier: ^30.2.1
         version: 30.2.1(@angular/common@18.1.2(@angular/core@18.1.2(rxjs@7.8.1)(zone.js@0.14.8))(rxjs@7.8.1))(@angular/core@18.1.2(rxjs@7.8.1)(zone.js@0.14.8))(ag-grid-community@32.0.2)
@@ -383,7 +383,7 @@ importers:
         version: 1.45.3
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
       '@stencil-community/eslint-plugin':
         specifier: ^0.7.2
         version: 0.7.2(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/parser@6.21.0(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-react@7.35.0(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)
@@ -687,7 +687,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
       example-styles:
         specifier: workspace:*
         version: link:../example-styles
@@ -702,7 +702,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
     devDependencies:
       '@rollup/plugin-typescript':
         specifier: ^8.5.0
@@ -796,7 +796,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
       '@siemens/ix-react':
         specifier: workspace:*
         version: link:../react
@@ -854,7 +854,7 @@ importers:
         version: link:../core
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.62.0
@@ -894,7 +894,7 @@ importers:
         version: link:../echarts
       '@siemens/ix-icons':
         specifier: v3-preview
-        version: 0.0.0-20240729073852
+        version: 0.0.0-20240729095443
       '@siemens/ix-vue':
         specifier: workspace:*
         version: link:../vue
@@ -4082,8 +4082,8 @@ packages:
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
-  '@siemens/ix-icons@0.0.0-20240729073852':
-    resolution: {integrity: sha512-uxqKKaPegscDXIy+zCLKkVsgn7Os30WNFr5qxZ9cm7NxCK0XmQbOux0LHO3Q142AurT9ea44nXKZVe7IkGH2NQ==}
+  '@siemens/ix-icons@0.0.0-20240729095443':
+    resolution: {integrity: sha512-7AgUunfpnlLGWd5+xEynTzwzFo5vfRWsMq4IO7lHAjbYx0SZVu68xAstjPAFtDqy8JH7FsWbHSB+XP08WFznTg==}
     engines: {node: '>=18.x.x', pnpm: '>=9.x.x'}
 
   '@siemens/ix-icons@2.2.0':
@@ -4622,8 +4622,8 @@ packages:
   '@types/wrap-ansi@3.0.0':
     resolution: {integrity: sha512-ltIpx+kM7g/MLRZfkbL7EsCEjfzCcScLpkg37eXEtx5kmrAKBkTJwd1GIAjDSL8wTpM6Hzn5YO4pSb91BEwu1g==}
 
-  '@types/ws@8.5.11':
-    resolution: {integrity: sha512-4+q7P5h3SpJxaBft0Dzpbr6lmMaqh0Jr2tbhJZ/luAwvD7ohSCniYkwz/pLxuT2h0EOa6QADgJj1Ko+TzRfZ+w==}
+  '@types/ws@8.5.12':
+    resolution: {integrity: sha512-3tPRkv1EtkDpzlgyKyI8pGsGZAGPEaXeu0DOj5DI25Ja91bdAYddYHbADRYVrZMRbfW+1l5YwXVDKohDJNQxkQ==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -18930,7 +18930,7 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
-  '@siemens/ix-icons@0.0.0-20240729073852':
+  '@siemens/ix-icons@0.0.0-20240729095443':
     dependencies:
       '@stencil/core': 4.19.2
 
@@ -19547,7 +19547,7 @@ snapshots:
 
   '@types/wrap-ansi@3.0.0': {}
 
-  '@types/ws@8.5.11':
+  '@types/ws@8.5.12':
     dependencies:
       '@types/node': 22.0.0
 
@@ -30366,7 +30366,7 @@ snapshots:
       '@types/serve-index': 1.9.4
       '@types/serve-static': 1.15.7
       '@types/sockjs': 0.3.36
-      '@types/ws': 8.5.11
+      '@types/ws': 8.5.12
       ansi-html-community: 0.0.8
       bonjour-service: 1.2.1
       chokidar: 3.6.0
@@ -30406,7 +30406,7 @@ snapshots:
       '@types/serve-index': 1.9.4
       '@types/serve-static': 1.15.7
       '@types/sockjs': 0.3.36
-      '@types/ws': 8.5.11
+      '@types/ws': 8.5.12
       ansi-html-community: 0.0.8
       bonjour-service: 1.2.1
       chokidar: 3.6.0
@@ -30446,7 +30446,7 @@ snapshots:
       '@types/serve-index': 1.9.4
       '@types/serve-static': 1.15.7
       '@types/sockjs': 0.3.36
-      '@types/ws': 8.5.11
+      '@types/ws': 8.5.12
       ansi-html-community: 0.0.8
       bonjour-service: 1.2.1
       chokidar: 3.6.0
@@ -30505,7 +30505,7 @@ snapshots:
       typed-assert: 1.0.9
       webpack: 5.92.1(esbuild@0.21.5)
     optionalDependencies:
-      html-webpack-plugin: 5.6.0(webpack@5.93.0)
+      html-webpack-plugin: 5.6.0(webpack@5.92.1)
 
   webpack@5.90.3(esbuild@0.20.1):
     dependencies:
