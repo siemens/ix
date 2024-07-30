@@ -1,20 +1,19 @@
-import Playground from '@site/src/components/PlaygroundV2';
-
 import Props from './../auto-generated/ix-message-bar/props.md';
 import Events from './../auto-generated/ix-message-bar/events.md';
 
-# Message bar
+import Playground from '@site/src/components/PlaygroundV2';
 
-## Usage
+## Examples
 
 <Playground
-name="message-bar" height="14rem"
-examplesByName>
+  name="message-bar" 
+  height="14rem"
+  examplesByName>
 </Playground>
 
-## Properties
+## API
 
-### Props
+### Properties
 
 <Props />
 
