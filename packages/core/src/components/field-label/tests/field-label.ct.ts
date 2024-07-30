@@ -116,7 +116,7 @@ test('invalid color', async ({ mount, page }) => {
   );
 });
 
-test('valid color with valid field', async ({ mount, page }) => {
+test('valid color with valid text field', async ({ mount, page }) => {
   await mount(`
     <ix-text-field label="label text">valid field</ix-text-field>
   `);
@@ -132,7 +132,7 @@ test('valid color with valid field', async ({ mount, page }) => {
   );
 });
 
-test('invalid color with invalid field', async ({ mount, page }) => {
+test('invalid color with invalid text field', async ({ mount, page }) => {
   await mount(`
     <ix-text-field label="invalid label text" required>invalid field</ix-text-field>
   `);
@@ -141,6 +141,38 @@ test('invalid color with invalid field', async ({ mount, page }) => {
   const labelElement = page.locator('ix-field-label');
 
   await expect(fieldElement).toHaveClass(/ix-invalid--required/);
+
+  await expect(labelElement.locator('ix-typography')).toHaveAttribute(
+    'style',
+    'color: var(--theme-color-alarm-text);'
+  );
+});
+
+test('valid color with valid textarea field', async ({ mount, page }) => {
+  await mount(`
+    <ix-textarea-field label="label text">valid field</ix-textarea-field>
+  `);
+
+  const fieldElement = page.locator('ix-textarea-field');
+  const labelElement = page.locator('ix-field-label');
+
+  await expect(fieldElement).not.toHaveClass(/ix-invalid--required/);
+
+  await expect(labelElement.locator('ix-typography')).toHaveAttribute(
+    'style',
+    'color: var(--theme-color-soft-text);'
+  );
+});
+
+test('invalid color with invalid textarea field', async ({ mount, page }) => {
+  await mount(`
+    <ix-textarea-field label="invalid label text" required>valid field</ix-textarea-field>
+  `);
+
+  const fieldElement = page.locator('ix-textarea-field');
+  const labelElement = page.locator('ix-field-label');
+
+  await expect(fieldElement).not.toHaveClass(/ix-invalid--required/);
 
   await expect(labelElement.locator('ix-typography')).toHaveAttribute(
     'style',
