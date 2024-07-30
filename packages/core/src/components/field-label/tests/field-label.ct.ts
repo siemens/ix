@@ -115,3 +115,35 @@ test('invalid color', async ({ mount, page }) => {
     'color: var(--theme-color-alarm-text);'
   );
 });
+
+test('valid color with valid field', async ({ mount, page }) => {
+  await mount(`
+    <ix-text-field label="label text">valid field</ix-text-field>
+  `);
+
+  const fieldElement = page.locator('ix-text-field');
+  const labelElement = page.locator('ix-field-label');
+
+  await expect(fieldElement).not.toHaveClass(/ix-invalid--required/);
+
+  await expect(labelElement.locator('ix-typography')).toHaveAttribute(
+    'style',
+    'color: var(--theme-color-soft-text);'
+  );
+});
+
+test('invalid color with invalid field', async ({ mount, page }) => {
+  await mount(`
+    <ix-text-field label="invalid label text" required>invalid field</ix-text-field>
+  `);
+
+  const fieldElement = page.locator('ix-text-field');
+  const labelElement = page.locator('ix-field-label');
+
+  await expect(fieldElement).toHaveClass(/ix-invalid--required/);
+
+  await expect(labelElement.locator('ix-typography')).toHaveAttribute(
+    'style',
+    'color: var(--theme-color-alarm-text);'
+  );
+});
