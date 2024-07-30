@@ -45,6 +45,17 @@ TODO: Rewrite this section to be more precise about what has to be adapted
 ],
 ```
 
+### Change props to `@internal`:
+
+The following component members marked as internal by comment have been changed to annotated as `@internal`:
+
+  - `ix-menu`: `enableMapExpand`
+  - `ix-menu-about`: `show`
+  - `ix-menu-about-news`: `expanded`
+  - `ix-menu-settings`: `show`
+  - `ix-dropdown-item`: `emitItemClick()`
+
+
 ## v2.0.0
 
 ### `input[class="form-control"]` and `textarea[class="form-control"]` are deprecated
