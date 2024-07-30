@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.17.2",
+    "version": "4.19.2",
     "typescriptVersion": "5.4.5"
   },
   "components": [
@@ -2079,7 +2079,7 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
+          "docs": "Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
           "docsTags": [],
           "values": [
             {
@@ -2193,13 +2193,12 @@
           "reflectToAttr": false,
           "docs": "The icon next to the actual text input\nDefaults to 'search'",
           "docsTags": [],
-          "default": "'search'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2299,7 +2298,7 @@
           "mutable": false,
           "attr": "repeat-categories",
           "reflectToAttr": false,
-          "docs": "If set to true allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
+          "docs": "If set to true, allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -2355,7 +2354,7 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "A list of strings that will be supplied as typeahead suggestions not tied to any categories.",
+          "docs": "A list of strings that will be supplied as type-ahead suggestions not tied to any categories.",
           "docsTags": [],
           "values": [
             {
@@ -2379,7 +2378,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event dispatched whenever the a category gets selected in the dropdown",
+          "docs": "Event dispatched whenever a category gets selected in the dropdown",
           "docsTags": []
         },
         {
@@ -5906,7 +5905,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -5927,7 +5926,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -6491,13 +6490,12 @@
           "reflectToAttr": false,
           "docs": "Search icon",
           "docsTags": [],
-          "default": "'search'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12381,7 +12379,7 @@
           "name": "icon",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -12395,7 +12393,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12587,7 +12585,7 @@
           "name": "icon",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -12596,13 +12594,12 @@
           "reflectToAttr": false,
           "docs": "Card icon",
           "docsTags": [],
-          "default": "undefined",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13863,13 +13860,12 @@
           "reflectToAttr": false,
           "docs": "Button icon",
           "docsTags": [],
-          "default": "''",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13890,7 +13886,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13985,13 +13981,12 @@
           "reflectToAttr": false,
           "docs": "Icon of the button on the right",
           "docsTags": [],
-          "default": "'context-menu'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {

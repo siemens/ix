@@ -9,6 +9,7 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import { TreeItemContext } from '../tree/tree-model';
+import { iconChevronRight } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-tree-item',
@@ -57,7 +58,7 @@ export class TreeItem {
         >
           {this.hasChildren ? (
             <ix-icon
-              name={'chevron-right'}
+              name={iconChevronRight}
               size="16"
               class={{
                 ['icon-toggle-down']: this.context?.isExpanded,

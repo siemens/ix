@@ -230,7 +230,9 @@ regressionTest.describe('application-switch', () => {
   regressionTest('modal', async ({ page }) => {
     await page.goto('application/application-switch');
 
-    const appSwitchButton = page.getByRole('button', { name: 'Apps' });
+    const appSwitchButton = page
+      .locator('ix-application-header')
+      .getByTestId('app-switch');
     await appSwitchButton.click();
 
     await page.waitForTimeout(1000);

@@ -9,6 +9,7 @@
 
 import { Component, Element, h, Host, State } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-group-context-menu',
@@ -64,7 +65,7 @@ export class GroupContextMenu {
           class={{ hide: !this.showContextMenu }}
           size="24"
           ghost={true}
-          icon={'context-menu'}
+          icon={iconContextMenu}
         ></ix-icon-button>
         <slot onSlotchange={() => this.onSlotChange()}></slot>
       </Host>

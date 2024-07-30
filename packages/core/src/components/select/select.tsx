@@ -22,6 +22,7 @@ import {
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
+import { iconChevronDownSmall, iconClear } from '@siemens/ix-icons/icons';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 
@@ -254,14 +255,16 @@ export class Select {
   }
 
   private itemClick(newId: string) {
+    const oldValue = this.value;
     const value = this.toggleValue(newId);
+    this.value = value;
     const defaultPrevented = this.emitValueChange(value);
 
     if (defaultPrevented) {
+      this.value = oldValue;
       return;
     }
 
-    this.value = value;
     this.updateSelection();
   }
 
@@ -700,7 +703,7 @@ export class Select {
                 (this.selectedLabels?.length || this.inputFilterText) ? (
                   <ix-icon-button
                     class="clear"
-                    icon={'clear'}
+                    icon={iconClear}
                     ghost
                     oval
                     size="16"
@@ -715,7 +718,7 @@ export class Select {
                   <ix-icon-button
                     data-select-dropdown
                     class={{ 'dropdown-visible': this.dropdownShow }}
-                    icon="chevron-down-small"
+                    icon={iconChevronDownSmall}
                     ghost
                     ref={(ref) => {
                       if (this.editable) this.dropdownWrapperRef = ref;

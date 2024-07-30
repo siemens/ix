@@ -18,6 +18,6 @@
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
     "example-styles": "workspace:*",
-    "@siemens/ix-icons": "^2.0.0"
+    "@siemens/ix-icons": "v3-preview"
   }
 }

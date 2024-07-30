@@ -19,7 +19,7 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "@siemens/ix-icons": "^2.0.0",
+    "@siemens/ix-icons": "v3-preview",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",

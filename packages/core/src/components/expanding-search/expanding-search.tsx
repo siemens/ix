@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 import {
   Component,
   Event,
@@ -26,7 +27,7 @@ export class ExpandingSearch {
   /**
    * Search icon
    */
-  @Prop() icon = 'search';
+  @Prop() icon?: string;
 
   /**
    * Placeholder text
@@ -107,7 +108,7 @@ export class ExpandingSearch {
       >
         <ix-icon-button
           size={this.expanded ? '16' : '24'}
-          icon={this.icon}
+          icon={this.icon ?? iconSearch}
           ghost
           variant="primary"
           data-testid="button"
@@ -155,7 +156,7 @@ export class ExpandingSearch {
           {this.isFieldChanged ? (
             <ix-icon-button
               class="btn-clear"
-              icon={'clear'}
+              icon={iconClear}
               ghost={true}
               size="16"
               data-testid="clear-button"

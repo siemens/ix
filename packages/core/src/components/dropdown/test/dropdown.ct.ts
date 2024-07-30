@@ -565,7 +565,7 @@ test('Nested dropdowns within application-header', async ({ mount, page }) => {
   const header = page.locator('ix-application-header');
   await expect(header).toBeVisible();
 
-  const overflowTrigger = header.getByRole('button', { name: 'More Menu' });
+  const overflowTrigger = header.locator('ix-icon-button');
   await overflowTrigger.click();
 
   const dropdownButton = header.locator('ix-dropdown-button');

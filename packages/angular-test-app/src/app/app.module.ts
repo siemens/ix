@@ -130,6 +130,7 @@ import Toast from 'src/preview-examples/toast';
 import ToastCustom from 'src/preview-examples/toast-custom';
 import ToastPosition from 'src/preview-examples/toast-position';
 import Toggle from 'src/preview-examples/toggle';
+import ToggleButtonPrimary from 'src/preview-examples/toggle-button-primary';
 import ToggleButtonPrimaryGhost from 'src/preview-examples/toggle-button-primary-ghost';
 import ToggleButtonPrimaryOutline from 'src/preview-examples/toggle-button-primary-outline';
 import ToggleButtonSecondary from 'src/preview-examples/toggle-button-secondary';
@@ -241,6 +242,7 @@ import Echarts from 'src/preview-examples/echarts';
     ThemeSwitcherExample,
     Tile,
     Timepicker,
+    ToggleButtonPrimary,
     ToggleButtonPrimaryGhost,
     ToggleButtonPrimaryOutline,
     ToggleButtonSecondary,

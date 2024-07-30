@@ -1,14 +1,17 @@
-import Playground from '@site/src/components/PlaygroundV2';
 import Tags from './../auto-generated/ix-slider/tags.md';
 import Props from './../auto-generated/ix-slider/props.md';
 import Events from './../auto-generated/ix-slider/events.md';
 import Slots from './../auto-generated/ix-slider/slots.md';
 
+import Playground from '@site/src/components/PlaygroundV2';
+
 # Slider
 
 <Tags />
 
-## Usage
+## Examples
+
+### Basic
 
 <Playground
   height="15rem"
@@ -40,9 +43,9 @@ import Slots from './../auto-generated/ix-slider/slots.md';
   examplesByName>
 </Playground>
 
-## Properties
+## API
 
-### Props 
+### Properties 
 
 <Props />
 

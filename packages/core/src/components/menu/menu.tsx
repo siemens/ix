@@ -30,6 +30,7 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
+import { iconApps } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-menu',
@@ -615,6 +616,7 @@ export class Menu {
                 class="menu-expand-icon"
                 ixAriaLabel={this.i18nExpandSidebar}
                 onClick={async () => this.toggleMenu()}
+                data-testid="expand-collapse-menu"
               ></ix-menu-expand-icon>
             )}
             {this.breakpoint === 'sm' &&
@@ -623,7 +625,7 @@ export class Menu {
                   onClick={() =>
                     showAppSwitch(this.applicationLayoutContext.appSwitchConfig)
                   }
-                  icon="apps"
+                  icon={iconApps}
                   ghost
                 ></ix-icon-button>
               )}
