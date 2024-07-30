@@ -112,7 +112,19 @@ export class FormFieldLabel implements IxComponent {
     }
   }
 
-  private async checkForInvalidState(elementToCheck: HTMLElement) {
+  private registerHtmlForClassObserver(
+    forElement: HTMLIxFormComponentElement<unknown>
+  ) {
+    if (this.htmlForClassObserver) {
+      this.htmlForClassObserver.destroy();
+    }
+
+    this.htmlForClassObserver = createClassMutationObserver(forElement, () =>
+      this.checkForInvalidState(forElement)
+    );
+  }
+
+  private checkForInvalidState(elementToCheck: HTMLElement) {
     this.isInvalid =
       elementToCheck.classList.contains('is-invalid') ||
       elementToCheck.classList.contains('ix-invalid');
@@ -123,20 +135,12 @@ export class FormFieldLabel implements IxComponent {
       const forElement = document.getElementById(
         this.htmlFor
       ) as HTMLIxFormComponentElement<unknown>;
-      if (forElement && typeof forElement.required === 'boolean') {
-        this.required = forElement.required;
-      }
-
       if (forElement) {
-        if (this.htmlForClassObserver) {
-          this.htmlForClassObserver.destroy();
+        if (typeof forElement.required === 'boolean') {
+          this.required = forElement.required;
         }
 
-        this.htmlForClassObserver = createClassMutationObserver(
-          forElement,
-          () => this.checkForInvalidState(forElement)
-        );
-
+        this.registerHtmlForClassObserver(forElement);
         this.checkForInvalidState(forElement);
       }
     }
