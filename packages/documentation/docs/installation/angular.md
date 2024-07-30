@@ -3,10 +3,15 @@ sidebar_position: 1
 sidebar_title: Angular
 title: Angular
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ### Library installation
+
+:::info
+Currently, Angular standalone components are not supported by iX. We are actively working to provide support for them soon. Otherwise Siemens iX is fully compatible with Angular 17 and later versions.
+:::
 
 Install `@siemens/ix`, `@siemens/ix-angular` and `@siemens/ix-icons` using a package manager:
 
@@ -48,12 +53,7 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    IxModule.forRoot(),
-    BrowserAnimationsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, IxModule.forRoot(), BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
