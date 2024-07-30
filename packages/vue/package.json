@@ -3,7 +3,7 @@
   "homepage": "https://ix.siemens.io",
   "author": "Siemens AG",
   "license": "MIT",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Siemens iX for Vue",
   "bugs": "https://github.com/siemens/ix/issues",
   "repository": {
@@ -24,7 +24,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@siemens/ix": "~2.4.0"
+    "@siemens/ix": "~2.4.1"
   },
   "devDependencies": {
     "rimraf": "^3.0.2",

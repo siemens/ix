@@ -55,7 +55,7 @@ export class Pagination {
   /**
    * Advanced mode
    */
-  @Prop() advanced: boolean;
+  @Prop() advanced = false;
 
   /**
    * Number of items shown at once.
@@ -97,12 +97,12 @@ export class Pagination {
   /**
    * Page selection event
    */
-  @Event() pageSelected: EventEmitter<number>;
+  @Event() pageSelected!: EventEmitter<number>;
 
   /**
    * Item count change event
    */
-  @Event() itemCountChanged: EventEmitter<number>;
+  @Event() itemCountChanged!: EventEmitter<number>;
 
   private selectPage(index: number) {
     if (index < 0) {
@@ -215,7 +215,7 @@ export class Pagination {
     return (
       <Host>
         <ix-icon-button
-          disabled={this.selectedPage === 0}
+          disabled={!this.count || this.selectedPage === 0}
           ghost
           icon={iconChevronLeftSmall}
           onClick={() => this.decrease()}
@@ -246,7 +246,7 @@ export class Pagination {
         )}
 
         <ix-icon-button
-          disabled={this.selectedPage === this.count - 1}
+          disabled={!this.count || this.selectedPage === this.count - 1}
           ghost
           icon={iconChevronRightSmall}
           onClick={() => this.increase()}

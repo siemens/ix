@@ -1,17 +1,24 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Events from './../auto-generated/ix-kpi/events.md';
 import Props from './../auto-generated/ix-kpi/props.md';
 
-# KPI
+import Playground from '@site/src/components/PlaygroundV2';
+
+# Events
 
 ## Usage
 
 <Playground
-name="kpi" height="28rem"
-examplesByName>
+  name="kpi" 
+  height="28rem"
+  examplesByName>
 </Playground>
 
-## Properties
+## API
 
-### Props
+### Properties
 
 <Props />
+
+### Events
+
+<Events />

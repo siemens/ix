@@ -43,7 +43,7 @@ export class ApplicationHeader {
   /**
    * Application name
    */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
@@ -201,7 +201,9 @@ export class ApplicationHeader {
         <div class="logo">
           <slot name="logo"></slot>
         </div>
-        <div class="name">{this.name}</div>
+        <ix-typography format="body-lg" class="name">
+          {this.name}
+        </ix-typography>
         <div class="content">
           {this.breakpoint === 'sm' ? (
             <Fragment>

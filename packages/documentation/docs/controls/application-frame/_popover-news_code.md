@@ -3,15 +3,20 @@ import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../../auto-generated/ix-menu-about-news/props.md';
 import Events from './../../auto-generated/ix-menu-about-news/events.md';
 
-## Usage
+## Examples
+
+### Basic
 
 <Playground
-name="popover-news" height="30rem" noMargin examplesByName>
+  name="popover-news" 
+  height="30rem" 
+  noMargin 
+  examplesByName>
 </Playground>
 
-## Properties
+## API
 
-### Props
+### Properties
 
 <Props />
 
