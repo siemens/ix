@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 ### Library installation
 
 :::info
-Currently, Angular standalone components are not supported by iX. We are actively working to provide support for them soon. Otherwise Siemens iX is fully compatible with Angular 17 and later versions.
+Currently, iX only supports `NgModule` based Angular projects. We are actively working to provide support for the new standalone component based approach soon. Otherwise Siemens iX is fully compatible with Angular version 17 and higher.
 :::
 
 Install `@siemens/ix`, `@siemens/ix-angular` and `@siemens/ix-icons` using a package manager:
