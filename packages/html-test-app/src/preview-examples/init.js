@@ -71,7 +71,7 @@ function setBodySizes() {
 }
 
 (async function init() {
-  await ixIconsDefineCustomElements();
+  ixIconsDefineCustomElements();
   defineCustomElements();
 
   detectThemeSwitching();

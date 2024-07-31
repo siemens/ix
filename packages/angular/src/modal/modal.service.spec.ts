@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@jest/globals';
+import { expect, test } from '@jest/globals';
 import { IxActiveModal } from './modal-ref';
 import { ModalService } from './modal.service';
 
@@ -68,7 +68,7 @@ test('should create modal by component typ', async () => {
       },
       injector: {
         get: jest.fn(() => ({
-          nativeElement: { style: {} }
+          nativeElement: { style: {} },
         })),
       },
     })),

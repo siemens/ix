@@ -7,21 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-button>Content</ix-button>`);
   const button = page.locator('ix-button');
   await expect(button).toHaveClass(/hydrated/);
 });
 
-test('show icon', async ({ mount, page }) => {
+regressionTest('show icon', async ({ mount, page }) => {
   await mount(`<ix-button icon="rocket">Content</ix-button>`);
   const button = page.locator('ix-button');
   await expect(button.locator('ix-icon')).toBeVisible();
 });
 
-test('show spinner while loading', async ({ mount, page }) => {
+regressionTest('show spinner while loading', async ({ mount, page }) => {
   await mount(`<ix-button>Content</ix-button>`);
   const button = page.locator('ix-button');
 
@@ -30,26 +30,32 @@ test('show spinner while loading', async ({ mount, page }) => {
   await expect(button.locator('ix-spinner')).toBeVisible();
 });
 
-test('replace icon with spinner while loading', async ({ mount, page }) => {
-  await mount(`<ix-button icon="rocket">Content</ix-button>`);
-  const button = page.locator('ix-button');
+regressionTest(
+  'replace icon with spinner while loading',
+  async ({ mount, page }) => {
+    await mount(`<ix-button icon="rocket">Content</ix-button>`);
+    const button = page.locator('ix-button');
 
-  await expect(button.locator('ix-spinner')).not.toBeVisible();
-  await button.evaluate((btn: HTMLIxButtonElement) => (btn.loading = true));
-  await expect(button.locator('ix-spinner')).toBeVisible();
-  await expect(button.locator('ix-icon')).not.toBeVisible();
-});
+    await expect(button.locator('ix-spinner')).not.toBeVisible();
+    await button.evaluate((btn: HTMLIxButtonElement) => (btn.loading = true));
+    await expect(button.locator('ix-spinner')).toBeVisible();
+    await expect(button.locator('ix-icon')).not.toBeVisible();
+  }
+);
 
-test('should not fire event when disabled', async ({ mount, page }) => {
-  await mount(`<ix-button disabled>Content</ix-button>`);
-  const button = page.locator('ix-button');
+regressionTest(
+  'should not fire event when disabled',
+  async ({ mount, page }) => {
+    await mount(`<ix-button disabled>Content</ix-button>`);
+    const button = page.locator('ix-button');
 
-  await expect(button).toHaveClass(/hydrated/);
-  await expect(button).toHaveCSS('pointer-events', 'none');
-});
+    await expect(button).toHaveClass(/hydrated/);
+    await expect(button).toHaveCSS('pointer-events', 'none');
+  }
+);
 
-test.describe('A11y', () => {
-  test('disabled', async ({ mount, page }) => {
+regressionTest.describe('A11y', () => {
+  regressionTest('disabled', async ({ mount, page }) => {
     await mount('<ix-button disabled>Content</ix-button>');
     const button = page.locator('button');
     await expect(button).toHaveAttribute('aria-disabled');

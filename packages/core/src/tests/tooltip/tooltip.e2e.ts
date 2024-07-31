@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 regressionTest.describe('tooltip', () => {
   regressionTest('Long Text long words', async ({ page }) => {
@@ -71,7 +71,7 @@ regressionTest.describe('tooltip', () => {
     });
   });
 
-  test('tooltip position top', async ({ mount, page }) => {
+  regressionTest('tooltip position top', async ({ mount, page }) => {
     await mount(`
       <div style="padding: 10rem">
         <ix-button id="trigger">Trigger</ix-button>
@@ -88,7 +88,7 @@ regressionTest.describe('tooltip', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
-  test('tooltip position right', async ({ mount, page }) => {
+  regressionTest('tooltip position right', async ({ mount, page }) => {
     await mount(`
       <div style="padding: 10rem">
         <ix-button id="trigger">Trigger</ix-button>
@@ -105,7 +105,7 @@ regressionTest.describe('tooltip', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
-  test('tooltip position bottom', async ({ mount, page }) => {
+  regressionTest('tooltip position bottom', async ({ mount, page }) => {
     await mount(`
       <div style="padding: 10rem">
         <ix-button id="trigger">Trigger</ix-button>
@@ -122,7 +122,7 @@ regressionTest.describe('tooltip', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
-  test('tooltip position left', async ({ mount, page }) => {
+  regressionTest('tooltip position left', async ({ mount, page }) => {
     await mount(`
       <div style="width: 10rem; height: 10rem">
         <ix-button id="trigger" style="position: absolute; left: 20rem; top: 10rem;">Trigger</ix-button>
@@ -142,12 +142,11 @@ regressionTest.describe('tooltip', () => {
 
 regressionTest.describe('tooltip delay', () => {
   ['top', 'right', 'bottom', 'left'].forEach((placement) => {
-    test(`tooltip placement ${placement} with delay`, async ({
-      mount,
-      page,
-    }) => {
-      const testDelayToShowTooltip = 1100;
-      await mount(`
+    regressionTest(
+      `tooltip placement ${placement} with delay`,
+      async ({ mount, page }) => {
+        const testDelayToShowTooltip = 1100;
+        await mount(`
       <div style="margin: 20rem">
         <ix-button>Long text</ix-button>
         <ix-tooltip
@@ -162,12 +161,13 @@ regressionTest.describe('tooltip delay', () => {
       </div>
       `);
 
-      const tooltipTrigger = page.locator('ix-button');
-      await tooltipTrigger.hover();
+        const tooltipTrigger = page.locator('ix-button');
+        await tooltipTrigger.hover();
 
-      await page.waitForTimeout(testDelayToShowTooltip);
+        await page.waitForTimeout(testDelayToShowTooltip);
 
-      expect(await page.screenshot()).toMatchSnapshot();
-    });
+        expect(await page.screenshot()).toMatchSnapshot();
+      }
+    );
   });
 });

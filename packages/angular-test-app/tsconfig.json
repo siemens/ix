@@ -2,37 +2,35 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "es2020",
-    "module": "es2020",
-    "lib": ["es2020", "dom"],
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
     "preserveSymlinks": true,
     "skipLibCheck": true,
     "paths": {
-      "@angular/*": ["./node_modules/@angular"],
-      "@siemens/ix-angular": ["./../angular/dist"],
-      "@siemens/ix-angular/*": ["./../angular/dist"]
+      "@angular/*": ["./node_modules/@angular"]
     }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true,
-    "preserveSymlinks": true
+    "strictTemplates": true
   }
 }

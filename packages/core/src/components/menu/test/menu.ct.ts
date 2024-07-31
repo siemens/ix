@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Locator, Page } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
         <ix-menu-about>
@@ -23,96 +23,99 @@ test('renders', async ({ mount, page }) => {
   await expect(element).toHaveClass(/breakpoint-lg/);
 });
 
-test('should be open when start-expanded ist set', async ({ mount, page }) => {
-  await mount(`
+regressionTest(
+  'should be open when start-expanded ist set',
+  async ({ mount, page }) => {
+    await mount(`
       <ix-application>
         <ix-menu start-expanded>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
       </ix-application>
     `);
-  await page
-    .locator('ix-application')
-    .evaluate(
-      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
-    );
-  const menu = page.locator('ix-menu');
+    await page
+      .locator('ix-application')
+      .evaluate(
+        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
+      );
+    const menu = page.locator('ix-menu');
 
-  await expect(menu).toHaveClass(/expanded/);
-});
+    await expect(menu).toHaveClass(/expanded/);
+  }
+);
 
-test('should be closed when start-expanded ist NOT set', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'should be closed when start-expanded ist NOT set',
+  async ({ mount, page }) => {
+    await mount(`
       <ix-application>
         <ix-menu>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
       </ix-application>
     `);
-  await page
-    .locator('ix-application')
-    .evaluate(
-      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
-    );
-  const menu = page.locator('ix-menu');
+    await page
+      .locator('ix-application')
+      .evaluate(
+        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['lg'])
+      );
+    const menu = page.locator('ix-menu');
 
-  await expect(menu).not.toHaveClass(/expanded/);
-});
+    await expect(menu).not.toHaveClass(/expanded/);
+  }
+);
 
-test('should be closed after menu click when NOT pinned', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'should be closed after menu click when NOT pinned',
+  async ({ mount, page }) => {
+    await mount(`
       <ix-application>
         <ix-menu>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
       </ix-application>
     `);
-  await page
-    .locator('ix-application')
-    .evaluate(
-      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
-    );
-  const menu = page.locator('ix-menu');
-  const menuButton = menu.locator('ix-menu-expand-icon');
-  await menuButton.click();
+    await page
+      .locator('ix-application')
+      .evaluate(
+        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+      );
+    const menu = page.locator('ix-menu');
+    const menuButton = menu.locator('ix-menu-expand-icon');
+    await menuButton.click();
 
-  await expect(menu).toHaveClass(/expanded/);
-  await page.locator('ix-menu-item').click();
-  await expect(menu).not.toHaveClass(/expanded/);
-});
+    await expect(menu).toHaveClass(/expanded/);
+    await page.locator('ix-menu-item').click();
+    await expect(menu).not.toHaveClass(/expanded/);
+  }
+);
 
-test('should stay open after menu click when pinned', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'should stay open after menu click when pinned',
+  async ({ mount, page }) => {
+    await mount(`
       <ix-application>
         <ix-menu pinned>
           <ix-menu-item>Item</ix-menu-item>
         </ix-menu>
       </ix-application>
     `);
-  await page
-    .locator('ix-application')
-    .evaluate(
-      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
-    );
-  const menu = page.locator('ix-menu');
-  const menuButton = menu.locator('ix-menu-expand-icon');
-  await menuButton.click();
+    await page
+      .locator('ix-application')
+      .evaluate(
+        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+      );
+    const menu = page.locator('ix-menu');
+    const menuButton = menu.locator('ix-menu-expand-icon');
+    await menuButton.click();
 
-  await expect(menu).toHaveClass(/expanded/);
-  await page.locator('ix-menu-item').click();
-  await expect(menu).toHaveClass(/expanded/);
-});
+    await expect(menu).toHaveClass(/expanded/);
+    await page.locator('ix-menu-item').click();
+    await expect(menu).toHaveClass(/expanded/);
+  }
+);
 
-test('should open and close settings', async ({ mount, page }) => {
+regressionTest('should open and close settings', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
         <ix-menu-about>
@@ -137,7 +140,7 @@ test('should open and close settings', async ({ mount, page }) => {
   await expect(settings).not.toBeVisible();
 });
 
-test('should close settings by about', async ({ mount, page }) => {
+regressionTest('should close settings by about', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
         <ix-menu-about>
@@ -157,7 +160,7 @@ test('should close settings by about', async ({ mount, page }) => {
   await expect(settings).not.toBeVisible();
 });
 
-test('should open and close about', async ({ mount, page }) => {
+regressionTest('should open and close about', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
         <ix-menu-about>
@@ -182,7 +185,7 @@ test('should open and close about', async ({ mount, page }) => {
   await expect(about).not.toBeVisible();
 });
 
-test('should close about by settings', async ({ mount, page }) => {
+regressionTest('should close about by settings', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
         <ix-menu-about>
@@ -202,7 +205,7 @@ test('should close about by settings', async ({ mount, page }) => {
   await expect(settings).toBeVisible();
 });
 
-test('should close about by item click', async ({ mount, page }) => {
+regressionTest('should close about by item click', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
         <ix-menu-item>Random</ix-menu-item>
@@ -224,8 +227,10 @@ test('should close about by item click', async ({ mount, page }) => {
   await expect(settings).not.toBeVisible();
 });
 
-test('should close menu by bottom icon click', async ({ mount, page }) => {
-  await mount(`
+regressionTest(
+  'should close menu by bottom icon click',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-menu>
       <ix-menu-item>Random</ix-menu-item>
       <ix-menu-item slot="bottom">BottomMenuItem</ix-menu-item>
@@ -236,22 +241,23 @@ test('should close menu by bottom icon click', async ({ mount, page }) => {
     </ix-menu>
   `);
 
-  const element = page.locator('ix-menu');
+    const element = page.locator('ix-menu');
 
-  await page.locator('ix-menu ix-menu-expand-icon').click();
-  await page.waitForSelector('ix-menu ix-menu-expand-icon.expanded');
+    await page.locator('ix-menu ix-menu-expand-icon').click();
+    await page.waitForSelector('ix-menu ix-menu-expand-icon.expanded');
 
-  const innerMenu = element.locator('.menu');
-  await expect(innerMenu).toHaveClass(/expanded/);
+    const innerMenu = element.locator('.menu');
+    await expect(innerMenu).toHaveClass(/expanded/);
 
-  const bottomMenu = element.locator('ix-menu-item[slot="bottom"]');
-  await bottomMenu.click();
+    const bottomMenu = element.locator('ix-menu-item[slot="bottom"]');
+    await bottomMenu.click();
 
-  await expect(innerMenu).not.toHaveClass(/expanded/);
-  await expect(element).toBeVisible();
-});
+    await expect(innerMenu).not.toHaveClass(/expanded/);
+    await expect(element).toBeVisible();
+  }
+);
 
-test('should have correct aria label', async ({ mount, page }) => {
+regressionTest('should have correct aria label', async ({ mount, page }) => {
   await mount(`
     <ix-menu pinned>
       <ix-menu-item>Random</ix-menu-item>

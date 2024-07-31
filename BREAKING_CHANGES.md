@@ -31,7 +31,7 @@ React/Vue:
 
 TODO: Rewrite this section to be more precise about what has to be adapted
 
-- To use imports by name (e.g. `<ix-icon name="star"></ix-icon>`) an additional configuration entry is required inside of `angular.json`:
+To use imports by name (e.g. `<ix-icon name="star"></ix-icon>`) an additional configuration entry is required inside of `angular.json`:
 
 ```json
 "assets": [
@@ -44,6 +44,16 @@ TODO: Rewrite this section to be more precise about what has to be adapted
   }
 ],
 ```
+
+To re-enable the preloaded icons you can provide the `preloadIcons` function as configuration to the module import.
+
+```ts
+IxModule.forRoot({
+  preloadIcons,
+}),
+```
+
+This will preload all icons without providing the SVGs as assets. The downside of doing this that it results in a larger bundle size. **not recommended**
 
 ## v2.0.0
 
