@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test, viewPorts } from '@utils/test';
+import { regressionTest, viewPorts } from '@utils/test';
 
-test('should not have regression', async ({ mount, page }) => {
+regressionTest('should not have regression', async ({ mount, page }) => {
   await page.setViewportSize(viewPorts.lg);
   await mount(htmlSource);
   const grid = page.locator('ix-layout-grid').nth(0);
@@ -18,7 +18,7 @@ test('should not have regression', async ({ mount, page }) => {
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
-test('should not have regression large', async ({ mount, page }) => {
+regressionTest('should not have regression large', async ({ mount, page }) => {
   await page.setViewportSize(viewPorts.lg);
   await mount(htmlSimple);
   const grid = page.locator('ix-layout-grid').nth(0);
@@ -27,7 +27,7 @@ test('should not have regression large', async ({ mount, page }) => {
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
-test('should not have regression medium', async ({ mount, page }) => {
+regressionTest('should not have regression medium', async ({ mount, page }) => {
   await page.setViewportSize(viewPorts.md);
   await mount(htmlSimple);
   const grid = page.locator('ix-layout-grid').nth(0);
@@ -36,7 +36,7 @@ test('should not have regression medium', async ({ mount, page }) => {
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
-test('should not have regression small', async ({ mount, page }) => {
+regressionTest('should not have regression small', async ({ mount, page }) => {
   await page.setViewportSize(viewPorts.sm);
   await mount(htmlSimple);
   const grid = page.locator('ix-layout-grid').nth(0);

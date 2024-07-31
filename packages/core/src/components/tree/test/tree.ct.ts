@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Locator, Page } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 const defaultModel = {
   root: {
@@ -91,14 +91,14 @@ const updateModel = async (tree: Locator, updatedModel: any) => {
   );
 };
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
   const item = tree.locator('ix-tree-item').nth(0);
   await expect(tree).toHaveClass(/hydrated/);
   await expect(item).toBeVisible();
 });
 
-test('update tree', async ({ mount, page }) => {
+regressionTest('update tree', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
 
   const item = tree.locator('ix-tree-item').nth(0);

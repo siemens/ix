@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 declare global {
   interface Window {
@@ -15,7 +15,7 @@ declare global {
   }
 }
 
-test('closes on Escape key down', async ({ mount, page }) => {
+regressionTest('closes on Escape key down', async ({ mount, page }) => {
   await mount(``);
 
   await page.evaluate(() => {
@@ -51,101 +51,104 @@ test('closes on Escape key down', async ({ mount, page }) => {
   await expect(dialog).not.toBeVisible();
 });
 
-test.describe('closeOnBackdropClick = true', () => {
-  test('should close modal on backdrop click', async ({ mount, page }) => {
-    await mount(`
+regressionTest.describe('closeOnBackdropClick = true', () => {
+  regressionTest(
+    'should close modal on backdrop click',
+    async ({ mount, page }) => {
+      await mount(`
       <ix-button>Some background noise</ix-button>
     `);
 
-    await page.evaluate(() => {
-      return new Promise<void>((resolve) => {
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.innerHTML = `
+      await page.evaluate(() => {
+        return new Promise<void>((resolve) => {
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.innerHTML = `
           import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
           window.showModal = ix.showModal;
         `;
 
-        document.getElementById('mount').appendChild(script);
+          document.getElementById('mount').appendChild(script);
 
-        function createModalExample() {
-          const el = document.createElement('DIV');
-          el.style.display = 'contents';
-          el.innerHTML = `<ix-toggle id="toggle"></ix-toggle>`;
-          return el;
-        }
+          function createModalExample() {
+            const el = document.createElement('DIV');
+            el.style.display = 'contents';
+            el.innerHTML = `<ix-toggle id="toggle"></ix-toggle>`;
+            return el;
+          }
 
-        setTimeout(() => {
-          window.showModal({
-            content: createModalExample(),
-            closeOnBackdropClick: true,
-          });
+          setTimeout(() => {
+            window.showModal({
+              content: createModalExample(),
+              closeOnBackdropClick: true,
+            });
 
-          resolve();
-        }, 2000);
+            resolve();
+          }, 2000);
+        });
       });
-    });
 
-    // needed to skip fade out / in animation
-    await page.waitForTimeout(500);
+      // needed to skip fade out / in animation
+      await page.waitForTimeout(500);
 
-    const toggle = page.locator('#toggle');
-    await expect(toggle).toBeVisible();
+      const toggle = page.locator('#toggle');
+      await expect(toggle).toBeVisible();
 
-    await page.mouse.click(20, 20);
+      await page.mouse.click(20, 20);
 
-    // needed to skip fade out / in animation
-    await page.waitForTimeout(500);
-    await expect(page.locator('ix-modal dialog')).not.toBeVisible();
-  });
+      // needed to skip fade out / in animation
+      await page.waitForTimeout(500);
+      await expect(page.locator('ix-modal dialog')).not.toBeVisible();
+    }
+  );
 
-  test('should stay open after interacting with input elements', async ({
-    mount,
-    page,
-  }) => {
-    await mount(`
+  regressionTest(
+    'should stay open after interacting with input elements',
+    async ({ mount, page }) => {
+      await mount(`
       <ix-button>Some background noise</ix-button>
     `);
 
-    await page.evaluate(() => {
-      return new Promise<void>((resolve) => {
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.innerHTML = `
+      await page.evaluate(() => {
+        return new Promise<void>((resolve) => {
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.innerHTML = `
           import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
           window.showModal = ix.showModal;
         `;
 
-        document.getElementById('mount').appendChild(script);
+          document.getElementById('mount').appendChild(script);
 
-        function createModalExample() {
-          const el = document.createElement('DIV');
-          el.style.display = 'contents';
-          el.innerHTML = `<ix-toggle id="toggle"></ix-toggle>`;
-          return el;
-        }
+          function createModalExample() {
+            const el = document.createElement('DIV');
+            el.style.display = 'contents';
+            el.innerHTML = `<ix-toggle id="toggle"></ix-toggle>`;
+            return el;
+          }
 
-        setTimeout(() => {
-          window.showModal({
-            content: createModalExample(),
-            closeOnBackdropClick: true,
-          });
+          setTimeout(() => {
+            window.showModal({
+              content: createModalExample(),
+              closeOnBackdropClick: true,
+            });
 
-          resolve();
-        }, 2000);
+            resolve();
+          }, 2000);
+        });
       });
-    });
 
-    // needed to skip fade out / in animation
-    await page.waitForTimeout(500);
+      // needed to skip fade out / in animation
+      await page.waitForTimeout(500);
 
-    const toggle = page.locator('#toggle');
-    await expect(toggle).toBeVisible();
+      const toggle = page.locator('#toggle');
+      await expect(toggle).toBeVisible();
 
-    await toggle.locator('input').press('Space');
+      await toggle.locator('input').press('Space');
 
-    // needed to skip fade out / in animation
-    await page.waitForTimeout(500);
-    await expect(page.locator('ix-modal dialog')).toBeVisible();
-  });
+      // needed to skip fade out / in animation
+      await page.waitForTimeout(500);
+      await expect(page.locator('ix-modal dialog')).toBeVisible();
+    }
+  );
 });

@@ -15,9 +15,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb>
     <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
@@ -34,7 +34,7 @@ test('renders', async ({ mount, page }) => {
   await expect(breadcrumbItem3).toBeVisible();
 });
 
-test('should show hidden items', async ({ mount, page }) => {
+regressionTest('should show hidden items', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb visible-item-count="2">
     <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
@@ -68,7 +68,7 @@ test('should show hidden items', async ({ mount, page }) => {
   await expect(dropdownItem2).toBeVisible();
 });
 
-test('should change label', async ({ mount, page }) => {
+regressionTest('should change label', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb>
     <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
@@ -85,7 +85,7 @@ test('should change label', async ({ mount, page }) => {
   await expect(breadcrumbItem).toHaveText('UPDATED');
 });
 
-test('should show next items', async ({ mount, page }) => {
+regressionTest('should show next items', async ({ mount, page }) => {
   await mount(`
   <ix-breadcrumb>
     <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
