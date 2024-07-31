@@ -1,7 +1,7 @@
 Forms behavior refers to the way in which user input is handled and validated within a form. It plays a crucial role in providing a seamless and user-friendly experience for form interactions.
 
 ## Validation feedback
-When data is validated, a validation result is provided to guide users in correcting invalid data, convey a sense of security, warn about critical inputs, or inform about special features of an input.
+When data is validated, a validation result is provided to guide users to correct invalid data, convey a sense of security, warn about critical inputs or inform about special features of an input.
 
 We support 4 types of validation feedback:
 1. Valid
@@ -9,10 +9,8 @@ We support 4 types of validation feedback:
 3. Warning
 4. Invalid
 
- For more information please refer to the [validation](forms-validation.md) chapter.
-
 ## Form submission strategies
-When it comes to handling form submissions, it's important to choose the right strategy to ensure a seamless user experience and maintain data integrity. Here are three common strategies:
+When it comes to handling form submissions, there are three common strategies to ensure a seamless user experience and maintain data integrity:
 1. Disable submit button
 2. Always enable submit button
 3. Submit on blur
@@ -22,7 +20,7 @@ A combination of strategy 1 and 3 is possible.
   In this strategy, the submit button is disabled until all required input controls are filled or controls are valid. This helps prevent users from submitting invalid data to the server.
   - Pro: Prevents sending invalid data to the server.
   - Pro: Communicates issues with the form.
-  - Con: Doesn't specify missing or incorrect fields, which can be frustrating.
+  - Con: Doesn't specify missing or incorrect fields which can be frustrating.
   - Con: Some screen readers may not read out the disabled submit button, causing confusion.
 
 ### Strategy 2: Always enable submit button
@@ -37,9 +35,9 @@ A combination of strategy 1 and 3 is possible.
   - Pro: Provides immediate feedback without the need for a submit button.
   - Con: Users may accidentally trigger form submission by navigating away from a field unintentionally.
   - Con: Handling validation and error messages without a submit button can be challenging.
-  - Con: Users may not have a chance to review and confirm their inputs before submission.
+  - Con: Users may not have a chance to review and confirm their input before submission.
 
-For more information on form validation, please refer to the [Validation](forms-validation.md) chapter.
+For more information on form validation, refer to the [Validation](forms-validation.md) chapter.
 
 ## Related patterns
 - [Validation](forms-validation.md)
