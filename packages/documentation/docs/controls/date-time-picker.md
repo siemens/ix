@@ -1,14 +1,19 @@
-import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../auto-generated/ix-datetime-picker/props.md';
 import Events from './../auto-generated/ix-datetime-picker/events.md';
 
+import Playground from '@site/src/components/PlaygroundV2';
+
 # Date time picker
 
-## Usage
+## Examples
+
+### Basic
 
 <Playground
-name="datetimepicker" height="35rem"
-examplesByName></Playground>
+  name="datetimepicker" 
+  height="35rem"
+  examplesByName>
+</Playground>
 
 <!-- Re-add this when migrating to the rework components -->
 <!-- ## Translation
@@ -36,9 +41,9 @@ export default async () => {
 };
 ``` -->
 
-## Properties
+## API
 
-### Props
+### Properties
 
 <Props />
 

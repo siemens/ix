@@ -1,23 +1,31 @@
 import Playground from '@site/src/components/PlaygroundV2';
 
+import Events from './../auto-generated/ix-validation-tooltip/events.md';
 import Props from './../auto-generated/ix-validation-tooltip/props.md';
 
 # Form validation
 
 For the validation `@siemens/ix` use the validation concept of [bootstrap](https://getbootstrap.com/docs/5.2/forms/validation/).
-The differences is that the validation tooltip is implemented as `@siemens/ix` [tooltip](#properties-tooltip)
+The difference is that the validation tooltip is implemented as `@siemens/ix` [tooltip](#properties-tooltip)
 
-In the following preview section you will find different implementation of a forms validation.
+In the following examples section you will find different implementations of a form validation.
 
-## Preview
+## Examples
+
+### Basic
 
 <Playground
-name="validation" height="20rem"
-examplesByName>
+  name="validation" 
+  height="20rem"
+  examplesByName>
 </Playground>
 
-## Properties (Tooltip)
+## API
 
-## Props
+### Properties
 
 <Props />
+
+### Events
+
+<Events />

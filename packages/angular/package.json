@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/angular"
   },
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Siemens iX for Angular",
   "scripts": {
     "build": "ng-packagr -c tsconfig.json",
@@ -16,7 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@siemens/ix": "workspace:~",
+    "@siemens/ix": "~2.4.1",
     "tslib": "^2.6.3"
   },
   "peerDependencies": {

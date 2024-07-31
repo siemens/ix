@@ -15,9 +15,9 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { IxModule } from '@siemens/ix-angular';
-import { preloadIcons } from '@siemens/ix-angular/legacy';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
+
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AGGrid from '../preview-examples/aggrid';
@@ -131,6 +131,7 @@ import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
+import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
 import ToggleButtonPrimaryGhost from '../preview-examples/toggle-button-primary-ghost';
 import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primary-outline';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
@@ -242,6 +243,7 @@ import Echarts from '../preview-examples/echarts';
     ThemeSwitcherExample,
     Tile,
     Timepicker,
+    ToggleButtonPrimary,
     ToggleButtonPrimaryGhost,
     ToggleButtonPrimaryOutline,
     ToggleButtonSecondary,

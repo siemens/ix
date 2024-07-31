@@ -64,7 +64,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: workspace:~
+        specifier: ~2.4.1
         version: link:../core
     devDependencies:
       '@playwright/test':
@@ -116,7 +116,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: workspace:~
+        specifier: ~2.4.1
         version: link:../core
       '@siemens/ix-icons':
         specifier: v3-preview
@@ -698,7 +698,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: workspace:~
+        specifier: ~2.4.1
         version: link:../core
       '@siemens/ix-icons':
         specifier: v3-preview
@@ -850,7 +850,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: workspace:~
+        specifier: ~2.4.1
         version: link:../core
       '@siemens/ix-icons':
         specifier: v3-preview
@@ -30505,7 +30505,7 @@ snapshots:
       typed-assert: 1.0.9
       webpack: 5.92.1(esbuild@0.21.5)
     optionalDependencies:
-      html-webpack-plugin: 5.6.0(webpack@5.92.1)
+      html-webpack-plugin: 5.6.0(webpack@5.93.0)
 
   webpack@5.90.3(esbuild@0.20.1):
     dependencies:

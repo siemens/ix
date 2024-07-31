@@ -12,17 +12,46 @@ import CardTags from './../auto-generated/ix-card/tags.md';
 import CardProps from './../auto-generated/ix-card/props.md';
 import CardEvents from './../auto-generated/ix-card/events.md';
 
+## Examples
 
+<CardTags/>
 
-## Action Card (ix-action-card)
+<Playground
+  height="17rem"
+  name="card"
+  examplesByName>
+</Playground>
 
+### Action Card
 <ActionCardTags />
 
 <Playground
-height="13rem"
-name="action-card"
-examplesByName>
+  height="13rem"
+  name="action-card"
+  examplesByName>
 </Playground>
+
+## Push Card
+
+<PushCardTags />
+
+<Playground
+  height="20rem"
+  name="push-card"
+  examplesByName>
+</Playground>
+
+## API (ix-card)
+
+### Properties
+
+<CardProps />
+
+### Events
+
+<CardEvents />
+
+## API (ix-action-card)
 
 ### Properties
 
@@ -32,15 +61,7 @@ examplesByName>
 
 <ActionCardEvents />
 
-## Push Card (ix-push-card)
-
-<PushCardTags />
-
-<Playground
-height="20rem"
-name="push-card"
-examplesByName>
-</Playground>
+## API (ix-push-card)
 
 ### Properties
 
@@ -50,20 +71,3 @@ examplesByName>
 
 <PushCardEvents />
 
-## Card (ix-card)
-
-<CardTags />
-
-<Playground
-height="17rem"
-name="card"
-examplesByName>
-</Playground>
-
-### Properties
-
-<CardProps />
-
-### Events
-
-<CardEvents />

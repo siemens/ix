@@ -1,19 +1,34 @@
 import Tags from './../../auto-generated/ix-content/tags.md';
 import Slots from './../../auto-generated/ix-content/slots.md';
 import Props from './../../auto-generated/ix-content/props.md';
+import Events from './../../auto-generated/ix-content/events.md';
+
 import Playground from '@site/src/components/PlaygroundV2';
 
-# Content
-
-<Tags />
-
-## Usage
+## Examples
 
 The `ix-content` is usually used as layouting component on a single page.
 
-<Playground name="content" examplesByName height="18rem" noMargin></Playground>
+### Basic
 
-## Slots
+<Playground 
+  name="content" 
+  examplesByName 
+  height="18rem" 
+  noMargin>
+</Playground>
+
+## API
+
+### Properties
+
+<Props />
+
+### Events
+
+<Events />
+
+### Slots
 
 <Slots />
 

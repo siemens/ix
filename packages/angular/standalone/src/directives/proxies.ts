@@ -490,7 +490,7 @@ import type { FilterState as IIxCategoryFilterFilterState } from '@siemens/ix/co
 
 export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
   /**
-   * Event dispatched whenever the a category gets selected in the dropdown
+   * Event dispatched whenever a category gets selected in the dropdown
    */
   categoryChanged: EventEmitter<CustomEvent<string>>;
   /**

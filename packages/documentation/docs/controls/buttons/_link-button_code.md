@@ -1,26 +1,29 @@
 import Tags from './../../auto-generated/ix-link-button/tags.md';
+import Props from './../../auto-generated/ix-link-button/props.md';
+import Events from './../../auto-generated/ix-link-button/events.md';
 
 import Playground from '@site/src/components/PlaygroundV2';
-import Props from './../../auto-generated/ix-link-button/props.md';
 
-<Tags />
-
-## Usage
+## Examples
 
 <Playground
-name="link-button"
-examplesByName>
+  name="link-button"
+  examplesByName>
 </Playground>
 
-## Disabled
+### Disabled
 
 <Playground
-name="link-button-disabled"
-examplesByName>
+  name="link-button-disabled"
+  examplesByName>
 </Playground>
 
-## Properties
+## API
 
-### Props
+### Properties
 
 <Props />
+
+### Events
+
+<Events />

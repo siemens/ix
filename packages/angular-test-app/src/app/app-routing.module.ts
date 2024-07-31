@@ -9,6 +9,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AGGrid from '../preview-examples/aggrid';
@@ -121,6 +122,7 @@ import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
+import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
 import ToggleButtonPrimaryGhost from '../preview-examples/toggle-button-primary-ghost';
 import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primary-outline';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
@@ -350,6 +352,7 @@ const routes: Routes = [
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
+      { path: 'toggle-button-primary', component: ToggleButtonPrimary },
       { path: 'toggle-button-secondary', component: ToggleButtonSecondary },
       {
         path: 'toggle-button-secondary-ghost',
