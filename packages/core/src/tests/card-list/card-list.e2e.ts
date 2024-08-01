@@ -8,15 +8,23 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('card-list: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
     await page.goto('card-list/basic');
     await page.waitForTimeout(1000);
+
     expect(
       await page.screenshot({ fullPage: true, animations: 'disabled' })
     ).toMatchSnapshot();
+  });
+
+  regressionTest('should show  ellipsis label', async ({ page }) => {
+    await page.goto('card-list/long-label');
+    await page.waitForTimeout(1000);
+    await page.setViewportSize(viewPorts.sm);
+    expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
 
   regressionTest('should hide show all button', async ({ page }) => {

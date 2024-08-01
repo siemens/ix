@@ -43,7 +43,7 @@ export class ApplicationHeader {
   /**
    * Application name
    */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
@@ -60,6 +60,10 @@ export class ApplicationHeader {
   @State() applicationLayoutContext: ContextType<
     typeof ApplicationLayoutContext
   >;
+
+  get contentBackground() {
+    return this.hostElement.shadowRoot.querySelector('.dropdown-content');
+  }
 
   componentWillLoad() {
     useContextConsumer(
@@ -165,6 +169,12 @@ export class ApplicationHeader {
     this.hasSlottedElements = hasSlottedElements(slotElement);
   }
 
+  private onContentBgClick(e: MouseEvent) {
+    if (e.target === this.contentBackground) {
+      e.preventDefault();
+    }
+  }
+
   render() {
     return (
       <Host
@@ -190,7 +200,9 @@ export class ApplicationHeader {
         <div class="logo">
           <slot name="logo"></slot>
         </div>
-        <div class="name">{this.name}</div>
+        <ix-typography format="body-lg" class="name">
+          {this.name}
+        </ix-typography>
         <div class="content">
           {this.breakpoint === 'sm' ? (
             <Fragment>
@@ -209,7 +221,10 @@ export class ApplicationHeader {
                 discoverAllSubmenus
                 trigger={this.resolveContextMenuButton()}
               >
-                <div class="dropdown-content">
+                <div
+                  class="dropdown-content"
+                  onClick={(e) => this.onContentBgClick(e)}
+                >
                   <slot
                     onSlotchange={() => this.updateIsSlottedContent()}
                   ></slot>

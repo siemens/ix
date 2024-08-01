@@ -386,7 +386,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       this.registerKeyListener();
     } else {
-      this.arrowFocusController.disconnect();
+      this.destroyAutoUpdate();
+      this.arrowFocusController?.disconnect();
       this.itemObserver.disconnect();
       this.disposeKeyListener?.();
     }
@@ -395,6 +396,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Watch('trigger')
   changedTrigger(newTriggerValue: string | HTMLElement | Promise<HTMLElement>) {
     this.registerListener(newTriggerValue);
+  }
+
+  private destroyAutoUpdate() {
+    if (this.autoUpdateCleanup) {
+      this.autoUpdateCleanup();
+      this.autoUpdateCleanup = null;
+    }
   }
 
   private isAnchorSubmenu(): boolean {
@@ -442,10 +450,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       positionConfig.middleware.push(offset(this.offset));
     }
 
-    if (this.autoUpdateCleanup) {
-      this.autoUpdateCleanup();
-      this.autoUpdateCleanup = null;
-    }
+    this.destroyAutoUpdate();
 
     this.autoUpdateCleanup = autoUpdate(
       this.anchorElement,
@@ -506,14 +511,22 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private onDropdownClick(event: PointerEvent) {
     const target = dropdownController.pathIncludesTrigger(event.composedPath());
     if (target) {
-      event.preventDefault();
+      if (target !== this.triggerElement) {
+        event.preventDefault();
+      }
 
       if (this.isTriggerElement(target)) {
+        if (this.closeBehavior === 'outside') {
+          event.preventDefault();
+        }
         return;
       }
     }
 
-    if (this.closeBehavior === 'inside' || this.closeBehavior === 'both') {
+    if (
+      !event.defaultPrevented &&
+      (this.closeBehavior === 'inside' || this.closeBehavior === 'both')
+    ) {
       dropdownController.dismissAll([this.getId()], this.ignoreRelatedSubmenu);
       return;
     }
@@ -549,8 +562,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       >
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
-
-          <slot></slot>
+          {this.show && <slot></slot>}
         </div>
       </Host>
     );

@@ -1,5 +1,5 @@
 ---
-title: Split button
+sidebar_position: 4
 ---
 
 import DocsTabs from '@site/src/components/DocsTabs';

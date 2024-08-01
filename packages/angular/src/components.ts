@@ -368,7 +368,7 @@ import type { FilterState as IIxCategoryFilterFilterState } from '@siemens/ix';
 
 export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
   /**
-   * Event dispatched whenever the a category gets selected in the dropdown
+   * Event dispatched whenever a category gets selected in the dropdown
    */
   categoryChanged: EventEmitter<CustomEvent<string>>;
   /**
@@ -2095,7 +2095,7 @@ import type { TabClickDetail as IIxTabItemTabClickDetail } from '@siemens/ix';
 
 export declare interface IxTabItem extends Components.IxTabItem {
   /**
-   * On tab click @since 2.0.0
+   * Emitted when the tab is clicked. @since 2.0.0
    */
   tabClick: EventEmitter<CustomEvent<IIxTabItemTabClickDetail>>;
 }
