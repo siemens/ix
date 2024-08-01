@@ -27,7 +27,7 @@ Our design system is tailored for tablets and desktop computers, not smartphones
 - Medium screens: 768-1280 pixels
 
 - Large screens: &gt;1280 pixels
-  </Accordion>
+</Accordion>
 
 <Accordion title="What languages does Industrial Experience support?" id="i18n" showBorderBottom>
 Our design system uses English as default, but it can be used with any language. All texts are fully customizable and therefore integrate nicely with third-party i18n solutions which means your software can easily be adapted for users of different cultures and languages.
