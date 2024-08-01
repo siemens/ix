@@ -20,10 +20,10 @@ import { Component } from '@angular/core';
     <ix-layout-grid>
       <ix-row>
         <ix-col>
-          <ix-pill variant="primary" icon="info"> Primary </ix-pill>
+          <ix-pill icon="info"> Primary </ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="primary" icon="info" outline> Primary </ix-pill>
+          <ix-pill icon="info" outline> Primary </ix-pill>
         </ix-col>
       </ix-row>
 

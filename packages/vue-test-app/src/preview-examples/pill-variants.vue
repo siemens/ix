@@ -17,10 +17,10 @@ import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
   <IxLayoutGrid>
     <IxRow>
       <IxCol>
-        <IxPill variant="primary" icon="info"> Primary </IxPill>
+        <IxPill icon="info"> Primary </IxPill>
       </IxCol>
       <IxCol>
-        <IxPill variant="primary" icon="info" outline> Primary </IxPill>
+        <IxPill icon="info" outline> Primary </IxPill>
       </IxCol>
     </IxRow>
 
