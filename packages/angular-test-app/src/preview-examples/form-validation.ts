@@ -39,6 +39,15 @@ export function forbiddenDateValidator(nameRe: RegExp): ValidatorFn {
   };
 }
 
+export function customRequiredValidator(): ValidatorFn {
+  return (control: AbstractControl) => {
+    if (!control.untouched) {
+      return Validators.required(control);
+    }
+    return null
+  };
+}
+
 @Component({
   selector: 'app-example',
   templateUrl: `./form-validation.html`,
@@ -55,8 +64,8 @@ export default class FormValidation implements OnInit, OnDestroy {
   thresholdLimitBWarning = false;
 
   exampleForm = new FormGroup({
-    name: new FormControl('John', [Validators.required]),
-    'last-name': new FormControl('Muster', [Validators.required]),
+    name: new FormControl('', [customRequiredValidator()]),
+    'last-name': new FormControl('Muster', [customRequiredValidator()]),
     address: new FormControl('John Street 14', [Validators.required]),
     thresholdLimitA: new FormControl(6, [
       Validators.required,

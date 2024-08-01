@@ -105,8 +105,8 @@ e.g
 
 Above example will result in displaying the component as `invalid`, because `invalid` has a higher priority than `info`.
 
-<Admonition type="tip" icon="💡" title="Did you using Angular?">
-  When using Angular in combination with ReactiveForms, it is not necessary to manually apply the classes `.ix-invalid` and `.ix-valid`. This will be done automatically through value accessors.
+<Admonition type="tip" icon="💡" title="You are using Angular?">
+  When using Angular in combination with reactive forms, it is not necessary to manually apply the CSS classes `.ix-invalid` and `.ix-valid`. This will be done automatically through value accessors.
 </Admonition>
 
 ## Suppress internal validation
@@ -123,11 +123,15 @@ To suppress the internal validation of a component, you have to provide the `nov
 
 <Tabs>
   <TabItem value="angular" label="Angular" default>
+
+    Please note that using the `required` attribute in an Angular application could result in unfavourabe behaviour displaying the field as invalid even if there was no user interaction yet.
+    To avoid that it is suggested not to add the `required` attribute, but implement a custom validator for required fields instead (see `name` and `last-name` in the following code).
+
     <details>
       <summary>Just want to see the source code?</summary>
-
       <SourceCodePreview framework="angular" name="form-validation" examplesByName/>
     </details>
+
     <StackblitzEmbedded exampleName="form-validation" height="800px" framework="angular" />
   </TabItem>
   <TabItem value="react" label="React">
