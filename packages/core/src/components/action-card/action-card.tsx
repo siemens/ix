@@ -24,6 +24,7 @@ export type ActionCardVariant = CardVariant;
 export class IxActionCard {
   /**
    * Card variant
+   * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
    */
   @Prop() variant: ActionCardVariant = 'insight';
 

@@ -110,6 +110,7 @@ export namespace Components {
         "subheading": string;
         /**
           * Card variant
+          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant": ActionCardVariant;
     }
@@ -292,6 +293,7 @@ export namespace Components {
         "selected": boolean;
         /**
           * Card variant
+          * @deprecated variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.
          */
         "variant": CardVariant;
     }
@@ -1825,9 +1827,14 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
+          * Card KPI value
+          * @deprecated will be removed in 3.0. Use heading instead.
+         */
+        "header"?: string;
+        /**
           * Card heading
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Card icon
          */
@@ -1835,13 +1842,14 @@ export namespace Components {
         /**
           * Card KPI value
          */
-        "notification": string;
+        "notification"?: string;
         /**
           * Card subheading
          */
-        "subheading": string;
+        "subheading"?: string;
         /**
           * Card variant
+          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant": PushCardVariant;
     }
@@ -4132,6 +4140,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card variant
+          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant"?: ActionCardVariant;
     }
@@ -4327,6 +4336,7 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * Card variant
+          * @deprecated variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.
          */
         "variant"?: CardVariant;
     }
@@ -6006,6 +6016,11 @@ declare namespace LocalJSX {
          */
         "collapse"?: boolean;
         /**
+          * Card KPI value
+          * @deprecated will be removed in 3.0. Use heading instead.
+         */
+        "header"?: string;
+        /**
           * Card heading
          */
         "heading"?: string;
@@ -6023,6 +6038,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card variant
+          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant"?: PushCardVariant;
     }

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host, Prop, Watch } from '@stencil/core';
 import { CardVariant } from '../card/card';
 import { TypographyColors } from '../typography/typography';
 
@@ -30,20 +30,27 @@ export class PushCard {
   /**
    * Card KPI value
    */
-  @Prop() notification: string;
+  @Prop() notification?: string;
+
+  /**
+   * Card KPI value
+   * @deprecated will be removed in 3.0. Use heading instead.
+   */
+  @Prop() header?: string;
 
   /**
    * Card heading
    */
-  @Prop() heading: string;
+  @Prop() heading?: string;
 
   /**
    * Card subheading
    */
-  @Prop() subheading: string;
+  @Prop() subheading?: string;
 
   /**
    * Card variant
+   * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
    */
   @Prop() variant: PushCardVariant = 'insight';
 
@@ -53,8 +60,13 @@ export class PushCard {
    */
   @Prop() collapse: boolean = true;
 
+  @Watch('header')
+  onHeaderChange() {
+    this.notification = this.header;
+  }
+
   render() {
-    const color: TypographyColors =
+    const color: TypographyColors | undefined =
       this.variant === 'insight' || this.variant === 'notification'
         ? 'std'
         : undefined;
