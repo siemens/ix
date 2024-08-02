@@ -27,7 +27,7 @@ Follow the links below to the respective installation guides:
 </CardList>  
 
    
-**Experience the Industrial Experience style while coding**  
+**Experience the Siemens Industrial Experience style while coding**  
 We have designed a VS Code theme for our Siemens AG employees and business partners to experience the Industrial Experience style while coding. 
 Download it here:
 
