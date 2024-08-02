@@ -1,12 +1,13 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Playground from '@site/src/components/PlaygroundV2';
 
 import PropsHeaderJavaScript from './../auto-generated/ix-modal-header/props.md'
 import EventsHeaderJavaScript from './../auto-generated/ix-modal-header/events.md'
 
 import ModalConfig from './../auto-generated/utils/core/ModalConfig.md'
 import ModalInstance from './../auto-generated/utils/core/ModalInstance.md'
+
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Modal
 
@@ -25,10 +26,10 @@ Our modals support the following sizes:
 The `size` can be configured over the configuration object of the `showModal` function.
 
 <Playground
-height="18rem"
-name="modal-sizes"
-examplesByName
-> </Playground>
+  height="18rem"
+  name="modal-sizes"
+  examplesByName> 
+</Playground>
 
 ## Custom
 
@@ -38,18 +39,18 @@ Select the appropriate section below for the respective usage information.
 ### Angular
 
 <Playground
-name="modal" height="18rem"
-files={{
-  angular: [
-    'modal-by-template.ts',
-    "modal-by-instance.ts",
-    "modal-by-instance-content.ts",
-    ],
-}}>
+  name="modal" height="18rem"
+  files={{
+    angular: [
+      'modal-by-template.ts',
+      "modal-by-instance.ts",
+      "modal-by-instance-content.ts",
+      ],
+  }}>
 </Playground>
 
 `@siemens/ix-angular` provides an injectable service that allows to open modal dialogs based on a `ng-template` reference or by component type.
-If you want to pass arbitrary data to the modal use the `data`-property. In order to access that data inside the modal template use `let-modal` as seen in the angular example above.
+If you want to pass arbitrary data to the modal use the `data`-property. In order to access that data inside the modal template, use `let-modal` as seen in the angular example above.
 
 **ModalService**
 
@@ -104,41 +105,15 @@ files={{
 }}>
 </Playground>
 
-### API
-
-#### Modal header
-
-##### Props
-
-<PropsHeaderJavaScript />
-
-##### Events
-
-<EventsHeaderJavaScript />
-
-#### Modal config
-
-<ModalConfig />
-
-#### Modal instance
-<ModalInstance />
-
-#### Modal header
-##### Props
-<PropsHeaderJavaScript />
-
-##### Events
-<EventsHeaderJavaScript />
-
-## Loading
+### Loading
 
 How to open a loading modal is independent of the framework in use. Note that you have to import `showModalLoading` from the core package `@siemens/ix`.
 
 <Playground name="loading" files={{
-  react: ['loading.tsx'],
+react: ['loading.tsx'],
 }}/>
 
-## Message
+### Message
 
 How to open a message modal is independent of the framework in use. Note that you have to import `showMessage` from the core package `@siemens/ix`.
 
@@ -151,7 +126,7 @@ How to open a message modal is independent of the framework in use. Note that yo
 - question
 
 <Playground name="message" height="15rem" files={{
-  react: ['message.tsx'],
+react: ['message.tsx'],
 }}/>
 
 The `showMessage` method returns a Listener with the following signature:
@@ -164,3 +139,35 @@ TypedEvent<{
 ```
 
 `actionId` represents the configured action button.
+
+## API (modal header)
+
+### Properties
+
+<PropsHeaderJavaScript />
+
+### Events
+
+<EventsHeaderJavaScript />
+
+## API (modal config)
+
+### Properties
+
+<ModalConfig />
+
+## API (modal instance)
+
+### Properties
+
+<ModalInstance />
+
+## API (modal header)
+
+### Properties
+
+<PropsHeaderJavaScript />
+
+### Events
+
+<EventsHeaderJavaScript />

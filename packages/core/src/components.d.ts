@@ -359,7 +359,7 @@ export namespace Components {
     }
     interface IxCategoryFilter {
         /**
-          * Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
+          * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
         "categories": {
     [id: string]: {
@@ -406,7 +406,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
+          * If set to true, allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
         "repeatCategories": boolean;
         /**
@@ -415,7 +415,7 @@ export namespace Components {
          */
         "staticOperator"?: LogicalFilterOperator;
         /**
-          * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
+          * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions": string[];
         "tmpDisableScrollIntoView": boolean;
@@ -913,12 +913,12 @@ export namespace Components {
         /**
           * Icon of dropdown item
          */
-        "icon": string;
+        "icon"?: string;
         "isSubMenu": boolean;
         /**
           * Label of dropdown item
          */
-        "label": string;
+        "label"?: string;
         "suppressChecked": boolean;
     }
     /**
@@ -4411,7 +4411,7 @@ declare namespace LocalJSX {
     }
     interface IxCategoryFilter {
         /**
-          * Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
+          * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
         "categories"?: {
     [id: string]: {
@@ -4450,7 +4450,7 @@ declare namespace LocalJSX {
     [id: string]: string;
   };
         /**
-          * Event dispatched whenever the a category gets selected in the dropdown
+          * Event dispatched whenever a category gets selected in the dropdown
          */
         "onCategoryChanged"?: (event: IxCategoryFilterCustomEvent<string>) => void;
         /**
@@ -4470,7 +4470,7 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
+          * If set to true, allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
         "repeatCategories"?: boolean;
         /**
@@ -4479,7 +4479,7 @@ declare namespace LocalJSX {
          */
         "staticOperator"?: LogicalFilterOperator;
         /**
-          * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
+          * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions"?: string[];
         "tmpDisableScrollIntoView"?: boolean;
