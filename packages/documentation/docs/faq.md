@@ -9,7 +9,9 @@ import Accordion from '@site/src/components/Accordion';
 
 Welcome to the Industrial Experience Design System FAQ. This document serves as your go-to resource for quick and clear answers about our industrial experience design system. Whether you’re just starting with the design system or need insights into integration and functionality, you’ll find answers to the most common questions. If you can’t find what you’re looking for, feel free to reach out. These FAQs are continuously updated, and we welcome suggestions for improvement via [email](mailto:experience.industry@siemens.com) to our support team. Thank you for choosing to use Siemens Industrial Experience Design System.
 
-<h2 class="h2-faq">System access and use</h2>
+<div className="h2-faq">
+## System access and use
+</div>
 
 <Accordion title="What’s the difference between the Siemens brand and the open-source libraries?" id="brand-vs-os">
 The Siemens brand library within the design system is only available to Siemens employees and business partners as it contains Siemens brand elements. The open source library comes with the classic theme that can be used by non-Siemens applications. It’s possible to create custom themes that fit third-party style guides. Both libraries are available in dark and light modes.
@@ -33,7 +35,9 @@ Our design system is tailored for tablets and desktop computers, not smartphones
 Our design system uses English as default, but it can be used with any language. All texts are fully customizable and therefore integrate nicely with third-party i18n solutions which means your software can easily be adapted for users of different cultures and languages.
 </Accordion>
 
-<h2 class="h2-faq">Contribution and development</h2>
+<div className="h2-faq">
+## Contribution and development
+</div>
 
 <Accordion title="How do I contribute to or report issues in the design system?" id="contributions">
 We want everyone to contribute to our design system and play a part in its development. There are three main ways to contribute to or report issues:
@@ -47,7 +51,9 @@ For more information, see our [Github Contributing Guide](https://github.com/sie
 Absolutely! Please add requests for the future in [Github](https://github.com/siemens/ix) or [Siemens Xcelerator Community](https://community.siemens.com/c/ix/30).
 </Accordion>
 
-<h2 class="h2-faq">Customization and framework Support</h2>
+<div className="h2-faq">
+## Customization and framework Support
+</div>
 
 <Accordion title="How do I use custom icons?" id="custom-icons">
 The steps to incorporate your own custom SVG icon are found under the developing tab, in [Industrial Experience documentation](https://ix.siemens.io/docs/icon-library/icons#integrate-external-icons). There is also a guide for designing new icons based on the Industrial Experience (brand) style.
@@ -65,7 +71,9 @@ Our design system is built with plain Web Components and is, therefore, framewor
 Our codebase is openly and freely accessible for anyone to view, modify and distribute. We want to foster collaboration and innovation by allowing developers, designers and UX writers from around the world to contribute improvements and new features, leading to a more robust and versatile platform. We hope that this openness enhances digitalization while enabling rapid development and adaptation to new technologies.
 </Accordion>
 
-<h2 class="h2-faq">Files, documentation and accessibility</h2>
+<div className="h2-faq">
+## Files, documentation and accessibility
+</div>
 
 <Accordion title="Where are the component figma files and how can I access them?" id="figma-files">
 [Here](https://siemens-ix.code.siemens.io/ix-brand-theme/) you will find information on how to get Figma, how to access the most important Industrial Experience libraries in Figma, and other [libraries](https://ix.siemens.io/docs/design-kit/). Remember The Siemens brand library contains Siemens specific brand elements and is only accessible to Siemens employees and business partners. For the classic theme we don't have updated figma files, but you can use the code components. 
