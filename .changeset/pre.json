@@ -17,5 +17,16 @@
     "@siemens/ix-vue": "2.2.1",
     "vue-test-app": "2.1.2"
   },
-  "changesets": []
+  "changesets": [
+    "cool-keys-shout",
+    "fifty-gorillas-punch",
+    "fuzzy-countries-jam",
+    "gentle-snails-destroy",
+    "loud-moons-occur",
+    "purple-guests-wait",
+    "rare-numbers-double",
+    "shy-experts-rest",
+    "silly-insects-decide",
+    "wicked-windows-approve"
+  ]
 }
