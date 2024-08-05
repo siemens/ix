@@ -28,6 +28,10 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      id: 'faq',
+    },
+    {
+      type: 'doc',
       id: 'contact-us',
     },
     {
