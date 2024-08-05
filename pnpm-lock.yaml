@@ -64,7 +64,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.4.2
         version: link:../core
     devDependencies:
       '@playwright/test':
@@ -116,7 +116,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.4.2
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -613,7 +613,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.4.2
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -765,7 +765,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.4.2
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -10512,7 +10512,7 @@ packages:
   puppeteer@21.1.1:
     resolution: {integrity: sha512-2TLntjGA4qLrI9/8N0UK/5OoZJ2Ue7QgphN2SD+RsaHiha12AEiVyMGsB+i6LY1IoPAtEgYIjblQ7lw3kWDNRw==}
     engines: {node: '>=16.3.0'}
-    deprecated: < 22.6.4 is no longer supported
+    deprecated: < 22.8.2 is no longer supported
 
   pure-rand@6.0.4:
     resolution: {integrity: sha512-LA0Y9kxMYv47GIPJy6MI84fqTd2HmYZI83W/kM/SkKfDlajnZYfmXFTxkbY+xSBPkLJxltMa9hIkmdc29eguMA==}
