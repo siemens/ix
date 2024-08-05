@@ -10,12 +10,15 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+
 import { NavigationTestComponent } from './components/navigation-test.component';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
@@ -157,6 +160,7 @@ import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
 import ToggleButtonPrimaryGhost from '../preview-examples/toggle-button-primary-ghost';
 import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primary-outline';
+import ToggleButtonPrimary from 'src/preview-examples/toggle-button-primary';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
 import ToggleButtonSecondaryGhost from '../preview-examples/toggle-button-secondary-ghost';
 import ToggleButtonSecondaryOutline from '../preview-examples/toggle-button-secondary-outline';
@@ -317,6 +321,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     Toast,
     ToggleButtonPrimaryGhost,
     ToggleButtonPrimaryOutline,
+    ToggleButtonPrimary,
     ToggleButtonSecondaryGhost,
     ToggleButtonSecondaryOutline,
     ToggleButtonSecondary,

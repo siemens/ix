@@ -23,7 +23,7 @@ import { Component } from '@angular/core';
         slot="header-actions"
         ghost
         icon="context-menu"
-        color="color-primary"
+        icon-color="color-primary"
       ></ix-icon-button>
       <ix-dropdown trigger="context-menu">test</ix-dropdown>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy

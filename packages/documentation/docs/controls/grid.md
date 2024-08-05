@@ -63,7 +63,7 @@ e.g.:
 ## Usage
 
 <Playground
-name="aggrid"
-height="14rem"
-examplesByName>
+  name="aggrid"
+  height="14rem"
+  examplesByName>
 </Playground>

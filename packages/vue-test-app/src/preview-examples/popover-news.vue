@@ -19,6 +19,8 @@ IxApplication,
 } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="example-styles/dist/application.css"></style>
+
 <template>
   <IxApplication>
     <IxApplicationHeader>

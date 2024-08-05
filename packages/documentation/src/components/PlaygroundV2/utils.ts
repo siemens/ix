@@ -123,6 +123,8 @@ async function getFiles(
         framework === TargetFramework.ANGULAR
       );
       source = adaptedSource;
+      console.log('getFiles - source', source);
+      console.log('getFiles - styleFileName', styleFileName);
 
       // get style file
       if (styleFileName) {
@@ -140,6 +142,9 @@ async function getFiles(
     ] = source;
   });
   await Promise.all(filePromises);
+
+  console.log('getFiles - files', files);
+  console.log('getFiles - styleFiles', styleFiles);
 
   return { files, styleFiles };
 }
@@ -220,7 +225,11 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/tsconfig.json`,
   ]);
 
-  const renderFirstExample = sourceFiles[0];
+  let renderFirstExample = sourceFiles[0];
+
+  if(sourceFiles.length >= 2) {
+    renderFirstExample = sourceFiles[1];
+  }
 
   const declareComponents: string[] = [];
   sourceFiles.forEach(({ filename, raw }) => {
@@ -244,6 +253,10 @@ async function openAngularStackBlitz(
       ${declareComponents.map((_, index) => `COMPONENT_${index}`)}
     ];
   `;
+
+  console.log('sourceFiles', sourceFiles);
+  console.log('styleFilePath', styleFilePath);
+  console.log('renderFirstExample.filename', renderFirstExample.filename);
 
   const { files, styleFiles } = await getFiles(
     sourceFiles,

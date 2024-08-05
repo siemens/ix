@@ -18,12 +18,12 @@ export default () => {
       <IxLayoutGrid>
         <IxRow>
           <IxCol>
-            <IxPill variant="primary" icon="info">
+            <IxPill icon="info">
               Primary
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="primary" icon="info" outline>
+            <IxPill icon="info" outline>
               Primary
             </IxPill>
           </IxCol>

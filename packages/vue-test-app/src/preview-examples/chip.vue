@@ -25,7 +25,7 @@ import { IxChip } from '@siemens/ix-vue';
     <IxChip variant="warning" icon="print" closable> Alarm </IxChip>
     <IxChip
       background="purple"
-      color="green"
+      chip-color="green"
       variant="custom"
       icon="print"
       closable

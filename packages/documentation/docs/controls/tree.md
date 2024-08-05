@@ -1,30 +1,33 @@
-import Playground from '@site/src/components/PlaygroundV2';
-
 import Props from './../auto-generated/ix-tree/props.md';
-import TreeItemProps from './../auto-generated/ix-tree-item/props.md';
 import Events from './../auto-generated/ix-tree/events.md';
-import TreeItemEvents from './../auto-generated/ix-tree-item/events.md';
-import TabItem from '@theme/TabItem';
 
+import TreeItemProps from './../auto-generated/ix-tree-item/props.md';
+import TreeItemEvents from './../auto-generated/ix-tree-item/events.md';
+
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Tree
 
-## Usage
+## Examples
 
 <Playground
-name="tree" height="16rem"
-examplesByName></Playground>
+  name="tree" 
+  height="16rem"
+  examplesByName>
+</Playground>
 
 ### Custom tree node
 
 <Playground
-name="tree-custom" height="16rem"
-hideInitalCodePreview
-examplesByName></Playground>
+  name="tree-custom" 
+  height="12rem"
+  hideInitalCodePreview
+  examplesByName>
+</Playground>
 
-## Properties (ix-tree)
+## API (ix-tree)
 
-### Props
+### Properties
 
 <Props />
 
@@ -32,9 +35,9 @@ examplesByName></Playground>
 
 <Events />
 
-## Properties (ix-tree-item)
+## API (ix-tree-item)
 
-### Props
+### Properties
 
 <TreeItemProps />
 

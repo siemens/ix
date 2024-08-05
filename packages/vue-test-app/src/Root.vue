@@ -35,6 +35,9 @@ import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
 import BlindVariants from './preview-examples/blind-variants.vue';
+import ButtonDangerGhost from './preview-examples/button-danger-ghost.vue';
+import ButtonDangerOutline from './preview-examples/button-danger-secondary.vue';
+import ButtonDanger from './preview-examples/button-danger.vue';
 import ButtonGhost from './preview-examples/button-ghost.vue';
 import ButtonGreyGhost from './preview-examples/button-grey-ghost.vue';
 import ButtonGreySecondary from './preview-examples/button-grey-secondary.vue';
@@ -154,6 +157,7 @@ import TabsRounded from './preview-examples/tabs-rounded.vue';
 import ThemeSwitcher from './preview-examples/theme-switcher.vue';
 import ToggleButtonPrimaryGhost from './preview-examples/toggle-button-primary-ghost.vue';
 import ToggleButtonPrimaryOutline from './preview-examples/toggle-button-primary-outline.vue';
+import ToggleButtonPrimary from './preview-examples/toggle-button-primary.vue';
 import ToggleButtonSecondaryGhost from './preview-examples/toggle-button-secondary-ghost.vue';
 import ToggleButtonSecondaryOutline from './preview-examples/toggle-button-secondary-outline.vue';
 import ToggleButtonSecondary from './preview-examples/toggle-button-secondary.vue';
@@ -305,6 +309,7 @@ const routes: any = {
   '/preview/toast': Toast,
   '/preview/toggle-button-primary-ghost': ToggleButtonPrimaryGhost,
   '/preview/toggle-button-primary-outline': ToggleButtonPrimaryOutline,
+  '/preview/toggle-button-primary': ToggleButtonPrimary,
   '/preview/toggle-button-secondary-ghost': ToggleButtonSecondaryGhost,
   '/preview/toggle-button-secondary-outline': ToggleButtonSecondaryOutline,
   '/preview/toggle-button-secondary': ToggleButtonSecondary,
