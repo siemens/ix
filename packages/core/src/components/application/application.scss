@@ -42,11 +42,15 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
+
+    margin-left: var(--ix-application-menu-margin-left);
   }
 }
 
 :host(.breakpoint-md) {
-  --ix-application-menu-margin-left: 3.25rem;
+  --ix-application-menu-margin-left: calc(
+    3.25rem + var(--ix-application-menu-safe-area-left, 0rem)
+  );
 
   aside.slotted {
     margin-left: var(--ix-application-menu-margin-left);
@@ -66,5 +70,8 @@
 }
 
 :host(.breakpoint-sm) {
-  --ix-application-menu-margin-left: 0;
+  --ix-application-menu-margin-left: var(
+    --ix-application-menu-safe-area-left,
+    0rem
+  );
 }

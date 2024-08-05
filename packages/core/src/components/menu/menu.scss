@@ -40,7 +40,6 @@ $menu-expanded-width: 16rem;
     &::-webkit-scrollbar {
       display: none;
     }
-
   }
 
   .show-scrollbar {
@@ -88,10 +87,12 @@ $menu-expanded-width: 16rem;
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 3.25rem;
+    width: calc(3.25rem + var(--ix-application-menu-safe-area-left, 0rem));
     height: 100%;
     padding-block-end: 1rem;
     overflow: hidden;
+
+    padding-left: var(--ix-application-menu-safe-area-left, 0rem);
 
     &.expanded {
       box-shadow: var(--theme-navigation--box-shadow);
