@@ -51,9 +51,7 @@ export class MenuAboutNews {
    */
   @Event() closePopover: EventEmitter<void>;
 
-  /**
-   * Internal
-   */
+  /** @internal */
   @Prop() expanded = false;
 
   render() {
