@@ -27,7 +27,7 @@ import { Component } from '@angular/core';
       </ix-chip>
       <ix-chip
         background="purple"
-        color="green"
+        chip-color="green"
         variant="custom"
         icon="print"
         style="width: 10rem"

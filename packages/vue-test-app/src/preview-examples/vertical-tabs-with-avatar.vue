@@ -16,6 +16,8 @@ import {
 } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="example-styles/dist/menu.css"></style>
+
 <template>
   <IxMenu>
     <IxMenuAvatar top="john.doe@company.com" bottom="Administrator">

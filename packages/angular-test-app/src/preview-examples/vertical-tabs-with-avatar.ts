@@ -32,5 +32,10 @@ import { Component } from '@angular/core';
       </ix-menu-item>
     </ix-menu>
   `,
+  styles: [
+    `
+      @import 'example-styles/dist/menu.css';
+    `,
+  ],
 })
 export default class VerticalTabsWithAvatar {}

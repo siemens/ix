@@ -89,14 +89,14 @@ function adaptCode(code: string) {
 }
 
 async function fetchSource(path: string) {
-  console.log('FETCH SOURCE FROM', path);
+  //console.log('FETCH SOURCE FROM', path);
   const response = await fetch(`${path}`);
   const source = await response.text();
 
   // Docusaurus don' throw a classic 404 if a sub route is not found
   // Check if the response is the bootstrap code of docusaurus
   // If this is the case the resource is not existing
-  console.log(source);
+  //console.log(source);
   if (
     !source ||
     source?.includes('<div id="__docusaurus"></div>') ||
