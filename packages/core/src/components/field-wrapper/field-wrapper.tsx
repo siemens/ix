@@ -104,6 +104,7 @@ export class FieldWrapper implements FieldWrapperInterface {
               required={this.required}
               htmlFor={this.htmlForLabel}
               controlRef={this.controlRef}
+              isInvalid={this.isInvalid}
             >
               {this.label}
             </ix-field-label>
