@@ -11,11 +11,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  templateUrl: './blind-variants.html',
   styles: [
     `
       @import 'example-styles/dist/blind.css';
     `,
   ],
-  templateUrl: './blind-variants.html',
 })
 export default class Blind {}
