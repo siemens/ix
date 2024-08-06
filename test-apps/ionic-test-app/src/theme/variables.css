@@ -12,6 +12,15 @@ http://ionicframework.com/docs/theming/ */
   --ix-safe-area-inset-left: env(safe-area-inset-left);
 }
 
+body[data-screen-orientation='landscape-primary'] {
+  /*
+  * If the device is in landscape-primary orientation,
+  * we need to adjust the safe areas for the menu.
+  * The data-screen-orientation attribute is added by the main.ts file
+  */
+  --ix-application-menu-safe-area-left: var(--ix-safe-area-inset-left);
+}
+
 :root.md,
 :root.ios {
   /*

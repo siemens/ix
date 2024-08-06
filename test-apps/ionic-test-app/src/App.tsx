@@ -1,5 +1,10 @@
 import { NavLink, Redirect, Route, HashRouter } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import {
+  IonApp,
+  IonRouterOutlet,
+  isPlatform,
+  setupIonicReact,
+} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 
@@ -65,6 +70,11 @@ const IxNavLinkMenuItem = ({ to, label }: { to: string; label: string }) => (
     )}
   ></NavLink>
 );
+
+const ipad = [`sm`, 'md', 'lg'];
+const iphone = [`sm`];
+
+let breakpoints = isPlatform('ipad') ? ipad : iphone;
 
 const App: React.FC = () => (
   <IxApplicationContext>
