@@ -152,6 +152,7 @@ yarn-error.log*
 packages/core/components/
 packages/core/hydrate/
 packages/*/dist/
+test-apps/*/dist/
 packages/*/www/
 packages/*/loader/
 packages/*/dist-transpiled/
