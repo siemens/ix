@@ -1,0 +1,87 @@
+/*
+ * SPDX-FileCopyrightText: 2022 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.Example {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--theme-color-component-1);
+  border-radius: var(--theme-default-border-radius);
+  height: 100%;
+  padding: 0.5rem;
+}
+
+.Example > * {
+  flex-grow: 1;
+}
+
+.SliderExample {
+  flex-direction: column;
+}
+
+.SliderExample ix-slider {
+  width: 100%;
+}
+
+.PaginationExample {
+  flex-direction: column;
+}
+
+.PaginationExample > * {
+  margin-bottom: 1rem;
+}
+
+.ButtonExample {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.ButtonExample > * {
+  margin: 0.25rem;
+}
+
+.IconCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.IconsExample {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.TabsExample {
+  display: block;
+}
+
+.TabsExample .TabsExampleContent {
+  margin: 0.25rem;
+}
+
+.TypographyExample {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.Toggle {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}

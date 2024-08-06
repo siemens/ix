@@ -36,15 +36,30 @@
     overflow: hidden;
   }
 
+  .content-area {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: calc(100% - var(--ix-safe-area-inset-bottom, 0px));
+    width: 100%;
+  }
+
   main {
     display: block;
     position: relative;
-    height: calc(100% - var(--ix-safe-area-inset-bottom, 0px));
-    width: 100%;
-    overflow: hidden;
+    flex-grow: 1;
 
+    width: 100%;
     margin-left: var(--ix-application-menu-margin-left);
     padding-bottom: var(--ix-safe-area-inset-bottom);
+    overflow: auto;
+  }
+
+  footer {
+    display: block;
+    position: relative;
+    width: 100%;
   }
 }
 

@@ -19,6 +19,23 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-application>
+          <ix-application-header></ix-application-header>
+          <ix-menu></ix-menu>
+          <div
+            style={{
+              display: 'block',
+              position: 'relative',
+              height: '100%',
+            }}
+          >
+            <ix-button>Test</ix-button>
+          </div>
+          <ix-button slot="bottom">Footer</ix-button>
+        </ix-application>
+      </Host>
+    );
   }
 }

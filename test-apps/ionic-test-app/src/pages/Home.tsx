@@ -1,9 +1,19 @@
-import { IonHeader, IonPage, isPlatform } from '@ionic/react';
+import {
+  IonButton,
+  IonDatetime,
+  IonDatetimeButton,
+  IonHeader,
+  IonPage,
+  isPlatform,
+} from '@ionic/react';
 import './Home.css';
 import {
+  IxBlind,
   IxButton,
   IxContent,
   IxContentHeader,
+  IxDateDropdown,
+  IxDatePicker,
   IxEventList,
   IxEventListItem,
   IxKeyValue,
@@ -92,6 +102,7 @@ const Home: React.FC = () => {
     const result = await showModal({
       centered: true,
       content: <TriggerEventModal></TriggerEventModal>,
+      size: 'full-screen',
     });
 
     result.onClose.once((eventName) => {

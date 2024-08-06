@@ -1,10 +1,10 @@
 import DevicePreview from '@site/src/components/DevicePreview';
 
-# Mobile
+# Mobile Experience
 
 ## Using Ionic
 
-To implement a mobile application you as a developer has many possibilities on choose a framework. In this example we are using Ionic + React to implement a mobile application which can be installed via AppStore.
+To implement a mobile application you as a developer has many possibilities on choose a framework. In this example we are using Ionic + React to implement a mobile application which can be installed on your mobile device.
 
 ### Theming Ionic
 
@@ -14,7 +14,7 @@ Ionic uses CSS custom properties (variables) same as Siemens Industrial Experien
 
 Here is an example of a default theme mapping [Repository Link](https://github.com/siemens/ix/blob/feat/ionic-test-app/test-apps/ionic-test-app/src/theme/variables.css).
 
-#### Define safe areas
+### Define safe areas
 
 Most modern mobile phones do not have a simple rectangle display, sometimes it has a radius sometimes it has a "notch" like the Iphone.
 
@@ -76,7 +76,7 @@ Please be aware to check if the content pages of your application are respect th
 }
 ```
 
-#### Application frame layout
+### Application frame layout
 
 By default the [Application Frame](./controls/application-frame/application.md) comes with tree default layouts `sm` (mobile screens), `md` (smallest Ipad size), `lg` (Desktop). These layout are selected automatically depending on your hardware display size.
 
