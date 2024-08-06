@@ -1,14 +1,17 @@
 import Admonition from '@theme/Admonition';
-import Playground, { SourceCodePreview } from '@site/src/components/PlaygroundV2';
+import Playground, {
+  SourceCodePreview,
+} from '@site/src/components/PlaygroundV2';
 import StackblitzEmbedded from '@site/src/components/StackblitzEmbedded';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Props from '@site/docs/auto-generated/ix-validation-tooltip/props.md';
 
-# Validation
+## Code
 
 All components which are tagged via `form-ready` are usable inside a `form` without requiring manual integration.
 
-## Label
+### Label
 
 Each `form-ready` component includes a `label` attribute that displays a label above the component.
 
@@ -18,9 +21,9 @@ Each `form-ready` component includes a `label` attribute that displays a label a
 
 The `label` attribute is optional and can be left empty to display no label.
 
-## Form layouting
+### Form layouting
 
-### Using custom layout
+#### Using custom layout
 
 To align `form-ready` components in a complex form layout, you typically omit the `label` attribute and define the label
 as an `ix-field-label` component.
@@ -52,7 +55,7 @@ You can follow the example here:
 ></ix-helper-text>
 ```
 
-### Using `ix-layout-form`
+#### Using `ix-layout-form`
 
 ```html
 <form>
@@ -77,7 +80,7 @@ You can follow the example here:
 </form>
 ```
 
-## Validation text
+### Validation text
 
 - **helperText** (optional): Text displayed below the field component to provide additional information.
 - **infoText** (optional): Informational text for the field component.
@@ -86,7 +89,7 @@ You can follow the example here:
 - **validText** (optional): Valid text for the field component.
 - **showTextAsTooltip** (optional): Determines whether to display helper, info, warning, error, and valid text as tooltips.
 
-## Validation states
+### Validation states
 
 To change the validation representation, you have to apply the corresponding classes to the component.
 
@@ -106,10 +109,12 @@ e.g
 Above example will result in displaying the component as `invalid`, because `invalid` has a higher priority than `info`.
 
 <Admonition type="tip" icon="💡" title="You are using Angular?">
-  When using Angular in combination with reactive forms, it is not necessary to manually apply the CSS classes `.ix-invalid` and `.ix-valid`. This will be done automatically through value accessors.
+  When using Angular in combination with reactive forms, it is not necessary to
+  manually apply the CSS classes `.ix-invalid` and `.ix-valid`. This will be
+  done automatically through value accessors.
 </Admonition>
 
-## Suppress internal validation
+### Suppress internal validation
 
 To suppress the internal validation of a component, you have to provide the `novalidate` attribute to the [form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#novalidate).
 
@@ -119,7 +124,7 @@ To suppress the internal validation of a component, you have to provide the `nov
 </form>
 ```
 
-## Example
+### Example
 
 <Tabs>
   <TabItem value="angular" label="Angular" default>
@@ -133,6 +138,7 @@ To suppress the internal validation of a component, you have to provide the `nov
     </details>
 
     <StackblitzEmbedded exampleName="form-validation" height="800px" framework="angular" />
+
   </TabItem>
   <TabItem value="react" label="React">
     <Admonition type="tip" icon="💡" title="Just an example">
@@ -146,6 +152,7 @@ To suppress the internal validation of a component, you have to provide the `nov
       <SourceCodePreview framework="react" name="form-validation" examplesByName/>
     </details>
     <StackblitzEmbedded exampleName="form-validation" height="800px" framework="react" />
+
   </TabItem>
   <TabItem value="vue" label="Vue">
   <Admonition type="tip" icon="💡" title="Just an example">
@@ -162,3 +169,20 @@ To suppress the internal validation of a component, you have to provide the `nov
 
   </TabItem>
 </Tabs>
+
+### Legacy form validation
+
+For the validation `@siemens/ix` use the validation concept of [bootstrap](https://getbootstrap.com/docs/5.2/forms/validation/).
+The differences is that the validation tooltip is implemented as `@siemens/ix` [tooltip](#properties-tooltip)
+
+In the following preview section you will find different implementation of a forms validation.
+
+#### Preview
+
+<Playground name="validation" height="20rem" examplesByName></Playground>
+
+#### Properties (Tooltip)
+
+#### Props
+
+<Props />
