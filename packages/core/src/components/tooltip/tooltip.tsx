@@ -65,7 +65,7 @@ export class Tooltip implements IxOverlayComponent {
 
   /**
    * Initial placement of the tooltip. If the placement don"t have enough space,
-   * the tooltip will placed on another location.
+   * the tooltip will be placed on another location.
    *
    * @since 1.5.0
    */
