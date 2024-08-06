@@ -1,0 +1,8 @@
+.Home__Event__Container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+}
