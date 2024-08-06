@@ -39,11 +39,12 @@
   main {
     display: block;
     position: relative;
-    height: 100%;
+    height: calc(100% - var(--ix-safe-area-inset-bottom, 0px));
     width: 100%;
     overflow: hidden;
 
     margin-left: var(--ix-application-menu-margin-left);
+    padding-bottom: var(--ix-safe-area-inset-bottom);
   }
 }
 

@@ -1,7 +1,8 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
 
-:root {
+:root.md,
+:root.ios {
   /*
   * Define the safe areas for the mobile application e.g to handle the iphone notch
   */
@@ -11,16 +12,8 @@ http://ionicframework.com/docs/theming/ */
   --ix-safe-area-inset-left: env(safe-area-inset-left);
 }
 
-body[data-screen-orientation='landscape-primary'] {
-  /*
-  * If the device is in landscape-primary orientation,
-  * we need to adjust the safe areas for the menu.
-  * The data-screen-orientation attribute is added by the main.ts file
-  */
-  --ix-application-menu-safe-area-left: env(safe-area-inset-left);
-}
-
-:root .theme-brand-dark {
+:root.md,
+:root.ios {
   /*
   * Re-map the ix colors with the ionic theme
   */
@@ -31,7 +24,8 @@ body[data-screen-orientation='landscape-primary'] {
   --ion-toolbar-background: var(--theme-app-header--background);
 }
 
-:root .theme-brand-dark {
+:root.md,
+:root.ios {
   /*
   * Ionic uses colors steps to display different shades of the same color.
   */

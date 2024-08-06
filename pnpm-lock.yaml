@@ -443,6 +443,9 @@ importers:
       html-test-app:
         specifier: workspace:*
         version: link:../html-test-app
+      ionic-test-app:
+        specifier: workspace:*
+        version: link:../../test-apps/ionic-test-app
       prism-react-renderer:
         specifier: ^2.1.0
         version: 2.1.0(react@18.2.0)

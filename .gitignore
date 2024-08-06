@@ -181,6 +181,7 @@ packages/documentation/scripts/.typedoc/
 packages/documentation/static/auto-generated/
 packages/documentation/static/figma/
 packages/documentation/static/webcomponent-examples/*
+packages/documentation/static/ionic-preview
 !packages/documentation/static/versioned_examples/*/webcomponent-examples
 
 ###

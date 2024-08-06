@@ -1,11 +1,5 @@
-import { Link, NavLink, NavLinkProps, Redirect, Route } from 'react-router-dom';
-import {
-  IonApp,
-  IonHeader,
-  IonRouterOutlet,
-  isPlatform,
-  setupIonicReact,
-} from '@ionic/react';
+import { NavLink, Redirect, Route, HashRouter } from 'react-router-dom';
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 
@@ -40,6 +34,7 @@ import '@ionic/react/css/palettes/dark.always.css';
 /* Core CSS for iX */
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 import './theme/variables.css';
+import './theme/preview.css';
 
 import {
   IxApplication,
@@ -74,7 +69,7 @@ const IxNavLinkMenuItem = ({ to, label }: { to: string; label: string }) => (
 const App: React.FC = () => (
   <IxApplicationContext>
     <IonApp>
-      <IonReactRouter>
+      <HashRouter>
         <IxApplication breakpoints={['sm']}>
           <IxApplicationHeader name="My App">
             <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
@@ -93,24 +88,24 @@ const App: React.FC = () => (
             </IxAvatar>
           </IxApplicationHeader>
           <IxMenu>
-            <IxNavLinkMenuItem to="/home" label="Home"></IxNavLinkMenuItem>
-            <IxNavLinkMenuItem to="/other" label="Other"></IxNavLinkMenuItem>
+            <IxNavLinkMenuItem to="home" label="Home"></IxNavLinkMenuItem>
+            <IxNavLinkMenuItem to="other" label="Other"></IxNavLinkMenuItem>
           </IxMenu>
           <IonRouterOutlet animated={false}>
-            <Route exact path="/home">
+            <Route path="/home">
               <Home />
             </Route>
 
-            <Route exact path="/other">
+            <Route path="/other">
               <Other />
             </Route>
 
             <Route exact path="/">
-              <Redirect to="/home" />
+              <Redirect to="home" />
             </Route>
           </IonRouterOutlet>
         </IxApplication>
-      </IonReactRouter>
+      </HashRouter>
     </IonApp>
   </IxApplicationContext>
 );

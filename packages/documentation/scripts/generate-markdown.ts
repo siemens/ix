@@ -17,6 +17,8 @@ import rimraf from 'rimraf';
 
 const rootPath = path.join(__dirname, '../');
 
+const staticPath = path.join(rootPath, 'static');
+
 const componentDocPath = path.join(
   rootPath,
   '..',
@@ -58,18 +60,9 @@ const exampleStylesPath = path.join(examplePath, 'example-styles', 'src');
 
 const docsPath = path.join(rootPath, 'docs', 'auto-generated');
 
-const iframeExampleCodePath = path.join(
-  rootPath,
-  'static',
-  'webcomponent-examples'
-);
+const iframeExampleCodePath = path.join(staticPath, 'webcomponent-examples');
 
-const docsStaticExamples = path.join(
-  rootPath,
-  'static',
-  'auto-generated',
-  'previews'
-);
+const docsStaticExamples = path.join(staticPath, 'auto-generated', 'previews');
 const docsStaticWebComponentExamples = path.join(
   docsStaticExamples,
   'web-components'
@@ -80,6 +73,10 @@ const docsStaticVueExamples = path.join(docsStaticExamples, 'vue');
 const docsStaticStyleExamples = path.join(docsStaticExamples, 'styles');
 
 const iframeFrameDist = path.join(iframeExampleCodePath, 'dist');
+
+const ionicTestAppPath = path.join(rootPath, 'node_modules', 'ionic-test-app');
+const ionicTestAppDistPath = path.join(ionicTestAppPath, 'dist');
+const docsIonicPreviewPath = path.join(staticPath, 'ionic-preview');
 
 interface Context {
   names: string[];
@@ -106,6 +103,9 @@ const tasks = new Listr<Context>(
         rimraf.sync(iframeExampleCodePath);
         await fs.ensureDir(iframeExampleCodePath);
         await fs.ensureDir(iframeFrameDist);
+
+        rimraf.sync(docsIonicPreviewPath);
+        await fs.ensureDir(docsIonicPreviewPath);
       },
     },
     {
@@ -146,7 +146,7 @@ const tasks = new Listr<Context>(
       },
     },
     {
-      title: 'Copy examples to dist',
+      title: 'Copy html-test-app preview to documentation',
       task: async () => {
         const copy = [
           fs.copy(htmlTestAppPath, docsStaticWebComponentExamples),
@@ -177,6 +177,12 @@ const tasks = new Listr<Context>(
         }
 
         return Promise.all(copy);
+      },
+    },
+    {
+      title: 'Copy ionic-test-app preview to documentation',
+      task: async () => {
+        return fs.copy(ionicTestAppDistPath, docsIonicPreviewPath);
       },
     },
   ],

@@ -32,7 +32,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'What\'s happening?',
+      label: "What's happening?",
       items: [
         {
           type: 'doc',
@@ -103,6 +103,10 @@ const sidebars: SidebarsConfig = {
               id: 'installation/csp',
             },
           ],
+        },
+        {
+          type: 'doc',
+          id: 'mobile',
         },
       ],
     },

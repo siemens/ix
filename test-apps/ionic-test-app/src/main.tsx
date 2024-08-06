@@ -3,6 +3,16 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
 
+function getPreviewModeValueFromCurrentURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('preview-mode');
+}
+const previewModeValue = getPreviewModeValueFromCurrentURL();
+
+if (previewModeValue === 'ios') {
+  document.body.classList.add('preview-mode-ios');
+}
+
 const container = document.getElementById('root');
 const root = createRoot(container!);
 

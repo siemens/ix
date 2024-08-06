@@ -1,4 +1,4 @@
-import { IonHeader, IonPage } from '@ionic/react';
+import { IonHeader, IonPage, isPlatform } from '@ionic/react';
 import './Home.css';
 import {
   IxButton,
@@ -101,17 +101,7 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader translucent={true}>
-        {/* <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <IonTitle>Title</IonTitle>
-          <IonButtons collapse={true} slot="end">
-            <IxButton outline>Button</IxButton>
-          </IonButtons>
-        </IonToolbar> */}
-      </IonHeader>
+      <IonHeader translucent={true}></IonHeader>
       <IxContent>
         <IxContentHeader
           slot="header"
@@ -131,7 +121,12 @@ const Home: React.FC = () => {
               label="Battery"
               value={`${batteryInfo?.batteryLevel}%`}
             />
-            <IxKeyValue label="Orientation" value={`${orientation}`} />
+            <IxKeyValue
+              label="Orientation"
+              value={`${
+                isPlatform('mobile') ? orientation : 'portrait-primary'
+              }`}
+            />
           </IxKeyValueList>
 
           <div className="Home__Event__Container">
