@@ -8,12 +8,13 @@ Siemens Industrial Experience can easily be utilized for creating mobile applica
 
 Check out our hybrid example application using Ionic, React and Siemens Industrial Experience:
 
-<br />
+<br/>
 <DevicePreview />
-<br />
+<br/>
 
-Please find the repository with all the source code of the demo application here: <br />
-[Ionic React Test App on GitHub](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app).
+Please find the repository with all the source code of the demo application here: [Ionic React Test App on GitHub](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app).
+
+Keep on reading to learn more about how this works and how to implement it yourself.
 
 ## Mobile App Development
 
@@ -148,3 +149,16 @@ const Application = () => {
 ## User experience considerations
 
 Regardless of the technology there are diverse aspects to take into consideration when developing applications for mobile devices:
+
+
+### Responsive Web Design (RWD):
+
+While Siemens Industrial Experience components are designed to handle various viewport sizes gracefully, it’s crucial to plan for smaller screens and different screen orientations in an early stage of the project. Adjusting the layout of your application or restructuring content based on the devices viewport is crucial for a mobile friendly experience. Also hiding certain information or entire components can be an effective way to achieve mobile responsiveness.
+
+### Interaction
+
+Users interact with mobile devices primarily through touch input. While our Web Components are designed to respond to touch events, it may be necessary to implement custom event listeners for touch interactions based on your specific use cases.
+
+### Device-specific features:
+
+Certain devices come with unique characteristics that must be considered during development (e.g. display "notch"). Not taking these into account can result in parts of the user interface being hidden or inaccessible.
