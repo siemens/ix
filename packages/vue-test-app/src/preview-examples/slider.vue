@@ -1,4 +1,3 @@
-
 <!--
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
@@ -9,7 +8,7 @@
 -->
 
 <script setup lang="ts">
-  import { IxSlider } from '@siemens/ix-vue';
+import { IxSlider } from '@siemens/ix-vue';
 </script>
 
 <template>

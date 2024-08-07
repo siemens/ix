@@ -2,19 +2,22 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Loading button</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading button example</title>
     <script type="module">
       import 'example-styles/dist/button-loading.css';
     </script>
   </head>
-
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
+  <body>
     <script>
       function toggle(obj) {
         obj.loading = true;
@@ -24,12 +27,18 @@ SPDX-License-Identifier: MIT
         }, 2500);
       }
     </script>
+    <!-- Preview code -->
+    <ix-button onclick="toggle(this)" outline> Button </ix-button>
 
-    <ix-button onclick="toggle(this)" outline variant="primary">
+    <ix-button onclick="toggle(this)" outline>
       Button
     </ix-button>
 
-    <ix-button onclick="toggle(this)" icon="star" outline variant="primary">
+    <ix-button
+      onclick="toggle(this)"
+      icon="star"
+      outline
+    >
       Button
     </ix-button>
 
@@ -37,17 +46,15 @@ SPDX-License-Identifier: MIT
       onclick="toggle(this)"
       icon="star"
       outline
-      variant="primary"
     >
     </ix-icon-button>
 
-    <ix-button loading outline variant="primary"> Button </ix-button>
+    <ix-button loading  outline> Button </ix-button>
 
     <ix-icon-button
       loading
       icon="star"
       outline
-      variant="primary"
     ></ix-icon-button>
     <!-- Preview code -->
     <script type="module" src="./init.js"></script>

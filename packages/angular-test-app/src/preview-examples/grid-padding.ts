@@ -14,28 +14,7 @@ import { Component } from '@angular/core';
   templateUrl: './grid-padding.html',
   styles: [
     `
-      ix-layout-grid {
-        margin-bottom: 1rem;
-      }
-
-      ix-col > ix-typography {
-        display: flex;
-        padding: 0.15rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        flex: 1 0 0;
-        align-self: stretch;
-        border: 1px solid var(--theme-color-soft-bdr);
-        background: var(--theme-color-ghost);
-        border-radius: 3px;
-      }
-
-      .example-parent {
-        padding-top: 1rem;
-        padding-bottom: 0.25rem;
-        background-color: var(--theme-color-ghost--hover);
-      }
+      @import 'example-styles/dist/grid.css';
     `,
   ],
 })

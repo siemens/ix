@@ -2,6 +2,9 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <html>
@@ -20,36 +23,32 @@ SPDX-License-Identifier: MIT
   </head>
   <body>
     <div>
-      <ix-toggle-button outline class="m-1">Normal</ix-toggle-button>
-      <ix-toggle-button outline class="m-1" pressed>Pressed</ix-toggle-button>
-      <ix-toggle-button outline class="m-1" disabled>Disabled</ix-toggle-button>
-      <ix-toggle-button ghost outline="false" class="m-1">
+      <ix-toggle-button class="m-1" outline>Normal</ix-toggle-button>
+      <ix-toggle-button class="m-1" outline pressed>Pressed</ix-toggle-button>
+      <ix-toggle-button class="m-1" disabled outline>Disabled</ix-toggle-button>
+      <ix-toggle-button class="m-1" ghost outline="false">
         Normal
       </ix-toggle-button>
-      <ix-toggle-button ghost class="m-1" pressed> Pressed </ix-toggle-button>
-      <ix-toggle-button ghost class="m-1" disabled> Disabled </ix-toggle-button>
-      <ix-toggle-button class="m-1"> Normal </ix-toggle-button>
-      <ix-toggle-button class="m-1" pressed> Pressed </ix-toggle-button>
-      <ix-toggle-button class="m-1" disabled> Disabled </ix-toggle-button>
+      <ix-toggle-button class="m-1" ghost pressed> Pressed</ix-toggle-button>
+      <ix-toggle-button class="m-1" disabled ghost> Disabled</ix-toggle-button>
+      <ix-toggle-button class="m-1"> Normal</ix-toggle-button>
+      <ix-toggle-button class="m-1" pressed> Pressed</ix-toggle-button>
+      <ix-toggle-button class="m-1" disabled> Disabled</ix-toggle-button>
     </div>
 
     <div>
-      <ix-toggle-button variant="primary" outline class="m-1">
-        Normal
-      </ix-toggle-button>
-      <ix-toggle-button variant="primary" outline class="m-1" pressed>
+      <ix-toggle-button class="m-1" variant="primary" outline> Normal</ix-toggle-button>
+      <ix-toggle-button class="m-1" variant="primary" outline pressed>
         Pressed
       </ix-toggle-button>
-      <ix-toggle-button variant="primary" outline class="m-1" disabled>
+      <ix-toggle-button class="m-1" variant="primary" outline disabled>
         Disabled
       </ix-toggle-button>
-      <ix-toggle-button variant="primary" ghost class="m-1">
-        Normal
-      </ix-toggle-button>
-      <ix-toggle-button variant="primary" ghost class="m-1" pressed>
+      <ix-toggle-button class="m-1" variant="primary" ghost> Normal</ix-toggle-button>
+      <ix-toggle-button class="m-1" variant="primary" ghost pressed>
         Pressed
       </ix-toggle-button>
-      <ix-toggle-button variant="primary" ghost class="m-1" disabled>
+      <ix-toggle-button class="m-1" variant="primary" ghost disabled>
         Disabled
       </ix-toggle-button>
     </div>

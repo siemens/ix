@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-basic-navigation>
+    <ix-basic-navigation applicationName="Application name">
       <div class="placeholder-logo" slot="logo"></div>
       <ix-menu>
         <ix-menu-item>Item 1</ix-menu-item>
@@ -20,5 +20,10 @@ import { Component } from '@angular/core';
       </ix-menu>
     </ix-basic-navigation>
   `,
+  styles: [
+    `
+      @import 'example-styles/dist/basic-navigation.css';
+    `,
+  ],
 })
 export default class BasicNavigation {}

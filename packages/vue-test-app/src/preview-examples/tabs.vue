@@ -15,8 +15,10 @@ const selectedTab = ref(0);
 const changeTab = (tabId: number) => (selectedTab.value = tabId);
 </script>
 
+<style scoped src="example-styles/dist/tabs.css"></style>
+
 <template>
-  <div style="display: block; position: relative; width: 100%">
+  <div class="tabs">
     <IxTabs :selected="selectedTab">
       <IxTabItem @click="changeTab(0)">Tab 1</IxTabItem>
       <IxTabItem @click="changeTab(1)">Tab 2</IxTabItem>

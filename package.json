@@ -31,6 +31,7 @@
     "prepare": "pnpm git-hooks && pnpm disable-telemetry",
     "disable-telemetry": "turbo telemetry disable",
     "git-hooks": "husky install",
+    "compare-examples": "node ./scripts/compare-preview-examples-across-test-apps.js",
     "ci:version": "pnpm changeset version && pnpm i --lockfile-only",
     "ci:publish": "pnpm changeset publish",
     "ts-run": "tsx"

@@ -34,7 +34,7 @@ const show = ref(false);
 <template>
   <IxButton @click="show = true">Show modal</IxButton>
   <IxDialog ref="modalRef" v-if="show">
-    <IxModalHeader>Message headline</IxModalHeader>
+    <IxModalHeader onclose="dismiss()">Message headline</IxModalHeader>
     <IxModalContent>Message text lorem ipsum</IxModalContent>
     <IxModalFooter>
       <IxButton outline @click="dismiss()"> Cancel </IxButton>

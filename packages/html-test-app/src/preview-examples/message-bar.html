@@ -2,19 +2,33 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
-  <head> </head>
-  <body class="theme-brand-dark">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message bar example</title>
+    <!-- Sources -->
+    <script type="module">
+      import 'example-styles/dist/message-bar.css';
+    </script>
+    <!-- Sources -->
+  </head>
+
+  <body>
     <!-- Preview code -->
-    <div style='padding: 0.5rem'>
-      <ix-message-bar style="margin-bottom: 0.5rem; display: block">Message text</ix-message-bar>
-      <ix-message-bar style="margin-bottom: 0.5rem; display: block" type="warning">Message text</ix-message-bar>
-      <ix-message-bar style="display: block" type="danger">
+    <div class="message-bar">
+      <ix-message-bar>Message text</ix-message-bar>
+      <ix-message-bar type="warning">Message text</ix-message-bar>
+      <ix-message-bar type="danger">
         <div class="d-flex align-items-center justify-content-between">
-          Message text <ix-button>Action</ix-button>
+          Message text
+          <ix-button>Action</ix-button>
         </div>
       </ix-message-bar>
     </div>

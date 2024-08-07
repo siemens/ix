@@ -15,16 +15,14 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxToggleButton ghost outline={false}>
-        Normal
-      </IxToggleButton>
-      <IxToggleButton ghost outline={false} pressed>
+      <IxToggleButton ghost>Normal</IxToggleButton>
+      <IxToggleButton ghost pressed>
         Pressed
       </IxToggleButton>
-      <IxToggleButton ghost outline={false} disabled>
+      <IxToggleButton ghost disabled>
         Disabled
       </IxToggleButton>
-      <IxToggleButton ghost outline={false} disabled loading>
+      <IxToggleButton ghost disabled loading>
         Loading
       </IxToggleButton>
     </>

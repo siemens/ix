@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/menu.css';
+
 import {
   IxMenu,
   IxMenuAvatar,
@@ -18,8 +20,15 @@ import React from 'react';
 export default () => {
   return (
     <IxMenu>
-      <IxMenuAvatar top="john.doe@company.com" bottom="Administrator" image="https://ui-avatars.com/api/?name=John+Doe">
-        <IxMenuAvatarItem icon="user-profile" label="User profile..."></IxMenuAvatarItem>
+      <IxMenuAvatar
+        top="john.doe@company.com"
+        bottom="Administrator"
+        image="https://ui-avatars.com/api/?name=John+Doe"
+      >
+        <IxMenuAvatarItem
+          icon="user-profile"
+          label="User profile..."
+        ></IxMenuAvatarItem>
       </IxMenuAvatar>
       <IxMenuItem home tab-icon="home">
         {' '}

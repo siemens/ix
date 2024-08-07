@@ -2,18 +2,28 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Basic navigation example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application breakpoint example</title>
+    <!-- Sources -->
+    <script type="module">
+      import 'example-styles/dist/application.css';
+    </script>
+    <!-- Sources -->
   </head>
-  <body class="theme-classic-dark">
+  <body>
     <!-- Preview code -->
     <ix-application application-name="Application name">
       <ix-application-header name="My Application">
-        <placeholder-logo slot="logo"></placeholder-logo>
+        <div class="placeholder-logo" slot="logo"></div>
 
         <ix-dropdown-button variant="secondary" label="Select config" ghost>
           <ix-dropdown-item label="Config 1"></ix-dropdown-item>
@@ -32,10 +42,7 @@ SPDX-License-Identifier: MIT
         <ix-menu-item>Item 2</ix-menu-item>
       </ix-menu>
       <ix-content>
-        <ix-content-header
-          slot="header"
-          header-title="Choose breakpoint"
-        >
+        <ix-content-header slot="header" header-title="Choose breakpoint">
         </ix-content-header>
         <input id="small" type="radio" name="layout" value="sm" />
         <label for="small">Small</label>
@@ -47,6 +54,7 @@ SPDX-License-Identifier: MIT
         <label for="large">Large</label>
       </ix-content>
     </ix-application>
+
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-application');

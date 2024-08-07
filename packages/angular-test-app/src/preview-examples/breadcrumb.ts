@@ -16,8 +16,6 @@ import { Component } from '@angular/core';
       <ix-breadcrumb-item label="Item 1"></ix-breadcrumb-item>
       <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
       <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Item 4"></ix-breadcrumb-item>
-      <ix-breadcrumb-item label="Item 5"></ix-breadcrumb-item>
     </ix-breadcrumb>
   `,
 })

@@ -15,14 +15,29 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxIconToggleButton variant="primary" ghost></IxIconToggleButton>
-      <IxIconToggleButton variant="primary" pressed ghost></IxIconToggleButton>
-      <IxIconToggleButton variant="primary" disabled ghost></IxIconToggleButton>
+      <IxIconToggleButton
+        variant="primary"
+        ghost
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        variant="primary"
+        pressed
+        ghost
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        variant="primary"
+        disabled
+        ghost
+        icon="checkboxes"
+      ></IxIconToggleButton>
       <IxIconToggleButton
         variant="primary"
         disabled
         loading
         ghost
+        icon="checkboxes"
       ></IxIconToggleButton>
     </>
   );

@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/menu.css';
+
 import { IxMenu, IxMenuItem } from '@siemens/ix-react';
 import React from 'react';
 
@@ -22,7 +24,7 @@ export default () => {
       </IxMenuItem>
       <IxMenuItem tab-icon="star"> With other Icon </IxMenuItem>
       <IxMenuItem tab-icon="globe" style={{ display: 'none' }}>
-        Should not visible
+        Should not be visible
       </IxMenuItem>
     </IxMenu>
   );

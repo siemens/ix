@@ -6,22 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { Component } from '@angular/core';
 import { themeSwitcher } from '@siemens/ix';
 
 @Component({
   selector: 'app-example',
   templateUrl: './theme-switcher.html',
-  styles: [
-    `
-      ix-col {
-        align-items: center;
-        height: 2.5rem;
-      }
-    `,
-  ],
+  styles: [`@import 'example-styles/dist/theme-switcher.css'`],
 })
-export default class ThemeSwitcherExample {
+export default class ThemeSwitcher {
   themes = ['theme-classic-light', 'theme-classic-dark'];
   selectedTheme = this.themes[1];
 

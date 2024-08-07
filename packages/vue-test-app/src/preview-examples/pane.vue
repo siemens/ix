@@ -11,10 +11,10 @@
 import { IxPane, IxButton } from '@siemens/ix-vue';
 import { onMounted, ref } from 'vue';
 
-const expanded = ref<boolean>(false)
+const expanded = ref<boolean>(false);
 
 const expandedChanged = (event: CustomEvent) => {
-  expanded.value = event.detail.expanded
+  expanded.value = event.detail.expanded;
 };
 
 onMounted(() => {
@@ -38,7 +38,11 @@ onMounted(() => {
     </IxPane>
 
     <IxButton
-      @click="() => {expanded = !expanded}"
+      @click="
+        () => {
+          expanded = !expanded;
+        }
+      "
       style="margin: 2.5rem"
     >
       Toggle Expanded
