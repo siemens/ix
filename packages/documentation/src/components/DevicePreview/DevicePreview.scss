@@ -39,6 +39,10 @@
     pointer-events: none;
   }
 
+  .Frame.Light {
+    background-image: url('./iphone_preview_light.png');
+  }
+
   .Content {
     display: block;
     position: relative;

@@ -23,7 +23,6 @@ declare global {
 export default function Root({ children }) {
   const { pathname } = useLocation();
   const theme = useTheme();
-  console.log('root', theme);
 
   useEffect(() => {
     window.ste_statistic = window.ste_statistic || [];

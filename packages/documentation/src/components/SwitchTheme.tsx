@@ -19,21 +19,12 @@ function applyThemeToBody(themes: string[], theme: string) {
 
   setTimeout(() => {
     document.body.classList.add(theme);
-    console.log(document.body.className);
   }, 0);
 }
 
-function ThemeEntry(props: {
-  label: string;
-  color: string;
-  id: string;
-  onClick?: (event: React.MouseEvent, id: string) => void;
-}) {
+function ThemeEntry(props: { label: string; color: string; id: string }) {
   return (
-    <div
-      className={styles.Dropdown__Item}
-      onClick={(e) => props.onClick?.(e, props.id)}
-    >
+    <div className={styles.Dropdown__Item}>
       <div
         className={styles.Theme__Color}
         style={{ backgroundColor: props.color }}
@@ -84,11 +75,6 @@ export function SwitchTheme(props: {
     }
 
     let storedTheme = window.localStorage.getItem('docusaurus-theme');
-    console.log(
-      storedTheme,
-      getDefaultTheme(context),
-      storedTheme || getDefaultTheme(context)
-    );
     onThemeChange(storedTheme || getDefaultTheme(context));
   }, []);
 
@@ -120,14 +106,12 @@ export function SwitchTheme(props: {
     >
       {registeredThemes.map(({ id, label, color }) => {
         return (
-          <IxDropdownItem key={id} checked={id === theme}>
-            <ThemeEntry
-              key={id}
-              id={id}
-              label={label}
-              color={color}
-              onClick={(_, id) => onThemeChange(id)}
-            />
+          <IxDropdownItem
+            key={id}
+            checked={id === theme}
+            onClick={() => onThemeChange(id)}
+          >
+            <ThemeEntry key={id} id={id} label={label} color={color} />
           </IxDropdownItem>
         );
       })}
