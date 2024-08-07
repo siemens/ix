@@ -17,7 +17,10 @@ import styles from './SwitchTheme.module.css';
 function applyThemeToBody(themes: string[], theme: string) {
   themes.forEach((t) => document.body.classList.remove(t));
 
-  setTimeout(() => document.body.classList.add(theme), 0)
+  setTimeout(() => {
+    document.body.classList.add(theme);
+    console.log(document.body.className);
+  }, 0);
 }
 
 function ThemeEntry(props: {
@@ -81,7 +84,11 @@ export function SwitchTheme(props: {
     }
 
     let storedTheme = window.localStorage.getItem('docusaurus-theme');
-
+    console.log(
+      storedTheme,
+      getDefaultTheme(context),
+      storedTheme || getDefaultTheme(context)
+    );
     onThemeChange(storedTheme || getDefaultTheme(context));
   }, []);
 
@@ -91,7 +98,10 @@ export function SwitchTheme(props: {
     dispatchThemeChange(theme);
     setOpen(false);
 
-    applyThemeToBody(registeredThemes.map((t) => t.id), theme);
+    applyThemeToBody(
+      registeredThemes.map((t) => t.id),
+      theme
+    );
   };
 
   function getLabel(id: string = 'theme-classic-dark') {
