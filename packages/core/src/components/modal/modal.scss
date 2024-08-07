@@ -17,10 +17,11 @@
 
 :host {
   display: none;
+  --ix-modal-dialog-padding: 1rem;
 
   dialog {
     margin: 0;
-    padding: 1rem;
+    padding: var(--ix-modal-dialog-padding);
     left: 50%;
   }
 
@@ -75,9 +76,26 @@
     min-width: calc(100% - 28px);
     max-width: calc(100% - 28px);
 
-    height: calc(100% - 28px);
-    min-height: calc(100% - 28px);
-    max-height: calc(100% - 28px);
+    --ix-dialog-min-height: calc(
+      1.75rem + var(--ix-modal-dialog-padding) +
+        var(--ix-safe-area-inset-bottom)
+    );
+
+    min-height: calc(
+      100% - var(--ix-safe-area-inset-bottom, 0rem) -
+        var(--ix-dialog-min-height)
+    );
+    max-height: calc(
+      100% - var(--ix-safe-area-inset-bottom, 0rem) -
+        var(--ix-dialog-min-height)
+    );
+
+    padding-top: calc(
+      var(--ix-modal-dialog-padding) + var(--ix-safe-area-inset-top)
+    );
+    padding-bottom: calc(
+      var(--ix-safe-area-inset-bottom) + var(--ix-modal-dialog-padding)
+    );
   }
 
   .dialog-backdrop {

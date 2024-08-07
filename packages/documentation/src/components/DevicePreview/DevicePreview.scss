@@ -8,19 +8,16 @@
  */
 
 .DevicePreview {
-  --device-padding: 1rem;
-  --device-width: 344px;
-  --device-height: 704px;
-  --device-frame-width: 12px;
-
-  --device-radius: 54px;
+  --iphone-width: 21.5rem;
+  --iphone-height: 704px;
+  --iphone-radius: 54px;
 
   display: block;
   position: relative;
 
-  box-shadow: 0px 2px 8px rgba(2, 8, 20, 0.1), 0px 8px 16px rgba(2, 8, 20, 0.08);
-  width: var(--device-width);
-  height: var(--device-height);
+  background-color: transparent;
+  width: var(--iphone-width);
+  height: var(--iphone-height);
   transition: transform 330ms ease-in-out;
 
   .Frame {
@@ -48,8 +45,12 @@
     height: 100%;
     width: 100%;
 
-    padding: 1rem;
-    border-radius: var(--device-radius);
+    padding-top: 0.8125rem;
+    padding-bottom: 0.8125rem;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+
+    border-radius: var(--iphone-radius);
     overflow: hidden;
 
     pointer-events: all;
