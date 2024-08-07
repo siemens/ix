@@ -101,7 +101,7 @@ Please be aware to check if the content pages of your application are respect th
 
 ### Application frame layout
 
-By default the [Application Frame](./controls/application-frame/application.md) comes with tree default layouts `sm` (mobile screens), `md` (smallest Ipad size), `lg` (Desktop). These layout are selected automatically depending on your hardware display size.
+By default the [Application Frame](./controls/application-frame/application.md) comes with tree default layouts `sm`, `md`, `lg`. These layout are selected automatically depending on your hardware display size.
 
 If you are planning to implement a App for Mobile and Tablet (e.g Iphone or Ipad) it could be necessary to configure the layouts which the application frame can pick from.
 
@@ -141,7 +141,9 @@ const Application = () => {
 ```
 
 ### Repository
+
 Please find the repository with all the source code of the demo application here on GitHub: [Ionic React Test App](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app).
 
 ## User experience considerations
+
 Regardless of the technology there are diverse aspects to take into consideration when developing applications for mobile devices:
