@@ -18,7 +18,7 @@ const DevicePreview = (props: { children: any }) => {
       <figure className="DevicePreview">
         <div className="Content">
           <iframe
-            src={`/ionic-preview?preview-mode=ios&preview-theme=${theme}`}
+            src={`/ionic-preview/?preview-mode=ios&preview-theme=${theme}/#/`}
           ></iframe>
         </div>
         <div className="Frame"></div>
