@@ -1,0 +1,127 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts example</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+  </head>
+  <body class="">
+    <!-- Preview code -->
+    <div
+      id="main"
+      style="
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 25rem;
+        padding-top: 1rem;
+      "
+    ></div>
+
+    <script type="module">
+      import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+      import { themeSwitcher } from '@siemens/ix';
+
+      function initChart(theme, options) {
+        var myChart = echarts.init(
+          document.querySelector('#main'),
+          convertThemeName(theme)
+        );
+        myChart.setOption(options);
+
+        return myChart;
+      }
+
+      function getComputedCSSColor(color) {
+        return getComputedStyle(document.body).getPropertyValue(color);
+      }
+
+      const value = 68;
+
+      const options = {
+        backgroundColor: getComputedCSSColor('--theme-color-1'),
+        series: [
+          {
+            id: '1',
+            type: 'gauge',
+            axisLine: {
+              show: true,
+              lineStyle: {
+                width: 15,
+              },
+            },
+            axisTick: {
+              show: false,
+            },
+            radius: '75%',
+            center: ['50%', '60%'],
+            startAngle: 200,
+            endAngle: -20,
+            splitLine: {
+              show: false,
+            },
+            axisLabel: {
+              show: false,
+            },
+            progress: {
+              show: true,
+              overlap: false,
+              width: 35,
+              itemStyle: {
+                borderMiterLimit: 16,
+                color: getComputedCSSColor('--theme-color-success'),
+              },
+            },
+            pointer: {
+              show: false,
+            },
+            data: [
+              {
+                value: value,
+                detail: {
+                  offsetCenter: [0, 0],
+                  overflow: 'break',
+                  fontSize: '2rem',
+                  fontWeight: 'normal',
+                  color: getComputedCSSColor('--theme-color-neutral'),
+                  width: 250,
+                  lineHeight: 35,
+                  formatter: '{value} / 100 \n completed',
+                },
+                pointer: {
+                  show: false,
+                },
+              },
+            ],
+          },
+        ],
+      };
+
+      // providing echarts is in this case optional
+      registerTheme(echarts);
+
+      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+
+      themeSwitcher.themeChanged.on((theme) => {
+        myChart.dispose();
+        myChart = initChart(theme, options);
+      });
+
+      window.onresize = function () {
+        myChart.resize();
+      };
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
