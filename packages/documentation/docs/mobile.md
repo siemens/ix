@@ -6,9 +6,14 @@ Siemens Industrial Experience can easily be utilized for creating mobile applica
 
 ## Demo App
 
-To showcase the mobile experience with our design system we've build a hybrid example application using Ionic, React and Siemens Industrial Experience:
+Check out our hybrid example application using Ionic, React and Siemens Industrial Experience:
 
+<br />
 <DevicePreview />
+<br />
+
+Please find the repository with all the source code of the demo application here: <br />
+[Ionic React Test App on GitHub](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app).
 
 ## Mobile App Development
 
@@ -139,10 +144,6 @@ const Application = () => {
   );
 };
 ```
-
-### Repository
-
-Please find the repository with all the source code of the demo application here on GitHub: [Ionic React Test App](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app).
 
 ## User experience considerations
 
