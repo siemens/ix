@@ -8,6 +8,7 @@
  */
 
 import { Component, h, Host } from '@stencil/core';
+import { showModal } from './../utils/modal';
 
 /** @internal */
 @Component({
@@ -18,6 +19,30 @@ import { Component, h, Host } from '@stencil/core';
   scoped: true,
 })
 export class PlaygroundInternal {
+  componentDidLoad() {
+    setTimeout(() => {
+      const div = document.createElement('ix-modal');
+      div.innerHTML = `
+            <ix-modal-header>Create new Event</ix-modal-header>
+            <ix-modal-content>
+              <label>Event name</label>
+              <input
+                style="height: 120vh"
+                type="text"
+              />
+            </ix-modal-content>
+            <ix-modal-footer>
+              <ix-button>Save</ix-button>
+              <ix-button>Cancel</ix-button>
+            </ix-modal-footer>
+      `;
+      showModal({
+        content: div,
+        size: 'full-screen',
+      });
+    }, 100);
+  }
+
   render() {
     return (
       <Host>
@@ -31,7 +56,31 @@ export class PlaygroundInternal {
               height: '100%',
             }}
           >
-            <ix-button>Test</ix-button>
+            <ix-button
+              onClick={() => {
+                const div = document.createElement('ix-modal');
+                div.innerHTML = `
+                      <ix-modal-header>Create new Event</ix-modal-header>
+                      <ix-modal-content>
+                        <label>Event name</label>
+                        <input
+                          style="height: 120vh"
+                          type="text"
+                        />
+                      </ix-modal-content>
+                      <ix-modal-footer>
+                        <ix-button>Save</ix-button>
+                        <ix-button>Cancel</ix-button>
+                      </ix-modal-footer>
+                `;
+                showModal({
+                  content: div,
+                  size: 'full-screen',
+                });
+              }}
+            >
+              Test
+            </ix-button>
           </div>
           <ix-button slot="bottom">Footer</ix-button>
         </ix-application>

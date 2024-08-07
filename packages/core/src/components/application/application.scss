@@ -43,6 +43,7 @@
     flex-wrap: nowrap;
     height: calc(100% - var(--ix-safe-area-inset-bottom, 0px));
     width: 100%;
+    margin-left: var(--ix-application-menu-margin-left);
   }
 
   main {
@@ -51,7 +52,6 @@
     flex-grow: 1;
 
     width: 100%;
-    margin-left: var(--ix-application-menu-margin-left);
     padding-bottom: var(--ix-safe-area-inset-bottom);
     overflow: auto;
   }
@@ -72,11 +72,11 @@
     margin-left: var(--ix-application-menu-margin-left);
   }
 
-  aside.slotted + main {
+  aside.slotted + .content-area {
     margin-left: 0;
   }
 
-  aside:not(.slotted) + main {
+  aside:not(.slotted) + .content-area {
     margin-left: var(--ix-application-menu-margin-left);
   }
 }

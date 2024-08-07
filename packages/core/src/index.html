@@ -6,30 +6,40 @@ SPDX-License-Identifier: MIT
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-  />
-  <title>Stencil Component Starter</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
 
-  <script type="module" src="/build/siemens-ix.esm.js"></script>
-  <script nomodule src="/build/siemens-ix.js"></script>
+    <script type="module" src="/build/siemens-ix.esm.js"></script>
+    <script nomodule src="/build/siemens-ix.js"></script>
 
-  <link rel="stylesheet" href="/build/siemens-ix.css"/>
-  <link
-    rel="stylesheet"
-    href="/build/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
-  />
-  <script type="module">
-    import {defineCustomElements} from '/build/ix-brand-theme/loader/index.es2017.js';
+    <link rel="stylesheet" href="/build/siemens-ix.css" />
+    <link
+      rel="stylesheet"
+      href="/build/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css"
+    />
+    <script type="module">
+      import { defineCustomElements } from '/build/ix-brand-theme/loader/index.es2017.js';
 
-    defineCustomElements();
-  </script>
-</head>
+      defineCustomElements();
+    </script>
 
-<body style="margin: 0px; height: 100vh">
-  <ix-playground-internal />
-</body>
+    <style>
+      /* REMOVE ME!!!!!! */
+      :root {
+        --ix-safe-area-inset-top: 37px;
+        --ix-safe-area-inset-right: 0px;
+        --ix-safe-area-inset-bottom: 27px;
+        --ix-safe-area-inset-left: 0px;
+      }
+    </style>
+  </head>
+
+  <body style="margin: 0px; height: 100vh">
+    <ix-playground-internal />
+  </body>
 </html>
