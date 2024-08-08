@@ -3,7 +3,7 @@ import DevicePreview from '@site/src/components/DevicePreview';
 # Mobile experience
 
 <p>
-Siemens Industrial Experience can easily be utilized for creating mobile applications jointly with web technology based approaches. With the help of our design system you will be able to swiftly build the user interface of your mobile web app or hybrid app.
+Use Siemens Industrial Experience to create mobile applications jointly with web technology based approaches easily. With the help of our design system you are able to swiftly build the user interface of your mobile web app or hybrid app.
 </p>
 
 <p>
@@ -17,20 +17,25 @@ Siemens Industrial Experience can easily be utilized for creating mobile applica
 
 ## Mobile app development
 
-There are several different ways to create applications for mobile devices. Native apps are tailored for a particular platform like iOS or Android and usually need to be developed in a specific way for every target platform seperately. Other approaches like hybrid apps are based on web technologies while targeting multiple platforms using a single codebase.
+There are different ways to create applications for mobile devices:
+- **Web apps** are accessed through a web browser and are platform-independent.
+- **Native apps** are tailored for a particular platform like iOS or Android and usually need to be developed in a specific way for every target platform separately.
+- **Hybrid apps** are based on web technologies while targeting multiple platforms using a single codebase.
 
-Web applications can be optimized for mobile devices without any significant technological changes. Several paradigms and patterns including: mobile-first design, responsive design, and adaptive design help developers to implement apps providing a seamless user experience across various devices and screen sizes. Disadvantages of mobile web apps include:
+Optimize your web application for mobile devices without any significant technological changes to provide a seamless User Experience across devices and screen sizes (read more about responsive and adaptive design [here](#user-experience-considerations)).
 
-<div>
+Disadvantages of mobile web apps include:
 - Lack of offline capabilities
 - Limited possibilities for distribution (e.g. via app stores)
 - Limited options for the integration of native features (e.g. push notifications)
-</div>
 
-### Hybrid apps
+We recommend to mitigate these disadvantages by using hybrid apps and additionally benefit from the advantages of native applications.
 
-The aspects described above are reasons to consider hybrid applications in order to provide a sublime mobile user experience and also benefit from the advantages of native applications.
-Hybrid apps are built using web technologies but run inside a native container providing access to device APIs, allowing native features of the device's operating system and hardware to be used. A variety of frameworks for building hybrid mobile applications are available today. Some provide user interface components for a closer integration with the different operating systems designs. For a more consistent user experience it can be benefitial to favor the Siemens Industrial Experience components over the the frameworks UI components.
+## Hybrid apps
+
+Hybrid apps are built using web technologies but run inside a native container providing access to device APIs, allowing native features of the device's operating system and hardware to be used. A variety of frameworks for building hybrid mobile applications are available today. Some provide User Interface components for a closer integration with the different operating systems designs. 
+
+For a more consistent User Experience it can be beneficial to favor the Industrial Experience components over the frameworks' UI components as shown in the [demo](#demo-app). 
 
 ## Demo app
 
@@ -52,7 +57,7 @@ Keep on reading to learn more about how this works and how to implement it yours
 
 ## Using Ionic
 
-Developers have many options when choosing a framework for implementing mobile applications. In this example we are using Ionic and React to implement a hybrid mobile application that can be deployed on your mobile device.
+Developers have many options when choosing a framework for implementing mobile applications. In this example, we use Ionic and React to implement a hybrid mobile application that can be deployed on your mobile device.
 
 ### Theming Ionic
 
@@ -66,7 +71,7 @@ Here is an example of a default theme mapping: [Repository Link](https://github.
 
 Most devices nowadays do not have a rectangular display, but often feature rounded corners or characteristics like a display cut-out ("notch").
 
-To adapt our application to this , we need to set [environment variables](https://developer.mozilla.org/en-US/docs/Web/CSS/env#safe-area-inset-top) called `safe-area-inset`. This helps the `ix-application` to layout the frame of your application correctly.
+To adapt our application to this, we need to set [environment variables](https://developer.mozilla.org/en-US/docs/Web/CSS/env#safe-area-inset-top) called `safe-area-inset`. This helps the `ix-application` to layout the frame of your application correctly.
 
 ```css
 --ix-safe-area-inset-top: env(safe-area-inset-top);
@@ -75,7 +80,7 @@ To adapt our application to this , we need to set [environment variables](https:
 --ix-safe-area-inset-left: env(safe-area-inset-left);
 ```
 
-Additionally some variables specific to your hardware need to be set. In our example we use an iPhone with a notch at the top. Depending on the display orientation it's required to adjust the safe-areas of some components (e.g `ix-menu`).
+Additionally, some variables specific to your hardware need to be set. In our example, we use an iPhone with a notch at the top. Depending on the display orientation, it's required to adjust the safe-areas of some components (e.g. `ix-menu`).
 
 ```css
 body[data-screen-orientation='landscape-primary'] {
@@ -88,8 +93,10 @@ body[data-screen-orientation='landscape-primary'] {
 }
 ```
 
-The CSS selector: `body[data-screen-orientation='landscape-primary']` is not provided via the ionic framework.
-A suitable way to add it to the app is the `main.ts` file of your project. You can chose between the capacitor plugin: [`@capacitor/screen-orientation`](https://capacitorjs.com/docs/apis/screen-orientation) or the browser api: [`ScreenOrientation`](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation)
+The CSS selector `body[data-screen-orientation='landscape-primary']` is not provided via the ionic framework.
+A suitable way to add it to the app is the `main.ts` file of your project. There are two options:
+- Capacitor plugin: [`@capacitor/screen-orientation`](https://capacitorjs.com/docs/apis/screen-orientation) 
+- Browser api: [`ScreenOrientation`](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation)
 
 ```tsx
 import { ScreenOrientation } from '@capacitor/screen-orientation';
@@ -112,9 +119,9 @@ root.render(
 );
 ```
 
-At this point the application frame should respect all areas of your device which are not part of the app.
+At this point, the application frame should respect all areas of your device which are not part of the app.
 
-To ensure that the pages of your application displaying content also respect the previously defined areas, you can use the defined variables here as well.
+Use the defined variables to ensure that the pages of your application displaying content also respect the previously defined areas as well.
 
 ```css
 .my-content-space {
@@ -124,11 +131,11 @@ To ensure that the pages of your application displaying content also respect the
 
 ### Application frame layout
 
-By default the [Application Frame](./controls/application-frame/application.md) provides three default layouts: `sm`, `md`, `lg`, that are automatically applied depending on the size of the screen.
+By default, the [Application Frame](./controls/application-frame/application.md) provides three default layouts (`sm`, `md`, `lg`) that are automatically applied depending on the size of the screen.
 
-If you are planning to implement an app for both phones and tablets (e.g iPhone and iPad), it may be necessary to configure the layouts which the application frame can pick from.
+If you intend to implement an app for both phones and tablets (e.g. iPhone and iPad), it may be necessary to configure the layouts which the application frame can pick from.
 
-For apps targetting phones and tablets, typically the `sm` and `md` layouts are suitable.
+For apps targeting phones and tablets, typically the `sm` and `md` layouts are suitable.
 
 ```tsx
 const Application = () => {
@@ -142,9 +149,9 @@ const Application = () => {
 };
 ```
 
-As mentioned above, in some cases it is beneficial to adapt the layouts (breakpoints) depending on the hardware.
-For example, the layout `md` will be applied for an iPhone in landscape orientation and an iPad in portrait orientation.
-Ionic provides some [utility functions](https://ionicframework.com/docs/react/platform#platforms) that can be helpful to decide which layout to choose.
+As mentioned above, in some cases it is beneficial to adapt the layouts (breakpoints) depending on the hardware. For example, the layout `md` will be applied for an iPhone in landscape orientation and iPad in portrait orientation.
+
+Ionic provides [utility functions](https://ionicframework.com/docs/react/platform#platforms) that help to decide which layout to choose.
 
 ```tsx
 const ipad = [`sm`, 'md', 'lg'];
@@ -165,16 +172,37 @@ const Application = () => {
 
 ## User experience considerations
 
-Regardless of the technology there are diverse aspects to take into consideration when developing applications for mobile devices:
+Regardless of the technology there are aspects to take into consideration when you optimize applications for mobile devices:
+1. **Responsive and adaptive design** due to different viewport sizes.
+2. **Interaction through touch**, without access to mouse or keyboard.
+3. **Device-specific features** like notches or rounded corners.
 
-### Responsive Web Design (RWD):
+### Responsive and adaptive design
 
-While Siemens Industrial Experience components are designed to handle various viewport sizes gracefully, it’s crucial to plan for smaller screens and different screen orientations in an early stage of the project. Adjusting the layout of your application or restructuring content based on the devices viewport is crucial for a mobile friendly experience. Also hiding certain information or entire components can be an effective way to achieve mobile responsiveness.
+Industrial Experience components handle various viewport sizes out-of-the-box. When building a page layout, consider small screens in portrait and landscape mode in an early stage during the design phase.
+
+Depending on the importance of a mobile-optimized UI, decide on a responsive or adaptive design approach:
+- **Responsive design**: The layout adapts to the viewport size by rearranging or hiding components. We recommend this approach for desktop-first applications.
+- **Adaptive design**: There is a separate page layout for a specific breakpoint. We recommend this approach for applications with a strong focus on mobile.
+
+If feasible, we recommend adaptive design since it offers more control over the layout and a more optimized User Experience on mobile devices. However, it requires more effort to maintain different layouts. Independently from the design approach, there are different approaches to achieve a mobile-friendly experience:
+- Adjust the page layout (e.g. a column-based layout transforms into a row-based layout)
+- Restructure the content (e.g. prioritize information or components differently)
+- Hide information or entire components (e.g. less important information or components)
 
 ### Interaction
 
-Users interact with mobile devices primarily through touch input. While our Web Components are designed to respond to touch events, it may be necessary to implement custom event listeners for touch interactions based on your specific use cases.
+Users interact with mobile devices primarily through touch input. Our web components  respond to touch events out-of-the-box. 
 
-### Device-specific features:
+For your specific use cases, it might be necessary to implement custom event listeners for touch interactions. In addition, touch devices offer the possibility to use gestures like swiping, pinching or tapping.
 
-Certain devices come with unique characteristics that must be considered during development (e.g. display "notch"). Not taking these into account can result in parts of the user interface being hidden or inaccessible.
+### Device-specific features
+
+Some devices have unique characteristics that need to be considered when designing and developing an app:
+
+- Display "notch"
+- System bars
+- Rounded corners
+- Different screen sizes and resolutions
+
+When you design and develop an app, we recommend to define target devices. Consider the specific features of the devices in your design and development process, so that all relevant parts of the user interface are visible and accessible. Use the [safe areas](#define-safe-areas) to ensure that the content is displayed correctly.
