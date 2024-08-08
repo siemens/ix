@@ -69,7 +69,7 @@ const Home: React.FC = () => {
   const [events, setEvents] = useState<string[]>([]);
 
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>();
-  const [batteryInfo, setBatteryInfo] = useState<BatteryInfo>();
+  const [batteryLevel, setBatteryLevel] = useState<number>();
   const [orientation, setOrientation] = useState<string>('');
 
   useLayoutEffect(() => {
@@ -92,7 +92,13 @@ const Home: React.FC = () => {
 
     async function getBatteryInfo() {
       const info = await Device.getBatteryInfo();
-      setBatteryInfo(info);
+
+      if (!info.batteryLevel) {
+        setBatteryLevel(0);
+        return;
+      }
+
+      setBatteryLevel(info.batteryLevel * 100);
     }
 
     getBatteryInfo();
@@ -128,10 +134,7 @@ const Home: React.FC = () => {
           <IxKeyValueList className="Home__System_Settings">
             <IxKeyValue label="Device" value={deviceInfo?.model} />
             <IxKeyValue label="Version" value={`${deviceInfo?.iOSVersion}`} />
-            <IxKeyValue
-              label="Battery"
-              value={`${batteryInfo?.batteryLevel}%`}
-            />
+            <IxKeyValue label="Battery" value={`${batteryLevel}%`} />
             <IxKeyValue
               label="Orientation"
               value={`${

@@ -68,8 +68,27 @@ import {
   iconTree,
 } from '@siemens/ix-icons/icons';
 import Demo from './pages/Demo';
+import { useEffect } from 'react';
 
 setupIonicReact();
+
+function useSearchParamChanged(
+  paramName: string,
+  callback: (newValue: string | null) => void
+) {
+  useEffect(() => {
+    const handleParamChange = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const newValue = searchParams.get(paramName);
+      callback(newValue);
+    };
+    handleParamChange();
+    window.addEventListener('popstate', handleParamChange);
+    return () => {
+      window.removeEventListener('popstate', handleParamChange);
+    };
+  }, [paramName, callback]);
+}
 
 const IxNavLinkMenuItem = ({
   to,
@@ -122,82 +141,94 @@ const IxNavLinkTab = ({
   ></NavLink>
 );
 
-const ipad = [`sm`, 'md', 'lg'];
-const iphone = [`sm`];
+const App: React.FC = () => {
+  useSearchParamChanged('preview-theme', (newValue) => {
+    console.log('New theme:', newValue);
+    if (!newValue) {
+      return;
+    }
 
-let breakpoints = isPlatform('ipad') ? ipad : iphone;
+    document.body.classList.remove(
+      'theme-brand-dark',
+      'theme-brand-light',
+      'theme-classic-dark',
+      'theme-classic-light'
+    );
 
-const App: React.FC = () => (
-  <IxApplicationContext>
-    <IonApp>
-      <HashRouter>
-        <IxApplication breakpoints={['sm']}>
-          <IxApplicationHeader name="My App">
-            <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
-            <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
-            <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
+    document.body.classList.add(newValue);
+  });
+  return (
+    <IxApplicationContext>
+      <IonApp>
+        <HashRouter>
+          <IxApplication breakpoints={['sm']}>
+            <IxApplicationHeader name="My App">
+              <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
+              <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
+              <IxIconButton ghost icon={iconCheckboxes}></IxIconButton>
 
-            <IxDropdownButton variant="secondary" label="Select config" ghost>
-              <IxDropdownItem label="Config 1"></IxDropdownItem>
-              <IxDropdownItem label="Config 2"></IxDropdownItem>
-              <IxDropdownItem label="Config 3"></IxDropdownItem>
-            </IxDropdownButton>
+              <IxDropdownButton variant="secondary" label="Select config" ghost>
+                <IxDropdownItem label="Config 1"></IxDropdownItem>
+                <IxDropdownItem label="Config 2"></IxDropdownItem>
+                <IxDropdownItem label="Config 3"></IxDropdownItem>
+              </IxDropdownButton>
 
-            <IxAvatar username="John Doe" extra="Administrator">
-              <IxDropdownItem label="Action 1"></IxDropdownItem>
-              <IxDropdownItem label="Action 2"></IxDropdownItem>
-            </IxAvatar>
-          </IxApplicationHeader>
-          <IxMenu enableToggleTheme>
-            <IxNavLinkMenuItem
-              to="home"
-              label="Home"
-              icon={iconTree}
-            ></IxNavLinkMenuItem>
-            <IxNavLinkMenuItem
-              to="demo"
-              label="Demo"
-              icon={iconBulb}
-            ></IxNavLinkMenuItem>
-            <IxNavLinkMenuItem
-              to="other"
-              label="Other"
-              icon={iconStar}
-              counter={4}
-            ></IxNavLinkMenuItem>
-          </IxMenu>
-          <IonRouterOutlet animated={false}>
-            <Route path="/home">
-              <Home />
-            </Route>
+              <IxAvatar username="John Doe" extra="Administrator">
+                <IxDropdownItem label="Action 1"></IxDropdownItem>
+                <IxDropdownItem label="Action 2"></IxDropdownItem>
+              </IxAvatar>
+            </IxApplicationHeader>
+            <IxMenu enableToggleTheme>
+              <IxNavLinkMenuItem
+                to="home"
+                label="Home"
+                icon={iconTree}
+              ></IxNavLinkMenuItem>
+              <IxNavLinkMenuItem
+                to="demo"
+                label="Demo"
+                icon={iconBulb}
+              ></IxNavLinkMenuItem>
+              <IxNavLinkMenuItem
+                to="other"
+                label="Other"
+                icon={iconStar}
+                counter={4}
+              ></IxNavLinkMenuItem>
+            </IxMenu>
+            <IonRouterOutlet animated={false}>
+              <Route path="/home">
+                <Home />
+              </Route>
 
-            <Route path="/other">
-              <Other />
-            </Route>
+              <Route path="/other">
+                <Other />
+              </Route>
 
-            <Route path="/demo">
-              <Demo />
-            </Route>
+              <Route path="/demo">
+                <Demo />
+              </Route>
 
-            <Route exact path="/">
-              <Redirect to="home" />
-            </Route>
-          </IonRouterOutlet>
-          <IxTabs layout="stretched" placement="top" rounded slot="bottom">
-            <IxNavLinkTab to="home">
-              <IxIcon name={iconTree}></IxIcon>
-            </IxNavLinkTab>
-            <IxNavLinkTab to="demo">
-              <IxIcon name={iconStar}></IxIcon>
-            </IxNavLinkTab>
-            <IxNavLinkTab to="other" counter={4}>
-              <IxIcon name={iconBulb}></IxIcon>
-            </IxNavLinkTab>
-          </IxTabs>
-        </IxApplication>
-      </HashRouter>
-    </IonApp>
-  </IxApplicationContext>
-);
+              <Route exact path="/">
+                <Redirect to="home" />
+              </Route>
+            </IonRouterOutlet>
+            <IxTabs layout="stretched" placement="top" rounded slot="bottom">
+              <IxNavLinkTab to="home">
+                <IxIcon name={iconTree}></IxIcon>
+              </IxNavLinkTab>
+              <IxNavLinkTab to="demo">
+                <IxIcon name={iconStar}></IxIcon>
+              </IxNavLinkTab>
+              <IxNavLinkTab to="other" counter={4}>
+                <IxIcon name={iconBulb}></IxIcon>
+              </IxNavLinkTab>
+            </IxTabs>
+          </IxApplication>
+        </HashRouter>
+      </IonApp>
+    </IxApplicationContext>
+  );
+};
 
 export default App;

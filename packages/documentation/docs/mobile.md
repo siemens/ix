@@ -8,9 +8,15 @@ Siemens Industrial Experience can easily be utilized for creating mobile applica
 
 Check out our hybrid example application using Ionic, React and Siemens Industrial Experience:
 
-<br/>
-<DevicePreview />
-<br/>
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  margin: '5rem 0'
+}}>
+
+  <DevicePreview />
+</div>
 
 Please find the repository with all the source code of the demo application here: [Ionic React Test App on GitHub](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app).
 
@@ -20,7 +26,7 @@ Keep on reading to learn more about how this works and how to implement it yours
 
 There are several different ways to create applications for mobile devices. Native apps are tailored for a particular platform like iOS or Android and usually need to be developed in a specific way for every target platform seperately. Other approaches like hybrid apps are based on web technologies while targeting multiple platforms using a single codebase.
 
-Web applications can be optimized for mobile devices without any significant technological changes. Several paradigms and patterns including: mobile-first design, responsive design, and adaptive design help developers to implement apps providing a seamless user experience across various devices and screen sizes. Disadvantages of mobile web apps include: 
+Web applications can be optimized for mobile devices without any significant technological changes. Several paradigms and patterns including: mobile-first design, responsive design, and adaptive design help developers to implement apps providing a seamless user experience across various devices and screen sizes. Disadvantages of mobile web apps include:
 
 - Lack of offline capabilities
 - Limited possibilities for distribution (e.g. via app stores)
@@ -148,7 +154,6 @@ const Application = () => {
 ## User experience considerations
 
 Regardless of the technology there are diverse aspects to take into consideration when developing applications for mobile devices:
-
 
 ### Responsive Web Design (RWD):
 

@@ -3,6 +3,22 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
 
+// ==============================
+// Only for documentation preview example
+// ==============================
+declare const __THEME__: {
+  style: string;
+};
+function injectAdditionalThemeStyles() {
+  const style = document.createElement('style');
+  style.innerHTML = `${__THEME__.style}`;
+  document.head.appendChild(style);
+}
+injectAdditionalThemeStyles();
+// ==============================
+// Only for documentation preview example
+// ==============================
+
 function getPreviewModeValueFromCurrentURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get('preview-mode');
