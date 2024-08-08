@@ -10,25 +10,31 @@ import clsx from 'clsx';
 import './DevicePreview.scss';
 import { useTheme } from '@site/src/utils/hooks/useTheme';
 
-const DevicePreview = (props: { children: any }) => {
+const DevicePreview = (props: {
+  children: any;
+  image?: string;
+  style?: any;
+}) => {
   const theme = useTheme();
 
   return (
-    <>
-      <div className="DeviceToolbar"></div>
-      <figure className="DevicePreview">
-        <div className="Content">
+    <figure className="DevicePreview" style={props.style}>
+      <div className="Content">
+        {props.image ? (
+          <img src={props.image} alt="Device preview" />
+        ) : (
           <iframe
             src={`/ionic-preview/?preview-mode=ios&preview-theme=${theme}#/`}
           ></iframe>
-        </div>
-        <div
-          className={clsx('Frame', {
-            Light: theme.includes('-light'),
-          })}
-        ></div>
-      </figure>
-    </>
+        )}
+      </div>
+      <div
+        className={clsx('Frame', {
+          Light: theme.includes('-light'),
+          NoUI: !!props.image,
+        })}
+      ></div>
+    </figure>
   );
 };
 

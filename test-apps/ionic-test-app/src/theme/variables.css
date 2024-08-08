@@ -21,6 +21,8 @@ body[data-screen-orientation='landscape-primary'] {
   --ix-application-menu-safe-area-left: var(--ix-safe-area-inset-left);
 }
 
+:root .md,
+:root .ios,
 :root body[class*='theme-'] {
   /*
   * Re-map the ix colors with the ionic theme
