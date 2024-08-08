@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import fs from 'fs-extra';
+import fs, { CopyOptions } from 'fs-extra';
 import { Listr } from 'listr2';
 import path from 'path';
 import { writeApi } from './api-tasks';
@@ -179,22 +179,42 @@ const tasks = new Listr<Context>(
           'package'
         );
 
+        const onlyDistAndLoader: CopyOptions = {
+          filter: (src) => {
+            if (src.includes('dist') || src.includes('loader')) {
+              return true;
+            }
+
+            return false;
+          },
+        };
+
         if (fs.pathExistsSync(additionalThemeSource)) {
           const optionalThemeForPreview = path.join(
             iframeFrameDist,
             'additional-theme',
             'ix-brand-theme'
           );
-          copy.push(fs.copy(additionalThemeSource, optionalThemeForPreview));
+          copy.push(
+            fs.copy(
+              additionalThemeSource,
+              optionalThemeForPreview,
+              onlyDistAndLoader
+            )
+          );
 
           const optionalThemeForIonicPreview = path.join(
-            ionicTestAppPath,
+            ionicTestAppDistPath,
             'additional-theme',
             'ix-brand-theme'
           );
 
           copy.push(
-            fs.copy(additionalThemeSource, optionalThemeForIonicPreview)
+            fs.copy(
+              additionalThemeSource,
+              optionalThemeForIonicPreview,
+              onlyDistAndLoader
+            )
           );
         }
       },
