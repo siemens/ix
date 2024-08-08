@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import fs from 'fs-extra';
-import fsp from 'fs/promises';
+import fs, { CopyOptions } from 'fs-extra';
 import { Listr } from 'listr2';
 import path from 'path';
 import { writeApi } from './api-tasks';
@@ -160,22 +159,6 @@ const tasks = new Listr<Context>(
           fs.copy(exampleStylesPath, docsStaticStyleExamples),
         ];
 
-        // Copy theme to examples folder
-        const additionalThemeSource = path.join(
-          rootPath,
-          '.build-temp',
-          'package'
-        );
-
-        if (fs.pathExistsSync(additionalThemeSource)) {
-          const additionalThemeTarget = path.join(
-            iframeFrameDist,
-            'additional-theme',
-            'ix-brand-theme'
-          );
-          copy.push(fs.copy(additionalThemeSource, additionalThemeTarget));
-        }
-
         return Promise.all(copy);
       },
     },
@@ -183,6 +166,57 @@ const tasks = new Listr<Context>(
       title: 'Copy ionic-test-app preview to documentation',
       task: async () => {
         return fs.copy(ionicTestAppDistPath, docsIonicPreviewPath);
+      },
+    },
+    {
+      title: 'Copy optional brand theme',
+      task: async () => {
+        const copy = [];
+        // Copy theme to examples folder
+        const additionalThemeSource = path.join(
+          rootPath,
+          '.build-temp',
+          'package'
+        );
+
+        const onlyDistAndLoader: CopyOptions = {
+          filter: (src) => {
+            if (src.includes('dist') || src.includes('loader')) {
+              return true;
+            }
+
+            return false;
+          },
+        };
+
+        if (fs.pathExistsSync(additionalThemeSource)) {
+          const optionalThemeForPreview = path.join(
+            iframeFrameDist,
+            'additional-theme',
+            'ix-brand-theme'
+          );
+          copy.push(
+            fs.copy(
+              additionalThemeSource,
+              optionalThemeForPreview,
+              onlyDistAndLoader
+            )
+          );
+
+          const optionalThemeForIonicPreview = path.join(
+            ionicTestAppDistPath,
+            'additional-theme',
+            'ix-brand-theme'
+          );
+
+          copy.push(
+            fs.copy(
+              additionalThemeSource,
+              optionalThemeForIonicPreview,
+              onlyDistAndLoader
+            )
+          );
+        }
       },
     },
   ],
