@@ -2,17 +2,21 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
+import { l } from 'vite/dist/node/types.d-aGj9QkWt';
 
 // ==============================
 // Only for documentation preview example
 // ==============================
-declare const __THEME__: {
-  style: string;
-};
+declare const hasOptionalThemeInstalled: boolean;
+
 function injectAdditionalThemeStyles() {
-  const style = document.createElement('style');
-  style.innerHTML = `${__THEME__.style}`;
-  document.head.appendChild(style);
+  if (hasOptionalThemeInstalled) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href =
+      '/additional-theme/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css';
+    document.head.appendChild(link);
+  }
 }
 injectAdditionalThemeStyles();
 // ==============================

@@ -8,7 +8,6 @@
  */
 
 import fs from 'fs-extra';
-import fsp from 'fs/promises';
 import { Listr } from 'listr2';
 import path from 'path';
 import { writeApi } from './api-tasks';
@@ -160,6 +159,19 @@ const tasks = new Listr<Context>(
           fs.copy(exampleStylesPath, docsStaticStyleExamples),
         ];
 
+        return Promise.all(copy);
+      },
+    },
+    {
+      title: 'Copy ionic-test-app preview to documentation',
+      task: async () => {
+        return fs.copy(ionicTestAppDistPath, docsIonicPreviewPath);
+      },
+    },
+    {
+      title: 'Copy optional brand theme',
+      task: async () => {
+        const copy = [];
         // Copy theme to examples folder
         const additionalThemeSource = path.join(
           rootPath,
@@ -168,21 +180,23 @@ const tasks = new Listr<Context>(
         );
 
         if (fs.pathExistsSync(additionalThemeSource)) {
-          const additionalThemeTarget = path.join(
+          const optionalThemeForPreview = path.join(
             iframeFrameDist,
             'additional-theme',
             'ix-brand-theme'
           );
-          copy.push(fs.copy(additionalThemeSource, additionalThemeTarget));
-        }
+          copy.push(fs.copy(additionalThemeSource, optionalThemeForPreview));
 
-        return Promise.all(copy);
-      },
-    },
-    {
-      title: 'Copy ionic-test-app preview to documentation',
-      task: async () => {
-        return fs.copy(ionicTestAppDistPath, docsIonicPreviewPath);
+          const optionalThemeForIonicPreview = path.join(
+            ionicTestAppPath,
+            'additional-theme',
+            'ix-brand-theme'
+          );
+
+          copy.push(
+            fs.copy(additionalThemeSource, optionalThemeForIonicPreview)
+          );
+        }
       },
     },
   ],

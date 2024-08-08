@@ -165,10 +165,16 @@ packages/*/build/
 packages/core/dist-css
 
 ###
-# @siemens/html-test-app
+# html-test-app
 ###
 
 packages/html-test-app/src/public/additional-theme
+
+###
+# ionic-test-app
+###
+
+test-apps/ionic-test-app/public/additional-theme
 
 ###
 # documentation
