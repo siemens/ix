@@ -4,18 +4,19 @@ import App from './App';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
 
 // ==============================
-// Only for documentation preview
+// Only for documentation preview example
 // ==============================
+declare const __THEME__: {
+  style: string;
+};
 function injectAdditionalThemeStyles() {
-  console.log(window);
-  console.log((window as any).__THEME__);
   const style = document.createElement('style');
-  style.innerHTML = (window as any).__THEME__.style;
+  style.innerHTML = `${__THEME__.style}`;
   document.head.appendChild(style);
 }
 injectAdditionalThemeStyles();
 // ==============================
-// Only for documentation preview
+// Only for documentation preview example
 // ==============================
 
 function getPreviewModeValueFromCurrentURL() {

@@ -6,8 +6,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import fs from 'fs';
 
-// https://vitejs.dev/config/
-export default defineConfig(async () => {
+async function getOptionalThemeStyle() {
   let style = '';
   try {
     const themePackage = await import.meta.resolve('@siemens/ix-brand-theme');
@@ -20,16 +19,18 @@ export default defineConfig(async () => {
     style = fs.readFileSync(cssPath, 'utf-8');
   } catch (e) {
     console.warn('Could not resolve ix-brand-theme package');
-    console.error(e);
   }
 
+  return JSON.stringify({ style });
+}
+
+// https://vitejs.dev/config/
+export default defineConfig(async () => {
   return {
     base: './',
     plugins: [react(), legacy()],
     define: {
-      __THEME__: {
-        style,
-      },
+      __THEME__: await getOptionalThemeStyle(),
     },
     test: {
       globals: true,

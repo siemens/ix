@@ -82,21 +82,13 @@ function useSearchParamChanged(
       const newValue = searchParams.get(paramName);
       callback(newValue);
     };
-
-    // Initial call to set the initial value
     handleParamChange();
-
-    // Listen for changes when the component mounts
     window.addEventListener('popstate', handleParamChange);
-
-    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener('popstate', handleParamChange);
     };
   }, [paramName, callback]);
 }
-
-// Usage example
 
 const IxNavLinkMenuItem = ({
   to,
@@ -149,13 +141,9 @@ const IxNavLinkTab = ({
   ></NavLink>
 );
 
-const ipad = [`sm`, 'md', 'lg'];
-const iphone = [`sm`];
-
-let breakpoints = isPlatform('ipad') ? ipad : iphone;
-
 const App: React.FC = () => {
   useSearchParamChanged('preview-theme', (newValue) => {
+    console.log('New theme:', newValue);
     if (!newValue) {
       return;
     }
