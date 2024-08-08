@@ -33,22 +33,21 @@ Hybrid apps are built using web technologies but run inside a native container p
 
 ## Using Ionic
 
-To implement a mobile application you as a developer has many possibilities on choose a framework. In this example we are using Ionic + React to implement a mobile application which can be installed on your mobile device.
+Developers have many options when choosing a framework for implementing mobile applications. In this example we are using Ionic and React to implement a hybrid mobile application that can be deployed on your mobile device.
 
 ### Theming Ionic
 
-The first challenge is to provide a theme mapping between Siemens Industrial Experience and Ionic Framework.
+In the first step, we're going to create a theme mapping between Siemens Industrial Experience and Ionic Framework.
 
-Ionic uses CSS custom properties (variables) same as Siemens Industrial Experience, which makes is easy to map between the both theming systems.
+Ionic uses CSS custom properties (variables), just like Siemens Industrial Experience does. This makes is easy to map between the two theming systems.
 
-Here is an example of a default theme mapping [Repository Link](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app/src/theme/variables.css).
+Here is an example of a default theme mapping: [Repository Link](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app/src/theme/variables.css).
 
 ### Define safe areas
 
-Most modern mobile phones do not have a simple rectangle display, sometimes it has a radius sometimes it has a "notch" like the Iphone.
+Most devices nowadays do not have a rectangular display, but often feature rounded corners or characteristics like a display cut-out ("notch").
 
-To handle this areas there are existing [environment variables](https://developer.mozilla.org/en-US/docs/Web/CSS/env#safe-area-inset-top) called `safe-area-inset`
-You has an developer has to define these safe-areas to help the `ix-application` to layout the frame of your application correctly.
+To adapt our application to this , we need to set [environment variables](https://developer.mozilla.org/en-US/docs/Web/CSS/env#safe-area-inset-top) called `safe-area-inset`. This helps the `ix-application` to layout the frame of your application correctly.
 
 ```css
 --ix-safe-area-inset-top: env(safe-area-inset-top);
@@ -57,8 +56,7 @@ You has an developer has to define these safe-areas to help the `ix-application`
 --ix-safe-area-inset-left: env(safe-area-inset-left);
 ```
 
-After you have defined the global `--ix-safe-area-inset-*` you need to define some special variables depending on your Hardware. In our case we have an Iphone with the Notch on top.
-Depending on the orientation of the of your device you need to ajust the safe-areas of some components e.g the `ix-menu`.
+Additionally some variables specific to your hardware need to be set. In our example we use an iPhone with a notch at the top. Depending on the display orientation it's required to adjust the safe-areas of some components (e.g `ix-menu`).
 
 ```css
 body[data-screen-orientation='landscape-primary'] {
@@ -71,8 +69,8 @@ body[data-screen-orientation='landscape-primary'] {
 }
 ```
 
-The given css selector `body[data-screen-orientation='landscape-primary']` is not provided via the ionic framework.
-A good point to add this information is the `main.ts` file of your project. You can chose between the capacitor plugin [`@capacitor/screen-orientation`](https://capacitorjs.com/docs/apis/screen-orientation) or the browser api [`ScreenOrientation`](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation)
+The CSS selector: `body[data-screen-orientation='landscape-primary']` is not provided via the ionic framework.
+A suitable way to add it to the app is the `main.ts` file of your project. You can chose between the capacitor plugin: [`@capacitor/screen-orientation`](https://capacitorjs.com/docs/apis/screen-orientation) or the browser api: [`ScreenOrientation`](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation)
 
 ```tsx
 import { ScreenOrientation } from '@capacitor/screen-orientation';
@@ -95,9 +93,9 @@ root.render(
 );
 ```
 
-After this changes are applied your application frame should respect all areas of your device which is not easy accessible.
+At this point the application frame should respect all areas of your device which are not part of the app.
 
-Please be aware to check if the content pages of your application are respect these areas also. You can use the defined variables here as well.
+To ensure that the pages of your application displaying content also respect the previously defined areas, you can use the defined variables here as well.
 
 ```css
 .my-content-space {
@@ -107,11 +105,11 @@ Please be aware to check if the content pages of your application are respect th
 
 ### Application frame layout
 
-By default the [Application Frame](./controls/application-frame/application.md) comes with tree default layouts `sm`, `md`, `lg`. These layout are selected automatically depending on your hardware display size.
+By default the [Application Frame](./controls/application-frame/application.md) provides three default layouts: `sm`, `md`, `lg`, that are automatically applied depending on the size of the screen.
 
-If you are planning to implement a App for Mobile and Tablet (e.g Iphone or Ipad) it could be necessary to configure the layouts which the application frame can pick from.
+If you are planning to implement an app for both phones and tablets (e.g iPhone and iPad), it may be necessary to configure the layouts which the application frame can pick from.
 
-In case of an IPad and IPhone application you should typically choose `sm` and `md`.
+For apps targetting phones and tablets, typically the `sm` and `md` layouts are suitable.
 
 ```tsx
 const Application = () => {
@@ -125,9 +123,10 @@ const Application = () => {
 };
 ```
 
-As mentation above it makes sometimes sense to adapt the layouts (breakpoints) depending of the hardware.
-For example the layout `md` will be chosen if you have a Iphone in landscape orientation and a Ipad in portrait orientation.
-Ionic provides some [utility functions](https://ionicframework.com/docs/react/platform#platforms) which helps you to decide which layout you should choose.
+
+As mentioned above, in some cases it is beneficial to adapt the layouts (breakpoints) depending on the hardware.
+For example, the layout `md` will be applied for an iPhone in landscape orientation and an iPad in portrait orientation.
+Ionic provides some [utility functions](https://ionicframework.com/docs/react/platform#platforms) that can be helpful to decide which layout to choose.
 
 ```tsx
 const ipad = [`sm`, 'md', 'lg'];
