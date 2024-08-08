@@ -1,10 +1,10 @@
 import DevicePreview from '@site/src/components/DevicePreview';
 
-# Mobile Experience
+# Mobile experience
 
 Siemens Industrial Experience can easily be utilized for creating mobile applications jointly with web technology based approaches. With the help of our design system you will be able to swiftly build the user interface of your mobile web app or hybrid app.
 
-## Demo App
+## Demo app
 
 Check out our hybrid example application using Ionic, React and Siemens Industrial Experience:
 
@@ -22,7 +22,7 @@ Please find the repository with all the source code of the demo application here
 
 Keep on reading to learn more about how this works and how to implement it yourself.
 
-## Mobile App Development
+## Mobile app development
 
 There are several different ways to create applications for mobile devices. Native apps are tailored for a particular platform like iOS or Android and usually need to be developed in a specific way for every target platform seperately. Other approaches like hybrid apps are based on web technologies while targeting multiple platforms using a single codebase.
 
@@ -32,7 +32,7 @@ Web applications can be optimized for mobile devices without any significant tec
 - Limited possibilities for distribution (e.g. via app stores)
 - Limited options for the integration of native features (e.g. push notifications)
 
-### Hybrid Apps
+### Hybrid apps
 
 The aspects described above are reasons to consider hybrid applications in order to provide a sublime mobile user experience and also benefit from the advantages of native applications.
 Hybrid apps are built using web technologies but run inside a native container providing access to device APIs, allowing native features of the device's operating system and hardware to be used. A variety of frameworks for building hybrid mobile applications are available today. Some provide user interface components for a closer integration with the different operating systems designs. For a more consistent user experience it can be benefitial to favor the Siemens Industrial Experience components over the the frameworks UI components.
