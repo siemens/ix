@@ -33,12 +33,10 @@ async function copyOptionalThemeStyle() {
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => {
+  await copyOptionalThemeStyle();
   return {
     base: './',
     plugins: [react(), legacy()],
-    define: {
-      hasOptionalThemeInstalled: await copyOptionalThemeStyle(),
-    },
     test: {
       globals: true,
       environment: 'jsdom',

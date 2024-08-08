@@ -4,25 +4,6 @@ import App from './App';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
 import { l } from 'vite/dist/node/types.d-aGj9QkWt';
 
-// ==============================
-// Only for documentation preview example
-// ==============================
-declare const hasOptionalThemeInstalled: boolean;
-
-function injectAdditionalThemeStyles() {
-  if (hasOptionalThemeInstalled) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href =
-      '/additional-theme/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css';
-    document.head.appendChild(link);
-  }
-}
-injectAdditionalThemeStyles();
-// ==============================
-// Only for documentation preview example
-// ==============================
-
 function getPreviewModeValueFromCurrentURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get('preview-mode');
