@@ -19,7 +19,9 @@ const DevicePreview = (props: {
 
   return (
     <figure className="DevicePreview" style={props.style}>
-      <div className="Content">
+      <div className={clsx('Content', {
+        NoUI: !!props.image,
+      })}>
         {props.image ? (
           <img src={props.image} alt="Device preview" />
         ) : (

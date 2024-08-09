@@ -14,7 +14,7 @@
 :root.preview-mode-ios {
   --ix-safe-area-inset-top: 37px;
   --ix-safe-area-inset-right: 0px;
-  --ix-safe-area-inset-bottom: 27px;
+  --ix-safe-area-inset-bottom: 15px;
   --ix-safe-area-inset-left: 0px;
 }
 

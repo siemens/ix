@@ -64,6 +64,10 @@
     pointer-events: all;
   }
 
+  .Content.NoUI {
+    padding: 0.8125rem 0 0 0;
+  }
+
   .Content img,
   .Content iframe {
     width: 100%;
