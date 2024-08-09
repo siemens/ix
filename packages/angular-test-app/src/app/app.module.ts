@@ -153,6 +153,19 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 import Echarts from 'src/preview-examples/echarts';
+import EchartsSpecial3d from 'src/preview-examples/echarts-special-3d';
+import EchartsBarSimple from "../preview-examples/echarts-bar-simple";
+import EchartsBarHorizontalStacked from "../preview-examples/echarts-bar-horizontal-stacked";
+import EchartsCircle from "../preview-examples/echarts-circle";
+import EchartsGauge from "../preview-examples/echarts-gauge";
+import EchartsLineAdvanced from "../preview-examples/echarts-line-advanced";
+import EchartsLineMultipleYAxis from "../preview-examples/echarts-line-multiple-y-axis";
+import EchartsLineSimple from "../preview-examples/echarts-line-simple";
+import EchartsPie from "../preview-examples/echarts-pie";
+import EchartsSpecialToolbox from "../preview-examples/echarts-special-toolbox";
+import EchartsSpecialZoom from "../preview-examples/echarts-special-zoom";
+import EchartsProgressArc from "../preview-examples/echarts-progress-arc";
+import EchartsProgressCircle from "../preview-examples/echarts-progress-circle";
 
 @NgModule({
   declarations: [
@@ -198,6 +211,19 @@ import Echarts from 'src/preview-examples/echarts';
     DropdownQuickActions,
     DropdownSubmenu,
     Echarts,
+    EchartsSpecial3d,
+    EchartsBarSimple,
+    EchartsBarHorizontalStacked,
+    EchartsCircle,
+    EchartsGauge,
+    EchartsLineAdvanced,
+    EchartsLineMultipleYAxis,
+    EchartsLineSimple,
+    EchartsPie,
+    EchartsSpecialToolbox,
+    EchartsProgressArc,
+    EchartsProgressCircle,
+    EchartsSpecialZoom,
     EventListCompact,
     EventListCustomItemHeight,
     EventListSelected,

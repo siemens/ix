@@ -144,6 +144,19 @@ import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import { NavigationTestComponent } from './components/navigation-test.component';
 import Echarts from 'src/preview-examples/echarts';
+import EchartsSpecial3d from "../preview-examples/echarts-special-3d";
+import EchartsBarHorizontalStacked from "../preview-examples/echarts-bar-horizontal-stacked";
+import EchartsBarSimple from "../preview-examples/echarts-bar-simple";
+import EchartsCircle from "../preview-examples/echarts-circle";
+import EchartsGauge from "../preview-examples/echarts-gauge";
+import EchartsLineAdvanced from "../preview-examples/echarts-line-advanced";
+import EchartsLineMultipleYAxis from "../preview-examples/echarts-line-multiple-y-axis";
+import EchartsLineSimple from "../preview-examples/echarts-line-simple";
+import EchartsSpecialToolbox from "../preview-examples/echarts-special-toolbox";
+import EchartsSpecialZoom from "../preview-examples/echarts-special-zoom";
+import EchartsPie from "../preview-examples/echarts-pie";
+import EchartsProgressCircle from "../preview-examples/echarts-progress-circle";
+import EchartsProgressArc from "../preview-examples/echarts-progress-arc";
 
 const routes: Routes = [
   {
@@ -309,6 +322,19 @@ const routes: Routes = [
       { path: 'dropdown-quick-actions', component: DropdownQuickActions },
       { path: 'dropdown-submenu', component: DropdownSubmenu },
       { path: 'echarts', component: Echarts },
+      { path: 'echarts-special-3d', component: EchartsSpecial3d },
+      { path: 'echarts-bar-simple', component: EchartsBarSimple },
+      { path: 'echarts-bar-horizontal-stacked', component: EchartsBarHorizontalStacked },
+      { path: 'echarts-circle', component: EchartsCircle },
+      { path: 'echarts-gauge', component: EchartsGauge },
+      { path: 'echarts-line-multiple-y-axis', component: EchartsLineMultipleYAxis },
+      { path: 'echarts-line-advanced', component: EchartsLineAdvanced },
+      { path: 'echarts-line-simple', component: EchartsLineSimple },
+      { path: 'echarts-toolbox', component: EchartsSpecialToolbox },
+      { path: 'echarts-pie', component: EchartsPie },
+      { path: 'echarts-progress-arc', component: EchartsProgressArc },
+      { path: 'echarts-progress-circle', component: EchartsProgressCircle },
+      { path: 'echarts-zoom', component: EchartsSpecialZoom },
       { path: 'event-list-compact', component: EventListCompact },
       {
         path: 'event-list-custom-item-height',

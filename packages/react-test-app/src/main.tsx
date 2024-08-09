@@ -115,6 +115,10 @@ import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
 import { NavigationTest } from './testing/NavigationTest';
 import Echarts from './preview-examples/echarts';
+import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked';
+import EchartsBarSimple from './preview-examples/echarts-bar-simple';
+import EchartsGauge from './preview-examples/echarts-gauge';
+import EchartsProgressCircle from './preview-examples/echarts-progress-circle';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -198,6 +202,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/dropdown-submenu" element={<DropdownSubmenu />} />
         <Route path="/preview/dropdown-icon" element={<DropdownIcon />} />
         <Route path="/preview/echarts" element={<Echarts />} />
+        <Route path="/preview/echarts-bar-horizontal-stacked" element={<EchartsBarHorizontalStacked />} />
+        <Route path="/preview/echarts-bar-simple" element={<EchartsBarSimple />} />
+        <Route path="/preview/echarts-gauge" element={<EchartsGauge />} />
+        <Route path="/preview/echarts-progress-circle" element={<EchartsProgressCircle />} />
         <Route path="/preview/event-list" element={<EventList />} />
         <Route
           path="/preview/event-list-compact"

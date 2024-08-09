@@ -1,3 +1,6 @@
+---
+sidebar_position: 0
+---
 import Playground from '@site/src/components/PlaygroundV2';
 
 # ECharts
