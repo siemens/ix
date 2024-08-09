@@ -1,24 +1,31 @@
-import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../auto-generated/ix-date-dropdown/props.md';
 import Events from './../auto-generated/ix-date-dropdown/events.md';
 
-# Date Dropdown
+import Playground from '@site/src/components/PlaygroundV2';
 
-## Usage
+# Date dropdown
 
-<Playground
-  name="date-dropdown" height="35rem"
-  examplesByName></Playground>
+## Examples
 
-## with user defined range options
+### Basic
 
 <Playground
-  name="date-dropdown-user-range" height="35rem"
-  examplesByName></Playground>
+  name="date-dropdown" 
+  height="35rem"
+  examplesByName>
+</Playground>
 
-## Properties
+### With user defined range options
 
-### Props
+<Playground
+  name="date-dropdown-user-range" 
+  height="35rem"
+  examplesByName>
+</Playground>
+
+## API
+
+### Properties
 
 <Props/>
 

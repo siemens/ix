@@ -69,7 +69,7 @@ export class CategoryFilter {
   @Prop() placeholder: string;
 
   /**
-   * Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality.
+   * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.
    * Each ID maps to an object with a label and an array of options to select from.
    */
   @Prop() categories: {
@@ -91,7 +91,7 @@ export class CategoryFilter {
   } = {};
 
   /**
-   * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
+   * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
    */
   @Prop() suggestions: string[];
 
@@ -116,7 +116,7 @@ export class CategoryFilter {
   @Prop() staticOperator?: LogicalFilterOperator;
 
   /**
-   * If set to true allows that a single category can be set more than once.
+   * If set to true, allows that a single category can be set more than once.
    * An already set category will not appear in the category dropdown if set to false.
    *
    * Defaults to true
@@ -139,7 +139,7 @@ export class CategoryFilter {
   @Prop() i18nPlainText = 'Filter by text';
 
   /**
-   * Event dispatched whenever the a category gets selected in the dropdown
+   * Event dispatched whenever a category gets selected in the dropdown
    */
   @Event() categoryChanged: EventEmitter<string>;
 

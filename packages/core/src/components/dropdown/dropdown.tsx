@@ -389,6 +389,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       this.registerKeyListener();
     } else {
+      this.destroyAutoUpdate();
       this.arrowFocusController?.disconnect();
       this.itemObserver?.disconnect();
       this.disposeKeyListener?.();
@@ -398,6 +399,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   @Watch('trigger')
   changedTrigger(newTriggerValue: string | HTMLElement | Promise<HTMLElement>) {
     this.registerListener(newTriggerValue);
+  }
+
+  private destroyAutoUpdate() {
+    if (this.autoUpdateCleanup) {
+      this.autoUpdateCleanup();
+      this.autoUpdateCleanup = null;
+    }
   }
 
   private isAnchorSubmenu(): boolean {
@@ -445,10 +453,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       positionConfig.middleware.push(offset(this.offset));
     }
 
-    if (this.autoUpdateCleanup) {
-      this.autoUpdateCleanup();
-      this.autoUpdateCleanup = null;
-    }
+    this.destroyAutoUpdate();
 
     this.autoUpdateCleanup = autoUpdate(
       this.anchorElement,
@@ -560,7 +565,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       >
         <div style={{ display: 'contents' }}>
           {this.header && <div class="dropdown-header">{this.header}</div>}
-          <slot></slot>
+          {this.show && <slot></slot>}
         </div>
       </Host>
     );

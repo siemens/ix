@@ -760,7 +760,7 @@ test.describe('Events', () => {
       );
       await page.locator('ix-icon-button').click();
       const item = await page.locator('ix-select-item');
-      item.click();
+      await item.click();
       await expect(item).not.toHaveClass('selected');
     });
 

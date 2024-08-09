@@ -367,14 +367,16 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private itemClick(newId: string) {
+    const oldValue = this.value;
     const value = this.toggleValue(newId);
+    this.value = value;
     const defaultPrevented = this.emitValueChange(value);
 
     if (defaultPrevented) {
+      this.value = oldValue;
       return;
     }
 
-    this.value = value;
     this.updateSelection();
   }
 
