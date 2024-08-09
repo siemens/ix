@@ -33,6 +33,10 @@ The table below shows the differences of the three approaches at a glance:
 | Packaging, distribution                  | Browser only         | Installation, App stores | Installation, App stores                          |
 | Offline capability                       | Not supported        | Supported                | Supported                                         |
 | Siemens Industrial Experience Components | Supported            | Not supported            | Supported                                         |
+
+Cf. [ionic.io - What is Hybrid Mobile App Development?](https://ionic.io/resources/articles/what-is-hybrid-app-development#h-key-features:-native-web-and-hybrid)
+
+
 Optimize your web application for mobile devices without any significant technological changes to provide a seamless User Experience across devices and screen sizes (read more about responsive and adaptive design [here](#user-experience-considerations)).
 
 ### Hybrid app development
@@ -41,7 +45,6 @@ Since mobile web apps have some limitations as shown above, we recommend hybrid 
 
 Hybrid apps are built using web technologies but run inside a native container providing access to device APIs, allowing native features of the device's operating system and hardware to be used. A variety of frameworks for building hybrid mobile applications are available today. Some provide User Interface components for a closer integration with the different operating systems designs. 
 
-Cf. [ionic.io - What is Hybrid Mobile App Development?](https://ionic.io/resources/articles/what-is-hybrid-app-development#h-key-features:-native-web-and-hybrid)
 ### Demo app
 
 Check out our hybrid example application using Ionic, React and Siemens Industrial Experience:
