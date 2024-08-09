@@ -3,7 +3,7 @@ import Events from './../auto-generated/ix-avatar/events.md';
 
 import Playground from '@site/src/components/PlaygroundV2';
 
-## Examples
+## Development
 
 ### Basic
 
@@ -37,12 +37,12 @@ You can also add the avatar to the header, which will turn it into a clickable b
   height="21rem">
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events 
+#### Events
 
 <Events />

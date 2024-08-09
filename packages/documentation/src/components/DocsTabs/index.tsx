@@ -104,7 +104,7 @@ export default (props) => {
   return <BrowserOnly>{() => <DocsTabs {...props} />}</BrowserOnly>;
 };
 
-function DocTab(
+export function DocTab(
   props: React.PropsWithChildren<{
     name: string;
     active: boolean;
