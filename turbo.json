@@ -1,19 +1,11 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalEnv": [
-    "CI",
-    "FIGMA_API_TOKEN",
-    "GITHUB_TOKEN",
-    "CSC"
-  ],
-  "globalDependencies": [
-    ".env"
-  ],
+  "globalEnv": ["CI", "FIGMA_API_TOKEN", "GITHUB_TOKEN", "CSC"],
+  "globalDependencies": [".env"],
+  "ui": "stream",
   "tasks": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "outputs": [
         "components/**",
         "dist/**",
@@ -27,30 +19,22 @@
       "outputLogs": "new-only"
     },
     "pkg": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "cache": true
     },
     "start": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "cache": true
     },
     "lint": {
       "cache": false
     },
     "visual-regression": {
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "cache": false
     },
     "test": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "cache": false
     }
   }
