@@ -51,7 +51,7 @@ The table below shows a rough overview of the three common approaches to mobile 
 | Offline capability                        | Supported                   | Not supported       | Supported
 | Siemens Industrial Experience Components  | Not supported               | Supported           | Supported
 
-Cf. https://ionic.io/resources/articles/what-is-hybrid-app-development#h-key-features:-native-web-and-hybrid
+Cf. [ionic.io - What is Hybrid Mobile App Development?](https://ionic.io/resources/articles/what-is-hybrid-app-development#h-key-features:-native-web-and-hybrid)
 
 ## Demo app
 
@@ -201,7 +201,7 @@ Depending on the importance of a mobile-optimized UI, decide on a responsive or 
 - **Responsive design**: The layout adapts to the viewport size by rearranging or hiding components. We recommend this approach for desktop-first applications.
 - **Adaptive design**: There is a separate page layout for a specific breakpoint. We recommend this approach for applications with a strong focus on mobile.
 
-If feasible, we recommend adaptive design since it offers more control over the layout and a more optimized User Experience on mobile devices. However, it requires more effort to maintain different layouts. Independently from the design approach, there are different approaches to achieve a mobile-friendly experience:
+If feasible, we recommend adaptive design since it offers more control over the layout and a more optimized user experience on mobile devices. However, it requires more effort to maintain different layouts. Independently from the design approach, there are different approaches to achieve a mobile-friendly experience:
 - Adjust the page layout (e.g. a column-based layout transforms into a row-based layout)
 - Restructure the content (e.g. prioritize information or components differently)
 - Hide information or entire components (e.g. less important information or components)
