@@ -75,7 +75,20 @@ const iframeFrameDist = path.join(iframeExampleCodePath, 'dist');
 
 const ionicTestAppPath = path.join(rootPath, 'node_modules', 'ionic-test-app');
 const ionicTestAppDistPath = path.join(ionicTestAppPath, 'dist');
+
 const docsIonicPreviewPath = path.join(staticPath, 'ionic-preview');
+
+const optionalThemeForPreview = path.join(
+  iframeFrameDist,
+  'additional-theme',
+  'ix-brand-theme'
+);
+
+const optionalThemeForIonicPreview = path.join(
+  docsIonicPreviewPath,
+  'additional-theme',
+  'ix-brand-theme'
+);
 
 interface Context {
   names: string[];
@@ -105,6 +118,12 @@ const tasks = new Listr<Context>(
 
         rimraf.sync(docsIonicPreviewPath);
         await fs.ensureDir(docsIonicPreviewPath);
+
+        rimraf.sync(optionalThemeForPreview);
+        await fs.ensureDir(optionalThemeForPreview);
+
+        rimraf.sync(optionalThemeForIonicPreview);
+        await fs.ensureDir(optionalThemeForIonicPreview);
       },
     },
     {
@@ -172,50 +191,21 @@ const tasks = new Listr<Context>(
       title: 'Copy optional brand theme',
       task: async () => {
         const copy = [];
-        // Copy theme to examples folder
+
         const additionalThemeSource = path.join(
           rootPath,
           '.build-temp',
           'package'
         );
 
-        const onlyDistAndLoader: CopyOptions = {
-          filter: (src) => {
-            if (src.includes('dist') || src.includes('loader')) {
-              return true;
-            }
-
-            return false;
-          },
-        };
-
         if (fs.pathExistsSync(additionalThemeSource)) {
-          const optionalThemeForPreview = path.join(
-            iframeFrameDist,
-            'additional-theme',
-            'ix-brand-theme'
-          );
-          copy.push(
-            fs.copy(
-              additionalThemeSource,
-              optionalThemeForPreview,
-              onlyDistAndLoader
-            )
-          );
-
-          const optionalThemeForIonicPreview = path.join(
-            ionicTestAppDistPath,
-            'additional-theme',
-            'ix-brand-theme'
-          );
+          copy.push(fs.copy(additionalThemeSource, optionalThemeForPreview));
 
           copy.push(
-            fs.copy(
-              additionalThemeSource,
-              optionalThemeForIonicPreview,
-              onlyDistAndLoader
-            )
+            fs.copy(additionalThemeSource, optionalThemeForIonicPreview)
           );
+
+          return Promise.all(copy);
         }
       },
     },
