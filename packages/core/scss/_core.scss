@@ -39,6 +39,11 @@
   --bs-font-sans-serif: Siemens Sans, system-ui, -apple-system, 'Segoe UI',
     Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --ix-safe-area-inset-top: 0rem;
+  --ix-safe-area-inset-right: 0rem;
+  --ix-safe-area-inset-bottom: 0rem;
+  --ix-safe-area-inset-left: 0rem;
 }
 
 body {

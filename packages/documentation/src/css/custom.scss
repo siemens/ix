@@ -288,6 +288,18 @@ a.menu__link {
   display: table !important;
   width: 100%;
 }
+
+table.table-no-border {
+  table,
+  tr,
+  td,
+  th,
+  thead,
+  tbody {
+    border: none;
+    padding: 0;
+  }
+}
 .navbar__search {
   margin-right: 1rem;
 }

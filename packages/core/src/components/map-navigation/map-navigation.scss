@@ -77,12 +77,12 @@
 
     .map-nav-header-brand {
       background-color: var(--theme-map-navigation-background);
-      display: flex;
-      align-items: center;
+
+      padding-left: $default-space;
+      padding-right: $default-space;
+      padding-bottom: 0.625rem;
       height: 100%;
       width: 100%;
-      padding: 0 $default-space;
-
       --theme-app-header--color: var(--theme-map-navigation-header--color);
       --theme-app-header-logo--color: var(--theme-map-navigation-logo--color);
 

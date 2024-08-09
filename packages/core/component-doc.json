@@ -209,9 +209,15 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-application"
+        ]
+      },
       "props": [
         {
           "name": "appSwitchConfig",
@@ -397,7 +403,8 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-basic-navigation",
-        "ix-map-navigation"
+        "ix-map-navigation",
+        "ix-playground-internal"
       ],
       "dependencies": [
         "ix-menu-expand-icon",
@@ -423,6 +430,9 @@
           "ix-application-header"
         ],
         "ix-map-navigation": [
+          "ix-application-header"
+        ],
+        "ix-playground-internal": [
           "ix-application-header"
         ]
       },
@@ -1228,6 +1238,7 @@
         "ix-empty-state",
         "ix-menu-about-news",
         "ix-modal-example",
+        "ix-playground-internal",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1261,6 +1272,9 @@
           "ix-button"
         ],
         "ix-modal-example": [
+          "ix-button"
+        ],
+        "ix-playground-internal": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -9122,7 +9136,9 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-menu-expand-icon",
         "ix-icon-button",
@@ -9146,6 +9162,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-menu"
         ]
       },
       "props": [
@@ -11093,9 +11112,15 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [],
-      "dependencyGraph": {},
+      "dependencyGraph": {
+        "ix-playground-internal": [
+          "ix-modal"
+        ]
+      },
       "props": [
         {
           "name": "animation",

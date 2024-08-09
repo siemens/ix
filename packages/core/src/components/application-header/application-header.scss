@@ -6,19 +6,23 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
- @import 'mixins/shadow-dom/component';
- @import 'mixins/break-points';
+@import 'mixins/shadow-dom/component';
+@import 'mixins/break-points';
 
 :host {
   @include ix-component;
 
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  flex-wrap: nowrap;
   position: relative;
   width: 100%;
-  height: 2.75rem;
-  min-height: 2.75rem;
-  padding: 0 1rem 0 0.625rem;
+  height: calc(2.75rem + var(--ix-safe-area-inset-top, 0rem));
+  min-height: calc(2.75rem + var(--ix-safe-area-inset-top, 0rem));
+  padding-top: 0;
+  padding-right: calc(1rem + var(--ix-safe-area-inset-right, 0rem));
+  padding-bottom: 0.3rem;
+  padding-left: calc(0.625rem + var(--ix-safe-area-inset-left, 0rem));
 
   color: var(--theme-app-header--color);
   background-color: var(--theme-app-header--background);
@@ -40,6 +44,7 @@
     max-width: 50%;
     margin-left: 1.5rem;
     margin-right: 2.5rem;
+    margin-bottom: 0.25rem;
     color: var(--theme-app-header--color);
   }
 
@@ -90,8 +95,6 @@
 }
 
 :host(.breakpoint-sm) {
-  padding-left: 0.625rem;
-
   .logo {
     margin-left: 0.5rem;
   }

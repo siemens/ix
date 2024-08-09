@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import fs from 'fs-extra';
-import fsp from 'fs/promises';
+import fs, { CopyOptions } from 'fs-extra';
 import { Listr } from 'listr2';
 import path from 'path';
 import { writeApi } from './api-tasks';
@@ -16,6 +15,8 @@ import { writeTypeScriptFiles } from './ts-class-tasks';
 import rimraf from 'rimraf';
 
 const rootPath = path.join(__dirname, '../');
+
+const staticPath = path.join(rootPath, 'static');
 
 const componentDocPath = path.join(
   rootPath,
@@ -58,18 +59,9 @@ const exampleStylesPath = path.join(examplePath, 'example-styles', 'src');
 
 const docsPath = path.join(rootPath, 'docs', 'auto-generated');
 
-const iframeExampleCodePath = path.join(
-  rootPath,
-  'static',
-  'webcomponent-examples'
-);
+const iframeExampleCodePath = path.join(staticPath, 'webcomponent-examples');
 
-const docsStaticExamples = path.join(
-  rootPath,
-  'static',
-  'auto-generated',
-  'previews'
-);
+const docsStaticExamples = path.join(staticPath, 'auto-generated', 'previews');
 const docsStaticWebComponentExamples = path.join(
   docsStaticExamples,
   'web-components'
@@ -80,6 +72,23 @@ const docsStaticVueExamples = path.join(docsStaticExamples, 'vue');
 const docsStaticStyleExamples = path.join(docsStaticExamples, 'styles');
 
 const iframeFrameDist = path.join(iframeExampleCodePath, 'dist');
+
+const ionicTestAppPath = path.join(rootPath, 'node_modules', 'ionic-test-app');
+const ionicTestAppDistPath = path.join(ionicTestAppPath, 'dist');
+
+const docsIonicPreviewPath = path.join(staticPath, 'ionic-preview');
+
+const optionalThemeForPreview = path.join(
+  iframeFrameDist,
+  'additional-theme',
+  'ix-brand-theme'
+);
+
+const optionalThemeForIonicPreview = path.join(
+  docsIonicPreviewPath,
+  'additional-theme',
+  'ix-brand-theme'
+);
 
 interface Context {
   names: string[];
@@ -106,6 +115,15 @@ const tasks = new Listr<Context>(
         rimraf.sync(iframeExampleCodePath);
         await fs.ensureDir(iframeExampleCodePath);
         await fs.ensureDir(iframeFrameDist);
+
+        rimraf.sync(docsIonicPreviewPath);
+        await fs.ensureDir(docsIonicPreviewPath);
+
+        rimraf.sync(optionalThemeForPreview);
+        await fs.ensureDir(optionalThemeForPreview);
+
+        rimraf.sync(optionalThemeForIonicPreview);
+        await fs.ensureDir(optionalThemeForIonicPreview);
       },
     },
     {
@@ -146,7 +164,7 @@ const tasks = new Listr<Context>(
       },
     },
     {
-      title: 'Copy examples to dist',
+      title: 'Copy html-test-app preview to documentation',
       task: async () => {
         const copy = [
           fs.copy(htmlTestAppPath, docsStaticWebComponentExamples),
@@ -160,7 +178,20 @@ const tasks = new Listr<Context>(
           fs.copy(exampleStylesPath, docsStaticStyleExamples),
         ];
 
-        // Copy theme to examples folder
+        return Promise.all(copy);
+      },
+    },
+    {
+      title: 'Copy ionic-test-app preview to documentation',
+      task: async () => {
+        return fs.copy(ionicTestAppDistPath, docsIonicPreviewPath);
+      },
+    },
+    {
+      title: 'Copy optional brand theme',
+      task: async () => {
+        const copy = [];
+
         const additionalThemeSource = path.join(
           rootPath,
           '.build-temp',
@@ -168,15 +199,14 @@ const tasks = new Listr<Context>(
         );
 
         if (fs.pathExistsSync(additionalThemeSource)) {
-          const additionalThemeTarget = path.join(
-            iframeFrameDist,
-            'additional-theme',
-            'ix-brand-theme'
-          );
-          copy.push(fs.copy(additionalThemeSource, additionalThemeTarget));
-        }
+          copy.push(fs.copy(additionalThemeSource, optionalThemeForPreview));
 
-        return Promise.all(copy);
+          copy.push(
+            fs.copy(additionalThemeSource, optionalThemeForIonicPreview)
+          );
+
+          return Promise.all(copy);
+        }
       },
     },
   ],

@@ -19,8 +19,14 @@
   display: none;
 
   dialog {
+    --ix-dialog-padding: 1rem;
+
     margin: 0;
-    padding: 1rem;
+    padding: var(--ix-dialog-padding);
+    padding-top: calc(var(--ix-dialog-padding) + var(--ix-safe-area-inset-top));
+    padding-bottom: calc(
+      var(--ix-dialog-padding) + var(--ix-safe-area-inset-bottom)
+    );
     left: 50%;
   }
 
@@ -67,17 +73,32 @@
   }
 
   .modal-size-full-screen {
+    border-radius: 0;
     left: 0 !important;
     top: 0 !important;
     transform: none !important;
+    box-shadow: none;
 
-    width: calc(100% - 28px);
-    min-width: calc(100% - 28px);
-    max-width: calc(100% - 28px);
+    --ix-dialog-full-screen-height: calc(
+      var(--ix-safe-area-inset-top) + var(--ix-safe-area-inset-bottom)
+    );
 
-    height: calc(100% - 28px);
-    min-height: calc(100% - 28px);
-    max-height: calc(100% - 28px);
+    width: calc(100% - var(--ix-dialog-padding) * 2);
+    min-width: calc(100% - var(--ix-dialog-padding) * 2);
+    max-width: calc(100% - var(--ix-dialog-padding) * 2);
+
+    min-height: calc(
+      100% - (var(--ix-dialog-padding) * 2) -
+        var(--ix-dialog-full-screen-height)
+    );
+    max-height: calc(
+      100% - (var(--ix-dialog-padding) * 2) -
+        var(--ix-dialog-full-screen-height)
+    );
+  }
+
+  dialog.modal-size-full-screen::backdrop {
+    background: var(--theme-modal--background);
   }
 
   .dialog-backdrop {
