@@ -11,7 +11,7 @@ function getPreviewModeValueFromCurrentURL() {
 const previewModeValue = getPreviewModeValueFromCurrentURL();
 
 if (previewModeValue === 'ios') {
-  document.body.classList.add('preview-mode-ios');
+  document.documentElement.classList.add('preview-mode-ios');
 }
 
 const container = document.getElementById('root');
