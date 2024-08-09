@@ -8,7 +8,6 @@ import ReactIcon from '@site/static/img/react.svg';
 import WebComponentsIcon from '@site/static/img/webcomponents.svg';
 import VueIcon from '@site/static/img/vue.svg';
 import BlazorIcon from '@site/static/img/blazor.svg';
-import VSCodeIcon from '@site/static/img/vscode.svg';
 
 # Installation
 
@@ -28,7 +27,4 @@ Follow the links below to the respective installation guides:
 
    
 **Experience the Siemens Industrial Experience style while coding**  
-We have designed a VS Code theme for our Siemens AG employees and business partners to experience the Industrial Experience style while coding. 
-Download it here:
-
-<Card link="https://code.siemens.com/siemens-ix/ix-for-vs-code/ix-theme-for-vs-code/-/releases"><VSCodeIcon class="Card_Icon" />VS Code theme</Card>
+We have designed a Visual Studio Code theme for our Siemens AG employees and business partners to experience the Industrial Experience style while coding. Download it [here](https://code.siemens.com/siemens-ix/ix-for-vs-code/ix-theme-for-vs-code/-/releases) (available within Siemens AG).
