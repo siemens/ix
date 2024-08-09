@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import type { Props } from '@theme/TOCItems/Tree';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import type { TOCTreeNode } from '@docusaurus/theme-common/internal';
+import { useLocation } from '@docusaurus/router';
 
 type IxProps = Props & {
   parent: readonly TOCTreeNode[];
@@ -20,6 +21,7 @@ function TOCItemTree({
   isChild,
   parent,
 }: IxProps): JSX.Element | null {
+  const location = useLocation();
   if (!toc.length) {
     return null;
   }
