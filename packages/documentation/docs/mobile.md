@@ -37,6 +37,22 @@ Hybrid apps are built using web technologies but run inside a native container p
 
 For a more consistent User Experience it can be beneficial to favor the Industrial Experience components over the frameworks' UI components as shown in the [demo](#demo-app). 
 
+## Development approach overview
+
+The table below shows a rough overview of the three common approaches to mobile app development previously mentioned at a glance:
+
+|                                           | Native app                  | Mobile web app      | Hybrid app
+| -----                                     | :-----:                     | :-----:             | :-----:
+| Performance                               | Best possible               | Medium / High       | Medium / High
+| Look & Feel                               | Platform native             | Individual          | Platform native / Individual
+| Development effort                        | High                        | Low                 | Medium
+| Hardware features                         | Best possible               | Limited             | Extensive <br/>(depending on plugin availability)       
+| Packaging,  Distribution                  | Installation, App stores    | Browser only        | Installation, App stores
+| Offline capability                        | Supported                   | Not supported       | Supported
+| Siemens Industrial Experience Components  | Not supported               | Supported           | Supported
+
+Cf. https://ionic.io/resources/articles/what-is-hybrid-app-development#h-key-features:-native-web-and-hybrid
+
 ## Demo app
 
 Check out our hybrid example application using Ionic, React and Siemens Industrial Experience:
