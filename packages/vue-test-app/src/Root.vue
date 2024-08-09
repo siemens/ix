@@ -34,6 +34,8 @@ import Chip from './preview-examples/chip.vue';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back.vue';
 import ContentHeader from './preview-examples/content-header.vue';
 import content from './preview-examples/content.vue';
+import CustomField from './preview-examples/custom-field.vue';
+import CustomFieldValidation from './preview-examples/custom-field-validation.vue';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range.vue';
 import DateDropdown from './preview-examples/date-dropdown.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
@@ -52,6 +54,9 @@ import EventListSelected from './preview-examples/event-list-selected.vue';
 import EventList from './preview-examples/event-list.vue';
 import ExpandingSearch from './preview-examples/expanding-search.vue';
 import FlipTile from './preview-examples/flip-tile.vue';
+import FormCheckbox from './preview-examples/form-checkbox.vue';
+import FormCheckboxDisabled from './preview-examples/form-checkbox-disabled.vue';
+import FormCheckboxGroup from './preview-examples/form-checkbox-group.vue';
 import GridPadding from './preview-examples/grid-padding.vue';
 import GridSize from './preview-examples/grid-size.vue';
 import Grid from './preview-examples/grid.vue';
@@ -77,6 +82,11 @@ import MapNavigation from './preview-examples/map-navigation.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import ModalExample from './preview-examples/modal.vue';
+import NumberField from './preview-examples/number-field.vue';
+import NumberFieldLabel from './preview-examples/number-field-label.vue';
+import NumberFieldDisabled from './preview-examples/number-field-disabled.vue';
+import NumberFieldReadOnly from './preview-examples/number-field-readonly.vue';
+import NumberFieldStepperButton from './preview-examples/number-field-stepper-button.vue';
 import Pane from './preview-examples/pane.vue';
 import PaneLayout from './preview-examples/pane-layout.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
@@ -84,9 +94,14 @@ import Pill from './preview-examples/pill.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
 import PushCard from './preview-examples/push-card.vue';
 import RadioButton from './preview-examples/radio-button.vue';
+import Radio from './preview-examples/radio.vue';
+import RadioDisabled from './preview-examples/radio-disabled.vue';
+import RadioGroup from './preview-examples/radio-group.vue';
+import RadioValidation from './preview-examples/radio-validation.vue';
+import Select from './preview-examples/select.vue';
 import SelectEditable from './preview-examples/select-editable.vue';
 import SelectMultiple from './preview-examples/select-multiple.vue';
-import Select from './preview-examples/select.vue';
+import SelectValidation from './preview-examples/select-validation.vue';
 import Settings from './preview-examples/settings.vue';
 import SliderError from './preview-examples/slider-error.vue';
 import SliderMarker from './preview-examples/slider-marker.vue';
@@ -97,9 +112,21 @@ import Spinner from './preview-examples/spinner.vue';
 import SplitbuttonIcons from './preview-examples/split-button-icons.vue';
 import Splitbutton from './preview-examples/split-button.vue';
 import Tabs from './preview-examples/tabs.vue';
+import Textarea from './preview-examples/textarea.vue';
 import TextareaDisabled from './preview-examples/textarea-disabled.vue';
 import TextareaReadonly from './preview-examples/textarea-readonly.vue';
-import Textarea from './preview-examples/textarea.vue';
+import TextareaField from './preview-examples/textarea-field.vue';
+import TextareaFieldDisabled from './preview-examples/textarea-field-disabled.vue';
+import TextareaFieldReadonly from './preview-examples/textarea-field-readonly.vue';
+import TextareaFieldRowsCols from './preview-examples/textarea-field-rows-cols.vue';
+import TextareaFieldValidation from './preview-examples/textarea-field-validation.vue';
+import TextField from './preview-examples/text-field.vue';
+import TextFieldDisabled from './preview-examples/text-field-disabled.vue';
+import TextFieldLabel from './preview-examples/text-field-label.vue';
+import TextFieldPattern from './preview-examples/text-field-pattern.vue';
+import TextFieldReadonly from './preview-examples/text-field-readonly.vue';
+import TextFieldTypes from './preview-examples/text-field-types.vue';
+import TextFieldValidation from './preview-examples/text-field-validation.vue';
 import Tile from './preview-examples/tile.vue';
 import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
@@ -116,6 +143,10 @@ import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
 import Echarts from './preview-examples/echarts.vue';
+import ValidationSelect from './preview-examples/validation-select.vue';
+import FormValidation from './preview-examples/form-validation.vue';
+import LayoutAuto from './preview-examples/layout-auto.vue';
+import LayoutAutoCustom from './preview-examples/layout-auto-custom.vue';
 
 const routes: any = {
   '/': App,
@@ -137,6 +168,8 @@ const routes: any = {
   '/preview/about-and-legal': AboutAndLegal,
   '/preview/aggrid': AGGrid,
   '/preview/chip': Chip,
+  '/preview/custom-field': CustomField,
+  '/preview/custom-field-validation': CustomFieldValidation,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-user-range': DateDropdownUserRange,
   '/preview/datepicker': Datepicker,
@@ -153,6 +186,9 @@ const routes: any = {
   '/preview/event-list-selected': EventListSelected,
   '/preview/expanding-search': ExpandingSearch,
   '/preview/flip-tile': FlipTile,
+  '/preview/form-checkbox': FormCheckbox,
+  '/preview/form-checkbox-disabled': FormCheckboxDisabled,
+  '/preview/form-checkbox-group': FormCheckboxGroup,
   '/preview/group': Group,
   '/preview/group-context-menu': GroupContextMenu,
   '/preview/group-custom-entry': GroupCustomEntry,
@@ -165,9 +201,14 @@ const routes: any = {
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
   '/preview/radio-button': RadioButton,
+  '/preview/radio': Radio,
+  '/preview/radio-disabled': RadioDisabled,
+  '/preview/radio-group': RadioGroup,
+  '/preview/radio-validation': RadioValidation,
   '/preview/select': Select,
   '/preview/select-editable': SelectEditable,
   '/preview/select-multiple': SelectMultiple,
+  '/preview/select-validation': SelectValidation,
   '/preview/pane': Pane,
   '/preview/pane-layout': PaneLayout,
   '/preview/spinner': Spinner,
@@ -178,6 +219,18 @@ const routes: any = {
   '/preview/textarea': Textarea,
   '/preview/textarea-disabled': TextareaDisabled,
   '/preview/textarea-readonly': TextareaReadonly,
+  '/preview/textarea-field': TextareaField,
+  '/preview/textarea-field-readonly': TextareaFieldReadonly,
+  '/preview/textarea-field-disabled': TextareaFieldDisabled,
+  '/preview/textarea-field-rows-cols': TextareaFieldRowsCols,
+  '/preview/textarea-field-validation': TextareaFieldValidation,
+  '/preview/text-field': TextField,
+  '/preview/text-field-disabled': TextFieldDisabled,
+  '/preview/text-field-label': TextFieldLabel,
+  '/preview/text-field-pattern': TextFieldPattern,
+  '/preview/text-field-readonly': TextFieldReadonly,
+  '/preview/text-field-types': TextFieldTypes,
+  '/preview/text-field-validation': TextFieldValidation,
   '/preview/tile': Tile,
   '/preview/timepicker': Timepicker,
   '/preview/toast': Toast,
@@ -193,6 +246,11 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
+  '/preview/number-field': NumberField,
+  '/preview/number-field-disabled': NumberFieldDisabled,
+  '/preview/number-field-label': NumberFieldLabel,
+  '/preview/number-field-readonly': NumberFieldReadOnly,
+  '/preview/number-field-stepper-button': NumberFieldStepperButton,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/basic-navigation': BasicNavigation,
@@ -226,6 +284,10 @@ const routes: any = {
   '/preview/grid': Grid,
   '/preview/grid-size': GridSize,
   '/preview/grid-padding': GridPadding,
+  '/preview/validation-select': ValidationSelect,
+  '/preview/form-validation': FormValidation,
+  '/preview/layout-auto': LayoutAuto,
+  '/preview/layout-auto-custom': LayoutAutoCustom,
 };
 
 const currentPath = ref(window.location.pathname);
@@ -237,4 +299,5 @@ const currentView = computed(() => {
 
 <template>
   <component :is="currentView"></component>
-</template>
+</template>import layoutAutoVue from './preview-examples/layout-auto.vue';
+

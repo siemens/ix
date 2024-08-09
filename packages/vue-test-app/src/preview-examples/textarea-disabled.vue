@@ -11,7 +11,6 @@
 
 <template>
   <textarea
-
     placeholder="Enter text here"
     disabled
   ></textarea>

@@ -9,7 +9,7 @@
 
 import { TreeContext, TreeModel } from '@siemens/ix';
 import { IxButton, IxIcon, IxTree } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 type TreeData = {
   name: string;

@@ -8,7 +8,7 @@
  */
 
 import { IxSelect, IxSelectItem } from '@siemens/ix-react';
-import React, { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 export default () => {
   const [selection, setSelection] = useState<string[]>([]);

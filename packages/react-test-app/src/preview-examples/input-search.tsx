@@ -8,7 +8,7 @@
  */
 
 import { IxIcon, IxIconButton, IxInputGroup } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [message, setMessage] = useState('');

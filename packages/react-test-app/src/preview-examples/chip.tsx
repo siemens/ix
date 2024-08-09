@@ -8,7 +8,7 @@
  */
 
 import { IxChip } from '@siemens/ix-react';
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 
 export default () => {
   const styled: CSSProperties = {

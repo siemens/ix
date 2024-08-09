@@ -22,8 +22,8 @@ export const appInitialize = (doc: Document) => {
 
       didInitialize = true;
 
-      defineCustomElements();
       await iconsDefineCustomElements();
+      defineCustomElements();
     }
   };
 };

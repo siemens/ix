@@ -8,7 +8,6 @@
  */
 
 import { IxCard, IxCardContent, IxIcon, IxTypography } from '@siemens/ix-react';
-import React from 'react';
 import './styles/card.css';
 import { IxCardTitle } from '@siemens/ix-react';
 

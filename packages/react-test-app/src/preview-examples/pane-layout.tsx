@@ -8,7 +8,7 @@
  */
 
 import { IxButton, IxPane, IxPaneLayout } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [variant, setVariant] = useState<'inline' | 'floating'>('floating');

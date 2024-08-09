@@ -8,7 +8,7 @@
  */
 import { IxModalSize } from '@siemens/ix';
 import { IxButton, Modal, ModalRef, showModal } from '@siemens/ix-react';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 export default () => {
   const modalRef = useRef<ModalRef>(null);
