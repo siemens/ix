@@ -1,28 +1,31 @@
-import Playground from '@site/src/components/PlaygroundV2';
-
 import WorkflowStepProps from './../auto-generated/ix-workflow-step/props.md';
 import WorkflowStepEvents from './../auto-generated/ix-workflow-step/events.md';
 import WorkflowStepsProps from './../auto-generated/ix-workflow-steps/props.md';
 import WorkflowStepsEvents from './../auto-generated/ix-workflow-steps/events.md';
 
+import Playground from '@site/src/components/PlaygroundV2';
+
 # Workflow
 
-## Usage
+## Examples
 
 <Playground
-name="workflow"
-examplesByName></Playground>
+  name="workflow"
+  examplesByName>
+</Playground>
 
 ### Vertical
 
 <Playground
-name="workflow-vertical" height="27rem"
-hideInitalCodePreview
-examplesByName></Playground>
+  name="workflow-vertical" 
+  height="27rem"
+  hideInitalCodePreview
+  examplesByName>
+</Playground>
 
-## Properties ix-workflow-steps
+## API (ix-workflow-steps)
 
-### Props
+### Properties
 
 <WorkflowStepsProps />
 
@@ -30,9 +33,9 @@ examplesByName></Playground>
 
 <WorkflowStepsEvents />
 
-## Properties ix-workflow-step
+## API (ix-workflow-step)
 
-### Props
+### Properties
 
 <WorkflowStepProps />
 

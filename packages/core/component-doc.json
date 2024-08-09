@@ -402,12 +402,14 @@
       "dependencies": [
         "ix-menu-expand-icon",
         "ix-icon-button",
+        "ix-typography",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -443,7 +445,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -622,6 +624,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -2076,7 +2079,7 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
+          "docs": "Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
           "docsTags": [],
           "values": [
             {
@@ -2296,7 +2299,7 @@
           "mutable": false,
           "attr": "repeat-categories",
           "reflectToAttr": false,
-          "docs": "If set to true allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
+          "docs": "If set to true, allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -2352,7 +2355,7 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "A list of strings that will be supplied as typeahead suggestions not tied to any categories.",
+          "docs": "A list of strings that will be supplied as type-ahead suggestions not tied to any categories.",
           "docsTags": [],
           "values": [
             {
@@ -2376,7 +2379,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event dispatched whenever the a category gets selected in the dropdown",
+          "docs": "Event dispatched whenever a category gets selected in the dropdown",
           "docsTags": []
         },
         {
@@ -5903,7 +5906,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -5924,7 +5927,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -6987,7 +6990,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7008,7 +7011,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7024,6 +7027,7 @@
           "reflectToAttr": true,
           "docs": "Whether the group is selected.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7050,7 +7054,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7225,7 +7229,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7246,7 +7250,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7267,7 +7271,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7283,6 +7287,7 @@
           "reflectToAttr": false,
           "docs": "Show selected state",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7331,7 +7336,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -8690,6 +8695,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -11752,6 +11758,7 @@
           "reflectToAttr": false,
           "docs": "Advanced mode",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -14305,7 +14312,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16039,7 +16046,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16122,7 +16129,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -16508,6 +16515,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-application-header",
         "ix-application-switch-modal",
         "ix-avatar",
         "ix-blind",
@@ -16528,6 +16536,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-application-header": [
           "ix-typography"
         ],
         "ix-application-switch-modal": [
