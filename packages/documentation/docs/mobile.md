@@ -2,25 +2,54 @@ import DevicePreview from '@site/src/components/DevicePreview';
 
 # Mobile experience
 
-<p>
-Use Siemens Industrial Experience to create mobile applications jointly with web technology based approaches easily. With the help of our design system you are able to swiftly build the user interface of your mobile web app or hybrid app.
-</p>
+<br/>
 
-<p>
-  <DevicePreview image="/img/mobile.gif" style={{
-    float: 'left',
-    margin: '3rem',
-    marginLeft: '0rem'
-  }} />
+<table className="table-no-border">
+  <tbody>
+    <tr >
+      <td>
+          <DevicePreview image="/img/mobile.gif"/>
+      </td>
+      <td style={{ verticalAlign: 'top', paddingLeft: '2rem' }}>
+        <br/>
+        Use Siemens Industrial Experience to create mobile applications jointly with web technology based approaches easily. With the help of our design system you are able to swiftly build the user interface of your mobile web app or hybrid app.
 
-</p>
+        Regardless of the technology there are aspects to take into consideration when you optimize applications for mobile devices:
+          1. **Responsive and adaptive design** due to different viewport sizes.
+          2. **Interaction through touch**, without access to mouse or keyboard.
+          3. **Device-specific features** like notches or rounded corners.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Mobile app development
 
+<p>
+  <DevicePreview style={{
+    float: 'right',
+    margin: '0',
+    marginLeft: '2rem'
+  }} />
+</p>
+
+<br/>
 There are different ways to create applications for mobile devices:
 - **Web apps** are accessed through a web browser and are platform-independent.
 - **Native apps** are tailored for a particular platform like iOS or Android and usually need to be developed in a specific way for every target platform separately.
 - **Hybrid apps** are based on web technologies while targeting multiple platforms using a single codebase.
+
+Optimize your web application for mobile devices without any significant technological changes to provide a seamless User Experience across devices and screen sizes (read more about responsive and adaptive design [here](#user-experience-considerations)).
+
+### Hybrid app development
+
+Since mobile web apps have some limitations as shown above, we recommend hybrid apps  to combine the advantages of web and native apps.
+
+Hybrid apps are built using web technologies but run inside a native container providing access to device APIs, allowing native features of the device's operating system and hardware to be used. A variety of frameworks for building hybrid mobile applications are available today. Some provide User Interface components for a closer integration with the different operating systems designs.
+
+Check out our hybrid example application using Ionic, React and Siemens Industrial Experience on the right.
+
+<br/>
 
 The table below shows the differences of the three approaches at a glance:
 
@@ -36,32 +65,7 @@ The table below shows the differences of the three approaches at a glance:
 
 Cf. [ionic.io - What is Hybrid Mobile App Development?](https://ionic.io/resources/articles/what-is-hybrid-app-development#h-key-features:-native-web-and-hybrid)
 
-
-Optimize your web application for mobile devices without any significant technological changes to provide a seamless User Experience across devices and screen sizes (read more about responsive and adaptive design [here](#user-experience-considerations)).
-
-### Hybrid app development
-
-Since mobile web apps have some limitations as shown above, we recommend hybrid apps  to combine the advantages of web and native apps.
-
-Hybrid apps are built using web technologies but run inside a native container providing access to device APIs, allowing native features of the device's operating system and hardware to be used. A variety of frameworks for building hybrid mobile applications are available today. Some provide User Interface components for a closer integration with the different operating systems designs. 
-
-### Demo app
-
-Check out our hybrid example application using Ionic, React and Siemens Industrial Experience:
-
-<div style={{
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  margin: '5rem 0'
-}}>
-
-  <DevicePreview />
-</div>
-
-Please find the repository with all the source code of the demo application here: [Ionic React Test App on GitHub](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app).
-
-Keep on reading to learn more about how this works and how to implement it yourself.
+To learn more about how this works and how to implement it yourself keep on reading.
 
 ## Using Ionic
 
@@ -179,11 +183,6 @@ const Application = () => {
 ```
 
 ## User experience considerations
-
-Regardless of the technology there are aspects to take into consideration when you optimize applications for mobile devices:
-1. **Responsive and adaptive design** due to different viewport sizes.
-2. **Interaction through touch**, without access to mouse or keyboard.
-3. **Device-specific features** like notches or rounded corners.
 
 ### Responsive and adaptive design
 
