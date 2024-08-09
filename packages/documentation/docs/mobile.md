@@ -22,38 +22,27 @@ There are different ways to create applications for mobile devices:
 - **Native apps** are tailored for a particular platform like iOS or Android and usually need to be developed in a specific way for every target platform separately.
 - **Hybrid apps** are based on web technologies while targeting multiple platforms using a single codebase.
 
+The table below shows the differences of the three approaches at a glance:
+
+|                                          | **(Mobile) web app** | **Native app**           | **Hybrid app**                                    |
+| ---------------------------------------- | -------------------- | ------------------------ | ------------------------------------------------- |
+| Performance                              | Medium / high        | Best possible            | Medium / high                                     |
+| Look & Feel                              | Individual           | Platform native          | Platform native / individual                      |
+| Development effort                       | Low                  | High                     | Medium                                            |
+| Hardware features                        | Limited              | Best possible            | Extensive <br/>(depending on plugin availability) |
+| Packaging, distribution                  | Browser only         | Installation, App stores | Installation, App stores                          |
+| Offline capability                       | Not supported        | Supported                | Supported                                         |
+| Siemens Industrial Experience Components | Supported            | Not supported            | Supported                                         |
 Optimize your web application for mobile devices without any significant technological changes to provide a seamless User Experience across devices and screen sizes (read more about responsive and adaptive design [here](#user-experience-considerations)).
 
-Disadvantages of mobile web apps include:
-- Lack of offline capabilities
-- Limited possibilities for distribution (e.g. via app stores)
-- Limited options for the integration of native features (e.g. push notifications)
+### Hybrid app development
 
-We recommend to mitigate these disadvantages by using hybrid apps and additionally benefit from the advantages of native applications.
-
-## Hybrid apps
+Since mobile web apps have some limitations as shown above, we recommend hybrid apps  to combine the advantages of web and native apps.
 
 Hybrid apps are built using web technologies but run inside a native container providing access to device APIs, allowing native features of the device's operating system and hardware to be used. A variety of frameworks for building hybrid mobile applications are available today. Some provide User Interface components for a closer integration with the different operating systems designs. 
 
-For a more consistent User Experience it can be beneficial to favor the Industrial Experience components over the frameworks' UI components as shown in the [demo](#demo-app). 
-
-## Development approach overview
-
-The table below shows a rough overview of the three common approaches to mobile app development previously mentioned at a glance:
-
-|                                           | Native app                  | Mobile web app      | Hybrid app
-| -----                                     | :-----:                     | :-----:             | :-----:
-| Performance                               | Best possible               | Medium / High       | Medium / High
-| Look & Feel                               | Platform native             | Individual          | Platform native / Individual
-| Development effort                        | High                        | Low                 | Medium
-| Hardware features                         | Best possible               | Limited             | Extensive <br/>(depending on plugin availability)       
-| Packaging,  Distribution                  | Installation, App stores    | Browser only        | Installation, App stores
-| Offline capability                        | Supported                   | Not supported       | Supported
-| Siemens Industrial Experience Components  | Not supported               | Supported           | Supported
-
 Cf. [ionic.io - What is Hybrid Mobile App Development?](https://ionic.io/resources/articles/what-is-hybrid-app-development#h-key-features:-native-web-and-hybrid)
-
-## Demo app
+### Demo app
 
 Check out our hybrid example application using Ionic, React and Siemens Industrial Experience:
 
