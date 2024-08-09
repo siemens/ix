@@ -9,90 +9,89 @@ LICENSE file in the root directory of this source tree.
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ECharts example</title>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
-</head>
-<body class="">
-<!-- Preview code -->
-<div
-  id="main"
-  style="
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts example</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+  </head>
+  <body class="">
+    <!-- Preview code -->
+    <div
+      id="main"
+      style="
         display: block;
         position: relative;
         width: 100%;
         height: 30rem;
         padding-top: 1rem;
       "
-></div>
+    ></div>
 
-<script type="module">
-  import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
-  import { themeSwitcher } from '@siemens/ix';
+    <script type="module">
+      import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+      import { themeSwitcher } from '@siemens/ix';
 
-  function initChart(theme, options) {
-    var myChart = echarts.init(
-      document.querySelector('#main'),
-      convertThemeName(theme)
-    );
-    myChart.setOption(options);
+      function initChart(theme, options) {
+        var myChart = echarts.init(
+          document.querySelector('#main'),
+          convertThemeName(theme)
+        );
+        myChart.setOption(options);
 
-    return myChart;
-  }
-
-  const options = {
-    tooltip: {
-      trigger: 'item'
-    },
-    legend: {
-      orient: 'vertical',
-      left: 'left'
-    },
-    series: [
-      {
-
-        name: 'CO2 emissions from<',
-        type: 'pie',
-        radius: '50%',
-        data: [
-          { value: 29.4, name: 'China' },
-          { value: 14.3, name: 'U.S' },
-          { value: 9.8, name: 'EEA' },
-          { value: 6.8, name: 'India' },
-          { value: 4.9, name: 'Russia' },
-          { value: 3.5, name: 'Japan' },
-          { value: 31.5, name: 'Other' }
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
+        return myChart;
       }
-    ]
-  };
 
+      const data = [
+        { value: 29.4, name: 'China' },
+        { value: 14.3, name: 'U.S' },
+        { value: 9.8, name: 'EEA' },
+        { value: 6.8, name: 'India' },
+        { value: 4.9, name: 'Russia' },
+        { value: 3.5, name: 'Japan' },
+        { value: 31.5, name: 'Other' },
+      ];
 
+      const options = {
+        tooltip: {
+          trigger: 'item',
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+        },
+        series: [
+          {
+            name: 'CO2 emissions from<',
+            type: 'pie',
+            radius: '50%',
+            data: data,
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)',
+              },
+            },
+          },
+        ],
+      };
 
-  // providing echarts is in this case optional
-  registerTheme(echarts);
+      // providing echarts is in this case optional
+      registerTheme(echarts);
 
-  var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
 
-  themeSwitcher.themeChanged.on((theme) => {
-    myChart.dispose();
-    myChart = initChart(theme, options);
-  });
+      themeSwitcher.themeChanged.on((theme) => {
+        myChart.dispose();
+        myChart = initChart(theme, options);
+      });
 
-  window.onresize = function () {
-    myChart.resize();
-  };
-</script>
-<!-- Preview code -->
-<script type="module" src="./init.js"></script>
-</body>
+      window.onresize = function () {
+        myChart.resize();
+      };
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+  </body>
 </html>

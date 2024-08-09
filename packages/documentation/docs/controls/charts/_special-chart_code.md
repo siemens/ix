@@ -31,11 +31,26 @@ noMargin
 examplesByName>
 </Playground>
 
-## 3D
+## Charts-GL 
 
-To utilize 3D charts in your project, you need to import the echarts-gl package. 
-The echarts-gl package extends the functionality of ECharts by providing support for 3D visualizations, allowing you to create immersive and interactive 3D charts. 
-These charts can include various types such as 3D scatter plots, 3D bar charts, and 3D surface plots.
+The `echarts-gl` package extends ECharts to support 3D visualizations, enabling you to create immersive and interactive charts. 
+With this package, you can design a variety of 3D charts, including:
+
+- 3D scatter plots
+- 3D bar charts
+- 3D surface plots
+
+### Installation
+
+```sh
+npm install --save @siemens/ix-echarts
+```
+
+### Import 
+
+```typescript
+import 'echarts-gl';
+```
 
 <Playground
 height="40rem"

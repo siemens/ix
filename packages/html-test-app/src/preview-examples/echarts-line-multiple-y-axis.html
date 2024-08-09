@@ -29,11 +29,7 @@ LICENSE file in the root directory of this source tree.
     ></div>
 
     <script type="module">
-      import {
-        convertThemeName,
-        registerTheme,
-        getComputedCSSProperty,
-      } from '@siemens/ix-echarts';
+      import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
 
       function initChart(theme, options) {
@@ -45,10 +41,6 @@ LICENSE file in the root directory of this source tree.
 
         return myChart;
       }
-
-      const dates = Array.from({ length: 2025 - 2013 }, (_, i) =>
-        (2013 + i).toString()
-      );
 
       const months = [
         'Jan',
@@ -70,11 +62,6 @@ LICENSE file in the root directory of this source tree.
         precipitation: months.map(() => (Math.random() * 200).toFixed(2)),
         temperature: months.map(() => (Math.random() * 30).toFixed(2)),
       };
-
-      const stockData = [
-        77.67, 82.81, 84.09, 91.75, 118.15, 107.48, 99.36, 93.07, 137.18,
-        104.38, 156.48, 168.52,
-      ];
 
       const options = {
         tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },

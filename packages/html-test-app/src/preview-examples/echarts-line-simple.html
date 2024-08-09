@@ -9,70 +9,76 @@ LICENSE file in the root directory of this source tree.
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ECharts example</title>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
-</head>
-<body class="">
-<!-- Preview code -->
-<div
-  id="main"
-  style="
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECharts example</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+  </head>
+  <body class="">
+    <!-- Preview code -->
+    <div
+      id="main"
+      style="
         display: block;
         position: relative;
         width: 100%;
         height: 40rem;
         padding-top: 1rem;
       "
-></div>
+    ></div>
 
-<script type="module">
-  import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
-  import { themeSwitcher } from '@siemens/ix';
+    <script type="module">
+      import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+      import { themeSwitcher } from '@siemens/ix';
 
-  function initChart(theme, options) {
-    var myChart = echarts.init(
-      document.querySelector('#main'),
-      convertThemeName(theme),
-    );
-    myChart.setOption(options);
+      function initChart(theme, options) {
+        var myChart = echarts.init(
+          document.querySelector('#main'),
+          convertThemeName(theme)
+        );
+        myChart.setOption(options);
 
-    return myChart;
-  }
-
-  const options = {
-    xAxis: {
-      type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [
-      {
-        data: [150, 230, 224, 218, 135, 147, 260],
-        type: 'line'
+        return myChart;
       }
-    ]
-  };
 
-  // providing echarts is in this case optional
-  registerTheme(echarts);
+      const data = {
+        weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        value: [150, 230, 224, 218, 135, 147, 260],
+      };
 
-  var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+      const options = {
+        xAxis: {
+          type: 'category',
+          data: data.weekdays,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            data: data.value,
+            type: 'line',
+          },
+        ],
+      };
 
-  themeSwitcher.themeChanged.on((theme) => {
-    myChart.dispose();
-    myChart = initChart(theme, options);
-  });
+      // providing echarts is in this case optional
+      registerTheme(echarts);
 
-  window.onresize = function () {
-    myChart.resize();
-  };
-</script>
-<!-- Preview code -->
-<script type="module" src="./init.js"></script>s
-</body>
+      var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+
+      themeSwitcher.themeChanged.on((theme) => {
+        myChart.dispose();
+        myChart = initChart(theme, options);
+      });
+
+      window.onresize = function () {
+        myChart.resize();
+      };
+    </script>
+    <!-- Preview code -->
+    <script type="module" src="./init.js"></script>
+    s
+  </body>
 </html>

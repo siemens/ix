@@ -15,7 +15,7 @@ examplesByName>
 
 <Playground
 height="40rem"
-name="echarts-bar-vertical"
+name="echarts-bar-horizontal-stacked"
 noMargin
 examplesByName>
 </Playground>

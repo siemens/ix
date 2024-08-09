@@ -14,7 +14,6 @@ LICENSE file in the root directory of this source tree.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECharts example</title>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
-    <script src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
   </head>
   <body class="">
     <!-- Preview code -->
@@ -30,7 +29,11 @@ LICENSE file in the root directory of this source tree.
     ></div>
 
     <script type="module">
-      import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+      import {
+        convertThemeName,
+        registerTheme,
+        getComputedCSSProperty,
+      } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
 
       function initChart(theme, options) {
@@ -43,45 +46,68 @@ LICENSE file in the root directory of this source tree.
         return myChart;
       }
 
+      //create some random data
+      let base = +new Date(2000, 9, 3);
+      let oneDay = 24 * 3600 * 1000;
+      let date = [];
+
+      let data = [Math.random() * 300];
+
+      for (let i = 1; i < 20000; i++) {
+        var now = new Date((base += oneDay));
+        date.push(
+          [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')
+        );
+        data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+      }
+
       const options = {
-        tooltip: {},
-        visualMap: {
-          show: false,
-          dimension: 2,
-          min: -1,
-          max: 1,
-        },
-        xAxis3D: {
-          type: 'value',
-        },
-        yAxis3D: {
-          type: 'value',
-        },
-        zAxis3D: {
-          type: 'value',
-        },
-        grid3D: {
-          viewControl: {
-            projection: 'orthographic',
+        toolbox: {
+          feature: {
+            dataZoom: {
+              yAxisIndex: 'none',
+            },
           },
         },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: date,
+        },
+        yAxis: {
+          type: 'value',
+          boundaryGap: [0, '100%'],
+        },
+        dataZoom: [
+          {
+            type: 'inside',
+            start: 0,
+            end: 10,
+          },
+          {
+            start: 0,
+            end: 10,
+          },
+        ],
         series: [
           {
-            type: 'surface',
-            equation: {
-              x: {
-                step: 0.05,
-              },
-              y: {
-                step: 0.05,
-              },
-              z: function (x, y) {
-                if (Math.abs(x) < 0.1 && Math.abs(y) < 0.1) {
-                  return '-';
-                }
-                return Math.sin(x * Math.PI) * Math.sin(y * Math.PI);
-              },
+            name: 'Synthetic data',
+            type: 'line',
+            symbol: 'none',
+            sampling: 'lttb',
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: getComputedCSSProperty('--theme-color-primary'),
+                },
+                {
+                  offset: 1,
+                  color: 'transparent',
+                },
+              ]),
             },
+            data: data,
           },
         ],
       };

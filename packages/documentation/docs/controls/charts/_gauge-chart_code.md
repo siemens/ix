@@ -2,7 +2,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 ## Examples
 
-## Gauge
+## Performance metrics
 
 <Playground
 height="25rem"
