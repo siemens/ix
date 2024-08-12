@@ -39,6 +39,7 @@ Your layout might change in some places when applying the theme:
 2. Buttons are slightly wider because of the bold label
 
 # Troubleshooting
+%%Accordions start (only for internal information)%%
 <Accordion title="I don’t see the right colors." id="colors">
 1. Check if you use color variables (no raw HEX or RGB values)
 2. Check if you applied the .uxt-ix-theme-dark on the body
@@ -58,35 +59,40 @@ Your layout might change in some places when applying the theme:
 	2. For backgrounds: use the interface colors e.g. color-interface or color-interface-secondary (no base colors)
 3. For statuses: use the error, warning, info, success colors (not primary)
 </Accordion>
-
-| **Common problems**                             | **Solution**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **I don’t see the right colors.**               | 1. Check if you use color variables (no raw HEX or RGB values)<br>    <br>2. Check if you applied the .uxt-ix-theme-dark on the body<br>    <br>3. If not already, update your UXT version to v2.7.0                                                                                                                                                                                                                                                                                                                                                                       |
-| **My custom component doesn’t look right.**     | 1. Check if you override specific attributes with !important<br>    <br>2. Check if you added the .ix class to the element with the .uxt-defaults class, as shown above<br>    <br>3. If not already, update the used UXT version to 2.7.0                                                                                                                                                                                                                                                                                                                                 |
-| **The colors don’t look right in both themes.** | 1. Check if you use color variables (no raw HEX or RGB values)<br>    <br>2. Check if you used meta color variables correctly (see more details [here](https://design.mindsphere.io/patterns/color.html#tab2anchor4)):<br>    <br>    1. For text elements: use the font colors e.g. color-font or color-font-secondary (no base colors)<br>        <br>    2. For backgrounds: use the interface colors e.g. color-interface or color-interface-secondary (no base colors)<br>        <br>    3. For statuses: use the error, warning, info, success colors (not primary) |
-
-If your facing troubles please add a comment to this page, [raise an issue](https://github.com/siemens/ix/issues) or contact .
+%%Accordions end%%
+If your facing troubles please let us know by [raising an issue](https://github.com/siemens/ix/issues).
 
 # Component name changes
 In case you want to start using the actual Industrial Experience web components, we collected all the component names for you to find them easier:
 
-| **UXT**                                       | **iX**                                                             |
+| **User Experience Toolkit**                   | **Industrial Experience**                                          |
 | --------------------------------------------- | ------------------------------------------------------------------ |
-| Button<br>- primary<br>- secondary<br>- ghost | Button<br>- primary filled<br>- primary outline<br>- primary ghost |
-| Stepper                                       | Workflow                                                           |
-| Dropzone                                      | Upload                                                             |
+| App bar                                       | Nav menu                                                           |
+| Badge                                         | Pill, chip                                                         |
 | Busy indicator                                | Spinner                                                            |
-| (to be continued)                             |                                                                    |
+| Button<br>- primary<br>- secondary<br>- ghost | Button<br>- primary filled<br>- primary outline<br>- primary ghost |
+| Card grid                                     | Layout grid                                                        |
+| Container                                     | Card                                                               |
+| Dialog                                        | Modal                                                              |
+| Dropzone                                      | Upload                                                             |
+| List                                          | Event list                                                         |
+| Stepper                                       | Workflow                                                           |
+| Menu                                          | Dropdown button                                                    |
+| Message                                       | Message bar                                                        |
+| Notification                                  | Toast                                                              |
+| Pager                                         | Pagination                                                         |
+| Popover                                       | Tooltip, dropdown                                                  |
+| Switch                                        | Toggle                                                             |
 
 # System icons
 
 Core differences between UXT and iX:
 
-- UXT offers an iconfont with 3 different styles (regular, bold, filled)
+- [UXT offers an iconfont](https://design.mindsphere.io/patterns/system-icons.html) with 3 different styles (regular, bold, filled)
 - [iX offers SVGs](https://ix.siemens.io/docs/icon-library/icons) with mainly 1 style that corresponds to our bold and partially filled variants separately
 
 When changing to the SVG icons by Industrial Experience please check your custom-built components whether stylings still apply.
 
 # Figma library
 
-When switching from UXT to iX, please  xxx
+When switching from UXT to iX, please use the swap library feature as described [here](https://help.figma.com/hc/en-us/articles/4404856784663-Swap-style-and-component-libraries).
