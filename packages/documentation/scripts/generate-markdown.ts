@@ -73,7 +73,7 @@ const docsStaticStyleExamples = path.join(docsStaticExamples, 'styles');
 
 const iframeFrameDist = path.join(iframeExampleCodePath, 'dist');
 
-const ionicTestAppPath = path.join(rootPath, 'node_modules', 'mobile-test-app');
+const ionicTestAppPath = path.join(rootPath, 'node_modules', 'ionic-test-app');
 const ionicTestAppDistPath = path.join(ionicTestAppPath, 'dist');
 
 const docsIonicPreviewPath = path.join(staticPath, 'ionic-preview');
