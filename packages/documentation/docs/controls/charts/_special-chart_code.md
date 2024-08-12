@@ -2,7 +2,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 ## Examples
 
-## Toolbox
+## Interactive toolbox
 
 Apache ECharts offers a versatile toolbox that enables users to interact with and manipulate charts effectively. 
 By default, the toolbox appears in the top right corner of the chart. 
@@ -18,7 +18,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Zoom
+## Advanced zoom and pan
 
 In addition to the toolbox, ECharts provides zoom and pan functionality for a more interactive chart experience. 
 Users can zoom in and out using the mouse wheel, and pan the chart by clicking and dragging. 
@@ -31,7 +31,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Charts-GL 
+## 3D visualizations
 
 The `echarts-gl` package extends ECharts to support 3D visualizations, enabling you to create immersive and interactive charts. 
 With this package, you can design a variety of 3D charts, including:

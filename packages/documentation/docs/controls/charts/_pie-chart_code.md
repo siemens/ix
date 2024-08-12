@@ -2,7 +2,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 ## Examples
 
-## Circle
+## Donut chart
 
 <Playground
 height="40rem"
@@ -11,7 +11,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Pie
+## Pie chart
 
 <Playground
 height="30rem"

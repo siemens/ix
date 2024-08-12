@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,32 +7,49 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
+import React, { useEffect, useState } from 'react';
 import {
   convertThemeName,
-  registerTheme,
   getComputedCSSProperty,
+  registerTheme,
 } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
+import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
 import { OrdinalRawValue } from 'echarts/types/src/util/types';
 
-@Component({
-  selector: 'app-example',
-  templateUrl: './echarts-special-zoom.html',
-})
-export default class EchartsSpecialZoom implements OnInit {
-  theme = convertThemeName(themeSwitcher.getCurrentTheme());
+export default function EchartsSpecialZoom() {
+  registerTheme(echarts);
+
+  const [theme, setTheme] = useState(
+    convertThemeName(themeSwitcher.getCurrentTheme())
+  );
+
+  useEffect(() => {
+    themeSwitcher.themeChanged.on((theme: string) => {
+      setTheme(convertThemeName(theme));
+    });
+  }, []);
 
   //create some random data
-  private base = +new Date(1968, 9, 3);
-  private oneDay = 24 * 3600 * 1000;
-  private date: OrdinalRawValue[] = [];
+  let base = +new Date(1968, 9, 3);
+  const oneDay = 24 * 3600 * 1000;
+  const date: OrdinalRawValue[] = [];
 
-  data: number[] = [0];
+  const data: number[] = [0];
 
-  options: EChartsOption = {
+  function generateData(): void {
+    for (let i = 1; i < 20000; i++) {
+      const now = new Date((base += oneDay));
+      date.push(`${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}`);
+      data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+    }
+  }
+
+  generateData();
+
+  const options: EChartsOption = {
     toolbox: {
       feature: {
         dataZoom: {
@@ -43,7 +60,7 @@ export default class EchartsSpecialZoom implements OnInit {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: this.date,
+      data: date,
     },
     yAxis: {
       type: 'value',
@@ -78,28 +95,22 @@ export default class EchartsSpecialZoom implements OnInit {
             },
           ]),
         },
-        data: this.data,
+        data: data,
       },
     ],
   };
 
-  generateData(): void {
-    for (let i = 1; i < 20000; i++) {
-      const now = new Date((this.base += this.oneDay));
-      this.date.push(
-        `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}`
-      );
-      this.data.push(Math.round((Math.random() - 0.5) * 20 + this.data[i - 1]));
-    }
-  }
-
-  ngOnInit() {
-    this.generateData();
-
-    registerTheme(echarts);
-
-    themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = convertThemeName(theme);
-    });
-  }
+  return (
+    <ReactEcharts
+      option={options}
+      theme={theme}
+      style={{
+        display: 'block',
+        position: 'relative',
+        width: '100%',
+        height: '40rem',
+        paddingTop: '1rem',
+      }}
+    />
+  );
 }

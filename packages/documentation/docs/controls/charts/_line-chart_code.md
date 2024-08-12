@@ -2,7 +2,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 ## Examples
 
-## Line Simple
+## Basic line chart
 
 <Playground
 height="40rem"
@@ -11,7 +11,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Line multiple y axis
+## Multi-y-axis line chart
 
 <Playground
 height="40rem"
@@ -20,7 +20,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Line Advanced
+## Advanced line chart
 
 <Playground
 height="40rem"

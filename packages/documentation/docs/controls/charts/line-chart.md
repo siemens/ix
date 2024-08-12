@@ -6,3 +6,4 @@ import DocsCode from './\_line-chart_code.md';
 # Line Chart
 
 <DocsTabs code={DocsCode} />
+
