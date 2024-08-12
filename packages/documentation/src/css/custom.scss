@@ -439,3 +439,10 @@ p > img {
   margin-top: -1rem;
   visibility: hidden;
 }
+
+// Hide the development and guidelines sections because they are shown via tabs
+h2#development,
+h2#guidelines {
+  visibility: hidden;
+  height: 0px;
+}
