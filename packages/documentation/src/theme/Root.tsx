@@ -29,7 +29,7 @@ export default function Root({ children }) {
       data: {
         page: {
           path: pathname,
-          country: 'en',
+          country: 'WW',
           language: 'en',
         },
       },
