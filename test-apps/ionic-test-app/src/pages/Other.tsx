@@ -2,7 +2,11 @@
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
 import { IonContent, IonPage } from '@ionic/react';
-import './Other.css';
+import {
+  iconContextMenu,
+  iconRename,
+  iconTrashcan,
+} from '@siemens/ix-icons/icons';
 import {
   IxBlind,
   IxContent,
@@ -13,12 +17,7 @@ import {
   IxKpi,
   IxTypography,
 } from '@siemens/ix-react';
-import {
-  iconContextMenu,
-  iconInfo,
-  iconRename,
-  iconTrashcan,
-} from '@siemens/ix-icons/icons';
+import './Other.css';
 
 const Other: React.FC = () => {
   return (

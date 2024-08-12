@@ -1,11 +1,5 @@
 import { NavLink, Redirect, Route, HashRouter } from 'react-router-dom';
-import {
-  IonApp,
-  IonRouterOutlet,
-  isPlatform,
-  setupIonicReact,
-} from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
@@ -49,8 +43,6 @@ import {
   IxApplicationContext,
   IxApplicationHeader,
   IxAvatar,
-  IxButton,
-  IxContent,
   IxDropdownButton,
   IxDropdownItem,
   IxIcon,

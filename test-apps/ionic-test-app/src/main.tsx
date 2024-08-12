@@ -2,7 +2,6 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
-import { l } from 'vite/dist/node/types.d-aGj9QkWt';
 
 function getPreviewModeValueFromCurrentURL() {
   const params = new URLSearchParams(window.location.search);

@@ -1,19 +1,8 @@
+import { IonButton, IonHeader, IonPage, isPlatform } from '@ionic/react';
 import {
-  IonButton,
-  IonDatetime,
-  IonDatetimeButton,
-  IonHeader,
-  IonPage,
-  isPlatform,
-} from '@ionic/react';
-import './Home.css';
-import {
-  IxBlind,
   IxButton,
   IxContent,
   IxContentHeader,
-  IxDateDropdown,
-  IxDatePicker,
   IxEventList,
   IxEventListItem,
   IxKeyValue,
@@ -25,10 +14,11 @@ import {
   ModalRef,
   showModal,
 } from '@siemens/ix-react';
+import './Home.css';
 
-import { useLayoutEffect, useRef, useState } from 'react';
-import { BatteryInfo, Device, DeviceInfo } from '@capacitor/device';
+import { Device, DeviceInfo } from '@capacitor/device';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 const TriggerEventModal = () => {
   const modalRef = useRef<ModalRef>(null);

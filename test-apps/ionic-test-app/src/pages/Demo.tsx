@@ -12,17 +12,14 @@ import {
   IxEventListItem,
   IxIcon,
   IxLayoutGrid,
-  IxPagination,
   IxRow,
   IxSlider,
-  IxTabItem,
-  IxTabs,
   IxToggle,
   IxTypography,
 } from '@siemens/ix-react';
+import classNames from 'classnames';
 import { useState } from 'react';
 import styles from './Demo.module.css';
-import classNames from 'classnames';
 
 function EmptyExample() {
   return (
