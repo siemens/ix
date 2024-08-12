@@ -22,6 +22,7 @@ import DevicePreview from '@site/src/components/DevicePreview';
           3. **Device-specific features** like notches or rounded corners.
       </td>
     </tr>
+
   </tbody>
 </table>
 
@@ -46,7 +47,7 @@ Optimize your web application for mobile devices without any significant technol
 
 ### Hybrid app development
 
-Since mobile web apps have some limitations as shown above, we recommend hybrid apps  to combine the advantages of web and native apps.
+Since mobile web apps have some limitations as shown above, we recommend hybrid apps to combine the advantages of web and native apps.
 
 Hybrid apps are built using web technologies but run inside a native container providing access to device APIs, allowing native features of the device's operating system and hardware to be used. A variety of frameworks for building hybrid mobile applications are available today. Some provide User Interface components for a closer integration with the different operating systems designs.
 
@@ -108,7 +109,8 @@ body[data-screen-orientation='landscape-primary'] {
 
 The CSS selector `body[data-screen-orientation='landscape-primary']` is not provided via the ionic framework.
 A suitable way to add it to the app is the `main.ts` file of your project. There are two options:
-- Capacitor plugin: [`@capacitor/screen-orientation`](https://capacitorjs.com/docs/apis/screen-orientation) 
+
+- Capacitor plugin: [`@capacitor/screen-orientation`](https://capacitorjs.com/docs/apis/screen-orientation)
 - Browser api: [`ScreenOrientation`](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation)
 
 ```tsx
@@ -190,17 +192,19 @@ const Application = () => {
 Industrial Experience components handle various viewport sizes out-of-the-box. When building a page layout, consider small screens in portrait and landscape mode in an early stage during the design phase.
 
 Depending on the importance of a mobile-optimized UI, decide on a responsive or adaptive design approach:
+
 - **Responsive design**: The layout adapts to the viewport size by rearranging or hiding components. We recommend this approach for desktop-first applications.
 - **Adaptive design**: There is a separate page layout for a specific breakpoint. We recommend this approach for applications with a strong focus on mobile.
 
 If feasible, we recommend adaptive design since it offers more control over the layout and a more optimized user experience on mobile devices. However, it requires more effort to maintain different layouts. Independently from the design approach, there are different approaches to achieve a mobile-friendly experience:
+
 - Adjust the page layout (e.g. a column-based layout transforms into a row-based layout)
 - Restructure the content (e.g. prioritize information or components differently)
 - Hide information or entire components (e.g. less important information or components)
 
 ### Interaction
 
-Users interact with mobile devices primarily through touch input. Our web components  respond to touch events out-of-the-box. 
+Users interact with mobile devices primarily through touch input. Our web components respond to touch events out-of-the-box.
 
 For your specific use cases, it might be necessary to implement custom event listeners for touch interactions. In addition, touch devices offer the possibility to use gestures like swiping, pinching or tapping.
 

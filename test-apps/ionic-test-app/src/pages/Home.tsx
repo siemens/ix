@@ -1,4 +1,3 @@
-import { IonButton, IonHeader, IonPage, isPlatform } from '@ionic/react';
 import {
   IxButton,
   IxContent,
@@ -19,6 +18,7 @@ import './Home.css';
 import { Device, DeviceInfo } from '@capacitor/device';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
 import { useLayoutEffect, useRef, useState } from 'react';
+import { isPlatform } from '@ionic/react';
 
 const TriggerEventModal = () => {
   const modalRef = useRef<ModalRef>(null);
@@ -107,58 +107,53 @@ const Home: React.FC = () => {
   }
 
   return (
-    <IonPage>
-      <IonHeader translucent={true}></IonHeader>
-      <IxContent>
-        <IxContentHeader
-          slot="header"
-          headerTitle="My Phone"
-          headerSubtitle="Show information about your phone"
-        >
-          <IxButton outline onClick={onNewEntryClick}>
-            Create new entry
-          </IxButton>
-        </IxContentHeader>
+    <IxContent>
+      <IxContentHeader
+        slot="header"
+        headerTitle="My Phone"
+        headerSubtitle="Show information about your phone"
+      >
+        <IxButton outline onClick={onNewEntryClick}>
+          Create new entry
+        </IxButton>
+      </IxContentHeader>
 
-        <div className="Home__Content">
-          <IxKeyValueList className="Home__System_Settings">
-            <IxKeyValue label="Device" value={deviceInfo?.model} />
-            <IxKeyValue label="Version" value={`${deviceInfo?.iOSVersion}`} />
-            <IxKeyValue label="Battery" value={`${batteryLevel}%`} />
-            <IxKeyValue
-              label="Orientation"
-              value={`${
-                isPlatform('mobile') ? orientation : 'portrait-primary'
-              }`}
-            />
-          </IxKeyValueList>
+      <div className="Home__Content">
+        <IxKeyValueList className="Home__System_Settings">
+          <IxKeyValue label="Device" value={deviceInfo?.model} />
+          <IxKeyValue label="Version" value={`${deviceInfo?.iOSVersion}`} />
+          <IxKeyValue label="Battery" value={`${batteryLevel}%`} />
+          <IxKeyValue
+            label="Orientation"
+            value={`${isPlatform('mobile') ? orientation : 'portrait-primary'}`}
+          />
+        </IxKeyValueList>
 
-          <div className="Home__Event__Container">
-            <h2>Events</h2>
-            <div className="Home__Event__Event_List">
-              <IxEventList animated={false}>
-                <IxEventListItem itemColor="color-alarm">
-                  Battery low
-                </IxEventListItem>
-                <IxEventListItem itemColor="color-success">
-                  Upload success
-                </IxEventListItem>
-                <IxEventListItem itemColor="color-warning">
-                  Heat limit
-                </IxEventListItem>
-                <IxEventListItem itemColor="color-alarm">
-                  Restart required
-                </IxEventListItem>
+        <div className="Home__Event__Container">
+          <h2>Events</h2>
+          <div className="Home__Event__Event_List">
+            <IxEventList animated={false}>
+              <IxEventListItem itemColor="color-alarm">
+                Battery low
+              </IxEventListItem>
+              <IxEventListItem itemColor="color-success">
+                Upload success
+              </IxEventListItem>
+              <IxEventListItem itemColor="color-warning">
+                Heat limit
+              </IxEventListItem>
+              <IxEventListItem itemColor="color-alarm">
+                Restart required
+              </IxEventListItem>
 
-                {events.map((event, index) => (
-                  <IxEventListItem key={index}>{event}</IxEventListItem>
-                ))}
-              </IxEventList>
-            </div>
+              {events.map((event, index) => (
+                <IxEventListItem key={index}>{event}</IxEventListItem>
+              ))}
+            </IxEventList>
           </div>
         </div>
-      </IxContent>
-    </IonPage>
+      </div>
+    </IxContent>
   );
 };
 

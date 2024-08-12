@@ -1,7 +1,6 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import { IonContent, IonPage } from '@ionic/react';
 import {
   IxButton,
   IxCol,
@@ -155,50 +154,46 @@ function IconExamples() {
 
 const Demo: React.FC = () => {
   return (
-    <IonPage>
-      <IonContent fullscreen>
-        <IxContent>
-          <IxContentHeader
-            slot="header"
-            headerTitle="Other"
-            headerSubtitle="Explain what this page is about"
-          ></IxContentHeader>
-          <IxLayoutGrid noMargin>
-            <IxRow>
-              <IxCol>
-                <IconExamples />
-              </IxCol>
-            </IxRow>
-            <IxRow>
-              <IxCol>
-                <EmptyExample />
-              </IxCol>
-            </IxRow>
-            <IxRow>
-              <IxCol>
-                <TypographyExample />
-              </IxCol>
-              <IxCol>
-                <ToggleExample />
-              </IxCol>
-              <IxCol>
-                <ButtonExample />
-              </IxCol>
-            </IxRow>
-            <IxRow>
-              <IxCol>
-                <SliderExample />
-              </IxCol>
-            </IxRow>
-            <IxRow>
-              <IxCol>
-                <EventListExample />
-              </IxCol>
-            </IxRow>
-          </IxLayoutGrid>
-        </IxContent>
-      </IonContent>
-    </IonPage>
+    <IxContent>
+      <IxContentHeader
+        slot="header"
+        headerTitle="Other"
+        headerSubtitle="Explain what this page is about"
+      ></IxContentHeader>
+      <IxLayoutGrid noMargin>
+        <IxRow>
+          <IxCol>
+            <IconExamples />
+          </IxCol>
+        </IxRow>
+        <IxRow>
+          <IxCol>
+            <EmptyExample />
+          </IxCol>
+        </IxRow>
+        <IxRow>
+          <IxCol>
+            <TypographyExample />
+          </IxCol>
+          <IxCol>
+            <ToggleExample />
+          </IxCol>
+          <IxCol>
+            <ButtonExample />
+          </IxCol>
+        </IxRow>
+        <IxRow>
+          <IxCol>
+            <SliderExample />
+          </IxCol>
+        </IxRow>
+        <IxRow>
+          <IxCol>
+            <EventListExample />
+          </IxCol>
+        </IxRow>
+      </IxLayoutGrid>
+    </IxContent>
   );
 };
 
