@@ -52,6 +52,7 @@ export default class EchartsLineMultipleYAxis implements OnInit {
       name: name,
       position: position,
       offset: offset,
+      alignTicks: true,
       axisLabel: {
         formatter: formatter,
       },

@@ -47,8 +47,8 @@ export default function EchartsGauge() {
           show: false,
         },
         radius: '100%',
-        startAngle: 200,
-        endAngle: -20,
+        startAngle: 90,
+        endAngle: -270,
         splitLine: {
           show: false,
         },
@@ -72,13 +72,21 @@ export default function EchartsGauge() {
             value: value,
             detail: {
               offsetCenter: [0, 0],
-              overflow: 'break',
               fontSize: '2rem',
               fontWeight: 'normal',
               color: getComputedCSSProperty('--theme-color-soft-text'),
-              width: 250,
-              lineHeight: 35,
-              formatter: '{value} / 100 \n completed',
+              rich: {
+                valueStyle: {
+                  fontSize: '2rem',
+                  color: getComputedCSSProperty('--theme-color-soft-text'),
+                  fontWeight: 'bold',
+                },
+                textStyle: {
+                  fontSize: '1.5rem',
+                  color: getComputedCSSProperty('--theme-color-soft-text'),
+                },
+              },
+              formatter: `{valueStyle|{value}}/100\n{textStyle|completed}`,
             },
             pointer: {
               show: false,

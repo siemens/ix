@@ -116,6 +116,19 @@ import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import NavigationTest from './testing/NavigationTest.vue';
 import Echarts from './preview-examples/echarts.vue';
+import EchartsGauge from './preview-examples/echarts-gauge.vue';
+import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked.vue';
+import EchartsBarSimple from './preview-examples/echarts-bar-simple.vue';
+import EchartsCircle from './preview-examples/echarts-circle.vue';
+import EchartsLineAdvanced from "./preview-examples/echarts-line-advanced.vue";
+import EchartsLineMultipleYAxis from "./preview-examples/echarts-line-multiple-y-axis.vue";
+import EchartsLineSimple from './preview-examples/echarts-line-simple.vue';
+import EchartsPie from './preview-examples/echarts-pie.vue';
+import EchartsProgressCircle from './preview-examples/echarts-progress-circle.vue';
+import EchartsProgressArc from './preview-examples/echarts-progress-arc.vue';
+import EchartsSpecial3d from './preview-examples/echarts-special-3d.vue';
+import EchartsSpecialToolbox from './preview-examples/echarts-special-toolbox.vue';
+import EchartsSpecialZoom from './preview-examples/echarts-special-zoom.vue';
 
 const routes: any = {
   '/': App,
@@ -147,6 +160,19 @@ const routes: any = {
   '/preview/dropdown': Dropdown,
   '/preview/dropdown-icon': DropdownIcon,
   '/preview/echarts': Echarts,
+  '/preview/echarts-bar-horizontal-stacked': EchartsBarHorizontalStacked,
+  '/preview/echarts-bar-simple': EchartsBarSimple,
+  '/preview/echarts-circle': EchartsCircle,
+  '/preview/echarts-gauge': EchartsGauge,
+  '/preview/echarts-line-advanced': EchartsLineAdvanced,
+  '/preview/echarts-line-simple': EchartsLineSimple,
+  '/preview/echarts-line-multiple-y-axis': EchartsLineMultipleYAxis,
+  '/preview/echarts-pie': EchartsPie,
+  '/preview/echarts-progress-circle': EchartsProgressCircle,
+  '/preview/echarts-progress-arc': EchartsProgressArc,
+  '/preview/echarts-special-3d': EchartsSpecial3d,
+  '/preview/echarts-special-toolbox': EchartsSpecialToolbox,
+  '/preview/echarts-special-zoom': EchartsSpecialZoom,
   '/preview/event-list': EventList,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomHeight,

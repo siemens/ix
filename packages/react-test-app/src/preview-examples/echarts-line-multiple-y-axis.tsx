@@ -16,8 +16,8 @@ import {
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
-import {EChartsOption, SeriesOption} from 'echarts';
-import {YAXisOption} from "echarts/types/dist/shared";
+import { EChartsOption, SeriesOption } from 'echarts';
+import { YAXisOption } from 'echarts/types/dist/shared';
 
 export default function EchartsLineMultipleYAxis() {
   registerTheme(echarts);
@@ -31,10 +31,6 @@ export default function EchartsLineMultipleYAxis() {
       setTheme(convertThemeName(theme));
     });
   }, []);
-
-  const dates = Array.from({ length: 2025 - 2013 }, (_, i) =>
-    (2013 + i).toString()
-  );
 
   //prettier-ignore
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -61,6 +57,7 @@ export default function EchartsLineMultipleYAxis() {
       name: name,
       position: position,
       offset: offset,
+      alignTicks: true,
       axisLabel: {
         formatter: formatter,
       },

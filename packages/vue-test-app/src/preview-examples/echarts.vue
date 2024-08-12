@@ -148,7 +148,7 @@ const options: EChartsOption = {
       data: [62, 82, 91, 84, 109, 110, 120],
     },
   ],
-};
+} as EChartsOption;
 </script>
 
 <template>
