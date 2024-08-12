@@ -84,7 +84,7 @@ export default function EchartsSpecial3d() {
             return Math.sin(x * Math.PI) * Math.sin(y * Math.PI);
           },
         },
-      },
+      } as any,
     ],
   };
 
