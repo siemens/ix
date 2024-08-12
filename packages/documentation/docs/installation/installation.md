@@ -23,4 +23,8 @@ Follow the links below to the respective installation guides:
   <Card link="installation/javascript"><WebComponentsIcon class="Card_Icon" />Web Components</Card>
   <Card link="installation/vue"><VueIcon class="Card_Icon" />Vue&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
   <Card link="installation/blazor"><BlazorIcon class="Card_Icon" />Blazor&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
-</CardList>
+</CardList>  
+
+   
+**Experience the Siemens Industrial Experience style while coding**  
+We have designed a Visual Studio Code theme for our Siemens AG employees and business partners to experience the Industrial Experience style while coding. Download it [here](https://code.siemens.com/siemens-ix/ix-for-vs-code/ix-theme-for-vs-code/-/releases) (available within Siemens AG).
