@@ -151,7 +151,7 @@ importers:
         version: 29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4))
       jest-preset-angular:
         specifier: ^12.2.3
-        version: 12.2.6(4tamjksoo7eby2226rv5pgcsri)
+        version: 12.2.6(ixrxpt5jvrzyri7xwcl7y2bp3a)
       ng-packagr:
         specifier: ^14.2.0
         version: 14.3.0(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@types/node@16.18.70)(tslib@2.6.2)(typescript@4.6.4)
@@ -160,7 +160,7 @@ importers:
         version: 7.5.7
       ts-jest:
         specifier: ^29.0.3
-        version: 29.1.1(@babel/core@7.23.7)(jest@29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4)))(typescript@4.6.4)
+        version: 29.1.1(@babel/core@7.25.2)(jest@29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4)))(typescript@4.6.4)
       typescript:
         specifier: 4.6.4
         version: 4.6.4
@@ -445,7 +445,7 @@ importers:
         version: link:../html-test-app
       ionic-test-app:
         specifier: workspace:*
-        version: link:../../test-apps/ionic-test-app
+        version: link:../ionic-test-app
       prism-react-renderer:
         specifier: ^2.1.0
         version: 2.1.0(react@18.2.0)
@@ -612,6 +612,130 @@ importers:
       vite:
         specifier: ^3.1.0
         version: 3.2.7(@types/node@20.8.9)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0)
+
+  packages/ionic-test-app:
+    dependencies:
+      '@capacitor/app':
+        specifier: 6.0.0
+        version: 6.0.0(@capacitor/core@6.1.1)
+      '@capacitor/core':
+        specifier: 6.1.1
+        version: 6.1.1
+      '@capacitor/device':
+        specifier: ^6.0.0
+        version: 6.0.0(@capacitor/core@6.1.1)
+      '@capacitor/haptics':
+        specifier: 6.0.0
+        version: 6.0.0(@capacitor/core@6.1.1)
+      '@capacitor/ios':
+        specifier: 6.1.1
+        version: 6.1.1(@capacitor/core@6.1.1)
+      '@capacitor/keyboard':
+        specifier: 6.0.1
+        version: 6.0.1(@capacitor/core@6.1.1)
+      '@capacitor/screen-orientation':
+        specifier: ^6.0.1
+        version: 6.0.1(@capacitor/core@6.1.1)
+      '@capacitor/status-bar':
+        specifier: 6.0.0
+        version: 6.0.0(@capacitor/core@6.1.1)
+      '@ionic/react':
+        specifier: ^8.0.0
+        version: 8.2.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@ionic/react-router':
+        specifier: ^8.0.0
+        version: 8.2.6(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react-router@5.3.4(react@18.2.0))(react@18.2.0)
+      '@siemens/ix':
+        specifier: workspace:*
+        version: link:../core
+      '@siemens/ix-icons':
+        specifier: ^2.2.0
+        version: 2.2.0
+      '@siemens/ix-react':
+        specifier: workspace:*
+        version: link:../react
+      '@types/react-router':
+        specifier: ^5.1.20
+        version: 5.1.20
+      '@types/react-router-dom':
+        specifier: ^5.3.3
+        version: 5.3.3
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
+      ionicons:
+        specifier: ^7.0.0
+        version: 7.4.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-router:
+        specifier: ^5.3.4
+        version: 5.3.4(react@18.2.0)
+      react-router-dom:
+        specifier: ^5.3.4
+        version: 5.3.4(react@18.2.0)
+      sass:
+        specifier: ^1.77.8
+        version: 1.77.8
+    devDependencies:
+      '@capacitor/cli':
+        specifier: 6.1.1
+        version: 6.1.1
+      '@testing-library/dom':
+        specifier: '>=7.21.4'
+        version: 8.20.1
+      '@testing-library/jest-dom':
+        specifier: ^5.16.5
+        version: 5.17.0
+      '@testing-library/react':
+        specifier: ^14.0.0
+        version: 14.3.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^14.4.3
+        version: 14.5.2(@testing-library/dom@8.20.1)
+      '@types/react':
+        specifier: ^18.0.27
+        version: 18.2.33
+      '@types/react-dom':
+        specifier: ^18.0.10
+        version: 18.2.14
+      '@vitejs/plugin-legacy':
+        specifier: ^5.0.0
+        version: 5.4.1(terser@5.22.0)(vite@5.2.13(@types/node@16.18.70)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0))
+      '@vitejs/plugin-react':
+        specifier: ^4.0.1
+        version: 4.3.1(vite@5.2.13(@types/node@16.18.70)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0))
+      cypress:
+        specifier: ^13.5.0
+        version: 13.13.2
+      eslint:
+        specifier: ^8.35.0
+        version: 8.56.0
+      eslint-plugin-react:
+        specifier: ^7.32.2
+        version: 7.33.2(eslint@8.56.0)
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.2.0
+      jsdom:
+        specifier: ^22.1.0
+        version: 22.1.0
+      terser:
+        specifier: ^5.4.0
+        version: 5.22.0
+      typescript:
+        specifier: ^5.1.6
+        version: 5.4.5
+      vite:
+        specifier: ~5.2.0
+        version: 5.2.13(@types/node@16.18.70)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0)
+      vitest:
+        specifier: ^0.34.6
+        version: 0.34.6(happy-dom@14.7.1)(jsdom@22.1.0)(less@4.2.0)(playwright@1.39.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0)
 
   packages/react:
     dependencies:
@@ -853,130 +977,6 @@ importers:
       vue-tsc:
         specifier: ^1.0.24
         version: 1.8.21(typescript@4.9.5)
-
-  test-apps/ionic-test-app:
-    dependencies:
-      '@capacitor/app':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
-      '@capacitor/core':
-        specifier: 6.1.1
-        version: 6.1.1
-      '@capacitor/device':
-        specifier: ^6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
-      '@capacitor/haptics':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
-      '@capacitor/ios':
-        specifier: 6.1.1
-        version: 6.1.1(@capacitor/core@6.1.1)
-      '@capacitor/keyboard':
-        specifier: 6.0.1
-        version: 6.0.1(@capacitor/core@6.1.1)
-      '@capacitor/screen-orientation':
-        specifier: ^6.0.1
-        version: 6.0.1(@capacitor/core@6.1.1)
-      '@capacitor/status-bar':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
-      '@ionic/react':
-        specifier: ^8.0.0
-        version: 8.2.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@ionic/react-router':
-        specifier: ^8.0.0
-        version: 8.2.6(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react-router@5.3.4(react@18.2.0))(react@18.2.0)
-      '@siemens/ix':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@siemens/ix-icons':
-        specifier: ^2.2.0
-        version: 2.2.0
-      '@siemens/ix-react':
-        specifier: workspace:*
-        version: link:../../packages/react
-      '@types/react-router':
-        specifier: ^5.1.20
-        version: 5.1.20
-      '@types/react-router-dom':
-        specifier: ^5.3.3
-        version: 5.3.3
-      classnames:
-        specifier: ^2.5.1
-        version: 2.5.1
-      ionicons:
-        specifier: ^7.0.0
-        version: 7.4.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-router:
-        specifier: ^5.3.4
-        version: 5.3.4(react@18.2.0)
-      react-router-dom:
-        specifier: ^5.3.4
-        version: 5.3.4(react@18.2.0)
-      sass:
-        specifier: ^1.77.8
-        version: 1.77.8
-    devDependencies:
-      '@capacitor/cli':
-        specifier: 6.1.1
-        version: 6.1.1
-      '@testing-library/dom':
-        specifier: '>=7.21.4'
-        version: 8.20.1
-      '@testing-library/jest-dom':
-        specifier: ^5.16.5
-        version: 5.17.0
-      '@testing-library/react':
-        specifier: ^14.0.0
-        version: 14.3.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@testing-library/user-event':
-        specifier: ^14.4.3
-        version: 14.5.2(@testing-library/dom@8.20.1)
-      '@types/react':
-        specifier: ^18.0.27
-        version: 18.2.33
-      '@types/react-dom':
-        specifier: ^18.0.10
-        version: 18.2.14
-      '@vitejs/plugin-legacy':
-        specifier: ^5.0.0
-        version: 5.4.1(terser@5.22.0)(vite@5.2.13(@types/node@16.18.70)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0))
-      '@vitejs/plugin-react':
-        specifier: ^4.0.1
-        version: 4.3.1(vite@5.2.13(@types/node@16.18.70)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0))
-      cypress:
-        specifier: ^13.5.0
-        version: 13.13.2
-      eslint:
-        specifier: ^8.35.0
-        version: 8.56.0
-      eslint-plugin-react:
-        specifier: ^7.32.2
-        version: 7.33.2(eslint@8.56.0)
-      fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
-      jsdom:
-        specifier: ^22.1.0
-        version: 22.1.0
-      terser:
-        specifier: ^5.4.0
-        version: 5.22.0
-      typescript:
-        specifier: ^5.1.6
-        version: 5.4.5
-      vite:
-        specifier: ~5.2.0
-        version: 5.2.13(@types/node@16.18.70)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0)
-      vitest:
-        specifier: ^0.34.6
-        version: 0.34.6(happy-dom@14.7.1)(jsdom@22.1.0)(less@4.2.0)(playwright@1.39.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0)
 
 packages:
 
@@ -14999,7 +14999,7 @@ snapshots:
     dependencies:
       '@babel/compat-data': 7.23.2
       '@babel/helper-validator-option': 7.22.15
-      browserslist: 4.23.0
+      browserslist: 4.23.3
       lru-cache: 5.1.1
       semver: 6.3.1
 
@@ -15596,11 +15596,6 @@ snapshots:
       '@babel/core': 7.23.2
       '@babel/helper-plugin-utils': 7.22.5
 
-  '@babel/plugin-syntax-jsx@7.22.5(@babel/core@7.23.7)':
-    dependencies:
-      '@babel/core': 7.23.7
-      '@babel/helper-plugin-utils': 7.22.5
-
   '@babel/plugin-syntax-jsx@7.22.5(@babel/core@7.25.2)':
     dependencies:
       '@babel/core': 7.25.2
@@ -15719,11 +15714,6 @@ snapshots:
   '@babel/plugin-syntax-top-level-await@7.14.5(@babel/core@7.25.2)':
     dependencies:
       '@babel/core': 7.25.2
-      '@babel/helper-plugin-utils': 7.22.5
-
-  '@babel/plugin-syntax-typescript@7.22.5(@babel/core@7.23.7)':
-    dependencies:
-      '@babel/core': 7.23.7
       '@babel/helper-plugin-utils': 7.22.5
 
   '@babel/plugin-syntax-typescript@7.22.5(@babel/core@7.25.2)':
@@ -20110,7 +20100,7 @@ snapshots:
 
   '@vitest/snapshot@0.34.6':
     dependencies:
-      magic-string: 0.30.5
+      magic-string: 0.30.11
       pathe: 1.1.2
       pretty-format: 29.7.0
 
@@ -20202,7 +20192,7 @@ snapshots:
       '@vue/compiler-core': 3.3.7
       '@vue/shared': 3.3.7
       estree-walker: 2.0.2
-      magic-string: 0.30.5
+      magic-string: 0.30.11
 
   '@vue/reactivity@3.3.7':
     dependencies:
@@ -20804,7 +20794,7 @@ snapshots:
 
   autoprefixer@10.4.16(postcss@8.4.31):
     dependencies:
-      browserslist: 4.23.0
+      browserslist: 4.23.3
       caniuse-lite: 1.0.30001579
       fraction.js: 4.3.7
       normalize-range: 0.1.2
@@ -20925,7 +20915,7 @@ snapshots:
     dependencies:
       '@babel/template': 7.22.15
       '@babel/types': 7.23.6
-      '@types/babel__core': 7.20.3
+      '@types/babel__core': 7.20.5
       '@types/babel__traverse': 7.20.3
 
   babel-plugin-polyfill-corejs2@0.3.3(@babel/core@7.18.10):
@@ -25725,7 +25715,7 @@ snapshots:
     optionalDependencies:
       jest-resolve: 29.7.0
 
-  jest-preset-angular@12.2.6(4tamjksoo7eby2226rv5pgcsri):
+  jest-preset-angular@12.2.6(ixrxpt5jvrzyri7xwcl7y2bp3a):
     dependencies:
       '@angular-devkit/build-angular': 14.2.13(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(chokidar@3.5.3)(html-webpack-plugin@5.5.3)(karma@6.4.2)(ng-packagr@14.3.0(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@types/node@16.18.70)(tslib@2.6.2)(typescript@4.6.4))(typescript@4.6.4)
       '@angular/compiler-cli': 13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4)
@@ -25736,7 +25726,7 @@ snapshots:
       jest: 29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4))
       jest-environment-jsdom: 28.1.3
       pretty-format: 28.1.3
-      ts-jest: 28.0.8(@babel/core@7.23.7)(esbuild@0.19.12)(jest@29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4)))(typescript@4.6.4)
+      ts-jest: 28.0.8(@babel/core@7.25.2)(esbuild@0.19.12)(jest@29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4)))(typescript@4.6.4)
       typescript: 4.6.4
     optionalDependencies:
       esbuild: 0.19.12
@@ -25825,15 +25815,15 @@ snapshots:
 
   jest-snapshot@29.7.0:
     dependencies:
-      '@babel/core': 7.23.7
+      '@babel/core': 7.25.2
       '@babel/generator': 7.23.0
-      '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.23.7)
-      '@babel/plugin-syntax-typescript': 7.22.5(@babel/core@7.23.7)
+      '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.25.2)
+      '@babel/plugin-syntax-typescript': 7.22.5(@babel/core@7.25.2)
       '@babel/types': 7.23.0
       '@jest/expect-utils': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      babel-preset-current-node-syntax: 1.0.1(@babel/core@7.23.7)
+      babel-preset-current-node-syntax: 1.0.1(@babel/core@7.25.2)
       chalk: 4.1.2
       expect: 29.7.0
       graceful-fs: 4.2.11
@@ -30915,7 +30905,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-jest@28.0.8(@babel/core@7.23.7)(esbuild@0.19.12)(jest@29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4)))(typescript@4.6.4):
+  ts-jest@28.0.8(@babel/core@7.25.2)(esbuild@0.19.12)(jest@29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4)))(typescript@4.6.4):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
@@ -30928,10 +30918,10 @@ snapshots:
       typescript: 4.6.4
       yargs-parser: 21.1.1
     optionalDependencies:
-      '@babel/core': 7.23.7
+      '@babel/core': 7.25.2
       esbuild: 0.19.12
 
-  ts-jest@29.1.1(@babel/core@7.23.7)(jest@29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4)))(typescript@4.6.4):
+  ts-jest@29.1.1(@babel/core@7.25.2)(jest@29.7.0(@types/node@16.18.70)(ts-node@10.9.2(@types/node@16.18.70)(typescript@4.6.4)))(typescript@4.6.4):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
@@ -30944,7 +30934,7 @@ snapshots:
       typescript: 4.6.4
       yargs-parser: 21.1.1
     optionalDependencies:
-      '@babel/core': 7.23.7
+      '@babel/core': 7.25.2
 
   ts-node@10.9.1(@types/node@16.18.70)(typescript@5.3.3):
     dependencies:
@@ -31703,7 +31693,7 @@ snapshots:
       chai: 4.4.1
       debug: 4.3.4(supports-color@8.1.1)
       local-pkg: 0.4.3
-      magic-string: 0.30.5
+      magic-string: 0.30.11
       pathe: 1.1.2
       picocolors: 1.0.1
       std-env: 3.7.0
@@ -32019,7 +32009,7 @@ snapshots:
       typed-assert: 1.0.9
       webpack: 5.76.1(esbuild@0.15.5)
     optionalDependencies:
-      html-webpack-plugin: 5.5.3(webpack@5.89.0)
+      html-webpack-plugin: 5.5.3(webpack@5.76.1)
 
   webpack@5.76.1:
     dependencies:

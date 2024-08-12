@@ -174,7 +174,7 @@ packages/html-test-app/src/public/additional-theme
 # ionic-test-app
 ###
 
-test-apps/ionic-test-app/public/additional-theme
+packages/ionic-test-app/public/additional-theme
 
 ###
 # documentation
