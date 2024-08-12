@@ -43,6 +43,25 @@ LICENSE file in the root directory of this source tree.
         return myChart;
       }
 
+      function gridConfig() {
+        return {
+          type: 'value',
+          axisLine: {
+            lineStyle: {
+              color: getComputedCSSProperty('--theme-chart-axes'),
+            },
+          },
+          splitLine: {
+            lineStyle: {
+              color: getComputedCSSProperty('--theme-chart-grid-lines'),
+            },
+          },
+          axisLabel: {
+            color: getComputedCSSProperty('--theme-color-std-text'),
+          },
+        };
+      }
+
       const options = {
         tooltip: {},
         visualMap: {
@@ -51,15 +70,9 @@ LICENSE file in the root directory of this source tree.
           min: -1,
           max: 1,
         },
-        xAxis3D: {
-          type: 'value',
-        },
-        yAxis3D: {
-          type: 'value',
-        },
-        zAxis3D: {
-          type: 'value',
-        },
+        xAxis3D: gridConfig(),
+        yAxis3D: gridConfig(),
+        zAxis3D: gridConfig(),
         grid3D: {
           viewControl: {
             projection: 'orthographic',

@@ -46,6 +46,9 @@ export default function EchartsGauge() {
           show: true,
           lineStyle: {
             width: 18,
+            color: [
+              [1, getComputedCSSProperty('--theme-color-neutral-40')],
+            ],
           },
         },
         axisTick: {
@@ -89,6 +92,7 @@ export default function EchartsGauge() {
               fontSize: '1.5rem',
               width: 250,
               lineHeight: 35,
+              color: getComputedCSSProperty('--theme-color-soft-text'),
               formatter: '{value}Mbps \nNetwork Speed',
             },
             pointer: {

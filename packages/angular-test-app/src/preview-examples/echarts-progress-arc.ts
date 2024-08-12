@@ -27,7 +27,6 @@ export default class EchartsProgressArc implements OnInit {
   value = 60;
 
   options: EChartsOption = {
-    backgroundColor: getComputedCSSProperty('--theme-color-1'),
     series: [
       {
         id: '1',
@@ -36,6 +35,9 @@ export default class EchartsProgressArc implements OnInit {
           show: true,
           lineStyle: {
             width: 15,
+            color: [
+              [1, getComputedCSSProperty('--theme-color-neutral-40')],
+            ],
           },
         },
         axisTick: {
@@ -70,7 +72,7 @@ export default class EchartsProgressArc implements OnInit {
               overflow: 'break',
               fontSize: '2rem',
               fontWeight: 'normal',
-              color: getComputedCSSProperty('--theme-color-neutral'),
+              color: getComputedCSSProperty('--theme-color-soft-text'),
               width: 250,
               lineHeight: 35,
               formatter: '{value} / 100 \n completed',

@@ -8,10 +8,15 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import {
+  convertThemeName,
+  getComputedCSSProperty,
+  registerTheme,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
-import { EChartsOption } from 'echarts';
+import { EChartsOption, SeriesOption } from 'echarts';
+import { YAXisOption } from 'echarts/types/dist/shared';
 
 @Component({
   selector: 'app-example',
@@ -31,10 +36,71 @@ export default class EchartsLineMultipleYAxis implements OnInit {
     temperature: this.months.map(() => (Math.random() * 30).toFixed(2)),
   };
 
+  themeChartList = Array.from({ length: 17 }, (_, i) =>
+    getComputedCSSProperty(`--theme-chart-${i + 1}`)
+  );
+
+  createYAxis(
+    name: string,
+    position: 'left' | 'right',
+    color: string,
+    formatter: string,
+    offset: number = 0
+  ): YAXisOption {
+    return {
+      type: 'value',
+      name: name,
+      position: position,
+      offset: offset,
+      axisLabel: {
+        formatter: formatter,
+      },
+      axisTick: {
+        lineStyle: {
+          color: color,
+        },
+      },
+      axisLine: {
+        lineStyle: {
+          color: color,
+        },
+      },
+    };
+  }
+
+  createSeries(
+    name: string,
+    yAxisIndex: number,
+    data: any,
+    color: string
+  ): SeriesOption {
+    return {
+      name: name,
+      type: 'line',
+      yAxisIndex: yAxisIndex,
+      data: data,
+      lineStyle: {
+        color: color,
+      },
+      itemStyle: {
+        color: color,
+      },
+    };
+  }
+
   options: EChartsOption = {
-    tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
-    grid: { right: '20%' },
-    legend: { data: ['Evaporation', 'Precipitation', 'Temperature'] },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'cross' },
+    },
+    grid: {
+      right: '20%',
+    },
+    legend: {
+      show: true,
+      bottom: '0',
+      left: '0',
+    },
     xAxis: [
       {
         type: 'category',
@@ -43,45 +109,51 @@ export default class EchartsLineMultipleYAxis implements OnInit {
       },
     ],
     yAxis: [
-      {
-        type: 'value',
-        name: 'Evaporation',
-        position: 'right',
-        axisLabel: { formatter: '{value} ml' },
-      },
-      {
-        type: 'value',
-        name: 'Precipitation',
-        position: 'right',
-        offset: 80,
-        axisLabel: { formatter: '{value} ml' },
-      },
-      {
-        type: 'value',
-        name: 'Temperature',
-        position: 'left',
-        axisLabel: { formatter: '{value} °C' },
-      },
+      this.createYAxis(
+        'Evaporation',
+        'right',
+        this.themeChartList[0],
+        '{value} ml'
+      ),
+      this.createYAxis(
+        'Precipitation',
+        'right',
+        this.themeChartList[1],
+        '{value} ml',
+        80
+      ),
+      this.createYAxis(
+        'Temperature',
+        'left',
+        this.themeChartList[2],
+        '{value} °C'
+      ),
     ],
     series: [
-      { name: 'Evaporation', type: 'line', data: this.data.evaporation },
-      {
-        name: 'Precipitation',
-        type: 'line',
-        yAxisIndex: 1,
-        data: this.data.precipitation,
-      },
-      {
-        name: 'Temperature',
-        type: 'line',
-        yAxisIndex: 2,
-        data: this.data.temperature,
-      },
+      this.createSeries(
+        'Evaporation',
+        0,
+        this.data.evaporation,
+        this.themeChartList[0]
+      ),
+      this.createSeries(
+        'Precipitation',
+        1,
+        this.data.precipitation,
+        this.themeChartList[1]
+      ),
+      this.createSeries(
+        'Temperature',
+        2,
+        this.data.temperature,
+        this.themeChartList[2]
+      ),
     ],
   };
 
   ngOnInit() {
     registerTheme(echarts);
+    console.log(echarts.color);
 
     themeSwitcher.themeChanged.on((theme: string) => {
       this.theme = convertThemeName(theme);

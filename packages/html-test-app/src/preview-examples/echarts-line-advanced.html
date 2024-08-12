@@ -82,7 +82,12 @@ LICENSE file in the root directory of this source tree.
                 { type: 'max', name: 'Max', symbol: 'circle', symbolSize: 60 },
                 { type: 'min', name: 'Min', symbol: 'circle', symbolSize: 60 },
               ],
-              label: { fontWeight: 'bold' },
+              label: {
+                fontWeight: 'bold',
+                color: getComputedCSSProperty(
+                  '--theme-color-inv-contrast-text'
+                ),
+              },
             },
             markLine: {
               data: [{ type: 'average', name: 'Avg' }],

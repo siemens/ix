@@ -38,14 +38,17 @@ export default function EchartsGauge() {
           show: true,
           lineStyle: {
             width: 15,
+            color: [
+              [1, getComputedCSSProperty('--theme-color-neutral-40')],
+            ],
           },
         },
         axisTick: {
           show: false,
         },
         radius: '100%',
-        startAngle: 90,
-        endAngle: -270,
+        startAngle: 200,
+        endAngle: -20,
         splitLine: {
           show: false,
         },
@@ -72,22 +75,10 @@ export default function EchartsGauge() {
               overflow: 'break',
               fontSize: '2rem',
               fontWeight: 'normal',
-              color: getComputedCSSProperty('--theme-color-neutral'),
-              width: 'auto',
+              color: getComputedCSSProperty('--theme-color-soft-text'),
+              width: 250,
               lineHeight: 35,
-              rich: {
-                valueStyle: {
-                  fontSize: '2rem',
-                  color: getComputedCSSProperty('--theme-color-neutral'),
-                  fontWeight: 'bold',
-                },
-                textStyle: {
-                  fontSize: '1.5rem',
-                  color: getComputedCSSProperty('--theme-color-neutral'),
-                  fontWeight: 'normal',
-                },
-              },
-              formatter: `{valueStyle|{value}}/100\n{textStyle|completed}`,
+              formatter: '{value} / 100 \n completed',
             },
             pointer: {
               show: false,

@@ -48,6 +48,7 @@ export default class EchartsSpecialToolbox implements OnInit {
       {
         data: [150, 230, 224, 218, 135, 147, 260],
         type: 'line',
+        step: 'end',
       },
     ],
   };

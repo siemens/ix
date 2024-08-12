@@ -8,7 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
@@ -36,14 +36,19 @@ export default class EchartsPie implements OnInit {
     },
     legend: {
       orient: 'vertical',
-      left: 'left',
+      bottom: '0',
+      left: '0',
     },
     series: [
       {
         name: 'CO2 emissions from<',
         type: 'pie',
-        radius: '50%',
+        radius: '80%',
         data: this.data,
+        label: {
+          show: true,
+          color: getComputedCSSProperty('--theme-color-neutral'),
+        },
         emphasis: {
           itemStyle: {
             shadowBlur: 10,

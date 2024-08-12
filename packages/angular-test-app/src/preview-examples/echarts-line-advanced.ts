@@ -58,7 +58,10 @@ export default class EchartsLineAdvanced implements OnInit {
             { type: 'max', name: 'Max', symbol: 'circle', symbolSize: 60 },
             { type: 'min', name: 'Min', symbol: 'circle', symbolSize: 60 },
           ],
-          label: { fontWeight: 'bold' },
+          label: {
+            fontWeight: 'bold',
+            color: getComputedCSSProperty('--theme-color-inv-contrast-text'),
+          },
         },
         markLine: {
           data: [{ type: 'average', name: 'Avg' }],

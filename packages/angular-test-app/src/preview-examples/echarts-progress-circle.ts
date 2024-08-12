@@ -35,6 +35,9 @@ export default class EchartsProgressCircle implements OnInit {
           show: true,
           lineStyle: {
             width: 15,
+            color: [
+              [1, getComputedCSSProperty('--theme-color-neutral-40')],
+            ],
           },
         },
         axisTick: {
@@ -66,22 +69,18 @@ export default class EchartsProgressCircle implements OnInit {
             value: this.value,
             detail: {
               offsetCenter: [0, 0],
-              overflow: 'break',
               fontSize: '2rem',
               fontWeight: 'normal',
-              color: getComputedCSSProperty('--theme-color-neutral'),
-              width: 'auto',
-              lineHeight: 35,
+              color: getComputedCSSProperty('--theme-color-soft-text'),
               rich: {
                 valueStyle: {
                   fontSize: '2rem',
-                  color: getComputedCSSProperty('--theme-color-neutral'),
+                  color: getComputedCSSProperty('--theme-color-soft-text'),
                   fontWeight: 'bold',
                 },
                 textStyle: {
                   fontSize: '1.5rem',
-                  color: getComputedCSSProperty('--theme-color-neutral'),
-                  fontWeight: 'normal',
+                  color: getComputedCSSProperty('--theme-color-soft-text'),
                 },
               },
               formatter: `{valueStyle|{value}}/100\n{textStyle|completed}`,

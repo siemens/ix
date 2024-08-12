@@ -29,7 +29,7 @@ LICENSE file in the root directory of this source tree.
     ></div>
 
     <script type="module">
-      import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+      import { convertThemeName, getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
 
       function initChart(theme, options) {
@@ -42,20 +42,8 @@ LICENSE file in the root directory of this source tree.
         return myChart;
       }
 
-      const months = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ];
+      //prettier-ignore
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
       const data = {
         evaporation: months.map(() => (Math.random() * 100).toFixed(2)),
@@ -63,10 +51,60 @@ LICENSE file in the root directory of this source tree.
         temperature: months.map(() => (Math.random() * 30).toFixed(2)),
       };
 
+      const themeChartList = Array.from({ length: 17 }, (_, i) =>
+        getComputedCSSProperty(`--theme-chart-${i + 1}`)
+      );
+
+      function createYAxis(name, position, color, formatter, offset) {
+        return {
+          type: 'value',
+          name: name,
+          position: position,
+          offset: offset,
+          axisLabel: {
+            formatter: formatter,
+          },
+          axisTick: {
+            lineStyle: {
+              color: color,
+            },
+          },
+          axisLine: {
+            lineStyle: {
+              color: color,
+            },
+          },
+        };
+      }
+
+      function createSeries(name, yAxisIndex, data, color) {
+        return {
+          name: name,
+          type: 'line',
+          yAxisIndex: yAxisIndex,
+          data: data,
+          lineStyle: {
+            color: color,
+          },
+          itemStyle: {
+            color: color,
+          },
+        };
+      }
+
       const options = {
-        tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
-        grid: { right: '20%' },
-        legend: { data: ['Evaporation', 'Precipitation', 'Temperature'] },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { type: 'cross' },
+        },
+        grid: {
+          right: '20%',
+        },
+        legend: {
+          show: true,
+          bottom: '0',
+          left: '0',
+        },
         xAxis: [
           {
             type: 'category',
@@ -75,40 +113,45 @@ LICENSE file in the root directory of this source tree.
           },
         ],
         yAxis: [
-          {
-            type: 'value',
-            name: 'Evaporation',
-            position: 'right',
-            axisLabel: { formatter: '{value} ml' },
-          },
-          {
-            type: 'value',
-            name: 'Precipitation',
-            position: 'right',
-            offset: 80,
-            axisLabel: { formatter: '{value} ml' },
-          },
-          {
-            type: 'value',
-            name: 'Temperature',
-            position: 'left',
-            axisLabel: { formatter: '{value} °C' },
-          },
+          createYAxis(
+            'Evaporation',
+            'right',
+            themeChartList[0],
+            '{value} ml'
+          ),
+          createYAxis(
+            'Precipitation',
+            'right',
+            themeChartList[1],
+            '{value} ml',
+            80
+          ),
+          createYAxis(
+            'Temperature',
+            'left',
+            themeChartList[2],
+            '{value} °C'
+          ),
         ],
         series: [
-          { name: 'Evaporation', type: 'line', data: data.evaporation },
-          {
-            name: 'Precipitation',
-            type: 'line',
-            yAxisIndex: 1,
-            data: data.precipitation,
-          },
-          {
-            name: 'Temperature',
-            type: 'line',
-            yAxisIndex: 2,
-            data: data.temperature,
-          },
+          createSeries(
+            'Evaporation',
+            0,
+            data.evaporation,
+            themeChartList[0]
+          ),
+          createSeries(
+            'Precipitation',
+            1,
+            data.precipitation,
+            themeChartList[1]
+          ),
+          createSeries(
+            'Temperature',
+            2,
+            data.temperature,
+            themeChartList[2]
+          ),
         ],
       };
 

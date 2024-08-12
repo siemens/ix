@@ -8,7 +8,11 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import {
+  convertThemeName,
+  getComputedCSSProperty,
+  registerTheme,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import 'echarts-gl';
@@ -21,6 +25,25 @@ import { EChartsOption } from 'echarts';
 export default class EchartsSpecial3d implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
 
+  gridConfig() {
+    return {
+      type: 'value',
+      axisLine: {
+        lineStyle: {
+          color: getComputedCSSProperty('--theme-chart-axes'),
+        },
+      },
+      splitLine: {
+        lineStyle: {
+          color: getComputedCSSProperty('--theme-chart-grid-lines'),
+        },
+      },
+      axisLabel: {
+        color: getComputedCSSProperty('--theme-color-std-text'),
+      }
+    };
+  }
+
   options: EChartsOption = {
     tooltip: {},
     visualMap: {
@@ -29,15 +52,9 @@ export default class EchartsSpecial3d implements OnInit {
       min: -1,
       max: 1,
     },
-    xAxis3D: {
-      type: 'value',
-    },
-    yAxis3D: {
-      type: 'value',
-    },
-    zAxis3D: {
-      type: 'value',
-    },
+    xAxis3D: this.gridConfig(),
+    yAxis3D: this.gridConfig(),
+    zAxis3D: this.gridConfig(),
     grid3D: {
       viewControl: {
         projection: 'orthographic',

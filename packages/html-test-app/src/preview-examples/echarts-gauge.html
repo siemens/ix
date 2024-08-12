@@ -72,6 +72,9 @@ LICENSE file in the root directory of this source tree.
               show: true,
               lineStyle: {
                 width: 18,
+                color: [
+                  [1, getComputedCSSProperty('--theme-color-neutral-40')],
+                ],
               },
             },
             axisTick: {
@@ -88,9 +91,7 @@ LICENSE file in the root directory of this source tree.
             axisLabel: {
               show: true,
               distance: 30,
-              textStyle: {
-                fontSize: 16,
-              },
+              fontSize: 16,
             },
             progress: {
               show: true,
@@ -117,6 +118,7 @@ LICENSE file in the root directory of this source tree.
                   fontSize: '1.5rem',
                   width: 250,
                   lineHeight: 35,
+                  color: getComputedCSSProperty('--theme-color-soft-text'),
                   formatter: '{value}Mbps \nNetwork Speed',
                 },
                 pointer: {

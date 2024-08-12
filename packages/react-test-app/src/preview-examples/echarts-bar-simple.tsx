@@ -28,24 +28,19 @@ export default function EchartsBarSimple() {
   }, []);
 
   const data = {
-    manufacturers: ['Toyota', 'VW', 'Hyundai/Kia', 'Stellantis', 'GM', 'Ford'],
+    products: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E', 'Product F'],
     sales: [10.3, 9.2, 7.3, 6.4, 6.2, 4.4],
   };
 
   const options: EChartsOption = {
     xAxis: {
-      data: data.manufacturers,
-      name: 'Manufacturer',
-      nameLocation: 'middle',
-      nameGap: 30,
-      axisLabel: {
-        interval: 0,
-      },
+      data: data.products,
+      name: 'Product',
+      nameLocation: 'end',
     },
     yAxis: {
-      name: 'Number of Vehicles Sold (in Millions)',
-      nameLocation: 'middle',
-      nameGap: 35,
+      name: 'Number of sold products \n (in Mio)',
+      nameLocation: 'end',
     },
     legend: {
       show: true,

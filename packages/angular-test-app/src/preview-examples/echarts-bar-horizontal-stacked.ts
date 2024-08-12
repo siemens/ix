@@ -51,11 +51,12 @@ export default class EchartsBarHorizontalStacked implements OnInit {
       type: 'category',
       data: this.data.years,
       name: 'Years',
-      nameLocation: 'middle',
-      nameGap: 50,
+      nameLocation: 'end',
     },
     legend: {
       show: true,
+      bottom: '0',
+      left: '0',
     },
     series: this.series,
   };

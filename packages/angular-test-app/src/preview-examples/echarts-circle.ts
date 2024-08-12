@@ -38,13 +38,15 @@ export default class EchartsCircle implements OnInit {
     },
     legend: {
       icon: 'circle',
-      right: 'right',
+      bottom: 0,
+      left: 0,
+      orient: 'vertical',
     },
     series: [
       {
         name: 'OS Share',
         type: 'pie',
-        radius: ['40%', '70%'],
+        radius: ['60%', '90%'],
         label: {
           show: true,
           color: getComputedCSSProperty('--theme-color-neutral'),
