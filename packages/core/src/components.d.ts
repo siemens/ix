@@ -1825,11 +1825,6 @@ export namespace Components {
          */
         "collapse": boolean;
         /**
-          * Card KPI value
-          * @deprecated will be removed in 3.0. Use heading instead.
-         */
-        "header"?: string;
-        /**
           * Card heading
          */
         "heading"?: string;
@@ -6013,11 +6008,6 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "collapse"?: boolean;
-        /**
-          * Card KPI value
-          * @deprecated will be removed in 3.0. Use heading instead.
-         */
-        "header"?: string;
         /**
           * Card heading
          */

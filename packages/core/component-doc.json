@@ -12699,33 +12699,6 @@
           "required": false
         },
         {
-          "name": "header",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "header",
-          "reflectToAttr": false,
-          "docs": "Card KPI value",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "will be removed in 3.0. Use heading instead."
-            }
-          ],
-          "deprecation": "will be removed in 3.0. Use heading instead.",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
           "name": "heading",
           "type": "string",
           "complexType": {
