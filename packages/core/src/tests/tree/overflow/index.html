@@ -1,0 +1,86 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <div style="height: 12rem; width: 100%">
+      <ix-tree root="root" id="tree"></ix-tree>
+    </div>
+
+    <script>
+      (async () => {
+        await window.customElements.whenDefined('ix-tree');
+        const tree = document.getElementById('tree');
+        const context = {
+          root: {
+            isExpanded: true,
+            isSelected: false,
+          },
+          sample: {
+            isExpanded: true,
+            isSelected: false,
+          },
+        };
+
+        const model = {
+          root: {
+            id: 'root',
+            data: {
+              icon: '',
+              name: '',
+            },
+            hasChildren: true,
+            children: ['sample'],
+          },
+          sample: {
+            id: 'sample',
+            data: {
+              name: 'Sample',
+              icon: 'star',
+            },
+            hasChildren: true,
+            children: ['sample-child-1', 'sample-child-2'],
+          },
+          'sample-child-1': {
+            id: 'sample-child-1',
+            data: {
+              name: 'Sample Child 1',
+              icon: 'cut',
+            },
+            hasChildren: false,
+            children: [],
+          },
+          'sample-child-2': {
+            id: 'sample-child-2',
+            data: {
+              name: 'Sample Child 2 lorem ipsum dolor',
+              icon: 'print',
+            },
+            hasChildren: false,
+            children: [],
+          },
+        };
+
+        context['sample-child-85'] = {
+          isExpanded: false,
+          isSelected: true,
+        };
+
+        tree.model = { ...model };
+        tree.context = { ...context };
+      })();
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>
