@@ -2,19 +2,19 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-      name="viewport"
-    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pane Example</title>
   </head>
-  <body class="theme-brand-dark">
+  <body>
     <!-- Preview code -->
     <div style="position: relative; width: 100%; height: 100%">
       <ix-pane
@@ -29,18 +29,18 @@ SPDX-License-Identifier: MIT
         <p>This is a popup pane.</p>
       </ix-pane>
 
-      <ix-button id="toggle-expanded" style="margin: 2.5rem" >
+      <ix-button id="toggle-expanded" style="margin: 2.5rem">
         Toggle Expanded
       </ix-button>
     </div>
 
     <script>
-      const pane = document.getElementById("popup-pane");
-      const button = document.getElementById("toggle-expanded");
+      const pane = document.getElementById('popup-pane');
+      const button = document.getElementById('toggle-expanded');
 
-      button.addEventListener("click", () => {
-        pane.expanded = pane.expanded ? undefined : true
-      })
+      button.addEventListener('click', () => {
+        pane.expanded = pane.expanded ? undefined : true;
+      });
     </script>
     <!-- Preview code -->
     <script type="module" src="./init.js"></script>

@@ -15,9 +15,7 @@ import React from 'react';
 export default () => {
   return (
     <>
-      <IxButton variant="primary" icon="star">
-        Button
-      </IxButton>
+      <IxButton icon="star">Button</IxButton>
       <IxButton variant="secondary" icon="star">
         Button
       </IxButton>

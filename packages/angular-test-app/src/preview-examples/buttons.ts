@@ -12,8 +12,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-button variant="primary">Button</ix-button>
-    <ix-button variant="primary" disabled> Button </ix-button>
+    <ix-button>Button</ix-button>
+    <ix-button disabled>Button</ix-button>
   `,
   styles: [`@import 'example-styles/dist/buttons.css';`],
 })

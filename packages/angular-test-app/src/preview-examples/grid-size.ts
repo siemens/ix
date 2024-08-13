@@ -14,22 +14,7 @@ import { Component } from '@angular/core';
   templateUrl: './grid-size.html',
   styles: [
     `
-      ix-layout-grid {
-        margin-bottom: 1rem;
-      }
-
-      ix-col > ix-typography {
-        display: flex;
-        padding: 0.15rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        flex: 1 0 0;
-        align-self: stretch;
-        border: 1px solid var(--theme-color-soft-bdr);
-        background: var(--theme-color-ghost);
-        border-radius: 3px;
-      }
+      @import 'example-styles/dist/grid.css';
     `,
   ],
 })

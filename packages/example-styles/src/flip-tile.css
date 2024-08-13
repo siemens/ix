@@ -1,24 +1,22 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2023 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-body {
-  width: 100vw;
-  height: 100vh;
-}
 
-.modal-sizes-example {
+.flip-tile {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  position: relative;
+  margin-top: 2rem;
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 
-.modal-sizes-example > * {
-  width: auto;
-  margin: 0.25rem;
+.flip-tile > ix-flip-tile {
+  margin: 0 0.5rem 0.5rem 0;
 }
