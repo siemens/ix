@@ -16216,6 +16216,7 @@
           "reflectToAttr": false,
           "docs": "Tree model",
           "docsTags": [],
+          "default": "{}",
           "values": [
             {
               "type": "{ [x: string]: TreeItem<any>; }"
@@ -16264,7 +16265,7 @@
               "type": "<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16286,7 +16287,7 @@
             }
           ],
           "optional": false,
-          "required": false
+          "required": true
         }
       ],
       "methods": [],
@@ -16414,7 +16415,7 @@
               "type": "TreeItemContext"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16430,6 +16431,7 @@
           "reflectToAttr": false,
           "docs": "Has tree item children",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -16456,7 +16458,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],

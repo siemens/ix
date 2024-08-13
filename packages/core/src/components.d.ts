@@ -2291,7 +2291,7 @@ export namespace Components {
         /**
           * Render function of tree items
          */
-        "renderItem": <T = any>(
+        "renderItem"?: <T = any>(
     index: number,
     data: T,
     dataList: Array<T>,
@@ -2307,7 +2307,7 @@ export namespace Components {
         /**
           * Context
          */
-        "context": TreeItemContext;
+        "context"?: TreeItemContext;
         /**
           * Has tree item children
          */
@@ -2315,7 +2315,7 @@ export namespace Components {
         /**
           * Text
          */
-        "text": string;
+        "text"?: string;
     }
     /**
      * @since 2.0.0
@@ -6550,7 +6550,7 @@ declare namespace LocalJSX {
         /**
           * Initial root element will not be rendered
          */
-        "root"?: string;
+        "root": string;
     }
     interface IxTreeItem {
         /**
