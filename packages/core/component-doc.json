@@ -447,10 +447,47 @@
           ],
           "optional": true,
           "required": false
+        },
+        {
+          "name": "showMenu",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "show-menu",
+          "reflectToAttr": false,
+          "docs": "Show menu toggle button if the application header is used outside of the application frame",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "menuToggle",
+          "detail": "boolean",
+          "bubbles": true,
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the menu toggle button is clicked",
+          "docsTags": []
+        }
+      ],
       "styles": [],
       "slots": [
         {
