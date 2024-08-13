@@ -17,7 +17,6 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-//@ts-ignore
 import Hyperlist from 'hyperlist';
 import { renderDefaultItem } from '../tree-item/default-tree-item';
 import {
@@ -244,7 +243,7 @@ export class Tree {
     this.initList();
 
     this.observer = new MutationObserver((records) => {
-      let removed: any[] = [];
+      let removed: unknown[] = [];
 
       records.forEach((record) => {
         removed = [...removed, ...Array.from(record.removedNodes)];
