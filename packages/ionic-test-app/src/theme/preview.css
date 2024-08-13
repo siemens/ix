@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/*
+  * This file is only to preview the application within the ix.siemens.io documentation.
+  * You do not need to include this file in your project.
+*/
+:root.preview-mode-ios {
+  --ix-safe-area-inset-top: 37px;
+  --ix-safe-area-inset-right: 0px;
+  --ix-safe-area-inset-bottom: 15px;
+  --ix-safe-area-inset-left: 0px;
+}
+
+html.preview-mode body {
+  display: block !important;
+}

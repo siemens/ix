@@ -108,6 +108,10 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
+        {
+          type: 'doc',
+          id: 'mobile',
+        },
       ],
     },
     {
