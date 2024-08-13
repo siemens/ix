@@ -1,1 +1,0 @@
-Gauge chart styleguide

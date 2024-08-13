@@ -1,8 +1,33 @@
 import DocsTabs from '@site/src/components/DocsTabs';
-
-import DocsUx from './\_gauge-chart_styleguide.md';
-import DocsCode from './\_gauge-chart_code.md';
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Gauge Chart
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+## Examples
+
+## Performance metrics gauge
+
+<Playground
+height="25rem"
+name="echarts-gauge"
+noMargin
+examplesByName>
+</Playground>
+
+## Progress circle gauge
+
+<Playground
+height="30rem"
+name="echarts-progress-circle"
+noMargin
+examplesByName>
+</Playground>
+
+## Progress arc gauge
+
+<Playground
+height="30rem"
+name="echarts-progress-arc"
+noMargin
+examplesByName>
+</Playground>

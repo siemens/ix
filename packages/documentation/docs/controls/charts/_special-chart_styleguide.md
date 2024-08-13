@@ -1,1 +1,0 @@
-Special chart styleguide

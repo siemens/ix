@@ -1,8 +1,27 @@
 import DocsTabs from '@site/src/components/DocsTabs';
-
-import DocsUx from './\_bar-chart_styleguide.md';
-import DocsCode from './\_bar-chart_code.md';
+import Playground from '@site/src/components/PlaygroundV2';
 
 # Bar Chart
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+## Examples
+
+## Bar chart horizontal
+
+<Playground
+height="40rem"
+name="echarts-bar-simple"
+noMargin
+examplesByName>
+</Playground>
+
+## Bar chart horizontal stacked
+
+<Playground
+height="40rem"
+name="echarts-bar-horizontal-stacked"
+noMargin
+examplesByName>
+</Playground>
+
+
+
