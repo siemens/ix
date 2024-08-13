@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop } from '@stencil/core';
 
-//TODO: Remove insight, notification in 3.0
+//TODO(IX-1601): Remove insight, notification in 3.0
 export type CardVariant =
   | 'insight'
   | 'notification'
