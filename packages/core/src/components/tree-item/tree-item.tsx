@@ -74,9 +74,7 @@ export class TreeItem {
             this.itemClick.emit();
           }}
         >
-          <div class="tree-node-text">
-            {this.text}
-          </div>
+          <div class="tree-node-text">{this.text}</div>
           <slot></slot>
         </div>
       </Host>
