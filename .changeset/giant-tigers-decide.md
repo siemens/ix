@@ -1,5 +1,5 @@
 ---
-'@siemens/ix': patch
+'@siemens/ix': minor
 ---
 
-fix(core/push-card): adjust colors and v3 adaptions
+feat(core/push-card): add alternative card types
