@@ -16,10 +16,9 @@ import {
   IxRow,
   showToast,
 } from '@siemens/ix-react';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { resolveColorValue, themeColors } from './resolve-colors';
 import './ThemeColors.css';
-import { useTheme } from '@site/src/utils/hooks/useTheme';
 
 function Search(props: { onChange: (value: string) => void }) {
   return (
@@ -60,7 +59,6 @@ function ColorPreview(props: { color: string }) {
 
 const ThemeColors: React.FC = () => {
   const [colors, setColors] = useState(themeColors);
-  const theme = useTheme();
 
   const updateFilter = (filter) => {
     setColors([
@@ -82,9 +80,11 @@ const ThemeColors: React.FC = () => {
     });
   };
 
-  useLayoutEffect(() => {
-    setColors([...colors]);
-  }, [theme]);
+  useEffect(() => {
+    window.addEventListener('theme-change', () => {
+      setColors([...colors]);
+    });
+  }, []);
 
   return (
     <div className="Theme__Colors">

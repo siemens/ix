@@ -18,7 +18,6 @@ import {
 import React, { useState } from 'react';
 import { themeBorders } from './borders';
 import './ThemeBorders.css';
-import { useTheme } from '@site/src/utils/hooks/useTheme';
 
 function Search(props: { onChange: (value: string) => void }) {
   return (
@@ -57,7 +56,6 @@ function BorderPreview(props: { border: string }) {
 
 const ThemeBorders: React.FC = () => {
   const [borders, setBorders] = useState(themeBorders);
-  useTheme();
 
   const updateFilter = (filter) => {
     setBorders([

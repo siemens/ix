@@ -18,7 +18,6 @@ import CodeBlock from '@theme/CodeBlock';
 import React, { useCallback, useState } from 'react';
 import { CodeSelection, getCodeExample, getPreview, themeFonts } from './fonts';
 import './ThemeFonts.css';
-import { useTheme } from '@site/src/utils/hooks/useTheme';
 
 function Search(props: { onChange: (value: string) => void }) {
   return (
@@ -44,7 +43,6 @@ function Search(props: { onChange: (value: string) => void }) {
 }
 
 const ThemeFonts: React.FunctionComponent = () => {
-  useTheme();
   const [fonts] = useState(themeFonts);
   const [filter, setFilter] = useState('');
   const [framework, setFramework] = useState<CodeSelection>('react');
