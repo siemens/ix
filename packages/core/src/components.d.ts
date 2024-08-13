@@ -605,7 +605,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -662,7 +662,7 @@ export namespace Components {
           * set styles
          */
         "individual": boolean;
-        "standaloneAppearance": any;
+        "standaloneAppearance": undefined;
     }
     interface IxDatetimePicker {
         /**
@@ -722,7 +722,7 @@ export namespace Components {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference": any;
+        "showTimeReference": undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -2291,7 +2291,7 @@ export namespace Components {
         /**
           * Render function of tree items
          */
-        "renderItem": <T = any>(
+        "renderItem"?: <T = any>(
     index: number,
     data: T,
     dataList: Array<T>,
@@ -2307,7 +2307,7 @@ export namespace Components {
         /**
           * Context
          */
-        "context": TreeItemContext;
+        "context"?: TreeItemContext;
         /**
           * Has tree item children
          */
@@ -2315,7 +2315,7 @@ export namespace Components {
         /**
           * Text
          */
-        "text": string;
+        "text"?: string;
     }
     /**
      * @since 2.0.0
@@ -4751,7 +4751,7 @@ declare namespace LocalJSX {
           * set styles
          */
         "individual"?: boolean;
-        "standaloneAppearance"?: any;
+        "standaloneAppearance"?: undefined;
     }
     interface IxDatetimePicker {
         /**
@@ -4831,7 +4831,7 @@ declare namespace LocalJSX {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: any;
+        "showTimeReference"?: undefined;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -6550,7 +6550,7 @@ declare namespace LocalJSX {
         /**
           * Initial root element will not be rendered
          */
-        "root"?: string;
+        "root": string;
     }
     interface IxTreeItem {
         /**

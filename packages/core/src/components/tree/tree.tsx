@@ -17,6 +17,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
+//@ts-ignore
 import Hyperlist from 'hyperlist';
 import { renderDefaultItem } from '../tree-item/default-tree-item';
 import {
@@ -39,17 +40,17 @@ export class Tree {
   /**
    * Initial root element will not be rendered
    */
-  @Prop() root: string;
+  @Prop() root!: string;
 
   /**
    * Tree model
    */
-  @Prop() model: TreeModel<any>;
+  @Prop() model: TreeModel<any> = {};
 
   /**
    * Render function of tree items
    */
-  @Prop() renderItem: <T = any>(
+  @Prop() renderItem?: <T = any>(
     index: number,
     data: T,
     dataList: Array<T>,
@@ -65,31 +66,31 @@ export class Tree {
   /**
    * Context changed
    */
-  @Event() contextChange: EventEmitter<TreeContext>;
+  @Event() contextChange!: EventEmitter<TreeContext>;
 
   /**
    * Node toggled event
    * @since 1.5.0
    */
-  @Event() nodeToggled: EventEmitter<{ id: string; isExpaned: boolean }>;
+  @Event() nodeToggled!: EventEmitter<{ id: string; isExpaned: boolean }>;
 
   /**
    * Node clicked event
    * @since 1.5.0
    */
-  @Event() nodeClicked: EventEmitter<string>;
+  @Event() nodeClicked!: EventEmitter<string>;
 
   /**
    * Emits removed nodes
    */
-  @Event() nodeRemoved: EventEmitter<any>;
+  @Event() nodeRemoved!: EventEmitter<any>;
 
   private hyperlist: Hyperlist;
 
   private toggleListener = new Map<HTMLElement, Function>();
   private itemClickListener = new Map<HTMLElement, Function>();
   private updates = new Map<string, UpdateCallback>();
-  private observer: MutationObserver;
+  private observer!: MutationObserver;
   private hasFirstRender = false;
 
   private updatePadding(element: HTMLElement, item: TreeItemVisual<unknown>) {
@@ -138,7 +139,10 @@ export class Tree {
 
           if (this.updates.has(item.id)) {
             const doUpdate = this.updates.get(item.id);
-            doUpdate(item, { ...this.context });
+
+            if (doUpdate) {
+              doUpdate(item, { ...this.context });
+            }
           }
 
           this.updatePadding(renderedTreeItem, item);
@@ -240,7 +244,7 @@ export class Tree {
     this.initList();
 
     this.observer = new MutationObserver((records) => {
-      let removed = [];
+      let removed: any[] = [];
 
       records.forEach((record) => {
         removed = [...removed, ...Array.from(record.removedNodes)];

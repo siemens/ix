@@ -19,33 +19,33 @@ export class TreeItem {
   /**
    * Text
    */
-  @Prop() text: string;
+  @Prop() text?: string;
 
   /**
    * Has tree item children
    */
-  @Prop() hasChildren: boolean;
+  @Prop() hasChildren = false;
 
   /**
    * Context
    */
-  @Prop() context: TreeItemContext;
+  @Prop() context?: TreeItemContext;
 
   /**
    * Expand/Collapsed toggled
    */
-  @Event() toggle: EventEmitter<void>;
+  @Event() toggle!: EventEmitter<void>;
 
   /**
    * Clicked
    */
-  @Event() itemClick: EventEmitter<void>;
+  @Event() itemClick!: EventEmitter<void>;
 
   render() {
     return (
       <Host
         class={{
-          selected: this.context?.isSelected,
+          selected: !!this.context?.isSelected,
         }}
       >
         <div
@@ -60,7 +60,7 @@ export class TreeItem {
               name={'chevron-right'}
               size="16"
               class={{
-                ['icon-toggle-down']: this.context?.isExpanded,
+                ['icon-toggle-down']: !!this.context?.isExpanded,
               }}
               color={`color-${
                 this.context?.isExpanded ? 'primary' : 'std-text'
