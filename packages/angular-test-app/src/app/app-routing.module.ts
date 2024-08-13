@@ -10,7 +10,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NavigationTestComponent } from './components/navigation-test.component';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AgGrid from '../preview-examples/aggrid';
@@ -170,30 +169,6 @@ import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
 
 const routes: Routes = [
-  {
-    path: 'testing',
-    children: [
-      {
-        path: 'navigation',
-        component: NavigationTestComponent,
-        children: [
-          {
-            path: '',
-            pathMatch: 'full',
-            redirectTo: 'link1',
-          },
-          {
-            path: 'link1',
-            component: Buttons,
-          },
-          {
-            path: 'link2',
-            component: ButtonGroup,
-          },
-        ],
-      },
-    ],
-  },
   {
     path: 'preview',
     children: [

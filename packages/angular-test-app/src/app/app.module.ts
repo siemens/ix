@@ -18,8 +18,6 @@ import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
 
-
-import { NavigationTestComponent } from './components/navigation-test.component';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AgGrid from '../preview-examples/aggrid';
@@ -340,7 +338,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     VerticalTabs,
     WorkflowVertical,
     Workflow,
-    NavigationTestComponent,
   ],
   imports: [
     BrowserModule,

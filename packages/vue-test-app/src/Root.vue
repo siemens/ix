@@ -125,7 +125,6 @@ import TreeCustom from './preview-examples/tree-custom.vue';
 import Tree from './preview-examples/tree.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
-import NavigationTest from './testing/NavigationTest.vue';
 import Grid from './preview-examples/grid.vue';
 import GridSize from './preview-examples/grid-size.vue';
 import GridPadding from './preview-examples/grid-padding.vue';
@@ -327,9 +326,6 @@ const routes: any = {
   '/preview/vertical-tabs': VerticalTabs,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/workflow': Workflow,
-  '/testing/navigation': NavigationTest,
-  '/testing/navigation/link1': NavigationTest,
-  '/testing/navigation/link2': NavigationTest,
 };
 
 const currentPath = ref(window.location.pathname);

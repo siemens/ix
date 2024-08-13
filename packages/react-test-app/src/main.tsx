@@ -169,7 +169,6 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
-import NavigationTest from './testing/NavigationTest';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -485,26 +484,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<WorkflowVertical />}
         />
         <Route path="/preview/workflow" element={<Workflow />} />
-        <Route path="/testing">
-          <Route path="navigation" element={<NavigationTest />}>
-            <Route
-              path="link1"
-              element={
-                <div>
-                  <Buttons />
-                </div>
-              }
-            />
-            <Route
-              path="link2"
-              element={
-                <div>
-                  <ButtonGroup />
-                </div>
-              }
-            />
-          </Route>
-        </Route>
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>
