@@ -1,4 +1,4 @@
-@media (max-width: 428px) {
+@media (max-width: 576px) {
   .container {
     padding: 50px 40px 50px 40px !important;
   }
@@ -49,6 +49,7 @@
 
       .introduction_content {
         flex-grow: 0;
+        width: 100%;
       }
     }
   }
@@ -103,7 +104,7 @@
       }
     }
 
-    @media (max-width: 428px) {
+    @media (max-width: 576px) {
       .scroll_down {
         bottom: -40px !important;
         left: 42% !important;
@@ -188,13 +189,13 @@
     }
   }
 
-  @media (max-width: 428px) {
+  @media (max-width: 576px) {
     &.call_to_actions {
       margin-left: 0;
     }
   }
 
-  @media (max-width: 428px) {
+  @media (max-width: 576px) {
     &.devices {
       height: 926px !important;
     }
@@ -242,7 +243,7 @@
       }
     }
 
-    @media (max-width: 428px) {
+    @media (max-width: 576px) {
       .image {
         top: 220px !important;
         height: 80% !important;
@@ -315,7 +316,7 @@
       }
     }
 
-    @media (max-width: 428px) {
+    @media (max-width: 576px) {
       .text_2 {
         width: 300px !important;
       }
@@ -331,7 +332,7 @@
       }
     }
 
-    @media (max-width: 428px) {
+    @media (max-width: 576px) {
       .bold {
         line-height: 35px !important;
       }
@@ -408,7 +409,7 @@
       }
     }
 
-    @media (max-width: 428px) {
+    @media (max-width: 576px) {
       .images {
         gap: 10px !important;
       }
@@ -429,7 +430,7 @@
     padding: 40px 66px;
     min-height: 100vh;
 
-    @media (max-width: 428px) {
+    @media (max-width: 576px) {
       .arrow {
         display: none !important;
       }
@@ -487,7 +488,7 @@
     }
   }
 
-  @media (max-width: 428px) {
+  @media (max-width: 576px) {
     &.components {
       background-image: none !important;
       background-color: #000028;
@@ -525,7 +526,7 @@
       }
     }
 
-    @media (max-width: 428px) {
+    @media (max-width: 576px) {
       .text_dark {
         color: #ffffff !important;
       }
@@ -803,7 +804,7 @@
   }
 }
 
-@media (max-width: 428px) {
+@media (max-width: 576px) {
   .brand_desgin_background_image {
     display: none;
   }
@@ -841,7 +842,7 @@
     }
   }
 
-  @media (max-width: 428px) {
+  @media (max-width: 576px) {
     .line {
       display: none !important;
     }
@@ -923,7 +924,7 @@
   color: rgba(0, 0, 0, 0.85);
 }
 
-@media (max-width: 428px) {
+@media (max-width: 576px) {
   .description {
     margin: 30px 0 0 0 !important;
     width: 100% !important;
@@ -966,6 +967,7 @@
 @media (max-width: 1280px) {
   .Card_Box {
     justify-content: flex-start;
+    width: 100%;
   }
 
   .Card_Info {
@@ -984,7 +986,7 @@
   }
 }
 
-@media (max-width: 428px) {
+@media (max-width: 576px) {
   .Card_Info {
     padding: 0 !important;
   }
@@ -1015,6 +1017,7 @@
 
   &.Primary {
     background-color: var(--theme-color-primary);
+    width: auto;
     border: 1px solid var(--theme-color-primary);
 
     &:hover {
