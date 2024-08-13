@@ -11,7 +11,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Bar chart vertical stacked
+## Bar chart horizontal stacked
 
 <Playground
 height="40rem"

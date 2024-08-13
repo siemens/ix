@@ -6,7 +6,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 Apache ECharts offers a versatile toolbox that enables users to interact with and manipulate charts effectively. 
 By default, the toolbox appears in the top right corner of the chart. 
-You can customize this toolbox using the toolbox option within the option object.
+You can customize this toolbox using the `toolbox` option within the option object.
 
 The toolbox includes various interactive tools (like download, zoom, change type), each designed to enhance the user experience. 
 Below is an example demonstrating some of the most commonly used tools and how to configure them to suit your needs.
