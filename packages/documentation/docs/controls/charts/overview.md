@@ -28,6 +28,14 @@ import { registerTheme } from '@siemens/ix-echarts';
 registerTheme(echarts);
 ```
 
+<div className="siemens-brand-section">
+
+Ensure that the colors used have sufficient contrast with each other. 
+Utilize every second --theme-chart-color to enhance the overall contrast between them.
+
+</div>
+
+
 ### Angular
 
 Please make sure to correctly add `NgxEcharts` in your module file.

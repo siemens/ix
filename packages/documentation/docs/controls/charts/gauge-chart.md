@@ -5,7 +5,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 ## Examples
 
-## Performance metrics gauge
+### Performance metrics gauge
 
 <Playground
 height="25rem"
@@ -14,7 +14,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Progress circle gauge
+### Progress circle gauge
 
 <Playground
 height="30rem"
@@ -23,7 +23,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Progress arc gauge
+### Progress arc gauge
 
 <Playground
 height="30rem"

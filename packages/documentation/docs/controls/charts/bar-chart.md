@@ -5,7 +5,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 ## Examples
 
-## Bar chart horizontal
+### Bar chart horizontal
 
 <Playground
 height="40rem"
@@ -14,7 +14,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Bar chart horizontal stacked
+### Bar chart horizontal stacked
 
 <Playground
 height="40rem"

@@ -42,7 +42,11 @@ const options: EChartsOption = {
       type: 'shadow',
     },
   },
-  legend: {},
+  legend: {
+    icon: 'rect',
+    bottom: 0,
+    left: 0,
+  },
   grid: {
     left: '3%',
     right: '4%',

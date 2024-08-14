@@ -5,7 +5,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 ## Examples
 
-## Donut chart
+### Donut chart
 
 <Playground
 height="40rem"
@@ -14,7 +14,7 @@ noMargin
 examplesByName>
 </Playground>
 
-## Pie chart
+### Pie chart
 
 <Playground
 height="30rem"

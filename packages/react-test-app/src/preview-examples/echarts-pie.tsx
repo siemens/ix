@@ -42,7 +42,7 @@ export default function EchartsPie() {
       trigger: 'item',
     },
     legend: {
-      orient: 'vertical',
+      icon: 'rect',
       bottom: '0',
       left: '0',
     },

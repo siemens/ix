@@ -40,10 +40,9 @@ export default function EchartsCircle() {
       trigger: 'item',
     },
     legend: {
-      icon: 'circle',
-      bottom: 0,
-      left: 0,
-      orient: 'vertical',
+      icon: 'rect',
+      bottom: '0',
+      left: '0',
     },
     series: [
       {

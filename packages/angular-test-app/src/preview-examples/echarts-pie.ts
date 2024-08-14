@@ -35,7 +35,7 @@ export default class EchartsPie implements OnInit {
       trigger: 'item',
     },
     legend: {
-      orient: 'vertical',
+      icon: 'rect',
       bottom: '0',
       left: '0',
     },

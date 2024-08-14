@@ -119,14 +119,14 @@ export default class EchartsLineMultipleYAxis implements OnInit {
       this.createYAxis(
         'Precipitation',
         'right',
-        this.themeChartList[1],
+        this.themeChartList[2],
         '{value} ml',
         80
       ),
       this.createYAxis(
         'Temperature',
         'left',
-        this.themeChartList[2],
+        this.themeChartList[4],
         '{value} °C'
       ),
     ],
@@ -141,20 +141,19 @@ export default class EchartsLineMultipleYAxis implements OnInit {
         'Precipitation',
         1,
         this.data.precipitation,
-        this.themeChartList[1]
+        this.themeChartList[2]
       ),
       this.createSeries(
         'Temperature',
         2,
         this.data.temperature,
-        this.themeChartList[2]
+        this.themeChartList[4]
       ),
     ],
   };
 
   ngOnInit() {
     registerTheme(echarts);
-    console.log(echarts.color);
 
     themeSwitcher.themeChanged.on((theme: string) => {
       this.theme = convertThemeName(theme);
