@@ -9,11 +9,15 @@
 import { fileURLToPath } from 'url';
 import fs from 'fs-extra';
 import path from 'path';
+import { rimrafSync } from 'rimraf';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const __packageRoot = path.resolve(__dirname, '..');
 
-export function copyPreviewStyles(dest: string) {
+export function copyPreviewStyles(dest: string, rimraf = true) {
+  if (rimraf) {
+    rimrafSync(dest);
+  }
   fs.copySync(path.join(__packageRoot, 'css'), dest);
 }
