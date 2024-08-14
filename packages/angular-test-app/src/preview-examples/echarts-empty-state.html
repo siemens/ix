@@ -1,0 +1,45 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<div
+  style="
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 40rem;
+    padding-top: 1rem;
+  "
+>
+  <div
+    id="empty-state-container"
+    style="
+      position: absolute;
+      justify-content: center;
+      align-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: var(--theme-color-backdrop);
+      z-index: 1;
+    "
+  >
+    <ix-empty-state
+      header="No elements available"
+      sub-header="Failed to retrieve data"
+      icon="info"
+      action="Try again"
+    ></ix-empty-state>
+  </div>
+  <div
+    echarts
+    style="display: block; position: relative; height: 100%"
+    [options]="options"
+    [theme]="theme"
+    id="main"
+  ></div>
+</div>

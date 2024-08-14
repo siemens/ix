@@ -148,6 +148,7 @@ import EchartsSpecial3d from "../preview-examples/echarts-special-3d";
 import EchartsBarHorizontalStacked from "../preview-examples/echarts-bar-horizontal-stacked";
 import EchartsBarSimple from "../preview-examples/echarts-bar-simple";
 import EchartsCircle from "../preview-examples/echarts-circle";
+import EchartsEmptyState from "../preview-examples/echarts-empty-state";
 import EchartsGauge from "../preview-examples/echarts-gauge";
 import EchartsLineAdvanced from "../preview-examples/echarts-line-advanced";
 import EchartsLineMultipleYAxis from "../preview-examples/echarts-line-multiple-y-axis";
@@ -326,6 +327,7 @@ const routes: Routes = [
       { path: 'echarts-bar-simple', component: EchartsBarSimple },
       { path: 'echarts-bar-horizontal-stacked', component: EchartsBarHorizontalStacked },
       { path: 'echarts-circle', component: EchartsCircle },
+      { path: 'echarts-empty-state', component: EchartsEmptyState },
       { path: 'echarts-gauge', component: EchartsGauge },
       { path: 'echarts-line-multiple-y-axis', component: EchartsLineMultipleYAxis },
       { path: 'echarts-line-advanced', component: EchartsLineAdvanced },

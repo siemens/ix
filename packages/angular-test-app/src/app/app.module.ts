@@ -157,6 +157,7 @@ import EchartsSpecial3d from 'src/preview-examples/echarts-special-3d';
 import EchartsBarSimple from "../preview-examples/echarts-bar-simple";
 import EchartsBarHorizontalStacked from "../preview-examples/echarts-bar-horizontal-stacked";
 import EchartsCircle from "../preview-examples/echarts-circle";
+import EchartsEmptyState from "../preview-examples/echarts-empty-state";
 import EchartsGauge from "../preview-examples/echarts-gauge";
 import EchartsLineAdvanced from "../preview-examples/echarts-line-advanced";
 import EchartsLineMultipleYAxis from "../preview-examples/echarts-line-multiple-y-axis";
@@ -215,6 +216,7 @@ import EchartsProgressCircle from "../preview-examples/echarts-progress-circle";
     EchartsBarSimple,
     EchartsBarHorizontalStacked,
     EchartsCircle,
+    EchartsEmptyState,
     EchartsGauge,
     EchartsLineAdvanced,
     EchartsLineMultipleYAxis,

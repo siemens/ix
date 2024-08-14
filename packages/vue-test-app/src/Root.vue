@@ -120,6 +120,7 @@ import EchartsGauge from './preview-examples/echarts-gauge.vue';
 import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked.vue';
 import EchartsBarSimple from './preview-examples/echarts-bar-simple.vue';
 import EchartsCircle from './preview-examples/echarts-circle.vue';
+import EchartsEmptyState from './preview-examples/echarts-empty-state.vue';
 import EchartsLineAdvanced from "./preview-examples/echarts-line-advanced.vue";
 import EchartsLineMultipleYAxis from "./preview-examples/echarts-line-multiple-y-axis.vue";
 import EchartsLineSimple from './preview-examples/echarts-line-simple.vue';
@@ -163,6 +164,7 @@ const routes: any = {
   '/preview/echarts-bar-horizontal-stacked': EchartsBarHorizontalStacked,
   '/preview/echarts-bar-simple': EchartsBarSimple,
   '/preview/echarts-circle': EchartsCircle,
+  '/preview/echarts-empty-state': EchartsEmptyState,
   '/preview/echarts-gauge': EchartsGauge,
   '/preview/echarts-line-advanced': EchartsLineAdvanced,
   '/preview/echarts-line-simple': EchartsLineSimple,

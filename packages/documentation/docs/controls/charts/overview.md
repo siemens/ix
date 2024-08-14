@@ -40,3 +40,12 @@ name="echarts"
 noMargin
 examplesByName>
 </Playground>
+
+## Empty state
+
+<Playground
+height="40rem"
+name="echarts-empty-state"
+noMargin
+examplesByName>
+</Playground>
