@@ -15,10 +15,6 @@ import { Component } from '@angular/core';
     <ix-button variant="secondary"> Button </ix-button>
     <ix-button disabled variant="secondary"> Button </ix-button>
   `,
-  styles: [
-    `
-      @import 'example-styles/dist/buttons.css';
-    `,
-  ],
+  styleUrls: ['./styles/buttons.css'],
 })
 export default class Buttons {}

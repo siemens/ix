@@ -32,10 +32,6 @@ import { Component } from '@angular/core';
       sit amet.
     </ix-blind>
   `,
-  styles: [
-    `
-      @import 'example-styles/dist/blind.css';
-    `,
-  ],
+  styleUrls: ['./styles/blind.css'],
 })
 export default class Blind {}
