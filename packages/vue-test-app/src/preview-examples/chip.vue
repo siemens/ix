@@ -11,7 +11,7 @@
 import { IxChip } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="example-styles/dist/chip.css"></style>
+<style scoped src="./styles/chip.css"></style>
 
 <template>
   <div class="chip">

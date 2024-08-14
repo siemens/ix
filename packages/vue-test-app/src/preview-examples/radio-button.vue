@@ -9,7 +9,7 @@
 
 <script setup lang="ts"></script>
 
-<style scoped src="example-styles/dist/radio-button.css"></style>
+<style scoped src="./styles/radio-button.css"></style>
 
 <template>
   <div class="radio-button">

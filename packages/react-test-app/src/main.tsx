@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/global.css';
+import './preview-examples/styles/global.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
