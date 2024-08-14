@@ -7,20 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/chip.css';
+
 import { IxChip } from '@siemens/ix-react';
-import { CSSProperties } from 'react';
 
 export default () => {
-  const styled: CSSProperties = {
-    width: '10rem',
-  };
   return (
-    <div className="example">
+    <div className="chip">
       <IxChip closable outline>
         Primary
       </IxChip>
       <IxChip icon="print">Primary with icon</IxChip>
-      <IxChip icon="print" style={styled} closable>
+      <IxChip icon="print" closable>
         Primary
       </IxChip>
 
@@ -30,18 +28,17 @@ export default () => {
       <IxChip variant="alarm" icon="print">
         Alarm with icon
       </IxChip>
-      <IxChip variant="alarm" icon="print" style={styled} closable>
+      <IxChip variant="alarm" icon="print" closable>
         Alarm
       </IxChip>
-      <IxChip variant="warning" icon="print" style={styled} closable>
+      <IxChip variant="warning" icon="print" closable>
         Alarm
       </IxChip>
       <IxChip
         background="purple"
-        color="green"
+        chip-color="green"
         variant="custom"
         icon="print"
-        style={styled}
         closable
       >
         Custom

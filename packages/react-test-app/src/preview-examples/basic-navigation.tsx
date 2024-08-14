@@ -7,11 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/basic-navigation.css';
+
 import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 
 export default () => {
   return (
-    <IxBasicNavigation>
+    <IxBasicNavigation applicationName="Application name">
       <div className="placeholder-logo" slot="logo"></div>
       <IxMenu>
         <IxMenuItem>Item 1</IxMenuItem>

@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/blind.css';
+
 import {
   IxBlind,
   IxDropdown,
@@ -17,12 +19,13 @@ import {
 export default () => {
   return (
     <>
-      <IxBlind label="Example" sublabel="Sublabel">
+      <IxBlind label="Example" icon="info">
         <IxIconButton
           id="context-menu"
           slot="header-actions"
           ghost
-          icon="info"
+          icon="context-menu"
+          iconColor="color-primary"
         ></IxIconButton>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam

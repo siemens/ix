@@ -56,7 +56,25 @@ export default () => {
               <div className="invalid-feedback">
                 Please choose a first name.
               </div>
-              <div className="valid-feedback">Looks good!</div>
+              {!formState.errors.firstName && (
+                <div className="valid-feedback">Looks good!</div>
+              )}
+            </IxCol>
+          </IxRow>
+
+          <IxRow>
+            <IxCol size="4">
+              <IxValidationTooltip message="Cannot be empty!">
+                <label htmlFor="validationCustom02">Last name</label>
+                <input
+                  type="text"
+                  className={`${formState.errors.lastName ? 'is-invalid' : ''}`}
+                  id="validationCustom02"
+                  {...register('lastName', {
+                    required: true,
+                  })}
+                />
+              </IxValidationTooltip>
             </IxCol>
           </IxRow>
 
@@ -73,22 +91,6 @@ export default () => {
                 })}
               />
               <div className="invalid-feedback">Please choose a username.</div>
-            </IxCol>
-          </IxRow>
-
-          <IxRow>
-            <IxCol size="4">
-              <IxValidationTooltip message="Error hint text">
-                <label htmlFor="validationCustom02">Last name</label>
-                <input
-                  type="text"
-                  className={`${formState.errors.lastName ? 'is-invalid' : ''}`}
-                  id="validationCustom02"
-                  {...register('lastName', {
-                    required: true,
-                  })}
-                />
-              </IxValidationTooltip>
             </IxCol>
           </IxRow>
 

@@ -14,14 +14,10 @@ import { IxToggleButton } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxToggleButton outline={false}>Normal</IxToggleButton>
-      <IxToggleButton outline={false} pressed>
-        Pressed
-      </IxToggleButton>
-      <IxToggleButton outline={false} disabled>
-        Disabled
-      </IxToggleButton>
-      <IxToggleButton outline={false} disabled loading>
+      <IxToggleButton>Normal</IxToggleButton>
+      <IxToggleButton pressed>Pressed</IxToggleButton>
+      <IxToggleButton disabled>Disabled</IxToggleButton>
+      <IxToggleButton disabled loading>
         Loading
       </IxToggleButton>
     </>

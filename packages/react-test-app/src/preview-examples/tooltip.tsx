@@ -7,11 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/tooltip.css';
+
 import { IxButton, IxTooltip } from '@siemens/ix-react';
 
 export default () => {
   return (
-    <div style={{ padding: '4rem' }}>
+    <>
       <IxButton class="any-class" aria-describedby="tooltip-1">
         Hover me
       </IxButton>
@@ -28,6 +30,6 @@ export default () => {
       <IxTooltip id="tooltip-2" for="[my-custom-special-selector='any-value']">
         Custom selector
       </IxTooltip>
-    </div>
+    </>
   );
 };

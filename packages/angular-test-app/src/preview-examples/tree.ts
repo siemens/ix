@@ -12,6 +12,9 @@ import { TreeModel } from '@siemens/ix';
 
 @Component({
   selector: 'app-example',
+  template: ` <div class="example">
+    <ix-tree root="root" [model]="model"></ix-tree>
+  </div>`,
   styles: [
     `
       .example {
@@ -22,9 +25,6 @@ import { TreeModel } from '@siemens/ix';
       }
     `,
   ],
-  template: `<div class="example">
-    <ix-tree root="root" [model]="model"></ix-tree>
-  </div>`,
 })
 export default class Tree {
   model: TreeModel<{

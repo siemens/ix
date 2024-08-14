@@ -13,9 +13,9 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <div class="btn-group">
-      <ix-button variant="primary" outline> Left </ix-button>
-      <ix-button variant="primary">Middle</ix-button>
-      <ix-button variant="primary" outline> Right </ix-button>
+      <ix-button outline> Left </ix-button>
+      <ix-button>Middle</ix-button>
+      <ix-button outline> Right </ix-button>
     </div>
   `,
 })

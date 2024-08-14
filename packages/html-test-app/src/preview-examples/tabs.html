@@ -2,33 +2,26 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Select example</title>
-
-    <style></style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs example</title>
+    <!-- Sources -->
+    <script type="module">
+      import 'example-styles/dist/tabs.css';
+    </script>
+    <!-- Sources -->
   </head>
-  <body class="theme-classic-dark">
+  <body>
     <!-- Preview code -->
-    <style>
-      .example {
-        display: block;
-        position: relative;
-        width: 100%;
-      }
-
-      div[data-tab-content] {
-        display: none;
-      }
-
-      div[data-tab-content].show {
-        display: block;
-      }
-    </style>
-    <div class="example">
+    <div class="tabs">
       <ix-tabs>
         <ix-tab-item data-tab-id="0">Tab 1</ix-tab-item>
         <ix-tab-item data-tab-id="1">Tab 2</ix-tab-item>

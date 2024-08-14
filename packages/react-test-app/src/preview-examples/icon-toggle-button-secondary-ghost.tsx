@@ -14,10 +14,15 @@ import { IxIconToggleButton } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxIconToggleButton ghost></IxIconToggleButton>
-      <IxIconToggleButton pressed ghost></IxIconToggleButton>
-      <IxIconToggleButton disabled ghost></IxIconToggleButton>
-      <IxIconToggleButton disabled loading ghost></IxIconToggleButton>
+      <IxIconToggleButton ghost icon="checkboxes"></IxIconToggleButton>
+      <IxIconToggleButton pressed ghost icon="checkboxes"></IxIconToggleButton>
+      <IxIconToggleButton disabled ghost icon="checkboxes"></IxIconToggleButton>
+      <IxIconToggleButton
+        disabled
+        loading
+        ghost
+        icon="checkboxes"
+      ></IxIconToggleButton>
     </>
   );
 };

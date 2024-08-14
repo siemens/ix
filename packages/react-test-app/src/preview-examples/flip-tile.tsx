@@ -7,12 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/flip-tile.css';
+
 import { FlipTileState } from '@siemens/ix';
 import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-react';
 
 export default () => {
   return (
-    <div className="example">
+    <div className="flip-tile">
       <IxFlipTile>
         <div slot="header">Flip header</div>
 

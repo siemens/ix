@@ -8,5 +8,9 @@
  */
 
 export default () => {
-  return <textarea placeholder="Enter text here" readOnly></textarea>;
+  return (
+    <textarea placeholder="Enter text here" readOnly>
+      Some example text
+    </textarea>
+  );
 };

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -390,7 +390,11 @@ async function createAngularStackBlitzConfig(
     `${baseUrl}code-runtime/angular/tsconfig.json`,
   ]);
 
-  const renderFirstExample = sourceFiles[0];
+  let renderFirstExample = sourceFiles[0];
+
+  if(sourceFiles.length >= 2) {
+    renderFirstExample = sourceFiles[1];
+  }
 
   const declareComponents: string[] = [];
   sourceFiles.forEach(({ filename, raw }) => {
