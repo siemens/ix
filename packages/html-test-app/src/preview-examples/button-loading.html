@@ -13,9 +13,9 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loading button example</title>
-    <script type="module">
-      import 'example-styles/dist/button-loading.css';
-    </script>
+    <!-- Sources -->
+    <link rel="stylesheet" href="./styles/button-loading.css" />
+    <!-- Sources -->
   </head>
   <body>
     <script>
@@ -30,32 +30,16 @@ LICENSE file in the root directory of this source tree.
     <!-- Preview code -->
     <ix-button onclick="toggle(this)" outline> Button </ix-button>
 
-    <ix-button onclick="toggle(this)" outline>
-      Button
-    </ix-button>
+    <ix-button onclick="toggle(this)" outline> Button </ix-button>
 
-    <ix-button
-      onclick="toggle(this)"
-      icon="star"
-      outline
-    >
-      Button
-    </ix-button>
+    <ix-button onclick="toggle(this)" icon="star" outline> Button </ix-button>
 
-    <ix-icon-button
-      onclick="toggle(this)"
-      icon="star"
-      outline
-    >
+    <ix-icon-button onclick="toggle(this)" icon="star" outline>
     </ix-icon-button>
 
-    <ix-button loading  outline> Button </ix-button>
+    <ix-button loading outline> Button </ix-button>
 
-    <ix-icon-button
-      loading
-      icon="star"
-      outline
-    ></ix-icon-button>
+    <ix-icon-button loading icon="star" outline></ix-icon-button>
     <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>

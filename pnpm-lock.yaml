@@ -568,7 +568,15 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
 
-  packages/example-styles: {}
+  packages/example-styles:
+    dependencies:
+      typescript:
+        specifier: ^5.2.2
+        version: 5.4.5
+    devDependencies:
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.2.0
 
   packages/figma-plugin:
     dependencies:
@@ -32009,7 +32017,7 @@ snapshots:
       typed-assert: 1.0.9
       webpack: 5.76.1(esbuild@0.15.5)
     optionalDependencies:
-      html-webpack-plugin: 5.5.3(webpack@5.76.1)
+      html-webpack-plugin: 5.5.3(webpack@5.89.0)
 
   webpack@5.76.1:
     dependencies:
