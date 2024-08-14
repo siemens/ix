@@ -7,7 +7,7 @@ sidebar_label: Migration from UXT 2.8.0
 
 For a quick and easy migration without changing your code base the iX-UXT CSS Theme is prepared for app developers using the CSS from UXT (former MindSphere Design System).
 
-> [!warning] For the full experience please actually use the Siemens Industrial Experience components. The theme is intended for a quick yet incomplete switch from UXT as a legacy design system.
+> [!warning] For the full experience please use the Siemens Industrial Experience components. The theme is intended for a quick yet incomplete switch from UXT as a legacy design system. 
 # Usage
 1. When using UXT below v2.7.0, download the <a href="uxt-ix-css.css" target="_blank">CSS theme</a> and import it into your project.  
    _If you are using UXT v2.7.0 or higher, it is already part of the UXT CSS._
@@ -86,7 +86,7 @@ In case you want to start using the actual Industrial Experience web components,
 
 # System icons
 
-Core differences between UXT and iX:
+Core differences between UXT and Industrial Experience:
 
 - [UXT offers an iconfont](https://design.mindsphere.io/patterns/system-icons.html) with 3 different styles (regular, bold, filled)
 - [iX offers SVGs](https://ix.siemens.io/docs/icon-library/icons) with mainly 1 style that corresponds to our bold and partially filled variants separately
@@ -95,4 +95,4 @@ When changing to the SVG icons by Industrial Experience please check your custom
 
 # Figma library
 
-When switching from UXT to iX, please use the swap library feature as described [here](https://help.figma.com/hc/en-us/articles/4404856784663-Swap-style-and-component-libraries).
+When switching from UXT to Industrial Experience, please use the swap library feature as described [here](https://help.figma.com/hc/en-us/articles/4404856784663-Swap-style-and-component-libraries).
