@@ -2,24 +2,22 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 
 ![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1097-5037&mode=design&t=KAxDgJoFX436Uk0b-11)
 
-1. Button label
-2. Button icon
+1. Label
+2. Icon
 
 ## Variants
 
-- **Primary button:** In our applications, we most often use the primary button variant.
-- **Secondary button:** The secondary button variant has a grayscale appearance to distinguish it from the primary button.
-- **Danger button:** We use the danger button variant to emphasize particularly dangerous, destructive or critical actions that cannot easily be undone. Consider this especially in confirmation dialogs. 
+- **Primary:** The primary button variant has a solid background in the primary color. We typically use primary buttons for the most important or most-likely next action within the user interface. 
+- **Secondary:** The secondary button variant has a transparent background in the secondary color. We typically use secondary buttons for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. 
+- **Danger:** The danger button variant has a red background and is used for destructive or critical actions like "delete" or "remove", especially in confirmation dialogs. We typically use the danger button for actions that are irreversible or have a significant impact on the user’s data or the application state.  
+- **Ghost :** The ghost button variant has a transparent background and a border in the primary color. We typically use ghost buttons for actions that are not part of the core user journey but serve specialized or conditional purposes. 
+- **Outline**: All Button variants have also an outline variant. The outline variant has a transparent background and a border in the corresponding color. This variant is used when the button needs to be more subtle or when it is placed on a dark background. 
 
 **Note:** Please be aware that the terms *primary* and *secondary* are not used in accordance to common UX terminology for primary, secondary and ghost button.
 
 ## Options
-- **Default:** Use for the most important or most-likely next action within the user interface. These are typically actions that advance the user through a process, such as "Submit", "Save" or "Add". We use these sparingly and recommend only one per layout. These are typically called *primary* buttons in UX. 
-- **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These could include actions like "Cancel", "Reset" or "Advanced Options". These are typically called *secondary* buttons in UX.
-- **Ghost:** Use for actions that are typically not part of the core user journey but serve specialized or conditional purposes. Tertiary buttons can represent actions such as "Advanced settings", "More options", "Help" or "Customize". They may also be used for conditional actions like "Change preferences" or "View details".
-- **Icon:** Icons can also be displayed with button labels.
-- **Disabled:** Buttons can be disabled (see also button states).
-- **Loading:** A loading spinner is displayed on the button. The spinner replaces an icon when available.
+- **Label**: The label is the text displayed on the button. We typically use short, descriptive labels that clearly communicate the action the button triggers. 
+- **Icon:** An icon can be displayed on the button. We typically use icons to support the label and make the button more easy to discover by the user. The icon should be widely known for representing the action or function among your users.
 - **Type:** A submit button is available. Submit buttons are typically used in forms and trigger a submit event. Apply this type to make a submit button more accessible.
 
 ## Behavior in context
@@ -33,6 +31,13 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 ## States
 
 Buttons have six states: Default, hover, active, disabled, loading and focused. In a disabled state, buttons are visually displayed but don’t offer any user interaction.
+
+- **Default:** Use for the most important or most-likely next action within the user interface. These are typically actions that advance the user through a process, such as "Submit", "Save" or "Add". We use these sparingly and recommend only one per layout. These are typically called *primary* buttons in UX. 
+- **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These could include actions like "Cancel", "Reset" or "Advanced Options". These are typically called *secondary* buttons in UX.
+- **Ghost:** Use for actions that are typically not part of the core user journey but serve specialized or conditional purposes. Tertiary buttons can represent actions such as "Advanced settings", "More options", "Help" or "Customize". They may also be used for conditional actions like "Change preferences" or "View details".
+- **Disabled:** Buttons can be disabled (see also button states).
+-  **Loading:** A loading spinner is displayed on the button. The spinner replaces an icon when available.
+- **Focused:** Buttons can be focused via keyboard navigation. The focus state is used to indicate that the button is currently selected. 
 
 ![Button states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
 
