@@ -1017,8 +1017,11 @@
 
   &.Primary {
     background-color: var(--theme-color-primary);
-    width: auto;
     border: 1px solid var(--theme-color-primary);
+
+    @media (max-width: 576px) {
+      width: auto;
+    }
 
     &:hover {
       background-color: var(--theme-btn-primary--background--hover) !important;
