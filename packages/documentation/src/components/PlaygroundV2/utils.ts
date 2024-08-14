@@ -19,6 +19,26 @@ export type SourceFile = {
   raw: string;
 };
 
+export function getBranchPath(framework: TargetFramework) {
+  let path = 'html';
+
+  const branch = 'main';
+
+  if (framework === TargetFramework.ANGULAR) {
+    path = 'angular';
+  }
+
+  if (framework === TargetFramework.REACT) {
+    path = 'react';
+  }
+
+  if (framework === TargetFramework.VUE) {
+    path = 'vue';
+  }
+
+  return `siemens/ix/tree/${branch}/packages/${path}-test-app`;
+}
+
 function stripComments(code: string) {
   return code
     .replace(/\/\*[^]*?\*\//gs, '')
@@ -392,7 +412,7 @@ async function createAngularStackBlitzConfig(
 
   let renderFirstExample = sourceFiles[0];
 
-  if(sourceFiles.length >= 2) {
+  if (sourceFiles.length >= 2) {
     renderFirstExample = sourceFiles[1];
   }
 
