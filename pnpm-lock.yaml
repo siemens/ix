@@ -428,6 +428,9 @@ importers:
       '@stackblitz/sdk':
         specifier: ^1.8.1
         version: 1.9.0
+      angular-test-app:
+        specifier: workspace:*
+        version: link:../angular-test-app
       clsx:
         specifier: ^1.2.1
         version: 1.2.1
@@ -461,6 +464,9 @@ importers:
       react-dom:
         specifier: ^18.0.0
         version: 18.2.0(react@18.2.0)
+      react-test-app:
+        specifier: workspace:*
+        version: link:../react-test-app
       sass:
         specifier: ^1.54.8
         version: 1.69.5

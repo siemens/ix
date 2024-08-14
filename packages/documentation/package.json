@@ -17,7 +17,8 @@
     "typecheck": "tsc",
     "download-theme": "ts-node -P ./scripts/tsconfig.json ./scripts/download-theme.ts",
     "generate-markdown": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-markdown.ts",
-    "generate-changelog": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-changelog.ts"
+    "generate-changelog": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-changelog.ts",
+    "generate-previews": "ts-node -P ./scripts/tsconfig.json ./scripts/generate-preview-snippets.ts"
   },
   "dependencies": {
     "@docusaurus/core": "3.4.0",
@@ -34,6 +35,8 @@
     "docusaurus-plugin-sass": "^0.2.2",
     "execa": "^5.1.1",
     "html-test-app": "workspace:*",
+    "angular-test-app": "workspace:*",
+    "react-test-app": "workspace:*",
     "ionic-test-app": "workspace:*",
     "prism-react-renderer": "^2.1.0",
     "raw-loader": "^4.0.2",

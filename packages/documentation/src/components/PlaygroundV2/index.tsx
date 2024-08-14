@@ -15,7 +15,12 @@ import { useEffect, useState } from 'react';
 import { TargetFramework } from './framework-types';
 import Demo, { DemoProps } from './../Demo';
 import styles from './styles.module.css';
-import { openStackBlitz, replaceStyleFilepath, SourceFile } from './utils';
+import {
+  openStackBlitz,
+  replaceStyleFilepath,
+  SourceFile,
+  stripComments,
+} from './utils';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 function getBranchPath(framework: TargetFramework) {
@@ -36,13 +41,6 @@ function getBranchPath(framework: TargetFramework) {
   }
 
   return `siemens/ix/tree/${branch}/packages/${path}-test-app`;
-}
-
-function stripComments(code: string) {
-  return code
-    .replace(/\/\*[^]*?\*\//gs, '')
-    .replace(/<!--[^]*?-->/gs, '')
-    .trim();
 }
 
 function extractCodePart(code: string, limiter: RegExp) {

@@ -5,8 +5,11 @@ import Props from './../auto-generated/ix-blind/props.md';
 import Events from './../auto-generated/ix-blind/events.md';
 
 import Playground from '@site/src/components/PlaygroundV2'
+import PlaygroundV3 from '@site/src/components/PlaygroundV3'
 
 ## Examples
+
+<PlaygroundV3 name="blind"></PlaygroundV3>
 
 <Playground
   name="blind"

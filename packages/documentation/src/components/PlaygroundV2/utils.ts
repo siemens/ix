@@ -13,6 +13,13 @@ import { themeSwitcher } from '@siemens/ix';
 
 const repositoryUrl = 'https://github.com/siemens/ix/tree/main/packages';
 
+export function stripComments(code: string) {
+  return code
+    .replace(/\/\*[^]*?\*\//gs, '')
+    .replace(/<!--[^]*?-->/gs, '')
+    .trim();
+}
+
 export type SourceFile = {
   filename: string;
   source: string;
