@@ -65,7 +65,11 @@ function useSnippetFetcher(
   name: string,
   alternativeSnippets?: Record<TargetFramework, string[]>,
   preventDefaultExample?: boolean
-): [boolean, Record<string, string>] {
+): {
+  isFetching: boolean;
+  hasError: boolean;
+  snippets: Record<string, string>;
+} {
   const [isFetching, setIsFetching] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [snippets, setSnippets] = useState<Record<string, string>>({});
@@ -73,56 +77,76 @@ function useSnippetFetcher(
 
   useEffect(() => {
     let fetchExamplePreview$: Promise<Record<string, string>> | null = null;
-
+    let fetchAdditionalFiles$: Promise<Record<string, string>> | null = null;
     if (activeFramework === TargetFramework.PREVIEW) {
       return;
     }
 
-    if (preventDefaultExample) {
-      if (alternativeSnippets && alternativeSnippets[activeFramework]) {
+    setIsFetching(true);
+    setHasError(false);
+
+    if (!preventDefaultExample) {
+      if (activeFramework === TargetFramework.ANGULAR) {
+        fetchExamplePreview$ = fetchSourceForAngular(url, name);
+      }
+
+      if (activeFramework === TargetFramework.REACT) {
+        fetchExamplePreview$ = fetchSourceForReact(url, name);
+      }
+
+      if (activeFramework === TargetFramework.VUE) {
+        fetchExamplePreview$ = fetchSourceForVue(url, name);
+      }
+
+      if (activeFramework === TargetFramework.JAVASCRIPT) {
+        fetchExamplePreview$ = fetchSourceForHtml(url, name);
+      }
+
+      if (!fetchExamplePreview$) {
+        fetchExamplePreview$ = Promise.resolve({});
+      }
+    }
+
+    if (alternativeSnippets && alternativeSnippets[activeFramework]) {
+      fetchAdditionalFiles$ = new Promise((resolve, reject) => {
         const _snippets: Record<string, string> = {};
         Promise.all(
-          alternativeSnippets[activeFramework].map((file) => {
-            return docusaurusFetch(`${url}/${file}`).then((data) => {
-              console.log(data);
+          alternativeSnippets[activeFramework].map(async (file) => {
+            console.log(`${url}/${file}`);
+
+            try {
+              const data = await docusaurusFetch(`${url}/${file}`);
               _snippets[file] = data;
-            });
+            } catch (error) {
+              reject(error);
+            }
           })
         ).then(() => {
-          setSnippets(_snippets);
+          resolve(_snippets);
         });
-
-        return;
-      }
-      return;
-    }
-
-    setIsFetching(true);
-    if (activeFramework === TargetFramework.ANGULAR) {
-      fetchExamplePreview$ = fetchSourceForAngular(url, name);
-    }
-
-    if (activeFramework === TargetFramework.REACT) {
-      fetchExamplePreview$ = fetchSourceForReact(url, name);
-    }
-
-    if (activeFramework === TargetFramework.VUE) {
-      fetchExamplePreview$ = fetchSourceForVue(url, name);
-    }
-
-    if (activeFramework === TargetFramework.JAVASCRIPT) {
-      fetchExamplePreview$ = fetchSourceForHtml(url, name);
-    }
-
-    if (fetchExamplePreview$) {
-      fetchExamplePreview$.then((data) => {
-        setIsFetching(false);
-        setSnippets(data);
       });
+    } else {
+      fetchAdditionalFiles$ = Promise.resolve({});
     }
+
+    Promise.all([fetchExamplePreview$, fetchAdditionalFiles$])
+      .then(([data1, data2]) => {
+        setIsFetching(false);
+        setSnippets({
+          ...data1,
+          ...data2,
+        });
+      })
+      .catch(() => {
+        setHasError(true);
+      });
   }, [activeFramework, url, alternativeSnippets, preventDefaultExample]);
 
-  return [isFetching, snippets];
+  return {
+    isFetching,
+    snippets,
+    hasError,
+  };
 }
 
 function SnippetPreview(props: { snippets: Record<string, string> }) {
@@ -231,6 +255,21 @@ function ToolbarButtons(props: {
   );
 }
 
+function CodePreview(props: {
+  isFetching: boolean;
+  hasError?: boolean;
+  snippets: Record<string, string>;
+}) {
+  if (props.hasError) {
+    return <EmptyCodeSnippet />;
+  }
+  if (props.isFetching || Object.keys(props.snippets).length === 0) {
+    return <IxSpinner></IxSpinner>;
+  }
+
+  return <SnippetPreview snippets={props.snippets} />;
+}
+
 export type PlaygroundV3Props = {
   frameworks?: TargetFramework[];
   preventDefaultExample?: boolean;
@@ -242,7 +281,7 @@ export default function PlaygroundV3(props: PlaygroundV3Props) {
     TargetFramework.PREVIEW
   );
 
-  const [isFetching, snippets] = useSnippetFetcher(
+  const { isFetching, hasError, snippets } = useSnippetFetcher(
     activeFramework,
     props.name,
     props.additionalFiles,
@@ -303,15 +342,14 @@ export default function PlaygroundV3(props: PlaygroundV3Props) {
         </div>
       </div>
 
-      {isFetching && <IxSpinner></IxSpinner>}
-      {showCode && !isFetching ? (
-        Object.keys(snippets).length === 0 ? (
-          <EmptyCodeSnippet />
-        ) : (
-          <SnippetPreview snippets={snippets} />
-        )
-      ) : (
+      {activeFramework === TargetFramework.PREVIEW ? (
         <Demo name={props.name} height={props.height} />
+      ) : (
+        <CodePreview
+          isFetching={isFetching}
+          hasError={hasError}
+          snippets={snippets}
+        ></CodePreview>
       )}
     </div>
   );

@@ -26,7 +26,7 @@ Our modals support the following sizes:
 The `size` can be configured over the configuration object of the `showModal` function.
 
 <Playground
-  height="18rem"
+  height="19rem"
   name="modal-sizes"
   examplesByName>
 </Playground>
