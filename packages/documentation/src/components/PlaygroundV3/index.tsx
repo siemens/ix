@@ -6,17 +6,28 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { IxSpinner, IxTabItem, IxTabs } from '@siemens/ix-react';
-import React, { useEffect, useMemo, useState } from 'react';
-import './playground.css';
-import { TargetFramework } from '../PlaygroundV2/framework-types';
-import Demo from '../Demo';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { fetchSourceForAngular } from './angular-snippets';
-import { fetchSourceForReact } from './react-snippets';
-import { fetchSourceForVue } from './vue-snippets';
-import { fetchSourceForHtml } from './html-snippets';
+import { IxIconButton, IxSpinner, IxTabItem, IxTabs } from '@siemens/ix-react';
+import { useTheme } from '@site/src/utils/hooks/useTheme';
 import CodeBlock from '@theme/CodeBlock';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import Demo, { DemoProps } from '../Demo';
+import { getDisplay, TargetFramework } from '../PlaygroundV2/framework-types';
+import {
+  fetchSourceForAngular,
+  getAngularTestAppGithubPath,
+} from './angular-snippets';
+import {
+  fetchSourceForHtml,
+  getJavascriptTestAppGithubPath,
+} from './html-snippets';
+import './playground.css';
+import {
+  fetchSourceForReact,
+  getReactTestAppGithubPath,
+} from './react-snippets';
+import { fetchSourceForVue, getVueTestAppGithubPath } from './vue-snippets';
+import { docusaurusFetch } from './fetching';
 
 function EmptyCodeSnippet() {
   return (
@@ -51,43 +62,65 @@ function useUrlMapper(activeFramework: TargetFramework) {
 
 function useSnippetFetcher(
   activeFramework: TargetFramework,
-  name: string
+  name: string,
+  alternativeSnippets?: Record<TargetFramework, string[]>,
+  preventDefaultExample?: boolean
 ): [boolean, Record<string, string>] {
   const [isFetching, setIsFetching] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [snippets, setSnippets] = useState<Record<string, string>>({});
   const url = useUrlMapper(activeFramework);
 
   useEffect(() => {
-    let fetching$: Promise<Record<string, string>> | null = null;
+    let fetchExamplePreview$: Promise<Record<string, string>> | null = null;
 
     if (activeFramework === TargetFramework.PREVIEW) {
       return;
     }
 
+    if (preventDefaultExample) {
+      if (alternativeSnippets && alternativeSnippets[activeFramework]) {
+        const _snippets: Record<string, string> = {};
+        Promise.all(
+          alternativeSnippets[activeFramework].map((file) => {
+            return docusaurusFetch(`${url}/${file}`).then((data) => {
+              console.log(data);
+              _snippets[file] = data;
+            });
+          })
+        ).then(() => {
+          setSnippets(_snippets);
+        });
+
+        return;
+      }
+      return;
+    }
+
     setIsFetching(true);
     if (activeFramework === TargetFramework.ANGULAR) {
-      fetching$ = fetchSourceForAngular(url, name);
+      fetchExamplePreview$ = fetchSourceForAngular(url, name);
     }
 
     if (activeFramework === TargetFramework.REACT) {
-      fetching$ = fetchSourceForReact(url, name);
+      fetchExamplePreview$ = fetchSourceForReact(url, name);
     }
 
     if (activeFramework === TargetFramework.VUE) {
-      fetching$ = fetchSourceForVue(url, name);
+      fetchExamplePreview$ = fetchSourceForVue(url, name);
     }
 
     if (activeFramework === TargetFramework.JAVASCRIPT) {
-      fetching$ = fetchSourceForHtml(url, name);
+      fetchExamplePreview$ = fetchSourceForHtml(url, name);
     }
 
-    if (fetching$) {
-      fetching$.then((data) => {
+    if (fetchExamplePreview$) {
+      fetchExamplePreview$.then((data) => {
         setIsFetching(false);
         setSnippets(data);
       });
     }
-  }, [activeFramework, url]);
+  }, [activeFramework, url, alternativeSnippets, preventDefaultExample]);
 
   return [isFetching, snippets];
 }
@@ -135,12 +168,86 @@ function SnippetPreview(props: { snippets: Record<string, string> }) {
   );
 }
 
-export default function PlaygroundV3(props: { name: string; height?: string }) {
+function ToolbarButtons(props: {
+  name: string;
+  activeFramework: TargetFramework;
+  noMargin: boolean;
+  snippets: Record<string, string>;
+}) {
+  const theme = useTheme();
+  const baseUrl = useBaseUrl('/');
+  const baseUrlAssets = useBaseUrl('/img');
+  const iframe = useBaseUrl('/webcomponent-examples/dist/preview-examples');
+
+  return (
+    <>
+      {props.activeFramework === TargetFramework.PREVIEW ? (
+        <IxIconButton
+          ghost
+          size="16"
+          icon={`open-external`}
+          onClick={() => {
+            const noMargin: string = props.noMargin ? '&no-margin=true' : '';
+            window.open(
+              `${iframe}/${props.name}.html?theme=${theme}${noMargin}`
+            );
+          }}
+        ></IxIconButton>
+      ) : (
+        <IxIconButton
+          ghost
+          size="16"
+          icon={`${baseUrlAssets}/github.svg`}
+          onClick={() => {
+            if (props.activeFramework === TargetFramework.ANGULAR) {
+              window.open(
+                `https://github.com/${getAngularTestAppGithubPath(props.name)}`
+              );
+            }
+
+            if (props.activeFramework === TargetFramework.REACT) {
+              window.open(
+                `https://github.com/${getReactTestAppGithubPath(props.name)}`
+              );
+            }
+
+            if (props.activeFramework === TargetFramework.VUE) {
+              window.open(
+                `https://github.com/${getVueTestAppGithubPath(props.name)}`
+              );
+            }
+
+            if (props.activeFramework === TargetFramework.JAVASCRIPT) {
+              window.open(
+                `https://github.com/${getJavascriptTestAppGithubPath(
+                  props.name
+                )}`
+              );
+            }
+          }}
+        ></IxIconButton>
+      )}
+    </>
+  );
+}
+
+export type PlaygroundV3Props = {
+  frameworks?: TargetFramework[];
+  preventDefaultExample?: boolean;
+  additionalFiles?: Record<TargetFramework, string[]>;
+} & DemoProps;
+
+export default function PlaygroundV3(props: PlaygroundV3Props) {
   const [activeFramework, setActiveFramework] = React.useState<TargetFramework>(
     TargetFramework.PREVIEW
   );
 
-  const [isFetching, snippets] = useSnippetFetcher(activeFramework, props.name);
+  const [isFetching, snippets] = useSnippetFetcher(
+    activeFramework,
+    props.name,
+    props.additionalFiles,
+    props.preventDefaultExample
+  );
 
   function onActiveFrameworkChange(framework: TargetFramework) {
     setActiveFramework(framework);
@@ -150,34 +257,53 @@ export default function PlaygroundV3(props: { name: string; height?: string }) {
 
   return (
     <div className="Playground">
-      <IxTabs>
-        <IxTabItem
-          onClick={() => onActiveFrameworkChange(TargetFramework.PREVIEW)}
-        >
-          Preview
-        </IxTabItem>
-        <IxTabItem
-          onClick={() => onActiveFrameworkChange(TargetFramework.ANGULAR)}
-        >
-          Angular
-        </IxTabItem>
-        <IxTabItem
-          onClick={() => onActiveFrameworkChange(TargetFramework.REACT)}
-        >
-          React
-        </IxTabItem>
-        <IxTabItem onClick={() => onActiveFrameworkChange(TargetFramework.VUE)}>
-          Vue
-        </IxTabItem>
-        <IxTabItem
-          onClick={() => onActiveFrameworkChange(TargetFramework.JAVASCRIPT)}
-        >
-          HTML
-        </IxTabItem>
-      </IxTabs>
+      <div className="Toolbar">
+        <IxTabs>
+          <IxTabItem
+            onClick={() => onActiveFrameworkChange(TargetFramework.PREVIEW)}
+          >
+            Preview
+          </IxTabItem>
+          {[
+            TargetFramework.ANGULAR,
+            TargetFramework.REACT,
+            TargetFramework.VUE,
+            TargetFramework.JAVASCRIPT,
+          ]
+            .filter((framework) => {
+              if (!props.frameworks) {
+                return true;
+              }
+
+              if (props.frameworks.length === 0) {
+                return true;
+              }
+
+              return props.frameworks.includes(framework);
+            })
+            .map((framework) => {
+              return (
+                <IxTabItem
+                  key={framework}
+                  onClick={() => onActiveFrameworkChange(framework)}
+                >
+                  {getDisplay(framework)}
+                </IxTabItem>
+              );
+            })}
+        </IxTabs>
+
+        <div className="Interaction">
+          <ToolbarButtons
+            name={props.name}
+            activeFramework={activeFramework}
+            noMargin={false}
+            snippets={snippets}
+          ></ToolbarButtons>
+        </div>
+      </div>
 
       {isFetching && <IxSpinner></IxSpinner>}
-
       {showCode && !isFetching ? (
         Object.keys(snippets).length === 0 ? (
           <EmptyCodeSnippet />

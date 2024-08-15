@@ -4,7 +4,7 @@ import Events from './../auto-generated/ix-layout-grid/events.md';
 import ColProps from './../auto-generated/ix-col/props.md';
 import ColEvents from './../auto-generated/ix-col/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2'
+import Playground from '@site/src/components/PlaygroundV3'
 
 # Message bar
 

@@ -16,32 +16,12 @@ import { TargetFramework } from './framework-types';
 import Demo, { DemoProps } from './../Demo';
 import styles from './styles.module.css';
 import {
-  openStackBlitz,
   replaceStyleFilepath,
   SourceFile,
+  getBranchPath,
   stripComments,
 } from './utils';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-
-function getBranchPath(framework: TargetFramework) {
-  let path = 'html';
-
-  const branch = 'main';
-
-  if (framework === TargetFramework.ANGULAR) {
-    path = 'angular';
-  }
-
-  if (framework === TargetFramework.REACT) {
-    path = 'react';
-  }
-
-  if (framework === TargetFramework.VUE) {
-    path = 'vue';
-  }
-
-  return `siemens/ix/tree/${branch}/packages/${path}-test-app`;
-}
 
 function extractCodePart(code: string, limiter: RegExp) {
   const limiterMatches = code.match(limiter);
@@ -345,23 +325,6 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
             ></IxIconButton>
           ) : (
             <>
-              {!props.disableStackBlitz && (
-                <IxIconButton
-                  ghost
-                  size="16"
-                  icon={`${baseUrlAssets}/stackblitz.svg`}
-                  onClick={() => {
-                    openStackBlitz({
-                      baseUrl: baseUrl,
-                      files: files,
-                      framework: tab,
-                      name: props.name,
-                      version: versionDeployment,
-                    });
-                  }}
-                ></IxIconButton>
-              )}
-
               <IxIconButton
                 ghost
                 size="16"

@@ -3,7 +3,7 @@ import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 import Props from './../../auto-generated/ix-button/props.md';
 import Events from './../../auto-generated/ix-button/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 

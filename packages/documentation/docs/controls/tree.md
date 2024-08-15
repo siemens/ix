@@ -4,7 +4,7 @@ import Events from './../auto-generated/ix-tree/events.md';
 import TreeItemProps from './../auto-generated/ix-tree-item/props.md';
 import TreeItemEvents from './../auto-generated/ix-tree-item/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Tree
 

@@ -17,7 +17,7 @@ import AvatarItemProps from './../../auto-generated/ix-menu-avatar-item/props.md
 import AvatarItemEvents from './../../auto-generated/ix-menu-avatar-item/events.md';
 import AvatarTags from './../../auto-generated/ix-menu-avatar/tags.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 

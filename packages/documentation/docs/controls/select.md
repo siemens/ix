@@ -4,7 +4,7 @@ import Events from './../auto-generated/ix-select/events.md';
 import ItemProps from './../auto-generated/ix-select-item/props.md';
 import ItemEvents from './../auto-generated/ix-select-item/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Select
 

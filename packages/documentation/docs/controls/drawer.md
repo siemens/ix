@@ -1,7 +1,7 @@
 import Props from './../auto-generated/ix-drawer/props.md';
 import Events from './../auto-generated/ix-drawer/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Drawer
 

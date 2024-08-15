@@ -1,5 +1,5 @@
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
-import PlaygroundV2 from '@site/src/components/PlaygroundV2';
+import PlaygroundV3 from '@site/src/components/PlaygroundV3';
 
 # Theme switching
 
@@ -7,9 +7,9 @@ import PlaygroundV2 from '@site/src/components/PlaygroundV2';
 
 <ApiTableSinceTag message="1.3.0" />
 
-<PlaygroundV2
+<PlaygroundV3
   name="theme-switcher"
   height="15rem"
   examplesByName  
 >
-</PlaygroundV2>
+</PlaygroundV3>

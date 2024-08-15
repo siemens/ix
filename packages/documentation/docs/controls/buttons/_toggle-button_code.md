@@ -8,7 +8,7 @@ import EventsToggleButton from './../../auto-generated/ix-toggle-button/events.m
 import PropsToggleButton from './../../auto-generated/ix-toggle-button/props.md';
 import TagsToggleButton from './../../auto-generated/ix-toggle-button/tags.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 

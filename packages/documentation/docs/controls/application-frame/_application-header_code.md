@@ -2,7 +2,7 @@ import Slots from './../../auto-generated/ix-application-header/slots.md';
 import Props from './../../auto-generated/ix-application-header/props.md';
 import Events from './../../auto-generated/ix-application-header/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 The application-header can host custom content which will be displayed on the far right side of the header.
 

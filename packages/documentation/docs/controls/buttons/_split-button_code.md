@@ -4,7 +4,7 @@ import Events from './../../auto-generated/ix-split-button/events.md';
 import ItemProps from './../../auto-generated/ix-split-button-item/props.md';
 import ItemEvents from './../../auto-generated/ix-split-button-item/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 

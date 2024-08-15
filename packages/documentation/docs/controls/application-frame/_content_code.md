@@ -3,7 +3,7 @@ import Slots from './../../auto-generated/ix-content/slots.md';
 import Props from './../../auto-generated/ix-content/props.md';
 import Events from './../../auto-generated/ix-content/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 

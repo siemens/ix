@@ -2,7 +2,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 import ApiToastConfigJavaScript from './\_toast/javascript/toast-config.md';
 

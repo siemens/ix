@@ -4,7 +4,7 @@ import Events from './../../auto-generated/ix-menu-about/events.md';
 import PropsItem from './../../auto-generated/ix-menu-about-item/props.md';
 import EventsItem from './../../auto-generated/ix-menu-about-item/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 

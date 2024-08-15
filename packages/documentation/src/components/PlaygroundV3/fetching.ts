@@ -8,7 +8,7 @@ import { stripComments } from '../PlaygroundV2/utils';
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export async function fetchCode(url: string) {
+export async function docusaurusFetch(url: string) {
   const response = await fetch(url);
 
   if (!response.ok) {

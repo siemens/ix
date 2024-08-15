@@ -1,7 +1,7 @@
 import Props from './../auto-generated/ix-message-bar/props.md';
 import Events from './../auto-generated/ix-message-bar/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 

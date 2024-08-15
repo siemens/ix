@@ -6,7 +6,7 @@ import ItemEvents from './../auto-generated/ix-dropdown-item/events.md';
 
 import TagsQuickActions from './../auto-generated/ix-dropdown-quick-actions/tags.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Dropdown
 

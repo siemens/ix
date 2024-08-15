@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 import ActionCardTags from './../auto-generated/ix-action-card/tags.md';
 import ActionCardProps from './../auto-generated/ix-action-card/props.md';
