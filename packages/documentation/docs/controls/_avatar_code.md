@@ -1,7 +1,3 @@
----
-id: part1
----
-
 import Props from './../auto-generated/ix-avatar/props.md';
 import Events from './../auto-generated/ix-avatar/events.md';
 
