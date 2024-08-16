@@ -31,7 +31,8 @@ The input field has five states default, focused, hover, disabled, and read-only
 - Do use feedback text to inform users about the status of their input
 - Do ensure that the width of the input field is appropriate for the expected content
 - Don’t overcrowd the input field with too many elements
-- Don’t use placeholder text as a substitute for labels
+- Don’t use placeholder as a substitute for labels
+
 ## Related patterns
 - [Forms field]()
 - [Validation]()
