@@ -338,7 +338,7 @@ export default function PlaygroundV3(props: PlaygroundV3Props) {
       </div>
 
       {activeFramework === TargetFramework.PREVIEW ? (
-        <Demo name={props.name} height={props.height} />
+        <Demo {...props} />
       ) : (
         <CodePreview
           isFetching={isFetching}
