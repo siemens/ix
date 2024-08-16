@@ -17,6 +17,7 @@
   "scripts": {
     "build": "gulp",
     "test:e2e": "playwright test",
+    "visual-regression": "playwright test",
     "host-root": "http-server -a 127.0.0.1"
   },
   "devDependencies": {

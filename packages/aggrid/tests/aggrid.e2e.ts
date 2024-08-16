@@ -20,10 +20,13 @@ regressionTest.describe('aggrid', () => {
   regressionTest('filter', async ({ page }) => {
     await page.goto('basic.html');
 
-    const filterHandle = await page.waitForSelector('.ag-header-cell:nth-child(2) [ref="eMenu"]');
+    const filterHandle = page.locator('.ag-header-cell:nth-child(2) .ag-icon-filter');
     await filterHandle.click();
 
-    const inputHandle = await page.waitForSelector('.ag-input-field-input.ag-text-field-input');
+    const filterMenu = page.locator('.ag-menu.ag-filter-menu');
+    await expect(filterMenu).toBeVisible();
+
+    const inputHandle = filterMenu.getByPlaceholder('Filter...');
     await inputHandle.fill('Test');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -32,7 +35,7 @@ regressionTest.describe('aggrid', () => {
   regressionTest('editor', async ({ page }) => {
     await page.goto('basic.html');
 
-    const editorCellHandle = await page.waitForSelector('.ag-cell-not-inline-editing[col-id="price"]');
+    const editorCellHandle = page.locator('.ag-cell-not-inline-editing[col-id="price"]').nth(0);
     await editorCellHandle.dblclick();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
