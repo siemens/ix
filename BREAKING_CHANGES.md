@@ -11,7 +11,7 @@ TODO: Rewrite this section to explain what is the impact of this change.
 - **React** (`@siemens/ix-react`): no changes
 - **Vue** (`@siemens/ix-vue`): no changes
 
-#### Usage of icons inside  `@siemens/ix-react` and  `@siemens/ix-vue` changed
+#### Usage of icons inside `@siemens/ix-react` and `@siemens/ix-vue` changed
 
 TODO: Rewrite this section to be more precise about what has to be adapted
 
@@ -23,6 +23,7 @@ import { iconStar } from '@siemens/ix-icons/icons';
 ```
 
 React/Vue:
+
 ```tsx
 <IxIcon name={iconStar} />
 ```
@@ -54,6 +55,16 @@ IxModule.forRoot({
 ```
 
 This will preload all icons without providing the SVGs as assets. The downside of doing this that it results in a larger bundle size. **not recommended**
+
+### Change props to `@internal`:
+
+The following component members marked as internal by comment have been changed to annotated as `@internal`:
+
+- `ix-menu`: `enableMapExpand`
+- `ix-menu-about`: `show`
+- `ix-menu-about-news`: `expanded`
+- `ix-menu-settings`: `show`
+- `ix-dropdown-item`: `emitItemClick()`
 
 ## v2.0.0
 
@@ -90,11 +101,13 @@ Remove deprecated events
 ### Change `itemSelectionChange` event from `ix-select` and `selectedIndices` prop from `ix-select`
 
 **_Before_**
+
 ```tsx
 <ix-select onItemSelectionChange={...} selectedIndices={...}></ix-select>
 ```
 
 **_Now_**
+
 ```tsx
 <ix-select onValueChange={...} value={...}></ix-select>
 ```
@@ -228,17 +241,13 @@ This breaking change only affects the function `modal` which is exported from `@
 **_Before_**
 
 ```ts
-export async function modal<T = any>(
-  config: ModalConfig<T>
-): Promise<ModalInstance<T>>;
+export async function modal<T = any>(config: ModalConfig<T>): Promise<ModalInstance<T>>;
 ```
 
 **_Now_**
 
 ```ts
-export async function showModal<T = any>(
-  config: ModalConfig<T>
-): Promise<ModalInstance<T>>;
+export async function showModal<T = any>(config: ModalConfig<T>): Promise<ModalInstance<T>>;
 ```
 
 #### Container component `ix-modal-container` removed

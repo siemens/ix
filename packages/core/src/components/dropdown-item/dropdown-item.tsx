@@ -65,9 +65,7 @@ export class DropdownItem implements DropdownItemWrapper {
   /** @internal */
   @Event() itemClick!: EventEmitter<HTMLIxDropdownItemElement>;
 
-  /**
-   * Internal usage only
-   */
+  /** @internal */
   @Method()
   async emitItemClick() {
     this.itemClick.emit(this.hostElement);

@@ -29,8 +29,8 @@ export default function Root({ children }) {
       data: {
         page: {
           path: pathname,
-          country: 'de',
-          language: 'de',
+          country: 'WW',
+          language: 'en',
         },
       },
     });
