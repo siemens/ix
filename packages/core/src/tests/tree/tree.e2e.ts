@@ -70,4 +70,23 @@ regressionTest.describe('tree', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('item overflow', async ({ page }) => {
+    await page.goto('tree/overflow');
+
+    page.setViewportSize({ width: 100, height: 100 });
+
+    const treeViewportHandle = await page.waitForSelector('ix-tree');
+
+    await page.evaluate((tree) => {
+      const model = tree.model;
+
+      model['sample-child-1'].data.name =
+        'This is a very long text that should overflow';
+
+      tree.model = { ...model };
+    }, treeViewportHandle);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

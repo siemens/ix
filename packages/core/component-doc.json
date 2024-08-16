@@ -125,10 +125,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "ActionCardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "ActionCardVariant": {
                 "location": "local",
@@ -141,8 +141,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
           "values": [
             {
               "value": "alarm",
@@ -150,6 +156,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -166,6 +176,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
               "type": "string"
             },
             {
@@ -876,10 +890,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "BlindVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "BlindVariant": {
                 "location": "local",
@@ -906,6 +920,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -1528,10 +1546,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "CardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "CardVariant": {
                 "location": "local",
@@ -1544,8 +1562,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.",
           "values": [
             {
               "value": "alarm",
@@ -1553,6 +1577,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -1569,6 +1597,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
               "type": "string"
             },
             {
@@ -12578,7 +12610,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12620,7 +12652,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12641,15 +12673,15 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "PushCardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "PushCardVariant": {
                 "location": "local",
@@ -12662,8 +12694,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
           "values": [
             {
               "value": "alarm",
@@ -12671,6 +12709,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -12687,6 +12729,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
               "type": "string"
             },
             {
@@ -16100,6 +16146,7 @@
           "reflectToAttr": false,
           "docs": "Tree model",
           "docsTags": [],
+          "default": "{}",
           "values": [
             {
               "type": "{ [x: string]: TreeItem<any>; }"
@@ -16148,7 +16195,7 @@
               "type": "<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16170,7 +16217,7 @@
             }
           ],
           "optional": false,
-          "required": false
+          "required": true
         }
       ],
       "methods": [],
@@ -16298,7 +16345,7 @@
               "type": "TreeItemContext"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16314,6 +16361,7 @@
           "reflectToAttr": false,
           "docs": "Has tree item children",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -16340,7 +16388,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -17450,7 +17498,7 @@
   ],
   "typeLibrary": {
     "src/components/card/card.tsx::CardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
+      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/card/card.tsx"
     },
@@ -17475,7 +17523,7 @@
       "path": "src/components/typography/typography.tsx"
     },
     "src/components/action-card/action-card.tsx::ActionCardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
+      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/action-card/action-card.tsx"
     },
@@ -17605,7 +17653,7 @@
       "path": "src/components/pane/pane.tsx"
     },
     "src/components/push-card/push-card.tsx::PushCardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
+      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/push-card/push-card.tsx"
     },

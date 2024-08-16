@@ -45,6 +45,10 @@
       "path": "./packages/vue-test-app"
     },
     {
+      "name": "ionic-test-app",
+      "path": "./packages/ionic-test-app"
+    },
+    {
       "name": "eslint-config",
       "path": "./packages/eslint-config-ix"
     },

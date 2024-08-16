@@ -30,20 +30,21 @@ export class PushCard {
   /**
    * Card KPI value
    */
-  @Prop() notification: string;
+  @Prop() notification?: string;
 
   /**
    * Card heading
    */
-  @Prop() heading: string;
+  @Prop() heading?: string;
 
   /**
    * Card subheading
    */
-  @Prop() subheading: string;
+  @Prop() subheading?: string;
 
   /**
    * Card variant
+   * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
    */
   @Prop() variant: PushCardVariant = 'insight';
 
@@ -54,7 +55,7 @@ export class PushCard {
   @Prop() collapse: boolean = true;
 
   render() {
-    const color: TypographyColors =
+    const color: TypographyColors | undefined =
       this.variant === 'insight' || this.variant === 'notification'
         ? 'std'
         : undefined;

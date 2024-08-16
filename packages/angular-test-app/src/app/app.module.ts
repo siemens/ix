@@ -8,291 +8,336 @@
  */
 
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { FormsModule } from '@angular/forms';
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
-import AboutAndLegal from 'src/preview-examples/about-and-legal';
-import ActionCard from 'src/preview-examples/action-card';
-import AGGrid from 'src/preview-examples/aggrid';
-import ApplicationExample from 'src/preview-examples/application';
-import ApplicationAppSwitchExample from 'src/preview-examples/application-app-switch';
-import ApplicationBreakpointExample from 'src/preview-examples/application-breakpoints';
-import ApplicationHeaderExample from 'src/preview-examples/application-header';
-import BasicNavigation from 'src/preview-examples/basic-navigation';
-import BasicNavigationWithOutHeader from 'src/preview-examples/basic-navigation-without-header';
-import Blind from 'src/preview-examples/blind';
-import Breadcrumb from 'src/preview-examples/breadcrumb';
-import BreadcrumbNextItems from 'src/preview-examples/breadcrumb-next-items';
-import BreadcrumbTruncate from 'src/preview-examples/breadcrumb-truncate';
-import ButtonGroup from 'src/preview-examples/button-group';
-import ButtonWithIcon from 'src/preview-examples/button-with-icon';
-import Buttons from 'src/preview-examples/buttons';
-import Card from 'src/preview-examples/card';
-import CardList from 'src/preview-examples/card-list';
-import CategoryFilter from 'src/preview-examples/category-filter';
-import CategoryFilterSuggestions from 'src/preview-examples/category-filter-suggestions';
-import Checkbox from 'src/preview-examples/checkbox';
-import CheckboxIndeterminate from 'src/preview-examples/checkbox-indeterminate';
-import Chip from 'src/preview-examples/chip';
-import ContentExample from 'src/preview-examples/content';
-import ContentHeader from 'src/preview-examples/content-header';
-import ContentHeaderNoBack from 'src/preview-examples/content-header-no-back';
-import DateDropdown from 'src/preview-examples/date-dropdown';
-import DateDropdownUserRange from 'src/preview-examples/date-dropdown-user-range';
-import Datepicker from 'src/preview-examples/datepicker';
-import DatepickerLocale from 'src/preview-examples/datepicker-locale';
-import DatepickerRange from 'src/preview-examples/datepicker-range';
-import Datetimepicker from 'src/preview-examples/datetimepicker';
-import Drawer from 'src/preview-examples/drawer';
-import DrawerFullHeight from 'src/preview-examples/drawer-full-height';
-import Dropdown from 'src/preview-examples/dropdown';
-import DropdownButton from 'src/preview-examples/dropdown-button';
-import DropdownButtonIcon from 'src/preview-examples/dropdown-button-icon';
-import DropdownIcon from 'src/preview-examples/dropdown-icon';
-import DropdownQuickActions from 'src/preview-examples/dropdown-quick-actions';
-import DropdownSubmenu from 'src/preview-examples/dropdown-submenu';
-import EmptyState from 'src/preview-examples/empty-state';
-import EmptyStateCompact from 'src/preview-examples/empty-state-compact';
-import EmptyStateCompactBreak from 'src/preview-examples/empty-state-compact-break';
-import EventList from 'src/preview-examples/event-list';
-import EventListCompact from 'src/preview-examples/event-list-compact';
-import EventListCustomItemHeight from 'src/preview-examples/event-list-custom-item-height';
-import EventListSelected from 'src/preview-examples/event-list-selected';
-import ExpandingSearch from 'src/preview-examples/expanding-search';
-import FlipTile from 'src/preview-examples/flip-tile';
-import Grid from 'src/preview-examples/grid';
-import GridPadding from 'src/preview-examples/grid-padding';
-import GridSize from 'src/preview-examples/grid-size';
-import Group from 'src/preview-examples/group';
-import GroupContextMenu from 'src/preview-examples/group-context-menu';
-import GroupCustomEntry from 'src/preview-examples/group-custom-entry';
-import GroupHeaderSuppressed from 'src/preview-examples/group-header-suppressed';
-import IconToggleButtonPrimaryGhost from 'src/preview-examples/icon-toggle-button-primary-ghost';
-import IconToggleButtonPrimaryOutline from 'src/preview-examples/icon-toggle-button-primary-outline';
-import IconToggleButtonSecondary from 'src/preview-examples/icon-toggle-button-secondary';
-import IconToggleButtonSecondaryGhost from 'src/preview-examples/icon-toggle-button-secondary-ghost';
-import IconToggleButtonSecondaryOutline from 'src/preview-examples/icon-toggle-button-secondary-outline';
-import Input from 'src/preview-examples/input';
-import InputDisabled from 'src/preview-examples/input-disabled';
-import InputReadonly from 'src/preview-examples/input-readonly';
-import InputWithIcon from 'src/preview-examples/input-with-icon';
-import KeyValue from 'src/preview-examples/key-value';
-import KeyValueList from 'src/preview-examples/key-value-list';
-import KeyValueListStriped from 'src/preview-examples/key-value-list-striped';
-import KeyValueListWithCustomValue from 'src/preview-examples/key-value-list-with-custom-value';
-import KeyValueListWithIcon from 'src/preview-examples/key-value-list-with-icon';
-import KeyValueWithCustomValue from 'src/preview-examples/key-value-with-custom-value';
-import KeyValueWithIcon from 'src/preview-examples/key-value-with-icon';
-import KeyValueWithLabelLeft from 'src/preview-examples/key-value-with-label-left';
-import Kpi from 'src/preview-examples/kpi';
-import MapNavigation from 'src/preview-examples/map-navigation';
-import MapNavigationOverlay from 'src/preview-examples/map-navigation-overlay';
-import MenuCategory from 'src/preview-examples/menu-category';
-import MessageBar from 'src/preview-examples/message-bar';
-import ModalByInstance from 'src/preview-examples/modal-by-instance';
-import ModalByInstanceExample from 'src/preview-examples/modal-by-instance-content';
-import Modal from 'src/preview-examples/modal-by-template';
-import ModalSizes from 'src/preview-examples/modal-sizes';
-import Pagination from 'src/preview-examples/pagination';
-import Pill from 'src/preview-examples/pill';
-import PillVariants from 'src/preview-examples/pill-variants';
-import PopoverNews from 'src/preview-examples/popover-news';
-import PushCard from 'src/preview-examples/push-card';
-import Radiobutton from 'src/preview-examples/radio-button';
-import Select from 'src/preview-examples/select';
-import SelectEditable from 'src/preview-examples/select-editable';
-import SelectMultiple from 'src/preview-examples/select-multiple';
-import SelectNgModel from 'src/preview-examples/select-ng-model';
-import Settings from 'src/preview-examples/settings';
-import Slider from 'src/preview-examples/slider';
-import SliderError from 'src/preview-examples/slider-error';
-import SliderMarker from 'src/preview-examples/slider-marker';
-import SliderTrace from 'src/preview-examples/slider-trace';
-import Spinner from 'src/preview-examples/spinner';
-import SpinnerLarge from 'src/preview-examples/spinner-large';
-import SplitButton from 'src/preview-examples/split-button';
-import SplitButtonIcons from 'src/preview-examples/split-button-icons';
-import Tabs from 'src/preview-examples/tabs';
-import TabsRounded from 'src/preview-examples/tabs-rounded';
-import Textarea from 'src/preview-examples/textarea';
-import TextareaDisabled from 'src/preview-examples/textarea-disabled';
-import TextareaReadonly from 'src/preview-examples/textarea-readonly';
-import ThemeSwitcherExample from 'src/preview-examples/theme-switcher';
-import Tile from 'src/preview-examples/tile';
-import Timepicker from 'src/preview-examples/timepicker';
-import Toast from 'src/preview-examples/toast';
-import ToastCustom from 'src/preview-examples/toast-custom';
-import ToastPosition from 'src/preview-examples/toast-position';
-import Toggle from 'src/preview-examples/toggle';
-import ToggleButtonPrimary from 'src/preview-examples/toggle-button-primary';
-import ToggleButtonPrimaryGhost from 'src/preview-examples/toggle-button-primary-ghost';
-import ToggleButtonPrimaryOutline from 'src/preview-examples/toggle-button-primary-outline';
-import ToggleButtonSecondary from 'src/preview-examples/toggle-button-secondary';
-import ToggleButtonSecondaryGhost from 'src/preview-examples/toggle-button-secondary-ghost';
-import ToggleButtonSecondaryOutline from 'src/preview-examples/toggle-button-secondary-outline';
-import ToggleCustomLabel from 'src/preview-examples/toggle-custom-label';
-import ToggleDisabled from 'src/preview-examples/toggle-disabled';
-import ToggleNgModel from 'src/preview-examples/toggle-ng-model';
-import Tooltip from 'src/preview-examples/tooltip';
-import TooltipTitle from 'src/preview-examples/tooltip-title';
-import Tree from 'src/preview-examples/tree';
-import TreeCustom from 'src/preview-examples/tree-custom';
-import Upload from 'src/preview-examples/upload';
-import Validation from 'src/preview-examples/validation';
-import VerticalTabs from 'src/preview-examples/vertical-tabs';
-import VerticalTabsWithAvatar from 'src/preview-examples/vertical-tabs-with-avatar';
-import Workflow from 'src/preview-examples/workflow';
-import WorkflowVertical from 'src/preview-examples/workflow-vertical';
+
+import AboutAndLegal from '../preview-examples/about-and-legal';
+import ActionCard from '../preview-examples/action-card';
+import AgGrid from '../preview-examples/aggrid';
+import ApplicationExample from '../preview-examples/application';
+import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
+import ApplicationBreakpointExample from '../preview-examples/application-breakpoints';
+import ApplicationHeaderExample from '../preview-examples/application-header';
+import Avatar from '../preview-examples/avatar';
+import AvatarImage from '../preview-examples/avatar-image';
+import AvatarInitials from '../preview-examples/avatar-initials';
+import BasicNavigation from '../preview-examples/basic-navigation';
+import BasicNavigationWithoutHeader from '../preview-examples/basic-navigation-without-header';
+import Blind from '../preview-examples/blind';
+import BlindHeaderActions from '../preview-examples/blind-header-actions';
+import BlindVariants from '../preview-examples/blind-variants';
+import Breadcrumb from '../preview-examples/breadcrumb';
+import BreadcrumbNextItems from '../preview-examples/breadcrumb-next-items';
+import BreadcrumbTruncate from '../preview-examples/breadcrumb-truncate';
+import ButtonGhost from '../preview-examples/button-ghost';
+import ButtonGrey from '../preview-examples/button-grey';
+import ButtonGreyGhost from '../preview-examples/button-grey-ghost';
+import ButtonGreySecondary from '../preview-examples/button-grey-secondary';
+import ButtonGroup from '../preview-examples/button-group';
+import ButtonLoading from '../preview-examples/button-loading';
+import ButtonSecondary from '../preview-examples/button-secondary';
+import ButtonTextIcon from '../preview-examples/button-text-icon';
+import ButtonWithIcon from '../preview-examples/button-with-icon';
+import Buttons from '../preview-examples/buttons';
+import Card from '../preview-examples/card';
+import CardList from '../preview-examples/card-list';
+import CategoryFilter from '../preview-examples/category-filter';
+import CategoryFilterSuggestions from '../preview-examples/category-filter-suggestions';
+import Checkbox from '../preview-examples/checkbox';
+import CheckboxIndeterminate from '../preview-examples/checkbox-indeterminate';
+import Chip from '../preview-examples/chip';
+import ContentExample from '../preview-examples/content';
+import ContentHeader from '../preview-examples/content-header';
+import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import DateDropdown from '../preview-examples/date-dropdown';
+import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
+import Datepicker from '../preview-examples/datepicker';
+import DatepickerLocale from '../preview-examples/datepicker-locale';
+import DatepickerRange from '../preview-examples/datepicker-range';
+import Datetimepicker from '../preview-examples/datetimepicker';
+import Divider from '../preview-examples/divider';
+import Drawer from '../preview-examples/drawer';
+import DrawerFullHeight from '../preview-examples/drawer-full-height';
+import Dropdown from '../preview-examples/dropdown';
+import DropdownButton from '../preview-examples/dropdown-button';
+import DropdownButtonIcon from '../preview-examples/dropdown-button-icon';
+import DropdownIcon from '../preview-examples/dropdown-icon';
+import DropdownQuickActions from '../preview-examples/dropdown-quick-actions';
+import DropdownSubmenu from '../preview-examples/dropdown-submenu';
+import Echarts from '../preview-examples/echarts';
+import EmptyState from '../preview-examples/empty-state';
+import EmptyStateCompact from '../preview-examples/empty-state-compact';
+import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
+import EventList from '../preview-examples/event-list';
+import EventListCompact from '../preview-examples/event-list-compact';
+import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
+import EventListSelected from '../preview-examples/event-list-selected';
+import ExpandingSearch from '../preview-examples/expanding-search';
+import FlipTile from '../preview-examples/flip-tile';
+import Grid from '../preview-examples/grid';
+import GridPadding from '../preview-examples/grid-padding';
+import GridSize from '../preview-examples/grid-size';
+import Group from '../preview-examples/group';
+import GroupContextMenu from '../preview-examples/group-context-menu';
+import GroupCustomEntry from '../preview-examples/group-custom-entry';
+import GroupHeaderSuppressed from '../preview-examples/group-header-suppressed';
+import IconToggleButtonPrimaryGhost from '../preview-examples/icon-toggle-button-primary-ghost';
+import IconToggleButtonPrimaryOutline from '../preview-examples/icon-toggle-button-primary-outline';
+import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
+import IconToggleButtonSecondaryGhost from '../preview-examples/icon-toggle-button-secondary-ghost';
+import IconToggleButtonSecondaryOutline from '../preview-examples/icon-toggle-button-secondary-outline';
+import Input from '../preview-examples/input';
+import InputDisabled from '../preview-examples/input-disabled';
+import InputLabels from '../preview-examples/input-labels';
+import InputReadonly from '../preview-examples/input-readonly';
+import InputSearch from '../preview-examples/input-search';
+import InputTypes from '../preview-examples/input-types';
+import InputWithIcon from '../preview-examples/input-with-icon';
+import KeyValue from '../preview-examples/key-value';
+import KeyValueList from '../preview-examples/key-value-list';
+import KeyValueListStriped from '../preview-examples/key-value-list-striped';
+import KeyValueListWithCustomValue from '../preview-examples/key-value-list-with-custom-value';
+import KeyValueListWithIcon from '../preview-examples/key-value-list-with-icon';
+import KeyValueWithCustomValue from '../preview-examples/key-value-with-custom-value';
+import KeyValueWithIcon from '../preview-examples/key-value-with-icon';
+import KeyValueWithLabelLeft from '../preview-examples/key-value-with-label-left';
+import Kpi from '../preview-examples/kpi';
+import LinkButton from '../preview-examples/link-button';
+import LinkButtonDisabled from '../preview-examples/link-button-disabled';
+import Loading from '../preview-examples/loading';
+import MapNavigation from '../preview-examples/map-navigation';
+import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
+import MenuCategory from '../preview-examples/menu-category';
+import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
+import Message from '../preview-examples/message';
+import MessageBar from '../preview-examples/message-bar';
+import ModalByInstance from '../preview-examples/modal-by-instance';
+import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
+import ModalByTemplate from '../preview-examples/modal-by-template';
+import ModalSizes from '../preview-examples/modal-sizes';
+import Pagination from '../preview-examples/pagination';
+import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
-import { NavigationTestComponent } from './components/navigation-test.component';
-import Echarts from 'src/preview-examples/echarts';
+import Pill from '../preview-examples/pill';
+import PillVariants from '../preview-examples/pill-variants';
+import PopoverNews from '../preview-examples/popover-news';
+import PushCard from '../preview-examples/push-card';
+import RadioButton from '../preview-examples/radio-button';
+import Select from '../preview-examples/select';
+import SelectEditable from '../preview-examples/select-editable';
+import SelectMultiple from '../preview-examples/select-multiple';
+import SelectNgModel from '../preview-examples/select-ng-model';
+import Settings from '../preview-examples/settings';
+import Slider from '../preview-examples/slider';
+import SliderError from '../preview-examples/slider-error';
+import SliderMarker from '../preview-examples/slider-marker';
+import SliderTrace from '../preview-examples/slider-trace';
+import Spinner from '../preview-examples/spinner';
+import SpinnerLarge from '../preview-examples/spinner-large';
+import SplitButton from '../preview-examples/split-button';
+import SplitButtonIcons from '../preview-examples/split-button-icons';
+import Tabs from '../preview-examples/tabs';
+import TabsRounded from '../preview-examples/tabs-rounded';
+import Textarea from '../preview-examples/textarea';
+import TextareaDisabled from '../preview-examples/textarea-disabled';
+import TextareaReadonly from '../preview-examples/textarea-readonly';
+import ThemeSwitcher from '../preview-examples/theme-switcher';
+import Tile from '../preview-examples/tile';
+import Timepicker from '../preview-examples/timepicker';
+import Toast from '../preview-examples/toast';
+import ToastCustom from '../preview-examples/toast-custom';
+import ToastPosition from '../preview-examples/toast-position';
+import Toggle from '../preview-examples/toggle';
+import ToggleButtonPrimaryGhost from '../preview-examples/toggle-button-primary-ghost';
+import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primary-outline';
+import ToggleButtonPrimary from 'src/preview-examples/toggle-button-primary';
+import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
+import ToggleButtonSecondaryGhost from '../preview-examples/toggle-button-secondary-ghost';
+import ToggleButtonSecondaryOutline from '../preview-examples/toggle-button-secondary-outline';
+import ToggleChecked from '../preview-examples/toggle-checked';
+import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
+import ToggleDisabled from '../preview-examples/toggle-disabled';
+import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
+import ToggleNgModel from '../preview-examples/toggle-ng-model';
+import Tooltip from '../preview-examples/tooltip';
+import Tree from '../preview-examples/tree';
+import TreeCustom from '../preview-examples/tree-custom';
+import Upload from '../preview-examples/upload';
+import Validation from '../preview-examples/validation';
+import VerticalTabs from '../preview-examples/vertical-tabs';
+import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
+import Workflow from '../preview-examples/workflow';
+import WorkflowVertical from '../preview-examples/workflow-vertical';
 
 @NgModule({
   declarations: [
+    AppComponent,
+    AboutAndLegal,
+    ActionCard,
+    AgGrid,
     ApplicationExample,
     ApplicationBreakpointExample,
     ApplicationAppSwitchExample,
     ApplicationHeaderExample,
-    AppComponent,
-    ContentExample,
-    Buttons,
-    ButtonGroup,
-    AGGrid,
+    AvatarImage,
+    AvatarInitials,
+    Avatar,
+    BasicNavigationWithoutHeader,
     BasicNavigation,
-    Modal,
-    Toast,
-    ToastCustom,
-    ToastPosition,
-    Tree,
-    TreeCustom,
-    AboutAndLegal,
-    BasicNavigationWithOutHeader,
+    BlindHeaderActions,
+    BlindVariants,
     Blind,
     BreadcrumbNextItems,
     BreadcrumbTruncate,
     Breadcrumb,
-    NavigationTestComponent,
+    ButtonGhost,
+    ButtonGreyGhost,
+    ButtonGreySecondary,
+    ButtonGrey,
+    ButtonGroup,
+    ButtonLoading,
+    ButtonSecondary,
+    ButtonTextIcon,
     ButtonWithIcon,
+    Buttons,
+    Card,
+    CardList,
     CategoryFilterSuggestions,
     CategoryFilter,
     CheckboxIndeterminate,
     Checkbox,
     Chip,
+    ContentExample,
     DateDropdown,
     DateDropdownUserRange,
+    ContentHeaderNoBack,
+    ContentHeader,
+    DatepickerRange,
     Datepicker,
+    DatepickerLocale,
     Datetimepicker,
+    Divider,
     DrawerFullHeight,
     Drawer,
-    DropdownButton,
     DropdownButtonIcon,
+    DropdownButton,
     DropdownIcon,
-    Dropdown,
     DropdownQuickActions,
     DropdownSubmenu,
+    Dropdown,
     Echarts,
+    EmptyStateCompactBreak,
+    EmptyStateCompact,
+    EmptyState,
     EventListCompact,
     EventListCustomItemHeight,
     EventListSelected,
     EventList,
     ExpandingSearch,
     FlipTile,
+    GridPadding,
+    GridSize,
+    Grid,
     GroupContextMenu,
     GroupCustomEntry,
     GroupHeaderSuppressed,
     Group,
     IconToggleButtonPrimaryGhost,
     IconToggleButtonPrimaryOutline,
-    IconToggleButtonSecondary,
     IconToggleButtonSecondaryGhost,
     IconToggleButtonSecondaryOutline,
+    IconToggleButtonSecondary,
     InputDisabled,
+    InputLabels,
     InputReadonly,
+    InputSearch,
+    InputTypes,
     InputWithIcon,
     Input,
+    KeyValueListStriped,
+    KeyValueListWithCustomValue,
+    KeyValueListWithIcon,
+    KeyValueList,
+    KeyValueWithCustomValue,
+    KeyValueWithIcon,
+    KeyValueWithLabelLeft,
+    KeyValue,
     Kpi,
+    LinkButtonDisabled,
+    LinkButton,
+    Loading,
+    MapNavigationOverlay,
+    MapNavigation,
+    MenuCategory,
+    MenuWithBottomTabs,
+    Message,
     MessageBar,
+    ModalByInstanceContent,
+    ModalByInstance,
+    ModalByTemplate,
+    ModalSizes,
+    PaginationAdvanced,
     Pagination,
+    Pane,
+    PaneLayout,
     Pill,
     PillVariants,
     PopoverNews,
-    Radiobutton,
+    PushCard,
+    RadioButton,
     SelectEditable,
     SelectMultiple,
     SelectNgModel,
     Select,
     Settings,
-    Pane,
-    PaneLayout,
-    Spinner,
+    SliderError,
+    SliderMarker,
+    SliderTrace,
+    Slider,
     SpinnerLarge,
+    Spinner,
     SplitButtonIcons,
     SplitButton,
+    TabsRounded,
     Tabs,
-    Textarea,
-    TextareaReadonly,
     TextareaDisabled,
-    ThemeSwitcherExample,
+    TextareaReadonly,
+    Textarea,
+    ThemeSwitcher,
     Tile,
     Timepicker,
-    ToggleButtonPrimary,
+    ToastCustom,
+    ToastPosition,
+    Toast,
     ToggleButtonPrimaryGhost,
     ToggleButtonPrimaryOutline,
-    ToggleButtonSecondary,
+    ToggleButtonPrimary,
     ToggleButtonSecondaryGhost,
     ToggleButtonSecondaryOutline,
-    ToggleDisabled,
+    ToggleButtonSecondary,
+    ToggleChecked,
     ToggleCustomLabel,
+    ToggleDisabled,
+    ToggleIndeterminate,
     ToggleNgModel,
     Toggle,
+    Tooltip,
+    TreeCustom,
+    Tree,
     Upload,
+    Validation,
     VerticalTabsWithAvatar,
     VerticalTabs,
-    Validation,
-    Workflow,
     WorkflowVertical,
-    MapNavigation,
-    MapNavigationOverlay,
-    TabsRounded,
-    DatepickerRange,
-    Tooltip,
-    TooltipTitle,
-    ModalByInstance,
-    ModalByInstanceExample,
-    PushCard,
-    ActionCard,
-    Card,
-    CardList,
-    EmptyState,
-    EmptyStateCompact,
-    EmptyStateCompactBreak,
-    KeyValue,
-    KeyValueWithCustomValue,
-    KeyValueWithIcon,
-    KeyValueWithLabelLeft,
-    KeyValueList,
-    KeyValueListWithCustomValue,
-    KeyValueListWithIcon,
-    KeyValueListStriped,
-    ContentHeader,
-    ContentHeaderNoBack,
-    MenuCategory,
-    Slider,
-    SliderTrace,
-    SliderMarker,
-    SliderError,
-    Grid,
-    GridSize,
-    GridPadding,
-    ModalSizes,
-    DatepickerLocale,
+    Workflow,
   ],
   imports: [
     BrowserModule,

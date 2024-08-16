@@ -152,6 +152,7 @@ yarn-error.log*
 packages/core/components/
 packages/core/hydrate/
 packages/*/dist/
+test-apps/*/dist/
 packages/*/www/
 packages/*/loader/
 packages/*/dist-transpiled/
@@ -164,10 +165,16 @@ packages/*/build/
 packages/core/dist-css
 
 ###
-# @siemens/html-test-app
+# html-test-app
 ###
 
 packages/html-test-app/src/public/additional-theme
+
+###
+# ionic-test-app
+###
+
+packages/ionic-test-app/public/additional-theme
 
 ###
 # documentation
@@ -180,6 +187,7 @@ packages/documentation/scripts/.typedoc/
 packages/documentation/static/auto-generated/
 packages/documentation/static/figma/
 packages/documentation/static/webcomponent-examples/*
+packages/documentation/static/ionic-preview
 !packages/documentation/static/versioned_examples/*/webcomponent-examples
 
 ###

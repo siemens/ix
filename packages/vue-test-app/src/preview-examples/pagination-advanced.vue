@@ -8,9 +8,7 @@
 -->
 
 <script setup lang="ts">
-import {
-  IxPagination,
-} from '@siemens/ix-vue';
+import { IxPagination } from '@siemens/ix-vue';
 </script>
 
 <template>
