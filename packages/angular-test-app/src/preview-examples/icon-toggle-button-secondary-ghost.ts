@@ -12,10 +12,23 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-icon-toggle-button ghost></ix-icon-toggle-button>
-    <ix-icon-toggle-button ghost></ix-icon-toggle-button>
-    <ix-icon-toggle-button ghost disabled></ix-icon-toggle-button>
-    <ix-icon-toggle-button ghost disabled loading></ix-icon-toggle-button>
+    <ix-icon-toggle-button ghost icon="checkboxes"></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      ghost
+      pressed
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      ghost
+      disabled
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      ghost
+      disabled
+      loading
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
   `,
   styles: [
     `

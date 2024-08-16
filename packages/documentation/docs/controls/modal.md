@@ -107,7 +107,7 @@ files={{
 
 ### Loading
 
-How to open a loading modal is independent from the framework in use. Note that you have to import `showModalLoading` from the core package `@siemens/ix`.
+How to open a loading modal is independent of the framework in use. Note that you have to import `showModalLoading` from the core package `@siemens/ix`.
 
 <Playground name="loading" files={{
 react: ['loading.tsx'],
@@ -115,7 +115,7 @@ react: ['loading.tsx'],
 
 ### Message
 
-How to open a message modal is independent from the framework in use. Note that you have to import `showMessage` from the core package `@siemens/ix`.
+How to open a message modal is independent of the framework in use. Note that you have to import `showMessage` from the core package `@siemens/ix`.
 
 `showMessage` provides multiple pre-configured messages:
 

@@ -10,22 +10,29 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-dropdown-button-icon',
+  selector: 'app-example',
+  styles: [
+    `
+      @import 'example-styles/dist/dropdown-button.css';
+    `,
+  ],
   template: `
-    <ix-dropdown-button label="" variant="primary" icon="checkboxes">
-      <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
-      <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
-    </ix-dropdown-button>
-    <ix-dropdown-button label="" variant="primary" outline icon="checkboxes">
-      <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
-      <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
-    </ix-dropdown-button>
-    <ix-dropdown-button label="" variant="primary" ghost icon="checkboxes">
-      <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
-      <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
-    </ix-dropdown-button>
-    <ix-dropdown-button label="" variant="primary" disabled icon="checkboxes">
-    </ix-dropdown-button>
+    <div class="dropdown-button">
+      <ix-dropdown-button label="" icon="checkboxes">
+        <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+      </ix-dropdown-button>
+      <ix-dropdown-button label="" outline icon="checkboxes">
+        <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+      </ix-dropdown-button>
+      <ix-dropdown-button label="" ghost icon="checkboxes">
+        <ix-dropdown-item label="Item 1" value="1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2" value="2"></ix-dropdown-item>
+      </ix-dropdown-button>
+      <ix-dropdown-button label="" disabled icon="checkboxes">
+      </ix-dropdown-button>
+    </div>
   `,
 })
 export default class Dropdown {}

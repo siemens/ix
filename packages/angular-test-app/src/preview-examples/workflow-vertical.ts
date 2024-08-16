@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `<ix-workflow-steps vertical>
+  template: ` <ix-workflow-steps vertical>
     <ix-workflow-step status="done">Step 1</ix-workflow-step>
     <ix-workflow-step status="success">Step 2</ix-workflow-step>
     <ix-workflow-step status="open">Step 3</ix-workflow-step>
