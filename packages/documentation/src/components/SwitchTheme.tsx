@@ -17,20 +17,14 @@ import styles from './SwitchTheme.module.css';
 function applyThemeToBody(themes: string[], theme: string) {
   themes.forEach((t) => document.body.classList.remove(t));
 
-  setTimeout(() => document.body.classList.add(theme), 0)
+  setTimeout(() => {
+    document.body.classList.add(theme);
+  }, 0);
 }
 
-function ThemeEntry(props: {
-  label: string;
-  color: string;
-  id: string;
-  onClick?: (event: React.MouseEvent, id: string) => void;
-}) {
+function ThemeEntry(props: { label: string; color: string; id: string }) {
   return (
-    <div
-      className={styles.Dropdown__Item}
-      onClick={(e) => props.onClick?.(e, props.id)}
-    >
+    <div className={styles.Dropdown__Item}>
       <div
         className={styles.Theme__Color}
         style={{ backgroundColor: props.color }}
@@ -81,7 +75,6 @@ export function SwitchTheme(props: {
     }
 
     let storedTheme = window.localStorage.getItem('docusaurus-theme');
-
     onThemeChange(storedTheme || getDefaultTheme(context));
   }, []);
 
@@ -91,7 +84,10 @@ export function SwitchTheme(props: {
     dispatchThemeChange(theme);
     setOpen(false);
 
-    applyThemeToBody(registeredThemes.map((t) => t.id), theme);
+    applyThemeToBody(
+      registeredThemes.map((t) => t.id),
+      theme
+    );
   };
 
   function getLabel(id: string = 'theme-classic-dark') {
@@ -110,14 +106,12 @@ export function SwitchTheme(props: {
     >
       {registeredThemes.map(({ id, label, color }) => {
         return (
-          <IxDropdownItem key={id} checked={id === theme}>
-            <ThemeEntry
-              key={id}
-              id={id}
-              label={label}
-              color={color}
-              onClick={(_, id) => onThemeChange(id)}
-            />
+          <IxDropdownItem
+            key={id}
+            checked={id === theme}
+            onClick={() => onThemeChange(id)}
+          >
+            <ThemeEntry key={id} id={id} label={label} color={color} />
           </IxDropdownItem>
         );
       })}

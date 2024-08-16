@@ -14,8 +14,8 @@ import { IxContentHeader, IxIconButton } from '@siemens/ix-vue';
 <template>
   <IxContentHeader
     variant="secondary"
-    header-title="content title"
-    header-subtitle="subtitle content"
+    header-title="Content title"
+    header-subtitle="Subtitle"
   >
     <IxIconButton icon="pen" ghost variant="primary"> Button1 </IxIconButton>
     <IxIconButton icon="trashcan" ghost variant="primary">

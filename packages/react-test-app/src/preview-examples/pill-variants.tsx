@@ -7,25 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/pill-variants.css';
+
 import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-react';
-import React, { CSSProperties } from 'react';
+import React from 'react';
 
 export default () => {
-  const styled: CSSProperties = {
-    minWidth: '7rem',
-  };
-
   return (
     <>
       <IxLayoutGrid>
         <IxRow>
           <IxCol>
-            <IxPill variant="primary" icon="info" style={styled}>
+            <IxPill icon="info">
               Primary
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="primary" icon="info" outline style={styled}>
+            <IxPill icon="info" outline>
               Primary
             </IxPill>
           </IxCol>
@@ -33,12 +31,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="alarm" icon="info" style={styled}>
+            <IxPill variant="alarm" icon="info">
               Alarm
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="alarm" icon="info" outline style={styled}>
+            <IxPill variant="alarm" icon="info" outline>
               Alarm
             </IxPill>
           </IxCol>
@@ -46,12 +44,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="critical" icon="info" style={styled}>
+            <IxPill variant="critical" icon="info">
               Critical
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="critical" icon="info" outline style={styled}>
+            <IxPill variant="critical" icon="info" outline>
               Critical
             </IxPill>
           </IxCol>
@@ -59,12 +57,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="warning" icon="info" style={styled}>
+            <IxPill variant="warning" icon="info">
               Warning
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="warning" icon="info" outline style={styled}>
+            <IxPill variant="warning" icon="info" outline>
               Warning
             </IxPill>
           </IxCol>
@@ -72,12 +70,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="success" icon="info" style={styled}>
+            <IxPill variant="success" icon="info">
               Success
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="success" icon="info" outline style={styled}>
+            <IxPill variant="success" icon="info" outline>
               Success
             </IxPill>
           </IxCol>
@@ -85,12 +83,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="info" icon="info" style={styled}>
+            <IxPill variant="info" icon="info">
               Info
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="info" icon="info" outline style={styled}>
+            <IxPill variant="info" icon="info" outline>
               Info
             </IxPill>
           </IxCol>
@@ -98,12 +96,12 @@ export default () => {
 
         <IxRow>
           <IxCol>
-            <IxPill variant="neutral" icon="info" style={styled}>
+            <IxPill variant="neutral" icon="info">
               Neutral
             </IxPill>
           </IxCol>
           <IxCol>
-            <IxPill variant="neutral" icon="info" outline style={styled}>
+            <IxPill variant="neutral" icon="info" outline>
               Neutral
             </IxPill>
           </IxCol>
@@ -115,8 +113,7 @@ export default () => {
               variant="custom"
               color="color-soft-text"
               background="purple"
-              icon='info'
-              style={styled}
+              icon="info"
             >
               Custom
             </IxPill>
@@ -126,9 +123,8 @@ export default () => {
               variant="custom"
               color="color-soft-text"
               background="purple"
-              icon='info'
+              icon="info"
               outline
-              style={styled}
             >
               Custom
             </IxPill>

@@ -12,5 +12,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './menu-category.html',
+  styles: [
+    `
+      @import 'example-styles/dist/menu-category.css';
+    `,
+  ],
 })
 export default class MenuCategory {}
