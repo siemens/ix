@@ -880,8 +880,7 @@ export declare interface IxDropdownHeader extends Components.IxDropdownHeader {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDropdownItem,
-  inputs: ['checked', 'disabled', 'hover', 'icon', 'label'],
-  methods: ['emitItemClick']
+  inputs: ['checked', 'disabled', 'hover', 'icon', 'label']
 })
 @Component({
   selector: 'ix-dropdown-item',
@@ -1496,7 +1495,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMenu,
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
+  inputs: ['applicationDescription', 'applicationName', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
 @Component({
@@ -1504,7 +1503,7 @@ export declare interface IxMapNavigationOverlay extends Components.IxMapNavigati
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['applicationDescription', 'applicationName', 'enableMapExpand', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
+  inputs: ['applicationDescription', 'applicationName', 'enableSettings', 'enableToggleTheme', 'expand', 'i18nCollapse', 'i18nExpand', 'i18nExpandSidebar', 'i18nLegal', 'i18nSettings', 'i18nToggleTheme', 'maxVisibleMenuItems', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
   standalone: true
 })
 export class IxMenu {
@@ -1531,14 +1530,14 @@ export declare interface IxMenu extends Components.IxMenu {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMenuAbout,
-  inputs: ['activeTabLabel', 'label', 'show']
+  inputs: ['activeTabLabel', 'label']
 })
 @Component({
   selector: 'ix-menu-about',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabLabel', 'label', 'show'],
+  inputs: ['activeTabLabel', 'label'],
   standalone: true
 })
 export class IxMenuAbout {
@@ -1595,14 +1594,14 @@ export declare interface IxMenuAboutItem extends Components.IxMenuAboutItem {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMenuAboutNews,
-  inputs: ['aboutItemLabel', 'expanded', 'i18nShowMore', 'label', 'offsetBottom', 'show']
+  inputs: ['aboutItemLabel', 'i18nShowMore', 'label', 'offsetBottom', 'show']
 })
 @Component({
   selector: 'ix-menu-about-news',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['aboutItemLabel', 'expanded', 'i18nShowMore', 'label', 'offsetBottom', 'show'],
+  inputs: ['aboutItemLabel', 'i18nShowMore', 'label', 'offsetBottom', 'show'],
   standalone: true
 })
 export class IxMenuAboutNews {
@@ -1737,14 +1736,14 @@ export declare interface IxMenuItem extends Components.IxMenuItem {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxMenuSettings,
-  inputs: ['activeTabLabel', 'label', 'show']
+  inputs: ['activeTabLabel', 'label']
 })
 @Component({
   selector: 'ix-menu-settings',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeTabLabel', 'label', 'show'],
+  inputs: ['activeTabLabel', 'label'],
   standalone: true
 })
 export class IxMenuSettings {
