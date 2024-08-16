@@ -27,7 +27,7 @@
     "lint": "dotenv -- turbo run lint",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "visual-regression": "dotenv -- turbo run visual-regression",
-    "test": "dotenv -- turbo run test",
+    "test": "dotenv -- turbo run test --concurrency=1",
     "prepare": "pnpm git-hooks && pnpm disable-telemetry",
     "disable-telemetry": "turbo telemetry disable",
     "git-hooks": "husky install",

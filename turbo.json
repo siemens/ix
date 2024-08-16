@@ -18,10 +18,6 @@
       ],
       "outputLogs": "new-only"
     },
-    "pkg": {
-      "dependsOn": ["^build"],
-      "cache": true
-    },
     "start": {
       "dependsOn": ["^build"],
       "cache": true
