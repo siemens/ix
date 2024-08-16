@@ -10,9 +10,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { iconCode, iconNavigation } from '@siemens/ix-icons/icons';
 
+export const DocsTabQueryString = 'current-tab';
+
 export default function LinkableDocsTabs(props: { children: [any, any] }) {
   return (
-    <Tabs queryString="current-tab">
+    <Tabs queryString={DocsTabQueryString}>
       <TabItem
         value="guidelines"
         label="Guidelines"

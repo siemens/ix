@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import type { Props } from '@theme/TOCItems/Tree';
 import type { TOCTreeNode } from '@docusaurus/theme-common/internal';
 import { useLocation } from '@docusaurus/router';
+import { DocsTabQueryString } from '@site/src/components/LinkableDocsTabs';
 
 type IxProps = Props & {
   parent: readonly TOCTreeNode[];
@@ -30,7 +31,7 @@ function TOCItemTree({
         parent?.forEach((tab) => {
           tab.children.forEach((child) => {
             if (child.id === heading.id) {
-              searchParams.set('current-tab', tab.id);
+              searchParams.set(DocsTabQueryString, tab.id);
               tabId = tab.id;
             }
           });
@@ -41,7 +42,7 @@ function TOCItemTree({
           tabId = tab?.id ?? '';
         }
 
-        const queryParam = `?current-tab=${tabId}`;
+        const queryParam = `?${DocsTabQueryString}=${tabId}`;
         return (
           <li key={heading.id}>
             <Link
