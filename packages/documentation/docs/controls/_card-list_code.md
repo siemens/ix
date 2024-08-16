@@ -9,7 +9,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   height="55rem"
   name="card-list"
-  examplesByName>
+  >
 </Playground>
 
 ## API

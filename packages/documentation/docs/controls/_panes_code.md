@@ -14,7 +14,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="pane" 
   height="24rem" 
   noMargin
-  examplesByName>
+  >
 </Playground>
 
 ### Pane Layout
@@ -25,7 +25,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="pane-layout" 
   height="24rem" 
   noMargin 
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-pane)

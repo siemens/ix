@@ -11,7 +11,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="buttons"
-  examplesByName>
+  >
 </Playground>
 
 ### Primary Outline
@@ -25,7 +25,7 @@ Will be used as **Secondary** in UX context
 <Playground
   name="button-secondary"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Primary Ghost
@@ -39,7 +39,7 @@ Will be used as **Ghost** in UX context
 <Playground
   name="button-ghost"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Secondary
@@ -53,7 +53,7 @@ Will be used as **Grey button** in UX context
 <Playground
   name="button-grey"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Secondary Outline
@@ -67,7 +67,7 @@ Will be used as **Grey secondary** in UX context
 <Playground
   name="button-grey-secondary"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Secondary Ghost
@@ -81,7 +81,7 @@ Will be used as **Grey ghost** in UX context
 <Playground
   name="button-grey-ghost"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Danger
@@ -91,7 +91,7 @@ Will be used as **Grey ghost** in UX context
 <Playground
   name="button-danger"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Danger Outline
@@ -101,7 +101,7 @@ Will be used as **Grey ghost** in UX context
 <Playground
   name="button-danger-outline"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Danger Ghost
@@ -111,7 +111,7 @@ Will be used as **Grey ghost** in UX context
 <Playground
   name="button-danger-ghost"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Button group
@@ -119,7 +119,7 @@ Will be used as **Grey ghost** in UX context
 <Playground
   name="button-group"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Button with text and icon
@@ -127,7 +127,7 @@ Will be used as **Grey ghost** in UX context
 <Playground
   name="button-text-icon"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Loading button
@@ -135,7 +135,7 @@ Will be used as **Grey ghost** in UX context
 <Playground
   name="button-loading"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API

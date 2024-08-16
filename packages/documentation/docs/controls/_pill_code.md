@@ -9,7 +9,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="pill" 
-  examplesByName>
+  >
 </Playground>
 
 ### Variants
@@ -17,7 +17,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="pill-variants" 
   height="24rem" 
-  examplesByName>
+  >
 </Playground>
 
 ## API

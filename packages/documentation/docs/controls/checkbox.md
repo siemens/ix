@@ -13,7 +13,7 @@ import Props from './../auto-generated/ix-chip/props.md';
 <Playground
   name="checkbox" 
   height="8rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Indeterminate
@@ -22,5 +22,5 @@ import Props from './../auto-generated/ix-chip/props.md';
   name="checkbox-indeterminate" 
   height="8rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>

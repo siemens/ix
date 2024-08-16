@@ -11,7 +11,7 @@ import Playground from '@site/src/components/PlaygroundV3'
 <Playground
   name="breadcrumb"
   height="8rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Truncate
@@ -20,7 +20,7 @@ import Playground from '@site/src/components/PlaygroundV3'
   name="breadcrumb-truncate"
   height="10rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Lazy loaded next items
@@ -29,7 +29,7 @@ import Playground from '@site/src/components/PlaygroundV3'
   name="breadcrumb-next-items"
   height="8rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-breadcrumb)

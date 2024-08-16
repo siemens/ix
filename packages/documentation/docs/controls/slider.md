@@ -16,7 +16,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   height="15rem"
   name="slider"
-  examplesByName>
+  >
 </Playground>
 
 ### Marker
@@ -24,7 +24,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   height="15rem"
   name="slider-marker"
-  examplesByName>
+  >
 </Playground>
 
 ### Trace
@@ -32,7 +32,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   height="18rem"
   name="slider-trace"
-  examplesByName>
+  >
 </Playground>
 
 ### Error
@@ -40,7 +40,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="slider-error"
   height="14rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

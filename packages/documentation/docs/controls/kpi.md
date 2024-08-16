@@ -10,7 +10,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="kpi" 
   height="28rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

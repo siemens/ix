@@ -8,14 +8,14 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="link-button"
-  examplesByName>
+  >
 </Playground>
 
 ### Disabled
 
 <Playground
   name="link-button-disabled"
-  examplesByName>
+  >
 </Playground>
 
 ## API

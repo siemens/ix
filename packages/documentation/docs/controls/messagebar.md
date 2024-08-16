@@ -8,7 +8,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="message-bar" 
   height="14rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

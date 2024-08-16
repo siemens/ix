@@ -9,21 +9,21 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="avatar"
-  examplesByName>
+  >
 </Playground>
 
 ### Initials
 
 <Playground
   name="avatar-initials"
-  examplesByName>
+  >
 </Playground>
 
 ### Image
 
 <Playground
   name="avatar-image"
-  examplesByName>
+  >
 </Playground>
 
 ### Header
@@ -32,7 +32,7 @@ You can also add the avatar to the header, which will turn it into a clickable b
 
 <Playground 
   name="application-header" 
-  examplesByName 
+   
   noMargin 
   height="21rem">
 </Playground>

@@ -12,7 +12,7 @@ export async function docusaurusFetch(url: string) {
   const response = await fetch(url);
 
   if (!response.ok) {
-    throw Error(`Error fetching code from ${url}`);
+    throw `Error fetching code from ${url}`;
   }
 
   const text = await response.text();
@@ -23,7 +23,7 @@ export async function docusaurusFetch(url: string) {
     text?.includes('<div id="__docusaurus"></div>') ||
     text?.includes('Page Not Found')
   ) {
-    throw Error(`Error fetching code from ${url}`);
+    throw `Error fetching code from ${url}`;
   }
 
   return stripComments(text);

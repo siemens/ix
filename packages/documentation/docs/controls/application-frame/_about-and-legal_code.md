@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   height="30rem" 
   width="100%" 
   noMargin 
-  examplesByName>
+  >
 </Playground>
 
 ### Change language of legal links

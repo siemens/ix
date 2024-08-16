@@ -9,14 +9,14 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="content-header"
-  examplesByName>
+  >
 </Playground>
 
 ### No back button
 
 <Playground
   name="content-header-no-back"
-  examplesByName>
+  >
 </Playground>
 
 ## API

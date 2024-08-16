@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="event-list" 
   height="14rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Selected
@@ -24,7 +24,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="event-list-selected" 
   height="14rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Custom item height
@@ -33,7 +33,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="event-list-custom-item-height" 
   height="15rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Compact
@@ -42,7 +42,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="event-list-compact" 
   height="14rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-event-list)

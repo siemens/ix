@@ -10,7 +10,7 @@ import Events from './../../auto-generated/ix-icon-button/events.md';
 <Playground
   name="button-with-icon"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-icon-button)

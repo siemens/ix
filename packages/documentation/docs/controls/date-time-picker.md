@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="datetimepicker" 
   height="35rem"
-  examplesByName>
+  >
 </Playground>
 
 <!-- Re-add this when migrating to the rework components -->

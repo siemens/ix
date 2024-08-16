@@ -13,7 +13,7 @@ The `ix-content` is usually used as layouting component on a single page.
 
 <Playground 
   name="content" 
-  examplesByName 
+   
   height="18rem" 
   noMargin>
 </Playground>

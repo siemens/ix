@@ -11,7 +11,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="workflow"
-  examplesByName>
+  >
 </Playground>
 
 ### Vertical
@@ -20,7 +20,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="workflow-vertical" 
   height="27rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-workflow-steps)

@@ -14,7 +14,7 @@ import Playground from '@site/src/components/PlaygroundV3'
 <Playground
   name="tooltip"
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

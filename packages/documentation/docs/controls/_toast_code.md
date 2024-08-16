@@ -15,14 +15,14 @@ import ApiToastConfigReact from './\_toast/react/toast-config.md';
 
 <Playground
 name="toast" height="18rem"
-examplesByName></Playground>
+></Playground>
 
 ## Custom toast message
 
 <Playground
 name="toast-custom" height="18rem"
 hideInitalCodePreview
-examplesByName></Playground>
+></Playground>
 
 ## Position
 
@@ -30,7 +30,7 @@ examplesByName></Playground>
 
 <Playground
 name="toast-position" height="18rem"
-examplesByName></Playground>
+></Playground>
 
 ## API
 

@@ -16,28 +16,28 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="key-value" 
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ### With custom value
 
 <Playground
   name="key-value-with-custom-value"
-  examplesByName>
+  >
 </Playground>
 
 ### With icon
 
 <Playground
   name="key-value-with-icon"
-  examplesByName>
+  >
 </Playground>
 
 ### With label on left side
 
 <Playground
   name="key-value-with-label-left"
-  examplesByName>
+  >
 </Playground>
 
 ## API

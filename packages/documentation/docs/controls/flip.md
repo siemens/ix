@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="flip-tile" 
   height="35rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

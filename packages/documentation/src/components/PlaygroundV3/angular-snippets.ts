@@ -10,26 +10,39 @@ import { TargetFramework } from '../PlaygroundV2/framework-types';
 import { getBranchPath } from '../PlaygroundV2/utils';
 import { docusaurusFetch } from './fetching';
 
+async function fetchFile(
+  snippets: Record<string, string>,
+  url: string,
+  fileName: string
+) {
+  try {
+    const file = await docusaurusFetch(url);
+
+    if (file) {
+      snippets[fileName] = file;
+    }
+
+    return file;
+  } catch (e) {
+    return '';
+  }
+}
+
 export async function fetchSourceForAngular(baseUrl: string, name: string) {
   const snippets: Record<string, string> = {};
-  const tsFile = await docusaurusFetch(`${baseUrl}/${name}.ts`);
 
-  snippets[`${name}.ts`] = tsFile;
+  const tsFile = await fetchFile(
+    snippets,
+    `${baseUrl}/${name}.ts`,
+    `${name}.ts`
+  );
+
+  await fetchFile(snippets, `${baseUrl}/${name}.html`, `${name}.html`);
 
   const regex = /styleUrls:\s*\[\s*['"]([^'"]+)['"]\s*\]/;
   const match = tsFile.match(regex);
-
-  const htmlFIle = await docusaurusFetch(`${baseUrl}/${name}.html`);
-  if (htmlFIle) {
-    snippets[`${name}.html`] = htmlFIle;
-  }
-
   if (match) {
-    const styleFile = await docusaurusFetch(`${baseUrl}/${match[1]}`);
-
-    if (styleFile) {
-      snippets[`${match[1]}`] = styleFile;
-    }
+    await fetchFile(snippets, `${baseUrl}/${match[1]}`, `${match[1]}`);
   }
 
   return snippets;

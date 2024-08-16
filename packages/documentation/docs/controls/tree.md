@@ -13,7 +13,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="tree" 
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Custom tree node
@@ -22,7 +22,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="tree-custom" 
   height="12rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-tree)

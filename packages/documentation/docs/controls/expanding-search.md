@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="expanding-search" 
   height="5rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

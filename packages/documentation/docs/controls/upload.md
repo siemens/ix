@@ -10,7 +10,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="upload" 
   height="8rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

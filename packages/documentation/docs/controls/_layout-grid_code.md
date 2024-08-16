@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV3'
 <Playground
   height="15rem"
   name="grid"
-  examplesByName>
+  >
 </Playground>
 
 ### Size
@@ -23,7 +23,7 @@ import Playground from '@site/src/components/PlaygroundV3'
 <Playground
   height="17rem"
   name="grid-size"
-  examplesByName>
+  >
 </Playground>
 
 ### Padding
@@ -31,7 +31,7 @@ import Playground from '@site/src/components/PlaygroundV3'
 <Playground
   name="grid-padding"
   height="17rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-layout-grid)

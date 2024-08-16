@@ -11,7 +11,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="toggle"
-  examplesByName>
+  >
 </Playground>
 
 ### Custom label
@@ -19,7 +19,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="toggle-custom-label"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Disabled
@@ -27,7 +27,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="toggle-disabled"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Checked
@@ -35,7 +35,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="toggle-checked"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Indeterminate
@@ -43,7 +43,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
 name="toggle-indeterminate"
 hideInitalCodePreview
-examplesByName>
+>
 </Playground>
 
 ## API

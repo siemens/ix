@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="pagination" 
   height="24rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Advanced
@@ -23,7 +23,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="pagination-advanced" 
   height="24rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

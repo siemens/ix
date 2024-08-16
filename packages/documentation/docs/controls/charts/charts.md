@@ -35,5 +35,5 @@ Please make sure to correctly add `NgxEcharts` in your module file.
 height="40rem"
 name="echarts"
 noMargin
-examplesByName>
+>
 </Playground>

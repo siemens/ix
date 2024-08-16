@@ -14,7 +14,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   height="35rem" 
   oMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Custom overlay
@@ -24,7 +24,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   height="35rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-map-navigation)

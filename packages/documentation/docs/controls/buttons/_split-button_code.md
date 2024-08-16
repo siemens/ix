@@ -11,7 +11,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="split-button" 
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ### With icon only
@@ -20,7 +20,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="split-button-icons" 
   height="16rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-split-button)

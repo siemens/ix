@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
 name="dropdown"
 height="28rem"
-examplesByName>
+>
 </Playground>
 
 ### Dropdown with icon
@@ -23,7 +23,7 @@ examplesByName>
 <Playground
 name="dropdown-icon"
 height="18rem"
-examplesByName>
+>
 </Playground>
 
 ### Dropdown with quick actions menu
@@ -33,7 +33,7 @@ examplesByName>
 <Playground
 name="dropdown-quick-actions"
 height="22rem"
-examplesByName>
+>
 </Playground>
 
 ### Dropdown with submenu
@@ -41,7 +41,7 @@ examplesByName>
 <Playground
 name="dropdown-submenu"
 height="22rem"
-examplesByName>
+>
 </Playground>
 
 ## API (ix-dropdown)

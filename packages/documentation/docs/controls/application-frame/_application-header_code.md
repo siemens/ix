@@ -12,7 +12,7 @@ The application-header can host custom content which will be displayed on the fa
 
 <Playground 
   name="application-header" 
-  examplesByName 
+   
   noMargin 
   height="18rem">
 </Playground>

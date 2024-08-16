@@ -13,7 +13,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="category-filter"
   height="12rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Without categories
@@ -22,7 +22,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="category-filter-suggestions"
   hideInitalCodePreview
   height="12rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

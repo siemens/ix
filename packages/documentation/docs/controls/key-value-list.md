@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="key-value-list" height="12rem"
-  examplesByName>
+  >
 </Playground>
 
 ### With custom value
@@ -20,7 +20,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="key-value-list-with-custom-value" 
   height="12rem"
-  examplesByName>
+  >
 </Playground>
 
 ### With icon
@@ -28,7 +28,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="key-value-list-with-icon" 
   height="12rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Striped
@@ -36,7 +36,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="key-value-list-striped" 
   height="12rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

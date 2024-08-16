@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="select" 
   height="18rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Editable
@@ -24,7 +24,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="select-editable" 
   height="18rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Multiselect
@@ -33,7 +33,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="select-multiple" 
   height="18rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-select)

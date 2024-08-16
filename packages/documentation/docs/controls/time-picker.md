@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="timepicker" 
   height="25rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API 

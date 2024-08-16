@@ -10,6 +10,6 @@ import PlaygroundV3 from '@site/src/components/PlaygroundV3';
 <PlaygroundV3
   name="theme-switcher"
   height="15rem"
-  examplesByName  
+    
 >
 </PlaygroundV3>

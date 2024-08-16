@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="drawer-full-height" 
   height="24rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Auto height
@@ -21,7 +21,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="drawer" 
   height="24rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API

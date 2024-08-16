@@ -28,7 +28,7 @@ The `size` can be configured over the configuration object of the `showModal` fu
 <Playground
   height="19rem"
   name="modal-sizes"
-  examplesByName>
+  >
 </Playground>
 
 ## Custom

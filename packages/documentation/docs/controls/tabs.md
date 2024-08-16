@@ -14,7 +14,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="tabs" 
-  examplesByName>
+  >
 </Playground>
 
 ### Tabs Rounded
@@ -22,7 +22,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="tabs-rounded"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-tabs)

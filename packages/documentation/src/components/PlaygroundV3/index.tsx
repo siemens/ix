@@ -71,7 +71,7 @@ function useSnippetFetcher(
   snippets: Record<string, string>;
 } {
   const [isFetching, setIsFetching] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const [hasError] = useState(false);
   const [snippets, setSnippets] = useState<Record<string, string>>({});
   const url = useUrlMapper(activeFramework);
 
@@ -83,7 +83,6 @@ function useSnippetFetcher(
     }
 
     setIsFetching(true);
-    setHasError(false);
 
     if (!preventDefaultExample) {
       if (activeFramework === TargetFramework.ANGULAR) {
@@ -112,8 +111,6 @@ function useSnippetFetcher(
         const _snippets: Record<string, string> = {};
         Promise.all(
           alternativeSnippets[activeFramework].map(async (file) => {
-            console.log(`${url}/${file}`);
-
             try {
               const data = await docusaurusFetch(`${url}/${file}`);
               _snippets[file] = data;
@@ -129,17 +126,15 @@ function useSnippetFetcher(
       fetchAdditionalFiles$ = Promise.resolve({});
     }
 
-    Promise.all([fetchExamplePreview$, fetchAdditionalFiles$])
-      .then(([data1, data2]) => {
+    Promise.all([fetchExamplePreview$, fetchAdditionalFiles$]).then(
+      ([data1, data2]) => {
         setIsFetching(false);
         setSnippets({
           ...data1,
           ...data2,
         });
-      })
-      .catch(() => {
-        setHasError(true);
-      });
+      }
+    );
   }, [activeFramework, url, alternativeSnippets, preventDefaultExample]);
 
   return {

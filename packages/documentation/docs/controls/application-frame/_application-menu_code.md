@@ -28,7 +28,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### 2nd navigation level
@@ -39,7 +39,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Avatar
@@ -51,7 +51,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Bottom tabs
@@ -65,7 +65,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-menu)

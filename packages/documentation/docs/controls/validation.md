@@ -17,7 +17,7 @@ In the following examples section you will find different implementations of a f
 <Playground
   name="validation" 
   height="20rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="spinner" 
   height="5rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Large
@@ -21,7 +21,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="spinner-large" 
   height="16rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API

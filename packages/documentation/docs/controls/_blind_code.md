@@ -14,7 +14,7 @@ import PlaygroundV3 from '@site/src/components/PlaygroundV3'
 <Playground
   name="blind"
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Header actions
@@ -24,7 +24,7 @@ import PlaygroundV3 from '@site/src/components/PlaygroundV3'
 <Playground
   name="blind-header-actions"
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Variants
@@ -34,7 +34,7 @@ import PlaygroundV3 from '@site/src/components/PlaygroundV3'
 <Playground
   name="blind-variants"
   height="55rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

@@ -13,5 +13,5 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="divider" 
   height="16rem"
-  examplesByName>
+  >
 </Playground>

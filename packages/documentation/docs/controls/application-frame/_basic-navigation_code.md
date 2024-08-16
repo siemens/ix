@@ -11,7 +11,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   name="basic-navigation" 
   height="30rem" 
   noMargin 
-  examplesByName>
+  >
 </Playground>
 
 ### Without header
@@ -21,7 +21,7 @@ import Playground from '@site/src/components/PlaygroundV3';
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API

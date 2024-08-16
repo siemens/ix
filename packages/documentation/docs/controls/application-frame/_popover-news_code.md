@@ -11,7 +11,7 @@ import Events from './../../auto-generated/ix-menu-about-news/events.md';
   name="popover-news" 
   height="30rem" 
   noMargin 
-  examplesByName>
+  >
 </Playground>
 
 ## API
