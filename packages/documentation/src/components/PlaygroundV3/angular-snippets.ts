@@ -31,13 +31,13 @@ async function fetchFile(
 export async function fetchSourceForAngular(baseUrl: string, name: string) {
   const snippets: Record<string, string> = {};
 
+  await fetchFile(snippets, `${baseUrl}/${name}.html`, `${name}.html`);
+
   const tsFile = await fetchFile(
     snippets,
     `${baseUrl}/${name}.ts`,
     `${name}.ts`
   );
-
-  await fetchFile(snippets, `${baseUrl}/${name}.html`, `${name}.html`);
 
   const regex = /styleUrls:\s*\[\s*['"]([^'"]+)['"]\s*\]/;
   const match = tsFile.match(regex);

@@ -213,38 +213,42 @@ function ToolbarButtons(props: {
           }}
         ></IxIconButton>
       ) : (
-        <IxIconButton
-          ghost
-          size="16"
-          icon={`${baseUrlAssets}/github.svg`}
-          onClick={() => {
-            if (props.activeFramework === TargetFramework.ANGULAR) {
-              window.open(
-                `https://github.com/${getAngularTestAppGithubPath(props.name)}`
-              );
-            }
+        <>
+          <IxIconButton
+            ghost
+            size="16"
+            icon={`${baseUrlAssets}/github.svg`}
+            onClick={() => {
+              if (props.activeFramework === TargetFramework.ANGULAR) {
+                window.open(
+                  `https://github.com/${getAngularTestAppGithubPath(
+                    props.name
+                  )}`
+                );
+              }
 
-            if (props.activeFramework === TargetFramework.REACT) {
-              window.open(
-                `https://github.com/${getReactTestAppGithubPath(props.name)}`
-              );
-            }
+              if (props.activeFramework === TargetFramework.REACT) {
+                window.open(
+                  `https://github.com/${getReactTestAppGithubPath(props.name)}`
+                );
+              }
 
-            if (props.activeFramework === TargetFramework.VUE) {
-              window.open(
-                `https://github.com/${getVueTestAppGithubPath(props.name)}`
-              );
-            }
+              if (props.activeFramework === TargetFramework.VUE) {
+                window.open(
+                  `https://github.com/${getVueTestAppGithubPath(props.name)}`
+                );
+              }
 
-            if (props.activeFramework === TargetFramework.JAVASCRIPT) {
-              window.open(
-                `https://github.com/${getJavascriptTestAppGithubPath(
-                  props.name
-                )}`
-              );
-            }
-          }}
-        ></IxIconButton>
+              if (props.activeFramework === TargetFramework.JAVASCRIPT) {
+                window.open(
+                  `https://github.com/${getJavascriptTestAppGithubPath(
+                    props.name
+                  )}`
+                );
+              }
+            }}
+          ></IxIconButton>
+        </>
       )}
     </>
   );
