@@ -33,11 +33,12 @@ $notDisabled: ':not(.disabled):not(:disabled):not([disabled])';
   }
 }
 
-
 @mixin input-valid {
-  textarea.ix-valid#{$notDisabled}:not(.ix-suppress-valid):not(.ix-invalid--required),
-  input.ix-valid#{$notDisabled}:not(.ix-suppress-valid):not(.ix-invalid--required) {
-    @content;
+  textarea,
+  input {
+    &.ix-valid#{$notDisabled}:not(.ix-suppress-valid):not(.ix-invalid--required) {
+      @content;
+    }
   }
 }
 
