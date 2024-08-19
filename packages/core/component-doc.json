@@ -2733,7 +2733,7 @@
           "mutable": false,
           "attr": "direction",
           "reflectToAttr": false,
-          "docs": "Alignment of the check boxes in the group",
+          "docs": "Alignment of the checkboxes in the group",
           "docsTags": [],
           "default": "'column'",
           "values": [
@@ -2760,7 +2760,7 @@
           "mutable": false,
           "attr": "helper-text",
           "reflectToAttr": false,
-          "docs": "Show text below the field component",
+          "docs": "Optional helper text displayed below the checkbox group",
           "docsTags": [],
           "values": [
             {
@@ -2781,7 +2781,7 @@
           "mutable": false,
           "attr": "info-text",
           "reflectToAttr": false,
-          "docs": "Info text for the field component",
+          "docs": "Info text for the checkbox group",
           "docsTags": [],
           "values": [
             {
@@ -2802,7 +2802,7 @@
           "mutable": false,
           "attr": "invalid-text",
           "reflectToAttr": false,
-          "docs": "Error text for the field component",
+          "docs": "Error text for the checkbox group",
           "docsTags": [],
           "values": [
             {
@@ -2823,7 +2823,7 @@
           "mutable": false,
           "attr": "label",
           "reflectToAttr": false,
-          "docs": "Label for the field component",
+          "docs": "Label for the checkbox group",
           "docsTags": [],
           "values": [
             {
@@ -2844,7 +2844,7 @@
           "mutable": false,
           "attr": "valid-text",
           "reflectToAttr": false,
-          "docs": "Valid text for the field component",
+          "docs": "Valid text for the checkbox group",
           "docsTags": [],
           "values": [
             {
@@ -2865,7 +2865,7 @@
           "mutable": false,
           "attr": "warning-text",
           "reflectToAttr": false,
-          "docs": "Warning text for the field component",
+          "docs": "Warning text for the checkbox group",
           "docsTags": [],
           "values": [
             {

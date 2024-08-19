@@ -470,31 +470,31 @@ export namespace Components {
      */
     interface IxCheckboxGroup {
         /**
-          * Alignment of the check boxes in the group
+          * Alignment of the checkboxes in the group
          */
         "direction": 'row' | 'column';
         /**
-          * Show text below the field component
+          * Optional helper text displayed below the checkbox group
          */
         "helperText"?: string;
         /**
-          * Info text for the field component
+          * Info text for the checkbox group
          */
         "infoText"?: string;
         /**
-          * Error text for the field component
+          * Error text for the checkbox group
          */
         "invalidText"?: string;
         /**
-          * Label for the field component
+          * Label for the checkbox group
          */
         "label"?: string;
         /**
-          * Valid text for the field component
+          * Valid text for the checkbox group
          */
         "validText"?: string;
         /**
-          * Warning text for the field component
+          * Warning text for the checkbox group
          */
         "warningText"?: string;
     }
@@ -5473,31 +5473,31 @@ declare namespace LocalJSX {
      */
     interface IxCheckboxGroup {
         /**
-          * Alignment of the check boxes in the group
+          * Alignment of the checkboxes in the group
          */
         "direction"?: 'row' | 'column';
         /**
-          * Show text below the field component
+          * Optional helper text displayed below the checkbox group
          */
         "helperText"?: string;
         /**
-          * Info text for the field component
+          * Info text for the checkbox group
          */
         "infoText"?: string;
         /**
-          * Error text for the field component
+          * Error text for the checkbox group
          */
         "invalidText"?: string;
         /**
-          * Label for the field component
+          * Label for the checkbox group
          */
         "label"?: string;
         /**
-          * Valid text for the field component
+          * Valid text for the checkbox group
          */
         "validText"?: string;
         /**
-          * Warning text for the field component
+          * Warning text for the checkbox group
          */
         "warningText"?: string;
     }
