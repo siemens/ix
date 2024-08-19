@@ -21,35 +21,35 @@ export class CheckboxGroup
 {
   @Element() hostElement!: HTMLIxCheckboxGroupElement;
   /**
-   * Show text below the field component
+   * Optional helper text displayed below the checkbox group
    */
   @Prop() helperText?: string;
 
   /**
-   * Label for the field component
+   * Label for the checkbox group
    */
   @Prop() label?: string;
 
   /**
-   * Alignment of the check boxes in the group
+   * Alignment of the checkboxes in the group
    */
   @Prop() direction: 'row' | 'column' = 'column';
 
   /**
-   * Error text for the field component
+   * Error text for the checkbox group
    */
   @Prop() invalidText?: string;
 
   /**
-   * Info text for the field component
+   * Info text for the checkbox group
    */
   @Prop() infoText?: string;
   /**
-   * Valid text for the field component
+   * Valid text for the checkbox group
    */
   @Prop() validText?: string;
   /**
-   * Warning text for the field component
+   * Warning text for the checkbox group
    */
   @Prop() warningText?: string;
 
