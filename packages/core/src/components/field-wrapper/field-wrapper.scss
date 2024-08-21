@@ -34,15 +34,6 @@
 
   .bottom-text {
     margin-top: 0.25rem;
-  }
-}
-
-:host(.text-behind-slotted-element) {
-  flex-direction: row;
-  align-items: flex-start;
-
-  .bottom-text {
-    margin-top: 0.5rem;
-    margin-left: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 }
