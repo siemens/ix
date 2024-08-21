@@ -8,7 +8,7 @@ import type { Props } from '@theme/Heading';
 
 import styles from './styles.module.css';
 import { useLocation } from '@docusaurus/router';
-import { DocsTabQueryString } from '@site/src/components/LinkableDocsTabs';
+import { docsTabQueryString } from '@site/src/components/LinkableDocsTabs';
 
 export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
   const location = useLocation();
@@ -18,7 +18,7 @@ export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
   } = useThemeConfig();
 
   const searchParams = new URLSearchParams(location.search);
-  const currentTab = searchParams.get(DocsTabQueryString);
+  const currentTab = searchParams.get(docsTabQueryString);
 
   // H1 headings do not need an id because they don't appear in the TOC.
   if (As === 'h1' || !id) {
@@ -41,7 +41,7 @@ export default function Heading({ as: As, id, ...props }: Props): JSX.Element {
   let link = `#${id}`;
 
   if (currentTab === 'development' || currentTab === 'guidelines') {
-    link = `?${DocsTabQueryString}=${currentTab}${link}`;
+    link = `?${docsTabQueryString}=${currentTab}${link}`;
   }
 
   return (

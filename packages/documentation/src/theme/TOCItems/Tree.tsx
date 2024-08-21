@@ -3,10 +3,14 @@ import Link from '@docusaurus/Link';
 import type { Props } from '@theme/TOCItems/Tree';
 import type { TOCTreeNode } from '@docusaurus/theme-common/internal';
 import { useLocation } from '@docusaurus/router';
-import { DocsTabQueryString } from '@site/src/components/LinkableDocsTabs';
+import {
+  developmentTabValue,
+  docsTabQueryString,
+  guidelinesTabValue,
+} from '@site/src/components/LinkableDocsTabs';
 
 type IxProps = Props & {
-  parent: readonly TOCTreeNode[];
+  parentTocItems: readonly TOCTreeNode[];
 };
 
 // Recursive component rendering the toc tree
@@ -15,7 +19,7 @@ function TOCItemTree({
   className,
   linkClassName,
   isChild,
-  parent,
+  parentTocItems,
 }: IxProps): JSX.Element | null {
   const _location = useLocation();
   if (!toc.length) {
@@ -28,21 +32,27 @@ function TOCItemTree({
         const searchParams = new URLSearchParams(_location.search);
 
         let tabId = '';
-        parent?.forEach((tab) => {
+        parentTocItems?.forEach((tab) => {
           tab.children.forEach((child) => {
             if (child.id === heading.id) {
-              searchParams.set(DocsTabQueryString, tab.id);
+              searchParams.set(docsTabQueryString, tab.id);
               tabId = tab.id;
             }
           });
         });
 
-        if (tabId === '' && !parent) {
-          const tab = toc.find((tab) => tab.id === heading.id);
+        if (tabId === '' && !parentTocItems) {
+          const tab = toc.find(
+            (firstLevelHeading) => firstLevelHeading.id === heading.id
+          );
           tabId = tab?.id ?? '';
         }
 
-        const queryParam = `?${DocsTabQueryString}=${tabId}`;
+        let queryParam = '';
+        if (tabId === guidelinesTabValue || tabId === developmentTabValue) {
+          queryParam = `?${docsTabQueryString}=${tabId}`;
+        }
+
         return (
           <li key={heading.id}>
             <Link
@@ -54,7 +64,7 @@ function TOCItemTree({
             <TOCItemTree
               isChild
               toc={heading.children}
-              parent={isChild ? parent : toc}
+              parentTocItems={isChild ? parentTocItems : toc}
               className={className}
               linkClassName={linkClassName}
             />

@@ -10,13 +10,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { iconCode, iconNavigation } from '@siemens/ix-icons/icons';
 
-export const DocsTabQueryString = 'current-tab';
+export const docsTabQueryString = 'current-tab';
+export const guidelinesTabValue = 'guidelines';
+export const developmentTabValue = 'development';
 
 export default function LinkableDocsTabs(props: { children: [any, any] }) {
   return (
-    <Tabs queryString={DocsTabQueryString}>
+    <Tabs queryString={docsTabQueryString}>
       <TabItem
-        value="guidelines"
+        value={guidelinesTabValue}
         label="Guidelines"
         attributes={{
           icon: iconNavigation,
@@ -26,7 +28,7 @@ export default function LinkableDocsTabs(props: { children: [any, any] }) {
       </TabItem>
 
       <TabItem
-        value="development"
+        value={developmentTabValue}
         label="Development"
         attributes={{
           icon: iconCode,

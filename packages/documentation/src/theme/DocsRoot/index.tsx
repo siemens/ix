@@ -14,8 +14,8 @@ export default function DocsRootWrapper(props: Props): JSX.Element {
         search: location.search,
         hash: location.hash,
       });
-    }, 150);
-  }, []);
+    });
+  }, [location.search, location.hash]);
 
   return (
     <>
