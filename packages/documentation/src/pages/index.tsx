@@ -1,5 +1,5 @@
 /*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
 
 import BrowserOnly from '@docusaurus/BrowserOnly';
@@ -42,15 +42,15 @@ function parallax(id: string, min: number, max: number, translateMax: number) {
 }
 
 function Headline({
-  title,
-  subtitle,
-  description,
-  dark = false,
-  size = 'h2',
-  text = 'light',
-  noLine = false,
-  description_width = '500px',
-}) {
+                    title,
+                    subtitle,
+                    description,
+                    dark = false,
+                    size = 'h2',
+                    text = 'light',
+                    noLine = false,
+                    description_width = '500px',
+                  }) {
   const headlineSize = `headline_${size}`;
   return (
     <>
@@ -292,11 +292,13 @@ function Devices() {
           className={styles.image}
         ></img>
 
-        <Headline
-          title="Industrial Experience"
-          subtitle="for all devices"
-          description="Our industry-focused components empower you to design and deliver complex analytic, scientific and industrial ideas simply and consistently across all devices"
-        ></Headline>
+        <div className={styles.device_headline}>
+          <Headline
+            title="Industrial Experience"
+            subtitle="for all devices"
+            description="Our industry-focused components empower you to design and deliver complex analytic, scientific and industrial ideas simply and consistently across all devices"
+          ></Headline>
+        </div>
       </div>
     </div>
   );
