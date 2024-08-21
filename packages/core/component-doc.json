@@ -125,10 +125,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "ActionCardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "ActionCardVariant": {
                 "location": "local",
@@ -141,8 +141,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
           "values": [
             {
               "value": "alarm",
@@ -150,6 +156,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -166,6 +176,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
               "type": "string"
             },
             {
@@ -407,12 +421,14 @@
       "dependencies": [
         "ix-menu-expand-icon",
         "ix-icon-button",
+        "ix-typography",
         "ix-dropdown"
       ],
       "dependencyGraph": {
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -448,7 +464,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -627,6 +643,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -878,10 +895,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "BlindVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "BlindVariant": {
                 "location": "local",
@@ -908,6 +925,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -1530,10 +1551,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "CardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "CardVariant": {
                 "location": "local",
@@ -1546,8 +1567,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.",
           "values": [
             {
               "value": "alarm",
@@ -1555,6 +1582,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -1571,6 +1602,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
               "type": "string"
             },
             {
@@ -2081,7 +2116,7 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
+          "docs": "Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.\nEach ID maps to an object with a label and an array of options to select from.",
           "docsTags": [],
           "values": [
             {
@@ -2301,7 +2336,7 @@
           "mutable": false,
           "attr": "repeat-categories",
           "reflectToAttr": false,
-          "docs": "If set to true allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
+          "docs": "If set to true, allows that a single category can be set more than once.\nAn already set category will not appear in the category dropdown if set to false.\n\nDefaults to true",
           "docsTags": [],
           "default": "true",
           "values": [
@@ -2357,7 +2392,7 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "A list of strings that will be supplied as typeahead suggestions not tied to any categories.",
+          "docs": "A list of strings that will be supplied as type-ahead suggestions not tied to any categories.",
           "docsTags": [],
           "values": [
             {
@@ -2381,7 +2416,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Event dispatched whenever the a category gets selected in the dropdown",
+          "docs": "Event dispatched whenever a category gets selected in the dropdown",
           "docsTags": []
         },
         {
@@ -5908,7 +5943,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -5929,7 +5964,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -6992,7 +7027,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7013,7 +7048,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7029,6 +7064,7 @@
           "reflectToAttr": true,
           "docs": "Whether the group is selected.",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7055,7 +7091,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7230,7 +7266,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7251,7 +7287,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7272,7 +7308,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7288,6 +7324,7 @@
           "reflectToAttr": false,
           "docs": "Show selected state",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7336,7 +7373,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -8695,6 +8732,7 @@
         "ix-application-header": [
           "ix-menu-expand-icon",
           "ix-icon-button",
+          "ix-typography",
           "ix-dropdown"
         ],
         "ix-menu-expand-icon": [
@@ -11757,6 +11795,7 @@
           "reflectToAttr": false,
           "docs": "Advanced mode",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -12689,7 +12728,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12732,7 +12771,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12753,15 +12792,15 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "PushCardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "PushCardVariant": {
                 "location": "local",
@@ -12774,8 +12813,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
           "values": [
             {
               "value": "alarm",
@@ -12783,6 +12828,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -12799,6 +12848,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
               "type": "string"
             },
             {
@@ -13500,7 +13553,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13526,7 +13579,7 @@
               "type": "number[]"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13591,6 +13644,7 @@
               "text": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range#step"
             }
           ],
+          "default": "1",
           "values": [
             {
               "type": "number"
@@ -14309,7 +14363,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16043,7 +16097,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16126,7 +16180,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -16213,6 +16267,7 @@
           "reflectToAttr": false,
           "docs": "Tree model",
           "docsTags": [],
+          "default": "{}",
           "values": [
             {
               "type": "{ [x: string]: TreeItem<any>; }"
@@ -16261,7 +16316,7 @@
               "type": "<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16283,7 +16338,7 @@
             }
           ],
           "optional": false,
-          "required": false
+          "required": true
         }
       ],
       "methods": [],
@@ -16411,7 +16466,7 @@
               "type": "TreeItemContext"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16427,6 +16482,7 @@
           "reflectToAttr": false,
           "docs": "Has tree item children",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -16453,7 +16509,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -16512,6 +16568,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-action-card",
+        "ix-application-header",
         "ix-application-switch-modal",
         "ix-avatar",
         "ix-blind",
@@ -16532,6 +16589,9 @@
       "dependencies": [],
       "dependencyGraph": {
         "ix-action-card": [
+          "ix-typography"
+        ],
+        "ix-application-header": [
           "ix-typography"
         ],
         "ix-application-switch-modal": [
@@ -17559,7 +17619,7 @@
   ],
   "typeLibrary": {
     "src/components/card/card.tsx::CardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
+      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/card/card.tsx"
     },
@@ -17584,7 +17644,7 @@
       "path": "src/components/typography/typography.tsx"
     },
     "src/components/action-card/action-card.tsx::ActionCardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
+      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/action-card/action-card.tsx"
     },
@@ -17714,7 +17774,7 @@
       "path": "src/components/pane/pane.tsx"
     },
     "src/components/push-card/push-card.tsx::PushCardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
+      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/push-card/push-card.tsx"
     },

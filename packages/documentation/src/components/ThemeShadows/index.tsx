@@ -18,6 +18,7 @@ import {
 import React, { useState } from 'react';
 import { themeShadows } from './shadows';
 import './ThemeShadows.css';
+import { useTheme } from '@site/src/utils/hooks/useTheme';
 
 function Search(props: { onChange: (value: string) => void }) {
   return (
@@ -55,6 +56,7 @@ function ShadowPreview(props: { border: string }) {
 }
 
 const ThemeShadows: React.FC = () => {
+  useTheme();
   const [borders, setBorders] = useState(themeShadows);
 
   const updateFilter = (filter) => {

@@ -63,8 +63,7 @@ e.g.:
 ## Usage
 
 <Playground
-name="aggrid"
-height="14rem"
-examplesByName
-disableStackBlitz>
+  name="aggrid"
+  height="14rem"
+  examplesByName>
 </Playground>

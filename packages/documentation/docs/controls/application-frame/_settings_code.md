@@ -3,16 +3,22 @@ import Playground from '@site/src/components/PlaygroundV2';
 import Props from './../../auto-generated/ix-menu-settings/props.md';
 import Events from './../../auto-generated/ix-menu-settings/events.md';
 import ItemProps from './../../auto-generated/ix-menu-settings-item/props.md';
+import ItemEvents from './../../auto-generated/ix-menu-settings-item/events.md';
 
-## Usage
+## Examples
+
+### Basic
 
 <Playground
-name="settings" height="30rem" noMargin examplesByName>
+  name="settings" 
+  height="30rem" 
+  noMargin 
+  examplesByName>
 </Playground>
 
-## Properties (ix-menu-settings)
+## API (ix-menu-settings)
 
-### Props
+### Properties
 
 <Props />
 
@@ -20,8 +26,12 @@ name="settings" height="30rem" noMargin examplesByName>
 
 <Events />
 
-## Properties (ix-menu-settings-item)
+## API (ix-menu-settings-item)
 
-### Props
+### Properties
 
 <ItemProps />
+
+### Events
+
+<ItemEvents />

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -17,6 +17,7 @@ import {
   Listen,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 
@@ -58,30 +59,20 @@ export class Tabs {
    *
    * @since 2.0.0
    */
-  @Event() selectedChange: EventEmitter<number>;
+  @Event() selectedChange!: EventEmitter<number>;
 
   @State() totalItems = 0;
   @State() currentScrollAmount = 0;
   @State() scrollAmount = 100;
-
   @State() scrollActionAmount = 0;
+  @State() showArrowPrevious = false;
+  @State() showArrowNext = false;
 
   private windowStartSize = window.innerWidth;
-
-  private get arrowLeftElement() {
-    return this.hostElement.shadowRoot.querySelector(
-      '[data-arrow-left]'
-    ) as HTMLElement;
-  }
-
-  private get arrowRightElement() {
-    return this.hostElement.shadowRoot.querySelector(
-      '[data-arrow-right]'
-    ) as HTMLElement;
-  }
+  private resizeObserver?: ResizeObserver;
 
   private clickAction: {
-    timeout: NodeJS.Timeout;
+    timeout: NodeJS.Timeout | null;
     isClick: boolean;
   } = {
     timeout: null,
@@ -108,13 +99,23 @@ export class Tabs {
   }
 
   private getTabsWrapper() {
-    return this.hostElement.shadowRoot.querySelector('.items-content');
+    return this.hostElement.shadowRoot?.querySelector('.items-content');
+  }
+
+  private initResizeObserver() {
+    const parentElement = this.hostElement.parentElement;
+    if (!parentElement) return;
+    this.resizeObserver = new ResizeObserver(() => {
+      this.renderArrows();
+    });
+    this.resizeObserver.observe(parentElement);
   }
 
   private showArrows() {
     try {
       const tabWrapper = this.getTabsWrapper();
       return (
+        tabWrapper &&
         tabWrapper.scrollWidth >
           Math.ceil(tabWrapper.getBoundingClientRect().width) &&
         this.layout === 'auto'
@@ -126,7 +127,7 @@ export class Tabs {
 
   private showPreviousArrow() {
     try {
-      return this.showArrows() && this.scrollActionAmount < 0;
+      return this.showArrows() === true && this.scrollActionAmount < 0;
     } catch (error) {
       return false;
     }
@@ -135,10 +136,15 @@ export class Tabs {
   private showNextArrow() {
     try {
       const tabWrapper = this.getTabsWrapper();
+
+      if (!tabWrapper) {
+        return false;
+      }
+
       const tabWrapperRect = tabWrapper.getBoundingClientRect();
 
       return (
-        this.showArrows() &&
+        this.showArrows() === true &&
         this.scrollActionAmount >
           (tabWrapper.scrollWidth - tabWrapperRect.width) * -1
       );
@@ -147,38 +153,47 @@ export class Tabs {
     }
   }
 
-  private getArrowStyle(condition: boolean) {
-    return {
-      opacity: condition ? '1' : '0',
-      zIndex: condition ? '1' : '-1',
-    };
-  }
-
   private move(amount: number, click = false) {
-    const tabWrapper = this.getTabsWrapper();
-    const maxScrollWidth =
-      (tabWrapper.scrollWidth - tabWrapper.getBoundingClientRect().width) * -1;
+    const tabsWrapper = this.getTabsWrapper();
 
-    amount = this.currentScrollAmount + amount;
-    amount = amount > 0 ? 0 : amount < maxScrollWidth ? maxScrollWidth : amount;
+    if (!tabsWrapper) {
+      return;
+    }
+
+    const tabsWrapperVisibleWidth = tabsWrapper.getBoundingClientRect().width;
+    const maxScrollWidth =
+      -this.currentScrollAmount +
+      tabsWrapperVisibleWidth -
+      tabsWrapper.scrollWidth;
+
+    amount = amount < maxScrollWidth ? maxScrollWidth : amount;
+    amount += this.currentScrollAmount;
+    amount = Math.min(amount, 0);
 
     const styles = [
       `transform: translateX(${amount}px);`,
       click ? 'transition: all ease-in-out 400ms;' : '',
     ].join('');
 
-    tabWrapper.setAttribute('style', styles);
+    tabsWrapper.setAttribute('style', styles);
 
     if (click) this.currentScrollAmount = this.scrollActionAmount = amount;
     else this.scrollActionAmount = amount;
   }
 
-  private moveTabToView(tabIndex: number) {
+  @Watch('selected')
+  onSelectedChange(newValue: number) {
     if (!this.showArrows()) return;
 
-    const tab = this.getTab(tabIndex).getBoundingClientRect();
-    const amount = tab.x * -1;
-    this.move(amount, true);
+    const tabRect = this.getTab(newValue).getBoundingClientRect();
+    const wrapperWidth = this.getTabsWrapper()?.clientWidth;
+    const arrowWidth = 32;
+
+    if (tabRect.left < arrowWidth) {
+      this.move(-tabRect.left + arrowWidth, true);
+    } else if (wrapperWidth && tabRect.right > wrapperWidth - arrowWidth) {
+      this.move(wrapperWidth - tabRect.right - arrowWidth, true);
+    }
   }
 
   private setSelected(index: number) {
@@ -186,7 +201,7 @@ export class Tabs {
   }
 
   private clickTab(index: number) {
-    if (this.dragStop()) {
+    if (!this.clickAction.isClick || this.dragStop()) {
       return;
     }
 
@@ -196,7 +211,6 @@ export class Tabs {
     }
 
     this.setSelected(index);
-    this.moveTabToView(index);
   }
 
   private dragStart(element: HTMLIxTabItemElement, event: MouseEvent) {
@@ -212,11 +226,12 @@ export class Tabs {
     const mousedownPositionX = event.clientX;
     const move = (event: MouseEvent) =>
       this.dragMove(event, tabPositionX, mousedownPositionX);
-
-    window.addEventListener('mouseup', () => {
+    const windowClick = () => {
       window.removeEventListener('mousemove', move, false);
+      window.removeEventListener('click', windowClick, false);
       this.dragStop();
-    });
+    };
+    window.addEventListener('click', windowClick);
     window.addEventListener('mousemove', move, false);
   }
 
@@ -225,8 +240,10 @@ export class Tabs {
   }
 
   private dragStop() {
-    clearTimeout(this.clickAction.timeout);
-    this.clickAction.timeout = null;
+    if (this.clickAction.timeout) {
+      clearTimeout(this.clickAction.timeout);
+      this.clickAction.timeout = null;
+    }
 
     if (this.clickAction.isClick) return false;
 
@@ -252,6 +269,8 @@ export class Tabs {
 
       element.setAttribute('placement', this.placement);
     });
+
+    this.initResizeObserver();
   }
 
   componentDidRender() {
@@ -267,18 +286,13 @@ export class Tabs {
   }
 
   componentWillRender() {
-    requestAnimationFrameNoNgZone(() => {
-      const showNextArrow = this.showNextArrow();
-      const previousArrow = this.showPreviousArrow();
+    this.renderArrows();
+  }
 
-      Object.assign(
-        this.arrowLeftElement.style,
-        this.getArrowStyle(previousArrow)
-      );
-      Object.assign(
-        this.arrowRightElement.style,
-        this.getArrowStyle(showNextArrow)
-      );
+  private renderArrows() {
+    requestAnimationFrameNoNgZone(() => {
+      this.showArrowNext = this.showNextArrow();
+      this.showArrowPrevious = this.showPreviousArrow();
     });
   }
 
@@ -289,6 +303,10 @@ export class Tabs {
         this.dragStart(element, event)
       );
     });
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver?.disconnect();
   }
 
   @Listen('tabClick')
@@ -310,33 +328,32 @@ export class Tabs {
   render() {
     return (
       <Host>
-        <div
-          class="arrow"
-          data-arrow-left
-          onClick={() => this.move(this.scrollAmount, true)}
-        >
-          <ix-icon name={'chevron-left-small'}></ix-icon>
-        </div>
+        {this.showArrowPrevious && (
+          <div class="arrow" onClick={() => this.move(this.scrollAmount, true)}>
+            <ix-icon name={'chevron-left-small'}></ix-icon>
+          </div>
+        )}
         <div
           class={{
             'tab-items': true,
             'overflow-shadow': true,
-            'shadow-left': this.showPreviousArrow(),
-            'shadow-right': this.showNextArrow(),
-            'shadow-both': this.showNextArrow() && this.showPreviousArrow(),
+            'shadow-left': this.showArrowPrevious,
+            'shadow-right': this.showArrowNext,
+            'shadow-both': this.showArrowNext && this.showArrowPrevious,
           }}
         >
           <div class="items-content">
             <slot></slot>
           </div>
         </div>
-        <div
-          class="arrow right"
-          data-arrow-right
-          onClick={() => this.move(-this.scrollAmount, true)}
-        >
-          <ix-icon name={'chevron-right-small'}></ix-icon>
-        </div>
+        {this.showArrowNext && (
+          <div
+            class="arrow right"
+            onClick={() => this.move(-this.scrollAmount, true)}
+          >
+            <ix-icon name={'chevron-right-small'}></ix-icon>
+          </div>
+        )}
       </Host>
     );
   }

@@ -2,19 +2,19 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-      name="viewport"
-    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pane Layout Example</title>
   </head>
-  <body class="theme-brand-dark">
+  <body>
     <!-- Preview code -->
     <ix-pane-layout
       id="pane-layout"
@@ -36,25 +36,32 @@ SPDX-License-Identifier: MIT
       </ix-pane>
 
       <div slot="content">
-        <ix-button id="toggle-variant" style="margin: 2.5rem">Toggle Variant</ix-button>
-        <ix-button id="toggle-layout" style="margin: 2.5rem">Toggle Layout</ix-button>
+        <ix-button id="toggle-variant" style="margin: 2.5rem">
+          Toggle Variant
+        </ix-button>
+        <ix-button id="toggle-layout" style="margin: 2.5rem">
+          Toggle Layout
+        </ix-button>
       </div>
     </ix-pane-layout>
 
     <script>
-      const paneLayout = document.getElementById("pane-layout");
-      const buttonVariant = document.getElementById("toggle-variant");
-      const buttonLayout = document.getElementById("toggle-layout");
+      const paneLayout = document.getElementById('pane-layout');
+      const buttonVariant = document.getElementById('toggle-variant');
+      const buttonLayout = document.getElementById('toggle-layout');
 
-      buttonVariant.addEventListener("click", () => {
-        const isInline = paneLayout.variant === 'inline'
+      buttonVariant.addEventListener('click', () => {
+        const isInline = paneLayout.variant === 'inline';
 
-        paneLayout.variant = isInline ? 'floating' : 'inline'
+        paneLayout.variant = isInline ? 'floating' : 'inline';
         paneLayout.borderless = isInline;
-      })
-      buttonLayout.addEventListener("click", () => {
-        paneLayout.layout = paneLayout.layout === "full-horizontal" ? "full-vertical" : "full-horizontal"
-      })
+      });
+      buttonLayout.addEventListener('click', () => {
+        paneLayout.layout =
+          paneLayout.layout === 'full-horizontal'
+            ? 'full-vertical'
+            : 'full-horizontal';
+      });
     </script>
     <!-- Preview code -->
     <script type="module" src="./init.js"></script>

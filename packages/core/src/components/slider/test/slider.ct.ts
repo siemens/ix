@@ -27,14 +27,18 @@ test('should show tooltip by focus', async ({ page, mount }) => {
   const tooltip = slider.locator('ix-tooltip');
   await input.focus();
   await expect(tooltip).toBeVisible();
-  const left = (await tooltip.boundingBox()).x;
+  const left = (await tooltip.boundingBox())?.x;
+
+  if (!left) {
+    throw new Error('Tooltip bounding box is x is undefined.');
+  }
 
   await input.press('ArrowRight');
   await input.press('ArrowRight');
 
   await page.waitForTimeout(500);
   await expect(tooltip).toBeVisible();
-  const leftAfterKeyboardNavigation = (await tooltip.boundingBox()).x;
+  const leftAfterKeyboardNavigation = (await tooltip.boundingBox())?.x;
 
   expect(leftAfterKeyboardNavigation).toBeGreaterThan(left);
 
@@ -57,10 +61,15 @@ test('should show tooltip while mouse drags slider handle', async ({
   await expect(tooltip).not.toBeVisible();
 
   const box = await slider.boundingBox();
-  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-  await page.mouse.down();
-  await page.mouse.move(box.x + box.width / 3, box.y + box.height / 3);
-  await expect(tooltip).toBeVisible();
+
+  if (box) {
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 3, box.y + box.height / 3);
+    await expect(tooltip).toBeVisible();
+  } else {
+    throw new Error('Slider bounding box is null.');
+  }
 
   await page.mouse.up();
   await expect(tooltip).not.toBeVisible();

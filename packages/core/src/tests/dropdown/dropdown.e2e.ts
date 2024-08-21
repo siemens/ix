@@ -20,6 +20,15 @@ regressionTest.describe('dropdown', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('checked', async ({ page }) => {
+    await page.goto('dropdown/checked');
+
+    await page.locator('ix-button').click();
+    await page.waitForSelector('.dropdown-menu.show');
+
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest('overflow', async ({ page }) => {
     await page.goto('dropdown/overflow');
 

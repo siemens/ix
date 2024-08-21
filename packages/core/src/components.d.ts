@@ -42,6 +42,7 @@ import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
+import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
@@ -82,6 +83,7 @@ export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
+export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
@@ -108,6 +110,7 @@ export namespace Components {
         "subheading": string;
         /**
           * Card variant
+          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant": ActionCardVariant;
     }
@@ -140,7 +143,7 @@ export namespace Components {
         /**
           * Application name
          */
-        "name": string;
+        "name"?: string;
     }
     interface IxApplicationSidebar {
     }
@@ -291,6 +294,7 @@ export namespace Components {
         "selected": boolean;
         /**
           * Card variant
+          * @deprecated variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.
          */
         "variant": CardVariant;
     }
@@ -358,7 +362,7 @@ export namespace Components {
     }
     interface IxCategoryFilter {
         /**
-          * Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
+          * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
         "categories": {
     [id: string]: {
@@ -405,7 +409,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
+          * If set to true, allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
         "repeatCategories": boolean;
         /**
@@ -414,7 +418,7 @@ export namespace Components {
          */
         "staticOperator"?: LogicalFilterOperator;
         /**
-          * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
+          * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions": string[];
         "tmpDisableScrollIntoView": boolean;
@@ -912,12 +916,12 @@ export namespace Components {
         /**
           * Icon of dropdown item
          */
-        "icon": string;
+        "icon"?: string;
         "isSubMenu": boolean;
         /**
           * Label of dropdown item
          */
-        "label": string;
+        "label"?: string;
         "suppressChecked": boolean;
     }
     /**
@@ -1063,11 +1067,11 @@ export namespace Components {
         /**
           * Group header
          */
-        "header": string;
+        "header"?: string;
         /**
           * The index of the selected group entry. If undefined no group item is selected.
          */
-        "index": number;
+        "index"?: number;
         /**
           * Whether the group is selected.
          */
@@ -1075,7 +1079,7 @@ export namespace Components {
         /**
           * Group header subtitle
          */
-        "subHeader": string;
+        "subHeader"?: string;
         /**
           * Prevent header from being selectable
          */
@@ -1091,15 +1095,15 @@ export namespace Components {
         /**
           * Group item icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Index
          */
-        "index": number;
+        "index"?: number;
         /**
           * Group item secondary text
          */
-        "secondaryText": string;
+        "secondaryText"?: string;
         /**
           * Show selected state
          */
@@ -1111,7 +1115,7 @@ export namespace Components {
         /**
           * Group item text
          */
-        "text": string;
+        "text"?: string;
     }
     interface IxIconButton {
         /**
@@ -1826,7 +1830,7 @@ export namespace Components {
         /**
           * Card heading
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Card icon
          */
@@ -1834,13 +1838,14 @@ export namespace Components {
         /**
           * Card KPI value
          */
-        "notification": string;
+        "notification"?: string;
         /**
           * Card subheading
          */
-        "subheading": string;
+        "subheading"?: string;
         /**
           * Card variant
+          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant": PushCardVariant;
     }
@@ -1935,11 +1940,11 @@ export namespace Components {
         /**
           * Show error state and message
          */
-        "error": boolean | string;
+        "error"?: boolean | string;
         /**
           * Define tick marker on the slider. Marker has to be within slider min/max
          */
-        "marker": SliderMarker;
+        "marker"?: SliderMarker;
         /**
           * Maximum slider value
          */
@@ -2034,7 +2039,7 @@ export namespace Components {
         /**
           * Set counter value
          */
-        "counter": number;
+        "counter"?: number;
         /**
           * Set disabled tab
          */
@@ -2259,7 +2264,7 @@ export namespace Components {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for": string | HTMLElement | Promise<HTMLElement>;
+        "for"?: string | HTMLElement | Promise<HTMLElement>;
         "hideDelay": number;
         "hideTooltip": () => Promise<void>;
         /**
@@ -2272,11 +2277,11 @@ export namespace Components {
          */
         "placement": 'top' | 'right' | 'bottom' | 'left';
         "showDelay": number;
-        "showTooltip": (anchorElement: any) => Promise<void>;
+        "showTooltip": (anchorElement: Element) => Promise<void>;
         /**
           * Title of the tooltip
          */
-        "titleContent": string;
+        "titleContent"?: string;
     }
     interface IxTree {
         /**
@@ -2290,7 +2295,7 @@ export namespace Components {
         /**
           * Render function of tree items
          */
-        "renderItem": <T = any>(
+        "renderItem"?: <T = any>(
     index: number,
     data: T,
     dataList: Array<T>,
@@ -2306,7 +2311,7 @@ export namespace Components {
         /**
           * Context
          */
-        "context": TreeItemContext;
+        "context"?: TreeItemContext;
         /**
           * Has tree item children
          */
@@ -2314,7 +2319,7 @@ export namespace Components {
         /**
           * Text
          */
-        "text": string;
+        "text"?: string;
     }
     /**
      * @since 2.0.0
@@ -4131,6 +4136,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card variant
+          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant"?: ActionCardVariant;
     }
@@ -4327,6 +4333,7 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * Card variant
+          * @deprecated variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.
          */
         "variant"?: CardVariant;
     }
@@ -4411,7 +4418,7 @@ declare namespace LocalJSX {
     }
     interface IxCategoryFilter {
         /**
-          * Configuration object hash used to populate the dropwdown menu for typeahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
+          * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
         "categories"?: {
     [id: string]: {
@@ -4450,7 +4457,7 @@ declare namespace LocalJSX {
     [id: string]: string;
   };
         /**
-          * Event dispatched whenever the a category gets selected in the dropdown
+          * Event dispatched whenever a category gets selected in the dropdown
          */
         "onCategoryChanged"?: (event: IxCategoryFilterCustomEvent<string>) => void;
         /**
@@ -4470,7 +4477,7 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * If set to true allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
+          * If set to true, allows that a single category can be set more than once. An already set category will not appear in the category dropdown if set to false.  Defaults to true
          */
         "repeatCategories"?: boolean;
         /**
@@ -4479,7 +4486,7 @@ declare namespace LocalJSX {
          */
         "staticOperator"?: LogicalFilterOperator;
         /**
-          * A list of strings that will be supplied as typeahead suggestions not tied to any categories.
+          * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
         "suggestions"?: string[];
         "tmpDisableScrollIntoView"?: boolean;
@@ -6023,6 +6030,7 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card variant
+          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant"?: PushCardVariant;
     }
@@ -6550,7 +6558,7 @@ declare namespace LocalJSX {
         /**
           * Initial root element will not be rendered
          */
-        "root"?: string;
+        "root": string;
     }
     interface IxTreeItem {
         /**
