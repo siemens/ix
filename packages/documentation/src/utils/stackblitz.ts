@@ -12,6 +12,7 @@ import {
   getAngularRuntime,
   getHTMLRuntime,
   getReactRuntime,
+  getVueRuntime,
 } from './code-runtime';
 import sdk from '@stackblitz/sdk';
 
@@ -46,20 +47,26 @@ function replaceLibraryImports(
   );
 }
 
+async function openVueStackBlitz(
+  baseUrl: string,
+  snippets: Record<string, string>,
+  name: string,
+  version: string
+) {
+  const projectFiles = await createVueProjectFiles(baseUrl, snippets, name);
+
+  openProject('vue', projectFiles, `${name}.vue`, version);
+}
+
 async function openHtmlStackBlitz(
   baseUrl: string,
   snippets: Record<string, string>,
   name: string,
   version: string
 ) {
-  const projectFiles = await createHTMLProjectFiles(
-    baseUrl,
-    snippets,
-    name,
-    version
-  );
+  const projectFiles = await createHTMLProjectFiles(baseUrl, snippets, name);
 
-  console.log(projectFiles);
+  openProject('html', projectFiles, 'src/index.html', version);
 }
 
 async function openAngularStackBlitz(
@@ -68,12 +75,7 @@ async function openAngularStackBlitz(
   name: string,
   version: string
 ) {
-  const projectFiles = await createAngularProjectFiles(
-    baseUrl,
-    snippets,
-    name,
-    version
-  );
+  const projectFiles = await createAngularProjectFiles(baseUrl, snippets, name);
 
   openProject('angular', projectFiles, `src/${name}.ts`, version);
 }
@@ -84,12 +86,7 @@ async function openReactStackBlitz(
   name: string,
   version: string
 ) {
-  const projectFiles = await createReactProjectFiles(
-    baseUrl,
-    snippets,
-    name,
-    version
-  );
+  const projectFiles = await createReactProjectFiles(baseUrl, snippets, name);
 
   openProject('react', projectFiles, `src/${name}.tsx`, version);
 }
@@ -97,8 +94,7 @@ async function openReactStackBlitz(
 async function createReactProjectFiles(
   baseUrl: string,
   snippets: Record<string, string>,
-  name: string,
-  version: string
+  name: string
 ) {
   const runtime = await getReactRuntime(baseUrl);
 
@@ -130,8 +126,7 @@ async function createReactProjectFiles(
 async function createAngularProjectFiles(
   baseUrl: string,
   snippets: Record<string, string>,
-  name: string,
-  version: string
+  name: string
 ) {
   const runtime = await getAngularRuntime(baseUrl);
 
@@ -159,10 +154,32 @@ async function createAngularProjectFiles(
 async function createHTMLProjectFiles(
   baseUrl: string,
   snippets: Record<string, string>,
-  name: string,
-  version: string
+  name: string
 ) {
   const runtime = await getHTMLRuntime(baseUrl);
+
+  const project = {
+    ...runtime,
+  };
+
+  const html = snippets[`${name}.html`];
+  project['src/index.html'] = html;
+
+  Object.keys(snippets).forEach((key) => {
+    project[`src/${key.replace('./', '')}`] = snippets[key];
+  });
+
+  delete project[`src/${name}.html`];
+
+  return project;
+}
+
+async function createVueProjectFiles(
+  baseUrl: string,
+  snippets: Record<string, string>,
+  name: string
+) {
+  const runtime = await getVueRuntime(baseUrl);
 
   const project = {
     ...runtime,
@@ -172,7 +189,21 @@ async function createHTMLProjectFiles(
     project[`src/${key.replace('./', '')}`] = snippets[key];
   });
 
-  console.log(project);
+  const exampleImport = `import ${capitalizeFirstLetter(
+    name
+  )} from './${name}.vue';`;
+
+  project['src/App.vue'] = project['src/App.vue'].replace(
+    "import Example from './Example.vue';",
+    exampleImport
+  );
+
+  project['src/App.vue'] = project['src/App.vue'].replace(
+    '<Example />',
+    `<${capitalizeFirstLetter(name)} />`
+  );
+
+  return project;
 }
 
 export async function openStackBlitz({
@@ -202,7 +233,7 @@ export async function openStackBlitz({
     return openHtmlStackBlitz(baseUrl, snippets, name, libraryVersion);
   }
 
-  // if (framework === TargetFramework.VUE) {
-  //   return openVueStackBlitz(baseUrl, snippets, libraryVersion);
-  // }
+  if (framework === TargetFramework.VUE) {
+    return openVueStackBlitz(baseUrl, snippets, name, libraryVersion);
+  }
 }

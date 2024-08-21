@@ -12,7 +12,7 @@ import { docusaurusFetch } from './fetching';
 
 export async function fetchSourceForHtml(baseUrl: string, name: string) {
   const snippets: Record<string, string> = {};
-  const tsFile = await docusaurusFetch(`${baseUrl}/${name}.html`);
+  const tsFile = await docusaurusFetch(`${baseUrl}/${name}.html`, true);
 
   snippets[`${name}.html`] = tsFile;
 

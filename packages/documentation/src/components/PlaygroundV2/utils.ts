@@ -249,7 +249,7 @@ async function openAngularStackBlitz(
 
   let renderFirstExample = sourceFiles[0];
 
-  if(sourceFiles.length >= 2) {
+  if (sourceFiles.length >= 2) {
     renderFirstExample = sourceFiles[1];
   }
 

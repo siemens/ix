@@ -1,5 +1,3 @@
-import { stripComments } from '../PlaygroundV2/utils';
-
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
@@ -8,7 +6,9 @@ import { stripComments } from '../PlaygroundV2/utils';
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export async function docusaurusFetch(url: string) {
+import { stripComments } from '../PlaygroundV2/utils';
+
+export async function docusaurusFetch(url: string, removeComments = true) {
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -26,5 +26,5 @@ export async function docusaurusFetch(url: string) {
     throw `Error fetching code from ${url}`;
   }
 
-  return stripComments(text);
+  return removeComments ? stripComments(text) : text;
 }

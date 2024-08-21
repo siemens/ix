@@ -8,6 +8,32 @@
  */
 import { docusaurusFetch } from '../../components/PlaygroundV3/fetching';
 
+export async function getVueRuntime(baseUrl: string) {
+  const files = [
+    'src/App.vue',
+    'src/env.d.ts',
+    'src/main.ts',
+    'index.html',
+    'package.json',
+    'tsconfig.json',
+    'vite.config.ts',
+  ];
+
+  const runtime: Record<string, string> = {};
+
+  const runtime$ = files.map(async (file) => {
+    const source = await docusaurusFetch(`${baseUrl}code-runtime/vue/${file}`);
+    runtime[file] = source;
+  });
+
+  await Promise.all(runtime$);
+  const globalCss = await docusaurusFetch(
+    `${baseUrl}auto-generated/previews/vue/styles/global.css`
+  );
+  runtime['src/styles/global.css'] = globalCss;
+  return runtime;
+}
+
 export async function getReactRuntime(baseUrl: string) {
   const files = [
     'vite.config.ts',
@@ -81,9 +107,12 @@ export async function getHTMLRuntime(baseUrl: string) {
 
   await Promise.all(runtime$);
 
+  runtime['src/init.js'] = runtime['src/main.js'];
+  delete runtime['src/main.js'];
+
   const globalCss = await docusaurusFetch(
     `${baseUrl}auto-generated/previews/web-components/styles/global.css`
   );
-  runtime['src/styles.css'] = globalCss;
+  runtime['src/styles/global.css'] = globalCss;
   return runtime;
 }
