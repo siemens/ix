@@ -8,7 +8,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
+import {convertThemeName, registerTheme} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
@@ -54,13 +54,7 @@ export default function EchartsLineSimple() {
     <ReactEcharts
       option={options}
       theme={theme}
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-        height: '40rem',
-        paddingTop: '1rem',
-      }}
+      className="echarts"
     />
   );
 }

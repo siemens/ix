@@ -13,6 +13,11 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECharts example</title>
+    <!-- Sources -->
+    <script type="module">
+      import 'example-styles/dist/charts.css';
+    </script>
+    <!-- Sources -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
     <script src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
   </head>
@@ -20,13 +25,7 @@ LICENSE file in the root directory of this source tree.
     <!-- Preview code -->
     <div
       id="main"
-      style="
-        display: block;
-        position: relative;
-        width: 100%;
-        height: 30rem;
-        padding-top: 1rem;
-      "
+      class="echarts"
     ></div>
 
     <script type="module">
@@ -48,16 +47,16 @@ LICENSE file in the root directory of this source tree.
           type: 'value',
           axisLine: {
             lineStyle: {
-              color: getComputedCSSProperty('--theme-chart-axes'),
+              color: getComputedCSSProperty('chart-axes'),
             },
           },
           splitLine: {
             lineStyle: {
-              color: getComputedCSSProperty('--theme-chart-grid-lines'),
+              color: getComputedCSSProperty('chart-grid-lines'),
             },
           },
           axisLabel: {
-            color: getComputedCSSProperty('--theme-color-std-text'),
+            color: getComputedCSSProperty('color-std-text'),
           },
         };
       }

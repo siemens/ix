@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/charts.css';
+
 import React, { useEffect, useState } from 'react';
 import {
   convertThemeName,
@@ -37,16 +39,16 @@ export default function EchartsSpecial3d() {
       type: 'value',
       axisLine: {
         lineStyle: {
-          color: getComputedCSSProperty('--theme-chart-axes'),
+          color: getComputedCSSProperty('chart-axes'),
         },
       },
       splitLine: {
         lineStyle: {
-          color: getComputedCSSProperty('--theme-chart-grid-lines'),
+          color: getComputedCSSProperty('chart-grid-lines'),
         },
       },
       axisLabel: {
-        color: getComputedCSSProperty('--theme-color-std-text'),
+        color: getComputedCSSProperty('color-std-text'),
       },
     };
   }
@@ -92,13 +94,7 @@ export default function EchartsSpecial3d() {
     <ReactEcharts
       option={options}
       theme={theme}
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-        height: '40rem',
-        paddingTop: '1rem',
-      }}
+      className="echarts"
     />
   );
 }

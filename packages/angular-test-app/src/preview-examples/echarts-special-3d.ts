@@ -21,6 +21,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-special-3d.html',
+  styles: [`@import 'example-styles/dist/charts.css'`],
 })
 export default class EchartsSpecial3d implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
@@ -30,16 +31,16 @@ export default class EchartsSpecial3d implements OnInit {
       type: 'value',
       axisLine: {
         lineStyle: {
-          color: getComputedCSSProperty('--theme-chart-axes'),
+          color: getComputedCSSProperty('chart-axes'),
         },
       },
       splitLine: {
         lineStyle: {
-          color: getComputedCSSProperty('--theme-chart-grid-lines'),
+          color: getComputedCSSProperty('chart-grid-lines'),
         },
       },
       axisLabel: {
-        color: getComputedCSSProperty('--theme-color-std-text'),
+        color: getComputedCSSProperty('color-std-text'),
       }
     };
   }

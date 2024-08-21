@@ -21,6 +21,7 @@ import { OrdinalRawValue } from 'echarts/types/src/util/types';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-special-zoom.html',
+  styles: [`@import 'example-styles/dist/charts.css'`],
 })
 export default class EchartsSpecialZoom implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
@@ -70,7 +71,7 @@ export default class EchartsSpecialZoom implements OnInit {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
-              color: getComputedCSSProperty('--theme-color-primary'),
+              color: getComputedCSSProperty('color-primary'),
             },
             {
               offset: 1,

@@ -7,28 +7,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-<div
-  style="
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 40rem;
-    padding-top: 1rem;
-  "
->
+<div class="echarts">
   <div
+    *ngIf="this.data.value.length === 0"
     id="empty-state-container"
-    style="
-      position: absolute;
-      justify-content: center;
-      align-content: center;
-      width: 100%;
-      height: 100%;
-      background-color: var(--theme-color-backdrop);
-      z-index: 1;
-    "
+    class="empty-state-container"
   >
     <ix-empty-state
+      class="empty-state"
       header="No elements available"
       sub-header="Failed to retrieve data"
       icon="info"
@@ -37,7 +23,7 @@ LICENSE file in the root directory of this source tree.
   </div>
   <div
     echarts
-    style="display: block; position: relative; height: 100%"
+    class="echarts"
     [options]="options"
     [theme]="theme"
     id="main"

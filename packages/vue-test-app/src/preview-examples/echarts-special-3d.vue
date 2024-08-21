@@ -46,16 +46,16 @@ function gridConfig() {
     type: 'value',
     axisLine: {
       lineStyle: {
-        color: getComputedCSSProperty('--theme-chart-axes'),
+        color: getComputedCSSProperty('chart-axes'),
       },
     },
     splitLine: {
       lineStyle: {
-        color: getComputedCSSProperty('--theme-chart-grid-lines'),
+        color: getComputedCSSProperty('chart-grid-lines'),
       },
     },
     axisLabel: {
-      color: getComputedCSSProperty('--theme-color-std-text'),
+      color: getComputedCSSProperty('color-std-text'),
     },
   };
 }
@@ -98,16 +98,8 @@ const options = {
 } as EChartsOption;
 </script>
 
+<style scoped src="example-styles/dist/charts.css"></style>
+
 <template>
-  <div
-    style="
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 40rem;
-      padding-top: 1rem;
-    "
-  >
     <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
-  </div>
 </template>

@@ -50,7 +50,7 @@ const options = {
         show: true,
         lineStyle: {
           width: 15,
-          color: [[1, getComputedCSSProperty('--theme-color-neutral-40')]],
+          color: [[1, getComputedCSSProperty('color-neutral-40')]],
         },
       },
       axisTick: {
@@ -71,7 +71,7 @@ const options = {
         width: 35,
         itemStyle: {
           borderMiterLimit: 16,
-          color: getComputedCSSProperty('--theme-color-success'),
+          color: getComputedCSSProperty('color-success'),
         },
       },
       pointer: {
@@ -85,7 +85,7 @@ const options = {
             overflow: 'break',
             fontSize: '2rem',
             fontWeight: 'normal',
-            color: getComputedCSSProperty('--theme-color-soft-text'),
+            color: getComputedCSSProperty('color-soft-text'),
             width: 250,
             lineHeight: 35,
             formatter: '{value} / 100 \n completed',
@@ -100,16 +100,8 @@ const options = {
 };
 </script>
 
+<style scoped src="example-styles/dist/charts-gauge.css"></style>
+
 <template>
-  <div
-    style="
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 40rem;
-      padding-top: 1rem;
-    "
-  >
-    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
-  </div>
+  <VueECharts :theme="theme" :option="options" autoresize class="echarts-gauge"></VueECharts>
 </template>

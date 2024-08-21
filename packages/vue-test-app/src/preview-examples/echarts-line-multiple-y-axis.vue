@@ -40,8 +40,20 @@ const dates = Array.from({ length: 2025 - 2013 }, (_, i) =>
   (2013 + i).toString()
 );
 
-//prettier-ignore
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
 
 const data = {
   evaporation: months.map(() => (Math.random() * 100).toFixed(2)),
@@ -50,7 +62,7 @@ const data = {
 };
 
 const themeChartList = Array.from({ length: 17 }, (_, i) =>
-  getComputedCSSProperty(`--theme-chart-${i + 1}`)
+  getComputedCSSProperty(`chart-${i + 1}`)
 );
 
 function createYAxis(
@@ -124,27 +136,19 @@ const options: EChartsOption = {
   ],
   yAxis: [
     createYAxis('Evaporation', 'right', themeChartList[0], '{value} ml'),
-    createYAxis('Precipitation', 'right', themeChartList[1], '{value} ml', 80),
-    createYAxis('Temperature', 'left', themeChartList[2], '{value} °C'),
+    createYAxis('Precipitation', 'right', themeChartList[7], '{value} ml', 80),
+    createYAxis('Temperature', 'left', themeChartList[12], '{value} °C'),
   ],
   series: [
     createSeries('Evaporation', 0, data.evaporation, themeChartList[0]),
-    createSeries('Precipitation', 1, data.precipitation, themeChartList[1]),
-    createSeries('Temperature', 2, data.temperature, themeChartList[2]),
+    createSeries('Precipitation', 1, data.precipitation, themeChartList[7]),
+    createSeries('Temperature', 2, data.temperature, themeChartList[12]),
   ],
 } as EChartsOption;
 </script>
 
+<style scoped src="example-styles/dist/charts.css"></style>
+
 <template>
-  <div
-    style="
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 40rem;
-      padding-top: 1rem;
-    "
-  >
-    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
-  </div>
+  <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
 </template>

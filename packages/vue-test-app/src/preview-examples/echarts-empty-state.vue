@@ -58,36 +58,11 @@ const options = {
 } as EChartsOption;
 </script>
 
-<style>
-.empty-state-container {
-  position: absolute;
-  justify-content: center;
-  align-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: var(--theme-color-backdrop);
-  z-index: 1;
-}
-
-.chart-container {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 40rem;
-  padding-top: 1rem;
-}
-
-.chart {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-</style>
+<style scoped src="example-styles/dist/charts.css"></style>
 
 <template>
-  <div class="chart-container">
-    <div class="empty-state-container">
+  <div class="echarts">
+    <div v-if="data.value.length === 0" class="empty-state-container">
       <IxEmptyState
         className="empty-state"
         header="No elements available"
@@ -96,6 +71,6 @@ const options = {
         action="Try again"
       ></IxEmptyState>
     </div>
-    <VueECharts class="chart" :theme="theme" :option="options" autoresize></VueECharts>
+    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
   </div>
 </template>

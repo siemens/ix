@@ -93,7 +93,7 @@ const options: EChartsOption = {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           {
             offset: 0,
-            color: getComputedCSSProperty('--theme-color-primary'),
+            color: getComputedCSSProperty('color-primary'),
           },
           {
             offset: 1,
@@ -107,16 +107,8 @@ const options: EChartsOption = {
 } as EChartsOption;
 </script>
 
+<style scoped src="example-styles/dist/charts.css"></style>
+
 <template>
-  <div
-    style="
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 40rem;
-      padding-top: 1rem;
-    "
-  >
-    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
-  </div>
+  <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
 </template>

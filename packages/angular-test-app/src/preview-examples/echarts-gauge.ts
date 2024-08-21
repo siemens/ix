@@ -10,8 +10,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
   convertThemeName,
-  registerTheme,
   getComputedCSSProperty,
+  registerTheme,
 } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
@@ -20,6 +20,11 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-gauge.html',
+  styles: [
+    `
+      @import 'example-styles/dist/charts.css';
+    `,
+  ],
 })
 export default class EchartsGauge implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
@@ -27,10 +32,10 @@ export default class EchartsGauge implements OnInit {
   value = 45.3;
 
   private getGaugeColor(value: number) {
-    if (value > 60) return getComputedCSSProperty('--theme-color-success');
-    else if (value > 25) return getComputedCSSProperty('--theme-color-warning');
+    if (value > 60) return getComputedCSSProperty('color-success');
+    else if (value > 25) return getComputedCSSProperty('color-warning');
     else {
-      return getComputedCSSProperty('--theme-color-alarm');
+      return getComputedCSSProperty('color-alarm');
     }
   }
 
@@ -43,9 +48,7 @@ export default class EchartsGauge implements OnInit {
           show: true,
           lineStyle: {
             width: 18,
-            color: [
-              [1, getComputedCSSProperty('--theme-color-neutral-40')],
-            ],
+            color: [[1, getComputedCSSProperty('color-neutral-40')]],
           },
         },
         axisTick: {
@@ -89,7 +92,7 @@ export default class EchartsGauge implements OnInit {
               fontSize: '1.5rem',
               width: 250,
               lineHeight: 35,
-              color: getComputedCSSProperty('--theme-color-soft-text'),
+              color: getComputedCSSProperty('color-soft-text'),
               formatter: '{value}Mbps \nNetwork Speed',
             },
             pointer: {
@@ -115,9 +118,9 @@ export default class EchartsGauge implements OnInit {
           lineStyle: {
             width: 5,
             color: [
-              [0.25, getComputedCSSProperty('--theme-color-alarm')],
-              [0.6, getComputedCSSProperty('--theme-color-warning')],
-              [1, getComputedCSSProperty('--theme-color-success')],
+              [0.25, getComputedCSSProperty('color-alarm')],
+              [0.6, getComputedCSSProperty('color-warning')],
+              [1, getComputedCSSProperty('color-success')],
             ],
           },
         },

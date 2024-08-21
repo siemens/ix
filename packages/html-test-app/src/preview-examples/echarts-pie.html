@@ -13,19 +13,18 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECharts example</title>
+    <!-- Sources -->
+    <script type="module">
+      import 'example-styles/dist/charts.css';
+    </script>
+    <!-- Sources -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
   </head>
   <body class="">
     <!-- Preview code -->
     <div
       id="main"
-      style="
-        display: block;
-        position: relative;
-        width: 100%;
-        height: 30rem;
-        padding-top: 1rem;
-      "
+      class="echarts"
     ></div>
 
     <script type="module">
@@ -69,7 +68,7 @@ LICENSE file in the root directory of this source tree.
             data: data,
             label: {
               show: true,
-              color: getComputedCSSProperty('--theme-color-neutral'),
+              color: getComputedCSSProperty('color-neutral'),
             },
             emphasis: {
               itemStyle: {

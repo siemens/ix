@@ -20,6 +20,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-line-advanced.html',
+  styles: [`@import 'example-styles/dist/charts.css'`],
 })
 export default class EchartsLineAdvanced implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
@@ -48,7 +49,7 @@ export default class EchartsLineAdvanced implements OnInit {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
-              color: getComputedCSSProperty('--theme-color-primary'),
+              color: getComputedCSSProperty('color-primary'),
             },
             { offset: 1, color: 'transparent' },
           ]),
@@ -60,7 +61,7 @@ export default class EchartsLineAdvanced implements OnInit {
           ],
           label: {
             fontWeight: 'bold',
-            color: getComputedCSSProperty('--theme-color-inv-contrast-text'),
+            color: getComputedCSSProperty('color-inv-contrast-text'),
           },
         },
         markLine: {

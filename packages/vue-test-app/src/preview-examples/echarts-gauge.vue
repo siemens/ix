@@ -38,10 +38,10 @@ themeSwitcher.themeChanged.on((newTheme: string) => {
 const value = 45.3;
 
 function getGaugeColor(value: number) {
-  if (value > 60) return getComputedCSSProperty('--theme-color-success');
-  else if (value > 25) return getComputedCSSProperty('--theme-color-warning');
+  if (value > 60) return getComputedCSSProperty('color-success');
+  else if (value > 25) return getComputedCSSProperty('color-warning');
   else {
-    return getComputedCSSProperty('--theme-color-alarm');
+    return getComputedCSSProperty('color-alarm');
   }
 }
 
@@ -55,7 +55,7 @@ const options: EChartsOption = {
         lineStyle: {
           width: 18,
           color: [
-            [1, getComputedCSSProperty('--theme-color-neutral-40')],
+            [1, getComputedCSSProperty('color-neutral-40')],
           ],
         },
       },
@@ -100,7 +100,7 @@ const options: EChartsOption = {
             fontSize: '1.5rem',
             width: 250,
             lineHeight: 35,
-            color: getComputedCSSProperty('--theme-color-soft-text'),
+            color: getComputedCSSProperty('color-soft-text'),
             formatter: '{value}Mbps \nNetwork Speed',
           },
           pointer: {
@@ -126,9 +126,9 @@ const options: EChartsOption = {
         lineStyle: {
           width: 5,
           color: [
-            [0.25, getComputedCSSProperty('--theme-color-alarm')],
-            [0.6, getComputedCSSProperty('--theme-color-warning')],
-            [1, getComputedCSSProperty('--theme-color-success')],
+            [0.25, getComputedCSSProperty('color-alarm')],
+            [0.6, getComputedCSSProperty('color-warning')],
+            [1, getComputedCSSProperty('color-success')],
           ],
         },
       },
@@ -141,16 +141,8 @@ const options: EChartsOption = {
 } as EChartsOption;
 </script>
 
+<style scoped src="example-styles/dist/charts.css"></style>
+
 <template>
-  <div
-    style="
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 40rem;
-      padding-top: 1rem;
-    "
-  >
-    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
-  </div>
+  <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
 </template>

@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/charts-gauge.css';
+
 import React, { useEffect, useState } from 'react';
 import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
@@ -39,7 +41,7 @@ export default function EchartsProgressArc() {
           lineStyle: {
             width: 15,
             color: [
-              [1, getComputedCSSProperty('--theme-color-neutral-40')],
+              [1, getComputedCSSProperty('color-neutral-40')],
             ],
           },
         },
@@ -61,7 +63,7 @@ export default function EchartsProgressArc() {
           width: 35,
           itemStyle: {
             borderMiterLimit: 16,
-            color: getComputedCSSProperty('--theme-color-success'),
+            color: getComputedCSSProperty('color-success'),
           },
         },
         pointer: {
@@ -75,7 +77,7 @@ export default function EchartsProgressArc() {
               overflow: 'break',
               fontSize: '2rem',
               fontWeight: 'normal',
-              color: getComputedCSSProperty('--theme-color-soft-text'),
+              color: getComputedCSSProperty('color-soft-text'),
               width: 250,
               lineHeight: 35,
               formatter: '{value} / 100 \n completed',
@@ -93,13 +95,7 @@ export default function EchartsProgressArc() {
     <ReactEcharts
       option={options}
       theme={theme}
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-        height: '40rem',
-        paddingTop: '1rem',
-      }}
+      className="echarts-gauge"
     />
   );
 }

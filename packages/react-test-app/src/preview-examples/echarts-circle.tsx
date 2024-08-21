@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/charts.css';
+
 import React, { useEffect, useState } from 'react';
 import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
@@ -51,7 +53,7 @@ export default function EchartsCircle() {
         radius: ['60%', '90%'],
         label: {
           show: true,
-          color: getComputedCSSProperty('--theme-color-neutral'),
+          color: getComputedCSSProperty('color-neutral'),
         },
         emphasis: {
           label: {
@@ -72,13 +74,7 @@ export default function EchartsCircle() {
     <ReactEcharts
       option={options}
       theme={theme}
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-        height: '40rem',
-        paddingTop: '1rem',
-      }}
+      className="echarts"
     />
   );
 }

@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/charts.css';
+
 import React, { useEffect, useState } from 'react';
 import {
   convertThemeName,
@@ -87,7 +89,7 @@ export default function EchartsSpecialZoom() {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
-              color: getComputedCSSProperty('--theme-color-primary'),
+              color: getComputedCSSProperty('color-primary'),
             },
             {
               offset: 1,
@@ -104,13 +106,7 @@ export default function EchartsSpecialZoom() {
     <ReactEcharts
       option={options}
       theme={theme}
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-        height: '40rem',
-        paddingTop: '1rem',
-      }}
+      className="echarts"
     />
   );
 }

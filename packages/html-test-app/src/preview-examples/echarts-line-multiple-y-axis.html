@@ -13,23 +13,23 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECharts example</title>
+    <!-- Sources -->
+    <script type="module">
+      import 'example-styles/dist/charts.css';
+    </script>
+    <!-- Sources -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
   </head>
   <body class="">
     <!-- Preview code -->
-    <div
-      id="main"
-      style="
-        display: block;
-        position: relative;
-        width: 100%;
-        height: 40rem;
-        padding-top: 1rem;
-      "
-    ></div>
+    <div id="main" class="echarts"></div>
 
     <script type="module">
-      import { convertThemeName, getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
+      import {
+        convertThemeName,
+        getComputedCSSProperty,
+        registerTheme,
+      } from '@siemens/ix-echarts';
       import { themeSwitcher } from '@siemens/ix';
 
       function initChart(theme, options) {
@@ -42,8 +42,20 @@ LICENSE file in the root directory of this source tree.
         return myChart;
       }
 
-      //prettier-ignore
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const months = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ];
 
       const data = {
         evaporation: months.map(() => (Math.random() * 100).toFixed(2)),
@@ -113,45 +125,25 @@ LICENSE file in the root directory of this source tree.
           },
         ],
         yAxis: [
-          createYAxis(
-            'Evaporation',
-            'right',
-            themeChartList[0],
-            '{value} ml'
-          ),
+          createYAxis('Evaporation', 'right', themeChartList[0], '{value} ml'),
           createYAxis(
             'Precipitation',
             'right',
-            themeChartList[1],
+            themeChartList[7],
             '{value} ml',
             80
           ),
-          createYAxis(
-            'Temperature',
-            'left',
-            themeChartList[2],
-            '{value} °C'
-          ),
+          createYAxis('Temperature', 'left', themeChartList[12], '{value} °C'),
         ],
         series: [
-          createSeries(
-            'Evaporation',
-            0,
-            data.evaporation,
-            themeChartList[0]
-          ),
+          createSeries('Evaporation', 0, data.evaporation, themeChartList[0]),
           createSeries(
             'Precipitation',
             1,
             data.precipitation,
-            themeChartList[1]
+            themeChartList[7]
           ),
-          createSeries(
-            'Temperature',
-            2,
-            data.temperature,
-            themeChartList[2]
-          ),
+          createSeries('Temperature', 2, data.temperature, themeChartList[12]),
         ],
       };
 

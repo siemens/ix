@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'example-styles/dist/charts.css';
+
 import React, { useEffect, useState } from 'react';
 import {
   convertThemeName,
@@ -32,8 +34,20 @@ export default function EchartsLineMultipleYAxis() {
     });
   }, []);
 
-  //prettier-ignore
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
   const data = {
     evaporation: months.map(() => (Math.random() * 100).toFixed(2)),
@@ -42,7 +56,7 @@ export default function EchartsLineMultipleYAxis() {
   };
 
   const themeChartList = Array.from({ length: 17 }, (_, i) =>
-    getComputedCSSProperty(`--theme-chart-${i + 1}`)
+    getComputedCSSProperty(`chart-${i + 1}`)
   );
 
   function createYAxis(
@@ -119,30 +133,18 @@ export default function EchartsLineMultipleYAxis() {
       createYAxis(
         'Precipitation',
         'right',
-        themeChartList[1],
+        themeChartList[7],
         '{value} ml',
         80
       ),
-      createYAxis('Temperature', 'left', themeChartList[2], '{value} °C'),
+      createYAxis('Temperature', 'left', themeChartList[12], '{value} °C'),
     ],
     series: [
       createSeries('Evaporation', 0, data.evaporation, themeChartList[0]),
-      createSeries('Precipitation', 1, data.precipitation, themeChartList[1]),
-      createSeries('Temperature', 2, data.temperature, themeChartList[2]),
+      createSeries('Precipitation', 1, data.precipitation, themeChartList[7]),
+      createSeries('Temperature', 2, data.temperature, themeChartList[12]),
     ],
   };
 
-  return (
-    <ReactEcharts
-      option={options}
-      theme={theme}
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-        height: '40rem',
-        paddingTop: '1rem',
-      }}
-    />
-  );
+  return <ReactEcharts option={options} theme={theme} className="echarts" />;
 }

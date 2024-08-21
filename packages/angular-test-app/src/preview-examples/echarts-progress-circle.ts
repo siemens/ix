@@ -10,8 +10,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
   convertThemeName,
-  registerTheme,
   getComputedCSSProperty,
+  registerTheme,
 } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
@@ -20,6 +20,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-progress-circle.html',
+  styles: [`@import 'example-styles/dist/charts-gauge.css'`],
 })
 export default class EchartsProgressCircle implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
@@ -36,7 +37,7 @@ export default class EchartsProgressCircle implements OnInit {
           lineStyle: {
             width: 15,
             color: [
-              [1, getComputedCSSProperty('--theme-color-neutral-40')],
+              [1, getComputedCSSProperty('color-neutral-40')],
             ],
           },
         },
@@ -58,7 +59,7 @@ export default class EchartsProgressCircle implements OnInit {
           width: 35,
           itemStyle: {
             borderMiterLimit: 16,
-            color: getComputedCSSProperty('--theme-color-success'),
+            color: getComputedCSSProperty('color-success'),
           },
         },
         pointer: {
@@ -71,16 +72,16 @@ export default class EchartsProgressCircle implements OnInit {
               offsetCenter: [0, 0],
               fontSize: '2rem',
               fontWeight: 'normal',
-              color: getComputedCSSProperty('--theme-color-soft-text'),
+              color: getComputedCSSProperty('color-soft-text'),
               rich: {
                 valueStyle: {
                   fontSize: '2rem',
-                  color: getComputedCSSProperty('--theme-color-soft-text'),
+                  color: getComputedCSSProperty('color-soft-text'),
                   fontWeight: 'bold',
                 },
                 textStyle: {
                   fontSize: '1.5rem',
-                  color: getComputedCSSProperty('--theme-color-soft-text'),
+                  color: getComputedCSSProperty('color-soft-text'),
                 },
               },
               formatter: `{valueStyle|{value}}/100\n{textStyle|completed}`,

@@ -11,7 +11,6 @@ LICENSE file in the root directory of this source tree.
 import { ref } from 'vue';
 import {
   convertThemeName,
-  getComputedCSSProperty,
   registerTheme,
 } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
@@ -78,16 +77,8 @@ const options = {
 } as EChartsOption;
 </script>
 
+<style scoped src="example-styles/dist/charts.css"></style>
+
 <template>
-  <div
-    style="
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 40rem;
-      padding-top: 1rem;
-    "
-  >
-    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
-  </div>
+  <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
 </template>

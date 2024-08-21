@@ -10,8 +10,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
   convertThemeName,
-  registerTheme,
   getComputedCSSProperty,
+  registerTheme,
 } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
@@ -20,6 +20,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-circle.html',
+  styles: [`@import 'example-styles/dist/charts.css'`],
 })
 export default class EchartsCircle implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
@@ -48,7 +49,7 @@ export default class EchartsCircle implements OnInit {
         radius: ['60%', '90%'],
         label: {
           show: true,
-          color: getComputedCSSProperty('--theme-color-neutral'),
+          color: getComputedCSSProperty('color-neutral'),
         },
         emphasis: {
           label: {

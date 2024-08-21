@@ -17,7 +17,7 @@ examplesByName>
 ### Pie chart
 
 <Playground
-height="30rem"
+height="40rem"
 name="echarts-pie"
 noMargin
 examplesByName>

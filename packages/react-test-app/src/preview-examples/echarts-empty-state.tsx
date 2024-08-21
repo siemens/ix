@@ -7,13 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {useEffect, useState} from 'react';
-import {convertThemeName, registerTheme} from '@siemens/ix-echarts';
-import {themeSwitcher} from '@siemens/ix';
+import 'example-styles/dist/charts-empty-state.css';
+
+import React, { useEffect, useState } from 'react';
+import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
-import {EChartsOption} from 'echarts';
-import {IxEmptyState} from '@siemens/ix-react';
+import { EChartsOption } from 'echarts';
+import { IxEmptyState } from '@siemens/ix-react';
 
 export default function Echarts() {
   registerTheme(echarts);
@@ -50,43 +52,19 @@ export default function Echarts() {
   };
 
   return (
-    <div
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-        height: '40rem',
-        paddingTop: '1rem',
-      }}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          justifyContent: 'center',
-          alignContent: 'center',
-          width: '100%',
-          height: '100%',
-          backgroundColor: `var(--theme-color-backdrop)`,
-          zIndex: 1,
-        }}
-      >
-        <IxEmptyState
-          className="empty-state"
-          header="No elements available"
-          sub-header="Failed to retrieve data"
-          icon="info"
-          action="Try again"
-        ></IxEmptyState>
-      </div>
-      <ReactEcharts
-        option={options}
-        theme={theme}
-        style={{
-          display: 'block',
-          position: 'relative',
-          height: '100%',
-        }}
-      />
+    <div className="echarts">
+      {data.value.length === 0 && (
+        <div className="empty-state-container">
+          <IxEmptyState
+            className="empty-state"
+            header="No elements available"
+            subHeader="Failed to retrieve data"
+            icon="info"
+            action="Try again"
+          />
+        </div>
+      )}
+      <ReactEcharts option={options} theme={theme} className="echarts" />
     </div>
   );
 }

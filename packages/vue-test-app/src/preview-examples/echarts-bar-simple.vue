@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {convertThemeName, registerTheme} from '@siemens/ix-echarts';
+import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts/core';
@@ -36,7 +36,14 @@ themeSwitcher.themeChanged.on((newTheme: string) => {
 });
 
 const data = {
-  products: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E', 'Product F'],
+  products: [
+    'Product A',
+    'Product B',
+    'Product C',
+    'Product D',
+    'Product E',
+    'Product F',
+  ],
   sales: [10.3, 9.2, 7.3, 6.4, 6.2, 4.4],
 };
 
@@ -62,16 +69,8 @@ const options: EChartsOption = {
 } as EChartsOption;
 </script>
 
+<style scoped src="example-styles/dist/charts.css"></style>
+
 <template>
-  <div
-    style="
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 40rem;
-      padding-top: 1rem;
-    "
-  >
-    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
-  </div>
+  <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
 </template>

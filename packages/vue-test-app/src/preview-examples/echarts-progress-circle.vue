@@ -47,7 +47,7 @@ const options: EChartsOption = {
         lineStyle: {
           width: 15,
           color: [
-            [1, getComputedCSSProperty('--theme-color-neutral-40')],
+            [1, getComputedCSSProperty('color-neutral-40')],
           ],
         },
       },
@@ -69,7 +69,7 @@ const options: EChartsOption = {
         width: 35,
         itemStyle: {
           borderMiterLimit: 16,
-          color: getComputedCSSProperty('--theme-color-success'),
+          color: getComputedCSSProperty('color-success'),
         },
       },
       pointer: {
@@ -82,16 +82,16 @@ const options: EChartsOption = {
             offsetCenter: [0, 0],
             fontSize: '2rem',
             fontWeight: 'normal',
-            color: getComputedCSSProperty('--theme-color-soft-text'),
+            color: getComputedCSSProperty('color-soft-text'),
             rich: {
               valueStyle: {
                 fontSize: '2rem',
-                color: getComputedCSSProperty('--theme-color-soft-text'),
+                color: getComputedCSSProperty('color-soft-text'),
                 fontWeight: 'bold',
               },
               textStyle: {
                 fontSize: '1.5rem',
-                color: getComputedCSSProperty('--theme-color-soft-text'),
+                color: getComputedCSSProperty('color-soft-text'),
               },
             },
             formatter: `{valueStyle|{value}}/100\n{textStyle|completed}`,
@@ -106,16 +106,8 @@ const options: EChartsOption = {
 } as EChartsOption;
 </script>
 
+<style scoped src="example-styles/dist/charts-gauge.css"></style>
+
 <template>
-  <div
-    style="
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 40rem;
-      padding-top: 1rem;
-    "
-  >
-    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
-  </div>
+    <VueECharts :theme="theme" :option="options" autoresize class="echarts-gauge"></VueECharts>
 </template>

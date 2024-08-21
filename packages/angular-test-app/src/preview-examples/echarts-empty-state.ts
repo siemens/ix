@@ -16,6 +16,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-empty-state.html',
+  styles: [`@import 'example-styles/dist/charts-empty-state.css'`],
 })
 export default class EchartsLineSimple implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
@@ -46,12 +47,5 @@ export default class EchartsLineSimple implements OnInit {
     themeSwitcher.themeChanged.on((theme: string) => {
       this.theme = convertThemeName(theme);
     });
-  }
-
-  ngAfterViewInit() {
-    if (this.data.value.length === 0) {
-      const overlay = document.getElementById('empty-state-container');
-      overlay!.style.display = 'block';
-    }
   }
 }

@@ -21,14 +21,31 @@ import { YAXisOption } from 'echarts/types/dist/shared';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-line-multiple-y-axis.html',
+  styles: [
+    `
+      @import 'example-styles/dist/charts.css';
+    `,
+  ],
 })
 export default class EchartsLineMultipleYAxis implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
 
   dates = Array.from({ length: 2025 - 2013 }, (_, i) => (2013 + i).toString());
 
-  //prettier-ignore
-  months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
   data = {
     evaporation: this.months.map(() => (Math.random() * 100).toFixed(2)),
@@ -37,7 +54,7 @@ export default class EchartsLineMultipleYAxis implements OnInit {
   };
 
   themeChartList = Array.from({ length: 17 }, (_, i) =>
-    getComputedCSSProperty(`--theme-chart-${i + 1}`)
+    getComputedCSSProperty(`chart-${i + 1}`)
   );
 
   createYAxis(
@@ -119,14 +136,14 @@ export default class EchartsLineMultipleYAxis implements OnInit {
       this.createYAxis(
         'Precipitation',
         'right',
-        this.themeChartList[2],
+        this.themeChartList[7],
         '{value} ml',
         80
       ),
       this.createYAxis(
         'Temperature',
         'left',
-        this.themeChartList[4],
+        this.themeChartList[12],
         '{value} °C'
       ),
     ],
@@ -141,13 +158,13 @@ export default class EchartsLineMultipleYAxis implements OnInit {
         'Precipitation',
         1,
         this.data.precipitation,
-        this.themeChartList[2]
+        this.themeChartList[7]
       ),
       this.createSeries(
         'Temperature',
         2,
         this.data.temperature,
-        this.themeChartList[4]
+        this.themeChartList[12]
       ),
     ],
   };

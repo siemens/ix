@@ -54,7 +54,7 @@ export default function EchartsPie() {
         data: data,
         label: {
           show: true,
-          color: getComputedCSSProperty('--theme-color-neutral'),
+          color: getComputedCSSProperty('color-neutral'),
         },
         emphasis: {
           itemStyle: {
@@ -71,13 +71,7 @@ export default function EchartsPie() {
     <ReactEcharts
       option={options}
       theme={theme}
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-        height: '40rem',
-        paddingTop: '1rem',
-      }}
+      className="echarts"
     />
   );
 }
