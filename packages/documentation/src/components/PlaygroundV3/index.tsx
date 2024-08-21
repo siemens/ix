@@ -7,7 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { IxIconButton, IxSpinner, IxTabItem, IxTabs } from '@siemens/ix-react';
+import {
+  IxButton,
+  IxIconButton,
+  IxSpinner,
+  IxTabItem,
+  IxTabs,
+} from '@siemens/ix-react';
 import { useTheme } from '@site/src/utils/hooks/useTheme';
 import CodeBlock from '@theme/CodeBlock';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -28,6 +34,7 @@ import {
 } from './react-snippets';
 import { fetchSourceForVue, getVueTestAppGithubPath } from './vue-snippets';
 import { docusaurusFetch } from './fetching';
+import { openStackBlitz } from '../../utils/stackblitz';
 
 function EmptyCodeSnippet() {
   return (
@@ -84,7 +91,7 @@ function useSnippetFetcher(
 
     setIsFetching(true);
 
-    if (!preventDefaultExample) {
+    if (!preventDefaultExample && url) {
       if (activeFramework === TargetFramework.ANGULAR) {
         fetchExamplePreview$ = fetchSourceForAngular(url, name);
       }
@@ -145,11 +152,16 @@ function useSnippetFetcher(
 }
 
 function SnippetPreview(props: { snippets: Record<string, string> }) {
+  const baseUrl = useBaseUrl('/');
   const [activeFile, setActiveFile] = useState<string | null>(
     Object.keys(props.snippets)[0]
   );
 
   const language = useMemo(() => {
+    if (!activeFile) {
+      return '';
+    }
+
     const _language = activeFile.split('.').pop();
     if (!_language) {
       return 'ts';
@@ -162,6 +174,9 @@ function SnippetPreview(props: { snippets: Record<string, string> }) {
   }, [activeFile]);
 
   const code = useMemo(() => {
+    if (!activeFile) {
+      return '';
+    }
     return props.snippets[activeFile] || '';
   }, [activeFile, props.snippets]);
 
@@ -199,7 +214,7 @@ function ToolbarButtons(props: {
   const iframe = useBaseUrl('/webcomponent-examples/dist/preview-examples');
 
   return (
-    <>
+    <div className="Interaction">
       {props.activeFramework === TargetFramework.PREVIEW ? (
         <IxIconButton
           ghost
@@ -214,43 +229,27 @@ function ToolbarButtons(props: {
         ></IxIconButton>
       ) : (
         <>
-          <IxIconButton
-            ghost
-            size="16"
-            icon={`${baseUrlAssets}/github.svg`}
-            onClick={() => {
-              if (props.activeFramework === TargetFramework.ANGULAR) {
-                window.open(
-                  `https://github.com/${getAngularTestAppGithubPath(
-                    props.name
-                  )}`
-                );
-              }
-
-              if (props.activeFramework === TargetFramework.REACT) {
-                window.open(
-                  `https://github.com/${getReactTestAppGithubPath(props.name)}`
-                );
-              }
-
-              if (props.activeFramework === TargetFramework.VUE) {
-                window.open(
-                  `https://github.com/${getVueTestAppGithubPath(props.name)}`
-                );
-              }
-
-              if (props.activeFramework === TargetFramework.JAVASCRIPT) {
-                window.open(
-                  `https://github.com/${getJavascriptTestAppGithubPath(
-                    props.name
-                  )}`
-                );
-              }
-            }}
-          ></IxIconButton>
+          <IxButton
+            onClick={() =>
+              openStackBlitz({
+                baseUrl: baseUrl,
+                framework: props.activeFramework,
+                snippets: props.snippets,
+                name: props.name,
+                version: 'latest',
+              })
+            }
+            className="Stackblitz"
+            icon={`${baseUrlAssets}/stackblitz.svg`}
+            outline
+            //@ts-ignore
+            iconSize="16"
+          >
+            Open in Stackblitz
+          </IxButton>
         </>
       )}
-    </>
+    </div>
   );
 }
 
@@ -296,7 +295,7 @@ export default function PlaygroundV3(props: PlaygroundV3Props) {
   return (
     <div className="Playground">
       <div className="Toolbar">
-        <IxTabs>
+        <IxTabs layout="auto" class="Tabs">
           <IxTabItem
             onClick={() => onActiveFrameworkChange(TargetFramework.PREVIEW)}
           >
@@ -331,14 +330,12 @@ export default function PlaygroundV3(props: PlaygroundV3Props) {
             })}
         </IxTabs>
 
-        <div className="Interaction">
-          <ToolbarButtons
-            name={props.name}
-            activeFramework={activeFramework}
-            noMargin={false}
-            snippets={snippets}
-          ></ToolbarButtons>
-        </div>
+        <ToolbarButtons
+          name={props.name}
+          activeFramework={activeFramework}
+          noMargin={false}
+          snippets={snippets}
+        ></ToolbarButtons>
       </div>
 
       {activeFramework === TargetFramework.PREVIEW ? (

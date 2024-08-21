@@ -20,6 +20,7 @@ import {
   SourceFile,
   getBranchPath,
   stripComments,
+  openStackBlitz,
 } from './utils';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
@@ -325,6 +326,23 @@ export default function PlaygroundV2(props: PlaygroundV2Props) {
             ></IxIconButton>
           ) : (
             <>
+              {!props.disableStackBlitz && (
+                <IxIconButton
+                  ghost
+                  size="16"
+                  icon={`${baseUrlAssets}/stackblitz.svg`}
+                  onClick={() => {
+                    openStackBlitz({
+                      baseUrl: baseUrl,
+                      files: files,
+                      framework: tab,
+                      name: props.name,
+                      version: versionDeployment,
+                    });
+                  }}
+                ></IxIconButton>
+              )}
+
               <IxIconButton
                 ghost
                 size="16"

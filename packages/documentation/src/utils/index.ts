@@ -6,8 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import Example from './Example';
-
-export default function App() {
-  return <Example />;
+export function capitalizeFirstLetter(name: string) {
+  if (name.length === 0) {
+    return name;
+  }
+  return name.charAt(0).toUpperCase() + name.slice(1);
 }

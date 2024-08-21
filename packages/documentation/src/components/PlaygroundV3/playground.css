@@ -11,6 +11,10 @@
   flex-direction: column;
 }
 
+.Playground .Tabs {
+  width: 100%;
+}
+
 .Playground .Code {
   margin-top: 1rem;
   border-radius: 0.125rem;
@@ -22,5 +26,13 @@
 }
 
 .Playground .Toolbar .Interaction {
+  display: flex;
+  align-items: center;
   margin-right: 1rem;
+}
+
+@media (max-width: 48em) {
+  .Playground .Toolbar .Interaction {
+    display: none;
+  }
 }
