@@ -143,7 +143,7 @@ export default function FormValidation() {
           {...register('room-size')}
         >
           <IxIcon slot="prefix" name={iconBezierCurve} size="16"></IxIcon>
-          <IxTypography slot="postfix" color="weak">
+          <IxTypography slot="postfix" color="weak" style={{'padding-right': '0.5rem'}}>
             m<sup>2</sup>
           </IxTypography>
         </IxNumberField>
