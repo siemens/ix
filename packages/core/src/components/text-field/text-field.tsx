@@ -310,7 +310,7 @@ export class TextField implements IxInputFieldComponent<string> {
             </PostfixSlot>
           </div>
           {this.maxLength && (
-            <ix-typography slot="bottom-right" color="weak">
+            <ix-typography class="bottom-text" slot="bottom-right" color="soft">
               {this.value?.length}/{this.maxLength}
             </ix-typography>
           )}
