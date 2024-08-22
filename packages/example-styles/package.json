@@ -6,7 +6,7 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && node build.mjs"
   },
   "devDependencies": {
     "fs-extra": "^11.2.0",

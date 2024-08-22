@@ -19,5 +19,5 @@ export function copyPreviewStyles(dest: string, rimraf = true) {
   if (rimraf) {
     rimrafSync(dest);
   }
-  fs.copySync(path.join(__packageRoot, 'css'), dest);
+  fs.copySync(path.join(__packageRoot, 'dist', 'css'), dest);
 }
