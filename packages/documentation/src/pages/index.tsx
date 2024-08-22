@@ -42,15 +42,15 @@ function parallax(id: string, min: number, max: number, translateMax: number) {
 }
 
 function Headline({
-                    title,
-                    subtitle,
-                    description,
-                    dark = false,
-                    size = 'h2',
-                    text = 'light',
-                    noLine = false,
-                    description_width = '500px',
-                  }) {
+  title,
+  subtitle,
+  description,
+  dark = false,
+  size = 'h2',
+  text = 'light',
+  noLine = false,
+  description_width = '500px',
+}) {
   const headlineSize = `headline_${size}`;
   return (
     <>
