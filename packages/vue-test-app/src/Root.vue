@@ -67,6 +67,20 @@ import DropdownQuickActions from './preview-examples/dropdown-quick-actions.vue'
 import DropdownSubmenu from './preview-examples/dropdown-submenu.vue';
 import Dropdown from './preview-examples/dropdown.vue';
 import Echarts from './preview-examples/echarts.vue';
+import EchartsGauge from './preview-examples/echarts-gauge.vue';
+import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked.vue';
+import EchartsBarSimple from './preview-examples/echarts-bar-simple.vue';
+import EchartsCircle from './preview-examples/echarts-circle.vue';
+import EchartsEmptyState from './preview-examples/echarts-empty-state.vue';
+import EchartsLineAdvanced from './preview-examples/echarts-line-advanced.vue';
+import EchartsLineMultipleYAxis from './preview-examples/echarts-line-multiple-y-axis.vue';
+import EchartsLineSimple from './preview-examples/echarts-line-simple.vue';
+import EchartsPie from './preview-examples/echarts-pie.vue';
+import EchartsProgressCircle from './preview-examples/echarts-progress-circle.vue';
+import EchartsProgressArc from './preview-examples/echarts-progress-arc.vue';
+import EchartsSpecial3d from './preview-examples/echarts-special-3d.vue';
+import EchartsSpecialToolbox from './preview-examples/echarts-special-toolbox.vue';
+import EchartsSpecialZoom from './preview-examples/echarts-special-zoom.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import Slider from './preview-examples/slider.vue';
 import SliderTrace from './preview-examples/slider-trace.vue';
@@ -168,20 +182,6 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import VerticalTabs from './preview-examples/vertical-tabs.vue';
 import CategoryFilterSuggestions from './preview-examples/category-filter-suggestions.vue';
 import EmptyStateCompact from './preview-examples/empty-state-compact.vue';
-import EchartsGauge from './preview-examples/echarts-gauge.vue';
-import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked.vue';
-import EchartsBarSimple from './preview-examples/echarts-bar-simple.vue';
-import EchartsCircle from './preview-examples/echarts-circle.vue';
-import EchartsEmptyState from './preview-examples/echarts-empty-state.vue';
-import EchartsLineAdvanced from "./preview-examples/echarts-line-advanced.vue";
-import EchartsLineMultipleYAxis from "./preview-examples/echarts-line-multiple-y-axis.vue";
-import EchartsLineSimple from './preview-examples/echarts-line-simple.vue';
-import EchartsPie from './preview-examples/echarts-pie.vue';
-import EchartsProgressCircle from './preview-examples/echarts-progress-circle.vue';
-import EchartsProgressArc from './preview-examples/echarts-progress-arc.vue';
-import EchartsSpecial3d from './preview-examples/echarts-special-3d.vue';
-import EchartsSpecialToolbox from './preview-examples/echarts-special-toolbox.vue';
-import EchartsSpecialZoom from './preview-examples/echarts-special-zoom.vue';
 
 const routes: any = {
   '/': App,
