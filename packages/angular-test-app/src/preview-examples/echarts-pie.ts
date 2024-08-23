@@ -16,7 +16,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-pie.html',
-  styles: [`@import 'example-styles/dist/charts.css'`],
+  styleUrls: ["../../../example-styles/dist/charts.css"],
 })
 export default class EchartsPie implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());

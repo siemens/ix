@@ -20,11 +20,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-gauge.html',
-  styles: [
-    `
-      @import 'example-styles/dist/charts.css';
-    `,
-  ],
+  styleUrls: ["../../../example-styles/dist/charts.css"],
 })
 export default class EchartsGauge implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
