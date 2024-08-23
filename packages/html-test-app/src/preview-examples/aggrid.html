@@ -2,29 +2,29 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Blind example</title>
-    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css"
-    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AG Grid example</title>
+    <!-- Sources -->
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <!-- Sources -->
   </head>
-  <body class="theme-brand-dark">
+  <body>
     <!-- Preview code -->
     <div
       style="height: 12rem; width: 100%"
       id="grid-container"
       class="ag-theme-alpine-dark ag-theme-ix"
     ></div>
+
     <script>
       (async function () {
         const container = document.querySelector('#grid-container');

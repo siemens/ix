@@ -2,14 +2,19 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Blind example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider marker example</title>
   </head>
-  <body class="theme-brand-dark">
+  <body>
     <!-- Preview code -->
     <ix-slider value="25">
       <span slot="label-start">0</span>
@@ -18,8 +23,9 @@ SPDX-License-Identifier: MIT
 
     <ix-slider min="0" max="50" step="10" value="10">
       <span slot="label-start">0</span>
-      <span slot="label-end">100</span>
+      <span slot="label-end">50</span>
     </ix-slider>
+
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-slider');

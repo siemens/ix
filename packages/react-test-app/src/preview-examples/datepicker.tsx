@@ -11,5 +11,5 @@ import { IxDatePicker } from '@siemens/ix-react';
 import React from 'react';
 
 export default () => {
-  return <IxDatePicker />;
+  return <IxDatePicker range={false}/>;
 };

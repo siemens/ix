@@ -36,27 +36,47 @@
     overflow: hidden;
   }
 
+  .content-area {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: calc(100% - var(--ix-safe-area-inset-bottom, 0px));
+    width: 100%;
+    margin-left: var(--ix-application-menu-margin-left);
+  }
+
   main {
     display: block;
     position: relative;
-    height: 100%;
+    flex-grow: 1;
+
     width: 100%;
-    overflow: hidden;
+    padding-bottom: var(--ix-safe-area-inset-bottom);
+    overflow: auto;
+  }
+
+  footer {
+    display: block;
+    position: relative;
+    width: 100%;
   }
 }
 
 :host(.breakpoint-md) {
-  --ix-application-menu-margin-left: 3.25rem;
+  --ix-application-menu-margin-left: calc(
+    3.25rem + var(--ix-application-menu-safe-area-left, 0rem)
+  );
 
   aside.slotted {
     margin-left: var(--ix-application-menu-margin-left);
   }
 
-  aside.slotted + main {
+  aside.slotted + .content-area {
     margin-left: 0;
   }
 
-  aside:not(.slotted) + main {
+  aside:not(.slotted) + .content-area {
     margin-left: var(--ix-application-menu-margin-left);
   }
 }
@@ -66,5 +86,8 @@
 }
 
 :host(.breakpoint-sm) {
-  --ix-application-menu-margin-left: 0;
+  --ix-application-menu-margin-left: var(
+    --ix-application-menu-safe-area-left,
+    0rem
+  );
 }

@@ -30,7 +30,14 @@
     background-color: var(--theme-color-component-1);
     align-items: center;
     justify-content: flex-start;
-    @include ghost-hover-pressed();
+
+    &:hover {
+      background: var(--theme-color-component-1--hover);
+    }
+
+    &:active {
+      background: var(--theme-color-component-1--active);
+    }
 
     @include focus-visible {
       outline: 1px solid var(--theme-color-focus-bdr);

@@ -288,6 +288,18 @@ a.menu__link {
   display: table !important;
   width: 100%;
 }
+
+table.table-no-border {
+  table,
+  tr,
+  td,
+  th,
+  thead,
+  tbody {
+    border: none;
+    padding: 0;
+  }
+}
 .navbar__search {
   margin-right: 1rem;
 }
@@ -402,4 +414,47 @@ p > img {
 
 .Accordion__Last {
   margin-block-end: 2rem;
+}
+
+.tabs__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  background-color: var(--theme-color-component-1);
+  border-radius: 0px;
+  color: var(--theme-color-std-text);
+  height: 2.75rem;
+  max-height: 2.75rem;
+  padding: 0;
+  border: none;
+
+  &:hover {
+    background-color: var(--theme-color-component-1);
+  }
+}
+
+.tabs__item--active {
+  background-color: var(--theme-color-dynamic);
+  color: var(--theme-color-primary--contrast);
+  border: none;
+
+  &:hover {
+    background-color: var(--theme-color-dynamic);
+  }
+}
+
+[id]::before {
+  content: '';
+  display: block;
+  height: 1rem;
+  margin-top: -1rem;
+  visibility: hidden;
+}
+
+// Hide the development and guidelines sections because they are shown via tabs
+h2#development,
+h2#guidelines {
+  visibility: hidden;
+  height: 0px;
 }
