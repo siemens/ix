@@ -1,16 +1,16 @@
 import React, { useMemo } from 'react';
 import Link from '@docusaurus/Link';
 import type { Props } from '@theme/TOCItems/Tree';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import type { TOCTreeNode } from '@docusaurus/theme-common/internal';
 import { useLocation } from '@docusaurus/router';
+import {
+  developmentTabValue,
+  docsTabQueryString,
+  guidelinesTabValue,
+} from '@site/src/components/LinkableDocsTabs';
 
 type IxProps = Props & {
-  parent: readonly TOCTreeNode[];
-};
-
-const InternalTocItem = () => {
-  return <></>;
+  parentTocItems: readonly TOCTreeNode[];
 };
 
 // Recursive component rendering the toc tree
@@ -19,9 +19,9 @@ function TOCItemTree({
   className,
   linkClassName,
   isChild,
-  parent,
+  parentTocItems,
 }: IxProps): JSX.Element | null {
-  const location = useLocation();
+  const _location = useLocation();
   if (!toc.length) {
     return null;
   }
@@ -29,24 +29,30 @@ function TOCItemTree({
   return (
     <ul className={isChild ? undefined : className}>
       {toc.map((heading) => {
-        const searchParams = new URLSearchParams(location.search);
+        const searchParams = new URLSearchParams(_location.search);
 
         let tabId = '';
-        parent?.forEach((tab) => {
+        parentTocItems?.forEach((tab) => {
           tab.children.forEach((child) => {
             if (child.id === heading.id) {
-              searchParams.set('current-tab', tab.id);
+              searchParams.set(docsTabQueryString, tab.id);
               tabId = tab.id;
             }
           });
         });
 
-        if (tabId === '' && !parent) {
-          const tab = toc.find((tab) => tab.id === heading.id);
+        if (tabId === '' && !parentTocItems) {
+          const tab = toc.find(
+            (firstLevelHeading) => firstLevelHeading.id === heading.id
+          );
           tabId = tab?.id ?? '';
         }
 
-        const queryParam = `?current-tab=${tabId}`;
+        let queryParam = '';
+        if (tabId === guidelinesTabValue || tabId === developmentTabValue) {
+          queryParam = `?${docsTabQueryString}=${tabId}`;
+        }
+
         return (
           <li key={heading.id}>
             <Link
@@ -58,7 +64,7 @@ function TOCItemTree({
             <TOCItemTree
               isChild
               toc={heading.children}
-              parent={isChild ? parent : toc}
+              parentTocItems={isChild ? parentTocItems : toc}
               className={className}
               linkClassName={linkClassName}
             />
