@@ -68,7 +68,6 @@ import DropdownButtonIcon from './preview-examples/dropdown-button-icon';
 import DropdownIcon from './preview-examples/dropdown-icon';
 import DropdownQuickActions from './preview-examples/dropdown-quick-actions';
 import DropdownSubmenu from './preview-examples/dropdown-submenu';
-import Echarts from './preview-examples/echarts';
 import EmptyState from './preview-examples/empty-state';
 import EmptyStateCompact from './preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break';
@@ -169,7 +168,6 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
-import { NavigationTest } from './testing/NavigationTest';
 import Echarts from './preview-examples/echarts';
 import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked';
 import EchartsBarSimple from './preview-examples/echarts-bar-simple';
