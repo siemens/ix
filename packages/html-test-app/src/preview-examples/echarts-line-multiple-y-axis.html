@@ -64,7 +64,7 @@ LICENSE file in the root directory of this source tree.
       };
 
       const themeChartList = Array.from({ length: 17 }, (_, i) =>
-        getComputedCSSProperty(`--theme-chart-${i + 1}`)
+        getComputedCSSProperty(`chart-${i + 1}`)
       );
 
       function createYAxis(name, position, color, formatter, offset) {
