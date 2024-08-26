@@ -20,7 +20,8 @@
     },
     "start": {
       "dependsOn": ["^build"],
-      "cache": true
+      "cache": true,
+      "persistent": true
     },
     "lint": {
       "cache": false

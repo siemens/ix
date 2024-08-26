@@ -7,26 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
+  ModalService as BaseModalService,
+  ModalConfig,
+} from '@siemens/ix-angular/common';
+import { ModalInstance } from '@siemens/ix';
+import {
   ApplicationRef,
   ComponentFactoryResolver,
   Injectable,
   Injector,
 } from '@angular/core';
-import { ModalInstance } from '@siemens/ix';
-import {
-  ModalConfig,
-  ModalService as BaseModalService,
-} from '@siemens/ix-angular/common';
 
-export type ModalContext<T> = {
-  close: ((result: any) => void) | null;
-  dismiss: ((result?: any) => void) | null;
-  data?: T;
-};
+export { IxActiveModal } from '@siemens/ix-angular/common';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ModalService extends BaseModalService {
   constructor(
     appRef: ApplicationRef,

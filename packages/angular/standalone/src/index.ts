@@ -9,3 +9,6 @@
 export * from './directives/proxies';
 export * from './internal-components';
 export * from './ix-icon';
+export * from './providers/modal';
+export * from './providers/toast';
+export { IxDropdownTriggerDirective } from './directives/dropdown-trigger/trigger.directive';

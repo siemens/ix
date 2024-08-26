@@ -11,7 +11,7 @@ import { Directive, ElementRef, Input } from '@angular/core';
 @Directive({
   selector: '[ixDropdownTrigger]',
 })
-export class IxDropdownTriggerDirective {
+export class DropdownTriggerBaseDirective {
   @Input() ixDropdownTrigger!: any;
 
   constructor(private element: ElementRef) {}
