@@ -14,6 +14,6 @@ import { IxNumberField } from '@siemens/ix-vue';
 <template>
   <IxNumberField
     :value="0"
-    show-stepper-button
+    show-stepper-buttons
   ></IxNumberField>
 </template>
