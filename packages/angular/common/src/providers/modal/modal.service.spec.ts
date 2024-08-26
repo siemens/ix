@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, test } from '@jest/globals';
-import { IxActiveModal } from './';
-import { ModalService } from './modal.service';
+import { ModalService, IxActiveModal } from './';
 
 jest.mock('@siemens/ix', () => ({
   showModal: jest.fn(() =>
