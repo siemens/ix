@@ -26,9 +26,9 @@ import {
   ValidationResults,
 } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
-import { InputElement, PostfixSlot, PrefixSlot } from './input.fc';
+import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
-  applyPostfixPadding,
+  applyPaddingEnd,
   checkAllowedKeys,
   checkInternalValidity,
   mapValidationResult,
@@ -163,8 +163,8 @@ export class NumberField implements IxInputFieldComponent<number> {
   @State() isInvalidByRequired = false;
 
   private inputRef = makeRef<HTMLInputElement>();
-  private postfixRef = makeRef<HTMLDivElement>();
-  private prefixRef = makeRef<HTMLDivElement>();
+  private slotEndRef = makeRef<HTMLDivElement>();
+  private slotStartRef = makeRef<HTMLDivElement>();
   private numberFieldId = `number-field-${numberFieldIds++}`;
 
   @HookValidationLifecycle()
@@ -181,19 +181,20 @@ export class NumberField implements IxInputFieldComponent<number> {
   }
 
   private updatePaddings() {
-    const prefixBoundingRect = this.prefixRef.current?.getBoundingClientRect();
-    const postfixBoundingRect =
-      this.postfixRef.current?.getBoundingClientRect();
+    const slotStartBoundingRect =
+      this.slotStartRef.current?.getBoundingClientRect();
+    const slotEndBoundingRect =
+      this.slotEndRef.current?.getBoundingClientRect();
 
-    if (prefixBoundingRect) {
-      applyPostfixPadding(this.inputRef.current, prefixBoundingRect.width, {
-        postfix: false,
+    if (slotStartBoundingRect) {
+      applyPaddingEnd(this.inputRef.current, slotStartBoundingRect.width, {
+        slotEnd: false,
       });
     }
 
-    if (postfixBoundingRect) {
-      applyPostfixPadding(this.inputRef.current, postfixBoundingRect.width, {
-        postfix: true,
+    if (slotEndBoundingRect) {
+      applyPaddingEnd(this.inputRef.current, slotEndBoundingRect.width, {
+        slotEnd: true,
       });
     }
   }
@@ -256,10 +257,10 @@ export class NumberField implements IxInputFieldComponent<number> {
               'show-stepper-buttons': !!this.showStepperButtons,
             }}
           >
-            <PrefixSlot
-              prefixRef={this.prefixRef}
+            <SlotStart
+              slotStartRef={this.slotStartRef}
               onSlotChange={() => this.updatePaddings()}
-            ></PrefixSlot>
+            ></SlotStart>
             <InputElement
               id={this.numberFieldId}
               readonly={this.readonly}
@@ -280,8 +281,8 @@ export class NumberField implements IxInputFieldComponent<number> {
               }
               onBlur={() => onInputBlur(this, this.inputRef.current)}
             ></InputElement>
-            <PostfixSlot
-              postfixRef={this.postfixRef}
+            <SlotEnd
+              slotEndRef={this.slotEndRef}
               onSlotChange={() => this.updatePaddings()}
             >
               {showStepperButtons && (
@@ -316,7 +317,7 @@ export class NumberField implements IxInputFieldComponent<number> {
                   ></ix-icon-button>
                 </div>
               )}
-            </PostfixSlot>
+            </SlotEnd>
           </div>
         </ix-field-wrapper>
       </Host>

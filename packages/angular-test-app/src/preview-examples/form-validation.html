@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
     <ix-text-field label="Name" formControlName="name"></ix-text-field>
     <ix-text-field label="Last Name" formControlName="last-name"></ix-text-field>
     <ix-text-field label="Address" data-colspan="2" formControlName="address">
-      <ix-icon slot="prefix" name="location" size="16"></ix-icon>
+      <ix-icon slot="start" name="location" size="16"></ix-icon>
     </ix-text-field>
 
     <ix-radio-group label="Booking option">
@@ -33,8 +33,8 @@ LICENSE file in the root directory of this source tree.
     </ix-radio-group>
 
     <ix-number-field label="Preferred room size" formControlName="room-size" class="ix-info" infoText="You can adjust the room size">
-      <ix-icon slot="prefix" name="bezier-curve" size="16"></ix-icon>
-      <ix-typography slot="postfix" color="weak" class="padding-right">
+      <ix-icon slot="start" name="bezier-curve" size="16"></ix-icon>
+      <ix-typography slot="end" color="weak" class="padding-right">
         m<sup>2</sup>
       </ix-typography>
     </ix-number-field>
@@ -72,10 +72,10 @@ LICENSE file in the root directory of this source tree.
       i18nErrorDateUnparsable="Please enter a valid date"
       invalidText="ERROR!"
       >
-      <ix-icon slot="prefix" name="calendar" size="16"></ix-icon>
+      <ix-icon slot="start" name="calendar" size="16"></ix-icon>
     </ix-date-field>
     <ix-date-field formControlName="end" label="End" [invalidText]="beginErrorText">
-      <ix-icon slot="postfix" name="calendar" size="16"></ix-icon>
+      <ix-icon slot="end" name="calendar" size="16"></ix-icon>
     </ix-date-field>
 
     <ix-textarea-field

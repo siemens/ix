@@ -118,7 +118,7 @@ export default function FormValidation() {
         />
         <IxTextField label="Last Name" {...register('last-name')} />
         <IxTextField label="Address" data-colspan="2" {...register('address')}>
-          <IxIcon slot="prefix" name={iconLocation} size="16"></IxIcon>
+          <IxIcon slot="start" name={iconLocation} size="16"></IxIcon>
         </IxTextField>
 
         <IxRadioGroup label="Booking option">
@@ -145,8 +145,8 @@ export default function FormValidation() {
           infoText="You can adjust the room size"
           {...register('room-size')}
         >
-          <IxIcon slot="prefix" name={iconBezierCurve} size="16"></IxIcon>
-          <IxTypography slot="postfix" color="weak" className='padding-right'>
+          <IxIcon slot="start" name={iconBezierCurve} size="16"></IxIcon>
+          <IxTypography slot="end" color="weak" className='padding-right'>
             m<sup>2</sup>
           </IxTypography>
         </IxNumberField>

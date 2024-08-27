@@ -119,28 +119,28 @@ export function InputElement(props: {
   );
 }
 
-export function PostfixSlot(
+export function SlotEnd(
   props: {
-    postfixRef: MakeRef<HTMLDivElement>;
+    slotEndRef: MakeRef<HTMLDivElement>;
     onSlotChange?: (e: Event) => void;
   },
   children
 ) {
   return (
-    <div class="postfix-container" ref={props.postfixRef}>
-      <slot name="postfix" onSlotchange={props.onSlotChange}></slot>
+    <div class="end-container" ref={props.slotEndRef}>
+      <slot name="end" onSlotchange={props.onSlotChange}></slot>
       {children}
     </div>
   );
 }
 
-export function PrefixSlot(props: {
-  prefixRef: MakeRef<HTMLDivElement>;
+export function SlotStart(props: {
+  slotStartRef: MakeRef<HTMLDivElement>;
   onSlotChange?: (e: Event) => void;
 }) {
   return (
-    <div class="prefix-container" ref={props.prefixRef}>
-      <slot name="prefix" onSlotchange={props.onSlotChange}></slot>
+    <div class="start-container" ref={props.slotStartRef}>
+      <slot name="start" onSlotchange={props.onSlotChange}></slot>
     </div>
   );
 }

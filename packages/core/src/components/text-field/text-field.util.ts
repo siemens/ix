@@ -82,11 +82,11 @@ export function onInputBlur(
   checkInternalValidity(comp, input);
 }
 
-export function applyPostfixPadding(
+export function applyPaddingEnd(
   inputElement: HTMLElement,
   width: number,
   options: {
-    postfix: boolean;
+    slotEnd: boolean;
     additionalPaddingRight?: string;
   }
 ) {
@@ -100,7 +100,7 @@ export function applyPostfixPadding(
 
   const padding = `${(width + 12) / 16}rem`;
 
-  if (options.postfix) {
+  if (options.slotEnd) {
     inputElement.style.paddingRight = `calc(${padding} + ${
       options.additionalPaddingRight ?? '0rem'
     })`;
@@ -109,23 +109,23 @@ export function applyPostfixPadding(
   }
 }
 
-export function adjustPaddingForPrefixAndPostfix(
-  prefixElement: HTMLElement,
-  postfixElement: HTMLElement,
+export function adjustPaddingForStartAndEnd(
+  startElement: HTMLElement,
+  endElement: HTMLElement,
   inputElement: HTMLElement
 ) {
-  const prefixBoundingRect = prefixElement.getBoundingClientRect();
-  const postfixBoundingRect = postfixElement.getBoundingClientRect();
+  const startBoundingRect = startElement.getBoundingClientRect();
+  const endBoundingRect = endElement.getBoundingClientRect();
 
-  if (prefixBoundingRect) {
-    applyPostfixPadding(inputElement, prefixBoundingRect.width, {
-      postfix: false,
+  if (startBoundingRect) {
+    applyPaddingEnd(inputElement, startBoundingRect.width, {
+      slotEnd: false,
     });
   }
 
-  if (postfixBoundingRect) {
-    applyPostfixPadding(inputElement, postfixBoundingRect.width, {
-      postfix: true,
+  if (endBoundingRect) {
+    applyPaddingEnd(inputElement, endBoundingRect.width, {
+      slotEnd: true,
     });
   }
 }

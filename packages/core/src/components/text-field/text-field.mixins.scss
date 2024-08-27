@@ -32,8 +32,8 @@
       height: 100%;
     }
 
-    .prefix-container,
-    .postfix-container {
+    .start-container,
+    .end-container {
       display: flex;
       position: absolute;
       align-items: center;
@@ -41,11 +41,11 @@
       z-index: 1;
     }
 
-    .prefix-container {
+    .start-container {
       left: 0.5rem;
     }
 
-    .postfix-container {
+    .end-container {
       right: 0;
     }
 

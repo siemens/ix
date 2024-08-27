@@ -30,8 +30,8 @@ import {
   ValidationResults,
   createClassMutationObserver,
 } from '../utils/field';
-import { PostfixSlot, PrefixSlot } from '../text-field/input.fc';
-import { adjustPaddingForPrefixAndPostfix } from '../text-field/text-field.util';
+import { SlotEnd, SlotStart } from '../text-field/input.fc';
+import { adjustPaddingForStartAndEnd } from '../text-field/text-field.util';
 import { iconCalendar } from '@siemens/ix-icons/icons';
 
 export type DateFieldValidityState = {
@@ -155,8 +155,8 @@ export class DateField implements IxInputFieldComponent<string> {
   @State() isWarning = false;
   @State() focus = false;
 
-  private prefixRef = makeRef<HTMLDivElement>();
-  private postfixRef = makeRef<HTMLDivElement>();
+  private slotStartRef = makeRef<HTMLDivElement>();
+  private slotEndRef = makeRef<HTMLDivElement>();
 
   private datepickerRef = makeRef<HTMLIxDatePickerElement>();
 
@@ -193,9 +193,9 @@ export class DateField implements IxInputFieldComponent<string> {
   }
 
   private updatePaddings() {
-    adjustPaddingForPrefixAndPostfix(
-      this.prefixRef.current,
-      this.postfixRef.current,
+    adjustPaddingForStartAndEnd(
+      this.slotStartRef.current,
+      this.slotEndRef.current,
       this.inputElementRef.current
     );
   }
@@ -286,10 +286,10 @@ export class DateField implements IxInputFieldComponent<string> {
   private renderInput() {
     return (
       <div class="input-wrapper">
-        <PrefixSlot
-          prefixRef={this.prefixRef}
+        <SlotStart
+          slotStartRef={this.slotStartRef}
           onSlotChange={() => this.updatePaddings()}
-        ></PrefixSlot>
+        ></SlotStart>
         <input
           autoComplete="off"
           class={{
@@ -318,8 +318,8 @@ export class DateField implements IxInputFieldComponent<string> {
           }}
           onBlur={() => this.ixBlur.emit()}
         ></input>
-        <PostfixSlot
-          postfixRef={this.postfixRef}
+        <SlotEnd
+          slotEndRef={this.slotEndRef}
           onSlotChange={() => this.updatePaddings()}
         >
           {this.disabled || this.readonly ? null : (
@@ -337,7 +337,7 @@ export class DateField implements IxInputFieldComponent<string> {
               }}
             ></ix-icon-button>
           )}
-        </PostfixSlot>
+        </SlotEnd>
       </div>
     );
   }

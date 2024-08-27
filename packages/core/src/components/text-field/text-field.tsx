@@ -28,9 +28,9 @@ import {
   ValidationResults,
 } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
-import { InputElement, PostfixSlot, PrefixSlot } from './input.fc';
+import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
-  applyPostfixPadding,
+  applyPaddingEnd,
   checkAllowedKeys,
   getAriaAttributesForInput,
   mapValidationResult,
@@ -167,8 +167,8 @@ export class TextField implements IxInputFieldComponent<string> {
   @State() inputType = 'text';
 
   private inputRef = makeRef<HTMLInputElement>();
-  private postfixRef = makeRef<HTMLDivElement>();
-  private prefixRef = makeRef<HTMLDivElement>();
+  private slotEndRef = makeRef<HTMLDivElement>();
+  private slotStartRef = makeRef<HTMLDivElement>();
 
   private textFieldId = `text-field-${textFieldIds++}`;
 
@@ -192,19 +192,20 @@ export class TextField implements IxInputFieldComponent<string> {
   }
 
   private updatePaddings() {
-    const prefixBoundingRect = this.prefixRef.current?.getBoundingClientRect();
-    const postfixBoundingRect =
-      this.postfixRef.current?.getBoundingClientRect();
+    const slotStartBoundingRect =
+      this.slotStartRef.current?.getBoundingClientRect();
+    const slotEndBoundingRect =
+      this.slotEndRef.current?.getBoundingClientRect();
 
-    if (prefixBoundingRect) {
-      applyPostfixPadding(this.inputRef.current, prefixBoundingRect.width, {
-        postfix: false,
+    if (slotStartBoundingRect) {
+      applyPaddingEnd(this.inputRef.current, slotStartBoundingRect.width, {
+        slotEnd: false,
       });
     }
 
-    if (postfixBoundingRect) {
-      applyPostfixPadding(this.inputRef.current, postfixBoundingRect.width, {
-        postfix: true,
+    if (slotEndBoundingRect) {
+      applyPaddingEnd(this.inputRef.current, slotEndBoundingRect.width, {
+        slotEnd: true,
       });
     }
   }
@@ -260,10 +261,10 @@ export class TextField implements IxInputFieldComponent<string> {
           controlRef={this.inputRef}
         >
           <div class="input-wrapper">
-            <PrefixSlot
-              prefixRef={this.prefixRef}
+            <SlotStart
+              slotStartRef={this.slotStartRef}
               onSlotChange={() => this.updatePaddings()}
-            ></PrefixSlot>
+            ></SlotStart>
             <InputElement
               id={this.textFieldId}
               readonly={this.readonly}
@@ -285,8 +286,8 @@ export class TextField implements IxInputFieldComponent<string> {
               onBlur={() => onInputBlur(this, this.inputRef.current)}
               ariaAttributes={inputAria}
             ></InputElement>
-            <PostfixSlot
-              postfixRef={this.postfixRef}
+            <SlotEnd
+              slotEndRef={this.slotEndRef}
               onSlotChange={() => this.updatePaddings()}
             >
               {this.type === 'password' && (
@@ -307,7 +308,7 @@ export class TextField implements IxInputFieldComponent<string> {
                   }}
                 ></ix-icon-button>
               )}
-            </PostfixSlot>
+            </SlotEnd>
           </div>
           {this.maxLength && (
             <ix-typography class="bottom-text" slot="bottom-right" color="soft">

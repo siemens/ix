@@ -133,7 +133,7 @@ export default {
       <IxTextField v-model="lastName" label="Last Name"></IxTextField>
 
       <IxTextField v-model="address" label="Last Name" data-colspan="2">
-        <IxIcon slot="prefix" :name="iconLocation" size="16"></IxIcon>
+        <IxIcon slot="start" :name="iconLocation" size="16"></IxIcon>
       </IxTextField>
 
       <IxRadioGroup
@@ -162,8 +162,8 @@ export default {
         className="ix-info"
         infoText="You can adjust the room size"
       >
-        <IxIcon slot="prefix" :name="iconBezierCurve" size="16"></IxIcon>
-        <IxTypography slot="postfix" color="weak" className="padding-right"> m<sup>2</sup> </IxTypography>
+        <IxIcon slot="start" :name="iconBezierCurve" size="16"></IxIcon>
+        <IxTypography slot="end" color="weak" className="padding-right"> m<sup>2</sup> </IxTypography>
       </IxNumberField>
 
       <IxSelect
