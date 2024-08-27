@@ -13,8 +13,8 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <textarea placeholder="Enter text here" readonly>
-  Some example text
-</textarea>
+      Some example text
+    </textarea>
   `,
 })
 export default class TextareaReadonly {}

@@ -23,7 +23,7 @@
   "devDependencies": {
     "@playwright/test": "^1.45.3",
     "@siemens/ix": "workspace:*",
-    "@siemens/ix-icons": "v3-preview",
+    "@siemens/ix-icons": "0.0.0-20240827131228",
     "@types/gulp": "^4.0.17",
     "@types/gulp-postcss": "^8.0.6",
     "@types/gulp-sass": "^5.0.4",

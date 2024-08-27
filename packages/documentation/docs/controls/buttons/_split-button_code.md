@@ -4,14 +4,14 @@ import Events from './../../auto-generated/ix-split-button/events.md';
 import ItemProps from './../../auto-generated/ix-split-button-item/props.md';
 import ItemEvents from './../../auto-generated/ix-split-button-item/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 
 <Playground
   name="split-button" 
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ### With icon only
@@ -20,7 +20,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="split-button-icons" 
   height="16rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-split-button)

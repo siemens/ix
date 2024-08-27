@@ -16,7 +16,7 @@
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-icons": "v3-preview",
+    "@siemens/ix-icons": "0.0.0-20240827131228",
     "example-styles": "workspace:*",
     "vite": "^3.2.10"
   }

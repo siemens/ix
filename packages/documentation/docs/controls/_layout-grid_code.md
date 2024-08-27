@@ -4,7 +4,7 @@ import Events from './../auto-generated/ix-layout-grid/events.md';
 import ColProps from './../auto-generated/ix-col/props.md';
 import ColEvents from './../auto-generated/ix-col/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2'
+import Playground from '@site/src/components/PlaygroundV3'
 
 # Message bar
 
@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV2'
 <Playground
   height="15rem"
   name="grid"
-  examplesByName>
+  >
 </Playground>
 
 ### Size
@@ -23,7 +23,7 @@ import Playground from '@site/src/components/PlaygroundV2'
 <Playground
   height="17rem"
   name="grid-size"
-  examplesByName>
+  >
 </Playground>
 
 ### Padding
@@ -31,7 +31,7 @@ import Playground from '@site/src/components/PlaygroundV2'
 <Playground
   name="grid-padding"
   height="17rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-layout-grid)

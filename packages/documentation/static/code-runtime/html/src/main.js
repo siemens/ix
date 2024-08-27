@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { defineCustomElements } from '@siemens/ix/loader';
 import './styles/global.css';
+import { defineCustomElements } from '@siemens/ix/loader';
+import { defineCustomElements as defineIconsCustomElements } from '@siemens/ix-icons/loader';
 
-(async () => {
-  defineCustomElements();
-})();
+defineIconsCustomElements();
+defineCustomElements();

@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "node ./scripts/copy.js"
+    "build": "tsc && node build.mjs"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.2.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.2.2"
   }
 }

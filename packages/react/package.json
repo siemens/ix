@@ -57,7 +57,7 @@
     "vitest": "^1.6.0"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "v3-preview",
+    "@siemens/ix-icons": "0.0.0-20240827131228",
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2"
   },

@@ -4,7 +4,7 @@ import Events from './../auto-generated/ix-tree/events.md';
 import TreeItemProps from './../auto-generated/ix-tree-item/props.md';
 import TreeItemEvents from './../auto-generated/ix-tree-item/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Tree
 
@@ -13,7 +13,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="tree" 
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Custom tree node
@@ -22,7 +22,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="tree-custom" 
   height="12rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-tree)
