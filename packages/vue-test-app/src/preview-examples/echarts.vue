@@ -42,7 +42,11 @@ const options: EChartsOption = {
       type: 'shadow',
     },
   },
-  legend: {},
+  legend: {
+    icon: 'rect',
+    bottom: 0,
+    left: 0,
+  },
   grid: {
     left: '3%',
     right: '4%',
@@ -148,7 +152,7 @@ const options: EChartsOption = {
       data: [62, 82, 91, 84, 109, 110, 120],
     },
   ],
-};
+} as EChartsOption;
 </script>
 
 <template>
