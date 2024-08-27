@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 import ActionCardTags from './../auto-generated/ix-action-card/tags.md';
 import ActionCardProps from './../auto-generated/ix-action-card/props.md';
@@ -19,7 +19,7 @@ import CardEvents from './../auto-generated/ix-card/events.md';
 <Playground
   height="17rem"
   name="card"
-  examplesByName>
+  >
 </Playground>
 
 ### Action Card
@@ -28,7 +28,7 @@ import CardEvents from './../auto-generated/ix-card/events.md';
 <Playground
   height="13rem"
   name="action-card"
-  examplesByName>
+  >
 </Playground>
 
 ## Push Card
@@ -38,7 +38,7 @@ import CardEvents from './../auto-generated/ix-card/events.md';
 <Playground
   height="20rem"
   name="push-card"
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-card)

@@ -1,7 +1,7 @@
 import Events from './../auto-generated/ix-expanding-search/events.md';
 import Props from './../auto-generated/ix-expanding-search/props.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Expanding search
 
@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="expanding-search" 
   height="5rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

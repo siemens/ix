@@ -13,6 +13,33 @@ import { themeSwitcher } from '@siemens/ix';
 
 const repositoryUrl = 'https://github.com/siemens/ix/tree/main/packages';
 
+export function getBranchPath(framework: TargetFramework) {
+  let path = 'html';
+
+  const branch = 'main';
+
+  if (framework === TargetFramework.ANGULAR) {
+    path = 'angular';
+  }
+
+  if (framework === TargetFramework.REACT) {
+    path = 'react';
+  }
+
+  if (framework === TargetFramework.VUE) {
+    path = 'vue';
+  }
+
+  return `siemens/ix/tree/${branch}/packages/${path}-test-app`;
+}
+
+export function stripComments(code: string) {
+  return code
+    .replace(/\/\*[^]*?\*\//gs, '')
+    .replace(/<!--[^]*?-->/gs, '')
+    .trim();
+}
+
 export type SourceFile = {
   filename: string;
   source: string;
@@ -222,7 +249,7 @@ async function openAngularStackBlitz(
 
   let renderFirstExample = sourceFiles[0];
 
-  if(sourceFiles.length >= 2) {
+  if (sourceFiles.length >= 2) {
     renderFirstExample = sourceFiles[1];
   }
 

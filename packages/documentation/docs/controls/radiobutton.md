@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Radio button
 
@@ -8,5 +8,5 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 <Playground
   name="radio-button"
-  examplesByName>
+  >
 </Playground>

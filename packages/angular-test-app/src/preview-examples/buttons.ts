@@ -15,6 +15,6 @@ import { Component } from '@angular/core';
     <ix-button>Button</ix-button>
     <ix-button disabled>Button</ix-button>
   `,
-  styles: [`@import 'example-styles/dist/buttons.css';`],
+  styleUrls: ['./styles/buttons.css'],
 })
 export default class Buttons {}

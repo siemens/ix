@@ -3,7 +3,7 @@ import Props from './../auto-generated/ix-slider/props.md';
 import Events from './../auto-generated/ix-slider/events.md';
 import Slots from './../auto-generated/ix-slider/slots.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Slider
 
@@ -16,7 +16,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   height="15rem"
   name="slider"
-  examplesByName>
+  >
 </Playground>
 
 ### Marker
@@ -24,7 +24,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   height="15rem"
   name="slider-marker"
-  examplesByName>
+  >
 </Playground>
 
 ### Trace
@@ -32,7 +32,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   height="18rem"
   name="slider-trace"
-  examplesByName>
+  >
 </Playground>
 
 ### Error
@@ -40,7 +40,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="slider-error"
   height="14rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

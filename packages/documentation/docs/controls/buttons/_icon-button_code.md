@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 import Props from './../../auto-generated/ix-icon-button/props.md';
 import Events from './../../auto-generated/ix-icon-button/events.md';
@@ -10,7 +10,7 @@ import Events from './../../auto-generated/ix-icon-button/events.md';
 <Playground
   name="button-with-icon"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-icon-button)

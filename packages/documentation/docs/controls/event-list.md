@@ -4,7 +4,7 @@ import Events from './../auto-generated/ix-event-list/events.md';
 import ItemProps from './../auto-generated/ix-event-list-item/props.md';
 import ItemEvents from './../auto-generated/ix-event-list-item/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Event list
 
@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="event-list" 
   height="14rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Selected
@@ -24,7 +24,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="event-list-selected" 
   height="14rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Custom item height
@@ -33,7 +33,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="event-list-custom-item-height" 
   height="15rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Compact
@@ -42,7 +42,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="event-list-compact" 
   height="14rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-event-list)
