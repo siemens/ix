@@ -12,13 +12,13 @@ import { docusaurusFetch } from './fetching';
 
 export async function fetchSourceForHtml(baseUrl: string, name: string) {
   const snippets: Record<string, string> = {};
-  const tsFile = await docusaurusFetch(`${baseUrl}/${name}.html`, true);
+  const htmlFile = await docusaurusFetch(`${baseUrl}/${name}.html`, true);
 
-  snippets[`${name}.html`] = tsFile;
+  snippets[`${name}.html`] = htmlFile;
 
   const regex =
     /<link\s*rel=\"stylesheet\"\s*href=['"]\.\/styles\/([^'"]+)['"]\s* \/>/;
-  const match = tsFile.match(regex);
+  const match = htmlFile.match(regex);
 
   if (match) {
     const styleFile = await docusaurusFetch(`${baseUrl}/styles/${match[1]}`);

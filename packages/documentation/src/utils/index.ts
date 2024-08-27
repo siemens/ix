@@ -6,9 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export function capitalizeFirstLetter(name: string) {
-  if (name.length === 0) {
-    return name;
-  }
-  return name.charAt(0).toUpperCase() + name.slice(1);
+export function fromKebabCaseToCamelCase(str: string): string {
+  const camelCase = str
+    .split('-')
+    .map((word, index) => {
+      if (index === 0) {
+        return word.toLowerCase();
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join('');
+
+  return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
 }

@@ -1,5 +1,4 @@
 import Tags from './../../auto-generated/ix-content/tags.md';
-import Playground from '@site/src/components/PlaygroundV3';
 
 The content component is a simple layout component made for hosting content.
 
@@ -9,7 +8,3 @@ The purple dotted line illustrates the extent of the content component.
 
 1. Header slot (optional): Hosts a header component like the [content header](../content-header.md).
 2. Current content
-
-
-
-

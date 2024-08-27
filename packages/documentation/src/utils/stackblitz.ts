@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { capitalizeFirstLetter } from '.';
+import { fromKebabCaseToCamelCase } from '.';
 import { TargetFramework } from '../components/PlaygroundV2/framework-types';
 import {
   getAngularRuntime,
@@ -25,7 +25,7 @@ function openProject(
   replaceLibraryImports(projectFiles, version);
   sdk.openProject(
     {
-      title: `iX ${capitalizeFirstLetter(name)} Example`,
+      title: `iX ${fromKebabCaseToCamelCase(name)} Example`,
       template: 'node',
       description: `iX ${name} playground`,
       files: projectFiles,
@@ -106,7 +106,7 @@ async function createReactProjectFiles(
     project[`src/${key.replace('./', '')}`] = snippets[key];
   });
 
-  const exampleImport = `import ${capitalizeFirstLetter(
+  const exampleImport = `import ${fromKebabCaseToCamelCase(
     name
   )} from './${name}';`;
 
@@ -117,7 +117,7 @@ async function createReactProjectFiles(
 
   project['src/App.tsx'] = project['src/App.tsx'].replace(
     '<Example />',
-    `<${capitalizeFirstLetter(name)} />`
+    `<${fromKebabCaseToCamelCase(name)} />`
   );
 
   return project;
@@ -140,12 +140,12 @@ async function createAngularProjectFiles(
 
   project['src/app/app.module.ts'] = project['src/app/app.module.ts'].replace(
     "import ExampleComponent from './example.component';",
-    `import ${capitalizeFirstLetter(name)} from './../${name}';`
+    `import ${fromKebabCaseToCamelCase(name)} from './../${name}';`
   );
 
   project['src/app/app.module.ts'] = project['src/app/app.module.ts'].replace(
     'declarations: [AppComponent, ExampleComponent],',
-    `declarations: [AppComponent, ${capitalizeFirstLetter(name)}],`
+    `declarations: [AppComponent, ${fromKebabCaseToCamelCase(name)}],`
   );
 
   return project;
@@ -189,7 +189,7 @@ async function createVueProjectFiles(
     project[`src/${key.replace('./', '')}`] = snippets[key];
   });
 
-  const exampleImport = `import ${capitalizeFirstLetter(
+  const exampleImport = `import ${fromKebabCaseToCamelCase(
     name
   )} from './${name}.vue';`;
 
@@ -200,7 +200,7 @@ async function createVueProjectFiles(
 
   project['src/App.vue'] = project['src/App.vue'].replace(
     '<Example />',
-    `<${capitalizeFirstLetter(name)} />`
+    `<${fromKebabCaseToCamelCase(name)} />`
   );
 
   return project;
