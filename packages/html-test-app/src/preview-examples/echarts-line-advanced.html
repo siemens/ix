@@ -13,19 +13,14 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECharts example</title>
-    <!-- Sources -->
-    <script type="module">
-      import 'example-styles/dist/charts.css';
-    </script>
-    <!-- Sources -->
+    <link rel="stylesheet" href="./styles/charts.css" />
+    <!-- External resources -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <!-- External resources -->
   </head>
   <body class="">
     <!-- Preview code -->
-    <div
-      id="main"
-      class="echarts"
-    ></div>
+    <div id="main" class="echarts"></div>
 
     <script type="module">
       import {
@@ -83,9 +78,7 @@ LICENSE file in the root directory of this source tree.
               ],
               label: {
                 fontWeight: 'bold',
-                color: getComputedCSSProperty(
-                  'color-inv-contrast-text'
-                ),
+                color: getComputedCSSProperty('color-inv-contrast-text'),
               },
             },
             markLine: {
