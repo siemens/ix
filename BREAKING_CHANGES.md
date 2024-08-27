@@ -2,31 +2,84 @@
 
 ## v3.0.0
 
-### Remove package `@siemens/ix-icons` from library
+TODO: Split v2.0.0 breaking changes and v3.0.0 into different files?
+
+### Remove package `@siemens/ix-icons` from `@siemens/ix` base library
 
 TODO: Rewrite this section to explain what is the impact of this change.
 
-- **Web Components** (`@siemens/ix`): The icons package (`@siemens/ix-icons`) has to be bootstrapped manually (TODO: see [ix-icons repo](https://github.com/siemens/ix-icons) for installation instruction or add this also to the icons documentation)
-- **Angular** (`@siemens/ix-angular`): no changes
-- **React** (`@siemens/ix-react`): no changes
-- **Vue** (`@siemens/ix-vue`): no changes
+The icons package (`@siemens/ix-icons`) has to be bootstrapped manually (TODO: see [ix-icons repo](https://github.com/siemens/ix-icons) for installation instruction or add this also to the icons documentation)
 
 #### Usage of icons inside `@siemens/ix-react` and `@siemens/ix-vue` changed
 
 TODO: Rewrite this section to be more precise about what has to be adapted
 
-- Icon imports by name (e.g. `<IxIcon name="star" />`) are not supported any more. This will reduce bundle size and enable chunk loading.
-- It is still possible to use imports by name if the SVGs are provided as assets (see [Angular installation section](url)):
+Icon imports by name (e.g. `<IxIcon name="star" />`) are not supported by default any more. This will reduce bundle size and enable chunk loading.
 
-```tsx
+Do the import of the icon
+
+```ts
 import { iconStar } from '@siemens/ix-icons/icons';
 ```
 
-React/Vue:
+Use the icon as attribute assertion
 
-```tsx
-<IxIcon name={iconStar} />
+```html
+<IxIcon name="{iconStar}" />
 ```
+
+If you want to use the "legacy" style (`<IxIcon name="star" />`) you have do some setup tasks.
+
+Create a copy task to ensure that all icons from the `@siemens/ix-icons` package is available as a static resource. Example of a vite config (build only) example:
+
+```ts
+export default defineConfig({
+  plugins: [
+    react(),
+    copy({
+      verbose: true,
+      targets: [
+        {
+          src: 'node_modules/@siemens/ix-icons/svg/*.svg',
+          dest: 'public/svg',
+        },
+      ],
+    }),
+  ],
+});
+```
+
+#### Custom asset path
+
+To configure the asset path from which domain the `ix-icon` component will load the resource you have two options via `meta`-tag or the `setAssetPath`-function.
+
+##### with `meta`-tag
+
+```html
+<meta name="ix-icons:path" content="https://some-resource-domain" />
+```
+
+```html
+<IxIcon name="star"></IxIcon>
+```
+
+Will fetch the svg from `https://some-resource-domain/star.svg`
+
+##### with `setAssetPath`-function
+
+Ensure to call the `setAssetPath`-function before using the `IxIcon` component e.g in the main file.
+
+```ts
+import { setAssetPath } from '@siemens/ix-icons/components';
+
+setAssetPath('https://some-resource-domain');
+```
+
+```html
+<IxIcon name="star"></IxIcon>
+```
+
+Will fetch the svg from `https://some-resource-domain/star.svg`
 
 #### Installation instruction of `@siemens/ix-angular` changed
 
@@ -45,6 +98,8 @@ To use imports by name (e.g. `<ix-icon name="star"></ix-icon>`) an additional co
   }
 ],
 ```
+
+TODO: Clarification needed if the legacy feature `preloadIcons` should be part of the PR.
 
 To re-enable the preloaded icons you can provide the `preloadIcons` function as configuration to the module import.
 

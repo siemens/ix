@@ -14,13 +14,12 @@ import {
   ElementRef,
   NgZone,
 } from '@angular/core';
-import { defineCustomElements } from '@siemens/ix-icons/loader';
+import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/components/ix-icon';
 import { ProxyCmp } from './directives/angular-component-lib/utils';
-
-defineCustomElements();
 
 @ProxyCmp({
   inputs: ['color', 'size', 'name', 'lazyLoading'],
+  defineCustomElementFn: defineIxIcon,
 })
 @Component({
   selector: 'ix-icon',
