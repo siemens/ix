@@ -273,7 +273,6 @@ export class Tooltip implements IxOverlayComponent {
       };
 
       const onMouseLeave = () => {
-        console.log(this.titleContent, 'Mouseleave!!!');
         this.hideTooltip();
       };
 
