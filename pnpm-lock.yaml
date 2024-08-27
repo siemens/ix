@@ -473,6 +473,9 @@ importers:
       sass:
         specifier: ^1.54.8
         version: 1.69.5
+      vue-test-app:
+        specifier: workspace:*
+        version: link:../vue-test-app
     devDependencies:
       '@docusaurus/module-type-aliases':
         specifier: 3.4.0
