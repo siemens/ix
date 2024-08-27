@@ -119,6 +119,8 @@ export default {
 };
 </script>
 
+<style scoped src="example-styles/dist/validation.css"></style>
+
 <template>
   <form
     className="form-validation-example"
@@ -161,7 +163,7 @@ export default {
         infoText="You can adjust the room size"
       >
         <IxIcon slot="prefix" :name="iconBezierCurve" size="16"></IxIcon>
-        <IxTypography slot="postfix" color="weak" style="padding-right: 0.5rem;"> m<sup>2</sup> </IxTypography>
+        <IxTypography slot="postfix" color="weak" className="padding-right"> m<sup>2</sup> </IxTypography>
       </IxNumberField>
 
       <IxSelect

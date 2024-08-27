@@ -12,7 +12,6 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
-  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import {
@@ -51,6 +50,11 @@ export function customRequiredValidator(): ValidatorFn {
 @Component({
   selector: 'app-example',
   templateUrl: `./form-validation.html`,
+  styles: [
+    `
+      @import 'example-styles/dist/validation.css';
+    `,
+  ],
 })
 export default class FormValidation implements OnInit, OnDestroy {
   @ViewChild('upload') upload?: ElementRef<HTMLInputElement>;

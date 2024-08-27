@@ -6,6 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+import 'example-styles/dist/validation.css';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
 import {
@@ -104,7 +107,7 @@ export default function FormValidation() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="form-validation-example">
       <IxLayoutAuto>
         <IxTextField
           label="Name"
@@ -143,7 +146,7 @@ export default function FormValidation() {
           {...register('room-size')}
         >
           <IxIcon slot="prefix" name={iconBezierCurve} size="16"></IxIcon>
-          <IxTypography slot="postfix" color="weak" style={{'padding-right': '0.5rem'}}>
+          <IxTypography slot="postfix" color="weak" className='padding-right'>
             m<sup>2</sup>
           </IxTypography>
         </IxNumberField>
