@@ -21,7 +21,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-special-3d.html',
-  styleUrls: ["../../../example-styles/dist/charts.css"],
+  styleUrls: ["./styles/charts.css"],
 })
 export default class EchartsSpecial3d implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
