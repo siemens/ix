@@ -37,10 +37,6 @@ import { Component } from '@angular/core';
       </ix-chip>
     </div>
   `,
-  styles: [
-    `
-      @import 'example-styles/dist/chip.css';
-    `,
-  ],
+  styleUrls: ['./styles/chip.css'],
 })
 export default class Chip {}

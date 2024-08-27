@@ -1,7 +1,7 @@
 import Props from './../../auto-generated/ix-application/props.md';
 import Events from './../../auto-generated/ix-application/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 The application component acts as a centralized hub for configuring aspects of your web-application, such as screen breakpoints, theming and app switch configuration. By consolidating these configuration points, it simplifies the management of application-wide settings and ensures a consistent user interface across different scenarios.
 
@@ -17,7 +17,7 @@ The code snippet below shows an example of a combination of different components
 
 <Playground 
   name="application" 
-  examplesByName 
+   
   height="30rem" 
   noMargin>
 </Playground>
@@ -26,7 +26,7 @@ The code snippet below shows an example of a combination of different components
 
 <Playground 
   name="application-breakpoints" 
-  examplesByName 
+   
   height="30rem" 
   noMargin>
 </Playground>
@@ -49,7 +49,7 @@ The navigation to another application is implemented via `window.open` (https://
 
 <Playground 
   name="application-app-switch" 
-  examplesByName 
+   
   height="30rem" 
   noMargin>
 </Playground>

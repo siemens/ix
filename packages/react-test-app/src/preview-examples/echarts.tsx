@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/charts.css';
+import './styles/charts.css';
 
 import React, { useEffect, useState } from 'react';
 import { convertThemeName, registerTheme } from '@siemens/ix-echarts';

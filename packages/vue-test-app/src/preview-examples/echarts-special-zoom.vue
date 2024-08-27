@@ -9,7 +9,11 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
+import {
+  convertThemeName,
+  getComputedCSSProperty,
+  registerTheme,
+} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts/core';
@@ -17,7 +21,7 @@ import * as charts from 'echarts/charts';
 import * as components from 'echarts/components';
 import * as renderer from 'echarts/renderers';
 import { EChartsOption } from 'echarts';
-import {OrdinalRawValue} from "echarts/types/src/util/types";
+import { OrdinalRawValue } from 'echarts/types/src/util/types';
 
 echarts.use([
   components.TooltipComponent,
@@ -107,7 +111,7 @@ const options: EChartsOption = {
 } as EChartsOption;
 </script>
 
-<style scoped src="example-styles/dist/charts.css"></style>
+<style scoped src="./styles/charts.css"></style>
 
 <template>
   <VueECharts :theme="theme" :option="options" autoresize></VueECharts>

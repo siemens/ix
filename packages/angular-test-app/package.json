@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --preserve-symlinks -c production",
+    "copy-preview-styles": "node ./scripts/copy-preview.mjs",
+    "start": "pnpm copy-preview-styles && ng serve",
+    "build": "pnpm copy-preview-styles && ng build --preserve-symlinks -c production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI"
   },

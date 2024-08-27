@@ -3,7 +3,7 @@ import WorkflowStepEvents from './../auto-generated/ix-workflow-step/events.md';
 import WorkflowStepsProps from './../auto-generated/ix-workflow-steps/props.md';
 import WorkflowStepsEvents from './../auto-generated/ix-workflow-steps/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Workflow
 
@@ -11,7 +11,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 <Playground
   name="workflow"
-  examplesByName>
+  >
 </Playground>
 
 ### Vertical
@@ -20,7 +20,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="workflow-vertical" 
   height="27rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-workflow-steps)

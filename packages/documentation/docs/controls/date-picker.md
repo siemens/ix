@@ -1,7 +1,7 @@
 import Props from './../auto-generated/ix-date-picker/props.md';
 import Events from './../auto-generated/ix-date-picker/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Date picker
 
@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="datepicker-range" 
   height="35rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Single Selection
@@ -20,7 +20,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="datepicker" 
   height="35rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Translation
@@ -30,7 +30,7 @@ The `ix-date-picker` can be configured using [BCP 47](https://tools.ietf.org/htm
 <Playground
   name="datepicker-locale" 
   height="35rem" 
-  examplesByName>
+  >
 </Playground>
 
 ## API

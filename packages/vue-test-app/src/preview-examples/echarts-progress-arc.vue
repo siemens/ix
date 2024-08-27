@@ -100,7 +100,7 @@ const options = {
 };
 </script>
 
-<style scoped src="example-styles/dist/charts-gauge.css"></style>
+<style scoped src="./styles/charts-gauge.css"></style>
 
 <template>
   <VueECharts :theme="theme" :option="options" autoresize class="echarts-gauge"></VueECharts>

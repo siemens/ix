@@ -98,7 +98,7 @@ const options = {
 } as EChartsOption;
 </script>
 
-<style scoped src="example-styles/dist/charts.css"></style>
+<style scoped src="./styles/charts.css"></style>
 
 <template>
     <VueECharts :theme="theme" :option="options" autoresize></VueECharts>

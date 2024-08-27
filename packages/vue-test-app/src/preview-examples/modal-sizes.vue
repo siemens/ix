@@ -34,7 +34,7 @@ const closeModal = () => {
 };
 </script>
 
-<style scoped src="example-styles/dist/modal-sizes.css"></style>
+<style scoped src="./styles/modal-sizes.css"></style>
 
 <template>
   <div class="modal-sizes">

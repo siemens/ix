@@ -13,14 +13,9 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic navigation example</title>
-    <!-- Sources -->
-    <script type="module">
-      import 'example-styles/dist/basic-navigation.css';
-    </script>
-    <!-- Sources -->
+    <link rel="stylesheet" href="./styles/basic-navigation.css" />
   </head>
   <body>
-    <!-- Preview code -->
     <ix-basic-navigation application-name="Application name">
       <div class="placeholder-logo" slot="logo"></div>
       <ix-menu>
@@ -36,7 +31,6 @@ LICENSE file in the root directory of this source tree.
         menu.breakpoints = ['medium'];
       })();
     </script>
-    <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>
 </html>

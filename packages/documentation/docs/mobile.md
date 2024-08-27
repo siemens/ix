@@ -79,7 +79,7 @@ In the first step, we're going to create a theme mapping between Siemens Industr
 
 Ionic uses CSS custom properties (variables), just like Siemens Industrial Experience does. This makes is easy to map between the two theming systems.
 
-Here is an example of a default theme mapping: [Repository Link](https://github.com/siemens/ix/blob/main/test-apps/ionic-test-app/src/theme/variables.css).
+Here is an example of a default theme mapping: [Repository Link](https://github.com/siemens/ix/blob/main/packages/ionic-test-app/src/theme/variables.css).
 
 ### Define safe areas
 

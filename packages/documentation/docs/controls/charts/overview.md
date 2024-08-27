@@ -1,7 +1,7 @@
 ---
 sidebar_position: 0
 ---
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Basics
 
@@ -38,7 +38,7 @@ Please make sure to correctly add `NgxEcharts` in your module file.
 height="40rem"
 name="echarts"
 noMargin
-examplesByName>
+>
 </Playground>
 
 ## Empty state
