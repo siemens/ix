@@ -20,7 +20,7 @@
     "@angular/router": "^17.3.12",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
-    "@siemens/ix-icons": "0.0.0-20240827131228",
+    "@siemens/ix-icons": "0.0.0-20240827135516",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.3",
     "zone.js": "~0.14.8"

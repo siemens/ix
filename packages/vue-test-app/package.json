@@ -13,7 +13,7 @@
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-icons": "0.0.0-20240827131228",
+    "@siemens/ix-icons": "0.0.0-20240827135516",
     "@siemens/ix-vue": "workspace:*",
     "ag-grid-community": "^30.2.1",
     "ag-grid-vue3": "^30.2.1",

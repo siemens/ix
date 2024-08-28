@@ -72,7 +72,7 @@ import DropdownIcon from '../preview-examples/dropdown-icon';
 import DropdownQuickActions from '../preview-examples/dropdown-quick-actions';
 import DropdownSubmenu from '../preview-examples/dropdown-submenu';
 import Echarts from '../preview-examples/echarts';
-import EchartsSpecial3d from 'src/preview-examples/echarts-special-3d';
+import EchartsSpecial3d from '../preview-examples/echarts-special-3d';
 import EchartsBarSimple from '../preview-examples/echarts-bar-simple';
 import EchartsBarHorizontalStacked from '../preview-examples/echarts-bar-horizontal-stacked';
 import EchartsCircle from '../preview-examples/echarts-circle';

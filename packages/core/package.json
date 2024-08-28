@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.45.3",
-    "@siemens/ix-icons": "0.0.0-20240827131228",
+    "@siemens/ix-icons": "0.0.0-20240827135516",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "^0.8.4",
@@ -91,7 +91,7 @@
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.0",
-    "@siemens/ix-icons": "0.0.0-20240827131228",
+    "@siemens/ix-icons": "0.0.0-20240827135516",
     "bootstrap": "~5.2.0"
   },
   "config": {
