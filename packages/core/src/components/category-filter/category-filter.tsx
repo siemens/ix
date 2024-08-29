@@ -47,6 +47,7 @@ export class CategoryFilter {
     value: string;
     operator: LogicalFilterOperator;
   }> = [];
+  @State() categoryPreview: string;
 
   /**
    * If true the filter will be in disabled state
@@ -407,6 +408,7 @@ export class CategoryFilter {
 
   private selectCategory(category: string) {
     this.category = category;
+    this.categoryPreview = this.categories[category]?.label;
     this.textInput.value = '';
     this.inputValue = '';
     this.textInput.focus();
@@ -417,6 +419,7 @@ export class CategoryFilter {
     e.stopPropagation();
     this.closeDropdown();
     this.filterTokens = [];
+    this.categoryPreview = '';
     this.emitFilterEvent();
   }
 
@@ -734,7 +737,7 @@ export class CategoryFilter {
                       'd-none': this.category === undefined,
                     }}
                   >
-                    {this.categories[this.category]?.label}
+                    {this.categoryPreview}
                   </li>
                 )}
                 <input
