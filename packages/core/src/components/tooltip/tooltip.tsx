@@ -64,9 +64,8 @@ export class Tooltip implements IxOverlayComponent {
   @Prop() interactive = false;
 
   /**
-   * Initial placement of the tooltip. If the placement don"t have enough space,
-   * the tooltip will be placed on another location.
-   *
+   * Initial placement of the tooltip.
+   * If the selected placement doesn't have enough space, the tooltip will be repositioned to another location.
    * @since 1.5.0
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
