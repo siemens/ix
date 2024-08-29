@@ -10,7 +10,7 @@
 import './styles/buttons.css';
 
 import { IxButton } from '@siemens/ix-react';
-import React from 'react';
+
 
 export default () => {
   return (

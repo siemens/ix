@@ -8,7 +8,7 @@
  */
 
 import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-react';
-import React from 'react';
+
 
 export default () => {
   return (

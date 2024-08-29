@@ -8,7 +8,7 @@
  */
 
 import { IxButton, showToast } from '@siemens/ix-react';
-import React from 'react';
+
 
 function CustomToast() {
   return (

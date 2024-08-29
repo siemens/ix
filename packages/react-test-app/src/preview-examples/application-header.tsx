@@ -15,7 +15,7 @@ import {
   IxIconButton,
 } from '@siemens/ix-react';
 
-import React from 'react';
+
 
 export default () => {
   return (

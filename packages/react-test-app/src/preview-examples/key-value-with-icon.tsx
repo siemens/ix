@@ -8,7 +8,7 @@
  */
 
 import { IxKeyValue } from '@siemens/ix-react';
-import React from 'react';
+
 
 export default () => {
   return <IxKeyValue icon="location" label="Label" value="Value"></IxKeyValue>;

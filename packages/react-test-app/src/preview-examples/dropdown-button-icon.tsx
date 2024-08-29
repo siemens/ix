@@ -10,7 +10,7 @@
 import './styles/dropdown-button.css';
 
 import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
-import React from 'react';
+
 
 export default () => {
   return (

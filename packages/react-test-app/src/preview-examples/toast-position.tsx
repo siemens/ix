@@ -9,7 +9,7 @@
 
 import { setToastPosition, ToastPosition } from '@siemens/ix';
 import { IxButton, showToast } from '@siemens/ix-react';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 function useToastPosition(position: ToastPosition) {
   useEffect(() => {

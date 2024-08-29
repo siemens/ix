@@ -9,7 +9,7 @@
 
 import { DateDropdownOption } from '@siemens/ix';
 import { IxDateDropdown } from '@siemens/ix-react';
-import React from 'react';
+
 
 const today = new Date().toLocaleDateString('en-US', {
   year: 'numeric',

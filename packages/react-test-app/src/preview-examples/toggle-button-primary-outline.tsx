@@ -10,7 +10,7 @@
 import './styles/toggle-buttons.css';
 
 import { IxToggleButton } from '@siemens/ix-react';
-import React from 'react';
+
 
 export default () => {
   return (
