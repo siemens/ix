@@ -12,6 +12,7 @@ import {
   computePosition,
   ComputePositionReturn,
   flip,
+  hide,
   offset,
   shift,
 } from '@floating-ui/dom';
@@ -179,6 +180,7 @@ export class Tooltip implements IxOverlayComponent {
           fallbackStrategy: 'initialPlacement',
           padding: 10,
         }),
+        hide(),
       ],
     });
   }
@@ -201,6 +203,14 @@ export class Tooltip implements IxOverlayComponent {
         async () => {
           setTimeout(async () => {
             const computeResponse = await this.computeTooltipPosition(target);
+
+            const isHidden =
+              computeResponse.middlewareData.hide?.referenceHidden;
+
+            if (isHidden) {
+              setTimeout(() => this.hideTooltip());
+              resolve(computeResponse);
+            }
 
             if (computeResponse.middlewareData.arrow) {
               this.applyTooltipArrowPosition(computeResponse);
