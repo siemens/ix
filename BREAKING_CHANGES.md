@@ -12,4 +12,4 @@ Please select your target version
 
 ## Questions ❓🙋‍♀️
 
-If you have further questions or you are facing any problems during migration please [contact us over our forum](https://community.siemens.com/c/ix/).
+If you have any further questions, or you encounter any issues during the migration, please [contact us over our forum](https://community.siemens.com/c/ix/).
