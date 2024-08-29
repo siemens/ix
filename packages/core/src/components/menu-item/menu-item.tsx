@@ -79,12 +79,10 @@ export class MenuItem {
   private buttonRef = makeRef<HTMLButtonElement>();
   private isHostedInsideCategory = false;
   private menuExpandedDisposer: Disposable;
-  private parentNodes = [];
 
   private observer: MutationObserver = createMutationObserver(() => {
-    this.tooltip = this.label ?? this.hostElement.innerText;
+    this.setTooltip();
   });
-  private elementParsedObserver: MutationObserver;
 
   componentWillLoad() {
     this.isHostedInsideCategory =
@@ -99,8 +97,12 @@ export class MenuItem {
     );
   }
 
+  componentWillRender() {
+    this.setTooltip();
+  }
+
   setTooltip() {
-    this.tooltip = this.label ?? this.hostElement.innerText;
+    this.tooltip = this.label ?? this.hostElement.textContent;
   }
 
   connectedCallback() {
@@ -109,37 +111,6 @@ export class MenuItem {
       childList: true,
       characterData: true,
     });
-
-    let element: Node = this.hostElement;
-    this.parentNodes = [];
-
-    while (element.parentNode) {
-      element = element.parentNode;
-      this.parentNodes.push(element);
-    }
-
-    if (
-      [this.hostElement, ...this.parentNodes].some((el) => el.nextSibling) ||
-      document.readyState !== 'loading'
-    ) {
-      this.setTooltip();
-    } else {
-      this.elementParsedObserver = new MutationObserver((_) => {
-        if (
-          [this.hostElement, ...this.parentNodes].some(
-            (el) => el.nextSibling
-          ) ||
-          document.readyState !== 'loading'
-        ) {
-          this.setTooltip();
-          this.elementParsedObserver.disconnect();
-        }
-      });
-
-      this.elementParsedObserver.observe(this.hostElement, {
-        childList: true,
-      });
-    }
   }
 
   disconnectedCallback() {
