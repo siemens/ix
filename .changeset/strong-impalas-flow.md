@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix(core/menu-item): fix empty tooltips
+fix(core/menu-item): occasionally empty tooltips in menu-item 
