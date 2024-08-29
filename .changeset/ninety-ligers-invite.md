@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix(core/tooltip): fix performance issue
+fix(core/tooltip): cancel tooltip positioning when reference is not visible
