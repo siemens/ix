@@ -34,7 +34,7 @@ regressionTest.describe('category-filter', () => {
   });
 
   regressionTest('clear category preview', async ({ page }) => {
-    await page.goto('category-filter/categories');
+    await page.goto('category-filter/static-operator');
     await page.locator('input').first().click();
     await page.locator('.category-item').first().click();
     await page.locator('ix-icon-button').first().click();
