@@ -2118,7 +2118,7 @@
               "type": "{ [id: string]: { label: string; options: string[]; }; }"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2166,7 +2166,7 @@
               "type": "FilterState"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2182,6 +2182,7 @@
           "reflectToAttr": false,
           "docs": "Allows to hide the icon inside the text input.\nDefaults to false",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -2295,7 +2296,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2394,7 +2395,7 @@
               "type": "string[]"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],

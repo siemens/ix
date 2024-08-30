@@ -363,7 +363,7 @@ export namespace Components {
         /**
           * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
-        "categories": {
+        "categories"?: {
     [id: string]: {
       label: string;
       options: string[];
@@ -376,7 +376,7 @@ export namespace Components {
         /**
           * A set of search criteria to populate the component with.
          */
-        "filterState": FilterState;
+        "filterState"?: FilterState;
         /**
           * Allows to hide the icon inside the text input. Defaults to false
          */
@@ -402,7 +402,7 @@ export namespace Components {
         /**
           * Placeholder text to be displayed in an empty input field.
          */
-        "placeholder": string;
+        "placeholder"?: string;
         /**
           * If true the filter will be in readonly mode
          */
@@ -419,7 +419,7 @@ export namespace Components {
         /**
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
-        "suggestions": string[];
+        "suggestions"?: string[];
         "tmpDisableScrollIntoView": boolean;
     }
     interface IxChip {
