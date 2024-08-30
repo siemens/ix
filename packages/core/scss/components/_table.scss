@@ -19,6 +19,10 @@
   td {
     border-bottom-color: var(--theme-table-data-row--border-color);
   }
+
+  /*ix-tooltip {
+    background: var(--theme-tootlip--background);
+  }*/
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {

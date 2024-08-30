@@ -366,7 +366,7 @@ export class Tooltip implements IxOverlayComponent {
           'tooltip-container': true,
         }}
         role="tooltip"
-        style={{ background: 'var(--theme-tootlip--background)' }}
+        //style={{ background: 'var(--theme-tootlip--background)' }}
       >
         <div class={'tooltip-title'}>
           <slot name="title-icon"></slot>

@@ -18,6 +18,10 @@
 
   //background-color: var(--theme-tootlip--background) !important;
 
+  //.tooltip {
+  //  background: blue !important;
+  //}
+
   .tooltip-title {
     display: flex;
     align-items: center;
@@ -27,9 +31,10 @@
     }
   }
 
-  .table ix-tooltip {
-    background: red;
-  }
+}
+
+:host-context(.table) {
+  background: red !important;
 }
 
 :host(.visible) {
