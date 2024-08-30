@@ -12,10 +12,11 @@
   overflow-wrap: break-word;
 
   border-radius: 0.25rem;
-  background-color: var(--theme-tootlip--background);
   padding: 0.375rem 0.75rem 0.375rem 0.875rem;
 
   box-shadow: var(--theme-shadow-4);
+
+  //background-color: var(--theme-tootlip--background) !important;
 
   .tooltip-title {
     display: flex;
@@ -24,6 +25,10 @@
     ::slotted(ix-icon) {
       margin-right: 0.35rem;
     }
+  }
+
+  .table ix-tooltip {
+    background: red;
   }
 }
 
