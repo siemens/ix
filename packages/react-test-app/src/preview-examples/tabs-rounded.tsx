@@ -9,7 +9,6 @@
 
 import { IxIcon, IxTabItem, IxTabs } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxTabs rounded>

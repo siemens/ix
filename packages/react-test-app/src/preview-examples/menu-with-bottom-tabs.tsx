@@ -11,7 +11,6 @@ import './styles/application.css';
 
 import { IxMenu, IxMenuItem } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxMenu>

@@ -11,7 +11,6 @@ import './styles/blind.css';
 
 import { IxBlind } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

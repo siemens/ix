@@ -11,7 +11,6 @@ import './styles/dropdown-button.css';
 
 import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <div className="dropdown-button">

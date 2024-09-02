@@ -11,7 +11,6 @@ import './styles/tile.css';
 
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <div className="example">

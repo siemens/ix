@@ -9,7 +9,6 @@
 
 import { IxEmptyState } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxEmptyState

@@ -12,7 +12,6 @@ import './styles/flip-tile.css';
 import { FlipTileState } from '@siemens/ix';
 import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <div className="flip-tile">

@@ -9,7 +9,6 @@
 
 import { IxIcon, IxInputGroup } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <form className="needs-validation m-2">

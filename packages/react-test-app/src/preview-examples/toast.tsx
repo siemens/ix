@@ -9,7 +9,6 @@
 
 import { IxButton, showToast } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

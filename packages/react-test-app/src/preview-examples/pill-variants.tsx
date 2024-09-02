@@ -11,7 +11,6 @@ import './styles/pill-variants.css';
 
 import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

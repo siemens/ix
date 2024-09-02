@@ -10,7 +10,6 @@
 import { showMessage } from '@siemens/ix';
 import { IxButton } from '@siemens/ix-react';
 
-
 export default () => {
   const triggerMessage = async () => {
     (

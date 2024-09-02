@@ -9,7 +9,6 @@
 
 import { IxBreadcrumb, IxBreadcrumbItem } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxBreadcrumb>

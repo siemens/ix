@@ -11,7 +11,6 @@ import './styles/basic-navigation.css';
 
 import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxBasicNavigation applicationName="Application name">

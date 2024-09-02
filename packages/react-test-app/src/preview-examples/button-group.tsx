@@ -9,7 +9,6 @@
 
 import { IxButton } from '@siemens/ix-react';
 
-
 export default () => (
   <>
     <div className="btn-group">

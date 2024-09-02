@@ -10,7 +10,6 @@
 import { IxButton, IxContentHeader } from '@siemens/ix-react';
 
 
-
 export default () => {
   return (
     <IxContentHeader

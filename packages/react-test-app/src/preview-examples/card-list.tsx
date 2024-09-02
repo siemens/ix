@@ -9,7 +9,6 @@
 
 import { IxCardList, IxPushCard } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

@@ -9,7 +9,6 @@
 
 import { IxButton, showToast } from '@siemens/ix-react';
 
-
 function CustomToast() {
   return (
     <div>

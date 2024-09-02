@@ -9,7 +9,6 @@
 
 import { IxGroup, IxGroupItem } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxGroup

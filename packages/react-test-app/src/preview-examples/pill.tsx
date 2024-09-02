@@ -11,7 +11,6 @@ import './styles/pill.css';
 
 import { IxPill } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

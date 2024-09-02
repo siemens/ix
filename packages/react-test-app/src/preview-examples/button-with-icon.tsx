@@ -11,7 +11,6 @@ import './styles/icon-button.css';
 
 import { IxIconButton } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

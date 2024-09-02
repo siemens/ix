@@ -9,7 +9,6 @@
 
 import { IxPagination } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

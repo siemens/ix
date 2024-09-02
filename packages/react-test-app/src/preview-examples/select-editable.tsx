@@ -9,7 +9,6 @@
 
 import { IxSelect, IxSelectItem } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxSelect value={'1'} editable>

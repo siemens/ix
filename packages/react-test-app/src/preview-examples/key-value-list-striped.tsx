@@ -9,7 +9,6 @@
 
 import { IxKeyValue, IxKeyValueList } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxKeyValueList striped={true}>

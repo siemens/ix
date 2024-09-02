@@ -11,7 +11,6 @@ import './styles/tooltip.css';
 
 import { IxButton, IxTooltip } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

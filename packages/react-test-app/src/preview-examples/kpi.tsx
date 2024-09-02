@@ -11,7 +11,6 @@ import './styles/kpi.css';
 
 import { IxKpi } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <div className="kpi">

@@ -11,7 +11,6 @@ import './styles/chip.css';
 
 import { IxChip } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <div className="chip">

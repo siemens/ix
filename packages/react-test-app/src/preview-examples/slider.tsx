@@ -9,7 +9,6 @@
 
 import { IxSlider } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

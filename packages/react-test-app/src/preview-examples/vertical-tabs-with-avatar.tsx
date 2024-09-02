@@ -16,7 +16,6 @@ import {
   IxMenuItem,
 } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxMenu>

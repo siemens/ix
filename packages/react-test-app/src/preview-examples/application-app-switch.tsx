@@ -23,7 +23,6 @@ import {
   IxMenuItem,
 } from '@siemens/ix-react';
 
-
 const appSwitchConfig: AppSwitchConfiguration = {
   i18nAppSwitch: 'Switch to Application',
   currentAppId: 'demo-app-2',

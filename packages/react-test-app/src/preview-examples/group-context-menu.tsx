@@ -14,7 +14,6 @@ import {
   IxGroupItem,
 } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxGroup header="Header text" subHeader="Subheader text">

@@ -9,7 +9,6 @@
 
 import { IxButton, IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <>

@@ -11,7 +11,6 @@ import './styles/card.css';
 
 import { IxCard, IxCardContent, IxIcon, IxTypography } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxCard variant="insight" onClick={console.log}>

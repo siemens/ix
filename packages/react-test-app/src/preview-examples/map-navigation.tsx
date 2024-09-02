@@ -9,7 +9,6 @@
 
 import { IxMapNavigation, IxMenu, IxMenuItem } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxMapNavigation

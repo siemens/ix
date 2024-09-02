@@ -15,8 +15,6 @@ import {
   IxIconButton,
 } from '@siemens/ix-react';
 
-
-
 export default () => {
   return (
     <IxApplicationHeader name="My Application">

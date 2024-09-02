@@ -9,7 +9,6 @@
 
 import { IxDropdownItem, IxSplitButton } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <IxSplitButton label="Action text" splitIcon="chevron-down-small">

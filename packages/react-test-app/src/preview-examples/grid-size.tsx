@@ -11,7 +11,6 @@ import './styles/grid.css';
 
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-react';
 
-
 export default () => {
   return (
     <div className="grid">

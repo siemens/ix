@@ -10,7 +10,6 @@
 import { showModalLoading } from '@siemens/ix';
 import { IxButton } from '@siemens/ix-react';
 
-
 export default () => {
   const startLoading = () => {
     let count = 0;
