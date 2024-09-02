@@ -145,7 +145,8 @@ export namespace Components {
          */
         "name"?: string;
         /**
-          * Show menu toggle button if the application header is used outside of the application frame
+          * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
+          * @since 2.5.0
          */
         "showMenu"?: boolean;
     }
@@ -4190,10 +4191,12 @@ declare namespace LocalJSX {
         "name"?: string;
         /**
           * Event emitted when the menu toggle button is clicked
+          * @since 2.5.0
          */
         "onMenuToggle"?: (event: IxApplicationHeaderCustomEvent<boolean>) => void;
         /**
-          * Show menu toggle button if the application header is used outside of the application frame
+          * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
+          * @since 2.5.0
          */
         "showMenu"?: boolean;
     }

@@ -73,7 +73,7 @@ export class IxApplicationHeader {
 
 export declare interface IxApplicationHeader extends Components.IxApplicationHeader {
   /**
-   * Event emitted when the menu toggle button is clicked
+   * Event emitted when the menu toggle button is clicked @since 2.5.0
    */
   menuToggle: EventEmitter<CustomEvent<boolean>>;
 }
