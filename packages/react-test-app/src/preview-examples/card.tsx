@@ -10,7 +10,6 @@
 import './styles/card.css';
 
 import { IxCard, IxCardContent, IxIcon, IxTypography } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (

@@ -10,7 +10,6 @@
 import './styles/chip.css';
 
 import { IxChip } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (

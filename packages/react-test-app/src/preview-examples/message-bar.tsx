@@ -10,7 +10,6 @@
 import './styles/message-bar.css';
 
 import { IxButton, IxMessageBar } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (

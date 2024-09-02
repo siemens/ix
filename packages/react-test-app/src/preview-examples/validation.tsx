@@ -14,7 +14,7 @@ import {
   IxRow,
   IxValidationTooltip,
 } from '@siemens/ix-react';
-import React from 'react';
+
 import { useForm } from 'react-hook-form';
 
 export default () => {

@@ -9,7 +9,6 @@
 
 import './styles/radio-button.css';
 
-import React from 'react';
 
 export default () => {
   return (
