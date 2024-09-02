@@ -32,8 +32,6 @@ export default function EchartsLineSimple() {
     value: [150, 230, 224, 218, 135, 147, 260],
   };
 
-  const value = 60;
-
   const options: EChartsOption = {
     xAxis: {
       type: 'category',

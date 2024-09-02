@@ -116,7 +116,6 @@ import KeyValueWithLabelLeft from './preview-examples/key-value-with-label-left.
 import KeyValue from './preview-examples/key-value.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
-import MenuCategory from './preview-examples/menu-category.vue';
 import ModalExample from './preview-examples/modal.vue';
 import NumberField from './preview-examples/number-field.vue';
 import NumberFieldLabel from './preview-examples/number-field-label.vue';
@@ -168,7 +167,6 @@ import TreeCustom from './preview-examples/tree-custom.vue';
 import Tree from './preview-examples/tree.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
-import Echarts from './preview-examples/echarts.vue';
 import ValidationSelect from './preview-examples/validation-select.vue';
 import FormValidation from './preview-examples/form-validation.vue';
 import LayoutAuto from './preview-examples/layout-auto.vue';
