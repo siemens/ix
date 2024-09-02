@@ -1,7 +1,7 @@
 import Events from './../auto-generated/ix-tabs/events.md';
 
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Textarea
 
@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="textarea" 
   height="7rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Disabled
@@ -21,7 +21,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="textarea-disabled" 
   height="7rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Readonly
@@ -30,5 +30,5 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="textarea-readonly" 
   height="7rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>

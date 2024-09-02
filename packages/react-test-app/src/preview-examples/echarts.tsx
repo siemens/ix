@@ -7,7 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { useEffect, useState } from 'react';
+import './styles/charts.css';
+
+import { useEffect, useState } from 'react';
 import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
@@ -34,11 +36,15 @@ export default function Echarts() {
         type: 'shadow',
       },
     },
-    legend: {},
+    legend: {
+      icon: 'rect',
+      bottom: 0,
+      left: 0,
+    },
     grid: {
       left: '3%',
       right: '4%',
-      bottom: '3%',
+      bottom: '7%',
       containLabel: true,
     },
     xAxis: [
@@ -146,13 +152,7 @@ export default function Echarts() {
     <ReactEcharts
       option={options}
       theme={theme}
-      style={{
-        display: 'block',
-        position: 'relative',
-        width: '100%',
-        height: '40rem',
-        paddingTop: '1rem',
-      }}
+      className="echarts"
     />
   );
 }

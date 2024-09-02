@@ -2,32 +2,21 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flip tile example</title>
-
-    <style>
-      .example {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        position: relative;
-        margin-top: 2rem;
-        max-width: 100%;
-        flex-wrap: wrap;
-      }
-
-      .example > ix-flip-tile {
-        margin: 0 0.5rem 0.5rem 0;
-      }
-    </style>
+    <link rel="stylesheet" href="./styles/flip-tile.css" />
   </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
-    <div class="example">
+  <body>
+    <div class="flip-tile">
       <ix-flip-tile>
         <div slot="header">Flip header</div>
 
@@ -90,7 +79,6 @@ SPDX-License-Identifier: MIT
         <ix-flip-tile-content> Example 2 </ix-flip-tile-content>
       </ix-flip-tile>
     </div>
-    <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>
 </html>

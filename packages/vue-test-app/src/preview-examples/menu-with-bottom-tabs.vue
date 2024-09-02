@@ -11,6 +11,8 @@
 import { IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./styles/menu.css"></style>
+
 <template>
   <IxMenu>
     <IxMenuItem home-tab tab-icon="home"> Home </IxMenuItem>

@@ -8,7 +8,7 @@
  */
 
 import { IxButton, IxDrawer } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [show, setShow] = useState(false);

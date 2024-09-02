@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/button-loading.css';
+import './styles/button-loading.css';
 
 import { IxButton, IxIconButton } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [toggle, setToggle] = useState(false);
@@ -27,7 +27,6 @@ export default () => {
         }}
         loading={toggle}
         outline
-        variant="primary"
       >
         Button
       </IxButton>
@@ -42,7 +41,6 @@ export default () => {
         loading={toggle2}
         outline
         icon="star"
-        variant="primary"
       >
         Button
       </IxButton>
@@ -57,7 +55,6 @@ export default () => {
         loading={toggle3}
         outline
         icon="star"
-        variant="primary"
       ></IxButton>
 
       <IxIconButton
@@ -70,12 +67,11 @@ export default () => {
         loading={toggle}
         outline
         icon="star"
-        variant="primary"
       ></IxIconButton>
-      <IxButton loading outline variant="primary">
+      <IxButton loading outline>
         Button
       </IxButton>
-      <IxIconButton loading outline variant="primary"></IxIconButton>
+      <IxIconButton loading outline></IxIconButton>
     </>
   );
 };

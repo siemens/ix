@@ -9,13 +9,14 @@
 
 <script setup lang="ts">
 import {
-IxApplication,
-  IxBasicNavigation,
+  IxApplication,
   IxMenu,
   IxMenuCategory,
   IxMenuItem,
 } from '@siemens/ix-vue';
 </script>
+
+<style scoped src="./styles/menu-category.css"></style>
 
 <template>
   <IxApplication>

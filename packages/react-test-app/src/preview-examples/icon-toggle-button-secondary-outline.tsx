@@ -7,26 +7,68 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/icon-toggle-button.css';
+import './styles/icon-toggle-buttons.css';
 
 import { IxIconToggleButton } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (
     <>
-      <IxIconToggleButton outline></IxIconToggleButton>
-      <IxIconToggleButton outline pressed></IxIconToggleButton>
-      <IxIconToggleButton outline disabled></IxIconToggleButton>
-      <IxIconToggleButton outline disabled loading></IxIconToggleButton>
+      <IxIconToggleButton outline icon="checkboxes"></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        pressed
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        disabled
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        outline
+        disabled
+        loading
+        icon="checkboxes"
+      ></IxIconToggleButton>
 
-      <IxIconToggleButton size="16" outline></IxIconToggleButton>
-      <IxIconToggleButton size="16" pressed outline></IxIconToggleButton>
-      <IxIconToggleButton size="16" disabled loading outline></IxIconToggleButton>
+      <IxIconToggleButton
+        size="16"
+        outline
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        size="16"
+        pressed
+        outline
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        size="16"
+        disabled
+        loading
+        outline
+        icon="checkboxes"
+      ></IxIconToggleButton>
 
-      <IxIconToggleButton size="12" outline></IxIconToggleButton>
-      <IxIconToggleButton size="12" pressed outline></IxIconToggleButton>
-      <IxIconToggleButton size="12" disabled loading outline></IxIconToggleButton>
+      <IxIconToggleButton
+        size="12"
+        outline
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        size="12"
+        pressed
+        outline
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        size="12"
+        disabled
+        loading
+        outline
+        icon="checkboxes"
+      ></IxIconToggleButton>
     </>
   );
 };

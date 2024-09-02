@@ -7,8 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+
 
 export default () => {
-  return <textarea placeholder="Enter text here" disabled></textarea>;
+  return (
+    <textarea placeholder="Enter text here" disabled>
+      Some example text
+    </textarea>
+  );
 };

@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 import Events from './../auto-generated/ix-validation-tooltip/events.md';
 import Props from './../auto-generated/ix-validation-tooltip/props.md';
@@ -17,7 +17,7 @@ In the following examples section you will find different implementations of a f
 <Playground
   name="validation" 
   height="20rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

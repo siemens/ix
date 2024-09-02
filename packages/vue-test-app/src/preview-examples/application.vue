@@ -18,6 +18,8 @@ import {
 } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./styles/application.css"></style>
+
 <template>
   <IxApplication>
     <IxApplicationHeader name="My Application">

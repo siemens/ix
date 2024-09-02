@@ -9,7 +9,7 @@
 
 import { FilterState, LogicalFilterOperator } from '@siemens/ix';
 import { IxCategoryFilter } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [filter] = useState<FilterState>({

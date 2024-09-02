@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+.Playground {
+  display: flex;
+  flex-direction: column;
+}
+
+.Playground .Tabs {
+  width: 100%;
+}
+
+.Playground .Code {
+  margin-top: 1rem;
+  border-radius: 0.125rem;
+}
+
+.Playground .Toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Playground .Toolbar .Interaction {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+@media (max-width: 48em) {
+  .Playground .Toolbar .Interaction {
+    display: none;
+  }
+}

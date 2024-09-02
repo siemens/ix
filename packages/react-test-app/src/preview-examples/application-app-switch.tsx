@@ -6,6 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+import './styles/application.css';
+
 import { AppSwitchConfiguration } from '@siemens/ix';
 import {
   IxApplication,
@@ -19,7 +22,6 @@ import {
   IxMenu,
   IxMenuItem,
 } from '@siemens/ix-react';
-import React from 'react';
 
 const appSwitchConfig: AppSwitchConfiguration = {
   i18nAppSwitch: 'Switch to Application',

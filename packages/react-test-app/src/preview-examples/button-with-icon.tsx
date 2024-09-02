@@ -7,17 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/icon-button.css';
+import './styles/icon-button.css';
 
 import { IxIconButton } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (
     <>
       <div>
         <IxIconButton icon="info" variant="primary"></IxIconButton>
-        <IxIconButton icon="info" variant="secondary"></IxIconButton>
+        <IxIconButton icon="info"></IxIconButton>
         <IxIconButton icon="info" variant="danger"></IxIconButton>
         <IxIconButton icon="info" outline></IxIconButton>
         <IxIconButton icon="info" ghost></IxIconButton>
@@ -25,7 +24,7 @@ export default () => {
 
       <div>
         <IxIconButton icon="info" oval variant="primary"></IxIconButton>
-        <IxIconButton icon="info" oval variant="secondary"></IxIconButton>
+        <IxIconButton icon="info" oval></IxIconButton>
         <IxIconButton icon="info" oval variant="danger"></IxIconButton>
         <IxIconButton icon="info" oval outline></IxIconButton>
         <IxIconButton icon="info" oval ghost></IxIconButton>

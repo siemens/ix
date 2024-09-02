@@ -25,3 +25,18 @@ export function isTargetFramework(arg: any): arg is TargetFramework {
     arg === TargetFramework.VUE
   );
 }
+
+export function getDisplay(framework: TargetFramework) {
+  switch (framework) {
+    case TargetFramework.ANGULAR:
+      return 'Angular';
+    case TargetFramework.REACT:
+      return 'React';
+    case TargetFramework.JAVASCRIPT:
+      return 'JavaScript';
+    case TargetFramework.VUE:
+      return 'Vue';
+    case TargetFramework.PREVIEW:
+      return 'Preview';
+  }
+}

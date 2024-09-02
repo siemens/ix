@@ -12,5 +12,5 @@ import { IxDatePicker } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxDatePicker range from="2022/12/15" to="2022/12/24" />
+  <IxDatePicker from="2022/12/15" to="2022/12/24" />
 </template>

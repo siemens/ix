@@ -49,5 +49,6 @@ import { Component } from '@angular/core';
       </div>
     </ix-tile>
   `,
+  styleUrls: ['./styles/tile.css'],
 })
 export default class Tile {}
