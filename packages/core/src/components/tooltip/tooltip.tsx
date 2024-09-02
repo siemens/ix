@@ -12,6 +12,7 @@ import {
   computePosition,
   ComputePositionReturn,
   flip,
+  hide,
   offset,
   shift,
 } from '@floating-ui/dom';
@@ -64,9 +65,8 @@ export class Tooltip implements IxOverlayComponent {
   @Prop() interactive = false;
 
   /**
-   * Initial placement of the tooltip. If the placement don"t have enough space,
-   * the tooltip will placed on another location.
-   *
+   * Initial placement of the tooltip.
+   * If the selected placement doesn't have enough space, the tooltip will be repositioned to another location.
    * @since 1.5.0
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
@@ -179,6 +179,7 @@ export class Tooltip implements IxOverlayComponent {
           fallbackStrategy: 'initialPlacement',
           padding: 10,
         }),
+        hide(),
       ],
     });
   }
@@ -201,6 +202,14 @@ export class Tooltip implements IxOverlayComponent {
         async () => {
           setTimeout(async () => {
             const computeResponse = await this.computeTooltipPosition(target);
+
+            const isHidden =
+              computeResponse.middlewareData.hide?.referenceHidden;
+
+            if (isHidden) {
+              setTimeout(() => this.hideTooltip());
+              resolve(computeResponse);
+            }
 
             if (computeResponse.middlewareData.arrow) {
               this.applyTooltipArrowPosition(computeResponse);

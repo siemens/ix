@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/grid.css';
+import './styles/grid.css';
 
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-react';
 

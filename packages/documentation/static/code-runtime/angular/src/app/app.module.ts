@@ -4,10 +4,10 @@ import { IxModule } from '@siemens/ix-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AgGridModule } from 'ag-grid-angular';
 import { AppComponent } from './app.component';
-import { DECLARE } from './declare-component';
+import ExampleComponent from './example.component';
 
 @NgModule({
-  declarations: [AppComponent, ...DECLARE],
+  declarations: [AppComponent, ExampleComponent],
   imports: [
     BrowserModule,
     IxModule.forRoot(),

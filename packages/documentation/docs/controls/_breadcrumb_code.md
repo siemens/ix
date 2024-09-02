@@ -4,14 +4,14 @@ import Events from './../auto-generated/ix-breadcrumb/events.md';
 import ItemProps from './../auto-generated/ix-breadcrumb-item/props.md';
 import ItemEvents from './../auto-generated/ix-breadcrumb-item/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2'
+import Playground from '@site/src/components/PlaygroundV3'
 
 ## Examples
 
 <Playground
   name="breadcrumb"
   height="8rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Truncate
@@ -20,7 +20,7 @@ import Playground from '@site/src/components/PlaygroundV2'
   name="breadcrumb-truncate"
   height="10rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Lazy loaded next items
@@ -29,7 +29,7 @@ import Playground from '@site/src/components/PlaygroundV2'
   name="breadcrumb-next-items"
   height="8rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-breadcrumb)

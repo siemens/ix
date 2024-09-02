@@ -1,7 +1,7 @@
 import Props from './../auto-generated/ix-chip/props.md';
 import Events from './../auto-generated/ix-chip/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 
@@ -10,7 +10,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="chip" 
   height="25rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

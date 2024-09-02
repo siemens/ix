@@ -7,6 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './styles/radio-button.css';
+
+
 export default () => {
   return (
     <div className="radio-button">

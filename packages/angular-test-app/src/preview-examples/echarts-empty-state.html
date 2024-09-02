@@ -1,0 +1,31 @@
+<!--
+SPDX-FileCopyrightText: 2023 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<div class="echarts">
+  <div
+    *ngIf="this.data.value.length === 0"
+    id="empty-state-container"
+    class="empty-state-container"
+  >
+    <ix-empty-state
+      class="empty-state"
+      header="No elements available"
+      sub-header="Failed to retrieve data"
+      icon="info"
+      action="Try again"
+    ></ix-empty-state>
+  </div>
+  <div
+    echarts
+    class="echarts"
+    [options]="options"
+    [theme]="theme"
+    id="main"
+  ></div>
+</div>

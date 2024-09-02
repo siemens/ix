@@ -64,6 +64,20 @@ import DropdownIcon from '../preview-examples/dropdown-icon';
 import DropdownQuickActions from '../preview-examples/dropdown-quick-actions';
 import DropdownSubmenu from '../preview-examples/dropdown-submenu';
 import Echarts from '../preview-examples/echarts';
+import EchartsSpecial3d from '../preview-examples/echarts-special-3d';
+import EchartsBarHorizontalStacked from '../preview-examples/echarts-bar-horizontal-stacked';
+import EchartsBarSimple from '../preview-examples/echarts-bar-simple';
+import EchartsCircle from '../preview-examples/echarts-circle';
+import EchartsEmptyState from '../preview-examples/echarts-empty-state';
+import EchartsGauge from '../preview-examples/echarts-gauge';
+import EchartsLineAdvanced from '../preview-examples/echarts-line-advanced';
+import EchartsLineMultipleYAxis from '../preview-examples/echarts-line-multiple-y-axis';
+import EchartsLineSimple from '../preview-examples/echarts-line-simple';
+import EchartsSpecialToolbox from '../preview-examples/echarts-special-toolbox';
+import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
+import EchartsPie from '../preview-examples/echarts-pie';
+import EchartsProgressCircle from '../preview-examples/echarts-progress-circle';
+import EchartsProgressArc from '../preview-examples/echarts-progress-arc';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
@@ -462,6 +476,29 @@ const routes: Routes = [
         path: 'echarts',
         component: Echarts,
       },
+      {
+        path: 'echarts-special-3d',
+        component: EchartsSpecial3d,
+      },
+      { path: 'echarts-bar-simple', component: EchartsBarSimple },
+      {
+        path: 'echarts-bar-horizontal-stacked',
+        component: EchartsBarHorizontalStacked,
+      },
+      { path: 'echarts-circle', component: EchartsCircle },
+      { path: 'echarts-empty-state', component: EchartsEmptyState },
+      { path: 'echarts-gauge', component: EchartsGauge },
+      {
+        path: 'echarts-line-multiple-y-axis',
+        component: EchartsLineMultipleYAxis,
+      },
+      { path: 'echarts-line-advanced', component: EchartsLineAdvanced },
+      { path: 'echarts-line-simple', component: EchartsLineSimple },
+      { path: 'echarts-toolbox', component: EchartsSpecialToolbox },
+      { path: 'echarts-pie', component: EchartsPie },
+      { path: 'echarts-progress-arc', component: EchartsProgressArc },
+      { path: 'echarts-progress-circle', component: EchartsProgressCircle },
+      { path: 'echarts-zoom', component: EchartsSpecialZoom },
       {
         path: 'empty-state-compact-break',
         component: EmptyStateCompactBreak,

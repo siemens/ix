@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/global.css';
+import './preview-examples/styles/global.css';
 
 import { IxApplicationContext } from '@siemens/ix-react';
 import ReactDOM from 'react-dom/client';
@@ -70,6 +70,20 @@ import DropdownIcon from './preview-examples/dropdown-icon';
 import DropdownQuickActions from './preview-examples/dropdown-quick-actions';
 import DropdownSubmenu from './preview-examples/dropdown-submenu';
 import Echarts from './preview-examples/echarts';
+import EchartsBarHorizontalStacked from './preview-examples/echarts-bar-horizontal-stacked';
+import EchartsBarSimple from './preview-examples/echarts-bar-simple';
+import EchartsCircle from './preview-examples/echarts-circle';
+import EchartsEmptyState from './preview-examples/echarts-empty-state';
+import EchartsGauge from './preview-examples/echarts-gauge';
+import EchartsLineSimple from './preview-examples/echarts-line-simple';
+import EchartsLineAdvanced from './preview-examples/echarts-line-advanced';
+import EchartsLineMultipleYAxis from './preview-examples/echarts-line-multiple-y-axis';
+import EchartsPie from './preview-examples/echarts-pie';
+import EchartsProgressArc from './preview-examples/echarts-progress-arc';
+import EchartsProgressCircle from './preview-examples/echarts-progress-circle';
+import EchartsSpecial3d from './preview-examples/echarts-special-3d';
+import EchartsSpecialToolbox from './preview-examples/echarts-special-toolbox';
+import EchartsZoom from './preview-examples/echarts-special-zoom';
 import EmptyState from './preview-examples/empty-state';
 import EmptyStateCompact from './preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break';
@@ -320,6 +334,50 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/dropdown-submenu" element={<DropdownSubmenu />} />
         <Route path="/preview/dropdown" element={<Dropdown />} />
         <Route path="/preview/echarts" element={<Echarts />} />
+        <Route
+          path="/preview/echarts-bar-horizontal-stacked"
+          element={<EchartsBarHorizontalStacked />}
+        />
+        <Route
+          path="/preview/echarts-bar-simple"
+          element={<EchartsBarSimple />}
+        />
+        <Route path="/preview/echarts-circle" element={<EchartsCircle />} />
+        <Route
+          path="/preview/echarts-empty-state"
+          element={<EchartsEmptyState />}
+        />
+        <Route
+          path="/preview/echarts-line-multiple-y-axis"
+          element={<EchartsLineMultipleYAxis />}
+        />
+        <Route path="/preview/echarts-gauge" element={<EchartsGauge />} />
+        <Route
+          path="/preview/echarts-line-simple"
+          element={<EchartsLineSimple />}
+        />
+        <Route
+          path="/preview/echarts-line-advanced"
+          element={<EchartsLineAdvanced />}
+        />
+        <Route
+          path="/preview/echarts-special-3d"
+          element={<EchartsSpecial3d />}
+        />
+        <Route
+          path="/preview/echarts-special-toolbox"
+          element={<EchartsSpecialToolbox />}
+        />
+        <Route path="/preview/echarts-pie" element={<EchartsPie />} />
+        <Route
+          path="/preview/echarts-progress-circle"
+          element={<EchartsProgressCircle />}
+        />
+        <Route
+          path="/preview/echarts-progress-arc"
+          element={<EchartsProgressArc />}
+        />
+        <Route path="/preview/echarts-zoom" element={<EchartsZoom />} />
         <Route
           path="/preview/empty-state-compact-break"
           element={<EmptyStateCompactBreak />}

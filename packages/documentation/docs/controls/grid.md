@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Grid (AG Grid)
 
@@ -65,5 +65,5 @@ e.g.:
 <Playground
   name="aggrid"
   height="14rem"
-  examplesByName>
+  >
 </Playground>

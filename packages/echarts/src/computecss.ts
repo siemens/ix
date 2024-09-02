@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-ix-icon-toggle-button {
-  margin: 0.25rem;
+
+export default function getComputedCSSProperty(cssProperty: string) {
+  return getComputedStyle(document.body).getPropertyValue(`--theme-${cssProperty}`);
 }

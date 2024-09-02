@@ -1,6 +1,9 @@
-import Playground from '@site/src/components/PlaygroundV2';
+---
+sidebar_position: 0
+---
+import Playground from '@site/src/components/PlaygroundV3';
 
-# Charts
+# Basics
 
 Siemens Industrial Experience provides a theme for the popular chart library [ECharts](https://echarts.apache.org/handbook/en/get-started).
 This lets you harness the power of ECharts with seamless integration into the Siemens Industrial Experience styleguide.
@@ -34,6 +37,13 @@ Please make sure to correctly add `NgxEcharts` in your module file.
 <Playground
 height="40rem"
 name="echarts"
-noMargin
-examplesByName>
+noMargin>
+</Playground>
+
+## Empty state
+
+<Playground
+height="40rem"
+name="echarts-empty-state"
+noMargin>
 </Playground>

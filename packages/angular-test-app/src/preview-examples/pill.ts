@@ -11,11 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styles: [
-    `
-      @import 'example-styles/dist/pill.css';
-    `,
-  ],
+  styleUrls: ['./styles/pill.css'],
   template: `
     <ix-pill variant="custom" color="white" background="purple">
       Label

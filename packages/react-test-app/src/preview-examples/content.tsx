@@ -9,6 +9,7 @@
 
 import { IxContent, IxContentHeader } from '@siemens/ix-react';
 
+
 export default () => {
   return (
     <IxContent>

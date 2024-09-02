@@ -10,6 +10,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { defineConfig } from 'vite';
+import { copyPreviewStyles } from 'example-styles';
 import { rimraf } from 'rimraf';
 
 const resolve = import.meta.resolve!;
@@ -59,23 +60,26 @@ try {
 } catch (e) {}
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: './',
-  root: './src',
-  publicDir: 'public',
-  define: {
-    __THEME__: JSON.stringify(additionalTheme),
-  },
-  build: {
-    emptyOutDir: true,
-    minify: false,
-    rollupOptions: {
-      input: {
-        index: './src/index.html',
-        ...input,
-      },
+export default defineConfig(() => {
+  copyPreviewStyles(path.join(__dirname, 'src', 'preview-examples', 'styles'));
+  return {
+    base: './',
+    root: './src',
+    publicDir: 'public',
+    define: {
+      __THEME__: JSON.stringify(additionalTheme),
     },
-    outDir: path.join(__dirname, 'dist'),
-  },
-  plugins: [],
+    build: {
+      emptyOutDir: true,
+      minify: false,
+      rollupOptions: {
+        input: {
+          index: './src/index.html',
+          ...input,
+        },
+      },
+      outDir: path.join(__dirname, 'dist'),
+    },
+    plugins: [],
+  };
 });

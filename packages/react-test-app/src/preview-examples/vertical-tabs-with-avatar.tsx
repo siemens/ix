@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/menu.css';
+import './styles/menu.css';
 
 import {
   IxMenu,
