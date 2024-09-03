@@ -1,6 +1,6 @@
 import Playground from '@site/src/components/PlaygroundV2';
-import Props from '@site/docs/auto-generated/ix-date-field/props.md';
-import Events from '@site/docs/auto-generated/ix-date-field/events.md';
+import Props from '@site/docs/auto-generated/ix-custom-field/props.md';
+import Events from '@site/docs/auto-generated/ix-custom-field/events.md';
 import Tags from '@site/docs/auto-generated/ix-custom-field/tags.md';
 
 # Custom Field
