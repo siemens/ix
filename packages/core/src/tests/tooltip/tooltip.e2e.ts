@@ -74,9 +74,7 @@ regressionTest.describe('tooltip', () => {
   regressionTest('style not floating in tooltip', async ({ page }) => {
     await page.goto('tooltip/table');
 
-    const tooltipTriggerHandler = await page.waitForSelector(
-      'td.td1'
-    );
+    const tooltipTriggerHandler = await page.waitForSelector('td.td1');
 
     await tooltipTriggerHandler.hover();
     await page.waitForTimeout(500);
