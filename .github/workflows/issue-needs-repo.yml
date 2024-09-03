@@ -5,38 +5,11 @@ on:
     types: [labeled]
 
 jobs:
-  comment-workflow:
+  comment-issue:
     if: ${{ github.repository == 'siemens/ix' }}
     runs-on: ubuntu-latest
     steps:
-      # Useful if we try to also integrate other labels
-      # - name: Find comments
-      #   id: find_comments
-      #   uses: actions-cool/issues-helper@v3
-      #   with:
-      #     actions: 'find-comments'
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     issue-number: ${{ github.event.issue.number }}
-      #     comment-auth: 'github-actions[bot]'
-      #     body-includes: '🤖 Hello '
-
-      # - uses: actions/github-script@v7
-      #   id: filter-comment
-      #   env:
-      #     COMMENTS_RESULT: ${{ steps.find_comments.outputs.comments }}
-      #   with:
-      #     script: |
-      #       const { COMMENTS_RESULT } = process.env;
-      #       const comments = JSON.parse(COMMENTS_RESULT);
-
-      #       if (comments.length === 1) {
-      #         return comments[0].id;
-      #       }
-
-      #       return '';
-      #     result-encoding: string
-
-      - name: Jira Ticket created
+      - name: Need reproduction comment created
         if: "contains(github.event.label.name, 'needs reproduction')"
         uses: actions-cool/issues-helper@v3
         with:
