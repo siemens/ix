@@ -224,6 +224,14 @@ export class NumberField implements IxInputFieldComponent<number> {
     return this.inputRef.waitForCurrent();
   }
 
+  /**
+   * Focuses the input field
+   */
+  @Method()
+  async focusInput(): Promise<void> {
+    return (await this.getNativeInputElement()).focus();
+  }
+
   render() {
     const showStepperButtons =
       this.showStepperButtons && (this.disabled || this.readonly) === false;

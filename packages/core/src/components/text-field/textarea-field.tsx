@@ -211,6 +211,14 @@ export class TextareaField implements IxInputFieldComponent<string> {
     return this.textAreaRef.waitForCurrent();
   }
 
+  /**
+   * Focuses the input field
+   */
+  @Method()
+  async focusInput(): Promise<void> {
+    return (await this.getNativeInputElement()).focus();
+  }
+
   render() {
     return (
       <Host

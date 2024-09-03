@@ -707,6 +707,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * Focuses the input field
+         */
+        "focusInput": () => Promise<void>;
+        /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format": string;
@@ -1980,6 +1984,10 @@ export namespace Components {
           * Disables the input field
          */
         "disabled": boolean;
+        /**
+          * Focuses the input field
+         */
+        "focusInput": () => Promise<void>;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Returns the native input element used under the hood
@@ -2312,6 +2320,10 @@ export namespace Components {
           * Select is extendable
          */
         "editable": boolean;
+        /**
+          * Focuses the input field
+         */
+        "focusInput": () => Promise<void>;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Returns the native input element used in the component.
@@ -2600,6 +2612,10 @@ export namespace Components {
           * Specifies whether the text field is disabled.
          */
         "disabled": boolean;
+        /**
+          * Focuses the input field
+         */
+        "focusInput": () => Promise<void>;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Returns the native input element used in the text field.
@@ -2680,6 +2696,10 @@ export namespace Components {
           * Determines if the textarea field is disabled.
          */
         "disabled": boolean;
+        /**
+          * Focuses the input field
+         */
+        "focusInput": () => Promise<void>;
         "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
         /**
           * Get the native textarea element.

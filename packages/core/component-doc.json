@@ -4685,6 +4685,28 @@
       ],
       "methods": [
         {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
           "name": "getNativeInputElement",
           "returns": {
             "type": "Promise<HTMLInputElement>",
@@ -13526,6 +13548,28 @@
       ],
       "methods": [
         {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
           "name": "getNativeInputElement",
           "returns": {
             "type": "Promise<HTMLInputElement>",
@@ -15853,6 +15897,28 @@
       ],
       "methods": [
         {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
           "name": "getNativeInputElement",
           "returns": {
             "type": "Promise<HTMLInputElement>",
@@ -17836,6 +17902,28 @@
       ],
       "methods": [
         {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
           "name": "getNativeInputElement",
           "returns": {
             "type": "Promise<HTMLInputElement>",
@@ -18406,6 +18494,28 @@
         }
       ],
       "methods": [
+        {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
         {
           "name": "getNativeInputElement",
           "returns": {

@@ -593,7 +593,7 @@ The event payload contains information about the selected date range.
 
 @ProxyCmp({
   inputs: ['disabled', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement']
+  methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-date-field',
@@ -1897,7 +1897,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 
 @ProxyCmp({
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement']
+  methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-number-field',
@@ -2153,7 +2153,7 @@ export declare interface IxRow extends Components.IxRow {}
 
 @ProxyCmp({
   inputs: ['allowClear', 'disabled', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'selectedIndices', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement']
+  methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-select',
@@ -2388,7 +2388,7 @@ export declare interface IxTabs extends Components.IxTabs {
 
 @ProxyCmp({
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement']
+  methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-text-field',
@@ -2425,7 +2425,7 @@ export declare interface IxTextField extends Components.IxTextField {
 
 @ProxyCmp({
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement']
+  methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
   selector: 'ix-textarea-field',

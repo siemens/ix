@@ -794,6 +794,14 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return Promise.resolve(this.input);
   }
 
+  /**
+   * Focuses the input field
+   */
+  @Method()
+  async focusInput(): Promise<void> {
+    return (await this.getNativeInputElement()).focus();
+  }
+
   render() {
     return (
       <Host

@@ -391,6 +391,14 @@ export class DateField implements IxInputFieldComponent<string> {
     return this.inputElementRef.waitForCurrent();
   }
 
+  /**
+   * Focuses the input field
+   */
+  @Method()
+  async focusInput(): Promise<void> {
+    return (await this.getNativeInputElement()).focus();
+  }
+
   render() {
     const invalidText = this.isInputInvalid
       ? this.i18nErrorDateUnparsable

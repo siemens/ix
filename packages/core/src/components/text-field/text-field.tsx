@@ -235,6 +235,14 @@ export class TextField implements IxInputFieldComponent<string> {
     return this.inputRef.waitForCurrent();
   }
 
+  /**
+   * Focuses the input field
+   */
+  @Method()
+  async focusInput(): Promise<void> {
+    return (await this.getNativeInputElement()).focus();
+  }
+
   render() {
     const inputAria: A11yAttributes = getAriaAttributesForInput(this);
     return (
