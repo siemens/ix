@@ -40,8 +40,8 @@ import {
 let textFieldIds = 0;
 
 /**
- * @since 2.4.0
- * @form-ready 2.4.0
+ * @since 2.5.0
+ * @form-ready 2.5.0
  */
 @Component({
   tag: 'ix-text-field',

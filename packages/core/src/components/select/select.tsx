@@ -35,7 +35,7 @@ import { makeRef } from '../utils/make-ref';
 import { a11yBoolean } from '../utils/a11y';
 
 /**
- * @form-ready 2.4.0
+ * @form-ready 2.5.0
  */
 @Component({
   tag: 'ix-select',
@@ -51,63 +51,63 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * A string that represents the element's name attribute,
    * containing a name that identifies the element when submitting the form.
    *
-   * @since 2.4.0
+   * @since 2.5.0
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
    * A Boolean attribute indicating that an option with a non-empty string value must be selected
    *
-   * @since 2.4.0
+   * @since 2.5.0
    */
   @Prop({ reflect: true }) required: boolean = false;
 
   /**
    * Label for the select component
    *
-   *  @since 2.4.0
+   *  @since 2.5.0
    */
   @Prop() label?: string;
 
   /**
    * Warning text for the select component
    *
-   *  @since 2.4.0
+   *  @since 2.5.0
    **/
   @Prop() warningText?: string;
 
   /**
    * Info text for the select component
    *
-   *  @since 2.4.0
+   *  @since 2.5.0
    **/
   @Prop() infoText?: string;
 
   /**
    * Error text for the select component
    *
-   *  @since 2.4.0
+   *  @since 2.5.0
    **/
   @Prop() invalidText?: string;
 
   /**
    * Valid text for the select component
    *
-   *  @since 2.4.0
+   *  @since 2.5.0
    **/
   @Prop() validText?: string;
 
   /**
    * Helper text for the select component
    *
-   *  @since 2.4.0
+   *  @since 2.5.0
    **/
   @Prop() helperText?: string;
 
   /**
    * Show helper, error, info, warning text as tooltip
    *
-   *  @since 2.4.0
+   *  @since 2.5.0
    */
   @Prop() showTextAsTooltip?: boolean;
 

@@ -17,7 +17,7 @@ import {
 import { IxComponent } from '../utils/internal';
 
 /**
- * @since 2.4.0
+ * @since 2.5.0
  */
 @Component({
   tag: 'ix-custom-field',

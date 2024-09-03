@@ -23,8 +23,8 @@ import { HookValidationLifecycle, IxFormComponent } from '../utils/field';
 import { makeRef } from '../utils/make-ref';
 
 /**
- * @since 2.4.0
- * @form-ready 2.4.0
+ * @since 2.5.0
+ * @form-ready 2.5.0
  */
 @Component({
   tag: 'ix-checkbox',
