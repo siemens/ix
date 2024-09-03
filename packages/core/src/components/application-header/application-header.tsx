@@ -10,12 +10,15 @@
 import {
   Component,
   Element,
+  Event,
+  EventEmitter,
   Fragment,
   h,
   Host,
   Prop,
   readTask,
   State,
+  Watch,
 } from '@stencil/core';
 import { showAppSwitch } from '../utils/app-switch';
 import { applicationLayoutService } from '../utils/application-layout';
@@ -44,6 +47,23 @@ export class ApplicationHeader {
    * Application name
    */
   @Prop() name?: string;
+
+  /**
+   * Controls the visibility of the menu toggle button based on the context of the application header.
+   *
+   * When the application header is utilized outside the application frame, the menu toggle button is displayed.
+   * Conversely, if the header is within the application frame, this property is ineffective.
+   *
+   * @since 2.5.0
+   */
+  @Prop({ mutable: true }) showMenu?: boolean = false;
+
+  /**
+   * Event emitted when the menu toggle button is clicked
+   *
+   * @since 2.5.0
+   */
+  @Event() menuToggle!: EventEmitter<boolean>;
 
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
@@ -90,7 +110,6 @@ export class ApplicationHeader {
 
     this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
       if (this.suppressResponsive) {
-        this.breakpoint = 'md';
         return;
       }
 
@@ -107,6 +126,17 @@ export class ApplicationHeader {
   disconnectedCallback() {
     this.menuDisposable?.dispose();
     this.modeDisposable?.dispose();
+  }
+
+  @Watch('applicationLayoutContext')
+  watchApplicationLayoutContext() {
+    if (this.applicationLayoutContext) {
+      this.showMenu = false;
+    }
+  }
+  @Watch('suppressResponsive')
+  watchSuppressResponsive() {
+    this.breakpoint = 'md';
   }
 
   private isLogoSlotted() {
@@ -131,7 +161,13 @@ export class ApplicationHeader {
   }
 
   private async onMenuClick() {
-    menuController.toggle();
+    if (this.applicationLayoutContext) {
+      menuController.toggle();
+    } else {
+      this.menuExpanded = !this.menuExpanded;
+    }
+
+    this.menuToggle.emit(this.menuExpanded);
   }
 
   private resolveContextMenuButton() {
@@ -176,28 +212,40 @@ export class ApplicationHeader {
   }
 
   render() {
+    const hasApplicationContextAvailable = !!this.applicationLayoutContext;
+
+    const showMenuByApplicationFrame =
+      this.breakpoint === 'sm' &&
+      this.suppressResponsive === false &&
+      hasApplicationContextAvailable;
+
+    const showApplicationSwitch =
+      this.applicationLayoutContext?.appSwitchConfig &&
+      this.breakpoint !== 'sm' &&
+      this.suppressResponsive === false;
+
     return (
       <Host
-        class={{ [`breakpoint-${this.breakpoint}`]: true }}
+        class={{
+          [`breakpoint-${this.breakpoint}`]: true,
+        }}
         slot="application-header"
       >
-        {this.breakpoint === 'sm' && this.suppressResponsive === false && (
+        {(this.showMenu || showMenuByApplicationFrame) && (
           <ix-menu-expand-icon
             onClick={() => this.onMenuClick()}
             expanded={this.menuExpanded}
           ></ix-menu-expand-icon>
         )}
-        {this.applicationLayoutContext?.appSwitchConfig &&
-          this.breakpoint !== 'sm' &&
-          this.suppressResponsive === false && (
-            <ix-icon-button
-              onClick={() => this.showAppSwitch()}
-              icon="apps"
-              ghost
-              class="app-switch"
-            ></ix-icon-button>
-          )}
-        <div class="logo">
+        {showApplicationSwitch && (
+          <ix-icon-button
+            onClick={() => this.showAppSwitch()}
+            icon="apps"
+            ghost
+            class="app-switch"
+          ></ix-icon-button>
+        )}
+        <div class={{ logo: true }}>
           <slot name="logo"></slot>
         </div>
         <ix-typography format="body-lg" class="name">

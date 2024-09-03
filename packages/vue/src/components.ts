@@ -120,7 +120,9 @@ export const IxApplication = /*@__PURE__*/ defineContainer<JSX.IxApplication>('i
 
 
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', defineIxApplicationHeader, [
-  'name'
+  'name',
+  'showMenu',
+  'menuToggle'
 ]);
 
 
