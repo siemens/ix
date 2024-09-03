@@ -129,8 +129,10 @@ To suppress the internal validation of a component, you have to provide the `nov
 <Tabs>
   <TabItem value="angular" label="Angular" default>
 
-    Please note that using the `required` attribute in an Angular application could result in unfavourabe behaviour displaying the field as invalid even if there was no user interaction yet.
-    To avoid that it is suggested not to add the `required` attribute, but implement a custom validator for required fields instead (see `name` and `last-name` in the following code).
+    <Admonition type="tip" icon="💡" title="Important">
+      Please note that using the `required` attribute in an Angular application could result in unfavourabe behaviour displaying the field as invalid even if there was no user interaction yet.
+      To avoid that it is suggested not to add the `required` attribute, but implement a custom validator for required fields instead (see `name` and `last-name` in the following code).
+    </Admonition>
 
     <details>
       <summary>Just want to see the source code?</summary>
