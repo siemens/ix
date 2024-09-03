@@ -418,6 +418,7 @@ export class CategoryFilter {
     this.closeDropdown();
     this.filterTokens = [];
     this.category = undefined;
+    this.categoryChanged.emit(this.category);
     this.emitFilterEvent();
   }
 
