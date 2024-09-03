@@ -71,6 +71,21 @@ regressionTest.describe('tooltip', () => {
     });
   });
 
+  regressionTest('style not floating in tooltip', async ({ page }) => {
+    await page.goto('tooltip/table');
+
+    const tooltipTriggerHandler = await page.waitForSelector(
+      '[data-tooltip="Test3"]'
+    );
+
+    await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixelRatio: 0.01,
+    });
+  });
+
   test('tooltip position top', async ({ mount, page }) => {
     await mount(`
       <div style="padding: 10rem">

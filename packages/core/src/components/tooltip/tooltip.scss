@@ -11,17 +11,6 @@
   visibility: collapse !important;
   overflow-wrap: break-word;
 
-  border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem 0.375rem 0.875rem;
-
-  box-shadow: var(--theme-shadow-4);
-
-  //background-color: var(--theme-tootlip--background) !important;
-
-  //.tooltip {
-  //  background: blue !important;
-  //}
-
   .tooltip-title {
     display: flex;
     align-items: center;
@@ -31,10 +20,14 @@
     }
   }
 
-}
+  .tooltip-container {
+    background: var(--theme-tootlip--background);
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem 0.375rem 0.875rem;
 
-:host-context(.table) {
-  background: red !important;
+    box-shadow: var(--theme-shadow-4);
+
+  }
 }
 
 :host(.visible) {
