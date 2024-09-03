@@ -2473,11 +2473,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.4.0"
+          "text": "2.5.0"
         },
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
@@ -2693,11 +2693,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.4.0"
+          "text": "2.5.0"
         },
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
@@ -3695,7 +3695,7 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
@@ -4315,11 +4315,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.4.0"
+          "text": "2.5.0"
         },
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
@@ -13123,11 +13123,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.4.0"
+          "text": "2.5.0"
         },
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
@@ -14822,11 +14822,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.4.0"
+          "text": "2.5.0"
         },
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
@@ -15002,11 +15002,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.4.0"
+          "text": "2.5.0"
         },
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
@@ -15315,7 +15315,7 @@
       "docsTags": [
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
@@ -15445,7 +15445,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.4.0"
+              "text": "2.5.0"
             }
           ],
           "values": [
@@ -15591,7 +15591,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.4.0"
+              "text": "2.5.0"
             }
           ],
           "values": [
@@ -15617,7 +15617,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.4.0"
+              "text": "2.5.0"
             }
           ],
           "values": [
@@ -15643,7 +15643,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.4.0"
+              "text": "2.5.0"
             }
           ],
           "values": [
@@ -15696,7 +15696,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.4.0"
+              "text": "2.5.0"
             }
           ],
           "values": [
@@ -15744,7 +15744,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.4.0"
+              "text": "2.5.0"
             }
           ],
           "default": "false",
@@ -15801,7 +15801,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.4.0"
+              "text": "2.5.0"
             }
           ],
           "values": [
@@ -15827,7 +15827,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.4.0"
+              "text": "2.5.0"
             }
           ],
           "values": [
@@ -15883,7 +15883,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.4.0"
+              "text": "2.5.0"
             }
           ],
           "values": [
@@ -17466,11 +17466,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.4.0"
+          "text": "2.5.0"
         },
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
@@ -18017,11 +18017,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.4.0"
+          "text": "2.5.0"
         },
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.5.0"
         }
       ],
       "encapsulation": "shadow",
