@@ -363,7 +363,6 @@ export class Tooltip implements IxOverlayComponent {
       <Host
         class={{
           visible: this.visible,
-          'tooltip-container': true,
         }}
         role="tooltip"
       >

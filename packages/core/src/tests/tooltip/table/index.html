@@ -16,20 +16,23 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
   </head>
   <body style="padding: 12rem">
-    <div style="padding: 4rem;">
+    <div style="padding: 4rem; width: 300px" }}>
       <table class="table">
-        <th>Test Header - 1</th>
-        <tr class="tr1">
-          <td>
-            <div style="background: blue;" class="td1">
-              <p>Test Data 2</p>
-            </div>
-          </td>
-
-          <div style="background: blue;">
-            <ix-tooltip for=".td1">Simple selector td2</ix-tooltip>
-          </div>
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
         </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td class="td1">Table data</td>
+        </tr>
+        <div>
+          <ix-tooltip for=".td1">Simple selector</ix-tooltip>
+        </div>
+        </tbody>
       </table>
     </div>
 

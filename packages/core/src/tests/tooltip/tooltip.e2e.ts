@@ -75,7 +75,7 @@ regressionTest.describe('tooltip', () => {
     await page.goto('tooltip/table');
 
     const tooltipTriggerHandler = await page.waitForSelector(
-      '[data-tooltip="Test3"]'
+      'td.td1'
     );
 
     await tooltipTriggerHandler.hover();
