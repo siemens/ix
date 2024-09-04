@@ -71,7 +71,7 @@ regressionTest.describe('tooltip', () => {
     });
   });
 
-  regressionTest('style not floating in tooltip', async ({ page }) => {
+  regressionTest('global style not bleeding into tooltip', async ({ page }) => {
     await page.goto('tooltip/table');
 
     const tooltipTriggerHandler = await page.waitForSelector('td.td1');
@@ -79,9 +79,7 @@ regressionTest.describe('tooltip', () => {
     await tooltipTriggerHandler.hover();
     await page.waitForTimeout(500);
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
-      maxDiffPixelRatio: 0.01,
-    });
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
   test('tooltip position top', async ({ mount, page }) => {
