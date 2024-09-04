@@ -23,8 +23,8 @@ test.describe('category-preview test', () => {
       `
     );
 
-    const categoryFilter = await page.$('ix-category-filter');
-    await categoryFilter.evaluate((el) => {
+    const categoryFilter = page.locator('ix-category-filter');
+    await categoryFilter.evaluate((el: HTMLIxCategoryFilterElement) => {
       el.categories = {
         ID_1: {
           label: 'Vendor',

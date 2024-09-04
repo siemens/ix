@@ -417,8 +417,10 @@ export class CategoryFilter {
     e.stopPropagation();
     this.closeDropdown();
     this.filterTokens = [];
+    if (this.category) {
+      this.categoryChanged.emit(this.category);
+    }
     this.category = undefined;
-    this.categoryChanged.emit(this.category);
     this.emitFilterEvent();
   }
 
