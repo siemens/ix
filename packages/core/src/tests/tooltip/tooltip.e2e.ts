@@ -71,6 +71,17 @@ regressionTest.describe('tooltip', () => {
     });
   });
 
+  regressionTest('global style not bleeding into tooltip', async ({ page }) => {
+    await page.goto('tooltip/overlapping-styles');
+
+    const tooltipTriggerHandler = await page.waitForSelector('#test');
+
+    await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   test('tooltip position top', async ({ mount, page }) => {
     await mount(`
       <div style="padding: 10rem">
