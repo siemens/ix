@@ -72,9 +72,9 @@ regressionTest.describe('tooltip', () => {
   });
 
   regressionTest('global style not bleeding into tooltip', async ({ page }) => {
-    await page.goto('tooltip/table');
+    await page.goto('tooltip/overlapping-styles');
 
-    const tooltipTriggerHandler = await page.waitForSelector('td.td1');
+    const tooltipTriggerHandler = await page.waitForSelector('#test');
 
     await tooltipTriggerHandler.hover();
     await page.waitForTimeout(500);
