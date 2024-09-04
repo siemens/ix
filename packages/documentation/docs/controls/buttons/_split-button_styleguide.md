@@ -29,7 +29,7 @@ All the variants, options and states of the ix button and the ix dropdown button
 ## States
 Split buttons have five states: Default, hover, active, disabled and focused. States are applied to left and the right part of the split button independently except for the disabled state. The visual appearance and the behavior of the states is the same as the ix button and the ix dropdown button.
 
-## Does and Don'ts
+## Dos and Don'ts
 - Do use split buttons when there is a frequent or most-important action
 - Don't use split buttons for unrelated actions
 - Don't duplicate the default option in the dropdown
