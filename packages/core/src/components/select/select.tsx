@@ -429,20 +429,23 @@ export class Select {
 
     let item: HTMLIxSelectItemElement;
 
-    if (this.editable && !this.itemExists(this.inputFilterText)) {
-      const defaultPrevented = this.emitAddItem(this.inputFilterText);
-      if (defaultPrevented) {
-        return;
+    const itemExists = this.itemExists(this.inputFilterText);
+
+    if (!itemExists) {
+      if (this.editable) {
+        const defaultPrevented = this.emitAddItem(this.inputFilterText);
+        if (defaultPrevented) {
+          return;
+        }
+
+        item = this.items[this.items.length - 1];
+        await item.onItemClick();
       }
-
-      item = this.items[this.items.length - 1];
+      this.dropdownShow = false;
+      await this.dropdownRef?.updatePosition();
+    } else {
+      await itemExists.onItemClick();
     }
-
-    if (item) {
-      item.onItemClick();
-    }
-
-    await this.dropdownRef?.updatePosition();
 
     if (this.isSingleMode && !this.editable) {
       this.dropdownShow = false;
@@ -609,6 +612,7 @@ export class Select {
   }
 
   private onInputBlur(e) {
+    console.log('!!!');
     if (this.editable) {
       return;
     }
