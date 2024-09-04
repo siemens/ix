@@ -461,10 +461,57 @@
           ],
           "optional": true,
           "required": false
+        },
+        {
+          "name": "showMenu",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "show-menu",
+          "reflectToAttr": false,
+          "docs": "Controls the visibility of the menu toggle button based on the context of the application header.\n\nWhen the application header is utilized outside the application frame, the menu toggle button is displayed.\nConversely, if the header is within the application frame, this property is ineffective.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.5.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "menuToggle",
+          "detail": "boolean",
+          "bubbles": true,
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the menu toggle button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.5.0"
+            }
+          ]
+        }
+      ],
       "styles": [],
       "slots": [
         {

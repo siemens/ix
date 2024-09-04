@@ -150,6 +150,11 @@ export namespace Components {
           * Application name
          */
         "name"?: string;
+        /**
+          * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
+          * @since 2.5.0
+         */
+        "showMenu"?: boolean;
     }
     interface IxApplicationSidebar {
     }
@@ -3168,6 +3173,10 @@ export namespace Components {
         "vertical": boolean;
     }
 }
+export interface IxApplicationHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxApplicationHeaderElement;
+}
 export interface IxBlindCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxBlindElement;
@@ -3427,7 +3436,18 @@ declare global {
         prototype: HTMLIxApplicationElement;
         new (): HTMLIxApplicationElement;
     };
+    interface HTMLIxApplicationHeaderElementEventMap {
+        "menuToggle": boolean;
+    }
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxApplicationHeaderElementEventMap>(type: K, listener: (this: HTMLIxApplicationHeaderElement, ev: IxApplicationHeaderCustomEvent<HTMLIxApplicationHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxApplicationHeaderElementEventMap>(type: K, listener: (this: HTMLIxApplicationHeaderElement, ev: IxApplicationHeaderCustomEvent<HTMLIxApplicationHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxApplicationHeaderElement: {
         prototype: HTMLIxApplicationHeaderElement;
@@ -5125,6 +5145,16 @@ declare namespace LocalJSX {
           * Application name
          */
         "name"?: string;
+        /**
+          * Event emitted when the menu toggle button is clicked
+          * @since 2.5.0
+         */
+        "onMenuToggle"?: (event: IxApplicationHeaderCustomEvent<boolean>) => void;
+        /**
+          * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
+          * @since 2.5.0
+         */
+        "showMenu"?: boolean;
     }
     interface IxApplicationSidebar {
     }

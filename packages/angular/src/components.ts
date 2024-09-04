@@ -52,25 +52,31 @@ export declare interface IxApplication extends Components.IxApplication {}
 
 
 @ProxyCmp({
-  inputs: ['name']
+  inputs: ['name', 'showMenu']
 })
 @Component({
   selector: 'ix-application-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['name'],
+  inputs: ['name', 'showMenu'],
 })
 export class IxApplicationHeader {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['menuToggle']);
   }
 }
 
 
-export declare interface IxApplicationHeader extends Components.IxApplicationHeader {}
+export declare interface IxApplicationHeader extends Components.IxApplicationHeader {
+  /**
+   * Event emitted when the menu toggle button is clicked @since 2.5.0
+   */
+  menuToggle: EventEmitter<CustomEvent<boolean>>;
+}
 
 
 @ProxyCmp({
