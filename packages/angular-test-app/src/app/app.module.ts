@@ -230,6 +230,7 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-group-indeterminate";
 
 @NgModule({
   declarations: [
@@ -322,6 +323,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     EventList,
     ExpandingSearch,
     FlipTile,
+    FormCheckboxGroupIndeterminate,
     GridPadding,
     GridSize,
     Grid,

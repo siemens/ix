@@ -215,6 +215,7 @@ import ValidationSelect from './preview-examples/validation-select';
 import FormValidation from './preview-examples/form-validation';
 import LayoutAuto from './preview-examples/layout-auto';
 import LayoutAutoCustom from './preview-examples/layout-auto-custom';
+import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-group-indeterminate';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -414,6 +415,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route
           path="/preview/form-checkbox-validation"
           element={<FormCheckboxValidation />}
+        />
+        <Route
+          path="/preview/form-checkbox-group-indeterminate"
+          element={<FormCheckboxGroupIndeterminate />}
         />
         <Route
           path="/preview/group-context-menu"

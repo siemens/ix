@@ -1,0 +1,30 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Checkbox group indeterminate example</title>
+  </head>
+  <body class='theme-brand-dark'>
+    <!-- Preview code -->
+    <ix-checkbox-group>
+      <ix-checkbox id="checkbox_01" label="Option group"></ix-checkbox>
+      <ix-checkbox checked label="Sub option one" class="cb-padding"></ix-checkbox>
+      <ix-checkbox checked label="Another sub option" class="cb-padding"></ix-checkbox>
+      <ix-checkbox label="Another sub option" class="cb-padding"></ix-checkbox>
+    </ix-checkbox-group>
+    <!-- Preview code -->
+
+    <script>
+      (function () {
+        const checkbox = document.querySelector('#checkbox_01');
+        checkbox.indeterminate = true;
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

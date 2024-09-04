@@ -218,6 +218,7 @@ import ValidationTextField from 'src/preview-examples/validation-text-field';
 import FormValidation from 'src/preview-examples/form-validation';
 import LayoutAuto from 'src/preview-examples/layout-auto';
 import LayoutAutoCustom from 'src/preview-examples/layout-auto-custom';
+import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-group-indeterminate";
 
 const routes: Routes = [
   {
@@ -375,6 +376,10 @@ const routes: Routes = [
       {
         path: 'checkbox',
         component: Checkbox,
+      },
+      {
+        path: 'form-checkbox-group-indeterminate',
+        component: FormCheckboxGroupIndeterminate,
       },
       {
         path: 'chip',

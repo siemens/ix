@@ -29,6 +29,7 @@ import ButtonWithIcon from './preview-examples/button-with-icon.vue';
 import Buttons from './preview-examples/buttons.vue';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate.vue';
 import Checkbox from './preview-examples/checkbox.vue';
+import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-group-indeterminate.vue';
 import Chip from './preview-examples/chip.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
@@ -251,6 +252,7 @@ const routes: any = {
   '/preview/category-filter-suggestions.vue': CategoryFilterSuggestions,
   '/preview/category-filter': CategoryFilter,
   '/preview/checkbox-indeterminate': CheckboxIndeterminate,
+  '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
   '/preview/checkbox': Checkbox,
   '/preview/chip': Chip,
   '/preview/custom-field': CustomField,
