@@ -9,16 +9,15 @@ Even in industrial scenarios, users test and play with chatbots. Some ad hoc int
 
 ## Examples 
 
-**Chatbot:** I apologize, I’m not able to assist you with that request. How else can I help you? 
+![Apology example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4359&t=etx1DcSbA7VDx5xD-4)
 
 Universally, chatbots start with an apology before anything else, even if it was the user that added inappropriate or offensive input. 
 
-**Chatbot:** I apologize if my previous response caused offense. I'm here to assist you with any other questions or tasks regarding your online portal. How can I assist you today? 
+![Extended apology example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4368&t=etx1DcSbA7VDx5xD-4)
 
 Here the chatbot seeks to move the user back on course and reminds them of their use case. 
 
-**User:** What’s the weather today?   
-**Chatbot:** Certainly! Let’s check the weather today for you. 
+![Ad hoc question example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4370&t=etx1DcSbA7VDx5xD-4)
 
 Other ad hoc conversations, such as talking about the weather or saying hello help build a bond between user and chatbot. Although we do not recommend training your chatbot to tell jokes with users in industrial settings, a certain number of ad hoc conversations are beneficial.  
 

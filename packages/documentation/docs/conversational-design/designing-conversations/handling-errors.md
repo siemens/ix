@@ -9,15 +9,11 @@ When talking about chatbots and the mistakes they make, it’s always talked abo
 
 ## Examples 
 
-**User:** Can you automate my night shift task assignments?  
-**Chatbot:** I apologize. Unfortunately, I cannot complete that task. 
+![Handling errors example apology](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4344&t=etx1DcSbA7VDx5xD-4)
 
 Here the chatbot is immediately apologetic and tells the user they cannot complete the task. It’s efficient but lacks empathy and fails to give the user any kind of alternative support. 
 
-**User:** Hi, I need to order replacement parts for our assembly line.   
-**Chatbot:** Sure, I’m happy to assist you! Could you please provide the part numbers?   
-**User:** I don’t have them, but they’re for the filtering machine.   
-**Chatbot:** I’m sorry, but I can’t look up parts without specific part numbers. Please check our online purchasing portal or contact our customer service for personalized assistance. 
+![Handling errors example apology and explanation](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4376&t=etx1DcSbA7VDx5xD-4)
 
 Here, although it’s clear what the user wants, they can’t give the chatbot the information it needs to fulfill the request. In this situation, the chatbot immediately says they cannot carry out the task, explains why, and then tells the user where to find a solution. We recommend this three-step approach for chatbot responses and for error messages in general.   
 ## Dos and Don’ts

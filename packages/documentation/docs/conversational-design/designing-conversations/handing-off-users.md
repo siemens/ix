@@ -9,14 +9,7 @@ Chatbots must hand off their users whenever they’ve failed to clarify what the
 
 ## Examples
 
-**User:** We’re getting numerous temperature threshold alarms after our software update.  
-**Chatbot:** Just to confirm, have you acknowledged the alarms?   
-**User:** Yes but they are being raised again as soon as I acknowledge them. This happened straight after the software update.   
-**Chatbot:** Which software update did you complete?  
-**User:** v7.03  
-**Chatbot:** I apologize, but I’m not able to solve this for you. Would you like me to transfer you to the Remote Expert Center?   
-**User:** Yes.   
-**Chatbot:** Thank you. Please wait a moment as I hand you over to a REC agent. 
+![Handing off to human assistance example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4347&t=etx1DcSbA7VDx5xD-4)
 
 Here the chatbot is polite, professional and after a couple of clarifying questions, they admit to being unable to help and hand them off the best person to support them with their issue. They also make it clear they are being handed off to a human. 
 
