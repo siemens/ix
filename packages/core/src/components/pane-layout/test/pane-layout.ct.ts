@@ -8,16 +8,16 @@
  */
 
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane-layout></ix-pane-layout>`);
   const pane = page.locator('ix-pane-layout');
   await expect(pane).toHaveClass(/hydrated/);
 });
 
-test.describe('pane-layout with floating pane', () => {
-  test.beforeEach(async ({ mount }) => {
+regressionTest.describe('pane-layout with floating pane', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(
       `
         <div style="width: 100vw; height: 100vh;">
@@ -46,7 +46,7 @@ test.describe('pane-layout with floating pane', () => {
     );
   });
 
-  test('expanded', async ({ page }) => {
+  regressionTest('expanded', async ({ page }) => {
     await page.waitForSelector('h1');
     const title = page.locator('h1');
     // timeout to make sure it is currently not closing
@@ -54,7 +54,7 @@ test.describe('pane-layout with floating pane', () => {
     await expect(title).toBeVisible();
   });
 
-  test('floating pane closes on content click', async ({ page }) => {
+  regressionTest('floating pane closes on content click', async ({ page }) => {
     await page.waitForSelector('h1');
     await page.getByText('Text 2').click();
     const textOne = page.getByText('Text 1');

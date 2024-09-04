@@ -17,17 +17,11 @@ export default {
   output: [
     {
       dir: 'dist/',
-      entryFileNames: '[name].esm.js',
-      chunkFileNames: '[name]-[hash].esm.js',
+      entryFileNames: '[name].js',
+      chunkFileNames: '[name]-[hash].js',
       format: 'es',
     },
-    {
-      dir: 'dist/',
-      format: 'commonjs',
-      preferConst: true,
-    },
   ],
-  external: Object.keys(pkg.dependencies),
   plugins: [typescript({ tsconfig: './tsconfig.json' })],
 };
 /* eslint-enable */

@@ -7,6 +7,5 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export const environment = {
-  production: true,
-};
+export * from './toast.service';
+export * from './toast.config';

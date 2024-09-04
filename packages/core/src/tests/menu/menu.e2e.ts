@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
-test.describe('menu', () => {
+regressionTest.describe('menu', () => {
   regressionTest(
     'basic md - no default icon on second level, scaling for popup window',
     async ({ page }) => {

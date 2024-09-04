@@ -128,6 +128,18 @@
     line-height: min(var(--ag-internal-calculated-line-height), var(--ag-internal-padded-row-height));
   }
 
+  .ag-filter-active .ag-icon-filter {
+    color: var(--theme-btn-primary--background);
+  }
+
+  .ag-filter-active:hover .ag-icon-filter {
+    color: var(--theme-btn-primary--background--hover);
+  }
+
+  .ag-filter-active:active .ag-icon-filter {
+    color: var(--theme-btn-primary--background--active);
+  }
+
   .ag-filter-wrapper {
     background-color: var(--theme-color-1);
 

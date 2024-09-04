@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of thi  s source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-input-group>
       <input class="parameter-value" type="text" value="Some initial value" />
@@ -24,7 +24,7 @@ test('renders', async ({ mount, page }) => {
   await expect(input).toHaveCSS('padding-right', '15px');
 });
 
-test('initial padding start', async ({ mount, page }) => {
+regressionTest('initial padding start', async ({ mount, page }) => {
   await mount(`
     <ix-input-group>
       <span slot="input-start">
@@ -42,7 +42,7 @@ test('initial padding start', async ({ mount, page }) => {
   await expect(input).toHaveCSS('padding-right', '15px');
 });
 
-test('initial padding end', async ({ mount, page }) => {
+regressionTest('initial padding end', async ({ mount, page }) => {
   await mount(`
     <ix-input-group>
       <span slot="input-start">
@@ -63,7 +63,7 @@ test('initial padding end', async ({ mount, page }) => {
   await expect(input).toHaveCSS('padding-right', '31px');
 });
 
-test('update padding end', async ({ mount, page }) => {
+regressionTest('update padding end', async ({ mount, page }) => {
   await mount(`
     <ix-input-group>
       <input class="parameter-value" type="text" value="Some initial value" />
@@ -100,7 +100,7 @@ test('update padding end', async ({ mount, page }) => {
   await expect(input).toHaveCSS('padding-right', '65px');
 });
 
-test('validation padding', async ({ mount, page }) => {
+regressionTest('validation padding', async ({ mount, page }) => {
   await mount(`
     <form class="needs-validation" noValidation>
       <ix-input-group>
@@ -130,8 +130,10 @@ test('validation padding', async ({ mount, page }) => {
   await expect(input).toHaveCSS('background-position-x', '7px');
 });
 
-test('validation padding with input-start slot', async ({ mount, page }) => {
-  await mount(`
+regressionTest(
+  'validation padding with input-start slot',
+  async ({ mount, page }) => {
+    await mount(`
     <form class="needs-validation" noValidation>
       <ix-input-group>
         <ix-icon name="eye" size="12" slot="input-start"></ix-icon>
@@ -142,31 +144,31 @@ test('validation padding with input-start slot', async ({ mount, page }) => {
     </form>
   `);
 
-  const form = page.locator('form');
-  await form.evaluate((form) =>
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      form.classList.add('was-validated');
-    })
-  );
+    const form = page.locator('form');
+    await form.evaluate((form) =>
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        form.classList.add('was-validated');
+      })
+    );
 
-  const group = page.locator('ix-input-group');
-  await expect(group).toHaveClass(/hydrated/);
+    const group = page.locator('ix-input-group');
+    await expect(group).toHaveClass(/hydrated/);
 
-  const input = group.locator('input');
-  const button = page.locator('ix-button');
+    const input = group.locator('input');
+    const button = page.locator('ix-button');
 
-  await button.click();
+    await button.click();
 
-  await expect(input).toHaveCSS('background-position-x', '23px');
-  await expect(input).toHaveCSS('padding-left', '49px');
-});
+    await expect(input).toHaveCSS('background-position-x', '23px');
+    await expect(input).toHaveCSS('padding-left', '49px');
+  }
+);
 
-test('validation with class padding with input-start slot', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'validation with class padding with input-start slot',
+  async ({ mount, page }) => {
+    await mount(`
     <form class="needs-validation" noValidation>
       <ix-input-group>
         <ix-icon name="eye" size="12" slot="input-start"></ix-icon>
@@ -175,19 +177,20 @@ test('validation with class padding with input-start slot', async ({
     </form>
   `);
 
-  const form = page.locator('form');
-  await form.evaluate((form) =>
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      form.classList.add('was-validated');
-    })
-  );
+    const form = page.locator('form');
+    await form.evaluate((form) =>
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        form.classList.add('was-validated');
+      })
+    );
 
-  const group = page.locator('ix-input-group');
-  await expect(group).toHaveClass(/hydrated/);
+    const group = page.locator('ix-input-group');
+    await expect(group).toHaveClass(/hydrated/);
 
-  const input = group.locator('input');
+    const input = group.locator('input');
 
-  await expect(input).toHaveCSS('background-position-x', '23px');
-  await expect(input).toHaveCSS('padding-left', '49px');
-});
+    await expect(input).toHaveCSS('background-position-x', '23px');
+    await expect(input).toHaveCSS('padding-left', '49px');
+  }
+);

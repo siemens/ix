@@ -9,6 +9,20 @@
 @import 'legacy/mixins/fonts';
 
 .table {
+  --bs-table-color-type: initial;
+  --bs-table-bg-type: initial;
+  --bs-table-color-state: initial;
+  --bs-table-bg-state: initial;
+  --bs-table-color: var(--theme-table--color);
+  --bs-table-bg: var(--theme-table--background);
+  --bs-table-border-color: var(--theme-table--border-color);
+  --bs-table-accent-bg: transparent;
+  --bs-table-striped-color: var(--theme-table--color);
+  --bs-table-striped-bg: var(--theme-table-data-row-alt--background);
+  --bs-table-active-color: var(--theme-table--color);
+  --bs-table-active-bg: var(--theme-table-data-row-alt--background--active);
+  --bs-table-hover-color: var(--theme-table--color);
+  --bs-table-hover-bg: var(--theme-table-data-row-alt--background--hover);
   @include text-default;
 
   thead {

@@ -16,7 +16,6 @@ import {
 } from '@angular/core';
 import { appInitialize } from './app-initialize';
 import { DIRECTIVES } from './declare-components';
-import { IxDropdownTriggerDirective } from './dropdown/trigger.directive';
 import { IxIcon } from './ix-icon';
 import { ModalService } from './modal';
 import { SelectValueAccessor } from './select-value-accessor';
@@ -24,13 +23,15 @@ import { BooleanValueAccessor } from './boolean-value-accessor';
 import { ThemeService } from './theme';
 import { ToastService } from './toast';
 import * as tree from './tree';
+import { IxDropdownTriggerDirective } from './directives/dropdown/trigger.directive';
+
 const DECLARATIONS = [
   ...DIRECTIVES,
   tree.IxTree,
-  IxDropdownTriggerDirective,
   IxIcon,
   SelectValueAccessor,
-  BooleanValueAccessor
+  BooleanValueAccessor,
+  IxDropdownTriggerDirective,
 ];
 
 @NgModule({
@@ -38,13 +39,15 @@ const DECLARATIONS = [
   exports: DECLARATIONS,
 })
 export class IxModule {
-  static forRoot(): ModuleWithProviders<IxModule> {
+  static forRoot(options?: {
+    preloadIcons?: () => void;
+  }): ModuleWithProviders<IxModule> {
     return {
       ngModule: IxModule,
       providers: [
         {
           provide: APP_INITIALIZER,
-          useFactory: appInitialize,
+          useFactory: appInitialize(options?.preloadIcons),
           multi: true,
           deps: [DOCUMENT, NgZone],
         },

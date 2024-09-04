@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Page } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 const TIME_PICKER_SELECTOR = 'ix-time-picker';
 const getTimeObjs = async (page: Page) => {
@@ -16,14 +16,14 @@ const getTimeObjs = async (page: Page) => {
   });
 };
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-time-picker></ix-time-picker>`);
   const datePicker = page.locator(TIME_PICKER_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
-test.describe('time picker tests', () => {
-  test.beforeEach(async ({ mount }) => {
+regressionTest.describe('time picker tests', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(
       `<ix-time-picker
       time="09:10:11"
@@ -37,11 +37,11 @@ test.describe('time picker tests', () => {
     );
   });
 
-  test('get time', async ({ page }) => {
+  regressionTest('get time', async ({ page }) => {
     expect(await getTimeObjs(page)).toEqual(['09:10:11', '10:11:12 AM']);
   });
 
-  test('increment time units', async ({ page }) => {
+  regressionTest('increment time units', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     // Slice is necessary, because on element is on Shadow-DOM
@@ -56,7 +56,7 @@ test.describe('time picker tests', () => {
     expect(await getTimeObjs(page)).toEqual(['10:11:12', '10:11:12 AM']);
   });
 
-  test('decrement time units', async ({ page }) => {
+  regressionTest('decrement time units', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     const decrementButtons = (
@@ -70,7 +70,7 @@ test.describe('time picker tests', () => {
     expect(await getTimeObjs(page)).toEqual(['08:09:10', '10:11:12 AM']);
   });
 
-  test('maximum / minimum time units', async ({ page }) => {
+  regressionTest('maximum / minimum time units', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
     const inputFields = await page
       .locator('ix-date-time-card')
@@ -85,7 +85,7 @@ test.describe('time picker tests', () => {
     expect(await getTimeObjs(page)).toEqual(['23:59:59', '12:59:59 PM']);
   });
 
-  test('change time reference', async ({ page }) => {
+  regressionTest('change time reference', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
     const dateTimeCard = await page.$$('ix-date-time-card');
 
@@ -97,24 +97,27 @@ test.describe('time picker tests', () => {
     expect(await getTimeObjs(page)).toEqual(['09:10:11', '10:11:12 PM']);
   });
 
-  test('select different time fires timeChange event', async ({ page }) => {
-    await page.waitForSelector('ix-date-time-card');
+  regressionTest(
+    'select different time fires timeChange event',
+    async ({ page }) => {
+      await page.waitForSelector('ix-date-time-card');
 
-    const timeChangeEvent = page.evaluate(() => {
-      return new Promise((f) => {
-        document.addEventListener('timeChange', (data) => f(data));
+      const timeChangeEvent = page.evaluate(() => {
+        return new Promise((f) => {
+          document.addEventListener('timeChange', (data) => f(data));
+        });
       });
-    });
 
-    const incrementButtons = (
-      await page.$$('ix-icon-button.arrows:first-child')
-    ).slice(0, 3);
-    await incrementButtons[2].click();
+      const incrementButtons = (
+        await page.$$('ix-icon-button.arrows:first-child')
+      ).slice(0, 3);
+      await incrementButtons[2].click();
 
-    expect(await timeChangeEvent).toBeTruthy();
-  });
+      expect(await timeChangeEvent).toBeTruthy();
+    }
+  );
 
-  test('change time from outside', async ({ page }) => {
+  regressionTest('change time from outside', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     await page.$eval(TIME_PICKER_SELECTOR, (el: HTMLIxTimePickerElement) => {
