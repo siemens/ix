@@ -264,6 +264,63 @@ test('type in a novel item name in editable mode, click outside and reopen the s
   await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
 });
 
+test('type in a novel item name and click outside', async ({ mount, page }) => {
+  await mount(`
+        <ix-select value="2" editable>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+        <ix-button>outside</ix-button>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  const btnElement = page.locator('ix-button');
+  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(btnElement).toBeVisible();
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
+
+  const add = page.getByRole('button', { name: 'test' });
+  await expect(add).toBeVisible();
+
+  await page.keyboard.down('enter');
+  const inputValue = await page.getByTestId('input').inputValue();
+
+  expect(inputValue).toBe('Item 2');
+});
+
+test('type in a novel item name in multiple mode, click outside', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select value="2" mode="multiple">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+        <ix-button>outside</ix-button>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  const btnElement = page.locator('ix-button');
+  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(btnElement).toBeVisible();
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
+
+  const add = page.getByRole('button', { name: 'test' });
+  await expect(add).toBeVisible();
+
+  await page.keyboard.down('enter');
+  const inputValue = await page.getByTestId('input').inputValue();
+
+  expect(inputValue).toBe('');
+});
+
 test('pass object as value and check if it is selectable', async ({
   mount,
   page,
