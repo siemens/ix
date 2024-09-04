@@ -9,14 +9,14 @@ jobs:
     if: ${{ github.repository == 'siemens/ix' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Need reproduction comment created
+      - name: Needs reproduction comment created
         if: "contains(github.event.label.name, 'needs reproduction')"
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            Thanks for the issue! This issue has been labeled as `needs reproduction`.
+            Thank you for creating this issue! It has been labeled as `needs reproduction`.
 
             To help us assist you better, could you please provide a way for us to access the code (such as a GitHub repository or a StackBlitz link). Without a reliable code reproduction, it might be challenging for us to resolve the issue, and we may have to close it.
             Thank you for your understanding!
