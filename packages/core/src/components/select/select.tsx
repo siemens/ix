@@ -330,8 +330,12 @@ export class Select {
 
     this.selectedLabels = this.selectedItems.map((item) => item.label);
 
-    if (this.isSingleMode && this.selectedLabels?.length) {
-      this.inputValue = this.selectedLabels[0];
+    if (this.selectedLabels?.length) {
+      if (this.isSingleMode) {
+        this.inputValue = this.selectedLabels[0];
+      } else {
+        this.inputValue = '';
+      }
       this.inputRef && (this.inputRef.value = this.inputValue);
       return;
     }
@@ -440,11 +444,15 @@ export class Select {
 
         item = this.items[this.items.length - 1];
         await item.onItemClick();
+      } else {
+        this.updateSelection();
       }
+    }
+
+    await this.dropdownRef?.updatePosition();
+
+    if (this.isSingleMode && !this.editable) {
       this.dropdownShow = false;
-      await this.dropdownRef?.updatePosition();
-    } else {
-      await itemExists.onItemClick();
     }
 
     if (this.isSingleMode && !this.editable) {
@@ -612,7 +620,6 @@ export class Select {
   }
 
   private onInputBlur(e) {
-    console.log('!!!');
     if (this.editable) {
       return;
     }
