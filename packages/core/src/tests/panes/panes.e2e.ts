@@ -142,6 +142,13 @@ test.describe('pane', () => {
     await expect(page).toHaveScreenshot();
   });
 
+  regressionTest('layout, inline, collapsed, relative', async ({ page }) => {
+    await page.goto('panes/layout-relative');
+    await page.waitForTimeout(1000);
+
+    await expect(page).toHaveScreenshot();
+  });
+
   regressionTest(
     'slot, correctly toggles while being collapsed through content click',
     async ({ page }) => {
