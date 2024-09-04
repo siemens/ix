@@ -10,7 +10,7 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-regressionTest.describe('html-overlapping-styles', () => {
+regressionTest.describe('html-table', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('html-table/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
