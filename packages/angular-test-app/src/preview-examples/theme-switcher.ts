@@ -13,7 +13,7 @@ import { themeSwitcher } from '@siemens/ix';
 @Component({
   selector: 'app-example',
   templateUrl: './theme-switcher.html',
-  styles: [`@import 'example-styles/dist/theme-switcher.css'`],
+  styleUrls: ['./styles/theme-switcher.css'],
 })
 export default class ThemeSwitcher {
   themes = ['theme-classic-light', 'theme-classic-dark'];

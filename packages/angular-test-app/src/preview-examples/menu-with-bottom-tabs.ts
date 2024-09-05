@@ -17,10 +17,6 @@ import { Component } from '@angular/core';
       <ix-menu-item tab-icon="info" slot="bottom"> Bottom tab </ix-menu-item>
     </ix-menu>
   `,
-  styles: [
-    `
-      @import 'example-styles/dist/menu.css';
-    `,
-  ],
+  styleUrls: ['./styles/menu.css'],
 })
 export default class VerticalTabs {}

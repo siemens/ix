@@ -23,10 +23,6 @@ import { Component } from '@angular/core';
       Loading
     </ix-toggle-button>
   `,
-  styles: [
-    `
-      @import 'example-styles/dist/toggle-buttons.css';
-    `,
-  ],
+  styleUrls: ['./styles/toggle-buttons.css'],
 })
 export default class Buttons {}

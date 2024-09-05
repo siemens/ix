@@ -3,7 +3,7 @@ import Tags from './../auto-generated/ix-tooltip/tags.md';
 import Props from './../auto-generated/ix-tooltip/props.md';
 import Slots from './../auto-generated/ix-tooltip/slots.md';
 
-import Playground from '@site/src/components/PlaygroundV2'
+import Playground from '@site/src/components/PlaygroundV3'
 
 # Tooltip
 
@@ -14,7 +14,7 @@ import Playground from '@site/src/components/PlaygroundV2'
 <Playground
   name="tooltip"
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

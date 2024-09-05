@@ -1,7 +1,7 @@
 import Props from './../auto-generated/ix-spinner/props.md';
 import Events from './../auto-generated/ix-spinner/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Spinner
 
@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="spinner" 
   height="5rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Large
@@ -21,7 +21,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="spinner-large" 
   height="16rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API

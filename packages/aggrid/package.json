@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build": "gulp",
-    "test:e2e": "playwright test",
+    "visual-regression": "playwright test",
     "host-root": "http-server -a 127.0.0.1"
   },
   "devDependencies": {
@@ -26,7 +26,7 @@
     "@types/gulp": "^4.0.14",
     "@types/gulp-postcss": "^8.0.4",
     "@types/gulp-sass": "^5.0.2",
-    "ag-grid-community": "30.2.0",
+    "ag-grid-community": "^32.1.0",
     "autoprefixer": "10.4.5",
     "cssnano": "^6.0.1",
     "gulp": "^4.0.2",
@@ -41,6 +41,6 @@
     "@siemens/ix": "~2.4.1"
   },
   "peerDependencies": {
-    "ag-grid-community": "^28 || ^29 || ^30"
+    "ag-grid-community": ">=28"
   }
 }

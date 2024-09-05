@@ -1,7 +1,7 @@
 <script setup lang="ts">
-//@_IMPORT_COMPONENT
+import Example from './Example.vue';
 </script>
 
 <template>
-  <!-- @_RENDER_COMPONENT -->
+  <Example />
 </template>

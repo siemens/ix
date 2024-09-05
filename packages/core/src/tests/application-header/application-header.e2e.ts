@@ -58,3 +58,13 @@ regressionTest.describe('application header: basic', () => {
     }
   );
 });
+
+regressionTest.describe('application header: standalone', () => {
+  Object.keys(viewPorts).forEach((name: keyof typeof viewPorts) => {
+    regressionTest(`viewport ${name}`, async ({ page }) => {
+      await page.setViewportSize(viewPorts[name]);
+      await page.goto('application-header/standalone');
+      await expect(page).toHaveScreenshot();
+    });
+  });
+});

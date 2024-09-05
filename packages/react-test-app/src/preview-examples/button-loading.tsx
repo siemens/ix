@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/button-loading.css';
+import './styles/button-loading.css';
 
 import { IxButton, IxIconButton } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [toggle, setToggle] = useState(false);

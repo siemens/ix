@@ -7,10 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/tooltip.css';
+import './styles/tooltip.css';
 
 import { IxButton, IxTooltip } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (

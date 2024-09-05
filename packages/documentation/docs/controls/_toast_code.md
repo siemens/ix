@@ -2,7 +2,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 import ApiToastConfigJavaScript from './\_toast/javascript/toast-config.md';
 
@@ -15,14 +15,14 @@ import ApiToastConfigReact from './\_toast/react/toast-config.md';
 
 <Playground
 name="toast" height="18rem"
-examplesByName></Playground>
+></Playground>
 
 ## Custom toast message
 
 <Playground
 name="toast-custom" height="18rem"
 hideInitalCodePreview
-examplesByName></Playground>
+></Playground>
 
 ## Position
 
@@ -30,7 +30,7 @@ examplesByName></Playground>
 
 <Playground
 name="toast-position" height="18rem"
-examplesByName></Playground>
+></Playground>
 
 ## API
 

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/application.css';
+import './styles/application.css';
 
 import {
   IxApplication,
@@ -16,7 +16,7 @@ import {
   IxMenuSettings,
   IxMenuSettingsItem,
 } from '@siemens/ix-react';
-import React, { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
 export default () => {
   const ref = useRef<HTMLIxMenuElement>(null);

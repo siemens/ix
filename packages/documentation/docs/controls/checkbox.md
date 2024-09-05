@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 import Events from './../auto-generated/ix-chip/events.md';
 import Props from './../auto-generated/ix-chip/props.md';
@@ -13,7 +13,7 @@ import Props from './../auto-generated/ix-chip/props.md';
 <Playground
   name="checkbox" 
   height="8rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Indeterminate
@@ -22,5 +22,5 @@ import Props from './../auto-generated/ix-chip/props.md';
   name="checkbox-indeterminate" 
   height="8rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>

@@ -7,11 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/modal-sizes.css';
+import './styles/modal-sizes.css';
 
 import { IxModalSize } from '@siemens/ix';
 import { IxButton, Modal, ModalRef, showModal } from '@siemens/ix-react';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 export default () => {
   const modalRef = useRef<ModalRef>(null);

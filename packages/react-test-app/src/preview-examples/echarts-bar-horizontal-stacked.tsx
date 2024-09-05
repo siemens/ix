@@ -7,14 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/charts.css';
+import './styles/charts.css';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
-import {BarSeriesOption, EChartsOption} from 'echarts';
+import { BarSeriesOption, EChartsOption } from 'echarts';
 
 export default function EchartsBarHorizontalStacked() {
   registerTheme(echarts);
@@ -70,11 +70,5 @@ export default function EchartsBarHorizontalStacked() {
     series: series,
   };
 
-  return (
-    <ReactEcharts
-      option={options}
-      theme={theme}
-      className="echarts"
-    />
-  );
+  return <ReactEcharts option={options} theme={theme} className="echarts" />;
 }

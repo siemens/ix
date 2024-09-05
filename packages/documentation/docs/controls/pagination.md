@@ -2,7 +2,7 @@ import Props from './../auto-generated/ix-pagination/props.md';
 import Tags from './../auto-generated/ix-pagination/tags.md';
 import Events from './../auto-generated/ix-pagination/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Pagination
 
@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="pagination" 
   height="24rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Advanced
@@ -23,7 +23,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="pagination-advanced" 
   height="24rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

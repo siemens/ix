@@ -8,7 +8,6 @@
  */
 
 import { IxEventList, IxEventListItem } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (

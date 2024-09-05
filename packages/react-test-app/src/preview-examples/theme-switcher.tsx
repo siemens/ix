@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/theme-switcher.css';
+import './styles/theme-switcher.css';
 
 import { IxSelectCustomEvent, themeSwitcher } from '@siemens/ix';
 import {
@@ -18,7 +18,7 @@ import {
   IxSelect,
   IxSelectItem,
 } from '@siemens/ix-react';
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 export default () => {
   const [themes] = useState(['theme-classic-light', 'theme-classic-dark']);

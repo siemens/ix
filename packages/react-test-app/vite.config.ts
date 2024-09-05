@@ -9,8 +9,14 @@
 
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import { copyPreviewStyles } from 'example-styles';
+import path from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
+export default defineConfig(() => {
+  copyPreviewStyles(path.join(__dirname, 'src', 'preview-examples', 'styles'));
+
+  return {
+    plugins: [react()],
+  };
 });

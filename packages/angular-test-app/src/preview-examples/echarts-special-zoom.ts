@@ -21,7 +21,7 @@ import { OrdinalRawValue } from 'echarts/types/src/util/types';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-special-zoom.html',
-  styleUrls: ["../../../example-styles/dist/charts.css"],
+  styleUrls: ["./styles/charts.css"],
 })
 export default class EchartsSpecialZoom implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());

@@ -13,19 +13,14 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECharts example</title>
-    <!-- Sources -->
-    <script type="module">
-      import 'example-styles/dist/charts.css';
-    </script>
-    <!-- Sources -->
+    <link rel="stylesheet" href="./styles/charts.css" />
+    <!-- External resources -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <!-- External resources -->
   </head>
   <body class="">
     <!-- Preview code -->
-    <div
-      id="main"
-      class="echarts"
-    ></div>
+    <div id="main" class="echarts"></div>
 
     <script type="module">
       import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
@@ -42,7 +37,14 @@ LICENSE file in the root directory of this source tree.
       }
 
       const data = {
-        products: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E', 'Product F'],
+        products: [
+          'Product A',
+          'Product B',
+          'Product C',
+          'Product D',
+          'Product E',
+          'Product F',
+        ],
         sales: [10.3, 9.2, 7.3, 6.4, 6.2, 4.4],
       };
 

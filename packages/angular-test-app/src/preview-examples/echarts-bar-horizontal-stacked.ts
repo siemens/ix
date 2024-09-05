@@ -16,7 +16,7 @@ import { BarSeriesOption, EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-bar-horizontal-stacked.html',
-  styleUrls: ["../../../example-styles/dist/charts.css"],
+  styleUrls: ['./styles/charts.css'],
 })
 export default class EchartsBarHorizontalStacked implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());

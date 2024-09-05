@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/blind.css';
+import './styles/blind.css';
 
 import {
   IxBlind,
@@ -15,7 +15,6 @@ import {
   IxDropdownItem,
   IxIconButton,
 } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (

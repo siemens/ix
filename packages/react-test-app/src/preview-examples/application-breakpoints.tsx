@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/application.css';
+import './styles/application.css';
 
 import { Breakpoint } from '@siemens/ix';
 import {
@@ -23,7 +23,7 @@ import {
   IxMenuItem,
 } from '@siemens/ix-react';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [breakpoints, setBreakpoints] = useState<Breakpoint[]>(['md']);
