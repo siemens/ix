@@ -11,14 +11,36 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <ix-checkbox-group>
-      <ix-checkbox indeterminate="true" label="Option group"></ix-checkbox>
-      <ix-checkbox checked label="Sub option one" class="cb-padding"></ix-checkbox>
-      <ix-checkbox checked label="Another sub option" class="cb-padding"></ix-checkbox>
-      <ix-checkbox label="Another sub option" class="cb-padding"></ix-checkbox>
-    </ix-checkbox-group>
-  `,
+  templateUrl: './form-checkbox-group-indeterminate.html',
   styleUrls: ['./styles/form-checkbox-group-indeterminate.css'],
 })
-export default class FormCheckboxGroupIndeterminate {}
+export default class FormCheckboxGroupIndeterminate {
+  parentCheckbox = {indeterminate: true, checked: false, label: "Option group"};
+  childCheckboxes = [
+    {checked: true, label: "Sub option one"},
+    {checked: true, label: "Another sub option"},
+    {checked: false, label: "Another sub option"},
+  ]
+
+  parentCheckedChange() {
+    this.parentCheckbox.indeterminate = false;
+    this.childCheckboxes.forEach((cb) => {
+      cb.checked = this.parentCheckbox.checked;
+    });
+  }
+
+  checkedChange() {
+    if(this.childCheckboxes.every((cb) => cb.checked)){
+      this.parentCheckbox.indeterminate = false;
+      this.parentCheckbox.checked = true;
+    }
+    else if(this.childCheckboxes.some((cb) => cb.checked)){
+      this.parentCheckbox.indeterminate = true;
+      this.parentCheckbox.checked = false;
+    }
+    else {
+      this.parentCheckbox.indeterminate = false;
+      this.parentCheckbox.checked = false;
+    }
+  }
+}
