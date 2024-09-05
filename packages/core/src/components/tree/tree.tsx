@@ -27,6 +27,7 @@ import {
   TreeModel,
   UpdateCallback,
 } from './tree-model';
+import { dropdownController } from '../dropdown/dropdown-controller';
 
 @Component({
   tag: 'ix-tree',
@@ -174,6 +175,12 @@ export class Tree {
 
         if (!this.itemClickListener.has(el)) {
           const itemClickCallback = (e: Event) => {
+            // Prevent hyperlist from refreshing the list to not dispose associated dropdowns
+            const hasTrigger = dropdownController.pathIncludesTrigger([el]);
+            if (hasTrigger) {
+              return;
+            }
+
             e.preventDefault();
             e.stopPropagation();
             Object.values(this.context).forEach((c) => (c.isSelected = false));

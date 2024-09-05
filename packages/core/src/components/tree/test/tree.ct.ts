@@ -171,3 +171,59 @@ test('update tree', async ({ mount, page }) => {
   await expect(newChildItem).toBeVisible();
   await expect(newChildItem).toHaveCSS('padding-left', '32px');
 });
+
+test('dropdown trigger', async ({ mount, page }) => {
+  const tree = await initializeTree(mount, page);
+
+  await tree.evaluate(
+    (t) =>
+      ((t as HTMLIxTreeElement).renderItem = (
+        _index,
+        item: any,
+        _dataList,
+        context,
+        update
+      ) => {
+        const el = document.createElement('ix-tree-item');
+        el.hasChildren = item.hasChildren;
+        el.context = context[item.id];
+        el.id = `trigger-${item.id}`;
+
+        const div = document.createElement('div');
+        div.style.display = 'flex';
+
+        const name = document.createElement('span');
+        const dd = document.createElement('ix-dropdown');
+        const ddItem = document.createElement('ix-dropdown-item');
+        ddItem.innerHTML = 'Action 1';
+        dd.trigger = `trigger-${item.id}`;
+
+        div.appendChild(name);
+        div.appendChild(dd);
+        dd.appendChild(ddItem);
+
+        name.innerText = item.data.name;
+
+        el.appendChild(div);
+
+        update((updateTreeItem) => {
+          name.innerText = updateTreeItem.data.name;
+        });
+
+        return el;
+      })
+  );
+
+  const root = tree.locator('ix-tree-item').first();
+  await root.locator('.icon-toggle-container').click();
+
+  const item1 = tree.locator('ix-tree-item').nth(1);
+  const dropdown1 = item1.locator('ix-dropdown');
+  await item1.click();
+  await expect(dropdown1).toBeVisible();
+
+  const item2 = tree.locator('ix-tree-item').nth(2);
+  const dropdown2 = item2.locator('ix-dropdown');
+  await item2.click();
+  await expect(dropdown2).toBeVisible();
+});
