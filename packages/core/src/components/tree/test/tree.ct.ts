@@ -8,6 +8,7 @@
  */
 import { expect, Locator, Page } from '@playwright/test';
 import { test } from '@utils/test';
+import { TreeItem } from '../tree-model';
 
 const defaultModel = {
   root: {
@@ -179,15 +180,16 @@ test('dropdown trigger', async ({ mount, page }) => {
     (t) =>
       ((t as HTMLIxTreeElement).renderItem = (
         _index,
-        item: any,
+        item,
         _dataList,
         context,
         update
       ) => {
         const el = document.createElement('ix-tree-item');
-        el.hasChildren = item.hasChildren;
-        el.context = context[item.id];
-        el.id = `trigger-${item.id}`;
+        const treeItem = item as TreeItem<unknown>;
+        el.hasChildren = treeItem.hasChildren;
+        el.context = context[treeItem.id];
+        el.id = `trigger-${treeItem.id}`;
 
         const div = document.createElement('div');
         div.style.display = 'flex';
@@ -196,13 +198,13 @@ test('dropdown trigger', async ({ mount, page }) => {
         const dd = document.createElement('ix-dropdown');
         const ddItem = document.createElement('ix-dropdown-item');
         ddItem.innerHTML = 'Action 1';
-        dd.trigger = `trigger-${item.id}`;
+        dd.trigger = `trigger-${treeItem.id}`;
 
         div.appendChild(name);
         div.appendChild(dd);
         dd.appendChild(ddItem);
 
-        name.innerText = item.data.name;
+        name.innerText = treeItem.id;
 
         el.appendChild(div);
 
