@@ -8,21 +8,57 @@ SPDX-License-Identifier: MIT
 <html>
   <head>
     <title>Checkbox group indeterminate example</title>
+    <link
+      rel="stylesheet"
+      href="./styles/form-checkbox-group-indeterminate.css"
+    />
   </head>
-  <body class='theme-brand-dark'>
+  <body class="theme-brand-dark">
     <!-- Preview code -->
     <ix-checkbox-group>
-      <ix-checkbox id="checkbox_01" label="Option group"></ix-checkbox>
-      <ix-checkbox checked label="Sub option one" class="cb-padding"></ix-checkbox>
-      <ix-checkbox checked label="Another sub option" class="cb-padding"></ix-checkbox>
+      <ix-checkbox label="Option group"></ix-checkbox>
+      <ix-checkbox
+        checked
+        label="Sub option one"
+        class="cb-padding"
+      ></ix-checkbox>
+      <ix-checkbox
+        checked
+        label="Another sub option"
+        class="cb-padding"
+      ></ix-checkbox>
       <ix-checkbox label="Another sub option" class="cb-padding"></ix-checkbox>
     </ix-checkbox-group>
     <!-- Preview code -->
 
     <script>
-      (function () {
-        const checkbox = document.querySelector('#checkbox_01');
-        checkbox.indeterminate = true;
+      (async function () {
+        await customElements.whenDefined('ix-checkbox');
+
+        const [parent, ...children] = Array.from(
+          document.querySelectorAll('ix-checkbox')
+        );
+        const checkboxGroup = document.querySelector('ix-checkbox-group');
+
+        function checkedChange() {
+          parent.indeterminate = children.some((cb) => cb.checked);
+        }
+
+        function parentCheckedChange(event) {
+          const { target } = event;
+          event.stopPropagation();
+          target.indeterminate = false;
+
+          const checked = target.checked;
+          children.forEach((cb) => {
+            cb.checked = checked;
+          });
+        }
+
+        checkboxGroup.addEventListener('checkedChange', checkedChange);
+        parent.addEventListener('checkedChange', parentCheckedChange);
+
+        checkedChange();
       })();
     </script>
     <script type="module" src="./init.js"></script>
