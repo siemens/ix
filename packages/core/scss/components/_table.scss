@@ -8,7 +8,7 @@
  */
 @import 'legacy/mixins/fonts';
 
-.table {
+@mixin bs-legacy-support {
   --bs-table-color-type: initial;
   --bs-table-bg-type: initial;
   --bs-table-color-state: initial;
@@ -23,19 +23,56 @@
   --bs-table-active-bg: var(--theme-table-data-row-alt--background--active);
   --bs-table-hover-color: var(--theme-table--color);
   --bs-table-hover-bg: var(--theme-table-data-row-alt--background--hover);
+}
+
+.table {
+  box-sizing: border-box;
+  border-spacing: 0px;
+  width: 100%;
+  margin-bottom: 1rem;
+  color: var(--theme-color-std-text);
+  vertical-align: top;
+  border-color: var(--theme-table--border-color);
   @include text-default;
 
-  thead {
-    background-color: var(--theme-table-header-row--background);
-  }
+  --ix-table-background: var(--theme-table--background);
 
-  th,
-  td {
-    border-bottom-color: var(--theme-table-data-row--border-color);
-  }
+  // TODO(IX-???): Will be removed after web component implementation is available
+  @include bs-legacy-support;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
-  --bs-table-accent-bg: var(--theme-table-data-row-alt--background);
-  color: inherit;
+  --ix-table-background: var(--theme-table-data-row-alt--background);
+}
+
+.table thead {
+  background-color: var(--theme-table-header-row--background);
+}
+
+.table > thead {
+  vertical-align: bottom;
+}
+
+.table > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+  background-color: var(--ix-table-background);
+  border-bottom-width: 1px;
+  box-shadow: inset 0 0 0 9999px transparent;
+}
+
+.table th,
+.table td {
+  border-bottom-color: var(--theme-table-data-row--border-color);
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  text-align: inherit;
 }

@@ -71,7 +71,6 @@
     "@typescript-eslint/parser": "^6.21.0",
     "animate.css": "~4.1.1",
     "autoprefixer": "10.4.5",
-    "bootstrap": "^5.3.3",
     "cssnano": "^6.1.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.0",
@@ -90,9 +89,7 @@
     "typescript": "~5.4.5"
   },
   "peerDependencies": {
-    "@popperjs/core": "^2.11.0",
-    "@siemens/ix-icons": "0.0.0-20240827135516",
-    "bootstrap": "~5.2.0"
+    "@siemens/ix-icons": "0.0.0-20240827135516"
   },
   "config": {
     "commitizen": {

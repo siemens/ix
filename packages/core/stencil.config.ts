@@ -35,13 +35,7 @@ const icons = [
   },
 ];
 
-const copyAssets = [
-  ...icons,
-  {
-    src: './../../../node_modules/bootstrap',
-    dest: 'build/bootstrap',
-  },
-];
+const copyAssets = [...icons];
 
 try {
   const brandTheme = require.resolve('@siemens/ix-brand-theme');

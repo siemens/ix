@@ -365,9 +365,6 @@ importers:
       '@floating-ui/dom':
         specifier: ^1.6.8
         version: 1.6.10
-      '@popperjs/core':
-        specifier: ^2.11.0
-        version: 2.11.8
       '@stencil/core':
         specifier: ^4.19.2
         version: 4.19.2
@@ -438,9 +435,6 @@ importers:
       autoprefixer:
         specifier: 10.4.5
         version: 10.4.5(postcss@8.4.41)
-      bootstrap:
-        specifier: ^5.3.3
-        version: 5.3.3(@popperjs/core@2.11.8)
       cssnano:
         specifier: ^6.1.2
         version: 6.1.2(postcss@8.4.41)
@@ -4391,9 +4385,6 @@ packages:
   '@polka/url@1.0.0-next.23':
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==}
 
-  '@popperjs/core@2.11.8':
-    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
-
   '@puppeteer/browsers@1.7.0':
     resolution: {integrity: sha512-sl7zI0IkbQGak/+IE3VEEZab5SSOlI5F6558WvzWGC1n3+C722rfewC1ZIkcF9dsoGSsxhsONoseVlNQG4wWvQ==}
     engines: {node: '>=16.3.0'}
@@ -6200,11 +6191,6 @@ packages:
 
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
-
-  bootstrap@5.3.3:
-    resolution: {integrity: sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg==}
-    peerDependencies:
-      '@popperjs/core': ^2.11.8
 
   bottleneck@2.19.5:
     resolution: {integrity: sha512-VHiNCbI1lKdl44tGrhNfU3lup0Tj/ZBMJB5/2ZbNXRCPuRCO7ed2mgcK4r17y+KB2EfuYuRaVlwNbAeaWGSpbw==}
@@ -20019,8 +20005,6 @@ snapshots:
 
   '@polka/url@1.0.0-next.23': {}
 
-  '@popperjs/core@2.11.8': {}
-
   '@puppeteer/browsers@1.7.0':
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
@@ -22204,10 +22188,6 @@ snapshots:
       multicast-dns: 7.2.5
 
   boolbase@1.0.0: {}
-
-  bootstrap@5.3.3(@popperjs/core@2.11.8):
-    dependencies:
-      '@popperjs/core': 2.11.8
 
   bottleneck@2.19.5: {}
 
