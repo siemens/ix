@@ -9,7 +9,7 @@
 
 import './styles/charts-gauge.css';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';

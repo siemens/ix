@@ -10,7 +10,7 @@
 import './styles/workflow.css';
 
 import { IxWorkflowStep, IxWorkflowSteps } from '@siemens/ix-react';
-import React from 'react';
+
 export default () => {
   return (
     <IxWorkflowSteps>

@@ -18,7 +18,7 @@ import {
   IxSelect,
   IxSelectItem,
 } from '@siemens/ix-react';
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 export default () => {
   const [themes] = useState(['theme-classic-light', 'theme-classic-dark']);

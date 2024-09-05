@@ -10,7 +10,7 @@
 import './styles/button-loading.css';
 
 import { IxButton, IxIconButton } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [toggle, setToggle] = useState(false);
