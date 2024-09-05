@@ -445,6 +445,7 @@ export class Select {
         }
 
         item = this.items[this.items.length - 1];
+        this.dropdownShow = false;
         await item.onItemClick();
       } else {
         this.updateSelection();
@@ -452,7 +453,7 @@ export class Select {
     }
 
     if (item) {
-      item.onItemClick();
+      await item.onItemClick();
     }
 
     await this.dropdownRef?.updatePosition();
