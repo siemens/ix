@@ -330,17 +330,12 @@ export class Select {
 
     this.selectedLabels = this.selectedItems.map((item) => item.label);
 
-    if (this.selectedLabels?.length) {
-      if (this.isSingleMode) {
-        this.inputValue = this.selectedLabels[0];
-      } else {
-        this.inputValue = '';
-      }
-      this.inputRef && (this.inputRef.value = this.inputValue);
-      return;
+    if (this.selectedLabels?.length && this.isSingleMode) {
+      this.inputValue = this.selectedLabels[0];
+    } else {
+      this.inputValue = null;
     }
-
-    this.inputValue = null;
+    this.inputRef && (this.inputRef.value = this.inputValue);
   }
 
   private emitValueChange(value: string | string[]) {
@@ -433,9 +428,16 @@ export class Select {
 
     let item: HTMLIxSelectItemElement;
 
-    const itemExists = this.itemExists(this.inputFilterText);
+    if (this.editable && !this.itemExists(this.inputFilterText)) {
+      const defaultPrevented = this.emitAddItem(this.inputFilterText);
+      if (defaultPrevented) {
+        return;
+      }
 
-    if (!itemExists) {
+      item = this.items[this.items.length - 1];
+    }
+
+    if (!this.itemExists(this.inputFilterText)) {
       if (this.editable) {
         const defaultPrevented = this.emitAddItem(this.inputFilterText);
         if (defaultPrevented) {
@@ -449,11 +451,11 @@ export class Select {
       }
     }
 
-    await this.dropdownRef?.updatePosition();
-
-    if (this.isSingleMode && !this.editable) {
-      this.dropdownShow = false;
+    if (item) {
+      item.onItemClick();
     }
+
+    await this.dropdownRef?.updatePosition();
 
     if (this.isSingleMode && !this.editable) {
       this.dropdownShow = false;
@@ -780,10 +782,10 @@ export class Select {
               }}
               label={this.inputFilterText}
               onItemClick={(e) => {
+                console.log('onItemClick', e);
                 e.preventDefault();
-                if (this.emitAddItem(this.inputFilterText)) {
-                  e.stopPropagation();
-                }
+                e.stopPropagation();
+                this.emitAddItem(this.inputFilterText);
               }}
               onFocus={() => (this.navigationItem = this.addItemRef)}
               ref={(ref) => {
