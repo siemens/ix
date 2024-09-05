@@ -461,7 +461,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('Item 2');
       await page.keyboard.down('Enter');
-      //await page.locator('ix-icon-button').click();
+      await page.locator('ix-icon-button').click();
       await page.waitForSelector('.checkmark');
 
       await input.clear();
