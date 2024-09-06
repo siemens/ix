@@ -180,6 +180,7 @@ export class Checkbox implements IxFormComponent<string> {
         class={{
           disabled: this.disabled,
           checked: this.checked,
+          indeterminate: this.indeterminate,
         }}
       >
         <label>

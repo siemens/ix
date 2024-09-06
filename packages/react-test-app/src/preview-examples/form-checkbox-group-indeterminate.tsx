@@ -74,7 +74,7 @@ export default () => {
   return (
     <IxCheckboxGroup>
       <IxCheckbox
-        indeterminate={parentCheckboxState.indeterminate ? true : undefined}
+        indeterminate={parentCheckboxState.indeterminate}
         checked={parentCheckboxState.checked || false}
         onCheckedChange={parentCheckedChange}
         label="Option group"

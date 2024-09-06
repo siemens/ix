@@ -88,7 +88,7 @@
   }
 
   :host(.checked),
-  :host([indeterminate]) {
+  :host(.indeterminate) {
     button {
       background-color: var(--theme-checkbox-checked--background);
       border: var(--theme-checkbox--border-thickness) solid
@@ -97,7 +97,7 @@
   }
 
   :host(.checked:hover),
-  :host([indeterminate]:hover) {
+  :host(.indeterminate:hover) {
     button {
       background-color: var(--theme-checkbox-checked--background--hover);
       border: var(--theme-checkbox--border-thickness) solid
@@ -106,7 +106,7 @@
   }
 
   :host(.checked:active),
-  :host([indeterminate]:active) {
+  :host(.indeterminate:active) {
     button {
       background-color: var(--theme-checkbox-checked--background--active);
       border: var(--theme-checkbox--border-thickness) solid
@@ -125,8 +125,8 @@
 
   :host(.checked:disabled),
   :host(.checked.disabled),
-  :host([indeterminate]:disabled),
-  :host([indeterminate].disabled) {
+  :host(.indeterminate:disabled),
+  :host(.indeterminate.disabled) {
     button {
       background-color: var(--theme-checkbox-checked--background--disabled);
       border: var(--theme-checkbox--border-thickness) solid
@@ -167,7 +167,7 @@
   }
 
   :host(#{$selector}.checked),
-  :host(#{$selector}[indeterminate]) {
+  :host(#{$selector}.indeterminate) {
     button {
       background-color: var(--theme-checkbox-checked--background);
       border: var(--theme-checkbox--border-thickness) solid
@@ -176,7 +176,7 @@
   }
 
   :host(#{$selector}.checked:hover),
-  :host(#{$selector}[indeterminate]:hover) {
+  :host(#{$selector}.indeterminate:hover) {
     button {
       background-color: var(--theme-checkbox-checked--background--hover);
       border: var(--theme-checkbox--border-thickness) solid
@@ -185,7 +185,7 @@
   }
 
   :host(#{$selector}.checked:active),
-  :host(#{$selector}[indeterminate]:active) {
+  :host(#{$selector}.indeterminate:active) {
     button {
       background-color: var(--theme-checkbox-checked--background--active);
       border: var(--theme-checkbox--border-thickness) solid
@@ -204,8 +204,8 @@
 
   :host(#{$selector}.checked:disabled),
   :host(#{$selector}.checked.disabled),
-  :host(#{$selector}[indeterminate]:disabled),
-  :host(#{$selector}[indeterminate].disabled) {
+  :host(#{$selector}.indeterminate:disabled),
+  :host(#{$selector}.indeterminate.disabled) {
     button {
       background-color: var(--theme-checkbox-checked--background--disabled);
       border: var(--theme-checkbox--border-thickness) solid
