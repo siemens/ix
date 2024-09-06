@@ -7,24 +7,34 @@
  * LICENSE file in the root directory of this source tree.
 -->
 <script setup lang='ts'>
-  import { onMounted, ref } from 'vue';
-  import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
+import {reactive} from 'vue';
+import {IxCheckbox, IxCheckboxGroup} from '@siemens/ix-vue';
 
-  const input = ref<HTMLInputElement>();
+const parentCheckboxState = reactive({
+  indeterminate: true,
+  checked: false,
+  label: 'Option group',
+})
 
-  onMounted(() => {
-    const element = input.value;
-    if (element) element.indeterminate = true;
-  });
+const childCheckboxesState = reactive([
+  {checked: true, label: 'Sub option one'},
+  {checked: true, label: 'Another sub option'},
+  {checked: false, label: 'Another sub option'},
+]);
 </script>
 
 <style scoped src="./styles/form-checkbox-group-indeterminate.css"></style>
 
 <template>
   <ix-checkbox-group>
-    <ix-checkbox label="Option group"></ix-checkbox>
-    <ix-checkbox checked label="Sub option one" class="cb-padding"></ix-checkbox>
-    <ix-checkbox checked label="Another sub option" class="cb-padding"></ix-checkbox>
-    <ix-checkbox label="Another sub option" class="cb-padding"></ix-checkbox>
-  </ix-checkbox-group>
+    <ix-checkbox :label="parentCheckboxState.label"
+                 :indeterminate="parentCheckboxState.indeterminate"
+                 v-model="parentCheckboxState.checked">
+    </ix-checkbox>
+    <ix-checkbox v-for="(cb) in childCheckboxesState"
+                 :label="cb.label"
+                 v-model="cb.checked"
+                 class="cb-padding">
+    </ix-checkbox>
+</ix-checkbox-group>
 </template>

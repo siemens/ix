@@ -85,6 +85,11 @@ export const config: Config = {
           event: 'valueChange',
           targetAttr: 'value',
         },
+        {
+          elements: ['ix-checkbox'],
+          event: 'checkedChange',
+          targetAttr: 'checked',
+        },
       ],
     }),
     angularOutputTarget({

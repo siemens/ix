@@ -252,7 +252,7 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
 ]);
 
 
-export const IxCheckbox = /*@__PURE__*/ defineContainer<JSX.IxCheckbox>('ix-checkbox', defineIxCheckbox, [
+export const IxCheckbox = /*@__PURE__*/ defineContainer<JSX.IxCheckbox, JSX.IxCheckbox["checked"]>('ix-checkbox', defineIxCheckbox, [
   'name',
   'value',
   'label',
@@ -262,7 +262,8 @@ export const IxCheckbox = /*@__PURE__*/ defineContainer<JSX.IxCheckbox>('ix-chec
   'required',
   'checkedChange',
   'valueChange'
-]);
+],
+'checked', 'checkedChange');
 
 
 export const IxCheckboxGroup = /*@__PURE__*/ defineContainer<JSX.IxCheckboxGroup>('ix-checkbox-group', defineIxCheckboxGroup, [
