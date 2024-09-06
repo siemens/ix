@@ -139,7 +139,6 @@ export class Tooltip implements IxOverlayComponent {
     if (placement.startsWith('top')) {
       return {
         left: numberToPixel(x),
-        top: numberToPixel(y),
       };
     }
 
@@ -177,6 +176,7 @@ export class Tooltip implements IxOverlayComponent {
         }),
         flip({
           fallbackStrategy: 'initialPlacement',
+          fallbackAxisSideDirection: 'start',
           padding: 10,
         }),
         hide(),
