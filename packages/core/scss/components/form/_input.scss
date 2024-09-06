@@ -12,7 +12,6 @@
 @mixin element-input($feature-read-only: true) {
   & {
     @include typography-body;
-    position: relative;
     min-height: 2rem;
     width: 100%;
     padding: 0.25rem 0.5rem;
@@ -124,6 +123,7 @@
 
     &.form-control {
       height: 2rem;
+      padding: 0.375rem 0.5rem;
     }
   }
 

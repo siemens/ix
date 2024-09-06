@@ -33,6 +33,7 @@
 @import './components/fonts';
 
 @import 'mixins/scrollbar';
+@import './common-html-tags';
 
 :root {
   --animate-duration: #{$default-time};
