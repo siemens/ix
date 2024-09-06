@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { IxCheckboxCustomEvent } from '@siemens/ix';
 import './styles/form-checkbox-group-indeterminate.css';
 
 import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-react';
@@ -46,7 +47,7 @@ export default () => {
     }
   }, [childCheckboxesState]);
 
-  function parentCheckedChange(e: any) {
+  function parentCheckedChange(e: IxCheckboxCustomEvent<boolean>) {
     setParentCheckboxState({
       ...parentCheckboxState,
       checked: e.target.checked,
@@ -58,7 +59,7 @@ export default () => {
     );
   }
 
-  function checkedChange(e: any, idx: number) {
+  function checkedChange(e: IxCheckboxCustomEvent<boolean>, idx: number) {
     setChildCheckboxesState(
       childCheckboxesState.map((cb, index) => {
         if (idx === index) {
@@ -78,24 +79,16 @@ export default () => {
         onCheckedChange={parentCheckedChange}
         label="Option group"
       ></IxCheckbox>
-      <IxCheckbox
-        checked={childCheckboxesState[0].checked || false}
-        onCheckedChange={(e) => checkedChange(e, 0)}
-        label="Sub option one"
-        className="cb-padding"
-      ></IxCheckbox>
-      <IxCheckbox
-        checked={childCheckboxesState[1].checked || false}
-        onCheckedChange={(e) => checkedChange(e, 1)}
-        label="Another sub option"
-        className="cb-padding"
-      ></IxCheckbox>
-      <IxCheckbox
-        checked={childCheckboxesState[2].checked || false}
-        onCheckedChange={(e) => checkedChange(e, 2)}
-        label="Another sub option"
-        className="cb-padding"
-      ></IxCheckbox>
+      {childCheckboxesState.map((cb, index) => {
+        return (
+          <IxCheckbox
+            checked={cb.checked || false}
+            onCheckedChange={(e) => checkedChange(e, index)}
+            label="Sub option one"
+            className="cb-padding"
+          ></IxCheckbox>
+        );
+      })}
     </IxCheckboxGroup>
   );
 };
