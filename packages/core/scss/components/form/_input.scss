@@ -12,12 +12,13 @@
 @mixin element-input($feature-read-only: true) {
   & {
     @include typography-body;
+    position: relative;
     min-height: 2rem;
     width: 100%;
     padding: 0.25rem 0.5rem;
     background-color: var(--theme-input--background);
     color: var(--theme-input--color);
-    -moz-appearance: textfield;
+    appearance: textfield;
     text-overflow: ellipsis;
     border: var(--theme-input--border-thickness, 1px) solid
       var(--theme-input--border-color);
@@ -88,6 +89,7 @@
 }
 
 @mixin element-textarea {
+  min-height: 2rem;
   height: 3.25rem;
   padding: 0.375rem 1.25rem 0.375rem 0.5rem;
 }
@@ -119,6 +121,10 @@
   textarea {
     @include element-input();
     @include element-textarea();
+
+    &.form-control {
+      height: 2rem;
+    }
   }
 
   textarea ~ .valid-feedback,
