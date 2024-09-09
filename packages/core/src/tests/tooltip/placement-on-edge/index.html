@@ -1,0 +1,58 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <style>
+      .full-size {
+        height: 100%;
+        width: 100%;
+      }
+      .container {
+        padding: 2rem;
+        position: absolute;
+      }
+
+      .top-left-container {
+        top: 0;
+      }
+
+      .bottom-right-container {
+        bottom: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="full-size">
+      <div class="container top-left-container">
+        <ix-button variant="primary" data-tooltip="myTooltip-left">
+          Tooltip-position-initial-left
+        </ix-button>
+        <ix-tooltip placement="left" for="[data-tooltip='myTooltip-left']">
+          Some example content
+        </ix-tooltip>
+      </div>
+
+      <div class="container bottom-right-container">
+        <ix-button variant="primary" data-tooltip="myTooltip-right">
+          Tooltip-position-initial-right
+        </ix-button>
+        <ix-tooltip placement="right" for="[data-tooltip='myTooltip-right']">
+          Some example content
+        </ix-tooltip>
+      </div>
+    </div>
+
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>
