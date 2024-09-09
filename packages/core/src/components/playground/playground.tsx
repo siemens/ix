@@ -18,16 +18,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return (
-      <Host>
-        <h1>H1 Lorem ipsum</h1>
-        <h2>H1 Lorem ipsum</h2>
-        <h3>H1 Lorem ipsum</h3>
-        <h4>H1 Lorem ipsum</h4>
-        <h5>H1 Lorem ipsum</h5>
-        <h6>H1 Lorem ipsum</h6>
-        <h7>H1 Lorem ipsum</h7>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }
