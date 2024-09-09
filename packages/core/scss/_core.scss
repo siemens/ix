@@ -33,7 +33,7 @@
 @import './components/fonts';
 
 @import 'mixins/scrollbar';
-@import './common-html-tags';
+@import './normalize';
 
 :root {
   --animate-duration: #{$default-time};
@@ -56,10 +56,4 @@ body {
 
 body:not(.disable-scrollbar) {
   @include scrollbar();
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
 }

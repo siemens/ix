@@ -6,6 +6,22 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+// Normalization of HTML elements, manually forked from bootstrap to remove
+// styles targeting irrelevant browsers while applying new styles.
+//
+// Bootstrap is licensed MIT. https://github.com/twbs/bootstrap (Commit: 6f87fce7962bef83c59eff895d891016db620cd7)
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+}
 
 hr {
   margin: 1rem 0;
@@ -206,10 +222,10 @@ pre code {
 code {
   font-size: 0.875em;
   word-wrap: break-word;
-}
 
-a > code {
-  color: inherit;
+  a > code {
+    color: inherit;
+  }
 }
 
 kbd {
@@ -223,11 +239,55 @@ kbd kbd {
   font-size: 1em;
 }
 
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+label {
+  display: inline-block;
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  line-height: inherit;
+}
+
 figure {
   margin: 0 0 1rem;
+}
+
+// Remove inner border and padding from Firefox, but don't restore the outline like Normalize.
+::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+iframe {
+  border: 0;
 }
 
 img,
 svg {
   vertical-align: middle;
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+[hidden] {
+  display: none !important;
 }
