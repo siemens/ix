@@ -14,27 +14,27 @@ SPDX-License-Identifier: MIT
     <title>Stencil Component Starter</title>
     <style>
       .full-size {
-        height: 100%;
-        width: 100%;
+        height: 100vh;
+        width: 100vw;
       }
-      .container {
+      .box {
         padding: 2rem;
         position: absolute;
-      }
-
-      .top-left-container {
-        top: 0;
-      }
-
-      .bottom-right-container {
-        bottom: 0;
-        right: 0;
       }
     </style>
   </head>
   <body>
     <div class="full-size">
-      <div class="container top-left-container">
+      <div class="box" style="top: 0; right:0">
+        <ix-button variant="primary" data-tooltip="myTooltip-top">
+          Tooltip-position-initial-top
+        </ix-button>
+        <ix-tooltip placement="top" for="[data-tooltip='myTooltip-top']">
+          Some example content
+        </ix-tooltip>
+      </div>
+
+      <div class="box" style="top: 0; left:0">
         <ix-button variant="primary" data-tooltip="myTooltip-left">
           Tooltip-position-initial-left
         </ix-button>
@@ -43,7 +43,16 @@ SPDX-License-Identifier: MIT
         </ix-tooltip>
       </div>
 
-      <div class="container bottom-right-container">
+      <div class="box" style="bottom: 0; left:0">
+        <ix-button variant="primary" data-tooltip="myTooltip-bottom">
+          Tooltip-position-bottom
+        </ix-button>
+        <ix-tooltip placement="bottom" for="[data-tooltip='myTooltip-bottom']">
+          Some example content
+        </ix-tooltip>
+      </div>
+
+      <div class="box" style="bottom: 0; right:0">
         <ix-button variant="primary" data-tooltip="myTooltip-right">
           Tooltip-position-initial-right
         </ix-button>
