@@ -734,8 +734,13 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Supported layouts e.g ['sm', 'md']",
-          "docsTags": [],
+          "docs": "Supported layouts",
+          "docsTags": [
+            {
+              "name": "example",
+              "text": "['sm', 'md']"
+            }
+          ],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
