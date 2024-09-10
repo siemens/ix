@@ -6,6 +6,7 @@
   z-index: var(--theme-z-index-tooltip);
 
   max-width: 18.25rem;
+  width: max-content;
 
   opacity: 0;
   visibility: collapse !important;
@@ -25,7 +26,7 @@
   .tooltip-container {
     display: block;
     position: relative;
-    width: auto;
+    width:  auto;
     height: 100%;
     background: var(--theme-tootlip--background);
     color: var(--theme-color-std-text);

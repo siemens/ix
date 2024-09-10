@@ -174,6 +174,7 @@ export class Tooltip implements IxOverlayComponent {
         arrow({
           element: this.arrowElement,
         }),
+        //left arrow still applied needs to be adaptedhere
         flip({
           fallbackStrategy: 'initialPlacement',
           fallbackAxisSideDirection: 'start',
