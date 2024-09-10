@@ -65,6 +65,7 @@ Checkout our [contribution guidelines](/CONTRIBUTING.md)
 Copyright © 2022 [Siemens AG](https://www.siemens.com/).
 
 This project is MIT licensed.
+
 This project is tested with BrowserStack.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
