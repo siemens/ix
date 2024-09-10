@@ -65,6 +65,7 @@ Checkout our [contribution guidelines](/CONTRIBUTING.md)
 Copyright © 2022 [Siemens AG](https://www.siemens.com/).
 
 This project is MIT licensed.
+This project is tested with BrowserStack.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -90,5 +91,3 @@ This project is MIT licensed.
 [Vue-url]: https://vuejs.org/
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
-
-This project is tested with BrowserStack.
