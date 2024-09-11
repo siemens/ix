@@ -8,21 +8,22 @@ title: Greeting users
 Greeting users is a key communicative function as this introduces your chatbot to your users, establishes its voice, and can be used to clarify your chatbot’s abilities and constraints. 
 ## Examples
 
-**Chatbot:** Hello, I’m your Industrial Chatbot. How can I assist you today? 
+![Greeting users with a simple introduction](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4327&t=etx1DcSbA7VDx5xD-4)
 
 Here the chatbot uses “Hello” instead of “Hi” or another greeting to establish a more professional tone. It also uses contractions (I’m instead of I am) to show that, although it’s a professional industrial chatbot, they’re not overly formal. The greeting then ends with a clear and common prompt for the user. 
 
-**Chatbot:** Hello, I’m your Industrial Chatbot and can support you with PLC engineering. How can I assist you today?
+![Greeting users with an extended introduction](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4410&t=etx1DcSbA7VDx5xD-4) 
 
-In this example, the greeting adds some information about its use case to set user expectations and limit their queries. 
+In this example, the greeting adds some information about its use case to set user expectations and limit their queries.
 
-**Chatbot:** Hello, I’m your Industrial Chatbot and can support PLC engineering. If you need support with programming, hardware or troubleshooting, feel free to ask. 
+![Greeting users with extended use case introduction](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4412&t=etx1DcSbA7VDx5xD-4) 
 
 This example goes even further to establish what it can do and how it can help. It isn’t too lengthy, it’s not a monologue or a list of points that would overwhelm users and perfectly narrows down its abilities. 
 
-**Chatbot:** Hi! I’m your Industrial Chatbot. What do you need? 
+![Greeting users with an informal introduction](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4414&t=etx1DcSbA7VDx5xD-4)
 
 This chatbot is less formal, more conversational and would be found within more generic chatbots. We do not recommend this style of greeting for our industrial applications that are embedded in working environments that are often demanding and dangerous. 
+
 ## Dos and Don’ts
 
 - Do keep your greeting short and simple  

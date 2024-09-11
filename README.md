@@ -25,8 +25,8 @@
   </p>
 </div>
 
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 Siemens Industrial Experience is an open-source design system for designers and developers, to consistently create the perfect digital experience for industrial software products.
@@ -41,13 +41,14 @@ Adopt major frameworks for seamless integration into your project.
 [![Vue][Vue.js]][Vue-url]
 [![Angular][Angular.io]][Angular-url]
 
-
 <!-- GETTING STARTED -->
+
 ## 🚀 Getting Started
 
 You can find a getting started guide [here](https://ix.siemens.io/docs/installation/)
 
 <!-- CONTRIBUTING -->
+
 ## 🤝 Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -65,11 +66,13 @@ Copyright © 2022 [Siemens AG](https://www.siemens.com/).
 
 This project is MIT licensed.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+This project is tested with BrowserStack.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/siemens/ix.svg?style=for-the-badge
 [contributors-url]: https://github.com/siemens/ix/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/siemens/ix.svg?style=for-the-badge

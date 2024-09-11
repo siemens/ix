@@ -10,13 +10,11 @@ For many industrial applications, chatbots are these to support users with their
 
 ## Examples
 
-**User:** Why is there a remote connection issue?   
-**Chatbot:** The connection is not available right now. 
+![Unhelpful troubleshooting example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4356&t=etx1DcSbA7VDx5xD-4)
 
 Here the chatbot says exactly what the problem is, but this response lacks empathy and is unhelpful in moving the user forward. 
 
-**User:** Why is there a remote connection issue?   
-**Chatbot:** The connection is not available right now. It’s possible the server is offline. Try to reconnect again now and if it does not connect, try again in 15 minutes. 
+![Helpful troubleshooting example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4373&t=etx1DcSbA7VDx5xD-4) 
 
 Here the chatbot says exactly what the problem is, gives a possible reason for the lack of connection and then provides a solution to move the user forward. 
 
