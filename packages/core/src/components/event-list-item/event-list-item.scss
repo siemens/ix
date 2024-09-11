@@ -17,6 +17,8 @@ $default-event-list-item-height: 2.5rem;
 
 :host {
   @include ix-component;
+  display: block;
+  position: relative;
 
   .event-list-item {
     display: flex;
@@ -127,6 +129,15 @@ $default-event-list-item-height: 2.5rem;
       }
     }
   }
+}
+
+:host(:focus) {
+  outline: none;
+}
+
+:host(:focus-visible) {
+  outline: 1px solid var(--theme-color-focus-bdr);
+  outline-offset: var(--theme-btn--focus--outline-offset);
 }
 
 @include host-disabled;

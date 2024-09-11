@@ -36,4 +36,19 @@ regressionTest.describe('event-list', () => {
     await (await page.waitForSelector('text="Text 3"')).hover();
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('outline', async ({ page }) => {
+    await page.goto('event-list/basic');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('outline selected', async ({ page }) => {
+    await page.goto('event-list/basic');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

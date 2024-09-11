@@ -83,6 +83,7 @@ export class EventListItem {
 
     return (
       <Host
+        tabIndex="0"
         class={{
           disabled: this.disabled,
         }}
