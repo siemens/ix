@@ -100,7 +100,7 @@ test('should show float steps', async ({ page, mount }) => {
   await expect(slider).toHaveClass(/hydrated/);
 
   await slider.hover();
-
+  await page.mouse.move(100, 0);
   await page.mouse.down();
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
