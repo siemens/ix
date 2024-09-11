@@ -135,15 +135,24 @@ export class Tooltip implements IxOverlayComponent {
     middlewareData,
   }: ComputePositionReturn): ArrowPosition {
     let { x, y } = middlewareData.arrow;
+    const resetPosition = {
+      top: 'unset',
+      right: 'unset',
+      bottom: 'unset',
+      left: 'unset',
+    };
 
     if (placement.startsWith('top')) {
       return {
+        ...resetPosition,
         left: numberToPixel(x),
+        top: numberToPixel(y),
       };
     }
 
     if (placement.startsWith('right')) {
       return {
+        ...resetPosition,
         left: numberToPixel(-6),
         top: numberToPixel(y),
       };
@@ -151,6 +160,7 @@ export class Tooltip implements IxOverlayComponent {
 
     if (placement.startsWith('bottom')) {
       return {
+        ...resetPosition,
         left: numberToPixel(x),
         top: numberToPixel(-6),
       };
@@ -158,6 +168,7 @@ export class Tooltip implements IxOverlayComponent {
 
     if (placement.startsWith('left')) {
       return {
+        ...resetPosition,
         right: numberToPixel(-6),
         top: numberToPixel(y),
       };
@@ -174,10 +185,9 @@ export class Tooltip implements IxOverlayComponent {
         arrow({
           element: this.arrowElement,
         }),
-        //left arrow still applied needs to be adaptedhere
         flip({
           fallbackStrategy: 'initialPlacement',
-          fallbackAxisSideDirection: 'start',
+          fallbackAxisSideDirection: 'end',
           padding: 10,
         }),
         hide(),
