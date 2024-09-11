@@ -783,7 +783,6 @@ export class Select {
               }}
               label={this.inputFilterText}
               onItemClick={(e) => {
-                console.log('onItemClick', e);
                 e.preventDefault();
                 e.stopPropagation();
                 this.emitAddItem(this.inputFilterText);
