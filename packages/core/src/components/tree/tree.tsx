@@ -174,22 +174,29 @@ export class Tree {
         this.updatePadding(el, item);
 
         if (!this.itemClickListener.has(el)) {
-          const itemClickCallback = (e: Event) => {
-            // Prevent hyperlist from refreshing the list to not dispose associated dropdowns
-            const hasTrigger = dropdownController.pathIncludesTrigger([el]);
+          const itemClickCallback = (event: Event) => {
+            const hasTrigger = dropdownController.pathIncludesTrigger(
+              event.composedPath()
+            );
+
+            if (event.defaultPrevented) {
+              return;
+            }
+
             if (hasTrigger) {
               return;
             }
 
-            e.preventDefault();
-            e.stopPropagation();
             Object.values(this.context).forEach((c) => (c.isSelected = false));
             const context = this.getContext(item.id);
             context.isSelected = true;
             this.setContext(item.id, context);
             this.nodeClicked.emit(item.id);
           };
-          el.addEventListener('itemClick', itemClickCallback);
+          el.addEventListener('toggle', (event) => {
+            event.preventDefault();
+          });
+          el.addEventListener('click', itemClickCallback);
           this.itemClickListener.set(el, itemClickCallback);
         }
 
