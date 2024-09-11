@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix(core/slider): show tooltip on steps below 1
+fix(core/slider): update tooltip on steps below 1
