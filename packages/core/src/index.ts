@@ -24,6 +24,7 @@ export {
   convertToRemString,
 } from './components/utils/rwd.util';
 export * from './components/utils/theme-switcher';
+export { handlePlatformHelpers, IxConfig } from './setup';
 
 export async function applyPolyfills() {
   /**
