@@ -50,7 +50,7 @@ test('init tab with non 0', async ({ mount, page }) => {
     </ix-tabs>
   `);
   const tabs = page.locator('ix-tabs');
-  const tab = page.locator('ix-tab-item').nth(2);
+  const tab = page.locator('ix-tab-item').nth(1);
 
   await expect(tabs).toHaveClass(/hydrated/);
   await expect(tab).toHaveClass(/selected/);
