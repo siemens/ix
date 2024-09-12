@@ -734,8 +734,13 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Supported layouts e.g ['sm', 'md']",
-          "docsTags": [],
+          "docs": "Supported layouts",
+          "docsTags": [
+            {
+              "name": "example",
+              "text": "['sm', 'md']"
+            }
+          ],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
@@ -2165,7 +2170,7 @@
               "type": "{ [id: string]: { label: string; options: string[]; }; }"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2213,7 +2218,7 @@
               "type": "FilterState"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2229,6 +2234,7 @@
           "reflectToAttr": false,
           "docs": "Allows to hide the icon inside the text input.\nDefaults to false",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -2342,7 +2348,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2441,7 +2447,7 @@
               "type": "string[]"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -8361,7 +8367,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "selectedChanged",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/group",

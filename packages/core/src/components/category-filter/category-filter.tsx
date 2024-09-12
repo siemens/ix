@@ -34,9 +34,9 @@ export class CategoryFilter {
   @State() showDropdown: boolean;
   @State() private textInput?: HTMLInputElement;
   private formElement?: HTMLFormElement;
-  private isScrollStateDirty: boolean;
+  private isScrollStateDirty?: boolean;
 
-  @Element() hostElement: HTMLIxCategoryFilterElement;
+  @Element() hostElement!: HTMLIxCategoryFilterElement;
 
   @State() hasFocus: boolean;
   @State() categoryLogicalOperator = LogicalFilterOperator.EQUAL;
@@ -61,18 +61,18 @@ export class CategoryFilter {
   /**
    * A set of search criteria to populate the component with.
    */
-  @Prop() filterState: FilterState;
+  @Prop() filterState?: FilterState;
 
   /**
    * Placeholder text to be displayed in an empty input field.
    */
-  @Prop() placeholder: string;
+  @Prop() placeholder?: string;
 
   /**
    * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.
    * Each ID maps to an object with a label and an array of options to select from.
    */
-  @Prop() categories: {
+  @Prop() categories?: {
     [id: string]: {
       label: string;
       options: string[];
@@ -93,7 +93,7 @@ export class CategoryFilter {
   /**
    * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
    */
-  @Prop() suggestions: string[];
+  @Prop() suggestions?: string[];
 
   /**
    * The icon next to the actual text input
@@ -105,7 +105,7 @@ export class CategoryFilter {
    * Allows to hide the icon inside the text input.
    * Defaults to false
    */
-  @Prop() hideIcon: boolean;
+  @Prop() hideIcon: boolean = false;
 
   /**
    * If set categories will always be filtered via the respective logical operator.
@@ -141,17 +141,17 @@ export class CategoryFilter {
   /**
    * Event dispatched whenever a category gets selected in the dropdown
    */
-  @Event() categoryChanged: EventEmitter<string>;
+  @Event() categoryChanged!: EventEmitter<string>;
 
   /**
    * Event dispatched whenever the text input changes.
    */
-  @Event() inputChanged: EventEmitter<InputState>;
+  @Event() inputChanged!: EventEmitter<InputState>;
 
   /**
    * Event dispatched whenever the filter state changes.
    */
-  @Event() filterChanged: EventEmitter<FilterState>;
+  @Event() filterChanged!: EventEmitter<FilterState>;
 
   get dropdown() {
     return this.hostElement.shadowRoot.querySelector('ix-dropdown');
@@ -417,6 +417,10 @@ export class CategoryFilter {
     e.stopPropagation();
     this.closeDropdown();
     this.filterTokens = [];
+    if (this.category) {
+      this.category = undefined;
+      this.categoryChanged.emit(this.category);
+    }
     this.emitFilterEvent();
   }
 
