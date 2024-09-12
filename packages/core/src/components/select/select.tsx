@@ -333,7 +333,7 @@ export class Select {
     if (this.selectedLabels?.length && this.isSingleMode) {
       this.inputValue = this.selectedLabels[0];
     } else {
-      this.inputValue = null;
+      this.inputValue = '';
     }
     this.inputRef && (this.inputRef.value = this.inputValue);
   }
