@@ -413,7 +413,7 @@ export class Select {
     }
 
     if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      await this.onEnterNavigation();
+      await this.onEnterNavigation(event.target as HTMLIxSelectItemElement);
     }
 
     if (event.code === 'Escape') {
@@ -421,46 +421,27 @@ export class Select {
     }
   }
 
-  private async onEnterNavigation() {
+  private async onEnterNavigation(
+    el: HTMLIxSelectItemElement | HTMLInputElement
+  ) {
     if (this.isMultipleMode) {
       return;
     }
 
-    let item: HTMLIxSelectItemElement;
-
-    if (this.editable && !this.itemExists(this.inputFilterText)) {
-      const defaultPrevented = this.emitAddItem(this.inputFilterText);
-      if (defaultPrevented) {
-        return;
-      }
-
-      item = this.items[this.items.length - 1];
-    }
-
-    if (!this.itemExists(this.inputFilterText)) {
+    if (
+      !this.itemExists(this.inputFilterText.trim()) &&
+      !this.itemExists((el as HTMLIxSelectItemElement)?.label)
+    ) {
       if (this.editable) {
-        const defaultPrevented = this.emitAddItem(this.inputFilterText);
+        const defaultPrevented = this.emitAddItem(this.inputFilterText.trim());
         if (defaultPrevented) {
           return;
         }
-
-        item = this.items[this.items.length - 1];
-        this.dropdownShow = false;
-        await item.onItemClick();
-      } else {
-        this.updateSelection();
       }
     }
 
-    if (item) {
-      await item.onItemClick();
-    }
-
-    await this.dropdownRef?.updatePosition();
-
-    if (this.isSingleMode && !this.editable) {
-      this.dropdownShow = false;
-    }
+    this.dropdownShow = false;
+    this.updateSelection();
   }
 
   private async onArrowNavigation(
