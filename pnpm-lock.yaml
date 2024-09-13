@@ -987,9 +987,9 @@ importers:
       echarts-gl:
         specifier: ^2.0.9
         version: 2.0.9(echarts@5.4.3)
-      example-styles:
+      html-test-app:
         specifier: workspace:*
-        version: link:../example-styles
+        version: link:../html-test-app
       vue:
         specifier: ^3.2.45
         version: 3.3.7(typescript@4.9.5)
@@ -14724,7 +14724,7 @@ snapshots:
       tree-kill: 1.2.2
       tslib: 2.4.0
       typescript: 4.7.4
-      webpack: 5.76.1(esbuild@0.15.5)
+      webpack: 5.76.1
       webpack-dev-middleware: 5.3.3(webpack@5.76.1(esbuild@0.15.5))
       webpack-dev-server: 4.11.0(webpack@5.76.1(esbuild@0.15.5))
       webpack-merge: 5.8.0
@@ -18957,7 +18957,7 @@ snapshots:
     dependencies:
       '@angular/compiler-cli': 14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4)
       typescript: 4.7.4
-      webpack: 5.76.1(esbuild@0.15.5)
+      webpack: 5.76.1
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -24948,7 +24948,7 @@ snapshots:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.76.1(esbuild@0.15.5)
+      webpack: 5.76.1
     optional: true
 
   html-webpack-plugin@5.5.3(webpack@5.89.0):
@@ -30928,6 +30928,15 @@ snapshots:
     optionalDependencies:
       esbuild: 0.15.5
 
+  terser-webpack-plugin@5.3.9(webpack@5.76.1(esbuild@0.15.5)):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.20
+      jest-worker: 27.5.1
+      schema-utils: 3.3.0
+      serialize-javascript: 6.0.1
+      terser: 5.22.0
+      webpack: 5.76.1
+
   terser-webpack-plugin@5.3.9(webpack@5.89.0):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.20
@@ -32174,7 +32183,7 @@ snapshots:
   webpack-subresource-integrity@5.1.0(html-webpack-plugin@5.5.3(webpack@5.76.1))(webpack@5.76.1(esbuild@0.15.5)):
     dependencies:
       typed-assert: 1.0.9
-      webpack: 5.76.1(esbuild@0.15.5)
+      webpack: 5.76.1
     optionalDependencies:
       html-webpack-plugin: 5.5.3(webpack@5.76.1)
 
@@ -32184,6 +32193,37 @@ snapshots:
       webpack: 5.76.1(esbuild@0.15.5)
     optionalDependencies:
       html-webpack-plugin: 5.5.3(webpack@5.89.0)
+
+  webpack@5.76.1:
+    dependencies:
+      '@types/eslint-scope': 3.7.6
+      '@types/estree': 0.0.51
+      '@webassemblyjs/ast': 1.11.1
+      '@webassemblyjs/wasm-edit': 1.11.1
+      '@webassemblyjs/wasm-parser': 1.11.1
+      acorn: 8.10.0
+      acorn-import-assertions: 1.9.0(acorn@8.10.0)
+      browserslist: 4.22.1
+      chrome-trace-event: 1.0.3
+      enhanced-resolve: 5.15.0
+      es-module-lexer: 0.9.3
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      glob-to-regexp: 0.4.1
+      graceful-fs: 4.2.11
+      json-parse-even-better-errors: 2.3.1
+      loader-runner: 4.3.0
+      mime-types: 2.1.35
+      neo-async: 2.6.2
+      schema-utils: 3.3.0
+      tapable: 2.2.1
+      terser-webpack-plugin: 5.3.9(webpack@5.76.1(esbuild@0.15.5))
+      watchpack: 2.4.0
+      webpack-sources: 3.2.3
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
 
   webpack@5.76.1(esbuild@0.15.5):
     dependencies:

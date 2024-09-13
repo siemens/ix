@@ -58,7 +58,7 @@ const options = {
 } as EChartsOption;
 </script>
 
-<style scoped src="./styles/charts.css"></style>
+<style scoped src="./echarts-empty-state.css"></style>
 
 <template>
   <div class="echarts">
