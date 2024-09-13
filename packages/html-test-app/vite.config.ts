@@ -36,37 +36,31 @@ const additionalTheme = {
 export default defineConfig(() => {
   // copyPreviewStyles(path.join(__dirname, 'src', 'preview-examples', 'styles'));
 
-  entryPoints.forEach((file) => {
-    const htmlFile = fs.readFileSync(path.join(previewPath, file), 'utf-8');
+  // entryPoints.forEach((file) => {
+  //   const htmlFile = fs.readFileSync(path.join(previewPath, file), 'utf-8');
 
-    const regex =
-      /<link\s*rel=\"stylesheet\"\s*href=['"]\.\/styles\/([^'"]+)['"]\s* \/>/;
-    const match = htmlFile.match(regex);
+  //   const regex =
+  //     /<link\s*rel=\"stylesheet\"\s*href=['"]\.\/styles\/([^'"]+)['"]\s* \/>/;
+  //   const match = htmlFile.match(regex);
 
-    if (match) {
-      console.log(
-        match[1],
-        'place parallel to the html file',
-        path.join(previewPath, file.replace('.html', '.css'))
-      );
+  //   if (match) {
+  //     console.log(
+  //       match[1],
+  //       'place parallel to the html file',
+  //       path.join(previewPath, file.replace('.html', '.css'))
+  //     );
 
-      const style = fs.readFileSync(
-        path.join(__dirname, 'src', 'preview-examples', 'styles', match[1]),
-        'utf-8'
-      );
+  //     const style = fs.readFileSync(
+  //       path.join(__dirname, 'src', 'preview-examples', 'styles', match[1]),
+  //       'utf-8'
+  //     );
 
-      fs.writeFileSync(
-        path.join(previewPath, file.replace('.html', '.css')),
-        style
-      );
-
-      // const styleFile = fs.readFileSync(match[1], 'utf-8');
-
-      // if (styleFile) {
-      //   snippets[`./styles/${match[1]}`] = styleFile;
-      // }
-    }
-  });
+  //     fs.writeFileSync(
+  //       path.join(previewPath, file.replace('.html', '.css')),
+  //       style
+  //     );
+  //   }
+  // });
 
   throw Error('REMOVE ME');
 
