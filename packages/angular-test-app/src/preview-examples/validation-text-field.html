@@ -7,12 +7,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 <form class="form-validation-example" [formGroup]="exampleForm" (ngSubmit)="submit()">
-  <ix-text-field
+  <ix-input
     label="Name:"
     helperText="Write down your name"
     invalidText="Value is required"
     formControlName="name"
   >
-  </ix-text-field>
+  </ix-input>
   <ix-button type="submit">Submit</ix-button>
 </form>

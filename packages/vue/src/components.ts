@@ -52,6 +52,7 @@ import { defineCustomElement as defineIxGroupItem } from '@siemens/ix/components
 import { defineCustomElement as defineIxHelperText } from '@siemens/ix/components/ix-helper-text.js';
 import { defineCustomElement as defineIxIconButton } from '@siemens/ix/components/ix-icon-button.js';
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
+import { defineCustomElement as defineIxInput } from '@siemens/ix/components/ix-input.js';
 import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/components/ix-input-group.js';
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
@@ -94,7 +95,6 @@ import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/componen
 import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/components/ix-split-button-item.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
-import { defineCustomElement as defineIxTextField } from '@siemens/ix/components/ix-text-field.js';
 import { defineCustomElement as defineIxTextareaField } from '@siemens/ix/components/ix-textarea-field.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
@@ -611,6 +611,32 @@ export const IxIconToggleButton = /*@__PURE__*/ defineContainer<JSX.IxIconToggle
 ]);
 
 
+export const IxInput = /*@__PURE__*/ defineContainer<JSX.IxInput, JSX.IxInput["value"]>('ix-input', defineIxInput, [
+  'type',
+  'name',
+  'placeholder',
+  'value',
+  'required',
+  'disabled',
+  'readonly',
+  'helperText',
+  'infoText',
+  'showTextAsTooltip',
+  'validText',
+  'warningText',
+  'label',
+  'invalidText',
+  'pattern',
+  'maxLength',
+  'minLength',
+  'allowedCharactersPattern',
+  'valueChange',
+  'validityStateChange',
+  'ixBlur'
+],
+'value', 'valueChange');
+
+
 export const IxInputGroup = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', defineIxInputGroup);
 
 
@@ -1031,32 +1057,6 @@ export const IxTabs = /*@__PURE__*/ defineContainer<JSX.IxTabs>('ix-tabs', defin
   'placement',
   'selectedChange'
 ]);
-
-
-export const IxTextField = /*@__PURE__*/ defineContainer<JSX.IxTextField, JSX.IxTextField["value"]>('ix-text-field', defineIxTextField, [
-  'type',
-  'name',
-  'placeholder',
-  'value',
-  'required',
-  'disabled',
-  'readonly',
-  'helperText',
-  'infoText',
-  'showTextAsTooltip',
-  'validText',
-  'warningText',
-  'label',
-  'invalidText',
-  'pattern',
-  'maxLength',
-  'minLength',
-  'allowedCharactersPattern',
-  'valueChange',
-  'validityStateChange',
-  'ixBlur'
-],
-'value', 'valueChange');
 
 
 export const IxTextareaField = /*@__PURE__*/ defineContainer<JSX.IxTextareaField, JSX.IxTextareaField["value"]>('ix-textarea-field', defineIxTextareaField, [

@@ -8,9 +8,9 @@
 -->
 
 <script setup lang="ts">
-import { IxTextField } from '@siemens/ix-vue';
+import { IxInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxTextField placeholder="Enter your Username"></IxTextField>
+  <IxInput placeholder="Enter your Username"></IxInput>
 </template>

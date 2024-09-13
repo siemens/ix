@@ -9,14 +9,12 @@
 import { getFormValue, preventFormSubmission, test } from '@utils/test';
 import { expect } from '@playwright/test';
 
-test(`form-ready - ix-text-field`, async ({ mount, page }) => {
-  await mount(
-    `<form><ix-text-field name="my-field-name"></ix-text-field></form>`
-  );
+test(`form-ready - ix-input`, async ({ mount, page }) => {
+  await mount(`<form><ix-input name="my-field-name"></ix-input></form>`);
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const input = page.locator('ix-text-field').locator('input');
+  const input = page.locator('ix-input').locator('input');
   await input.fill('my example');
   await input.blur();
 
@@ -55,12 +53,9 @@ test(`form-ready - ix-textarea-field`, async ({ mount, page }) => {
 });
 
 //
-test(`form-ready - ix-text-field with initial value`, async ({
-  mount,
-  page,
-}) => {
+test(`form-ready - ix-input with initial value`, async ({ mount, page }) => {
   await mount(
-    `<form><ix-text-field name="my-field-name" value="initial value"></ix-text-field></form>`
+    `<form><ix-input name="my-field-name" value="initial value"></ix-input></form>`
   );
 
   const formElement = page.locator('form');

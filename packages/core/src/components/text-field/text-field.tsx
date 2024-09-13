@@ -44,13 +44,13 @@ let textFieldIds = 0;
  * @form-ready 2.5.0
  */
 @Component({
-  tag: 'ix-text-field',
+  tag: 'ix-input',
   styleUrl: 'text-field.scss',
   shadow: true,
   formAssociated: true,
 })
-export class TextField implements IxInputFieldComponent<string> {
-  @Element() hostElement!: HTMLIxTextFieldElement;
+export class Input implements IxInputFieldComponent<string> {
+  @Element() hostElement!: HTMLIxInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**

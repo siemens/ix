@@ -30,19 +30,19 @@ as an `ix-field-label` component.
 
 You can follow the example here:
 
-1. Define the `ix-text-field` component including an `id` attribute.
+1. Define the `ix-input` component including an `id` attribute.
 
 ```html
-<ix-text-field id="mytest"></ix-text-field>
+<ix-input id="mytest"></ix-input>
 ```
 
-2. Define an `ix-field-label` component with a `for` attribute to link the label to the `ix-text-field` component.
+2. Define an `ix-field-label` component with a `for` attribute to link the label to the `ix-input` component.
 
 ```html
 <ix-field-label htmlFor="mytest">Test</ix-field-label>
 ```
 
-3. Define an `ix-helper-text` component with a `for` attribute to link the helper text to the `ix-text-field` component.
+3. Define an `ix-helper-text` component with a `for` attribute to link the helper text to the `ix-input` component.
 
 ```html
 <ix-helper-text
@@ -73,7 +73,7 @@ You can follow the example here:
         <ix-field-label htmlFor="my-select-2">Example</ix-field-label>
       </ix-col>
       <ix-col>
-        <ix-text-field id="my-select-2"></ix-ix-text-field>
+        <ix-input id="my-select-2"></ix-ix-input>
       </ix-col>
     </ix-row>
   </ix-layout-grid>

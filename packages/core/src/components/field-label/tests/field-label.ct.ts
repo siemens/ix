@@ -40,56 +40,53 @@ test('focus native input by label click', async ({ mount, page }) => {
 });
 
 test.describe('click label', () => {
-  [
-    'ix-text-field',
-    'ix-number-field',
-    'ix-date-field',
-    'ix-textarea-field',
-  ].forEach((selector) => {
-    test(`focus ${selector} by external label click`, async ({
-      mount,
-      page,
-    }) => {
-      await mount(`
+  ['ix-input', 'ix-number-field', 'ix-date-field', 'ix-textarea-field'].forEach(
+    (selector) => {
+      test(`focus ${selector} by external label click`, async ({
+        mount,
+        page,
+      }) => {
+        await mount(`
         <ix-field-label html-for="input">MyLabel</ix-field-label>
         <${selector} id="input"></${selector}>
       `);
-      const labelElement = page.locator('ix-field-label');
-      await labelElement.click();
+        const labelElement = page.locator('ix-field-label');
+        await labelElement.click();
 
-      const component = page.locator(selector);
-      const focusElement =
-        selector !== 'ix-textarea-field'
-          ? component.locator('input')
-          : component.locator('textarea');
-      await expect(focusElement).toBeFocused();
-    });
+        const component = page.locator(selector);
+        const focusElement =
+          selector !== 'ix-textarea-field'
+            ? component.locator('input')
+            : component.locator('textarea');
+        await expect(focusElement).toBeFocused();
+      });
 
-    test(`focus ${selector} by embedded label click`, async ({
-      mount,
-      page,
-    }) => {
-      await mount(`
+      test(`focus ${selector} by embedded label click`, async ({
+        mount,
+        page,
+      }) => {
+        await mount(`
         <${selector} label="MyLabel"></${selector}>
       `);
 
-      const component = page.locator(selector);
-      await expect(component).toHaveClass(/hydrated/);
+        const component = page.locator(selector);
+        await expect(component).toHaveClass(/hydrated/);
 
-      const labelElement = component
-        .locator('ix-field-wrapper')
-        .locator('ix-field-label');
+        const labelElement = component
+          .locator('ix-field-wrapper')
+          .locator('ix-field-label');
 
-      await labelElement.click();
+        await labelElement.click();
 
-      const focusElement =
-        selector !== 'ix-textarea-field'
-          ? component.locator('input')
-          : component.locator('textarea');
+        const focusElement =
+          selector !== 'ix-textarea-field'
+            ? component.locator('input')
+            : component.locator('textarea');
 
-      await expect(focusElement).toBeFocused();
-    });
-  });
+        await expect(focusElement).toBeFocused();
+      });
+    }
+  );
 });
 
 test('valid color', async ({ mount, page }) => {
@@ -118,10 +115,10 @@ test('invalid color', async ({ mount, page }) => {
 
 test('valid color with valid text field', async ({ mount, page }) => {
   await mount(`
-    <ix-text-field label="label text">valid field</ix-text-field>
+    <ix-input label="label text">valid field</ix-input>
   `);
 
-  const fieldElement = page.locator('ix-text-field');
+  const fieldElement = page.locator('ix-input');
   const labelElement = page.locator('ix-field-label');
 
   await expect(fieldElement).not.toHaveClass(/ix-invalid--required/);
@@ -134,10 +131,10 @@ test('valid color with valid text field', async ({ mount, page }) => {
 
 test('invalid color with invalid text field', async ({ mount, page }) => {
   await mount(`
-    <ix-text-field label="invalid label text" required>invalid field</ix-text-field>
+    <ix-input label="invalid label text" required>invalid field</ix-input>
   `);
 
-  const fieldElement = page.locator('ix-text-field');
+  const fieldElement = page.locator('ix-input');
   const labelElement = page.locator('ix-field-label');
 
   await expect(fieldElement).toHaveClass(/ix-invalid--required/);

@@ -8,14 +8,14 @@
 -->
 
 <script setup lang="ts">
-import { IxTextField } from '@siemens/ix-vue';
+import { IxInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxTextField
+  <IxInput
     readonly
     label="Readonly"
     placeholder="Placeholder text..."
     value="Some text"
-  ></IxTextField>
+  ></IxInput>
 </template>

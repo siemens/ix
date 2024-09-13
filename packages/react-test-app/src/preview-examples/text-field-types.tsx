@@ -7,34 +7,34 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxTextField } from '@siemens/ix-react';
+import { IxInput } from '@siemens/ix-react';
 
 export default () => {
   return (
     <>
       <div>
-        <IxTextField
+        <IxInput
           type="text"
           label="Username"
           value="MaxMuster1"
-        ></IxTextField>
+        ></IxInput>
       </div>
 
       <div>
-        <IxTextField
+        <IxInput
           type="email"
           label="Email"
           value="example@example.com"
-        ></IxTextField>
+        ></IxInput>
       </div>
 
       <div>
-        <IxTextField
+        <IxInput
           type="password"
           label="Password"
           placeholder="Enter your password"
           value="1234"
-        ></IxTextField>
+        ></IxInput>
       </div>
     </>
   );

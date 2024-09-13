@@ -11,7 +11,7 @@
 import { ref } from 'vue';
 import {
   IxCustomField,
-  IxTextField,
+  IxInput,
   IxIconButton,
   HTMLRefElement,
 } from '@siemens/ix-vue';
@@ -24,7 +24,7 @@ const openFileBrowser = () => {
 
 <template>
   <IxCustomField info-text="Choose file">
-    <IxTextField class="ix-info" value="Enter text here" readonly></IxTextField>
+    <IxInput class="ix-info" value="Enter text here" readonly></IxInput>
     <IxIconButton
       icon="open-file"
       variant="primary"

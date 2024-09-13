@@ -8,13 +8,13 @@
 -->
 
 <script setup lang="ts">
-import { IxTextField } from '@siemens/ix-vue';
+import { IxInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxTextField
+  <IxInput
     helper-text="Only characters a-d are allowed"
     allowed-characters-pattern="[a-d]"
     :max-length="4"
-  ></IxTextField>
+  ></IxInput>
 </template>

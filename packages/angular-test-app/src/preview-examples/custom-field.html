@@ -1,9 +1,9 @@
 <ix-custom-field info-text="Choose file">
-  <ix-text-field
+  <ix-input
     class="ix-info"
     value="No file chosen"
     readonly
-  ></ix-text-field>
+  ></ix-input>
   <ix-icon-button icon="open-file" variant="primary" outline (click)="openFileBrowser()"></ix-icon-button>
   <input #fileUpload type="file" style="display: none" />
 </ix-custom-field>

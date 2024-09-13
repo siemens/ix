@@ -25,7 +25,7 @@ import {
   IxRadioGroup,
   IxSelect,
   IxSelectItem,
-  IxTextField,
+  IxInput,
   IxTextareaField,
   IxTypography,
 } from '@siemens/ix-react';
@@ -109,17 +109,17 @@ export default function FormValidation() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-validation-example">
       <IxLayoutAuto>
-        <IxTextField
+        <IxInput
           label="Name"
           {...register('name')}
           className={clsx({ 'ix-invalid': errors.name })}
           invalidText={errors.name && errors.name.message}
           required
         />
-        <IxTextField label="Last Name" {...register('last-name')} />
-        <IxTextField label="Address" data-colspan="2" {...register('address')}>
+        <IxInput label="Last Name" {...register('last-name')} />
+        <IxInput label="Address" data-colspan="2" {...register('address')}>
           <IxIcon slot="start" name={iconLocation} size="16"></IxIcon>
-        </IxTextField>
+        </IxInput>
 
         <IxRadioGroup label="Booking option">
           {Array.from({ length: 3 }).map((_, option) => (
@@ -207,22 +207,22 @@ export default function FormValidation() {
           {...register('comment')}
         ></IxTextareaField>
 
-        <IxTextField
+        <IxInput
           type="email"
           label="Email"
           {...register('email')}
-        ></IxTextField>
+        ></IxInput>
 
         {/* Implement custom form component */}
         <IxCustomField label="Upload" invalidText="You need to upload a file">
-          <IxTextField
+          <IxInput
             type="text"
             onClick={() => uploadRef.current?.click()}
             readonly
             style={{ width: '100%' }}
             {...register('upload-path')}
             className={clsx({ 'ix-invalid': errors['upload-path'] })}
-          ></IxTextField>
+          ></IxInput>
           <input
             ref={uploadRef}
             type="file"
@@ -240,15 +240,15 @@ export default function FormValidation() {
           ></IxIconButton>
         </IxCustomField>
 
-        <IxTextField
+        <IxInput
           type="password"
           label="PIN"
           helperText="Only numbers between 1 and 4 is allowed"
           allowedCharactersPattern="[1-4]"
           maxLength={4}
           {...register('pin')}
-        ></IxTextField>
-        <IxTextField
+        ></IxInput>
+        <IxInput
           type="password"
           label="PIN"
           helperText="Confirm password"
@@ -257,7 +257,7 @@ export default function FormValidation() {
           {...register('confirm-pin')}
           className={clsx({ 'ix-invalid': errors['confirm-pin'] })}
           invalidText={errors['confirm-pin'] && errors['confirm-pin'].message}
-        ></IxTextField>
+        ></IxInput>
 
         <Controller
           control={control}

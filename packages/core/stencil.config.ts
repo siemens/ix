@@ -77,7 +77,7 @@ export const config: Config = {
         {
           elements: [
             'ix-select',
-            'ix-text-field',
+            'ix-input',
             'ix-textarea-field',
             'ix-number-field',
             'ix-date-field',

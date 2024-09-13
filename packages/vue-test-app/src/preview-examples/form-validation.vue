@@ -24,7 +24,7 @@ import {
   IxSelectItem,
   IxButton,
   IxLayoutAuto,
-  IxTextField,
+  IxInput,
 } from '@siemens/ix-vue';
 import { iconLocation, iconBezierCurve } from '@siemens/ix-icons/icons';
 import useValidate from '@vuelidate/core';
@@ -39,7 +39,7 @@ export default {
     IxSelectItem,
     IxButton,
     IxLayoutAuto,
-    IxTextField,
+    IxInput,
     IxRadio,
     IxRadioGroup,
     IxNumberField,
@@ -128,13 +128,13 @@ export default {
     @submit="submitForm"
   >
     <IxLayoutAuto>
-      <IxTextField v-model="name" label="Name"></IxTextField>
+      <IxInput v-model="name" label="Name"></IxInput>
 
-      <IxTextField v-model="lastName" label="Last Name"></IxTextField>
+      <IxInput v-model="lastName" label="Last Name"></IxInput>
 
-      <IxTextField v-model="address" label="Last Name" data-colspan="2">
+      <IxInput v-model="address" label="Last Name" data-colspan="2">
         <IxIcon slot="start" :name="iconLocation" size="16"></IxIcon>
-      </IxTextField>
+      </IxInput>
 
       <IxRadioGroup
         label="Booking option"
@@ -226,23 +226,23 @@ export default {
         helper-text="Let us know if you have any special requests or comments. We will do our best to accommodate you."
       ></IxTextareaField>
 
-      <IxTextField
+      <IxInput
         type="email"
         label="Email"
         v-model="email"
         :class="{ 'ix-invalid': v$.email.$invalid }"
         :invalid-text="v$.email?.$errors?.[0]?.$message"
-      ></IxTextField>
+      ></IxInput>
 
       <!-- Implement custom form component -->
       <IxCustomField label="Upload" invalidText="You need to upload a file">
-        <IxTextField
+        <IxInput
           type="text"
           readonly
           style="width: 100%"
           v-model="uploadPath"
           @click="uploadRef?.click()"
-        ></IxTextField>
+        ></IxInput>
 
         <input
           ref="uploadRef"
@@ -259,7 +259,7 @@ export default {
         ></IxIconButton>
       </IxCustomField>
 
-      <IxTextField
+      <IxInput
         type="password"
         label="PIN"
         helperText="Only numbers between 1 and 4 is allowed"
@@ -267,9 +267,9 @@ export default {
         :max-length="4"
         v-model="pin"
         :class="{ 'ix-invalid': v$.pin.$invalid }"
-      ></IxTextField>
+      ></IxInput>
 
-      <IxTextField
+      <IxInput
         required
         type="password"
         label="PIN"
@@ -279,7 +279,7 @@ export default {
         v-model="pinConfirm"
         :class="{ 'ix-invalid': v$.pinConfirm.sameAsPin.$invalid }"
         :invalid-text="v$.pinConfirm.sameAsPin.$message"
-      ></IxTextField>
+      ></IxInput>
       <IxButton type="submit">Submit</IxButton>
     </IxLayoutAuto>
   </form>

@@ -8,44 +8,44 @@
 -->
 
 <script setup lang="ts">
-import { IxTextField } from '@siemens/ix-vue';
+import { IxInput } from '@siemens/ix-vue';
 
 </script>
 
 <template>
   <div>
-    <IxTextField
+    <IxInput
       label="Username"
       placeholder="Enter your Username"
       info-text="Info text"
       class="ix-info"
-    ></IxTextField>
+    ></IxInput>
   </div>
 
   <div>
-    <IxTextField
+    <IxInput
       label="Username"
       placeholder="Enter your Username"
       warning-text="Warning text"
       class="ix-warning"
-    ></IxTextField>
+    ></IxInput>
   </div>
 
   <div>
-    <IxTextField
+    <IxInput
       label="Username"
       placeholder="Enter your Username"
       valid-text="Valid text"
       class="ix-valid"
-    ></IxTextField>
+    ></IxInput>
   </div>
 
   <div>
-    <IxTextField
+    <IxInput
       label="Username"
       placeholder="Enter your Username"
       invalid-text="Invalid text"
       class="ix-invalid"
-    ></IxTextField>
+    ></IxInput>
   </div>
 </template>

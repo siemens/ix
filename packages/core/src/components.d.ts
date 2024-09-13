@@ -1495,6 +1495,94 @@ export namespace Components {
          */
         "variant": ButtonVariant1;
     }
+    /**
+     * @since 2.5.0
+     * @form-ready 2.5.0
+     */
+    interface IxInput {
+        /**
+          * The allowed characters pattern for the text field.
+         */
+        "allowedCharactersPattern"?: string;
+        /**
+          * Specifies whether the text field is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Focuses the input field
+         */
+        "focusInput": () => Promise<void>;
+        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
+        /**
+          * Returns the native input element used in the text field.
+         */
+        "getNativeInputElement": () => Promise<HTMLInputElement>;
+        "hasValidValue": () => Promise<boolean>;
+        /**
+          * The helper text for the text field.
+         */
+        "helperText"?: string;
+        /**
+          * The info text for the text field.
+         */
+        "infoText"?: string;
+        /**
+          * The error text for the text field.
+         */
+        "invalidText"?: string;
+        /**
+          * The label for the text field.
+         */
+        "label"?: string;
+        /**
+          * The maximum length of the text field.
+         */
+        "maxLength"?: number;
+        /**
+          * The minimum length of the text field.
+         */
+        "minLength"?: number;
+        /**
+          * The name of the text field.
+         */
+        "name"?: string;
+        /**
+          * The pattern for the text field.
+         */
+        "pattern"?: string;
+        /**
+          * The placeholder text for the text field.
+         */
+        "placeholder"?: string;
+        /**
+          * Specifies whether the text field is readonly.
+         */
+        "readonly": boolean;
+        /**
+          * Specifies whether the text field is required.
+         */
+        "required": boolean;
+        /**
+          * Specifies whether to show the text as a tooltip.
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * The type of the text field. Possible values are 'text', 'email', or 'password'.
+         */
+        "type": 'text' | 'email' | 'password';
+        /**
+          * The valid text for the text field.
+         */
+        "validText"?: string;
+        /**
+          * The value of the text field.
+         */
+        "value": string;
+        /**
+          * The warning text for the text field.
+         */
+        "warningText"?: string;
+    }
     interface IxInputGroup {
     }
     /**
@@ -2609,94 +2697,6 @@ export namespace Components {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface IxTextField {
-        /**
-          * The allowed characters pattern for the text field.
-         */
-        "allowedCharactersPattern"?: string;
-        /**
-          * Specifies whether the text field is disabled.
-         */
-        "disabled": boolean;
-        /**
-          * Focuses the input field
-         */
-        "focusInput": () => Promise<void>;
-        "getAssociatedFormElement": () => Promise<HTMLFormElement | null>;
-        /**
-          * Returns the native input element used in the text field.
-         */
-        "getNativeInputElement": () => Promise<HTMLInputElement>;
-        "hasValidValue": () => Promise<boolean>;
-        /**
-          * The helper text for the text field.
-         */
-        "helperText"?: string;
-        /**
-          * The info text for the text field.
-         */
-        "infoText"?: string;
-        /**
-          * The error text for the text field.
-         */
-        "invalidText"?: string;
-        /**
-          * The label for the text field.
-         */
-        "label"?: string;
-        /**
-          * The maximum length of the text field.
-         */
-        "maxLength"?: number;
-        /**
-          * The minimum length of the text field.
-         */
-        "minLength"?: number;
-        /**
-          * The name of the text field.
-         */
-        "name"?: string;
-        /**
-          * The pattern for the text field.
-         */
-        "pattern"?: string;
-        /**
-          * The placeholder text for the text field.
-         */
-        "placeholder"?: string;
-        /**
-          * Specifies whether the text field is readonly.
-         */
-        "readonly": boolean;
-        /**
-          * Specifies whether the text field is required.
-         */
-        "required": boolean;
-        /**
-          * Specifies whether to show the text as a tooltip.
-         */
-        "showTextAsTooltip"?: boolean;
-        /**
-          * The type of the text field. Possible values are 'text', 'email', or 'password'.
-         */
-        "type": 'text' | 'email' | 'password';
-        /**
-          * The valid text for the text field.
-         */
-        "validText"?: string;
-        /**
-          * The value of the text field.
-         */
-        "value": string;
-        /**
-          * The warning text for the text field.
-         */
-        "warningText"?: string;
-    }
-    /**
-     * @since 2.5.0
-     * @form-ready 2.5.0
-     */
     interface IxTextareaField {
         /**
           * Determines if the textarea field is disabled.
@@ -3270,6 +3270,10 @@ export interface IxIconToggleButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxIconToggleButtonElement;
 }
+export interface IxInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxInputElement;
+}
 export interface IxMapNavigationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMapNavigationElement;
@@ -3373,10 +3377,6 @@ export interface IxTabItemCustomEvent<T> extends CustomEvent<T> {
 export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTabsElement;
-}
-export interface IxTextFieldCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxTextFieldElement;
 }
 export interface IxTextareaFieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4089,6 +4089,29 @@ declare global {
         prototype: HTMLIxIconToggleButtonElement;
         new (): HTMLIxIconToggleButtonElement;
     };
+    interface HTMLIxInputElementEventMap {
+        "valueChange": string;
+        "validityStateChange": ValidityState;
+        "ixBlur": void;
+    }
+    /**
+     * @since 2.5.0
+     * @form-ready 2.5.0
+     */
+    interface HTMLIxInputElement extends Components.IxInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxInputElementEventMap>(type: K, listener: (this: HTMLIxInputElement, ev: IxInputCustomEvent<HTMLIxInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxInputElementEventMap>(type: K, listener: (this: HTMLIxInputElement, ev: IxInputCustomEvent<HTMLIxInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxInputElement: {
+        prototype: HTMLIxInputElement;
+        new (): HTMLIxInputElement;
+    };
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
     var HTMLIxInputGroupElement: {
@@ -4724,29 +4747,6 @@ declare global {
         prototype: HTMLIxTabsElement;
         new (): HTMLIxTabsElement;
     };
-    interface HTMLIxTextFieldElementEventMap {
-        "valueChange": string;
-        "validityStateChange": ValidityState;
-        "ixBlur": void;
-    }
-    /**
-     * @since 2.5.0
-     * @form-ready 2.5.0
-     */
-    interface HTMLIxTextFieldElement extends Components.IxTextField, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxTextFieldElementEventMap>(type: K, listener: (this: HTMLIxTextFieldElement, ev: IxTextFieldCustomEvent<HTMLIxTextFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxTextFieldElementEventMap>(type: K, listener: (this: HTMLIxTextFieldElement, ev: IxTextFieldCustomEvent<HTMLIxTextFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxTextFieldElement: {
-        prototype: HTMLIxTextFieldElement;
-        new (): HTMLIxTextFieldElement;
-    };
     interface HTMLIxTextareaFieldElementEventMap {
         "valueChange": string;
         "validityStateChange": ValidityState;
@@ -5026,6 +5026,7 @@ declare global {
         "ix-helper-text": HTMLIxHelperTextElement;
         "ix-icon-button": HTMLIxIconButtonElement;
         "ix-icon-toggle-button": HTMLIxIconToggleButtonElement;
+        "ix-input": HTMLIxInputElement;
         "ix-input-group": HTMLIxInputGroupElement;
         "ix-key-value": HTMLIxKeyValueElement;
         "ix-key-value-list": HTMLIxKeyValueListElement;
@@ -5071,7 +5072,6 @@ declare global {
         "ix-split-button-item": HTMLIxSplitButtonItemElement;
         "ix-tab-item": HTMLIxTabItemElement;
         "ix-tabs": HTMLIxTabsElement;
-        "ix-text-field": HTMLIxTextFieldElement;
         "ix-textarea-field": HTMLIxTextareaFieldElement;
         "ix-tile": HTMLIxTileElement;
         "ix-time-picker": HTMLIxTimePickerElement;
@@ -6622,6 +6622,96 @@ declare namespace LocalJSX {
          */
         "variant"?: ButtonVariant1;
     }
+    /**
+     * @since 2.5.0
+     * @form-ready 2.5.0
+     */
+    interface IxInput {
+        /**
+          * The allowed characters pattern for the text field.
+         */
+        "allowedCharactersPattern"?: string;
+        /**
+          * Specifies whether the text field is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * The helper text for the text field.
+         */
+        "helperText"?: string;
+        /**
+          * The info text for the text field.
+         */
+        "infoText"?: string;
+        /**
+          * The error text for the text field.
+         */
+        "invalidText"?: string;
+        /**
+          * The label for the text field.
+         */
+        "label"?: string;
+        /**
+          * The maximum length of the text field.
+         */
+        "maxLength"?: number;
+        /**
+          * The minimum length of the text field.
+         */
+        "minLength"?: number;
+        /**
+          * The name of the text field.
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the text field loses focus.
+         */
+        "onIxBlur"?: (event: IxInputCustomEvent<void>) => void;
+        /**
+          * Event emitted when the validity state of the text field changes.
+         */
+        "onValidityStateChange"?: (event: IxInputCustomEvent<ValidityState>) => void;
+        /**
+          * Event emitted when the value of the text field changes.
+         */
+        "onValueChange"?: (event: IxInputCustomEvent<string>) => void;
+        /**
+          * The pattern for the text field.
+         */
+        "pattern"?: string;
+        /**
+          * The placeholder text for the text field.
+         */
+        "placeholder"?: string;
+        /**
+          * Specifies whether the text field is readonly.
+         */
+        "readonly"?: boolean;
+        /**
+          * Specifies whether the text field is required.
+         */
+        "required"?: boolean;
+        /**
+          * Specifies whether to show the text as a tooltip.
+         */
+        "showTextAsTooltip"?: boolean;
+        /**
+          * The type of the text field. Possible values are 'text', 'email', or 'password'.
+         */
+        "type"?: 'text' | 'email' | 'password';
+        /**
+          * The valid text for the text field.
+         */
+        "validText"?: string;
+        /**
+          * The value of the text field.
+         */
+        "value"?: string;
+        /**
+          * The warning text for the text field.
+         */
+        "warningText"?: string;
+    }
     interface IxInputGroup {
     }
     /**
@@ -7816,96 +7906,6 @@ declare namespace LocalJSX {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface IxTextField {
-        /**
-          * The allowed characters pattern for the text field.
-         */
-        "allowedCharactersPattern"?: string;
-        /**
-          * Specifies whether the text field is disabled.
-         */
-        "disabled"?: boolean;
-        /**
-          * The helper text for the text field.
-         */
-        "helperText"?: string;
-        /**
-          * The info text for the text field.
-         */
-        "infoText"?: string;
-        /**
-          * The error text for the text field.
-         */
-        "invalidText"?: string;
-        /**
-          * The label for the text field.
-         */
-        "label"?: string;
-        /**
-          * The maximum length of the text field.
-         */
-        "maxLength"?: number;
-        /**
-          * The minimum length of the text field.
-         */
-        "minLength"?: number;
-        /**
-          * The name of the text field.
-         */
-        "name"?: string;
-        /**
-          * Event emitted when the text field loses focus.
-         */
-        "onIxBlur"?: (event: IxTextFieldCustomEvent<void>) => void;
-        /**
-          * Event emitted when the validity state of the text field changes.
-         */
-        "onValidityStateChange"?: (event: IxTextFieldCustomEvent<ValidityState>) => void;
-        /**
-          * Event emitted when the value of the text field changes.
-         */
-        "onValueChange"?: (event: IxTextFieldCustomEvent<string>) => void;
-        /**
-          * The pattern for the text field.
-         */
-        "pattern"?: string;
-        /**
-          * The placeholder text for the text field.
-         */
-        "placeholder"?: string;
-        /**
-          * Specifies whether the text field is readonly.
-         */
-        "readonly"?: boolean;
-        /**
-          * Specifies whether the text field is required.
-         */
-        "required"?: boolean;
-        /**
-          * Specifies whether to show the text as a tooltip.
-         */
-        "showTextAsTooltip"?: boolean;
-        /**
-          * The type of the text field. Possible values are 'text', 'email', or 'password'.
-         */
-        "type"?: 'text' | 'email' | 'password';
-        /**
-          * The valid text for the text field.
-         */
-        "validText"?: string;
-        /**
-          * The value of the text field.
-         */
-        "value"?: string;
-        /**
-          * The warning text for the text field.
-         */
-        "warningText"?: string;
-    }
-    /**
-     * @since 2.5.0
-     * @form-ready 2.5.0
-     */
     interface IxTextareaField {
         /**
           * Determines if the textarea field is disabled.
@@ -8481,6 +8481,7 @@ declare namespace LocalJSX {
         "ix-helper-text": IxHelperText;
         "ix-icon-button": IxIconButton;
         "ix-icon-toggle-button": IxIconToggleButton;
+        "ix-input": IxInput;
         "ix-input-group": IxInputGroup;
         "ix-key-value": IxKeyValue;
         "ix-key-value-list": IxKeyValueList;
@@ -8526,7 +8527,6 @@ declare namespace LocalJSX {
         "ix-split-button-item": IxSplitButtonItem;
         "ix-tab-item": IxTabItem;
         "ix-tabs": IxTabs;
-        "ix-text-field": IxTextField;
         "ix-textarea-field": IxTextareaField;
         "ix-tile": IxTile;
         "ix-time-picker": IxTimePicker;
@@ -8667,6 +8667,11 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-icon-toggle-button": LocalJSX.IxIconToggleButton & JSXBase.HTMLAttributes<HTMLIxIconToggleButtonElement>;
+            /**
+             * @since 2.5.0
+             * @form-ready 2.5.0
+             */
+            "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
              * @since 1.6.0
@@ -8775,11 +8780,6 @@ declare module "@stencil/core" {
             "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
-            /**
-             * @since 2.5.0
-             * @form-ready 2.5.0
-             */
-            "ix-text-field": LocalJSX.IxTextField & JSXBase.HTMLAttributes<HTMLIxTextFieldElement>;
             /**
              * @since 2.5.0
              * @form-ready 2.5.0

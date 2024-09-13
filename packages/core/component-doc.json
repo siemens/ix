@@ -8800,6 +8800,7 @@
         "ix-filter-chip",
         "ix-flip-tile",
         "ix-group-context-menu",
+        "ix-input",
         "ix-map-navigation",
         "ix-map-navigation-overlay",
         "ix-menu",
@@ -8815,7 +8816,6 @@
         "ix-pane",
         "ix-select",
         "ix-split-button",
-        "ix-text-field",
         "ix-time-picker",
         "ix-toast"
       ],
@@ -8865,6 +8865,9 @@
         "ix-group-context-menu": [
           "ix-icon-button"
         ],
+        "ix-input": [
+          "ix-icon-button"
+        ],
         "ix-map-navigation": [
           "ix-icon-button"
         ],
@@ -8908,9 +8911,6 @@
           "ix-icon-button"
         ],
         "ix-split-button": [
-          "ix-icon-button"
-        ],
-        "ix-text-field": [
           "ix-icon-button"
         ],
         "ix-time-picker": [
@@ -9487,6 +9487,557 @@
           "cancelable": true,
           "composed": true,
           "docs": "Pressed change event",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/text-field",
+      "filePath": "src/components/text-field/text-field.tsx",
+      "fileName": "text-field.tsx",
+      "readmePath": "src/components/text-field/readme.md",
+      "usagesDir": "src/components/text-field/usage",
+      "tag": "ix-input",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.5.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.5.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-playground-internal"
+      ],
+      "dependencies": [
+        "ix-field-wrapper",
+        "ix-icon-button",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-input": [
+          "ix-field-wrapper",
+          "ix-icon-button",
+          "ix-typography"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-playground-internal": [
+          "ix-input"
+        ]
+      },
+      "props": [
+        {
+          "name": "allowedCharactersPattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "allowed-characters-pattern",
+          "reflectToAttr": false,
+          "docs": "The allowed characters pattern for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Specifies whether the text field is disabled.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "The helper text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "The info text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "The error text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "The label for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "max-length",
+          "reflectToAttr": false,
+          "docs": "The maximum length of the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "min-length",
+          "reflectToAttr": false,
+          "docs": "The minimum length of the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "The name of the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "pattern",
+          "reflectToAttr": false,
+          "docs": "The pattern for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "The placeholder text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": true,
+          "docs": "Specifies whether the text field is readonly.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Specifies whether the text field is required.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Specifies whether to show the text as a tooltip.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"email\" | \"password\" | \"text\"",
+          "complexType": {
+            "original": "'text' | 'email' | 'password'",
+            "resolved": "\"email\" | \"password\" | \"text\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "The type of the text field. Possible values are 'text', 'email', or 'password'.",
+          "docsTags": [],
+          "default": "'text'",
+          "values": [
+            {
+              "value": "email",
+              "type": "string"
+            },
+            {
+              "value": "password",
+              "type": "string"
+            },
+            {
+              "value": "text",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "The valid text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "The value of the text field.",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "The warning text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Returns the native input element used in the text field.",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the text field loses focus.",
+          "docsTags": []
+        },
+        {
+          "event": "validityStateChange",
+          "detail": "ValidityState",
+          "bubbles": true,
+          "complexType": {
+            "original": "ValidityState",
+            "resolved": "ValidityState",
+            "references": {
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the validity state of the text field changes.",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the text field changes.",
           "docsTags": []
         }
       ],
@@ -17514,557 +18065,6 @@
     },
     {
       "dirPath": "src/components/text-field",
-      "filePath": "src/components/text-field/text-field.tsx",
-      "fileName": "text-field.tsx",
-      "readmePath": "src/components/text-field/readme.md",
-      "usagesDir": "src/components/text-field/usage",
-      "tag": "ix-text-field",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [
-        {
-          "name": "since",
-          "text": "2.5.0"
-        },
-        {
-          "name": "form-ready",
-          "text": "2.5.0"
-        }
-      ],
-      "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
-      "dependencies": [
-        "ix-field-wrapper",
-        "ix-icon-button",
-        "ix-typography"
-      ],
-      "dependencyGraph": {
-        "ix-text-field": [
-          "ix-field-wrapper",
-          "ix-icon-button",
-          "ix-typography"
-        ],
-        "ix-field-wrapper": [
-          "ix-field-label",
-          "ix-tooltip",
-          "ix-typography"
-        ],
-        "ix-field-label": [
-          "ix-typography"
-        ],
-        "ix-tooltip": [
-          "ix-typography"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-text-field"
-        ]
-      },
-      "props": [
-        {
-          "name": "allowedCharactersPattern",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "allowed-characters-pattern",
-          "reflectToAttr": false,
-          "docs": "The allowed characters pattern for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "disabled",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "disabled",
-          "reflectToAttr": true,
-          "docs": "Specifies whether the text field is disabled.",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "helperText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "helper-text",
-          "reflectToAttr": false,
-          "docs": "The helper text for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "infoText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "info-text",
-          "reflectToAttr": false,
-          "docs": "The info text for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "invalidText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "invalid-text",
-          "reflectToAttr": false,
-          "docs": "The error text for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "label",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "label",
-          "reflectToAttr": true,
-          "docs": "The label for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "maxLength",
-          "type": "number",
-          "complexType": {
-            "original": "number",
-            "resolved": "number",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "max-length",
-          "reflectToAttr": false,
-          "docs": "The maximum length of the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "minLength",
-          "type": "number",
-          "complexType": {
-            "original": "number",
-            "resolved": "number",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "min-length",
-          "reflectToAttr": false,
-          "docs": "The minimum length of the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "name",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "name",
-          "reflectToAttr": true,
-          "docs": "The name of the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "pattern",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "pattern",
-          "reflectToAttr": false,
-          "docs": "The pattern for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "placeholder",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "placeholder",
-          "reflectToAttr": true,
-          "docs": "The placeholder text for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "readonly",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "readonly",
-          "reflectToAttr": true,
-          "docs": "Specifies whether the text field is readonly.",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "required",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "required",
-          "reflectToAttr": true,
-          "docs": "Specifies whether the text field is required.",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "showTextAsTooltip",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show-text-as-tooltip",
-          "reflectToAttr": false,
-          "docs": "Specifies whether to show the text as a tooltip.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "type",
-          "type": "\"email\" | \"password\" | \"text\"",
-          "complexType": {
-            "original": "'text' | 'email' | 'password'",
-            "resolved": "\"email\" | \"password\" | \"text\"",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "type",
-          "reflectToAttr": false,
-          "docs": "The type of the text field. Possible values are 'text', 'email', or 'password'.",
-          "docsTags": [],
-          "default": "'text'",
-          "values": [
-            {
-              "value": "email",
-              "type": "string"
-            },
-            {
-              "value": "password",
-              "type": "string"
-            },
-            {
-              "value": "text",
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "validText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "valid-text",
-          "reflectToAttr": false,
-          "docs": "The valid text for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
-          "name": "value",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": true,
-          "attr": "value",
-          "reflectToAttr": true,
-          "docs": "The value of the text field.",
-          "docsTags": [],
-          "default": "''",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "warningText",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "warning-text",
-          "reflectToAttr": false,
-          "docs": "The warning text for the text field.",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        }
-      ],
-      "methods": [
-        {
-          "name": "focusInput",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "complexType": {
-            "signature": "() => Promise<void>",
-            "parameters": [],
-            "references": {
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
-              }
-            },
-            "return": "Promise<void>"
-          },
-          "signature": "focusInput() => Promise<void>",
-          "parameters": [],
-          "docs": "Focuses the input field",
-          "docsTags": []
-        },
-        {
-          "name": "getNativeInputElement",
-          "returns": {
-            "type": "Promise<HTMLInputElement>",
-            "docs": ""
-          },
-          "complexType": {
-            "signature": "() => Promise<HTMLInputElement>",
-            "parameters": [],
-            "references": {
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
-              },
-              "HTMLInputElement": {
-                "location": "global",
-                "id": "global::HTMLInputElement"
-              }
-            },
-            "return": "Promise<HTMLInputElement>"
-          },
-          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
-          "parameters": [],
-          "docs": "Returns the native input element used in the text field.",
-          "docsTags": []
-        }
-      ],
-      "events": [
-        {
-          "event": "ixBlur",
-          "detail": "void",
-          "bubbles": true,
-          "complexType": {
-            "original": "void",
-            "resolved": "void",
-            "references": {}
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Event emitted when the text field loses focus.",
-          "docsTags": []
-        },
-        {
-          "event": "validityStateChange",
-          "detail": "ValidityState",
-          "bubbles": true,
-          "complexType": {
-            "original": "ValidityState",
-            "resolved": "ValidityState",
-            "references": {
-              "ValidityState": {
-                "location": "global",
-                "id": "global::ValidityState"
-              }
-            }
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Event emitted when the validity state of the text field changes.",
-          "docsTags": []
-        },
-        {
-          "event": "valueChange",
-          "detail": "string",
-          "bubbles": true,
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Event emitted when the value of the text field changes.",
-          "docsTags": []
-        }
-      ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "src/components/text-field",
       "filePath": "src/components/text-field/textarea-field.tsx",
       "fileName": "textarea-field.tsx",
       "readmePath": "src/components/text-field/readme.md",
@@ -20560,6 +20560,7 @@
         "ix-field-label",
         "ix-field-wrapper",
         "ix-helper-text",
+        "ix-input",
         "ix-menu-about-news",
         "ix-menu-category",
         "ix-modal-header",
@@ -20568,7 +20569,6 @@
         "ix-push-card",
         "ix-radio",
         "ix-slider",
-        "ix-text-field",
         "ix-textarea-field",
         "ix-time-picker",
         "ix-tooltip"
@@ -20614,6 +20614,9 @@
         "ix-helper-text": [
           "ix-typography"
         ],
+        "ix-input": [
+          "ix-typography"
+        ],
         "ix-menu-about-news": [
           "ix-typography"
         ],
@@ -20636,9 +20639,6 @@
           "ix-typography"
         ],
         "ix-slider": [
-          "ix-typography"
-        ],
-        "ix-text-field": [
           "ix-typography"
         ],
         "ix-textarea-field": [

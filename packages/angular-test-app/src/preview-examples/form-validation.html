@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 -->
 <form class="form-validation-example" [formGroup]="exampleForm" (ngSubmit)="submit()">
   <ix-layout-auto>
-    <ix-text-field label="Name" formControlName="name"></ix-text-field>
-    <ix-text-field label="Last Name" formControlName="last-name"></ix-text-field>
-    <ix-text-field label="Address" data-colspan="2" formControlName="address">
+    <ix-input label="Name" formControlName="name"></ix-input>
+    <ix-input label="Last Name" formControlName="last-name"></ix-input>
+    <ix-input label="Address" data-colspan="2" formControlName="address">
       <ix-icon slot="start" name="location" size="16"></ix-icon>
-    </ix-text-field>
+    </ix-input>
 
     <ix-radio-group label="Booking option">
       <ix-radio
@@ -88,18 +88,18 @@ LICENSE file in the root directory of this source tree.
     ></ix-textarea-field>
 
 
-    <ix-text-field type="email" label="Email" formControlName="email"></ix-text-field>
+    <ix-input type="email" label="Email" formControlName="email"></ix-input>
 
 
     <!-- Implement custom form component -->
     <ix-custom-field label="Upload" invalidText="You need to upload a file">
-      <ix-text-field type="text" readonly style="width: 100%;" formControlName="uploadPath"></ix-text-field>
+      <ix-input type="text" readonly style="width: 100%;" formControlName="uploadPath"></ix-input>
       <input #upload type="file" style="display: none;" (change)="onFileSelected($event)" formControlName="upload"/>
       <ix-icon-button outline variant="primary" icon="star" (click)="upload.click()"></ix-icon-button>
     </ix-custom-field>
 
-    <ix-text-field type="password" label="PIN" formControlName="pin" helperText="Only numbers between 1 and 4 is allowed" allowedCharactersPattern="[1-4]" maxLength="4"></ix-text-field>
-    <ix-text-field type="password" label="PIN" helperText="Confirm password" allowedCharactersPattern="[1-4]" maxLength="4"></ix-text-field>
+    <ix-input type="password" label="PIN" formControlName="pin" helperText="Only numbers between 1 and 4 is allowed" allowedCharactersPattern="[1-4]" maxLength="4"></ix-input>
+    <ix-input type="password" label="PIN" helperText="Confirm password" allowedCharactersPattern="[1-4]" maxLength="4"></ix-input>
 
     <ix-checkbox label="I agree everything" formControlName="agreed" data-colspan="2"></ix-checkbox>
     <ix-button type="submit" data-colspan="1">

@@ -8,7 +8,7 @@
  */
 
 import { useRef } from 'react';
-import { IxCustomField, IxIconButton, IxTextField } from '@siemens/ix-react';
+import { IxCustomField, IxIconButton, IxInput } from '@siemens/ix-react';
 
 export default () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -16,11 +16,11 @@ export default () => {
   return (
     <>
       <IxCustomField info-text="Choose file">
-        <IxTextField
+        <IxInput
           class="ix-info"
           value="Enter text here"
           readonly
-        ></IxTextField>
+        ></IxInput>
         <IxIconButton
           icon="open-file"
           variant="primary"

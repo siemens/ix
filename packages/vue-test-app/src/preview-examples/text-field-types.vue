@@ -8,33 +8,33 @@
 -->
 
 <script setup lang='ts'>
-import { IxTextField } from '@siemens/ix-vue';
+import { IxInput } from '@siemens/ix-vue';
 
 </script>
 
 <template>
   <div>
-    <IxTextField
+    <IxInput
       type="text"
       label="Username"
       value="MaxMuster1"
-    ></IxTextField>
+    ></IxInput>
   </div>
 
   <div>
-    <IxTextField
+    <IxInput
       type="email"
       label="Email"
       value="example@example.com"
-    ></IxTextField>
+    ></IxInput>
   </div>
 
   <div>
-    <IxTextField
+    <IxInput
       type="password"
       label="Password"
       placeholder="Enter your password"
       value="1234"
-    ></IxTextField>
+    ></IxInput>
   </div>
 </template>

@@ -52,6 +52,7 @@ import { defineCustomElement as defineIxGroupItem } from '@siemens/ix/components
 import { defineCustomElement as defineIxHelperText } from '@siemens/ix/components/ix-helper-text.js';
 import { defineCustomElement as defineIxIconButton } from '@siemens/ix/components/ix-icon-button.js';
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
+import { defineCustomElement as defineIxInput } from '@siemens/ix/components/ix-input.js';
 import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/components/ix-input-group.js';
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
@@ -94,7 +95,6 @@ import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/componen
 import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/components/ix-split-button-item.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
-import { defineCustomElement as defineIxTextField } from '@siemens/ix/components/ix-text-field.js';
 import { defineCustomElement as defineIxTextareaField } from '@siemens/ix/components/ix-textarea-field.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
@@ -156,6 +156,7 @@ export const IxGroupItem = /*@__PURE__*/createReactComponent<JSX.IxGroupItem, HT
 export const IxHelperText = /*@__PURE__*/createReactComponent<JSX.IxHelperText, HTMLIxHelperTextElement>('ix-helper-text', undefined, undefined, defineIxHelperText);
 export const IxIconButton = /*@__PURE__*/createReactComponent<JSX.IxIconButton, HTMLIxIconButtonElement>('ix-icon-button', undefined, undefined, defineIxIconButton);
 export const IxIconToggleButton = /*@__PURE__*/createReactComponent<JSX.IxIconToggleButton, HTMLIxIconToggleButtonElement>('ix-icon-toggle-button', undefined, undefined, defineIxIconToggleButton);
+export const IxInput = /*@__PURE__*/createReactComponent<JSX.IxInput, HTMLIxInputElement>('ix-input', undefined, undefined, defineIxInput);
 export const IxInputGroup = /*@__PURE__*/createReactComponent<JSX.IxInputGroup, HTMLIxInputGroupElement>('ix-input-group', undefined, undefined, defineIxInputGroup);
 export const IxKeyValue = /*@__PURE__*/createReactComponent<JSX.IxKeyValue, HTMLIxKeyValueElement>('ix-key-value', undefined, undefined, defineIxKeyValue);
 export const IxKeyValueList = /*@__PURE__*/createReactComponent<JSX.IxKeyValueList, HTMLIxKeyValueListElement>('ix-key-value-list', undefined, undefined, defineIxKeyValueList);
@@ -198,7 +199,6 @@ export const IxSplitButton = /*@__PURE__*/createReactComponent<JSX.IxSplitButton
 export const IxSplitButtonItem = /*@__PURE__*/createReactComponent<JSX.IxSplitButtonItem, HTMLIxSplitButtonItemElement>('ix-split-button-item', undefined, undefined, defineIxSplitButtonItem);
 export const IxTabItem = /*@__PURE__*/createReactComponent<JSX.IxTabItem, HTMLIxTabItemElement>('ix-tab-item', undefined, undefined, defineIxTabItem);
 export const IxTabs = /*@__PURE__*/createReactComponent<JSX.IxTabs, HTMLIxTabsElement>('ix-tabs', undefined, undefined, defineIxTabs);
-export const IxTextField = /*@__PURE__*/createReactComponent<JSX.IxTextField, HTMLIxTextFieldElement>('ix-text-field', undefined, undefined, defineIxTextField);
 export const IxTextareaField = /*@__PURE__*/createReactComponent<JSX.IxTextareaField, HTMLIxTextareaFieldElement>('ix-textarea-field', undefined, undefined, defineIxTextareaField);
 export const IxTile = /*@__PURE__*/createReactComponent<JSX.IxTile, HTMLIxTileElement>('ix-tile', undefined, undefined, defineIxTile);
 export const IxTimePicker = /*@__PURE__*/createReactComponent<JSX.IxTimePicker, HTMLIxTimePickerElement>('ix-time-picker', undefined, undefined, defineIxTimePicker);

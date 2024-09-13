@@ -1250,6 +1250,43 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
 
 
 @ProxyCmp({
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
+  methods: ['getNativeInputElement', 'focusInput']
+})
+@Component({
+  selector: 'ix-input',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
+})
+export class IxInput {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
+  }
+}
+
+
+export declare interface IxInput extends Components.IxInput {
+  /**
+   * Event emitted when the value of the text field changes.
+   */
+  valueChange: EventEmitter<CustomEvent<string>>;
+  /**
+   * Event emitted when the validity state of the text field changes.
+   */
+  validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
+  /**
+   * Event emitted when the text field loses focus.
+   */
+  ixBlur: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
 })
 @Component({
   selector: 'ix-input-group',
@@ -2389,43 +2426,6 @@ export declare interface IxTabs extends Components.IxTabs {
    * `selected` property changed @since 2.0.0
    */
   selectedChange: EventEmitter<CustomEvent<number>>;
-}
-
-
-@ProxyCmp({
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
-})
-@Component({
-  selector: 'ix-text-field',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'type', 'validText', 'value', 'warningText'],
-})
-export class IxTextField {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['valueChange', 'validityStateChange', 'ixBlur']);
-  }
-}
-
-
-export declare interface IxTextField extends Components.IxTextField {
-  /**
-   * Event emitted when the value of the text field changes.
-   */
-  valueChange: EventEmitter<CustomEvent<string>>;
-  /**
-   * Event emitted when the validity state of the text field changes.
-   */
-  validityStateChange: EventEmitter<CustomEvent<ValidityState>>;
-  /**
-   * Event emitted when the text field loses focus.
-   */
-  ixBlur: EventEmitter<CustomEvent<void>>;
 }
 
 
