@@ -20,7 +20,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-line-advanced.html',
-  styleUrls: ["./styles/charts.css"],
+  styleUrls: ["./echarts-line-advanced.css"],
 })
 export default class EchartsLineAdvanced implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
