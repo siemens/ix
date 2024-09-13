@@ -16582,7 +16582,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Clicked",
+          "docs": "Click on item not on the expand/collapse icon",
           "docsTags": []
         },
         {
