@@ -35,7 +35,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm add -g playwright && pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard ${{ matrix.shard }}
@@ -57,7 +57,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm add -g playwright && pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
@@ -79,7 +79,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm add -g playwright && pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
@@ -126,7 +126,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm add -g playwright && pnpm exec playwright install chromium --with-deps
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
