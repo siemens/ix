@@ -264,6 +264,55 @@ test('type in a novel item name in editable mode, click outside and reopen the s
   await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
 });
 
+test('type in a novel item name and click outside', async ({ mount, page }) => {
+  await mount(`
+        <ix-select value="2">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+        <ix-button>outside</ix-button>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  await expect(selectElement).toHaveClass(/hydrated/);
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
+
+  await page.keyboard.press('Enter');
+  const inputValue = await page.getByTestId('input').inputValue();
+
+  expect(inputValue).toBe('Item 2');
+});
+
+test('type in a novel item name in multiple mode, click outside', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+        <ix-select value="2" mode="multiple">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+        <ix-button>outside</ix-button>
+    `);
+
+  const selectElement = page.locator('ix-select');
+  const btnElement = page.locator('ix-button');
+  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(btnElement).toBeVisible();
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
+
+  await btnElement.click();
+  const inputValue = await page.getByTestId('input').inputValue();
+
+  expect(inputValue).toBe('');
+});
+
 test('pass object as value and check if it is selectable', async ({
   mount,
   page,
@@ -343,6 +392,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('I');
       await page.keyboard.down('Enter');
+      await page.locator('ix-icon-button').click();
       await page.waitForSelector('.checkmark');
 
       await page.keyboard.down('ArrowDown');
@@ -362,6 +412,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('I');
       await page.keyboard.down('Enter');
+      await page.locator('ix-icon-button').click();
       await page.waitForSelector('.checkmark');
 
       await page.keyboard.down('ArrowDown');
@@ -410,6 +461,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('Item 2');
       await page.keyboard.down('Enter');
+      await page.locator('ix-icon-button').click();
       await page.waitForSelector('.checkmark');
 
       await input.clear();
@@ -491,6 +543,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('Item 1');
       await page.keyboard.press('Enter');
+      await page.locator('ix-icon-button').click();
       await page.waitForSelector('.checkmark');
 
       await input.clear();
@@ -525,6 +578,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('I');
       await page.keyboard.down('Enter');
+      await page.locator('ix-icon-button').click();
       await page.waitForSelector('.checkmark');
 
       await page.keyboard.down('ArrowDown');
@@ -578,6 +632,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('Item 1');
       await page.keyboard.press('Enter');
+      await page.locator('ix-icon-button').click();
       await page.waitForSelector('.checkmark');
 
       await input.clear();
@@ -610,6 +665,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('Item 2');
       await page.keyboard.press('Enter');
+      await page.locator('ix-icon-button').click();
       await page.locator('input').clear();
 
       await page.keyboard.down('ArrowDown');
@@ -651,6 +707,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('Item 1');
       await page.keyboard.press('Enter');
+      await page.locator('ix-icon-button').click();
       await page.waitForSelector('.checkmark');
 
       await input.clear();
