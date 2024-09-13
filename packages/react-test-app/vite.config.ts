@@ -22,6 +22,7 @@ const previewPath = path.join(
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
+  // Copy the styles from the preview-examples folder to the src folder
   fs.readdirSync(previewPath)
     .filter((f) => f.endsWith('.css'))
     .forEach((file) => {
@@ -31,7 +32,6 @@ export default defineConfig(() => {
       );
     });
 
-  throw Error('Error');
   return {
     plugins: [react()],
   };
