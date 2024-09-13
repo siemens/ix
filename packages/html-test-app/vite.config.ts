@@ -41,6 +41,21 @@ export default defineConfig(() => {
 
   //   const regex =
   //     /<link\s*rel=\"stylesheet\"\s*href=['"]\.\/styles\/([^'"]+)['"]\s* \/>/;
+
+  //   fs.writeFileSync(
+  //     path.join(previewPath, file),
+  //     htmlFile.replace(
+  //       regex,
+  //       `<link rel="stylesheet" href="./${file.replace('.html', '.css')}" />`
+  //     )
+  //   );
+  // });
+
+  // entryPoints.forEach((file) => {
+  //   const htmlFile = fs.readFileSync(path.join(previewPath, file), 'utf-8');
+
+  //   const regex =
+  //     /<link\s*rel=\"stylesheet\"\s*href=['"]\.\/styles\/([^'"]+)['"]\s* \/>/;
   //   const match = htmlFile.match(regex);
 
   //   if (match) {
@@ -62,7 +77,7 @@ export default defineConfig(() => {
   //   }
   // });
 
-  throw Error('REMOVE ME');
+  // throw Error('REMOVE ME');
 
   return {
     base: './',
