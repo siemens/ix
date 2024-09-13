@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/charts.css';
+import './echarts-gauge.css';
 
 import { useEffect, useState } from 'react';
 import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';

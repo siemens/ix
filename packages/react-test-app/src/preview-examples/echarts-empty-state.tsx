@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/charts-empty-state.css';
+import './echarts-empty-state.css';
 
 import { useEffect, useState } from 'react';
 import { convertThemeName, registerTheme } from '@siemens/ix-echarts';

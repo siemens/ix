@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/charts.css';
+import './echarts-special-zoom.css';
 
 import { useEffect, useState } from 'react';
 import {
