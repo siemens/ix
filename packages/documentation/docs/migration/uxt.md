@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-sidebar_label: Migration from UXT 2.8.0
+sidebar_label: Migration from UXT 2.7.0
 ---
 
-# UXT 2.7.0 to Siemens Industrial Experience design system v3
+# UXT 2.7.0 to Siemens Industrial Experience design system
 
 For a quick and easy migration without changing your code base the iX-UXT CSS Theme is prepared for app developers using the CSS from UXT (former MindSphere Design System).
 
@@ -63,7 +63,7 @@ Your layout might change in some places when applying the theme:
 If your facing troubles please let us know by [raising an issue](https://github.com/siemens/ix/issues).
 
 # Component name changes
-In case you want to start using the actual Industrial Experience web components, we collected all the component names for you to find them easier:
+In case you want to start using the actual Industrial Experience web components, we collected the most important component names for you to find them easier:
 
 | **User Experience Toolkit**                   | **Industrial Experience**                                          |
 | --------------------------------------------- | ------------------------------------------------------------------ |
@@ -83,6 +83,9 @@ In case you want to start using the actual Industrial Experience web components,
 | Pager                                         | Pagination                                                         |
 | Popover                                       | Tooltip, dropdown                                                  |
 | Switch                                        | Toggle                                                             |
+| Context region                                | Pane (inline right)                                                |
+| Item region                                   | Pane (floating right)                                              |
+| Leading reagion                               | Pane (inline left)                                                 |
 
 # System icons
 
