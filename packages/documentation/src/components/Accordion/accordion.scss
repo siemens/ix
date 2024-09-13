@@ -8,7 +8,7 @@
  */
 
 .Accordion > a {
-  position: absolute;
+  display: flex;
 }
 
 .Accordion.Accordion__Last {
