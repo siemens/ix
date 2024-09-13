@@ -35,7 +35,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm dlx playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard ${{ matrix.shard }}
@@ -57,7 +57,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm dlx playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
@@ -79,7 +79,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm dlx playwright install chromium --with-deps
 
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
@@ -108,7 +108,7 @@ jobs:
           path: all-blob-reports
 
       - name: Merge into HTML Report
-        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
+        run: pnpm dlx playwright merge-reports --reporter html ./all-blob-reports
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v3
@@ -126,7 +126,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm dlx playwright install chromium --with-deps
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
