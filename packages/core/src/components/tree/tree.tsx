@@ -175,9 +175,10 @@ export class Tree {
 
         if (!this.itemClickListener.has(el)) {
           const itemClickCallback = (event: Event) => {
-            const hasTrigger = dropdownController.pathIncludesTrigger(
-              event.composedPath()
-            );
+            const path = event.composedPath();
+            const treeIndex = path.indexOf(this.hostElement);
+            const treePath = path.slice(0, treeIndex);
+            const hasTrigger = dropdownController.pathIncludesTrigger(treePath);
 
             if (event.defaultPrevented) {
               return;
