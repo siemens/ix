@@ -8,6 +8,7 @@
  */
 import path from 'path';
 import fs from 'fs';
+import fsp from 'fs/promises';
 const __dirname = path.resolve();
 
 const previewPath = path.join(
@@ -18,36 +19,20 @@ const previewPath = path.join(
   'preview-examples'
 );
 
-console.log('Copying preview styles to html-test-app...', previewPath);
+(async () => {
+  console.log('Copying preview styles to html-test-app...');
+  const cssFiles = fs
+    .readdirSync(previewPath)
+    .filter((f) => f.endsWith('.css'));
 
-const files = fs.readdirSync(previewPath).filter((f) => f.endsWith('.html'));
-
-files.forEach((file) => {
-  const fileName = file.replace('.html', '');
-
-  const angularFile = path.join(
-    __dirname,
-    'src',
-    'preview-examples',
-    `${fileName}.ts`
+  await Promise.all(
+    cssFiles.map((cssFile) =>
+      fsp.copyFile(
+        path.join(previewPath, cssFile),
+        path.join(__dirname, 'src', 'preview-examples', cssFile)
+      )
+    )
   );
 
-  if (!fs.existsSync(angularFile)) {
-    console.error(`Angular file for ${file} not found`);
-    return;
-  }
-
-  const tsFile = fs.readFileSync(angularFile, 'utf8');
-
-  const regex = /styleUrls:\s*\[\s*['"]([^'"]+)['"]\s*\]/;
-  const match = tsFile.match(regex);
-  if (match) {
-    fs.writeFileSync(
-      angularFile,
-      tsFile.replace(match[1], `./${fileName}.css`)
-    );
-  }
-});
-
-// const stylesPath = path.resolve(__dirname, 'src', 'preview-examples', 'styles');
-// copyPreviewStyles(stylesPath);
+  console.log('Done');
+})();

@@ -14,8 +14,7 @@
         "www/**",
         "loader/**",
         "component-doc.json",
-        "components/**",
-        "src/preview-examples/styles"
+        "components/**"
       ],
       "outputLogs": "new-only"
     },
