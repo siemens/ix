@@ -35,6 +35,7 @@ jobs:
       - name: ESLint check
         run: |
           ROOT=$(pwd)
+          echo $GH_TOKEN
           cd ./packages/core
           pnpm lint --format json -o $ROOT/eslint_${{ matrix.branch }}.json
           cd $ROOT
