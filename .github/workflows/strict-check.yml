@@ -5,7 +5,7 @@ on:
     branches:
       - '**'
 
-# Check is not necessary after strict is true IX-1332
+# Check is not necessary after strict is true IX-1332.
 jobs:
   strict_check:
     permissions:
