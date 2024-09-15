@@ -17,6 +17,7 @@ runs:
     - name: Get pnpm store directory
       run: |
         echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+        echo $NPM_AUTH_TOKEN && echo $GITHUB_ENV
       shell: bash
 
     - uses: actions/cache@v3
