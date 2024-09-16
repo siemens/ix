@@ -70,7 +70,7 @@ In case you want to start using the actual Industrial Experience web components,
 | App bar                                       | Nav menu                                                           |
 | Badge                                         | Pill, chip                                                         |
 | Busy indicator                                | Spinner                                                            |
-| Button<br>- primary<br>- secondary<br>- ghost | Button<br>- primary filled<br>- primary outline<br>- primary ghost |
+| Button<br/>- primary<br/>- secondary<br/>- ghost | Button<br/>- primary filled<br/>- primary outline<br/>- primary ghost |
 | Card grid                                     | Layout grid                                                        |
 | Container                                     | Card                                                               |
 | Dialog                                        | Modal                                                              |
