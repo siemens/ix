@@ -7,7 +7,7 @@ import Accordion from '@site/src/components/Accordion';
 
 # UXT 2.7.0 to Siemens Industrial Experience design system
 
-For a quick and easy migration without changing your code base the iX-UXT CSS Theme is prepared for app developers using the CSS from [UXT](design.mindsphere.io) (User Experience Toolkit, former MindSphere Design System).
+For a quick and easy migration without changing your code base the iX-UXT CSS Theme is prepared for app developers using the CSS from UXT (User Experience Toolkit, former MindSphere Design System).
 
 :::info
 
