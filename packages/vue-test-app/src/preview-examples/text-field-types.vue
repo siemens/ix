@@ -14,27 +14,22 @@ import { IxInput } from '@siemens/ix-vue';
 
 <template>
   <div>
-    <IxInput
-      type="text"
-      label="Username"
-      value="MaxMuster1"
-    ></IxInput>
+    <IxInput type="text" label="Username" value="MaxMuster1"></IxInput>
   </div>
 
   <div>
-    <IxInput
-      type="email"
-      label="Email"
-      value="example@example.com"
-    ></IxInput>
+    <IxInput type="email" label="Email" value="example@example.com"></IxInput>
   </div>
 
   <div>
-    <IxInput
-      type="password"
-      label="Password"
-      placeholder="Enter your password"
-      value="1234"
-    ></IxInput>
+    <IxInput type="password" label="Password" placeholder="Enter your password" value="1234"></IxInput>
+  </div>
+
+  <div>
+    <IxInput type="tel" label="Telephone" value="+49 123 456 789"></IxInput>
+  </div>
+
+  <div>
+    <IxInput type="url" label="URL" placeholder="Enter your URL" value="http://ix.siemens.io"></IxInput>
   </div>
 </template>
