@@ -56,7 +56,7 @@ export class Input implements IxInputFieldComponent<string> {
   /**
    * The type of the text field. Possible values are 'text', 'email', or 'password'.
    */
-  @Prop() type: 'text' | 'email' | 'password' = 'text';
+  @Prop() type: 'text' | 'email' | 'password' | 'tel' | 'url' = 'text';
 
   /**
    * The name of the text field.

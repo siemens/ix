@@ -1569,7 +1569,7 @@ export namespace Components {
         /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
          */
-        "type": 'text' | 'email' | 'password';
+        "type": 'text' | 'email' | 'password' | 'tel' | 'url';
         /**
           * The valid text for the text field.
          */
@@ -6698,7 +6698,7 @@ declare namespace LocalJSX {
         /**
           * The type of the text field. Possible values are 'text', 'email', or 'password'.
          */
-        "type"?: 'text' | 'email' | 'password';
+        "type"?: 'text' | 'email' | 'password' | 'tel' | 'url';
         /**
           * The valid text for the text field.
          */
