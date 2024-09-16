@@ -8,52 +8,52 @@
 -->
 
 <script lang='ts'>
-import { IxTextareaField } from '@siemens/ix-vue';
+import { IxTextarea } from '@siemens/ix-vue';
 
 export default {
   name: 'TextareaField',
-  components: { IxTextareaField },
+  components: { IxTextarea },
 };
 </script>
 
 <template>
   <div>
-    <IxTextareaField
+    <IxTextarea
       :max-length="100"
       name="comment"
       label="Comment"
       info-text="Info text"
       class="ix-info"
-    ></IxTextareaField>
+    ></IxTextarea>
   </div>
 
   <div>
-    <IxTextareaField
+    <IxTextarea
       :max-length="100"
       name="comment"
       label="Comment"
       warning-text="Warning text"
       class="ix-warning"
-    ></IxTextareaField>
+    ></IxTextarea>
   </div>
 
   <div>
-    <IxTextareaField
+    <IxTextarea
       :max-length="100"
       name="comment"
       label="Comment"
       valid-text="Valid text"
       class="valid"
-    ></IxTextareaField>
+    ></IxTextarea>
   </div>
 
   <div>
-    <IxTextareaField
+    <IxTextarea
       :max-length="100"
       name="comment"
       label="Comment"
       invalid-text="Invalid text"
       class="ix-invalid"
-    ></IxTextareaField>
+    ></IxTextarea>
   </div>
 </template>

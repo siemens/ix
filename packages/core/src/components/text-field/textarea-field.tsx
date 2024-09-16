@@ -39,13 +39,13 @@ export type TextareaFieldResizeBehavior =
  * @form-ready 2.5.0
  */
 @Component({
-  tag: 'ix-textarea-field',
+  tag: 'ix-textarea',
   styleUrl: 'textarea-field.scss',
   shadow: true,
   formAssociated: true,
 })
 export class TextareaField implements IxInputFieldComponent<string> {
-  @Element() hostElement!: HTMLIxTextareaFieldElement;
+  @Element() hostElement!: HTMLIxTextareaElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**

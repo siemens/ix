@@ -8,15 +8,15 @@
 -->
 
 <script lang="ts">
-import { IxTextareaField } from '@siemens/ix-vue';
+import { IxTextarea } from '@siemens/ix-vue';
 
 export default {
   name: 'TextareaField',
-  components: { IxTextareaField },
+  components: { IxTextarea },
 };
 </script>
 
 <template>
-  <IxTextareaField
-  ></IxTextareaField>
+  <IxTextarea
+  ></IxTextarea>
 </template>

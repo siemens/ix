@@ -95,7 +95,7 @@ import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/componen
 import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/components/ix-split-button-item.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
-import { defineCustomElement as defineIxTextareaField } from '@siemens/ix/components/ix-textarea-field.js';
+import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
@@ -1059,7 +1059,7 @@ export const IxTabs = /*@__PURE__*/ defineContainer<JSX.IxTabs>('ix-tabs', defin
 ]);
 
 
-export const IxTextareaField = /*@__PURE__*/ defineContainer<JSX.IxTextareaField, JSX.IxTextareaField["value"]>('ix-textarea-field', defineIxTextareaField, [
+export const IxTextarea = /*@__PURE__*/ defineContainer<JSX.IxTextarea, JSX.IxTextarea["value"]>('ix-textarea', defineIxTextarea, [
   'name',
   'placeholder',
   'value',

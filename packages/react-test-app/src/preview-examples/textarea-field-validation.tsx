@@ -7,49 +7,49 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxTextareaField } from '@siemens/ix-react';
+import { IxTextarea } from '@siemens/ix-react';
 
 export default () => {
   return (
     <>
       <div>
-        <IxTextareaField
+        <IxTextarea
           maxLength={100}
           name="comment"
           label="Comment"
           infoText="Info text"
           class="ix-info"
-        ></IxTextareaField>
+        ></IxTextarea>
       </div>
 
       <div>
-        <IxTextareaField
+        <IxTextarea
           maxLength={100}
           name="comment"
           label="Comment"
           warningText="Warning text"
           class="ix-warning"
-        ></IxTextareaField>
+        ></IxTextarea>
       </div>
 
       <div>
-        <IxTextareaField
+        <IxTextarea
           maxLength={100}
           name="comment"
           label="Comment"
           validText="Valid text"
           className="valid"
-        ></IxTextareaField>
+        ></IxTextarea>
       </div>
 
       <div>
-        <IxTextareaField
+        <IxTextarea
           maxLength={100}
           name="comment"
           label="Comment"
           invalidText="Invalid text"
           class="ix-invalid"
-        ></IxTextareaField>
+        ></IxTextarea>
       </div>
     </>
   );

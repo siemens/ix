@@ -18069,7 +18069,7 @@
       "fileName": "textarea-field.tsx",
       "readmePath": "src/components/text-field/readme.md",
       "usagesDir": "src/components/text-field/usage",
-      "tag": "ix-textarea-field",
+      "tag": "ix-textarea",
       "overview": "",
       "usage": {},
       "docs": "",
@@ -18090,7 +18090,7 @@
         "ix-typography"
       ],
       "dependencyGraph": {
-        "ix-textarea-field": [
+        "ix-textarea": [
           "ix-field-wrapper",
           "ix-typography"
         ],
@@ -20569,7 +20569,7 @@
         "ix-push-card",
         "ix-radio",
         "ix-slider",
-        "ix-textarea-field",
+        "ix-textarea",
         "ix-time-picker",
         "ix-tooltip"
       ],
@@ -20641,7 +20641,7 @@
         "ix-slider": [
           "ix-typography"
         ],
-        "ix-textarea-field": [
+        "ix-textarea": [
           "ix-typography"
         ],
         "ix-time-picker": [

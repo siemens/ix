@@ -2697,7 +2697,7 @@ export namespace Components {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface IxTextareaField {
+    interface IxTextarea {
         /**
           * Determines if the textarea field is disabled.
          */
@@ -3378,9 +3378,9 @@ export interface IxTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTabsElement;
 }
-export interface IxTextareaFieldCustomEvent<T> extends CustomEvent<T> {
+export interface IxTextareaCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLIxTextareaFieldElement;
+    target: HTMLIxTextareaElement;
 }
 export interface IxTimePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4747,7 +4747,7 @@ declare global {
         prototype: HTMLIxTabsElement;
         new (): HTMLIxTabsElement;
     };
-    interface HTMLIxTextareaFieldElementEventMap {
+    interface HTMLIxTextareaElementEventMap {
         "valueChange": string;
         "validityStateChange": ValidityState;
         "ixBlur": void;
@@ -4756,19 +4756,19 @@ declare global {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface HTMLIxTextareaFieldElement extends Components.IxTextareaField, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxTextareaFieldElementEventMap>(type: K, listener: (this: HTMLIxTextareaFieldElement, ev: IxTextareaFieldCustomEvent<HTMLIxTextareaFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLIxTextareaElement extends Components.IxTextarea, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxTextareaElementEventMap>(type: K, listener: (this: HTMLIxTextareaElement, ev: IxTextareaCustomEvent<HTMLIxTextareaElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxTextareaFieldElementEventMap>(type: K, listener: (this: HTMLIxTextareaFieldElement, ev: IxTextareaFieldCustomEvent<HTMLIxTextareaFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxTextareaElementEventMap>(type: K, listener: (this: HTMLIxTextareaElement, ev: IxTextareaCustomEvent<HTMLIxTextareaElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLIxTextareaFieldElement: {
-        prototype: HTMLIxTextareaFieldElement;
-        new (): HTMLIxTextareaFieldElement;
+    var HTMLIxTextareaElement: {
+        prototype: HTMLIxTextareaElement;
+        new (): HTMLIxTextareaElement;
     };
     interface HTMLIxTileElement extends Components.IxTile, HTMLStencilElement {
     }
@@ -5072,7 +5072,7 @@ declare global {
         "ix-split-button-item": HTMLIxSplitButtonItemElement;
         "ix-tab-item": HTMLIxTabItemElement;
         "ix-tabs": HTMLIxTabsElement;
-        "ix-textarea-field": HTMLIxTextareaFieldElement;
+        "ix-textarea": HTMLIxTextareaElement;
         "ix-tile": HTMLIxTileElement;
         "ix-time-picker": HTMLIxTimePickerElement;
         "ix-toast": HTMLIxToastElement;
@@ -7906,7 +7906,7 @@ declare namespace LocalJSX {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface IxTextareaField {
+    interface IxTextarea {
         /**
           * Determines if the textarea field is disabled.
          */
@@ -7942,15 +7942,15 @@ declare namespace LocalJSX {
         /**
           * Event emitted when the textarea field loses focus.
          */
-        "onIxBlur"?: (event: IxTextareaFieldCustomEvent<void>) => void;
+        "onIxBlur"?: (event: IxTextareaCustomEvent<void>) => void;
         /**
           * Event emitted when the validity state of the textarea field changes.
          */
-        "onValidityStateChange"?: (event: IxTextareaFieldCustomEvent<ValidityState>) => void;
+        "onValidityStateChange"?: (event: IxTextareaCustomEvent<ValidityState>) => void;
         /**
           * Event emitted when the value of the textarea field changes.
          */
-        "onValueChange"?: (event: IxTextareaFieldCustomEvent<string>) => void;
+        "onValueChange"?: (event: IxTextareaCustomEvent<string>) => void;
         /**
           * The placeholder text for the textarea field.
          */
@@ -8527,7 +8527,7 @@ declare namespace LocalJSX {
         "ix-split-button-item": IxSplitButtonItem;
         "ix-tab-item": IxTabItem;
         "ix-tabs": IxTabs;
-        "ix-textarea-field": IxTextareaField;
+        "ix-textarea": IxTextarea;
         "ix-tile": IxTile;
         "ix-time-picker": IxTimePicker;
         "ix-toast": IxToast;
@@ -8784,7 +8784,7 @@ declare module "@stencil/core" {
              * @since 2.5.0
              * @form-ready 2.5.0
              */
-            "ix-textarea-field": LocalJSX.IxTextareaField & JSXBase.HTMLAttributes<HTMLIxTextareaFieldElement>;
+            "ix-textarea": LocalJSX.IxTextarea & JSXBase.HTMLAttributes<HTMLIxTextareaElement>;
             "ix-tile": LocalJSX.IxTile & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             "ix-time-picker": LocalJSX.IxTimePicker & JSXBase.HTMLAttributes<HTMLIxTimePickerElement>;
             "ix-toast": LocalJSX.IxToast & JSXBase.HTMLAttributes<HTMLIxToastElement>;

@@ -95,7 +95,7 @@ import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/componen
 import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/components/ix-split-button-item.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
-import { defineCustomElement as defineIxTextareaField } from '@siemens/ix/components/ix-textarea-field.js';
+import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
@@ -199,7 +199,7 @@ export const IxSplitButton = /*@__PURE__*/createReactComponent<JSX.IxSplitButton
 export const IxSplitButtonItem = /*@__PURE__*/createReactComponent<JSX.IxSplitButtonItem, HTMLIxSplitButtonItemElement>('ix-split-button-item', undefined, undefined, defineIxSplitButtonItem);
 export const IxTabItem = /*@__PURE__*/createReactComponent<JSX.IxTabItem, HTMLIxTabItemElement>('ix-tab-item', undefined, undefined, defineIxTabItem);
 export const IxTabs = /*@__PURE__*/createReactComponent<JSX.IxTabs, HTMLIxTabsElement>('ix-tabs', undefined, undefined, defineIxTabs);
-export const IxTextareaField = /*@__PURE__*/createReactComponent<JSX.IxTextareaField, HTMLIxTextareaFieldElement>('ix-textarea-field', undefined, undefined, defineIxTextareaField);
+export const IxTextarea = /*@__PURE__*/createReactComponent<JSX.IxTextarea, HTMLIxTextareaElement>('ix-textarea', undefined, undefined, defineIxTextarea);
 export const IxTile = /*@__PURE__*/createReactComponent<JSX.IxTile, HTMLIxTileElement>('ix-tile', undefined, undefined, defineIxTile);
 export const IxTimePicker = /*@__PURE__*/createReactComponent<JSX.IxTimePicker, HTMLIxTimePickerElement>('ix-time-picker', undefined, undefined, defineIxTimePicker);
 export const IxToast = /*@__PURE__*/createReactComponent<JSX.IxToast, HTMLIxToastElement>('ix-toast', undefined, undefined, defineIxToast);

@@ -26,7 +26,7 @@ import {
   IxSelect,
   IxSelectItem,
   IxInput,
-  IxTextareaField,
+  IxTextarea,
   IxTypography,
 } from '@siemens/ix-react';
 import clsx from 'clsx';
@@ -198,14 +198,14 @@ export default function FormValidation() {
           })}
         ></IxDateField>
 
-        <IxTextareaField
+        <IxTextarea
           maxLength={100}
           label="Comment"
           data-colspan="2"
           textareaHeight="10rem"
           helperText="Let us know if you have any special requests or comments. We will do our best to accommodate you."
           {...register('comment')}
-        ></IxTextareaField>
+        ></IxTextarea>
 
         <IxInput
           type="email"

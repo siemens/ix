@@ -92,7 +92,7 @@ export const DIRECTIVES = [
   d.IxSplitButtonItem,
   d.IxTabItem,
   d.IxTabs,
-  d.IxTextareaField,
+  d.IxTextarea,
   d.IxTile,
   d.IxTimePicker,
   d.IxToast,

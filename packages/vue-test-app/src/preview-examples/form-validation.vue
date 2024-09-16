@@ -16,7 +16,7 @@ import {
   IxNumberField,
   IxRadio,
   IxRadioGroup,
-  IxTextareaField,
+  IxTextarea,
   IxTypography,
 } from '@siemens/ix-vue';
 import {
@@ -45,7 +45,7 @@ export default {
     IxNumberField,
     IxTypography,
     IxDateField,
-    IxTextareaField,
+    IxTextarea,
     IxCustomField,
     IxIconButton,
   },
@@ -217,14 +217,14 @@ export default {
         :invalid-text="v$.end.isEnd.$message"
       ></IxDateField>
 
-      <IxTextareaField
+      <IxTextarea
         v-model="comment"
         :max-length="100"
         label="Comment"
         data-colspan="2"
         textarea-height="10rem"
         helper-text="Let us know if you have any special requests or comments. We will do our best to accommodate you."
-      ></IxTextareaField>
+      ></IxTextarea>
 
       <IxInput
         type="email"

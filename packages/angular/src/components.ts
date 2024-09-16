@@ -2434,13 +2434,13 @@ export declare interface IxTabs extends Components.IxTabs {
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
-  selector: 'ix-textarea-field',
+  selector: 'ix-textarea',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
 })
-export class IxTextareaField {
+export class IxTextarea {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -2450,7 +2450,7 @@ export class IxTextareaField {
 }
 
 
-export declare interface IxTextareaField extends Components.IxTextareaField {
+export declare interface IxTextarea extends Components.IxTextarea {
   /**
    * Event emitted when the value of the textarea field changes.
    */

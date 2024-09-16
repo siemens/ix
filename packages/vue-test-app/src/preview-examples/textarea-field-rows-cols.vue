@@ -8,21 +8,21 @@
 -->
 
 <script lang="ts">
-import { IxTextareaField } from '@siemens/ix-vue'
+import { IxTextarea } from '@siemens/ix-vue'
 
 export default {
   name: 'TextareaFieldRowsCols',
-  components: { IxTextareaField },
+  components: { IxTextarea },
 };
 </script>
 
 <template>
-  <IxTextareaField
+  <IxTextarea
     :maxLength="100"
     name="comment"
     label="Comment"
     :textarea-rows="15"
     :textarea-cols="20"
     helper-text="Let us know if you have any special requests or comments. We will do our best to accommodate you."
-  ></IxTextareaField>
+  ></IxTextarea>
 </template>
