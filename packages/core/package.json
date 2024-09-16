@@ -45,7 +45,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.8",
+    "@floating-ui/dom": "^1.6.10",
     "@stencil/core": "^4.19.2",
     "@types/luxon": "^3.4.2",
     "animejs": "~3.2.2",

@@ -38,7 +38,7 @@ export class TreeItem {
   @Event() toggle!: EventEmitter<void>;
 
   /**
-   * Clicked
+   * Click on item not on the expand/collapse icon
    */
   @Event() itemClick!: EventEmitter<void>;
 
