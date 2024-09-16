@@ -39,14 +39,14 @@
     color: var(--theme-input-hint--color);
   }
 
-  &.hover,
-  &:hover {
+  &.hover:not([readonly]):not([disabled]),
+  &:hover:not([readonly]):not([disabled]) {
     border-color: var(--theme-input--border-color--hover) !important;
     background-color: var(--theme-input--background--hover);
   }
 
-  &.focus,
-  &:focus {
+  &.focus:not([readonly]),
+  &:focus:not([readonly]) {
     outline: 1px solid var(--theme-color-focus-bdr);
     outline-offset: var(--theme-input--focus--outline-offset);
     border-color: var(--theme-input--border-color--focus) !important;
