@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -82,7 +82,7 @@ test('suppress selection should not stop event propagation', async ({
   await expect(groupItem).toHaveText('Item 1Clicked');
 });
 
-test('prevent default', async ({ mount, page }) => {
+test('item prevent default selection item event', async ({ mount, page }) => {
   await mount(`
     <ix-group>
       <ix-group-item>Item 1</ix-group-item>
@@ -97,9 +97,53 @@ test('prevent default', async ({ mount, page }) => {
   await expect(group).toHaveClass(/hydrated/);
 
   await group.evaluate((item) => {
-    item.addEventListener('selectedChanged', (e) => e.preventDefault());
+    item.addEventListener('selectItem', (e) => e.preventDefault());
   });
 
   await groupItem.click();
-  await expect(groupItem).not.toHaveClass('/hydrated selected');
+  await expect(groupItem).not.toHaveClass(/hydrated selected/);
+});
+
+test('group header prevent default collapse/expand', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-group>
+      <ix-group-item>Item 1</ix-group-item>
+      <ix-group-item>Item 2</ix-group-item>
+    </ix-group>
+  `);
+  const group = page.locator('ix-group');
+  const expandIcon = group.getByTestId('expand-collapsed-icon');
+
+  await group.evaluate((item) => {
+    item.addEventListener('collapsedChanged', (e) => e.preventDefault());
+  });
+
+  await expandIcon.click();
+
+  await expect(group).toHaveAttribute('collapsed');
+});
+
+test('group header prevent default selection event', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-group header="Test" sub-header="Test2">
+      <ix-group-item>Item 1</ix-group-item>
+      <ix-group-item>Item 2</ix-group-item>
+    </ix-group>
+  `);
+  const group = page.locator('ix-group');
+  const groupHeader = group.locator('.group-header');
+
+  await group.evaluate((item) => {
+    item.addEventListener('selectGroup', (e) => e.preventDefault());
+  });
+
+  await groupHeader.click();
+
+  await expect(group).not.toHaveAttribute('selected');
 });

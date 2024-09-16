@@ -1,7 +1,7 @@
 import Props from './../auto-generated/ix-flip-tile/props.md';
 import Events from './../auto-generated/ix-flip-tile/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Flip
 
@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="flip-tile" 
   height="35rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

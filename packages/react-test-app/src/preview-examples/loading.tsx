@@ -9,7 +9,6 @@
 
 import { showModalLoading } from '@siemens/ix';
 import { IxButton } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   const startLoading = () => {
@@ -25,5 +24,5 @@ export default () => {
       }
     }, 1000);
   };
-  return <IxButton onClick={() => startLoading()}>Show loading</IxButton>;
+  return <IxButton onClick={() => startLoading()}>Start loading</IxButton>;
 };

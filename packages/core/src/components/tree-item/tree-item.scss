@@ -23,11 +23,16 @@
   cursor: pointer;
 
   .tree-node-container {
+    @include ellipsis;
     display: flex;
     align-items: center;
     height: $x-large-space;
     flex-grow: 1;
     align-items: center;
+
+    .tree-node-text {
+      @include ellipsis;
+    }
   }
 
   .icon-toggle-container {
@@ -36,6 +41,7 @@
     justify-content: center;
     width: 2rem;
     height: 2rem;
+    min-width: 2rem;
 
     ix-icon {
       transition: transform var(--theme-default-time) ease-in-out;

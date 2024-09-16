@@ -7,13 +7,14 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "2.4.1",
+  "version": "2.5.0",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
+  "jsnext:main": "dist/esm/index.js",
   "types": "dist/types/interfaces.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
@@ -43,7 +44,7 @@
     "pkg": "pnpm pack"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.5.1",
+    "@floating-ui/dom": "^1.6.10",
     "@stencil/core": "~4.17.0",
     "@types/luxon": "^3.3.7",
     "animejs": "~3.2.1",

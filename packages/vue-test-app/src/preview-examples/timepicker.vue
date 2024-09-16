@@ -12,5 +12,5 @@ import { IxTimePicker } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxTimePicker />
+  <IxTimePicker style="display: block; width: 20rem" />
 </template>

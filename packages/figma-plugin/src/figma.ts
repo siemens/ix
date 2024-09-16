@@ -51,7 +51,15 @@ async function getImageResource(
       'with node ids:',
       ids
     );
-    return null;
+
+    if (response.status === 429) {
+      console.log('🕰️ Retry after 60 seconds');
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(getImageResource(fileName, nodeIds, figmaToken));
+        }, 60 * 1000);
+      });
+    }
   }
 
   const data = await response.json();
@@ -150,6 +158,7 @@ async function processImage(
 }
 
 export default (config: FigmaConfig) => {
+  console.log('Figma plugin running');
   if (config.apiToken === undefined || config.apiToken === '') {
     console.error('@siemens/figma-plugin no auth token provided');
     return () => {};

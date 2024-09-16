@@ -12,7 +12,12 @@ import { IxSlider } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxSlider trace :trace-reference="50" :marker="[0, 25, 50, 75, 100]" :value="25">
+  <IxSlider
+    trace
+    :trace-reference="50"
+    :marker="[0, 25, 50, 75, 100]"
+    :value="25"
+  >
     <span slot="label-start">0</span>
     <span slot="label-end">100</span>
   </IxSlider>
@@ -27,7 +32,6 @@ import { IxSlider } from '@siemens/ix-vue';
     :marker="[0, 10, 20, 30, 40, 50]"
   >
     <span slot="label-start">0</span>
-    <span slot="label-end">100</span>
+    <span slot="label-end">50</span>
   </IxSlider>
 </template>
-

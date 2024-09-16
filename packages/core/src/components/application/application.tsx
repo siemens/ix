@@ -183,9 +183,14 @@ export class Application {
               }
             ></slot>
           </aside>
-          <main class="content" onClick={() => this.onContentClick()}>
-            <slot></slot>
-          </main>
+          <div class="content-area">
+            <main class="content" onClick={() => this.onContentClick()}>
+              <slot></slot>
+            </main>
+            <footer class="footer">
+              <slot name="bottom"></slot>
+            </footer>
+          </div>
         </div>
       </Host>
     );

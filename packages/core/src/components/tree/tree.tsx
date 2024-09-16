@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -27,6 +27,7 @@ import {
   TreeModel,
   UpdateCallback,
 } from './tree-model';
+import { dropdownController } from '../dropdown/dropdown-controller';
 
 @Component({
   tag: 'ix-tree',
@@ -39,17 +40,17 @@ export class Tree {
   /**
    * Initial root element will not be rendered
    */
-  @Prop() root: string;
+  @Prop() root!: string;
 
   /**
    * Tree model
    */
-  @Prop() model: TreeModel<any>;
+  @Prop() model: TreeModel<any> = {};
 
   /**
    * Render function of tree items
    */
-  @Prop() renderItem: <T = any>(
+  @Prop() renderItem?: <T = any>(
     index: number,
     data: T,
     dataList: Array<T>,
@@ -65,31 +66,31 @@ export class Tree {
   /**
    * Context changed
    */
-  @Event() contextChange: EventEmitter<TreeContext>;
+  @Event() contextChange!: EventEmitter<TreeContext>;
 
   /**
    * Node toggled event
    * @since 1.5.0
    */
-  @Event() nodeToggled: EventEmitter<{ id: string; isExpaned: boolean }>;
+  @Event() nodeToggled!: EventEmitter<{ id: string; isExpaned: boolean }>;
 
   /**
    * Node clicked event
    * @since 1.5.0
    */
-  @Event() nodeClicked: EventEmitter<string>;
+  @Event() nodeClicked!: EventEmitter<string>;
 
   /**
    * Emits removed nodes
    */
-  @Event() nodeRemoved: EventEmitter<any>;
+  @Event() nodeRemoved!: EventEmitter<any>;
 
   private hyperlist: Hyperlist;
 
   private toggleListener = new Map<HTMLElement, Function>();
   private itemClickListener = new Map<HTMLElement, Function>();
   private updates = new Map<string, UpdateCallback>();
-  private observer: MutationObserver;
+  private observer!: MutationObserver;
   private hasFirstRender = false;
 
   private updatePadding(element: HTMLElement, item: TreeItemVisual<unknown>) {
@@ -138,7 +139,10 @@ export class Tree {
 
           if (this.updates.has(item.id)) {
             const doUpdate = this.updates.get(item.id);
-            doUpdate(item, { ...this.context });
+
+            if (doUpdate) {
+              doUpdate(item, { ...this.context });
+            }
           }
 
           this.updatePadding(renderedTreeItem, item);
@@ -170,16 +174,30 @@ export class Tree {
         this.updatePadding(el, item);
 
         if (!this.itemClickListener.has(el)) {
-          const itemClickCallback = (e: Event) => {
-            e.preventDefault();
-            e.stopPropagation();
+          const itemClickCallback = (event: Event) => {
+            const path = event.composedPath();
+            const treeIndex = path.indexOf(this.hostElement);
+            const treePath = path.slice(0, treeIndex);
+            const hasTrigger = dropdownController.pathIncludesTrigger(treePath);
+
+            if (event.defaultPrevented) {
+              return;
+            }
+
+            if (hasTrigger) {
+              return;
+            }
+
             Object.values(this.context).forEach((c) => (c.isSelected = false));
             const context = this.getContext(item.id);
             context.isSelected = true;
             this.setContext(item.id, context);
             this.nodeClicked.emit(item.id);
           };
-          el.addEventListener('itemClick', itemClickCallback);
+          el.addEventListener('toggle', (event) => {
+            event.preventDefault();
+          });
+          el.addEventListener('click', itemClickCallback);
           this.itemClickListener.set(el, itemClickCallback);
         }
 
@@ -240,7 +258,7 @@ export class Tree {
     this.initList();
 
     this.observer = new MutationObserver((records) => {
-      let removed = [];
+      let removed: unknown[] = [];
 
       records.forEach((record) => {
         removed = [...removed, ...Array.from(record.removedNodes)];

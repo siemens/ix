@@ -7,22 +7,36 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/icon-toggle-button.css';
+import './styles/icon-toggle-buttons.css';
 
 import { IxIconToggleButton } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (
     <>
-      <IxIconToggleButton variant="primary" ghost></IxIconToggleButton>
-      <IxIconToggleButton variant="primary" pressed ghost></IxIconToggleButton>
-      <IxIconToggleButton variant="primary" disabled ghost></IxIconToggleButton>
+      <IxIconToggleButton
+        variant="primary"
+        ghost
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        variant="primary"
+        pressed
+        ghost
+        icon="checkboxes"
+      ></IxIconToggleButton>
+      <IxIconToggleButton
+        variant="primary"
+        disabled
+        ghost
+        icon="checkboxes"
+      ></IxIconToggleButton>
       <IxIconToggleButton
         variant="primary"
         disabled
         loading
         ghost
+        icon="checkboxes"
       ></IxIconToggleButton>
     </>
   );

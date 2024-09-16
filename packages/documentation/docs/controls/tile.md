@@ -1,7 +1,7 @@
 import Props from './../auto-generated/ix-tile/props.md';
 import Events from './../auto-generated/ix-tile/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Tile
 
@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="tile" 
   height="22rem"
-  examplesByName>
+  >
 </Playground>
 
 ## API

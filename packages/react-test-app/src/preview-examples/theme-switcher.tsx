@@ -6,6 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+import './styles/theme-switcher.css';
+
 import { IxSelectCustomEvent, themeSwitcher } from '@siemens/ix';
 import {
   IxButton,
@@ -15,15 +18,14 @@ import {
   IxSelect,
   IxSelectItem,
 } from '@siemens/ix-react';
-import React, { ChangeEvent, useState } from 'react';
-import './styles/theme-switcher.css';
+import { ChangeEvent, useState } from 'react';
 
 export default () => {
   const [themes] = useState(['theme-classic-light', 'theme-classic-dark']);
   const [selectedTheme, setSelectedTheme] = useState(themes[1]);
 
   const selectionChange = (event: IxSelectCustomEvent<string | string[]>) => {
-    const newTheme = event.detail[0];
+    const newTheme: string = event.detail as string;
     themeSwitcher.setTheme(newTheme);
     setSelectedTheme(newTheme);
   };
@@ -42,7 +44,7 @@ export default () => {
   };
 
   return (
-    <IxLayoutGrid className="ThemeSwitcher">
+    <IxLayoutGrid class="theme-switcher">
       <IxRow>
         <IxCol size="2">
           <span>Light/Dark</span>

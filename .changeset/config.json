@@ -1,9 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
-  "changelog": [
-    "@changesets/changelog-github",
-    { "repo": "siemens/ix" }
-  ],
+  "changelog": ["@changesets/changelog-github", { "repo": "siemens/ix" }],
   "commit": false,
   "linked": [],
   "fixed": [
@@ -22,6 +19,7 @@
     "react-test-app",
     "vue-test-app",
     "html-test-app",
+    "ionic-test-app",
     "figma-plugin",
     "documentation"
   ]

@@ -14,28 +14,19 @@ For chatbots to recognize and establish intent correctly, they need knowledge of
 
 When users ask direct and clear questions, user intent is explicit which makes it easier for chatbots to respond quickly and accurately. When users ask more general questions, or even just enter key words, user intent is unclear (implicit) requiring more information. Training chatbots to understand both explicit (clear) and implicit (unclear) user intent is essential to provide effective and supportive solutions. 
 
-**User intent:** An engineer in a plant needs to install a new gateway  
-**User:** I need a step by step guide to installing a gateway  
-**Chatbot:** Sure. Here are the steps for installation and a link to the chapter in the user manual. 
+**User intent: An engineer in a plant needs to install a new gateway**
+
+![User intent with explicit input](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4236&t=etx1DcSbA7VDx5xD-4) 
 
 Here the user intent is explicit and clear, giving the chatbot a well-defined purpose and goal. The chatbot does not need to ask further questions and can easily and quickly provide an accurate solution. 
 
-**User intent:** An engineer in a plant needs to install a new gateway  
-**User:** Tell me about gateways  
-**Chatbot:** Gateways form a passage between two networks operating with different transmission protocols. It is a piece of software that acts as an entry point to connect different networks or systems.   
-**User:** No I need a guide for my gateways  
-**Chatbot:** Here’s a link to the user manual for this system.    
-**User:** How do I install them?    
-**Chatbot:** Here are the steps for installation and a link to the chapter in the user manual.
+**User intent: An engineer in a plant needs to install a new gateway** 
+
+![User intent with implicit input](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4239&t=etx1DcSbA7VDx5xD-4)
  
 Here the user intent is implicit and unclear (at the beginning). The chatbot has interpreted what the user wants and initially provided what it thinks could be the desired response. The user is then required to keep asking and clarifying so the chatbot finally understands intent and provides the desired solution. In this interaction, the user had to work to establish intent, which leads to a frustrating user experience. When we know our users and their working environment, it’s much easier to train our chatbots to comprehend user intent correctly to them the right response: 
 
-**User:** All valves need maintenance next week.   
-**Chatbot:** Which day is best for you?   
-**User:** Thursday   
-**Chatbot:** Ok great! Do you want all valves from all zones scheduled for maintenance?  
-**User:** Only zone 3 please   
-**Chatbot:** Got it. All valves within zone 3 are scheduled for maintenance next Thursday. 
+![Explicit user input](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4246&t=etx1DcSbA7VDx5xD-4)
 
 Here we see that although the intent for maintenance is very explicit, the chatbot knows to ask which day and which zones as follow-up questions to provide the most precise solution. The chatbot used its training to build on the user’s intent to create a more supportive and satisfying user experience. 
 

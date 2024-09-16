@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `<ix-empty-state
+  template: ` <ix-empty-state
     layout="compactBreak"
     header="No elements available"
     subHeader="Create an element first"

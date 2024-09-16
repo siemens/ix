@@ -8,9 +8,7 @@
 -->
 
 <script setup lang="ts">
-import {
-  Breakpoint
-} from '@siemens/ix';
+import { Breakpoint } from '@siemens/ix';
 import {
   IxApplication,
   IxApplicationHeader,
@@ -25,21 +23,23 @@ import {
 } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./styles/application.css"></style>
+
 <script lang="ts">
 export default {
   data(): {
-    breakpoints: Breakpoint[]
+    breakpoints: Breakpoint[];
   } {
     return {
-      breakpoints: ['md']
-    }
+      breakpoints: ['md'],
+    };
   },
   methods: {
     setBreakpoint(breakpoint: Breakpoint) {
       this.breakpoints = [breakpoint];
-    }
+    },
   },
-}
+};
 </script>
 
 <template>
