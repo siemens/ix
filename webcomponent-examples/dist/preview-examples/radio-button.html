@@ -2,30 +2,26 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Pill example</title>
-
-    <style>
-      .example-list {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .example-list > label {
-        margin-bottom: 0.5rem;
-      }
-    </style>
-    <script type="module" crossorigin src="../assets/global.9430376f.js"></script>
-    <script type="module" crossorigin src="../assets/init.bf154eb7.js"></script>
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radio button example</title>
+    
+    <script type="module" crossorigin src="../assets/radio-button.fbf49aab.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
+    <link rel="stylesheet" href="../assets/radio-button.72190fc5.css">
   </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
-    <div class="example-list">
+  <body>
+    <div class="radio-button">
       <input checked id="checkbox_1_1" name="group_1" type="radio" />
       <label for="checkbox_1_1"> Checked </label>
 
@@ -35,7 +31,6 @@ SPDX-License-Identifier: MIT
       <input disabled id="checkbox_1_3" name="group_1" type="radio" />
       <label for="checkbox_1_3"> Disabled </label>
     </div>
-    <!-- Preview code -->
     
   </body>
 </html>

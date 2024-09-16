@@ -6,6 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+import './styles/application.css';
+
 import { Breakpoint } from '@siemens/ix';
 import {
   IxApplication,
@@ -20,7 +23,7 @@ import {
   IxMenuItem,
 } from '@siemens/ix-react';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [breakpoints, setBreakpoints] = useState<Breakpoint[]>(['md']);

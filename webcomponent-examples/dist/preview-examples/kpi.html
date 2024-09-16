@@ -2,31 +2,26 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <style>
-      .example {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        max-width: 20rem;
-      }
-
-      .example > * {
-        margin: 0.5rem;
-      }
-    </style>
-    <script type="module" crossorigin src="../assets/global.9430376f.js"></script>
-    <script type="module" crossorigin src="../assets/init.bf154eb7.js"></script>
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kpi example</title>
+    
+    <script type="module" crossorigin src="../assets/kpi.843f7537.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
+    <link rel="stylesheet" href="../assets/kpi.d23ce1ef.css">
   </head>
-  <body class="theme-brand-dark">
+  <body>
     <div class="example">
-      <!-- Preview code -->
       <ix-kpi label="Motor speed" value="Nominal"></ix-kpi>
       <ix-kpi label="Motor speed" value="122.6" unit="rpm"></ix-kpi>
       <ix-kpi label="Motor speed" value="122.6" state="alarm"></ix-kpi>
@@ -44,7 +39,6 @@ SPDX-License-Identifier: MIT
         state="alarm"
         orientation="vertical"
       ></ix-kpi>
-      <!-- Preview code -->
     </div>
     
   </body>

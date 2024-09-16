@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  styleUrls: ['./styles/pill.css'],
   template: `
     <ix-pill variant="custom" color="white" background="purple">
       Label
@@ -18,19 +19,19 @@ import { Component } from '@angular/core';
 
     <ix-pill>Label</ix-pill>
     <ix-pill outline>Label</ix-pill>
-    <ix-pill style="width: 8rem">Label</ix-pill>
+    <ix-pill class="styled">Label</ix-pill>
 
     <ix-pill icon="star">Label</ix-pill>
-    <ix-pill icon="star" style="width: 8rem"> Label </ix-pill>
-    <ix-pill outline alignLeft icon="star" style="width: 8rem"> Label </ix-pill>
+    <ix-pill icon="star" class="styled"> Label </ix-pill>
+    <ix-pill outline alignLeft icon="star" class="styled"> Label </ix-pill>
 
     <ix-pill variant="alarm">Label</ix-pill>
     <ix-pill variant="alarm" outline> Label </ix-pill>
-    <ix-pill variant="alarm" style="width: 8rem"> Label </ix-pill>
+    <ix-pill variant="alarm" class="styled"> Label </ix-pill>
 
     <ix-pill variant="alarm" icon="star"> Label </ix-pill>
-    <ix-pill variant="alarm" icon="star" style="width: 8rem"> Label </ix-pill>
-    <ix-pill variant="alarm" outline alignLeft icon="star" style="width: 8rem">
+    <ix-pill variant="alarm" icon="star" class="styled"> Label </ix-pill>
+    <ix-pill variant="alarm" outline alignLeft icon="star" class="styled">
       Label
     </ix-pill>
   `,

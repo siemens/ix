@@ -8,7 +8,7 @@
  */
 
 import { IxButton, IxPane } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [expanded, setExpanded] = useState<boolean>(false);

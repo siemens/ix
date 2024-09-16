@@ -12,15 +12,15 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-icon-toggle-button></ix-icon-toggle-button>
-    <ix-icon-toggle-button></ix-icon-toggle-button>
-    <ix-icon-toggle-button disabled></ix-icon-toggle-button>
-    <ix-icon-toggle-button disabled loading></ix-icon-toggle-button>
+    <ix-icon-toggle-button icon="checkboxes"></ix-icon-toggle-button>
+    <ix-icon-toggle-button pressed icon="checkboxes"></ix-icon-toggle-button>
+    <ix-icon-toggle-button disabled icon="checkboxes"></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      disabled
+      loading
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
   `,
-  styles: [
-    `
-      @import 'example-styles/dist/icon-toggle-buttons.css';
-    `,
-  ],
+  styleUrls: ['./styles/icon-toggle-buttons.css'],
 })
 export default class Buttons {}

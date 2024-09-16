@@ -2,22 +2,28 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Basic navigation example</title>
-    <script type="module" crossorigin src="../assets/application-breakpoints.6378964e.js"></script>
-    <link rel="modulepreload" crossorigin href="../assets/global.9430376f.js">
-    <link rel="modulepreload" crossorigin href="../assets/init.bf154eb7.js">
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application breakpoint example</title>
+    
+    <script type="module" crossorigin src="../assets/application-breakpoints.3ffe46a2.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
+    <link rel="stylesheet" href="../assets/application.2b6b2f45.css">
   </head>
-  <body class="theme-classic-dark">
-    <!-- Preview code -->
+  <body>
     <ix-application application-name="Application name">
       <ix-application-header name="My Application">
-        <placeholder-logo slot="logo"></placeholder-logo>
+        <div class="placeholder-logo" slot="logo"></div>
 
         <ix-dropdown-button variant="secondary" label="Select config" ghost>
           <ix-dropdown-item label="Config 1"></ix-dropdown-item>
@@ -36,10 +42,7 @@ SPDX-License-Identifier: MIT
         <ix-menu-item>Item 2</ix-menu-item>
       </ix-menu>
       <ix-content>
-        <ix-content-header
-          slot="header"
-          header-title="Choose breakpoint"
-        >
+        <ix-content-header slot="header" header-title="Choose breakpoint">
         </ix-content-header>
         <input id="small" type="radio" name="layout" value="sm" />
         <label for="small">Small</label>
@@ -51,8 +54,8 @@ SPDX-License-Identifier: MIT
         <label for="large">Large</label>
       </ix-content>
     </ix-application>
+
     
-    <!-- Preview code -->
     
   </body>
 </html>

@@ -11,17 +11,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: buttonGrey(),
-  styles: [`@import 'example-styles/dist/buttons.css';`],
+  template: `
+    <ix-button variant="secondary"> Button </ix-button>
+    <ix-button disabled variant="secondary"> Button </ix-button>
+  `,
+  styleUrls: ['./styles/buttons.css'],
 })
 export default class Buttons {}
-function buttonGrey(): string | undefined {
-  return `
-      <ix-button variant="secondary">
-        Button
-      </ix-button>
-      <ix-button disabled variant="secondary">
-        Button
-      </ix-button>
-  `;
-}

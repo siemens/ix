@@ -2,24 +2,25 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Flip tile example</title>
-
-    <style>
-      ix-tile {
-        margin-bottom: 0.5rem;
-      }
-    </style>
-    <script type="module" crossorigin src="../assets/global.9430376f.js"></script>
-    <script type="module" crossorigin src="../assets/init.bf154eb7.js"></script>
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tile example</title>
+    
+    <script type="module" crossorigin src="../assets/tile.6e3fabd0.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
+    <link rel="stylesheet" href="../assets/tile.9d40b11e.css">
   </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
+  <body>
     <ix-tile size="small">92.8 °C</ix-tile>
 
     <ix-tile size="medium" class="mr-1">
@@ -56,7 +57,6 @@ SPDX-License-Identifier: MIT
         </ix-button>
       </div>
     </ix-tile>
-    <!-- Preview code -->
     
   </body>
 </html>

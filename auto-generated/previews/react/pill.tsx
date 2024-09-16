@@ -7,14 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './styles/pill.css';
+
 import { IxPill } from '@siemens/ix-react';
-import React, { CSSProperties } from 'react';
 
 export default () => {
-  const styled: CSSProperties = {
-    width: '8rem',
-  };
-
   return (
     <>
       <IxPill variant="custom" color="white" background="purple">
@@ -23,13 +20,13 @@ export default () => {
 
       <IxPill>Label</IxPill>
       <IxPill outline>Label</IxPill>
-      <IxPill style={styled}>Label</IxPill>
+      <IxPill className="styled">Label</IxPill>
 
       <IxPill icon="star">Label</IxPill>
-      <IxPill icon="star" style={styled}>
+      <IxPill icon="star" className="styled">
         Label
       </IxPill>
-      <IxPill outline alignLeft icon="star" style={styled}>
+      <IxPill outline alignLeft icon="star" className="styled">
         Label
       </IxPill>
 
@@ -37,17 +34,17 @@ export default () => {
       <IxPill variant="alarm" outline>
         Label
       </IxPill>
-      <IxPill variant="alarm" style={styled}>
+      <IxPill variant="alarm" className="styled">
         Label
       </IxPill>
 
       <IxPill variant="alarm" icon="star">
         Label
       </IxPill>
-      <IxPill variant="alarm" icon="star" style={styled}>
+      <IxPill variant="alarm" icon="star" className="styled">
         Label
       </IxPill>
-      <IxPill variant="alarm" outline alignLeft icon="star" style={styled}>
+      <IxPill variant="alarm" outline alignLeft icon="star" className="styled">
         Label
       </IxPill>
     </>

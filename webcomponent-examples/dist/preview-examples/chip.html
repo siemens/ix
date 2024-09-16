@@ -2,33 +2,26 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chip example</title>
-
-    <style>
-      .example {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        max-width: 20rem;
-      }
-
-      .example > ix-chip {
-        margin-bottom: 0.5rem;
-      }
-    </style>
-    <script type="module" crossorigin src="../assets/global.9430376f.js"></script>
-    <script type="module" crossorigin src="../assets/init.bf154eb7.js"></script>
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    
+    <script type="module" crossorigin src="../assets/chip.4c0a074f.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
+    <link rel="stylesheet" href="../assets/chip.1c7bf101.css">
   </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
-    <div class="example">
+  <body>
+    <div class="chip">
       <ix-chip closable outline> Primary </ix-chip>
       <ix-chip icon="print">Primary with icon</ix-chip>
       <ix-chip icon="print" style="width: 10rem" closable> Primary </ix-chip>
@@ -43,7 +36,7 @@ SPDX-License-Identifier: MIT
       </ix-chip>
       <ix-chip
         background="purple"
-        color="green"
+        chip-color="green"
         variant="custom"
         icon="print"
         style="width: 10rem"
@@ -52,7 +45,6 @@ SPDX-License-Identifier: MIT
         Custom
       </ix-chip>
     </div>
-    <!-- Preview code -->
     
   </body>
 </html>

@@ -8,7 +8,7 @@
  */
 
 import { IxDatePicker, IxSelect, IxSelectItem } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default () => {
   const [locale, setLocale] = useState<'de' | 'en' | (string & {})>('de');

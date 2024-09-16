@@ -12,5 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './tooltip.html',
+  styleUrls: ['./styles/tooltip.css'],
 })
 export default class Tooltip {}

@@ -2,19 +2,23 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Blind example</title>
-    <script type="module" crossorigin src="../assets/slider-error.f98e2b60.js"></script>
-    <link rel="modulepreload" crossorigin href="../assets/global.9430376f.js">
-    <link rel="modulepreload" crossorigin href="../assets/init.bf154eb7.js">
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider error example</title>
+    <script type="module" crossorigin src="../assets/slider-error.45670bb3.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
   </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
+  <body>
     <ix-slider trace trace-reference="50" error>
       <span slot="label-start">0</span>
       <span slot="label-end">100</span>
@@ -30,10 +34,10 @@ SPDX-License-Identifier: MIT
       error="Error message"
     >
       <span slot="label-start">0</span>
-      <span slot="label-end">100</span>
+      <span slot="label-end">50</span>
     </ix-slider>
+
     
-    <!-- Preview code -->
     
   </body>
 </html>

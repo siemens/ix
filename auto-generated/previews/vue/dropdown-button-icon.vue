@@ -11,19 +11,25 @@
 import { IxDropdownButton } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./styles/dropdown-button.css"></style>
+
 <template>
-  <IxDropdownButton label="" variant="primary" icon="checkboxes">
-    <IxDropdownItem label="Item 1"></IxDropdownItem>
-    <IxDropdownItem label="Item 2"></IxDropdownItem>
-  </IxDropdownButton>
-
-  <IxDropdownButton label="" variant="primary" ghost icon="checkboxes">
-    <IxDropdownItem label="Item 1"></IxDropdownItem>
-    <IxDropdownItem label="Item 2"></IxDropdownItem>
-  </IxDropdownButton>
-
-  <IxDropdownButton label="" variant="primary" disabled icon="checkboxes">
-    <IxDropdownItem label="Item 1"></IxDropdownItem>
-    <IxDropdownItem label="Item 2"></IxDropdownItem>
-  </IxDropdownButton>
+  <div class="dropdown-button">
+    <IxDropdownButton label="" icon="checkboxes">
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxDropdownButton>
+    <IxDropdownButton label="" outline icon="checkboxes">
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxDropdownButton>
+    <IxDropdownButton label="" ghost icon="checkboxes">
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxDropdownButton>
+    <IxDropdownButton label="" disabled icon="checkboxes">
+      <IxDropdownItem label="Item 1"></IxDropdownItem>
+      <IxDropdownItem label="Item 2"></IxDropdownItem>
+    </IxDropdownButton>
+  </div>
 </template>

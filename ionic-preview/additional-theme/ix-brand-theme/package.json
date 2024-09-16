@@ -1,0 +1,56 @@
+{
+  "name": "@siemens/ix-brand-theme",
+  "version": "2.2.0-beta.0",
+  "description": "Theme for Siemens ix",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/ix-brand-theme/ix-brand-theme.esm.js",
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build --docs",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate",
+    "test:e2e": "playwright test --reporter html",
+    "host-root": "http-server ./ -a 127.0.0.1 -p 8080",
+    "visual-regression-ci": "npx playwright install chromium && yarn test:e2e",
+    "visual-regression": "docker run --rm --network host -v $(pwd):/work/ -w /work mcr.microsoft.com/playwright:v1.24.0-focal /bin/bash -c \"CI=TRUE npm run visual-regression-ci\""
+  },
+  "peerDependencies": {
+    "@siemens/ix": "^2.0.0",
+    "@siemens/ix-icons": "^2.0.0",
+    "@stencil/core": "^4.7.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.32.1",
+    "@siemens/ix": "0.0.0-20240522074328",
+    "@siemens/ix-icons": "^2.0.0",
+    "@stencil/core": "^4.7.0",
+    "@stencil/sass": "^3.0.0",
+    "@types/jest": "^27.5.2",
+    "conventional-changelog-cli": "^2.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "http-server": "^14.1.1",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "puppeteer": "^19.5.2"
+  },
+  "publishConfig": {
+    "registry": "https://captain.rtf.siemens.net/artifactory/api/npm/pidna-innersource-release-npm-egll"
+  },
+  "license": "Siemens Inner Source License v1.4",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

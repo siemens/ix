@@ -2,23 +2,22 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-      name="viewport"
-    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pane Layout Example</title>
-    <script type="module" crossorigin src="../assets/global.9430376f.js"></script>
-    <script type="module" crossorigin src="../assets/init.bf154eb7.js"></script>
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    <script type="module" crossorigin src="../assets/global.00f6d77e.js"></script>
+    <script type="module" crossorigin src="../assets/init.48ede379.js"></script>
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
   </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
+  <body>
     <ix-pane-layout
       id="pane-layout"
       variant="floating"
@@ -39,27 +38,33 @@ SPDX-License-Identifier: MIT
       </ix-pane>
 
       <div slot="content">
-        <ix-button id="toggle-variant" style="margin: 2.5rem">Toggle Variant</ix-button>
-        <ix-button id="toggle-layout" style="margin: 2.5rem">Toggle Layout</ix-button>
+        <ix-button id="toggle-variant" style="margin: 2.5rem">
+          Toggle Variant
+        </ix-button>
+        <ix-button id="toggle-layout" style="margin: 2.5rem">
+          Toggle Layout
+        </ix-button>
       </div>
     </ix-pane-layout>
 
     <script>
-      const paneLayout = document.getElementById("pane-layout");
-      const buttonVariant = document.getElementById("toggle-variant");
-      const buttonLayout = document.getElementById("toggle-layout");
+      const paneLayout = document.getElementById('pane-layout');
+      const buttonVariant = document.getElementById('toggle-variant');
+      const buttonLayout = document.getElementById('toggle-layout');
 
-      buttonVariant.addEventListener("click", () => {
-        const isInline = paneLayout.variant === 'inline'
+      buttonVariant.addEventListener('click', () => {
+        const isInline = paneLayout.variant === 'inline';
 
-        paneLayout.variant = isInline ? 'floating' : 'inline'
+        paneLayout.variant = isInline ? 'floating' : 'inline';
         paneLayout.borderless = isInline;
-      })
-      buttonLayout.addEventListener("click", () => {
-        paneLayout.layout = paneLayout.layout === "full-horizontal" ? "full-vertical" : "full-horizontal"
-      })
+      });
+      buttonLayout.addEventListener('click', () => {
+        paneLayout.layout =
+          paneLayout.layout === 'full-horizontal'
+            ? 'full-vertical'
+            : 'full-horizontal';
+      });
     </script>
-    <!-- Preview code -->
     
   </body>
 </html>

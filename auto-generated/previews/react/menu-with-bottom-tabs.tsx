@@ -7,8 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './styles/application.css';
+
 import { IxMenu, IxMenuItem } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (

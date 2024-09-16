@@ -2,36 +2,26 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Select example</title>
-
-    <style></style>
-    <script type="module" crossorigin src="../assets/global.9430376f.js"></script>
-    <script type="module" crossorigin src="../assets/init.bf154eb7.js"></script>
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs example</title>
+    
+    <script type="module" crossorigin src="../assets/tabs.d70a98bd.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
+    <link rel="stylesheet" href="../assets/tabs.63c9179b.css">
   </head>
-  <body class="theme-classic-dark">
-    <!-- Preview code -->
-    <style>
-      .example {
-        display: block;
-        position: relative;
-        width: 100%;
-      }
-
-      div[data-tab-content] {
-        display: none;
-      }
-
-      div[data-tab-content].show {
-        display: block;
-      }
-    </style>
-    <div class="example">
+  <body>
+    <div class="tabs">
       <ix-tabs>
         <ix-tab-item data-tab-id="0">Tab 1</ix-tab-item>
         <ix-tab-item data-tab-id="1">Tab 2</ix-tab-item>
@@ -63,7 +53,6 @@ SPDX-License-Identifier: MIT
         tabs.forEach(registerClickListener);
       })();
     </script>
-    <!-- Preview code -->
     
   </body>
 </html>

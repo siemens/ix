@@ -2,21 +2,27 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-  <html>
+<html lang="en">
   <head>
-    <title>Date dropdown example</title>
-    <script type="module" crossorigin src="../assets/global.9430376f.js"></script>
-    <script type="module" crossorigin src="../assets/init.bf154eb7.js"></script>
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date dropdown user range example</title>
+    <script type="module" crossorigin src="../assets/global.00f6d77e.js"></script>
+    <script type="module" crossorigin src="../assets/init.48ede379.js"></script>
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
   </head>
+  <body>
+    <ix-date-dropdown
+      date-range-id="last-7"
+      format="LL/dd/yyyy"
+    ></ix-date-dropdown>
 
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
-    <ix-date-dropdown date-range-id="last-7" format="LL/dd/yyyy"></ix-date-dropdown>
-    <!-- Preview code -->
     <script>
       const today = new Date().toLocaleDateString('en-US', {
         year: 'numeric',
@@ -24,7 +30,9 @@ SPDX-License-Identifier: MIT
         day: '2-digit',
       });
 
-      const lastSevenDays = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', {
+      const lastSevenDays = new Date(
+        new Date().getTime() - 7 * 24 * 60 * 60 * 1000
+      ).toLocaleDateString('en-US', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
@@ -43,7 +51,7 @@ SPDX-License-Identifier: MIT
           from: today,
           to: today,
         },
-      ]
+      ];
     </script>
     
   </body>

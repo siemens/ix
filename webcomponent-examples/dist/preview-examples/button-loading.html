@@ -2,22 +2,25 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Loading button</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading button example</title>
     
-    <script type="module" crossorigin src="../assets/button-loading.de25073e.js"></script>
-    <link rel="modulepreload" crossorigin href="../assets/global.9430376f.js">
-    <link rel="modulepreload" crossorigin href="../assets/init.bf154eb7.js">
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    <script type="module" crossorigin src="../assets/button-loading.c0786ace.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
     <link rel="stylesheet" href="../assets/button-loading.9b1c578f.css">
   </head>
-
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
+  <body>
     <script>
       function toggle(obj) {
         obj.loading = true;
@@ -27,32 +30,18 @@ SPDX-License-Identifier: MIT
         }, 2500);
       }
     </script>
+    <ix-button onclick="toggle(this)" outline> Button </ix-button>
 
-    <ix-button onclick="toggle(this)" outline variant="primary">
-      Button
-    </ix-button>
+    <ix-button onclick="toggle(this)" outline> Button </ix-button>
 
-    <ix-button onclick="toggle(this)" icon="star" outline variant="primary">
-      Button
-    </ix-button>
+    <ix-button onclick="toggle(this)" icon="star" outline> Button </ix-button>
 
-    <ix-icon-button
-      onclick="toggle(this)"
-      icon="star"
-      outline
-      variant="primary"
-    >
+    <ix-icon-button onclick="toggle(this)" icon="star" outline>
     </ix-icon-button>
 
-    <ix-button loading outline variant="primary"> Button </ix-button>
+    <ix-button loading outline> Button </ix-button>
 
-    <ix-icon-button
-      loading
-      icon="star"
-      outline
-      variant="primary"
-    ></ix-icon-button>
-    <!-- Preview code -->
+    <ix-icon-button loading icon="star" outline></ix-icon-button>
     
   </body>
 </html>

@@ -2,46 +2,46 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pill example</title>
-
-    <style>
-      ix-pill {
-        margin: 0 0.5rem 0.5rem 0;
-      }
-    </style>
-    <script type="module" crossorigin src="../assets/global.9430376f.js"></script>
-    <script type="module" crossorigin src="../assets/init.bf154eb7.js"></script>
-    <link rel="stylesheet" href="../assets/global.27ea4499.css">
+    
+    <script type="module" crossorigin src="../assets/pill.1e75dd1d.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
+    <link rel="stylesheet" href="../assets/pill.44c840ee.css">
   </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
+  <body>
     <ix-pill variant="custom" color="white" background="purple">
       Label
     </ix-pill>
 
     <ix-pill>Label</ix-pill>
     <ix-pill outline>Label</ix-pill>
-    <ix-pill style="width: 8rem">Label</ix-pill>
+    <ix-pill class="styled">Label</ix-pill>
 
     <ix-pill icon="star">Label</ix-pill>
-    <ix-pill icon="star" style="width: 8rem"> Label </ix-pill>
-    <ix-pill outline alignLeft icon="star" style="width: 8rem"> Label </ix-pill>
+    <ix-pill icon="star" class="styled"> Label </ix-pill>
+    <ix-pill outline align-left icon="star" class="styled"> Label </ix-pill>
 
     <ix-pill variant="alarm">Label</ix-pill>
     <ix-pill variant="alarm" outline> Label </ix-pill>
-    <ix-pill variant="alarm" style="width: 8rem"> Label </ix-pill>
+    <ix-pill variant="alarm" class="styled"> Label </ix-pill>
 
     <ix-pill variant="alarm" icon="star"> Label </ix-pill>
-    <ix-pill variant="alarm" icon="star" style="width: 8rem"> Label </ix-pill>
-    <ix-pill variant="alarm" outline alignLeft icon="star" style="width: 8rem">
+    <ix-pill variant="alarm" icon="star" class="styled"> Label </ix-pill>
+    <ix-pill variant="alarm" outline align-left icon="star" class="styled">
       Label
     </ix-pill>
-    <!-- Preview code -->
     
   </body>
 </html>

@@ -8,14 +8,14 @@
 -->
 
 <script setup lang="ts">
-import { IxToggleButton } from '@siemens/ix-vue';
+import { IxIconToggleButton } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="example-styles/dist/icon-toggle-button.css"></style>
+<style scoped src="./styles/icon-toggle-buttons.css"></style>
 
 <template>
-  <IxToggleButton></IxToggleButton>
-  <IxToggleButton pressed></IxToggleButton>
-  <IxToggleButton disabled></IxToggleButton>
-  <IxToggleButton disabled loading></IxToggleButton>
+  <IxIconToggleButton icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton pressed icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton disabled icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton disabled loading icon="checkboxes"></IxIconToggleButton>
 </template>

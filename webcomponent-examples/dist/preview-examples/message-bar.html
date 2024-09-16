@@ -2,26 +2,36 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
-  <head>   <script type="module" crossorigin src="../assets/global.9430376f.js"></script>
-   <script type="module" crossorigin src="../assets/init.bf154eb7.js"></script>
-   <link rel="stylesheet" href="../assets/global.27ea4499.css">
- </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
-    <div style='padding: 0.5rem'>
-      <ix-message-bar style="margin-bottom: 0.5rem; display: block">Message text</ix-message-bar>
-      <ix-message-bar style="margin-bottom: 0.5rem; display: block" type="warning">Message text</ix-message-bar>
-      <ix-message-bar style="display: block" type="danger">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message bar example</title>
+    
+    <script type="module" crossorigin src="../assets/message-bar.8a0e6f0e.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.00f6d77e.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.48ede379.js">
+    <link rel="stylesheet" href="../assets/global.954df5f0.css">
+    <link rel="stylesheet" href="../assets/message-bar.e16fa150.css">
+  </head>
+
+  <body>
+    <div class="message-bar">
+      <ix-message-bar>Message text</ix-message-bar>
+      <ix-message-bar type="warning">Message text</ix-message-bar>
+      <ix-message-bar type="danger">
         <div class="d-flex align-items-center justify-content-between">
-          Message text <ix-button>Action</ix-button>
+          Message text
+          <ix-button>Action</ix-button>
         </div>
       </ix-message-bar>
     </div>
-    <!-- Preview code -->
     
   </body>
 </html>

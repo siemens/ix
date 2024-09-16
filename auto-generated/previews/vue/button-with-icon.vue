@@ -11,12 +11,12 @@
 import { IxIconButton } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="example-styles/dist/icon-button.css"></style>
+<style scoped src="./styles/icon-button.css"></style>
 
 <template>
   <div>
     <IxIconButton icon="info" variant="primary"></IxIconButton>
-    <IxIconButton icon="info" variant="secondary"></IxIconButton>
+    <IxIconButton icon="info"></IxIconButton>
     <IxIconButton icon="info" variant="danger"></IxIconButton>
     <IxIconButton icon="info" outline></IxIconButton>
     <IxIconButton icon="info" ghost></IxIconButton>
@@ -24,7 +24,7 @@ import { IxIconButton } from '@siemens/ix-vue';
 
   <div>
     <IxIconButton icon="info" oval variant="primary"></IxIconButton>
-    <IxIconButton icon="info" oval variant="secondary"></IxIconButton>
+    <IxIconButton icon="info" oval></IxIconButton>
     <IxIconButton icon="info" oval variant="danger"></IxIconButton>
     <IxIconButton icon="info" oval outline></IxIconButton>
     <IxIconButton icon="info" oval ghost></IxIconButton>
