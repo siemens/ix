@@ -4,3 +4,13 @@
   height: 40rem;
   padding-top: 1rem;
 }
+
+.empty-state-container {
+  position: absolute;
+}
+
+.echarts-empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

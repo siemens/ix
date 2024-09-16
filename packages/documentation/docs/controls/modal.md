@@ -40,6 +40,7 @@ Select the appropriate section below for the respective usage information.
 
 <Playground
 name="modal"
+deviantRootFileName="modal-by-template"
 height="18rem"
 preventDefaultExample
 frameworks={['angular']}
