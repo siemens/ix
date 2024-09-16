@@ -3,6 +3,8 @@ sidebar_position: 2
 sidebar_label: Migration from UXT 2.7.0
 ---
 
+import Accordion from '@site/src/components/Accordion';
+
 # UXT 2.7.0 to Siemens Industrial Experience design system
 
 For a quick and easy migration without changing your code base the iX-UXT CSS Theme is prepared for app developers using the CSS from UXT (former MindSphere Design System).
