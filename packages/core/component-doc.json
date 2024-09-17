@@ -9848,10 +9848,10 @@
         },
         {
           "name": "type",
-          "type": "\"email\" | \"password\" | \"text\"",
+          "type": "\"email\" | \"password\" | \"tel\" | \"text\" | \"url\"",
           "complexType": {
-            "original": "'text' | 'email' | 'password'",
-            "resolved": "\"email\" | \"password\" | \"text\"",
+            "original": "'text' | 'email' | 'password' | 'tel' | 'url'",
+            "resolved": "\"email\" | \"password\" | \"tel\" | \"text\" | \"url\"",
             "references": {}
           },
           "mutable": false,
@@ -9870,7 +9870,15 @@
               "type": "string"
             },
             {
+              "value": "tel",
+              "type": "string"
+            },
+            {
               "value": "text",
+              "type": "string"
+            },
+            {
+              "value": "url",
               "type": "string"
             }
           ],
