@@ -11,7 +11,6 @@ import fs from 'fs';
 import path from 'path';
 
 function normalizeProperties(obj: JsonDocs, deleteProps: string[]) {
-  console.log(process.cwd());
   for (const key in obj) {
     if (obj[key] && typeof obj[key] === 'object') {
       normalizeProperties(obj[key], deleteProps);
