@@ -39,17 +39,19 @@
     color: var(--theme-input-hint--color);
   }
 
-  &.hover:not([readonly]):not([disabled]),
-  &:hover:not([readonly]):not([disabled]) {
-    border-color: var(--theme-input--border-color--hover) !important;
-    background-color: var(--theme-input--background--hover);
+  &:not(.read-only):not([readonly]):not([disabled]):not(.disabled) {
+    &.hover, &:hover {
+      border-color: var(--theme-input--border-color--hover) !important;
+      background-color: var(--theme-input--background--hover);
+    }
   }
 
-  &.focus:not([readonly]),
-  &:focus:not([readonly]) {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-input--focus--outline-offset);
-    border-color: var(--theme-input--border-color--focus) !important;
+  &:not([readonly]):not(.read-only):not(.disabled) {
+    &.focus, &:focus {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-input--focus--outline-offset);
+      border-color: var(--theme-input--border-color--focus) !important;
+    }
   }
 
   @if $feature-read-only == true {
@@ -72,7 +74,7 @@
     }
   }
 
-  &:disabled {
+  &:disabled, &.disabled {
     box-shadow: none;
     background-color: transparent;
     outline: none;
@@ -82,7 +84,7 @@
       var(--theme-input--border-color-bottom--disabled);
   }
 
-  &:disabled::placeholder {
+  &:disabled::placeholder, &.disabled::placeholder {
     color: transparent;
   }
 }

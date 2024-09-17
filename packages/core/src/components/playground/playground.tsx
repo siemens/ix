@@ -19,6 +19,13 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <div style={{ margin: '5rem' }}>
+          <input class="read-only" />
+          <input class="disabled" />
+        </div>
+      </Host>
+    );
   }
 }
