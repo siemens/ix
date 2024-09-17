@@ -51,4 +51,20 @@ regressionTest.describe('event-list', () => {
     await page.keyboard.press('Tab');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('outline compact', async ({ page }) => {
+    await page.goto('event-list/compact');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
+  regressionTest('outline compact selected', async ({ page }) => {
+    await page.goto('event-list/compact');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
