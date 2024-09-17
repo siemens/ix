@@ -22,4 +22,15 @@ regressionTest.describe('menu-about', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('active-tab-label', async ({ page }) => {
+    await page.goto('menu-about/active-tab-label');
+
+    await page.locator('#aboutAndLegal').click();
+    await page.waitForTimeout(500);
+
+    await page.getByText('Content 2').click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

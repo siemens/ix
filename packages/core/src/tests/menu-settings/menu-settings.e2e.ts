@@ -55,4 +55,15 @@ regressionTest.describe('menu-settings', () => {
       animations: 'disabled',
     });
   });
+
+  regressionTest('active-tab-label', async ({ page }) => {
+    await page.goto('menu-settings/active-tab-label');
+    const settings = page.locator('ix-menu-item#settings');
+    await settings.click();
+    await page.waitForTimeout(500);
+
+    await page.getByText('Content 2').click();
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

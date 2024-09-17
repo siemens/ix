@@ -253,18 +253,8 @@ export class Tabs {
     return true;
   }
 
-  isTabSelected() {
-    const tabs = this.getTabs();
-    const selectedIndex = tabs.findIndex((tab) => tab.selected);
-
-    if (selectedIndex !== -1) {
-      this.selected = selectedIndex;
-    }
-  }
-
   componentWillLoad() {
     const tabs = this.getTabs();
-    this.isTabSelected();
 
     tabs.map((element, index) => {
       if (this.small) element.setAttribute('small', 'true');

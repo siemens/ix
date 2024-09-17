@@ -41,21 +41,6 @@ test('should change tab', async ({ mount, page }) => {
   await expect(tab).toHaveClass(/selected/);
 });
 
-test('init tab with non 0', async ({ mount, page }) => {
-  await mount(`
-    <ix-tabs>
-      <ix-tab-item>Item 1</ix-tab-item>
-      <ix-tab-item selected="true">Item 2</ix-tab-item>
-      <ix-tab-item>Item 3</ix-tab-item>
-    </ix-tabs>
-  `);
-  const tabs = page.locator('ix-tabs');
-  const tab = page.locator('ix-tab-item').nth(1);
-
-  await expect(tabs).toHaveClass(/hydrated/);
-  await expect(tab).toHaveClass(/selected/);
-});
-
 test('should not change tab by tab click event', async ({ mount, page }) => {
   await mount(`
     <ix-tabs>
