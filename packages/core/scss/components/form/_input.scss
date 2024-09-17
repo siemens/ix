@@ -19,8 +19,7 @@
     color: var(--theme-input--color);
     -moz-appearance: textfield;
     text-overflow: ellipsis;
-    border: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color);
+    border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
     border-radius: var(--theme-input--border-radius);
     box-shadow: var(--theme-input--box-shadow);
   }
@@ -30,8 +29,7 @@
     -webkit-box-shadow: 0 0 0 1000px var(--theme-color-component-info) inset !important;
     -webkit-text-fill-color: var(--theme-input--color--autofill) !important;
     background-color: var(--theme-input--background--autofill) !important;
-    border: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color--autofill) !important;
+    border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color--autofill) !important;
     color: var(--theme-input--color--autofill) !important;
   }
 
@@ -39,15 +37,15 @@
     color: var(--theme-input-hint--color);
   }
 
-  &:not(.read-only):not([readonly]):not([disabled]):not(.disabled) {
-    &.hover, &:hover {
+  &.hover, &:hover {
+    &:not(.read-only, .disabled, [readonly], [disabled]) {
       border-color: var(--theme-input--border-color--hover) !important;
       background-color: var(--theme-input--background--hover);
     }
   }
 
-  &:not([readonly]):not(.read-only):not(.disabled) {
-    &.focus, &:focus {
+  &.focus, &:focus {
+    &:not([readonly], .read-only, .disabled) {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-input--focus--outline-offset);
       border-color: var(--theme-input--border-color--focus) !important;
@@ -61,9 +59,7 @@
       background-color: transparent;
       outline: none;
       border: none;
-      border-bottom: var(--theme-input--border-thickness, 1px)
-        solid
-        var(--theme-input--border-color-bottom--readonly);
+      border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color-bottom--readonly);
     }
 
     &.read-only,
@@ -80,8 +76,7 @@
     outline: none;
     border: none;
     color: var(--theme-input--color--disabled);
-    border-bottom: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color-bottom--disabled);
+    border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color-bottom--disabled);
   }
 
   &:disabled::placeholder, &.disabled::placeholder {
