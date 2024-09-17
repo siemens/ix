@@ -134,18 +134,30 @@ async function createAngularProjectFiles(
     ...runtime,
   };
 
+  const tsFiles = Object.keys(snippets)
+    .filter((key) => key.endsWith('.ts') && key !== `${name}.ts`)
+    .map((key) => key.replace('.ts', ''));
+
   Object.keys(snippets).forEach((key) => {
     project[`src/${key.replace('./', '')}`] = snippets[key];
   });
 
+  const importsString = tsFiles
+    .map((file) => `import ${fromKebabCaseToCamelCase(file)} from './../${file}';`)
+    .join('\n');
+
   project['src/app/app.module.ts'] = project['src/app/app.module.ts'].replace(
     "import ExampleComponent from './example.component';",
-    `import ${fromKebabCaseToCamelCase(name)} from './../${name}';`
+    [`import ${fromKebabCaseToCamelCase(name)} from './../${name}';`, importsString].join('\n')
   );
+
+  const importComponent = tsFiles
+    .map((file) => fromKebabCaseToCamelCase(file))
+    .join(', ');
 
   project['src/app/app.module.ts'] = project['src/app/app.module.ts'].replace(
     'declarations: [AppComponent, ExampleComponent],',
-    `declarations: [AppComponent, ${fromKebabCaseToCamelCase(name)}],`
+    `declarations: [AppComponent, ${fromKebabCaseToCamelCase(name)}, ${importComponent}],`
   );
 
   return project;
