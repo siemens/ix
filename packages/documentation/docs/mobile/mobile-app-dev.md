@@ -43,7 +43,7 @@ There are different ways to create applications for mobile devices:
 - **Native apps** are tailored for a particular platform like iOS or Android and usually need to be developed in a specific way for every target platform separately.
 - **Hybrid apps** are based on web technologies while targeting multiple platforms using a single codebase.
 
-Optimize your web application for mobile devices without any significant technological changes to provide a seamless User Experience across devices and screen sizes (read more about responsive and adaptive design [here](#user-experience-considerations)).
+Optimize your web application for mobile devices without any significant technological changes to provide a seamless User Experience across devices and screen sizes (read more about responsive and adaptive design [here](mobile-ux.md)).
 
 ### Hybrid app development
 
@@ -146,7 +146,7 @@ Use the defined variables to ensure that the pages of your application displayin
 
 ### Application frame layout
 
-By default, the [Application Frame](./controls/application-frame/application.md) provides three default layouts (`sm`, `md`, `lg`) that are automatically applied depending on the size of the screen.
+By default, the [Application Frame](./../controls/application-frame/application.md) provides three default layouts (`sm`, `md`, `lg`) that are automatically applied depending on the size of the screen.
 
 If you intend to implement an app for both phones and tablets (e.g. iPhone and iPad), it may be necessary to configure the layouts which the application frame can pick from.
 
@@ -184,37 +184,3 @@ const Application = () => {
   );
 };
 ```
-
-## User experience considerations
-
-### Responsive and adaptive design
-
-Industrial Experience components handle various viewport sizes out-of-the-box. When building a page layout, consider small screens in portrait and landscape mode in an early stage during the design phase.
-
-Depending on the importance of a mobile-optimized UI, decide on a responsive or adaptive design approach:
-
-- **Responsive design**: The layout adapts to the viewport size by rearranging or hiding components. We recommend this approach for desktop-first applications.
-- **Adaptive design**: There is a separate page layout for a specific breakpoint. We recommend this approach for applications with a strong focus on mobile.
-
-If feasible, we recommend adaptive design since it offers more control over the layout and a more optimized user experience on mobile devices. However, it requires more effort to maintain different layouts. Independently from the design approach, there are different approaches to achieve a mobile-friendly experience:
-
-- Adjust the page layout (e.g. a column-based layout transforms into a row-based layout)
-- Restructure the content (e.g. prioritize information or components differently)
-- Hide information or entire components (e.g. less important information or components)
-
-### Interaction
-
-Users interact with mobile devices primarily through touch input. Our web components respond to touch events out-of-the-box.
-
-For your specific use cases, it might be necessary to implement custom event listeners for touch interactions. In addition, touch devices offer the possibility to use gestures like swiping, pinching or tapping.
-
-### Device-specific features
-
-Some devices have unique characteristics that need to be considered when designing and developing an app:
-
-- Display "notch"
-- System bars
-- Rounded corners
-- Different screen sizes and resolutions
-
-When you design and develop an app, we recommend to define target devices. Consider the specific features of the devices in your design and development process, so that all relevant parts of the user interface are visible and accessible. Use the [safe areas](#define-safe-areas) to ensure that the content is displayed correctly.
