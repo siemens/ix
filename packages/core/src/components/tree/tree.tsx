@@ -27,6 +27,7 @@ import {
   TreeModel,
   UpdateCallback,
 } from './tree-model';
+import { dropdownController } from '../dropdown/dropdown-controller';
 
 @Component({
   tag: 'ix-tree',
@@ -173,16 +174,30 @@ export class Tree {
         this.updatePadding(el, item);
 
         if (!this.itemClickListener.has(el)) {
-          const itemClickCallback = (e: Event) => {
-            e.preventDefault();
-            e.stopPropagation();
+          const itemClickCallback = (event: Event) => {
+            const path = event.composedPath();
+            const treeIndex = path.indexOf(this.hostElement);
+            const treePath = path.slice(0, treeIndex);
+            const hasTrigger = dropdownController.pathIncludesTrigger(treePath);
+
+            if (event.defaultPrevented) {
+              return;
+            }
+
+            if (hasTrigger) {
+              return;
+            }
+
             Object.values(this.context).forEach((c) => (c.isSelected = false));
             const context = this.getContext(item.id);
             context.isSelected = true;
             this.setContext(item.id, context);
             this.nodeClicked.emit(item.id);
           };
-          el.addEventListener('itemClick', itemClickCallback);
+          el.addEventListener('toggle', (event) => {
+            event.preventDefault();
+          });
+          el.addEventListener('click', itemClickCallback);
           this.itemClickListener.set(el, itemClickCallback);
         }
 

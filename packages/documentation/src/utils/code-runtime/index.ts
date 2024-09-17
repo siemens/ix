@@ -41,7 +41,6 @@ export async function getReactRuntime(baseUrl: string) {
     'tsconfig.json',
     'package.json',
     'index.html',
-    '.eslintrc.cjs',
     'src/App.tsx',
     'src/main.tsx',
     'src/vite-env.d.ts',
