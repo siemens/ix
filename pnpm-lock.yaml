@@ -64,7 +64,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.5.0
         version: link:../core
     devDependencies:
       '@playwright/test':
@@ -116,7 +116,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.5.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -772,7 +772,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.5.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -927,7 +927,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.5.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -4055,6 +4055,7 @@ packages:
   '@playwright/test@1.39.0':
     resolution: {integrity: sha512-3u1iFqgzl7zr004bGPYiN/5EZpRUSFddQBra8Rqll5N0/vfpqlP9I9EXqAoGacuAbX6c9Ulg/Cjqglp5VkK6UQ==}
     engines: {node: '>=16'}
+    deprecated: Please update to the latest version of Playwright to test up-to-date browsers.
     hasBin: true
 
   '@pnpm/config.env-replace@1.1.0':
