@@ -37,14 +37,12 @@ test(`form-ready - ix-number-field`, async ({ mount, page }) => {
   expect(formData).toBe('123');
 });
 
-test(`form-ready - ix-textarea-field`, async ({ mount, page }) => {
-  await mount(
-    `<form><ix-textarea-field name="my-field-name"></ix-textarea-field></form>`
-  );
+test(`form-ready - ix-textarea`, async ({ mount, page }) => {
+  await mount(`<form><ix-textarea name="my-field-name"></ix-textarea></form>`);
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const input = page.locator('ix-textarea-field').locator('textarea');
+  const input = page.locator('ix-textarea').locator('textarea');
   await input.fill('Some longer text');
   await input.blur();
 
@@ -78,12 +76,9 @@ test(`form-ready - ix-number-field with initial value`, async ({
   expect(formData).toBe('1337');
 });
 
-test(`form-ready - ix-textarea-field with initial value`, async ({
-  mount,
-  page,
-}) => {
+test(`form-ready - ix-textarea with initial value`, async ({ mount, page }) => {
   await mount(
-    `<form><ix-textarea-field name="my-field-name" value="initial value"></ix-textarea-field></form>`
+    `<form><ix-textarea name="my-field-name" value="initial value"></ix-textarea></form>`
   );
 
   const formElement = page.locator('form');
