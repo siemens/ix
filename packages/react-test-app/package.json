@@ -21,6 +21,7 @@
     "clsx": "^1.2.1",
     "echarts": "^5.4.1",
     "echarts-for-react": "~3.0.2",
+    "echarts-gl": "^2.0.9",
     "example-styles": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

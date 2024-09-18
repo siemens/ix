@@ -20514,7 +20514,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Clicked",
+          "docs": "Click on item not on the expand/collapse icon",
           "docsTags": []
         },
         {
@@ -21888,6 +21888,11 @@
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
+    },
+    "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

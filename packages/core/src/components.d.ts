@@ -8274,7 +8274,7 @@ declare namespace LocalJSX {
          */
         "hasChildren"?: boolean;
         /**
-          * Clicked
+          * Click on item not on the expand/collapse icon
          */
         "onItemClick"?: (event: IxTreeItemCustomEvent<void>) => void;
         /**
