@@ -27,15 +27,12 @@ async function fetchFile(
 export async function fetchSourceForAngular(baseUrl: string, name: string) {
   const snippets: Record<string, string> = {};
 
-  await fetchFile(snippets, `${baseUrl}/${name}.html`, `${name}.html`);
+  await Promise.all([
+    fetchFile(snippets, `${baseUrl}/${name}.html`, `${name}.html`),
+    fetchFile(snippets, `${baseUrl}/${name}.ts`, `${name}.ts`),
+    fetchFile(snippets, `${baseUrl}/${name}.css`, `${name}.css`),
+  ]);
 
-  const tsFile = await fetchFile(
-    snippets,
-    `${baseUrl}/${name}.ts`,
-    `${name}.ts`
-  );
-
-  await fetchFile(snippets, `${baseUrl}/${name}.css`, `${name}.css`);
   return snippets;
 }
 
