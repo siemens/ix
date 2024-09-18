@@ -15,7 +15,19 @@
     "@siemens/ix-react": "2.2.1",
     "react-test-app": "2.1.2",
     "@siemens/ix-vue": "2.2.1",
-    "vue-test-app": "2.1.2"
+    "vue-test-app": "2.1.2",
+    "angular-standalone-test-app": "0.0.0",
+    "ionic-test-app": "0.0.1"
   },
-  "changesets": []
+  "changesets": [
+    "clean-squids-retire",
+    "cool-keys-shout",
+    "fresh-maps-ring",
+    "gentle-snails-destroy",
+    "many-pumpkins-knock",
+    "purple-guests-wait",
+    "rare-numbers-double",
+    "shy-experts-rest",
+    "wicked-windows-approve"
+  ]
 }
