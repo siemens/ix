@@ -17,12 +17,12 @@
     "baseUrl": ".",
     "paths": {
       "@utils/test": ["src/tests/utils/test"]
-    },
+    }
     // Strict check uncomment to check for strict
-    "strict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noImplicitAny": true
+    // "strict": true,
+    // "strictNullChecks": true,
+    // "strictPropertyInitialization": true,
+    // "noImplicitAny": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

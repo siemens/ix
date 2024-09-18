@@ -44,7 +44,7 @@ import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
+import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
@@ -85,7 +85,7 @@ export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
+export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     /**
@@ -2338,24 +2338,19 @@ export namespace Components {
           * Text color based on theme variables
           * @deprecated since 2.1.0 use property `text-color`
          */
-        "color": TypographyColors;
+        "color"?: TypographyColors;
         /**
           * Text format
          */
-        "format": TypographyFormat;
+        "format"?: TypographyFormat;
         /**
           * Text color based on theme variables
          */
-        "textColor": TypographyColors;
+        "textColor"?: TypographyColors;
         /**
           * Text decoration
          */
         "textDecoration": TextDecoration;
-        /**
-          * Font variant based on theme variables
-          * @deprecated Use `format` property
-         */
-        "variant": TypographyVariants;
     }
     interface IxUpload {
         /**
@@ -6637,11 +6632,6 @@ declare namespace LocalJSX {
           * Text decoration
          */
         "textDecoration"?: TextDecoration;
-        /**
-          * Font variant based on theme variables
-          * @deprecated Use `format` property
-         */
-        "variant"?: TypographyVariants;
     }
     interface IxUpload {
         /**
