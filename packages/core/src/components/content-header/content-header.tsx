@@ -25,7 +25,7 @@ export class ContentHeader {
   /**
    * Title of Header
    */
-  @Prop() headerTitle: string;
+  @Prop() headerTitle?: string;
 
   /**
    * Subtitle of Header
@@ -40,7 +40,7 @@ export class ContentHeader {
   /**
    * Triggered when back button is clicked
    */
-  @Event() backButtonClick: EventEmitter<void>;
+  @Event() backButtonClick!: EventEmitter<void>;
 
   render() {
     return (

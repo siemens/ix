@@ -95,7 +95,7 @@ export namespace Components {
         /**
           * Card heading
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Card icon
          */
@@ -107,7 +107,7 @@ export namespace Components {
         /**
           * Card subheading
          */
-        "subheading": string;
+        "subheading"?: string;
         /**
           * Card variant
           * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
@@ -206,16 +206,16 @@ export namespace Components {
           * Optional icon to be displayed next to the header label
           * @since 1.5.0
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Label of blind
          */
-        "label": string;
+        "label"?: string;
         /**
           * Secondary label inside blind header
           * @since 2.0.0
          */
-        "sublabel": string;
+        "sublabel"?: string;
         /**
           * Blind variant
           * @since 2.0.0
@@ -268,7 +268,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         "iconSize": '12' | '16' | '24';
         /**
           * Loading button
@@ -508,7 +508,7 @@ export namespace Components {
         /**
           * Title of Header
          */
-        "headerTitle": string;
+        "headerTitle"?: string;
         /**
           * Variant of content header
          */
@@ -518,7 +518,7 @@ export namespace Components {
         /**
           * Define css grid template
          */
-        "templates": Partial<Record<CssGridTemplateType, string[][]>>;
+        "templates"?: Partial<Record<CssGridTemplateType, string[][]>>;
     }
     interface IxCssGridItem {
         /**

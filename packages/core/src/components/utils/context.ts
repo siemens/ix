@@ -87,7 +87,7 @@ export type ContextConsumerSubscription = {
 
 export function useContextConsumer<
   T extends HTMLElement,
-  C extends UnknownContext,
+  C extends UnknownContext
 >(
   hostElement: T,
   context: C,
@@ -97,7 +97,7 @@ export function useContextConsumer<
   ) => void,
   subscribe?: boolean
 ): ContextConsumerSubscription {
-  let _unsubscribe: () => void;
+  let _unsubscribe: (() => void) | undefined;
   hostElement.dispatchEvent(
     new ContextEvent(
       context,
@@ -111,7 +111,9 @@ export function useContextConsumer<
 
   return {
     unsubscribe: () => {
-      _unsubscribe();
+      if (_unsubscribe) {
+        _unsubscribe();
+      }
     },
   };
 }
@@ -122,7 +124,7 @@ export type ContextProvider<C extends Context<{}> = Context<any>> = {
 export function useContextProvider<
   X extends {},
   C extends Context<X>,
-  T extends HTMLElement = HTMLElement,
+  T extends HTMLElement = HTMLElement
 >(
   hostElement: T,
   context: C,
@@ -133,27 +135,25 @@ export function useContextProvider<
 
   const requests = new Set<ContextEvent<UnknownContext>>();
 
-  hostElement.addEventListener(
-    'context-request',
-    (requestContextEvent: ContextEvent<C>) => {
-      if (requestContextEvent?.context.name !== context.name) {
-        return;
-      }
-
-      requestContextEvent.stopPropagation();
-
-      if (requestContextEvent.subscribe) {
-        requests.add(requestContextEvent);
-      }
-      requestContext.emit(requestContextEvent);
-
-      if (contextPayload) {
-        requestContextEvent.callback(contextPayload, () => {
-          requests.delete(requestContextEvent);
-        });
-      }
+  hostElement.addEventListener('context-request', (event: Event) => {
+    const requestContextEvent = event as ContextEvent<C>;
+    if (requestContextEvent?.context.name !== context.name) {
+      return;
     }
-  );
+
+    requestContextEvent.stopPropagation();
+
+    if (requestContextEvent.subscribe) {
+      requests.add(requestContextEvent);
+    }
+    requestContext.emit(requestContextEvent);
+
+    if (contextPayload) {
+      requestContextEvent.callback(contextPayload, () => {
+        requests.delete(requestContextEvent);
+      });
+    }
+  });
 
   updateContext.on((context: ContextType<C>) => {
     requests.forEach((r) =>
