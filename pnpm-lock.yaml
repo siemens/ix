@@ -64,7 +64,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.5.0
         version: link:../core
     devDependencies:
       '@playwright/test':
@@ -116,14 +116,11 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.5.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: 0.0.0-20240827135516
         version: 0.0.0-20240827135516
-      tslib:
-        specifier: ^2.6.3
-        version: 2.7.0
     devDependencies:
       '@angular/animations':
         specifier: ^17.3.12
@@ -176,6 +173,9 @@ importers:
       ts-jest:
         specifier: ^29.2.3
         version: 29.2.5(@babel/core@7.25.2)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.2))(esbuild@0.21.5)(jest@29.7.0(@types/node@16.18.106)(ts-node@10.9.2(@types/node@16.18.106)(typescript@5.4.5)))(typescript@5.4.5)
+      tslib:
+        specifier: ^2.3.0
+        version: 2.7.0
       typescript:
         specifier: ~5.4.5
         version: 5.4.5
@@ -850,7 +850,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.5.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: 0.0.0-20240827135516
@@ -1002,7 +1002,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.4.1
+        specifier: ~2.5.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: 0.0.0-20240827135516

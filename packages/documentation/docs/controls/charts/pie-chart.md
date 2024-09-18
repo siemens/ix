@@ -1,7 +1,7 @@
 import DocsTabs from '@site/src/components/DocsTabs';
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Pie Chart
+# Pie chart
 
 ## Examples
 

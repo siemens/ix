@@ -85,6 +85,27 @@ regressionTest('should render marker', async ({ page, mount }) => {
   expect(await page.locator('ix-slider').screenshot()).toMatchSnapshot();
 });
 
+regressionTest('should show float steps', async ({ page, mount }) => {
+  await mount(`
+    <ix-slider
+      style="width: 20rem"
+      value="0.2"
+      max="1"
+      step="0.1"
+      min="0"
+    ></ix-slider>
+  `);
+
+  const slider = page.locator('ix-slider');
+  await expect(slider).toHaveClass(/hydrated/);
+
+  await slider.hover();
+  await page.mouse.move(100, 0);
+  await page.mouse.down();
+
+  expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+});
+
 regressionTest(
   'should render with min-max changes',
   async ({ page, mount }) => {
