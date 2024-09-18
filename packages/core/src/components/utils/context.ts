@@ -25,9 +25,8 @@ export type UnknownContext = Context<unknown>;
 /**
  * A helper type which can extract a Context value type from a Context type
  */
-export type ContextType<T extends UnknownContext> = T extends Context<infer Y>
-  ? Y
-  : never;
+export type ContextType<T extends UnknownContext> =
+  T extends Context<infer Y> ? Y : never;
 
 /**
  * A function which creates a Context value object

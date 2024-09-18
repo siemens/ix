@@ -12,18 +12,22 @@ import { defineCustomElements } from '@siemens/ix/loader';
 
 let didInitialize = false;
 
-export const appInitialize = (doc: Document) => {
-  return async () => {
+export const appInitialize = (preloadIcons?: () => void) => (doc: Document) => {
+  return () => {
     const win: Window | undefined = doc.defaultView as any;
     if (win && typeof (window as any) !== 'undefined') {
       if (didInitialize) {
         return;
       }
 
+      if (preloadIcons) {
+        preloadIcons();
+      }
+
       didInitialize = true;
 
+      iconsDefineCustomElements();
       defineCustomElements();
-      await iconsDefineCustomElements();
     }
   };
 };

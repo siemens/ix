@@ -22,6 +22,7 @@ import {
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
+import { iconChevronDownSmall, iconClear } from '@siemens/ix-icons/icons';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 
@@ -330,13 +331,12 @@ export class Select {
 
     this.selectedLabels = this.selectedItems.map((item) => item.label);
 
-    if (this.isSingleMode && this.selectedLabels?.length) {
+    if (this.selectedLabels?.length && this.isSingleMode) {
       this.inputValue = this.selectedLabels[0];
-      this.inputRef && (this.inputRef.value = this.inputValue);
-      return;
+    } else {
+      this.inputValue = '';
     }
-
-    this.inputValue = null;
+    this.inputRef && (this.inputRef.value = this.inputValue);
   }
 
   private emitValueChange(value: string | string[]) {
@@ -414,7 +414,7 @@ export class Select {
     }
 
     if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      await this.onEnterNavigation();
+      await this.onEnterNavigation(event.target as HTMLIxSelectItemElement);
     }
 
     if (event.code === 'Escape') {
@@ -422,31 +422,27 @@ export class Select {
     }
   }
 
-  private async onEnterNavigation() {
+  private async onEnterNavigation(
+    el: HTMLIxSelectItemElement | HTMLInputElement
+  ) {
     if (this.isMultipleMode) {
       return;
     }
 
-    let item: HTMLIxSelectItemElement;
-
-    if (this.editable && !this.itemExists(this.inputFilterText)) {
-      const defaultPrevented = this.emitAddItem(this.inputFilterText);
-      if (defaultPrevented) {
-        return;
+    if (
+      !this.itemExists(this.inputFilterText.trim()) &&
+      !this.itemExists((el as HTMLIxSelectItemElement)?.label)
+    ) {
+      if (this.editable) {
+        const defaultPrevented = this.emitAddItem(this.inputFilterText.trim());
+        if (defaultPrevented) {
+          return;
+        }
       }
-
-      item = this.items[this.items.length - 1];
     }
 
-    if (item) {
-      item.onItemClick();
-    }
-
-    await this.dropdownRef?.updatePosition();
-
-    if (this.isSingleMode && !this.editable) {
-      this.dropdownShow = false;
-    }
+    this.dropdownShow = false;
+    this.updateSelection();
   }
 
   private async onArrowNavigation(
@@ -702,7 +698,7 @@ export class Select {
                 (this.selectedLabels?.length || this.inputFilterText) ? (
                   <ix-icon-button
                     class="clear"
-                    icon={'clear'}
+                    icon={iconClear}
                     ghost
                     oval
                     size="16"
@@ -717,7 +713,7 @@ export class Select {
                   <ix-icon-button
                     data-select-dropdown
                     class={{ 'dropdown-visible': this.dropdownShow }}
-                    icon="chevron-down-small"
+                    icon={iconChevronDownSmall}
                     ghost
                     ref={(ref) => {
                       if (this.editable) this.dropdownWrapperRef = ref;
@@ -770,9 +766,8 @@ export class Select {
               label={this.inputFilterText}
               onItemClick={(e) => {
                 e.preventDefault();
-                if (this.emitAddItem(this.inputFilterText)) {
-                  e.stopPropagation();
-                }
+                e.stopPropagation();
+                this.emitAddItem(this.inputFilterText);
               }}
               onFocus={() => (this.navigationItem = this.addItemRef)}
               ref={(ref) => {

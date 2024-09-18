@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Locator, Page } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
+import { TreeItem } from '../tree-model';
 
 const defaultModel = {
   root: {
@@ -91,14 +92,14 @@ const updateModel = async (tree: Locator, updatedModel: any) => {
   );
 };
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
   const item = tree.locator('ix-tree-item').nth(0);
   await expect(tree).toHaveClass(/hydrated/);
   await expect(item).toBeVisible();
 });
 
-test('update tree', async ({ mount, page }) => {
+regressionTest('update tree', async ({ mount, page }) => {
   const tree = await initializeTree(mount, page);
 
   const item = tree.locator('ix-tree-item').nth(0);
@@ -170,4 +171,61 @@ test('update tree', async ({ mount, page }) => {
   const newChildItem = tree.locator('ix-tree-item').nth(3);
   await expect(newChildItem).toBeVisible();
   await expect(newChildItem).toHaveCSS('padding-left', '32px');
+});
+
+regressionTest('dropdown trigger', async ({ mount, page }) => {
+  const tree = await initializeTree(mount, page);
+
+  await tree.evaluate(
+    (t) =>
+      ((t as HTMLIxTreeElement).renderItem = (
+        _index,
+        item,
+        _dataList,
+        context,
+        update
+      ) => {
+        const el = document.createElement('ix-tree-item');
+        const treeItem = item as TreeItem<unknown>;
+        el.hasChildren = treeItem.hasChildren;
+        el.context = context[treeItem.id];
+        el.id = `trigger-${treeItem.id}`;
+
+        const div = document.createElement('div');
+        div.style.display = 'flex';
+
+        const name = document.createElement('span');
+        const dd = document.createElement('ix-dropdown');
+        const ddItem = document.createElement('ix-dropdown-item');
+        ddItem.innerHTML = 'Action 1';
+        dd.trigger = `trigger-${treeItem.id}`;
+
+        div.appendChild(name);
+        div.appendChild(dd);
+        dd.appendChild(ddItem);
+
+        name.innerText = treeItem.id;
+
+        el.appendChild(div);
+
+        update((updateTreeItem) => {
+          name.innerText = updateTreeItem.data.name;
+        });
+
+        return el;
+      })
+  );
+
+  const root = tree.locator('ix-tree-item').first();
+  await root.locator('.icon-toggle-container').click();
+
+  const item1 = tree.locator('ix-tree-item').nth(1);
+  const dropdown1 = item1.locator('ix-dropdown');
+  await item1.click();
+  await expect(dropdown1).toBeVisible();
+
+  const item2 = tree.locator('ix-tree-item').nth(2);
+  const dropdown2 = item2.locator('ix-dropdown');
+  await item2.click();
+  await expect(dropdown2).toBeVisible();
 });

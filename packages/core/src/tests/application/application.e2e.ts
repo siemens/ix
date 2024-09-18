@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest, test, viewPorts } from '@utils/test';
+import { regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('basic navigation large', () => {
   regressionTest('basic', async ({ page }) => {
@@ -165,7 +165,7 @@ regressionTest.describe('basic navigation mobile', () => {
     });
   });
 
-  test('mobile expanded overlay', async ({ page, mount }) => {
+  regressionTest('mobile expanded overlay', async ({ page, mount }) => {
     await mount(
       `
       <ix-application>
@@ -230,7 +230,9 @@ regressionTest.describe('application-switch', () => {
   regressionTest('modal', async ({ page }) => {
     await page.goto('application/application-switch');
 
-    const appSwitchButton = page.getByRole('button', { name: 'Apps' });
+    const appSwitchButton = page.locator('ix-application-header .app-switch');
+
+    expect(appSwitchButton).toBeVisible();
     await appSwitchButton.click();
 
     await page.waitForTimeout(1000);

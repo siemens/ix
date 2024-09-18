@@ -10,7 +10,7 @@
     "deploy:ios": "pnpm build && cap run ios",
     "preview": "vite preview",
     "test.e2e": "cypress run",
-    "test.unit": "vitest",
+    "test.unit": "vitest run",
     "lint": "eslint"
   },
   "dependencies": {

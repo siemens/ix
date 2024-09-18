@@ -7,18 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
 const DATE_TIME_PICKER_SELECTOR = 'ix-datetime-picker';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-datetime-picker></ix-datetime-picker>`);
   const datePicker = page.locator(DATE_TIME_PICKER_SELECTOR);
   await expect(datePicker).toHaveClass(/hydrated/);
 });
 
-test.describe('datetime picker tests single', () => {
-  test.beforeEach(async ({ mount }) => {
+regressionTest.describe('datetime picker tests single', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(
       `
       <ix-datetime-picker
@@ -33,7 +33,7 @@ test.describe('datetime picker tests single', () => {
     );
   });
 
-  test('increment time units', async ({ page }) => {
+  regressionTest('increment time units', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     const timeChangeEvent = page.evaluate(() => {
@@ -53,7 +53,7 @@ test.describe('datetime picker tests single', () => {
     expect(await timeChangeEvent).toBeTruthy;
   });
 
-  test('change date', async ({ page }) => {
+  regressionTest('change date', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
     const dateChangeEvent = page.evaluate(() => {

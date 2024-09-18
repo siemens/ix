@@ -14,11 +14,17 @@ import {
   EventEmitter,
   h,
   Host,
+  Listen,
   Prop,
   State,
+  Watch,
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { hasSlottedElements } from '../utils/shadow-dom';
+import {
+  iconChevronDownSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-group',
@@ -87,6 +93,13 @@ export class Group {
 
   private observer: MutationObserver = null!;
 
+  @Watch('selected')
+  selectedChanged(newSelected: boolean) {
+    if (newSelected === false) {
+      this.changeItemIndex();
+    }
+  }
+
   get dropdownItems() {
     return Array.from(
       this.hostElement.querySelectorAll('ix-group-dropdown-item')
@@ -104,38 +117,59 @@ export class Group {
   }
 
   private onExpandClick(event: Event) {
+    const oldCollapsed = this.collapsed;
     this.collapsed = !this.collapsed;
-
-    this.collapsedChanged.emit(this.collapsed);
+    const { defaultPrevented } = this.collapsedChanged.emit(this.collapsed);
     event.stopPropagation();
+
+    if (defaultPrevented) {
+      this.collapsed = oldCollapsed;
+    }
   }
 
   private onHeaderClick(event: Event) {
-    this.setGroupSelection(!this.selected);
-
     if (this.suppressHeaderSelection) {
       this.onExpandClick(event);
+      return;
+    }
+
+    this.changeHeaderSelection(!this.selected);
+    this.changeItemIndex();
+  }
+
+  private changeHeaderSelection(newSelection: boolean) {
+    const oldIsHeaderSelected = this.selected;
+    const newIsHeaderSelected = newSelection;
+    this.selected = newIsHeaderSelected;
+    const { defaultPrevented } = this.selectGroup.emit(newIsHeaderSelected);
+
+    if (defaultPrevented) {
+      this.selected = oldIsHeaderSelected;
+      return;
     }
   }
 
-  private onItemClick(index?: number) {
+  private changeItemIndex(index?: number) {
+    const oldIndex = this.index;
     const newIndex = index === this.index ? undefined : index;
-    this.selectItem.emit(newIndex);
+
+    if (this.index === newIndex) {
+      return;
+    }
 
     this.index = newIndex;
-
-    if (this.index !== undefined && this.index >= 0) {
-      this.itemSelected = true;
-    } else this.itemSelected = false;
-
-    this.setGroupSelection(false);
-  }
-
-  private setGroupSelection(selection: boolean) {
-    if (!this.suppressHeaderSelection) {
-      this.selected = selection;
-      this.selectGroup.emit(this.selected);
+    const { defaultPrevented } = this.selectItem.emit(newIndex);
+    if (defaultPrevented) {
+      this.index = oldIndex;
+      return;
     }
+
+    const items = this.groupItems;
+    items.forEach((item, i) => {
+      item.selected = i === this.index;
+    });
+
+    this.itemSelected = items.some((item) => item.selected);
   }
 
   private onSlotChange() {
@@ -150,12 +184,6 @@ export class Group {
 
   componentWillRender() {
     this.groupItems.forEach((item, index) => {
-      if (this.selected === true) {
-        item.selected = false;
-        this.index = undefined;
-        this.itemSelected = false;
-        return;
-      }
       item.selected = index === this.index;
       item.index = index;
     });
@@ -165,31 +193,26 @@ export class Group {
     this.observer = createMutationObserver(() => {
       this.slotSize = this.groupItems.length;
     });
-
     if (!this.groupContent) {
       return;
     }
-
     this.observer.observe(this.groupContent, {
       childList: true,
     });
-
-    this.groupContent?.addEventListener(
-      'selectedChanged',
-      (evt: CustomEvent<HTMLIxGroupItemElement>) => {
-        if (evt.detail.suppressSelection) {
-          evt.stopPropagation();
-          return;
-        }
-
-        this.onItemClick(evt.detail.index);
-      }
-    );
   }
 
   disconnectedCallback() {
     if (this.observer) {
       this.observer.disconnect();
+    }
+  }
+
+  @Listen('selectedChanged')
+  onItemClicked(event: CustomEvent) {
+    if (event.target instanceof HTMLElement) {
+      const item = event.target as HTMLIxGroupItemElement;
+      const index = this.groupItems.indexOf(item);
+      this.changeItemIndex(index);
     }
   }
 
@@ -222,7 +245,7 @@ export class Group {
                   hidden: !this.showExpandCollapsedIcon,
                 }}
                 name={
-                  this.collapsed ? 'chevron-right-small' : 'chevron-down-small'
+                  this.collapsed ? iconChevronRightSmall : iconChevronDownSmall
                 }
                 onClick={(e) => this.onExpandClick(e)}
               ></ix-icon>

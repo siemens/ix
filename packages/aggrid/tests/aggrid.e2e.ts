@@ -35,7 +35,7 @@ regressionTest.describe('aggrid', () => {
   regressionTest('editor', async ({ page }) => {
     await page.goto('basic.html');
 
-    const editorCellHandle = await page.waitForSelector('.ag-cell-not-inline-editing[col-id="price"]');
+    const editorCellHandle = page.locator('.ag-cell-not-inline-editing[col-id="price"]').nth(0);
     await editorCellHandle.dblclick();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

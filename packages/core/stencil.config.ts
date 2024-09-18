@@ -18,11 +18,25 @@ import autoprefixer from 'autoprefixer';
 import fs from 'fs';
 import path from 'path';
 
-const copyAssets = [
+const corePackageName = '@siemens/ix';
+
+const icons = [
   {
-    src: './../../../node_modules/@siemens/ix-icons/dist',
-    dest: 'build/ix-icons',
+    src: path.join(__dirname, 'node_modules', '@siemens', 'ix-icons', 'dist'),
+    dest: path.join(__dirname, 'www', 'build', 'ix-icons', 'dist'),
   },
+  {
+    src: path.join(__dirname, 'node_modules', '@siemens', 'ix-icons', 'loader'),
+    dest: path.join(__dirname, 'www', 'build', 'ix-icons', 'loader'),
+  },
+  {
+    src: path.join(__dirname, 'node_modules', '@siemens', 'ix-icons', 'svg'),
+    dest: path.join(__dirname, 'www', 'svg'),
+  },
+];
+
+const copyAssets = [
+  ...icons,
   {
     src: './../../../node_modules/bootstrap',
     dest: 'build/bootstrap',
@@ -43,13 +57,47 @@ try {
   console.warn('No additional theme fround');
 }
 
+function getAngularConfig() {
+  const excludeComponents = ['ix-playground-internal', 'ix-tree', 'ix-icon'];
+  const config = [
+    angularOutputTarget({
+      componentCorePackage: corePackageName,
+      directivesProxyFile: '../angular/src/components.ts',
+      directivesArrayFile: '../angular/src/declare-components.ts',
+      valueAccessorConfigs: [
+        {
+          elementSelectors:
+            'ix-select[ngModel],ix-select[formControlName],ix-select[formControl]',
+          event: 'valueChange',
+          targetAttr: 'value',
+          type: 'select',
+        },
+        {
+          elementSelectors:
+            'ix-toggle[ngModel],ix-toggle[formControlName],ix-toggle[formControl]',
+          event: 'checkedChange',
+          targetAttr: 'checked',
+          type: 'boolean',
+        },
+      ],
+      excludeComponents,
+      outputType: 'component',
+    }),
+    angularOutputTarget({
+      componentCorePackage: corePackageName,
+      directivesProxyFile: '../angular/standalone/src/directives/proxies.ts',
+      excludeComponents,
+      outputType: 'standalone',
+    }),
+  ];
+
+  return config;
+}
+
 export const config: Config = {
   globalScript: './src/setup.ts',
   extras: {
-    appendChildSlotFix: true,
-    slotChildNodesFix: true,
     enableImportInjection: true,
-    scopedSlotTextContentFix: true,
   },
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],
@@ -70,37 +118,16 @@ export const config: Config = {
   ],
   outputTargets: [
     vueOutputTarget({
-      componentCorePackage: '@siemens/ix',
+      componentCorePackage: corePackageName,
       proxiesFile: '../vue/src/components.ts',
       includeImportCustomElements: true,
       includePolyfills: false,
       includeDefineCustomElements: false,
       excludeComponents: ['ix-playground-internal', 'ix-icon'],
     }),
-    angularOutputTarget({
-      componentCorePackage: '@siemens/ix',
-      directivesProxyFile: '../angular/src/components.ts',
-      directivesArrayFile: '../angular/src/declare-components.ts',
-      excludeComponents: ['ix-playground-internal', 'ix-tree', 'ix-icon'],
-      valueAccessorConfigs: [
-        {
-          elementSelectors:
-            'ix-select[ngModel],ix-select[formControlName],ix-select[formControl]',
-          event: 'valueChange',
-          targetAttr: 'value',
-          type: 'select',
-        },
-        {
-          elementSelectors:
-            'ix-toggle[ngModel],ix-toggle[formControlName],ix-toggle[formControl]',
-          event: 'checkedChange',
-          targetAttr: 'checked',
-          type: 'boolean',
-        },
-      ],
-    }),
+    ...getAngularConfig(),
     reactOutputTarget({
-      componentCorePackage: '@siemens/ix',
+      componentCorePackage: corePackageName,
       proxiesFile: '../react/src/components.ts',
       includeImportCustomElements: true,
       includePolyfills: false,

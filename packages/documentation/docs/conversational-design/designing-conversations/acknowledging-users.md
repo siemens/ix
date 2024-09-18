@@ -8,19 +8,15 @@ title: Acknowledging users
 In conversations, humans like to be acknowledged to shows the other person is listening and understands the situation. When a chatbot acknowledges user input, it prompts users to continue interacting, boosts the overall user experience, and makes interactions more authentic. 
 ## Examples 
 
-**User:** Can you provide more details about our pricing plans?  
-**Chatbot:** Certainly! We have three pricing tiers: Basic, Premium, and Enterprise.
+![Acknowledging users example 1](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4329&t=etx1DcSbA7VDx5xD-4) 
 
-**User:** Is there a trial period for your software?  
-**Chatbot:** Of course! You can try our software free for 14 days.
+![Acknowledging users example 2](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4401&t=etx1DcSbA7VDx5xD-4)
 
-**User:** Can I customize the dashboard layout?  
-**Chatbot:** Absolutely! You can rearrange widgets and choose your preferred layout.
+![Acknowledging users example 3](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4404&t=etx1DcSbA7VDx5xD-4)
 
 In all these examples, the chatbot acknowledges the input and then continues with its response, building user confidence that the chatbot understood their query correctly. 
 
-**User:** Can you create a maintenance schedule in August for all ball valves within the refinery located in Hamburg?   
-**Chatbot:** Sure. Give me a moment. 
+![Acknowledging users example 4](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4407&t=etx1DcSbA7VDx5xD-4)
 
 Here, although there may be some lag time between the query and the response, the chatbot acknowledges the request and then signals they are working on the task. 
 

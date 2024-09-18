@@ -44,9 +44,7 @@ export class MenuSettings {
    */
   @Prop() label = 'Settings';
 
-  /**
-   * Internal
-   */
+  /** @internal */
   @Prop() show = false;
 
   /**

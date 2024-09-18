@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.17.2",
+    "version": "4.19.2",
     "typescriptVersion": "5.4.5"
   },
   "components": [
@@ -734,8 +734,13 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Supported layouts e.g ['sm', 'md']",
-          "docsTags": [],
+          "docs": "Supported layouts",
+          "docsTags": [
+            {
+              "name": "example",
+              "text": "['sm', 'md']"
+            }
+          ],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
@@ -2165,7 +2170,7 @@
               "type": "{ [id: string]: { label: string; options: string[]; }; }"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2213,7 +2218,7 @@
               "type": "FilterState"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2229,6 +2234,7 @@
           "reflectToAttr": false,
           "docs": "Allows to hide the icon inside the text input.\nDefaults to false",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -2272,13 +2278,12 @@
           "reflectToAttr": false,
           "docs": "The icon next to the actual text input\nDefaults to 'search'",
           "docsTags": [],
-          "default": "'search'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2342,7 +2347,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2441,7 +2446,7 @@
               "type": "string[]"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -6010,30 +6015,7 @@
           "required": false
         }
       ],
-      "methods": [
-        {
-          "name": "emitItemClick",
-          "returns": {
-            "type": "Promise<void>",
-            "docs": ""
-          },
-          "complexType": {
-            "signature": "() => Promise<void>",
-            "parameters": [],
-            "references": {
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
-              }
-            },
-            "return": "Promise<void>"
-          },
-          "signature": "emitItemClick() => Promise<void>",
-          "parameters": [],
-          "docs": "Internal usage only",
-          "docsTags": []
-        }
-      ],
+      "methods": [],
       "events": [],
       "styles": [],
       "slots": [],
@@ -6593,13 +6575,12 @@
           "reflectToAttr": false,
           "docs": "Search icon",
           "docsTags": [],
-          "default": "'search'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7207,7 +7188,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "selectedChanged",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/group",
@@ -9272,28 +9259,6 @@
           "required": false
         },
         {
-          "name": "enableMapExpand",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "enable-map-expand",
-          "reflectToAttr": false,
-          "docs": "Internal",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "enableSettings",
           "type": "boolean",
           "complexType": {
@@ -9889,28 +9854,6 @@
           ],
           "optional": false,
           "required": false
-        },
-        {
-          "name": "show",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show",
-          "reflectToAttr": false,
-          "docs": "Internal",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
         }
       ],
       "methods": [],
@@ -10055,28 +9998,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "expanded",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "expanded",
-          "reflectToAttr": false,
-          "docs": "Internal",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -10939,28 +10860,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "show",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "show",
-          "reflectToAttr": false,
-          "docs": "Internal",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -12573,7 +12472,7 @@
           "name": "icon",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -12587,7 +12486,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12779,7 +12678,7 @@
           "name": "icon",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -12788,13 +12687,12 @@
           "reflectToAttr": false,
           "docs": "Card icon",
           "docsTags": [],
-          "default": "undefined",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -14069,13 +13967,12 @@
           "reflectToAttr": false,
           "docs": "Button icon",
           "docsTags": [],
-          "default": "''",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -14096,7 +13993,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -14191,13 +14088,12 @@
           "reflectToAttr": false,
           "docs": "Icon of the button on the right",
           "docsTags": [],
-          "default": "'context-menu'",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16570,7 +16466,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Clicked",
+          "docs": "Click on item not on the expand/collapse icon",
           "docsTags": []
         },
         {

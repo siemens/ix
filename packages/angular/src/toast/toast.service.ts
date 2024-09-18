@@ -13,7 +13,7 @@ import {
   toast,
   ToastConfig as IxToastConfig,
 } from '@siemens/ix';
-import { ToastConfig } from './toast.config';
+import { ToastConfig } from '@siemens/ix-angular/common';
 
 @Injectable({
   providedIn: 'root',
