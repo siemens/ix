@@ -2,17 +2,21 @@ The custom field is a wrapper component that can host any other forms component.
 
 ## Anatomy
 
+![Custom field](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3303-3291&t=DlxXBQ9vTnyDcIUI-4 )
 
-
+1. Label
+2. Helper text/ Feedback text
+3. Form components
+4. Required indicator
 ## Options
 
-- **Label:** see Form Field
-- **Helper text**: See Form field
-- **Feedback text**: See Form field
+- **Label:** Refer to the form field chapter for detailed guidelines.
+- **Helper text**: Refer to the form field chapter for detailed guidelines.
+- **Feedback text**: Refer to the form field chapter for detailed guidelines.
 - **Customization**: Add form components to create the use case you need. E.g. for file upload add an input field with an readOnly state and an icon button.
 ## Behavior in context
 
-- **Validation:** Refer to the validation chapter for detailed guidelines
+- **Validation:** Refer to the validation chapter for detailed guidelines.
 ## States
 
 The states depend on the custom field component that was included. The custom field itself does not have any states.
