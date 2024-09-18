@@ -67,7 +67,7 @@ export class EmptyState {
         <div class="emptyState__content">
           <div class="content__label">
             <ix-typography
-              variant={this.layout === 'large' ? 'display-large' : 'default'}
+              format={this.layout === 'large' ? 'display' : 'body'}
             >
               {this.header}
             </ix-typography>

@@ -380,7 +380,7 @@ export class Tooltip implements IxOverlayComponent {
         <div class="tooltip-container">
           <div class={'tooltip-title'}>
             <slot name="title-icon"></slot>
-            <ix-typography variant="default-title">
+            <ix-typography format="h5">
               {this.titleContent}
               <slot name="title-content"></slot>
             </ix-typography>
