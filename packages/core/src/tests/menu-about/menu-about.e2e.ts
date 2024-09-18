@@ -27,7 +27,7 @@ regressionTest.describe('menu-about', () => {
     await page.goto('menu-about/active-tab-label');
 
     await page.locator('#aboutAndLegal').click();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(2000);
 
     await page.getByText('Content 2').click();
 

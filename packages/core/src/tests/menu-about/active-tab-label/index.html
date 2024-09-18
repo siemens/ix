@@ -6,32 +6,32 @@ SPDX-License-Identifier: MIT
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-  />
-  <title>Stencil Component Starter</title>
-</head>
-<body>
-<ix-basic-navigation>
-  <ix-menu>
-    <ix-menu-item>Item 1</ix-menu-item>
-    <ix-menu-item>Item 2</ix-menu-item>
-    <ix-menu-item>Item 3</ix-menu-item>
-    <ix-menu-about active-tab-label="Tab 2">
-      <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
-      <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
-    </ix-menu-about>
-  </ix-menu>
-</ix-basic-navigation>
-<script>
-  document.querySelector('ix-basic-navigation').breakpoints = [
-    'small',
-    'medium',
-  ];
-</script>
-<script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <ix-basic-navigation>
+      <ix-menu>
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+        <ix-menu-item>Item 3</ix-menu-item>
+        <ix-menu-about active-tab-label="Tab 2">
+          <ix-menu-about-item label="Tab 1">Content 1</ix-menu-about-item>
+          <ix-menu-about-item label="Tab 2">Content 2</ix-menu-about-item>
+        </ix-menu-about>
+      </ix-menu>
+    </ix-basic-navigation>
+    <script>
+      document.querySelector('ix-basic-navigation').breakpoints = [
+        'small',
+        'medium',
+      ];
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
 </html>
