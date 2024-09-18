@@ -142,7 +142,7 @@ regressionTest.describe('pane', () => {
     await expect(page).toHaveScreenshot();
   });
 
-  regressionTest('layout, inline, collapsed, relative', async ({ page }) => {
+  regressionTest('layout, inline, collapsed, responsive', async ({ page }) => {
     await page.goto('panes/layout-responsive');
     await page.waitForTimeout(1000);
 
