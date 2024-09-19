@@ -182,6 +182,10 @@ export class Modal {
    */
   @Method()
   async dismissModal<T = any>(reason?: T) {
+    if (!this.modalVisible) {
+      return;
+    }
+
     let allowDismiss = true;
 
     if (this.beforeDismiss !== undefined) {
@@ -213,7 +217,12 @@ export class Modal {
    */
   @Method()
   async closeModal<T = any>(reason: T) {
+    if (!this.modalVisible) {
+      return;
+    }
+
     this.slideOutModal(() => {
+      this.modalVisible = false;
       this.dialog.close(
         JSON.stringify(
           {
@@ -255,7 +264,12 @@ export class Modal {
               modal: true,
               [`modal-size-${this.size}`]: true,
             }}
+            onClose={() => this.dismissModal()}
             onClick={(event) => this.onModalClick(event)}
+            onCancel={(e) => {
+              e.preventDefault();
+              this.dismissModal();
+            }}
           >
             <slot></slot>
           </dialog>
