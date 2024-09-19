@@ -255,12 +255,7 @@ export class Modal {
               modal: true,
               [`modal-size-${this.size}`]: true,
             }}
-            onClose={() => this.dismissModal()}
             onClick={(event) => this.onModalClick(event)}
-            onCancel={(e) => {
-              e.preventDefault();
-              this.dismissModal();
-            }}
           >
             <slot></slot>
           </dialog>

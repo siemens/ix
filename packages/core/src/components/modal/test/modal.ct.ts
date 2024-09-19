@@ -149,3 +149,52 @@ test.describe('closeOnBackdropClick = true', () => {
     await expect(page.locator('ix-modal dialog')).toBeVisible();
   });
 });
+
+test('emits one event on dismiss', async ({ mount, page }) => {
+  await mount(``);
+
+  await page.evaluate(() => {
+    return new Promise<void>((resolve) => {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.innerHTML = `
+        import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+        window.showModal = ix.showModal;
+      `;
+      document.body.appendChild(script);
+      resolve();
+    });
+  });
+
+  await page.waitForTimeout(1000);
+
+  await page.evaluate(() => {
+    const elm = document.createElement('ix-modal');
+    elm.innerHTML = `
+      <ix-modal-header>Title</ix-modal-header>
+      <ix-modal-content>Content</ix-modal-header>
+    `;
+
+    window.showModal({
+      content: elm,
+    });
+  });
+  const dialog = page.locator('ix-modal dialog');
+  await expect(dialog).toBeVisible();
+  const iconButton = page.locator('ix-icon-button');
+
+  const eventCountHandler = await page.evaluateHandle(() => {
+    return { count: 0 };
+  });
+
+  await dialog.evaluate((elm, eventCountHandler) => {
+    elm.addEventListener('close', () => {
+      eventCountHandler.count++;
+    });
+  }, eventCountHandler);
+
+  await iconButton.click();
+  await expect(dialog).not.toBeVisible();
+
+  expect((await eventCountHandler.jsonValue()).count).toBe(1);
+});
