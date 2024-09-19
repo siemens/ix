@@ -150,7 +150,7 @@ test.describe('closeOnBackdropClick = true', () => {
   });
 });
 
-test('emits one event on dismiss', async ({ mount, page }) => {
+test('emits one event on close', async ({ mount, page }) => {
   await mount(``);
 
   await page.evaluate(() => {
