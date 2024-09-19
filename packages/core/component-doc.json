@@ -4361,7 +4361,7 @@
       "fileName": "date-field.tsx",
       "readmePath": "src/components/date-field/readme.md",
       "usagesDir": "src/components/date-field/usage",
-      "tag": "ix-date-field",
+      "tag": "ix-date-input",
       "overview": "",
       "usage": {},
       "docs": "",
@@ -4384,7 +4384,7 @@
         "ix-date-picker"
       ],
       "dependencyGraph": {
-        "ix-date-field": [
+        "ix-date-input": [
           "ix-icon-button",
           "ix-field-wrapper",
           "ix-dropdown",
@@ -4841,7 +4841,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-date-field",
+        "ix-date-input",
         "ix-datetime-picker"
       ],
       "dependencies": [
@@ -4866,7 +4866,7 @@
         "ix-date-dropdown": [
           "ix-date-picker"
         ],
-        "ix-date-field": [
+        "ix-date-input": [
           "ix-date-picker"
         ],
         "ix-datetime-picker": [
@@ -6277,7 +6277,7 @@
         "ix-breadcrumb",
         "ix-category-filter",
         "ix-date-dropdown",
-        "ix-date-field",
+        "ix-date-input",
         "ix-date-picker",
         "ix-dropdown-button",
         "ix-menu-avatar",
@@ -6302,7 +6302,7 @@
         "ix-date-dropdown": [
           "ix-dropdown"
         ],
-        "ix-date-field": [
+        "ix-date-input": [
           "ix-dropdown"
         ],
         "ix-date-picker": [
@@ -8792,7 +8792,7 @@
         "ix-category-filter",
         "ix-chip",
         "ix-content-header",
-        "ix-date-field",
+        "ix-date-input",
         "ix-date-picker",
         "ix-drawer",
         "ix-dropdown-button",
@@ -8841,7 +8841,7 @@
         "ix-content-header": [
           "ix-icon-button"
         ],
-        "ix-date-field": [
+        "ix-date-input": [
           "ix-icon-button"
         ],
         "ix-date-picker": [

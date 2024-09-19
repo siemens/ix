@@ -53,7 +53,7 @@ export const config: Config = {
             'ix-input',
             'ix-textarea',
             'ix-number-input',
-            'ix-date-field',
+            'ix-date-input',
           ],
           event: 'valueChange',
           targetAttr: 'value',

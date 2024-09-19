@@ -28,7 +28,7 @@ import { defineCustomElement as defineIxContent } from '@siemens/ix/components/i
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxCustomField } from '@siemens/ix/components/ix-custom-field.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
-import { defineCustomElement as defineIxDateField } from '@siemens/ix/components/ix-date-field.js';
+import { defineCustomElement as defineIxDateInput } from '@siemens/ix/components/ix-date-input.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
@@ -341,7 +341,7 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
 ]);
 
 
-export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField, JSX.IxDateField["value"]>('ix-date-field', defineIxDateField, [
+export const IxDateInput = /*@__PURE__*/ defineContainer<JSX.IxDateInput, JSX.IxDateInput["value"]>('ix-date-input', defineIxDateInput, [
   'name',
   'placeholder',
   'value',

@@ -16,7 +16,7 @@ import {
   IxCheckbox,
   IxCheckboxGroup,
   IxCustomField,
-  IxDateField,
+  IxDateInput,
   IxIcon,
   IxIconButton,
   IxLayoutAuto,
@@ -184,19 +184,19 @@ export default function FormValidation() {
           }}
         ></IxNumberInput>
 
-        <IxDateField
+        <IxDateInput
           label="Begin"
           i18nErrorDateUnparsable="Please enter a valid date"
           {...register('begin')}
-        ></IxDateField>
-        <IxDateField
+        ></IxDateInput>
+        <IxDateInput
           label="End"
           {...register('end')}
           invalidText={errors.end?.message}
           className={clsx({
             'ix-invalid': errors.end,
           })}
-        ></IxDateField>
+        ></IxDateInput>
 
         <IxTextarea
           maxLength={100}

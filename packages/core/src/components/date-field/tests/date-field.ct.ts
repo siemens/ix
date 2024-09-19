@@ -28,14 +28,14 @@ const createDateFieldAccessor = async (dateField: Locator) => {
 };
 
 test('renders', async ({ mount, page }) => {
-  await mount(`<ix-date-field value="2024/05/05"></ix-date-field>`);
-  const dateFieldElement = page.locator('ix-date-field');
+  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+  const dateFieldElement = page.locator('ix-date-input');
   await expect(dateFieldElement).toHaveClass(/hydrated/);
 });
 
 test('select date by open calendar trigger', async ({ mount, page }) => {
-  await mount(`<ix-date-field value="2024/05/05"></ix-date-field>`);
-  const dateFieldElement = page.locator('ix-date-field');
+  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+  const dateFieldElement = page.locator('ix-date-input');
   await expect(dateFieldElement).toHaveClass(/hydrated/);
 
   const dateField = await createDateFieldAccessor(dateFieldElement);
@@ -46,8 +46,8 @@ test('select date by open calendar trigger', async ({ mount, page }) => {
 });
 
 test('select date by focus', async ({ mount, page }) => {
-  await mount(`<ix-date-field value="2024/05/05"></ix-date-field>`);
-  const dateFieldElement = page.locator('ix-date-field');
+  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+  const dateFieldElement = page.locator('ix-date-input');
   await expect(dateFieldElement).toHaveClass(/hydrated/);
 
   const dateField = await createDateFieldAccessor(dateFieldElement);
@@ -61,8 +61,8 @@ test('select date by focus', async ({ mount, page }) => {
 });
 
 test('select date by input', async ({ mount, page }) => {
-  await mount(`<ix-date-field value="2024/05/05"></ix-date-field>`);
-  const dateFieldElement = page.locator('ix-date-field');
+  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+  const dateFieldElement = page.locator('ix-date-input');
   await expect(dateFieldElement).toHaveClass(/hydrated/);
 
   const dateField = await createDateFieldAccessor(dateFieldElement);
@@ -85,8 +85,8 @@ test('select date by input', async ({ mount, page }) => {
 });
 
 test('select date by input with invalid date', async ({ mount, page }) => {
-  await mount(`<ix-date-field value="2024/05/05"></ix-date-field>`);
-  const dateFieldElement = page.locator('ix-date-field');
+  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+  const dateFieldElement = page.locator('ix-date-input');
   await expect(dateFieldElement).toHaveClass(/hydrated/);
 
   const dateField = await createDateFieldAccessor(dateFieldElement);
@@ -107,9 +107,9 @@ test('select date by input with invalid date - i18n', async ({
   page,
 }) => {
   await mount(
-    `<ix-date-field value="2024/05/05" i18n-error-date-unparsable="Datum nicht korrekt!"></ix-date-field>`
+    `<ix-date-input value="2024/05/05" i18n-error-date-unparsable="Datum nicht korrekt!"></ix-date-input>`
   );
-  const dateFieldElement = page.locator('ix-date-field');
+  const dateFieldElement = page.locator('ix-date-input');
   await expect(dateFieldElement).toHaveClass(/hydrated/);
 
   const dateField = await createDateFieldAccessor(dateFieldElement);
@@ -126,8 +126,8 @@ test('select date by input with invalid date - i18n', async ({
 });
 
 test('required', async ({ mount, page }) => {
-  await mount(`<ix-date-field required label="MyLabel"></ix-date-field>`);
-  const dateFieldElement = page.locator('ix-date-field');
+  await mount(`<ix-date-input required label="MyLabel"></ix-date-input>`);
+  const dateFieldElement = page.locator('ix-date-input');
   await expect(dateFieldElement).toHaveAttribute('required');
 
   await expect(dateFieldElement.locator('ix-field-label')).toHaveText(
@@ -137,14 +137,14 @@ test('required', async ({ mount, page }) => {
   await expect(dateFieldElement).toHaveClass(/ix-invalid--required/);
 });
 
-test(`form-ready - ix-date-field`, async ({ mount, page }) => {
+test(`form-ready - ix-date-input`, async ({ mount, page }) => {
   await mount(
-    `<form><ix-date-field name="my-field-name"></ix-date-field></form>`
+    `<form><ix-date-input name="my-field-name"></ix-date-input></form>`
   );
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const input = page.locator('ix-date-field').locator('input');
+  const input = page.locator('ix-date-input').locator('input');
   await input.fill('2024/05/05');
   await input.blur();
 
@@ -152,9 +152,9 @@ test(`form-ready - ix-date-field`, async ({ mount, page }) => {
   expect(formData).toBe('2024/05/05');
 });
 
-test(`form-ready - ix-date-field initial value`, async ({ mount, page }) => {
+test(`form-ready - ix-date-input initial value`, async ({ mount, page }) => {
   await mount(
-    `<form><ix-date-field name="my-field-name" value="2024/12/12"></ix-date-field></form>`
+    `<form><ix-date-input name="my-field-name" value="2024/12/12"></ix-date-input></form>`
   );
 
   const formElement = page.locator('form');

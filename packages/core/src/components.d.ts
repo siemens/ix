@@ -707,7 +707,7 @@ export namespace Components {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface IxDateField {
+    interface IxDateInput {
         /**
           * disabled attribute
          */
@@ -3218,9 +3218,9 @@ export interface IxDateDropdownCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxDateDropdownElement;
 }
-export interface IxDateFieldCustomEvent<T> extends CustomEvent<T> {
+export interface IxDateInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLIxDateFieldElement;
+    target: HTMLIxDateInputElement;
 }
 export interface IxDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -3756,7 +3756,7 @@ declare global {
         prototype: HTMLIxDateDropdownElement;
         new (): HTMLIxDateDropdownElement;
     };
-    interface HTMLIxDateFieldElementEventMap {
+    interface HTMLIxDateInputElementEventMap {
         "valueChange": string;
         "validityStateChange": DateFieldValidityState;
         "ixFocus": void;
@@ -3766,19 +3766,19 @@ declare global {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface HTMLIxDateFieldElement extends Components.IxDateField, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxDateFieldElementEventMap>(type: K, listener: (this: HTMLIxDateFieldElement, ev: IxDateFieldCustomEvent<HTMLIxDateFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLIxDateInputElement extends Components.IxDateInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxDateInputElementEventMap>(type: K, listener: (this: HTMLIxDateInputElement, ev: IxDateInputCustomEvent<HTMLIxDateInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxDateFieldElementEventMap>(type: K, listener: (this: HTMLIxDateFieldElement, ev: IxDateFieldCustomEvent<HTMLIxDateFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxDateInputElementEventMap>(type: K, listener: (this: HTMLIxDateInputElement, ev: IxDateInputCustomEvent<HTMLIxDateInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLIxDateFieldElement: {
-        prototype: HTMLIxDateFieldElement;
-        new (): HTMLIxDateFieldElement;
+    var HTMLIxDateInputElement: {
+        prototype: HTMLIxDateInputElement;
+        new (): HTMLIxDateInputElement;
     };
     interface HTMLIxDatePickerElementEventMap {
         "dateChange": DateChangeEvent;
@@ -5000,7 +5000,7 @@ declare global {
         "ix-css-grid-item": HTMLIxCssGridItemElement;
         "ix-custom-field": HTMLIxCustomFieldElement;
         "ix-date-dropdown": HTMLIxDateDropdownElement;
-        "ix-date-field": HTMLIxDateFieldElement;
+        "ix-date-input": HTMLIxDateInputElement;
         "ix-date-picker": HTMLIxDatePickerElement;
         "ix-date-time-card": HTMLIxDateTimeCardElement;
         "ix-datetime-picker": HTMLIxDatetimePickerElement;
@@ -5765,7 +5765,7 @@ declare namespace LocalJSX {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface IxDateField {
+    interface IxDateInput {
         /**
           * disabled attribute
          */
@@ -5798,16 +5798,16 @@ declare namespace LocalJSX {
           * name of the input element
          */
         "name"?: string;
-        "onIxBlur"?: (event: IxDateFieldCustomEvent<void>) => void;
-        "onIxFocus"?: (event: IxDateFieldCustomEvent<void>) => void;
+        "onIxBlur"?: (event: IxDateInputCustomEvent<void>) => void;
+        "onIxFocus"?: (event: IxDateInputCustomEvent<void>) => void;
         /**
           * Validation state change event.
          */
-        "onValidityStateChange"?: (event: IxDateFieldCustomEvent<DateFieldValidityState>) => void;
+        "onValidityStateChange"?: (event: IxDateInputCustomEvent<DateFieldValidityState>) => void;
         /**
           * Input change event.
          */
-        "onValueChange"?: (event: IxDateFieldCustomEvent<string>) => void;
+        "onValueChange"?: (event: IxDateInputCustomEvent<string>) => void;
         /**
           * placeholder of the input element
          */
@@ -8455,7 +8455,7 @@ declare namespace LocalJSX {
         "ix-css-grid-item": IxCssGridItem;
         "ix-custom-field": IxCustomField;
         "ix-date-dropdown": IxDateDropdown;
-        "ix-date-field": IxDateField;
+        "ix-date-input": IxDateInput;
         "ix-date-picker": IxDatePicker;
         "ix-date-time-card": IxDateTimeCard;
         "ix-datetime-picker": IxDatetimePicker;
@@ -8623,7 +8623,7 @@ declare module "@stencil/core" {
              * @since 2.5.0
              * @form-ready 2.5.0
              */
-            "ix-date-field": LocalJSX.IxDateField & JSXBase.HTMLAttributes<HTMLIxDateFieldElement>;
+            "ix-date-input": LocalJSX.IxDateInput & JSXBase.HTMLAttributes<HTMLIxDateInputElement>;
             "ix-date-picker": LocalJSX.IxDatePicker & JSXBase.HTMLAttributes<HTMLIxDatePickerElement>;
             "ix-date-time-card": LocalJSX.IxDateTimeCard & JSXBase.HTMLAttributes<HTMLIxDateTimeCardElement>;
             "ix-datetime-picker": LocalJSX.IxDatetimePicker & JSXBase.HTMLAttributes<HTMLIxDatetimePickerElement>;

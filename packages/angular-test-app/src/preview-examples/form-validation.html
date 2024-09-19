@@ -66,17 +66,17 @@ LICENSE file in the root directory of this source tree.
       warningText="A threshold greater than 5 is not recommended"
     ></ix-number-input>
 
-    <ix-date-field
+    <ix-date-input
       formControlName="begin"
       label="Begin"
       i18nErrorDateUnparsable="Please enter a valid date"
       invalidText="ERROR!"
       >
       <ix-icon slot="start" name="calendar" size="16"></ix-icon>
-    </ix-date-field>
-    <ix-date-field formControlName="end" label="End" [invalidText]="beginErrorText">
+    </ix-date-input>
+    <ix-date-input formControlName="end" label="End" [invalidText]="beginErrorText">
       <ix-icon slot="end" name="calendar" size="16"></ix-icon>
-    </ix-date-field>
+    </ix-date-input>
 
     <ix-textarea
       max-length="100"

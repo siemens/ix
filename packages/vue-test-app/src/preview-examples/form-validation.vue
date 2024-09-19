@@ -10,7 +10,7 @@
 <script lang="ts">
 import {
   IxCustomField,
-  IxDateField,
+  IxDateInput,
   IxIcon,
   IxIconButton,
   IxNumberInput,
@@ -44,7 +44,7 @@ export default {
     IxRadioGroup,
     IxNumberInput,
     IxTypography,
-    IxDateField,
+    IxDateInput,
     IxTextarea,
     IxCustomField,
     IxIconButton,
@@ -204,18 +204,18 @@ export default {
         showStepperButtons
       ></IxNumberInput>
 
-      <IxDateField
+      <IxDateInput
         v-model="begin"
         label="Begin"
         i18n-error-date-unparsable="Please enter a valid date"
-      ></IxDateField>
+      ></IxDateInput>
 
-      <IxDateField
+      <IxDateInput
         v-model="end"
         label="End"
         :class="{ 'ix-invalid': v$.end.isEnd.$invalid }"
         :invalid-text="v$.end.isEnd.$message"
-      ></IxDateField>
+      ></IxDateInput>
 
       <IxTextarea
         v-model="comment"

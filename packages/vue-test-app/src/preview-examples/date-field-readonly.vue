@@ -8,9 +8,9 @@
 -->
 
 <script setup lang="ts">
-import { IxDateField } from '@siemens/ix-vue';
+import { IxDateInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxDateField value="1970/01/01" readonly></IxDateField>
+  <IxDateInput value="1970/01/01" readonly></IxDateInput>
 </template>

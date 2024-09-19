@@ -7,12 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxDateField } from '@siemens/ix-react';
+import { IxDateInput } from '@siemens/ix-react';
 
 export default () => {
   return (
     <>
-      <IxDateField value="1970/01/01" disabled></IxDateField>
+      <IxDateInput value="1970/01/01" disabled></IxDateInput>
     </>
   );
 };

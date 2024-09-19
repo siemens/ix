@@ -44,13 +44,13 @@ export type DateFieldValidityState = {
  * @form-ready 2.5.0
  */
 @Component({
-  tag: 'ix-date-field',
+  tag: 'ix-date-input',
   styleUrl: 'date-field.scss',
   shadow: true,
   formAssociated: true,
 })
-export class DateField implements IxInputFieldComponent<string> {
-  @Element() hostElement!: HTMLIxDateFieldElement;
+export class DateInput implements IxInputFieldComponent<string> {
+  @Element() hostElement!: HTMLIxDateInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
