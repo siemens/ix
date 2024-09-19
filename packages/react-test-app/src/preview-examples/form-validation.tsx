@@ -20,7 +20,7 @@ import {
   IxIcon,
   IxIconButton,
   IxLayoutAuto,
-  IxNumberField,
+  IxNumberInput,
   IxRadio,
   IxRadioGroup,
   IxSelect,
@@ -139,7 +139,7 @@ export default function FormValidation() {
           ))}
         </IxRadioGroup>
 
-        <IxNumberField
+        <IxNumberInput
           label="Preferred room size"
           className="ix-info"
           infoText="You can adjust the room size"
@@ -149,7 +149,7 @@ export default function FormValidation() {
           <IxTypography slot="end" color="weak" className='padding-right'>
             m<sup>2</sup>
           </IxTypography>
-        </IxNumberField>
+        </IxNumberInput>
 
         <IxSelect
           label="Travel option"
@@ -161,16 +161,16 @@ export default function FormValidation() {
           <IxSelectItem value="3" label="Option 3"></IxSelectItem>
         </IxSelect>
 
-        <IxNumberField
+        <IxNumberInput
           label="Threshold limit A"
           data-colspan="1"
           helperText="Max threshold is 5"
           {...register('thresholdLimitA', { required: false, max: '5' })}
           className={clsx({ 'ix-invalid': errors.thresholdLimitA })}
           invalidText={errors.thresholdLimitA && errors.thresholdLimitA.message}
-        ></IxNumberField>
+        ></IxNumberInput>
 
-        <IxNumberField
+        <IxNumberInput
           label="Threshold limit B"
           data-colspan="1"
           showStepperButtons
@@ -182,7 +182,7 @@ export default function FormValidation() {
           onValueChange={({ detail }) => {
             setShowWarning(detail > 5);
           }}
-        ></IxNumberField>
+        ></IxNumberInput>
 
         <IxDateField
           label="Begin"

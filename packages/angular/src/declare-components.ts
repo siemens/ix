@@ -75,7 +75,7 @@ export const DIRECTIVES = [
   d.IxModalExample,
   d.IxModalFooter,
   d.IxModalHeader,
-  d.IxNumberField,
+  d.IxNumberInput,
   d.IxPagination,
   d.IxPane,
   d.IxPaneLayout,

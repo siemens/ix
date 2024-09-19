@@ -8,9 +8,9 @@
 -->
 
 <script setup lang="ts">
-import { IxNumberField } from '@siemens/ix-vue';
+import { IxNumberInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxNumberField readonly></IxNumberField>
+  <IxNumberInput readonly></IxNumberInput>
 </template>

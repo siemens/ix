@@ -13,7 +13,7 @@ import {
   IxDateField,
   IxIcon,
   IxIconButton,
-  IxNumberField,
+  IxNumberInput,
   IxRadio,
   IxRadioGroup,
   IxTextarea,
@@ -42,7 +42,7 @@ export default {
     IxInput,
     IxRadio,
     IxRadioGroup,
-    IxNumberField,
+    IxNumberInput,
     IxTypography,
     IxDateField,
     IxTextarea,
@@ -157,14 +157,14 @@ export default {
         ></IxRadio>
       </IxRadioGroup>
 
-      <IxNumberField
+      <IxNumberInput
         label="Preferred room size"
         className="ix-info"
         infoText="You can adjust the room size"
       >
         <IxIcon slot="start" :name="iconBezierCurve" size="16"></IxIcon>
         <IxTypography slot="end" color="weak" className="padding-right"> m<sup>2</sup> </IxTypography>
-      </IxNumberField>
+      </IxNumberInput>
 
       <IxSelect
         v-model="travelOption"
@@ -186,23 +186,23 @@ export default {
         ></IxSelectItem>
       </IxSelect>
 
-      <IxNumberField
+      <IxNumberInput
         label="Threshold limit A"
         data-colspan="1"
         helper-text="Max threshold is 5"
         invalid-text="Not higher then 5 is allowed"
         v-model="limitA"
         :class="{ 'ix-invalid': limitA > 5 }"
-      ></IxNumberField>
+      ></IxNumberInput>
 
-      <IxNumberField
+      <IxNumberInput
         label="Threshold limit B"
         data-colspan="1"
         :class="{ 'ix-warning': warningLimitB }"
         warning-text="A threshold greater than 5 is not recommended"
         v-model="limitB"
         showStepperButtons
-      ></IxNumberField>
+      ></IxNumberInput>
 
       <IxDateField
         v-model="begin"

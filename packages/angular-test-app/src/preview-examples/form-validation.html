@@ -32,12 +32,12 @@ LICENSE file in the root directory of this source tree.
       ></ix-radio>
     </ix-radio-group>
 
-    <ix-number-field label="Preferred room size" formControlName="room-size" class="ix-info" infoText="You can adjust the room size">
+    <ix-number-input label="Preferred room size" formControlName="room-size" class="ix-info" infoText="You can adjust the room size">
       <ix-icon slot="start" name="bezier-curve" size="16"></ix-icon>
       <ix-typography slot="end" color="weak" class="padding-right">
         m<sup>2</sup>
       </ix-typography>
-    </ix-number-field>
+    </ix-number-input>
 
     <ix-select
       label="Travel option"
@@ -49,22 +49,22 @@ LICENSE file in the root directory of this source tree.
       <ix-select-item value="3" label="Option 3"></ix-select-item>
     </ix-select>
 
-    <ix-number-field
+    <ix-number-input
       formControlName="thresholdLimitA"
       label="Threshold limit A"
       data-colspan="1"
       helperText="Max threshold is 5"
       [invalidText]="thresholdLimitAErrorText"
-    ></ix-number-field>
+    ></ix-number-input>
 
-    <ix-number-field
+    <ix-number-input
       formControlName="thresholdLimitB"
       label="Threshold limit B"
       data-colspan="1"
       showStepperButtons
       [class.ix-warning]="thresholdLimitBWarning"
       warningText="A threshold greater than 5 is not recommended"
-    ></ix-number-field>
+    ></ix-number-input>
 
     <ix-date-field
       formControlName="begin"

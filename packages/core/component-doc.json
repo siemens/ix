@@ -8811,7 +8811,7 @@
         "ix-message-bar",
         "ix-modal-example",
         "ix-modal-header",
-        "ix-number-field",
+        "ix-number-input",
         "ix-pagination",
         "ix-pane",
         "ix-select",
@@ -8898,7 +8898,7 @@
         "ix-modal-header": [
           "ix-icon-button"
         ],
-        "ix-number-field": [
+        "ix-number-input": [
           "ix-icon-button"
         ],
         "ix-pagination": [
@@ -13734,7 +13734,7 @@
       "fileName": "number-field.tsx",
       "readmePath": "src/components/text-field/readme.md",
       "usagesDir": "src/components/text-field/usage",
-      "tag": "ix-number-field",
+      "tag": "ix-number-input",
       "overview": "",
       "usage": {},
       "docs": "",
@@ -13755,7 +13755,7 @@
         "ix-icon-button"
       ],
       "dependencyGraph": {
-        "ix-number-field": [
+        "ix-number-input": [
           "ix-field-wrapper",
           "ix-icon-button"
         ],

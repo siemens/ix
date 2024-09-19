@@ -2069,7 +2069,7 @@ export namespace Components {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface IxNumberField {
+    interface IxNumberInput {
         /**
           * The allowed characters pattern for the input field
          */
@@ -3330,9 +3330,9 @@ export interface IxModalHeaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxModalHeaderElement;
 }
-export interface IxNumberFieldCustomEvent<T> extends CustomEvent<T> {
+export interface IxNumberInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLIxNumberFieldElement;
+    target: HTMLIxNumberInputElement;
 }
 export interface IxPaginationCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4459,7 +4459,7 @@ declare global {
         prototype: HTMLIxModalLoadingElement;
         new (): HTMLIxModalLoadingElement;
     };
-    interface HTMLIxNumberFieldElementEventMap {
+    interface HTMLIxNumberInputElementEventMap {
         "valueChange": number;
         "validityStateChange": ValidityState;
         "ixBlur": void;
@@ -4468,19 +4468,19 @@ declare global {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface HTMLIxNumberFieldElement extends Components.IxNumberField, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxNumberFieldElementEventMap>(type: K, listener: (this: HTMLIxNumberFieldElement, ev: IxNumberFieldCustomEvent<HTMLIxNumberFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLIxNumberInputElement extends Components.IxNumberInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxNumberInputElementEventMap>(type: K, listener: (this: HTMLIxNumberInputElement, ev: IxNumberInputCustomEvent<HTMLIxNumberInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxNumberFieldElementEventMap>(type: K, listener: (this: HTMLIxNumberFieldElement, ev: IxNumberFieldCustomEvent<HTMLIxNumberFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxNumberInputElementEventMap>(type: K, listener: (this: HTMLIxNumberInputElement, ev: IxNumberInputCustomEvent<HTMLIxNumberInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLIxNumberFieldElement: {
-        prototype: HTMLIxNumberFieldElement;
-        new (): HTMLIxNumberFieldElement;
+    var HTMLIxNumberInputElement: {
+        prototype: HTMLIxNumberInputElement;
+        new (): HTMLIxNumberInputElement;
     };
     interface HTMLIxPaginationElementEventMap {
         "pageSelected": number;
@@ -5054,7 +5054,7 @@ declare global {
         "ix-modal-footer": HTMLIxModalFooterElement;
         "ix-modal-header": HTMLIxModalHeaderElement;
         "ix-modal-loading": HTMLIxModalLoadingElement;
-        "ix-number-field": HTMLIxNumberFieldElement;
+        "ix-number-input": HTMLIxNumberInputElement;
         "ix-pagination": HTMLIxPaginationElement;
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
@@ -7214,7 +7214,7 @@ declare namespace LocalJSX {
      * @since 2.5.0
      * @form-ready 2.5.0
      */
-    interface IxNumberField {
+    interface IxNumberInput {
         /**
           * The allowed characters pattern for the input field
          */
@@ -7254,15 +7254,15 @@ declare namespace LocalJSX {
         /**
           * Event emitted when the input field loses focus
          */
-        "onIxBlur"?: (event: IxNumberFieldCustomEvent<void>) => void;
+        "onIxBlur"?: (event: IxNumberInputCustomEvent<void>) => void;
         /**
           * Event emitted when the validity state of the input field changes
          */
-        "onValidityStateChange"?: (event: IxNumberFieldCustomEvent<ValidityState>) => void;
+        "onValidityStateChange"?: (event: IxNumberInputCustomEvent<ValidityState>) => void;
         /**
           * Event emitted when the value of the input field changes
          */
-        "onValueChange"?: (event: IxNumberFieldCustomEvent<number>) => void;
+        "onValueChange"?: (event: IxNumberInputCustomEvent<number>) => void;
         /**
           * The pattern for the input field
          */
@@ -8509,7 +8509,7 @@ declare namespace LocalJSX {
         "ix-modal-footer": IxModalFooter;
         "ix-modal-header": IxModalHeader;
         "ix-modal-loading": IxModalLoading;
-        "ix-number-field": IxNumberField;
+        "ix-number-input": IxNumberInput;
         "ix-pagination": IxPagination;
         "ix-pane": IxPane;
         "ix-pane-layout": IxPaneLayout;
@@ -8730,7 +8730,7 @@ declare module "@stencil/core" {
              * @since 2.5.0
              * @form-ready 2.5.0
              */
-            "ix-number-field": LocalJSX.IxNumberField & JSXBase.HTMLAttributes<HTMLIxNumberFieldElement>;
+            "ix-number-input": LocalJSX.IxNumberInput & JSXBase.HTMLAttributes<HTMLIxNumberInputElement>;
             /**
              * @since 1.5.0
              */

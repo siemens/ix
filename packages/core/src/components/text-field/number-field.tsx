@@ -42,13 +42,13 @@ let numberFieldIds = 0;
  * @form-ready 2.5.0
  */
 @Component({
-  tag: 'ix-number-field',
+  tag: 'ix-number-input',
   styleUrl: 'number-field.scss',
   shadow: true,
   formAssociated: true,
 })
-export class NumberField implements IxInputFieldComponent<number> {
-  @Element() hostElement!: HTMLIxNumberFieldElement;
+export class NumberInput implements IxInputFieldComponent<number> {
+  @Element() hostElement!: HTMLIxNumberInputElement;
   @AttachInternals() formInternals!: ElementInternals;
 
   /**

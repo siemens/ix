@@ -8,12 +8,12 @@
 -->
 
 <script setup lang="ts">
-import { IxNumberField } from '@siemens/ix-vue';
+import { IxNumberInput } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <IxNumberField
+  <IxNumberInput
     label="Some label"
     helper-text="Some helper text"
-  ></IxNumberField>
+  ></IxNumberInput>
 </template>

@@ -40,7 +40,7 @@ test('focus native input by label click', async ({ mount, page }) => {
 });
 
 test.describe('click label', () => {
-  ['ix-input', 'ix-number-field', 'ix-date-field', 'ix-textarea'].forEach(
+  ['ix-input', 'ix-number-input', 'ix-date-field', 'ix-textarea'].forEach(
     (selector) => {
       test(`focus ${selector} by external label click`, async ({
         mount,

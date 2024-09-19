@@ -78,7 +78,7 @@ import { defineCustomElement as defineIxModalContent } from '@siemens/ix/compone
 import { defineCustomElement as defineIxModalExample } from '@siemens/ix/components/ix-modal-example.js';
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
-import { defineCustomElement as defineIxNumberField } from '@siemens/ix/components/ix-number-field.js';
+import { defineCustomElement as defineIxNumberInput } from '@siemens/ix/components/ix-number-input.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
@@ -182,7 +182,7 @@ export const IxModalContent = /*@__PURE__*/createReactComponent<JSX.IxModalConte
 export const IxModalExample = /*@__PURE__*/createReactComponent<JSX.IxModalExample, HTMLIxModalExampleElement>('ix-modal-example', undefined, undefined, defineIxModalExample);
 export const IxModalFooter = /*@__PURE__*/createReactComponent<JSX.IxModalFooter, HTMLIxModalFooterElement>('ix-modal-footer', undefined, undefined, defineIxModalFooter);
 export const IxModalHeader = /*@__PURE__*/createReactComponent<JSX.IxModalHeader, HTMLIxModalHeaderElement>('ix-modal-header', undefined, undefined, defineIxModalHeader);
-export const IxNumberField = /*@__PURE__*/createReactComponent<JSX.IxNumberField, HTMLIxNumberFieldElement>('ix-number-field', undefined, undefined, defineIxNumberField);
+export const IxNumberInput = /*@__PURE__*/createReactComponent<JSX.IxNumberInput, HTMLIxNumberInputElement>('ix-number-input', undefined, undefined, defineIxNumberInput);
 export const IxPagination = /*@__PURE__*/createReactComponent<JSX.IxPagination, HTMLIxPaginationElement>('ix-pagination', undefined, undefined, defineIxPagination);
 export const IxPane = /*@__PURE__*/createReactComponent<JSX.IxPane, HTMLIxPaneElement>('ix-pane', undefined, undefined, defineIxPane);
 export const IxPaneLayout = /*@__PURE__*/createReactComponent<JSX.IxPaneLayout, HTMLIxPaneLayoutElement>('ix-pane-layout', undefined, undefined, defineIxPaneLayout);

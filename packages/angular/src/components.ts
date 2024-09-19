@@ -1943,13 +1943,13 @@ Can be prevented, in which case only the event is triggered, and the modal remai
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
-  selector: 'ix-number-field',
+  selector: 'ix-number-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
 })
-export class IxNumberField {
+export class IxNumberInput {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1959,7 +1959,7 @@ export class IxNumberField {
 }
 
 
-export declare interface IxNumberField extends Components.IxNumberField {
+export declare interface IxNumberInput extends Components.IxNumberInput {
   /**
    * Event emitted when the value of the input field changes
    */

@@ -78,7 +78,7 @@ import { defineCustomElement as defineIxModalContent } from '@siemens/ix/compone
 import { defineCustomElement as defineIxModalExample } from '@siemens/ix/components/ix-modal-example.js';
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
-import { defineCustomElement as defineIxNumberField } from '@siemens/ix/components/ix-number-field.js';
+import { defineCustomElement as defineIxNumberInput } from '@siemens/ix/components/ix-number-input.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
@@ -839,7 +839,7 @@ export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('i
 ]);
 
 
-export const IxNumberField = /*@__PURE__*/ defineContainer<JSX.IxNumberField, JSX.IxNumberField["value"]>('ix-number-field', defineIxNumberField, [
+export const IxNumberInput = /*@__PURE__*/ defineContainer<JSX.IxNumberInput, JSX.IxNumberInput["value"]>('ix-number-input', defineIxNumberInput, [
   'name',
   'placeholder',
   'value',
