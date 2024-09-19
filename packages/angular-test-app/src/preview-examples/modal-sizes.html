@@ -20,24 +20,5 @@ LICENSE file in the root directory of this source tree.
 </div>
 
 <ng-template #customModal let-modal>
-  <div style="display: flex; margin-top: 60px; margin-bottom: 60px">
-    <input checked id="checkbox_1_1" name="group_1" type="checkbox" />
-    <label for="checkbox_1_1">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-      voluptuad. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-      amet.</label
-    >
-    <div id="test">
-      <ix-icon size="24" name="name" name="info"></ix-icon>
-    </div>
-    <ix-tooltip style="align-self: flex-start" for="#test"
-    >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-      voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-      amet.
-    </ix-tooltip>
-  </div>
+  <ix-button (click)="modal.dismiss('dismiss')">Modal with size {{ modal.data }}</ix-button>
 </ng-template>
