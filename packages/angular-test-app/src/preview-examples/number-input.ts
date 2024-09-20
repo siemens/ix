@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './number-field-disabled.html'
+  templateUrl: './number-input.html'
 })
-export default class NumberFieldDisabled {}
+export default class NumberInput {}

@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './number-field.html'
+  templateUrl: './number-input-validation.html'
 })
-export default class NumberField {}
+export default class NumberInputValidation {}

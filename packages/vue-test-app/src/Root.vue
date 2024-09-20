@@ -118,11 +118,11 @@ import KeyValue from './preview-examples/key-value.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
 import ModalExample from './preview-examples/modal.vue';
-import NumberField from './preview-examples/number-field.vue';
-import NumberFieldLabel from './preview-examples/number-field-label.vue';
-import NumberFieldDisabled from './preview-examples/number-field-disabled.vue';
-import NumberFieldReadOnly from './preview-examples/number-field-readonly.vue';
-import NumberFieldStepperButton from './preview-examples/number-field-stepper-button.vue';
+import NumberInput from './preview-examples/number-input.vue';
+import NumberInputLabel from './preview-examples/number-input-label.vue';
+import NumberInputDisabled from './preview-examples/number-input-disabled.vue';
+import NumberInputReadOnly from './preview-examples/number-input-readonly.vue';
+import NumberInputStepperButton from './preview-examples/number-input-stepper-button.vue';
 import Pill from './preview-examples/pill.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
@@ -368,11 +368,11 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
-  '/preview/number-field': NumberField,
-  '/preview/number-field-disabled': NumberFieldDisabled,
-  '/preview/number-field-label': NumberFieldLabel,
-  '/preview/number-field-readonly': NumberFieldReadOnly,
-  '/preview/number-field-stepper-button': NumberFieldStepperButton,
+  '/preview/number-input': NumberInput,
+  '/preview/number-input-disabled': NumberInputDisabled,
+  '/preview/number-input-label': NumberInputLabel,
+  '/preview/number-input-readonly': NumberInputReadOnly,
+  '/preview/number-input-stepper-button': NumberInputStepperButton,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/map-navigation': MapNavigation,

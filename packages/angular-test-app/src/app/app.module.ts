@@ -26,12 +26,12 @@ import FormValidation from '../preview-examples/form-validation';
 import LayoutAuto from '../preview-examples/layout-auto';
 import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import ModalByInstanceExample from '../preview-examples/modal-by-instance-content';
-import NumberField from '../preview-examples/number-field';
-import NumberFieldDisabled from '../preview-examples/number-field-disabled';
-import NumberFieldLabel from '../preview-examples/number-field-label';
-import NumberFieldReadonly from '../preview-examples/number-field-readonly';
-import NumberFieldStepperButton from '../preview-examples/number-field-stepper-button';
-import NumberFieldValidation from '../preview-examples/number-field-validation';
+import NumberInput from '../preview-examples/number-input';
+import NumberInputDisabled from '../preview-examples/number-input-disabled';
+import NumberInputLabel from '../preview-examples/number-input-label';
+import NumberInputReadonly from '../preview-examples/number-input-readonly';
+import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
+import NumberInputValidation from '../preview-examples/number-input-validation';
 import Radio from '../preview-examples/radio';
 import Radiobutton from '../preview-examples/radio-button';
 import RadioDisabled from '../preview-examples/radio-disabled';
@@ -440,12 +440,12 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     WorkflowVertical,
     MapNavigation,
     MapNavigationOverlay,
-    NumberField,
-    NumberFieldDisabled,
-    NumberFieldLabel,
-    NumberFieldReadonly,
-    NumberFieldStepperButton,
-    NumberFieldValidation,
+    NumberInput,
+    NumberInputDisabled,
+    NumberInputLabel,
+    NumberInputReadonly,
+    NumberInputStepperButton,
+    NumberInputValidation,
     TabsRounded,
     DatepickerRange,
     Tooltip,

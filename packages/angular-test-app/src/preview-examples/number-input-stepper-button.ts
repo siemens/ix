@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './number-field-label.html'
+  templateUrl: './number-input-stepper-button.html'
 })
-export default class NumberFieldLabel {}
+export default class NumberInputStepperButton {}

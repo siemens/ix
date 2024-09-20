@@ -35,7 +35,7 @@ import {
   onInputBlur,
 } from './text-field.util';
 
-let numberFieldIds = 0;
+let numberInputIds = 0;
 
 /**
  * @since 2.5.0
@@ -43,7 +43,7 @@ let numberFieldIds = 0;
  */
 @Component({
   tag: 'ix-number-input',
-  styleUrl: 'number-field.scss',
+  styleUrl: 'number-input.scss',
   shadow: true,
   formAssociated: true,
 })
@@ -165,7 +165,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private inputRef = makeRef<HTMLInputElement>();
   private slotEndRef = makeRef<HTMLDivElement>();
   private slotStartRef = makeRef<HTMLDivElement>();
-  private numberFieldId = `number-field-${numberFieldIds++}`;
+  private numberInputId = `number-input-${numberInputIds++}`;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -244,7 +244,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
         }}
       >
         <ix-field-wrapper
-          id={this.numberFieldId}
+          id={this.numberInputId}
           required={this.required}
           label={this.label}
           helperText={this.helperText}
@@ -270,7 +270,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
               onSlotChange={() => this.updatePaddings()}
             ></SlotStart>
             <InputElement
-              id={this.numberFieldId}
+              id={this.numberInputId}
               readonly={this.readonly}
               disabled={this.disabled}
               min={this.min}

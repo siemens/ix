@@ -188,12 +188,12 @@ import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
 import DateInputValidation from '../preview-examples/date-input-validation';
-import NumberField from '../preview-examples/number-field';
-import NumberFieldDisabled from '../preview-examples/number-field-disabled';
-import NumberFieldLabel from '../preview-examples/number-field-label';
-import NumberFieldReadonly from '../preview-examples/number-field-readonly';
-import NumberFieldStepperButton from '../preview-examples/number-field-stepper-button';
-import NumberFieldValidation from '../preview-examples/number-field-validation';
+import NumberInput from '../preview-examples/number-input';
+import NumberInputDisabled from '../preview-examples/number-input-disabled';
+import NumberInputLabel from '../preview-examples/number-input-label';
+import NumberInputReadonly from '../preview-examples/number-input-readonly';
+import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
+import NumberInputValidation from '../preview-examples/number-input-validation';
 import Radio from '../preview-examples/radio';
 import Radiobutton from '../preview-examples/radio-button';
 import RadioDisabled from '../preview-examples/radio-disabled';
@@ -887,15 +887,15 @@ const routes: Routes = [
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
       { path: 'map-navigation-overlay', component: MapNavigationOverlay },
-      { path: 'number-field', component: NumberField },
-      { path: 'number-field-disabled', component: NumberFieldDisabled },
-      { path: 'number-field-label', component: NumberFieldLabel },
-      { path: 'number-field-readonly', component: NumberFieldReadonly },
+      { path: 'number-input', component: NumberInput },
+      { path: 'number-input-disabled', component: NumberInputDisabled },
+      { path: 'number-input-label', component: NumberInputLabel },
+      { path: 'number-input-readonly', component: NumberInputReadonly },
       {
-        path: 'number-field-stepper-button',
-        component: NumberFieldStepperButton,
+        path: 'number-input-stepper-button',
+        component: NumberInputStepperButton,
       },
-      { path: 'number-field-validation', component: NumberFieldValidation },
+      { path: 'number-input-validation', component: NumberInputValidation },
       { path: 'tooltip', component: Tooltip },
       { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },

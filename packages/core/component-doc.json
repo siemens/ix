@@ -13730,8 +13730,8 @@
     },
     {
       "dirPath": "src/components/text-field",
-      "filePath": "src/components/text-field/number-field.tsx",
-      "fileName": "number-field.tsx",
+      "filePath": "src/components/text-field/number-input.tsx",
+      "fileName": "number-input.tsx",
       "readmePath": "src/components/text-field/readme.md",
       "usagesDir": "src/components/text-field/usage",
       "tag": "ix-number-input",

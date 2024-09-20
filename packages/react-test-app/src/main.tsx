@@ -136,12 +136,12 @@ import Message from './preview-examples/message';
 import MessageBar from './preview-examples/message-bar';
 import Modal from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
-import NumberField from './preview-examples/number-field';
-import NumberFieldDisabled from './preview-examples/number-field-disabled';
-import NumberFieldLabel from './preview-examples/number-field-label';
-import NumberFieldReadonly from './preview-examples/number-field-readonly';
-import NumberFieldStepperButton from './preview-examples/number-field-stepper-button';
-import NumberFieldValidation from './preview-examples/number-field-validation';
+import NumberInput from './preview-examples/number-input';
+import NumberInputDisabled from './preview-examples/number-input-disabled';
+import NumberInputLabel from './preview-examples/number-input-label';
+import NumberInputReadonly from './preview-examples/number-input-readonly';
+import NumberInputStepperButton from './preview-examples/number-input-stepper-button';
+import NumberInputValidation from './preview-examples/number-input-validation';
 import Pagination from './preview-examples/pagination';
 import PaginationAdvanced from './preview-examples/pagination-advanced';
 import Pane from './preview-examples/pane';
@@ -632,26 +632,26 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/toggle" element={<Toggle />} />
         <Route path="/preview/tooltip" element={<Tooltip />} />
         <Route path="/preview/tree-custom" element={<TreeCustom />} />
-        <Route path="/preview/number-field" element={<NumberField />} />
+        <Route path="/preview/number-input" element={<NumberInput />} />
         <Route
-          path="/preview/number-field-disabled"
-          element={<NumberFieldDisabled />}
+          path="/preview/number-input-disabled"
+          element={<NumberInputDisabled />}
         />
         <Route
-          path="/preview/number-field-label"
-          element={<NumberFieldLabel />}
+          path="/preview/number-input-label"
+          element={<NumberInputLabel />}
         />
         <Route
-          path="/preview/number-field-readonly"
-          element={<NumberFieldReadonly />}
+          path="/preview/number-input-readonly"
+          element={<NumberInputReadonly />}
         />
         <Route
-          path="/preview/number-field-stepper-button"
-          element={<NumberFieldStepperButton />}
+          path="/preview/number-input-stepper-button"
+          element={<NumberInputStepperButton />}
         />
         <Route
-          path="/preview/number-field-validation"
-          element={<NumberFieldValidation />}
+          path="/preview/number-input-validation"
+          element={<NumberInputValidation />}
         />
         <Route path="/preview/tree" element={<Tree />} />
         <Route path="/preview/upload" element={<Upload />} />
