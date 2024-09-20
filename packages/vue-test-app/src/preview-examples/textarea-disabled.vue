@@ -11,7 +11,7 @@
 import { IxTextarea } from '@siemens/ix-vue';
 
 export default {
-  name: 'Textarea',
+  name: 'TextareaDisabled',
   components: { IxTextarea },
 };
 </script>
