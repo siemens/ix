@@ -14,7 +14,7 @@ import {
   createClassMutationObserver,
   HTMLIxFormComponentElement,
   isIxInputFieldComponent,
-} from '../utils/field';
+} from '../utils/input';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { MakeRef, makeRef } from '../utils/make-ref';
 

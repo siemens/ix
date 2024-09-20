@@ -30,7 +30,7 @@ import {
   HookValidationLifecycle,
   ValidationResults,
   IxInputFieldComponent,
-} from '../utils/field';
+} from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { a11yBoolean } from '../utils/a11y';
 

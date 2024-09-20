@@ -23,7 +23,7 @@ import {
   HookValidationLifecycle,
   FieldWrapperInterface,
   IxFormValidationState,
-} from '../utils/field';
+} from '../utils/input';
 
 /**
  * @since 2.5.0

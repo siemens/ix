@@ -19,7 +19,7 @@ import {
   Element,
   Method,
 } from '@stencil/core';
-import { HookValidationLifecycle, IxFormComponent } from '../utils/field';
+import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 
 /**

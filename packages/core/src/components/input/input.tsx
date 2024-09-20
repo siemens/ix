@@ -26,7 +26,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
-} from '../utils/field';
+} from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
@@ -35,9 +35,9 @@ import {
   getAriaAttributesForInput,
   mapValidationResult,
   onInputBlur,
-} from './text-field.util';
+} from './input.util';
 
-let textFieldIds = 0;
+let inputIds = 0;
 
 /**
  * @since 2.5.0
@@ -45,7 +45,7 @@ let textFieldIds = 0;
  */
 @Component({
   tag: 'ix-input',
-  styleUrl: 'text-field.scss',
+  styleUrl: 'input.scss',
   shadow: true,
   formAssociated: true,
 })
@@ -170,7 +170,7 @@ export class Input implements IxInputFieldComponent<string> {
   private slotEndRef = makeRef<HTMLDivElement>();
   private slotStartRef = makeRef<HTMLDivElement>();
 
-  private textFieldId = `text-field-${textFieldIds++}`;
+  private inputId = `input-${inputIds++}`;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -253,7 +253,7 @@ export class Input implements IxInputFieldComponent<string> {
         }}
       >
         <ix-field-wrapper
-          htmlForLabel={this.textFieldId}
+          htmlForLabel={this.inputId}
           required={this.required}
           label={this.label}
           helperText={this.helperText}
@@ -274,7 +274,7 @@ export class Input implements IxInputFieldComponent<string> {
               onSlotChange={() => this.updatePaddings()}
             ></SlotStart>
             <InputElement
-              id={this.textFieldId}
+              id={this.inputId}
               readonly={this.readonly}
               disabled={this.disabled}
               maxLength={this.maxLength}

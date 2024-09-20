@@ -5,7 +5,7 @@ import {
   ValidationResults,
   checkFieldClasses,
   createClassMutationObserver,
-} from '../utils/field';
+} from '../utils/input';
 import { renderHelperText } from '../field-wrapper/helper-text-util';
 import { IxComponent } from '../utils/internal';
 

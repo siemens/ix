@@ -9496,11 +9496,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/text-field",
-      "filePath": "src/components/text-field/text-field.tsx",
-      "fileName": "text-field.tsx",
-      "readmePath": "src/components/text-field/readme.md",
-      "usagesDir": "src/components/text-field/usage",
+      "dirPath": "src/components/input",
+      "filePath": "src/components/input/input.tsx",
+      "fileName": "input.tsx",
+      "readmePath": "src/components/input/readme.md",
+      "usagesDir": "src/components/input/usage",
       "tag": "ix-input",
       "overview": "",
       "usage": {},
@@ -13729,11 +13729,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/text-field",
-      "filePath": "src/components/text-field/number-input.tsx",
+      "dirPath": "src/components/input",
+      "filePath": "src/components/input/number-input.tsx",
       "fileName": "number-input.tsx",
-      "readmePath": "src/components/text-field/readme.md",
-      "usagesDir": "src/components/text-field/usage",
+      "readmePath": "src/components/input/readme.md",
+      "usagesDir": "src/components/input/usage",
       "tag": "ix-number-input",
       "overview": "",
       "usage": {},
@@ -18072,11 +18072,11 @@
       ]
     },
     {
-      "dirPath": "src/components/text-field",
-      "filePath": "src/components/text-field/textarea.tsx",
+      "dirPath": "src/components/input",
+      "filePath": "src/components/input/textarea.tsx",
       "fileName": "textarea.tsx",
-      "readmePath": "src/components/text-field/readme.md",
-      "usagesDir": "src/components/text-field/usage",
+      "readmePath": "src/components/input/readme.md",
+      "usagesDir": "src/components/input/usage",
       "tag": "ix-textarea",
       "overview": "",
       "usage": {},
@@ -18358,8 +18358,8 @@
             "references": {
               "TextareaResizeBehavior": {
                 "location": "local",
-                "path": "src/components/text-field/textarea.tsx",
-                "id": "src/components/text-field/textarea.tsx::TextareaResizeBehavior"
+                "path": "src/components/input/textarea.tsx",
+                "id": "src/components/input/textarea.tsx::TextareaResizeBehavior"
               }
             }
           },
@@ -21819,10 +21819,10 @@
       "docstring": "",
       "path": "src/components/tab-item/tab-item.tsx"
     },
-    "src/components/text-field/textarea.tsx::TextareaResizeBehavior": {
+    "src/components/input/textarea.tsx::TextareaResizeBehavior": {
       "declaration": "export type TextareaResizeBehavior =\n  | 'both'\n  | 'horizontal'\n  | 'vertical'\n  | 'none';",
       "docstring": "",
-      "path": "src/components/text-field/textarea.tsx"
+      "path": "src/components/input/textarea.tsx"
     },
     "src/components/time-picker/time-picker.tsx::TimePickerCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",

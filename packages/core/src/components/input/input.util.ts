@@ -13,13 +13,13 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   shouldSuppressInternalValidation,
-} from '../utils/field';
+} from '../utils/input';
 import { generateUUID } from '../utils/uuid';
-import { shakeInput } from './text-field.animation';
+import { shakeInput } from './input.animation';
 
 export function createIdIfNotExists(
   element: IxFormComponent,
-  idPrefix: string = 'field'
+  idPrefix: string = 'input'
 ) {
   return element.hasAttribute('id')
     ? element.getAttribute('id')

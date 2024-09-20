@@ -29,9 +29,9 @@ import {
   IxInputFieldComponent,
   ValidationResults,
   createClassMutationObserver,
-} from '../utils/field';
-import { SlotEnd, SlotStart } from '../text-field/input.fc';
-import { adjustPaddingForStartAndEnd } from '../text-field/text-field.util';
+} from '../utils/input';
+import { SlotEnd, SlotStart } from '../input/input.fc';
+import { adjustPaddingForStartAndEnd } from '../input/input.util';
 import { iconCalendar } from '@siemens/ix-icons/icons';
 
 export type DateInputValidityState = {

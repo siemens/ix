@@ -24,7 +24,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
-} from '../utils/field';
+} from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
@@ -33,7 +33,7 @@ import {
   checkInternalValidity,
   mapValidationResult,
   onInputBlur,
-} from './text-field.util';
+} from './input.util';
 
 let numberInputIds = 0;
 

@@ -20,7 +20,7 @@ import {
   Element,
 } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
-import { IxFormComponent } from '../utils/field';
+import { IxFormComponent } from '../utils/input';
 
 /**
  * @since 2.5.0

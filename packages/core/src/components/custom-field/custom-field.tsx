@@ -13,7 +13,7 @@ import {
   HookValidationLifecycle,
   IxFormValidationState,
   ValidationResults,
-} from '../utils/field';
+} from '../utils/input';
 import { IxComponent } from '../utils/internal';
 
 /**

@@ -8,7 +8,7 @@
  */
 @import 'mixins/shadow-dom/component';
 @import 'components/form/input';
-@import './../text-field/text-field.mixins.scss';
+@import './../input/input.mixins.scss';
 
 @include input-field;
 

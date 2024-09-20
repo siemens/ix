@@ -23,10 +23,10 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
-} from '../utils/field';
+} from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
-import { mapValidationResult, onInputBlur } from './text-field.util';
+import { mapValidationResult, onInputBlur } from './input.util';
 
 export type TextareaResizeBehavior =
   | 'both'
