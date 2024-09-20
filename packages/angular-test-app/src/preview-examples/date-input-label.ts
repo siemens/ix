@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './date-field-validation.html',
+  templateUrl: './date-input-label.html',
 })
-export default class DateFieldValidation {}
+export default class DateInputLabel {}

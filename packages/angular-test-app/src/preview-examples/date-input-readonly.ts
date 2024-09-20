@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './date-field.html',
+  templateUrl: './date-input-readonly.html',
 })
-export default class DateField {}
+export default class DateInputReadonly {}

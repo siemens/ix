@@ -4356,11 +4356,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/date-field",
-      "filePath": "src/components/date-field/date-field.tsx",
-      "fileName": "date-field.tsx",
-      "readmePath": "src/components/date-field/readme.md",
-      "usagesDir": "src/components/date-field/usage",
+      "dirPath": "src/components/date-input",
+      "filePath": "src/components/date-input/date-input.tsx",
+      "fileName": "date-input.tsx",
+      "readmePath": "src/components/date-input/readme.md",
+      "usagesDir": "src/components/date-input/usage",
       "tag": "ix-date-input",
       "overview": "",
       "usage": {},
@@ -4792,13 +4792,13 @@
           "detail": "{ patternMismatch: boolean; invalidReason?: string; }",
           "bubbles": true,
           "complexType": {
-            "original": "DateFieldValidityState",
+            "original": "DateInputValidityState",
             "resolved": "{ patternMismatch: boolean; invalidReason?: string; }",
             "references": {
-              "DateFieldValidityState": {
+              "DateInputValidityState": {
                 "location": "local",
-                "path": "src/components/date-field/date-field.tsx",
-                "id": "src/components/date-field/date-field.tsx::DateFieldValidityState"
+                "path": "src/components/date-input/date-input.tsx",
+                "id": "src/components/date-input/date-input.tsx::DateInputValidityState"
               }
             }
           },
@@ -21704,10 +21704,10 @@
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
-    "src/components/date-field/date-field.tsx::DateFieldValidityState": {
+    "src/components/date-input/date-input.tsx::DateInputValidityState": {
       "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
       "docstring": "",
-      "path": "src/components/date-field/date-field.tsx"
+      "path": "src/components/date-input/date-input.tsx"
     },
     "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",

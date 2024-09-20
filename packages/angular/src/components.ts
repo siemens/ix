@@ -618,7 +618,7 @@ export class IxDateInput {
 }
 
 
-import type { DateFieldValidityState as IIxDateInputDateFieldValidityState } from '@siemens/ix';
+import type { DateInputValidityState as IIxDateInputDateInputValidityState } from '@siemens/ix';
 
 export declare interface IxDateInput extends Components.IxDateInput {
   /**
@@ -628,7 +628,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
   /**
    * Validation state change event.
    */
-  validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateFieldValidityState>>;
+  validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
 }
 
 

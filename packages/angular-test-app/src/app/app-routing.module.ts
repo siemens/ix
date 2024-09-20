@@ -183,11 +183,11 @@ import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
-import DateField from '../preview-examples/date-field';
-import DateFieldDisabled from '../preview-examples/date-field-disabled';
-import DateFieldLabel from '../preview-examples/date-field-label';
-import DateFieldReadonly from '../preview-examples/date-field-readonly';
-import DateFieldValidation from '../preview-examples/date-field-validation';
+import DateInput from '../preview-examples/date-input';
+import DateInputDisabled from '../preview-examples/date-input-disabled';
+import DateInputLabel from '../preview-examples/date-input-label';
+import DateInputReadonly from '../preview-examples/date-input-readonly';
+import DateInputValidation from '../preview-examples/date-input-validation';
 import NumberField from '../preview-examples/number-field';
 import NumberFieldDisabled from '../preview-examples/number-field-disabled';
 import NumberFieldLabel from '../preview-examples/number-field-label';
@@ -394,24 +394,24 @@ const routes: Routes = [
         component: DateDropdownUserRange,
       },
       {
-        path: 'date-field',
-        component: DateField,
+        path: 'date-input',
+        component: DateInput,
       },
       {
-        path: 'date-field-disabled',
-        component: DateFieldDisabled,
+        path: 'date-input-disabled',
+        component: DateInputDisabled,
       },
       {
-        path: 'date-field-label',
-        component: DateFieldLabel,
+        path: 'date-input-label',
+        component: DateInputLabel,
       },
       {
-        path: 'date-field-readonly',
-        component: DateFieldReadonly,
+        path: 'date-input-readonly',
+        component: DateInputReadonly,
       },
       {
-        path: 'date-field-validation',
-        component: DateFieldValidation,
+        path: 'date-input-validation',
+        component: DateInputValidation,
       },
       {
         path: 'datepicker',

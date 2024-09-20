@@ -34,7 +34,7 @@ import { SlotEnd, SlotStart } from '../text-field/input.fc';
 import { adjustPaddingForStartAndEnd } from '../text-field/text-field.util';
 import { iconCalendar } from '@siemens/ix-icons/icons';
 
-export type DateFieldValidityState = {
+export type DateInputValidityState = {
   patternMismatch: boolean;
   invalidReason?: string;
 };
@@ -45,7 +45,7 @@ export type DateFieldValidityState = {
  */
 @Component({
   tag: 'ix-date-input',
-  styleUrl: 'date-field.scss',
+  styleUrl: 'date-input.scss',
   shadow: true,
   formAssociated: true,
 })
@@ -138,7 +138,7 @@ export class DateInput implements IxInputFieldComponent<string> {
   /**
    * Validation state change event.
    */
-  @Event() validityStateChange!: EventEmitter<DateFieldValidityState>;
+  @Event() validityStateChange!: EventEmitter<DateInputValidityState>;
 
   /** @internal */
   @Event() ixFocus!: EventEmitter<void>;

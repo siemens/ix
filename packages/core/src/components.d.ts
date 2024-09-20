@@ -20,7 +20,7 @@ import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
-import { DateFieldValidityState } from "./components/date-field/date-field";
+import { DateInputValidityState } from "./components/date-input/date-input";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -64,7 +64,7 @@ export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
-export { DateFieldValidityState } from "./components/date-field/date-field";
+export { DateInputValidityState } from "./components/date-input/date-input";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
 export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
@@ -3758,7 +3758,7 @@ declare global {
     };
     interface HTMLIxDateInputElementEventMap {
         "valueChange": string;
-        "validityStateChange": DateFieldValidityState;
+        "validityStateChange": DateInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
     }
@@ -5803,7 +5803,7 @@ declare namespace LocalJSX {
         /**
           * Validation state change event.
          */
-        "onValidityStateChange"?: (event: IxDateInputCustomEvent<DateFieldValidityState>) => void;
+        "onValidityStateChange"?: (event: IxDateInputCustomEvent<DateInputValidityState>) => void;
         /**
           * Input change event.
          */

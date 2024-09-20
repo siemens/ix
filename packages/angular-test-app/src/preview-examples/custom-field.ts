@@ -13,7 +13,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   selector: 'app-example',
   templateUrl: './custom-field.html',
 })
-export default class DateField {
+export default class DateInput {
   @ViewChild('fileUpload') fileUpload!: ElementRef<HTMLElement>;
 
   openFileBrowser() {

@@ -17,11 +17,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import BasicNavigationWithOutHeader from '../preview-examples/basic-navigation-without-header';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
-import DateField from '../preview-examples/date-field';
-import DateFieldDisabled from '../preview-examples/date-field-disabled';
-import DateFieldLabel from '../preview-examples/date-field-label';
-import DateFieldReadonly from '../preview-examples/date-field-readonly';
-import DateFieldValidation from '../preview-examples/date-field-validation';
+import DateInput from '../preview-examples/date-input';
+import DateInputDisabled from '../preview-examples/date-input-disabled';
+import DateInputLabel from '../preview-examples/date-input-label';
+import DateInputReadonly from '../preview-examples/date-input-readonly';
+import DateInputValidation from '../preview-examples/date-input-validation';
 import FormValidation from '../preview-examples/form-validation';
 import LayoutAuto from '../preview-examples/layout-auto';
 import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
@@ -276,11 +276,11 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     CustomFieldValidation,
     DateDropdown,
     DateDropdownUserRange,
-    DateField,
-    DateFieldDisabled,
-    DateFieldLabel,
-    DateFieldReadonly,
-    DateFieldValidation,
+    DateInput,
+    DateInputDisabled,
+    DateInputLabel,
+    DateInputReadonly,
+    DateInputValidation,
     ContentExample,
     DateDropdown,
     DateDropdownUserRange,
