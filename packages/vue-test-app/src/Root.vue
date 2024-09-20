@@ -143,11 +143,11 @@ import Tabs from './preview-examples/tabs.vue';
 import TextareaLegacy from './preview-examples/textarea-legacy.vue';
 import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled.vue';
 import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly.vue';
-import TextareaField from './preview-examples/textarea-field.vue';
-import TextareaFieldDisabled from './preview-examples/textarea-field-disabled.vue';
-import TextareaFieldReadonly from './preview-examples/textarea-field-readonly.vue';
-import TextareaFieldRowsCols from './preview-examples/textarea-field-rows-cols.vue';
-import TextareaFieldValidation from './preview-examples/textarea-field-validation.vue';
+import TextareaField from './preview-examples/textarea.vue';
+import TextareaFieldDisabled from './preview-examples/textarea-disabled.vue';
+import TextareaFieldReadonly from './preview-examples/textarea-readonly.vue';
+import TextareaFieldRowsCols from './preview-examples/textarea-rows-cols.vue';
+import TextareaFieldValidation from './preview-examples/textarea-validation.vue';
 import TextField from './preview-examples/text-field.vue';
 import TextFieldDisabled from './preview-examples/text-field-disabled.vue';
 import TextFieldLabel from './preview-examples/text-field-label.vue';
@@ -342,11 +342,11 @@ const routes: any = {
   '/preview/textarea-legacy': TextareaLegacy,
   '/preview/textarea-legacy-disabled': TextareaLegacyDisabled,
   '/preview/textarea-legacy-readonly': TextareaLegacyReadonly,
-  '/preview/textarea-field': TextareaField,
-  '/preview/textarea-field-readonly': TextareaFieldReadonly,
-  '/preview/textarea-field-disabled': TextareaFieldDisabled,
-  '/preview/textarea-field-rows-cols': TextareaFieldRowsCols,
-  '/preview/textarea-field-validation': TextareaFieldValidation,
+  '/preview/textarea': TextareaField,
+  '/preview/textarea-readonly': TextareaFieldReadonly,
+  '/preview/textarea-disabled': TextareaFieldDisabled,
+  '/preview/textarea-rows-cols': TextareaFieldRowsCols,
+  '/preview/textarea-validation': TextareaFieldValidation,
   '/preview/text-field': TextField,
   '/preview/text-field-disabled': TextFieldDisabled,
   '/preview/text-field-label': TextFieldLabel,

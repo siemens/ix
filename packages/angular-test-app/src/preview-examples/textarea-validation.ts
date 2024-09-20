@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './textarea-field-validation.html',
+  templateUrl: './textarea-validation.html',
 })
-export default class TextareaFieldValidation {
+export default class TextareaValidation {
 }

@@ -11,13 +11,14 @@
 import { IxTextarea } from '@siemens/ix-vue';
 
 export default {
-  name: 'TextareaField',
+  name: 'Textarea',
   components: { IxTextarea },
 };
 </script>
 
 <template>
   <IxTextarea
+    value="Some text"
     disabled
   ></IxTextarea>
 </template>
