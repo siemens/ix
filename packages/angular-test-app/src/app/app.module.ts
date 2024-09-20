@@ -49,7 +49,7 @@ import Textarea from '../preview-examples/textarea';
 import TextareaDisabled from '../preview-examples/textarea-disabled';
 import TextareaReadonly from '../preview-examples/textarea-readonly';
 import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
-import TextareaValidation from '../preview-examples/textarea-field-validation';
+import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeSwitcherExample from '../preview-examples/theme-switcher';
 import ValidationSelect from '../preview-examples/validation-select';
 import ValidationTextField from '../preview-examples/validation-text-field';
