@@ -19,7 +19,7 @@ A field is a form element when user input is needed. It's typically used with ot
 - **Field:** Use the appropriate field based on the type of input data, e.g. use [text inputs](../input.md) for text-based data, [checkboxes](../checkbox.mdx) for selecting from a list of predefined options, or [toggle switches](../toggle.md) for a binary choice.
 - **Helper text:** Use to help users understand the field better. We typically use this when there are input restrictions or more information is required.
 - **Show text as tooltip:** Display validation feedback either below the input field or as tooltip when the user hovers or focuses on the form field. Use a different text for the individual validation states that apply (see [validation](forms-validation.md)).
-- **Counter:** Use a counter to show the number of characters entered into the field and the maximum number of characters allowed. We typically use it for [text input](../input.md) or [textarea](../textarea-field.mdx) fields.
+- **Counter:** Use a counter to show the number of characters entered into the field and the maximum number of characters allowed. We typically use it for [text input](../input.md) or [textarea](../textarea.mdx) fields.
 
 ## Behavior in context
 
@@ -50,7 +50,7 @@ When a feedback tooltip is chosen over a message, the field shows a tooltip when
 - [Validation](forms-validation.md)
 - [Behavior](forms-behavior.md)
 - [Input](../text-field.mdx)
-- [Textarea](../textarea-field.mdx)
+- [Textarea](../textarea.mdx)
 - [Select](../select.mdx)
 - [Checkbox](../checkbox.mdx)
 - [Radio button](../radio.mdx)

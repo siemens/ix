@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './textarea-field-readonly.html'
+  templateUrl: './textarea-readonly.html'
 })
-export default class TextareaFieldReadonly {}
+export default class TextareaReadonly {}

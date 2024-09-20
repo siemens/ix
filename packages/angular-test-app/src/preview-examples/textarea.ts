@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './textarea-field-rows-cols.html'
+  templateUrl: './textarea.html'
 })
-export default class TextareaFieldRowsCols {}
+export default class Textarea {}

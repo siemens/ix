@@ -45,11 +45,11 @@ import TextFieldPattern from '../preview-examples/text-field-pattern';
 import TextFieldReadonly from '../preview-examples/text-field-readonly';
 import TextFieldTypes from '../preview-examples/text-field-types';
 import TextFieldValidation from '../preview-examples/text-field-validation';
-import TextareaField from '../preview-examples/textarea-field';
-import TextareaFieldDisabled from '../preview-examples/textarea-field-disabled';
-import TextareaFieldReadonly from '../preview-examples/textarea-field-readonly';
-import TextareaFieldRowsCols from '../preview-examples/textarea-field-rows-cols';
-import TextareaFieldValidation from '../preview-examples/textarea-field-validation';
+import Textarea from '../preview-examples/textarea';
+import TextareaDisabled from '../preview-examples/textarea-disabled';
+import TextareaReadonly from '../preview-examples/textarea-readonly';
+import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
+import TextareaValidation from '../preview-examples/textarea-field-validation';
 import ThemeSwitcherExample from '../preview-examples/theme-switcher';
 import ValidationSelect from '../preview-examples/validation-select';
 import ValidationTextField from '../preview-examples/validation-text-field';
@@ -397,11 +397,11 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     TabsRounded,
     Tabs,
     TextareaLegacyDisabled,
-    TextareaField,
-    TextareaFieldDisabled,
-    TextareaFieldReadonly,
-    TextareaFieldRowsCols,
-    TextareaFieldValidation,
+    Textarea,
+    TextareaDisabled,
+    TextareaReadonly,
+    TextareaRowsCols,
+    TextareaValidation,
     TextField,
     TextFieldDisabled,
     TextFieldLabel,

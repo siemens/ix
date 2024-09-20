@@ -207,11 +207,11 @@ import TextFieldPattern from '../preview-examples/text-field-pattern';
 import TextFieldReadonly from '../preview-examples/text-field-readonly';
 import TextFieldTypes from '../preview-examples/text-field-types';
 import TextFieldValidation from '../preview-examples/text-field-validation';
-import TextareaField from '../preview-examples/textarea-field';
-import TextareaFieldDisabled from '../preview-examples/textarea-field-disabled';
-import TextareaFieldReadonly from '../preview-examples/textarea-field-readonly';
-import TextareaFieldRowsCols from '../preview-examples/textarea-field-rows-cols';
-import TextareaFieldValidation from '../preview-examples/textarea-field-validation';
+import Textarea from '../preview-examples/textarea';
+import TextareaDisabled from '../preview-examples/textarea-disabled';
+import TextareaReadonly from '../preview-examples/textarea-readonly';
+import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
+import TextareaValidation from '../preview-examples/textarea-validation';
 import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
 import ValidationSelect from 'src/preview-examples/validation-select';
 import ValidationTextField from 'src/preview-examples/validation-text-field';
@@ -737,11 +737,11 @@ const routes: Routes = [
       { path: 'textarea-legacy', component: TextareaLegacy },
       { path: 'textarea-legacy-disabled', component: TextareaLegacyDisabled },
       { path: 'textarea-legacy-readonly', component: TextareaLegacyReadonly },
-      { path: 'textarea-field', component: TextareaField },
-      { path: 'textarea-field-disabled', component: TextareaFieldDisabled },
-      { path: 'textarea-field-disabled', component: TextareaFieldReadonly },
-      { path: 'textarea-field-rows-cols', component: TextareaFieldRowsCols },
-      { path: 'textarea-field-validation', component: TextareaFieldValidation },
+      { path: 'textarea', component: Textarea },
+      { path: 'textarea-disabled', component: TextareaDisabled },
+      { path: 'textarea-disabled', component: TextareaReadonly },
+      { path: 'textarea-rows-cols', component: TextareaRowsCols },
+      { path: 'textarea-validation', component: TextareaValidation },
       { path: 'text-field', component: TextField },
       { path: 'text-field-disabled', component: TextFieldDisabled },
       { path: 'text-field-label', component: TextFieldLabel },

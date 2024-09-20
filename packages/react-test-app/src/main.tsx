@@ -173,11 +173,11 @@ import TabsRounded from './preview-examples/tabs-rounded';
 import TextareaLegacy from './preview-examples/textarea-legacy';
 import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled';
 import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly';
-import TextareaField from './preview-examples/textarea-field';
-import TextareaFieldDisabled from './preview-examples/textarea-field-disabled';
-import TextareaFieldReadonly from './preview-examples/textarea-field-readonly';
-import TextareaFieldRowCols from './preview-examples/textarea-field-rows-cols';
-import TextareaFieldValidation from './preview-examples/textarea-field-validation';
+import Textarea from './preview-examples/textarea';
+import TextareaDisabled from './preview-examples/textarea-disabled';
+import TextareaReadonly from './preview-examples/textarea-readonly';
+import TextareaRowCols from './preview-examples/textarea-rows-cols';
+import TextareaValidation from './preview-examples/textarea-validation';
 import TextField from './preview-examples/text-field';
 import TextFieldDisabled from './preview-examples/text-field-disabled';
 import TextFieldLabel from './preview-examples/text-field-label';
@@ -556,22 +556,22 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/textarea-legacy-readonly"
           element={<TextareaLegacyReadonly />}
         />
-        <Route path="/preview/textarea-field" element={<TextareaField />} />
+        <Route path="/preview/textarea" element={<Textarea />} />
         <Route
-          path="/preview/textarea-field-disabled"
-          element={<TextareaFieldDisabled />}
+          path="/preview/textarea-disabled"
+          element={<TextareaDisabled />}
         />
         <Route
           path="/preview/textarea-readonly"
-          element={<TextareaFieldReadonly />}
+          element={<TextareaReadonly />}
         />
         <Route
-          path="/preview/textarea-field-rows-cols"
-          element={<TextareaFieldRowCols />}
+          path="/preview/textarea-rows-cols"
+          element={<TextareaRowCols />}
         />
         <Route
-          path="/preview/textarea-field-validation"
-          element={<TextareaFieldValidation />}
+          path="/preview/textarea-validation"
+          element={<TextareaValidation />}
         />
         <Route path="/preview/text-field" element={<TextField />} />
         <Route

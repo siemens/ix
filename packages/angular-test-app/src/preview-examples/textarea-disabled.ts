@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './textarea-field.html'
+  templateUrl: './textarea-disabled.html'
 })
-export default class TextareaField {}
+export default class TextareaDisabled {}
