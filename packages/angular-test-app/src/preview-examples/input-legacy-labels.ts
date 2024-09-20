@@ -13,11 +13,16 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <form class="needs-validation m-2">
+      <ix-input-group style="margin-bottom: 0.5rem;">
+        <span slot="input-start">Label Start</span>
+        <input type="text" />
+      </ix-input-group>
+
       <ix-input-group>
         <input type="text" />
-        <span slot="input-end"><ix-icon name="about" size="16"></ix-icon></span>
+        <span slot="input-end">Label End</span>
       </ix-input-group>
     </form>
   `,
 })
-export default class InputWithIcon {}
+export default class InputLegacyLabels {}

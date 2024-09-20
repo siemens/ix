@@ -1,20 +1,20 @@
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Input
+# Input (Legacy)
 
 ## Examples
 
 ### Basic 
 
 <Playground
-  name="input"
+  name="input-legacy"
   >
 </Playground>
 
 ### Disabled
 
 <Playground
-  name="input-disabled"
+  name="input-legacy-disabled"
   hideInitalCodePreview
   >
 </Playground>
@@ -22,7 +22,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### Readonly
 
 <Playground
-  name="input-readonly"
+  name="input-legacy-readonly"
   hideInitalCodePreview
   >
 </Playground>
@@ -30,7 +30,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### With icon
 
 <Playground
-  name="input-with-icon"
+  name="input-legacy-with-icon"
   hideInitalCodePreview
   >
 </Playground>
@@ -38,7 +38,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### Label placement
 
 <Playground
-  name="input-labels"
+  name="input-legacy-labels"
   hideInitalCodePreview
   >
 </Playground>
@@ -46,7 +46,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### Input types
 
 <Playground
-  name="input-types"
+  name="input-legacy-types"
   height="15rem"
   hideInitalCodePreview
   >
@@ -55,7 +55,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### Search
 
 <Playground
-  name="input-search"
+  name="input-legacy-search"
   hideInitalCodePreview
   >
 </Playground>

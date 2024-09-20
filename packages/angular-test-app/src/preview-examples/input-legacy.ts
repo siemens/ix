@@ -17,9 +17,8 @@ import { Component } from '@angular/core';
         value="Some example text"
         placeholder="Enter text here"
         type="text"
-        readonly
       />
     </form>
   `,
 })
-export default class InputReadonly {}
+export default class InputLegacy {}

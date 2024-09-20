@@ -103,10 +103,10 @@ import GroupContextMenu from './preview-examples/group-context-menu.vue';
 import GroupCustomEntry from './preview-examples/group-custom-entry.vue';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed.vue';
 import Group from './preview-examples/group.vue';
-import InputDisabled from './preview-examples/input-disabled.vue';
-import InputReadonly from './preview-examples/input-readonly.vue';
-import InputWithIcon from './preview-examples/input-with-icon.vue';
-import Input from './preview-examples/input.vue';
+import InputLegacyDisabled from './preview-examples/input-legacy-disabled.vue';
+import InputLegacyReadonly from './preview-examples/input-legacy-readonly.vue';
+import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon.vue';
+import InputLegacy from './preview-examples/input-legacy.vue';
 import KeyValueListStriped from './preview-examples/key-value-list-striped.vue';
 import KeyValueListWithCustomValue from './preview-examples/key-value-list-with-custom-value.vue';
 import KeyValueListWithIcon from './preview-examples/key-value-list-with-icon.vue';
@@ -181,16 +181,15 @@ import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-butto
 import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost.vue';
 import IconToggleButtonSecondaryOutline from './preview-examples/icon-toggle-button-secondary-outline.vue';
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary.vue';
-import InputLabels from './preview-examples/input-labels.vue';
-import InputSearch from './preview-examples/input-search.vue';
-import InputTypes from './preview-examples/input-types.vue';
+import InputLegacyLabels from './preview-examples/input-legacy-labels.vue';
+import InputLegacySearch from './preview-examples/input-legacy-search.vue';
+import InputLegacyTypes from './preview-examples/input-legacy-types.vue';
 import Kpi from './preview-examples/kpi.vue';
 import LinkButtonDisabled from './preview-examples/link-button-disabled.vue';
 import LinkButton from './preview-examples/link-button.vue';
 import Loading from './preview-examples/loading.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
-import Modal from './preview-examples/modal.vue';
 import Message from './preview-examples/message.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import PaginationAdvanced from './preview-examples/pagination-advanced.vue';
@@ -314,12 +313,12 @@ const routes: any = {
   '/preview/icon-toggle-button-secondary-outline':
     IconToggleButtonSecondaryOutline,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
-  '/preview/input-disabled': InputDisabled,
-  '/preview/input-labels': InputLabels,
-  '/preview/input-readonly': InputReadonly,
-  '/preview/input-search': InputSearch,
-  '/preview/input-types': InputTypes,
-  '/preview/input-with-icon': InputWithIcon,
+  '/preview/input-legacy-disabled': InputLegacyDisabled,
+  '/preview/input-legacy-labels': InputLegacyLabels,
+  '/preview/input-legacy-readonly': InputLegacyReadonly,
+  '/preview/input-legacy-search': InputLegacySearch,
+  '/preview/input-legacy-types': InputLegacyTypes,
+  '/preview/input-legacy-with-icon': InputLegacyWithIcon,
   '/preview/message-bar': MessageBar,
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
@@ -382,7 +381,7 @@ const routes: any = {
   '/preview/page-header': ContentHeader,
   '/preview/page-header-no-back': ContentHeaderNoBack,
   '/preview/key-value': KeyValue,
-  '/preview/input': Input,
+  '/preview/input-legacy': InputLegacy,
   '/preview/key-value-list-striped': KeyValueListStriped,
   '/preview/key-value-list-with-custom-value': KeyValueListWithCustomValue,
   '/preview/key-value-list-with-icon': KeyValueListWithIcon,

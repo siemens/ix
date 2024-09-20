@@ -99,13 +99,13 @@ import IconToggleButtonPrimaryOutline from '../preview-examples/icon-toggle-butt
 import IconToggleButtonSecondary from '../preview-examples/icon-toggle-button-secondary';
 import IconToggleButtonSecondaryGhost from '../preview-examples/icon-toggle-button-secondary-ghost';
 import IconToggleButtonSecondaryOutline from '../preview-examples/icon-toggle-button-secondary-outline';
-import Input from '../preview-examples/input';
-import InputDisabled from '../preview-examples/input-disabled';
-import InputLabels from '../preview-examples/input-labels';
-import InputReadonly from '../preview-examples/input-readonly';
-import InputSearch from '../preview-examples/input-search';
-import InputTypes from '../preview-examples/input-types';
-import InputWithIcon from '../preview-examples/input-with-icon';
+import InputLegacy from '../preview-examples/input-legacy';
+import InputLegacyDisabled from '../preview-examples/input-legacy-disabled';
+import InputLegacyLabels from '../preview-examples/input-legacy-labels';
+import InputLegacyReadonly from '../preview-examples/input-legacy-readonly';
+import InputLegacySearch from '../preview-examples/input-legacy-search';
+import InputLegacyTypes from '../preview-examples/input-legacy-types';
+import InputLegacyWithIcon from '../preview-examples/input-legacy-with-icon';
 import KeyValue from '../preview-examples/key-value';
 import KeyValueList from '../preview-examples/key-value-list';
 import KeyValueListStriped from '../preview-examples/key-value-list-striped';
@@ -589,32 +589,32 @@ const routes: Routes = [
         component: IconToggleButtonSecondary,
       },
       {
-        path: 'input-disabled',
-        component: InputDisabled,
+        path: 'input-legacy-disabled',
+        component: InputLegacyDisabled,
       },
       {
-        path: 'input-labels',
-        component: InputLabels,
+        path: 'input-legacy-labels',
+        component: InputLegacyLabels,
       },
       {
-        path: 'input-readonly',
-        component: InputReadonly,
+        path: 'input-legacy-readonly',
+        component: InputLegacyReadonly,
       },
       {
-        path: 'input-search',
-        component: InputSearch,
+        path: 'input-legacy-search',
+        component: InputLegacySearch,
       },
       {
-        path: 'input-types',
-        component: InputTypes,
+        path: 'input-legacy-types',
+        component: InputLegacyTypes,
       },
       {
-        path: 'input-with-icon',
-        component: InputWithIcon,
+        path: 'input-legacy-with-icon',
+        component: InputLegacyWithIcon,
       },
       {
-        path: 'input',
-        component: Input,
+        path: 'input-legacy',
+        component: InputLegacy,
       },
       {
         path: 'key-value-list-striped',

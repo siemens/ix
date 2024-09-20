@@ -39,7 +39,7 @@ import { Component } from '@angular/core';
     </form>
   `,
 })
-export default class Input {
+export default class InputLegacySearch {
   customSearch = '';
   display = 'none';
 

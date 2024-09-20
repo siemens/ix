@@ -109,13 +109,13 @@ import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-butto
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary';
 import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost';
 import IconToggleButtonSecondaryOutline from './preview-examples/icon-toggle-button-secondary-outline';
-import Input from './preview-examples/input';
-import InputDisabled from './preview-examples/input-disabled';
-import InputLabels from './preview-examples/input-labels';
-import InputReadonly from './preview-examples/input-readonly';
-import InputSearch from './preview-examples/input-search';
-import InputTypes from './preview-examples/input-types';
-import InputWithIcon from './preview-examples/input-with-icon';
+import InputLegacy from './preview-examples/input-legacy';
+import InputLegacyDisabled from './preview-examples/input-legacy-disabled';
+import InputLegacyLabels from './preview-examples/input-legacy-labels';
+import InputLegacyReadonly from './preview-examples/input-legacy-readonly';
+import InputLegacySearch from './preview-examples/input-legacy-search';
+import InputLegacyTypes from './preview-examples/input-legacy-types';
+import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon';
 import KeyValue from './preview-examples/key-value';
 import KeyValueList from './preview-examples/key-value-list';
 import KeyValueListStriped from './preview-examples/key-value-list-striped';
@@ -453,13 +453,13 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/icon-toggle-button-secondary"
           element={<IconToggleButtonSecondary />}
         />
-        <Route path="/preview/input-disabled" element={<InputDisabled />} />
-        <Route path="/preview/input-labels" element={<InputLabels />} />
-        <Route path="/preview/input-readonly" element={<InputReadonly />} />
-        <Route path="/preview/input-search" element={<InputSearch />} />
-        <Route path="/preview/input-types" element={<InputTypes />} />
-        <Route path="/preview/input-with-icon" element={<InputWithIcon />} />
-        <Route path="/preview/input" element={<Input />} />
+        <Route path="/preview/input-legacy-disabled" element={<InputLegacyDisabled />} />
+        <Route path="/preview/input-legacy-labels" element={<InputLegacyLabels />} />
+        <Route path="/preview/input-legacy-readonly" element={<InputLegacyReadonly />} />
+        <Route path="/preview/input-legacy-search" element={<InputLegacySearch />} />
+        <Route path="/preview/input-legacy-types" element={<InputLegacyTypes />} />
+        <Route path="/preview/input-legacy-with-icon" element={<InputLegacyWithIcon />} />
+        <Route path="/preview/input-legacy" element={<InputLegacy />} />
         <Route
           path="/preview/key-value-list-striped"
           element={<KeyValueListStriped />}

@@ -13,16 +13,13 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <form class="needs-validation m-2">
-      <ix-input-group style="margin-bottom: 0.5rem;">
-        <span slot="input-start">Label Start</span>
-        <input type="text" />
-      </ix-input-group>
-
-      <ix-input-group>
-        <input type="text" />
-        <span slot="input-end">Label End</span>
-      </ix-input-group>
+      <input
+        value="Some example text"
+        placeholder="Enter text here"
+        type="text"
+        disabled
+      />
     </form>
   `,
 })
-export default class Input {}
+export default class InputLegacyDisabled {}
