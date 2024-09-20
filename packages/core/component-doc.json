@@ -18073,8 +18073,8 @@
     },
     {
       "dirPath": "src/components/text-field",
-      "filePath": "src/components/text-field/textarea-field.tsx",
-      "fileName": "textarea-field.tsx",
+      "filePath": "src/components/text-field/textarea.tsx",
+      "fileName": "textarea.tsx",
       "readmePath": "src/components/text-field/readme.md",
       "usagesDir": "src/components/text-field/usage",
       "tag": "ix-textarea",
@@ -18353,13 +18353,13 @@
           "name": "resizeBehavior",
           "type": "\"both\" | \"horizontal\" | \"none\" | \"vertical\"",
           "complexType": {
-            "original": "TextareaFieldResizeBehavior",
+            "original": "TextareaResizeBehavior",
             "resolved": "\"both\" | \"horizontal\" | \"none\" | \"vertical\"",
             "references": {
-              "TextareaFieldResizeBehavior": {
+              "TextareaResizeBehavior": {
                 "location": "local",
-                "path": "src/components/text-field/textarea-field.tsx",
-                "id": "src/components/text-field/textarea-field.tsx::TextareaFieldResizeBehavior"
+                "path": "src/components/text-field/textarea.tsx",
+                "id": "src/components/text-field/textarea.tsx::TextareaResizeBehavior"
               }
             }
           },
@@ -21819,10 +21819,10 @@
       "docstring": "",
       "path": "src/components/tab-item/tab-item.tsx"
     },
-    "src/components/text-field/textarea-field.tsx::TextareaFieldResizeBehavior": {
-      "declaration": "export type TextareaFieldResizeBehavior =\n  | 'both'\n  | 'horizontal'\n  | 'vertical'\n  | 'none';",
+    "src/components/text-field/textarea.tsx::TextareaResizeBehavior": {
+      "declaration": "export type TextareaResizeBehavior =\n  | 'both'\n  | 'horizontal'\n  | 'vertical'\n  | 'none';",
       "docstring": "",
-      "path": "src/components/text-field/textarea-field.tsx"
+      "path": "src/components/text-field/textarea.tsx"
     },
     "src/components/time-picker/time-picker.tsx::TimePickerCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",

@@ -140,9 +140,9 @@ import Settings from './preview-examples/settings.vue';
 import SpinnerLarge from './preview-examples/spinner-large.vue';
 import Spinner from './preview-examples/spinner.vue';
 import Tabs from './preview-examples/tabs.vue';
-import Textarea from './preview-examples/textarea.vue';
-import TextareaDisabled from './preview-examples/textarea-disabled.vue';
-import TextareaReadonly from './preview-examples/textarea-readonly.vue';
+import TextareaLegacy from './preview-examples/textarea-legacy.vue';
+import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled.vue';
+import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly.vue';
 import TextareaField from './preview-examples/textarea-field.vue';
 import TextareaFieldDisabled from './preview-examples/textarea-field-disabled.vue';
 import TextareaFieldReadonly from './preview-examples/textarea-field-readonly.vue';
@@ -339,9 +339,9 @@ const routes: any = {
   '/preview/split-button': SplitButton,
   '/preview/split-button-icons': SplitButtonIcons,
   '/preview/tabs': Tabs,
-  '/preview/textarea': Textarea,
-  '/preview/textarea-disabled': TextareaDisabled,
-  '/preview/textarea-readonly': TextareaReadonly,
+  '/preview/textarea-legacy': TextareaLegacy,
+  '/preview/textarea-legacy-disabled': TextareaLegacyDisabled,
+  '/preview/textarea-legacy-readonly': TextareaLegacyReadonly,
   '/preview/textarea-field': TextareaField,
   '/preview/textarea-field-readonly': TextareaFieldReadonly,
   '/preview/textarea-field-disabled': TextareaFieldDisabled,

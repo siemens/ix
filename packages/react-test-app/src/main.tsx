@@ -170,9 +170,9 @@ import SplitButton from './preview-examples/split-button';
 import SplitButtonIcons from './preview-examples/split-button-icons';
 import Tabs from './preview-examples/tabs';
 import TabsRounded from './preview-examples/tabs-rounded';
-import Textarea from './preview-examples/textarea';
-import TextareaDisabled from './preview-examples/textarea-disabled';
-import TextareaReadonly from './preview-examples/textarea-readonly';
+import TextareaLegacy from './preview-examples/textarea-legacy';
+import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled';
+import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly';
 import TextareaField from './preview-examples/textarea-field';
 import TextareaFieldDisabled from './preview-examples/textarea-field-disabled';
 import TextareaFieldReadonly from './preview-examples/textarea-field-readonly';
@@ -549,12 +549,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/tabs-rounded" element={<TabsRounded />} />
         <Route path="/preview/tabs" element={<Tabs />} />
         <Route
-          path="/preview/textarea-disabled"
-          element={<TextareaDisabled />}
+          path="/preview/textarea-legacy-disabled"
+          element={<TextareaLegacyDisabled />}
         />
         <Route
-          path="/preview/textarea-readonly"
-          element={<TextareaReadonly />}
+          path="/preview/textarea-legacy-readonly"
+          element={<TextareaLegacyReadonly />}
         />
         <Route path="/preview/textarea-field" element={<TextareaField />} />
         <Route
@@ -592,7 +592,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/text-field-validation"
           element={<TextFieldValidation />}
         />
-        <Route path="/preview/textarea" element={<Textarea />} />
+        <Route path="/preview/textarea-legacy" element={<TextareaLegacy />} />
         <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
         <Route path="/preview/tile" element={<Tile />} />
         <Route path="/preview/timepicker" element={<Timepicker />} />

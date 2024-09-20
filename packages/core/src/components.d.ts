@@ -41,7 +41,7 @@ import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
 import { TabClickDetail } from "./components/tab-item/tab-item";
-import { TextareaFieldResizeBehavior } from "./components/text-field/textarea-field";
+import { TextareaResizeBehavior } from "./components/text-field/textarea";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
@@ -85,7 +85,7 @@ export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
 export { TabClickDetail } from "./components/tab-item/tab-item";
-export { TextareaFieldResizeBehavior } from "./components/text-field/textarea-field";
+export { TextareaResizeBehavior } from "./components/text-field/textarea";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
@@ -2755,7 +2755,7 @@ export namespace Components {
         /**
           * Determines the resize behavior of the textarea field. 'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth. 'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.
          */
-        "resizeBehavior": TextareaFieldResizeBehavior;
+        "resizeBehavior": TextareaResizeBehavior;
         /**
           * Determines if the text should be displayed as a tooltip.
          */
@@ -7966,7 +7966,7 @@ declare namespace LocalJSX {
         /**
           * Determines the resize behavior of the textarea field. 'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth. 'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.
          */
-        "resizeBehavior"?: TextareaFieldResizeBehavior;
+        "resizeBehavior"?: TextareaResizeBehavior;
         /**
           * Determines if the text should be displayed as a tooltip.
          */

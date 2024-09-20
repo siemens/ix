@@ -152,9 +152,9 @@ import SplitButton from '../preview-examples/split-button';
 import SplitButtonIcons from '../preview-examples/split-button-icons';
 import Tabs from '../preview-examples/tabs';
 import TabsRounded from '../preview-examples/tabs-rounded';
-import Textarea from '../preview-examples/textarea';
-import TextareaDisabled from '../preview-examples/textarea-disabled';
-import TextareaReadonly from '../preview-examples/textarea-readonly';
+import TextareaLegacy from '../preview-examples/textarea-legacy';
+import TextareaLegacyDisabled from '../preview-examples/textarea-legacy-disabled';
+import TextareaLegacyReadonly from '../preview-examples/textarea-legacy-readonly';
 import ThemeService from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import Timepicker from '../preview-examples/timepicker';
@@ -734,9 +734,9 @@ const routes: Routes = [
       { path: 'split-button', component: SplitButton },
       { path: 'tabs', component: Tabs },
       { path: 'tabs-rounded', component: TabsRounded },
-      { path: 'textarea', component: Textarea },
-      { path: 'textarea-disabled', component: TextareaDisabled },
-      { path: 'textarea-readonly', component: TextareaReadonly },
+      { path: 'textarea-legacy', component: TextareaLegacy },
+      { path: 'textarea-legacy-disabled', component: TextareaLegacyDisabled },
+      { path: 'textarea-legacy-readonly', component: TextareaLegacyReadonly },
       { path: 'textarea-field', component: TextareaField },
       { path: 'textarea-field-disabled', component: TextareaFieldDisabled },
       { path: 'textarea-field-disabled', component: TextareaFieldReadonly },
@@ -830,18 +830,6 @@ const routes: Routes = [
       {
         path: 'tabs',
         component: Tabs,
-      },
-      {
-        path: 'textarea-disabled',
-        component: TextareaDisabled,
-      },
-      {
-        path: 'textarea-readonly',
-        component: TextareaReadonly,
-      },
-      {
-        path: 'textarea',
-        component: Textarea,
       },
       {
         path: 'theme-switcher',

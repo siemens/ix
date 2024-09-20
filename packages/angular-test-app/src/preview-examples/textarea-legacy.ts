@@ -11,10 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <textarea placeholder="Enter text here" readonly>
-      Some example text
-    </textarea>
-  `,
+  template: ` <textarea placeholder="Enter text here"></textarea> `,
 })
-export default class TextareaReadonly {}
+export default class TextareaLegacy {}

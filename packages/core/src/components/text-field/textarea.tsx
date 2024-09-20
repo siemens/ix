@@ -28,7 +28,7 @@ import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import { mapValidationResult, onInputBlur } from './text-field.util';
 
-export type TextareaFieldResizeBehavior =
+export type TextareaResizeBehavior =
   | 'both'
   | 'horizontal'
   | 'vertical'
@@ -40,11 +40,11 @@ export type TextareaFieldResizeBehavior =
  */
 @Component({
   tag: 'ix-textarea',
-  styleUrl: 'textarea-field.scss',
+  styleUrl: 'textarea.scss',
   shadow: true,
   formAssociated: true,
 })
-export class TextareaField implements IxInputFieldComponent<string> {
+export class Textarea implements IxInputFieldComponent<string> {
   @Element() hostElement!: HTMLIxTextareaElement;
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -142,7 +142,7 @@ export class TextareaField implements IxInputFieldComponent<string> {
    * 'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth.
    * 'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.
    */
-  @Prop() resizeBehavior: TextareaFieldResizeBehavior = 'both';
+  @Prop() resizeBehavior: TextareaResizeBehavior = 'both';
 
   /**
    * The maximum length of the textarea field.

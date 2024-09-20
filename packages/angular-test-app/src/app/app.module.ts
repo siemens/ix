@@ -200,9 +200,9 @@ import SplitButton from '../preview-examples/split-button';
 import SplitButtonIcons from '../preview-examples/split-button-icons';
 import Tabs from '../preview-examples/tabs';
 import TabsRounded from '../preview-examples/tabs-rounded';
-import Textarea from '../preview-examples/textarea';
-import TextareaDisabled from '../preview-examples/textarea-disabled';
-import TextareaReadonly from '../preview-examples/textarea-readonly';
+import TextareaLegacy from '../preview-examples/textarea-legacy';
+import TextareaLegacyDisabled from '../preview-examples/textarea-legacy-disabled';
+import TextareaLegacyReadonly from '../preview-examples/textarea-legacy-readonly';
 import ThemeSwitcher from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import Timepicker from '../preview-examples/timepicker';
@@ -396,7 +396,7 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     SplitButton,
     TabsRounded,
     Tabs,
-    TextareaDisabled,
+    TextareaLegacyDisabled,
     TextareaField,
     TextareaFieldDisabled,
     TextareaFieldReadonly,
@@ -410,8 +410,8 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     TextFieldValidation,
     TextFieldPattern,
     ThemeSwitcherExample,
-    TextareaReadonly,
-    Textarea,
+    TextareaLegacyReadonly,
+    TextareaLegacy,
     ThemeSwitcher,
     Tile,
     Timepicker,
