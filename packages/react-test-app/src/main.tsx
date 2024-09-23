@@ -178,13 +178,13 @@ import TextareaDisabled from './preview-examples/textarea-disabled';
 import TextareaReadonly from './preview-examples/textarea-readonly';
 import TextareaRowCols from './preview-examples/textarea-rows-cols';
 import TextareaValidation from './preview-examples/textarea-validation';
-import TextField from './preview-examples/text-field';
-import TextFieldDisabled from './preview-examples/text-field-disabled';
-import TextFieldLabel from './preview-examples/text-field-label';
-import TextFieldPattern from './preview-examples/text-field-pattern';
-import TextFieldReadonly from './preview-examples/text-field-readonly';
-import TextFieldTypes from './preview-examples/text-field-types';
-import TextFieldValidation from './preview-examples/text-field-validation';
+import Input from './preview-examples/input';
+import InputDisabled from './preview-examples/input-disabled';
+import InputLabel from './preview-examples/input-label';
+import InputPattern from './preview-examples/input-pattern';
+import InputReadonly from './preview-examples/input-readonly';
+import InputTypes from './preview-examples/input-types';
+import InputValidation from './preview-examples/input-validation';
 import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
 import Timepicker from './preview-examples/timepicker';
@@ -573,24 +573,24 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/textarea-validation"
           element={<TextareaValidation />}
         />
-        <Route path="/preview/text-field" element={<TextField />} />
+        <Route path="/preview/input" element={<Input />} />
         <Route
-          path="/preview/text-field-disabled"
-          element={<TextFieldDisabled />}
+          path="/preview/input-disabled"
+          element={<InputDisabled />}
         />
-        <Route path="/preview/text-field-label" element={<TextFieldLabel />} />
+        <Route path="/preview/input-label" element={<InputLabel />} />
         <Route
-          path="/preview/text-field-pattern"
-          element={<TextFieldPattern />}
+          path="/preview/input-pattern"
+          element={<InputPattern />}
         />
         <Route
-          path="/preview/text-field-readonly"
-          element={<TextFieldReadonly />}
+          path="/preview/input-readonly"
+          element={<InputReadonly />}
         />
-        <Route path="/preview/text-field-types" element={<TextFieldTypes />} />
+        <Route path="/preview/input-types" element={<InputTypes />} />
         <Route
-          path="/preview/text-field-validation"
-          element={<TextFieldValidation />}
+          path="/preview/input-validation"
+          element={<InputValidation />}
         />
         <Route path="/preview/textarea-legacy" element={<TextareaLegacy />} />
         <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
