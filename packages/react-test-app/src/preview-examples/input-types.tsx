@@ -47,7 +47,7 @@ export default () => {
           type="url"
           label="URL"
           placeholder="Enter your URL"
-          value="http://ix.siemens.io"
+          value="https://ix.siemens.io"
         ></IxInput>
       </div>
     </>
