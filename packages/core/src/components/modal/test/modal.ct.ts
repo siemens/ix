@@ -8,10 +8,12 @@
  */
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
+import { ModalInstance, showModal } from './../../utils/modal';
 
 declare global {
   interface Window {
-    showModal: any;
+    showModal: typeof showModal;
+    __counter: number;
   }
 }
 
@@ -175,26 +177,29 @@ test('emits one event on close', async ({ mount, page }) => {
       <ix-modal-content>Content</ix-modal-header>
     `;
 
-    window.showModal({
-      content: elm,
-    });
+    window
+      .showModal({
+        content: elm,
+        // Disable animation to get the direct animation end callback
+        animation: false,
+      })
+      .then((instance: ModalInstance<unknown>) => {
+        instance.onDismiss.on(() => {
+          const counter = window.__counter;
+          if (counter) {
+            window.__counter = counter + 1;
+          } else {
+            window.__counter = 1;
+          }
+        });
+      });
   });
   const dialog = page.locator('ix-modal dialog');
   await expect(dialog).toBeVisible();
   const iconButton = page.locator('ix-icon-button');
 
-  const eventCountHandler = await page.evaluateHandle(() => {
-    return { count: 0 };
-  });
-
-  await dialog.evaluate((elm, eventCountHandler) => {
-    elm.addEventListener('close', () => {
-      eventCountHandler.count++;
-    });
-  }, eventCountHandler);
-
   await iconButton.click();
   await expect(dialog).not.toBeVisible();
 
-  expect((await eventCountHandler.jsonValue()).count).toBe(1);
+  expect(await page.evaluate(() => window.__counter)).toBe(1);
 });
