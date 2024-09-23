@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './text-field-disabled.html',
+  templateUrl: './input-readonly.html'
 })
-export default class TextFieldDisabled {}
+export default class TextFieldReadonly {}

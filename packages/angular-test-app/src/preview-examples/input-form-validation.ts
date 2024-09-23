@@ -12,9 +12,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-example',
-  templateUrl: `./validation-text-field.html`,
+  templateUrl: `./input-form-validation.html`,
 })
-export default class ValidationTextField {
+export default class InputFormValidation {
   exampleForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
   });

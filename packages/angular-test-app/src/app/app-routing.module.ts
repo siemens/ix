@@ -200,13 +200,13 @@ import RadioDisabled from '../preview-examples/radio-disabled';
 import RadioGroup from '../preview-examples/radio-group';
 import RadioValidation from '../preview-examples/radio-validation';
 import SelectValidation from '../preview-examples/select-validation';
-import TextField from '../preview-examples/text-field';
-import TextFieldDisabled from '../preview-examples/text-field-disabled';
-import TextFieldLabel from '../preview-examples/text-field-label';
-import TextFieldPattern from '../preview-examples/text-field-pattern';
-import TextFieldReadonly from '../preview-examples/text-field-readonly';
-import TextFieldTypes from '../preview-examples/text-field-types';
-import TextFieldValidation from '../preview-examples/text-field-validation';
+import Input from '../preview-examples/input';
+import InputDisabled from '../preview-examples/input-disabled';
+import InputLabel from '../preview-examples/input-label';
+import InputPattern from '../preview-examples/input-pattern';
+import InputReadonly from '../preview-examples/input-readonly';
+import InputTypes from '../preview-examples/input-types';
+import InputValidation from '../preview-examples/input-validation';
 import Textarea from '../preview-examples/textarea';
 import TextareaDisabled from '../preview-examples/textarea-disabled';
 import TextareaReadonly from '../preview-examples/textarea-readonly';
@@ -214,7 +214,7 @@ import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
 import TextareaValidation from '../preview-examples/textarea-validation';
 import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
 import ValidationSelect from 'src/preview-examples/validation-select';
-import ValidationTextField from 'src/preview-examples/validation-text-field';
+import InputFormValidation from 'src/preview-examples/input-form-validation';
 import FormValidation from 'src/preview-examples/form-validation';
 import LayoutAuto from 'src/preview-examples/layout-auto';
 import LayoutAutoCustom from 'src/preview-examples/layout-auto-custom';
@@ -742,13 +742,13 @@ const routes: Routes = [
       { path: 'textarea-disabled', component: TextareaReadonly },
       { path: 'textarea-rows-cols', component: TextareaRowsCols },
       { path: 'textarea-validation', component: TextareaValidation },
-      { path: 'text-field', component: TextField },
-      { path: 'text-field-disabled', component: TextFieldDisabled },
-      { path: 'text-field-label', component: TextFieldLabel },
-      { path: 'text-field-label', component: TextFieldPattern },
-      { path: 'text-field-readonly', component: TextFieldReadonly },
-      { path: 'text-field-types', component: TextFieldTypes },
-      { path: 'text-field-types', component: TextFieldValidation },
+      { path: 'input', component: Input },
+      { path: 'input-disabled', component: InputDisabled },
+      { path: 'input-label', component: InputLabel },
+      { path: 'input-label', component: InputPattern },
+      { path: 'input-readonly', component: InputReadonly },
+      { path: 'input-types', component: InputTypes },
+      { path: 'input-types', component: InputValidation },
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
@@ -978,7 +978,7 @@ const routes: Routes = [
       { path: 'grid-padding', component: GridPadding },
       { path: 'modal-sizes', component: ModalSizes },
       { path: 'validation-select', component: ValidationSelect },
-      { path: 'validation-text-field', component: ValidationTextField },
+      { path: 'input-form-validation', component: InputFormValidation },
       { path: 'form-validation', component: FormValidation },
       { path: 'layout-auto', component: LayoutAuto },
       { path: 'layout-auto-custom', component: LayoutAutoCustom },

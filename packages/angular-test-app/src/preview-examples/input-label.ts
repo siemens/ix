@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './text-field.html'
+  templateUrl: './input-label.html'
 })
-export default class TextField {}
+export default class InputLabel {}

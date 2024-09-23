@@ -38,13 +38,13 @@ import RadioDisabled from '../preview-examples/radio-disabled';
 import RadioGroup from '../preview-examples/radio-group';
 import RadioValidation from '../preview-examples/radio-validation';
 import SelectValidation from '../preview-examples/select-validation';
-import TextField from '../preview-examples/text-field';
-import TextFieldDisabled from '../preview-examples/text-field-disabled';
-import TextFieldLabel from '../preview-examples/text-field-label';
-import TextFieldPattern from '../preview-examples/text-field-pattern';
-import TextFieldReadonly from '../preview-examples/text-field-readonly';
-import TextFieldTypes from '../preview-examples/text-field-types';
-import TextFieldValidation from '../preview-examples/text-field-validation';
+import Input from '../preview-examples/input';
+import InputDisabled from '../preview-examples/input-disabled';
+import InputLabel from '../preview-examples/input-label';
+import InputPattern from '../preview-examples/input-pattern';
+import InputReadonly from '../preview-examples/input-readonly';
+import InputTypes from '../preview-examples/input-types';
+import InputValidation from '../preview-examples/input-validation';
 import Textarea from '../preview-examples/textarea';
 import TextareaDisabled from '../preview-examples/textarea-disabled';
 import TextareaReadonly from '../preview-examples/textarea-readonly';
@@ -52,7 +52,7 @@ import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
 import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeSwitcherExample from '../preview-examples/theme-switcher';
 import ValidationSelect from '../preview-examples/validation-select';
-import ValidationTextField from '../preview-examples/validation-text-field';
+import InputFormValidation from '../preview-examples/input-form-validation';
 
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
@@ -235,7 +235,7 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
 @NgModule({
   declarations: [
     FormValidation,
-    ValidationTextField,
+    InputFormValidation,
     AppComponent,
     AboutAndLegal,
     ActionCard,
@@ -402,13 +402,13 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     TextareaReadonly,
     TextareaRowsCols,
     TextareaValidation,
-    TextField,
-    TextFieldDisabled,
-    TextFieldLabel,
-    TextFieldReadonly,
-    TextFieldTypes,
-    TextFieldValidation,
-    TextFieldPattern,
+    Input,
+    InputDisabled,
+    InputLabel,
+    InputReadonly,
+    InputTypes,
+    InputValidation,
+    InputPattern,
     ThemeSwitcherExample,
     TextareaLegacyReadonly,
     TextareaLegacy,
