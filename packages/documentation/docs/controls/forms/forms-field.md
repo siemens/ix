@@ -49,7 +49,8 @@ When a feedback tooltip is chosen over a message, the field shows a tooltip when
 
 - [Validation](forms-validation.md)
 - [Behavior](forms-behavior.md)
-- [Input](../text-field.mdx)
+- [Input](../input.mdx)
+- [Input Legacy](../input-legacy.md)
 - [Textarea](../textarea.mdx)
 - [Select](../select.mdx)
 - [Checkbox](../checkbox.mdx)
