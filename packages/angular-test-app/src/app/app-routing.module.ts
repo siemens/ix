@@ -10,11 +10,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import FormValidation from 'src/preview-examples/form-validation';
-import InputFormValidation from 'src/preview-examples/input-form-validation';
-import LayoutAuto from 'src/preview-examples/layout-auto';
-import LayoutAutoCustom from 'src/preview-examples/layout-auto-custom';
-import ValidationSelect from 'src/preview-examples/validation-select';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AgGrid from '../preview-examples/aggrid';
@@ -99,7 +94,12 @@ import EventListCustomItemHeight from '../preview-examples/event-list-custom-ite
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
+import FormCheckbox from '../preview-examples/form-checkbox';
+import FormCheckboxDisabled from '../preview-examples/form-checkbox-disabled';
+import FormCheckboxGroup from '../preview-examples/form-checkbox-group';
 import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-group-indeterminate";
+import FormCheckboxValidation from '../preview-examples/form-checkbox-validation';
+import FormValidation from '../preview-examples/form-validation';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
 import GridSize from '../preview-examples/grid-size';
@@ -114,6 +114,7 @@ import IconToggleButtonSecondaryGhost from '../preview-examples/icon-toggle-butt
 import IconToggleButtonSecondaryOutline from '../preview-examples/icon-toggle-button-secondary-outline';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
+import InputFormValidation from '../preview-examples/input-form-validation';
 import InputLabel from '../preview-examples/input-label';
 import InputLegacy from '../preview-examples/input-legacy';
 import InputLegacyDisabled from '../preview-examples/input-legacy-disabled';
@@ -135,6 +136,8 @@ import KeyValueWithCustomValue from '../preview-examples/key-value-with-custom-v
 import KeyValueWithIcon from '../preview-examples/key-value-with-icon';
 import KeyValueWithLabelLeft from '../preview-examples/key-value-with-label-left';
 import Kpi from '../preview-examples/kpi';
+import LayoutAuto from '../preview-examples/layout-auto';
+import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
@@ -214,6 +217,7 @@ import Tree from '../preview-examples/tree';
 import TreeCustom from '../preview-examples/tree-custom';
 import Upload from '../preview-examples/upload';
 import Validation from '../preview-examples/validation';
+import ValidationSelect from '../preview-examples/validation-select';
 import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
@@ -375,6 +379,22 @@ const routes: Routes = [
       {
         path: 'checkbox',
         component: Checkbox,
+      },
+      {
+        path: 'form-checkbox',
+        component: FormCheckbox,
+      },
+      {
+        path: 'form-checkbox-disabled',
+        component: FormCheckboxDisabled,
+      },
+      {
+        path: 'form-checkbox-validation',
+        component: FormCheckboxValidation,
+      },
+      {
+        path: 'form-checkbox-group',
+        component: FormCheckboxGroup,
       },
       {
         path: 'form-checkbox-group-indeterminate',
