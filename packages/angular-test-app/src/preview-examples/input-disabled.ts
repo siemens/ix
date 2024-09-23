@@ -13,4 +13,4 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   templateUrl: './input-disabled.html',
 })
-export default class TextFieldDisabled {}
+export default class InputDisabled {}

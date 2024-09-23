@@ -13,4 +13,4 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   templateUrl: './input-pattern.html'
 })
-export default class TextFieldPattern {}
+export default class InputPattern {}

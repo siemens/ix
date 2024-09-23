@@ -13,4 +13,4 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   templateUrl: './input-readonly.html'
 })
-export default class TextFieldReadonly {}
+export default class InputReadonly {}
