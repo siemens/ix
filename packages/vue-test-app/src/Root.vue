@@ -148,13 +148,13 @@ import TextareaFieldDisabled from './preview-examples/textarea-disabled.vue';
 import TextareaFieldReadonly from './preview-examples/textarea-readonly.vue';
 import TextareaFieldRowsCols from './preview-examples/textarea-rows-cols.vue';
 import TextareaFieldValidation from './preview-examples/textarea-validation.vue';
-import TextField from './preview-examples/text-field.vue';
-import TextFieldDisabled from './preview-examples/text-field-disabled.vue';
-import TextFieldLabel from './preview-examples/text-field-label.vue';
-import TextFieldPattern from './preview-examples/text-field-pattern.vue';
-import TextFieldReadonly from './preview-examples/text-field-readonly.vue';
-import TextFieldTypes from './preview-examples/text-field-types.vue';
-import TextFieldValidation from './preview-examples/text-field-validation.vue';
+import Input from './preview-examples/input.vue';
+import InputDisabled from './preview-examples/input-disabled.vue';
+import InputLabel from './preview-examples/input-label.vue';
+import InputPattern from './preview-examples/input-pattern.vue';
+import InputReadonly from './preview-examples/input-readonly.vue';
+import InputTypes from './preview-examples/input-types.vue';
+import InputValidation from './preview-examples/input-validation.vue';
 import Tile from './preview-examples/tile.vue';
 import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
@@ -346,13 +346,13 @@ const routes: any = {
   '/preview/textarea-disabled': TextareaFieldDisabled,
   '/preview/textarea-rows-cols': TextareaFieldRowsCols,
   '/preview/textarea-validation': TextareaFieldValidation,
-  '/preview/text-field': TextField,
-  '/preview/text-field-disabled': TextFieldDisabled,
-  '/preview/text-field-label': TextFieldLabel,
-  '/preview/text-field-pattern': TextFieldPattern,
-  '/preview/text-field-readonly': TextFieldReadonly,
-  '/preview/text-field-types': TextFieldTypes,
-  '/preview/text-field-validation': TextFieldValidation,
+  '/preview/input': Input,
+  '/preview/input-disabled': InputDisabled,
+  '/preview/input-label': InputLabel,
+  '/preview/input-pattern': InputPattern,
+  '/preview/input-readonly': InputReadonly,
+  '/preview/input-types': InputTypes,
+  '/preview/input-validation': InputValidation,
   '/preview/tile': Tile,
   '/preview/timepicker': Timepicker,
   '/preview/toast': Toast,
