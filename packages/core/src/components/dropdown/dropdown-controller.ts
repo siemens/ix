@@ -105,7 +105,7 @@ class DropdownController {
   }
 
   dismiss(dropdown: DropdownInterface) {
-    if (dropdown?.isPresent() && dropdown.willDismiss()) {
+    if (dropdown.isPresent() && dropdown.willDismiss()) {
       this.dismissChildren(dropdown.getId());
       dropdown.dismiss();
       delete this.submenuIds[dropdown.getId()];
