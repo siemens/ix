@@ -13,8 +13,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { IxModule } from '@siemens/ix-angular';
+import { AgGridModule } from 'ag-grid-angular';
+import { NgxEchartsModule } from 'ngx-echarts';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import BasicNavigationWithOutHeader from '../preview-examples/basic-navigation-without-header';
 import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateInput from '../preview-examples/date-input';
@@ -23,9 +26,16 @@ import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
 import DateInputValidation from '../preview-examples/date-input-validation';
 import FormValidation from '../preview-examples/form-validation';
+import Input from '../preview-examples/input';
+import InputDisabled from '../preview-examples/input-disabled';
+import InputFormValidation from '../preview-examples/input-form-validation';
+import InputLabel from '../preview-examples/input-label';
+import InputPattern from '../preview-examples/input-pattern';
+import InputReadonly from '../preview-examples/input-readonly';
+import InputTypes from '../preview-examples/input-types';
+import InputValidation from '../preview-examples/input-validation';
 import LayoutAuto from '../preview-examples/layout-auto';
 import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
-import ModalByInstanceExample from '../preview-examples/modal-by-instance-content';
 import NumberInput from '../preview-examples/number-input';
 import NumberInputDisabled from '../preview-examples/number-input-disabled';
 import NumberInputLabel from '../preview-examples/number-input-label';
@@ -38,26 +48,13 @@ import RadioDisabled from '../preview-examples/radio-disabled';
 import RadioGroup from '../preview-examples/radio-group';
 import RadioValidation from '../preview-examples/radio-validation';
 import SelectValidation from '../preview-examples/select-validation';
-import Input from '../preview-examples/input';
-import InputDisabled from '../preview-examples/input-disabled';
-import InputLabel from '../preview-examples/input-label';
-import InputPattern from '../preview-examples/input-pattern';
-import InputReadonly from '../preview-examples/input-readonly';
-import InputTypes from '../preview-examples/input-types';
-import InputValidation from '../preview-examples/input-validation';
 import Textarea from '../preview-examples/textarea';
 import TextareaDisabled from '../preview-examples/textarea-disabled';
 import TextareaReadonly from '../preview-examples/textarea-readonly';
 import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
 import TextareaValidation from '../preview-examples/textarea-validation';
-import ThemeSwitcherExample from '../preview-examples/theme-switcher';
 import ValidationSelect from '../preview-examples/validation-select';
-import InputFormValidation from '../preview-examples/input-form-validation';
-
-import { IxModule } from '@siemens/ix-angular';
-import { AgGridModule } from 'ag-grid-angular';
-import { NgxEchartsModule } from 'ngx-echarts';
-
+import EchartsSpecial3d from 'src/preview-examples/echarts-special-3d';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AgGrid from '../preview-examples/aggrid';
@@ -112,9 +109,8 @@ import DropdownIcon from '../preview-examples/dropdown-icon';
 import DropdownQuickActions from '../preview-examples/dropdown-quick-actions';
 import DropdownSubmenu from '../preview-examples/dropdown-submenu';
 import Echarts from '../preview-examples/echarts';
-import EchartsSpecial3d from 'src/preview-examples/echarts-special-3d';
-import EchartsBarSimple from '../preview-examples/echarts-bar-simple';
 import EchartsBarHorizontalStacked from '../preview-examples/echarts-bar-horizontal-stacked';
+import EchartsBarSimple from '../preview-examples/echarts-bar-simple';
 import EchartsCircle from '../preview-examples/echarts-circle';
 import EchartsEmptyState from '../preview-examples/echarts-empty-state';
 import EchartsGauge from '../preview-examples/echarts-gauge';
@@ -122,10 +118,10 @@ import EchartsLineAdvanced from '../preview-examples/echarts-line-advanced';
 import EchartsLineMultipleYAxis from '../preview-examples/echarts-line-multiple-y-axis';
 import EchartsLineSimple from '../preview-examples/echarts-line-simple';
 import EchartsPie from '../preview-examples/echarts-pie';
-import EchartsSpecialToolbox from '../preview-examples/echarts-special-toolbox';
-import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EchartsProgressArc from '../preview-examples/echarts-progress-arc';
 import EchartsProgressCircle from '../preview-examples/echarts-progress-circle';
+import EchartsSpecialToolbox from '../preview-examples/echarts-special-toolbox';
+import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
@@ -135,6 +131,7 @@ import EventListCustomItemHeight from '../preview-examples/event-list-custom-ite
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
+import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-group-indeterminate";
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
 import GridSize from '../preview-examples/grid-size';
@@ -184,7 +181,6 @@ import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
 import PushCard from '../preview-examples/push-card';
-import RadioButton from '../preview-examples/radio-button';
 import Select from '../preview-examples/select';
 import SelectEditable from '../preview-examples/select-editable';
 import SelectMultiple from '../preview-examples/select-multiple';
@@ -230,7 +226,6 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-group-indeterminate";
 
 @NgModule({
   declarations: [
@@ -349,7 +344,6 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     KeyValueList,
     KeyValueWithCustomValue,
     KeyValueWithIcon,
-    BasicNavigationWithOutHeader,
     KeyValueWithLabelLeft,
     KeyValue,
     Kpi,
@@ -379,7 +373,6 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     RadioGroup,
     RadioValidation,
     PushCard,
-    RadioButton,
     SelectEditable,
     SelectMultiple,
     SelectNgModel,
@@ -409,7 +402,6 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     InputTypes,
     InputValidation,
     InputPattern,
-    ThemeSwitcherExample,
     TextareaLegacyReadonly,
     TextareaLegacy,
     ThemeSwitcher,
@@ -449,8 +441,6 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     TabsRounded,
     DatepickerRange,
     Tooltip,
-    ModalByInstance,
-    ModalByInstanceExample,
     PushCard,
     ActionCard,
     Card,
