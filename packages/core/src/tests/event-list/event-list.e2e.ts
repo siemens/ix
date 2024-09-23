@@ -62,7 +62,7 @@ regressionTest.describe('event-list', () => {
 
   regressionTest('outline compact', async ({ page }) => {
     await page.goto(compactUrl);
-    await pressTab(page, 3);
+    await pressTab(page, 2);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
