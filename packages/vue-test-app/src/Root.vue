@@ -36,7 +36,7 @@ import Avatar from './preview-examples/avatar.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
 import BlindVariants from './preview-examples/blind-variants.vue';
 import ButtonDangerGhost from './preview-examples/button-danger-ghost.vue';
-import ButtonDangerOutline from './preview-examples/button-danger-secondary.vue';
+import ButtonDangerOutline from './preview-examples/button-danger-outline.vue';
 import ButtonDanger from './preview-examples/button-danger.vue';
 import ButtonGhost from './preview-examples/button-ghost.vue';
 import ButtonGreyGhost from './preview-examples/button-grey-ghost.vue';

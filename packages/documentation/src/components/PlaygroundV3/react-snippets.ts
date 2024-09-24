@@ -16,16 +16,12 @@ export async function fetchSourceForReact(baseUrl: string, name: string) {
 
   snippets[`${name}.tsx`] = tsFile;
 
-  const regex = /import\s*\s*['"]\.\/styles\/([^'"]+)['"]\s*/;
-  const match = tsFile.match(regex);
-
-  if (match) {
-    const styleFile = await docusaurusFetch(`${baseUrl}/styles/${match[1]}`);
-
+  try {
+    const styleFile = await docusaurusFetch(`${baseUrl}/${name}.css`);
     if (styleFile) {
-      snippets[`./styles/${match[1]}`] = styleFile;
+      snippets[`./${name}.css`] = styleFile;
     }
-  }
+  } catch (e) {}
 
   return snippets;
 }

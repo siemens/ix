@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/charts.css';
+import './echarts-special-3d.css';
 
 import { useEffect, useState } from 'react';
 import {
@@ -92,6 +92,7 @@ export default function EchartsSpecial3d() {
 
   return (
     <ReactEcharts
+      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"
