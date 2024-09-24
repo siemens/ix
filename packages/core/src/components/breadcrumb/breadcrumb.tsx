@@ -60,7 +60,7 @@ export class Breadcrumb {
    *
    * @since 2.0.0
    */
-  @Prop() ariaLabelPreviousButton = 'previous';
+  @Prop() ariaLabelPreviousButton = 'REMOVE ME ALSO!!!!!';
 
   /**
    * Crumb item clicked event
