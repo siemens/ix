@@ -215,7 +215,16 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: '### Report of `strict` check'
 
+      - name: Delete comment
+        if: ${{ steps.report.outputs.has_errors != 'true' }}
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'delete-comment'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+
       - name: Create or update comment
+        if: ${{ steps.report.outputs.has_errors == 'true' }}
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
