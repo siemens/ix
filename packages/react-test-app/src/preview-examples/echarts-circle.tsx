@@ -72,6 +72,7 @@ export default function EchartsCircle() {
 
   return (
     <ReactEcharts
+      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"

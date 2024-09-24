@@ -57,6 +57,7 @@ export default function EchartsBarSimple() {
 
   return (
     <ReactEcharts
+      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"

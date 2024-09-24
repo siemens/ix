@@ -101,6 +101,7 @@ export default function EchartsGauge() {
 
   return (
     <ReactEcharts
+      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts-gauge"

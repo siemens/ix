@@ -93,6 +93,7 @@ export default function EchartsProgressArc() {
 
   return (
     <ReactEcharts
+      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts-gauge"

@@ -78,6 +78,7 @@ export default function EchartsLineAdvanced() {
 
   return (
     <ReactEcharts
+      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"

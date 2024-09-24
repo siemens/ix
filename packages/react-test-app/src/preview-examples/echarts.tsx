@@ -150,6 +150,7 @@ export default function Echarts() {
 
   return (
     <ReactEcharts
+      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"

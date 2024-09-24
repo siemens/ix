@@ -104,6 +104,7 @@ export default function EchartsSpecialZoom() {
 
   return (
     <ReactEcharts
+      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"
