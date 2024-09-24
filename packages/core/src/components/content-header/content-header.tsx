@@ -56,7 +56,7 @@ export class ContentHeader {
         ) : null}
 
         <div class="titleGroup">
-          <ix-typography format={this.variant === 'secondary' ? 'h4' : 'h2'}>
+          <ix-typography format={this.variant === 'secondary' ? 'h4' : 'h3'}>
             {this.headerTitle}
           </ix-typography>
           {this.headerSubtitle !== undefined ? (
