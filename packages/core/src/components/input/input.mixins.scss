@@ -63,8 +63,7 @@
     }
   }
 
-  @include host-valid {
-  }
+  @include host-valid;
 
   @include host-info {
     input {

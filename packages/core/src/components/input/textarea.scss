@@ -10,8 +10,7 @@
 
 @include input-field;
 
-@include host-valid {
-}
+@include host-valid;
 
 @include host-info {
   textarea {

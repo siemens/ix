@@ -178,8 +178,7 @@
     }
   }
 
-  @include input-valid {
-  }
+  @include input-valid;
 
   @include input-info {
     & {
