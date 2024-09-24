@@ -41,7 +41,9 @@ for (const line of lines) {
 
 function getCommentBody() {
   if (output.length === 0) {
-    return '';
+    return ['### Report of `strict` check', '', 'No errors found 🎉'].join(
+      '\n'
+    );
   }
 
   const comment = `### Report of \`strict\` check
