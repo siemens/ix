@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "noEmit": true,
-    "strict": true
+    "strict": true,
+    "baseUrl": ".",
+    "pretty": false,
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

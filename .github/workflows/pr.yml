@@ -192,3 +192,15 @@ jobs:
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
+
+  strict:
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' }}
+    needs: [changes]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/actions/turbo
+      - name: Strict
+        env:
+          ALL_CHANGED_FILES: ${{ needs.changes.outputs.core_changed_files }}
+        run: pnpm exec strict-check $ALL_CHANGED_FILES
