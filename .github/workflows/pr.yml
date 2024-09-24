@@ -203,4 +203,4 @@ jobs:
       - name: Strict
         env:
           ALL_CHANGED_FILES: ${{ needs.changes.outputs.core_changed_files }}
-        run: pnpm exec strict-check $ALL_CHANGED_FILES
+        run: pnpm --filter @siemens/ix exec strict-check $ALL_CHANGED_FILES
