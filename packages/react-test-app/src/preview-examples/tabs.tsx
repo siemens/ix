@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/tabs.css';
+import './tabs.css';
 
 import { IxTabItem, IxTabs } from '@siemens/ix-react';
 import { useState } from 'react';

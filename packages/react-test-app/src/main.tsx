@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './preview-examples/styles/global.css';
+import './preview-examples/global.css';
 
 import { IxApplicationContext } from '@siemens/ix-react';
 import ReactDOM from 'react-dom/client';
@@ -453,12 +453,30 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/icon-toggle-button-secondary"
           element={<IconToggleButtonSecondary />}
         />
-        <Route path="/preview/input-legacy-disabled" element={<InputLegacyDisabled />} />
-        <Route path="/preview/input-legacy-labels" element={<InputLegacyLabels />} />
-        <Route path="/preview/input-legacy-readonly" element={<InputLegacyReadonly />} />
-        <Route path="/preview/input-legacy-search" element={<InputLegacySearch />} />
-        <Route path="/preview/input-legacy-types" element={<InputLegacyTypes />} />
-        <Route path="/preview/input-legacy-with-icon" element={<InputLegacyWithIcon />} />
+        <Route
+          path="/preview/input-legacy-disabled"
+          element={<InputLegacyDisabled />}
+        />
+        <Route
+          path="/preview/input-legacy-labels"
+          element={<InputLegacyLabels />}
+        />
+        <Route
+          path="/preview/input-legacy-readonly"
+          element={<InputLegacyReadonly />}
+        />
+        <Route
+          path="/preview/input-legacy-search"
+          element={<InputLegacySearch />}
+        />
+        <Route
+          path="/preview/input-legacy-types"
+          element={<InputLegacyTypes />}
+        />
+        <Route
+          path="/preview/input-legacy-with-icon"
+          element={<InputLegacyWithIcon />}
+        />
         <Route path="/preview/input-legacy" element={<InputLegacy />} />
         <Route
           path="/preview/key-value-list-striped"
@@ -574,24 +592,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<TextareaValidation />}
         />
         <Route path="/preview/input" element={<Input />} />
-        <Route
-          path="/preview/input-disabled"
-          element={<InputDisabled />}
-        />
+        <Route path="/preview/input-disabled" element={<InputDisabled />} />
         <Route path="/preview/input-label" element={<InputLabel />} />
-        <Route
-          path="/preview/input-pattern"
-          element={<InputPattern />}
-        />
-        <Route
-          path="/preview/input-readonly"
-          element={<InputReadonly />}
-        />
+        <Route path="/preview/input-pattern" element={<InputPattern />} />
+        <Route path="/preview/input-readonly" element={<InputReadonly />} />
         <Route path="/preview/input-types" element={<InputTypes />} />
-        <Route
-          path="/preview/input-validation"
-          element={<InputValidation />}
-        />
+        <Route path="/preview/input-validation" element={<InputValidation />} />
         <Route path="/preview/textarea-legacy" element={<TextareaLegacy />} />
         <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
         <Route path="/preview/tile" element={<Tile />} />

@@ -28,7 +28,7 @@ function load(value: string) {
 }
 </script>
 
-<style scoped src="./styles/button-loading.css"></style>
+<style scoped src="./button-loading.css"></style>
 
 <template>
   <div>
