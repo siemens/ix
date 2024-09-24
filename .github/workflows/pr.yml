@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
+      core_changed_files: ${{ steps.changes.outputs.core_changed_files }}
       aggrid_any_changed: ${{ steps.changes.outputs.aggrid_any_changed }}
       echarts_any_changed: ${{ steps.changes.outputs.echarts_any_changed }}
       docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
