@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
-      core_changed_files: ${{ steps.changes.outputs.core_changed_files }}
+      core_all_changed_files: ${{ steps.changes.outputs.core_all_changed_files }}
       aggrid_any_changed: ${{ steps.changes.outputs.aggrid_any_changed }}
       echarts_any_changed: ${{ steps.changes.outputs.echarts_any_changed }}
       docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
@@ -203,5 +203,5 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
       - name: Strict
         env:
-          ALL_CHANGED_FILES: ${{ needs.changes.outputs.core_changed_files }}
-        run: pnpm --filter @siemens/ix exec strict-check $ALL_CHANGED_FILES
+          ALL_CHANGED_FILES: ${{ needs.changes.outputs.core_all_changed_files }}
+        run: pnpm --filter @siemens/ix exec strict-check ${ALL_CHANGED_FILES}
