@@ -16,6 +16,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts.html',
+  styleUrls: ["./echarts.css"],
 })
 export default class Echarts implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
@@ -27,11 +28,15 @@ export default class Echarts implements OnInit {
         type: 'shadow',
       },
     },
-    legend: {},
+    legend: {
+      icon: 'rect',
+      bottom: 0,
+      left: 0,
+    },
     grid: {
       left: '3%',
       right: '4%',
-      bottom: '3%',
+      bottom: '7%',
       containLabel: true,
     },
     xAxis: [

@@ -12,21 +12,8 @@ import { IxModalSize, ModalService } from '@siemens/ix-angular';
 
 @Component({
   selector: 'app-example',
+  styleUrls: ['./modal-sizes.css'],
   templateUrl: './modal-sizes.html',
-  styles: [
-    `
-      .modal-sizes-example {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .modal-sizes-example > * {
-        width: auto;
-        margin: 0.25rem;
-      }
-    `,
-  ],
 })
 export default class ModalSizes {
   @ViewChild('customModal', { read: TemplateRef })

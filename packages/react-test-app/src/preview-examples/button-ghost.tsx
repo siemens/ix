@@ -7,18 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import 'example-styles/dist/buttons.css';
+import './button-ghost.css';
 
 import { IxButton } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (
     <>
-      <IxButton ghost variant="primary">
+      <IxButton ghost>
         Button
       </IxButton>
-      <IxButton disabled ghost variant="primary">
+      <IxButton disabled ghost>
         Button
       </IxButton>
     </>

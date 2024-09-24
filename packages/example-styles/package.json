@@ -1,9 +1,0 @@
-{
-  "name": "example-styles",
-  "version": "1.0.0",
-  "private": true,
-  "license": "MIT",
-  "scripts": {
-    "build": "node ./scripts/copy.js"
-  }
-}

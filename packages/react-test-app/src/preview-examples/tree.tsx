@@ -9,11 +9,10 @@
 
 import { TreeModel } from '@siemens/ix';
 import { IxTree } from '@siemens/ix-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 type TreeData = {
   name: string;
-  icon: string;
 };
 
 export default () => {
@@ -21,7 +20,6 @@ export default () => {
     root: {
       id: 'root',
       data: {
-        icon: '',
         name: '',
       },
       hasChildren: true,
@@ -31,7 +29,6 @@ export default () => {
       id: 'sample',
       data: {
         name: 'Sample',
-        icon: 'star',
       },
       hasChildren: true,
       children: ['sample-child-1', 'sample-child-2'],
@@ -40,7 +37,6 @@ export default () => {
       id: 'sample-child-1',
       data: {
         name: 'Sample Child 1',
-        icon: 'cut',
       },
       hasChildren: false,
       children: [],
@@ -49,7 +45,6 @@ export default () => {
       id: 'sample-child-2',
       data: {
         name: 'Sample Child 2',
-        icon: 'print',
       },
       hasChildren: false,
       children: [],

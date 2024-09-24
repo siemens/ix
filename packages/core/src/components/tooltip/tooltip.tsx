@@ -12,6 +12,7 @@ import {
   computePosition,
   ComputePositionReturn,
   flip,
+  hide,
   offset,
   shift,
 } from '@floating-ui/dom';
@@ -64,9 +65,8 @@ export class Tooltip implements IxOverlayComponent {
   @Prop() interactive = false;
 
   /**
-   * Initial placement of the tooltip. If the placement don"t have enough space,
-   * the tooltip will placed on another location.
-   *
+   * Initial placement of the tooltip.
+   * If the selected placement doesn't have enough space, the tooltip will be repositioned to another location.
    * @since 1.5.0
    */
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
@@ -135,9 +135,16 @@ export class Tooltip implements IxOverlayComponent {
     middlewareData,
   }: ComputePositionReturn): ArrowPosition {
     let { x, y } = middlewareData.arrow;
+    const resetPosition = {
+      top: 'unset',
+      right: 'unset',
+      bottom: 'unset',
+      left: 'unset',
+    };
 
     if (placement.startsWith('top')) {
       return {
+        ...resetPosition,
         left: numberToPixel(x),
         top: numberToPixel(y),
       };
@@ -145,6 +152,7 @@ export class Tooltip implements IxOverlayComponent {
 
     if (placement.startsWith('right')) {
       return {
+        ...resetPosition,
         left: numberToPixel(-6),
         top: numberToPixel(y),
       };
@@ -152,6 +160,7 @@ export class Tooltip implements IxOverlayComponent {
 
     if (placement.startsWith('bottom')) {
       return {
+        ...resetPosition,
         left: numberToPixel(x),
         top: numberToPixel(-6),
       };
@@ -159,6 +168,7 @@ export class Tooltip implements IxOverlayComponent {
 
     if (placement.startsWith('left')) {
       return {
+        ...resetPosition,
         right: numberToPixel(-6),
         top: numberToPixel(y),
       };
@@ -177,8 +187,10 @@ export class Tooltip implements IxOverlayComponent {
         }),
         flip({
           fallbackStrategy: 'initialPlacement',
+          fallbackAxisSideDirection: 'end',
           padding: 10,
         }),
+        hide(),
       ],
     });
   }
@@ -201,6 +213,14 @@ export class Tooltip implements IxOverlayComponent {
         async () => {
           setTimeout(async () => {
             const computeResponse = await this.computeTooltipPosition(target);
+
+            const isHidden =
+              computeResponse.middlewareData.hide?.referenceHidden;
+
+            if (isHidden) {
+              setTimeout(() => this.hideTooltip());
+              resolve(computeResponse);
+            }
 
             if (computeResponse.middlewareData.arrow) {
               this.applyTooltipArrowPosition(computeResponse);
@@ -357,17 +377,19 @@ export class Tooltip implements IxOverlayComponent {
         }}
         role="tooltip"
       >
-        <div class={'tooltip-title'}>
-          <slot name="title-icon"></slot>
-          <ix-typography variant="default-title">
-            {this.titleContent}
-            <slot name="title-content"></slot>
-          </ix-typography>
+        <div class="tooltip-container">
+          <div class={'tooltip-title'}>
+            <slot name="title-icon"></slot>
+            <ix-typography variant="default-title">
+              {this.titleContent}
+              <slot name="title-content"></slot>
+            </ix-typography>
+          </div>
+          <div class={'tooltip-content'}>
+            <slot></slot>
+          </div>
+          <div class="arrow"></div>
         </div>
-        <div class={'tooltip-content'}>
-          <slot></slot>
-        </div>
-        <div class="arrow"></div>
       </Host>
     );
   }

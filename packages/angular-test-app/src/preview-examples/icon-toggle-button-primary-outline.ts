@@ -12,28 +12,31 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-icon-toggle-button variant="Primary" outline></ix-icon-toggle-button>
     <ix-icon-toggle-button
-      variant="Primary"
+      variant="primary"
+      outline
+      icon="checkboxes"
+    ></ix-icon-toggle-button>
+    <ix-icon-toggle-button
+      variant="primary"
       outline
       pressed
+      icon="checkboxes"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
-      variant="Primary"
+      variant="primary"
       outline
       disabled
+      icon="checkboxes"
     ></ix-icon-toggle-button>
     <ix-icon-toggle-button
-      variant="Primary"
+      variant="primary"
       outline
       disabled
       loading
+      icon="checkboxes"
     ></ix-icon-toggle-button>
   `,
-  styles: [
-    `
-      @import 'example-styles/dist/icon-toggle-buttons.css';
-    `,
-  ],
+  styleUrls: ['./icon-toggle-button-primary-outline.css'],
 })
 export default class Buttons {}

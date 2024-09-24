@@ -13,20 +13,13 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ECharts example</title>
+    <link rel="stylesheet" href="./echarts.css" />
+    <!-- External resources -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+    <!-- External resources -->
   </head>
-  <body class="">
-    <!-- Preview code -->
-    <div
-      id="main"
-      style="
-        display: block;
-        position: relative;
-        width: 100%;
-        height: 40rem;
-        padding-top: 1rem;
-      "
-    ></div>
+  <body>
+    <div id="main" class="echarts"></div>
 
     <script type="module">
       import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
@@ -49,11 +42,15 @@ LICENSE file in the root directory of this source tree.
             type: 'shadow',
           },
         },
-        legend: {},
+        legend: {
+          icon: 'rect',
+          bottom: 0,
+          left: 0,
+        },
         grid: {
           left: '3%',
           right: '4%',
-          bottom: '3%',
+          bottom: '7%',
           containLabel: true,
         },
         xAxis: [
@@ -171,7 +168,6 @@ LICENSE file in the root directory of this source tree.
         myChart.resize();
       };
     </script>
-    <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>
 </html>

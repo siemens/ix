@@ -125,10 +125,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "ActionCardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "ActionCardVariant": {
                 "location": "local",
@@ -141,8 +141,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
           "values": [
             {
               "value": "alarm",
@@ -150,6 +156,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -166,6 +176,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
               "type": "string"
             },
             {
@@ -447,10 +461,57 @@
           ],
           "optional": true,
           "required": false
+        },
+        {
+          "name": "showMenu",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "show-menu",
+          "reflectToAttr": false,
+          "docs": "Controls the visibility of the menu toggle button based on the context of the application header.\n\nWhen the application header is utilized outside the application frame, the menu toggle button is displayed.\nConversely, if the header is within the application frame, this property is ineffective.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.5.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "menuToggle",
+          "detail": "boolean",
+          "bubbles": true,
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the menu toggle button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.5.0"
+            }
+          ]
+        }
+      ],
       "styles": [],
       "slots": [
         {
@@ -673,8 +734,13 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Supported layouts e.g ['sm', 'md']",
-          "docsTags": [],
+          "docs": "Supported layouts",
+          "docsTags": [
+            {
+              "name": "example",
+              "text": "['sm', 'md']"
+            }
+          ],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
@@ -876,10 +942,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "BlindVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "BlindVariant": {
                 "location": "local",
@@ -906,6 +972,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -1528,10 +1598,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "CardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "CardVariant": {
                 "location": "local",
@@ -1544,8 +1614,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.",
           "values": [
             {
               "value": "alarm",
@@ -1553,6 +1629,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -1569,6 +1649,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
               "type": "string"
             },
             {
@@ -2086,7 +2170,7 @@
               "type": "{ [id: string]: { label: string; options: string[]; }; }"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2134,7 +2218,7 @@
               "type": "FilterState"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2150,6 +2234,7 @@
           "reflectToAttr": false,
           "docs": "Allows to hide the icon inside the text input.\nDefaults to false",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -2263,7 +2348,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2362,7 +2447,7 @@
               "type": "string[]"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -7128,7 +7213,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "selectedChanged",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/group",
@@ -10601,6 +10692,7 @@
           "reflectToAttr": false,
           "docs": "State to display active",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -10644,6 +10736,7 @@
           "reflectToAttr": false,
           "docs": "Disable tab and remove event handlers",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -10697,7 +10790,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -10723,7 +10816,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -10744,7 +10837,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -10775,7 +10868,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -12691,7 +12784,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12734,7 +12827,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12755,15 +12848,15 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "PushCardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "PushCardVariant": {
                 "location": "local",
@@ -12776,8 +12869,14 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
+            }
+          ],
           "default": "'insight'",
+          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
           "values": [
             {
               "value": "alarm",
@@ -12785,6 +12884,10 @@
             },
             {
               "value": "critical",
+              "type": "string"
+            },
+            {
+              "value": "filled",
               "type": "string"
             },
             {
@@ -12801,6 +12904,10 @@
             },
             {
               "value": "notification",
+              "type": "string"
+            },
+            {
+              "value": "outline",
               "type": "string"
             },
             {
@@ -16082,7 +16189,7 @@
           "mutable": false,
           "attr": "placement",
           "reflectToAttr": false,
-          "docs": "Initial placement of the tooltip. If the placement don\"t have enough space,\nthe tooltip will placed on another location.",
+          "docs": "Initial placement of the tooltip.\nIf the selected placement doesn't have enough space, the tooltip will be repositioned to another location.",
           "docsTags": [
             {
               "name": "since",
@@ -16216,6 +16323,7 @@
           "reflectToAttr": false,
           "docs": "Tree model",
           "docsTags": [],
+          "default": "{}",
           "values": [
             {
               "type": "{ [x: string]: TreeItem<any>; }"
@@ -16264,7 +16372,7 @@
               "type": "<T = any>(index: number, data: T, dataList: T[], context: TreeContext, update: (callback: UpdateCallback) => void) => HTMLElement"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16286,7 +16394,7 @@
             }
           ],
           "optional": false,
-          "required": false
+          "required": true
         }
       ],
       "methods": [],
@@ -16414,7 +16522,7 @@
               "type": "TreeItemContext"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16430,6 +16538,7 @@
           "reflectToAttr": false,
           "docs": "Has tree item children",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -16456,7 +16565,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -16473,7 +16582,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Clicked",
+          "docs": "Click on item not on the expand/collapse icon",
           "docsTags": []
         },
         {
@@ -17566,7 +17675,7 @@
   ],
   "typeLibrary": {
     "src/components/card/card.tsx::CardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
+      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/card/card.tsx"
     },
@@ -17591,7 +17700,7 @@
       "path": "src/components/typography/typography.tsx"
     },
     "src/components/action-card/action-card.tsx::ActionCardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
+      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/action-card/action-card.tsx"
     },
@@ -17721,7 +17830,7 @@
       "path": "src/components/pane/pane.tsx"
     },
     "src/components/push-card/push-card.tsx::PushCardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary';",
+      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/push-card/push-card.tsx"
     },
@@ -17804,6 +17913,11 @@
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
+    },
+    "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

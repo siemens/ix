@@ -11,8 +11,10 @@
 import { IxKpi } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./kpi.css"></style>
+
 <template>
-  <div className="example">
+  <div class="kpi">
     <IxKpi label="Motor speed" value="Nominal"></IxKpi>
     <IxKpi label="Motor speed" value="122.6" unit="rpm"></IxKpi>
     <IxKpi label="Motor speed" value="122.6" state="alarm"></IxKpi>

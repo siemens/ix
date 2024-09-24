@@ -2,15 +2,23 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
-  <body class="theme-classic-dark">
-    <!-- Preview code -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application example</title>
+    <link rel="stylesheet" href="./application.css" />
+  </head>
+  <body>
     <ix-application>
       <ix-application-header name="My Application">
-        <placeholder-logo slot="logo"></placeholder-logo>
+        <div class="placeholder-logo" slot="logo"></div>
       </ix-application-header>
       <ix-menu>
         <ix-menu-item>Item 1</ix-menu-item>
@@ -18,14 +26,11 @@ SPDX-License-Identifier: MIT
       </ix-menu>
 
       <ix-content>
-        <ix-content-header
-          slot="header"
-          header-title="My Content Page"
-        >
+        <ix-content-header slot="header" header-title="My Content Page">
         </ix-content-header>
       </ix-content>
     </ix-application>
-    <!-- Preview code -->
+
     <script type="module">
       (async () => {
         await window.customElements.whenDefined('ix-application');

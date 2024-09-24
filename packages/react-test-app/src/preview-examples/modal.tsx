@@ -16,7 +16,7 @@ import {
   ModalRef,
   showModal,
 } from '@siemens/ix-react';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 function CustomModal() {
   const modalRef = useRef<ModalRef>(null);
@@ -30,7 +30,9 @@ function CustomModal() {
 
   return (
     <Modal ref={modalRef}>
-      <IxModalHeader>Message headline</IxModalHeader>
+      <IxModalHeader onCloseClick={() => dismiss()}>
+        Message headline
+      </IxModalHeader>
       <IxModalContent>Message text lorem ipsum</IxModalContent>
       <IxModalFooter>
         <IxButton outline onClick={() => dismiss()}>

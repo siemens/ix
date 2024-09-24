@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import {
-IxApplication,
+  IxApplication,
   IxApplicationHeader,
   IxBasicNavigation,
   IxMenu,
@@ -22,6 +22,8 @@ const menu = ref<HTMLIxMenuElement>();
 
 watch(menu, () => menu.value?.toggleAbout(true));
 </script>
+
+<style scoped src="./about-and-legal.css"></style>
 
 <template>
   <IxApplication>

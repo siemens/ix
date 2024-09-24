@@ -7,7 +7,7 @@ import EventsHeaderJavaScript from './../auto-generated/ix-modal-header/events.m
 import ModalConfig from './../auto-generated/utils/core/ModalConfig.md'
 import ModalInstance from './../auto-generated/utils/core/ModalInstance.md'
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Modal
 
@@ -26,9 +26,9 @@ Our modals support the following sizes:
 The `size` can be configured over the configuration object of the `showModal` function.
 
 <Playground
-  height="18rem"
+  height="19rem"
   name="modal-sizes"
-  examplesByName> 
+  >
 </Playground>
 
 ## Custom
@@ -38,15 +38,35 @@ Select the appropriate section below for the respective usage information.
 
 ### Angular
 
+#### By template
+
 <Playground
-  name="modal" height="18rem"
-  files={{
-    angular: [
-      'modal-by-template.ts',
-      "modal-by-instance.ts",
-      "modal-by-instance-content.ts",
-      ],
-  }}>
+name="modal"
+height="18rem"
+preventDefaultExample
+frameworks={['angular']}
+deviantRootFileName="modal-by-template"
+additionalFiles={{
+angular: [
+'modal-by-template.ts',
+],
+}}>
+</Playground>
+
+#### By instance
+
+<Playground
+name="modal"
+height="18rem"
+preventDefaultExample
+frameworks={['angular']}
+deviantRootFileName="modal-by-instance"
+additionalFiles={{
+angular: [
+"modal-by-instance.ts",
+"modal-by-instance-content.ts",
+],
+}}>
 </Playground>
 
 `@siemens/ix-angular` provides an injectable service that allows to open modal dialogs based on a `ng-template` reference or by component type.
@@ -63,8 +83,11 @@ open(config: ModalConfig<TData: any, TReason: any>): Promise<ModalInstance<TData
 `@siemens/ix-react` provides an function that allows to open modal dialogs based on a `JSXElement`.
 
 <Playground
-name="modal" height="18rem"
-files={{
+name="modal"
+height="18rem"
+preventDefaultExample
+frameworks={['react']}
+additionalFiles={{
   react: ['modal.tsx'],
 }}>
 </Playground>
@@ -90,8 +113,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 ### Vue
 
 <Playground
-name="modal" height="18rem"
-files={{
+name="modal" height="18rem" preventDefaultExample
+frameworks={['vue']}
+additionalFiles={{
   vue: ['modal.vue'],
 }}>
 </Playground>
@@ -99,23 +123,26 @@ files={{
 ### Javascript
 
 <Playground
-name="modal" height="18rem"
-files={{
+name="modal" height="18rem" preventDefaultExample
+frameworks={['javascript']}
+additionalFiles={{
   javascript: ['modal.html'],
 }}>
 </Playground>
 
 ### Loading
 
-How to open a loading modal is independent from the framework in use. Note that you have to import `showModalLoading` from the core package `@siemens/ix`.
+How to open a loading modal is independent of the framework in use. Note that you have to import `showModalLoading` from the core package `@siemens/ix`.
 
-<Playground name="loading" files={{
+<Playground name="loading" preventDefaultExample
+frameworks={['react']}
+additionalFiles={{
 react: ['loading.tsx'],
 }}/>
 
 ### Message
 
-How to open a message modal is independent from the framework in use. Note that you have to import `showMessage` from the core package `@siemens/ix`.
+How to open a message modal is independent of the framework in use. Note that you have to import `showMessage` from the core package `@siemens/ix`.
 
 `showMessage` provides multiple pre-configured messages:
 
@@ -125,7 +152,9 @@ How to open a message modal is independent from the framework in use. Note that 
 - success
 - question
 
-<Playground name="message" height="15rem" files={{
+<Playground name="message" height="15rem"
+frameworks={['react']}
+preventDefaultExample additionalFiles={{
 react: ['message.tsx'],
 }}/>
 

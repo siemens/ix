@@ -7,16 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Prop,
-  readTask,
-  State,
-  Watch,
-} from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { makeRef } from '../utils/make-ref';
 import { menuController } from '../utils/menu-service/menu-service';
@@ -36,7 +27,7 @@ export class MenuItem {
    *
    * @since 2.2.0
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Move the Tab to a top position.
@@ -55,42 +46,42 @@ export class MenuItem {
    *
    * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
    */
-  @Prop({ mutable: true }) tabIcon: string;
+  @Prop({ mutable: true }) tabIcon?: string;
 
   /**
    * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
    */
-  @Prop({ mutable: true }) icon: string;
+  @Prop({ mutable: true }) icon?: string;
 
   /**
    * Show notification count on tab
    */
-  @Prop() notifications: number;
+  @Prop() notifications?: number;
 
   /**
    * State to display active
    */
-  @Prop() active: boolean;
+  @Prop() active: boolean = false;
 
   /**
    * Disable tab and remove event handlers
    */
-  @Prop() disabled: boolean;
+  @Prop() disabled: boolean = false;
 
   /** @internal */
-  @Prop() isCategory: boolean;
+  @Prop() isCategory: boolean = false;
 
-  @Element() hostElement: HTMLIxMenuItemElement;
+  @Element() hostElement!: HTMLIxMenuItemElement;
 
-  @State() tooltip: string;
-  @State() menuExpanded: boolean;
+  @State() tooltip?: string;
+  @State() menuExpanded: boolean = false;
 
   private buttonRef = makeRef<HTMLButtonElement>();
   private isHostedInsideCategory = false;
   private menuExpandedDisposer: Disposable;
 
   private observer: MutationObserver = createMutationObserver(() => {
-    this.tooltip = this.label ?? this.hostElement.innerText;
+    this.setTooltip();
   });
 
   componentWillLoad() {
@@ -107,9 +98,11 @@ export class MenuItem {
   }
 
   componentWillRender() {
-    readTask(() => {
-      this.tooltip = this.label ?? this.hostElement.innerText;
-    });
+    this.setTooltip();
+  }
+
+  setTooltip() {
+    this.tooltip = this.label ?? this.hostElement.textContent;
   }
 
   connectedCallback() {
@@ -194,7 +187,8 @@ export class MenuItem {
             </div>
           ) : null}
           <span class="tab-text text-default">
-            {this.label} <slot></slot>
+            {this.label}
+            <slot></slot>
           </span>
         </button>
         {!this.isCategory &&

@@ -19,6 +19,8 @@ IxApplication,
 } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./popover-news.css"></style>
+
 <template>
   <IxApplication>
     <IxApplicationHeader>

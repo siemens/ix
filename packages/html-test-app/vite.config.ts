@@ -32,23 +32,25 @@ const additionalTheme = {
 };
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: './',
-  root: './src',
-  publicDir: 'public',
-  define: {
-    __THEME__: JSON.stringify(additionalTheme),
-  },
-  build: {
-    emptyOutDir: true,
-    minify: false,
-    rollupOptions: {
-      input: {
-        index: './src/index.html',
-        ...input,
-      },
+export default defineConfig(() => {
+  return {
+    base: './',
+    root: './src',
+    publicDir: 'public',
+    define: {
+      __THEME__: JSON.stringify(additionalTheme),
     },
-    outDir: path.join(__dirname, 'dist'),
-  },
-  plugins: [],
+    build: {
+      emptyOutDir: true,
+      minify: false,
+      rollupOptions: {
+        input: {
+          index: './src/index.html',
+          ...input,
+        },
+      },
+      outDir: path.join(__dirname, 'dist'),
+    },
+    plugins: [],
+  };
 });

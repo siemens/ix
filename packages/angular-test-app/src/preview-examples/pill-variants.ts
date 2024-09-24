@@ -11,14 +11,15 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
+  styleUrls: ['./pill-variants.css'],
   template: `
     <ix-layout-grid>
       <ix-row>
         <ix-col>
-          <ix-pill variant="primary" icon="info"> Primary </ix-pill>
+          <ix-pill icon="info"> Primary </ix-pill>
         </ix-col>
         <ix-col>
-          <ix-pill variant="primary" icon="info" outline> Primary </ix-pill>
+          <ix-pill icon="info" outline> Primary </ix-pill>
         </ix-col>
       </ix-row>
 
@@ -101,6 +102,5 @@ import { Component } from '@angular/core';
       </ix-row>
     </ix-layout-grid>
   `,
-  styles: ['ix-pill { min-width: 7rem; }'],
 })
 export default class Pill {}

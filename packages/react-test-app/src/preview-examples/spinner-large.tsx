@@ -8,7 +8,6 @@
  */
 
 import { IxSpinner } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return <IxSpinner size="large"></IxSpinner>;

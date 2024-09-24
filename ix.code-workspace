@@ -45,12 +45,12 @@
       "path": "./packages/vue-test-app"
     },
     {
-      "name": "eslint-config",
-      "path": "./packages/eslint-config-ix"
+      "name": "ionic-test-app",
+      "path": "./packages/ionic-test-app"
     },
     {
-      "name": "example-styles",
-      "path": "./packages/example-styles"
+      "name": "eslint-config",
+      "path": "./packages/eslint-config-ix"
     },
     {
       "name": "figma-plugin",

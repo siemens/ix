@@ -1,21 +1,18 @@
 :host {
   display: inline-block;
   position: fixed;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   z-index: var(--theme-z-index-tooltip);
 
   max-width: 18.25rem;
+  width: max-content;
 
   opacity: 0;
   visibility: collapse !important;
   overflow-wrap: break-word;
 
   border-radius: 0.25rem;
-  background-color: var(--theme-tootlip--background);
-  padding: 0.375rem 0.75rem 0.375rem 0.875rem;
-
-  box-shadow: var(--theme-shadow-4);
 
   .tooltip-title {
     display: flex;
@@ -24,6 +21,19 @@
     ::slotted(ix-icon) {
       margin-right: 0.35rem;
     }
+  }
+
+  .tooltip-container {
+    display: block;
+    position: relative;
+    width:  auto;
+    height: 100%;
+    background: var(--theme-tootlip--background);
+    color: var(--theme-color-std-text);
+    padding: 0.375rem 0.75rem 0.375rem 0.875rem;
+
+    box-shadow: var(--theme-shadow-4);
+    border-radius: inherit;
   }
 }
 

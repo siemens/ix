@@ -2,22 +2,27 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Blind example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blind header actions example</title>
+    <link rel="stylesheet" href="./blind-header-actions.css" />
   </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
+  <body>
     <ix-blind label="Example" icon="info">
       <ix-icon-button
         id="context-menu"
         slot="header-actions"
         ghost
         icon="context-menu"
-        color="color-primary"
+        icon-color="color-primary"
       ></ix-icon-button>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
       eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
@@ -33,8 +38,6 @@ SPDX-License-Identifier: MIT
       <ix-dropdown-item label="Rename..." icon="rename"></ix-dropdown-item>
       <ix-dropdown-item label="Delete" icon="trashcan"></ix-dropdown-item>
     </ix-dropdown>
-
-    <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>
 </html>

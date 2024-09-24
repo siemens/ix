@@ -11,6 +11,8 @@
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./tile.css"></style>
+
 <template>
   <div className="example">
     <IxTile size="small">92.8 °C</IxTile>

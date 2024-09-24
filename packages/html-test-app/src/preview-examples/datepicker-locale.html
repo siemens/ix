@@ -2,18 +2,21 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Date picker example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date picker locale example</title>
   </head>
-
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
-    <span style="margin-right: 1rem;">Language:</span>
-    <ix-select style="margin: 1rem 0;">
+  <body>
+    <span style="margin-right: 1rem">Language:</span>
+    <ix-select style="margin: 1rem 0">
       <ix-select-item value="de" label="de"></ix-select-item>
       <ix-select-item value="en" label="en"></ix-select-item>
     </ix-select>
@@ -34,9 +37,8 @@ SPDX-License-Identifier: MIT
 
       select.addEventListener('valueChange', ({ detail }) => {
         setLocale(detail);
-      })
+      });
     </script>
-    <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>
 </html>

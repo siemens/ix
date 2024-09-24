@@ -11,6 +11,8 @@
 import { IxWorkflowStep, IxWorkflowSteps } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./workflow.css"></style>
+
 <template>
   <IxWorkflowSteps>
     <IxWorkflowStep status="done">Step 1</IxWorkflowStep>

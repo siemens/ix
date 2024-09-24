@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Input
 
@@ -8,7 +8,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 
 <Playground
   name="input"
-  examplesByName>
+  >
 </Playground>
 
 ### Disabled
@@ -16,7 +16,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="input-disabled"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Readonly
@@ -24,7 +24,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="input-readonly"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### With icon
@@ -32,7 +32,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="input-with-icon"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Label placement
@@ -40,7 +40,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="input-labels"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Input types
@@ -49,7 +49,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="input-types"
   height="15rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Search
@@ -57,5 +57,5 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="input-search"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>

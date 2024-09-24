@@ -11,19 +11,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  styles: [
-    `
-      :host {
-        .example {
-          display: block;
-          position: relative;
-          width: 100%;
-        }
-      }
-    `,
-  ],
   template: `
-    <div class="example">
+    <div class="tabs">
       <ix-tabs [selected]="selectedTab">
         <ix-tab-item (click)="changeTab(0)">Tab 1</ix-tab-item>
         <ix-tab-item (click)="changeTab(1)">Tab 2</ix-tab-item>
@@ -34,6 +23,7 @@ import { Component } from '@angular/core';
       <div *ngIf="selectedTab === 2">Content Tab 3</div>
     </div>
   `,
+  styleUrls: ['./tabs.css'],
 })
 export default class Tabs {
   selectedTab = 1;

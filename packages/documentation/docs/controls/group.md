@@ -4,7 +4,7 @@ import Events from './../auto-generated/ix-group/events.md';
 import ItemProps from './../auto-generated/ix-group-item/props.md';
 import ItemEvents from './../auto-generated/ix-group-item/events.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Group
 
@@ -15,7 +15,7 @@ import Playground from '@site/src/components/PlaygroundV2';
 <Playground
   name="group" 
   height="16rem"
-  examplesByName>
+  >
 </Playground>
 
 ### Suppress header selection
@@ -24,7 +24,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="group-header-suppressed" 
   height="16rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Custom group entry
@@ -33,7 +33,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   name="group-custom-entry" 
   height="16rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Group with context menu
@@ -51,7 +51,7 @@ To show a context menu place an `ix-dropdown` with `slot="dropdown"` combined wi
   name="group-context-menu" 
   height="16rem"
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-group)

@@ -14,5 +14,5 @@ import { Component } from '@angular/core';
   template: ` <ix-toggle [(ngModel)]="checked"></ix-toggle>`,
 })
 export default class Toggle {
-  checked = false
+  checked = false;
 }

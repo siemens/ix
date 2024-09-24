@@ -8,9 +8,7 @@
 -->
 
 <script setup lang="ts">
-import {
-  AppSwitchConfiguration
-} from '@siemens/ix';
+import { AppSwitchConfiguration } from '@siemens/ix';
 import {
   IxApplication,
   IxApplicationHeader,
@@ -47,6 +45,8 @@ const appSwitchConfig: AppSwitchConfiguration = {
   ],
 };
 </script>
+
+<style scoped src="./application-app-switch.css"></style>
 
 <template>
   <IxApplication :appSwitchConfig="appSwitchConfig">

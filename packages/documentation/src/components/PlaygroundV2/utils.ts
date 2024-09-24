@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2024 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -12,6 +12,33 @@ import { TargetFramework } from './framework-types';
 import { themeSwitcher } from '@siemens/ix';
 
 const repositoryUrl = 'https://github.com/siemens/ix/tree/main/packages';
+
+export function getBranchPath(framework: TargetFramework) {
+  let path = 'html';
+
+  const branch = 'main';
+
+  if (framework === TargetFramework.ANGULAR) {
+    path = 'angular';
+  }
+
+  if (framework === TargetFramework.REACT) {
+    path = 'react';
+  }
+
+  if (framework === TargetFramework.VUE) {
+    path = 'vue';
+  }
+
+  return `siemens/ix/tree/${branch}/packages/${path}-test-app`;
+}
+
+export function stripComments(code: string) {
+  return code
+    .replace(/\/\*[^]*?\*\//gs, '')
+    .replace(/<!--[^]*?-->/gs, '')
+    .trim();
+}
 
 export type SourceFile = {
   filename: string;
@@ -220,7 +247,11 @@ async function openAngularStackBlitz(
     `${baseUrl}code-runtime/angular/tsconfig.json`,
   ]);
 
-  const renderFirstExample = sourceFiles[0];
+  let renderFirstExample = sourceFiles[0];
+
+  if (sourceFiles.length >= 2) {
+    renderFirstExample = sourceFiles[1];
+  }
 
   const declareComponents: string[] = [];
   sourceFiles.forEach(({ filename, raw }) => {

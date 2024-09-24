@@ -42,7 +42,11 @@ const options: EChartsOption = {
       type: 'shadow',
     },
   },
-  legend: {},
+  legend: {
+    icon: 'rect',
+    bottom: 0,
+    left: 0,
+  },
   grid: {
     left: '3%',
     right: '4%',
@@ -148,19 +152,13 @@ const options: EChartsOption = {
       data: [62, 82, 91, 84, 109, 110, 120],
     },
   ],
-};
+} as EChartsOption;
 </script>
 
+<style scoped src="./echarts.css"></style>
+
 <template>
-  <div
-    style="
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 40rem;
-      padding-top: 1rem;
-    "
-  >
+  <div>
     <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
   </div>
 </template>

@@ -9,19 +9,18 @@
 
 <script setup lang="ts">
 import { IxIcon, IxIconButton, IxInputGroup } from '@siemens/ix-vue';
-
 </script>
 
 <template>
   <form className="needs-validation m-2">
     <IxInputGroup>
-        <span slot="input-start">Label Start</span>
-        <input type="text" />
-      </IxInputGroup>
+      <span slot="input-start">Label Start</span>
+      <input type="text" />
+    </IxInputGroup>
 
-      <IxInputGroup>
-        <input type="text" />
-        <span slot="input-end">Label End</span>
-      </IxInputGroup>
+    <IxInputGroup>
+      <input type="text" />
+      <span slot="input-end">Label End</span>
+    </IxInputGroup>
   </form>
 </template>

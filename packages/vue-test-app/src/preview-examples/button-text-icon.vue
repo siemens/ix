@@ -11,10 +11,10 @@
 import { IxButton, IxIcon } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="example-styles/dist/buttons.css"></style>
+<style scoped src="./button-text-icon.css"></style>
 
 <template>
-  <IxButton variant="primary" icon="star"> Button </IxButton>
+  <IxButton icon="star"> Button </IxButton>
   <IxButton variant="secondary" icon="star"> Button </IxButton>
   <IxButton outline icon="star"> Button </IxButton>
   <IxButton ghost icon="star"> Button </IxButton>

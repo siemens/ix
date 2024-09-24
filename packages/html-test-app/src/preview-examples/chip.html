@@ -2,30 +2,21 @@
 SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chip example</title>
-
-    <style>
-      .example {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        max-width: 20rem;
-      }
-
-      .example > ix-chip {
-        margin-bottom: 0.5rem;
-      }
-    </style>
+    <link rel="stylesheet" href="./chip.css" />
   </head>
-  <body class="theme-brand-dark">
-    <!-- Preview code -->
-    <div class="example">
+  <body>
+    <div class="chip">
       <ix-chip closable outline> Primary </ix-chip>
       <ix-chip icon="print">Primary with icon</ix-chip>
       <ix-chip icon="print" style="width: 10rem" closable> Primary </ix-chip>
@@ -40,7 +31,7 @@ SPDX-License-Identifier: MIT
       </ix-chip>
       <ix-chip
         background="purple"
-        color="green"
+        chip-color="green"
         variant="custom"
         icon="print"
         style="width: 10rem"
@@ -49,7 +40,6 @@ SPDX-License-Identifier: MIT
         Custom
       </ix-chip>
     </div>
-    <!-- Preview code -->
     <script type="module" src="./init.js"></script>
   </body>
 </html>

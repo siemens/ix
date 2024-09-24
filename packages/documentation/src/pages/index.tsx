@@ -1,5 +1,5 @@
 /*
- * COPYRIGHT (c) Siemens AG 2018-2022 ALL RIGHTS RESERVED.
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
 
 import BrowserOnly from '@docusaurus/BrowserOnly';
@@ -292,11 +292,13 @@ function Devices() {
           className={styles.image}
         ></img>
 
-        <Headline
-          title="Industrial Experience"
-          subtitle="for all devices"
-          description="Our industry-focused components empower you to design and deliver complex analytic, scientific and industrial ideas simply and consistently across all devices"
-        ></Headline>
+        <div className={styles.device_headline}>
+          <Headline
+            title="Industrial Experience"
+            subtitle="for all devices"
+            description="Our industry-focused components empower you to design and deliver complex analytic, scientific and industrial ideas simply and consistently across all devices"
+          ></Headline>
+        </div>
       </div>
     </div>
   );

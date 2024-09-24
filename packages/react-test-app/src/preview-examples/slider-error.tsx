@@ -8,7 +8,6 @@
  */
 
 import { IxSlider } from '@siemens/ix-react';
-import React from 'react';
 
 export default () => {
   return (
@@ -28,7 +27,7 @@ export default () => {
         error={'Error message'}
       >
         <span slot="label-start">0</span>
-        <span slot="label-end">100</span>
+        <span slot="label-end">50</span>
       </IxSlider>
     </>
   );

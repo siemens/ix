@@ -11,6 +11,8 @@
 import { IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./vertical-tabs.css"></style>
+
 <template>
   <IxMenu>
     <IxMenuItem home-tab tab-icon="home"> Home </IxMenuItem>
@@ -18,7 +20,7 @@ import { IxMenu, IxMenuItem } from '@siemens/ix-vue';
     <IxMenuItem tab-icon="star" disabled> Disabled Tab </IxMenuItem>
     <IxMenuItem tab-icon="star"> With other Icon </IxMenuItem>
     <IxMenuItem tab-icon="globe" style="display: none">
-      Should not visible
+      Should not be visible
     </IxMenuItem>
   </IxMenu>
 </template>

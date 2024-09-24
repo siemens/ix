@@ -8,22 +8,49 @@
 -->
 
 <script setup lang="ts">
-import { IxToggleButton } from '@siemens/ix-vue';
+import { IxIconToggleButton } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="example-styles/dist/icon-toggle-button.css"></style>
+<style scoped src="./icon-toggle-button-secondary-outline.css"></style>
 
 <template>
-  <IxToggleButton outline></IxToggleButton>
-  <IxToggleButton outline></IxToggleButton>
-  <IxToggleButton outline disabled></IxToggleButton>
-  <IxToggleButton outline disabled loading></IxToggleButton>
+  <IxIconToggleButton outline icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton outline icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton outline disabled icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton
+    outline
+    disabled
+    loading
+    icon="checkboxes"
+  ></IxIconToggleButton>
 
-  <IxToggleButton outline size="16"></IxToggleButton>
-  <IxToggleButton outline size="16" pressed></IxToggleButton>
-  <IxToggleButton outline size="16" disabled loading></IxToggleButton>
+  <IxIconToggleButton outline size="16" icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton
+    outline
+    size="16"
+    pressed
+    icon="checkboxes"
+  ></IxIconToggleButton>
+  <IxIconToggleButton
+    outline
+    size="16"
+    disabled
+    loading
+    icon="checkboxes"
+  ></IxIconToggleButton>
 
-  <IxToggleButton outline size="12"></IxToggleButton>
-  <IxToggleButton outline size="12" pressed></IxToggleButton>
-  <IxToggleButton outline size="12" disabled loading></IxToggleButton>
+  <IxIconToggleButton outline size="12" icon="checkboxes"></IxIconToggleButton>
+  <IxIconToggleButton
+    outline
+    size="12"
+    pressed
+    icon="checkboxes"
+  ></IxIconToggleButton>
+  <IxIconToggleButton
+    outline
+    size="12"
+    disabled
+    loading
+    icon="checkboxes"
+  ></IxIconToggleButton>
 </template>

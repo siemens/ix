@@ -12,8 +12,10 @@ import { FlipTileState } from '@siemens/ix';
 import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./flip-tile.css"></style>
+
 <template>
-  <div className="example">
+  <div class="flip-tile">
     <IxFlipTile>
       <div slot="header">Flip header</div>
 

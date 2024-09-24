@@ -3,9 +3,10 @@ sidebar_position: 3
 sidebar_title: Web Components
 title: Web Components
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ### Library installation
 
@@ -70,7 +71,5 @@ import { defineCustomElements as defineIxIconCustomElement } from '@siemens/ix-i
 
 <Playground
 name="buttons"
-files={{
-  javascript: ['buttons.html']
-}}>
+framework={['javascript']}>
 </Playground>

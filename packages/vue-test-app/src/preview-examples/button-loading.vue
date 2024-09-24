@@ -28,11 +28,11 @@ function load(value: string) {
 }
 </script>
 
-<style scoped src="example-styles/dist/button-loading.css"></style>
+<style scoped src="./button-loading.css"></style>
 
 <template>
   <div>
-    <IxButton :loading="toggle1" @click="load('1')" outline variant="primary">
+    <IxButton :loading="toggle1" @click="load('1')"  outline>
       Button
     </IxButton>
     <IxButton
@@ -40,7 +40,6 @@ function load(value: string) {
       @click="load('2')"
       outline
       icon="star"
-      variant="primary"
     >
       Button
     </IxButton>
@@ -49,9 +48,8 @@ function load(value: string) {
       @click="load('3')"
       outline
       icon="star"
-      variant="primary"
     ></IxIconButton>
-    <IxButton loading outline variant="primary"> Button </IxButton>
-    <IxIconButton loading outline variant="primary"></IxIconButton>
+    <IxButton loading outline> Button </IxButton>
+    <IxIconButton loading outline ></IxIconButton>
   </div>
 </template>

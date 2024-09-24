@@ -17,7 +17,7 @@ import AvatarItemProps from './../../auto-generated/ix-menu-avatar-item/props.md
 import AvatarItemEvents from './../../auto-generated/ix-menu-avatar-item/events.md';
 import AvatarTags from './../../auto-generated/ix-menu-avatar/tags.md';
 
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Examples
 
@@ -28,7 +28,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### 2nd navigation level
@@ -39,7 +39,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Avatar
@@ -51,7 +51,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ### Bottom tabs
@@ -65,7 +65,7 @@ import Playground from '@site/src/components/PlaygroundV2';
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  examplesByName>
+  >
 </Playground>
 
 ## API (ix-menu)
