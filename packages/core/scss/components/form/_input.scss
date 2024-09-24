@@ -45,7 +45,7 @@
   }
 
   &.focus, &:focus {
-    &:not([readonly], .read-only, .disabled) {
+    &:not(.read-only, .disabled, [readonly], [disabled]) {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-input--focus--outline-offset);
       border-color: var(--theme-input--border-color--focus) !important;
