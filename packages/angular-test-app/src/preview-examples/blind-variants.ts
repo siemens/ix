@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './blind-variants.html',
-  styleUrls: ['./styles/blind.css'],
+  styleUrls: ['./blind-variants.css'],
 })
 export default class Blind {}

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/theme-switcher.css';
+import './theme-switcher.css';
 
 import { IxSelectCustomEvent, themeSwitcher } from '@siemens/ix';
 import {

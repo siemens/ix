@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: './button-loading.html',
-  styleUrls: ['./styles/buttons.css'],
+  styleUrls: ['./button-loading.css'],
 })
 export default class ButtonLoading {
   loading = false;

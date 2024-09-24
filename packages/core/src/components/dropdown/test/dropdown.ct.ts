@@ -6,15 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-/*
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 import { ElementHandle, expect, Locator, Page } from '@playwright/test';
 import { test, viewPorts } from '@utils/test';
 
@@ -632,6 +623,29 @@ test.describe('resolve during element connect', () => {
 
     await expect(dropdown).toBeVisible();
   });
+});
+
+test('Child dropdown disconnects', async ({ mount, page }) => {
+  await mount(`<ix-button id="trigger">Open</ix-icon-button>
+        <ix-dropdown closeBehavior="outside" trigger="trigger">
+          <ix-dropdown-item id="item-1">Item level 1</ix-dropdown-item>
+          <ix-dropdown-button label="Nested">
+            <ix-dropdown-item id="item-1">Item level 2</ix-dropdown-item>
+          </ix-dropdown-button>
+        </ix-dropdown>`);
+  const trigger = page.locator('ix-button').first();
+  await trigger.click();
+  const dropdown = page.locator('ix-dropdown').first();
+
+  await expect(dropdown).toBeVisible();
+
+  await dropdown.evaluate((dd) => {
+    dd.removeChild(dd.querySelector('ix-dropdown-button'));
+  });
+
+  await trigger.click();
+  await trigger.click();
+  await expect(dropdown).toBeVisible();
 });
 
 test.describe('A11y', () => {

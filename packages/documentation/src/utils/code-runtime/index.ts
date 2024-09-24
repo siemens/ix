@@ -41,7 +41,6 @@ export async function getReactRuntime(baseUrl: string) {
     'tsconfig.json',
     'package.json',
     'index.html',
-    '.eslintrc.cjs',
     'src/App.tsx',
     'src/main.tsx',
     'src/vite-env.d.ts',
@@ -58,7 +57,7 @@ export async function getReactRuntime(baseUrl: string) {
 
   await Promise.all(runtime$);
   const globalCss = await docusaurusFetch(
-    `${baseUrl}auto-generated/previews/react/styles/global.css`
+    `${baseUrl}auto-generated/previews/react/global.css`
   );
   runtime['src/styles/global.css'] = globalCss;
   return runtime;
@@ -111,7 +110,7 @@ export async function getHTMLRuntime(baseUrl: string) {
   delete runtime['src/main.js'];
 
   const globalCss = await docusaurusFetch(
-    `${baseUrl}auto-generated/previews/web-components/styles/global.css`
+    `${baseUrl}auto-generated/previews/web-components/global.css`
   );
   runtime['src/styles/global.css'] = globalCss;
   return runtime;

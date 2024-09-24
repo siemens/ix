@@ -11,7 +11,7 @@
 import { IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles/menu.css"></style>
+<style scoped src="./vertical-tabs.css"></style>
 
 <template>
   <IxMenu>
