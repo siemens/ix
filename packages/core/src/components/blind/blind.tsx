@@ -40,7 +40,7 @@ export class Blind {
   /**
    * Label of blind
    */
-  @Prop() label: string = 'REMOVE ME AGAIN!!!!';
+  @Prop() label: string;
 
   /**
    * Secondary label inside blind header

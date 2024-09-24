@@ -3,7 +3,7 @@
 import execa from 'execa';
 let tscOutput = '';
 
-const [_, __, changedFiles] = process.argv;
+const [_, __, ...changedFiles] = process.argv;
 
 console.log(changedFiles);
 
