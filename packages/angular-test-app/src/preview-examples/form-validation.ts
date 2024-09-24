@@ -52,7 +52,7 @@ export function customRequiredValidator(): ValidatorFn {
   templateUrl: `./form-validation.html`,
   styles: [
     `
-      @import './styles/validation.css';
+      @import './validation.css';
     `,
   ],
 })

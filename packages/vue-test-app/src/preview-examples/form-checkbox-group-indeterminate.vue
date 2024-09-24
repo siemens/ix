@@ -23,7 +23,7 @@ const childCheckboxesState = reactive([
 ]);
 </script>
 
-<style scoped src="./styles/form-checkbox-group-indeterminate.css"></style>
+<style scoped src="./form-checkbox-group-indeterminate.css"></style>
 
 <template>
   <ix-checkbox-group>

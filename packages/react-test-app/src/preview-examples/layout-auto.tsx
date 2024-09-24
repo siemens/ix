@@ -8,7 +8,7 @@
  */
 
 import { IxLayoutAuto, IxTypography } from '@siemens/ix-react';
-import './styles/grid.css';
+import './grid.css';
 
 export default () => {
   return (

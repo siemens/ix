@@ -117,7 +117,7 @@ export default {
 };
 </script>
 
-<style scoped src="./styles/validation.css"></style>
+<style scoped src="./form-validation.css"></style>
 
 <template>
   <form
