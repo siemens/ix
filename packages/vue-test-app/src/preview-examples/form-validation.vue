@@ -18,8 +18,6 @@ import {
   IxRadioGroup,
   IxTextarea,
   IxTypography,
-} from '@siemens/ix-vue';
-import {
   IxSelect,
   IxSelectItem,
   IxButton,
