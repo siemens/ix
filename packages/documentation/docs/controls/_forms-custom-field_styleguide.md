@@ -6,16 +6,6 @@ The custom field is a wrapper component that can host any forms component. Its p
 2. Helper or feedback text
 3. Form component(s)
 4. Mandatory indicator
-%%
-## Quick guide
-
-![Custom field_new](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3482-7078&t=DlxXBQ9vTnyDcIUI-4)
-
-- **Usage:** Use the custom field when your desired solution is not covered by the standard form field component.
-- **Customize as needed:** Add specific form components (e.g., input fields, buttons) to meet your use case.
-- **Helper and feedback text:** The custom field provides the option to display helper and feedback text automatically.
-- **Follow Guidelines:** Refer to the form field and validation chapters for detailed guidelines on labels, helper text, and feedback text.
-%%
 ## Options
 
 - **Label:** See form field.
