@@ -1006,15 +1006,24 @@ importers:
 
   tools/strict-check:
     devDependencies:
+      '@actions/core':
+        specifier: ^1.10.1
+        version: 1.10.1
       '@types/fs-extra':
         specifier: ^9.0.13
         version: 9.0.13
+      '@types/mustache':
+        specifier: ^4.1.1
+        version: 4.2.4
       execa:
         specifier: ^5.1.1
         version: 5.1.1
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      mustache:
+        specifier: ^4.2.0
+        version: 4.2.0
       typescript:
         specifier: ^5.6.2
         version: 5.6.2

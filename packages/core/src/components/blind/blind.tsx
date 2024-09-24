@@ -65,7 +65,7 @@ export class Blind {
    */
   @Event() collapsedChange: EventEmitter<boolean>;
 
-  @Element() hostElement!: HTMLIxBlindElement;
+  @Element() hostElement: HTMLIxBlindElement;
 
   private chevronRef: HTMLElement;
   private blindId = ++sequentialInstanceId;

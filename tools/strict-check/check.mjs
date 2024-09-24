@@ -16,6 +16,8 @@ try {
 
 const lines = tscOutput.split('\n');
 
+const output = [];
+
 for (const line of lines) {
   const regexFile = /(.*)(\(\d+,\d+\)):\W(.*)/;
 
@@ -27,5 +29,9 @@ for (const line of lines) {
     console.log(position);
     console.log(message);
     console.log('---');
+
+    if (changedFiles.includes(file)) {
+      console.log(line);
+    }
   }
 }
