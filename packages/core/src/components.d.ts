@@ -342,7 +342,7 @@ export namespace Components {
         /**
           * Name the card list
          */
-        "label": string;
+        "label"?: string;
         /**
           * List style
          */
@@ -354,7 +354,7 @@ export namespace Components {
         /**
           * Overwrite the default show all count.
          */
-        "showAllCount": number | undefined;
+        "showAllCount"?: number;
         /**
           * Suppress the overflow handling of child elements
          */
@@ -4435,7 +4435,7 @@ declare namespace LocalJSX {
         /**
           * Overwrite the default show all count.
          */
-        "showAllCount"?: number | undefined;
+        "showAllCount"?: number;
         /**
           * Suppress the overflow handling of child elements
          */

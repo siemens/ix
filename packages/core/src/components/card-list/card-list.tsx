@@ -67,7 +67,7 @@ export class CardList {
   /**
    * Name the card list
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Collapse the list
@@ -89,7 +89,7 @@ export class CardList {
   /**
    * Overwrite the default show all count.
    * */
-  @Prop() showAllCount: number | undefined;
+  @Prop() showAllCount?: number;
 
   /**
    * Suppress the overflow handling of child elements
