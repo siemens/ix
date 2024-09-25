@@ -96,10 +96,6 @@
   @include host-invalid {
     input {
       background-color: var(--theme-input--background--invalid);
-      border-color: var(--theme-input--border-color--invalid);
-    }
-
-    input {
       border-color: var(--theme-input--border-color--invalid) !important;
     }
 
