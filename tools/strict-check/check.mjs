@@ -24,7 +24,7 @@ for (const line of lines) {
   const match = line.match(regexFile);
 
   if (match) {
-    const [_, file, position, message] = match;
+    const [, file, position, message] = match;
 
     changedFiles.forEach((changedFile) => {
       if (changedFile.includes(file)) {
