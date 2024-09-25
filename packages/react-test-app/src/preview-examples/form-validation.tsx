@@ -113,7 +113,7 @@ export default function FormValidation() {
           label="Name"
           {...register('name')}
           className={clsx({ 'ix-invalid': errors.name })}
-          invalidText={errors.name && errors.name.message}
+          invalidText={errors.name?.message}
           required
         />
         <IxInput label="Last Name" {...register('last-name')} />
@@ -167,7 +167,7 @@ export default function FormValidation() {
           helperText="Max threshold is 5"
           {...register('thresholdLimitA', { required: false, max: '5' })}
           className={clsx({ 'ix-invalid': errors.thresholdLimitA })}
-          invalidText={errors.thresholdLimitA && errors.thresholdLimitA.message}
+          invalidText={errors.thresholdLimitA?.message}
         ></IxNumberInput>
 
         <IxNumberInput
@@ -256,7 +256,7 @@ export default function FormValidation() {
           maxLength={4}
           {...register('confirm-pin')}
           className={clsx({ 'ix-invalid': errors['confirm-pin'] })}
-          invalidText={errors['confirm-pin'] && errors['confirm-pin'].message}
+          invalidText={errors['confirm-pin']?.message}
         ></IxInput>
 
         <Controller
