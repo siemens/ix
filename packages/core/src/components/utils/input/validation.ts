@@ -137,7 +137,7 @@ export function HookValidationLifecycle(options?: {
 
       host.addEventListener('valueChange', checkIfRequiredFunction);
       setTimeout(checkIfRequiredFunction);
-      return connectedCallback && connectedCallback.call(this);
+      return connectedCallback?.call(this);
     };
 
     proto.componentWillLoad = function () {
@@ -154,7 +154,7 @@ export function HookValidationLifecycle(options?: {
       );
       const result = checkFieldClasses(host, options?.includeChildren);
       proto[methodName].call(this, result);
-      return componentWillLoad && componentWillLoad.call(this);
+      return componentWillLoad?.call(this);
     };
 
     proto.disconnectedCallback = function () {
@@ -169,7 +169,7 @@ export function HookValidationLifecycle(options?: {
         host.removeEventListener('valueChange', checkIfRequiredFunction);
       }
 
-      return disconnectedCallback && disconnectedCallback.call(this);
+      return disconnectedCallback?.call(this);
     };
   };
 }
