@@ -14,29 +14,23 @@ export default () => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
-    <>
-      <IxCustomField info-text="Choose file">
-        <IxInput
-          class="ix-info"
-          value="Enter text here"
-          readonly
-        ></IxInput>
-        <IxIconButton
-          icon="open-file"
-          variant="primary"
-          outline
-          onClick={() => {
-            ref.current?.click();
-          }}
-        ></IxIconButton>
-        <input
-          ref={ref}
-          id="file-upload"
-          type="file"
-          style={{ display: 'none' }}
-          onInput={(e: any) => console.log(e.target.files)}
-        />
-      </IxCustomField>
-    </>
+    <IxCustomField info-text="Choose file">
+      <IxInput class="ix-info" value="Enter text here" readonly></IxInput>
+      <IxIconButton
+        icon="open-file"
+        variant="primary"
+        outline
+        onClick={() => {
+          ref.current?.click();
+        }}
+      ></IxIconButton>
+      <input
+        ref={ref}
+        id="file-upload"
+        type="file"
+        style={{ display: 'none' }}
+        onInput={(e: any) => console.log(e.target.files)}
+      />
+    </IxCustomField>
   );
 };
