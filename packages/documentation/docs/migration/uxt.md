@@ -11,12 +11,13 @@ For a quick and easy migration without changing your code base, the iX-UXT CSS T
 
 :::info
 
-For the full experience, please use the Siemens Industrial Experience components. The theme is intended for a quick, yet, incomplete switch from UXT as a legacy design system. 
+For the full experience, please use the Siemens Industrial Experience components. The theme is intended for a quick, yet, incomplete switch from UXT as a legacy design system.
 
 :::
 
 ## Usage
-1. When using UXT below v2.7.0, download the <a href="uxt-ix-css.css" target="_blank">CSS theme</a> and import it into your project.  
+
+1. When using UXT below v2.7.0, download the [CSS theme](/uxt/uxt-ix-css.css) and import it into your project.  
    _If you are using UXT v2.7.0 or higher, it is already part of the UXT CSS._
 2. Apply the class `.ix` to the `.uxt-defaults` element.
 3. Depending if you want to use the dark or light theme, add `.uxt-ix-theme-dark` or `.uxt-ix-theme-light` to your `body` element.
@@ -42,6 +43,7 @@ In the end, your setup should look like this:
 **Note**: We recommend using the CSS theme with UXT v2.7.0
 
 Your layout might change in some places when applying the theme, including:
+
 1. Headings are notably smaller
 2. Buttons are slightly wider because of the bold label
 
@@ -70,29 +72,30 @@ Your layout might change in some places when applying the theme, including:
 If you're facing any other problems, please raise an issue in GitHub [raising an issue](https://github.com/siemens/ix/issues).
 
 ## Component name differences
+
 As some of the components are named differently in Industrial Experience, please consult this list of the most important component name differences to help make your migration easier:
 
-| **User Experience Toolkit**                   | **Industrial Experience**                                          |
-| --------------------------------------------- | ------------------------------------------------------------------ |
-| App bar                                       | Nav menu                                                           |
-| Badge                                         | Pill, chip                                                         |
-| Busy indicator                                | Spinner                                                            |
+| **User Experience Toolkit**                      | **Industrial Experience**                                             |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| App bar                                          | Nav menu                                                              |
+| Badge                                            | Pill, chip                                                            |
+| Busy indicator                                   | Spinner                                                               |
 | Button<br/>- primary<br/>- secondary<br/>- ghost | Button<br/>- primary filled<br/>- primary outline<br/>- primary ghost |
-| Card grid                                     | Layout grid                                                        |
-| Container                                     | Card                                                               |
-| Dialog                                        | Modal                                                              |
-| Dropzone                                      | Upload                                                             |
-| List                                          | Event list                                                         |
-| Stepper                                       | Workflow                                                           |
-| Menu                                          | Dropdown button                                                    |
-| Message                                       | Message bar                                                        |
-| Notification                                  | Toast                                                              |
-| Pager                                         | Pagination                                                         |
-| Popover                                       | Tooltip, dropdown                                                  |
-| Switch                                        | Toggle                                                             |
-| Context region                                | Pane (inline right)                                                |
-| Item region                                   | Pane (floating right)                                              |
-| Leading region                               | Pane (inline left)                                                 |
+| Card grid                                        | Layout grid                                                           |
+| Container                                        | Card                                                                  |
+| Dialog                                           | Modal                                                                 |
+| Dropzone                                         | Upload                                                                |
+| List                                             | Event list                                                            |
+| Stepper                                          | Workflow                                                              |
+| Menu                                             | Dropdown button                                                       |
+| Message                                          | Message bar                                                           |
+| Notification                                     | Toast                                                                 |
+| Pager                                            | Pagination                                                            |
+| Popover                                          | Tooltip, dropdown                                                     |
+| Switch                                           | Toggle                                                                |
+| Context region                                   | Pane (inline right)                                                   |
+| Item region                                      | Pane (floating right)                                                 |
+| Leading region                                   | Pane (inline left)                                                    |
 
 ## System icons
 
@@ -101,7 +104,7 @@ Key differences between UXT and Industrial Experience:
 - [UXT offers an iconfont](https://design.mindsphere.io/patterns/system-icons.html) with 3 different styles (regular, bold, filled)
 - [iX offers SVGs](https://ix.siemens.io/docs/icon-library/icons) with mainly 1 style that corresponds to our bold and partially filled variants separately
 
-When changing to the SVG icons by Industrial Experience,  check whether your stylings still apply in your custom-built components.
+When changing to the SVG icons by Industrial Experience, check whether your stylings still apply in your custom-built components.
 
 ## Figma library
 
