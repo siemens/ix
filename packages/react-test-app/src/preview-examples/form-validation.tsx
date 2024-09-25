@@ -124,7 +124,7 @@ export default function FormValidation() {
         <IxRadioGroup label="Booking option">
           {Array.from({ length: 3 }).map((_, option) => (
             <Controller
-              key={option}
+              key={`Option ${option}`}
               control={control}
               name="booking-option"
               render={({ field }) => (
