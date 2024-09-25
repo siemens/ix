@@ -13,7 +13,6 @@ import {
   IxCustomField,
   IxInput,
   IxIconButton,
-  HTMLRefElement,
 } from '@siemens/ix-vue';
 
 const input = ref();
