@@ -116,23 +116,23 @@ export class CardList {
   /**
    * Fire event when the collapse state is changed by the user
    */
-  @Event() collapseChanged: EventEmitter<boolean>;
+  @Event() collapseChanged!: EventEmitter<boolean>;
 
   /**
    * Fire event when the collapse state is changed by the user
    */
-  @Event() showAllClick: EventEmitter<{
+  @Event() showAllClick!: EventEmitter<{
     nativeEvent: MouseEvent;
   }>;
 
   /**
    * Fire event when the show more card is clicked.
    */
-  @Event() showMoreCardClick: EventEmitter<{
+  @Event() showMoreCardClick!: EventEmitter<{
     nativeEvent: MouseEvent;
   }>;
 
-  @Element() hostElement: HTMLIxCardListElement;
+  @Element() hostElement!: HTMLIxCardListElement;
 
   @State() private hasOverflowingElements = false;
   @State() private numberOfOverflowingElements = 0;
@@ -140,7 +140,7 @@ export class CardList {
   @State() private leftScrollDistance = 0;
   @State() private rightScrollDistance = 0;
 
-  private observer: MutationObserver;
+  private observer?: MutationObserver;
 
   private onCardListVisibilityToggle() {
     this.collapse = !this.collapse;
