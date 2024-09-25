@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     async submitForm() {
-      const result = await this.v$.$validate();
+      await this.v$.$validate();
       console.log(this.$data);
     },
   },
