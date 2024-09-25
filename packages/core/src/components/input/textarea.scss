@@ -43,10 +43,6 @@
 @include host-invalid {
   textarea {
     background-color: var(--theme-input--background--invalid);
-    border-color: var(--theme-input--border-color--invalid);
-  }
-
-  textarea {
     border-color: var(--theme-input--border-color--invalid) !important;
   }
 

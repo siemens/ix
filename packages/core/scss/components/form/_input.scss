@@ -211,10 +211,6 @@
   @include input-invalid {
     & {
       background-color: var(--theme-input--background--invalid);
-      border-color: var(--theme-input--border-color--invalid);
-    }
-
-    & {
       border-color: var(--theme-input--border-color--invalid) !important;
     }
 

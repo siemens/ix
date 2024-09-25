@@ -78,10 +78,6 @@
     outline-offset: 1px;
   }
 
-  input:checked + .switch > .slider {
-    background-color: var(--theme-switch-on--background);
-  }
-
   input:checked + .switch > .slider::before {
     background-color: var(--theme-switch-thumb-on--background);
     transform: translateX(1.35rem);
@@ -112,6 +108,7 @@
 
   // Toggle checked
   input:checked + .switch > .slider {
+    background-color: var(--theme-switch-on--background);
     border-color: var(--theme-switch-on--border-color);
   }
 
