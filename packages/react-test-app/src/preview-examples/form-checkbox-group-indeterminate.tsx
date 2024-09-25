@@ -86,6 +86,7 @@ export default () => {
             onCheckedChange={(e) => checkedChange(e, index)}
             label="Sub option one"
             className="cb-padding"
+            key={index}
           ></IxCheckbox>
         );
       })}
