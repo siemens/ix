@@ -23,8 +23,8 @@ A field is a form element when user input is needed. It's typically used with ot
 
 ## Behavior in context
 
-- **Interaction:** See [validation](forms-validation.md)
-- **Behavior of a field as part of a form:** See [behavior](forms-validation)
+- **Interaction:** See [validation](forms-validation.md).
+- **Behavior of a field as part of a form:** See [behavior](forms-validation).
 - **Text truncation:** Labels, feedback and helper texts are not truncated but break into multiple lines if they exceed the field's width.
 
 ## States

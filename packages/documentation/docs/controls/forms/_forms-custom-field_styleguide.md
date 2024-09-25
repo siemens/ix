@@ -8,16 +8,17 @@ The custom field is a wrapper component that can host any forms component. Its p
 4. Mandatory indicator
 ## Options
 
-- **Label:** See form field.
-- **Helper text**: See form field.
-- **Feedback text**: See form field.
+- **Label:** See [form field](forms-field.md).
+- **Helper text**: See [form field](forms-field.md).
+- **Feedback text**: See [form field](forms-field.md).
 - **Customization**: Add form components to create the use case you need. For example, for a file upload field, add an input field with a `readonly` state and an [icon button](buttons/icon-button.md).
 
 ![Custom field example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3483-7223&t=DlxXBQ9vTnyDcIUI-4)
 
 ## Behavior in context
 
-- **Validation:** See validation.
+- **Validation:** See [validation](forms-validation.md).
+- **Form behavior:** See [behavior](forms-behavior.md).
 ## States
 
 The states depend on the component that you use in the custom field. The custom field itself does not have any interaction states.
@@ -28,6 +29,8 @@ The states depend on the component that you use in the custom field. The custom
 - Don't use the custom field for simple form fields, use the form field component instead
 - Don't use the custom field without a form component, it is a wrapper component that is meant to be used in combination with the form component
 ## Related patterns
-- Form field
-- Validation
-- Layout
+
+- [Form field](forms-field.md)
+- [Validation](forms-validation.md)
+- [Behavior](forms-behavior.md)
+- [Layout](forms-layout.md)

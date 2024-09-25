@@ -11,17 +11,17 @@ An input field is a user interface element that allows users to enter and edit t
 7. Helper or feedback text
 8. Counter
 ## Options
-- **Label:** Refer to the [form field]() chapter for detailed guidelines.
+- **Label:** See [form field](forms-field.md).
 - **Slot options:** Add optional elements at the end and/or start of the input field, e.g. an icon, a button or a text option. We typically use slots for additional indications, options or information like a visibility toggle in a password field.
 - **Placeholder**: Use a placeholder to provide a hint about what to enter or additional relevant context while the input field is empty. We typically use a placeholder when the label is not visible or we need to provide additional context.
-- **Helper text:** Refer to the [form field]() chapter for detailed guidelines.
-- **Counter:** Refer to the [form field]() chapter for detailed guidelines.
-- **Feedback text**: Refer to the [form field]() chapter for detailed guidelines.
+- **Helper text:** See [form field](forms-field.md).
+- **Counter:** See [form field](forms-field.md).
+- **Feedback text**: See [form field](forms-field.md).
 ## Behavior in context
-- **Validation:** Refer to the [validation]() chapter for detailed guidelines.
+- **Validation:** See [validation](forms-validation.md).
 - **Interaction**: Clicking in the container enables the editing of the field.
 - **Text truncation**: The text in an input field is cut off with the length of the container.
-- **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for number fields.
+- **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input,md).
 ## States
 The input field has five states: default, focused, hover, disabled and read-only. In the read-only state, the input field is displayed without offering any user interaction.
 
@@ -34,8 +34,8 @@ The input field has five states: default, focused, hover, disabled and read-only
 - Don’t use placeholders as a substitute for labels
 
 ## Related patterns
-- [Forms field]()
-- [Validation]()
-- [Layout]()
-- [Number field]()
-- [Date field]()
+- [Forms field](forms-field.md)
+- [Validation](forms-validation.md)
+- [Layout](forms-layout.md)
+- [Number field](number-field.md)
+- [Date field](date-field.md)
