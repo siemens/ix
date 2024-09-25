@@ -6,18 +6,11 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Functionalities
 
-ECharts offers a wide variety of different chart types and features. Following page deals with some more special chart types and chart features, which might become handy in some use cases.
-
-
-## Examples
-
+ECharts offers a wide variety of different chart types and features. Following page deals with some more special chart types and chart features, which might become handy in some use cases. 
 ### Interactive toolbox
 
-Apache ECharts offers a versatile toolbox that enables users to interact with and manipulate charts effectively.
-By default, the toolbox appears in the top right corner of the chart.
-You can customize this toolbox using the `toolbox` option within the option object.
+Apache ECharts offers a versatile toolbox that enables users to interact with and manipulate charts effectively. By default, the toolbox appears in the top right corner of the chart. The toolbox includes various interactive tools (like download, zoom, change type), each designed to enhance the user experience. You can customize this toolbox using the `toolbox` option within the option object.
 
-The toolbox includes various interactive tools (like download, zoom, change type), each designed to enhance the user experience.
 Below is an example demonstrating some of the most commonly used tools and how to configure them to suit your needs.
 
 <Playground
