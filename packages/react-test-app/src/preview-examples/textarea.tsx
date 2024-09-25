@@ -10,9 +10,5 @@
 import { IxTextarea } from '@siemens/ix-react';
 
 export default () => {
-  return (
-    <>
-      <IxTextarea></IxTextarea>
-    </>
-  );
+  return <IxTextarea></IxTextarea>;
 };
