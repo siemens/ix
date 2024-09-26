@@ -127,6 +127,7 @@ export class Checkbox implements IxFormComponent<string> {
     return Promise.resolve(this.formInternals.form);
   }
 
+  /** This function is intentionally empty */
   @HookValidationLifecycle()
   updateClassMappings() {}
 
