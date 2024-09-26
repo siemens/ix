@@ -144,7 +144,7 @@ const getClasses = (element: HTMLElement) => {
   const classes: string[] = [];
   for (let i = 0; i < classList.length; i++) {
     const item = classList.item(i);
-    if (item !== null && item.startsWith(ValueAccessor.ANGULAR_CLASS_PREFIX)) {
+    if (item?.startsWith(ValueAccessor.ANGULAR_CLASS_PREFIX)) {
       classes.push(`ix-${item.substring(3)}`);
     }
   }

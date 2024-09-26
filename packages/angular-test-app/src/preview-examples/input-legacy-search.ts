@@ -55,8 +55,6 @@ export default class InputLegacySearch {
   }
 
   onKey(event: any) {
-    event.target.value === ''
-      ? (this.display = 'none')
-      : (this.display = 'block');
+    this.display = event.target.value === '' ? 'none' : 'block';
   }
 }
