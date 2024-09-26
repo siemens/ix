@@ -154,7 +154,7 @@ export class CardList {
   }
 
   private getListChildren() {
-    const slot = this.hostElement.shadowRoot.querySelector(
+    const slot = this.hostElement.shadowRoot!.querySelector(
       '.CardList__Content > slot'
     ) as HTMLSlotElement;
     return slot.assignedElements({ flatten: true });
@@ -185,7 +185,7 @@ export class CardList {
     });
 
     this.observer.observe(
-      this.hostElement.shadowRoot.querySelector('.CardList__Content'),
+      this.hostElement.shadowRoot!.querySelector('.CardList__Content')!,
       {
         childList: true,
         subtree: true,
@@ -207,7 +207,7 @@ export class CardList {
   }
 
   private get listElement() {
-    return this.hostElement.shadowRoot.querySelector('.CardList__Content');
+    return this.hostElement.shadowRoot!.querySelector('.CardList__Content');
   }
 
   private onCardListScroll() {
@@ -260,7 +260,7 @@ export class CardList {
 
   @Listen('resize', { target: 'window' })
   private detectOverflow() {
-    const { clientWidth, scrollWidth, scrollLeft } = this.listElement;
+    const { clientWidth, scrollWidth, scrollLeft } = this.listElement!;
 
     this.leftScrollDistance = scrollLeft;
     this.rightScrollDistance = scrollWidth - scrollLeft - clientWidth;
@@ -283,7 +283,7 @@ export class CardList {
       <Host>
         <CardListTitle
           isCollapsed={this.collapse}
-          label={this.label}
+          label={this.label!}
           showAllLabel={this.i18nShowAll}
           showAllCounter={
             this.showAllCount === undefined
