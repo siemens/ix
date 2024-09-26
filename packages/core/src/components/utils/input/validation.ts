@@ -108,7 +108,7 @@ export function HookValidationLifecycle(options?: {
       checkIfRequiredFunction = async () => {
         const skipValidation = await shouldSuppressInternalValidation(host);
         if (skipValidation) {
-          return;
+          return undefined;
         }
 
         if (host.hasValidValue && typeof host.hasValidValue === 'function') {
