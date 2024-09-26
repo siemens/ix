@@ -16,7 +16,7 @@ ECharts is a third party library distributed under [Apache License 2.0](https://
 
 ## Attributes
 
-| Name           | Discription                                                                                                                                                                                   |
+| Name           | Description                                                                                                                                                                                   |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Axes**       | Most charts have a horizontal (x-axis) and a vertical (y-axis) axis. These axes are labeled to indicate what data they represent.                                                             |
 | **Scale**      | Each axis has a scale, often marked with periodic graduations and numerical or categorical indications.                                                                                       |
