@@ -39,14 +39,14 @@
   }
 
   &.hover, &:hover {
-    &:not(.readonly, .read-only, .disabled, [readonly], [readOnly], [disabled], :read-only) {
+    &:not(.readonly, .read-only, .disabled, [readonly], [disabled], :read-only) {
       border-color: var(--theme-input--border-color--hover) !important;
       background-color: var(--theme-input--background--hover);
     }
   }
 
   &.focus, &:focus {
-    &:not(.readonly, .read-only, .disabled, [readonly], [readOnly], [disabled], :read-only) {
+    &:not(.readonly, .read-only, .disabled, [readonly], [disabled], :read-only) {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-input--focus--outline-offset);
       border-color: var(--theme-input--border-color--focus) !important;
