@@ -136,13 +136,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private anchorElement?: Element;
 
   private dropdownRef: HTMLElement;
-  private localUId = `dropdown-${sequenceId++}`;
-  private assignedSubmenu: string[] = [];
+  private readonly localUId = `dropdown-${sequenceId++}`;
+  private readonly assignedSubmenu: string[] = [];
 
   private arrowFocusController: ArrowFocusController;
-  private focusDropdownItemBind = this.focusDropdownItem.bind(this);
+  private readonly focusDropdownItemBind = this.focusDropdownItem.bind(this);
 
-  private itemObserver = new MutationObserver(() => {
+  private readonly itemObserver = new MutationObserver(() => {
     this.arrowFocusController.items = this.dropdownItems;
   });
 

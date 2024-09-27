@@ -84,7 +84,7 @@ export class Checkbox implements IxFormComponent<string> {
    */
   @Event() valueChange!: EventEmitter<string>;
 
-  private inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
+  private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
     checkboxRef.checked = this.checked;
   });
 

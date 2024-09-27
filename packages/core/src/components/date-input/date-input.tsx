@@ -155,13 +155,13 @@ export class DateInput implements IxInputFieldComponent<string> {
   @State() isWarning = false;
   @State() focus = false;
 
-  private slotStartRef = makeRef<HTMLDivElement>();
-  private slotEndRef = makeRef<HTMLDivElement>();
+  private readonly slotStartRef = makeRef<HTMLDivElement>();
+  private readonly slotEndRef = makeRef<HTMLDivElement>();
 
-  private datepickerRef = makeRef<HTMLIxDatePickerElement>();
+  private readonly datepickerRef = makeRef<HTMLIxDatePickerElement>();
 
-  private inputElementRef = makeRef<HTMLInputElement>();
-  private dropdownElementRef = makeRef<HTMLIxDropdownElement>();
+  private readonly inputElementRef = makeRef<HTMLInputElement>();
+  private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
 
