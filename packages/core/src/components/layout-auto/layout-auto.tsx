@@ -31,11 +31,11 @@ export class LayoutForm implements IxComponent {
     };
   }[] = [];
 
-  private observer = new MutationObserver(() =>
+  private readonly observer = new MutationObserver(() =>
     this.calculateGridTemplateColumns()
   );
 
-  private resizeObserver = new ResizeObserver(() => {
+  private readonly resizeObserver = new ResizeObserver(() => {
     this.calculateGridTemplateColumns();
   });
 

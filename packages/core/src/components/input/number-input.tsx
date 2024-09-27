@@ -162,10 +162,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
 
-  private inputRef = makeRef<HTMLInputElement>();
-  private slotEndRef = makeRef<HTMLDivElement>();
-  private slotStartRef = makeRef<HTMLDivElement>();
-  private numberInputId = `number-input-${numberInputIds++}`;
+  private readonly inputRef = makeRef<HTMLInputElement>();
+  private readonly slotEndRef = makeRef<HTMLDivElement>();
+  private readonly slotStartRef = makeRef<HTMLDivElement>();
+  private readonly numberInputId = `number-input-${numberInputIds++}`;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {

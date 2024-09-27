@@ -223,15 +223,16 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() isWarning = false;
 
   private input!: HTMLInputElement;
-  private inputRef = makeRef<HTMLInputElement>();
+  private readonly inputRef = makeRef<HTMLInputElement>();
   private dropdownRef!: HTMLIxDropdownElement;
   private customItemsContainerRef!: HTMLDivElement;
   private addItemRef!: HTMLIxDropdownItemElement;
 
   private arrowFocusController!: ArrowFocusController;
-  private focusControllerCallbackBind = this.focusDropdownItem.bind(this);
+  private readonly focusControllerCallbackBind =
+    this.focusDropdownItem.bind(this);
 
-  private itemObserver = createMutationObserver(() => {
+  private readonly itemObserver = createMutationObserver(() => {
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
 

@@ -54,7 +54,9 @@ export class HelperText implements IxComponent {
     isInvalidByRequired: false,
   };
 
-  private observer = new MutationObserver(() => this.checkForRequired());
+  private readonly observer = new MutationObserver(() =>
+    this.checkForRequired()
+  );
   private classObserver?: ClassMutationObserver;
 
   connectedCallback() {

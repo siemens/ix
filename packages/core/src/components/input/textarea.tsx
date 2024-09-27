@@ -175,7 +175,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   @State() isWarning = false;
   @State() isInvalidByRequired = false;
 
-  private textAreaRef = makeRef<HTMLTextAreaElement>();
+  private readonly textAreaRef = makeRef<HTMLTextAreaElement>();
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {

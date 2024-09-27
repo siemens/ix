@@ -82,7 +82,7 @@ export class FieldWrapper implements FieldWrapperInterface {
    */
   @Prop() controlRef?: MakeRef<HTMLElement>;
 
-  private slotRef = makeRef<HTMLDivElement>();
+  private readonly slotRef = makeRef<HTMLDivElement>();
 
   render() {
     const textOptions = {

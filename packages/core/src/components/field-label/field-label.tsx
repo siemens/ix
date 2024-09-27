@@ -42,13 +42,13 @@ export class FormFieldLabel implements IxComponent {
   /** @internal */
   @Prop({ mutable: true }) isInvalid: boolean = false;
 
-  private htmlForObserver = new MutationObserver(() =>
+  private readonly htmlForObserver = new MutationObserver(() =>
     this.checkForInternalState()
   );
   private htmlForClassObserver: ClassMutationObserver;
   private controlRefClassObserver?: ClassMutationObserver;
   private a11yAttributes: A11yAttributes = {};
-  private labelRef = makeRef<HTMLLabelElement>();
+  private readonly labelRef = makeRef<HTMLLabelElement>();
 
   connectedCallback() {
     this.registerHtmlForObserver();

@@ -93,7 +93,7 @@ export class RadiobuttonGroup
   @State() isInfo = false;
   @State() isWarning = false;
 
-  private observer = new MutationObserver(() => {
+  private readonly observer = new MutationObserver(() => {
     this.ensureOnlyLastRadioChecked();
   });
 

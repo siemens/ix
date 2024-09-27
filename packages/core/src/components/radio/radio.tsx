@@ -76,7 +76,7 @@ export class Radio implements IxFormComponent<string> {
    * */
   required = false;
 
-  private inputRef = makeRef<HTMLInputElement>((radiobuttonRef) => {
+  private readonly inputRef = makeRef<HTMLInputElement>((radiobuttonRef) => {
     radiobuttonRef.checked = this.checked;
   });
 

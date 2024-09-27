@@ -166,11 +166,11 @@ export class Input implements IxInputFieldComponent<string> {
 
   @State() inputType = 'text';
 
-  private inputRef = makeRef<HTMLInputElement>();
-  private slotEndRef = makeRef<HTMLDivElement>();
-  private slotStartRef = makeRef<HTMLDivElement>();
+  private readonly inputRef = makeRef<HTMLInputElement>();
+  private readonly slotEndRef = makeRef<HTMLDivElement>();
+  private readonly slotStartRef = makeRef<HTMLDivElement>();
 
-  private inputId = `input-${inputIds++}`;
+  private readonly inputId = `input-${inputIds++}`;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
