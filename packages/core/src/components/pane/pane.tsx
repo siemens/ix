@@ -149,10 +149,10 @@ export class Pane {
   @State() private parentWidthPx = 0;
   @State() private parentHeightPx = 0;
 
-  private validPositions = ['top', 'left', 'bottom', 'right'];
-  private collapsedPane = '40px';
-  private collapsedPaneMobile = '48px';
-  private animations: Map<string, anime.AnimeInstance> = new Map();
+  private readonly validPositions = ['top', 'left', 'bottom', 'right'];
+  private readonly collapsedPane = '40px';
+  private readonly collapsedPaneMobile = '48px';
+  private readonly animations: Map<string, anime.AnimeInstance> = new Map();
   private animationCounter = 0;
 
   private mutationObserver: MutationObserver;

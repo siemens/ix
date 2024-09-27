@@ -76,11 +76,11 @@ export class MenuItem {
   @State() tooltip?: string;
   @State() menuExpanded: boolean = false;
 
-  private buttonRef = makeRef<HTMLButtonElement>();
+  private readonly buttonRef = makeRef<HTMLButtonElement>();
   private isHostedInsideCategory = false;
   private menuExpandedDisposer: Disposable;
 
-  private observer: MutationObserver = createMutationObserver(() => {
+  private readonly observer: MutationObserver = createMutationObserver(() => {
     this.setTooltip();
   });
 
