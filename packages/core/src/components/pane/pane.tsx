@@ -605,6 +605,7 @@ export class Pane {
         }}
       >
         <aside
+          id={`pane-${this.composition}`}
           class={{
             'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
             'left-right-pane': this.isLeftRightPane && !this.isMobile,
@@ -640,7 +641,7 @@ export class Pane {
               onClick={() => {
                 this.expanded = !this.expanded;
               }}
-              aria-controls={this.composition + 'ToggleButton'}
+              aria-controls={`pane-${this.composition}`}
             />
             <span
               class={{

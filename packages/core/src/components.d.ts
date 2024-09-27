@@ -367,6 +367,11 @@ export namespace Components {
     }
     interface IxCategoryFilter {
         /**
+          * Aria label for the filter input field
+          * @since 2.6.0
+         */
+        "ariaLabel": string;
+        /**
           * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
         "categories"?: {
@@ -4447,6 +4452,11 @@ declare namespace LocalJSX {
     interface IxCardTitle {
     }
     interface IxCategoryFilter {
+        /**
+          * Aria label for the filter input field
+          * @since 2.6.0
+         */
+        "ariaLabel"?: string;
         /**
           * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */

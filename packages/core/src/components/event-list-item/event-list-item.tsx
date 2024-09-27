@@ -87,7 +87,8 @@ export class EventListItem {
           disabled: this.disabled,
         }}
       >
-        <li
+        <div
+          role="listitem"
           aria-disabled={a11yBoolean(this.disabled)}
           class={{
             'event-list-item': true,
@@ -118,7 +119,7 @@ export class EventListItem {
               ></ix-icon>
             )}
           </div>
-        </li>
+        </div>
       </Host>
     );
   }

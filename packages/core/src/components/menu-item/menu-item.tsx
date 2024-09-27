@@ -172,7 +172,6 @@ export class MenuItem {
         <button
           class="tab"
           tabIndex={this.disabled ? -1 : 0}
-          role="listitem"
           ref={this.buttonRef}
         >
           {(this.icon || this.tabIcon) && (
