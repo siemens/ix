@@ -47,8 +47,8 @@
 
   &.focus, &:focus {
     &:not(.readonly, .read-only, .disabled, [readonly], [disabled], :read-only) {
-      outline: 1px solid var(--theme-color-focus-bdr);
-      outline-offset: var(--theme-input--focus--outline-offset);
+      outline: 1px solid var(--theme-color-focus-bdr) !important;
+      outline-offset: var(--theme-input--focus--outline-offset) !important;
       border-color: var(--theme-input--border-color--focus) !important;
     }
   }
