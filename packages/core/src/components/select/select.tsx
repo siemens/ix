@@ -858,6 +858,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     data-testid="input"
                     disabled={this.disabled}
                     readOnly={this.readonly}
+                    required={this.required}
                     type="text"
                     class={{
                       'allow-clear':
