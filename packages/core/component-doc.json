@@ -16185,7 +16185,7 @@
           "reflectToAttr": false,
           "docs": "Select list header",
           "docsTags": [],
-          "default": "'Please select an option'",
+          "default": "'Select an option'",
           "values": [
             {
               "type": "string"

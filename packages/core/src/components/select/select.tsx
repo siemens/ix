@@ -163,7 +163,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   /**
    * Select list header
    */
-  @Prop() i18nSelectListHeader = 'Please select an option';
+  @Prop() i18nSelectListHeader = 'Select an option';
 
   /**
    * Hint inside of dropdown if no items where found with current filter text
