@@ -95,7 +95,7 @@
   --ix-card-background: var(--theme-color-ghost--hover);
 }
 
-:host(.card-notification:hover) {
+:host(.card-notification:hover), :host(.card-filled:hover) {
   --ix-card-background: var(--theme-color-component-1--hover);
 }
 
@@ -133,7 +133,7 @@
   --ix-card-background: var(--theme-color-ghost--active);
 }
 
-:host(.card-notification:active) {
+:host(.card-notification:active), :host(.card-filled:active) {
   --ix-card-background: var(--theme-color-component-1--active);
 }
 
