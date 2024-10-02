@@ -32,6 +32,6 @@ import { Component } from '@angular/core';
       ></ix-kpi>
     </div>
   `,
-  styleUrls: ['./styles/kpi.css'],
+  styleUrls: ['./kpi.css'],
 })
 export default class Kpi {}

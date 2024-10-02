@@ -23,7 +23,7 @@ import { Component } from '@angular/core';
       <div *ngIf="selectedTab === 2">Content Tab 3</div>
     </div>
   `,
-  styleUrls: ['./styles/tabs.css'],
+  styleUrls: ['./tabs.css'],
 })
 export default class Tabs {
   selectedTab = 1;

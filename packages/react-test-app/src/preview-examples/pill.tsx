@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/pill.css';
+import './pill.css';
 
 import { IxPill } from '@siemens/ix-react';
 

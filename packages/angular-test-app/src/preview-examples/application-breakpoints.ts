@@ -11,7 +11,7 @@ import { Breakpoint } from '@siemens/ix';
 
 @Component({
   selector: 'app-example',
-  styleUrls: ['./styles/application.css'],
+  styleUrls: ['./application-breakpoints.css'],
   templateUrl: './application-breakpoints.html',
 })
 export default class ApplicationBreakpointExample {

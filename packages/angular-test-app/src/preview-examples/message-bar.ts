@@ -23,6 +23,6 @@ import { Component } from '@angular/core';
       </ix-message-bar>
     </div>
   `,
-  styleUrls: ['./styles/message-bar.css'],
+  styleUrls: ['./message-bar.css'],
 })
 export default class MessageBar {}
