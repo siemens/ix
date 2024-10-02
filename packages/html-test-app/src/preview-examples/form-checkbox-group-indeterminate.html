@@ -41,6 +41,7 @@ SPDX-License-Identifier: MIT
         const checkboxGroup = document.querySelector('ix-checkbox-group');
 
         function checkedChange() {
+          parent.checked = children.every((cb) => cb.checked);
           parent.indeterminate = children.some((cb) => cb.checked);
         }
 
