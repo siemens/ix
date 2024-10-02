@@ -44,7 +44,7 @@ import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
+import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
@@ -85,7 +85,7 @@ export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
+export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     /**
@@ -95,7 +95,7 @@ export namespace Components {
         /**
           * Card heading
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Card icon
          */
@@ -107,7 +107,7 @@ export namespace Components {
         /**
           * Card subheading
          */
-        "subheading": string;
+        "subheading"?: string;
         /**
           * Card variant
           * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
@@ -206,16 +206,16 @@ export namespace Components {
           * Optional icon to be displayed next to the header label
           * @since 1.5.0
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Label of blind
          */
-        "label": string;
+        "label"?: string;
         /**
           * Secondary label inside blind header
           * @since 2.0.0
          */
-        "sublabel": string;
+        "sublabel"?: string;
         /**
           * Blind variant
           * @since 2.0.0
@@ -268,7 +268,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         "iconSize": '12' | '16' | '24';
         /**
           * Loading button
@@ -508,7 +508,7 @@ export namespace Components {
         /**
           * Title of Header
          */
-        "headerTitle": string;
+        "headerTitle"?: string;
         /**
           * Variant of content header
          */
@@ -518,7 +518,7 @@ export namespace Components {
         /**
           * Define css grid template
          */
-        "templates": Partial<Record<CssGridTemplateType, string[][]>>;
+        "templates"?: Partial<Record<CssGridTemplateType, string[][]>>;
     }
     interface IxCssGridItem {
         /**
@@ -2338,24 +2338,19 @@ export namespace Components {
           * Text color based on theme variables
           * @deprecated since 2.1.0 use property `text-color`
          */
-        "color": TypographyColors;
+        "color"?: TypographyColors;
         /**
           * Text format
          */
-        "format": TypographyFormat;
+        "format"?: TypographyFormat;
         /**
           * Text color based on theme variables
          */
-        "textColor": TypographyColors;
+        "textColor"?: TypographyColors;
         /**
           * Text decoration
          */
         "textDecoration": TextDecoration;
-        /**
-          * Font variant based on theme variables
-          * @deprecated Use `format` property
-         */
-        "variant": TypographyVariants;
     }
     interface IxUpload {
         /**
@@ -6637,11 +6632,6 @@ declare namespace LocalJSX {
           * Text decoration
          */
         "textDecoration"?: TextDecoration;
-        /**
-          * Font variant based on theme variables
-          * @deprecated Use `format` property
-         */
-        "variant"?: TypographyVariants;
     }
     interface IxUpload {
         /**

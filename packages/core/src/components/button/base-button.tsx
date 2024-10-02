@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { h } from '@stencil/core';
+import { FunctionalComponent, h } from '@stencil/core';
 import { A11yAttributes } from '../utils/a11y';
 import { ButtonVariant } from './button';
 
@@ -61,7 +61,7 @@ export type BaseButtonProps = {
   selected: boolean;
   disabled: boolean;
   loading: boolean;
-  icon: string;
+  icon?: string;
   onClick?: Function;
   ariaAttributes?: A11yAttributes;
   extraClasses?: { [key: string]: boolean };
@@ -87,7 +87,10 @@ const getSpinnerSize = (btnProps: BaseButtonProps) => {
   }
 };
 
-export function BaseButton(props: BaseButtonProps, children) {
+export const BaseButton: FunctionalComponent<BaseButtonProps> = (
+  props: BaseButtonProps,
+  children
+) => {
   const extraClasses = props.extraClasses ?? {};
 
   const ariaAttributes = props.ariaAttributes ?? {};
@@ -136,4 +139,4 @@ export function BaseButton(props: BaseButtonProps, children) {
       {props.afterContent ? props.afterContent : null}
     </button>
   );
-}
+};
