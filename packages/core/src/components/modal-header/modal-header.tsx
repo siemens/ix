@@ -89,6 +89,7 @@ export class ModalHeader {
             class={'modal-icon'}
             name={this.icon}
             color={this.iconColor}
+            size="32"
           ></ix-icon>
         ) : null}
         <ix-typography variant={'default-title'}>
