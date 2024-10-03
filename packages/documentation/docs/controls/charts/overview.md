@@ -16,15 +16,15 @@ ECharts is a third party library distributed under [Apache License 2.0](https://
 
 ## Attributes
 
-| Name           | Description                                                                                                                                                                                   |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Axes**       | Most charts have a horizontal (x-axis) and a vertical (y-axis) axis. These axes are labeled to indicate what data they represent.                                                             |
-| **Scale**      | Each axis has a scale, often marked with periodic graduations and numerical or categorical indications.                                                                                       |
-| **Labels**     | Axes labels describe the dimensions represented, often including units of measurement, e.g. “Distance traveled (m)”.                                                                          |
-| **Grid lines** | Grid lines help in visually aligning data points within the chart.                                                                                                                            |
-| **Legend**     | Legends explain the symbols, colors, or patterns used in the chart to represent different data sets. By clicking on the date in the legend, you can toggle the visibility of the data series. |
-| **Tooltip**    | Provides detailed information about data while hover over the area of interest.                                                                                                               |
-
+| Name           | Description                                                                                                                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Axes**       | Axes are used to display the data in a chart. They are the horizontal and vertical lines that form the chart's grid. Axes are labeled to indicate what data they represent.                  |
+| **Scale**      | Scales are used to map data values to a visual representation. The scale type is determined by the type of data being visualized.                                                            |
+| **Labels**     | Labels are used to describe the dimensions represented, often including units of measurement, e.g. “Distance traveled (m)”.                                                                  |
+| **Grid lines** | Grid lines help in visually aligning data points within the chart.                                                                                                                           |
+| **Legend**     | Legends explain the symbols, colors, or patterns used in the chart to represent different data sets. You can toggle the visibility of the data series by clicking on the date in the legend. |
+| **Tooltip**    | Tooltips provide more details about data while hovering over the area of interest.                                                                                                           |
+|                |                                                                                                                                                                                              |
 ## Installation
 
 To install the Siemens Industrial Experience ECharts theme, run the follow the steps below:
@@ -74,9 +74,13 @@ noMargin
 >
 </Playground>
 
-## Empty state
+### Loading indicator
 
-An empty state occurs when a user first opens an application, and no chart was added manually. Make sure to provide a clear message and a call to action to guide users on what to do next.
+A loading indicator provides users with visual feedback that the chart is being processed and will be displayed shortly. The loading indicator should be displayed when the chart is loading data or rendering, to visually indicate that the chart is not yet ready. 
+
+### Empty state
+
+An empty state occurs when a user first opens an application, no data is available, or the user has filtered out all data. The empty state should be visually distinct from the loading state and should provide a clear message to the user. This message should explain why the empty state is being displayed and provide guidance on how to proceed. 
 
 <Playground
 height="40rem"
@@ -85,15 +89,11 @@ noMargin
 examplesByName>
 </Playground>
 
-### Loading indicator
-
-A loading indicator provides users with visual feedback that the chart is being processed and will be displayed shortly. This helps manage user expectations and enhances the overall user experience by preventing confusion or frustration during data loading times. 
-
 ### Failure and error message
 
-A failure occurs when no data can be displayed within the chart. This can happen for various reasons, such as connection failure, missing data or other. Error messages have following three elements to move users forward:
+A failure occurs when no data can be displayed within the chart. This can happen for various reasons, such as connection failure and missing data. Error messages have following three elements to help users understand and resolve the issue:
 
-- State problem: What happened?​ Add a clear reason for the error, i.e. “No data available”
+- State problem: What happened?​ Add a clear reason for the error, e.g. “No data available”
 - Explain cause: Why did the error appear?​ A clear and concise message explaining why the error happened. "Connection failure"
 - Give solution: What can the user do to proceed?​  
     Add clear instructions for the user regarding what to do next to resolve the error, e.g. “Try again”
