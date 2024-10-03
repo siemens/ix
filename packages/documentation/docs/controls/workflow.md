@@ -1,3 +1,7 @@
+---
+tags: stepper
+---
+
 import WorkflowStepProps from './../auto-generated/ix-workflow-step/props.md';
 import WorkflowStepEvents from './../auto-generated/ix-workflow-step/events.md';
 import WorkflowStepsProps from './../auto-generated/ix-workflow-steps/props.md';

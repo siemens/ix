@@ -77,31 +77,31 @@ As some of the components are named differently in Industrial Experience, please
 
 | **User Experience Toolkit**                      | **Industrial Experience**                                             |
 | ------------------------------------------------ | --------------------------------------------------------------------- |
-| App bar                                          | Nav menu                                                              |
-| Badge                                            | Pill, chip                                                            |
-| Busy indicator                                   | Spinner                                                               |
-| Button<br/>- primary<br/>- secondary<br/>- ghost | Button<br/>- primary filled<br/>- primary outline<br/>- primary ghost |
-| Card grid                                        | Layout grid                                                           |
-| Container                                        | Card                                                                  |
-| Dialog                                           | Modal                                                                 |
-| Dropzone                                         | Upload                                                                |
-| List                                             | Event list                                                            |
-| Stepper                                          | Workflow                                                              |
-| Menu                                             | Dropdown button                                                       |
-| Message                                          | Message bar                                                           |
-| Notification                                     | Toast                                                                 |
-| Pager                                            | Pagination                                                            |
-| Popover                                          | Tooltip, dropdown                                                     |
-| Switch                                           | Toggle                                                                |
-| Context region                                   | Pane (inline right)                                                   |
-| Item region                                      | Pane (floating right)                                                 |
-| Leading region                                   | Pane (inline left)                                                    |
+| App bar                                          | [Nav menu](../controls/application-frame/application-menu.md)         |
+| Badge                                            | [Pill](../controls/pill.md), [chip](../controls/chip.md)                                                            |
+| Busy indicator                                   | [Spinner](../controls/spinner.md)                                                               |
+| Button<br/>- primary<br/>- secondary<br/>- ghost | [Button](../controls/buttons/button.md)<br/>- primary filled<br/>- primary outline<br/>- primary ghost |
+| Card grid                                        | [Layout grid](../controls/layout-grid.md)                                                           |
+| Container                                        | [Card](../controls/card.md)                                                                  |
+| Dialog                                           | [Modal](../controls/modal.md)                                                                 |
+| Dropzone                                         | [Upload](../controls/upload.md)                                                                |
+| List                                             | [Event list](../controls/event-list.md)                                                            |
+| Stepper                                          | [Workflow](../controls/workflow.md)                                                              |
+| Menu                                             | [Dropdown button](../controls/buttons/dropdown-button.md)                                                       |
+| Message                                          | [Message bar](../controls/message-bar.md)                                                           |
+| Notification                                     | [Toast](../controls/toast.md)                                                                 |
+| Pager                                            | [Pagination](../controls/pagination.md)                                                            |
+| Popover                                          | [Tooltip](../controls/tooltip.md), [dropdown](../controls/dropdown.md)                                                     |
+| Switch                                           | [Toggle](../controls/toggle.md)                                                                |
+| Context region                                   | [Pane](../controls/pane.md) (inline right)                                                   |
+| Item region                                      | [Pane](../controls/pane.md) (floating right)                                                 |
+| Leading region                                   | [Pane](../controls/pane.md) (inline left)                                                    |
 
 ## System icons
 
 Key differences between UXT and Industrial Experience:
 
-- [UXT offers an iconfont](https://design.mindsphere.io/patterns/system-icons.html) with 3 different styles (regular, bold, filled)
+- UXT offers an iconfont with 3 different styles (regular, bold, filled)
 - [iX offers SVGs](https://ix.siemens.io/docs/icon-library/icons) with mainly 1 style that corresponds to our bold and partially filled variants separately
 
 When changing to the SVG icons by Industrial Experience, check whether your stylings still apply in your custom-built components.
