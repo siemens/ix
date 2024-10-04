@@ -31,6 +31,10 @@ import { Component } from '@angular/core';
       Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
       sit amet.
     </ix-blind>
+    <ix-dropdown trigger="context-menu">
+      <ix-dropdown-item icon="rename">Rename...</ix-dropdown-item>
+      <ix-dropdown-item icon="trashcan">Delete...</ix-dropdown-item>
+    </ix-dropdown>
   `,
   styleUrls: ['./blind-header-actions.css'],
 })
