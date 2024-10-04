@@ -20,7 +20,6 @@ import { Component } from '@angular/core';
         icon="context-menu"
         icon-color="color-primary"
       ></ix-icon-button>
-      <ix-dropdown trigger="context-menu">test</ix-dropdown>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
       eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
       voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
