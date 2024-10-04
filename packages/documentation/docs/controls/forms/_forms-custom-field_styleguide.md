@@ -9,6 +9,7 @@ The custom field is a wrapper component that can host any forms component. Its p
 ## Options
 
 - **Label:** See [form field](forms-field.md).
+- **Group label:** Add a label to the group of radio buttons to provide context to your users. We typically use short and descriptive labels to summarize the options in the group.
 - **Helper text**: See [form field](forms-field.md).
 - **Feedback text**: See [form field](forms-field.md).
 - **Customization**: Add form components to create the use case you need. For example, for a file upload field, add an input field with a `readonly` state and an [icon button](buttons/icon-button.md).
