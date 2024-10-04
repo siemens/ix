@@ -61,7 +61,7 @@ Your layout might change in some places when applying the theme, including:
 3. Update your current UXT version to 2.7.0
 </Accordion>
 
-<Accordion title="The colors don’t look right in both themes." id="colors-dark">
+<Accordion title="The colors don’t look right in both themes." id="colors-dark" showBorderBottom>
 1. Check if you use color variables (no raw HEX or RGB values)
 2. Check if you used meta color variables correctly (see more details [here](https://design.mindsphere.io/patterns/color.html#tab2anchor4)):
 	1. For text elements: use the font colors, e.g. color-font or color-font-secondary (no base colors)
