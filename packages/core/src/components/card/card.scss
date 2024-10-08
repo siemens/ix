@@ -41,23 +41,25 @@
   }
 }
 
-:host(.card-insight),
-:host(.card-outline) {
-  --ix-card-background: var(--theme-color-ghost);
-  --ix-card-border-color: var(--theme-color-soft-bdr);
-
+@mixin accordionChevronColorPrimary {
   ::slotted(ix-card-accordion) {
     color: var(--theme-color-primary);
   }
 }
 
+:host(.card-insight),
+:host(.card-outline) {
+  @include accordionChevronColorPrimary;
+
+  --ix-card-background: var(--theme-color-ghost);
+  --ix-card-border-color: var(--theme-color-soft-bdr);
+}
+
 :host(.card-notification),
 :host(.card-filled) {
-  --ix-card-background: var(--theme-color-component-1);
+  @include accordionChevronColorPrimary;
 
-  ::slotted(ix-card-accordion) {
-    color: var(--theme-color-primary);
-  }
+  --ix-card-background: var(--theme-color-component-1);
 }
 
 :host(.card-alarm) {
