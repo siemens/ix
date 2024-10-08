@@ -52,6 +52,7 @@
     "luxon": "^3.4.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
     "@playwright/test": "^1.32.1",
     "@siemens/ix-icons": "^2.0.0",
     "@stencil-community/eslint-plugin": "^0.7.1",
@@ -70,6 +71,7 @@
     "@typescript-eslint/parser": "^6.14.0",
     "animate.css": "~4.1.1",
     "autoprefixer": "10.4.5",
+    "axe-core": "^4.10.0",
     "bootstrap": "^5.2.0",
     "cssnano": "^6.0.1",
     "cz-conventional-changelog": "^3.3.0",

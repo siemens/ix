@@ -19,6 +19,7 @@ import {
   State,
 } from '@stencil/core';
 import { UploadFileState } from './upload-file-state';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-upload',
@@ -97,7 +98,13 @@ export class Upload {
 
   private filesToUpload: Array<File>;
 
+  private a11y: A11yAttributes = {};
+
   constructor() {}
+
+  componentWillLoad() {
+    this.a11y = a11yHostAttributes(this.hostElement);
+  }
 
   private fileDropped(evt: DragEvent) {
     evt.preventDefault();
@@ -208,8 +215,10 @@ export class Upload {
   }
 
   render() {
+    const disabled = this.disabled || this.state === UploadFileState.LOADING;
+    const { 'aria-label': ariaLabel = 'Upload files', ...a11y } = this.a11y;
     return (
-      <Host>
+      <Host {...a11y} aria-disable={disabled}>
         <div
           class={{
             'file-upload-area': true,
@@ -231,6 +240,8 @@ export class Upload {
           {this.renderUploadState()}
           <div>
             <input
+              aria-label={ariaLabel}
+              aria-disabled={disabled}
               multiple={this.multiple}
               type="file"
               class="upload-browser"
@@ -239,12 +250,13 @@ export class Upload {
                 this.fileChangeEvent(e);
               }}
               accept={this.accept}
+              disabled={disabled}
             />
             <ix-button
               tabindex="-1"
               outline
               onClick={() => this.inputElement.click()}
-              disabled={this.disabled || this.state === UploadFileState.LOADING}
+              disabled={disabled}
             >
               {this.i18nUploadFile}
             </ix-button>

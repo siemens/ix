@@ -293,6 +293,9 @@ importers:
         specifier: ^3.4.4
         version: 3.4.4
     devDependencies:
+      '@axe-core/playwright':
+        specifier: ^4.10.0
+        version: 4.10.0(playwright-core@1.39.0)
       '@playwright/test':
         specifier: ^1.32.1
         version: 1.39.0
@@ -347,6 +350,9 @@ importers:
       autoprefixer:
         specifier: 10.4.5
         version: 10.4.5(postcss@8.4.31)
+      axe-core:
+        specifier: ^4.10.0
+        version: 4.10.0
       bootstrap:
         specifier: ^5.2.0
         version: 5.2.3(@popperjs/core@2.11.8)
@@ -1283,6 +1289,11 @@ packages:
 
   '@assemblyscript/loader@0.10.1':
     resolution: {integrity: sha512-H71nDOOL8Y7kWRLqf6Sums+01Q5msqBW2KhDUTemh1tvY04eSkSXrK0uj/4mmY0Xr16/3zyZmsrxN7CKuRbNRg==}
+
+  '@axe-core/playwright@4.10.0':
+    resolution: {integrity: sha512-kEr3JPEVUSnKIYp/egV2jvFj+chIjCjPp3K3zlpJMza/CB3TFw8UZNbI9agEC2uMz4YbgAOyzlbUy0QS+OofFA==}
+    peerDependencies:
+      playwright-core: '>= 1.0.0'
 
   '@babel/code-frame@7.22.13':
     resolution: {integrity: sha512-XktuhWlJ5g+3TJXc5upd9Ks1HutSArik6jf2eAjYFyIOf4ej3RN+184cZbzDvbPnuTJIUhPKKJE3cIsYTiAT3w==}
@@ -5644,6 +5655,10 @@ packages:
 
   aws4@1.13.1:
     resolution: {integrity: sha512-u5w79Rd7SU4JaIlA/zFqG+gOiuq25q5VLyZ8E+ijJeILuTxVzZgp2CaGw/UTw6pXYN9XMO9yiqj/nEHmhTG5CA==}
+
+  axe-core@4.10.0:
+    resolution: {integrity: sha512-Mr2ZakwQ7XUAjp7pAwQWRhhK8mQQ6JAaNWSjmjxil0R8BPioMtQsTLOolGYkji1rcL++3dCqZA3zWqpT+9Ew6g==}
+    engines: {node: '>=4'}
 
   axios@0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
@@ -14926,6 +14941,11 @@ snapshots:
 
   '@assemblyscript/loader@0.10.1': {}
 
+  '@axe-core/playwright@4.10.0(playwright-core@1.39.0)':
+    dependencies:
+      axe-core: 4.10.0
+      playwright-core: 1.39.0
+
   '@babel/code-frame@7.22.13':
     dependencies:
       '@babel/highlight': 7.22.20
@@ -20961,6 +20981,8 @@ snapshots:
   aws-sign2@0.7.0: {}
 
   aws4@1.13.1: {}
+
+  axe-core@4.10.0: {}
 
   axios@0.27.2(debug@4.3.4):
     dependencies:
