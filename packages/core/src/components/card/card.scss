@@ -45,11 +45,19 @@
 :host(.card-outline) {
   --ix-card-background: var(--theme-color-ghost);
   --ix-card-border-color: var(--theme-color-soft-bdr);
+
+  ::slotted(ix-card-accordion) {
+    color: var(--theme-color-primary);
+  }
 }
 
 :host(.card-notification),
 :host(.card-filled) {
   --ix-card-background: var(--theme-color-component-1);
+
+  ::slotted(ix-card-accordion) {
+    color: var(--theme-color-primary);
+  }
 }
 
 :host(.card-alarm) {
