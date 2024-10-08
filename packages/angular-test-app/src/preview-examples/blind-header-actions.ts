@@ -20,7 +20,6 @@ import { Component } from '@angular/core';
         icon="context-menu"
         icon-color="color-primary"
       ></ix-icon-button>
-      <ix-dropdown trigger="context-menu">test</ix-dropdown>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
       eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
       voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
@@ -31,6 +30,10 @@ import { Component } from '@angular/core';
       Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
       sit amet.
     </ix-blind>
+    <ix-dropdown trigger="context-menu">
+      <ix-dropdown-item icon="rename">Rename...</ix-dropdown-item>
+      <ix-dropdown-item icon="trashcan">Delete...</ix-dropdown-item>
+    </ix-dropdown>
   `,
   styleUrls: ['./blind-header-actions.css'],
 })
