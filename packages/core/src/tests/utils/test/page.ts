@@ -80,16 +80,23 @@ export const expect = baseExpect.extend({
 
 export const test = testBase.extend({
   createElement: async ({ page }, use) => {
-    use(async (selector: string, appendTo: Element) => {
-      await page.evaluateHandle(() => {
-        const elm = document.createElement(selector);
-        if (appendTo) {
-          appendTo.appendChild(elm);
-        }
+    use(async (selector: string, appendTo: Element) =>
+      page.evaluateHandle(
+        (args) => {
+          const { selector, appendTo } = args;
+          const elm = document.createElement(selector);
+          if (appendTo) {
+            appendTo.appendChild(elm);
+          }
 
-        return elm;
-      });
-    });
+          return elm;
+        },
+        {
+          selector,
+          appendTo,
+        }
+      )
+    );
   },
   mount: async ({ page }, use, testInfo) => {
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
