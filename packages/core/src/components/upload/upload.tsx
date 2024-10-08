@@ -31,7 +31,7 @@ export class Upload {
    * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).
    * [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
    */
-  @Prop() accept: string;
+  @Prop() accept?: string;
 
   /**
    * If multiple is true the user can drop or select multiple files
@@ -86,17 +86,17 @@ export class Upload {
   /**
    * You get an array of Files after drop-action or browse action is finished
    */
-  @Event() filesChanged: EventEmitter<Array<File>>;
+  @Event() filesChanged!: EventEmitter<Array<File>>;
 
   @Element() hostElement!: HTMLIxUploadElement;
 
   get inputElement(): HTMLInputElement {
-    return this.hostElement.shadowRoot.querySelector('#upload-browser');
+    return this.hostElement.shadowRoot!.querySelector('#upload-browser')!;
   }
 
   @State() isFileOver = false;
 
-  private filesToUpload: Array<File>;
+  private filesToUpload?: Array<File>;
 
   private a11y: A11yAttributes = {};
 
@@ -108,7 +108,12 @@ export class Upload {
 
   private fileDropped(evt: DragEvent) {
     evt.preventDefault();
+
     if (this.disabled) {
+      return;
+    }
+
+    if (!evt.dataTransfer) {
       return;
     }
 
@@ -120,6 +125,10 @@ export class Upload {
   }
 
   private fileOver(event: DragEvent) {
+    if (!event.dataTransfer) {
+      return;
+    }
+
     if (this.state !== UploadFileState.LOADING) {
       event.preventDefault();
       event.dataTransfer.dropEffect = 'move';
@@ -139,11 +148,18 @@ export class Upload {
     this.isFileOver = false;
   }
 
-  private fileChangeEvent(event: any) {
+  private fileChangeEvent(event: Event) {
     if (this.disabled) {
       return;
     }
-    this.filesToUpload = this.convertToFileArray(event.target.files);
+
+    if (!event.target) {
+      return;
+    }
+
+    this.filesToUpload = this.convertToFileArray(
+      (event.target as HTMLInputElement).files
+    );
 
     this.filesChanged.emit(this.filesToUpload);
 
@@ -153,8 +169,13 @@ export class Upload {
     this.inputElement.type = 'file';
   }
 
-  private convertToFileArray(filesFromEvent: FileList | File): File[] {
+  private convertToFileArray(filesFromEvent: FileList | File | null): File[] {
     let files = [];
+
+    if (!filesFromEvent) {
+      return [];
+    }
+
     if (filesFromEvent instanceof FileList) {
       files = Array.from(filesFromEvent);
     } else {

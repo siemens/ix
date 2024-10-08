@@ -80,23 +80,16 @@ export const expect = baseExpect.extend({
 
 export const test = testBase.extend({
   createElement: async ({ page }, use) => {
-    use((selector: string, appendTo: Element) =>
-      page.evaluateHandle(
-        async ({ selector, appendTo }) => {
-          const elm = document.createElement(selector);
-
-          if (appendTo) {
-            appendTo.appendChild(elm);
-          }
-
-          return elm;
-        },
-        {
-          selector,
-          appendTo,
+    use(async (selector: string, appendTo: Element) => {
+      await page.evaluateHandle(() => {
+        const elm = document.createElement(selector);
+        if (appendTo) {
+          appendTo.appendChild(elm);
         }
-      )
-    );
+
+        return elm;
+      });
+    });
   },
   mount: async ({ page }, use, testInfo) => {
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
@@ -111,6 +104,11 @@ export const test = testBase.extend({
         async ({ componentSelector }) => {
           await window.customElements.whenDefined('ix-button');
           const mount = document.querySelector('#mount');
+
+          if (!mount) {
+            throw new Error('No mount point found in the document.');
+          }
+
           mount.innerHTML = componentSelector;
           return mount.children.item(0) as HTMLElement;
         },
