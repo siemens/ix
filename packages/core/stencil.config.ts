@@ -19,10 +19,7 @@ import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
 export const config: Config = {
   globalScript: './src/setup.ts',
   extras: {
-    appendChildSlotFix: true,
-    slotChildNodesFix: true,
     enableImportInjection: true,
-    scopedSlotTextContentFix: true,
   },
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],
@@ -49,6 +46,24 @@ export const config: Config = {
       includePolyfills: false,
       includeDefineCustomElements: false,
       excludeComponents: ['ix-playground-internal', 'ix-icon'],
+      componentModels: [
+        {
+          elements: [
+            'ix-select',
+            'ix-input',
+            'ix-textarea',
+            'ix-number-input',
+            'ix-date-input',
+          ],
+          event: 'valueChange',
+          targetAttr: 'value',
+        },
+        {
+          elements: ['ix-checkbox'],
+          event: 'checkedChange',
+          targetAttr: 'checked',
+        },
+      ],
     }),
     angularOutputTarget({
       componentCorePackage: '@siemens/ix',
@@ -56,20 +71,7 @@ export const config: Config = {
       directivesArrayFile: '../angular/src/declare-components.ts',
       excludeComponents: ['ix-playground-internal', 'ix-tree', 'ix-icon'],
       valueAccessorConfigs: [
-        {
-          elementSelectors:
-            'ix-select[ngModel],ix-select[formControlName],ix-select[formControl]',
-          event: 'valueChange',
-          targetAttr: 'value',
-          type: 'select',
-        },
-        {
-          elementSelectors:
-            'ix-toggle[ngModel],ix-toggle[formControlName],ix-toggle[formControl]',
-          event: 'checkedChange',
-          targetAttr: 'checked',
-          type: 'boolean',
-        },
+        /** Value accessors should not be generated */
       ],
     }),
     reactOutputTarget({
