@@ -85,22 +85,18 @@ export class ModalHeader {
     return (
       <Host>
         {this.icon ? (
-          <ix-icon
-            class={'modal-icon'}
-            name={this.icon}
-            color={this.iconColor}
-            size="32"
-          ></ix-icon>
+          <ix-icon name={this.icon} color={this.iconColor} size="32"></ix-icon>
         ) : null}
-        <ix-typography format="h5">
-          <slot></slot>
-        </ix-typography>
+        <div class={'modal-title'}>
+          <ix-typography format="h5">
+            <slot></slot>
+          </ix-typography>
+        </div>
         {!this.hideClose ? (
           <ix-icon-button
             onClick={(event) => this.onCloseClick(event)}
             ghost
             icon="close"
-            class={'modal-close'}
           ></ix-icon-button>
         ) : null}
       </Host>

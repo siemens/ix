@@ -14,12 +14,11 @@
   padding: 0.5rem 0 0.5rem 0.5rem;
   align-items: center;
   align-self: stretch;
+  gap: 1rem;
 
-  .modal-close {
-    margin-left: auto;
-  }
-
-  .modal-icon {
-    margin-right: 1rem;
+  .modal-title {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 }
