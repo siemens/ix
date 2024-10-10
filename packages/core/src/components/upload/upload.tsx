@@ -239,7 +239,7 @@ export class Upload {
     const disabled = this.disabled || this.state === UploadFileState.LOADING;
     const { 'aria-label': ariaLabel = 'Upload files', ...a11y } = this.a11y;
     return (
-      <Host {...a11y} aria-disable={disabled}>
+      <Host {...a11y} aria-disabled={disabled}>
         <div
           class={{
             'file-upload-area': true,
