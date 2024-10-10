@@ -599,7 +599,7 @@ export class Menu {
         }}
         slot="menu"
       >
-        <aside
+        <nav
           class={{
             menu: true,
             expanded: this.expand,
@@ -724,7 +724,7 @@ export class Menu {
               label={this.getCollapseText()}
             ></ix-menu-item>
           ) : null}
-        </aside>
+        </nav>
         <div
           class={{
             'menu-overlay': true,

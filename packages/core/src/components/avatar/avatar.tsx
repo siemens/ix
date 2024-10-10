@@ -55,13 +55,13 @@ function DefaultAvatar(props: { initials?: string }) {
 
 function AvatarImage(props: { image: string; initials: string }) {
   return (
-    <li class="avatar">
+    <div class="avatar">
       {props.image ? (
         <img src={props.image} class="avatar-image"></img>
       ) : (
         <DefaultAvatar initials={props.initials} />
       )}
-    </li>
+    </div>
   );
 }
 

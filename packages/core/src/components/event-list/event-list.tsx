@@ -166,9 +166,9 @@ export class EventList {
           compact: this.compact,
         }}
       >
-        <ul>
+        <div role="list">
           <slot></slot>
-        </ul>
+        </div>
       </Host>
     );
   }
