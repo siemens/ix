@@ -144,7 +144,7 @@
 // ### Active ###
 
 :host(.card-insight:active),
-:host( .card-outline:active) {
+:host(.card-outline:active) {
   --ix-card-background: var(--theme-color-ghost--active);
 }
 
