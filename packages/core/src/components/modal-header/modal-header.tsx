@@ -87,13 +87,14 @@ export class ModalHeader {
         {this.icon ? (
           <ix-icon name={this.icon} color={this.iconColor} size="32"></ix-icon>
         ) : null}
-        <div class={'modal-title'}>
+        <div class="modal-title">
           <ix-typography format="h5">
             <slot></slot>
           </ix-typography>
         </div>
         {!this.hideClose ? (
           <ix-icon-button
+            class="modal-close"
             onClick={(event) => this.onCloseClick(event)}
             ghost
             icon="close"
