@@ -70,7 +70,7 @@ export class ModalHeader {
       'ix-modal'
     ) as HTMLIxModalElement;
     if (this.icon) {
-      this.onIconChange(this.icon!);
+      this.onIconChange(this.icon);
     }
   }
 
