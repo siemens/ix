@@ -38,7 +38,7 @@ export class ModalHeader {
   /**
    * Icon of the Header
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   @Watch('icon')
   onIconChange(icon: string) {
@@ -54,22 +54,24 @@ export class ModalHeader {
   /**
    * Icon color
    */
-  @Prop() iconColor: string;
+  @Prop() iconColor?: string;
 
   /**
    * Emits when close icon is clicked and closes the modal
    * Can be prevented, in which case only the event is triggered, and the modal remains open
    */
-  @Event() closeClick: EventEmitter<MouseEvent>;
+  @Event() closeClick!: EventEmitter<MouseEvent>;
 
-  private parentDialog: HTMLIxModalElement;
+  private parentDialog!: HTMLIxModalElement;
 
   componentDidLoad() {
     this.parentDialog = closestPassShadow(
       this.hostElement,
       'ix-modal'
     ) as HTMLIxModalElement;
-    this.onIconChange(this.icon);
+    if (this.icon) {
+      this.onIconChange(this.icon!);
+    }
   }
 
   private onCloseClick(event: MouseEvent) {

@@ -5855,7 +5855,7 @@ declare namespace LocalJSX {
         /**
           * Icon of the Header
          */
-        "icon"?: string;
+        "icon": string;
         /**
           * Icon color
          */
