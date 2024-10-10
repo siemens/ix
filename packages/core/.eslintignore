@@ -3,3 +3,4 @@ playwright.config.ts
 stencil.config.ts
 src/components.d.ts
 scripts/build
+scripts/e2e

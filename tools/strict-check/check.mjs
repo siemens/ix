@@ -55,7 +55,7 @@ function getCommentBody() {
 <ul>
 {{#errors}}
   <li>
-    {{message}}
+    {{line}}: {{message}}
   </li>
 {{/errors}}
 </ul>
