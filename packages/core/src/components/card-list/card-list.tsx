@@ -283,7 +283,7 @@ export class CardList {
       <Host>
         <CardListTitle
           isCollapsed={this.collapse}
-          label={this.label!}
+          label={this.label || ''}
           showAllLabel={this.i18nShowAll}
           showAllCounter={
             this.showAllCount === undefined
