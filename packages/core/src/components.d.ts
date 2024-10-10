@@ -1676,11 +1676,11 @@ export namespace Components {
         /**
           * Icon of the Header
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Icon color
          */
-        "iconColor": string;
+        "iconColor"?: string;
     }
     interface IxModalLoading {
     }
@@ -5855,7 +5855,7 @@ declare namespace LocalJSX {
         /**
           * Icon of the Header
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Icon color
          */
