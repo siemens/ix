@@ -11,7 +11,7 @@ A toggle is a user interface element that enables users to switch between two st
 ## Behavior in context
 
 - **Validation**: See [validation](forms-validation.md).
-- **Interaction**: Clicking on the toggle switch changes its state from on to off or vice versa. The toggle visually reflect the current state.
+- **Interaction**: Clicking on the toggle switch changes its state from on to off or vice versa. The toggle visually reflects the current state.
 
 ## States
 

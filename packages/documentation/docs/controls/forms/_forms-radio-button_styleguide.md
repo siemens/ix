@@ -11,7 +11,7 @@ A radio button is a interface element that enables the user to choose only one o
 ## Behavior in context
 
 - **Validation**: Radio buttons are validated collectively, not individually. For more information on validation, see [validation](forms-validation.md).
-- **Interaction**: Clicking on a radio button will toggle its state between checked and unchecked/default. Every other radio button in the group will be automatically unchecked.
+- **Interaction**: Clicking on a radio button toggles its state between checked and unchecked/default. Every other radio button in the group is automatically unchecked.
 
 ## States
 
@@ -19,11 +19,11 @@ A radio button is a interface element that enables the user to choose only one o
 
 ## Dos and Don’ts
 
-- Do use radio button when the user needs to select only one option from a set of options  
+- Do use radio buttons when the user needs to select only one option from a set of options  
 - Do group related radio buttons together to indicate that only one option can be selected at a time
-- Do provide a default option that is already selected when the user first sees the radio button group  
-- Don’t use radio buttons if the user needs to select multiple options from a set of options. - use a checkbox instead  
-- Don’t use only one radio button in a group, a radio button group should have at least two options
+- Do provide a default (already selected) option when the user first sees the radio button group
+- Don’t use radio buttons if the user needs to select multiple options from a set of options - use a checkbox instead  
+- Don’t use only one radio button in a group, groups should have at least two options
 
 ## Related patterns
 
