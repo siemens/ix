@@ -6,8 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+import './layout-auto.css';
+
 import { IxLayoutAuto, IxTypography } from '@siemens/ix-react';
-import './grid.css';
 
 export default () => {
   return (

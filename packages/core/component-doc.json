@@ -3216,8 +3216,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3225,9 +3224,6 @@
           "ix-col"
         ],
         "ix-datetime-picker": [
-          "ix-col"
-        ],
-        "ix-playground-internal": [
           "ix-col"
         ]
       },
@@ -9517,9 +9513,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper",
         "ix-icon-button",
@@ -9544,9 +9538,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-input"
         ]
       },
       "props": [
@@ -10427,15 +10418,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-playground-internal": [
-          "ix-layout-auto"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "layout",
@@ -10485,8 +10470,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -10494,9 +10478,6 @@
           "ix-layout-grid"
         ],
         "ix-datetime-picker": [
-          "ix-layout-grid"
-        ],
-        "ix-playground-internal": [
           "ix-layout-grid"
         ]
       },
@@ -15449,18 +15430,13 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-radio": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-radio"
         ]
       },
       "props": [
@@ -15629,9 +15605,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -15649,9 +15623,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-radio-group"
         ]
       },
       "props": [
@@ -15898,8 +15869,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -15907,9 +15877,6 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
-          "ix-row"
-        ],
-        "ix-playground-internal": [
           "ix-row"
         ]
       },
