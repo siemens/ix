@@ -86,6 +86,7 @@
     "rimraf": "^5.0.5",
     "sass": "^1.58.3",
     "start-server-and-test": "^1.14.0",
+    "strict-check": "workspace:*",
     "ts-node": "^10.0.0",
     "typescript": "^5.3.3"
   },

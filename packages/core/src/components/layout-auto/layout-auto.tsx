@@ -2,7 +2,7 @@ import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 
 /**
- * @since 2.5.0
+ * @since 2.6.0
  */
 @Component({
   tag: 'ix-layout-auto',

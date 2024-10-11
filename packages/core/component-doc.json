@@ -55,7 +55,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -120,7 +120,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -890,7 +890,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -911,7 +911,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -937,7 +937,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1406,7 +1406,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1588,6 +1588,7 @@
               "text": "2.1.0"
             }
           ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -2526,11 +2527,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -2746,11 +2747,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -3215,8 +3216,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3224,9 +3224,6 @@
           "ix-col"
         ],
         "ix-datetime-picker": [
-          "ix-col"
-        ],
-        "ix-playground-internal": [
           "ix-col"
         ]
       },
@@ -3676,7 +3673,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -3748,7 +3745,7 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -4368,11 +4365,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -9508,17 +9505,15 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper",
         "ix-icon-button",
@@ -9543,9 +9538,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-input"
         ]
       },
       "props": [
@@ -10422,19 +10414,13 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-playground-internal": [
-          "ix-layout-auto"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "layout",
@@ -10484,8 +10470,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -10493,9 +10478,6 @@
           "ix-layout-grid"
         ],
         "ix-datetime-picker": [
-          "ix-layout-grid"
-        ],
-        "ix-playground-internal": [
           "ix-layout-grid"
         ]
       },
@@ -13741,11 +13723,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -15440,26 +15422,21 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-radio": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-radio"
         ]
       },
       "props": [
@@ -15620,17 +15597,15 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -15648,9 +15623,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-radio-group"
         ]
       },
       "props": [
@@ -15897,8 +15869,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -15906,9 +15877,6 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
-          "ix-row"
-        ],
-        "ix-playground-internal": [
           "ix-row"
         ]
       },
@@ -15933,7 +15901,7 @@
       "docsTags": [
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -16063,7 +16031,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16209,7 +16177,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16235,7 +16203,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16261,7 +16229,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16314,7 +16282,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16362,7 +16330,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "default": "false",
@@ -16419,7 +16387,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16445,7 +16413,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16501,7 +16469,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -18084,11 +18052,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -19536,7 +19504,7 @@
       "docsTags": [
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -20745,7 +20713,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -20784,7 +20752,7 @@
               "type": "TypographyFormatCode"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -20844,7 +20812,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -20937,7 +20905,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -21638,11 +21606,6 @@
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/card/card.tsx"
-    },
-    "src/components/typography/typography.tsx::TypographyVariants": {
-      "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
     },
     "src/components/typography/typography.tsx::TypographyFormat": {
       "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",

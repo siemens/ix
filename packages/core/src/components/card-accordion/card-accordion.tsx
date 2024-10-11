@@ -35,12 +35,12 @@ export class CardAccordion {
    */
   @Prop() collapse = false;
 
-  @Element() hostElement: HTMLIxCardAccordionElement;
+  @Element() hostElement!: HTMLIxCardAccordionElement;
 
   /**
    * @internal
    */
-  @Event() accordionExpand: EventEmitter<CardAccordionExpandChangeEvent>;
+  @Event() accordionExpand!: EventEmitter<CardAccordionExpandChangeEvent>;
 
   @State() expandContent = false;
 
@@ -50,7 +50,7 @@ export class CardAccordion {
   }
 
   get expandedContent() {
-    return this.hostElement.shadowRoot.querySelector('.expand-content');
+    return this.hostElement.shadowRoot!.querySelector('.expand-content');
   }
 
   onExpandActionClick(event: Event) {
@@ -69,10 +69,10 @@ export class CardAccordion {
 
   private scrollExpandedContentIntoView() {
     setTimeout(() => {
-      const rect = this.expandedContent.getBoundingClientRect();
+      const rect = this.expandedContent!.getBoundingClientRect();
       if (rect.bottom > window.innerHeight) {
-        this.hostElement.shadowRoot
-          .querySelector('.expand-content')
+        this.hostElement
+          .shadowRoot!.querySelector('.expand-content')!
           .scrollIntoView(false);
       }
     }, 150);

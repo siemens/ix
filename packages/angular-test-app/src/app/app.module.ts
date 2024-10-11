@@ -105,7 +105,7 @@ import FlipTile from '../preview-examples/flip-tile';
 import FormCheckbox from '../preview-examples/form-checkbox';
 import FormCheckboxDisabled from '../preview-examples/form-checkbox-disabled';
 import FormCheckboxGroup from '../preview-examples/form-checkbox-group';
-import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-group-indeterminate";
+import FormCheckboxGroupIndeterminate from '../preview-examples/form-checkbox-group-indeterminate';
 import FormCheckboxValidation from '../preview-examples/form-checkbox-validation';
 import FormValidation from '../preview-examples/form-validation';
 import Grid from '../preview-examples/grid';
