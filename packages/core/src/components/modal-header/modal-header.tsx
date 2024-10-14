@@ -41,7 +41,7 @@ export class ModalHeader {
   @Prop() icon?: string;
 
   @Watch('icon')
-  onIconChange(icon: string) {
+  onIconChange(icon?: string) {
     if (this.parentDialog) {
       if (icon) {
         this.parentDialog.classList.add('with-icon');
@@ -69,9 +69,7 @@ export class ModalHeader {
       this.hostElement,
       'ix-modal'
     ) as HTMLIxModalElement;
-    if (this.icon) {
-      this.onIconChange(this.icon);
-    }
+    this.onIconChange(this.icon);
   }
 
   private onCloseClick(event: MouseEvent) {
