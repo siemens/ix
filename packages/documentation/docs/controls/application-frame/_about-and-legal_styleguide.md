@@ -16,4 +16,4 @@ The overlay can be closed in three ways:
 - Click the info icon again
 - Click another navigation item
 
-Note that when collapsing the nav menu, the overlay stays open.
+When the navigation menu is collapsed, the overlay stays open.
