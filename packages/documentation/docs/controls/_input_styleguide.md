@@ -1,9 +1,9 @@
 An input field is a user interface element that allows users to enter and edit text, numbers and symbols. It’s commonly used in forms, search bars, and other areas where data input is required.
 
-![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3054-593&t=6gU2IFkPWR943af8-4)
+![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3054-593&t=jhhv5OZGqmBpgXcs-4)
 
 1. Label
-2. Mandatory indicator
+2. Required indicator
 3. Placeholder
 4. Slot-end
 5. Slot-start
@@ -26,9 +26,9 @@ An input field is a user interface element that allows users to enter and edit t
 - **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input,md).
 ## States
 
-The input field has five states: default, focused, hover, disabled and read-only. In the read-only state, the input field is displayed without offering any user interaction.
+The input field has five states: default, active/focused, hover, disabled and read-only. In the read-only state, the input field is displayed without offering any user interaction.
 
-![Field States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3198-7167&t=EBVCuGpWXmdVYgeZ-4)
+![Field States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3198-7167&t=jhhv5OZGqmBpgXcs-4)
 ## Dos and Don’ts
 
 - Do use helper text to guide users through the input process
