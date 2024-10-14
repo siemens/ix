@@ -88,14 +88,14 @@ As some of the components are named differently in Industrial Experience, please
 | List                                             | [Event list](../controls/event-list.md)                                                            |
 | Stepper                                          | [Workflow](../controls/workflow.md)                                                              |
 | Menu                                             | [Dropdown button](../controls/buttons/dropdown-button.md)                                                       |
-| Message                                          | [Message bar](../controls/message-bar.md)                                                           |
+| Message                                          | [Message bar](../controls/messagebar.md)                                                           |
 | Notification                                     | [Toast](../controls/toast.md)                                                                 |
 | Pager                                            | [Pagination](../controls/pagination.md)                                                            |
 | Popover                                          | [Tooltip](../controls/tooltip.md), [dropdown](../controls/dropdown.md)                                                     |
 | Switch                                           | [Toggle](../controls/toggle.md)                                                                |
-| Context region                                   | [Pane](../controls/pane.md) (inline right)                                                   |
-| Item region                                      | [Pane](../controls/pane.md) (floating right)                                                 |
-| Leading region                                   | [Pane](../controls/pane.md) (inline left)                                                    |
+| Context region                                   | [Pane](../controls/panes.md) (inline right)                                                   |
+| Item region                                      | [Pane](../controls/panes.md) (floating right)                                                 |
+| Leading region                                   | [Pane](../controls/panes.md) (inline left)                                                    |
 
 ## System icons
 
