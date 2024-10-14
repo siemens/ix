@@ -148,7 +148,7 @@ test(`form-ready - ix-date-input`, async ({ mount, page }) => {
   await input.fill('2024/05/05');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('2024/05/05');
 });
 
@@ -159,6 +159,6 @@ test(`form-ready - ix-date-input initial value`, async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('2024/12/12');
 });

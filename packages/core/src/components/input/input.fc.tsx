@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { h } from '@stencil/core';
+import { h, FunctionalComponent } from '@stencil/core';
 import { MakeRef } from '../utils/make-ref';
 import { A11yAttributes } from '../utils/a11y';
 
@@ -24,7 +24,7 @@ export function TextareaElement(props: {
   required: boolean;
   value: string;
   placeholder?: string;
-  textAreaRef: (el: HTMLTextAreaElement) => void;
+  textAreaRef: (el: HTMLTextAreaElement | undefined) => void;
   valueChange: (value: string) => void;
   updateFormInternalValue: (value: string) => void;
   onBlur: () => void;
@@ -78,7 +78,7 @@ export function InputElement(props: {
   required: boolean;
   value: string | number;
   placeholder?: string;
-  inputRef: (el: HTMLInputElement) => void;
+  inputRef: (el: HTMLInputElement | undefined) => void;
   onKeyPress: (event: KeyboardEvent) => void;
   valueChange: (value: string) => void;
   updateFormInternalValue: (value: string) => void;
@@ -119,28 +119,25 @@ export function InputElement(props: {
   );
 }
 
-export function SlotEnd(
-  props: {
-    slotEndRef: MakeRef<HTMLDivElement>;
-    onSlotChange?: (e: Event) => void;
-  },
-  children
-) {
+export const SlotEnd: FunctionalComponent<{
+  slotEndRef: MakeRef<HTMLDivElement>;
+  onSlotChange?: (e: Event) => void;
+}> = (props, children) => {
   return (
     <div class="end-container" ref={props.slotEndRef}>
       <slot name="end" onSlotchange={props.onSlotChange}></slot>
       {children}
     </div>
   );
-}
+};
 
-export function SlotStart(props: {
+export const SlotStart: FunctionalComponent<{
   slotStartRef: MakeRef<HTMLDivElement>;
   onSlotChange?: (e: Event) => void;
-}) {
+}> = (props) => {
   return (
     <div class="start-container" ref={props.slotStartRef}>
       <slot name="start" onSlotchange={props.onSlotChange}></slot>
     </div>
   );
-}
+};

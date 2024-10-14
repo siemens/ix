@@ -15430,13 +15430,18 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-radio": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-radio"
         ]
       },
       "props": [
@@ -15605,7 +15610,9 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [],
+      "dependents": [
+        "ix-playground-internal"
+      ],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -15623,6 +15630,9 @@
         ],
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-playground-internal": [
+          "ix-radio-group"
         ]
       },
       "props": [
@@ -21833,7 +21843,7 @@
       "path": "src/components/category-filter/input-state.ts"
     },
     "src/components/utils/make-ref.ts::MakeRef": {
-      "declaration": "{\n  (ref: T): void;\n  current: T;\n  waitForCurrent(): Promise<T>;\n}",
+      "declaration": "{\n  (ref: T | undefined): void;\n  current: T | null;\n  waitForCurrent(): Promise<T>;\n}",
       "docstring": "",
       "path": "src/components/utils/make-ref.ts"
     },

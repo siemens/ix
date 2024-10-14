@@ -65,7 +65,7 @@ test(`form-ready`, async ({ mount, page }) => {
   preventFormSubmission(formElement);
   await page.locator('ix-toggle').click();
 
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('on');
 });
 
@@ -78,7 +78,7 @@ test(`form-ready with value`, async ({ mount, page }) => {
   preventFormSubmission(formElement);
   await page.locator('ix-toggle').click();
 
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('custom-value');
 });
 
@@ -89,6 +89,6 @@ test(`form-ready default active`, async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('on');
 });

@@ -36,8 +36,8 @@ async function changeToReadonly(page: Page) {
   return page.evaluate(() => {
     const elements = document.querySelectorAll(
       '[data-field], ix-radio, ix-checkbox'
-    );
-    Array.from(elements).forEach((element: HTMLInputElement) => {
+    ) as NodeListOf<HTMLInputElement>;
+    Array.from(elements).forEach((element) => {
       element.readOnly = true;
       element.setAttribute('readonly', '');
     });
@@ -48,8 +48,8 @@ async function changeToDisabled(page: Page) {
   return page.evaluate(() => {
     const elements = document.querySelectorAll(
       '[data-field], ix-radio, ix-checkbox'
-    );
-    Array.from(elements).forEach((element: HTMLInputElement) => {
+    ) as NodeListOf<HTMLInputElement>;
+    Array.from(elements).forEach((element) => {
       element.disabled = true;
     });
   });

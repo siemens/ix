@@ -45,7 +45,7 @@ export class FormFieldLabel implements IxComponent {
   private readonly htmlForObserver = new MutationObserver(() =>
     this.checkForInternalState()
   );
-  private htmlForClassObserver: ClassMutationObserver;
+  private htmlForClassObserver?: ClassMutationObserver;
   private controlRefClassObserver?: ClassMutationObserver;
   private a11yAttributes: A11yAttributes = {};
   private readonly labelRef = makeRef<HTMLLabelElement>();

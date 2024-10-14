@@ -149,7 +149,9 @@ export class Radio implements IxFormComponent<string> {
             type="radio"
             onChange={() => {
               const ref = this.inputRef.current;
-              this.setCheckedState(ref.checked);
+              if (ref) {
+                this.setCheckedState(ref.checked);
+              }
             }}
           />
           <button

@@ -18,7 +18,7 @@ test(`form-ready - ix-input`, async ({ mount, page }) => {
   await input.fill('my example');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('my example');
 });
 
@@ -33,7 +33,7 @@ test(`form-ready - ix-number-input`, async ({ mount, page }) => {
   await input.fill('123');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('123');
 });
 
@@ -46,7 +46,7 @@ test(`form-ready - ix-textarea`, async ({ mount, page }) => {
   await input.fill('Some longer text');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('Some longer text');
 });
 
@@ -58,7 +58,7 @@ test(`form-ready - ix-input with initial value`, async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('initial value');
 });
 
@@ -72,7 +72,7 @@ test(`form-ready - ix-number-input with initial value`, async ({
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('1337');
 });
 
@@ -83,6 +83,6 @@ test(`form-ready - ix-textarea with initial value`, async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('initial value');
 });

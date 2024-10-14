@@ -14,8 +14,8 @@ export type ClassMutationObserver = {
   destroy: () => void;
 };
 
-export async function shouldSuppressInternalValidation(
-  host: IxFormComponent<unknown>
+export async function shouldSuppressInternalValidation<T>(
+  host: IxFormComponent<T>
 ) {
   if (
     host.getAssociatedFormElement &&
@@ -130,7 +130,10 @@ export function HookValidationLifecycle(options?: {
             // patternMismatch used for `ix-date-input`
             .filter((key) => ['patternMismatch'].includes(key))
             .forEach((key) => {
-              host.classList.toggle(`ix-invalid--${key}`, validityState[key]);
+              host.classList.toggle(
+                `ix-invalid--${key}`,
+                validityState[key as keyof ValidityState]
+              );
             });
         }
       };

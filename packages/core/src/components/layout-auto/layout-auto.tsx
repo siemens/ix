@@ -103,7 +103,9 @@ export class LayoutForm implements IxComponent {
     });
 
     let column = 0;
-    Array.from(this.hostElement.children).forEach((child: HTMLElement) => {
+    Array.from(
+      this.hostElement.children as HTMLCollectionOf<HTMLElement>
+    ).forEach((child) => {
       let colspan = this.parseNumber(child.getAttribute('data-colspan'));
       colspan = Math.min(colspan, layoutColumns);
       const childRatio = colspan / layoutColumns;

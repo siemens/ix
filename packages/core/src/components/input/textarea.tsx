@@ -24,7 +24,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import { mapValidationResult, onInputBlur } from './input.util';
 
@@ -240,9 +240,9 @@ export class Textarea implements IxInputFieldComponent<string> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          controlRef={this.textAreaRef}
+          controlRef={this.textAreaRef as unknown as MakeRef<HTMLElement>}
         >
-          {this.maxLength > 0 && (
+          {this.maxLength && this.maxLength > 0 && (
             <ix-typography class="bottom-text" slot="bottom-right" color="soft">
               {this.value.length}/{this.maxLength}
             </ix-typography>

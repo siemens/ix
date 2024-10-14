@@ -19,7 +19,7 @@ test('form-ready', async ({ mount, page }) => {
   const radio = page.locator('ix-radio');
   await radio.click();
 
-  const formData = await getFormValue(formElement, 'my-radio');
+  const formData = await getFormValue(formElement, 'my-radio', page);
   expect(formData).toBe('Test');
 });
 
@@ -31,7 +31,7 @@ test('form-ready with default value', async ({ mount, page }) => {
   const radio = page.locator('ix-radio');
   await radio.click();
 
-  const formData = await getFormValue(formElement, 'my-radio');
+  const formData = await getFormValue(formElement, 'my-radio', page);
   expect(formData).toBe('on');
 });
 
@@ -42,6 +42,6 @@ test(`form-ready default active`, async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name');
+  const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('on');
 });

@@ -26,8 +26,8 @@ export function createIdIfNotExists(
     : `${idPrefix}-${generateUUID()}`;
 }
 
-export function mapValidationResult(
-  ref: IxInputFieldComponent<unknown>,
+export function mapValidationResult<T>(
+  ref: IxInputFieldComponent<T>,
   result: ValidationResults
 ) {
   ref.isInvalid = result.isInvalid || result.isInvalidByRequired;
@@ -36,8 +36,8 @@ export function mapValidationResult(
   ref.isWarning = result.isWarning;
 }
 
-export function checkAllowedKeys(
-  comp: IxInputFieldComponent<unknown>,
+export function checkAllowedKeys<T>(
+  comp: IxInputFieldComponent<T>,
   event: KeyboardEvent
 ) {
   if (comp.allowedCharactersPattern) {
@@ -49,8 +49,8 @@ export function checkAllowedKeys(
   }
 }
 
-export async function checkInternalValidity(
-  comp: IxFormComponent<unknown>,
+export async function checkInternalValidity<T>(
+  comp: IxFormComponent<T>,
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
   const validityState = input.validity;
@@ -74,16 +74,20 @@ export async function checkInternalValidity(
   comp.hostElement.classList.toggle('ix-invalid', !valid);
 }
 
-export function onInputBlur(
-  comp: IxInputFieldComponent<unknown>,
-  input: HTMLInputElement | HTMLTextAreaElement
+export function onInputBlur<T>(
+  comp: IxInputFieldComponent<T>,
+  input?: HTMLInputElement | HTMLTextAreaElement | null
 ) {
   comp.ixBlur.emit();
+
+  if (!input) {
+    throw new Error('Input element is not available');
+  }
   checkInternalValidity(comp, input);
 }
 
 export function applyPaddingEnd(
-  inputElement: HTMLElement,
+  inputElement: HTMLElement | null,
   width: number,
   options: {
     slotEnd: boolean;
@@ -110,23 +114,27 @@ export function applyPaddingEnd(
 }
 
 export function adjustPaddingForStartAndEnd(
-  startElement: HTMLElement,
-  endElement: HTMLElement,
-  inputElement: HTMLElement
+  startElement: HTMLElement | null,
+  endElement: HTMLElement | null,
+  inputElement: HTMLElement | null
 ) {
-  const startBoundingRect = startElement.getBoundingClientRect();
-  const endBoundingRect = endElement.getBoundingClientRect();
-
-  if (startBoundingRect) {
-    applyPaddingEnd(inputElement, startBoundingRect.width, {
-      slotEnd: false,
-    });
+  if (startElement) {
+    const startBoundingRect = startElement.getBoundingClientRect();
+    if (startBoundingRect) {
+      applyPaddingEnd(inputElement, startBoundingRect.width, {
+        slotEnd: false,
+      });
+    }
   }
 
-  if (endBoundingRect) {
-    applyPaddingEnd(inputElement, endBoundingRect.width, {
-      slotEnd: true,
-    });
+  if (endElement) {
+    const endBoundingRect = endElement.getBoundingClientRect();
+
+    if (endBoundingRect) {
+      applyPaddingEnd(inputElement, endBoundingRect.width, {
+        slotEnd: true,
+      });
+    }
   }
 }
 

@@ -31,7 +31,7 @@ import {
   ValidationResults,
   IxInputFieldComponent,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import { a11yBoolean } from '../utils/a11y';
 
 /**
@@ -822,7 +822,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          controlRef={this.inputRef}
+          controlRef={this.inputRef as unknown as MakeRef<HTMLElement>}
         >
           <div
             class={{

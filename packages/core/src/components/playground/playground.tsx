@@ -19,6 +19,14 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-radio-group>
+          <ix-radio label="Option 1" value="option1"></ix-radio>
+          <ix-radio label="Option 2" value="option2" checked></ix-radio>
+          <ix-radio label="Option 3" value="option3"></ix-radio>
+        </ix-radio-group>
+      </Host>
+    );
   }
 }

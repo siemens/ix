@@ -22,7 +22,7 @@ import {
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { dropdownController } from '../dropdown/dropdown-controller';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import {
   ClassMutationObserver,
   HookValidationLifecycle,
@@ -248,6 +248,18 @@ export class DateInput implements IxInputFieldComponent<string> {
     this.valueChange.emit(value);
   }
 
+  onCalenderClick(event: Event) {
+    if (!this.show) {
+      event.stopPropagation();
+      event.preventDefault();
+      this.openDropdown();
+    }
+
+    if (this.inputElementRef.current) {
+      this.inputElementRef.current.focus();
+    }
+  }
+
   async openDropdown() {
     const dropdownElement = await this.dropdownElementRef.waitForCurrent();
     const id = dropdownElement.getAttribute('data-ix-dropdown');
@@ -327,14 +339,7 @@ export class DateInput implements IxInputFieldComponent<string> {
               data-testid="open-calendar"
               ghost
               icon={iconCalendar}
-              onClick={(event) => {
-                if (!this.show) {
-                  event.stopPropagation();
-                  event.preventDefault();
-                  this.openDropdown();
-                  this.inputElementRef.current.focus();
-                }
-              }}
+              onClick={(event) => this.onCalenderClick(event)}
             ></ix-icon-button>
           )}
         </SlotEnd>
@@ -424,7 +429,7 @@ export class DateInput implements IxInputFieldComponent<string> {
           validText={this.validText}
           showTextAsTooltip={this.showTextAsTooltip}
           required={this.required}
-          controlRef={this.inputElementRef}
+          controlRef={this.inputElementRef as unknown as MakeRef<HTMLElement>}
         >
           {this.renderInput()}
         </ix-field-wrapper>

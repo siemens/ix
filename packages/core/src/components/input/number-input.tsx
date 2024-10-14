@@ -25,7 +25,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
   applyPaddingEnd,
@@ -257,7 +257,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          controlRef={this.inputRef}
+          controlRef={this.inputRef as unknown as MakeRef<HTMLElement>}
         >
           <div
             class={{
@@ -301,6 +301,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
                     size="16"
                     class="number-stepper-button step-minus"
                     onClick={() => {
+                      if (!this.inputRef.current) {
+                        return;
+                      }
                       this.inputRef.current.stepDown();
                       checkInternalValidity(this, this.inputRef.current);
                       this.updateFormInternalValue(
@@ -315,6 +318,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
                     size="16"
                     class="number-stepper-button step-plus"
                     onClick={() => {
+                      if (!this.inputRef.current) {
+                        return;
+                      }
                       this.inputRef.current.stepUp();
                       checkInternalValidity(this, this.inputRef.current);
                       this.updateFormInternalValue(

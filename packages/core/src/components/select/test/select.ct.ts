@@ -745,7 +745,7 @@ test('form-ready', async ({ mount, page }) => {
   const inputValue = await select.locator('input').inputValue();
   expect(inputValue).toEqual('Item 2');
 
-  const formData = await getFormValue(formElement, 'my-custom-entry');
+  const formData = await getFormValue(formElement, 'my-custom-entry', page);
   expect(formData).toEqual('2');
 });
 
@@ -762,7 +762,7 @@ test('form-ready - with initial value', async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   await preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-custom-entry');
+  const formData = await getFormValue(formElement, 'my-custom-entry', page);
   expect(formData).toEqual('some other');
 });
 
@@ -775,9 +775,10 @@ test.describe('Events', () => {
     const select = await page.locator('ix-select');
     const valueChanged = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('valueChange', (e: CustomEvent) =>
-          resolve(e.detail)
-        );
+        elm.addEventListener('valueChange', (e: Event) => {
+          const event = e as CustomEvent;
+          resolve(event.detail);
+        });
       });
     });
 
@@ -794,7 +795,9 @@ test.describe('Events', () => {
     const select = await page.locator('ix-select');
     const itemAdded = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('addItem', (e: CustomEvent) => resolve(e.detail));
+        elm.addEventListener('addItem', (e: Event) => {
+          resolve((e as CustomEvent).detail);
+        });
       });
     });
     const input = await page.locator('input');
