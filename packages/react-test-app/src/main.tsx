@@ -7,9 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './preview-examples/styles/global.css';
+import './preview-examples/global.css';
 
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { IxApplicationContext } from '@siemens/ix-react';

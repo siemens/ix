@@ -66,7 +66,7 @@
     "@types/animejs": "^3.1.12",
     "@types/jest": "^29.5.12",
     "@types/mustache": "^4.2.5",
-    "@types/node": "^16.18.104",
+    "@types/node": "^20.16.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "animate.css": "~4.1.1",
@@ -86,8 +86,15 @@
     "puppeteer": "21.1.1",
     "rimraf": "^5.0.9",
     "sass": "^1.77.8",
+    "strict-check": "workspace:*",
     "ts-node": "^10.9.2",
-    "typescript": "~5.4.5"
+    "typescript": "~5.4.5",
+    "rimraf": "^5.0.5",
+    "sass": "^1.58.3",
+    "start-server-and-test": "^1.14.0",
+    "strict-check": "workspace:*",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.0",

@@ -22,6 +22,6 @@ import { Component } from '@angular/core';
       </ix-menu-item>
     </ix-menu>
   `,
-  styleUrls: ['./styles/menu.css'],
+  styleUrls: ['./vertical-tabs.css'],
 })
 export default class VerticalTabs {}

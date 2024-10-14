@@ -30,7 +30,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "preserveSymlinks": true,
+            "preserveSymlinks": false,
             "outputPath": "dist/angular-test-app",
             "index": "src/index.html",
             "browser": "src/main.ts",

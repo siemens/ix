@@ -29,6 +29,6 @@ import { Component } from '@angular/core';
       </ix-dropdown-button>
     </div>
   `,
-  styleUrls: ['./styles/dropdown-button.css'],
+  styleUrls: ['./dropdown-button.css'],
 })
 export default class Dropdown {}

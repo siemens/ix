@@ -17,11 +17,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
-    "preserveSymlinks": true,
+    "lib": ["ES2022", "dom"],
+    "preserveSymlinks": false,
     "skipLibCheck": true,
     "paths": {
       "@angular/*": ["./node_modules/@angular"]
