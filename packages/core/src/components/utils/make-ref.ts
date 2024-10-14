@@ -31,7 +31,7 @@ export function makeRef<T>(
     resolve?.(ref);
   };
 
-  setRefFunction.current = current as T | null;
+  setRefFunction.current = current;
 
   setRefFunction.waitForCurrent = async () => {
     await currentPromise;
