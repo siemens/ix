@@ -12,7 +12,12 @@ import { regressionTest } from '@utils/test';
 
 async function changeState(
   page: Page,
-  state: 'info' | 'warning' | 'valid' | 'invalid' | (string & {})
+  state:
+    | 'info'
+    | 'warning'
+    | 'valid'
+    | 'invalid'
+    | (string & Record<never, never>)
 ) {
   return page.evaluate(
     ([state]) => {

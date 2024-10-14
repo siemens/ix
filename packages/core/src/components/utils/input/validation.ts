@@ -95,7 +95,7 @@ export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
 }) {
   return (proto: IxComponent, methodName: string) => {
-    let checkIfRequiredFunction: () => void;
+    let checkIfRequiredFunction: () => Promise<void>;
     let classMutationObserver: ClassMutationObserver | null;
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
       proto;

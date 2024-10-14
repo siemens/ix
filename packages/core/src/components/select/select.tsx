@@ -868,7 +868,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     value={this.inputValue ?? ''}
                     ref={(ref) => {
                       this.input = ref!;
-                      this.inputRef(ref!);
+                      this.inputRef(this.input);
                     }}
                     onBlur={(e) => this.onInputBlur(e)}
                     onFocus={() => {
