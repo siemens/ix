@@ -20,7 +20,8 @@ Selects provide users to make a single or multi selection from a filterable list
 - **Helper text**: See [form field](forms-field.md).
 - **Feedback text**: See [form field](forms-field.md).
 - **Show clear button**: Selects can have a dedicated button to easily clear the selection. Hide the button when you offer other ways to reset (e.g. a default option like "none"), or if you aim for a simplified keyboard accessibility.
-- **Hide list header**: Hide the header of the dropdown list when it is not needed. We typically use a header to provide additional context or instructions about the options to help users understand the choices better.
+- **Select list header:** Use a header to provide additional context or instructions about the options to help users understand the choices better. 
+- **Hide list header**: Hide the header of the dropdown list when it is not needed.
 - **Hint for no matches**: Set a message that is displayed when no item matches the inserted text.
 - **Editable**: Allow users to add new options to the list.
 - **Multi-select**: Allow users to select multiple items from the list.
@@ -40,18 +41,18 @@ Selects provide users to make a single or multi selection from a filterable list
 - **Alignment**: Selects are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input,md).
 ## States
 
-The input field has five states: default, active/focused, hover, disabled and read-only. In the read-only state, the input field is displayed without offering any user interaction.
+The select field has five states: default, hover, active/focused, disabled and read-only. In the disabled state, the input field is displayed without offering any user interaction.
 
 ![Field States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3198-7167&t=EBVCuGpWXmdVYgeZ-4)
 ## Dos and Don’ts
 
-- Do use selects if there are a manageable number of options to choose from
-- Do use selects to avoid manual input errors
-- Do use selects if selectable items follow a logical sorting
+- Do take care of performance when loading an extensive list of options
+- Do use selects when there is a finite list of options available to avoid manual input errors or duplicates
+- Do sort items logically (e.g. alphabetically, numerically)
 - Do use short and concise labels for items
-- Don’t use selects if users need to compare options based on multiple criteria
-- Don't use selects for single or binary choices, e.g. yes and no (use [radio buttons](radio.mdx) or [checkboxes](checkbox.mdx) instead)
-- Don't use selects if loading an extensive list of options affects performance => LAZY LOADING?
+- Don’t use selects if users need to compare options based on multiple criteria (use [tables](table.md) or [event lists](event-list.md) with a search functionality instead)
+- Don't use selects for binary choices, e.g. yes and no (use [radio buttons](radio.mdx), [checkboxes](checkbox.mdx) or [toggles](../toggle.md) instead)
+- Don't use selects for navigational or search patterns (use [category filters](../category-filter.md) or [search fields](expanding-search.md) instead)
 
 ## Related patterns
 
