@@ -775,11 +775,7 @@ export class DatePicker {
             {this.calendar.map((week) => {
               return (
                 <Fragment>
-                  <div
-                    key={week.weekNumber}
-                    class="calendar-item week-number"
-                    role="rowheader"
-                  >
+                  <div key={week.weekNumber} class="calendar-item week-number">
                     {week.weekNumber}
                   </div>
                   {week.dayNumbers.map((day) => (
