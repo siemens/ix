@@ -114,33 +114,28 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Prop() invalidText?: string;
 
   /**
-   * The height of the textarea field.
-   * Helpful if you want to set an initial height for the textarea.
+   * The height of the textarea field (e.g. "52px").
    */
   @Prop() textareaHeight?: string;
 
   /**
-   * The height of the textarea field.
-   * Helpful if you want to set an initial height for the textarea.
+   * The width of the textarea field (e.g. "200px").
    */
   @Prop() textareaWidth?: string;
 
   /**
-   * The number of rows of the textarea field.
-   * Helpful if you want to set an initial height for the textarea.
+   * The height of the textarea specified by number of rows.
    */
   @Prop() textareaRows?: number;
 
   /**
-   * The height of the textarea field.
-   * Helpful if you want to set an initial height for the textarea.
+   * The width of the textarea specified by number of characters.
    */
   @Prop() textareaCols?: number;
 
   /**
    * Determines the resize behavior of the textarea field.
-   * 'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth.
-   * 'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.
+   * Resizing can be enabled in one direction, both directions or completely disabled.
    */
   @Prop() resizeBehavior: TextareaResizeBehavior = 'both';
 

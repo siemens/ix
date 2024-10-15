@@ -18344,7 +18344,7 @@
           "mutable": false,
           "attr": "resize-behavior",
           "reflectToAttr": false,
-          "docs": "Determines the resize behavior of the textarea field.\n'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth.\n'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.",
+          "docs": "Determines the resize behavior of the textarea field.\nResizing can be enabled in one direction, both directions or completely disabled.",
           "docsTags": [],
           "default": "'both'",
           "values": [
@@ -18400,7 +18400,7 @@
           "mutable": false,
           "attr": "textarea-cols",
           "reflectToAttr": false,
-          "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docs": "The width of the textarea specified by number of characters.",
           "docsTags": [],
           "values": [
             {
@@ -18421,7 +18421,7 @@
           "mutable": false,
           "attr": "textarea-height",
           "reflectToAttr": false,
-          "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docs": "The height of the textarea field (e.g. \"52px\").",
           "docsTags": [],
           "values": [
             {
@@ -18442,7 +18442,7 @@
           "mutable": false,
           "attr": "textarea-rows",
           "reflectToAttr": false,
-          "docs": "The number of rows of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docs": "The height of the textarea specified by number of rows.",
           "docsTags": [],
           "values": [
             {
@@ -18463,7 +18463,7 @@
           "mutable": false,
           "attr": "textarea-width",
           "reflectToAttr": false,
-          "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docs": "The width of the textarea field (e.g. \"200px\").",
           "docsTags": [],
           "values": [
             {

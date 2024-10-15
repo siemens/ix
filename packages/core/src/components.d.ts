@@ -2753,7 +2753,7 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * Determines the resize behavior of the textarea field. 'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth. 'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.
+          * Determines the resize behavior of the textarea field. Resizing can be enabled in one direction, both directions or completely disabled.
          */
         "resizeBehavior": TextareaResizeBehavior;
         /**
@@ -2761,19 +2761,19 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+          * The width of the textarea specified by number of characters.
          */
         "textareaCols"?: number;
         /**
-          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+          * The height of the textarea field (e.g. "52px").
          */
         "textareaHeight"?: string;
         /**
-          * The number of rows of the textarea field. Helpful if you want to set an initial height for the textarea.
+          * The height of the textarea specified by number of rows.
          */
         "textareaRows"?: number;
         /**
-          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+          * The width of the textarea field (e.g. "200px").
          */
         "textareaWidth"?: string;
         /**
@@ -7959,7 +7959,7 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
-          * Determines the resize behavior of the textarea field. 'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth. 'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.
+          * Determines the resize behavior of the textarea field. Resizing can be enabled in one direction, both directions or completely disabled.
          */
         "resizeBehavior"?: TextareaResizeBehavior;
         /**
@@ -7967,19 +7967,19 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
-          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+          * The width of the textarea specified by number of characters.
          */
         "textareaCols"?: number;
         /**
-          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+          * The height of the textarea field (e.g. "52px").
          */
         "textareaHeight"?: string;
         /**
-          * The number of rows of the textarea field. Helpful if you want to set an initial height for the textarea.
+          * The height of the textarea specified by number of rows.
          */
         "textareaRows"?: number;
         /**
-          * The height of the textarea field. Helpful if you want to set an initial height for the textarea.
+          * The width of the textarea field (e.g. "200px").
          */
         "textareaWidth"?: string;
         /**
