@@ -325,10 +325,10 @@
         },
         {
           "name": "theme",
-          "type": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & {}",
+          "type": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & Record<never, never>",
           "complexType": {
             "original": "IxTheme",
-            "resolved": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & {}",
+            "resolved": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & Record<never, never>",
             "references": {
               "IxTheme": {
                 "location": "import",
@@ -356,7 +356,7 @@
               "type": "string"
             },
             {
-              "type": "string & {}"
+              "type": "string & Record<never, never>"
             }
           ],
           "optional": false,
@@ -21813,7 +21813,7 @@
       "path": "src/components/toast/toast-utils.ts"
     },
     "src/components/utils/theme-switcher.ts::IxTheme": {
-      "declaration": "export type IxTheme =\n  | 'classic'\n  | 'classic-dark'\n  | 'classic-light'\n  | (string & {});",
+      "declaration": "export type IxTheme = LiteralStringUnion<\n  'classic' | 'classic-dark' | 'classic-light'\n>;",
       "docstring": "",
       "path": "src/components/utils/theme-switcher.ts"
     },

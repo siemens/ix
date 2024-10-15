@@ -9,16 +9,13 @@
 
 import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+import type { LiteralStringUnion } from './../../components/utils/type-helper';
 
-async function changeState(
-  page: Page,
-  state:
-    | 'info'
-    | 'warning'
-    | 'valid'
-    | 'invalid'
-    | (string & Record<never, never>)
-) {
+type FormElementState = LiteralStringUnion<
+  'info' | 'warning' | 'valid' | 'invalid'
+>;
+
+async function changeState(page: Page, state: FormElementState) {
   return page.evaluate(
     ([state]) => {
       const elements = document.querySelectorAll(

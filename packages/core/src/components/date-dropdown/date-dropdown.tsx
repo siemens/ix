@@ -21,6 +21,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { type LiteralStringUnion } from '../utils/type-helper';
 
 export type DateDropdownOption = {
   id: string;
@@ -165,7 +166,7 @@ export class DateDropdown {
    */
   @Event() private dateRangeChange: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId: 'custom' | (string & {});
+  @State() private selectedDateRangeId: LiteralStringUnion<'custom'>;
   @State() private currentRangeValue: {
     from: string;
     to: string;
