@@ -21,6 +21,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { makeRef } from '../utils/make-ref';
 
 export type DateDropdownOption = {
   id: string;
@@ -44,7 +45,7 @@ export type DateRangeChangeEvent = {
   shadow: true,
 })
 export class DateDropdown {
-  @Element() hostElement: HTMLIxDateDropdownElement;
+  @Element() hostElement!: HTMLIxDateDropdownElement;
 
   /**
    * Disable the button that opens the dropdown containing the date picker.
@@ -70,7 +71,7 @@ export class DateDropdown {
    *
    * Format is based on `format`
    */
-  @Prop() from: string;
+  @Prop() from = '';
 
   /**
    * Picker date. If the picker is in range mode this property is the end date.
@@ -78,19 +79,19 @@ export class DateDropdown {
    *
    * Format is based on `format`
    */
-  @Prop() to: string;
+  @Prop() to = '';
 
   /**
    * The earliest date that can be selected by the date picker.
    * If not set there will be no restriction.
    */
-  @Prop() minDate: string;
+  @Prop() minDate = '';
 
   /**
    * The latest date that can be selected by the date picker.
    * If not set there will be no restriction.
    */
-  @Prop() maxDate: string;
+  @Prop() maxDate = '';
 
   /**
    * Used to set the initial select date range as well as the button name,
@@ -163,15 +164,15 @@ export class DateDropdown {
    * This event is emitted when the date range changes within the component.
    * The event payload contains information about the selected date range.
    */
-  @Event() private dateRangeChange: EventEmitter<DateRangeChangeEvent>;
+  @Event() private dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId: 'custom' | (string & {});
-  @State() private currentRangeValue: {
+  @State() private selectedDateRangeId!: 'custom' | (string & {});
+  @State() private currentRangeValue!: {
     from: string;
     to: string;
     id: string;
   };
-  @State() private triggerRef: HTMLElement;
+  private triggerRef = makeRef<HTMLElement>();
 
   @Watch('disabled')
   onDisabledChange() {
@@ -258,7 +259,11 @@ export class DateDropdown {
   }
 
   private closeDropdown() {
-    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
+    const dropdown = this.hostElement.shadowRoot?.querySelector('ix-dropdown');
+
+    if (dropdown) {
+      dropdown.show = false;
+    }
   }
 
   private getButtonLabel() {
@@ -302,7 +307,7 @@ export class DateDropdown {
           data-date-dropdown-trigger
           variant="primary"
           icon="history"
-          ref={(ref) => (this.triggerRef = ref)}
+          ref={this.triggerRef}
           disabled={this.disabled}
         >
           {this.getButtonLabel()}
@@ -311,7 +316,7 @@ export class DateDropdown {
           data-testid="date-dropdown"
           data-date-dropdown
           class="min-width max-height"
-          trigger={this.triggerRef}
+          trigger={this.triggerRef.waitForCurrent()}
           closeBehavior="outside"
           placement="bottom-start"
           onShowChanged={({ detail: show }) => {

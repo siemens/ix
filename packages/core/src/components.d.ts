@@ -627,7 +627,7 @@ export namespace Components {
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
          */
-        "locale": string;
+        "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -802,7 +802,7 @@ export namespace Components {
         /**
           * Define an anchor element
          */
-        "anchor": string | HTMLElement;
+        "anchor": string | HTMLElement | Promise<HTMLElement>;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
@@ -4938,7 +4938,7 @@ declare namespace LocalJSX {
         /**
           * Define an anchor element
          */
-        "anchor"?: string | HTMLElement;
+        "anchor"?: string | HTMLElement | Promise<HTMLElement>;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */

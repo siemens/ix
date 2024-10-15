@@ -24,6 +24,7 @@ import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-select',
@@ -127,13 +128,13 @@ export class Select {
 
   @State() dropdownShow = false;
   @State() selectedLabels: string[];
-  @State() dropdownWrapperRef!: HTMLElement;
-  @State() dropdownAnchor!: HTMLElement;
   @State() isDropdownEmpty = false;
   @State() navigationItem: DropdownItemWrapper;
   @State() inputFilterText: string;
   @State() inputValue: string;
 
+  private dropdownWrapperRef = makeRef<HTMLElement>();
+  private dropdownAnchor = makeRef<HTMLElement>();
   private inputRef!: HTMLInputElement;
   private dropdownRef!: HTMLIxDropdownElement;
   private customItemsContainerRef!: HTMLDivElement;
@@ -651,8 +652,8 @@ export class Select {
             readonly: this.readonly,
           }}
           ref={(ref) => {
-            this.dropdownAnchor = ref;
-            if (!this.editable) this.dropdownWrapperRef = ref;
+            this.dropdownAnchor(ref);
+            if (!this.editable) this.dropdownWrapperRef(ref);
           }}
         >
           <div class="input-container">
@@ -715,7 +716,7 @@ export class Select {
                     icon="chevron-down-small"
                     ghost
                     ref={(ref) => {
-                      if (this.editable) this.dropdownWrapperRef = ref;
+                      if (this.editable) this.dropdownWrapperRef(ref);
                     }}
                   ></ix-icon-button>
                 )}
@@ -730,8 +731,8 @@ export class Select {
           class={{
             'd-none': this.disabled || this.readonly,
           }}
-          anchor={this.dropdownAnchor}
-          trigger={this.dropdownWrapperRef}
+          anchor={this.dropdownAnchor.waitForCurrent()}
+          trigger={this.dropdownWrapperRef.waitForCurrent()}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
           overwriteDropdownStyle={async () => {

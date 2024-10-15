@@ -38,6 +38,7 @@ import {
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
+import { makeRef } from '../utils/make-ref';
 
 let sequenceId = 0;
 
@@ -70,7 +71,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   /**
    * Define an anchor element
    */
-  @Prop() anchor: string | HTMLElement;
+  @Prop() anchor: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
@@ -132,7 +133,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private triggerElement?: Element;
   private anchorElement?: Element;
 
-  private dropdownRef: HTMLElement;
+  private dropdownRef = makeRef<HTMLElement>();
   private localUId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
 
@@ -167,16 +168,31 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
 
+    this.focusDropdownItemBind = null;
+
+    if (this.arrowFocusController) {
+      this.arrowFocusController?.disconnect();
+      this.arrowFocusController = null;
+    }
+
+    if (this.itemObserver) {
+      this.itemObserver.disconnect();
+      this.itemObserver = null;
+    }
+
     if (this.disposeClickListener) {
       this.disposeClickListener();
+      this.disposeClickListener = null;
     }
 
     if (this.disposeKeyListener) {
       this.disposeKeyListener();
+      this.disposeKeyListener = null;
     }
 
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
+      this.autoUpdateCleanup = null;
     }
   }
 
@@ -375,11 +391,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       this.arrowFocusController = new ArrowFocusController(
         this.dropdownItems,
-        this.dropdownRef,
+        this.dropdownRef.current,
         this.focusDropdownItemBind
       );
-
-      this.itemObserver.observe(this.dropdownRef, {
+      this.itemObserver.observe(this.dropdownRef.current, {
         childList: true,
         subtree: true,
       });
@@ -452,37 +467,39 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
     this.destroyAutoUpdate();
 
-    this.autoUpdateCleanup = autoUpdate(
-      this.anchorElement,
-      this.dropdownRef,
-      async () => {
-        const computeResponse = await computePosition(
-          this.anchorElement,
-          this.dropdownRef,
-          positionConfig
-        );
-        Object.assign(this.dropdownRef.style, {
-          top: '0',
-          left: '0',
-          transform: `translate(${Math.round(computeResponse.x)}px,${Math.round(
-            computeResponse.y
-          )}px)`,
-        });
-        if (this.overwriteDropdownStyle) {
-          const overwriteStyle = await this.overwriteDropdownStyle({
-            dropdownRef: this.dropdownRef,
-            triggerRef: this.triggerElement as HTMLElement,
+    this.dropdownRef.waitForCurrent().then((ref) => {
+      this.autoUpdateCleanup = autoUpdate(
+        this.anchorElement,
+        ref,
+        async () => {
+          const computeResponse = await computePosition(
+            this.anchorElement,
+            ref,
+            positionConfig
+          );
+          Object.assign(ref.style, {
+            top: '0',
+            left: '0',
+            transform: `translate(${Math.round(
+              computeResponse.x
+            )}px,${Math.round(computeResponse.y)}px)`,
           });
+          if (this.overwriteDropdownStyle) {
+            const overwriteStyle = await this.overwriteDropdownStyle({
+              dropdownRef: ref,
+              triggerRef: this.triggerElement as HTMLElement,
+            });
 
-          Object.assign(this.dropdownRef.style, overwriteStyle);
+            Object.assign(ref.style, overwriteStyle);
+          }
+        },
+        {
+          ancestorResize: true,
+          ancestorScroll: true,
+          elementResize: true,
         }
-      },
-      {
-        ancestorResize: true,
-        ancestorScroll: true,
-        elementResize: true,
-      }
-    );
+      );
+    });
   }
 
   private focusDropdownItem(index: number) {
@@ -546,7 +563,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return (
       <Host
         data-ix-dropdown={this.localUId}
-        ref={(ref) => (this.dropdownRef = ref)}
+        ref={this.dropdownRef}
         class={{
           'dropdown-menu': true,
           show: this.show,

@@ -22,6 +22,7 @@ import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-category-filter',
@@ -31,17 +32,24 @@ import { LogicalFilterOperator } from './logical-filter-operator';
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
-  @State() showDropdown: boolean;
-  @State() private textInput?: HTMLInputElement;
+  private inputElementKeyDownBind = this.handleInputElementKeyDown.bind(this);
+  private formElementKeyDownBind = this.handleFormElementKeyDown.bind(this);
+  private preventDefaultBind = this.preventDefault.bind(this);
+  private onFocusInBind = this.onFocusIn.bind(this);
+  private onFocusOutBind = this.onFocusOut.bind(this);
+  private onInputBind = this.onInput.bind(this);
+
+  private textInput? = makeRef<HTMLInputElement>();
   private formElement?: HTMLFormElement;
   private isScrollStateDirty?: boolean;
 
   @Element() hostElement!: HTMLIxCategoryFilterElement;
 
-  @State() hasFocus: boolean;
+  @State() showDropdown = false;
+  @State() hasFocus = false;
   @State() categoryLogicalOperator = LogicalFilterOperator.EQUAL;
-  @State() inputValue: string;
-  @State() category: string;
+  @State() inputValue: string = '';
+  @State() category: string = '';
   @State() filterTokens: Array<{
     id: string;
     value: string;
@@ -154,49 +162,59 @@ export class CategoryFilter {
   @Event() filterChanged!: EventEmitter<FilterState>;
 
   get dropdown() {
-    return this.hostElement.shadowRoot.querySelector('ix-dropdown');
+    return this.hostElement.shadowRoot?.querySelector('ix-dropdown');
   }
 
   @Watch('filterState')
-  watchFilterState(newValue) {
+  watchFilterState(newValue: FilterState) {
     this.setFilterState(newValue);
   }
 
-  componentDidLoad() {
-    if (this.filterState !== undefined) {
-      setTimeout(() => this.setFilterState(this.filterState));
+  private preventDefault(e: Event) {
+    e.preventDefault();
+  }
+
+  private onFocusIn() {
+    this.hasFocus = true;
+  }
+
+  private onFocusOut() {
+    this.hasFocus = false;
+  }
+
+  private onInput() {
+    this.inputValue = this.textInput?.current?.value || '';
+    const inputState = new InputState(this.inputValue, this.category);
+    this.inputChanged.emit(inputState);
+
+    if (!this.dropdown?.show) {
+      this.openDropdown();
     }
+  }
 
-    this.hostElement?.addEventListener(
-      'keydown',
-      this.handleFormElementKeyDown.bind(this)
-    );
+  componentDidLoad() {
+    setTimeout(() => {
+      if (this.filterState !== undefined) {
+        this.setFilterState(this.filterState);
+      }
+    });
 
-    this.formElement?.addEventListener('submit', (e) => e.preventDefault());
+    this.hostElement?.addEventListener('keydown', this.formElementKeyDownBind);
+    this.formElement?.addEventListener('submit', this.preventDefaultBind);
 
-    if (this.textInput == null) {
+    if (this.textInput?.current == null) {
       console.warn(
         'ix-category-filter - unable to add event listeners to native input element'
       );
       return;
     }
 
-    this.textInput.addEventListener('focusin', () => {
-      this.hasFocus = true;
-    });
-    this.textInput.addEventListener('focusout', () => (this.hasFocus = false));
-    this.textInput.addEventListener('input', () => {
-      this.inputValue = this.textInput.value;
-      const inputState = new InputState(this.inputValue, this.category);
-      this.inputChanged.emit(inputState);
-
-      if (!this.dropdown.show) {
-        this.openDropdown();
-      }
-    });
-    this.textInput.addEventListener(
+    this.textInput.current.addEventListener('focusin', this.onFocusInBind);
+    this.textInput.current.addEventListener('focusout', this.onFocusOutBind);
+    this.textInput.current.addEventListener('input', this.onInputBind);
+    this.textInput.current.addEventListener(
       'keydown',
-      this.handleInputElementKeyDown.bind(this)
+      this.inputElementKeyDownBind
     );
   }
 
@@ -224,7 +242,9 @@ export class CategoryFilter {
       return;
     }
 
-    this.dropdown.show = false;
+    if (this.dropdown) {
+      this.dropdown.show = false;
+    }
   }
 
   private openDropdown() {
@@ -232,21 +252,27 @@ export class CategoryFilter {
       return;
     }
 
-    this.dropdown.show = true;
+    if (this.dropdown) {
+      this.dropdown.show = true;
+    }
   }
 
   private handleFormElementKeyDown(e: KeyboardEvent) {
     switch (e.code) {
       case 'Enter':
       case 'NumpadEnter':
-        if (!document.activeElement.classList.contains('dropdown-item')) {
+        if (!document.activeElement?.classList.contains('dropdown-item')) {
           return;
         }
 
         const token = document.activeElement.getAttribute('data-id');
 
+        if (token === null) {
+          break;
+        }
+
         if (this.hasCategorySelection()) {
-          if (this.category !== undefined) {
+          if (this.category !== '') {
             this.addToken(token, this.category);
           } else if (
             document.activeElement.classList.contains('category-item-id')
@@ -278,14 +304,14 @@ export class CategoryFilter {
   }
 
   private focusPreviousItem() {
-    const sibling = document.activeElement.previousSibling;
+    const sibling = document.activeElement?.previousSibling;
     if (sibling instanceof HTMLElement) {
       sibling.focus();
     }
   }
 
   private focusNextItem() {
-    const sibling = document.activeElement.nextSibling;
+    const sibling = document.activeElement?.nextSibling;
     if (sibling instanceof HTMLElement) {
       sibling.focus();
     }
@@ -295,15 +321,15 @@ export class CategoryFilter {
     switch (e.code) {
       case 'ArrowDown':
         const selector = `.category-item-${
-          this.category !== undefined ? 'value' : 'id'
+          this.category !== '' ? 'value' : 'id'
         }`;
-        let item = this.hostElement.shadowRoot.querySelector(selector);
+        let item = this.hostElement.shadowRoot?.querySelector(selector);
 
         if (item instanceof HTMLElement) {
           item.focus();
           e.stopPropagation();
         } else if (this.suggestions?.length) {
-          item = this.hostElement.shadowRoot.querySelector('.category-item');
+          item = this.hostElement.shadowRoot?.querySelector('.category-item');
           if (item instanceof HTMLElement) {
             item.focus();
             e.stopPropagation();
@@ -312,12 +338,12 @@ export class CategoryFilter {
         break;
 
       case 'Backspace':
-        if (this.textInput.value !== '') {
+        if (this.textInput?.current?.value !== '') {
           return;
         }
 
-        if (this.category !== undefined) {
-          this.category = undefined;
+        if (this.category !== '') {
+          this.category = '';
           return;
         }
 
@@ -372,17 +398,19 @@ export class CategoryFilter {
 
     const pair = { id: category, value: newToken, operator };
     this.filterTokens = [...this.filterTokens, pair];
-    this.textInput.value = '';
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
     this.inputValue = '';
     this.categoryLogicalOperator = LogicalFilterOperator.EQUAL;
 
-    if (this.category !== undefined) {
-      this.category = undefined;
+    if (this.category !== '') {
+      this.category = '';
     }
 
     this.isScrollStateDirty = true;
 
-    this.textInput.focus();
+    this.textInput?.current?.focus();
 
     if (emitEvent) {
       this.emitFilterEvent();
@@ -407,9 +435,11 @@ export class CategoryFilter {
 
   private selectCategory(category: string) {
     this.category = category;
-    this.textInput.value = '';
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
     this.inputValue = '';
-    this.textInput.focus();
+    this.textInput?.current?.focus();
     this.categoryChanged.emit(category);
   }
 
@@ -418,8 +448,8 @@ export class CategoryFilter {
     this.closeDropdown();
     this.filterTokens = [];
     if (this.category) {
-      this.category = undefined;
-      this.categoryChanged.emit(this.category);
+      this.category = '';
+      this.categoryChanged.emit(undefined);
     }
     this.emitFilterEvent();
   }
@@ -492,8 +522,8 @@ export class CategoryFilter {
     const operatorString =
       value.operator === LogicalFilterOperator.EQUAL ? '=' : '!=';
     const label =
-      this.categories[value.id]?.label ??
-      this.nonSelectableCategories[value.id] ??
+      this.categories?.[value.id]?.label ??
+      this.nonSelectableCategories?.[value.id] ??
       value.id;
 
     return `${label} ${operatorString} ${value.value}`;
@@ -577,6 +607,10 @@ export class CategoryFilter {
   }
 
   private renderCategoryValues() {
+    if (this.categories === undefined) {
+      return;
+    }
+
     return (
       <div class="dropdown-item-container">
         {this.renderOperatorButton()}
@@ -606,7 +640,7 @@ export class CategoryFilter {
 
   private renderDropdownContent() {
     if (this.hasCategorySelection()) {
-      if (this.category !== undefined) {
+      if (this.category !== '') {
         return this.renderCategoryValues();
       } else {
         return this.renderCategorySelection();
@@ -618,13 +652,16 @@ export class CategoryFilter {
     return (
       <div class="dropdown-item-container">
         {this.getCategoryIds()
-          ?.filter((id) => this.filterByInput(this.categories[id].label))
+          ?.filter(
+            (id) =>
+              this.categories && this.filterByInput(this.categories[id].label)
+          )
           .filter((id) => this.filterMultiples(id))
           .map((id) => (
             <button
               class="dropdown-item category-item category-item-id"
               data-id={id}
-              title={this.categories[id].label}
+              title={this.categories?.[id]?.label}
               key={id}
               onClick={(e) => {
                 e.preventDefault();
@@ -632,7 +669,7 @@ export class CategoryFilter {
               }}
               tabindex="0"
             >
-              {this.categories[id]?.label}
+              {this.categories?.[id]?.label}
             </button>
           ))}
       </div>
@@ -642,7 +679,7 @@ export class CategoryFilter {
   private getDropdownHeader() {
     if (this.categories !== undefined) {
       if (this.category !== undefined) {
-        return null;
+        return undefined;
       } else {
         return this.labelCategories;
       }
@@ -654,10 +691,28 @@ export class CategoryFilter {
   componentDidRender() {
     if (this.isScrollStateDirty) {
       if (!this.tmpDisableScrollIntoView) {
-        this.textInput.scrollIntoView();
+        this.textInput?.current?.scrollIntoView();
       }
       this.isScrollStateDirty = false;
     }
+  }
+
+  disconnectedCallback() {
+    this.hostElement.removeEventListener(
+      'keydown',
+      this.formElementKeyDownBind
+    );
+    this.textInput?.current?.removeEventListener(
+      'keydown',
+      this.inputElementKeyDownBind
+    );
+    this.textInput?.current?.removeEventListener('focusin', this.onFocusInBind);
+    this.textInput?.current?.removeEventListener(
+      'focusout',
+      this.onFocusOutBind
+    );
+    this.textInput?.current?.removeEventListener('input', this.onInputBind);
+    this.formElement?.removeEventListener('submit', this.preventDefaultBind);
   }
 
   private getResetButton() {
@@ -753,7 +808,7 @@ export class CategoryFilter {
                   name="category-filter-input"
                   disabled={this.disabled}
                   readonly={this.readonly}
-                  ref={(el) => (this.textInput = el)}
+                  ref={this.textInput}
                   type="text"
                   placeholder={this.placeholder}
                 ></input>
@@ -770,7 +825,7 @@ export class CategoryFilter {
             show={this.showDropdown}
             closeBehavior="outside"
             offset={{ mainAxis: 2 }}
-            anchor={this.textInput}
+            anchor={this.textInput?.waitForCurrent()}
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
           >

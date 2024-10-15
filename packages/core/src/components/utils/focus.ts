@@ -10,11 +10,11 @@
 export class ArrowFocusController {
   public items: Element[];
 
-  container: HTMLElement;
+  container?: HTMLElement;
   wrap = false;
   callback: any;
 
-  private keyListenerBind = this.keyListener.bind(this);
+  keyListenerBind? = this.keyListener.bind(this);
 
   constructor(
     items: any[],
@@ -25,10 +25,16 @@ export class ArrowFocusController {
     this.container = container;
     this.callback = callback;
 
-    this.container.addEventListener('keydown', this.keyListenerBind);
+    if (this.keyListenerBind) {
+      this.container.addEventListener('keydown', this.keyListenerBind);
+    }
   }
 
-  private keyListener(e) {
+  private keyListener(e: KeyboardEvent) {
+    if (!document.activeElement) {
+      return;
+    }
+
     const activeIndex = this.items.indexOf(document.activeElement);
 
     if (activeIndex < 0) {
@@ -69,6 +75,12 @@ export class ArrowFocusController {
   }
 
   disconnect() {
-    this.container.removeEventListener('keydown', this.keyListenerBind);
+    if (this.keyListenerBind) {
+      this.container?.removeEventListener('keydown', this.keyListenerBind);
+      this.keyListenerBind = undefined;
+    }
+
+    this.container = undefined;
+    this.callback = undefined;
   }
 }
