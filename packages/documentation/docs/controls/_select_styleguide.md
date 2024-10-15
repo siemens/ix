@@ -56,9 +56,9 @@ The select field has five states: default, hover, active/focused, disabled and r
 
 ## Related patterns
 
-- [Form field](forms-field.md)
-- [Validation](forms-validation.md)
-- [Layout](forms-layout.md)
+- [Form field](./forms/forms-field.md)
+- [Validation](./forms/forms-validation.md)
+- [Layout](./forms/forms-layout.md)
 - [Input](input.md)
 - [Radio button](radio.mdx)
 - [Checkbox](checkbox.mdx)
