@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Listen, Prop } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 
 export type ButtonVariant = 'danger' | 'primary' | 'secondary';
@@ -69,6 +69,15 @@ export class Button {
    */
   submitButtonElement?: HTMLButtonElement;
 
+  @Listen('click', { capture: true })
+  handleClick(event: Event) {
+    console.log('clickedEvent emitted');
+    if (this.disabled || this.loading) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
   componentDidLoad() {
     if (this.type === 'submit') {
       const submitButton = document.createElement('button');
@@ -82,7 +91,12 @@ export class Button {
   }
 
   dispatchFormEvents() {
-    if (this.type === 'submit' && this.submitButtonElement) {
+    if (
+      this.type === 'submit' &&
+      this.submitButtonElement &&
+      !this.disabled &&
+      !this.loading
+    ) {
       this.submitButtonElement.click();
     }
   }
