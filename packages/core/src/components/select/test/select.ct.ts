@@ -164,7 +164,7 @@ test('open filtered dropdown on input', async ({ mount, page }) => {
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).not.toBeVisible();
 
-  page.keyboard.down('1');
+  await page.keyboard.down('1');
 
   const item1 = page.getByRole('button', { name: 'Item 1' });
   const item2 = page.getByRole('button', { name: 'Item 2' });
