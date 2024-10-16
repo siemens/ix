@@ -260,7 +260,10 @@ export class CardList {
 
   @Listen('resize', { target: 'window' })
   private detectOverflow() {
-    const { clientWidth, scrollWidth, scrollLeft } = this.listElement!;
+    if (!this.listElement) {
+      return;
+    }
+    const { clientWidth, scrollWidth, scrollLeft } = this.listElement;
 
     this.leftScrollDistance = scrollLeft;
     this.rightScrollDistance = scrollWidth - scrollLeft - clientWidth;
