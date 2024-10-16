@@ -1,0 +1,64 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+$notDisabled: ':not(.disabled):not(:disabled):not([disabled])';
+
+@mixin host-valid {
+  :host(.ix-valid#{$notDisabled}:not(.ix-suppress-valid):not(.ix-invalid--required)) {
+    @content;
+  }
+}
+
+@mixin host-info {
+  :host(.ix-info#{$notDisabled}) {
+    @content;
+  }
+}
+
+@mixin host-warning {
+  :host(.ix-warning#{$notDisabled}) {
+    @content;
+  }
+}
+
+@mixin host-invalid {
+  :host([class*='ix-invalid']#{$notDisabled}),
+  :host(.ix-invalid--required#{$notDisabled}) {
+    @content;
+  }
+}
+
+@mixin input-valid {
+  textarea,
+  input {
+    &.ix-valid#{$notDisabled}:not(.ix-suppress-valid):not(.ix-invalid--required) {
+      @content;
+    }
+  }
+}
+
+@mixin input-info {
+  textarea.ix-info#{$notDisabled},
+  input.ix-info#{$notDisabled} {
+    @content;
+  }
+}
+
+@mixin input-warning {
+  textarea.ix-warning#{$notDisabled},
+  input.ix-warning#{$notDisabled} {
+    @content;
+  }
+}
+
+@mixin input-invalid {
+  textarea[class*='ix-invalid']#{$notDisabled},
+  input[class*='ix-invalid']#{$notDisabled} {
+    @content;
+  }
+}

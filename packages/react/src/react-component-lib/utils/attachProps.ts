@@ -5,9 +5,7 @@ export const attachProps = (node: HTMLElement, newProps: any, oldProps: any = {}
   if (node instanceof Element) {
     // add any classes in className to the class list
     const className = getClassName(node.classList, newProps, oldProps);
-    if (className !== '') {
-      node.className = className;
-    }
+    node.className = className;
 
     Object.keys(newProps).forEach((name) => {
       if (

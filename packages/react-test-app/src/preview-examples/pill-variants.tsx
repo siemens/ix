@@ -17,9 +17,7 @@ export default () => {
       <IxLayoutGrid>
         <IxRow>
           <IxCol>
-            <IxPill icon="info">
-              Primary
-            </IxPill>
+            <IxPill icon="info">Primary</IxPill>
           </IxCol>
           <IxCol>
             <IxPill icon="info" outline>

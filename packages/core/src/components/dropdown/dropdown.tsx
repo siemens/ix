@@ -122,6 +122,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   /** @internal */
   @Prop() ignoreRelatedSubmenu = false;
 
+  /** @internal */
+  @Prop() suppressOverflowBehavior = false;
+
   /**
    * Fire event after visibility of dropdown has changed
    */
@@ -133,13 +136,13 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private anchorElement?: Element;
 
   private dropdownRef: HTMLElement;
-  private localUId = `dropdown-${sequenceId++}`;
-  private assignedSubmenu: string[] = [];
+  private readonly localUId = `dropdown-${sequenceId++}`;
+  private readonly assignedSubmenu: string[] = [];
 
   private arrowFocusController: ArrowFocusController;
-  private focusDropdownItemBind = this.focusDropdownItem.bind(this);
+  private readonly focusDropdownItemBind = this.focusDropdownItem.bind(this);
 
-  private itemObserver = new MutationObserver(() => {
+  private readonly itemObserver = new MutationObserver(() => {
     this.arrowFocusController.items = this.dropdownItems;
   });
 
@@ -388,7 +391,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     } else {
       this.destroyAutoUpdate();
       this.arrowFocusController?.disconnect();
-      this.itemObserver.disconnect();
+      this.itemObserver?.disconnect();
       this.disposeKeyListener?.();
     }
   }
@@ -550,7 +553,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         class={{
           'dropdown-menu': true,
           show: this.show,
-          overflow: true,
+          overflow: !this.suppressOverflowBehavior,
         }}
         style={{
           margin: '0',
