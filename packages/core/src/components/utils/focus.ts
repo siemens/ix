@@ -30,12 +30,23 @@ export class ArrowFocusController {
     }
   }
 
-  private keyListener(e: KeyboardEvent) {
+  private getActiveIndex() {
     if (!document.activeElement) {
+      return -1;
+    }
+    return this.items.indexOf(document.activeElement);
+  }
+
+  private runCallback(index: number) {
+    if (!this.callback) {
       return;
     }
 
-    const activeIndex = this.items.indexOf(document.activeElement);
+    this.callback(index);
+  }
+
+  private keyListener(e: KeyboardEvent) {
+    const activeIndex = this.getActiveIndex();
 
     if (activeIndex < 0) {
       return;
@@ -45,14 +56,10 @@ export class ArrowFocusController {
       case 'ArrowDown':
         if (activeIndex < this.items.length - 1) {
           e.preventDefault();
-          if (this.callback) {
-            this.callback(activeIndex + 1);
-          }
+          this.runCallback(activeIndex + 1);
         } else if (this.wrap) {
           e.preventDefault();
-          if (this.callback) {
-            this.callback(0);
-          }
+          this.runCallback(0);
         }
         break;
 
@@ -60,14 +67,10 @@ export class ArrowFocusController {
         {
           if (activeIndex > 0) {
             e.preventDefault();
-            if (this.callback) {
-              this.callback(activeIndex - 1);
-            }
+            this.runCallback(activeIndex - 1);
           } else if (this.wrap && activeIndex === 0) {
             e.preventDefault();
-            if (this.callback) {
-              this.callback(this.items.length - 1);
-            }
+            this.runCallback(this.items.length - 1);
           }
         }
         break;

@@ -229,8 +229,14 @@ export class Select {
         subtree: true,
       });
     } else {
-      this.disconnectedCallback();
+      this.cleanupResources();
     }
+  }
+
+  private cleanupResources() {
+    this.arrowFocusController?.disconnect();
+    this.arrowFocusController = undefined;
+    this.itemObserver?.disconnect();
   }
 
   @Listen('itemClick')
@@ -378,11 +384,7 @@ export class Select {
   }
 
   disconnectedCallback() {
-    if (this.itemObserver) {
-      this.itemObserver.disconnect();
-    }
-    this.arrowFocusController?.disconnect();
-    this.arrowFocusController = undefined;
+    this.cleanupResources();
   }
 
   private itemExists(item: string) {

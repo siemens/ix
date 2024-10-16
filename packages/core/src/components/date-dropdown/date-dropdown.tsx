@@ -164,7 +164,9 @@ export class DateDropdown {
    * This event is emitted when the date range changes within the component.
    * The event payload contains information about the selected date range.
    */
-  @Event() private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
+  // eslint-disable-next-line @stencil-community/decorators-style
+  @Event()
+  private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
   @State() private selectedDateRangeId: string = 'custom';
   @State() private currentRangeValue!: {

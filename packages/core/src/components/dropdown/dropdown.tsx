@@ -133,7 +133,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private triggerElement?: Element;
   private anchorElement?: Element;
 
-  private dropdownRef = makeRef<HTMLElement>();
+  private readonly dropdownRef = makeRef<HTMLElement>();
   private localUId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
 

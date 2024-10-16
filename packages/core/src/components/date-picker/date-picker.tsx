@@ -376,7 +376,7 @@ export class DatePicker {
 
   private async onDone() {
     const date = await this.getCurrentDate();
-    // @ts-ignore TODO: refactor event signatures to match internal logic with undefined values
+    // TODO: refactor event signatures to match internal logic with undefined values
     this.dateSelect.emit(date);
   }
 
@@ -567,10 +567,10 @@ export class DatePicker {
 
   private onDateChange() {
     this.getCurrentDate().then((date) => {
-      // @ts-ignore TODO: refactor event signatures to match internal logic with undefined values
+      // TODO: refactor event signatures to match internal logic with undefined values
       this.dateChange.emit(date);
       if (this.range) {
-        // @ts-ignore TODO: refactor event signatures to match internal logic with undefined values
+        // TODO: refactor event signatures to match internal logic with undefined values
         this.dateRangeChange.emit(date);
       }
     });

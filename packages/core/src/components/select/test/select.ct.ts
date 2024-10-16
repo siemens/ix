@@ -159,12 +159,14 @@ test('open filtered dropdown on input', async ({ mount, page }) => {
   const element = page.locator('ix-select');
   await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
 
-  await page.locator('[data-testid="input"]').focus();
+  const input = await page.locator('[data-testid="input"]');
+  await input.focus();
+
   page.keyboard.down('Escape');
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).not.toBeVisible();
 
-  await page.keyboard.down('1');
+  await input.fill('1');
 
   const item1 = page.getByRole('button', { name: 'Item 1' });
   const item2 = page.getByRole('button', { name: 'Item 2' });

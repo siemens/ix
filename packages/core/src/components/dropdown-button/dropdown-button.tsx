@@ -68,7 +68,7 @@ export class DropdownButton {
    */
   @Prop() placement?: AlignedPlacement;
 
-  private dropdownAnchor = makeRef<HTMLElement>();
+  private readonly dropdownAnchor = makeRef<HTMLElement>();
 
   private getTriangle() {
     return (
