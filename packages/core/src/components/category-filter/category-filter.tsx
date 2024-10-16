@@ -474,7 +474,7 @@ export class CategoryFilter {
         return false;
       }
 
-      if (this.category !== undefined) {
+      if (this.category !== '') {
         return this.category === filterToken.id;
       }
 
@@ -678,7 +678,7 @@ export class CategoryFilter {
 
   private getDropdownHeader() {
     if (this.categories !== undefined) {
-      if (this.category !== undefined) {
+      if (this.category !== '') {
         return undefined;
       } else {
         return this.labelCategories;
@@ -722,7 +722,7 @@ export class CategoryFilter {
         class={{
           'reset-button': true,
           'hide-reset-button':
-            !this.filterTokens.length && this.category === undefined,
+            !this.filterTokens.length && this.category === '',
         }}
         ghost
         oval
@@ -790,7 +790,7 @@ export class CategoryFilter {
                   <li
                     class={{
                       'category-preview': true,
-                      'd-none': this.category === undefined,
+                      'd-none': this.category === '',
                     }}
                   >
                     {this.categories[this.category]?.label}
@@ -800,9 +800,7 @@ export class CategoryFilter {
                   class={{
                     'text-input': true,
                     'hide-placeholder':
-                      this.readonly ||
-                      this.disabled ||
-                      this.category !== undefined,
+                      this.readonly || this.disabled || this.category !== '',
                   }}
                   autocomplete="off"
                   name="category-filter-input"

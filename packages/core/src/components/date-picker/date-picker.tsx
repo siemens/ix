@@ -787,24 +787,24 @@ export class DatePicker {
                 <Fragment>
                   <div class="calendar-item week-number">{week.weekNumber}</div>
                   {week.dayNumbers.map((day) => {
-                    return (
-                      day && (
-                        <div
-                          key={day}
-                          id={`day-cell-${day}`}
-                          date-calender-day
-                          class={this.getDayClasses(day)}
-                          onClick={() => this.selectDay(day)}
-                          onKeyUp={(e) =>
-                            e.key === 'Enter' && this.selectDay(day)
-                          }
-                          tabIndex={day === this.focusedDay ? 0 : -1}
-                          onFocus={() => this.onDayFocus()}
-                          onBlur={() => this.onDayBlur()}
-                        >
-                          {day}
-                        </div>
-                      )
+                    return day ? (
+                      <div
+                        key={day}
+                        id={`day-cell-${day}`}
+                        date-calender-day
+                        class={this.getDayClasses(day)}
+                        onClick={() => this.selectDay(day)}
+                        onKeyUp={(e) =>
+                          e.key === 'Enter' && this.selectDay(day)
+                        }
+                        tabIndex={day === this.focusedDay ? 0 : -1}
+                        onFocus={() => this.onDayFocus()}
+                        onBlur={() => this.onDayBlur()}
+                      >
+                        {day}
+                      </div>
+                    ) : (
+                      <div></div>
                     );
                   })}
                 </Fragment>
