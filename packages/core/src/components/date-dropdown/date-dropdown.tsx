@@ -164,7 +164,7 @@ export class DateDropdown {
    * This event is emitted when the date range changes within the component.
    * The event payload contains information about the selected date range.
    */
-  @Event() private dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
+  @Event() private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
   @State() private selectedDateRangeId: string = 'custom';
   @State() private currentRangeValue!: {
@@ -172,7 +172,7 @@ export class DateDropdown {
     to: string;
     id: string;
   };
-  private triggerRef = makeRef<HTMLElement>();
+  private readonly triggerRef = makeRef<HTMLElement>();
 
   @Watch('disabled')
   onDisabledChange() {

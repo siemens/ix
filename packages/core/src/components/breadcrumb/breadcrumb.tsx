@@ -73,8 +73,8 @@ export class Breadcrumb {
    */
   @Event() nextClick!: EventEmitter<{ event: UIEvent; item: string }>;
 
-  private previousButtonRef = makeRef<HTMLIxBreadcrumbItemElement>();
-  private nextButtonRef = makeRef<HTMLElement>();
+  private readonly previousButtonRef = makeRef<HTMLIxBreadcrumbItemElement>();
+  private readonly nextButtonRef = makeRef<HTMLElement>();
 
   @State() items: HTMLIxBreadcrumbItemElement[] = [];
   @State() isPreviousDropdownExpanded = false;

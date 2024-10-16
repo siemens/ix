@@ -238,9 +238,9 @@ export class DatePicker {
   @State() selectedMonth!: number;
   @State() tempMonth!: number;
 
-  private dropdownButtonRef = makeRef<HTMLElement>();
-  private yearContainerRef = makeRef<HTMLElement>();
-  private firstMonthRef = makeRef<HTMLElement>();
+  private readonly dropdownButtonRef = makeRef<HTMLElement>();
+  private readonly yearContainerRef = makeRef<HTMLElement>();
+  private readonly firstMonthRef = makeRef<HTMLElement>();
 
   @State() dayNames!: string[];
   @State() monthNames!: string[];

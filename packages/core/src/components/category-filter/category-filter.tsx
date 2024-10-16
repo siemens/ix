@@ -32,14 +32,16 @@ import { makeRef } from '../utils/make-ref';
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
-  private inputElementKeyDownBind = this.handleInputElementKeyDown.bind(this);
-  private formElementKeyDownBind = this.handleFormElementKeyDown.bind(this);
-  private preventDefaultBind = this.preventDefault.bind(this);
-  private onFocusInBind = this.onFocusIn.bind(this);
-  private onFocusOutBind = this.onFocusOut.bind(this);
-  private onInputBind = this.onInput.bind(this);
+  private readonly inputElementKeyDownBind =
+    this.handleInputElementKeyDown.bind(this);
+  private readonly formElementKeyDownBind =
+    this.handleFormElementKeyDown.bind(this);
+  private readonly preventDefaultBind = this.preventDefault.bind(this);
+  private readonly onFocusInBind = this.onFocusIn.bind(this);
+  private readonly onFocusOutBind = this.onFocusOut.bind(this);
+  private readonly onInputBind = this.onInput.bind(this);
 
-  private textInput? = makeRef<HTMLInputElement>();
+  private readonly textInput? = makeRef<HTMLInputElement>();
   private formElement?: HTMLFormElement;
   private isScrollStateDirty?: boolean;
 
@@ -319,7 +321,7 @@ export class CategoryFilter {
 
   private handleInputElementKeyDown(e: KeyboardEvent) {
     switch (e.code) {
-      case 'ArrowDown':
+      case 'ArrowDown': {
         const selector = `.category-item-${
           this.category !== '' ? 'value' : 'id'
         }`;
@@ -336,6 +338,7 @@ export class CategoryFilter {
           }
         }
         break;
+      }
 
       case 'Backspace':
         if (this.textInput?.current?.value !== '') {

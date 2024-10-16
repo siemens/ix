@@ -48,12 +48,12 @@ export class DropdownButton {
   /**
    * Set label
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Button icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
@@ -66,7 +66,7 @@ export class DropdownButton {
    *
    * @since 2.0.0
    */
-  @Prop() placement: AlignedPlacement;
+  @Prop() placement?: AlignedPlacement;
 
   private dropdownAnchor = makeRef<HTMLElement>();
 

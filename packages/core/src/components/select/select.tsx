@@ -133,8 +133,8 @@ export class Select {
   @State() inputFilterText = '';
   @State() inputValue = '';
 
-  private dropdownWrapperRef = makeRef<HTMLElement>();
-  private dropdownAnchor = makeRef<HTMLElement>();
+  private readonly dropdownWrapperRef = makeRef<HTMLElement>();
+  private readonly dropdownAnchor = makeRef<HTMLElement>();
   private inputRef?: HTMLInputElement;
   private dropdownRef?: HTMLIxDropdownElement;
   private customItemsContainerRef?: HTMLDivElement;
@@ -229,9 +229,7 @@ export class Select {
         subtree: true,
       });
     } else {
-      this.arrowFocusController?.disconnect();
-      this.arrowFocusController = undefined;
-      this.itemObserver.disconnect();
+      this.disconnectedCallback();
     }
   }
 
@@ -383,6 +381,8 @@ export class Select {
     if (this.itemObserver) {
       this.itemObserver.disconnect();
     }
+    this.arrowFocusController?.disconnect();
+    this.arrowFocusController = undefined;
   }
 
   private itemExists(item: string) {
