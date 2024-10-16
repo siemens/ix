@@ -71,7 +71,6 @@ export class Button {
 
   @Listen('click', { capture: true })
   handleClick(event: Event) {
-    console.log('clickedEvent emitted');
     if (this.disabled || this.loading) {
       event.stopPropagation();
       event.preventDefault();

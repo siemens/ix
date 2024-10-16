@@ -783,20 +783,14 @@ export class DatePicker {
                       date-calender-day
                       class={this.getDayClasses(day)}
                       onClick={(e) => {
-                        if (
-                          !(e.currentTarget as HTMLElement).classList.contains(
-                            'disabled'
-                          )
-                        ) {
+                        const target = e.currentTarget as HTMLElement;
+                        if (!target.classList.contains('disabled')) {
                           this.selectDay(day);
                         }
                       }}
                       onKeyUp={(e) => {
-                        if (
-                          !(e.currentTarget as HTMLElement).classList.contains(
-                            'disabled'
-                          )
-                        ) {
+                        const target = e.currentTarget as HTMLElement;
+                        if (!target.classList.contains('disabled')) {
                           e.key === 'Enter' && this.selectDay(day);
                         }
                       }}
