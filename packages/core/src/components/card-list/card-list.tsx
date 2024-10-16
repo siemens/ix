@@ -20,7 +20,7 @@ function CardListTitle(props: {
   showAllCounter: number;
   hideShowAll: boolean;
 }) {
-  if (props.label === '') {
+  if (!props.label) {
     return null;
   }
 
