@@ -11,7 +11,7 @@
 import { IxBlind } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles/blind.css"></style>
+<style scoped src="./blind.css"></style>
 
 <template>
   <IxBlind label="Example">

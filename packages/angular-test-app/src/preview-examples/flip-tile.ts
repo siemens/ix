@@ -76,6 +76,6 @@ import { Component } from '@angular/core';
       </ix-flip-tile>
     </div>
   `,
-  styleUrls: ['./styles/flip-tile.css'],
+  styleUrls: ['./flip-tile.css'],
 })
 export default class FlipTile {}

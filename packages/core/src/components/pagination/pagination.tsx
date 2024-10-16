@@ -223,7 +223,7 @@ export class Pagination {
 
         {this.advanced ? (
           <div class="advanced-pagination">
-            <ix-typography variant="default">{this.i18nPage}</ix-typography>
+            <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
               class="form-control page-selection"
               type="number"
@@ -236,7 +236,7 @@ export class Pagination {
               }}
             />
             <span class="total-count">
-              <ix-typography variant="default">
+              <ix-typography format="body">
                 {this.i18nOf} {this.count}
               </ix-typography>
             </span>
@@ -254,7 +254,7 @@ export class Pagination {
 
         {this.advanced && this.showItemCount ? (
           <span class="item-count">
-            <ix-typography variant="default">{this.i18nItems}</ix-typography>
+            <ix-typography format="body">{this.i18nItems}</ix-typography>
             <ix-select
               hideListHeader
               i18nPlaceholder=""

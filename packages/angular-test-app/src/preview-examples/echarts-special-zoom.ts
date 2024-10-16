@@ -16,11 +16,12 @@ import {
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
+import { OrdinalRawValue } from 'echarts/types/src/util/types';
 
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-special-zoom.html',
-  styleUrls: ['./styles/charts.css'],
+  styleUrls: ["./echarts-special-zoom.css"],
 })
 export default class EchartsSpecialZoom implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());
@@ -28,7 +29,7 @@ export default class EchartsSpecialZoom implements OnInit {
   //create some random data
   private base = +new Date(1968, 9, 3);
   private oneDay = 24 * 3600 * 1000;
-  private date: (string | number)[] = [];
+  private date: OrdinalRawValue[] = [];
 
   data: number[] = [0];
 

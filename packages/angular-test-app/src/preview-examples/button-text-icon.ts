@@ -17,6 +17,6 @@ import { Component } from '@angular/core';
     <ix-button outline icon="star"> Button </ix-button>
     <ix-button ghost icon="star"> Button </ix-button>
   `,
-  styleUrls: ['./styles/buttons.css'],
+  styleUrls: ['./button-text-icon.css'],
 })
 export default class Buttons {}

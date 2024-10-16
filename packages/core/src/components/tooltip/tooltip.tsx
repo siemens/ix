@@ -35,7 +35,8 @@ type ArrowPosition = {
   right?: string;
 };
 
-const numberToPixel = (value: number) => (value != null ? `${value}px` : '');
+const numberToPixel = (value?: number | null) =>
+  value != null ? `${value}px` : '';
 
 /**
  * @slot title-icon - Icon of tooltip title
@@ -91,7 +92,7 @@ export class Tooltip implements IxOverlayComponent {
   private disposeListener?: () => void;
 
   private get arrowElement(): HTMLElement {
-    return this.hostElement.shadowRoot.querySelector('.arrow');
+    return this.hostElement.shadowRoot!.querySelector('.arrow')!;
   }
 
   private destroyAutoUpdate() {
@@ -133,8 +134,8 @@ export class Tooltip implements IxOverlayComponent {
   private computeArrowPosition({
     placement,
     middlewareData,
-  }: ComputePositionReturn): ArrowPosition {
-    let { x, y } = middlewareData.arrow;
+  }: ComputePositionReturn): ArrowPosition | undefined {
+    let { x, y } = middlewareData.arrow!;
     const resetPosition = {
       top: 'unset',
       right: 'unset',
@@ -380,7 +381,7 @@ export class Tooltip implements IxOverlayComponent {
         <div class="tooltip-container">
           <div class={'tooltip-title'}>
             <slot name="title-icon"></slot>
-            <ix-typography variant="default-title">
+            <ix-typography format="h5">
               {this.titleContent}
               <slot name="title-content"></slot>
             </ix-typography>

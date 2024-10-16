@@ -26,7 +26,7 @@ export class ContentHeader {
   /**
    * Title of Header
    */
-  @Prop() headerTitle: string;
+  @Prop() headerTitle?: string;
 
   /**
    * Subtitle of Header
@@ -41,7 +41,7 @@ export class ContentHeader {
   /**
    * Triggered when back button is clicked
    */
-  @Event() backButtonClick: EventEmitter<void>;
+  @Event() backButtonClick!: EventEmitter<void>;
 
   render() {
     return (
@@ -57,13 +57,11 @@ export class ContentHeader {
         ) : null}
 
         <div class="titleGroup">
-          <ix-typography
-            variant={this.variant === 'secondary' ? 'large-single' : 'h2'}
-          >
+          <ix-typography format={this.variant === 'secondary' ? 'h4' : 'h3'}>
             {this.headerTitle}
           </ix-typography>
           {this.headerSubtitle !== undefined ? (
-            <ix-typography variant={'caption'} color={'soft'} class="subtitle">
+            <ix-typography format={'h6'} color={'soft'} class="subtitle">
               {this.headerSubtitle}
             </ix-typography>
           ) : null}

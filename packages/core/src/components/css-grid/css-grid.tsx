@@ -37,9 +37,9 @@ export class CssGrid {
   /**
    * Define css grid template
    */
-  @Prop() templates: Partial<Record<CssGridTemplateType, string[][]>>;
+  @Prop() templates?: Partial<Record<CssGridTemplateType, string[][]>>;
 
-  @State() currentTemplate: string[][];
+  @State() currentTemplate?: string[][];
 
   private disposeMediaQueryListener: ((event: MediaQueryListEvent) => void)[] =
     [];
@@ -77,7 +77,10 @@ export class CssGrid {
     });
   }
 
-  private findNextTemplate(type: CssGridTemplateType) {
+  private findNextTemplate(type: CssGridTemplateType): string[][] {
+    if (!this.templates) {
+      return [];
+    }
     const typeIndex = this.mediaQueries.findIndex((mq) => mq.name === type);
     const nextTemplate = this.templates[this.mediaQueries[typeIndex + 1].name];
     if (!nextTemplate) {
@@ -87,6 +90,9 @@ export class CssGrid {
   }
 
   private applyTemplate() {
+    if (!this.templates) {
+      return;
+    }
     let active = this.mediaQueries.find((mq) => mq.mediaQuery.matches);
 
     if (!active) {
@@ -103,8 +109,8 @@ export class CssGrid {
   }
 
   render() {
-    const style = {};
-    if (this.currentTemplate?.length !== 0) {
+    const style: Record<string, string> = {};
+    if (this.currentTemplate && this.currentTemplate.length !== 0) {
       style['grid-template-areas'] = templateBuilder(this.currentTemplate);
     }
     return (

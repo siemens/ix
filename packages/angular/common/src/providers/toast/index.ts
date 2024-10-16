@@ -7,5 +7,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export * from './toast.service';
-export * from './toast.config';
+@import './preview-examples/global.css';
