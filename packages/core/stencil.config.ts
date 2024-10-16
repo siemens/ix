@@ -88,11 +88,13 @@ export const config: Config = {
     }),
     ...getAngularConfig(),
     reactOutputTarget({
-      componentCorePackage: corePackageName,
-      proxiesFile: '../react/src/components.ts',
-      includeImportCustomElements: true,
-      includePolyfills: false,
-      includeDefineCustomElements: false,
+      stencilPackageName: corePackageName,
+      outDir: '../react/src/components',
+      // proxiesFile: '../react/src/components.ts',
+      // includeImportCustomElements: true,
+      // includePolyfills: false,
+      // includeDefineCustomElements: false,
+      esModules: true,
       excludeComponents: [
         'ix-playground-internal',
         'ix-tree',

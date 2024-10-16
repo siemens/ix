@@ -11,6 +11,7 @@ import React from 'react';
 import { describe, it } from 'vitest';
 import Content from './toast';
 import { screen } from 'shadow-dom-testing-library';
+import { expect } from 'vitest';
 
 describe(`toast`, () => {
   it(`basic`, async () => {

@@ -8,6 +8,7 @@
     },
     "analytics": false
   },
+
   "newProjectRoot": "projects",
   "projects": {
     "angular-test-app": {
@@ -30,7 +31,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "preserveSymlinks": false,
+            "preserveSymlinks": true,
             "outputPath": "dist/angular-test-app",
             "index": "src/index.html",
             "browser": "src/main.ts",

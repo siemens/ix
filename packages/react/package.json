@@ -30,9 +30,11 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.5.0",
     "@siemens/ix": "workspace:*",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.0.1",
     "@types/estree": "~0.0.52",
+    "@types/node": "^20.16.0",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "babel-jest": "^29.7.0",
