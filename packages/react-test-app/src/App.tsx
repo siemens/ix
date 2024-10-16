@@ -7,8 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { IxButton } from '@siemens/ix-react';
+
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <IxButton>Test</IxButton>
+    </div>
+  );
 }
 
 export default App;

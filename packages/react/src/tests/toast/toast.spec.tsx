@@ -7,11 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { render, waitFor } from '@testing-library/react';
-import React from 'react';
-import { describe, it } from 'vitest';
-import Content from './toast';
 import { screen } from 'shadow-dom-testing-library';
-import { expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+import Content from './toast';
 
 describe(`toast`, () => {
   it(`basic`, async () => {

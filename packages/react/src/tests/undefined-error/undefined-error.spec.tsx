@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { render } from '@testing-library/react';
-import React from 'react';
 import { describe, it } from 'vitest';
 import Content from './undefined-error';
 

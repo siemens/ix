@@ -8,25 +8,54 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type { JSX, TreeContext, UpdateCallback } from '@siemens/ix';
+import type {
+  IxTreeCustomEvent,
+  JSX,
+  TreeContext,
+  UpdateCallback,
+} from '@siemens/ix';
 import React, { useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
-import { createReactComponent } from '../react-component-lib';
-import { StyleReactProps } from '../react-component-lib/interfaces';
 
-import { defineCustomElement as defineIxTree } from '@siemens/ix/components/ix-tree.js';
+import {
+  defineCustomElement as defineIxTree,
+  IxTree as IxTreeElement,
+} from '@siemens/ix/components/ix-tree.js';
+import {
+  createComponent,
+  EventName,
+  StencilReactComponent,
+} from '@stencil/react-output-target/runtime';
 
-// eslint-disable-next-line no-inline-comments
-export const InternalIxTree = /*@__PURE__*/ createReactComponent<
-  JSX.IxTree,
-  HTMLIxTreeElement
->('ix-tree', undefined, undefined, defineIxTree);
+type IxTreeEvents = {
+  onContextChange: EventName<IxTreeCustomEvent<TreeContext>>;
+  onNodeToggled: EventName<CustomEvent<{ id: string; isExpaned: boolean }>>;
+  onNodeClicked: EventName<CustomEvent<string>>;
+  onNodeRemoved: EventName<CustomEvent<any>>;
+};
+
+export const InternalIxTree: StencilReactComponent<
+  IxTreeElement,
+  IxTreeEvents
+> = /*@__PURE__*/ createComponent<IxTreeElement, IxTreeEvents>({
+  tagName: 'ix-tree',
+  elementClass: IxTreeElement,
+  react: React,
+  events: {
+    onContextChange: 'contextChange',
+    onNodeToggled: 'nodeToggled',
+    onNodeClicked: 'nodeClicked',
+    onNodeRemoved: 'nodeRemoved',
+  } as IxTreeEvents,
+  defineCustomElement: defineIxTree,
+});
 
 export const IxTree = (
   props: Omit<JSX.IxTree, 'renderItem'> &
-    Omit<React.HTMLAttributes<HTMLIxTreeElement>, 'style'> &
-    StyleReactProps &
-    React.RefAttributes<HTMLIxTreeElement> & {
+    Omit<React.HTMLAttributes<HTMLIxTreeElement>, 'style'> & {
+      className?: string;
+      style?: { [key: string]: any };
+    } & React.RefAttributes<HTMLIxTreeElement> & {
       renderItem?: (data: any) => React.ReactNode;
     }
 ) => {
@@ -65,7 +94,7 @@ export const IxTree = (
 
   return (
     <InternalIxTree
-      {...props}
+      {...(props as any)}
       renderItem={props.renderItem ? renderItem : undefined}
       onNodeRemoved={(removed: CustomEvent<any[]>) => {
         const { detail } = removed;

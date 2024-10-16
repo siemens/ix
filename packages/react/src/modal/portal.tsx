@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ReactFrameworkDelegate } from 'src/delegate';
+import { ReactFrameworkDelegate } from '../delegate';
 
 export const PORTAL_ID = 'ix-portal';
 
