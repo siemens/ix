@@ -12,7 +12,7 @@ import {
 import { createMutationObserver } from '../utils/mutation-observer';
 
 function CardListTitle(props: {
-  label: string;
+  label?: string;
   isCollapsed: boolean;
   onClick: (e: MouseEvent) => void;
   onShowAllClick: (e: MouseEvent) => void;
@@ -283,7 +283,7 @@ export class CardList {
       <Host>
         <CardListTitle
           isCollapsed={this.collapse}
-          label={this.label || ''}
+          label={this.label}
           showAllLabel={this.i18nShowAll}
           showAllCounter={
             this.showAllCount === undefined
