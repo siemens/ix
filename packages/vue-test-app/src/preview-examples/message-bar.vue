@@ -11,7 +11,7 @@
 import { IxButton, IxMessageBar } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./message-bar.css"></style>
+<style scoped src="./styles/message-bar.css"></style>
 
 <template>
   <div class="message-bar">

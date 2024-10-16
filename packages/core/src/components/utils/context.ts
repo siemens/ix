@@ -96,7 +96,7 @@ export function useContextConsumer<
   ) => void,
   subscribe?: boolean
 ): ContextConsumerSubscription {
-  let _unsubscribe: (() => void) | undefined;
+  let _unsubscribe: () => void;
   hostElement.dispatchEvent(
     new ContextEvent(
       context,
@@ -110,9 +110,7 @@ export function useContextConsumer<
 
   return {
     unsubscribe: () => {
-      if (_unsubscribe) {
-        _unsubscribe();
-      }
+      _unsubscribe();
     },
   };
 }
@@ -134,25 +132,27 @@ export function useContextProvider<
 
   const requests = new Set<ContextEvent<UnknownContext>>();
 
-  hostElement.addEventListener('context-request', (event: Event) => {
-    const requestContextEvent = event as ContextEvent<C>;
-    if (requestContextEvent?.context.name !== context.name) {
-      return;
-    }
+  hostElement.addEventListener(
+    'context-request',
+    (requestContextEvent: ContextEvent<C>) => {
+      if (requestContextEvent?.context.name !== context.name) {
+        return;
+      }
 
-    requestContextEvent.stopPropagation();
+      requestContextEvent.stopPropagation();
 
-    if (requestContextEvent.subscribe) {
-      requests.add(requestContextEvent);
-    }
-    requestContext.emit(requestContextEvent);
+      if (requestContextEvent.subscribe) {
+        requests.add(requestContextEvent);
+      }
+      requestContext.emit(requestContextEvent);
 
-    if (contextPayload) {
-      requestContextEvent.callback(contextPayload, () => {
-        requests.delete(requestContextEvent);
-      });
+      if (contextPayload) {
+        requestContextEvent.callback(contextPayload, () => {
+          requests.delete(requestContextEvent);
+        });
+      }
     }
-  });
+  );
 
   updateContext.on((context: ContextType<C>) => {
     requests.forEach((r) =>

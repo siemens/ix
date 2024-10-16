@@ -19,7 +19,7 @@ import {
   State,
 } from '@stencil/core';
 import { UploadFileState } from './upload-file-state';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
+import { iconError, iconSuccess } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-upload',
@@ -31,7 +31,7 @@ export class Upload {
    * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload).
    * [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
    */
-  @Prop() accept?: string;
+  @Prop() accept: string;
 
   /**
    * If multiple is true the user can drop or select multiple files
@@ -86,34 +86,23 @@ export class Upload {
   /**
    * You get an array of Files after drop-action or browse action is finished
    */
-  @Event() filesChanged!: EventEmitter<Array<File>>;
+  @Event() filesChanged: EventEmitter<Array<File>>;
 
   @Element() hostElement!: HTMLIxUploadElement;
 
   get inputElement(): HTMLInputElement {
-    return this.hostElement.shadowRoot!.querySelector('#upload-browser')!;
+    return this.hostElement.shadowRoot.querySelector('#upload-browser');
   }
 
   @State() isFileOver = false;
 
-  private filesToUpload?: Array<File>;
-
-  private a11y: A11yAttributes = {};
+  private filesToUpload: Array<File>;
 
   constructor() {}
 
-  componentWillLoad() {
-    this.a11y = a11yHostAttributes(this.hostElement);
-  }
-
   private fileDropped(evt: DragEvent) {
     evt.preventDefault();
-
     if (this.disabled) {
-      return;
-    }
-
-    if (!evt.dataTransfer) {
       return;
     }
 
@@ -125,10 +114,6 @@ export class Upload {
   }
 
   private fileOver(event: DragEvent) {
-    if (!event.dataTransfer) {
-      return;
-    }
-
     if (this.state !== UploadFileState.LOADING) {
       event.preventDefault();
       event.dataTransfer.dropEffect = 'move';
@@ -148,18 +133,11 @@ export class Upload {
     this.isFileOver = false;
   }
 
-  private fileChangeEvent(event: Event) {
+  private fileChangeEvent(event: any) {
     if (this.disabled) {
       return;
     }
-
-    if (!event.target) {
-      return;
-    }
-
-    this.filesToUpload = this.convertToFileArray(
-      (event.target as HTMLInputElement).files
-    );
+    this.filesToUpload = this.convertToFileArray(event.target.files);
 
     this.filesChanged.emit(this.filesToUpload);
 
@@ -169,13 +147,8 @@ export class Upload {
     this.inputElement.type = 'file';
   }
 
-  private convertToFileArray(filesFromEvent: FileList | File | null): File[] {
+  private convertToFileArray(filesFromEvent: FileList | File): File[] {
     let files = [];
-
-    if (!filesFromEvent) {
-      return [];
-    }
-
     if (filesFromEvent instanceof FileList) {
       files = Array.from(filesFromEvent);
     } else {
@@ -210,14 +183,14 @@ export class Upload {
       case UploadFileState.UPLOAD_FAILED:
         return (
           <span class="state">
-            <ix-icon name="error" class="icon-error"></ix-icon>
+            <ix-icon name={iconError} class="icon-error"></ix-icon>
             <span class="upload-text">{this.uploadFailedText}</span>
           </span>
         );
       case UploadFileState.UPLOAD_SUCCESSED:
         return (
           <span class="state">
-            <ix-icon name="success" class="icon-success"></ix-icon>
+            <ix-icon name={iconSuccess} class="icon-success"></ix-icon>
             <span class="upload-text">{this.uploadSuccessText}</span>
           </span>
         );
@@ -236,10 +209,8 @@ export class Upload {
   }
 
   render() {
-    const disabled = this.disabled || this.state === UploadFileState.LOADING;
-    const { 'aria-label': ariaLabel = 'Upload files', ...a11y } = this.a11y;
     return (
-      <Host {...a11y} aria-disabled={disabled}>
+      <Host>
         <div
           class={{
             'file-upload-area': true,
@@ -261,8 +232,6 @@ export class Upload {
           {this.renderUploadState()}
           <div>
             <input
-              aria-label={ariaLabel}
-              aria-disabled={disabled}
               multiple={this.multiple}
               type="file"
               class="upload-browser"
@@ -271,13 +240,12 @@ export class Upload {
                 this.fileChangeEvent(e);
               }}
               accept={this.accept}
-              disabled={disabled}
             />
             <ix-button
               tabindex="-1"
               outline
               onClick={() => this.inputElement.click()}
-              disabled={disabled}
+              disabled={this.disabled || this.state === UploadFileState.LOADING}
             >
               {this.i18nUploadFile}
             </ix-button>

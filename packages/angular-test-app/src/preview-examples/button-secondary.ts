@@ -13,6 +13,6 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: ` <ix-button outline> Button </ix-button>
     <ix-button disabled outline> Button </ix-button>`,
-  styleUrls: ['./button-secondary.css'],
+  styleUrls: ['./styles/buttons.css'],
 })
 export default class Buttons {}

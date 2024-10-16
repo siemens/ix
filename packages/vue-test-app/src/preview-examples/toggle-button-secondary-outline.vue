@@ -11,7 +11,7 @@
 import { IxToggleButton } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./toggle-button-secondary-outline.css"></style>
+<style scoped src="./styles/toggle-buttons.css"></style>
 
 <template>
   <IxToggleButton outline>Normal</IxToggleButton>

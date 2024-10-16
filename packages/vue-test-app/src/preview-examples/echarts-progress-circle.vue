@@ -106,7 +106,7 @@ const options: EChartsOption = {
 } as EChartsOption;
 </script>
 
-<style scoped src="./echarts-progress-circle.css"></style>
+<style scoped src="./styles/charts-gauge.css"></style>
 
 <template>
     <VueECharts :theme="theme" :option="options" autoresize class="echarts-gauge"></VueECharts>

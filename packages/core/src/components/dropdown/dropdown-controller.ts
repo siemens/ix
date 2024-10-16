@@ -65,23 +65,7 @@ class DropdownController {
   }
 
   disconnected(dropdown: DropdownInterface) {
-    const id = dropdown.getId();
-    this.removeFromSubmenuIds(id);
-    this.dropdowns.delete(id);
-  }
-
-  removeFromSubmenuIds(id: string) {
-    this.dropdowns.forEach((dropdown) => {
-      const submenuIds = this.submenuIds[dropdown.getId()];
-      if (submenuIds) {
-        const index = submenuIds.indexOf(id);
-        if (index > -1) {
-          submenuIds.splice(index, 1);
-        }
-      }
-    });
-
-    delete this.submenuIds[id];
+    this.dropdowns.delete(dropdown.getId());
   }
 
   discoverSubmenus() {

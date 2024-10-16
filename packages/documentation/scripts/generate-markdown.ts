@@ -55,6 +55,8 @@ const vueTestAppPath = path.join(
   'preview-examples'
 );
 
+const exampleStylesPath = path.join(examplePath, 'example-styles', 'src');
+
 const docsPath = path.join(rootPath, 'docs', 'auto-generated');
 
 const iframeExampleCodePath = path.join(staticPath, 'webcomponent-examples');
@@ -173,6 +175,7 @@ const tasks = new Listr<Context>(
           fs.copy(angularTestAppPath, docsStaticAngularExamples),
           fs.copy(reactTestAppPath, docsStaticReactExamples),
           fs.copy(vueTestAppPath, docsStaticVueExamples),
+          fs.copy(exampleStylesPath, docsStaticStyleExamples),
         ];
 
         return Promise.all(copy);

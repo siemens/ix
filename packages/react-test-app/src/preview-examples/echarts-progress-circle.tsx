@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-progress-circle.css';
+import './styles/charts-gauge.css';
 
 import { useEffect, useState } from 'react';
 import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
@@ -101,7 +101,6 @@ export default function EchartsGauge() {
 
   return (
     <ReactEcharts
-      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts-gauge"

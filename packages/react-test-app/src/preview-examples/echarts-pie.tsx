@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-pie.css';
-
 import { useEffect, useState } from 'react';
 import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
@@ -71,7 +69,6 @@ export default function EchartsPie() {
 
   return (
     <ReactEcharts
-      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"

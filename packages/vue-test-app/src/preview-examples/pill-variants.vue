@@ -11,7 +11,7 @@
 import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./pill-variants.css"></style>
+<style scoped src="./styles/pill-variants.css"></style>
 
 <template>
   <IxLayoutGrid>

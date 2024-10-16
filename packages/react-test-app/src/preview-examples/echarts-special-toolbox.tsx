@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-special-toolbox.css';
+import './styles/charts.css';
 
 import { useEffect, useState } from 'react';
 import {convertThemeName, registerTheme} from '@siemens/ix-echarts';
@@ -68,7 +68,6 @@ export default function EchartsSpecialToolbox() {
 
   return (
     <ReactEcharts
-      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"

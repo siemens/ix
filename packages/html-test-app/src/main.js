@@ -8,7 +8,7 @@
  */
 
 import { defineCustomElements } from '@siemens/ix/loader';
-import './preview-examples/global.css';
+import './preview-examples/styles/global.css';
 
 (async () => {
   defineCustomElements();

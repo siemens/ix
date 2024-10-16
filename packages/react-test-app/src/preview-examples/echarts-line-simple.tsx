@@ -7,10 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-line-simple.css';
-
 import { useEffect, useState } from 'react';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import {convertThemeName, registerTheme} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
@@ -34,6 +32,8 @@ export default function EchartsLineSimple() {
     value: [150, 230, 224, 218, 135, 147, 260],
   };
 
+  const value = 60;
+
   const options: EChartsOption = {
     xAxis: {
       type: 'category',
@@ -52,7 +52,6 @@ export default function EchartsLineSimple() {
 
   return (
     <ReactEcharts
-      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"

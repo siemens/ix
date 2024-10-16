@@ -248,7 +248,9 @@ export class TimePicker {
           corners={this.corners}
         >
           <div class="header" slot="header">
-            <ix-typography format="h5">{this.textTime || 'Time'}</ix-typography>
+            <ix-typography variant="default-title">
+              {this.textTime || 'Time'}
+            </ix-typography>
           </div>
           <div class="clock">
             {timepickerInformation.map((descriptor, index: number) => (

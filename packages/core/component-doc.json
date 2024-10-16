@@ -55,7 +55,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -120,7 +120,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -890,7 +890,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -911,7 +911,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -937,7 +937,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -1406,7 +1406,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -1588,7 +1588,6 @@
               "text": "2.1.0"
             }
           ],
-          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -3249,7 +3248,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -16670,7 +16669,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -16709,7 +16708,7 @@
               "type": "TypographyFormatCode"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -16769,7 +16768,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -16862,7 +16861,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -17564,6 +17563,11 @@
       "docstring": "",
       "path": "src/components/card/card.tsx"
     },
+    "src/components/typography/typography.tsx::TypographyVariants": {
+      "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
     "src/components/typography/typography.tsx::TypographyFormat": {
       "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
       "docstring": "",
@@ -17793,11 +17797,6 @@
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
-    },
-    "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
-      "declaration": "any",
-      "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

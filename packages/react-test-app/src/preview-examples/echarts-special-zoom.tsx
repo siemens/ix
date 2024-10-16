@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-special-zoom.css';
+import './styles/charts.css';
 
 import { useEffect, useState } from 'react';
 import {
@@ -19,7 +19,6 @@ import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
-import { OrdinalRawValue } from 'echarts/types/src/util/types';
 
 export default function EchartsSpecialZoom() {
   registerTheme(echarts);
@@ -37,7 +36,7 @@ export default function EchartsSpecialZoom() {
   //create some random data
   let base = +new Date(1968, 9, 3);
   const oneDay = 24 * 3600 * 1000;
-  const date: OrdinalRawValue[] = [];
+  const date: (string | number)[] = [];
 
   const data: number[] = [0];
 
@@ -102,12 +101,5 @@ export default function EchartsSpecialZoom() {
     ],
   };
 
-  return (
-    <ReactEcharts
-      style={{ height: '40rem' }}
-      option={options}
-      theme={theme}
-      className="echarts"
-    />
-  );
+  return <ReactEcharts option={options} theme={theme} className="echarts" />;
 }

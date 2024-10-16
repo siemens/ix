@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './vertical-tabs-with-avatar.css';
+import './styles/menu.css';
 
 import {
   IxMenu,

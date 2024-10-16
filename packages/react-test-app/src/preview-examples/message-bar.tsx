@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './message-bar.css';
+import './styles/message-bar.css';
 
 import { IxButton, IxMessageBar } from '@siemens/ix-react';
 

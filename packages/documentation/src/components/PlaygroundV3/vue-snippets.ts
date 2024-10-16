@@ -16,12 +16,17 @@ export async function fetchSourceForVue(baseUrl: string, name: string) {
 
   snippets[`${name}.vue`] = tsFile;
 
-  try {
-    const styleFile = await docusaurusFetch(`${baseUrl}/${name}.css`);
+  const regex =
+    /<style\s*scoped\s*src=['"]\.\/styles\/([^'"]+)['"]\s*><\/style>/;
+  const match = tsFile.match(regex);
+
+  if (match) {
+    const styleFile = await docusaurusFetch(`${baseUrl}/styles/${match[1]}`);
+
     if (styleFile) {
-      snippets[`./${name}.css`] = styleFile;
+      snippets[`./styles/${match[1]}`] = styleFile;
     }
-  } catch (e) {}
+  }
 
   return snippets;
 }

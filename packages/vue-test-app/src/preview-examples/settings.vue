@@ -27,7 +27,7 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped src="./settings.css"></style>
+<style scoped src="./styles/application.css"></style>
 
 <template>
   <IxApplication>

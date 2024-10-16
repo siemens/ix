@@ -123,23 +123,6 @@ async function createReactProjectFiles(
   return project;
 }
 
-function getAdditionalAngularComponents(
-  snippets: Record<string, string>,
-  rootFileName: string
-) {
-  const componentRegex = /@Component\(/;
-
-  return Object.keys(snippets)
-    .filter((key) => {
-      return (
-        key.endsWith('.ts') &&
-        key !== `${rootFileName}.ts` &&
-        componentRegex.test(snippets[key])
-      );
-    })
-    .map((key) => key.replace('.ts', ''));
-}
-
 async function createAngularProjectFiles(
   baseUrl: string,
   snippets: Record<string, string>,
@@ -155,34 +138,14 @@ async function createAngularProjectFiles(
     project[`src/${key.replace('./', '')}`] = snippets[key];
   });
 
-  const additionalAngularComponents = getAdditionalAngularComponents(
-    snippets,
-    name
-  );
-
-  const importsString = additionalAngularComponents
-    .map(
-      (file) => `import ${fromKebabCaseToCamelCase(file)} from './../${file}';`
-    )
-    .join('\n');
-
   project['src/app/app.module.ts'] = project['src/app/app.module.ts'].replace(
     "import ExampleComponent from './example.component';",
-    [
-      `import ${fromKebabCaseToCamelCase(name)} from './../${name}';`,
-      importsString,
-    ].join('\n')
+    `import ${fromKebabCaseToCamelCase(name)} from './../${name}';`
   );
-
-  const importComponent = additionalAngularComponents
-    .map((file) => fromKebabCaseToCamelCase(file))
-    .join(', ');
 
   project['src/app/app.module.ts'] = project['src/app/app.module.ts'].replace(
     'declarations: [AppComponent, ExampleComponent],',
-    `declarations: [AppComponent, ${fromKebabCaseToCamelCase(
-      name
-    )}, ${importComponent}],`
+    `declarations: [AppComponent, ${fromKebabCaseToCamelCase(name)}],`
   );
 
   return project;

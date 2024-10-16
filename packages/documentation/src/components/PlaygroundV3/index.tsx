@@ -204,7 +204,6 @@ function SnippetPreview(props: { snippets: Record<string, string> }) {
 
 function ToolbarButtons(props: {
   name: string;
-  deviantRootFileName: string;
   activeFramework: TargetFramework;
   noMargin: boolean;
   snippets: Record<string, string>;
@@ -236,7 +235,7 @@ function ToolbarButtons(props: {
                 baseUrl: baseUrl,
                 framework: props.activeFramework,
                 snippets: props.snippets,
-                name: props.deviantRootFileName ? props.deviantRootFileName : props.name,
+                name: props.name,
                 version: 'latest',
               })
             }
@@ -273,7 +272,6 @@ export type PlaygroundV3Props = {
   frameworks?: TargetFramework[];
   preventDefaultExample?: boolean;
   additionalFiles?: Record<TargetFramework, string[]>;
-  deviantRootFileName?: string;
 } & DemoProps;
 
 export default function PlaygroundV3(props: PlaygroundV3Props) {
@@ -334,7 +332,6 @@ export default function PlaygroundV3(props: PlaygroundV3Props) {
 
         <ToolbarButtons
           name={props.name}
-          deviantRootFileName={props.deviantRootFileName}
           activeFramework={activeFramework}
           noMargin={false}
           snippets={snippets}

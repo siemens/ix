@@ -11,6 +11,7 @@ import { FunctionalComponent, h, Host } from '@stencil/core';
 import { setTab } from './menu-tabs-utils';
 import { MenuAbout } from '../../menu-about/menu-about';
 import { MenuSettings } from '../../menu-settings/menu-settings';
+import { iconClose } from '@siemens/ix-icons/icons';
 
 interface MenuTabsProps {
   context: MenuSettings | MenuAbout;
@@ -29,44 +30,37 @@ const getTabItems = (context: MenuSettings | MenuAbout) => {
   });
 };
 
-export const MenuTabs: FunctionalComponent<MenuTabsProps> = ({ context }) => {
-  const selectedIndex = context.items.findIndex(
-    (item) => item.label === context.activeTabLabel
-  );
-  return (
-    <Host
-      slot={
-        context instanceof MenuSettings ? 'ix-menu-settings' : 'ix-menu-about'
+export const MenuTabs: FunctionalComponent<MenuTabsProps> = ({ context }) => (
+  <Host
+    slot={
+      context instanceof MenuSettings ? 'ix-menu-settings' : 'ix-menu-about'
+    }
+    class={{
+      show: context.show,
+    }}
+  >
+    <div
+      class={
+        context instanceof MenuSettings ? 'settings-header' : 'about-header'
       }
-      class={{
-        show: context.show,
-      }}
     >
-      <div
-        class={
-          context instanceof MenuSettings ? 'settings-header' : 'about-header'
+      <h2 class="text-h2">{context.label}</h2>
+      <ix-icon-button
+        ghost
+        size="24"
+        icon={iconClose}
+        onClick={(e) =>
+          context.close.emit({
+            name:
+              context instanceof MenuSettings
+                ? 'ix-menu-settings'
+                : 'ix-menu-about',
+            nativeEvent: e,
+          })
         }
-      >
-        <h2 class="text-h2">{context.label}</h2>
-        <ix-icon-button
-          ghost
-          size="24"
-          icon={'close'}
-          onClick={(e) =>
-            context.close.emit({
-              name:
-                context instanceof MenuSettings
-                  ? 'ix-menu-settings'
-                  : 'ix-menu-about',
-              nativeEvent: e,
-            })
-          }
-        ></ix-icon-button>
-      </div>
-      <ix-tabs selected={selectedIndex !== -1 ? selectedIndex : 0}>
-        {getTabItems(context)}
-      </ix-tabs>
-      <slot></slot>
-    </Host>
-  );
-};
+      ></ix-icon-button>
+    </div>
+    <ix-tabs>{getTabItems(context)}</ix-tabs>
+    <slot></slot>
+  </Host>
+);

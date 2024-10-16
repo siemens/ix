@@ -8,6 +8,7 @@
  */
 
 import { Component, h, Host, Prop } from '@stencil/core';
+import { VariantsMapping } from './type-mapping';
 
 export type TypographyVariants =
   | 'x-small'
@@ -67,9 +68,17 @@ export type TextDecoration = 'none' | 'underline' | 'line-through';
 })
 export class IxTypography {
   /**
+   * Font variant based on theme variables
+   *
+   * @deprecated Use `format` property
+   * @internal
+   */
+  @Prop() variant: TypographyVariants;
+
+  /**
    * Text format
    */
-  @Prop() format?: TypographyFormat;
+  @Prop() format: TypographyFormat;
 
   /**
    * Text color based on theme variables
@@ -77,12 +86,12 @@ export class IxTypography {
    * @deprecated since 2.1.0 use property `text-color`
    */
   // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color?: TypographyColors;
+  @Prop() color: TypographyColors;
 
   /**
    * Text color based on theme variables
    */
-  @Prop() textColor?: TypographyColors;
+  @Prop() textColor: TypographyColors;
 
   /**
    * Display text bold
@@ -95,8 +104,13 @@ export class IxTypography {
   @Prop() textDecoration: TextDecoration = 'none';
 
   render() {
-    let typographyClass: Record<string, boolean> = {};
-    typographyClass[`typography-${this.format ?? 'body'}`] = true;
+    let typographyClass = {};
+
+    if (this.variant) {
+      typographyClass[VariantsMapping[this.variant ?? 'default']] = true;
+    } else {
+      typographyClass[`typography-${this.format ?? 'body'}`] = true;
+    }
 
     if (this.textDecoration !== 'none') {
       typographyClass[`typography-decoration-${this.textDecoration}`] = true;

@@ -20,7 +20,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-circle.html',
-  styleUrls: ["./echarts-circle.css"],
+  styleUrls: ["./styles/charts.css"],
 })
 export default class EchartsCircle implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());

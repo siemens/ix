@@ -11,7 +11,7 @@
 import { IxWorkflowStep, IxWorkflowSteps } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./workflow.css"></style>
+<style scoped src="./styles/workflow.css"></style>
 
 <template>
   <IxWorkflowSteps>

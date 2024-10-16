@@ -11,7 +11,7 @@
 import { IxIconToggleButton } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./icon-toggle-button-secondary-ghost.css"></style>
+<style scoped src="./styles/icon-toggle-buttons.css"></style>
 
 <template>
   <IxIconToggleButton ghost icon="checkboxes"></IxIconToggleButton>

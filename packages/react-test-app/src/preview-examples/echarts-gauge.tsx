@@ -7,14 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-gauge.css';
+import './styles/charts.css';
 
 import { useEffect, useState } from 'react';
-import {
-  convertThemeName,
-  getComputedCSSProperty,
-  registerTheme,
-} from '@siemens/ix-echarts';
+import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
@@ -52,7 +48,9 @@ export default function EchartsGauge() {
           show: true,
           lineStyle: {
             width: 18,
-            color: [[1, getComputedCSSProperty('color-neutral-40')]],
+            color: [
+              [1, getComputedCSSProperty('color-neutral-40')],
+            ],
           },
         },
         axisTick: {
@@ -138,7 +136,6 @@ export default function EchartsGauge() {
 
   return (
     <ReactEcharts
-      style={{ height: '40rem' }}
       option={options}
       theme={theme}
       className="echarts"

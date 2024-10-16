@@ -36,19 +36,19 @@ export class IxActionCard {
   /**
    * Card heading
    */
-  @Prop() heading?: string;
+  @Prop() heading: string;
 
   /**
    * Card subheading
    */
-  @Prop() subheading?: string;
+  @Prop() subheading: string;
 
   /**
    * Card selection
    */
   @Prop() selected = false;
 
-  private getSubheadingColor(): TypographyColors | undefined {
+  private getSubheadingColor(): TypographyColors {
     switch (this.variant) {
       case 'insight':
       case 'notification':

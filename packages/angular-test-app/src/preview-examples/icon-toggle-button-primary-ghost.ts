@@ -37,6 +37,6 @@ import { Component } from '@angular/core';
       icon="checkboxes"
     ></ix-icon-toggle-button>
   `,
-  styleUrls: ['./icon-toggle-button-primary-ghost.css'],
+  styleUrls: ['./styles/icon-toggle-buttons.css'],
 })
 export default class Buttons {}

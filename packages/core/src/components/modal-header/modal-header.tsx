@@ -92,7 +92,7 @@ export class ModalHeader {
             color={this.iconColor}
           ></ix-icon>
         ) : null}
-        <ix-typography format="h5">
+        <ix-typography variant={'default-title'}>
           <slot></slot>
         </ix-typography>
         {!this.hideClose ? (

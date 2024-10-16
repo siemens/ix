@@ -155,10 +155,16 @@ const options: EChartsOption = {
 } as EChartsOption;
 </script>
 
-<style scoped src="./echarts.css"></style>
-
 <template>
-  <div>
+  <div
+    style="
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 40rem;
+      padding-top: 1rem;
+    "
+  >
     <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
   </div>
 </template>

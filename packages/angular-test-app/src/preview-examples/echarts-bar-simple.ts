@@ -16,7 +16,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-bar-simple.html',
-  styleUrls: ["./echarts-bar-simple.css"],
+  styleUrls: ["./styles/charts.css"],
 })
 export default class EchartsBarSimple implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());

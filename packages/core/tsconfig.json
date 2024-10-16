@@ -12,14 +12,13 @@
     "noUnusedParameters": true,
     "jsx": "react",
     "jsxFactory": "h",
-    "preserveSymlinks": false,
+    "preserveSymlinks": true,
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@utils/test": ["src/tests/utils/test"]
     }
     // Strict check uncomment to check for strict
-    // "strict": true,
     // "strictNullChecks": true,
     // "strictPropertyInitialization": true,
     // "noImplicitAny": true

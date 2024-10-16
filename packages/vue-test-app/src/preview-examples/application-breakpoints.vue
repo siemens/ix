@@ -23,7 +23,7 @@ import {
 } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./application-breakpoints.css"></style>
+<style scoped src="./styles/application.css"></style>
 
 <script lang="ts">
 export default {

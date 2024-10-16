@@ -32,6 +32,6 @@ import { Component } from '@angular/core';
       </ix-menu-item>
     </ix-menu>
   `,
-  styleUrls: ['./vertical-tabs-with-avatar.css'],
+  styleUrls: ['./styles/menu.css'],
 })
 export default class VerticalTabsWithAvatar {}

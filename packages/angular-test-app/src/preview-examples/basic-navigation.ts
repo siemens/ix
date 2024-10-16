@@ -20,6 +20,6 @@ import { Component } from '@angular/core';
       </ix-menu>
     </ix-basic-navigation>
   `,
-  styleUrls: ['./basic-navigation.css'],
+  styleUrls: ['./styles/basic-navigation.css'],
 })
 export default class BasicNavigation {}

@@ -48,22 +48,8 @@ regressionTest.describe('input', () => {
     await expect(page).toHaveScreenshot();
   });
 
-  regressionTest('readonly and hover', async ({ page }) => {
-    await page.goto('input/readonly');
-    const input = await page.waitForSelector('input');
-    await input.hover();
-    await expect(page).toHaveScreenshot();
-  });
-
   regressionTest('disabled', async ({ page }) => {
     await page.goto('input/disabled');
-    await expect(page).toHaveScreenshot();
-  });
-
-  regressionTest('disabled and hover', async ({ page }) => {
-    await page.goto('input/disabled');
-    const input = await page.waitForSelector('input');
-    await input.hover();
     await expect(page).toHaveScreenshot();
   });
 });

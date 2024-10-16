@@ -20,7 +20,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-progress-arc.html',
-  styleUrls: ["./echarts-progress-arc.css"],
+  styleUrls: ["./styles/charts-gauge.css"],
 })
 export default class EchartsProgressArc implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());

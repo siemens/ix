@@ -16,13 +16,17 @@ export async function fetchSourceForHtml(baseUrl: string, name: string) {
 
   snippets[`${name}.html`] = htmlFile;
 
-  try {
-    const styleFile = await docusaurusFetch(`${baseUrl}/${name}.css`);
+  const regex =
+    /<link\s*rel=\"stylesheet\"\s*href=['"]\.\/styles\/([^'"]+)['"]\s* \/>/;
+  const match = htmlFile.match(regex);
+
+  if (match) {
+    const styleFile = await docusaurusFetch(`${baseUrl}/styles/${match[1]}`);
 
     if (styleFile) {
-      snippets[`./${name}.css`] = styleFile;
+      snippets[`./styles/${match[1]}`] = styleFile;
     }
-  } catch (e) {}
+  }
 
   return snippets;
 }

@@ -57,7 +57,7 @@ export async function getReactRuntime(baseUrl: string) {
 
   await Promise.all(runtime$);
   const globalCss = await docusaurusFetch(
-    `${baseUrl}auto-generated/previews/react/global.css`
+    `${baseUrl}auto-generated/previews/react/styles/global.css`
   );
   runtime['src/styles/global.css'] = globalCss;
   return runtime;
@@ -110,7 +110,7 @@ export async function getHTMLRuntime(baseUrl: string) {
   delete runtime['src/main.js'];
 
   const globalCss = await docusaurusFetch(
-    `${baseUrl}auto-generated/previews/web-components/global.css`
+    `${baseUrl}auto-generated/previews/web-components/styles/global.css`
   );
   runtime['src/styles/global.css'] = globalCss;
   return runtime;

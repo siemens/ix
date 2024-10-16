@@ -11,7 +11,7 @@
 import { IxBasicNavigation, IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./basic-navigation.css"></style>
+<style scoped src="./styles/basic-navigation.css"></style>
 
 <template>
   <IxBasicNavigation applicationName="Application name">

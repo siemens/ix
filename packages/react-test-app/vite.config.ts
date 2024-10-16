@@ -9,28 +9,12 @@
 
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import { copyPreviewStyles } from 'example-styles';
 import path from 'path';
-import fs from 'fs';
-
-const previewPath = path.join(
-  __dirname,
-  'node_modules',
-  'html-test-app',
-  'src',
-  'preview-examples'
-);
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
-  // Copy the styles from the preview-examples folder to the src folder
-  fs.readdirSync(previewPath)
-    .filter((f) => f.endsWith('.css'))
-    .forEach((file) => {
-      fs.copyFileSync(
-        path.join(previewPath, file),
-        path.join(__dirname, 'src', 'preview-examples', file)
-      );
-    });
+  copyPreviewStyles(path.join(__dirname, 'src', 'preview-examples', 'styles'));
 
   return {
     plugins: [react()],

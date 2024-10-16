@@ -23,7 +23,7 @@ export type CardVariant =
   shadow: true,
 })
 export class Card {
-  @Element() hostElement!: HTMLIxCardElement;
+  @Element() hostElement: HTMLIxCardElement;
 
   /**
    * Card variant
@@ -34,7 +34,7 @@ export class Card {
   /**
    * @since 2.1.0
    */
-  @Prop() selected: boolean = false;
+  @Prop() selected: boolean;
 
   render() {
     return (

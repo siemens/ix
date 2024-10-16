@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-line-multiple-y-axis.css';
+import './styles/charts.css';
 
 import { useEffect, useState } from 'react';
 import {

@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: buttonGreyGhost(),
-  styleUrls: ['./button-grey-ghost.css'],
+  styleUrls: ['./styles/buttons.css'],
 })
 export default class Buttons {}
 

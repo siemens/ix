@@ -38,35 +38,18 @@ Select the appropriate section below for the respective usage information.
 
 ### Angular
 
-#### By template
-
 <Playground
 name="modal"
 height="18rem"
 preventDefaultExample
 frameworks={['angular']}
-deviantRootFileName="modal-by-template"
 additionalFiles={{
-angular: [
-'modal-by-template.ts',
-],
-}}>
-</Playground>
-
-#### By instance
-
-<Playground
-name="modal"
-height="18rem"
-preventDefaultExample
-frameworks={['angular']}
-deviantRootFileName="modal-by-instance"
-additionalFiles={{
-angular: [
-"modal-by-instance.ts",
-"modal-by-instance-content.ts",
-],
-}}>
+    angular: [
+      'modal-by-template.ts',
+      "modal-by-instance.ts",
+      "modal-by-instance-content.ts",
+      ],
+  }}>
 </Playground>
 
 `@siemens/ix-angular` provides an injectable service that allows to open modal dialogs based on a `ng-template` reference or by component type.

@@ -248,7 +248,7 @@ regressionTest.describe('application-switch', () => {
 
 Object.keys(viewPorts).forEach((viewPort) => {
   regressionTest(`MenuSidebar ${viewPort}`, async ({ page }) => {
-    await page.setViewportSize(viewPorts[viewPort as keyof typeof viewPorts]);
+    await page.setViewportSize(viewPorts[viewPort]);
     await page.goto('application/application-switch');
 
     const toggleMenuButton = page.locator('ix-menu-expand-icon').nth(0);

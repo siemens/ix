@@ -81,8 +81,8 @@ export class Col {
     }
   }
 
-  private getColumnSize(): ColumnSize | undefined {
-    let size: ColumnSize | undefined;
+  private getColumnSize() {
+    let size: ColumnSize;
     Col.Breakpoints.forEach((breakpoint) => {
       const isMediaQueryActive =
         breakpoint !== '' ? matchBreakpoint(breakpoint) : true;

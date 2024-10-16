@@ -110,7 +110,7 @@ const options: EChartsOption = {
 } as EChartsOption;
 </script>
 
-<style scoped src="./echarts-special-zoom.css"></style>
+<style scoped src="./styles/charts.css"></style>
 
 <template>
   <VueECharts :theme="theme" :option="options" autoresize></VueECharts>

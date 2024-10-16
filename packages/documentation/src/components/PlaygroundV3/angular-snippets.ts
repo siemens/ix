@@ -21,17 +21,29 @@ async function fetchFile(
     if (file) {
       snippets[fileName] = file;
     }
-  } catch (e) {}
+
+    return file;
+  } catch (e) {
+    return '';
+  }
 }
 
 export async function fetchSourceForAngular(baseUrl: string, name: string) {
   const snippets: Record<string, string> = {};
 
-  await Promise.all([
-    fetchFile(snippets, `${baseUrl}/${name}.html`, `${name}.html`),
-    fetchFile(snippets, `${baseUrl}/${name}.ts`, `${name}.ts`),
-    fetchFile(snippets, `${baseUrl}/${name}.css`, `${name}.css`),
-  ]);
+  await fetchFile(snippets, `${baseUrl}/${name}.html`, `${name}.html`);
+
+  const tsFile = await fetchFile(
+    snippets,
+    `${baseUrl}/${name}.ts`,
+    `${name}.ts`
+  );
+
+  const regex = /styleUrls:\s*\[\s*['"]([^'"]+)['"]\s*\]/;
+  const match = tsFile.match(regex);
+  if (match) {
+    await fetchFile(snippets, `${baseUrl}/${match[1]}`, `${match[1]}`);
+  }
 
   return snippets;
 }
