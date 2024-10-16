@@ -106,6 +106,10 @@ export class DateDropdown {
     this.updateCurrentDate();
     this.setDateRangeSelection(this.dateRangeId);
 
+    if (!this.currentRangeValue) {
+      return;
+    }
+
     this.onDateSelect({
       from: this.currentRangeValue.from,
       to: this.currentRangeValue.to,
@@ -169,7 +173,7 @@ export class DateDropdown {
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
   @State() private selectedDateRangeId: string = 'custom';
-  @State() private currentRangeValue!: {
+  @State() private currentRangeValue?: {
     from: string;
     to: string;
     id: string;
@@ -195,7 +199,7 @@ export class DateDropdown {
    */
   @Method()
   public async getDateRange(): Promise<DateRangeChangeEvent> {
-    return this.currentRangeValue;
+    return this.currentRangeValue || { id: '', from: '', to: '' };
   }
 
   private initialize() {
@@ -244,7 +248,7 @@ export class DateDropdown {
   }
 
   private onRangeListSelect(id: string) {
-    if (this.setDateRangeSelection(id)) {
+    if (this.setDateRangeSelection(id) && this.currentRangeValue) {
       this.onDateSelect(this.currentRangeValue);
     }
   }
@@ -261,7 +265,7 @@ export class DateDropdown {
   }
 
   private closeDropdown() {
-    const dropdown = this.hostElement.shadowRoot?.querySelector('ix-dropdown');
+    const dropdown = this.hostElement.shadowRoot!.querySelector('ix-dropdown');
 
     if (dropdown) {
       dropdown.show = false;
@@ -325,7 +329,8 @@ export class DateDropdown {
             if (
               !show &&
               this.selectedDateRangeId === 'custom' &&
-              this.datePickerTouched
+              this.datePickerTouched &&
+              this.currentRangeValue
             ) {
               this.onDateSelect(this.currentRangeValue);
             }
@@ -381,7 +386,9 @@ export class DateDropdown {
                     <div class="pull-right">
                       <ix-button
                         onClick={() => {
-                          this.onDateSelect(this.currentRangeValue);
+                          if (this.currentRangeValue) {
+                            this.onDateSelect(this.currentRangeValue);
+                          }
                         }}
                       >
                         {this.i18nDone}

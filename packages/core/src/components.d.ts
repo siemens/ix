@@ -802,7 +802,7 @@ export namespace Components {
         /**
           * Define an anchor element
          */
-        "anchor": string | HTMLElement | Promise<HTMLElement>;
+        "anchor"?: string | HTMLElement | Promise<HTMLElement>;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
@@ -817,12 +817,12 @@ export namespace Components {
         /**
           * Move dropdown along main axis of alignment
          */
-        "offset": {
+        "offset"?: {
     mainAxis?: number;
     crossAxis?: number;
     alignmentAxis?: number;
   };
-        "overwriteDropdownStyle": (delegate: {
+        "overwriteDropdownStyle"?: (delegate: {
     dropdownRef: HTMLElement;
     triggerRef?: HTMLElement;
   }) => Promise<Partial<CSSStyleDeclaration>>;
@@ -846,7 +846,7 @@ export namespace Components {
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
-        "trigger": string | HTMLElement | Promise<HTMLElement>;
+        "trigger"?: string | HTMLElement | Promise<HTMLElement>;
         /**
           * Update position of dropdown
          */

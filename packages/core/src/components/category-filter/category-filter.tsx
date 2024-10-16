@@ -23,6 +23,7 @@ import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
 import { makeRef } from '../utils/make-ref';
+import { addDisposableEventListener } from '../utils/disposable-event-listener';
 
 @Component({
   tag: 'ix-category-filter',
@@ -32,14 +33,12 @@ import { makeRef } from '../utils/make-ref';
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
-  private readonly inputElementKeyDownBind =
-    this.handleInputElementKeyDown.bind(this);
-  private readonly formElementKeyDownBind =
-    this.handleFormElementKeyDown.bind(this);
-  private readonly preventDefaultBind = this.preventDefault.bind(this);
-  private readonly onFocusInBind = this.onFocusIn.bind(this);
-  private readonly onFocusOutBind = this.onFocusOut.bind(this);
-  private readonly onInputBind = this.onInput.bind(this);
+  private formKeyDownListener?: () => void;
+  private preventDefaultListener?: () => void;
+  private inputKeyDownListener?: () => void;
+  private focusInListener?: () => void;
+  private focusOutListener?: () => void;
+  private inputListener?: () => void;
 
   private readonly textInput? = makeRef<HTMLInputElement>();
   private formElement?: HTMLFormElement;
@@ -201,8 +200,19 @@ export class CategoryFilter {
       }
     });
 
-    this.hostElement?.addEventListener('keydown', this.formElementKeyDownBind);
-    this.formElement?.addEventListener('submit', this.preventDefaultBind);
+    if (this.formElement !== undefined) {
+      this.formKeyDownListener = addDisposableEventListener(
+        this.formElement,
+        'keydown',
+        this.handleFormElementKeyDown as EventListener
+      );
+
+      this.preventDefaultListener = addDisposableEventListener(
+        this.formElement,
+        'submit',
+        this.preventDefault
+      );
+    }
 
     if (this.textInput?.current == null) {
       console.warn(
@@ -211,12 +221,28 @@ export class CategoryFilter {
       return;
     }
 
-    this.textInput.current.addEventListener('focusin', this.onFocusInBind);
-    this.textInput.current.addEventListener('focusout', this.onFocusOutBind);
-    this.textInput.current.addEventListener('input', this.onInputBind);
-    this.textInput.current.addEventListener(
+    this.inputKeyDownListener = addDisposableEventListener(
+      this.textInput?.current,
       'keydown',
-      this.inputElementKeyDownBind
+      this.handleInputElementKeyDown as EventListener
+    );
+
+    this.focusInListener = addDisposableEventListener(
+      this.textInput.current,
+      'focusin',
+      this.onFocusIn
+    );
+
+    this.focusOutListener = addDisposableEventListener(
+      this.textInput.current,
+      'focusout',
+      this.onFocusOut
+    );
+
+    this.inputListener = addDisposableEventListener(
+      this.textInput.current,
+      'input',
+      this.onInput
     );
   }
 
@@ -701,21 +727,24 @@ export class CategoryFilter {
   }
 
   disconnectedCallback() {
-    this.hostElement.removeEventListener(
-      'keydown',
-      this.formElementKeyDownBind
-    );
-    this.textInput?.current?.removeEventListener(
-      'keydown',
-      this.inputElementKeyDownBind
-    );
-    this.textInput?.current?.removeEventListener('focusin', this.onFocusInBind);
-    this.textInput?.current?.removeEventListener(
-      'focusout',
-      this.onFocusOutBind
-    );
-    this.textInput?.current?.removeEventListener('input', this.onInputBind);
-    this.formElement?.removeEventListener('submit', this.preventDefaultBind);
+    if (this.preventDefaultListener) {
+      this.preventDefaultListener();
+    }
+    if (this.formKeyDownListener) {
+      this.formKeyDownListener();
+    }
+    if (this.inputKeyDownListener) {
+      this.inputKeyDownListener?.();
+    }
+    if (this.focusInListener) {
+      this.focusInListener();
+    }
+    if (this.focusOutListener) {
+      this.focusOutListener();
+    }
+    if (this.inputListener) {
+      this.inputListener();
+    }
   }
 
   private getResetButton() {

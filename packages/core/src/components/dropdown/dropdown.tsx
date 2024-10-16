@@ -31,14 +31,13 @@ import {
 import { ComponentInterface } from '@stencil/core/internal';
 import { ArrowFocusController } from '../utils/focus';
 import {
-  addDisposableEventListener,
   CloseBehavior,
   dropdownController,
   DropdownInterface,
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
-import { makeRef } from '../utils/make-ref';
+import { addDisposableEventListener } from '../utils/disposable-event-listener';
 
 let sequenceId = 0;
 
@@ -66,12 +65,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
    * Define an element that triggers the dropdown.
    * A trigger can either be a string that will be interpreted as id attribute or a DOM element.
    */
-  @Prop() trigger: string | HTMLElement | Promise<HTMLElement>;
+  @Prop() trigger?: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Define an anchor element
    */
-  @Prop() anchor: string | HTMLElement | Promise<HTMLElement>;
+  @Prop() anchor?: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
@@ -99,7 +98,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
    *
    * @internal
    */
-  @Prop() offset: {
+  @Prop() offset?: {
     mainAxis?: number;
     crossAxis?: number;
     alignmentAxis?: number;
@@ -108,7 +107,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   /**
    * @internal
    */
-  @Prop() overwriteDropdownStyle: (delegate: {
+  @Prop() overwriteDropdownStyle?: (delegate: {
     dropdownRef: HTMLElement;
     triggerRef?: HTMLElement;
   }) => Promise<Partial<CSSStyleDeclaration>>;
@@ -126,22 +125,23 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   /**
    * Fire event after visibility of dropdown has changed
    */
-  @Event() showChanged: EventEmitter<boolean>;
+  @Event() showChanged!: EventEmitter<boolean>;
 
-  private autoUpdateCleanup: () => void = null;
+  private autoUpdateCleanup?: () => void;
 
   private triggerElement?: Element;
   private anchorElement?: Element;
 
-  private readonly dropdownRef = makeRef<HTMLElement>();
   private localUId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
 
-  private arrowFocusController: ArrowFocusController;
-  private focusDropdownItemBind = this.focusDropdownItem.bind(this);
+  private arrowFocusController?: ArrowFocusController;
+  private focusDropdownItemListener? = this.focusDropdownItem.bind(this);
 
-  private itemObserver = new MutationObserver(() => {
-    this.arrowFocusController.items = this.dropdownItems;
+  private itemObserver? = new MutationObserver(() => {
+    if (this.arrowFocusController) {
+      this.arrowFocusController.items = this.dropdownItems;
+    }
   });
 
   connectedCallback(): void {
@@ -168,31 +168,31 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
 
-    this.focusDropdownItemBind = null;
+    this.focusDropdownItemListener = undefined;
 
     if (this.arrowFocusController) {
       this.arrowFocusController?.disconnect();
-      this.arrowFocusController = null;
+      this.arrowFocusController = undefined;
     }
 
     if (this.itemObserver) {
       this.itemObserver.disconnect();
-      this.itemObserver = null;
+      this.itemObserver = undefined;
     }
 
     if (this.disposeClickListener) {
       this.disposeClickListener();
-      this.disposeClickListener = null;
+      this.disposeClickListener = undefined;
     }
 
     if (this.disposeKeyListener) {
       this.disposeKeyListener();
-      this.disposeKeyListener = null;
+      this.disposeKeyListener = undefined;
     }
 
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
-      this.autoUpdateCleanup = null;
+      this.autoUpdateCleanup = undefined;
     }
   }
 
@@ -231,7 +231,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   get slotElement() {
-    return this.hostElement.shadowRoot.querySelector('slot');
+    return this.hostElement.shadowRoot!.querySelector('slot');
   }
 
   private disposeClickListener?: () => void;
@@ -251,10 +251,14 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       dropdownController.dismissOthers(this.getId());
     };
 
+    if (!this.triggerElement) {
+      return;
+    }
+
     this.disposeClickListener = addDisposableEventListener(
       this.triggerElement,
       'click',
-      (event: PointerEvent) => {
+      (event: Event) => {
         if (!event.defaultPrevented) {
           toggleController();
         }
@@ -288,7 +292,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     this.disposeKeyListener = addDisposableEventListener(
       this.triggerElement,
       'keydown',
-      (event: KeyboardEvent) => {
+      ((event: KeyboardEvent) => {
         if (event.key !== 'ArrowDown') {
           return;
         }
@@ -302,7 +306,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         setTimeout(() => {
           this.focusDropdownItem(0);
         });
-      }
+      }) as EventListener
     );
   }
 
@@ -324,9 +328,9 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return this.checkForSubmenuAnchor(el);
   }
 
-  private async checkForSubmenuAnchor(element: Element) {
+  private async checkForSubmenuAnchor(element?: Element) {
     if (!element) {
-      return null;
+      return undefined;
     }
 
     if (hasDropdownItemWrapperImplemented(element)) {
@@ -345,7 +349,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   private findElement(
     element: string | HTMLElement | Promise<HTMLElement>
-  ): Promise<Element> {
+  ): Promise<Element | undefined> {
     if (element instanceof Promise) {
       return element;
     }
@@ -355,18 +359,20 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
 
     if (typeof element != 'string') {
-      return;
+      return Promise.resolve(undefined);
     }
 
     const selector = `#${element}`;
     return new Promise((resolve) => {
-      if (document.querySelector(selector)) {
-        return resolve(document.querySelector(selector));
+      const el = document.querySelector(selector);
+      if (el !== null) {
+        return resolve(el);
       }
 
       const observer = new MutationObserver(() => {
-        if (document.querySelector(selector)) {
-          resolve(document.querySelector(selector));
+        const el = document.querySelector(selector);
+        if (el) {
+          resolve(el);
           observer.disconnect();
         }
       });
@@ -378,12 +384,18 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     });
   }
 
+  private async resolveAnchorElement() {
+    if (this.anchor) {
+      this.anchorElement = await this.resolveElement(this.anchor);
+    } else if (this.trigger) {
+      this.anchorElement = await this.resolveElement(this.trigger);
+    }
+  }
+
   @Watch('show')
   async changedShow(newShow: boolean) {
     if (newShow) {
-      this.anchorElement = await (this.anchor
-        ? this.resolveElement(this.anchor)
-        : this.resolveElement(this.trigger));
+      await this.resolveAnchorElement();
 
       if (this.anchorElement) {
         this.applyDropdownPosition();
@@ -391,10 +403,11 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
       this.arrowFocusController = new ArrowFocusController(
         this.dropdownItems,
-        this.dropdownRef.current,
-        this.focusDropdownItemBind
+        this.hostElement,
+        this.focusDropdownItemListener
       );
-      this.itemObserver.observe(this.dropdownRef.current, {
+
+      this.itemObserver?.observe(this.hostElement, {
         childList: true,
         subtree: true,
       });
@@ -403,7 +416,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     } else {
       this.destroyAutoUpdate();
       this.arrowFocusController?.disconnect();
-      this.itemObserver.disconnect();
+      this.itemObserver?.disconnect();
       this.disposeKeyListener?.();
     }
   }
@@ -416,7 +429,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private destroyAutoUpdate() {
     if (this.autoUpdateCleanup) {
       this.autoUpdateCleanup();
-      this.autoUpdateCleanup = null;
+      this.autoUpdateCleanup = undefined;
     }
   }
 
@@ -437,9 +450,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     if (!this.anchorElement) {
       return;
     }
-    if (!this.dropdownRef) {
-      return;
-    }
     const isSubmenu = this.isAnchorSubmenu();
 
     let positionConfig: Partial<ComputePositionConfig> = {
@@ -448,7 +458,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     };
 
     if (!this.suppressAutomaticPlacement) {
-      positionConfig.middleware.push(
+      positionConfig.middleware?.push(
         flip({ fallbackStrategy: 'initialPlacement' })
       );
     }
@@ -456,7 +466,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     positionConfig.placement = isSubmenu ? 'right-start' : this.placement;
 
     positionConfig.middleware = [
-      ...positionConfig.middleware,
+      ...(positionConfig.middleware?.filter(Boolean) || []),
       inline(),
       shift(),
     ];
@@ -467,56 +477,67 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
     this.destroyAutoUpdate();
 
-    this.dropdownRef.waitForCurrent().then((ref) => {
-      this.autoUpdateCleanup = autoUpdate(
-        this.anchorElement,
-        ref,
-        async () => {
+    if (!this.anchorElement) {
+      return;
+    }
+
+    this.autoUpdateCleanup = autoUpdate(
+      this.anchorElement,
+      this.hostElement,
+      async () => {
+        if (this.anchorElement) {
           const computeResponse = await computePosition(
             this.anchorElement,
-            ref,
+            this.hostElement,
             positionConfig
           );
-          Object.assign(ref.style, {
+          Object.assign(this.hostElement.style, {
             top: '0',
             left: '0',
             transform: `translate(${Math.round(
               computeResponse.x
             )}px,${Math.round(computeResponse.y)}px)`,
           });
-          if (this.overwriteDropdownStyle) {
-            const overwriteStyle = await this.overwriteDropdownStyle({
-              dropdownRef: ref,
-              triggerRef: this.triggerElement as HTMLElement,
-            });
-
-            Object.assign(ref.style, overwriteStyle);
-          }
-        },
-        {
-          ancestorResize: true,
-          ancestorScroll: true,
-          elementResize: true,
         }
-      );
-    });
+        if (this.overwriteDropdownStyle) {
+          const overwriteStyle = await this.overwriteDropdownStyle({
+            dropdownRef: this.hostElement,
+            triggerRef: this.triggerElement as HTMLElement,
+          });
+
+          Object.assign(this.hostElement.style, overwriteStyle);
+        }
+      },
+      {
+        ancestorResize: true,
+        ancestorScroll: true,
+        elementResize: true,
+      }
+    );
   }
 
   private focusDropdownItem(index: number) {
     requestAnimationFrame(() => {
-      this.dropdownItems[index]?.shadowRoot.querySelector('button').focus();
+      const button =
+        this.dropdownItems[index]?.shadowRoot?.querySelector('button');
+
+      if (button) {
+        button.focus();
+      }
     });
   }
 
   async componentDidLoad() {
+    if (!this.trigger) {
+      return;
+    }
+
     this.changedTrigger(this.trigger);
   }
 
   async componentDidRender() {
     await this.applyDropdownPosition();
-    this.anchorElement = await (this.anchor
-      ? this.resolveElement(this.anchor)
-      : this.resolveElement(this.trigger));
+    await this.resolveAnchorElement();
   }
 
   private isTriggerElement(element: HTMLElement) {
@@ -563,7 +584,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return (
       <Host
         data-ix-dropdown={this.localUId}
-        ref={this.dropdownRef}
         class={{
           'dropdown-menu': true,
           show: this.show,

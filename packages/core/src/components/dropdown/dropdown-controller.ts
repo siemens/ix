@@ -213,30 +213,4 @@ class DropdownController {
   }
 }
 
-export const addDisposableEventListener = (
-  element: Element | Window | Document,
-  eventType: string,
-  callback: EventListenerOrEventListenerObject
-) => {
-  element.addEventListener(eventType, callback);
-
-  return () => {
-    element.removeEventListener(eventType, callback);
-  };
-};
-
-export const addDisposableEventListenerAsArray = (
-  listener: {
-    element: Element | Window | Document;
-    eventType: string;
-    callback: EventListenerOrEventListenerObject;
-  }[]
-) => {
-  const disposables = listener.map(({ callback, element, eventType }) =>
-    addDisposableEventListener(element, eventType, callback)
-  );
-
-  return () => disposables.forEach((dispose) => dispose());
-};
-
 export const dropdownController = new DropdownController();

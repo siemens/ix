@@ -79,7 +79,7 @@ export class Breadcrumb {
   @State() items: HTMLIxBreadcrumbItemElement[] = [];
   @State() isPreviousDropdownExpanded = false;
 
-  private mutationObserver!: MutationObserver;
+  private mutationObserver?: MutationObserver;
 
   private previousButtonId = createId();
   private previousDropdownId = createId();
@@ -146,22 +146,18 @@ export class Breadcrumb {
           trigger={
             this.items?.length > this.visibleItemCount
               ? this.previousButtonRef.waitForCurrent()
-              : null
+              : undefined
           }
           onShowChanged={({ detail }) => {
             this.isPreviousDropdownExpanded = detail;
 
-            const previousButton = this.hostElement.shadowRoot?.getElementById(
+            const previousButton = this.hostElement.shadowRoot!.getElementById(
               this.previousButtonId
             );
 
             // Need to force update previous button to change `aria-expanded`
             if (previousButton) {
-              forceUpdate(
-                this.hostElement.shadowRoot?.getElementById(
-                  this.previousButtonId
-                )
-              );
+              forceUpdate(previousButton);
             }
           }}
         >
