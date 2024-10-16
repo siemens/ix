@@ -1,4 +1,3 @@
-
 <!--
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
@@ -18,17 +17,14 @@ const layout = [
 ];
 </script>
 
+<style scoped src="./layout-auto.css"></style>
+
 <template>
-  <IxLayoutAuto
-    className="LayoutExample"
-    :layout="layout"
-  >
+  <IxLayoutAuto className="LayoutExample" :layout="layout">
     <IxTypography format="display">1</IxTypography>
     <IxTypography format="display">2</IxTypography>
     <IxTypography format="display">3</IxTypography>
-    <IxTypography format="display" data-colspan="2">
-      4
-    </IxTypography>
+    <IxTypography format="display" data-colspan="2"> 4 </IxTypography>
     <IxTypography format="display">5</IxTypography>
     <IxTypography format="display">6</IxTypography>
   </IxLayoutAuto>

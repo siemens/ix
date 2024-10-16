@@ -7,6 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+.Accordion > a {
+  display: flex;
+}
+
 .Accordion.Accordion__Last {
   border-block-end: solid 1px var(--theme-color-contrast-bdr);
 }

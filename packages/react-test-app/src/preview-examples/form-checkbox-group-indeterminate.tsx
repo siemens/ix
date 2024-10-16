@@ -8,7 +8,7 @@
  */
 
 import { IxCheckboxCustomEvent } from '@siemens/ix';
-import './styles/form-checkbox-group-indeterminate.css';
+import './form-checkbox-group-indeterminate.css';
 
 import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-react';
 import { useEffect, useState } from 'react';
@@ -86,6 +86,7 @@ export default () => {
             onCheckedChange={(e) => checkedChange(e, index)}
             label="Sub option one"
             className="cb-padding"
+            key={cb.label}
           ></IxCheckbox>
         );
       })}

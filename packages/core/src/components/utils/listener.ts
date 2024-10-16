@@ -8,10 +8,18 @@
  */
 
 import { getElement } from '@stencil/core';
+import { HTMLStencilElement } from '@stencil/core/internal';
 
 export type ListenerOptions = {
   target?: 'window';
   defaultEnabled?: boolean;
+};
+
+type HostListener = {
+  on: (onEventCallback: any) => void;
+  isEnabled: boolean | undefined;
+  enable: (state: boolean) => void;
+  destroy: () => void;
 };
 
 const defaultOptions: ListenerOptions = {
@@ -19,7 +27,10 @@ const defaultOptions: ListenerOptions = {
   defaultEnabled: true,
 };
 
-export function createListener(event: string, options: ListenerOptions = {}) {
+export function createListener(
+  event: string,
+  options: ListenerOptions = {}
+): HostListener {
   const opts = {
     ...defaultOptions,
     ...options,
@@ -52,9 +63,13 @@ export function createListener(event: string, options: ListenerOptions = {}) {
     },
   };
 
-  resultObject.enable(opts.defaultEnabled);
+  resultObject.enable(!!opts.defaultEnabled);
   return resultObject;
 }
+
+type HTMLStencilElementWithListener = HTMLStencilElement & {
+  [K in `__ix__${string}`]?: HostListener | null;
+};
 
 export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
   return (proto: any, methodName: string) => {
@@ -63,7 +78,7 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
 
     if (fnExp) {
       proto.componentWillRender = function () {
-        const host = getElement(this);
+        const host = getElement(this) as HTMLStencilElementWithListener;
         host[`__ix__${methodName}`]?.enable(fnExp(this));
         return componentWillRender && componentWillRender.call(this);
       };
@@ -71,7 +86,7 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
 
     proto.componentWillLoad = function () {
       const listener = createListener(event);
-      const host = getElement(this);
+      const host = getElement(this) as HTMLStencilElementWithListener;
       const method = this[methodName];
 
       host[`__ix__${methodName}`] = listener;
@@ -81,7 +96,7 @@ export function OnListener<T>(event: string, fnExp?: (self: T) => boolean) {
     };
 
     proto.disconnectedCallback = function () {
-      const host = getElement(this);
+      const host = getElement(this) as HTMLStencilElementWithListener;
 
       if (host && host[`__ix__${methodName}`]) {
         host[`__ix__${methodName}`]?.destroy();

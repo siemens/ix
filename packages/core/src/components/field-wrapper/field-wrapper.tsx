@@ -1,5 +1,5 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
-import { FieldWrapperInterface } from '../utils/field';
+import { FieldWrapperInterface } from '../utils/input';
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { renderHelperText } from './helper-text-util';
 
@@ -82,7 +82,7 @@ export class FieldWrapper implements FieldWrapperInterface {
    */
   @Prop() controlRef?: MakeRef<HTMLElement>;
 
-  private slotRef = makeRef<HTMLDivElement>();
+  private readonly slotRef = makeRef<HTMLDivElement>();
 
   render() {
     const textOptions = {

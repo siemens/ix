@@ -2,7 +2,7 @@ import { Component, Element, Host, Prop, Watch, h } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
 
 /**
- * @since 2.5.0
+ * @since 2.6.0
  */
 @Component({
   tag: 'ix-layout-auto',
@@ -31,11 +31,11 @@ export class LayoutForm implements IxComponent {
     };
   }[] = [];
 
-  private observer = new MutationObserver(() =>
+  private readonly observer = new MutationObserver(() =>
     this.calculateGridTemplateColumns()
   );
 
-  private resizeObserver = new ResizeObserver(() => {
+  private readonly resizeObserver = new ResizeObserver(() => {
     this.calculateGridTemplateColumns();
   });
 
@@ -103,7 +103,9 @@ export class LayoutForm implements IxComponent {
     });
 
     let column = 0;
-    Array.from(this.hostElement.children).forEach((child: HTMLElement) => {
+    Array.from(
+      this.hostElement.children as HTMLCollectionOf<HTMLElement>
+    ).forEach((child) => {
       let colspan = this.parseNumber(child.getAttribute('data-colspan'));
       colspan = Math.min(colspan, layoutColumns);
       const childRatio = colspan / layoutColumns;

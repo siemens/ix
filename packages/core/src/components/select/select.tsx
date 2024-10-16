@@ -30,12 +30,12 @@ import {
   HookValidationLifecycle,
   ValidationResults,
   IxInputFieldComponent,
-} from '../utils/field';
-import { makeRef } from '../utils/make-ref';
+} from '../utils/input';
+import { MakeRef, makeRef } from '../utils/make-ref';
 import { a11yBoolean } from '../utils/a11y';
 
 /**
- * @form-ready 2.5.0
+ * @form-ready 2.6.0
  */
 @Component({
   tag: 'ix-select',
@@ -51,63 +51,63 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * A string that represents the element's name attribute,
    * containing a name that identifies the element when submitting the form.
    *
-   * @since 2.5.0
+   * @since 2.6.0
    */
   @Prop({ reflect: true }) name?: string;
 
   /**
    * A Boolean attribute indicating that an option with a non-empty string value must be selected
    *
-   * @since 2.5.0
+   * @since 2.6.0
    */
   @Prop({ reflect: true }) required: boolean = false;
 
   /**
    * Label for the select component
    *
-   *  @since 2.5.0
+   * @since 2.6.0
    */
   @Prop() label?: string;
 
   /**
    * Warning text for the select component
    *
-   *  @since 2.5.0
+   * @since 2.6.0
    **/
   @Prop() warningText?: string;
 
   /**
    * Info text for the select component
    *
-   *  @since 2.5.0
+   * @since 2.6.0
    **/
   @Prop() infoText?: string;
 
   /**
    * Error text for the select component
    *
-   *  @since 2.5.0
+   * @since 2.6.0
    **/
   @Prop() invalidText?: string;
 
   /**
    * Valid text for the select component
    *
-   *  @since 2.5.0
+   * @since 2.6.0
    **/
   @Prop() validText?: string;
 
   /**
    * Helper text for the select component
    *
-   *  @since 2.5.0
+   * @since 2.6.0
    **/
   @Prop() helperText?: string;
 
   /**
    * Show helper, error, info, warning text as tooltip
    *
-   *  @since 2.5.0
+   * @since 2.6.0
    */
   @Prop() showTextAsTooltip?: boolean;
 
@@ -163,7 +163,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   /**
    * Select list header
    */
-  @Prop() i18nSelectListHeader = 'Please select an option';
+  @Prop() i18nSelectListHeader = 'Select an option';
 
   /**
    * Hint inside of dropdown if no items where found with current filter text
@@ -223,15 +223,16 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() isWarning = false;
 
   private input!: HTMLInputElement;
-  private inputRef = makeRef<HTMLInputElement>();
+  private readonly inputRef = makeRef<HTMLInputElement>();
   private dropdownRef!: HTMLIxDropdownElement;
   private customItemsContainerRef!: HTMLDivElement;
   private addItemRef!: HTMLIxDropdownItemElement;
 
   private arrowFocusController!: ArrowFocusController;
-  private focusControllerCallbackBind = this.focusDropdownItem.bind(this);
+  private readonly focusControllerCallbackBind =
+    this.focusDropdownItem.bind(this);
 
-  private itemObserver = createMutationObserver(() => {
+  private readonly itemObserver = createMutationObserver(() => {
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
 
@@ -443,13 +444,15 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     this.selectedLabels = this.selectedItems.map((item) => item.label);
 
-    if (this.isSingleMode && this.selectedLabels?.length) {
+    if (this.selectedLabels?.length && this.isSingleMode) {
       this.inputValue = this.selectedLabels[0];
-      this.input && (this.input.value = this.inputValue);
-      return;
+    } else {
+      this.inputValue = '';
     }
 
-    this.inputValue = null;
+    if (this.inputRef?.current) {
+      this.inputRef.current.value = this.inputValue;
+    }
   }
 
   private emitValueChange(value: string | string[]) {
@@ -523,7 +526,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
 
     if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      await this.onEnterNavigation();
+      await this.onEnterNavigation(event.target as HTMLIxSelectItemElement);
     }
 
     if (event.code === 'Escape') {
@@ -531,31 +534,27 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     }
   }
 
-  private async onEnterNavigation() {
+  private async onEnterNavigation(
+    el: HTMLIxSelectItemElement | HTMLInputElement
+  ) {
     if (this.isMultipleMode) {
       return;
     }
 
-    let item: HTMLIxSelectItemElement | undefined;
-
-    if (this.editable && !this.itemExists(this.inputFilterText)) {
-      const defaultPrevented = this.emitAddItem(this.inputFilterText);
-      if (defaultPrevented) {
-        return;
+    if (
+      !this.itemExists(this.inputFilterText.trim()) &&
+      !this.itemExists((el as HTMLIxSelectItemElement)?.label)
+    ) {
+      if (this.editable) {
+        const defaultPrevented = this.emitAddItem(this.inputFilterText.trim());
+        if (defaultPrevented) {
+          return;
+        }
       }
-
-      item = this.items[this.items.length - 1];
     }
 
-    if (item) {
-      item.onItemClick();
-    }
-
-    await this.dropdownRef?.updatePosition();
-
-    if (this.isSingleMode && !this.editable) {
-      this.dropdownShow = false;
-    }
+    this.dropdownShow = false;
+    this.updateSelection();
   }
 
   private async onArrowNavigation(
@@ -823,7 +822,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          controlRef={this.inputRef}
+          controlRef={this.inputRef as unknown as MakeRef<HTMLElement>}
         >
           <div
             class={{
@@ -859,6 +858,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     data-testid="input"
                     disabled={this.disabled}
                     readOnly={this.readonly}
+                    required={this.required}
                     type="text"
                     class={{
                       'allow-clear':
@@ -868,7 +868,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     value={this.inputValue ?? ''}
                     ref={(ref) => {
                       this.input = ref!;
-                      this.inputRef(ref!);
+                      this.inputRef(this.input);
                     }}
                     onBlur={(e) => this.onInputBlur(e)}
                     onFocus={() => {
@@ -954,9 +954,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               label={this.inputFilterText}
               onItemClick={(e) => {
                 e.preventDefault();
-                if (this.emitAddItem(this.inputFilterText)) {
-                  e.stopPropagation();
-                }
+                e.stopPropagation();
+                this.emitAddItem(this.inputFilterText);
               }}
               onFocus={() => (this.navigationItem = this.addItemRef)}
               ref={(ref) => {

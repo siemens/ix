@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/pill-variants.css';
+import './pill-variants.css';
 
 import { IxCol, IxLayoutGrid, IxPill, IxRow } from '@siemens/ix-react';
 

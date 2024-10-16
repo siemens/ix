@@ -37,7 +37,7 @@ import Avatar from './preview-examples/avatar.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
 import BlindVariants from './preview-examples/blind-variants.vue';
 import ButtonDangerGhost from './preview-examples/button-danger-ghost.vue';
-import ButtonDangerOutline from './preview-examples/button-danger-secondary.vue';
+import ButtonDangerOutline from './preview-examples/button-danger-outline.vue';
 import ButtonDanger from './preview-examples/button-danger.vue';
 import ButtonGhost from './preview-examples/button-ghost.vue';
 import ButtonGreyGhost from './preview-examples/button-grey-ghost.vue';
@@ -103,10 +103,10 @@ import GroupContextMenu from './preview-examples/group-context-menu.vue';
 import GroupCustomEntry from './preview-examples/group-custom-entry.vue';
 import GroupHeaderSuppressed from './preview-examples/group-header-suppressed.vue';
 import Group from './preview-examples/group.vue';
-import InputDisabled from './preview-examples/input-disabled.vue';
-import InputReadonly from './preview-examples/input-readonly.vue';
-import InputWithIcon from './preview-examples/input-with-icon.vue';
-import Input from './preview-examples/input.vue';
+import InputLegacyDisabled from './preview-examples/input-legacy-disabled.vue';
+import InputLegacyReadonly from './preview-examples/input-legacy-readonly.vue';
+import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon.vue';
+import InputLegacy from './preview-examples/input-legacy.vue';
 import KeyValueListStriped from './preview-examples/key-value-list-striped.vue';
 import KeyValueListWithCustomValue from './preview-examples/key-value-list-with-custom-value.vue';
 import KeyValueListWithIcon from './preview-examples/key-value-list-with-icon.vue';
@@ -118,11 +118,11 @@ import KeyValue from './preview-examples/key-value.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
 import ModalExample from './preview-examples/modal.vue';
-import NumberField from './preview-examples/number-field.vue';
-import NumberFieldLabel from './preview-examples/number-field-label.vue';
-import NumberFieldDisabled from './preview-examples/number-field-disabled.vue';
-import NumberFieldReadOnly from './preview-examples/number-field-readonly.vue';
-import NumberFieldStepperButton from './preview-examples/number-field-stepper-button.vue';
+import NumberInput from './preview-examples/number-input.vue';
+import NumberInputLabel from './preview-examples/number-input-label.vue';
+import NumberInputDisabled from './preview-examples/number-input-disabled.vue';
+import NumberInputReadOnly from './preview-examples/number-input-readonly.vue';
+import NumberInputStepperButton from './preview-examples/number-input-stepper-button.vue';
 import Pill from './preview-examples/pill.vue';
 import PillVariants from './preview-examples/pill-variants.vue';
 import PopoverNews from './preview-examples/popover-news.vue';
@@ -140,21 +140,21 @@ import Settings from './preview-examples/settings.vue';
 import SpinnerLarge from './preview-examples/spinner-large.vue';
 import Spinner from './preview-examples/spinner.vue';
 import Tabs from './preview-examples/tabs.vue';
-import Textarea from './preview-examples/textarea.vue';
-import TextareaDisabled from './preview-examples/textarea-disabled.vue';
-import TextareaReadonly from './preview-examples/textarea-readonly.vue';
-import TextareaField from './preview-examples/textarea-field.vue';
-import TextareaFieldDisabled from './preview-examples/textarea-field-disabled.vue';
-import TextareaFieldReadonly from './preview-examples/textarea-field-readonly.vue';
-import TextareaFieldRowsCols from './preview-examples/textarea-field-rows-cols.vue';
-import TextareaFieldValidation from './preview-examples/textarea-field-validation.vue';
-import TextField from './preview-examples/text-field.vue';
-import TextFieldDisabled from './preview-examples/text-field-disabled.vue';
-import TextFieldLabel from './preview-examples/text-field-label.vue';
-import TextFieldPattern from './preview-examples/text-field-pattern.vue';
-import TextFieldReadonly from './preview-examples/text-field-readonly.vue';
-import TextFieldTypes from './preview-examples/text-field-types.vue';
-import TextFieldValidation from './preview-examples/text-field-validation.vue';
+import TextareaLegacy from './preview-examples/textarea-legacy.vue';
+import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled.vue';
+import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly.vue';
+import TextareaField from './preview-examples/textarea.vue';
+import TextareaFieldDisabled from './preview-examples/textarea-disabled.vue';
+import TextareaFieldReadonly from './preview-examples/textarea-readonly.vue';
+import TextareaFieldRowsCols from './preview-examples/textarea-rows-cols.vue';
+import TextareaFieldValidation from './preview-examples/textarea-validation.vue';
+import Input from './preview-examples/input.vue';
+import InputDisabled from './preview-examples/input-disabled.vue';
+import InputLabel from './preview-examples/input-label.vue';
+import InputPattern from './preview-examples/input-pattern.vue';
+import InputReadonly from './preview-examples/input-readonly.vue';
+import InputTypes from './preview-examples/input-types.vue';
+import InputValidation from './preview-examples/input-validation.vue';
 import Tile from './preview-examples/tile.vue';
 import Timepicker from './preview-examples/timepicker.vue';
 import ToastCustom from './preview-examples/toast-custom.vue';
@@ -181,16 +181,15 @@ import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-butto
 import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost.vue';
 import IconToggleButtonSecondaryOutline from './preview-examples/icon-toggle-button-secondary-outline.vue';
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary.vue';
-import InputLabels from './preview-examples/input-labels.vue';
-import InputSearch from './preview-examples/input-search.vue';
-import InputTypes from './preview-examples/input-types.vue';
+import InputLegacyLabels from './preview-examples/input-legacy-labels.vue';
+import InputLegacySearch from './preview-examples/input-legacy-search.vue';
+import InputLegacyTypes from './preview-examples/input-legacy-types.vue';
 import Kpi from './preview-examples/kpi.vue';
 import LinkButtonDisabled from './preview-examples/link-button-disabled.vue';
 import LinkButton from './preview-examples/link-button.vue';
 import Loading from './preview-examples/loading.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
-import Modal from './preview-examples/modal.vue';
 import Message from './preview-examples/message.vue';
 import MessageBar from './preview-examples/message-bar.vue';
 import PaginationAdvanced from './preview-examples/pagination-advanced.vue';
@@ -314,12 +313,12 @@ const routes: any = {
   '/preview/icon-toggle-button-secondary-outline':
     IconToggleButtonSecondaryOutline,
   '/preview/icon-toggle-button-secondary': IconToggleButtonSecondary,
-  '/preview/input-disabled': InputDisabled,
-  '/preview/input-labels': InputLabels,
-  '/preview/input-readonly': InputReadonly,
-  '/preview/input-search': InputSearch,
-  '/preview/input-types': InputTypes,
-  '/preview/input-with-icon': InputWithIcon,
+  '/preview/input-legacy-disabled': InputLegacyDisabled,
+  '/preview/input-legacy-labels': InputLegacyLabels,
+  '/preview/input-legacy-readonly': InputLegacyReadonly,
+  '/preview/input-legacy-search': InputLegacySearch,
+  '/preview/input-legacy-types': InputLegacyTypes,
+  '/preview/input-legacy-with-icon': InputLegacyWithIcon,
   '/preview/message-bar': MessageBar,
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
@@ -339,21 +338,21 @@ const routes: any = {
   '/preview/split-button': SplitButton,
   '/preview/split-button-icons': SplitButtonIcons,
   '/preview/tabs': Tabs,
-  '/preview/textarea': Textarea,
-  '/preview/textarea-disabled': TextareaDisabled,
-  '/preview/textarea-readonly': TextareaReadonly,
-  '/preview/textarea-field': TextareaField,
-  '/preview/textarea-field-readonly': TextareaFieldReadonly,
-  '/preview/textarea-field-disabled': TextareaFieldDisabled,
-  '/preview/textarea-field-rows-cols': TextareaFieldRowsCols,
-  '/preview/textarea-field-validation': TextareaFieldValidation,
-  '/preview/text-field': TextField,
-  '/preview/text-field-disabled': TextFieldDisabled,
-  '/preview/text-field-label': TextFieldLabel,
-  '/preview/text-field-pattern': TextFieldPattern,
-  '/preview/text-field-readonly': TextFieldReadonly,
-  '/preview/text-field-types': TextFieldTypes,
-  '/preview/text-field-validation': TextFieldValidation,
+  '/preview/textarea-legacy': TextareaLegacy,
+  '/preview/textarea-legacy-disabled': TextareaLegacyDisabled,
+  '/preview/textarea-legacy-readonly': TextareaLegacyReadonly,
+  '/preview/textarea': TextareaField,
+  '/preview/textarea-readonly': TextareaFieldReadonly,
+  '/preview/textarea-disabled': TextareaFieldDisabled,
+  '/preview/textarea-rows-cols': TextareaFieldRowsCols,
+  '/preview/textarea-validation': TextareaFieldValidation,
+  '/preview/input': Input,
+  '/preview/input-disabled': InputDisabled,
+  '/preview/input-label': InputLabel,
+  '/preview/input-pattern': InputPattern,
+  '/preview/input-readonly': InputReadonly,
+  '/preview/input-types': InputTypes,
+  '/preview/input-validation': InputValidation,
   '/preview/tile': Tile,
   '/preview/timepicker': Timepicker,
   '/preview/toast': Toast,
@@ -368,11 +367,11 @@ const routes: any = {
   '/preview/settings': Settings,
   '/preview/kpi': Kpi,
   '/preview/modal': ModalExample,
-  '/preview/number-field': NumberField,
-  '/preview/number-field-disabled': NumberFieldDisabled,
-  '/preview/number-field-label': NumberFieldLabel,
-  '/preview/number-field-readonly': NumberFieldReadOnly,
-  '/preview/number-field-stepper-button': NumberFieldStepperButton,
+  '/preview/number-input': NumberInput,
+  '/preview/number-input-disabled': NumberInputDisabled,
+  '/preview/number-input-label': NumberInputLabel,
+  '/preview/number-input-readonly': NumberInputReadOnly,
+  '/preview/number-input-stepper-button': NumberInputStepperButton,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/map-navigation': MapNavigation,
@@ -382,7 +381,7 @@ const routes: any = {
   '/preview/page-header': ContentHeader,
   '/preview/page-header-no-back': ContentHeaderNoBack,
   '/preview/key-value': KeyValue,
-  '/preview/input': Input,
+  '/preview/input-legacy': InputLegacy,
   '/preview/key-value-list-striped': KeyValueListStriped,
   '/preview/key-value-list-with-custom-value': KeyValueListWithCustomValue,
   '/preview/key-value-list-with-icon': KeyValueListWithIcon,

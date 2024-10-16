@@ -7,13 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import fs from 'fs-extra';
+import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
-import { copyPreviewStyles } from 'example-styles';
-import { rimraf } from 'rimraf';
 
-const resolve = import.meta.resolve!;
 const __dirname = path.resolve();
 
 const previewPath = path.join(__dirname, 'src', 'preview-examples');
@@ -35,33 +32,8 @@ const additionalTheme = {
   css: 'ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css',
 };
 
-try {
-  const brandTheme = await resolve('@siemens/ix-brand-theme');
-  if (brandTheme) {
-    const target = path.join(
-      __dirname,
-      'src',
-      'public',
-      'additional-theme',
-      'ix-brand-theme'
-    );
-    const themeFolder = path.join(brandTheme.replace('file:', ''), '..', '..');
-
-    await rimraf(target);
-    fs.copySync(themeFolder, target, {
-      filter: (src, dest) => {
-        if (src.includes('node_modules')) {
-          return false;
-        }
-        return true;
-      },
-    });
-  }
-} catch (e) {}
-
 // https://vitejs.dev/config/
 export default defineConfig(() => {
-  copyPreviewStyles(path.join(__dirname, 'src', 'preview-examples', 'styles'));
   return {
     base: './',
     root: './src',

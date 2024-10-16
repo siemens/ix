@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/validation.css';
+import './form-validation.css';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
@@ -16,11 +16,11 @@ import {
   IxCheckbox,
   IxCheckboxGroup,
   IxCustomField,
-  IxDateField,
+  IxDateInput,
   IxIcon,
   IxIconButton,
   IxLayoutAuto,
-  IxNumberField,
+  IxNumberInput,
   IxRadio,
   IxRadioGroup,
   IxSelect,
@@ -113,7 +113,7 @@ export default function FormValidation() {
           label="Name"
           {...register('name')}
           className={clsx({ 'ix-invalid': errors.name })}
-          invalidText={errors.name && errors.name.message}
+          invalidText={errors.name?.message}
           required
         />
         <IxInput label="Last Name" {...register('last-name')} />
@@ -124,7 +124,7 @@ export default function FormValidation() {
         <IxRadioGroup label="Booking option">
           {Array.from({ length: 3 }).map((_, option) => (
             <Controller
-              key={option}
+              key={`Option${option}`}
               control={control}
               name="booking-option"
               render={({ field }) => (
@@ -139,7 +139,7 @@ export default function FormValidation() {
           ))}
         </IxRadioGroup>
 
-        <IxNumberField
+        <IxNumberInput
           label="Preferred room size"
           className="ix-info"
           infoText="You can adjust the room size"
@@ -149,7 +149,7 @@ export default function FormValidation() {
           <IxTypography slot="end" color="weak" className='padding-right'>
             m<sup>2</sup>
           </IxTypography>
-        </IxNumberField>
+        </IxNumberInput>
 
         <IxSelect
           label="Travel option"
@@ -161,16 +161,16 @@ export default function FormValidation() {
           <IxSelectItem value="3" label="Option 3"></IxSelectItem>
         </IxSelect>
 
-        <IxNumberField
+        <IxNumberInput
           label="Threshold limit A"
           data-colspan="1"
           helperText="Max threshold is 5"
           {...register('thresholdLimitA', { required: false, max: '5' })}
           className={clsx({ 'ix-invalid': errors.thresholdLimitA })}
-          invalidText={errors.thresholdLimitA && errors.thresholdLimitA.message}
-        ></IxNumberField>
+          invalidText={errors.thresholdLimitA?.message}
+        ></IxNumberInput>
 
-        <IxNumberField
+        <IxNumberInput
           label="Threshold limit B"
           data-colspan="1"
           showStepperButtons
@@ -182,21 +182,21 @@ export default function FormValidation() {
           onValueChange={({ detail }) => {
             setShowWarning(detail > 5);
           }}
-        ></IxNumberField>
+        ></IxNumberInput>
 
-        <IxDateField
+        <IxDateInput
           label="Begin"
           i18nErrorDateUnparsable="Please enter a valid date"
           {...register('begin')}
-        ></IxDateField>
-        <IxDateField
+        ></IxDateInput>
+        <IxDateInput
           label="End"
           {...register('end')}
           invalidText={errors.end?.message}
           className={clsx({
             'ix-invalid': errors.end,
           })}
-        ></IxDateField>
+        ></IxDateInput>
 
         <IxTextarea
           maxLength={100}
@@ -256,7 +256,7 @@ export default function FormValidation() {
           maxLength={4}
           {...register('confirm-pin')}
           className={clsx({ 'ix-invalid': errors['confirm-pin'] })}
-          invalidText={errors['confirm-pin'] && errors['confirm-pin'].message}
+          invalidText={errors['confirm-pin']?.message}
         ></IxInput>
 
         <Controller

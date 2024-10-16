@@ -28,7 +28,7 @@ import { defineCustomElement as defineIxContent } from '@siemens/ix/components/i
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
 import { defineCustomElement as defineIxCustomField } from '@siemens/ix/components/ix-custom-field.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
-import { defineCustomElement as defineIxDateField } from '@siemens/ix/components/ix-date-field.js';
+import { defineCustomElement as defineIxDateInput } from '@siemens/ix/components/ix-date-input.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
@@ -78,7 +78,7 @@ import { defineCustomElement as defineIxModalContent } from '@siemens/ix/compone
 import { defineCustomElement as defineIxModalExample } from '@siemens/ix/components/ix-modal-example.js';
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
-import { defineCustomElement as defineIxNumberField } from '@siemens/ix/components/ix-number-field.js';
+import { defineCustomElement as defineIxNumberInput } from '@siemens/ix/components/ix-number-input.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
@@ -341,7 +341,7 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
 ]);
 
 
-export const IxDateField = /*@__PURE__*/ defineContainer<JSX.IxDateField, JSX.IxDateField["value"]>('ix-date-field', defineIxDateField, [
+export const IxDateInput = /*@__PURE__*/ defineContainer<JSX.IxDateInput, JSX.IxDateInput["value"]>('ix-date-input', defineIxDateInput, [
   'name',
   'placeholder',
   'value',
@@ -839,7 +839,7 @@ export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('i
 ]);
 
 
-export const IxNumberField = /*@__PURE__*/ defineContainer<JSX.IxNumberField, JSX.IxNumberField["value"]>('ix-number-field', defineIxNumberField, [
+export const IxNumberInput = /*@__PURE__*/ defineContainer<JSX.IxNumberInput, JSX.IxNumberInput["value"]>('ix-number-input', defineIxNumberInput, [
   'name',
   'placeholder',
   'value',
@@ -1190,7 +1190,6 @@ export const IxTreeItem = /*@__PURE__*/ defineContainer<JSX.IxTreeItem>('ix-tree
 
 
 export const IxTypography = /*@__PURE__*/ defineContainer<JSX.IxTypography>('ix-typography', defineIxTypography, [
-  'variant',
   'format',
   'color',
   'textColor',

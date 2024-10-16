@@ -7,8 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './layout-auto.css';
+
 import { IxLayoutAuto, IxTypography } from '@siemens/ix-react';
-import './styles/grid.css';
 
 export default () => {
   return (

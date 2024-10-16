@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './form-checkbox-group-indeterminate.html',
-  styleUrls: ['./styles/form-checkbox-group-indeterminate.css'],
+  styleUrls: ['./form-checkbox-group-indeterminate.css'],
 })
 export default class FormCheckboxGroupIndeterminate {
   parentCheckbox = {indeterminate: true, checked: false, label: "Option group"};

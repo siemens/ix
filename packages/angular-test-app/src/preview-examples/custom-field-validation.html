@@ -1,8 +1,17 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
 <div>
-  <ix-field-label htmlFor="first-name">First name</ix-field-label>
   <ix-custom-field
     helper-text="Add your first name here"
     valid-text="Valid first name"
+    label="First name"
   >
     <input
       id="first-name"
@@ -14,8 +23,7 @@
 </div>
 
 <div>
-  <ix-field-label htmlFor="last-name">Last name</ix-field-label>
-  <ix-custom-field info-text="Family name">
+  <ix-custom-field info-text="Family name" label="Last name">
     <input
       id="last-name"
       type="text"
@@ -26,8 +34,7 @@
 </div>
 
 <div>
-  <ix-field-label htmlFor="email">Email</ix-field-label>
-  <ix-custom-field warning-Text="Not a valid email address">
+  <ix-custom-field warning-Text="Not a valid email address" label="Email">
     <input
       id="email"
       type="email"
@@ -38,8 +45,7 @@
 </div>
 
 <div>
-  <ix-field-label htmlFor="address">Address</ix-field-label>
-  <ix-custom-field invalid-text="Required">
+  <ix-custom-field invalid-text="Required" label="Address">
     <input id="address" type="text" class="form-control ix-invalid" />
   </ix-custom-field>
 </div>

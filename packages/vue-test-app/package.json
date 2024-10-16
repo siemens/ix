@@ -20,7 +20,8 @@
     "ag-grid-community": "^30.2.0",
     "ag-grid-vue3": "^30.1.0",
     "echarts": "^5.4.1",
-    "example-styles": "workspace:*",
+    "echarts-gl": "^2.0.9",
+    "html-test-app": "workspace:*",
     "vue": "^3.2.45",
     "vue-echarts": "~6.6.9",
     "web-vitals": "^2.1.4"

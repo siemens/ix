@@ -19,12 +19,12 @@ import {
   Element,
   Method,
 } from '@stencil/core';
-import { HookValidationLifecycle, IxFormComponent } from '../utils/field';
+import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 
 /**
- * @since 2.5.0
- * @form-ready 2.5.0
+ * @since 2.6.0
+ * @form-ready 2.6.0
  */
 @Component({
   tag: 'ix-checkbox',
@@ -84,7 +84,7 @@ export class Checkbox implements IxFormComponent<string> {
    */
   @Event() valueChange!: EventEmitter<string>;
 
-  private inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
+  private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
     checkboxRef.checked = this.checked;
   });
 
@@ -128,7 +128,9 @@ export class Checkbox implements IxFormComponent<string> {
   }
 
   @HookValidationLifecycle()
-  updateClassMappings() {}
+  updateClassMappings() {
+    /** This function is intentionally empty */
+  }
 
   private renderCheckmark() {
     if (this.checked) {

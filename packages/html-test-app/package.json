@@ -17,9 +17,9 @@
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-icons": "^2.0.0",
-    "example-styles": "workspace:*",
-    "fs-extra": "^11.2.0",
-    "rimraf": "^5.0.7",
     "vite": "^3.1.0"
+  },
+  "dependencies": {
+    "ag-grid-community": "^32.1.0"
   }
 }

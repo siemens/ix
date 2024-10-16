@@ -21,10 +21,10 @@ import {
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
-import { IxFormComponent } from '../utils/field';
+import { IxFormComponent } from '../utils/input';
 
 /**
- * @form-ready 2.4.0
+ * @form-ready 2.6.0
  * */
 @Component({
   tag: 'ix-toggle',

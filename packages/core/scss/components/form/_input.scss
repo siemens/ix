@@ -20,8 +20,7 @@
     color: var(--theme-input--color);
     appearance: textfield;
     text-overflow: ellipsis;
-    border: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color);
+    border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
     border-radius: var(--theme-input--border-radius);
     box-shadow: var(--theme-input--box-shadow);
   }
@@ -31,8 +30,7 @@
     -webkit-box-shadow: 0 0 0 1000px var(--theme-color-component-info) inset !important;
     -webkit-text-fill-color: var(--theme-input--color--autofill) !important;
     background-color: var(--theme-input--background--autofill) !important;
-    border: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color--autofill) !important;
+    border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color--autofill) !important;
     color: var(--theme-input--color--autofill) !important;
   }
 
@@ -40,17 +38,19 @@
     color: var(--theme-input-hint--color);
   }
 
-  &:not(.readonly):not([readonly]):not([readOnly]):not(:read-only).hover,
-  &:not(.readonly):not([readonly]):not([readOnly]):not(:read-only):hover {
-    border-color: var(--theme-input--border-color--hover) !important;
-    background-color: var(--theme-input--background--hover);
+  &.hover, &:hover {
+    &:not(.readonly, .read-only, .disabled, [readonly], [disabled], :read-only) {
+      border-color: var(--theme-input--border-color--hover) !important;
+      background-color: var(--theme-input--background--hover);
+    }
   }
 
-  &:not(.readonly):not([readonly]):not([readOnly]):not(:read-only).focus,
-  &:not(.readonly):not([readonly]):not([readOnly]):not(:read-only):focus {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: var(--theme-input--focus--outline-offset);
-    border-color: var(--theme-input--border-color--focus) !important;
+  &.focus, &:focus {
+    &:not(.readonly, .read-only, .disabled, [readonly], [disabled], :read-only) {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-input--focus--outline-offset);
+      border-color: var(--theme-input--border-color--focus) !important;
+    }
   }
 
   @if $feature-read-only == true {
@@ -60,9 +60,7 @@
       background-color: transparent;
       outline: none;
       border: none;
-      border-bottom: var(--theme-input--border-thickness, 1px)
-        solid
-        var(--theme-input--border-color-bottom--readonly);
+      border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color-bottom--readonly);
     }
 
     &.read-only,
@@ -73,17 +71,16 @@
     }
   }
 
-  &:disabled {
+  &:disabled, &.disabled {
     box-shadow: none;
     background-color: transparent;
     outline: none;
     border: none;
     color: var(--theme-input--color--disabled);
-    border-bottom: var(--theme-input--border-thickness, 1px) solid
-      var(--theme-input--border-color-bottom--disabled);
+    border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color-bottom--disabled);
   }
 
-  &:disabled::placeholder {
+  &:disabled::placeholder, &.disabled::placeholder {
     color: transparent;
   }
 }
@@ -178,8 +175,7 @@
     }
   }
 
-  @include input-valid {
-  }
+  @include input-valid;
 
   @include input-info {
     & {
@@ -212,10 +208,6 @@
   @include input-invalid {
     & {
       background-color: var(--theme-input--background--invalid);
-      border-color: var(--theme-input--border-color--invalid);
-    }
-
-    & {
       border-color: var(--theme-input--border-color--invalid) !important;
     }
 

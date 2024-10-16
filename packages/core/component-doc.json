@@ -55,7 +55,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -120,7 +120,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -325,10 +325,10 @@
         },
         {
           "name": "theme",
-          "type": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & {}",
+          "type": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & Record<never, never>",
           "complexType": {
             "original": "IxTheme",
-            "resolved": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & {}",
+            "resolved": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & Record<never, never>",
             "references": {
               "IxTheme": {
                 "location": "import",
@@ -356,7 +356,7 @@
               "type": "string"
             },
             {
-              "type": "string & {}"
+              "type": "string & Record<never, never>"
             }
           ],
           "optional": false,
@@ -890,7 +890,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -911,7 +911,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -937,7 +937,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1406,7 +1406,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1588,6 +1588,7 @@
               "text": "2.1.0"
             }
           ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -2526,11 +2527,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -2746,11 +2747,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -3215,8 +3216,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -3224,9 +3224,6 @@
           "ix-col"
         ],
         "ix-datetime-picker": [
-          "ix-col"
-        ],
-        "ix-playground-internal": [
           "ix-col"
         ]
       },
@@ -3676,7 +3673,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -3748,7 +3745,7 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -4356,23 +4353,23 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/date-field",
-      "filePath": "src/components/date-field/date-field.tsx",
-      "fileName": "date-field.tsx",
-      "readmePath": "src/components/date-field/readme.md",
-      "usagesDir": "src/components/date-field/usage",
-      "tag": "ix-date-field",
+      "dirPath": "src/components/date-input",
+      "filePath": "src/components/date-input/date-input.tsx",
+      "fileName": "date-input.tsx",
+      "readmePath": "src/components/date-input/readme.md",
+      "usagesDir": "src/components/date-input/usage",
+      "tag": "ix-date-input",
       "overview": "",
       "usage": {},
       "docs": "",
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -4384,7 +4381,7 @@
         "ix-date-picker"
       ],
       "dependencyGraph": {
-        "ix-date-field": [
+        "ix-date-input": [
           "ix-icon-button",
           "ix-field-wrapper",
           "ix-dropdown",
@@ -4792,13 +4789,13 @@
           "detail": "{ patternMismatch: boolean; invalidReason?: string; }",
           "bubbles": true,
           "complexType": {
-            "original": "DateFieldValidityState",
+            "original": "DateInputValidityState",
             "resolved": "{ patternMismatch: boolean; invalidReason?: string; }",
             "references": {
-              "DateFieldValidityState": {
+              "DateInputValidityState": {
                 "location": "local",
-                "path": "src/components/date-field/date-field.tsx",
-                "id": "src/components/date-field/date-field.tsx::DateFieldValidityState"
+                "path": "src/components/date-input/date-input.tsx",
+                "id": "src/components/date-input/date-input.tsx::DateInputValidityState"
               }
             }
           },
@@ -4841,7 +4838,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-date-field",
+        "ix-date-input",
         "ix-datetime-picker"
       ],
       "dependencies": [
@@ -4866,7 +4863,7 @@
         "ix-date-dropdown": [
           "ix-date-picker"
         ],
-        "ix-date-field": [
+        "ix-date-input": [
           "ix-date-picker"
         ],
         "ix-datetime-picker": [
@@ -6277,7 +6274,7 @@
         "ix-breadcrumb",
         "ix-category-filter",
         "ix-date-dropdown",
-        "ix-date-field",
+        "ix-date-input",
         "ix-date-picker",
         "ix-dropdown-button",
         "ix-menu-avatar",
@@ -6302,7 +6299,7 @@
         "ix-date-dropdown": [
           "ix-dropdown"
         ],
-        "ix-date-field": [
+        "ix-date-input": [
           "ix-dropdown"
         ],
         "ix-date-picker": [
@@ -8792,7 +8789,7 @@
         "ix-category-filter",
         "ix-chip",
         "ix-content-header",
-        "ix-date-field",
+        "ix-date-input",
         "ix-date-picker",
         "ix-drawer",
         "ix-dropdown-button",
@@ -8811,7 +8808,7 @@
         "ix-message-bar",
         "ix-modal-example",
         "ix-modal-header",
-        "ix-number-field",
+        "ix-number-input",
         "ix-pagination",
         "ix-pane",
         "ix-select",
@@ -8841,7 +8838,7 @@
         "ix-content-header": [
           "ix-icon-button"
         ],
-        "ix-date-field": [
+        "ix-date-input": [
           "ix-icon-button"
         ],
         "ix-date-picker": [
@@ -8898,7 +8895,7 @@
         "ix-modal-header": [
           "ix-icon-button"
         ],
-        "ix-number-field": [
+        "ix-number-input": [
           "ix-icon-button"
         ],
         "ix-pagination": [
@@ -9496,11 +9493,11 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/text-field",
-      "filePath": "src/components/text-field/text-field.tsx",
-      "fileName": "text-field.tsx",
-      "readmePath": "src/components/text-field/readme.md",
-      "usagesDir": "src/components/text-field/usage",
+      "dirPath": "src/components/input",
+      "filePath": "src/components/input/input.tsx",
+      "fileName": "input.tsx",
+      "readmePath": "src/components/input/readme.md",
+      "usagesDir": "src/components/input/usage",
       "tag": "ix-input",
       "overview": "",
       "usage": {},
@@ -9508,17 +9505,15 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper",
         "ix-icon-button",
@@ -9543,9 +9538,6 @@
         ],
         "ix-icon-button": [
           "ix-spinner"
-        ],
-        "ix-playground-internal": [
-          "ix-input"
         ]
       },
       "props": [
@@ -9848,10 +9840,10 @@
         },
         {
           "name": "type",
-          "type": "\"email\" | \"password\" | \"text\"",
+          "type": "\"email\" | \"password\" | \"tel\" | \"text\" | \"url\"",
           "complexType": {
-            "original": "'text' | 'email' | 'password'",
-            "resolved": "\"email\" | \"password\" | \"text\"",
+            "original": "'text' | 'email' | 'password' | 'tel' | 'url'",
+            "resolved": "\"email\" | \"password\" | \"tel\" | \"text\" | \"url\"",
             "references": {}
           },
           "mutable": false,
@@ -9870,7 +9862,15 @@
               "type": "string"
             },
             {
+              "value": "tel",
+              "type": "string"
+            },
+            {
               "value": "text",
+              "type": "string"
+            },
+            {
+              "value": "url",
               "type": "string"
             }
           ],
@@ -10414,19 +10414,13 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [],
-      "dependencyGraph": {
-        "ix-playground-internal": [
-          "ix-layout-auto"
-        ]
-      },
+      "dependencyGraph": {},
       "props": [
         {
           "name": "layout",
@@ -10476,8 +10470,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -10485,9 +10478,6 @@
           "ix-layout-grid"
         ],
         "ix-datetime-picker": [
-          "ix-layout-grid"
-        ],
-        "ix-playground-internal": [
           "ix-layout-grid"
         ]
       },
@@ -13721,23 +13711,23 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/text-field",
-      "filePath": "src/components/text-field/number-field.tsx",
-      "fileName": "number-field.tsx",
-      "readmePath": "src/components/text-field/readme.md",
-      "usagesDir": "src/components/text-field/usage",
-      "tag": "ix-number-field",
+      "dirPath": "src/components/input",
+      "filePath": "src/components/input/number-input.tsx",
+      "fileName": "number-input.tsx",
+      "readmePath": "src/components/input/readme.md",
+      "usagesDir": "src/components/input/usage",
+      "tag": "ix-number-input",
       "overview": "",
       "usage": {},
       "docs": "",
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -13747,7 +13737,7 @@
         "ix-icon-button"
       ],
       "dependencyGraph": {
-        "ix-number-field": [
+        "ix-number-input": [
           "ix-field-wrapper",
           "ix-icon-button"
         ],
@@ -15432,11 +15422,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -15612,11 +15602,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -15889,8 +15879,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
-        "ix-datetime-picker",
-        "ix-playground-internal"
+        "ix-datetime-picker"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -15898,9 +15887,6 @@
           "ix-row"
         ],
         "ix-datetime-picker": [
-          "ix-row"
-        ],
-        "ix-playground-internal": [
           "ix-row"
         ]
       },
@@ -15925,7 +15911,7 @@
       "docsTags": [
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -16055,7 +16041,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16177,7 +16163,7 @@
           "reflectToAttr": false,
           "docs": "Select list header",
           "docsTags": [],
-          "default": "'Please select an option'",
+          "default": "'Select an option'",
           "values": [
             {
               "type": "string"
@@ -16201,7 +16187,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16227,7 +16213,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16253,7 +16239,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16306,7 +16292,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16354,7 +16340,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "default": "false",
@@ -16411,7 +16397,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16437,7 +16423,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -16493,7 +16479,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "2.5.0"
+              "text": "2.6.0"
             }
           ],
           "values": [
@@ -18064,11 +18050,11 @@
       ]
     },
     {
-      "dirPath": "src/components/text-field",
-      "filePath": "src/components/text-field/textarea-field.tsx",
-      "fileName": "textarea-field.tsx",
-      "readmePath": "src/components/text-field/readme.md",
-      "usagesDir": "src/components/text-field/usage",
+      "dirPath": "src/components/input",
+      "filePath": "src/components/input/textarea.tsx",
+      "fileName": "textarea.tsx",
+      "readmePath": "src/components/input/readme.md",
+      "usagesDir": "src/components/input/usage",
       "tag": "ix-textarea",
       "overview": "",
       "usage": {},
@@ -18076,11 +18062,11 @@
       "docsTags": [
         {
           "name": "since",
-          "text": "2.5.0"
+          "text": "2.6.0"
         },
         {
           "name": "form-ready",
-          "text": "2.5.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -18345,20 +18331,20 @@
           "name": "resizeBehavior",
           "type": "\"both\" | \"horizontal\" | \"none\" | \"vertical\"",
           "complexType": {
-            "original": "TextareaFieldResizeBehavior",
+            "original": "TextareaResizeBehavior",
             "resolved": "\"both\" | \"horizontal\" | \"none\" | \"vertical\"",
             "references": {
-              "TextareaFieldResizeBehavior": {
+              "TextareaResizeBehavior": {
                 "location": "local",
-                "path": "src/components/text-field/textarea-field.tsx",
-                "id": "src/components/text-field/textarea-field.tsx::TextareaFieldResizeBehavior"
+                "path": "src/components/input/textarea.tsx",
+                "id": "src/components/input/textarea.tsx::TextareaResizeBehavior"
               }
             }
           },
           "mutable": false,
           "attr": "resize-behavior",
           "reflectToAttr": false,
-          "docs": "Determines the resize behavior of the textarea field.\n'dimensions' means the textarea will be resized based on textareaHeight and textareaWidth.\n'rowsCols' means the textarea will be resized based on textareaRows and textareaCols.",
+          "docs": "Determines the resize behavior of the textarea field.\nResizing can be enabled in one direction, both directions or completely disabled.",
           "docsTags": [],
           "default": "'both'",
           "values": [
@@ -18414,7 +18400,7 @@
           "mutable": false,
           "attr": "textarea-cols",
           "reflectToAttr": false,
-          "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docs": "The width of the textarea specified by number of characters.",
           "docsTags": [],
           "values": [
             {
@@ -18435,7 +18421,7 @@
           "mutable": false,
           "attr": "textarea-height",
           "reflectToAttr": false,
-          "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docs": "The height of the textarea field (e.g. \"52px\").",
           "docsTags": [],
           "values": [
             {
@@ -18456,7 +18442,7 @@
           "mutable": false,
           "attr": "textarea-rows",
           "reflectToAttr": false,
-          "docs": "The number of rows of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docs": "The height of the textarea specified by number of rows.",
           "docsTags": [],
           "values": [
             {
@@ -18477,7 +18463,7 @@
           "mutable": false,
           "attr": "textarea-width",
           "reflectToAttr": false,
-          "docs": "The height of the textarea field.\nHelpful if you want to set an initial height for the textarea.",
+          "docs": "The width of the textarea field (e.g. \"200px\").",
           "docsTags": [],
           "values": [
             {
@@ -19528,7 +19514,7 @@
       "docsTags": [
         {
           "name": "form-ready",
-          "text": "2.4.0"
+          "text": "2.6.0"
         }
       ],
       "encapsulation": "shadow",
@@ -20506,7 +20492,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Clicked",
+          "docs": "Click on item not on the expand/collapse icon",
           "docsTags": []
         },
         {
@@ -20737,7 +20723,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -20776,7 +20762,7 @@
               "type": "TypographyFormatCode"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -20836,7 +20822,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -20929,7 +20915,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -21631,11 +21617,6 @@
       "docstring": "",
       "path": "src/components/card/card.tsx"
     },
-    "src/components/typography/typography.tsx::TypographyVariants": {
-      "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
     "src/components/typography/typography.tsx::TypographyFormat": {
       "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
       "docstring": "",
@@ -21696,10 +21677,10 @@
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
-    "src/components/date-field/date-field.tsx::DateFieldValidityState": {
+    "src/components/date-input/date-input.tsx::DateInputValidityState": {
       "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
       "docstring": "",
-      "path": "src/components/date-field/date-field.tsx"
+      "path": "src/components/date-input/date-input.tsx"
     },
     "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
@@ -21811,10 +21792,10 @@
       "docstring": "",
       "path": "src/components/tab-item/tab-item.tsx"
     },
-    "src/components/text-field/textarea-field.tsx::TextareaFieldResizeBehavior": {
-      "declaration": "export type TextareaFieldResizeBehavior =\n  | 'both'\n  | 'horizontal'\n  | 'vertical'\n  | 'none';",
+    "src/components/input/textarea.tsx::TextareaResizeBehavior": {
+      "declaration": "export type TextareaResizeBehavior =\n  | 'both'\n  | 'horizontal'\n  | 'vertical'\n  | 'none';",
       "docstring": "",
-      "path": "src/components/text-field/textarea-field.tsx"
+      "path": "src/components/input/textarea.tsx"
     },
     "src/components/time-picker/time-picker.tsx::TimePickerCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
@@ -21832,7 +21813,7 @@
       "path": "src/components/toast/toast-utils.ts"
     },
     "src/components/utils/theme-switcher.ts::IxTheme": {
-      "declaration": "export type IxTheme =\n  | 'classic'\n  | 'classic-dark'\n  | 'classic-light'\n  | (string & {});",
+      "declaration": "export type IxTheme = LiteralStringUnion<\n  'classic' | 'classic-dark' | 'classic-light'\n>;",
       "docstring": "",
       "path": "src/components/utils/theme-switcher.ts"
     },
@@ -21862,7 +21843,7 @@
       "path": "src/components/category-filter/input-state.ts"
     },
     "src/components/utils/make-ref.ts::MakeRef": {
-      "declaration": "{\n  (ref: T): void;\n  current: T;\n  waitForCurrent(): Promise<T>;\n}",
+      "declaration": "{\n  (ref: T | undefined): void;\n  current: T | null;\n  waitForCurrent(): Promise<T>;\n}",
       "docstring": "",
       "path": "src/components/utils/make-ref.ts"
     },
@@ -21880,6 +21861,11 @@
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
+    },
+    "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

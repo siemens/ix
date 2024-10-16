@@ -12,7 +12,7 @@ Key aspects:
 
 ### Options
 
-- Tooltip and feedback: See [Field](forms-field.md) chapter
+- Tooltip and feedback: See [form field](forms-field.md).
 - Validation options:
   - On value change (validate during input)
   - On blur (validate on leaving a field)
@@ -71,5 +71,5 @@ Example: When the user completes the shipping address section of an e-commerce c
 
 ### Related patterns
 
-- [Field](forms-field.md)
+- [Form field](forms-field.md)
 - [Behavior](forms-behavior.md)
