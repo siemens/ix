@@ -166,7 +166,7 @@ export class DateDropdown {
    */
   @Event() private dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId!: 'custom' | (string & {});
+  @State() private selectedDateRangeId: string = 'custom';
   @State() private currentRangeValue!: {
     from: string;
     to: string;
