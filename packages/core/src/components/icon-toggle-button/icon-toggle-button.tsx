@@ -144,7 +144,6 @@ export class IconToggleButton {
         ...this.getIconSizeClass(),
       },
     };
-    console.log(baseButtonProps, this.disabled, this.loading);
 
     return (
       <Host
