@@ -602,13 +602,13 @@ The event payload contains information about the selected date range.
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
-  selector: 'ix-date-field',
+  selector: 'ix-date-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'format', 'helperText', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'name', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
 })
-export class IxDateField {
+export class IxDateInput {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -618,9 +618,9 @@ export class IxDateField {
 }
 
 
-import type { DateFieldValidityState as IIxDateFieldDateFieldValidityState } from '@siemens/ix';
+import type { DateInputValidityState as IIxDateInputDateInputValidityState } from '@siemens/ix';
 
-export declare interface IxDateField extends Components.IxDateField {
+export declare interface IxDateInput extends Components.IxDateInput {
   /**
    * Input change event.
    */
@@ -628,7 +628,7 @@ export declare interface IxDateField extends Components.IxDateField {
   /**
    * Validation state change event.
    */
-  validityStateChange: EventEmitter<CustomEvent<IIxDateFieldDateFieldValidityState>>;
+  validityStateChange: EventEmitter<CustomEvent<IIxDateInputDateInputValidityState>>;
 }
 
 
@@ -1943,13 +1943,13 @@ Can be prevented, in which case only the event is triggered, and the modal remai
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
-  selector: 'ix-number-field',
+  selector: 'ix-number-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
 })
-export class IxNumberField {
+export class IxNumberInput {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -1959,7 +1959,7 @@ export class IxNumberField {
 }
 
 
-export declare interface IxNumberField extends Components.IxNumberField {
+export declare interface IxNumberInput extends Components.IxNumberInput {
   /**
    * Event emitted when the value of the input field changes
    */
@@ -2680,7 +2680,7 @@ export declare interface IxTreeItem extends Components.IxTreeItem {
    */
   toggle: EventEmitter<CustomEvent<void>>;
   /**
-   * Clicked
+   * Click on item not on the expand/collapse icon
    */
   itemClick: EventEmitter<CustomEvent<void>>;
 }

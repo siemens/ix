@@ -4,7 +4,8 @@ SPDX-FileCopyrightText: 2024 Siemens AG
 SPDX-License-Identifier: MIT
 -->
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -13,19 +14,21 @@ SPDX-License-Identifier: MIT
     />
     <title>Stencil Component Starter</title>
     <style>
-      body {
+      .test-container {
         padding: 1rem;
       }
     </style>
   </head>
 
   <body>
-    <textarea
-      class="form-control"
-      placeholder="Enter text here"
-      disabled
-    ></textarea>
-    <textarea placeholder="Enter text here" disabled></textarea>
+    <div class="test-container">
+      <textarea
+        class="form-control"
+        placeholder="Enter text here"
+        disabled
+      ></textarea>
+      <textarea placeholder="Enter text here" disabled></textarea>
+    </div>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>
 </html>

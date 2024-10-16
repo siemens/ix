@@ -23,11 +23,11 @@ import {
   HookValidationLifecycle,
   FieldWrapperInterface,
   IxFormValidationState,
-} from '../utils/field';
+} from '../utils/input';
 
 /**
- * @since 2.5.0
- * @form-ready 2.5.0
+ * @since 2.6.0
+ * @form-ready 2.6.0
  */
 @Component({
   tag: 'ix-radio-group',
@@ -93,7 +93,7 @@ export class RadiobuttonGroup
   @State() isInfo = false;
   @State() isWarning = false;
 
-  private observer = new MutationObserver(() => {
+  private readonly observer = new MutationObserver(() => {
     this.ensureOnlyLastRadioChecked();
   });
 

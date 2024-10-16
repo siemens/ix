@@ -16,7 +16,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-special-toolbox.html',
-  styleUrls: ["./styles/charts.css"],
+  styleUrls: ["./echarts-special-toolbox.css"],
 })
 export default class EchartsSpecialToolbox implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());

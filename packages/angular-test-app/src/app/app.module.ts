@@ -13,51 +13,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import BasicNavigationWithOutHeader from '../preview-examples/basic-navigation-without-header';
-import CustomField from '../preview-examples/custom-field';
-import CustomFieldValidation from '../preview-examples/custom-field-validation';
-import DateField from '../preview-examples/date-field';
-import DateFieldDisabled from '../preview-examples/date-field-disabled';
-import DateFieldLabel from '../preview-examples/date-field-label';
-import DateFieldReadonly from '../preview-examples/date-field-readonly';
-import DateFieldValidation from '../preview-examples/date-field-validation';
-import FormValidation from '../preview-examples/form-validation';
-import LayoutAuto from '../preview-examples/layout-auto';
-import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
-import ModalByInstanceExample from '../preview-examples/modal-by-instance-content';
-import NumberField from '../preview-examples/number-field';
-import NumberFieldDisabled from '../preview-examples/number-field-disabled';
-import NumberFieldLabel from '../preview-examples/number-field-label';
-import NumberFieldReadonly from '../preview-examples/number-field-readonly';
-import NumberFieldStepperButton from '../preview-examples/number-field-stepper-button';
-import NumberFieldValidation from '../preview-examples/number-field-validation';
-import Radio from '../preview-examples/radio';
-import Radiobutton from '../preview-examples/radio-button';
-import RadioDisabled from '../preview-examples/radio-disabled';
-import RadioGroup from '../preview-examples/radio-group';
-import RadioValidation from '../preview-examples/radio-validation';
-import SelectValidation from '../preview-examples/select-validation';
-import TextField from '../preview-examples/text-field';
-import TextFieldDisabled from '../preview-examples/text-field-disabled';
-import TextFieldLabel from '../preview-examples/text-field-label';
-import TextFieldPattern from '../preview-examples/text-field-pattern';
-import TextFieldReadonly from '../preview-examples/text-field-readonly';
-import TextFieldTypes from '../preview-examples/text-field-types';
-import TextFieldValidation from '../preview-examples/text-field-validation';
-import TextareaField from '../preview-examples/textarea-field';
-import TextareaFieldDisabled from '../preview-examples/textarea-field-disabled';
-import TextareaFieldReadonly from '../preview-examples/textarea-field-readonly';
-import TextareaFieldRowsCols from '../preview-examples/textarea-field-rows-cols';
-import TextareaFieldValidation from '../preview-examples/textarea-field-validation';
-import ThemeSwitcherExample from '../preview-examples/theme-switcher';
-import ValidationSelect from '../preview-examples/validation-select';
-import ValidationTextField from '../preview-examples/validation-text-field';
-
 import { IxModule } from '@siemens/ix-angular';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AgGrid from '../preview-examples/aggrid';
@@ -96,8 +56,15 @@ import Chip from '../preview-examples/chip';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import CustomField from '../preview-examples/custom-field';
+import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
+import DateInput from '../preview-examples/date-input';
+import DateInputDisabled from '../preview-examples/date-input-disabled';
+import DateInputLabel from '../preview-examples/date-input-label';
+import DateInputReadonly from '../preview-examples/date-input-readonly';
+import DateInputValidation from '../preview-examples/date-input-validation';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -112,9 +79,8 @@ import DropdownIcon from '../preview-examples/dropdown-icon';
 import DropdownQuickActions from '../preview-examples/dropdown-quick-actions';
 import DropdownSubmenu from '../preview-examples/dropdown-submenu';
 import Echarts from '../preview-examples/echarts';
-import EchartsSpecial3d from 'src/preview-examples/echarts-special-3d';
-import EchartsBarSimple from '../preview-examples/echarts-bar-simple';
 import EchartsBarHorizontalStacked from '../preview-examples/echarts-bar-horizontal-stacked';
+import EchartsBarSimple from '../preview-examples/echarts-bar-simple';
 import EchartsCircle from '../preview-examples/echarts-circle';
 import EchartsEmptyState from '../preview-examples/echarts-empty-state';
 import EchartsGauge from '../preview-examples/echarts-gauge';
@@ -122,10 +88,11 @@ import EchartsLineAdvanced from '../preview-examples/echarts-line-advanced';
 import EchartsLineMultipleYAxis from '../preview-examples/echarts-line-multiple-y-axis';
 import EchartsLineSimple from '../preview-examples/echarts-line-simple';
 import EchartsPie from '../preview-examples/echarts-pie';
-import EchartsSpecialToolbox from '../preview-examples/echarts-special-toolbox';
-import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EchartsProgressArc from '../preview-examples/echarts-progress-arc';
 import EchartsProgressCircle from '../preview-examples/echarts-progress-circle';
+import EchartsSpecial3d from '../preview-examples/echarts-special-3d';
+import EchartsSpecialToolbox from '../preview-examples/echarts-special-toolbox';
+import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
@@ -135,6 +102,12 @@ import EventListCustomItemHeight from '../preview-examples/event-list-custom-ite
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
+import FormCheckbox from '../preview-examples/form-checkbox';
+import FormCheckboxDisabled from '../preview-examples/form-checkbox-disabled';
+import FormCheckboxGroup from '../preview-examples/form-checkbox-group';
+import FormCheckboxGroupIndeterminate from '../preview-examples/form-checkbox-group-indeterminate';
+import FormCheckboxValidation from '../preview-examples/form-checkbox-validation';
+import FormValidation from '../preview-examples/form-validation';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
 import GridSize from '../preview-examples/grid-size';
@@ -149,11 +122,19 @@ import IconToggleButtonSecondaryGhost from '../preview-examples/icon-toggle-butt
 import IconToggleButtonSecondaryOutline from '../preview-examples/icon-toggle-button-secondary-outline';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
-import InputLabels from '../preview-examples/input-labels';
+import InputFormValidation from '../preview-examples/input-form-validation';
+import InputLabel from '../preview-examples/input-label';
+import InputLegacy from '../preview-examples/input-legacy';
+import InputLegacyDisabled from '../preview-examples/input-legacy-disabled';
+import InputLegacyLabels from '../preview-examples/input-legacy-labels';
+import InputLegacyReadonly from '../preview-examples/input-legacy-readonly';
+import InputLegacySearch from '../preview-examples/input-legacy-search';
+import InputLegacyTypes from '../preview-examples/input-legacy-types';
+import InputLegacyWithIcon from '../preview-examples/input-legacy-with-icon';
+import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
-import InputSearch from '../preview-examples/input-search';
 import InputTypes from '../preview-examples/input-types';
-import InputWithIcon from '../preview-examples/input-with-icon';
+import InputValidation from '../preview-examples/input-validation';
 import KeyValue from '../preview-examples/key-value';
 import KeyValueList from '../preview-examples/key-value-list';
 import KeyValueListStriped from '../preview-examples/key-value-list-striped';
@@ -163,6 +144,8 @@ import KeyValueWithCustomValue from '../preview-examples/key-value-with-custom-v
 import KeyValueWithIcon from '../preview-examples/key-value-with-icon';
 import KeyValueWithLabelLeft from '../preview-examples/key-value-with-label-left';
 import Kpi from '../preview-examples/kpi';
+import LayoutAuto from '../preview-examples/layout-auto';
+import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
@@ -176,6 +159,12 @@ import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalSizes from '../preview-examples/modal-sizes';
+import NumberInput from '../preview-examples/number-input';
+import NumberInputDisabled from '../preview-examples/number-input-disabled';
+import NumberInputLabel from '../preview-examples/number-input-label';
+import NumberInputReadonly from '../preview-examples/number-input-readonly';
+import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
+import NumberInputValidation from '../preview-examples/number-input-validation';
 import Pagination from '../preview-examples/pagination';
 import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pane from '../preview-examples/pane';
@@ -184,11 +173,16 @@ import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
 import PushCard from '../preview-examples/push-card';
-import RadioButton from '../preview-examples/radio-button';
+import Radio from '../preview-examples/radio';
+import Radiobutton from '../preview-examples/radio-button';
+import RadioDisabled from '../preview-examples/radio-disabled';
+import RadioGroup from '../preview-examples/radio-group';
+import RadioValidation from '../preview-examples/radio-validation';
 import Select from '../preview-examples/select';
 import SelectEditable from '../preview-examples/select-editable';
 import SelectMultiple from '../preview-examples/select-multiple';
 import SelectNgModel from '../preview-examples/select-ng-model';
+import SelectValidation from '../preview-examples/select-validation';
 import Settings from '../preview-examples/settings';
 import Slider from '../preview-examples/slider';
 import SliderError from '../preview-examples/slider-error';
@@ -202,7 +196,12 @@ import Tabs from '../preview-examples/tabs';
 import TabsRounded from '../preview-examples/tabs-rounded';
 import Textarea from '../preview-examples/textarea';
 import TextareaDisabled from '../preview-examples/textarea-disabled';
+import TextareaLegacy from '../preview-examples/textarea-legacy';
+import TextareaLegacyDisabled from '../preview-examples/textarea-legacy-disabled';
+import TextareaLegacyReadonly from '../preview-examples/textarea-legacy-readonly';
 import TextareaReadonly from '../preview-examples/textarea-readonly';
+import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
+import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeSwitcher from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import Timepicker from '../preview-examples/timepicker';
@@ -226,16 +225,16 @@ import Tree from '../preview-examples/tree';
 import TreeCustom from '../preview-examples/tree-custom';
 import Upload from '../preview-examples/upload';
 import Validation from '../preview-examples/validation';
+import ValidationSelect from '../preview-examples/validation-select';
 import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-group-indeterminate";
 
 @NgModule({
   declarations: [
     FormValidation,
-    ValidationTextField,
+    InputFormValidation,
     AppComponent,
     AboutAndLegal,
     ActionCard,
@@ -276,11 +275,11 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     CustomFieldValidation,
     DateDropdown,
     DateDropdownUserRange,
-    DateField,
-    DateFieldDisabled,
-    DateFieldLabel,
-    DateFieldReadonly,
-    DateFieldValidation,
+    DateInput,
+    DateInputDisabled,
+    DateInputLabel,
+    DateInputReadonly,
+    DateInputValidation,
     ContentExample,
     DateDropdown,
     DateDropdownUserRange,
@@ -323,6 +322,10 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     EventList,
     ExpandingSearch,
     FlipTile,
+    FormCheckbox,
+    FormCheckboxDisabled,
+    FormCheckboxValidation,
+    FormCheckboxGroup,
     FormCheckboxGroupIndeterminate,
     GridPadding,
     GridSize,
@@ -336,20 +339,19 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     IconToggleButtonSecondaryGhost,
     IconToggleButtonSecondaryOutline,
     IconToggleButtonSecondary,
-    InputDisabled,
-    InputLabels,
-    InputReadonly,
-    InputSearch,
-    InputTypes,
-    InputWithIcon,
-    Input,
+    InputLegacyDisabled,
+    InputLegacyLabels,
+    InputLegacyReadonly,
+    InputLegacySearch,
+    InputLegacyTypes,
+    InputLegacyWithIcon,
+    InputLegacy,
     KeyValueListStriped,
     KeyValueListWithCustomValue,
     KeyValueListWithIcon,
     KeyValueList,
     KeyValueWithCustomValue,
     KeyValueWithIcon,
-    BasicNavigationWithOutHeader,
     KeyValueWithLabelLeft,
     KeyValue,
     Kpi,
@@ -379,7 +381,6 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     RadioGroup,
     RadioValidation,
     PushCard,
-    RadioButton,
     SelectEditable,
     SelectMultiple,
     SelectNgModel,
@@ -396,22 +397,21 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     SplitButton,
     TabsRounded,
     Tabs,
-    TextareaDisabled,
-    TextareaField,
-    TextareaFieldDisabled,
-    TextareaFieldReadonly,
-    TextareaFieldRowsCols,
-    TextareaFieldValidation,
-    TextField,
-    TextFieldDisabled,
-    TextFieldLabel,
-    TextFieldReadonly,
-    TextFieldTypes,
-    TextFieldValidation,
-    TextFieldPattern,
-    ThemeSwitcherExample,
-    TextareaReadonly,
+    TextareaLegacyDisabled,
     Textarea,
+    TextareaDisabled,
+    TextareaReadonly,
+    TextareaRowsCols,
+    TextareaValidation,
+    Input,
+    InputDisabled,
+    InputLabel,
+    InputReadonly,
+    InputTypes,
+    InputValidation,
+    InputPattern,
+    TextareaLegacyReadonly,
+    TextareaLegacy,
     ThemeSwitcher,
     Tile,
     Timepicker,
@@ -440,17 +440,15 @@ import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-gr
     WorkflowVertical,
     MapNavigation,
     MapNavigationOverlay,
-    NumberField,
-    NumberFieldDisabled,
-    NumberFieldLabel,
-    NumberFieldReadonly,
-    NumberFieldStepperButton,
-    NumberFieldValidation,
+    NumberInput,
+    NumberInputDisabled,
+    NumberInputLabel,
+    NumberInputReadonly,
+    NumberInputStepperButton,
+    NumberInputValidation,
     TabsRounded,
     DatepickerRange,
     Tooltip,
-    ModalByInstance,
-    ModalByInstanceExample,
     PushCard,
     ActionCard,
     Card,

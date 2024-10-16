@@ -702,7 +702,7 @@ export async function openStackBlitz({
     baseUrl,
     version,
   });
-  if (project) {
+  if (await project) {
     const { open } = await project;
     open();
   }

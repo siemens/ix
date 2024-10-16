@@ -46,7 +46,7 @@ const appSwitchConfig: AppSwitchConfiguration = {
 };
 </script>
 
-<style scoped src="./styles/application.css"></style>
+<style scoped src="./application-app-switch.css"></style>
 
 <template>
   <IxApplication :appSwitchConfig="appSwitchConfig">

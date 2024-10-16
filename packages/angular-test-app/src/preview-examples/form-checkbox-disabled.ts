@@ -13,5 +13,4 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   templateUrl: `./form-checkbox-disabled.html`,
 })
-export default class FormCheckboxDisabled {
-}
+export default class FormCheckboxDisabled {}

@@ -10,7 +10,6 @@ import { useLayoutEffect, useRef } from 'react';
 import sdk from '@stackblitz/sdk';
 import {
   createStackblitzConfig,
-  fetchSourceFilesByFileName,
   fetchSourceFilesFromExample,
 } from '../PlaygroundV2/utils';
 import useBaseUrl from '@docusaurus/useBaseUrl';

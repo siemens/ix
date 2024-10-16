@@ -13,11 +13,11 @@ import {
   HookValidationLifecycle,
   IxFormValidationState,
   ValidationResults,
-} from '../utils/field';
+} from '../utils/input';
 import { IxComponent } from '../utils/internal';
 
 /**
- * @since 2.5.0
+ * @since 2.6.0
  */
 @Component({
   tag: 'ix-custom-field',

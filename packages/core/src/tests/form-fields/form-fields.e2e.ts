@@ -9,11 +9,13 @@
 
 import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+import type { LiteralStringUnion } from './../../components/utils/type-helper';
 
-async function changeState(
-  page: Page,
-  state: 'info' | 'warning' | 'valid' | 'invalid' | (string & {})
-) {
+type FormElementState = LiteralStringUnion<
+  'info' | 'warning' | 'valid' | 'invalid'
+>;
+
+async function changeState(page: Page, state: FormElementState) {
   return page.evaluate(
     ([state]) => {
       const elements = document.querySelectorAll(
@@ -31,8 +33,8 @@ async function changeToReadonly(page: Page) {
   return page.evaluate(() => {
     const elements = document.querySelectorAll(
       '[data-field], ix-radio, ix-checkbox'
-    );
-    Array.from(elements).forEach((element: HTMLInputElement) => {
+    ) as NodeListOf<HTMLInputElement>;
+    Array.from(elements).forEach((element) => {
       element.readOnly = true;
       element.setAttribute('readonly', '');
     });
@@ -43,8 +45,8 @@ async function changeToDisabled(page: Page) {
   return page.evaluate(() => {
     const elements = document.querySelectorAll(
       '[data-field], ix-radio, ix-checkbox'
-    );
-    Array.from(elements).forEach((element: HTMLInputElement) => {
+    ) as NodeListOf<HTMLInputElement>;
+    Array.from(elements).forEach((element) => {
       element.disabled = true;
     });
   });

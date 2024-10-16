@@ -1,3 +1,4 @@
+import { type LiteralStringUnion } from './type-helper';
 import { TypedEvent } from './typed-event';
 
 export type ThemeVariant = 'light' | 'dark';
@@ -8,7 +9,7 @@ class ThemeSwitcher {
   readonly suffixDark = '-dark';
   readonly defaultTheme = 'theme-classic-dark';
 
-  mutationObserver: MutationObserver;
+  mutationObserver?: MutationObserver;
   _themeChanged = new TypedEvent<string>();
 
   public get themeChanged() {
@@ -115,6 +116,8 @@ class ThemeSwitcher {
     if (themeName.endsWith(this.suffixLight)) {
       return themeName.replace(/-light$/g, this.suffixDark);
     }
+
+    return '';
   }
 
   private handleMutations(mutations: MutationRecord[]) {
@@ -158,11 +161,9 @@ class ThemeSwitcher {
   }
 }
 
-export type IxTheme =
-  | 'classic'
-  | 'classic-dark'
-  | 'classic-light'
-  | (string & {});
+export type IxTheme = LiteralStringUnion<
+  'classic' | 'classic-dark' | 'classic-light'
+>;
 
 export const getCurrentSystemAppearance = (): ThemeVariant => {
   const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');

@@ -20,11 +20,11 @@ import {
   Element,
 } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
-import { IxFormComponent } from '../utils/field';
+import { IxFormComponent } from '../utils/input';
 
 /**
- * @since 2.5.0
- * @form-ready 2.5.0
+ * @since 2.6.0
+ * @form-ready 2.6.0
  */
 @Component({
   tag: 'ix-radio',
@@ -76,7 +76,7 @@ export class Radio implements IxFormComponent<string> {
    * */
   required = false;
 
-  private inputRef = makeRef<HTMLInputElement>((radiobuttonRef) => {
+  private readonly inputRef = makeRef<HTMLInputElement>((radiobuttonRef) => {
     radiobuttonRef.checked = this.checked;
   });
 
@@ -149,7 +149,9 @@ export class Radio implements IxFormComponent<string> {
             type="radio"
             onChange={() => {
               const ref = this.inputRef.current;
-              this.setCheckedState(ref.checked);
+              if (ref) {
+                this.setCheckedState(ref.checked);
+              }
             }}
           />
           <button

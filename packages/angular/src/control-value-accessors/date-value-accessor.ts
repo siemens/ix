@@ -11,7 +11,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ValueAccessor } from './value-accessor';
 
 @Directive({
-  selector: 'ix-date-field',
+  selector: 'ix-date-input',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

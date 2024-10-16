@@ -21,6 +21,6 @@ import { Component } from '@angular/core';
       <ix-workflow-step disabled>Step 6</ix-workflow-step>
     </ix-workflow-steps>
   `,
-  styleUrls: ['./styles/workflow.css'],
+  styleUrls: ['./workflow.css'],
 })
 export default class Workflow {}

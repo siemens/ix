@@ -139,11 +139,6 @@
   :host(#{$selector}) {
     button {
       @content;
-    }
-  }
-
-  :host(#{$selector}) {
-    button {
       background-color: var(--theme-checkbox-unchecked--background);
       border: var(--theme-checkbox--border-thickness) solid
         var(--theme-checkbox-unchecked--border-color);

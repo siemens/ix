@@ -4,12 +4,12 @@ import {
   HookValidationLifecycle,
   IxFormValidationState,
   ValidationResults,
-} from '../utils/field';
+} from '../utils/input';
 import { IxComponent } from '../utils/internal';
 
 /**
- * @since 2.5.0
- * @form-ready 2.5.0
+ * @since 2.6.0
+ * @form-ready 2.6.0
  */
 @Component({
   tag: 'ix-checkbox-group',

@@ -43,7 +43,7 @@ export function customRequiredValidator(): ValidatorFn {
     if (!control.untouched) {
       return Validators.required(control);
     }
-    return null
+    return null;
   };
 }
 
@@ -52,7 +52,7 @@ export function customRequiredValidator(): ValidatorFn {
   templateUrl: `./form-validation.html`,
   styles: [
     `
-      @import './styles/validation.css';
+      @import './form-validation.css';
     `,
   ],
 })

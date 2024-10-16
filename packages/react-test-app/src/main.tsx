@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './preview-examples/styles/global.css';
+import './preview-examples/global.css';
 
 import { IxApplicationContext } from '@siemens/ix-react';
 import ReactDOM from 'react-dom/client';
@@ -109,13 +109,13 @@ import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-butto
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary';
 import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost';
 import IconToggleButtonSecondaryOutline from './preview-examples/icon-toggle-button-secondary-outline';
-import Input from './preview-examples/input';
-import InputDisabled from './preview-examples/input-disabled';
-import InputLabels from './preview-examples/input-labels';
-import InputReadonly from './preview-examples/input-readonly';
-import InputSearch from './preview-examples/input-search';
-import InputTypes from './preview-examples/input-types';
-import InputWithIcon from './preview-examples/input-with-icon';
+import InputLegacy from './preview-examples/input-legacy';
+import InputLegacyDisabled from './preview-examples/input-legacy-disabled';
+import InputLegacyLabels from './preview-examples/input-legacy-labels';
+import InputLegacyReadonly from './preview-examples/input-legacy-readonly';
+import InputLegacySearch from './preview-examples/input-legacy-search';
+import InputLegacyTypes from './preview-examples/input-legacy-types';
+import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon';
 import KeyValue from './preview-examples/key-value';
 import KeyValueList from './preview-examples/key-value-list';
 import KeyValueListStriped from './preview-examples/key-value-list-striped';
@@ -136,12 +136,12 @@ import Message from './preview-examples/message';
 import MessageBar from './preview-examples/message-bar';
 import Modal from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
-import NumberField from './preview-examples/number-field';
-import NumberFieldDisabled from './preview-examples/number-field-disabled';
-import NumberFieldLabel from './preview-examples/number-field-label';
-import NumberFieldReadonly from './preview-examples/number-field-readonly';
-import NumberFieldStepperButton from './preview-examples/number-field-stepper-button';
-import NumberFieldValidation from './preview-examples/number-field-validation';
+import NumberInput from './preview-examples/number-input';
+import NumberInputDisabled from './preview-examples/number-input-disabled';
+import NumberInputLabel from './preview-examples/number-input-label';
+import NumberInputReadonly from './preview-examples/number-input-readonly';
+import NumberInputStepperButton from './preview-examples/number-input-stepper-button';
+import NumberInputValidation from './preview-examples/number-input-validation';
 import Pagination from './preview-examples/pagination';
 import PaginationAdvanced from './preview-examples/pagination-advanced';
 import Pane from './preview-examples/pane';
@@ -170,21 +170,21 @@ import SplitButton from './preview-examples/split-button';
 import SplitButtonIcons from './preview-examples/split-button-icons';
 import Tabs from './preview-examples/tabs';
 import TabsRounded from './preview-examples/tabs-rounded';
+import TextareaLegacy from './preview-examples/textarea-legacy';
+import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled';
+import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly';
 import Textarea from './preview-examples/textarea';
 import TextareaDisabled from './preview-examples/textarea-disabled';
 import TextareaReadonly from './preview-examples/textarea-readonly';
-import TextareaField from './preview-examples/textarea-field';
-import TextareaFieldDisabled from './preview-examples/textarea-field-disabled';
-import TextareaFieldReadonly from './preview-examples/textarea-field-readonly';
-import TextareaFieldRowCols from './preview-examples/textarea-field-rows-cols';
-import TextareaFieldValidation from './preview-examples/textarea-field-validation';
-import TextField from './preview-examples/text-field';
-import TextFieldDisabled from './preview-examples/text-field-disabled';
-import TextFieldLabel from './preview-examples/text-field-label';
-import TextFieldPattern from './preview-examples/text-field-pattern';
-import TextFieldReadonly from './preview-examples/text-field-readonly';
-import TextFieldTypes from './preview-examples/text-field-types';
-import TextFieldValidation from './preview-examples/text-field-validation';
+import TextareaRowCols from './preview-examples/textarea-rows-cols';
+import TextareaValidation from './preview-examples/textarea-validation';
+import Input from './preview-examples/input';
+import InputDisabled from './preview-examples/input-disabled';
+import InputLabel from './preview-examples/input-label';
+import InputPattern from './preview-examples/input-pattern';
+import InputReadonly from './preview-examples/input-readonly';
+import InputTypes from './preview-examples/input-types';
+import InputValidation from './preview-examples/input-validation';
 import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
 import Timepicker from './preview-examples/timepicker';
@@ -453,13 +453,31 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/icon-toggle-button-secondary"
           element={<IconToggleButtonSecondary />}
         />
-        <Route path="/preview/input-disabled" element={<InputDisabled />} />
-        <Route path="/preview/input-labels" element={<InputLabels />} />
-        <Route path="/preview/input-readonly" element={<InputReadonly />} />
-        <Route path="/preview/input-search" element={<InputSearch />} />
-        <Route path="/preview/input-types" element={<InputTypes />} />
-        <Route path="/preview/input-with-icon" element={<InputWithIcon />} />
-        <Route path="/preview/input" element={<Input />} />
+        <Route
+          path="/preview/input-legacy-disabled"
+          element={<InputLegacyDisabled />}
+        />
+        <Route
+          path="/preview/input-legacy-labels"
+          element={<InputLegacyLabels />}
+        />
+        <Route
+          path="/preview/input-legacy-readonly"
+          element={<InputLegacyReadonly />}
+        />
+        <Route
+          path="/preview/input-legacy-search"
+          element={<InputLegacySearch />}
+        />
+        <Route
+          path="/preview/input-legacy-types"
+          element={<InputLegacyTypes />}
+        />
+        <Route
+          path="/preview/input-legacy-with-icon"
+          element={<InputLegacyWithIcon />}
+        />
+        <Route path="/preview/input-legacy" element={<InputLegacy />} />
         <Route
           path="/preview/key-value-list-striped"
           element={<KeyValueListStriped />}
@@ -549,6 +567,15 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/tabs-rounded" element={<TabsRounded />} />
         <Route path="/preview/tabs" element={<Tabs />} />
         <Route
+          path="/preview/textarea-legacy-disabled"
+          element={<TextareaLegacyDisabled />}
+        />
+        <Route
+          path="/preview/textarea-legacy-readonly"
+          element={<TextareaLegacyReadonly />}
+        />
+        <Route path="/preview/textarea" element={<Textarea />} />
+        <Route
           path="/preview/textarea-disabled"
           element={<TextareaDisabled />}
         />
@@ -556,43 +583,22 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/textarea-readonly"
           element={<TextareaReadonly />}
         />
-        <Route path="/preview/textarea-field" element={<TextareaField />} />
         <Route
-          path="/preview/textarea-field-disabled"
-          element={<TextareaFieldDisabled />}
+          path="/preview/textarea-rows-cols"
+          element={<TextareaRowCols />}
         />
         <Route
-          path="/preview/textarea-readonly"
-          element={<TextareaFieldReadonly />}
+          path="/preview/textarea-validation"
+          element={<TextareaValidation />}
         />
-        <Route
-          path="/preview/textarea-field-rows-cols"
-          element={<TextareaFieldRowCols />}
-        />
-        <Route
-          path="/preview/textarea-field-validation"
-          element={<TextareaFieldValidation />}
-        />
-        <Route path="/preview/text-field" element={<TextField />} />
-        <Route
-          path="/preview/text-field-disabled"
-          element={<TextFieldDisabled />}
-        />
-        <Route path="/preview/text-field-label" element={<TextFieldLabel />} />
-        <Route
-          path="/preview/text-field-pattern"
-          element={<TextFieldPattern />}
-        />
-        <Route
-          path="/preview/text-field-readonly"
-          element={<TextFieldReadonly />}
-        />
-        <Route path="/preview/text-field-types" element={<TextFieldTypes />} />
-        <Route
-          path="/preview/text-field-validation"
-          element={<TextFieldValidation />}
-        />
-        <Route path="/preview/textarea" element={<Textarea />} />
+        <Route path="/preview/input" element={<Input />} />
+        <Route path="/preview/input-disabled" element={<InputDisabled />} />
+        <Route path="/preview/input-label" element={<InputLabel />} />
+        <Route path="/preview/input-pattern" element={<InputPattern />} />
+        <Route path="/preview/input-readonly" element={<InputReadonly />} />
+        <Route path="/preview/input-types" element={<InputTypes />} />
+        <Route path="/preview/input-validation" element={<InputValidation />} />
+        <Route path="/preview/textarea-legacy" element={<TextareaLegacy />} />
         <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
         <Route path="/preview/tile" element={<Tile />} />
         <Route path="/preview/timepicker" element={<Timepicker />} />
@@ -632,26 +638,26 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/toggle" element={<Toggle />} />
         <Route path="/preview/tooltip" element={<Tooltip />} />
         <Route path="/preview/tree-custom" element={<TreeCustom />} />
-        <Route path="/preview/number-field" element={<NumberField />} />
+        <Route path="/preview/number-input" element={<NumberInput />} />
         <Route
-          path="/preview/number-field-disabled"
-          element={<NumberFieldDisabled />}
+          path="/preview/number-input-disabled"
+          element={<NumberInputDisabled />}
         />
         <Route
-          path="/preview/number-field-label"
-          element={<NumberFieldLabel />}
+          path="/preview/number-input-label"
+          element={<NumberInputLabel />}
         />
         <Route
-          path="/preview/number-field-readonly"
-          element={<NumberFieldReadonly />}
+          path="/preview/number-input-readonly"
+          element={<NumberInputReadonly />}
         />
         <Route
-          path="/preview/number-field-stepper-button"
-          element={<NumberFieldStepperButton />}
+          path="/preview/number-input-stepper-button"
+          element={<NumberInputStepperButton />}
         />
         <Route
-          path="/preview/number-field-validation"
-          element={<NumberFieldValidation />}
+          path="/preview/number-input-validation"
+          element={<NumberInputValidation />}
         />
         <Route path="/preview/tree" element={<Tree />} />
         <Route path="/preview/upload" element={<Upload />} />

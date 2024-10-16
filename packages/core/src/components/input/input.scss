@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import 'components/form/input';
+@import 'mixins/shadow-dom/component';
+@import 'mixins/validation/form-component';
+@import './input.mixins.scss';
+
+@include input-field;
+
+:host {
+  .password-eye {
+    margin-left: 0.125rem;
+    color: red;
+  }
+}

@@ -36,10 +36,7 @@ export class DateTimeCard {
   private cardClasses() {
     return {
       card: true,
-      standaloneAppearance:
-        this.standaloneAppearance !== undefined
-          ? this.standaloneAppearance
-          : this.individual,
+      standaloneAppearance: this.standaloneAppearance ?? this.individual,
       rounded: this.corners === 'rounded',
       left: this.corners === 'left',
       right: this.corners === 'right',

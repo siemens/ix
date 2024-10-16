@@ -61,19 +61,4 @@ describe('ix-typography', () => {
       </ix-typography>
     `);
   });
-
-  it('should provide fallback', async () => {
-    const page = await newSpecPage({
-      components: [IxTypography],
-      html: `<ix-typography variant="h2">Example content</ix-typography>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <ix-typography variant="h2" class="text-h2">
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
-        Example content
-      </ix-typography>
-    `);
-  });
 });

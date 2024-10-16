@@ -40,7 +40,7 @@ test('focus native input by label click', async ({ mount, page }) => {
 });
 
 test.describe('click label', () => {
-  ['ix-input', 'ix-number-field', 'ix-date-field', 'ix-textarea-field'].forEach(
+  ['ix-input', 'ix-number-input', 'ix-date-input', 'ix-textarea'].forEach(
     (selector) => {
       test(`focus ${selector} by external label click`, async ({
         mount,
@@ -55,7 +55,7 @@ test.describe('click label', () => {
 
         const component = page.locator(selector);
         const focusElement =
-          selector !== 'ix-textarea-field'
+          selector !== 'ix-textarea'
             ? component.locator('input')
             : component.locator('textarea');
         await expect(focusElement).toBeFocused();
@@ -79,7 +79,7 @@ test.describe('click label', () => {
         await labelElement.click();
 
         const focusElement =
-          selector !== 'ix-textarea-field'
+          selector !== 'ix-textarea'
             ? component.locator('input')
             : component.locator('textarea');
 
@@ -147,10 +147,10 @@ test('invalid color with invalid text field', async ({ mount, page }) => {
 
 test('valid color with valid textarea field', async ({ mount, page }) => {
   await mount(`
-    <ix-textarea-field label="label text">valid field</ix-textarea-field>
+    <ix-textarea label="label text">valid field</ix-textarea>
   `);
 
-  const fieldElement = page.locator('ix-textarea-field');
+  const fieldElement = page.locator('ix-textarea');
   const labelElement = page.locator('ix-field-label');
 
   await expect(fieldElement).not.toHaveClass(/ix-invalid--required/);
@@ -163,10 +163,10 @@ test('valid color with valid textarea field', async ({ mount, page }) => {
 
 test('invalid color with invalid textarea field', async ({ mount, page }) => {
   await mount(`
-    <ix-textarea-field label="invalid label text" required>valid field</ix-textarea-field>
+    <ix-textarea label="invalid label text" required>valid field</ix-textarea>
   `);
 
-  const fieldElement = page.locator('ix-textarea-field');
+  const fieldElement = page.locator('ix-textarea');
   const labelElement = page.locator('ix-field-label');
 
   await expect(fieldElement).not.toHaveClass(/ix-invalid--required/);
