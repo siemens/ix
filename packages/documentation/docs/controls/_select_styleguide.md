@@ -11,7 +11,7 @@ Selects provide users to make a single or multi selection from a filterable list
 7. Dropdown list
 8. List header
 9. Selected list item
-10. Add new option (editable mode)
+10. Editable mode (add new option)
 
 ## Options
 
@@ -20,11 +20,12 @@ Selects provide users to make a single or multi selection from a filterable list
 - **Helper text**: See [form field](forms-field.md).
 - **Feedback text**: See [form field](forms-field.md).
 - **Show clear button**: Selects can have a dedicated button to easily clear the selection. Hide the button when you offer other ways to reset (e.g. a default option like "none"), or if you aim for a simplified keyboard accessibility.
-- **Select list header:** Use a header to provide additional context or instructions about the options to help users understand the choices better. 
-- **Hide list header**: Hide the header of the dropdown list when it is not needed.
+- **List header:** Use a header to provide additional context or instructions about the options to help users understand the choices better. 
+	- **Hide list header**: Hide the header of the dropdown list when it is not needed.
 - **Hint for no matches**: Set a message that is displayed when no item matches the inserted text.
-- **Editable**: Allow users to add new options to the list.
-- **Multi-select**: Allow users to select multiple items from the list.
+- **Editable**: When enabled users can add new options to the list.
+- **Multiselect**: Allow users to select multiple items from the list.
+TODO: Option label
 ## Behavior in context
 
 - **Validation**: See [validation](forms-validation.md).
@@ -36,9 +37,9 @@ Selects provide users to make a single or multi selection from a filterable list
 	- Escape key closes dropdown list and returns to the originally selected value.
 - **Overflow**: 
 	- The text in an input field is truncated with the length of the container.
-	- On the multi-select, the selected items break into a second line and then shows a scrollbar if it grows beyond.
+	- On the multiselect, the selected items break into a second line and then shows a scrollbar if it grows beyond.
 	- The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item.
-- **Alignment**: Selects are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input,md).
+- **Alignment**: Selects are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input.md).
 ## States
 
 The select field has five states: default, hover, active/focused, disabled and read-only. In the disabled state, the input field is displayed without offering any user interaction.
@@ -48,12 +49,13 @@ The select field has five states: default, hover, active/focused, disabled and r
 
 - Do take care of performance when loading an extensive list of options
 - Do use selects when there is a finite list of options available to avoid manual input errors or duplicates
-- Do sort items logically (e.g. alphabetically, numerically)
+- Do sort items logically (for example alphabetically or numerically)
 - Do use short and concise labels for items
-- Don’t use selects if users need to compare options based on multiple criteria (use [tables](table.md) or [event lists](event-list.md) with a search functionality instead)
-- Don't use selects for binary choices, e.g. yes and no (use [radio buttons](radio.mdx), [checkboxes](checkbox.mdx) or [toggles](../toggle.md) instead)
+- Don't use selects for binary choices, like yes and no (use [radio buttons](radio.mdx), [checkboxes](checkbox.mdx) or [toggles](../toggle.md) instead)
 - Don't use selects for navigational or search patterns (use [category filters](../category-filter.md) or [search fields](expanding-search.md) instead)
+- Don't combine several data attributes in an option label (use [tables](table.md) or [event lists](event-list.md) with a search functionality instead)
 
+TODO IMAGE
 ## Related patterns
 
 - [Form field](./forms/forms-field.md)
