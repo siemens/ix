@@ -84,10 +84,10 @@ export class PlaygroundInternal {
               padding: '2rem',
             }}
           >
-            {/* 1. Improvement */}
+            {/* 1. Issue */}
             <div>
               <ix-typography format="h3" style={{ marginBottom: '0.5rem' }}>
-                1. Improvement
+                1. Issue
               </ix-typography>
               <ix-typography textColor="weak" style={{ marginBottom: '1rem' }}>
                 Tooltip for form fields with showTextAsTooltip set is also shown
@@ -146,10 +146,10 @@ export class PlaygroundInternal {
               </form>
             </div>
 
-            {/* 3. Improvement */}
+            {/* 3. Issue */}
             <div>
               <ix-typography format="h3" style={{ marginBottom: '0.5rem' }}>
-                3. Improvement
+                3. Issue
               </ix-typography>
               <ix-typography textColor="weak" style={{ marginBottom: '1rem' }}>
                 Length indicator should show 0/MAX_LENGTH even when the value is
@@ -182,10 +182,10 @@ export class PlaygroundInternal {
               </form>
             </div>
 
-            {/* 4. Improvement */}
+            {/* 4. Issue */}
             <div>
               <ix-typography format="h3" style={{ marginBottom: '0.5rem' }}>
-                4. Improvement
+                4. Issue
               </ix-typography>
               <ix-typography textColor="weak" style={{ marginBottom: '1rem' }}>
                 Component ix-category-filter is automatically focused when
@@ -221,9 +221,15 @@ export class PlaygroundInternal {
               <ix-typography format="h3" style={{ marginBottom: '0.5rem' }}>
                 5. Improvement
               </ix-typography>
-              <ix-typography textColor="weak" style={{ marginBottom: '1rem' }}>
+              <ix-typography
+                textColor="weak"
+                style={{ marginBottom: '0.5rem' }}
+              >
                 If an input is required the error state is set initially,
                 without the user taking an action.
+              </ix-typography>
+              <ix-typography style={{ marginBottom: '1rem' }}>
+                Note: has the same behavior as the html input field
               </ix-typography>
               <form
                 onSubmit={(event) => this.handleInputTwoSubmit(event)}
@@ -235,10 +241,12 @@ export class PlaygroundInternal {
                 }}
               >
                 <ix-input
+                  class="form-control"
                   value={this.inputValueTwo}
                   onInput={(event) => this.handleInputTwoChange(event)}
                   required
                 ></ix-input>
+
                 <ix-button type="submit">Submit (Logs)</ix-button>
               </form>
             </div>
@@ -248,13 +256,19 @@ export class PlaygroundInternal {
               <ix-typography format="h3" style={{ marginBottom: '0.5rem' }}>
                 6. Requirement
               </ix-typography>
-              <ix-typography textColor="weak">
-                When developing the onboarding console, we had the requirement
+              <ix-typography
+                textColor="weak"
+                style={{ marginBottom: '0.5rem' }}
+              >
+                While developing the onboarding console, we had the requirement
                 of a draggable event list, which is in addition able to display
                 an error state for each item. Therefore we created a custom
                 event list similar to the ix component, where each item is
                 draggable and indicates its state by changing the color of the
                 left bar accordingly.
+              </ix-typography>
+              <ix-typography>
+                Note: is eventually covered in generic list
               </ix-typography>
             </div>
 
@@ -289,13 +303,19 @@ export class PlaygroundInternal {
               <ix-typography format="h3" style={{ marginBottom: '0.5rem' }}>
                 8. Requirement
               </ix-typography>
-              <ix-typography textColor="weak" style={{ marginBottom: '1rem' }}>
+              <ix-typography
+                textColor="weak"
+                style={{ marginBottom: '0.5rem' }}
+              >
                 The ix-tooltip as well as globally styled elements like the HTML
                 table are not displayed correctly inside a shadow dom. This is
                 in principle working as intended since this is how a shadow dom
                 works, but we should provide a solution for the tooltip as well
                 as for components styled globally by ix like the HTML table
                 (small css packages containing the corresponding classes).
+              </ix-typography>
+              <ix-typography style={{ marginBottom: '1rem' }}>
+                Note: small css packages exist
               </ix-typography>
               <div
                 style={{
@@ -305,14 +325,37 @@ export class PlaygroundInternal {
                   width: '100%',
                 }}
               >
-                <ix-card class="my-card" style={{ width: '100%' }}>
+                <ix-card
+                  my-custom-special-selector="any-value"
+                  aria-describedby="tooltip-1"
+                  style={{ width: '100%' }}
+                >
                   <ix-card-content>
                     <ix-typography>
-                      Tooltip should appear on hover
+                      Tooltip should appear on hover (with special selector)
                     </ix-typography>
                   </ix-card-content>
                 </ix-card>
-                <ix-tooltip for=".my-card">Tooltip</ix-tooltip>
+                <ix-tooltip
+                  id="tooltip-1"
+                  for="[my-custom-special-selector='any-value']"
+                >
+                  Tooltip
+                </ix-tooltip>
+                <ix-card
+                  class="my-card-selector-class"
+                  aria-describedby="tooltip-2"
+                  style={{ width: '100%' }}
+                >
+                  <ix-card-content>
+                    <ix-typography>
+                      Tooltip should appear on hover (with class selector)
+                    </ix-typography>
+                  </ix-card-content>
+                </ix-card>
+                <ix-tooltip id="tooltip-2" for=".my-card-selector-class">
+                  Tooltip
+                </ix-tooltip>
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -351,8 +394,15 @@ export class PlaygroundInternal {
               <ix-typography format="h3" style={{ marginBottom: '0.5rem' }}>
                 9. Issue
               </ix-typography>
-              <ix-typography textColor="weak" style={{ marginBottom: '1rem' }}>
+
+              <ix-typography
+                textColor="weak"
+                style={{ marginBottom: '0.5rem' }}
+              >
                 The slot 'end' inside an ix-input has no margin to the right.
+              </ix-typography>
+              <ix-typography style={{ marginBottom: '1rem' }}>
+                Note: work in progress (IX-1847) - is dependant on slot element
               </ix-typography>
               <div
                 style={{
