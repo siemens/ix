@@ -31,7 +31,7 @@ import { matchBreakpoint } from '../utils/breakpoints';
   shadow: true,
 })
 export class Panes {
-  @Element() hostElement: HTMLIxPaneLayoutElement;
+  @Element() hostElement!: HTMLIxPaneLayoutElement;
 
   /**
    * Choose the layout of the panes.
