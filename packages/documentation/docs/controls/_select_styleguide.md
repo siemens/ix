@@ -17,8 +17,8 @@ Selects provide users to make a single or multi selection from a filterable list
 
 - **Label:** See [form field](./forms/forms-field.md).
 - **Placeholder:** Use a placeholder to provide a hint about what to enter or additional relevant context while the input field is empty. We typically use a placeholder when the label is not visible or we need to provide additional context.
-- **Helper text:** See [form field](forms-field.md).
-- **Feedback text:** See [form field](forms-field.md).
+- **Helper text:** See [form field](./forms/forms-field.md).
+- **Feedback text:** See [form field](./forms/forms-field.md).
 - **Show clear button:** Selects can have a dedicated button to easily clear the selection. Hide the button when you offer other ways to reset (e.g. a default item like "none"), or if you aim for a simplified keyboard accessibility.
 - **List header:** Use a header to provide additional context or instructions about the items to help users understand the choices better. 
 	- **Hide list header:** Hide the header of the dropdown list when it is not needed.
