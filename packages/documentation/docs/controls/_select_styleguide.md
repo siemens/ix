@@ -42,11 +42,13 @@ Selects provide users to make a single or multi selection from a filterable list
 	- On the multiselect, the selected items break into a second line and then shows a scrollbar if it grows beyond.
 	- The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item.
 - **Alignment:** Selects are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input.mdx).
+
 ## States
 
 The select field has five states: default, hover, focused, disabled and read-only. In the disabled state, the input field is displayed without offering any user interaction.
 
 ![Field States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3960-760&t=MWpyPDZDK5B531n9-4)
+
 ## Dos and Don’ts
 
 - Do take care of performance when loading an extensive list of items
@@ -68,4 +70,3 @@ The select field has five states: default, hover, focused, disabled and read-onl
 - [Checkbox](checkbox.mdx)
 - [Toggle](toggle.md)
 - [Date input](date-input.mdx)
-- 
