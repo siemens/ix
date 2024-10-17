@@ -7,6 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { addDisposableEventListener } from './disposable-event-listener';
+
 export class ArrowFocusController {
   public items: Element[];
 
@@ -14,20 +16,21 @@ export class ArrowFocusController {
   wrap = false;
   callback: any;
 
-  keyListenerBind? = this.keyListener.bind(this);
+  private keyListener?: () => void;
 
   constructor(
     items: any[],
     container: HTMLElement,
-    callback: (index: number) => void
+    callback?: (index: number) => void
   ) {
     this.items = items;
     this.container = container;
     this.callback = callback;
-
-    if (this.keyListenerBind) {
-      this.container.addEventListener('keydown', this.keyListenerBind);
-    }
+    this.keyListener = addDisposableEventListener(
+      container,
+      'keydown',
+      (e: Event) => this.onKeyDown(e as KeyboardEvent)
+    );
   }
 
   private getActiveIndex() {
@@ -45,7 +48,7 @@ export class ArrowFocusController {
     this.callback(index);
   }
 
-  private keyListener(e: KeyboardEvent) {
+  private onKeyDown(e: KeyboardEvent) {
     const activeIndex = this.getActiveIndex();
 
     if (activeIndex < 0) {
@@ -78,9 +81,9 @@ export class ArrowFocusController {
   }
 
   disconnect() {
-    if (this.keyListenerBind) {
-      this.container?.removeEventListener('keydown', this.keyListenerBind);
-      this.keyListenerBind = undefined;
+    if (this.keyListener) {
+      this.keyListener();
+      this.keyListener = undefined;
     }
 
     this.container = undefined;

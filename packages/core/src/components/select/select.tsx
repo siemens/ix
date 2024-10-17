@@ -141,7 +141,6 @@ export class Select {
   private addItemRef?: HTMLIxDropdownItemElement;
 
   private arrowFocusController?: ArrowFocusController;
-  private focusControllerCallbackBind = this.focusDropdownItem.bind(this);
 
   private itemObserver = createMutationObserver(() => {
     if (!this.arrowFocusController) {
@@ -219,7 +218,7 @@ export class Select {
       this.arrowFocusController = new ArrowFocusController(
         this.visibleNonShadowItems,
         this.dropdownRef,
-        this.focusControllerCallbackBind
+        (index) => this.focusDropdownItem(index)
       );
 
       this.arrowFocusController.wrap = !this.editable;
