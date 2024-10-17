@@ -14,6 +14,7 @@ import {
   ValidationResults,
   shouldSuppressInternalValidation,
 } from '../utils/input';
+import { convertToRemString } from '../utils/rwd.util';
 import { generateUUID } from '../utils/uuid';
 import { shakeInput } from './input.animation';
 
@@ -102,7 +103,8 @@ export function applyPaddingEnd(
     return;
   }
 
-  const padding = `${(width + 12) / 16}rem`;
+  const remInPixels = 16;
+  const padding = convertToRemString(width + remInPixels / 2);
 
   if (options.slotEnd) {
     inputElement.style.paddingRight = `calc(${padding} + ${

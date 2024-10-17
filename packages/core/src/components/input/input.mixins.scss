@@ -10,6 +10,46 @@
 @import 'mixins/shadow-dom/component';
 @import 'mixins/validation/form-component';
 
+@mixin applySpacingToStartSlot {
+  $startContainerWithIconSize24: '.start-container ::slotted(ix-icon.size-24)';
+  $startContainerWithIconButtonSize16: '.start-container ::slotted(ix-icon-button.btn-icon-16)';
+  //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
+  $startContainerWithIconButtonSize32: '.start-container ::slotted(ix-icon-button.btn-icon-32)';
+
+  .start-container ::slotted(*) {
+    margin-left: 0.5rem;
+  }
+
+  #{$startContainerWithIconSize24,
+  $startContainerWithIconButtonSize16} {
+    margin-left: 0.25rem;
+  }
+
+  #{$startContainerWithIconButtonSize32} {
+    margin-left: 0;
+  }
+}
+
+@mixin applySpacingToEndSlot {
+  $endContainerWithIconSize24: '.end-container ::slotted(ix-icon.size-24)';
+  $endContainerWithIconButtonSize16: '.end-container ::slotted(ix-icon-button.btn-icon-16)';
+  //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
+  $endContainerWithIconButtonSize32: '.end-container ::slotted(ix-icon-button.btn-icon-32)';
+
+  .end-container ::slotted(*) {
+    margin-right: 0.5rem;
+  }
+
+  #{$endContainerWithIconSize24,
+  $endContainerWithIconButtonSize16} {
+    margin-right: 0.25rem;
+  }
+
+  #{$endContainerWithIconButtonSize32} {
+    margin-right: 0;
+  }
+}
+
 @mixin input-field {
   :host {
     @include ix-component;
@@ -42,12 +82,15 @@
     }
 
     .start-container {
-      left: 0.5rem;
+      left: 0;
     }
 
     .end-container {
       right: 0;
     }
+
+    @include applySpacingToStartSlot;
+    @include applySpacingToEndSlot;
 
     .bottom-text {
       margin-top: 0.25rem;
@@ -58,7 +101,8 @@
   :host(.disabled) {
     pointer-events: none;
 
-    input, textarea {
+    input,
+    textarea {
       pointer-events: none;
     }
   }
@@ -81,15 +125,21 @@
 
   @include host-warning {
     input {
-      border-color: var(--theme-input--border-color--warning--active) !important;
+      border-color: var(
+        --theme-input--border-color--warning--active
+      ) !important;
     }
 
     input:hover {
-      border-color: var(--theme-input--border-color--warning--active) !important;
+      border-color: var(
+        --theme-input--border-color--warning--active
+      ) !important;
     }
 
     input:active {
-      border-color: var(--theme-input--border-color--warning--active) !important;
+      border-color: var(
+        --theme-input--border-color--warning--active
+      ) !important;
     }
   }
 
@@ -104,7 +154,9 @@
     }
 
     input:active {
-      border-color: var(--theme-input--border-color--invalid--active) !important;
+      border-color: var(
+        --theme-input--border-color--invalid--active
+      ) !important;
     }
   }
 }
