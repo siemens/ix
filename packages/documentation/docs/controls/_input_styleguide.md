@@ -22,7 +22,7 @@ An input field is a user interface element that allows users to enter and edit t
 
 ## Behavior in context
 
-- **Validation:** See [validation](forms-validation.md).
+- **Validation:** See [validation](./forms/forms-validation.md).
 - **Interaction**: Clicking in the container enables the editing of the field.
 - **Text truncation**: The text in an input field is cut off with the length of the container.
 - **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input.mdx).

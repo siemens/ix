@@ -30,7 +30,7 @@ Selects provide users to make a single or multi selection from a filterable list
 
 ## Behavior in context
 
-- **Validation:** See [validation](forms-validation.md).
+- **Validation:** See [validation](./forms/forms-validation.md).
 - **Interaction:**
 	- Click or Enter key on button opens dropdown list.
 	- Typing in the input field filters the dropdown list.
