@@ -47,4 +47,4 @@ The input field has five states: default, focused, hover, disabled and read-only
 - [Validation](./forms/forms-validation.md)
 - [Layout](./forms/forms-layout.md)
 - [Number input](number-input.mdx)
-- [Date field](date-field.md)
+- [Date input](date-input.mdx)
