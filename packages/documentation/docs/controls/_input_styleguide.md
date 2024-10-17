@@ -25,11 +25,11 @@ An input field is a user interface element that allows users to enter and edit t
 - **Validation:** See [validation](forms-validation.md).
 - **Interaction**: Clicking in the container enables the editing of the field.
 - **Text truncation**: The text in an input field is cut off with the length of the container.
-- **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input,md).
+- **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input.mdx).
 
 ## States
 
-The input field has five states: default, active/focused, hover, disabled and read-only. In the read-only state, the input field is displayed without offering any user interaction.
+The input field has five states: default, focused, hover, disabled and read-only. In the read-only state, the input field is displayed without offering any user interaction.
 
 ![Field States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3198-7167&t=jhhv5OZGqmBpgXcs-4)
 

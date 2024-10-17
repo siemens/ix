@@ -1,6 +1,6 @@
 Selects provide users to make a single or multi selection from a filterable list. With the editable variant, users can also add new options to the list.
 
-![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3054-593&t=6gU2IFkPWR943af8-4)
+![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3647-6332&t=DtCmoFcLwhf7ke3S-4)
 
 1. Label
 2. Required indicator
@@ -39,12 +39,12 @@ TODO: Option label
 	- The text in an input field is truncated with the length of the container.
 	- On the multiselect, the selected items break into a second line and then shows a scrollbar if it grows beyond.
 	- The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item.
-- **Alignment**: Selects are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input.md).
+- **Alignment**: Selects are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input.mdx).
 ## States
 
-The select field has five states: default, hover, active/focused, disabled and read-only. In the disabled state, the input field is displayed without offering any user interaction.
+The select field has five states: default, hover, focused, disabled and read-only. In the disabled state, the input field is displayed without offering any user interaction.
 
-![Field States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3198-7167&t=EBVCuGpWXmdVYgeZ-4)
+![Field States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3960-760&t=MWpyPDZDK5B531n9-4)
 ## Dos and Don’ts
 
 - Do take care of performance when loading an extensive list of options
@@ -55,14 +55,16 @@ The select field has five states: default, hover, active/focused, disabled and r
 - Don't use selects for navigational or search patterns (use [category filters](../category-filter.md) or [search fields](expanding-search.md) instead)
 - Don't combine several data attributes in an option label (use [tables](table.md) or [event lists](event-list.md) with a search functionality instead)
 
-TODO IMAGE
+![Don't combine data attributes](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3978-800&t=MWpyPDZDK5B531n9-4)
+
 ## Related patterns
 
 - [Form field](./forms/forms-field.md)
 - [Validation](./forms/forms-validation.md)
 - [Layout](./forms/forms-layout.md)
-- [Input](input.md)
+- [Input](input.mdx)
 - [Radio button](radio.mdx)
 - [Checkbox](checkbox.mdx)
 - [Toggle](toggle.md)
-- [Date field](date-field.md)
+- [Date input](date-input.mdx)
+- 
