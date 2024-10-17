@@ -149,9 +149,9 @@ export class Pane {
   @State() private parentWidthPx = 0;
   @State() private parentHeightPx = 0;
 
-  private readonly validPositions = ['top', 'left', 'bottom', 'right'];
-  private readonly collapsedPane = '40px';
-  private readonly collapsedPaneMobile = '48px';
+  private static readonly validPositions = ['top', 'left', 'bottom', 'right'];
+  private static readonly collapsedPane = '40px';
+  private static readonly collapsedPaneMobile = '48px';
   private readonly animations: Map<string, anime.AnimeInstance> = new Map();
   private animationCounter = 0;
 
@@ -233,7 +233,7 @@ export class Pane {
   }
 
   private setPosition(value: string) {
-    if (this.validPositions.includes(value)) {
+    if (Pane.validPositions.includes(value)) {
       this.composition = value as Composition;
     }
   }
@@ -521,16 +521,16 @@ export class Pane {
       if (this.isMobile) {
         this.hostElement.style.height = this.hideOnCollapse
           ? '0'
-          : this.collapsedPaneMobile;
+          : Pane.collapsedPaneMobile;
       } else {
         if (this.isBottomTopPane) {
           this.hostElement.style.height = this.hideOnCollapse
             ? '0'
-            : this.collapsedPane;
+            : Pane.collapsedPane;
         } else {
           this.hostElement.style.width = this.hideOnCollapse
             ? '0'
-            : this.collapsedPane;
+            : Pane.collapsedPane;
         }
       }
     }
@@ -542,7 +542,7 @@ export class Pane {
       if (this.isMobile) {
         this.hostElement.style.minHeight = this.hideOnCollapse
           ? '0'
-          : this.collapsedPaneMobile;
+          : Pane.collapsedPaneMobile;
         this.animateHorizontalFadeIn('100%');
       } else {
         const expandPaneSize = this.getExpandPaneSize();
@@ -550,12 +550,12 @@ export class Pane {
         if (this.isBottomTopPane) {
           this.hostElement.style.height = this.hideOnCollapse
             ? '0'
-            : this.collapsedPane;
+            : Pane.collapsedPane;
           this.animateHorizontalFadeIn(expandPaneSize);
         } else {
           this.hostElement.style.width = this.hideOnCollapse
             ? '0'
-            : this.collapsedPane;
+            : Pane.collapsedPane;
           this.animateVerticalFadeIn(expandPaneSize);
         }
       }
@@ -563,12 +563,12 @@ export class Pane {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.hostElement.style.height = this.collapsedPaneMobile;
+        this.hostElement.style.height = Pane.collapsedPaneMobile;
       } else {
         if (this.isBottomTopPane) {
-          this.animateHorizontalFadeIn(this.collapsedPane);
+          this.animateHorizontalFadeIn(Pane.collapsedPane);
         } else {
-          this.animateVerticalFadeIn(this.collapsedPane);
+          this.animateVerticalFadeIn(Pane.collapsedPane);
         }
       }
     }

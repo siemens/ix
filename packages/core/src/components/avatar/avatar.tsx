@@ -149,7 +149,7 @@ export class Avatar {
         if (button) {
           resolve(button);
         } else {
-          reject('ix-avatar - trigger element not found');
+          reject(new Error('ix-avatar - trigger element not found'));
         }
       });
     });
