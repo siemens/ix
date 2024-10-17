@@ -3,13 +3,7 @@ import { resolve } from 'path';
 
 const __dirname = resolve();
 
-const external = [
-  'react',
-  'react-dom',
-  'react-dom/client',
-  'tslib',
-  'react/jsx-runtime',
-];
+const external = ['react', 'react-dom', 'react-dom/client', 'tslib'];
 
 export default {
   input: 'src/index.ts',
