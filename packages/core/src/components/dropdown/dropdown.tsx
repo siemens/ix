@@ -311,9 +311,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     );
   }
 
-  private async registerListener(
-    element: string | HTMLElement | Promise<HTMLElement>
-  ) {
+  private async registerListener(element: ElementReference) {
     this.triggerElement = await this.resolveElement(element);
     if (this.triggerElement) {
       this.addEventListenersFor();
@@ -321,9 +319,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
   }
 
-  private async resolveElement(
-    element: string | HTMLElement | Promise<HTMLElement>
-  ) {
+  private async resolveElement(element: ElementReference) {
     const el = await this.findElement(element);
 
     return this.checkForSubmenuAnchor(el);
@@ -348,9 +344,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return element;
   }
 
-  private findElement(
-    element: string | HTMLElement | Promise<HTMLElement>
-  ): Promise<Element | undefined> {
+  private findElement(element: ElementReference): Promise<Element | undefined> {
     if (element instanceof Promise) {
       return element;
     }
@@ -423,7 +417,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   @Watch('trigger')
-  changedTrigger(newTriggerValue: string | HTMLElement | Promise<HTMLElement>) {
+  changedTrigger(newTriggerValue: ElementReference) {
     this.registerListener(newTriggerValue);
   }
 
