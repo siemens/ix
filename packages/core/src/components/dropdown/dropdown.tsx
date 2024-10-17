@@ -136,7 +136,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private assignedSubmenu: string[] = [];
 
   private arrowFocusController?: ArrowFocusController;
-  private focusDropdownItemListener? = this.focusDropdownItem.bind(this);
 
   private itemObserver? = new MutationObserver(() => {
     if (this.arrowFocusController) {
@@ -167,8 +166,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   disconnectedCallback() {
     dropdownController.dismiss(this);
     dropdownController.disconnected(this);
-
-    this.focusDropdownItemListener = undefined;
 
     if (this.arrowFocusController) {
       this.arrowFocusController?.disconnect();
@@ -404,7 +401,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
       this.arrowFocusController = new ArrowFocusController(
         this.dropdownItems,
         this.hostElement,
-        this.focusDropdownItemListener
+        (index) => this.focusDropdownItem(index)
       );
 
       this.itemObserver?.observe(this.hostElement, {

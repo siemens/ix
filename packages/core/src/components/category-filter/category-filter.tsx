@@ -204,7 +204,7 @@ export class CategoryFilter {
       this.formKeyDownListener = addDisposableEventListener(
         this.formElement,
         'keydown',
-        this.handleFormElementKeyDown as EventListener
+        () => this.handleFormElementKeyDown
       );
 
       this.preventDefaultListener = addDisposableEventListener(
@@ -222,27 +222,27 @@ export class CategoryFilter {
     }
 
     this.inputKeyDownListener = addDisposableEventListener(
-      this.textInput?.current,
+      this.textInput.current,
       'keydown',
-      this.handleInputElementKeyDown as EventListener
+      () => this.handleInputElementKeyDown
     );
 
     this.focusInListener = addDisposableEventListener(
       this.textInput.current,
       'focusin',
-      this.onFocusIn
+      () => this.onFocusIn()
     );
 
     this.focusOutListener = addDisposableEventListener(
       this.textInput.current,
       'focusout',
-      this.onFocusOut
+      () => this.onFocusOut()
     );
 
     this.inputListener = addDisposableEventListener(
       this.textInput.current,
       'input',
-      this.onInput
+      () => this.onInput()
     );
   }
 
