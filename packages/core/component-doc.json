@@ -5212,15 +5212,15 @@
       "props": [
         {
           "name": "anchor",
-          "type": "HTMLElement | Promise<HTMLElement> | string",
+          "type": "ElementReference",
           "complexType": {
             "original": "ElementReference",
-            "resolved": "HTMLElement | Promise<HTMLElement> | string",
+            "resolved": "ElementReference",
             "references": {
               "ElementReference": {
                 "location": "import",
                 "path": "src/components",
-                "id": "src/components.d.ts::ElementReference"
+                "id": "src/components.d.ts::unknown"
               }
             }
           },
@@ -5231,13 +5231,7 @@
           "docsTags": [],
           "values": [
             {
-              "type": "HTMLElement"
-            },
-            {
-              "type": "Promise<HTMLElement>"
-            },
-            {
-              "type": "string"
+              "type": "ElementReference"
             }
           ],
           "optional": true,
@@ -5439,15 +5433,15 @@
         },
         {
           "name": "trigger",
-          "type": "HTMLElement | Promise<HTMLElement> | string",
+          "type": "ElementReference",
           "complexType": {
             "original": "ElementReference",
-            "resolved": "HTMLElement | Promise<HTMLElement> | string",
+            "resolved": "ElementReference",
             "references": {
               "ElementReference": {
                 "location": "import",
                 "path": "src/components",
-                "id": "src/components.d.ts::ElementReference"
+                "id": "src/components.d.ts::unknown"
               }
             }
           },
@@ -5458,13 +5452,7 @@
           "docsTags": [],
           "values": [
             {
-              "type": "HTMLElement"
-            },
-            {
-              "type": "Promise<HTMLElement>"
-            },
-            {
-              "type": "string"
+              "type": "ElementReference"
             }
           ],
           "optional": true,
@@ -17899,7 +17887,7 @@
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
     },
-    "src/components.d.ts::ElementReference": {
+    "src/components.d.ts::unknown": {
       "declaration": "any",
       "docstring": "",
       "path": "src/components.d.ts"
