@@ -15,7 +15,7 @@ Selects provide users to make a single or multi selection from a filterable list
 
 ## Options
 
-- **Label:** See [form field](forms-field.md).
+- **Label:** See [form field](./forms/forms-field.md).
 - **Placeholder:** Use a placeholder to provide a hint about what to enter or additional relevant context while the input field is empty. We typically use a placeholder when the label is not visible or we need to provide additional context.
 - **Helper text:** See [form field](forms-field.md).
 - **Feedback text:** See [form field](forms-field.md).

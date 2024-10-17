@@ -13,7 +13,7 @@ An input field is a user interface element that allows users to enter and edit t
 
 ## Options
 
-- **Label:** See [form field](forms-field.md).
+- **Label:** See [form field](./forms/forms-field.md).
 - **Slot options:** Add optional elements at the end and/or start of the input field, e.g. an icon, a button or a text option. We typically use slots for additional indications, options or information like a visibility toggle in a password field.
 - **Placeholder**: Use a placeholder to provide a hint about what to enter or additional relevant context while the input field is empty. We typically use a placeholder when the label is not visible or we need to provide additional context.
 - **Helper text:** See [form field](forms-field.md).
