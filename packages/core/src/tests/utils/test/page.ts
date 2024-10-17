@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
-  ElementHandle,
   Page,
   PageScreenshotOptions,
   test as testBase,
@@ -46,32 +45,7 @@ export const regressionTest = testBase.extend({
   },
 });
 
-export const test = testBase.extend<{
-  mount: (selector: string) => Promise<ElementHandle<HTMLElement>>;
-  createElement: (
-    selector: string,
-    appendTo?: ElementHandle<Element>
-  ) => Promise<ElementHandle<HTMLElement>>;
-}>({
-  createElement: async ({ page }, use) => {
-    use((selector, appendTo) =>
-      page.evaluateHandle(
-        async ({ selector, appendTo }) => {
-          const elm = document.createElement(selector);
-
-          if (appendTo) {
-            appendTo.appendChild(elm);
-          }
-
-          return elm;
-        },
-        {
-          selector,
-          appendTo,
-        }
-      )
-    );
-  },
+export const test = testBase.extend({
   mount: async ({ page }, use, testInfo) => {
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
     testInfo.annotations.push({
@@ -80,11 +54,16 @@ export const test = testBase.extend<{
     await page.goto(
       `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
     );
-    use((selector) => {
+    use((selector: string) => {
       return page.evaluateHandle(
         async ({ componentSelector }) => {
           await window.customElements.whenDefined('ix-button');
           const mount = document.querySelector('#mount');
+
+          if (!mount) {
+            throw new Error('No mount point found in the document.');
+          }
+
           mount.innerHTML = componentSelector;
           return mount.children.item(0) as HTMLElement;
         },
