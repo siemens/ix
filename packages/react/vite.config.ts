@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
@@ -19,5 +19,10 @@ export default defineConfig({
         id.startsWith('@siemens/ix-icons') ||
         id.startsWith('@stencil/react-output-target'),
     },
+  },
+  test: {
+    globals: true,
+    environment: 'happy-dom',
+    setupFiles: resolve(__dirname, 'src/tests/setup.ts'),
   },
 });

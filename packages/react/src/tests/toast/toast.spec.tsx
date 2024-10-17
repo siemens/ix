@@ -10,6 +10,7 @@ import { render, waitFor } from '@testing-library/react';
 import { screen } from 'shadow-dom-testing-library';
 import { describe, expect, it } from 'vitest';
 import Content from './toast';
+import { iconStar } from '@siemens/ix-icons/icons';
 
 describe(`toast`, () => {
   it(`basic`, async () => {
@@ -24,13 +25,13 @@ describe(`toast`, () => {
     const toast = await screen.findByText('Foobar');
 
     await waitFor(() => {
-      expect(toast).toBeInTheDocument();
+      expect(toast).not.toBeNull();
     });
 
     const icon = (await screen.findByShadowTestId(
       'toast-icon'
     )) as HTMLIxIconElement;
 
-    expect(icon.name).toEqual('star');
+    expect(icon.name).toEqual(iconStar);
   });
 });

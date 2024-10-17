@@ -7,7 +7,7 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "lib": ["dom", "es2015"],
-    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "types": ["node"],
     "importHelpers": true,
     "module": "esnext",
     "noImplicitAny": true,
@@ -34,5 +34,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["src/tests"]
 }
