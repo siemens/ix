@@ -7,11 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+export type DisposableEventListener = () => void;
+
 export const addDisposableEventListener = (
   element: Element | Window | Document,
   eventType: string,
   callback: EventListenerOrEventListenerObject
-) => {
+): DisposableEventListener => {
   element.addEventListener(eventType, callback);
 
   return () => {

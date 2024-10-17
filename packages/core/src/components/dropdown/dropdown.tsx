@@ -37,7 +37,10 @@ import {
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
-import { addDisposableEventListener } from '../utils/disposable-event-listener';
+import {
+  addDisposableEventListener,
+  DisposableEventListener,
+} from '../utils/disposable-event-listener';
 
 let sequenceId = 0;
 
@@ -231,8 +234,8 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     return this.hostElement.shadowRoot!.querySelector('slot');
   }
 
-  private disposeClickListener?: () => void;
-  private disposeKeyListener?: () => void;
+  private disposeClickListener?: DisposableEventListener;
+  private disposeKeyListener?: DisposableEventListener;
 
   private addEventListenersFor() {
     this.disposeClickListener?.();

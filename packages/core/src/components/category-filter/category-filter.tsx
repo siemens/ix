@@ -23,7 +23,10 @@ import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
 import { makeRef } from '../utils/make-ref';
-import { addDisposableEventListener } from '../utils/disposable-event-listener';
+import {
+  addDisposableEventListener,
+  DisposableEventListener,
+} from '../utils/disposable-event-listener';
 
 @Component({
   tag: 'ix-category-filter',
@@ -33,12 +36,12 @@ import { addDisposableEventListener } from '../utils/disposable-event-listener';
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
-  private formKeyDownListener?: () => void;
-  private preventDefaultListener?: () => void;
-  private inputKeyDownListener?: () => void;
-  private focusInListener?: () => void;
-  private focusOutListener?: () => void;
-  private inputListener?: () => void;
+  private formKeyDownListener?: DisposableEventListener;
+  private preventDefaultListener?: DisposableEventListener;
+  private inputKeyDownListener?: DisposableEventListener;
+  private focusInListener?: DisposableEventListener;
+  private focusOutListener?: DisposableEventListener;
+  private inputListener?: DisposableEventListener;
 
   private readonly textInput? = makeRef<HTMLInputElement>();
   private formElement?: HTMLFormElement;
