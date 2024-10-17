@@ -163,20 +163,20 @@ export namespace Components {
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
-        "extra": string;
+        "extra"?: string;
         /**
           * Display an avatar image
          */
-        "image": string;
+        "image"?: string;
         /**
           * Display the initials of the user. Will be overwritten by image
          */
-        "initials": string;
+        "initials"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
-        "username": string;
+        "username"?: string;
     }
     interface IxBasicNavigation {
         /**
@@ -366,6 +366,11 @@ export namespace Components {
     interface IxCardTitle {
     }
     interface IxCategoryFilter {
+        /**
+          * Aria label for the filter input field
+          * @since 2.6.0
+         */
+        "ariaLabel": string;
         /**
           * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
@@ -987,7 +992,7 @@ export namespace Components {
           * @link https://ix.siemens.io/docs/theming/colors/
           * @deprecated since 2.1.0 use `item-color`
          */
-        "color": string;
+        "color"?: string;
         /**
           * Disable event list item
          */
@@ -996,7 +1001,7 @@ export namespace Components {
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
           * @link https://ix.siemens.io/docs/theming/colors/
          */
-        "itemColor": string;
+        "itemColor"?: string;
         /**
           * Show event list item as selected
          */
@@ -1348,7 +1353,7 @@ export namespace Components {
         /**
           * Should only be set if you use ix-menu standalone
          */
-        "applicationName": string;
+        "applicationName"?: string;
         /**
           * Internal
          */
@@ -1740,7 +1745,7 @@ export namespace Components {
         /**
           * Title of the side panel
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Define if the pane should have a collapsed state
          */
@@ -1748,7 +1753,7 @@ export namespace Components {
         /**
           * Name of the icon
          */
-        "icon": string;
+        "icon"?: string;
         "ignoreLayoutSettings": boolean;
         "isMobile": boolean;
         /**
@@ -4442,6 +4447,11 @@ declare namespace LocalJSX {
     interface IxCardTitle {
     }
     interface IxCategoryFilter {
+        /**
+          * Aria label for the filter input field
+          * @since 2.6.0
+         */
+        "ariaLabel"?: string;
         /**
           * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
