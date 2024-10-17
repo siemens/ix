@@ -41,6 +41,7 @@ import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
+import { ElementReference } from 'src/components';
 
 let sequenceId = 0;
 
@@ -68,12 +69,12 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
    * Define an element that triggers the dropdown.
    * A trigger can either be a string that will be interpreted as id attribute or a DOM element.
    */
-  @Prop() trigger?: string | HTMLElement | Promise<HTMLElement>;
+  @Prop() trigger?: ElementReference;
 
   /**
    * Define an anchor element
    */
-  @Prop() anchor?: string | HTMLElement | Promise<HTMLElement>;
+  @Prop() anchor?: ElementReference;
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
