@@ -54,12 +54,12 @@ export type BorderlessChangedEvent = {
   shadow: true,
 })
 export class Pane {
-  @Element() hostElement: HTMLIxPaneElement;
+  @Element() hostElement!: HTMLIxPaneElement;
 
   /**
    * Title of the side panel
    */
-  @Prop() heading: string;
+  @Prop() heading?: string;
 
   /**
    * Variant of the side pane.
@@ -104,7 +104,7 @@ export class Pane {
   /**
    * Name of the icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * @internal
@@ -120,27 +120,27 @@ export class Pane {
   /**
    * This event is triggered when the pane either expands or contracts
    */
-  @Event() expandedChanged: EventEmitter<ExpandedChangedEvent>;
+  @Event() expandedChanged!: EventEmitter<ExpandedChangedEvent>;
 
   /**
    * This event is triggered when the variant of the pane is changed
    */
-  @Event() variantChanged: EventEmitter<VariantChangedEvent>;
+  @Event() variantChanged!: EventEmitter<VariantChangedEvent>;
 
   /**
    * This event is triggered when the variant of the pane is changed
    */
-  @Event() borderlessChanged: EventEmitter<BorderlessChangedEvent>;
+  @Event() borderlessChanged!: EventEmitter<BorderlessChangedEvent>;
 
   /**
    * @internal
    */
-  @Event() hideOnCollapseChanged: EventEmitter<HideOnCollapseChangedEvent>;
+  @Event() hideOnCollapseChanged!: EventEmitter<HideOnCollapseChangedEvent>;
 
   /**
    * @internal
    */
-  @Event() slotChanged: EventEmitter<SlotChangedEvent>;
+  @Event() slotChanged!: EventEmitter<SlotChangedEvent>;
 
   @State() private expandIcon = '';
   @State() private showContent = false;
@@ -155,8 +155,8 @@ export class Pane {
   private readonly animations: Map<string, anime.AnimeInstance> = new Map();
   private animationCounter = 0;
 
-  private mutationObserver: MutationObserver;
-  private resizeObserver: ResizeObserver;
+  private mutationObserver?: MutationObserver;
+  private resizeObserver?: ResizeObserver;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -188,7 +188,9 @@ export class Pane {
       this.isMobile = matchBreakpoint('sm');
     });
 
-    this.setPosition(this.currentSlot);
+    if (this.currentSlot) {
+      this.setPosition(this.currentSlot);
+    }
 
     this.mutationObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -201,10 +203,13 @@ export class Pane {
 
           if (newSlot !== oldSlot) {
             this.slotChanged.emit({
-              slot: oldSlot,
-              newSlot: newSlot,
+              slot: oldSlot ?? '',
+              newSlot: newSlot ?? '',
             });
-            this.setPosition(newSlot);
+
+            if (newSlot) {
+              this.setPosition(newSlot);
+            }
           }
         }
       });
@@ -377,7 +382,7 @@ export class Pane {
 
   private removePadding() {
     anime({
-      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
+      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
       duration: 0,
       paddingTop: 0,
       paddingBottom: 0,
@@ -393,7 +398,7 @@ export class Pane {
   ) {
     let key = this.getKey();
     let animation = anime({
-      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
+      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
       duration: duration,
       paddingTop: size,
       paddingBottom: size,
@@ -413,7 +418,7 @@ export class Pane {
   ) {
     let key = this.getKey();
     let animation = anime({
-      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
+      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
       duration: duration,
       paddingLeft: size,
       paddingRight: size,
@@ -455,7 +460,7 @@ export class Pane {
     this.onParentSizeChange();
 
     this.hideOnCollapseChanged.emit({
-      slot: this.currentSlot,
+      slot: this.currentSlot ?? '',
       hideOnCollapse: value,
     });
   }
@@ -465,7 +470,7 @@ export class Pane {
     this.floating = value === 'floating';
 
     this.variantChanged.emit({
-      slot: this.currentSlot,
+      slot: this.currentSlot ?? '',
       variant: value,
     });
   }
@@ -473,7 +478,7 @@ export class Pane {
   @Watch('borderless')
   onBorderlessChange(value: boolean) {
     this.borderlessChanged.emit({
-      slot: this.currentSlot,
+      slot: this.currentSlot ?? '',
       borderless: value,
     });
   }
@@ -483,7 +488,7 @@ export class Pane {
     this.onSizeChange();
 
     this.expandedChanged.emit({
-      slot: this.currentSlot,
+      slot: this.currentSlot ?? '',
       expanded: this.expanded,
     });
   }

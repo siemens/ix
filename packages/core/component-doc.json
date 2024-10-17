@@ -583,7 +583,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -604,7 +604,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -625,7 +625,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -651,7 +651,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -6329,6 +6329,7 @@
           "reflectToAttr": false,
           "docs": "Display a chevron icon in list items. Defaults to 'false'",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6426,6 +6427,7 @@
           "reflectToAttr": false,
           "docs": "Show chevron on right side of the event list item",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6462,7 +6464,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6478,6 +6480,7 @@
           "reflectToAttr": false,
           "docs": "Disable event list item",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6509,7 +6512,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6525,6 +6528,7 @@
           "reflectToAttr": false,
           "docs": "Show event list item as selected",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9308,7 +9312,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12213,7 +12217,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12256,7 +12260,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
