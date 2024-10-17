@@ -6,7 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "lib": ["dom", "es2015"],
+    "lib": ["dom", "es2020"],
     "types": ["node"],
     "importHelpers": true,
     "module": "esnext",
@@ -17,7 +17,7 @@
     "removeComments": false,
     "inlineSources": true,
     "sourceMap": true,
-    "target": "es2017",
+    "target": "ES2020",
     "skipLibCheck": true,
 
     /* Bundler mode */
