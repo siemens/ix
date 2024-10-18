@@ -40,14 +40,6 @@ export class ArrowFocusController {
     return this.items.indexOf(document.activeElement);
   }
 
-  private runCallback(index: number) {
-    if (!this.callback) {
-      return;
-    }
-
-    this.callback(index);
-  }
-
   private onKeyDown(e: KeyboardEvent) {
     const activeIndex = this.getActiveIndex();
 
@@ -59,10 +51,10 @@ export class ArrowFocusController {
       case 'ArrowDown':
         if (activeIndex < this.items.length - 1) {
           e.preventDefault();
-          this.runCallback(activeIndex + 1);
+          this.callback(activeIndex + 1);
         } else if (this.wrap) {
           e.preventDefault();
-          this.runCallback(0);
+          this.callback(0);
         }
         break;
 
@@ -70,10 +62,10 @@ export class ArrowFocusController {
         {
           if (activeIndex > 0) {
             e.preventDefault();
-            this.runCallback(activeIndex - 1);
+            this.callback(activeIndex - 1);
           } else if (this.wrap && activeIndex === 0) {
             e.preventDefault();
-            this.runCallback(this.items.length - 1);
+            this.callback(this.items.length - 1);
           }
         }
         break;
