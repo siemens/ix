@@ -3,6 +3,9 @@
   "license": "MIT",
   "version": "1.0.0",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "private": true,
   "dependencies": {
     "eslint": "~8.21.0",
