@@ -11,41 +11,33 @@
 @import 'mixins/validation/form-component';
 
 @mixin applySpacingToStartSlot {
-  $startContainerWithIconSize24: '.start-container ::slotted(ix-icon.size-24)';
-  $startContainerWithIconButtonSize16: '.start-container ::slotted(ix-icon-button.btn-icon-16)';
-  //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
-  $startContainerWithIconButtonSize32: '.start-container ::slotted(ix-icon-button.btn-icon-32)';
-
   .start-container ::slotted(*) {
     margin-left: 0.5rem;
   }
 
-  #{$startContainerWithIconSize24,
-  $startContainerWithIconButtonSize16} {
+  .start-container ::slotted(ix-icon.size-24),
+  .start-container ::slotted(ix-icon-button.btn-icon-16) {
     margin-left: 0.25rem;
   }
 
-  #{$startContainerWithIconButtonSize32} {
+  //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
+  .start-container ::slotted(ix-icon-button.btn-icon-32) {
     margin-left: 0;
   }
 }
 
 @mixin applySpacingToEndSlot {
-  $endContainerWithIconSize24: '.end-container ::slotted(ix-icon.size-24)';
-  $endContainerWithIconButtonSize16: '.end-container ::slotted(ix-icon-button.btn-icon-16)';
-  //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
-  $endContainerWithIconButtonSize32: '.end-container ::slotted(ix-icon-button.btn-icon-32)';
-
   .end-container ::slotted(*) {
     margin-right: 0.5rem;
   }
 
-  #{$endContainerWithIconSize24,
-  $endContainerWithIconButtonSize16} {
+  .end-container ::slotted(ix-icon.size-24),
+  .end-container ::slotted(ix-icon-button.btn-icon-16) {
     margin-right: 0.25rem;
   }
 
-  #{$endContainerWithIconButtonSize32} {
+  //TODO: Refactor naming when the class: 'btn-icon-32' was renamed.
+  .end-container ::slotted(ix-icon-button.btn-icon-32) {
     margin-right: 0;
   }
 }
