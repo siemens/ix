@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import { TextValueAccessorDirective } from './control-value-accessors/text-value-accessor';
 import { DOCUMENT } from '@angular/common';
 import {
   APP_INITIALIZER,
@@ -19,18 +19,24 @@ import { DIRECTIVES } from './declare-components';
 import { IxDropdownTriggerDirective } from './dropdown/trigger.directive';
 import { IxIcon } from './ix-icon';
 import { ModalService } from './modal';
-import { SelectValueAccessor } from './select-value-accessor';
-import { BooleanValueAccessor } from './boolean-value-accessor';
 import { ThemeService } from './theme';
 import { ToastService } from './toast';
 import * as tree from './tree';
+import { SelectValueAccessorDirective } from './control-value-accessors/select-value-accessor';
+import { RadioValueAccessorDirective } from './control-value-accessors/radio-value-accessor';
+import { BooleanValueAccessorDirective } from './control-value-accessors/boolean-value-accessor';
+import { DateValueAccessorDirective } from './control-value-accessors';
 const DECLARATIONS = [
   ...DIRECTIVES,
   tree.IxTree,
   IxDropdownTriggerDirective,
   IxIcon,
-  SelectValueAccessor,
-  BooleanValueAccessor
+
+  TextValueAccessorDirective,
+  SelectValueAccessorDirective,
+  RadioValueAccessorDirective,
+  BooleanValueAccessorDirective,
+  DateValueAccessorDirective,
 ];
 
 @NgModule({

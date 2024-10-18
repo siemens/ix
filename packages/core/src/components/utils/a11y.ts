@@ -9,7 +9,8 @@
 
 import { isHttpUrl, isSvgDataUrl } from './condition-checks';
 
-export const a11yBoolean = (value: boolean) => (value ? 'true' : 'false');
+export const a11yBoolean = (value: boolean | undefined) =>
+  value ? 'true' : 'false';
 
 const kebabCaseToUpperCaseSentence = (kebabCase: string) => {
   const withoutFilledSuffix = kebabCase.replace('-filled', '');
@@ -56,13 +57,13 @@ export const getFallbackLabelFromIconName = (iconName: string) => {
 export const a11yHostAttributes = (
   hostElement: HTMLElement,
   ignoreAttributes: A11yAttributeName[] = []
-): Record<A11yAttributeName, any> => {
-  const attributeObject: Record<string, any> = {};
+): Record<A11yAttributeName, string> => {
+  const attributeObject: Record<string, string> = {};
   a11yAttributes.forEach((attr) => {
     if (hostElement.hasAttribute(attr)) {
       const value = hostElement.getAttribute(attr);
       if (value !== null && !ignoreAttributes.includes(attr)) {
-        attributeObject[attr] = hostElement.getAttribute(attr);
+        attributeObject[attr] = hostElement.getAttribute(attr) ?? '';
         hostElement.removeAttribute(attr);
       }
     }
@@ -70,11 +71,6 @@ export const a11yHostAttributes = (
 
   return attributeObject;
 };
-
-type PartialRecord<K extends keyof any, T> = {
-  [P in K]?: T;
-};
-export type A11yAttributes = PartialRecord<A11yAttributeName, any>;
 
 export type A11yAttributeName =
   | 'role'
@@ -182,3 +178,8 @@ const a11yAttributes: A11yAttributeName[] = [
   'aria-valuenow',
   'aria-valuetext',
 ];
+
+type PartialRecord<K extends A11yAttributeName, T> = {
+  [P in K]?: T;
+};
+export type A11yAttributes = PartialRecord<A11yAttributeName, string>;
