@@ -55,8 +55,8 @@ The select field has five states: default, hover, focused, disabled and read-onl
 - Do use selects when there is a finite list of items available to avoid manual input errors or duplicates
 - Do sort items logically (for example alphabetically or numerically)
 - Don't use selects for binary choices, like yes and no (use [radio buttons](radio.mdx), [checkboxes](checkbox.mdx) or [toggles](toggle.md) instead)
-- Don't use selects for navigational or search patterns (use [category filters](../category-filter.md) or [search fields](expanding-search.md) instead)
-- Don't combine several data attributes in an item label (use [tables](table.md) or [event lists](event-list.md) with a search functionality instead)
+- Don't use selects for navigational or search patterns (use [category filters](category-filter.md) or [search fields](expanding-search.md) instead)
+- Don't combine several data attributes in an item label (use [tables](html-grid.mdx) or [event lists](event-list.md) with a search functionality instead)
 
 ![Don't combine data attributes](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3978-800&t=MWpyPDZDK5B531n9-4)
 
