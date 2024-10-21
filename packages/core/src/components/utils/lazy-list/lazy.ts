@@ -60,7 +60,10 @@ export class VirtualList {
   _lastFrom: number;
   _cachedItemsLen: any;
 
-  static create(element: HTMLElement, userProvidedConfig: VirtualListConfig) {
+  static create(
+    element: HTMLElement,
+    userProvidedConfig: VirtualListConfig = VirtualList.defaultConfig
+  ) {
     return new VirtualList(element, userProvidedConfig);
   }
 
@@ -142,8 +145,11 @@ export class VirtualList {
     window.cancelAnimationFrame(this._renderAnimationFrame);
   }
 
-  refresh(element: HTMLElement, userProvidedConfig: VirtualListConfig) {
-    Object.assign(this._config, VirtualList.defaultConfig, userProvidedConfig);
+  refresh(
+    element: HTMLElement,
+    userProvidedConfig: VirtualListConfig = VirtualList.defaultConfig
+  ) {
+    this._config = userProvidedConfig;
 
     if (!element || element.nodeType !== 1) {
       throw new Error('HyperList requires a valid DOM Node container');
@@ -263,7 +269,7 @@ export class VirtualList {
 
     const padding = this._computeScrollPadding();
     this._scrollPaddingBottom = padding.bottom;
-    this._scrollPaddingBottom = padding.top;
+    this._scrollPaddingTop = padding.top;
 
     // Set the scroller instance.
     this._scroller = scroller;

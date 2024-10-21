@@ -304,6 +304,7 @@ export class Tree {
   }
 
   private isListInitialized() {
+    //@ts-ignore
     const itemPositions = this.hyperlist?._itemPositions;
 
     return (
