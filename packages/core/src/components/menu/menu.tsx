@@ -282,6 +282,10 @@ export class Menu {
   }
 
   componentWillLoad() {
+    if (!this.about) {
+      this.aboutNewsPopover.show = false;
+    }
+
     useContextConsumer(
       this.hostElement,
       ApplicationLayoutContext,
@@ -354,7 +358,7 @@ export class Menu {
   }
 
   private appendAboutNewsPopover() {
-    if (!this.aboutNewsPopover) {
+    if (!this.aboutNewsPopover || !this.about) {
       return;
     }
 
