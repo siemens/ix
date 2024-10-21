@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/charts.css';
+import './echarts-special-zoom.css';
 
 import { useEffect, useState } from 'react';
 import {
@@ -101,5 +101,12 @@ export default function EchartsSpecialZoom() {
     ],
   };
 
-  return <ReactEcharts option={options} theme={theme} className="echarts" />;
+  return (
+    <ReactEcharts
+      style={{ height: '40rem' }}
+      option={options}
+      theme={theme}
+      className="echarts"
+    />
+  );
 }

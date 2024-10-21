@@ -17,6 +17,6 @@ import { Component } from '@angular/core';
     <ix-toggle-button outline disabled>Disabled</ix-toggle-button>
     <ix-toggle-button outline disabled loading>Loading</ix-toggle-button>
   `,
-  styleUrls: ['./styles/toggle-buttons.css'],
+  styleUrls: ['./toggle-button-secondary-outline.css'],
 })
 export default class Buttons {}

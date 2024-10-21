@@ -1,9 +1,12 @@
 {
   "root": true,
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.lib.json"
   },
-  "extends": [/* "plugin:@typescript-eslint/recommended", */ "plugin:@stencil-community/recommended", "ix"],
+  "extends": [
+    /* "plugin:@typescript-eslint/recommended", */ "plugin:@stencil-community/recommended",
+    "ix"
+  ],
   "rules": {
     "@stencil-community/async-methods": 0,
     "@stencil-community/own-props-must-be-private": 0,

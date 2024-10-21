@@ -74,7 +74,7 @@ export class MenuAboutNews {
         </div>
 
         <div class="cui-popover-news-header">
-          <ix-typography variant="default-title-single">
+          <ix-typography format="label" bold>
             {this.label}
           </ix-typography>
         </div>
