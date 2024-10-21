@@ -16,7 +16,7 @@ export class ArrowFocusController {
   wrap = false;
   callback: any;
 
-  private keyListener: () => void;
+  private readonly keyListener: () => void;
 
   constructor(
     items: any[],
