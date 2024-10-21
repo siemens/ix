@@ -16,7 +16,7 @@ export class ArrowFocusController {
   wrap = false;
   callback: any;
 
-  private keyListener?: () => void;
+  private keyListener: () => void;
 
   constructor(
     items: any[],
@@ -75,7 +75,6 @@ export class ArrowFocusController {
   disconnect() {
     if (this.keyListener) {
       this.keyListener();
-      this.keyListener = undefined;
     }
 
     this.container = undefined;
