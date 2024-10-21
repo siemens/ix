@@ -1,4 +1,6 @@
 'use client';
+/* eslint-disable */
+
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
