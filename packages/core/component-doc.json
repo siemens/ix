@@ -17564,21 +17564,6 @@
     }
   ],
   "typeLibrary": {
-    "src/components/toast/toast-container.tsx::ShowToastResult": {
-      "declaration": "any",
-      "docstring": "",
-      "path": "src/components/toast/toast-container.tsx"
-    },
-    "src/components/toast/toast-utils.ts::ToastConfig": {
-      "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
-      "docstring": "",
-      "path": "src/components/toast/toast-utils.ts"
-    },
-    "src/components/modal/modal.tsx::IxModalSize": {
-      "declaration": "export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;",
-      "docstring": "",
-      "path": "src/components/modal/modal.tsx"
-    },
     "src/components/card/card.tsx::CardVariant": {
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
@@ -17604,50 +17589,20 @@
       "docstring": "",
       "path": "src/components/action-card/action-card.tsx"
     },
-    "src/components/utils/theme-switcher.ts::IxTheme": {
-      "declaration": "export type IxTheme =\n  | 'classic'\n  | 'classic-dark'\n  | 'classic-light'\n  | (string & {});",
+    "src/components/blind/blind.tsx::BlindVariant": {
+      "declaration": "export type BlindVariant = CardVariant | 'outline';",
       "docstring": "",
-      "path": "src/components/utils/theme-switcher.ts"
-    },
-    "src/components/utils/breakpoints.ts::Breakpoint": {
-      "declaration": "\"sm\" | \"md\" | \"lg\"",
-      "docstring": "",
-      "path": "src/components/utils/breakpoints.ts"
-    },
-    "src/components/utils/application-layout/context.ts::AppSwitchConfiguration": {
-      "declaration": "{\n  currentAppId: string;\n  apps: {\n    id: string;\n    name: string;\n    description: string;\n    url: string;\n    target: AppSwitchConfigurationTarget;\n    iconSrc: string;\n  }[];\n  i18nAppSwitch?: string;\n  i18nLoadingApps?: string;\n}",
-      "docstring": "",
-      "path": "src/components/utils/application-layout/context.ts"
+      "path": "src/components/blind/blind.tsx"
     },
     "src/components/button/button.tsx::ButtonVariant": {
       "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/button/button.tsx"
     },
-    "src/components/blind/blind.tsx::BlindVariant": {
-      "declaration": "export type BlindVariant = CardVariant | 'outline';",
-      "docstring": "",
-      "path": "src/components/blind/blind.tsx"
-    },
     "src/components/card-accordion/card-accordion.tsx::CardAccordionExpandChangeEvent": {
       "declaration": "{\n  expand: boolean;\n  nativeEvent: Event;\n}",
       "docstring": "",
       "path": "src/components/card-accordion/card-accordion.tsx"
-    },
-    "src/components/category-filter/filter-state.ts::FilterState": {
-      "declaration": "any",
-      "docstring": "",
-      "path": "src/components/category-filter/filter-state.ts"
-    },
-    "src/components/category-filter/logical-filter-operator.ts::LogicalFilterOperator": {
-      "declaration": "export enum LogicalFilterOperator {\n  EQUAL = 'Equal',\n  NOT_EQUAL = 'Not equal',\n}",
-      "docstring": "",
-      "path": "src/components/category-filter/logical-filter-operator.ts"
-    },
-    "src/components/category-filter/input-state.ts::InputState": {
-      "declaration": "any",
-      "docstring": "",
-      "path": "src/components/category-filter/input-state.ts"
     },
     "src/components/col/col.tsx::ColumnSize": {
       "declaration": "export type ColumnSize =\n  | '1'\n  | '2'\n  | '3'\n  | '4'\n  | '5'\n  | '6'\n  | '7'\n  | '8'\n  | '9'\n  | '10'\n  | '11'\n  | '12'\n  | 'auto';",
@@ -17694,30 +17649,20 @@
       "docstring": "",
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
-    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
-      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
-      "docstring": "",
-      "path": "src/components/dropdown/dropdown-controller.ts"
-    },
-    "src/components/dropdown/placement.ts::AlignedPlacement": {
-      "declaration": "\"bottom-start\" | \"bottom-end\" | \"left-start\" | \"left-end\" | \"right-start\" | \"right-end\" | \"top-start\" | \"top-end\"",
-      "docstring": "",
-      "path": "src/components/dropdown/placement.ts"
-    },
     "src/components/dropdown-button/dropdown-button.tsx::DropdownButtonVariant": {
       "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
       "docstring": "",
       "path": "src/components/dropdown-button/dropdown-button.tsx"
     },
+    "src/components/dropdown/placement.ts::AlignedPlacement": {
+      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
+      "docstring": "",
+      "path": "src/components/dropdown/placement.ts"
+    },
     "src/components/empty-state/empty-state.tsx::EmptyStateLayout": {
       "declaration": "export type EmptyStateLayout = 'large' | 'compact' | 'compactBreak';",
       "docstring": "",
       "path": "src/components/empty-state/empty-state.tsx"
-    },
-    "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
-      "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
-      "docstring": "",
-      "path": "src/components/flip-tile/flip-tile-state.ts"
     },
     "src/components/icon-button/icon-button.tsx::IconButtonVariant": {
       "declaration": "export type ButtonVariant = 'danger' | 'primary' | 'secondary';",
@@ -17734,10 +17679,10 @@
       "docstring": "",
       "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
     },
-    "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomLabelChangeEvent": {
-      "declaration": "export interface CustomLabelChangeEvent {\n  name: string;\n  oldLabel: string;\n  newLabel: string;\n}",
+    "src/components/modal/modal.tsx::IxModalSize": {
+      "declaration": "export type IxModalSize = IxModalFixedSize | IxModalDynamicSize;",
       "docstring": "",
-      "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
+      "path": "src/components/modal/modal.tsx"
     },
     "src/components/pane/pane.tsx::Composition": {
       "declaration": "export type Composition = 'top' | 'left' | 'bottom' | 'right';",
@@ -17784,6 +17729,11 @@
       "docstring": "",
       "path": "src/components/split-button/split-button.tsx"
     },
+    "src/components/dropdown/dropdown-controller.ts::CloseBehavior": {
+      "declaration": "export type CloseBehavior = 'inside' | 'outside' | 'both' | boolean;",
+      "docstring": "",
+      "path": "src/components/dropdown/dropdown-controller.ts"
+    },
     "src/components/tab-item/tab-item.tsx::TabClickDetail": {
       "declaration": "{\n  nativeEvent: MouseEvent;\n}",
       "docstring": "",
@@ -17793,6 +17743,56 @@
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
       "docstring": "",
       "path": "src/components/time-picker/time-picker.tsx"
+    },
+    "src/components/toast/toast-container.tsx::ShowToastResult": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components/toast/toast-container.tsx"
+    },
+    "src/components/toast/toast-utils.ts::ToastConfig": {
+      "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
+      "docstring": "",
+      "path": "src/components/toast/toast-utils.ts"
+    },
+    "src/components/utils/theme-switcher.ts::IxTheme": {
+      "declaration": "export type IxTheme =\n  | 'classic'\n  | 'classic-dark'\n  | 'classic-light'\n  | (string & {});",
+      "docstring": "",
+      "path": "src/components/utils/theme-switcher.ts"
+    },
+    "src/components/utils/breakpoints.ts::Breakpoint": {
+      "declaration": "\"sm\" | \"md\" | \"lg\"",
+      "docstring": "",
+      "path": "src/components/utils/breakpoints.ts"
+    },
+    "src/components/utils/application-layout/context.ts::AppSwitchConfiguration": {
+      "declaration": "{\n  currentAppId: string;\n  apps: {\n    id: string;\n    name: string;\n    description: string;\n    url: string;\n    target: AppSwitchConfigurationTarget;\n    iconSrc: string;\n  }[];\n  i18nAppSwitch?: string;\n  i18nLoadingApps?: string;\n}",
+      "docstring": "",
+      "path": "src/components/utils/application-layout/context.ts"
+    },
+    "src/components/category-filter/filter-state.ts::FilterState": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components/category-filter/filter-state.ts"
+    },
+    "src/components/category-filter/logical-filter-operator.ts::LogicalFilterOperator": {
+      "declaration": "export enum LogicalFilterOperator {\n  EQUAL = 'Equal',\n  NOT_EQUAL = 'Not equal',\n}",
+      "docstring": "",
+      "path": "src/components/category-filter/logical-filter-operator.ts"
+    },
+    "src/components/category-filter/input-state.ts::InputState": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components/category-filter/input-state.ts"
+    },
+    "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
+      "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
+      "docstring": "",
+      "path": "src/components/flip-tile/flip-tile-state.ts"
+    },
+    "src/components/utils/menu-tabs/menu-tabs-utils.ts::CustomLabelChangeEvent": {
+      "declaration": "export interface CustomLabelChangeEvent {\n  name: string;\n  oldLabel: string;\n  newLabel: string;\n}",
+      "docstring": "",
+      "path": "src/components/utils/menu-tabs/menu-tabs-utils.ts"
     },
     "src/components/toast/toast-utils.ts::ToastType": {
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
