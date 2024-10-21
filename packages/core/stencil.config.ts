@@ -61,7 +61,7 @@ export const config: Config = {
     enableImportInjection: true,
   },
   testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],
+    testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/www/'],
     setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
     browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
     browserHeadless: 'new',

@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { JsonDocs } from '@stencil/core/internal';
+import { CopyTask, JsonDocs } from '@stencil/core/internal';
 import fs from 'fs';
 import path from 'path';
 
@@ -47,14 +47,11 @@ export const customComponentDocGenerator = (docs: JsonDocs): void => {
 };
 
 export const getDevAssets = () => {
-  const copyAssets = [
+  const copyAssets: CopyTask[] = [
     {
-      src: './../node_modules/@siemens/ix-icons/dist',
-      dest: 'build/ix-icons',
-    },
-    {
-      src: './../node_modules/bootstrap',
-      dest: 'build/bootstrap',
+      src: './../node_modules/@siemens/ix-icons',
+      dest: 'build',
+      keepDirStructure: true,
     },
   ];
 
@@ -65,7 +62,8 @@ export const getDevAssets = () => {
       const themeFolder = path.join(brandTheme, '..', '..');
       copyAssets.push({
         src: themeFolder,
-        dest: 'build/ix-brand-theme',
+        dest: 'build',
+        keepDirStructure: true,
       });
     }
   } catch (e) {

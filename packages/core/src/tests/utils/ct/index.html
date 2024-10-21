@@ -11,8 +11,26 @@ SPDX-License-Identifier: MIT
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
+    <script type="module" src="/www/build/siemens-ix.esm.js"></script>
+    <script nomodule src="/www/build/siemens-ix.js"></script>
+
+    <link rel="stylesheet" href="/www/build/siemens-ix.css" />
+
+    <script type="module">
+      import { defineCustomElements } from '/www/node_modules/@siemens/ix-icons/loader/index.es2017.js';
+
+      defineCustomElements();
+    </script>
     <title>Stencil Component Starter</title>
     <style>
+      html,
+      body {
+        margin: 0px;
+        padding: 0px;
+        width: 100vw;
+        height: 100vh;
+      }
+
       #mount {
         height: 100vh;
         width: 100vw;
@@ -21,7 +39,5 @@ SPDX-License-Identifier: MIT
   </head>
   <body>
     <div id="mount"></div>
-
-    <script src="/scripts/e2e/load-e2e-runtime.js"></script>
   </body>
 </html>

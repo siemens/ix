@@ -59,8 +59,6 @@ function loadResources() {
   ixIcons.innerHTML =
     'import { defineCustomElements } from "/www/build/ix-icons/loader/index.es2017.js"; defineCustomElements();';
 
-  //     <meta name="ix-icons:path" content="/build/svg" />
-
   const asset = document.createElement('meta');
   asset.setAttribute('name', 'ix-icons:path');
   asset.setAttribute('content', '/www/svg');

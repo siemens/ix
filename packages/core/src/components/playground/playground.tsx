@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENxSE file in the root directory of this source tree.
  */
+import { iconStar } from '@siemens/ix-icons/icons';
 import { Component, h, Host } from '@stencil/core';
 
 /** @internal */
@@ -18,6 +19,10 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return <Host></Host>;
+    return (
+      <Host>
+        <ix-button icon={iconStar}>Test</ix-button>
+      </Host>
+    );
   }
 }
