@@ -231,12 +231,12 @@ export class DatePicker {
   @State() currFromDate?: DateTime;
   @State() currToDate?: DateTime;
 
-  @State() selectedYear!: number;
-  @State() tempYear!: number;
-  @State() startYear!: number;
-  @State() endYear!: number;
-  @State() selectedMonth!: number;
-  @State() tempMonth!: number;
+  @State() selectedYear = 0;
+  @State() tempYear = 0;
+  @State() startYear = 0;
+  @State() endYear = 0;
+  @State() selectedMonth = 0;
+  @State() tempMonth = 0;
 
   private readonly dropdownButtonRef = makeRef<HTMLElement>();
   private readonly yearContainerRef = makeRef<HTMLElement>();
