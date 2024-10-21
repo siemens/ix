@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2017"],
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es2017",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "preserveSymlinks": false,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@utils/test": ["src/tests/utils/test"]
+    }
+    // Strict check uncomment to check for strict
+    // "strict": true,
+    // "strictNullChecks": true,
+    // "strictPropertyInitialization": true,
+    // "noImplicitAny": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

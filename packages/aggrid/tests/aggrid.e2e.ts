@@ -13,8 +13,8 @@ regressionTest.describe('aggrid', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('basic.html');
 
-    await page.getByRole('columnheader').nth(0).hover();
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await page.getByRole('columnheader').nth(1).hover();
+    expect(await page.screenshot({ fullPage: true, animations: 'disabled' })).toMatchSnapshot();
   });
 
   regressionTest('filter', async ({ page }) => {
@@ -29,7 +29,7 @@ regressionTest.describe('aggrid', () => {
     const inputHandle = filterMenu.getByPlaceholder('Filter...');
     await inputHandle.fill('Test');
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true, animations: 'disabled' })).toMatchSnapshot();
   });
 
   regressionTest('editor', async ({ page }) => {
@@ -38,11 +38,11 @@ regressionTest.describe('aggrid', () => {
     const editorCellHandle = page.locator('.ag-cell-not-inline-editing[col-id="price"]').nth(0);
     await editorCellHandle.dblclick();
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true, animations: 'disabled' })).toMatchSnapshot();
   });
 
   regressionTest('pagination', async ({ page }) => {
     await page.goto('pagination.html');
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    expect(await page.screenshot({ fullPage: true, animations: 'disabled' })).toMatchSnapshot();
   });
 });
