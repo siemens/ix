@@ -13,11 +13,11 @@ import {
   IxTree as IxTreeElement,
   defineCustomElement as defineIxTree,
 } from '@siemens/ix/components/ix-tree.js';
-import type {
-  EventName,
-  StencilReactComponent,
+import {
+  createComponent,
+  type EventName,
+  type StencilReactComponent,
 } from '@stencil/react-output-target/runtime';
-import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
 type IxTreeEvents = {

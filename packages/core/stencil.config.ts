@@ -89,7 +89,6 @@ export const config: Config = {
     ...getAngularConfig(),
     reactOutputTarget({
       stencilPackageName: corePackageName,
-      // hydrateModule: `${corePackageName}/hydrate`,
       outDir: '../react/src/components',
       esModules: true,
       excludeComponents: [
