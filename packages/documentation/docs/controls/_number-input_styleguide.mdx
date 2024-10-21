@@ -1,46 +1,43 @@
-The Number input component allows users to enter and adjust numerical values.
+The number input component allows users to enter and adjust numerical values. It’s commonly used in forms, calculators, and other areas where precise numerical input is required. We typically use the number input component to ensure accurate and efficient data entry.
 
 
 ![Number input overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3805-24565&t=DtCmoFcLwhf7ke3S-4)
 
 1. Label
-2. Required field indicator (optional)
+2. Required field indicator
 3. Value
-4. Stepper buttons (optional)
+4. Stepper buttons
 5. Input field
 6. Helper or feedback text
 
 ## Options
 
-- **Label**: [See form field](./forms/forms-field.md)
-- **Value**: [See form field](./forms/forms-field.md)
-- **Required**: [See form field](./forms/forms-field.md)
-- **Helper text**: [See form field](./forms/forms-field.md)
-- **Feedback text**: [See form field](./forms/forms-field.md)
-- **Show text as tooltip**: [See form field](./forms/forms-field.md)
-- **Placeholder text**: [See form field](./forms/forms-field.md)
-- **Allowed characters pattern**: Define which characters are allowed to be entered. Typically, we use this to reject excluded characters like decimal points with a shaking animation already on value change while typing.
-- **Pattern**: Describe the expected input using regular expressions, for example integer number between 1 and 100. Typically, we use this to validate input on leaving the field or clicking submit.
-- **Min/Max**: Defines the minimum and maximum values allowed
-- **Show stepper buttons**: Optional buttons to increment or decrement the value, suitable for small ranges with few steps
+- **Label**: See [form field](./forms/forms-field.md)
+- **Value**: See [form field](./forms/forms-field.md)
+- **Required**: See [form field](./forms/forms-field.md)
+- **Helper text**: See [form field](./forms/forms-field.md)
+- **Feedback text**: See [form field](./forms/forms-field.md)
+- **Show text as tooltip**: See [form field](./forms/forms-field.md)
+- **Placeholder**: See [form field](./forms/forms-field.md)
+- **Allowed characters pattern**: Specify the allowed characters for input. We typically use this to reject invalid characters, such as decimal points, by triggering a shaking animation immediately upon value change during typing.
+- **Pattern**: Define the expected input using regular expressions, such as an integer between 1 and 100. We typically use this to validate the input when the user leaves the field or clicks submit.
+- **Min/Max**: Specifies the minimum and maximum values that can be entered, ensuring the input stays within the defined range. We typically use this option to prevent invalid entries and guide users towards acceptable values.
+- **Show stepper buttons**: Stepper buttons are optional controls used to increment or decrement the value, suitable for small ranges with few steps. We typically use these buttons when precise adjustments are needed, such as in quantity selectors, rating systems, or form inputs requiring fine-tuned numerical values.
 
 ## Behavior in context
-- **Interaction:** Users can type a value or use stepper buttons to adjust it, consider using stepper buttons especially for touch interaction
-- **Validation:** [See form field](./forms/forms-validation.md)
-- **Overflow:** Long numbers are truncated to fit the input field
-- **Alignment:** Number inputs are always aligned to the right
+- **Interaction:** Users can type a value or use stepper buttons to adjust it. We typically recommend using stepper buttons, especially for touch interactions, to enhance usability and precision.
+- **Validation:** See [form field](./forms/forms-validation.md)
+- **Overflow:** Numbers are truncated to fit within the input field. Ensure that the expected value is visible in the input field so it can be properly displayed.
+- **Alignment:** Number inputs are always aligned to the right.
 
 ## States
-- Default
-- Hover
-- Focused
-- Read-only
-- Disabled
+The number input has five states: default, hover, focused, disabled and read-only.
+![Number input states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4097-1041&t=lGjPn4Q9U7Fa81TI-4)
 
 ## Dos and Don’ts
 - Do set appropriate min and max values to prevent invalid entries and guide user input
 - Do provide clear error messages when the input value is out of the allowed range or doesn’t match the required pattern
-- Do consider edge cases like zero, negative numbers, and very large numbers appropriately
+- Do consider special cases such as zero, negative numbers, and very large numbers to ensure all possible inputs are handled correctly
 - Don't specify patterns that do not align with your use case, e.g. inappropriate interval between valid values
 
 ## Related patterns
