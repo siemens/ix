@@ -49,7 +49,6 @@
     "@stencil/core": "^4.22.1",
     "@types/luxon": "^3.4.2",
     "animejs": "~3.2.2",
-    "hyperlist": "^1.0.0",
     "luxon": "^3.4.4"
   },
   "devDependencies": {

@@ -9,8 +9,7 @@
   },
   "version": "2.5.0",
   "description": "Siemens iX for React",
-  "type": "module",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "LICENSE",
@@ -38,8 +37,8 @@
     "@siemens/ix": "workspace:*",
     "@testing-library/react": "^16.0.1",
     "@types/node": "^20.16.0",
-    "@types/react": "18.2.33",
-    "@types/react-dom": "18.2.14",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@vitejs/plugin-react": "^4.3.2",
     "eslint": "~8.21.0",
     "eslint-config-ix": "workspace:*",
@@ -51,6 +50,7 @@
     "react-dom": "^18.3.1",
     "rimraf": "^6.0.1",
     "rollup": "^4.24.0",
+    "rollup-plugin-preserve-directives": "^0.4.0",
     "shadow-dom-testing-library": "^1.11.2",
     "typescript": "^5.6.3",
     "vitest": "^2.1.3"

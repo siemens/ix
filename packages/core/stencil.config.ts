@@ -89,7 +89,9 @@ export const config: Config = {
     ...getAngularConfig(),
     reactOutputTarget({
       stencilPackageName: corePackageName,
-      outDir: '../react/src',
+      // hydrateModule: `${corePackageName}/hydrate`,
+      outDir: '../react/src/components',
+      esModules: true,
       excludeComponents: [
         'ix-playground-internal',
         'ix-tree',
@@ -125,6 +127,7 @@ export const config: Config = {
     },
     {
       type: 'dist-hydrate-script',
+      dir: './hydrate',
     },
   ],
 };
