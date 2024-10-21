@@ -519,7 +519,11 @@ export class DatePicker {
     }
   }
 
-  private selectDay(selectedDay: number) {
+  private selectDay(selectedDay: number, target: Element) {
+    if (target.classList.contains('disabled')) {
+      return;
+    }
+
     const date = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, selectedDay)
     );
@@ -784,14 +788,12 @@ export class DatePicker {
                       class={this.getDayClasses(day)}
                       onClick={(e) => {
                         const target = e.currentTarget as HTMLElement;
-                        if (!target.classList.contains('disabled')) {
-                          this.selectDay(day);
-                        }
+                        this.selectDay(day, target);
                       }}
                       onKeyUp={(e) => {
                         const target = e.currentTarget as HTMLElement;
-                        if (!target.classList.contains('disabled')) {
-                          e.key === 'Enter' && this.selectDay(day);
+                        if (e.key === 'Enter') {
+                          this.selectDay(day, target);
                         }
                       }}
                       tabIndex={day === this.focusedDay ? 0 : -1}

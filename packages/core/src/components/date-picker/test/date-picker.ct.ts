@@ -36,6 +36,39 @@ test('translation', async ({ mount, page }) => {
   await expect(header).toHaveCount(1);
 });
 
+//-----------------------------------------------------------------------------------------------
+test.describe('date picker tests single', () => {
+  test.beforeEach(async ({ mount }) => {
+    await mount(
+      `<ix-date-picker min-date="2024/10/10" from="2024/10/10" range="false"></ix-date-picker>`
+    );
+  });
+
+  test('select disabled date with enter', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
+    await page.getByText(/^9$/).focus();
+    await page.keyboard.press('Enter');
+
+    expect((await getDateObj(page))[0]).toEqual({
+      from: '2024/10/10',
+      to: undefined,
+    });
+  });
+
+  test('select disabled date with click', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
+    await page.getByText(/^9$/).click({ force: true });
+
+    expect((await getDateObj(page))[0]).toEqual({
+      from: '2024/10/10',
+      to: undefined,
+    });
+  });
+});
+//-----------------------------------------------------------------------------------------------
+
 test.describe('date picker tests single', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
