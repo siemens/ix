@@ -7,8 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { IxModalSize } from 'src/components';
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
+import { ModalConfig } from './modal';
 
 function setA11yAttributes(element: HTMLElement, config: MessageContent) {
   const ariaDescribedby = config.ariaDescribedby;
@@ -32,7 +34,7 @@ function createConfirmButtons(
   payloadOkay?: any,
   payloadCancel?: any
 ) {
-  let actions = [];
+  let actions: any[] = [];
   if (textCancel !== undefined) {
     actions = [
       ...actions,
@@ -55,6 +57,10 @@ function createConfirmButtons(
   ];
 }
 
+export type MessageConfig<T> =
+  | Omit<ModalConfig<T, unknown>, 'content' | 'title'>
+  | MessageContent;
+
 export type MessageContent = {
   icon: string;
   iconColor?: string;
@@ -66,6 +72,8 @@ export type MessageContent = {
     text: string;
     payload?: any;
   }[];
+  centered?: boolean;
+  size?: IxModalSize;
   ariaLabelledby?: string;
   ariaDescribedby?: string;
 };
@@ -103,8 +111,7 @@ export async function showMessage<T>(config: MessageContent) {
         })
       );
       return;
-    }
-    if (type === 'cancel') {
+    } else if (type === 'cancel') {
       button.variant = 'primary';
       button.outline = true;
       button.addEventListener('click', () =>
@@ -149,6 +156,9 @@ export async function showMessage<T>(config: MessageContent) {
       dialogRef.remove();
     }
   );
+
+  setA11yAttributes(dialogRef, config);
+  Object.assign(dialogRef, config);
 
   dialogRef.showModal();
   return onMessageAction;

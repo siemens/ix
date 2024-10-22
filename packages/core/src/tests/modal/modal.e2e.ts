@@ -9,6 +9,13 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest, test } from '@utils/test';
+import { showMessage } from 'src/components/utils/modal/message';
+import { IxModalSize } from 'src/components';
+declare global {
+  interface Window {
+    showMessage: typeof showMessage;
+  }
+}
 
 regressionTest.describe('modal', () => {
   regressionTest('basic', async ({ page }) => {
@@ -94,15 +101,23 @@ test('modal with dropdown', async ({ mount, page }) => {
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
-[`360`, `480`, `600`, `720`, `840`, `full-width`, `full-screen`].forEach(
-  (size) => {
-    test(`modal size ${size}`, async ({ page, mount }) => {
-      await page.setViewportSize({
-        height: 1080,
-        width: 1920,
-      });
+const screenWidths: IxModalSize[] = [
+  `360`,
+  `480`,
+  `600`,
+  `720`,
+  `840`,
+  `full-width`,
+  `full-screen`,
+];
+screenWidths.forEach((size) => {
+  test(`modal size ${size}`, async ({ page, mount }) => {
+    await page.setViewportSize({
+      height: 1080,
+      width: 1920,
+    });
 
-      await mount(`
+    await mount(`
         <ix-modal size="${size}">
           <ix-modal-header>Header</ix-modal-header>
           <ix-modal-content>Some Content 123 content 123 content 123 content 123</ix-modal-content>
@@ -112,14 +127,40 @@ test('modal with dropdown', async ({ mount, page }) => {
         </ix-modal>
       `);
 
-      const modal = page.locator('ix-modal');
-      await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
+    const modal = page.locator('ix-modal');
+    await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
 
-      await page.waitForTimeout(1000);
-      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    await page.waitForTimeout(1000);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+});
+
+screenWidths.forEach((size) => {
+  test(`message size ${size}`, async ({ page }) => {
+    await page.evaluate(() => {
+      return new Promise<void>((resolve) => {
+        console.log(window.showModal);
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.innerHTML = `
+        import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+        window.showMessage = ix.showMessage;
+      `;
+        document.body.appendChild(script);
+
+        showMessage({
+          messageTitle: 'Example title',
+          message: 'message',
+          icon: 'info',
+          size: size,
+          centered: true,
+          actions: [],
+        });
+        resolve();
+      });
     });
-  }
-);
+  });
+});
 
 test('modal should show centered', async ({ mount, page }) => {
   await mount(`
