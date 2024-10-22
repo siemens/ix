@@ -36,7 +36,6 @@ test('translation', async ({ mount, page }) => {
   await expect(header).toHaveCount(1);
 });
 
-//-----------------------------------------------------------------------------------------------
 test.describe('date picker tests single', () => {
   test.beforeEach(async ({ mount }) => {
     await mount(
@@ -67,7 +66,6 @@ test.describe('date picker tests single', () => {
     });
   });
 });
-//-----------------------------------------------------------------------------------------------
 
 test.describe('date picker tests single', () => {
   test.beforeEach(async ({ mount }) => {
