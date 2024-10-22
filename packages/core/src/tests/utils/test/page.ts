@@ -82,11 +82,16 @@ export const regressionTest = testBase.extend<{
     await page.goto(
       `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
     );
-    use((selector) => {
+    use((selector: string) => {
       return page.evaluateHandle(
         async ({ componentSelector }) => {
           await window.customElements.whenDefined('ix-button');
           const mount = document.querySelector('#mount');
+
+          if (!mount) {
+            throw new Error('No mount point found in the document.');
+          }
+
           mount.innerHTML = componentSelector;
           return mount.children.item(0) as HTMLElement;
         },

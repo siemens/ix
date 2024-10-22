@@ -275,7 +275,7 @@ export class MenuCategory {
           }}
         >
           <ix-dropdown-item class={'category-dropdown-header'}>
-            <ix-typography variant="default-title-single" color="std">
+            <ix-typography format="label" bold color="std">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>

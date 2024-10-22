@@ -23,6 +23,6 @@ import { Component } from '@angular/core';
       <label for="checkbox_1_3"> Disabled </label>
     </div>
   `,
-  styleUrls: ['./styles/radio-button.css'],
+  styleUrls: ['./radio-button.css'],
 })
 export default class Radiobutton {}

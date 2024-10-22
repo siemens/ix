@@ -190,6 +190,7 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import * as echarts from 'echarts';
 
 @NgModule({
   declarations: [
@@ -374,7 +375,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     AgGridModule,
     FormsModule,
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
+      echarts,
     }),
   ],
   providers: [],

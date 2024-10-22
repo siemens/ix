@@ -20,7 +20,7 @@ import { EChartsOption } from 'echarts';
 @Component({
   selector: 'app-example',
   templateUrl: './echarts-special-zoom.html',
-  styleUrls: ['./styles/charts.css'],
+  styleUrls: ['./echarts-special-zoom.css'],
 })
 export default class EchartsSpecialZoom implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());

@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './application.html',
-  styleUrls: ['./styles/application.css'],
+  styleUrls: ['./application.css'],
 })
 export default class ApplicationExample {}
