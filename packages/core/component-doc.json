@@ -1936,7 +1936,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1970,7 +1970,7 @@
           "name": "showAllCount",
           "type": "number",
           "complexType": {
-            "original": "number | undefined",
+            "original": "number",
             "resolved": "number",
             "references": {}
           },
@@ -1984,7 +1984,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
