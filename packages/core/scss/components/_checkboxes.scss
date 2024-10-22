@@ -13,18 +13,11 @@
   /* Base for label styling */
   [type='checkbox']:not(:checked),
   [type='checkbox']:checked {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    width: 1px;
-    max-height: 1px;
-    max-width: 1px;
-    min-height: 0px;
-    min-width: 0px;
-    overflow: hidden;
     position: absolute;
-    white-space: nowrap;
-    appearance: none;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
   }
 
   [type='checkbox']:not(:checked) + label,
