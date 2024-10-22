@@ -12,16 +12,13 @@
 
 :host {
   @include ix-component;
+  --btn-width: 100%;
 
   display: block;
   background-color: var(--theme-menu--background);
   border-radius: 4px;
   position: relative;
   width: min-content;
-
-  .min-width {
-    width: min-content;
-  }
 
   .no-padding {
     padding: 0;
@@ -35,11 +32,17 @@
 
   @media (min-width: 576px) {
     min-width: max-content;
+    --btn-width: min-content;
 
-    .btn-select-date {
-      left: unset !important;
+    .btn-select-date-container {
+      position: absolute;
+      bottom: 0;
+      right: 0;
     }
 
+    .min-width {
+      width: min-content;
+    }
   }
 
   .individual {
@@ -47,11 +50,11 @@
     border: none;
   }
 
-  .btn-select-date {
-    position: absolute;
-    bottom: $default-space;
-    right: $default-space;
-    left: $default-space;
-  }
+  .btn-select-date-container {
+    padding: 1rem;
 
+    & .btn-select-date {
+      width: var(--btn-width);
+    }
+  }
 }

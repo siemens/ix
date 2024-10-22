@@ -252,15 +252,13 @@ export class DatetimePicker {
               ></ix-time-picker>
             </ix-col>
           </ix-row>
-          <ix-row>
-            <ix-col>
-              <ix-button
-                class="btn-select-date btn-md-width"
-                onClick={() => this.onDone()}
-              >
-                {this.textSelectDate || this.i18nDone}
-              </ix-button>
-            </ix-col>
+          <ix-row class="btn-select-date-container">
+            <ix-button
+              class="btn-select-date"
+              onClick={() => this.onDone()}
+            >
+              {this.textSelectDate || this.i18nDone}
+            </ix-button>
           </ix-row>
         </ix-layout-grid>
       </Host>
