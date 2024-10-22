@@ -16153,18 +16153,13 @@
       "docs": "",
       "docsTags": [],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-tree-item"
       ],
       "dependencyGraph": {
         "ix-tree": [
           "ix-tree-item"
-        ],
-        "ix-playground-internal": [
-          "ix-tree"
         ]
       },
       "props": [
