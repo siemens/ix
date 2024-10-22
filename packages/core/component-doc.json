@@ -5212,15 +5212,15 @@
       "props": [
         {
           "name": "anchor",
-          "type": "ElementReference",
+          "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
             "original": "ElementReference",
-            "resolved": "ElementReference",
+            "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
               "ElementReference": {
                 "location": "import",
-                "path": "src/components",
-                "id": "src/components.d.ts::unknown"
+                "path": "src/components/utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -5231,7 +5231,13 @@
           "docsTags": [],
           "values": [
             {
-              "type": "ElementReference"
+              "type": "HTMLElement"
+            },
+            {
+              "type": "Promise<HTMLElement>"
+            },
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -5433,15 +5439,15 @@
         },
         {
           "name": "trigger",
-          "type": "ElementReference",
+          "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
             "original": "ElementReference",
-            "resolved": "ElementReference",
+            "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
               "ElementReference": {
                 "location": "import",
-                "path": "src/components",
-                "id": "src/components.d.ts::unknown"
+                "path": "src/components/utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -5452,7 +5458,13 @@
           "docsTags": [],
           "values": [
             {
-              "type": "ElementReference"
+              "type": "HTMLElement"
+            },
+            {
+              "type": "Promise<HTMLElement>"
+            },
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -17887,10 +17899,10 @@
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
     },
-    "src/components.d.ts::unknown": {
-      "declaration": "any",
+    "src/components/utils/element-reference.ts::ElementReference": {
+      "declaration": "export type ElementReference = string | HTMLElement | Promise<HTMLElement>;",
       "docstring": "",
-      "path": "src/components.d.ts"
+      "path": "src/components/utils/element-reference.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
@@ -17906,11 +17918,6 @@
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
-    },
-    "src/components/utils/element-reference.ts::ElementReference": {
-      "declaration": "export type ElementReference = string | HTMLElement | Promise<HTMLElement>;",
-      "docstring": "",
-      "path": "src/components/utils/element-reference.ts"
     },
     "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",

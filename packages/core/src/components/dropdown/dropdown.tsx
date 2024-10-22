@@ -41,7 +41,7 @@ import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
-import { ElementReference } from 'src/components';
+import { ElementReference } from 'src/components/utils/element-reference';
 
 let sequenceId = 0;
 
