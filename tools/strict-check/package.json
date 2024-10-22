@@ -1,6 +1,7 @@
 {
   "name": "strict-check",
   "version": "1.0.0",
+  "private": true,
   "bin": {
     "strict-check": "./check.mjs"
   },

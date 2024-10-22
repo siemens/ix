@@ -7,9 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop } from '@stencil/core';
 import { ButtonVariant } from '../button/button';
 import { AlignedPlacement } from '../dropdown/placement';
+import { makeRef } from '../utils/make-ref';
 
 export type DropdownButtonVariant = ButtonVariant;
 
@@ -47,12 +48,12 @@ export class DropdownButton {
   /**
    * Set label
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Button icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
@@ -65,9 +66,9 @@ export class DropdownButton {
    *
    * @since 2.0.0
    */
-  @Prop() placement: AlignedPlacement;
+  @Prop() placement?: AlignedPlacement;
 
-  @State() dropdownAnchor!: HTMLElement;
+  private readonly dropdownAnchor = makeRef<HTMLElement>();
 
   private getTriangle() {
     return (
@@ -91,9 +92,7 @@ export class DropdownButton {
         class={{
           disabled: this.disabled,
         }}
-        ref={(ref) => {
-          this.dropdownAnchor = ref;
-        }}
+        ref={this.dropdownAnchor}
       >
         <div class="dropdown-button">
           {this.label ? (
@@ -132,7 +131,7 @@ export class DropdownButton {
 
         <ix-dropdown
           class="dropdown"
-          trigger={this.dropdownAnchor}
+          trigger={this.dropdownAnchor.waitForCurrent()}
           placement={this.placement}
           closeBehavior={this.closeBehavior}
         >

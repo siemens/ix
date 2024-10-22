@@ -21,6 +21,7 @@ import {
 } from '@stencil/core';
 import { a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import { createMutationObserver } from '../utils/mutation-observer';
+import { makeRef } from '../utils/make-ref';
 
 let sequenceId = 0;
 const createId = (prefix: string = 'breadcrumb-') => {
@@ -65,19 +66,20 @@ export class Breadcrumb {
   /**
    * Crumb item clicked event
    */
-  @Event() itemClick: EventEmitter<string>;
+  @Event() itemClick!: EventEmitter<string>;
 
   /**
    * Next item clicked event
    */
-  @Event() nextClick: EventEmitter<{ event: UIEvent; item: string }>;
+  @Event() nextClick!: EventEmitter<{ event: UIEvent; item: string }>;
 
-  @State() previousButtonRef: HTMLElement;
-  @State() nextButtonRef: HTMLElement;
+  private readonly previousButtonRef = makeRef<HTMLIxBreadcrumbItemElement>();
+  private readonly nextButtonRef = makeRef<HTMLElement>();
+
   @State() items: HTMLIxBreadcrumbItemElement[] = [];
   @State() isPreviousDropdownExpanded = false;
 
-  private mutationObserver: MutationObserver;
+  private mutationObserver?: MutationObserver;
 
   private previousButtonId = createId();
   private previousDropdownId = createId();
@@ -117,7 +119,7 @@ export class Breadcrumb {
       bc.isDropdownTrigger = shouldShowDropdown;
 
       if (shouldShowDropdown) {
-        this.nextButtonRef = bc;
+        this.nextButtonRef(bc);
       }
 
       if (updatedItems.length < this.visibleItemCount) {
@@ -143,23 +145,19 @@ export class Breadcrumb {
           aria-label={this.ariaLabelPreviousButton}
           trigger={
             this.items?.length > this.visibleItemCount
-              ? this.previousButtonRef
-              : null
+              ? this.previousButtonRef.waitForCurrent()
+              : undefined
           }
           onShowChanged={({ detail }) => {
             this.isPreviousDropdownExpanded = detail;
 
-            const previousButton = this.hostElement.shadowRoot.getElementById(
+            const previousButton = this.hostElement.shadowRoot!.getElementById(
               this.previousButtonId
             );
 
             // Need to force update previous button to change `aria-expanded`
             if (previousButton) {
-              forceUpdate(
-                this.hostElement.shadowRoot.getElementById(
-                  this.previousButtonId
-                )
-              );
+              forceUpdate(previousButton);
             }
           }}
         >
@@ -182,7 +180,7 @@ export class Breadcrumb {
         {this.items?.length > this.visibleItemCount ? (
           <ix-breadcrumb-item
             id={this.previousButtonId}
-            ref={(ref) => (this.previousButtonRef = ref)}
+            ref={this.previousButtonRef}
             label="..."
             tabIndex={1}
             onItemClick={(event) => event.stopPropagation()}
@@ -200,7 +198,7 @@ export class Breadcrumb {
             <slot></slot>
           </ol>
         </nav>
-        <ix-dropdown trigger={this.nextButtonRef}>
+        <ix-dropdown trigger={this.nextButtonRef.waitForCurrent()}>
           {this.nextItems?.map((item) => (
             <ix-dropdown-item
               label={item}
