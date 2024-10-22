@@ -6,13 +6,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import "./input.mixins.scss";
+@import './input.mixins.scss';
 
 @include input-field;
 
 :host {
   .input-wrapper.show-stepper-buttons {
-    input[type="number"] {
+    input[type='number'] {
       min-width: 6rem;
     }
   }
