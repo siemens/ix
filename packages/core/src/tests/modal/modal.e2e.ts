@@ -137,9 +137,7 @@ screenWidths.forEach((size) => {
 
 screenWidths.forEach((size) => {
   test(`message size ${size}`, async ({ page, mount }) => {
-    await mount(`
-      <ix-button>Some background noise</ix-button>
-    `);
+    await mount(``);
 
     await page.evaluate(() => {
       return new Promise<void>((resolve) => {
@@ -151,8 +149,15 @@ screenWidths.forEach((size) => {
       `;
 
         document.body.appendChild(script);
+        resolve();
+      });
+    });
 
-        showMessage({
+    await page.waitForTimeout(250);
+
+    await page.evaluate(
+      ({ size }) => {
+        window.showMessage({
           messageTitle: 'Example title',
           message: 'message',
           icon: 'info',
@@ -160,11 +165,11 @@ screenWidths.forEach((size) => {
           centered: true,
           actions: [],
         });
-        resolve();
-      });
-    });
+      },
+      { size }
+    );
 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(250);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
