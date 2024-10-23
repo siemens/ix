@@ -1,4 +1,4 @@
-Selects provide users to make a single or multi selection from a filterable list. With the editable variant, users can also add new items to the list.
+A select component allows users to choose from a list of options. It supports single or multiple selections and the editable variant allows users to add new items. We typically use select components in forms, filters and settings where users need to choose from predefined options.
 
 ![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3647-6332&t=DtCmoFcLwhf7ke3S-4)
 
