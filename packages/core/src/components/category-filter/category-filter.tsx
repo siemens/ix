@@ -139,6 +139,13 @@ export class CategoryFilter {
   @Prop() i18nPlainText = 'Filter by text';
 
   /**
+   * Aria label for the filter input field
+   *
+   * @since 2.6.0
+   */
+  @Prop() ariaLabel = 'Filter';
+
+  /**
    * Event dispatched whenever a category gets selected in the dropdown
    */
   @Event() categoryChanged!: EventEmitter<string>;
@@ -710,9 +717,9 @@ export class CategoryFilter {
               size="16"
             ></ix-icon>
             <div class="token-container">
-              <ul class="list-unstyled">
+              <div class="list-unstyled">
                 {this.filterTokens.map((value, index) => (
-                  <li
+                  <span
                     key={value.toString()}
                     class={{
                       animate__animated: true,
@@ -727,19 +734,19 @@ export class CategoryFilter {
                     >
                       {this.getFilterChipLabel(value)}
                     </ix-filter-chip>
-                  </li>
+                  </span>
                 ))}
                 {this.categories === undefined ? (
                   ''
                 ) : (
-                  <li
+                  <span
                     class={{
                       'category-preview': true,
                       'd-none': this.category === undefined,
                     }}
                   >
                     {this.categories[this.category]?.label}
-                  </li>
+                  </span>
                 )}
                 <input
                   class={{
@@ -756,8 +763,9 @@ export class CategoryFilter {
                   ref={(el) => (this.textInput = el)}
                   type="text"
                   placeholder={this.placeholder}
+                  aria-label={this.ariaLabel}
                 ></input>
-              </ul>
+              </div>
             </div>
             {!this.readonly && !this.disabled && this.getResetButton()}
           </div>
