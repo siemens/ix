@@ -48,7 +48,7 @@ Buttons have six states: Default, hover, active, disabled, loading and focused. 
 - Don’t rely on standard buttons when many actions/functions are necessary (use dropdown, split or menu buttons or move some functionality to a panel or a dialog)
 - Don’t use buttons for navigation
 
-## Related patterns:
+## Related patterns
 
 - [Dropdown button](./dropdown-button.md)
 - [Split button](./split-button.md)

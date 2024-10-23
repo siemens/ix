@@ -1,0 +1,67 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form checkbox group indeterminate example</title>
+    <link rel="stylesheet" href="./form-checkbox-group-indeterminate.css" />
+  </head>
+  <body>
+    <ix-checkbox-group>
+      <ix-checkbox label="Option group"></ix-checkbox>
+      <ix-checkbox
+        checked
+        label="Sub option one"
+        class="cb-padding"
+      ></ix-checkbox>
+      <ix-checkbox
+        checked
+        label="Another sub option"
+        class="cb-padding"
+      ></ix-checkbox>
+      <ix-checkbox label="Another sub option" class="cb-padding"></ix-checkbox>
+    </ix-checkbox-group>
+
+    <script>
+      (async function () {
+        await customElements.whenDefined('ix-checkbox');
+
+        const [parent, ...children] = Array.from(
+          document.querySelectorAll('ix-checkbox')
+        );
+        const checkboxGroup = document.querySelector('ix-checkbox-group');
+
+        function checkedChange() {
+          parent.checked = children.every((cb) => cb.checked);
+          parent.indeterminate = children.some((cb) => cb.checked);
+        }
+
+        function parentCheckedChange(event) {
+          const { target } = event;
+          event.stopPropagation();
+          target.indeterminate = false;
+
+          const checked = target.checked;
+          children.forEach((cb) => {
+            cb.checked = checked;
+          });
+        }
+
+        checkboxGroup.addEventListener('checkedChange', checkedChange);
+        parent.addEventListener('checkedChange', parentCheckedChange);
+
+        checkedChange();
+      })();
+    </script>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>

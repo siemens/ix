@@ -66,4 +66,9 @@ regressionTest.describe('input', () => {
     await input.hover();
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('with slots', async ({ page }) => {
+    await page.goto('input/with-slots');
+    await expect(page).toHaveScreenshot();
+  });
 });

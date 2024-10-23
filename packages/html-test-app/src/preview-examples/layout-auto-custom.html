@@ -1,0 +1,51 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout auto custom example</title>
+    <link rel="stylesheet" href="./layout-auto.css" />
+  </head>
+  <body>
+    <ix-layout-auto>
+      <ix-typography format="display">1</ix-typography>
+      <ix-typography format="display">2</ix-typography>
+      <ix-typography format="display">3</ix-typography>
+      <ix-typography format="display" data-colspan="4">4</ix-typography>
+      <ix-typography format="display">5</ix-typography>
+      <ix-typography format="display">6</ix-typography>
+    </ix-layout-auto>
+    <script>
+      const autoLayout = document.querySelector('ix-layout-auto');
+      autoLayout.layout = [
+        { minWidth: '0', columns: 1 },
+        { minWidth: '35rem', columns: 2 },
+        { minWidth: '50rem', columns: 4 },
+      ];
+    </script>
+
+    <style>
+      ix-layout-auto > ix-typography {
+        display: flex;
+        padding: 0.15rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-self: stretch;
+        border: 1px solid var(--theme-color-soft-bdr);
+        background: var(--theme-color-ghost);
+        border-radius: 3px;
+      }
+    </style>
+    <script type="module" src="./init.js"></script>
+  </body>
+</html>
