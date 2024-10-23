@@ -129,7 +129,6 @@ screenWidths.forEach((size) => {
   });
 });
 
-
 test('modal should show centered', async ({ mount, page }) => {
   await mount(`
   <ix-modal centered>
