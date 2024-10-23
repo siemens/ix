@@ -136,16 +136,20 @@ screenWidths.forEach((size) => {
 });
 
 screenWidths.forEach((size) => {
-  test(`message size ${size}`, async ({ page }) => {
+  test(`message size ${size}`, async ({ page, mount }) => {
+    await mount(`
+      <ix-button>Some background noise</ix-button>
+    `);
+
     await page.evaluate(() => {
       return new Promise<void>((resolve) => {
-        console.log(window.showModal);
         const script = document.createElement('script');
         script.type = 'module';
         script.innerHTML = `
         import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
         window.showMessage = ix.showMessage;
       `;
+
         document.body.appendChild(script);
 
         showMessage({
@@ -159,6 +163,10 @@ screenWidths.forEach((size) => {
         resolve();
       });
     });
+
+    await page.waitForTimeout(1000);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
 
