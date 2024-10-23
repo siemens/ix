@@ -31,7 +31,7 @@ import { matchBreakpoint } from '../utils/breakpoints';
   shadow: true,
 })
 export class Panes {
-  @Element() hostElement: HTMLIxPaneLayoutElement;
+  @Element() hostElement!: HTMLIxPaneLayoutElement;
 
   /**
    * Choose the layout of the panes.
@@ -59,7 +59,7 @@ export class Panes {
     floating: boolean;
   }> = [];
 
-  private observer: MutationObserver;
+  private observer?: MutationObserver;
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
@@ -179,30 +179,30 @@ export class Panes {
 
       if (isLeft) {
         if (leftCount) {
-          pane.slot = undefined;
+          pane.slot = '';
           return;
         }
         leftCount++;
       } else if (isRight) {
         if (rightCount) {
-          pane.slot = undefined;
+          pane.slot = '';
           return;
         }
         rightCount++;
       } else if (isTop) {
         if (topCount) {
-          pane.slot = undefined;
+          pane.slot = '';
           return;
         }
         topCount++;
       } else if (isBottom) {
         if (bottomCount) {
-          pane.slot = undefined;
+          pane.slot = '';
           return;
         }
         bottomCount++;
       } else {
-        pane.slot = undefined;
+        pane.slot = '';
         return;
       }
 
