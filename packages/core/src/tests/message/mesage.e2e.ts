@@ -46,7 +46,7 @@ screenWidths.forEach((size) => {
       });
     });
 
-    await page.waitForTimeout(250);
+    await page.waitForTimeout(1000);
 
     await page.evaluate(
       ({ size }) => {
