@@ -46,7 +46,7 @@ screenWidths.forEach((size) => {
       });
     });
 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(500);
 
     await page.evaluate(
       ({ size }) => {
@@ -62,7 +62,7 @@ screenWidths.forEach((size) => {
       { size }
     );
 
-    await page.waitForTimeout(250);
+    await page.waitForTimeout(500);
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
