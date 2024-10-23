@@ -202,7 +202,7 @@ export class Panes {
         }
         bottomCount++;
       } else {
-        pane.slot = undefined;
+        pane.slot = '';
         return;
       }
 
