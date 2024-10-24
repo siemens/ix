@@ -1,4 +1,4 @@
-The date input component enables users to enter and select a date in a standardized format. We typically use this component in forms, calendars, and scheduling tools to ensure consistent and accurate date entries.
+The date input component enables users to enter and select a date in a standardized format. We typically use this component in forms, filters, and scheduling tools to ensure consistent and accurate date entries.
 
 ![Date input overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3629-6200&t=ADQCetGKOEH1WG2r-4)
 1. Label
@@ -16,14 +16,13 @@ The date input component enables users to enter and select a date in a standardi
 ## Options
 
 - **Label**: See [form field](./forms/forms-field.md)
-- **Value**: See [form field](./forms/forms-field.md)
 - **Required**: See [form field](./forms/forms-field.md)
 - **Helper text**: See [form field](./forms/forms-field.md)
 - **Feedback text**: See [form field](./forms/forms-field.md)
 - **Show text as tooltip**: See [form field](./forms/forms-field.md)
 - **Placeholder**: See [form field](./forms/forms-field.md). We typically use a placeholder to show an example date format to assist users when the field is empty.
 - **Error message**: Feedback text when date is not parsable. We typically use this to inform users that the entered date format is incorrect and guide them to enter a valid date.
-- **Format**: Specify the date format, default ‘yyyy/LL/dd’. We typically use this to ensure that dates are entered in a consistent and recognizable format, leveraging the Luxon JavaScript library for parsing and formatting.
+- **Format**: Specify the date format, default ‘yyyy/LL/dd’ to ensure that dates are entered in a consistent and recognizable format.
 
 ## Behavior in context
 
@@ -49,13 +48,13 @@ Date input has five states: Default, hover, disabled, read-only and focused.
 
 ## Dos and Don’ts
 
-- Do use consistent date formats: Ensure the date format is uniform throughout the application to avoid confusion
-- Do use separate inputs for date ranges: Provide distinct input fields for the start and end dates to make it easier for users to enter and understand date ranges
-- Do provide clear instructions: Clearly indicate the required date format to users. For example, “Please enter the date in yyyy-MM-dd format”
-- Do handle time zones: If time zones are relevant, ensure that the date input accounts for them and is clearly labeled
-- Do consider localization: Adapt date formats to the local conventions of your users if your application is used internationally
-- Don't use ambiguous formats: Do not use date formats that can be easily misinterpreted, such as 09/08/2006 without clear context
-- Don't allow free text without validation: Avoid allowing users to enter dates as free text without any validation or formatting guidance
+- Do use consistent date formats throughout the application to avoid confusion
+- Do use separate inputs for start and end dates to simplify date ranges
+- Do provide clear instructions, such as “Enter the date in yyyy/MM/dd format”
+- Do handle time zones and label them clearly if relevant
+- Do consider localization to adapt date formats to local conventions
+- Don't use ambiguous formats like 09/08/2006 without clear context
+- Don't allow free text without validation or formatting guidance
 
 ## Related patterns
 
