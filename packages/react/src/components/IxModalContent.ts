@@ -17,6 +17,7 @@ type IxModalContentEvents = NonNullable<unknown>;
 const IxModalContent: StencilReactComponent<IxModalContentElement, IxModalContentEvents> = /*@__PURE__*/ createComponent<IxModalContentElement, IxModalContentEvents>({
     tagName: 'ix-modal-content',
     elementClass: IxModalContentElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxModalContentEvents,
     defineCustomElement: defineIxModalContent

@@ -17,6 +17,7 @@ type IxKpiEvents = NonNullable<unknown>;
 const IxKpi: StencilReactComponent<IxKpiElement, IxKpiEvents> = /*@__PURE__*/ createComponent<IxKpiElement, IxKpiEvents>({
     tagName: 'ix-kpi',
     elementClass: IxKpiElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxKpiEvents,
     defineCustomElement: defineIxKpi

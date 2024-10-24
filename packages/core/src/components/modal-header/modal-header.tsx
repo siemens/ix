@@ -39,10 +39,10 @@ export class ModalHeader {
   /**
    * Icon of the Header
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   @Watch('icon')
-  onIconChange(icon: string) {
+  onIconChange(icon?: string) {
     if (this.parentDialog) {
       if (icon) {
         this.parentDialog.classList.add('with-icon');
@@ -55,15 +55,15 @@ export class ModalHeader {
   /**
    * Icon color
    */
-  @Prop() iconColor: string;
+  @Prop() iconColor?: string;
 
   /**
    * Emits when close icon is clicked and closes the modal
    * Can be prevented, in which case only the event is triggered, and the modal remains open
    */
-  @Event() closeClick: EventEmitter<MouseEvent>;
+  @Event() closeClick!: EventEmitter<MouseEvent>;
 
-  private parentDialog: HTMLIxModalElement;
+  private parentDialog!: HTMLIxModalElement;
 
   componentDidLoad() {
     this.parentDialog = closestPassShadow(
@@ -86,21 +86,19 @@ export class ModalHeader {
     return (
       <Host>
         {this.icon ? (
-          <ix-icon
-            class={'modal-icon'}
-            name={this.icon}
-            color={this.iconColor}
-          ></ix-icon>
+          <ix-icon name={this.icon} color={this.iconColor} size="32"></ix-icon>
         ) : null}
-        <ix-typography format="h5">
-          <slot></slot>
-        </ix-typography>
+        <div class="modal-title">
+          <ix-typography format="h5">
+            <slot></slot>
+          </ix-typography>
+        </div>
         {!this.hideClose ? (
           <ix-icon-button
+            class="modal-close"
             onClick={(event) => this.onCloseClick(event)}
             ghost
             icon={iconClose}
-            class={'modal-close'}
           ></ix-icon-button>
         ) : null}
       </Host>

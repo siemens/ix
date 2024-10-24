@@ -17,6 +17,7 @@ type IxTabsEvents = { onSelectedChange: EventName<CustomEvent<number>> };
 const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents> = /*@__PURE__*/ createComponent<IxTabsElement, IxTabsEvents>({
     tagName: 'ix-tabs',
     elementClass: IxTabsElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onSelectedChange: 'selectedChange' } as IxTabsEvents,
     defineCustomElement: defineIxTabs

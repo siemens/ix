@@ -17,6 +17,7 @@ type IxDropdownQuickActionsEvents = NonNullable<unknown>;
 const IxDropdownQuickActions: StencilReactComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents> = /*@__PURE__*/ createComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents>({
     tagName: 'ix-dropdown-quick-actions',
     elementClass: IxDropdownQuickActionsElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxDropdownQuickActionsEvents,
     defineCustomElement: defineIxDropdownQuickActions

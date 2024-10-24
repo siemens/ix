@@ -26,7 +26,7 @@ function loadResources() {
     'http://127.0.0.1:8080/www/build/siemens-ix.css'
   );
 
-  var ixIcons = document.createElement('script');
+  const ixIcons = document.createElement('script');
   ixIcons.setAttribute('type', 'module');
   ixIcons.innerHTML =
     'import { defineCustomElements } from "/www/node_modules/@siemens/ix-icons/loader/index.es2017.js"; defineCustomElements();';

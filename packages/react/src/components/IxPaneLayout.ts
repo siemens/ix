@@ -17,6 +17,7 @@ type IxPaneLayoutEvents = NonNullable<unknown>;
 const IxPaneLayout: StencilReactComponent<IxPaneLayoutElement, IxPaneLayoutEvents> = /*@__PURE__*/ createComponent<IxPaneLayoutElement, IxPaneLayoutEvents>({
     tagName: 'ix-pane-layout',
     elementClass: IxPaneLayoutElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxPaneLayoutEvents,
     defineCustomElement: defineIxPaneLayout

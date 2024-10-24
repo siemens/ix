@@ -21,6 +21,7 @@ type IxMenuAboutNewsEvents = {
 const IxMenuAboutNews: StencilReactComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents> = /*@__PURE__*/ createComponent<IxMenuAboutNewsElement, IxMenuAboutNewsEvents>({
     tagName: 'ix-menu-about-news',
     elementClass: IxMenuAboutNewsElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onShowMore: 'showMore',

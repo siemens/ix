@@ -17,6 +17,7 @@ type IxBasicNavigationEvents = NonNullable<unknown>;
 const IxBasicNavigation: StencilReactComponent<IxBasicNavigationElement, IxBasicNavigationEvents> = /*@__PURE__*/ createComponent<IxBasicNavigationElement, IxBasicNavigationEvents>({
     tagName: 'ix-basic-navigation',
     elementClass: IxBasicNavigationElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxBasicNavigationEvents,
     defineCustomElement: defineIxBasicNavigation

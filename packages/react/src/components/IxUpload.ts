@@ -18,6 +18,7 @@ type IxUploadEvents = { onFilesChanged: EventName<IxUploadCustomEvent<Array<File
 const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = /*@__PURE__*/ createComponent<IxUploadElement, IxUploadEvents>({
     tagName: 'ix-upload',
     elementClass: IxUploadElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onFilesChanged: 'filesChanged' } as IxUploadEvents,
     defineCustomElement: defineIxUpload

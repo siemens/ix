@@ -17,6 +17,7 @@ type IxSpinnerEvents = NonNullable<unknown>;
 const IxSpinner: StencilReactComponent<IxSpinnerElement, IxSpinnerEvents> = /*@__PURE__*/ createComponent<IxSpinnerElement, IxSpinnerEvents>({
     tagName: 'ix-spinner',
     elementClass: IxSpinnerElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxSpinnerEvents,
     defineCustomElement: defineIxSpinner

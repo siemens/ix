@@ -17,6 +17,7 @@ type IxDividerEvents = NonNullable<unknown>;
 const IxDivider: StencilReactComponent<IxDividerElement, IxDividerEvents> = /*@__PURE__*/ createComponent<IxDividerElement, IxDividerEvents>({
     tagName: 'ix-divider',
     elementClass: IxDividerElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxDividerEvents,
     defineCustomElement: defineIxDivider

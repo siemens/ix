@@ -17,6 +17,7 @@ type IxBlindEvents = { onCollapsedChange: EventName<CustomEvent<boolean>> };
 const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents> = /*@__PURE__*/ createComponent<IxBlindElement, IxBlindEvents>({
     tagName: 'ix-blind',
     elementClass: IxBlindElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onCollapsedChange: 'collapsedChange' } as IxBlindEvents,
     defineCustomElement: defineIxBlind

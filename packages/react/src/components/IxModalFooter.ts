@@ -17,6 +17,7 @@ type IxModalFooterEvents = NonNullable<unknown>;
 const IxModalFooter: StencilReactComponent<IxModalFooterElement, IxModalFooterEvents> = /*@__PURE__*/ createComponent<IxModalFooterElement, IxModalFooterEvents>({
     tagName: 'ix-modal-footer',
     elementClass: IxModalFooterElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxModalFooterEvents,
     defineCustomElement: defineIxModalFooter

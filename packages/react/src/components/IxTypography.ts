@@ -17,6 +17,7 @@ type IxTypographyEvents = NonNullable<unknown>;
 const IxTypography: StencilReactComponent<IxTypographyElement, IxTypographyEvents> = /*@__PURE__*/ createComponent<IxTypographyElement, IxTypographyEvents>({
     tagName: 'ix-typography',
     elementClass: IxTypographyElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxTypographyEvents,
     defineCustomElement: defineIxTypography

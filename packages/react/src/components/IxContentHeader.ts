@@ -17,6 +17,7 @@ type IxContentHeaderEvents = { onBackButtonClick: EventName<CustomEvent<void>> }
 const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxContentHeaderEvents> = /*@__PURE__*/ createComponent<IxContentHeaderElement, IxContentHeaderEvents>({
     tagName: 'ix-content-header',
     elementClass: IxContentHeaderElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onBackButtonClick: 'backButtonClick' } as IxContentHeaderEvents,
     defineCustomElement: defineIxContentHeader

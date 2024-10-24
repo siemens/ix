@@ -22,6 +22,7 @@ type IxSelectEvents = {
 const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = /*@__PURE__*/ createComponent<IxSelectElement, IxSelectEvents>({
     tagName: 'ix-select',
     elementClass: IxSelectElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onValueChange: 'valueChange',

@@ -17,6 +17,7 @@ type IxWorkflowStepEvents = NonNullable<unknown>;
 const IxWorkflowStep: StencilReactComponent<IxWorkflowStepElement, IxWorkflowStepEvents> = /*@__PURE__*/ createComponent<IxWorkflowStepElement, IxWorkflowStepEvents>({
     tagName: 'ix-workflow-step',
     elementClass: IxWorkflowStepElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxWorkflowStepEvents,
     defineCustomElement: defineIxWorkflowStep

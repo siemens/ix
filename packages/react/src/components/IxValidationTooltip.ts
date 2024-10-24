@@ -17,6 +17,7 @@ type IxValidationTooltipEvents = NonNullable<unknown>;
 const IxValidationTooltip: StencilReactComponent<IxValidationTooltipElement, IxValidationTooltipEvents> = /*@__PURE__*/ createComponent<IxValidationTooltipElement, IxValidationTooltipEvents>({
     tagName: 'ix-validation-tooltip',
     elementClass: IxValidationTooltipElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxValidationTooltipEvents,
     defineCustomElement: defineIxValidationTooltip

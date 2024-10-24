@@ -17,6 +17,7 @@ type IxSelectItemEvents = { onItemClick: EventName<CustomEvent<string>> };
 const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents>({
     tagName: 'ix-select-item',
     elementClass: IxSelectItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onItemClick: 'itemClick' } as IxSelectItemEvents,
     defineCustomElement: defineIxSelectItem

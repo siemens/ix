@@ -18,6 +18,7 @@ type IxSplitButtonEvents = { onButtonClick: EventName<IxSplitButtonCustomEvent<M
 const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitButtonEvents> = /*@__PURE__*/ createComponent<IxSplitButtonElement, IxSplitButtonEvents>({
     tagName: 'ix-split-button',
     elementClass: IxSplitButtonElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onButtonClick: 'buttonClick' } as IxSplitButtonEvents,
     defineCustomElement: defineIxSplitButton

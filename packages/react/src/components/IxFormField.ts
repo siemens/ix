@@ -17,6 +17,7 @@ type IxFormFieldEvents = NonNullable<unknown>;
 const IxFormField: StencilReactComponent<IxFormFieldElement, IxFormFieldEvents> = /*@__PURE__*/ createComponent<IxFormFieldElement, IxFormFieldEvents>({
     tagName: 'ix-form-field',
     elementClass: IxFormFieldElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxFormFieldEvents,
     defineCustomElement: defineIxFormField

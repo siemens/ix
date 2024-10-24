@@ -17,6 +17,7 @@ type IxToastEvents = { onCloseToast: EventName<CustomEvent<any>> };
 const IxToast: StencilReactComponent<IxToastElement, IxToastEvents> = /*@__PURE__*/ createComponent<IxToastElement, IxToastEvents>({
     tagName: 'ix-toast',
     elementClass: IxToastElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onCloseToast: 'closeToast' } as IxToastEvents,
     defineCustomElement: defineIxToast

@@ -17,6 +17,7 @@ type IxKeyValueEvents = NonNullable<unknown>;
 const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEvents> = /*@__PURE__*/ createComponent<IxKeyValueElement, IxKeyValueEvents>({
     tagName: 'ix-key-value',
     elementClass: IxKeyValueElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxKeyValueEvents,
     defineCustomElement: defineIxKeyValue

@@ -18,6 +18,7 @@ type IxMenuAboutEvents = { onClose: EventName<IxMenuAboutCustomEvent<CustomClose
 const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutEvents> = /*@__PURE__*/ createComponent<IxMenuAboutElement, IxMenuAboutEvents>({
     tagName: 'ix-menu-about',
     elementClass: IxMenuAboutElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onClose: 'close' } as IxMenuAboutEvents,
     defineCustomElement: defineIxMenuAbout

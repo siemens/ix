@@ -17,6 +17,7 @@ type IxFilterChipEvents = { onCloseClick: EventName<CustomEvent<void>> };
 const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterChipEvents> = /*@__PURE__*/ createComponent<IxFilterChipElement, IxFilterChipEvents>({
     tagName: 'ix-filter-chip',
     elementClass: IxFilterChipElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onCloseClick: 'closeClick' } as IxFilterChipEvents,
     defineCustomElement: defineIxFilterChip

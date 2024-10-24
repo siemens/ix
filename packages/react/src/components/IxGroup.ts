@@ -21,6 +21,7 @@ type IxGroupEvents = {
 const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents> = /*@__PURE__*/ createComponent<IxGroupElement, IxGroupEvents>({
     tagName: 'ix-group',
     elementClass: IxGroupElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onSelectGroup: 'selectGroup',

@@ -17,6 +17,7 @@ type IxEmptyStateEvents = { onActionClick: EventName<CustomEvent<void>> };
 const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptyStateEvents> = /*@__PURE__*/ createComponent<IxEmptyStateElement, IxEmptyStateEvents>({
     tagName: 'ix-empty-state',
     elementClass: IxEmptyStateElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onActionClick: 'actionClick' } as IxEmptyStateEvents,
     defineCustomElement: defineIxEmptyState

@@ -17,6 +17,7 @@ type IxToastContainerEvents = NonNullable<unknown>;
 const IxToastContainer: StencilReactComponent<IxToastContainerElement, IxToastContainerEvents> = /*@__PURE__*/ createComponent<IxToastContainerElement, IxToastContainerEvents>({
     tagName: 'ix-toast-container',
     elementClass: IxToastContainerElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxToastContainerEvents,
     defineCustomElement: defineIxToastContainer

@@ -17,6 +17,7 @@ type IxLayoutGridEvents = NonNullable<unknown>;
 const IxLayoutGrid: StencilReactComponent<IxLayoutGridElement, IxLayoutGridEvents> = /*@__PURE__*/ createComponent<IxLayoutGridElement, IxLayoutGridEvents>({
     tagName: 'ix-layout-grid',
     elementClass: IxLayoutGridElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxLayoutGridEvents,
     defineCustomElement: defineIxLayoutGrid

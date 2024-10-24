@@ -17,6 +17,7 @@ type IxDropdownItemEvents = NonNullable<unknown>;
 const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDropdownItemEvents> = /*@__PURE__*/ createComponent<IxDropdownItemElement, IxDropdownItemEvents>({
     tagName: 'ix-dropdown-item',
     elementClass: IxDropdownItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxDropdownItemEvents,
     defineCustomElement: defineIxDropdownItem

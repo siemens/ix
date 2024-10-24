@@ -17,6 +17,7 @@ type IxInputGroupEvents = NonNullable<unknown>;
 const IxInputGroup: StencilReactComponent<IxInputGroupElement, IxInputGroupEvents> = /*@__PURE__*/ createComponent<IxInputGroupElement, IxInputGroupEvents>({
     tagName: 'ix-input-group',
     elementClass: IxInputGroupElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxInputGroupEvents,
     defineCustomElement: defineIxInputGroup

@@ -17,6 +17,7 @@ type IxMenuAvatarEvents = { onLogoutClick: EventName<CustomEvent<any>> };
 const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvatarEvents> = /*@__PURE__*/ createComponent<IxMenuAvatarElement, IxMenuAvatarEvents>({
     tagName: 'ix-menu-avatar',
     elementClass: IxMenuAvatarElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onLogoutClick: 'logoutClick' } as IxMenuAvatarEvents,
     defineCustomElement: defineIxMenuAvatar

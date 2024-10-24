@@ -21,6 +21,7 @@ type IxBreadcrumbEvents = {
 const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcrumbEvents> = /*@__PURE__*/ createComponent<IxBreadcrumbElement, IxBreadcrumbEvents>({
     tagName: 'ix-breadcrumb',
     elementClass: IxBreadcrumbElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onItemClick: 'itemClick',

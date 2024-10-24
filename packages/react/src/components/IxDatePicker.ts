@@ -23,6 +23,7 @@ type IxDatePickerEvents = {
 const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePickerEvents> = /*@__PURE__*/ createComponent<IxDatePickerElement, IxDatePickerEvents>({
     tagName: 'ix-date-picker',
     elementClass: IxDatePickerElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onDateChange: 'dateChange',

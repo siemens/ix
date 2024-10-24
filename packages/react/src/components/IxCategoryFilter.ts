@@ -22,6 +22,7 @@ type IxCategoryFilterEvents = {
 const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, IxCategoryFilterEvents> = /*@__PURE__*/ createComponent<IxCategoryFilterElement, IxCategoryFilterEvents>({
     tagName: 'ix-category-filter',
     elementClass: IxCategoryFilterElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onCategoryChanged: 'categoryChanged',

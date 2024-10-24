@@ -17,6 +17,7 @@ type IxToggleEvents = { onCheckedChange: EventName<CustomEvent<boolean>> };
 const IxToggle: StencilReactComponent<IxToggleElement, IxToggleEvents> = /*@__PURE__*/ createComponent<IxToggleElement, IxToggleEvents>({
     tagName: 'ix-toggle',
     elementClass: IxToggleElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onCheckedChange: 'checkedChange' } as IxToggleEvents,
     defineCustomElement: defineIxToggle

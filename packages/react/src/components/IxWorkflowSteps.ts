@@ -17,6 +17,7 @@ type IxWorkflowStepsEvents = { onStepSelected: EventName<CustomEvent<number>> };
 const IxWorkflowSteps: StencilReactComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents> = /*@__PURE__*/ createComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents>({
     tagName: 'ix-workflow-steps',
     elementClass: IxWorkflowStepsElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onStepSelected: 'stepSelected' } as IxWorkflowStepsEvents,
     defineCustomElement: defineIxWorkflowSteps

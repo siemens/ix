@@ -17,6 +17,7 @@ type IxSliderEvents = { onValueChange: EventName<CustomEvent<number>> };
 const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents> = /*@__PURE__*/ createComponent<IxSliderElement, IxSliderEvents>({
     tagName: 'ix-slider',
     elementClass: IxSliderElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onValueChange: 'valueChange' } as IxSliderEvents,
     defineCustomElement: defineIxSlider

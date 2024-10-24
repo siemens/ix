@@ -18,6 +18,7 @@ type IxGroupItemEvents = { onSelectedChanged: EventName<IxGroupItemCustomEvent<H
 const IxGroupItem: StencilReactComponent<IxGroupItemElement, IxGroupItemEvents> = /*@__PURE__*/ createComponent<IxGroupItemElement, IxGroupItemEvents>({
     tagName: 'ix-group-item',
     elementClass: IxGroupItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onSelectedChanged: 'selectedChanged' } as IxGroupItemEvents,
     defineCustomElement: defineIxGroupItem

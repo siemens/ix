@@ -18,6 +18,7 @@ type IxDateDropdownEvents = { onDateRangeChange: EventName<IxDateDropdownCustomE
 const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDateDropdownEvents> = /*@__PURE__*/ createComponent<IxDateDropdownElement, IxDateDropdownEvents>({
     tagName: 'ix-date-dropdown',
     elementClass: IxDateDropdownElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onDateRangeChange: 'dateRangeChange' } as IxDateDropdownEvents,
     defineCustomElement: defineIxDateDropdown

@@ -20,6 +20,7 @@ type IxModalEvents = {
 const IxModal: StencilReactComponent<IxModalElement, IxModalEvents> = /*@__PURE__*/ createComponent<IxModalElement, IxModalEvents>({
     tagName: 'ix-modal',
     elementClass: IxModalElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onDialogClose: 'dialogClose',

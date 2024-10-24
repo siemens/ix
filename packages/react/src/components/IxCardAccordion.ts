@@ -17,6 +17,7 @@ type IxCardAccordionEvents = NonNullable<unknown>;
 const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCardAccordionEvents> = /*@__PURE__*/ createComponent<IxCardAccordionElement, IxCardAccordionEvents>({
     tagName: 'ix-card-accordion',
     elementClass: IxCardAccordionElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxCardAccordionEvents,
     defineCustomElement: defineIxCardAccordion

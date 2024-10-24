@@ -17,6 +17,7 @@ type IxMapNavigationOverlayEvents = { onCloseClick: EventName<CustomEvent<any>> 
 const IxMapNavigationOverlay: StencilReactComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents> = /*@__PURE__*/ createComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents>({
     tagName: 'ix-map-navigation-overlay',
     elementClass: IxMapNavigationOverlayElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onCloseClick: 'closeClick' } as IxMapNavigationOverlayEvents,
     defineCustomElement: defineIxMapNavigationOverlay

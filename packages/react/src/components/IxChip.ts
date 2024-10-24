@@ -17,6 +17,7 @@ type IxChipEvents = { onCloseChip: EventName<CustomEvent<any>> };
 const IxChip: StencilReactComponent<IxChipElement, IxChipEvents> = /*@__PURE__*/ createComponent<IxChipElement, IxChipEvents>({
     tagName: 'ix-chip',
     elementClass: IxChipElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onCloseChip: 'closeChip' } as IxChipEvents,
     defineCustomElement: defineIxChip

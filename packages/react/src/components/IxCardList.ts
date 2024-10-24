@@ -26,6 +26,7 @@ type IxCardListEvents = {
 const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEvents> = /*@__PURE__*/ createComponent<IxCardListElement, IxCardListEvents>({
     tagName: 'ix-card-list',
     elementClass: IxCardListElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onCollapseChanged: 'collapseChanged',

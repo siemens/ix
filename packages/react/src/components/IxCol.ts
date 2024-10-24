@@ -17,6 +17,7 @@ type IxColEvents = NonNullable<unknown>;
 const IxCol: StencilReactComponent<IxColElement, IxColEvents> = /*@__PURE__*/ createComponent<IxColElement, IxColEvents>({
     tagName: 'ix-col',
     elementClass: IxColElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxColEvents,
     defineCustomElement: defineIxCol

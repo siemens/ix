@@ -18,6 +18,7 @@ type IxMenuAvatarItemEvents = { onItemClick: EventName<IxMenuAvatarItemCustomEve
 const IxMenuAvatarItem: StencilReactComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents> = /*@__PURE__*/ createComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents>({
     tagName: 'ix-menu-avatar-item',
     elementClass: IxMenuAvatarItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onItemClick: 'itemClick' } as IxMenuAvatarItemEvents,
     defineCustomElement: defineIxMenuAvatarItem

@@ -18,6 +18,7 @@ type IxModalHeaderEvents = { onCloseClick: EventName<IxModalHeaderCustomEvent<Mo
 const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalHeaderEvents> = /*@__PURE__*/ createComponent<IxModalHeaderElement, IxModalHeaderEvents>({
     tagName: 'ix-modal-header',
     elementClass: IxModalHeaderElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onCloseClick: 'closeClick' } as IxModalHeaderEvents,
     defineCustomElement: defineIxModalHeader

@@ -20,6 +20,7 @@ type IxDrawerEvents = {
 const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents> = /*@__PURE__*/ createComponent<IxDrawerElement, IxDrawerEvents>({
     tagName: 'ix-drawer',
     elementClass: IxDrawerElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
         onOpen: 'open',

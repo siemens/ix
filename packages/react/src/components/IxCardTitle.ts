@@ -17,6 +17,7 @@ type IxCardTitleEvents = NonNullable<unknown>;
 const IxCardTitle: StencilReactComponent<IxCardTitleElement, IxCardTitleEvents> = /*@__PURE__*/ createComponent<IxCardTitleElement, IxCardTitleEvents>({
     tagName: 'ix-card-title',
     elementClass: IxCardTitleElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxCardTitleEvents,
     defineCustomElement: defineIxCardTitle

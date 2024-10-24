@@ -39,6 +39,37 @@ regressionTest('translation', async ({ mount, page }) => {
 regressionTest.describe('date picker tests single', () => {
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(
+      `<ix-date-picker min-date="2024/10/10" from="2024/10/10" range="false"></ix-date-picker>`
+    );
+  });
+
+  regressionTest('select disabled date with enter', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
+    await page.getByText(/^9$/).focus();
+    await page.keyboard.press('Enter');
+
+    expect((await getDateObj(page))[0]).toEqual({
+      from: '2024/10/10',
+      to: undefined,
+    });
+  });
+
+  regressionTest('select disabled date with click', async ({ page }) => {
+    await page.waitForSelector('ix-date-time-card');
+
+    await page.getByText(/^9$/).click({ force: true });
+
+    expect((await getDateObj(page))[0]).toEqual({
+      from: '2024/10/10',
+      to: undefined,
+    });
+  });
+});
+
+regressionTest.describe('date picker tests single', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
+    await mount(
       `<ix-date-picker from="2023/09/05" range="false"></ix-date-picker>`
     );
   });

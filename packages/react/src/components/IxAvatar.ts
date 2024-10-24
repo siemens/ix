@@ -17,6 +17,7 @@ type IxAvatarEvents = NonNullable<unknown>;
 const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = /*@__PURE__*/ createComponent<IxAvatarElement, IxAvatarEvents>({
     tagName: 'ix-avatar',
     elementClass: IxAvatarElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxAvatarEvents,
     defineCustomElement: defineIxAvatar

@@ -694,7 +694,7 @@ regressionTest.describe('A11y', () => {
         await page.keyboard.press('ArrowDown');
         await page.waitForTimeout(100);
         await page.keyboard.press('ArrowUp');
-        const item = await page.locator('ix-dropdown-item').first();
+        const item = page.locator('ix-dropdown-item').first();
         await expect(item).toBeFocused();
       });
     });

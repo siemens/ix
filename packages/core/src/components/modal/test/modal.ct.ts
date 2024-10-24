@@ -206,3 +206,55 @@ regressionTest('emits one event on close', async ({ mount, page }) => {
 
   expect(await page.evaluate(() => window.__counter)).toBe(1);
 });
+
+regressionTest('emits one event on close', async ({ mount, page }) => {
+  await mount(``);
+
+  await page.evaluate(() => {
+    return new Promise<void>((resolve) => {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.innerHTML = `
+        import * as ix from 'http://127.0.0.1:8080/www/build/index.esm.js';
+        window.showModal = ix.showModal;
+      `;
+      document.body.appendChild(script);
+      resolve();
+    });
+  });
+
+  await page.waitForTimeout(1000);
+
+  await page.evaluate(() => {
+    const elm = document.createElement('ix-modal');
+    elm.innerHTML = `
+      <ix-modal-header>Title</ix-modal-header>
+      <ix-modal-content>Content</ix-modal-header>
+    `;
+
+    window
+      .showModal({
+        content: elm,
+        // Disable animation to get the direct animation end callback
+        animation: false,
+      })
+      .then((instance: ModalInstance<unknown>) => {
+        instance.onDismiss.on(() => {
+          const counter = window.__counter;
+          if (counter) {
+            window.__counter = counter + 1;
+          } else {
+            window.__counter = 1;
+          }
+        });
+      });
+  });
+  const dialog = page.locator('ix-modal dialog');
+  await expect(dialog).toBeVisible();
+  const iconButton = page.locator('ix-icon-button');
+
+  await iconButton.click();
+  await expect(dialog).not.toBeVisible();
+
+  expect(await page.evaluate(() => window.__counter)).toBe(1);
+});

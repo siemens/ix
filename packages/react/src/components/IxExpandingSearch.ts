@@ -17,6 +17,7 @@ type IxExpandingSearchEvents = { onValueChange: EventName<CustomEvent<string>> }
 const IxExpandingSearch: StencilReactComponent<IxExpandingSearchElement, IxExpandingSearchEvents> = /*@__PURE__*/ createComponent<IxExpandingSearchElement, IxExpandingSearchEvents>({
     tagName: 'ix-expanding-search',
     elementClass: IxExpandingSearchElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onValueChange: 'valueChange' } as IxExpandingSearchEvents,
     defineCustomElement: defineIxExpandingSearch

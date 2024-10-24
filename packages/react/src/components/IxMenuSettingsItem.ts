@@ -18,6 +18,7 @@ type IxMenuSettingsItemEvents = { onLabelChange: EventName<IxMenuSettingsItemCus
 const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents> = /*@__PURE__*/ createComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents>({
     tagName: 'ix-menu-settings-item',
     elementClass: IxMenuSettingsItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onLabelChange: 'labelChange' } as IxMenuSettingsItemEvents,
     defineCustomElement: defineIxMenuSettingsItem

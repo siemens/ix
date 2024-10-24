@@ -17,6 +17,7 @@ type IxDropdownEvents = { onShowChanged: EventName<CustomEvent<boolean>> };
 const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents>({
     tagName: 'ix-dropdown',
     elementClass: IxDropdownElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onShowChanged: 'showChanged' } as IxDropdownEvents,
     defineCustomElement: defineIxDropdown

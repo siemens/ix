@@ -17,6 +17,7 @@ type IxFlipTileContentEvents = NonNullable<unknown>;
 const IxFlipTileContent: StencilReactComponent<IxFlipTileContentElement, IxFlipTileContentEvents> = /*@__PURE__*/ createComponent<IxFlipTileContentElement, IxFlipTileContentEvents>({
     tagName: 'ix-flip-tile-content',
     elementClass: IxFlipTileContentElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {} as IxFlipTileContentEvents,
     defineCustomElement: defineIxFlipTileContent

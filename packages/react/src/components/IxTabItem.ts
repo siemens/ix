@@ -18,6 +18,7 @@ type IxTabItemEvents = { onTabClick: EventName<IxTabItemCustomEvent<TabClickDeta
 const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents> = /*@__PURE__*/ createComponent<IxTabItemElement, IxTabItemEvents>({
     tagName: 'ix-tab-item',
     elementClass: IxTabItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: { onTabClick: 'tabClick' } as IxTabItemEvents,
     defineCustomElement: defineIxTabItem
