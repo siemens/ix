@@ -1,5 +1,51 @@
 # @siemens/ix
 
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1238](https://github.com/siemens/ix/pull/1238) [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3) Thanks [@danielleroux](https://github.com/danielleroux)! - feat: reduce bundle size in combination with icons
+
+- [#1394](https://github.com/siemens/ix/pull/1394) [`24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff`](https://github.com/siemens/ix/commit/24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - refactor: replace internal comments with annotations
+
+- [#1273](https://github.com/siemens/ix/pull/1273) [`e8f825f7f494c8cc05dcce075afcff77839f8096`](https://github.com/siemens/ix/commit/e8f825f7f494c8cc05dcce075afcff77839f8096) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - fix(core/checkbox): allow multiline labels and align checkbox at the top
+
+### Minor Changes
+
+- [#1497](https://github.com/siemens/ix/pull/1497) [`eb97f91e9d6c945b0a1b6e22581aa8223309d164`](https://github.com/siemens/ix/commit/eb97f91e9d6c945b0a1b6e22581aa8223309d164) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core): improve component a11y
+
+### Patch Changes
+
+- [#1528](https://github.com/siemens/ix/pull/1528) [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/modal): duplicate event firing
+
+- [#1528](https://github.com/siemens/ix/pull/1528) [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core): replace font styles with actual formats
+
+- [#1499](https://github.com/siemens/ix/pull/1499) [`7fe0136cadbe3ea134c0f6f36c5e222fc49b2951`](https://github.com/siemens/ix/commit/7fe0136cadbe3ea134c0f6f36c5e222fc49b2951) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/modal): figma - code mismatch
+
+- [#1514](https://github.com/siemens/ix/pull/1514) [`60760bcdb0a2f91e2aed07bcb2f4848c8c96458f`](https://github.com/siemens/ix/commit/60760bcdb0a2f91e2aed07bcb2f4848c8c96458f) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/content-header): adapt spacing
+
+- [#1528](https://github.com/siemens/ix/pull/1528) [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/menu-about): set index if selected is set on tab-item
+
+- [#1527](https://github.com/siemens/ix/pull/1527) [`ed676579f0cae3938e6c0d0d0f30249e0bee2d9e`](https://github.com/siemens/ix/commit/ed676579f0cae3938e6c0d0d0f30249e0bee2d9e) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/checkbox): page jumps on checkbox click in scrollable ix-content
+
+- [#1468](https://github.com/siemens/ix/pull/1468) [`d5affb02b371e3541c546e272e2389b678630dd4`](https://github.com/siemens/ix/commit/d5affb02b371e3541c546e272e2389b678630dd4) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/slider): update tooltip on steps below 1
+
+- [#1519](https://github.com/siemens/ix/pull/1519) [`ecf02d5bd5d2e7131b3e24a490df7ee87527df6c`](https://github.com/siemens/ix/commit/ecf02d5bd5d2e7131b3e24a490df7ee87527df6c) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/button): fix keyboard navigation & accessibility
+
+- [#1528](https://github.com/siemens/ix/pull/1528) [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/input): remove hover state from readonly and disabled variant
+
+- [#1516](https://github.com/siemens/ix/pull/1516) [`ff99d8cdef1052a3c0b7c2d6619de0a8cc50efd7`](https://github.com/siemens/ix/commit/ff99d8cdef1052a3c0b7c2d6619de0a8cc50efd7) Thanks [@h4de5](https://github.com/h4de5)! - fix(core/icon-toggle-button): remove console.log
+
+- [#1498](https://github.com/siemens/ix/pull/1498) [`0b41424d951bd07c49b66b33fb151da85dd803e8`](https://github.com/siemens/ix/commit/0b41424d951bd07c49b66b33fb151da85dd803e8) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - fix(card): card-filled colors for hover/active states
+
+- [#1330](https://github.com/siemens/ix/pull/1330) [`b5e2da18f871d6189c064a72bd9b29a82d0685eb`](https://github.com/siemens/ix/commit/b5e2da18f871d6189c064a72bd9b29a82d0685eb) Thanks [@github-actions](https://github.com/apps/github-actions)! - fix(core): semver from stencil/core to minor
+
+- [#1492](https://github.com/siemens/ix/pull/1492) [`20553f5e63b88f09c30f07194e1d33e68e93535b`](https://github.com/siemens/ix/commit/20553f5e63b88f09c30f07194e1d33e68e93535b) Thanks [@matthiashader](https://github.com/matthiashader)! - fix(core/card-list): adapt title margin to figma
+
+- [#1528](https://github.com/siemens/ix/pull/1528) [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/dropdown): clean up disconnected dropdowns
+
+- [#1528](https://github.com/siemens/ix/pull/1528) [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef) Thanks [@danielleroux](https://github.com/danielleroux)! - fix(core/upload): disable file browser if control is disabled
+
 ## 2.5.0
 
 ### Minor Changes
