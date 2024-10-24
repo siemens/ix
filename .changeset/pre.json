@@ -15,7 +15,34 @@
     "@siemens/ix-react": "2.2.1",
     "react-test-app": "2.1.2",
     "@siemens/ix-vue": "2.2.1",
-    "vue-test-app": "2.1.2"
+    "vue-test-app": "2.1.2",
+    "angular-standalone-test-app": "0.0.0",
+    "ionic-test-app": "0.0.1",
+    "strict-check": "1.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "breezy-hotels-tap",
+    "clean-squids-retire",
+    "clever-pandas-chew",
+    "clever-rings-sneeze",
+    "cool-keys-shout",
+    "eight-windows-shout",
+    "eighty-clocks-bake",
+    "eighty-mails-collect",
+    "few-eels-smell",
+    "fresh-maps-ring",
+    "gentle-snails-destroy",
+    "many-pumpkins-knock",
+    "nasty-mangos-love",
+    "pink-spoons-obey",
+    "purple-guests-wait",
+    "quiet-tools-study",
+    "rare-numbers-double",
+    "short-dolls-perform",
+    "shy-experts-rest",
+    "small-meals-think",
+    "tricky-hornets-work",
+    "wicked-windows-approve",
+    "yellow-goats-wash"
+  ]
 }

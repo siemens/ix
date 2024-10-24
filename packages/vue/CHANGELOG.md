@@ -1,5 +1,24 @@
 # @siemens/ix-vue
 
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1238](https://github.com/siemens/ix/pull/1238) [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3) Thanks [@danielleroux](https://github.com/danielleroux)! - feat: reduce bundle size in combination with icons
+
+- [#1394](https://github.com/siemens/ix/pull/1394) [`24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff`](https://github.com/siemens/ix/commit/24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - refactor: replace internal comments with annotations
+
+- [#1328](https://github.com/siemens/ix/pull/1328) [`c17750dfad2fe69854f52fe56a447302c9ff4cc8`](https://github.com/siemens/ix/commit/c17750dfad2fe69854f52fe56a447302c9ff4cc8) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(vue): remove commonjs
+
+### Minor Changes
+
+- [#1497](https://github.com/siemens/ix/pull/1497) [`eb97f91e9d6c945b0a1b6e22581aa8223309d164`](https://github.com/siemens/ix/commit/eb97f91e9d6c945b0a1b6e22581aa8223309d164) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - feat(core): improve component a11y
+
+### Patch Changes
+
+- Updated dependencies [[`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef), [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef), [`7fe0136cadbe3ea134c0f6f36c5e222fc49b2951`](https://github.com/siemens/ix/commit/7fe0136cadbe3ea134c0f6f36c5e222fc49b2951), [`eb97f91e9d6c945b0a1b6e22581aa8223309d164`](https://github.com/siemens/ix/commit/eb97f91e9d6c945b0a1b6e22581aa8223309d164), [`60760bcdb0a2f91e2aed07bcb2f4848c8c96458f`](https://github.com/siemens/ix/commit/60760bcdb0a2f91e2aed07bcb2f4848c8c96458f), [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef), [`ed676579f0cae3938e6c0d0d0f30249e0bee2d9e`](https://github.com/siemens/ix/commit/ed676579f0cae3938e6c0d0d0f30249e0bee2d9e), [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3), [`d5affb02b371e3541c546e272e2389b678630dd4`](https://github.com/siemens/ix/commit/d5affb02b371e3541c546e272e2389b678630dd4), [`ecf02d5bd5d2e7131b3e24a490df7ee87527df6c`](https://github.com/siemens/ix/commit/ecf02d5bd5d2e7131b3e24a490df7ee87527df6c), [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef), [`24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff`](https://github.com/siemens/ix/commit/24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff), [`ff99d8cdef1052a3c0b7c2d6619de0a8cc50efd7`](https://github.com/siemens/ix/commit/ff99d8cdef1052a3c0b7c2d6619de0a8cc50efd7), [`0b41424d951bd07c49b66b33fb151da85dd803e8`](https://github.com/siemens/ix/commit/0b41424d951bd07c49b66b33fb151da85dd803e8), [`b5e2da18f871d6189c064a72bd9b29a82d0685eb`](https://github.com/siemens/ix/commit/b5e2da18f871d6189c064a72bd9b29a82d0685eb), [`20553f5e63b88f09c30f07194e1d33e68e93535b`](https://github.com/siemens/ix/commit/20553f5e63b88f09c30f07194e1d33e68e93535b), [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef), [`e8f825f7f494c8cc05dcce075afcff77839f8096`](https://github.com/siemens/ix/commit/e8f825f7f494c8cc05dcce075afcff77839f8096), [`ab1da53f0cbf9216e356c1b143ef4cd91306bfef`](https://github.com/siemens/ix/commit/ab1da53f0cbf9216e356c1b143ef4cd91306bfef)]:
+  - @siemens/ix@3.0.0-alpha.0
+
 ## 2.5.0
 
 ### Patch Changes
