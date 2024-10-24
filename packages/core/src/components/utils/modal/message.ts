@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { IxModalSize } from 'src/components';
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
 
@@ -32,7 +33,8 @@ function createConfirmButtons(
   payloadOkay?: any,
   payloadCancel?: any
 ) {
-  let actions = [];
+  let actions: MessageAction[] = [];
+
   if (textCancel !== undefined) {
     actions = [
       ...actions,
@@ -41,7 +43,7 @@ function createConfirmButtons(
         text: textCancel,
         type: 'cancel',
         payload: payloadCancel,
-      },
+      } as MessageAction,
     ];
   }
   return [
@@ -51,21 +53,25 @@ function createConfirmButtons(
       text: textOkay,
       type: 'okay',
       payload: payloadOkay,
-    },
+    } as MessageAction,
   ];
 }
+
+export type MessageAction = {
+  id: string;
+  type: 'button-primary' | 'button-secondary' | 'okay' | 'cancel';
+  text: string;
+  payload?: any;
+};
 
 export type MessageContent = {
   icon: string;
   iconColor?: string;
   messageTitle: string;
   message: string;
-  actions: {
-    id: string;
-    type: 'button-primary' | 'button-secondary' | 'okay' | 'cancel';
-    text: string;
-    payload?: any;
-  }[];
+  actions: MessageAction[];
+  centered?: boolean;
+  size?: IxModalSize;
   ariaLabelledby?: string;
   ariaDescribedby?: string;
 };
@@ -103,8 +109,7 @@ export async function showMessage<T>(config: MessageContent) {
         })
       );
       return;
-    }
-    if (type === 'cancel') {
+    } else if (type === 'cancel') {
       button.variant = 'primary';
       button.outline = true;
       button.addEventListener('click', () =>
@@ -149,6 +154,9 @@ export async function showMessage<T>(config: MessageContent) {
       dialogRef.remove();
     }
   );
+
+  setA11yAttributes(dialogRef, config);
+  Object.assign(dialogRef, config);
 
   dialogRef.showModal();
   return onMessageAction;
