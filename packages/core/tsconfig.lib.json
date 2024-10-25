@@ -14,8 +14,9 @@
     "jsxFactory": "h",
     "preserveSymlinks": false,
     "skipLibCheck": true,
+    "baseUrl": ".",
     "paths": {
-      "@utils/test": ["./src/tests/utils/test"]
+      "@utils/test": ["src/tests/utils/test"]
     }
     // Strict check uncomment to check for strict
     // "strict": true,
