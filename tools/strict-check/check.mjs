@@ -9,7 +9,7 @@ let tscOutput = '';
 const [_, __, ...changedFiles] = process.argv;
 
 try {
-  const tscCommand = await execa('tsc', ['-p', 'tsconfig.sonar.json']);
+  const tscCommand = await execa('tsc', ['-p', 'strict-check.json']);
   tscOutput = tscCommand.stdout;
 } catch (error) {
   tscOutput = error.stdout;
