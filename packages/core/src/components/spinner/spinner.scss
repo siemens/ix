@@ -9,8 +9,8 @@
 
 @import 'mixins/shadow-dom/component';
 
-@mixin ix-spinner($host-class: 'medium', $size: 2rem, $track-size: 4px) {
-  :host(.#{$host-class}) {
+@mixin ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 4px) {
+  .#{$size-name} {
     @include ix-component;
     display: block;
     position: relative;
@@ -76,7 +76,7 @@
     }
   }
 
-  :host(.#{$host-class})::after {
+  .#{$size-name}::after {
     content: '';
     box-sizing: border-box;
     position: absolute;
@@ -87,7 +87,7 @@
     animation: clipMask 3s linear infinite;
   }
 
-  :host(:not(.hide-track)):host(.#{$host-class})::before {
+  :host(:not(.hide-track)):host(.#{$size-name})::before {
     content: '';
     box-sizing: border-box;
     position: absolute;
@@ -96,17 +96,17 @@
     border: $track-size solid var(--theme-color-ghost--hover);
   }
 
-  :host(.primary)::after {
+  .primary::after {
     border-color: var(--theme-color-dynamic);
   }
 
-  :host(.primary)::before {
+  .primary::before {
     border-color: var(--theme-color-ghost--hover);
   }
 }
 
-@include ix-spinner($host-class: 'xx-small', $size: 0.75rem, $track-size: 1px);
-@include ix-spinner($host-class: 'x-small', $size: 1.25rem, $track-size: 2px);
-@include ix-spinner($host-class: 'small', $size: 1.5rem, $track-size: 2px);
-@include ix-spinner($host-class: 'medium', $size: 2rem, $track-size: 2px);
-@include ix-spinner($host-class: 'large', $size: 6rem, $track-size: 4px);
+@include ix-spinner($size-name: 'xx-small', $size: 0.75rem, $track-size: 1px);
+@include ix-spinner($size-name: 'x-small', $size: 1.25rem, $track-size: 2px);
+@include ix-spinner($size-name: 'small', $size: 1.5rem, $track-size: 2px);
+@include ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 2px);
+@include ix-spinner($size-name: 'large', $size: 6rem, $track-size: 4px);
