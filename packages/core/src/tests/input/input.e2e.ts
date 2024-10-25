@@ -78,7 +78,12 @@ regressionTest.describe('input', () => {
     const inputElementBoundingBox = await page
       .getByTestId('inputelement')
       .boundingBox();
-    await page.mouse.move(inputElementBoundingBox.x, inputElementBoundingBox.y);
+    if (inputElementBoundingBox) {
+      await page.mouse.move(
+        inputElementBoundingBox.x,
+        inputElementBoundingBox.y
+      );
+    }
 
     await expect(page.locator('ix-tooltip')).toBeVisible();
     await expect(page).toHaveScreenshot();
