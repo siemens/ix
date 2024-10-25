@@ -37,8 +37,8 @@
     "dev": "stencil build --watch",
     "test": "npm run test:spec && npm run test:ct",
     "test:spec": "stencil test --spec",
-    "test:ct": "playwright test --config playwright-ct.config.ts --reporter list",
-    "visual-regression": "playwright test",
+    "test:ct": "playwright test --config playwright-ct.config.ts --reporter list --tsconfig tsconfig.lib.json",
+    "visual-regression": "playwright test --tsconfig tsconfig.lib.json",
     "host-root": "http-server ./ -a 127.0.0.1 -p 8080 -c-1",
     "generate": "stencil generate",
     "pkg": "pnpm pack"
@@ -52,7 +52,7 @@
     "luxon": "^3.4.4"
   },
   "devDependencies": {
-    "@playwright/test": "^1.32.1",
+    "@playwright/test": "^1.48.1",
     "@siemens/ix-icons": "^2.0.0",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
