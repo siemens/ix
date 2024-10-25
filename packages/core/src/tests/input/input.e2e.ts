@@ -71,4 +71,16 @@ regressionTest.describe('input', () => {
     await page.goto('input/with-slots');
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('tooltip below input', async ({ page }) => {
+    await page.goto('input/tooltip');
+
+    const inputElementBoundingBox = await page
+      .getByTestId('inputelement')
+      .boundingBox();
+    await page.mouse.move(inputElementBoundingBox.x, inputElementBoundingBox.y);
+
+    await expect(page.locator('ix-tooltip')).toBeVisible();
+    await expect(page).toHaveScreenshot();
+  });
 });
