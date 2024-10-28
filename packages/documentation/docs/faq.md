@@ -13,8 +13,8 @@ Welcome to the Industrial Experience Design System FAQ. This document serves as 
 ## System access and use
 </div>
 
-<Accordion title="What’s the difference between the Siemens brand and the open-source libraries?" id="brand-vs-os">
-The Siemens brand library within the design system is only available to Siemens employees and business partners as it contains Siemens brand elements. The open source library comes with the classic theme that can be used by non-Siemens applications. It’s possible to create custom themes that fit third-party style guides. Both libraries are available in dark and light modes.
+<Accordion title="What’s the difference between the classic theme and the Siemens brand theme?" id="brand-vs-os">
+The classic theme is an open-source design option that can be utilized by any application, including non-Siemens applications. In contrast, the Siemens brand theme is exclusively available to Siemens employees and business partners, incorporating specific Siemens brand elements. Both themes are offered in dark and light modes. Additionally, you have the flexibility to create custom themes that align with third-party style guides. 
 </Accordion>
 
 <Accordion title="Which browsers are supported?" id="vendor-support">
