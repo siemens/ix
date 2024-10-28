@@ -14,7 +14,7 @@ Welcome to the Industrial Experience Design System FAQ. This document serves as 
 </div>
 
 <Accordion title="What’s the difference between the classic theme and the Siemens brand theme?" id="brand-vs-os">
-The classic theme is an open-source design option that can be utilized by any application, including non-Siemens applications. In contrast, the Siemens brand theme is exclusively available to Siemens employees and business partners, incorporating specific Siemens brand elements. Both themes are offered in dark and light modes. Additionally, you have the flexibility to create custom themes that align with third-party style guides. 
+The classic theme is the default that can be utilized by any application, including non-Siemens applications. In contrast, the Siemens brand theme is exclusively available to Siemens employees and business partners, incorporating specific Siemens brand elements. Both themes are offered in dark and light modes. Additionally, you have the flexibility to create custom themes that align with third-party style guides. 
 </Accordion>
 
 <Accordion title="Which browsers are supported?" id="vendor-support">
