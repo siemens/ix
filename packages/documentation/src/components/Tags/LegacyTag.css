@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-.TagDeprecatedContainer {
+.TagContainer {
   display: flex;
   align-items: center;
   position: relative;
@@ -23,11 +23,20 @@
   font: var(--theme-text-default-title-single);
 
   margin: 0.5rem 0;
+  border: 1px solid var(--theme-color-primary);
+}
+
+.TagDeprecatedContainer {
   border: 1px solid var(--theme-color-alarm);
 }
 
-.TagDeprecatedTitle {
+.Title {
   font-size: 18px;
   line-height: 1.5;
+  color: var(--theme-color-primary);
+}
+
+.TagDeprecatedTitle {
   color: var(--theme-color-alarm);
 }
+
