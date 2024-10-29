@@ -26,6 +26,10 @@
   border: 1px solid var(--theme-color-primary);
 }
 
+a[href].TagContainer {
+  text-decoration: none !important;
+}
+
 .TagDeprecatedContainer {
   border: 1px solid var(--theme-color-alarm);
 }
@@ -39,4 +43,3 @@
 .TagDeprecatedTitle {
   color: var(--theme-color-alarm);
 }
-
