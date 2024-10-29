@@ -3,7 +3,9 @@ import { IxIcon } from '@siemens/ix-react';
 
 export default function LegacyTag(props: { isDeprecated: boolean }) {
   return (
-    <div
+    <a
+      href="/docs/legacy/checkbox"
+      target="_blank"
       className={`TagContainer ${
         props.isDeprecated ? 'TagDeprecatedContainer' : ''
       }`}
@@ -18,6 +20,6 @@ export default function LegacyTag(props: { isDeprecated: boolean }) {
       >
         {props.isDeprecated ? 'Show deprecated version' : 'Show latest version'}
       </div>
-    </div>
+    </a>
   );
 }
