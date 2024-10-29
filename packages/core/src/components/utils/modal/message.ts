@@ -7,9 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxModalSize } from 'src/components';
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
+import { ModalConfig } from './modal';
+
+export type MessageConfig<T> = Omit<
+  ModalConfig<T, unknown>,
+  'content' | 'title'
+> &
+  MessageContent;
 
 function setA11yAttributes(element: HTMLElement, config: MessageContent) {
   const ariaDescribedby = config.ariaDescribedby;
@@ -70,13 +76,11 @@ export type MessageContent = {
   messageTitle: string;
   message: string;
   actions: MessageAction[];
-  centered?: boolean;
-  size?: IxModalSize;
   ariaLabelledby?: string;
   ariaDescribedby?: string;
 };
 
-export async function showMessage<T>(config: MessageContent) {
+export async function showMessage<T>(config: MessageConfig<T>) {
   const onMessageAction = new TypedEvent<{
     actionId: string;
     payload: T;
