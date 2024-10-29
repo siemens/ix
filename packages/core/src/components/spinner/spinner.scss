@@ -10,11 +10,13 @@
 @import 'mixins/shadow-dom/component';
 
 @mixin ix-spinner($size-name: 'medium', $size: 2rem, $track-size: 4px) {
-  .#{$size-name} {
+  :host {
     @include ix-component;
     display: block;
     position: relative;
+  }
 
+  .#{$size-name} {
     width: $size;
     height: $size;
     min-width: $size;
@@ -87,7 +89,7 @@
     animation: clipMask 3s linear infinite;
   }
 
-  :host(:not(.hide-track)):host(.#{$size-name})::before {
+  .#{$size-name}:not(.hide-track)::before {
     content: '';
     box-sizing: border-box;
     position: absolute;
