@@ -6,35 +6,28 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-.ApiTabTagDeprecated {
-  display: inline-block;
+
+.TagDeprecatedContainer {
+  display: flex;
+  align-items: center;
   position: relative;
-
-  align-self: flex-start;
-
-  width: auto;
-  max-width: 25vw;
-
+  width: min-content;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 
-  cursor: default;
-  font-size: 12px;
-  background-color: var(--theme-color-primary);
-  border-radius: 2px;
+  gap: 0.25rem;
+
+  border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
 
   color: var(--theme-color-inv-std-text);
   font: var(--theme-text-default-title-single);
 
   margin: 0.5rem 0;
-}
-
-.TagDeprecated {
   border: 1px solid var(--theme-color-alarm);
 }
 
-/*.TagDeprecated .Tag__Message--Deprecated {*/
-/*  color: var(--theme-color-alarm-text);*/
-/*}*/
+.TagDeprecatedTitle {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--theme-color-alarm);
+}
