@@ -75,15 +75,7 @@ regressionTest.describe('input', () => {
   regressionTest('tooltip below input', async ({ page }) => {
     await page.goto('input/tooltip');
 
-    const inputElementBoundingBox = await page
-      .getByTestId('inputelement')
-      .boundingBox();
-    if (inputElementBoundingBox) {
-      await page.mouse.move(
-        inputElementBoundingBox.x,
-        inputElementBoundingBox.y
-      );
-    }
+    await page.locator('ix-input').hover();
 
     await expect(page.locator('ix-tooltip')).toBeVisible();
     await expect(page).toHaveScreenshot();
