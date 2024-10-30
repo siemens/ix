@@ -35,6 +35,6 @@
   border: 1px solid var(--theme-color-alarm);
 }
 
-/*.TagDeprecated .Tag__Message--Deprecated {*/
-/*  color: var(--theme-color-alarm-text);*/
-/*}*/
+.TagDeprecated .Tag__Message--Deprecated {
+  color: var(--theme-color-alarm-text);
+}

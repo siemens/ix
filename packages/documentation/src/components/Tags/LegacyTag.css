@@ -30,6 +30,10 @@ a[href].TagContainer {
   text-decoration: none !important;
 }
 
+div.TagsContainer > .Docs__Tag {
+  margin-right: 0;
+}
+
 .TagDeprecatedContainer {
   border: 1px solid var(--theme-color-alarm);
 }
