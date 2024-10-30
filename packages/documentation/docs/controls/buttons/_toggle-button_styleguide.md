@@ -23,5 +23,5 @@ Toggle buttons have five states: Default, hover, active, disabled, loading and f
 
 - [Button](button.md)
 - [Icon button](icon-button.md)
-- [Toggle](../toggle.md)
+- [Toggle](../toggle.mdx)
 <!-- - [Button group](...) -->

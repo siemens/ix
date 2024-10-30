@@ -54,7 +54,7 @@ The select field has five states: default, hover, focused, disabled and read-onl
 - Do take care of performance when loading an extensive list of items
 - Do use selects when there is a finite list of items available to avoid manual input errors or duplicates
 - Do sort items logically (for example alphabetically or numerically)
-- Don't use selects for binary choices, like yes and no (use [radio buttons](radio.mdx), [checkboxes](checkbox.mdx) or [toggles](toggle.md) instead)
+- Don't use selects for binary choices, like yes and no (use [radio buttons](radio.mdx), [checkboxes](checkbox.mdx) or [toggles](toggle.mdx) instead)
 - Don't use selects for navigational or search patterns (use [category filters](category-filter.md) or [search fields](expanding-search.md) instead)
 - Don't combine several data attributes in an item label (use [tables](html-grid.mdx) or [event lists](event-list.md) with a search functionality instead)
 
@@ -68,5 +68,5 @@ The select field has five states: default, hover, focused, disabled and read-onl
 - [Input](input.mdx)
 - [Radio button](radio.mdx)
 - [Checkbox](checkbox.mdx)
-- [Toggle](toggle.md)
+- [Toggle](toggle.mdx)
 - [Date input](date-input.mdx)
