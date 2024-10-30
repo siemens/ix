@@ -13,7 +13,7 @@ A checkbox is a small interactive box that allows the user to toggle between an 
 
 ## Behavior in context
 
-- **Validation**: See [validation](forms-validation.md).
+- **Validation**: See [validation](forms-validation.mdx).
 - **Interaction**: Clicking on the checkbox toggles the state between checked and unchecked. 
 - **Grouping**: Checkbox groups have only one label and helper text for the entire group. Grouped checkboxes are validated collectively, not individually.
 

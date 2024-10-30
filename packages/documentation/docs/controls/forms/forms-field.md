@@ -16,15 +16,15 @@ A field is a form element when user input is needed. It's typically used with ot
 
 - **Label:** Add a label for the field that provides context to your users.
 - **Required:** The asterisk states whether user input is required on the field before submitting the form.
-- **Field:** Use the appropriate field based on the type of input data, e.g. use [text inputs](../../legacy/input-legacy.mdx) for text-based data, [checkboxes](../checkbox.mdx) for selecting from a list of predefined options, or [toggle switches](../toggle.md) for a binary choice.
+- **Field:** Use the appropriate field based on the type of input data, e.g. use [text inputs](../input.mdx) for text-based data, [checkboxes](../checkbox.mdx) for selecting from a list of predefined options, or [toggle switches](../toggle.md) for a binary choice.
 - **Helper text:** Use to help users understand the field better. We typically use this when there are input restrictions or more information is required.
-- **Show text as tooltip:** Display validation feedback either below the input field or as tooltip when the user hovers or focuses on the form field. Use a different text for the individual validation states that apply (see [validation](forms-validation.md)).
-- **Counter:** Use a counter to show the number of characters entered into the field and the maximum number of characters allowed. We typically use it for [text input](../../legacy/input-legacy.mdx) or [textarea](../textarea.mdx) fields.
+- **Show text as tooltip:** Display validation feedback either below the input field or as tooltip when the user hovers or focuses on the form field. Use a different text for the individual validation states that apply (see [validation](forms-validation.mdx)).
+- **Counter:** Use a counter to show the number of characters entered into the field and the maximum number of characters allowed. We typically use it for [text input](../../legacy/input.mdx) or [textarea](../textarea.mdx) fields.
 
 ## Behavior in context
 
-- **Interaction:** See [validation](forms-validation.md).
-- **Behavior of a field as part of a form:** See [behavior](forms-validation).
+- **Interaction:** See [validation](forms-validation.mdx).
+- **Behavior of a field as part of a form:** See [behavior](forms-validation.mdx).
 - **Text truncation:** Labels, feedback and helper texts are not truncated but break into multiple lines if they exceed the field's width.
 
 ## States
@@ -35,7 +35,7 @@ When a feedback tooltip is chosen over a message, the field shows a tooltip when
 
 ![States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=2781-12426&t=pKzFQBhaXmjTsR8P-4)
 
-**Note:** There are also several validation states (default, valid, info, warning, invalid) that are described in [validation](forms-validation.md).
+**Note:** There are also several validation states (default, valid, info, warning, invalid) that are described in [validation](forms-validation.mdx).
 
 ## Dos and Don’ts
 
@@ -47,10 +47,9 @@ When a feedback tooltip is chosen over a message, the field shows a tooltip when
 
 ## Related patterns
 
-- [Validation](forms-validation.md)
+- [Validation](forms-validation.mdx)
 - [Behavior](forms-behavior.md)
 - [Input](../input.mdx)
-- [Input Legacy](../../legacy/input-legacy.mdx)
 - [Textarea](../textarea.mdx)
 - [Select](../select.mdx)
 - [Checkbox](../checkbox.mdx)

@@ -1,3 +1,4 @@
+import DeprecatedTags from '@site/src/components/Tags';
 import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './_number-input_styleguide.mdx';
@@ -6,7 +7,11 @@ import Tags from '@site/docs/auto-generated/ix-number-input/tags.md';
 
 # Number input
 
-<Tags />
+<div className="d-flex gap-2 align-items-center">
+  <Tags />
+  <DeprecatedTags url='/docs/legacy/input' hasDeprecatedAncestor={true}></DeprecatedTags>
+</div>
+
 
 <br />
 <br />

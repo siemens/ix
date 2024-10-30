@@ -18,7 +18,7 @@ The custom field is a wrapper component that can host any forms component. Its p
 
 ## Behavior in context
 
-- **Validation:** See [validation](forms-validation.md).
+- **Validation:** See [validation](forms-validation.mdx).
 - **Form behavior:** See [behavior](forms-behavior.md).
 ## States
 
@@ -32,6 +32,6 @@ The states depend on the component that you use in the custom field. The custom
 ## Related patterns
 
 - [Form field](forms-field.md)
-- [Validation](forms-validation.md)
+- [Validation](forms-validation.mdx)
 - [Behavior](forms-behavior.md)
 - [Layout](forms-layout.md)

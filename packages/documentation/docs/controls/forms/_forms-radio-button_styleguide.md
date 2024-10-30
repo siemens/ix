@@ -10,7 +10,7 @@ A radio button is a interface element that enables the user to choose only one o
 
 ## Behavior in context
 
-- **Validation**: Radio buttons are validated collectively, not individually. For more information on validation, see [validation](forms-validation.md).
+- **Validation**: Radio buttons are validated collectively, not individually. For more information on validation, see [validation](forms-validation.mdx).
 - **Interaction**: Clicking on a radio button toggles its state between checked and unchecked/default. Every other radio button in the group is automatically unchecked.
 
 ## States
@@ -28,7 +28,7 @@ A radio button is a interface element that enables the user to choose only one o
 ## Related patterns
 
 - [Form field](forms-field.md)
-- [Validation](forms-validation.md)
+- [Validation](forms-validation.mdx)
 - [Layout](forms-layout.md)
 - Checkbox
 - Toggle

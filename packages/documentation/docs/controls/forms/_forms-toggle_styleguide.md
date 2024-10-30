@@ -10,7 +10,7 @@ A toggle is a user interface element that enables users to switch between two st
 
 ## Behavior in context
 
-- **Validation**: See [validation](forms-validation.md).
+- **Validation**: See [validation](forms-validation.mdx).
 - **Interaction**: Clicking on the toggle switch changes its state from on to off or vice versa. The toggle visually reflects the current state.
 
 ## States
@@ -29,7 +29,7 @@ Don't use toggles for actions that are irreversible or have serious consequences
 ## Related patterns
 
 - [Form field](forms-field.md)
-- [Validation](forms-validation.md)
+- [Validation](forms-validation.mdx)
 - [Layout](forms-layout.md)
--  Checkbox
--  Radio button
+-  [Checkbox](../checkbox.mdx)
+-  [Radio](../radio.mdx)

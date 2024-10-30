@@ -30,7 +30,7 @@ A select component allows users to choose from a list of options. It supports si
 
 ## Behavior in context
 
-- **Validation:** See [validation](./forms/forms-validation.md).
+- **Validation:** See [validation](./forms/forms-validation.mdx).
 - **Interaction:**
 	- Click or Enter key on button opens dropdown list.
 	- Typing in the input field filters the dropdown list.
@@ -63,7 +63,7 @@ The select field has five states: default, hover, focused, disabled and read-onl
 ## Related patterns
 
 - [Form field](./forms/forms-field.md)
-- [Validation](./forms/forms-validation.md)
+- [Validation](./forms/forms-validation.mdx)
 - [Layout](./forms/forms-layout.md)
 - [Input](input.mdx)
 - [Radio button](radio.mdx)
