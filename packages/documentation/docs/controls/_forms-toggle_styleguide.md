@@ -4,13 +4,13 @@ A toggle is a user interface element that enables users to switch between two st
 
 ## Options
 
-- **Label:** See [form field](forms-field.md).
-- **Helper text**: See [form field](forms-field.md).
-- **Feedback text**: See [form field](forms-field.md).
+- **Label:** See [form field](forms/forms-field.md).
+- **Helper text**: See [form field](forms/forms-field.md).
+- **Feedback text**: See [form field](forms/forms-field.md).
 
 ## Behavior in context
 
-- **Validation**: See [validation](forms-validation.mdx).
+- **Validation**: See [validation](forms/forms-validation.mdx).
 - **Interaction**: Clicking on the toggle switch changes its state from on to off or vice versa. The toggle visually reflects the current state.
 
 ## States
@@ -28,8 +28,8 @@ A toggle is a user interface element that enables users to switch between two st
 
 ## Related patterns
 
-- [Form field](forms-field.md)
-- [Validation](forms-validation.mdx)
-- [Layout](forms-layout.md)
-- [Checkbox](../checkbox.mdx)
-- [Radio](../radio.mdx)
+- [Form field](forms/forms-field.md)
+- [Validation](forms/forms-validation.mdx)
+- [Layout](forms/forms-layout.md)
+- [Checkbox](checkbox.mdx)
+- [Radio](radio.mdx)
