@@ -17,13 +17,13 @@
   gap: 0.25rem;
 
   border-radius: 0.25rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.2rem 0.5rem;
 
   color: var(--theme-color-inv-std-text);
   font: var(--theme-text-default-title-single);
 
-  margin: 0.5rem 0;
   border: 1px solid var(--theme-color-primary);
+  box-sizing: border-box;
 }
 
 a[href].TagContainer {
@@ -35,7 +35,7 @@ a[href].TagContainer {
 }
 
 .Title {
-  font-size: 18px;
+  font-size: 12px;
   line-height: 1.5;
   color: var(--theme-color-primary);
 }
