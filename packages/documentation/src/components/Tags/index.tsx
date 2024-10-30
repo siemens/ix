@@ -13,27 +13,11 @@ export default function LegacyTag(props: {
           Deprecated since {props.deprecationVersion}
         </span>
       )}
-      <a
-        href={props.url}
-        target="_blank"
-        className={`TagContainer ${
-          props.hasDeprecatedAncestor ? 'TagDeprecatedContainer' : ''
-        }`}
-      >
-        <IxIcon
-          name="open-external"
-          color={props.hasDeprecatedAncestor ? 'color-alarm' : 'color-primary'}
-          size="16"
-        ></IxIcon>
-        <div
-          className={`Title ${
-            props.hasDeprecatedAncestor ? 'TagDeprecatedTitle' : ''
-          }`}
-        >
-          {props.hasDeprecatedAncestor
-            ? 'Show deprecated version'
-            : 'Show latest version'}
-        </div>
+      <a href={props.url} target="_blank" className="TagContainer">
+        <IxIcon name="open-external" color="color-primary" size="16"></IxIcon>
+        {props.hasDeprecatedAncestor
+          ? 'Show deprecated version'
+          : 'Show latest version'}
       </a>
     </div>
   );

@@ -31,5 +31,5 @@ Don't use toggles for actions that are irreversible or have serious consequences
 - [Form field](forms-field.md)
 - [Validation](forms-validation.mdx)
 - [Layout](forms-layout.md)
--  [Checkbox](../checkbox.mdx)
--  [Radio](../radio.mdx)
+- [Checkbox](../checkbox.mdx)
+- [Radio](../radio.mdx)
