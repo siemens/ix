@@ -126,6 +126,13 @@
       }
     }
 
+    ix-icon-button {
+      height: calc(2rem - 2px);
+      width: calc(2rem - 2px);
+      min-height: calc(2rem - 2px);
+      min-width: calc(2rem - 2px);
+    }
+
     input {
       @include ellipsis;
       @include text-default;
