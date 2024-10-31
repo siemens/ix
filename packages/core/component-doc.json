@@ -13382,7 +13382,7 @@
           "detail": "string | string[]",
           "bubbles": true,
           "complexType": {
-            "original": "string | string[]",
+            "original": "string | string[] | null",
             "resolved": "string | string[]",
             "references": {}
           },

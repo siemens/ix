@@ -24,6 +24,7 @@ import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-select',
@@ -105,47 +106,51 @@ export class Select {
    * Value changed
    * @since 2.0.0
    */
-  @Event() valueChange: EventEmitter<string | string[]>;
+  @Event() valueChange!: EventEmitter<string | string[] | null>;
 
   /**
    * Item selection changed
    * @deprecated since 2.0.0. Use `valueChange` instead.
    */
-  @Event() itemSelectionChange: EventEmitter<string[]>;
+  @Event() itemSelectionChange!: EventEmitter<string[]>;
 
   /**
    * Event dispatched whenever the text input changes.
    *
    * @since 2.0.0
    */
-  @Event() inputChange: EventEmitter<string>;
+  @Event() inputChange!: EventEmitter<string>;
 
   /**
    * Item added to selection
    */
-  @Event() addItem: EventEmitter<string>;
+  @Event() addItem!: EventEmitter<string>;
 
   @State() dropdownShow = false;
-  @State() selectedLabels: string[];
-  @State() dropdownWrapperRef!: HTMLElement;
-  @State() dropdownAnchor!: HTMLElement;
+  @State() selectedLabels?: string[];
+  @State() dropdownWrapperRef = makeRef<
+    HTMLDivElement | HTMLIxIconButtonElement
+  >();
+  @State() dropdownAnchor = makeRef<HTMLDivElement>();
   @State() isDropdownEmpty = false;
-  @State() navigationItem: DropdownItemWrapper;
-  @State() inputFilterText: string;
-  @State() inputValue: string;
+  @State() navigationItem?: DropdownItemWrapper;
+  @State() inputFilterText?: string;
+  @State() inputValue?: string;
+  @State() resolvedDropdownAnchor?: HTMLDivElement;
 
   private inputRef!: HTMLInputElement;
   private dropdownRef!: HTMLIxDropdownElement;
   private customItemsContainerRef!: HTMLDivElement;
   private addItemRef!: HTMLIxDropdownItemElement;
 
-  private itemMutationObserver: MutationObserver;
+  private arrowFocusController?: ArrowFocusController;
+  private readonly focusControllerCallbackBind =
+    this.focusDropdownItem.bind(this);
 
-  private arrowFocusController: ArrowFocusController;
-  private focusControllerCallbackBind = this.focusDropdownItem.bind(this);
-
-  private itemObserver = createMutationObserver(() => {
-    this.arrowFocusController.items = this.visibleNonShadowItems;
+  private readonly itemObserver = createMutationObserver(() => {
+    if (this.arrowFocusController) {
+      this.arrowFocusController.items = this.visibleNonShadowItems;
+    }
   });
 
   get nonShadowItems() {
@@ -160,7 +165,7 @@ export class Select {
 
   get shadowItems() {
     return Array.from(
-      this.hostElement.shadowRoot.querySelectorAll('ix-select-item')
+      this.hostElement.shadowRoot!.querySelectorAll('ix-select-item')
     );
   }
 
@@ -183,7 +188,7 @@ export class Select {
   }
 
   get addItemButton() {
-    return this.hostElement.shadowRoot.querySelector('.add-item');
+    return this.hostElement.shadowRoot!.querySelector('.add-item');
   }
 
   get isSingleMode() {
@@ -226,7 +231,9 @@ export class Select {
         subtree: true,
       });
     } else {
-      this.arrowFocusController.disconnect();
+      if (this.arrowFocusController) {
+        this.arrowFocusController.disconnect();
+      }
       this.arrowFocusController = undefined;
       this.itemObserver.disconnect();
     }
@@ -243,13 +250,15 @@ export class Select {
 
     if (index < this.visibleNonShadowItems.length) {
       const nestedDropdownItem =
-        this.visibleNonShadowItems[index]?.shadowRoot.querySelector(
+        this.visibleNonShadowItems[index]?.shadowRoot!.querySelector(
           'ix-dropdown-item'
         );
 
-      requestAnimationFrame(() => {
-        nestedDropdownItem.shadowRoot.querySelector('button').focus();
-      });
+      if (nestedDropdownItem) {
+        requestAnimationFrame(() => {
+          nestedDropdownItem.shadowRoot!.querySelector('button')?.focus();
+        });
+      }
     }
   }
 
@@ -267,7 +276,7 @@ export class Select {
     this.updateSelection();
   }
 
-  private emitAddItem(value: string) {
+  private emitAddItem(value: string | undefined) {
     if (value === undefined || value.trim() === '') {
       return false;
     }
@@ -312,7 +321,7 @@ export class Select {
   }
 
   private updateSelection() {
-    let ids = [];
+    let ids: string[] = [];
 
     if (this.value) {
       ids = Array.isArray(this.value) ? [...this.value] : [this.value];
@@ -346,9 +355,9 @@ export class Select {
     }
 
     if (!value) {
-      this.itemSelectionChange.emit(null);
+      this.valueChange.emit(undefined);
     } else {
-      this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
+      this.valueChange.emit(Array.isArray(value) ? value : [value]);
     }
 
     return false;
@@ -358,6 +367,10 @@ export class Select {
     this.inputRef.addEventListener('input', () => {
       this.dropdownShow = true;
       this.inputChange.emit(this.inputRef.value);
+    });
+
+    this.dropdownAnchor.waitForCurrent().then((anchor) => {
+      this.resolvedDropdownAnchor = anchor;
     });
   }
 
@@ -374,12 +387,6 @@ export class Select {
     event.preventDefault();
     event.stopImmediatePropagation();
     this.updateSelection();
-  }
-
-  disconnectedCallback() {
-    if (this.itemMutationObserver) {
-      this.itemMutationObserver.disconnect();
-    }
   }
 
   private itemExists(item: string) {
@@ -429,6 +436,7 @@ export class Select {
     }
 
     if (
+      this.inputFilterText &&
       !this.itemExists(this.inputFilterText.trim()) &&
       !this.itemExists((el as HTMLIxSelectItemElement)?.label)
     ) {
@@ -493,16 +501,15 @@ export class Select {
 
     if (
       this.isAddItemVisible() &&
+      this.navigationItem &&
       this.addItemRef.contains(
         await this.navigationItem.getDropdownItemElement()
       )
     ) {
       if (moveUp) {
         this.applyFocusTo(this.visibleItems.pop());
-      } else {
-        if (this.visibleItems.length) {
-          this.applyFocusTo(this.visibleItems.shift());
-        }
+      } else if (this.visibleItems.length) {
+        this.applyFocusTo(this.visibleItems.shift());
       }
       return;
     }
@@ -522,20 +529,18 @@ export class Select {
       } else {
         this.applyFocusTo(this.visibleShadowItems[indexShadow - 1]);
       }
-    } else {
-      if (indexShadow === this.visibleShadowItems.length - 1) {
-        if (this.isAddItemVisible()) {
-          this.focusAddItemButton();
-        } else {
-          this.applyFocusTo(this.visibleItems.shift());
-        }
+    } else if (indexShadow === this.visibleShadowItems.length - 1) {
+      if (this.isAddItemVisible()) {
+        this.focusAddItemButton();
       } else {
-        this.applyFocusTo(this.visibleShadowItems[indexShadow + 1]);
+        this.applyFocusTo(this.visibleItems.shift());
       }
+    } else {
+      this.applyFocusTo(this.visibleShadowItems[indexShadow + 1]);
     }
   }
 
-  private applyFocusTo(element: HTMLIxSelectItemElement) {
+  private applyFocusTo(element: HTMLIxSelectItemElement | undefined) {
     if (!element) {
       return;
     }
@@ -543,16 +548,16 @@ export class Select {
     this.navigationItem = element;
 
     setTimeout(() => {
-      element.shadowRoot
-        .querySelector('ix-dropdown-item')
-        .shadowRoot.querySelector('button')
-        .focus();
+      element
+        .shadowRoot!.querySelector('ix-dropdown-item')
+        ?.shadowRoot!.querySelector('button')
+        ?.focus();
     });
   }
 
   private focusAddItemButton() {
     if (this.addItemButton) {
-      this.addItemButton.shadowRoot.querySelector('button').focus();
+      this.addItemButton.shadowRoot!.querySelector('button')?.focus();
       this.navigationItem = this.addItemRef;
     }
   }
@@ -560,7 +565,10 @@ export class Select {
   private filterItemsWithTypeahead() {
     this.inputFilterText = this.inputRef.value;
 
-    if (this.isSingleMode && this.inputFilterText === this.selectedLabels[0]) {
+    if (
+      this.isSingleMode &&
+      this.inputFilterText === this.selectedLabels?.[0]
+    ) {
       return;
     }
 
@@ -568,7 +576,9 @@ export class Select {
       this.items.forEach((item) => {
         item.classList.remove('d-none');
         if (
-          !item.label.toLowerCase().includes(this.inputFilterText.toLowerCase())
+          !item.label
+            .toLowerCase()
+            .includes(this.inputFilterText?.toLowerCase() ?? '')
         ) {
           item.classList.add('d-none');
         }
@@ -603,7 +613,8 @@ export class Select {
     this.dropdownShow = false;
   }
 
-  private onInputBlur(e) {
+  private onInputBlur(e: FocusEvent) {
+    console.log(e);
     if (this.editable) {
       return;
     }
@@ -635,7 +646,7 @@ export class Select {
 
   private isAddItemVisible() {
     return (
-      !this.itemExists(this.inputFilterText) &&
+      !this.itemExists(this.inputFilterText ?? '') &&
       this.editable &&
       this.inputFilterText
     );
@@ -650,10 +661,7 @@ export class Select {
             disabled: this.disabled,
             readonly: this.readonly,
           }}
-          ref={(ref) => {
-            this.dropdownAnchor = ref;
-            if (!this.editable) this.dropdownWrapperRef = ref;
-          }}
+          ref={this.dropdownWrapperRef}
         >
           <div class="input-container">
             <div class="chips">
@@ -714,9 +722,7 @@ export class Select {
                     class={{ 'dropdown-visible': this.dropdownShow }}
                     icon="chevron-down-small"
                     ghost
-                    ref={(ref) => {
-                      if (this.editable) this.dropdownWrapperRef = ref;
-                    }}
+                    ref={this.editable && this.dropdownWrapperRef}
                   ></ix-icon-button>
                 )}
               </div>
@@ -730,8 +736,8 @@ export class Select {
           class={{
             'd-none': this.disabled || this.readonly,
           }}
-          anchor={this.dropdownAnchor}
-          trigger={this.dropdownWrapperRef}
+          anchor={this.resolvedDropdownAnchor}
+          trigger={this.dropdownWrapperRef.waitForCurrent()}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
           overwriteDropdownStyle={async () => {
@@ -750,9 +756,17 @@ export class Select {
           >
             {this.i18nSelectListHeader}
           </div>
-          <slot></slot>
+          <slot
+            onSlotchange={() => {
+              this.updateSelection();
+            }}
+          ></slot>
           <div
-            ref={(ref) => (this.customItemsContainerRef = ref)}
+            ref={(ref) => {
+              if (ref) {
+                this.customItemsContainerRef = ref;
+              }
+            }}
             class="d-contents"
           ></div>
           {this.isAddItemVisible() ? (
@@ -770,14 +784,14 @@ export class Select {
               }}
               onFocus={() => (this.navigationItem = this.addItemRef)}
               ref={(ref) => {
-                this.addItemRef = ref;
+                if (ref) {
+                  this.addItemRef = ref;
+                }
               }}
             ></ix-dropdown-item>
           ) : null}
-          {this.isDropdownEmpty && !this.editable ? (
+          {this.isDropdownEmpty && !this.editable && (
             <div class="select-list-header">{this.i18nNoMatches}</div>
-          ) : (
-            ''
           )}
         </ix-dropdown>
       </Host>

@@ -3692,7 +3692,7 @@ declare global {
         new (): HTMLIxRowElement;
     };
     interface HTMLIxSelectElementEventMap {
-        "valueChange": string | string[];
+        "valueChange": string | string[] | null;
         "itemSelectionChange": string[];
         "inputChange": string;
         "addItem": string;
@@ -6121,7 +6121,7 @@ declare namespace LocalJSX {
           * Value changed
           * @since 2.0.0
          */
-        "onValueChange"?: (event: IxSelectCustomEvent<string | string[]>) => void;
+        "onValueChange"?: (event: IxSelectCustomEvent<string | string[] | null>) => void;
         /**
           * If true the select will be in readonly mode
          */
