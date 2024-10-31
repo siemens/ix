@@ -1,11 +1,13 @@
 import './LegacyTag.css';
 import { IxIcon } from '@siemens/ix-react';
 
-export default function LegacyTag(props: {
-  url: string;
-  hasDeprecatedAncestor: boolean;
-  deprecationVersion?: string;
-}) {
+export default function LegacyTag(
+  props: Readonly<{
+    url: string;
+    hasDeprecatedAncestor: boolean;
+    deprecationVersion?: string;
+  }>
+) {
   return (
     <div className="TagsContainer d-flex gap-2 align-items-center">
       {!props.hasDeprecatedAncestor && (
