@@ -141,8 +141,7 @@ export class DatePicker {
   @Prop() weekStartIndex = 0;
 
   /**
-   * Format of time string
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * Locale identifier (e.g. 'en' or 'de').
    *
    * @since 2.1.0
    */

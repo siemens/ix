@@ -573,6 +573,11 @@ export namespace Components {
          */
         "i18nNoRange": string;
         /**
+          * Locale identifier (e.g. 'en' or 'de').
+          * @since 2.6.0
+         */
+        "locale": string;
+        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
         "maxDate": string;
@@ -624,7 +629,7 @@ export namespace Components {
          */
         "individual": boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Locale identifier (e.g. 'en' or 'de').
           * @since 2.1.0
          */
         "locale": string;
@@ -4666,6 +4671,11 @@ declare namespace LocalJSX {
          */
         "i18nNoRange"?: string;
         /**
+          * Locale identifier (e.g. 'en' or 'de').
+          * @since 2.6.0
+         */
+        "locale"?: string;
+        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
         "maxDate"?: string;
@@ -4717,7 +4727,7 @@ declare namespace LocalJSX {
          */
         "individual"?: boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Locale identifier (e.g. 'en' or 'de').
           * @since 2.1.0
          */
         "locale"?: string;

@@ -140,6 +140,13 @@ export class DateDropdown {
   }
 
   /**
+   * Locale identifier (e.g. 'en' or 'de').
+   *
+   * @since 2.6.0
+   */
+  @Prop() locale: string = undefined;
+
+  /**
    * Text for custom dropdown item. Will be used for translation.
    */
   @Prop({ attribute: 'i18n-custom-item' }) i18nCustomItem = 'Custom...';
@@ -354,6 +361,7 @@ export class DateDropdown {
                   <Fragment>
                     <ix-date-picker
                       standaloneAppearance={false}
+                      locale={this.locale}
                       onDateChange={(e) => {
                         e.stopPropagation();
                         this.currentRangeValue = {

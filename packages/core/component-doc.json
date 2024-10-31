@@ -3579,6 +3579,33 @@
           "required": false
         },
         {
+          "name": "locale",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "default": "undefined",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "maxDate",
           "type": "string",
           "complexType": {
@@ -3950,7 +3977,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Locale identifier (e.g. 'en' or 'de').",
           "docsTags": [
             {
               "name": "since",
