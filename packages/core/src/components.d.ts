@@ -748,6 +748,11 @@ export namespace Components {
          */
         "label"?: string;
         /**
+          * Locale identifier (e.g. 'en' or 'de').
+          * @since 2.6.0
+         */
+        "locale"?: string;
+        /**
           * name of the input element
          */
         "name"?: string;
@@ -5789,6 +5794,11 @@ declare namespace LocalJSX {
           * label of the input field
          */
         "label"?: string;
+        /**
+          * Locale identifier (e.g. 'en' or 'de').
+          * @since 2.6.0
+         */
+        "locale"?: string;
         /**
           * name of the input element
          */

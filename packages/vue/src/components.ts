@@ -345,6 +345,7 @@ export const IxDateInput = /*@__PURE__*/ defineContainer<JSX.IxDateInput, JSX.Ix
   'name',
   'placeholder',
   'value',
+  'locale',
   'format',
   'required',
   'helperText',

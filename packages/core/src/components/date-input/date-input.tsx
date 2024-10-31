@@ -69,6 +69,13 @@ export class DateInput implements IxInputFieldComponent<string> {
   @Prop({ reflect: true, mutable: true }) value: string = '';
 
   /**
+   * Locale identifier (e.g. 'en' or 'de').
+   *
+   * @since 2.6.0
+   */
+  @Prop() locale?: string;
+
+  /**
    * Date format string.
    * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
    */
@@ -447,6 +454,7 @@ export class DateInput implements IxInputFieldComponent<string> {
           <ix-date-picker
             ref={this.datepickerRef}
             format={this.format}
+            locale={this.locale}
             range={false}
             from={this.from ?? ''}
             onDateChange={(event) => {

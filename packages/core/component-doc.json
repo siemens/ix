@@ -4563,6 +4563,32 @@
           "required": false
         },
         {
+          "name": "locale",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "name",
           "type": "string",
           "complexType": {
