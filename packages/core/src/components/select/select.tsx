@@ -614,7 +614,6 @@ export class Select {
   }
 
   private onInputBlur(e: FocusEvent) {
-    console.log(e);
     if (this.editable) {
       return;
     }
@@ -623,8 +622,9 @@ export class Select {
       return;
     }
 
-    if (!this.dropdownShow && this.mode !== 'multiple') {
-      e.target['value'] = this.selectedLabels;
+    if (!this.dropdownShow && this.mode !== 'multiple' && this.selectedLabels) {
+      const target = e.target as HTMLInputElement;
+      target.value = this.selectedLabels?.join(', ') || '';
     }
   }
 
@@ -661,7 +661,7 @@ export class Select {
             disabled: this.disabled,
             readonly: this.readonly,
           }}
-          ref={this.dropdownWrapperRef}
+          ref={this.editable ? this.dropdownAnchor : this.dropdownWrapperRef}
         >
           <div class="input-container">
             <div class="chips">
@@ -693,7 +693,9 @@ export class Select {
                   }}
                   placeholder={this.placeholderValue()}
                   value={this.inputValue}
-                  ref={(ref) => (this.inputRef = ref)}
+                  ref={(ref) => {
+                    if (ref) this.inputRef = ref;
+                  }}
                   onBlur={(e) => this.onInputBlur(e)}
                   onFocus={() => {
                     this.navigationItem = undefined;
@@ -722,7 +724,7 @@ export class Select {
                     class={{ 'dropdown-visible': this.dropdownShow }}
                     icon="chevron-down-small"
                     ghost
-                    ref={this.editable && this.dropdownWrapperRef}
+                    ref={this.editable ? this.dropdownWrapperRef : undefined}
                   ></ix-icon-button>
                 )}
               </div>
@@ -730,7 +732,9 @@ export class Select {
           </div>
         </div>
         <ix-dropdown
-          ref={(ref) => (this.dropdownRef = ref)}
+          ref={(ref) => {
+            if (ref) this.dropdownRef = ref;
+          }}
           show={this.dropdownShow}
           closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
           class={{
