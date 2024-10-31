@@ -795,3 +795,21 @@ test.describe('Events', () => {
     });
   });
 });
+
+test('async set content and check input value', async ({ mount, page }) => {
+  await mount(`<ix-select value="1"></ix-select>`);
+
+  await page.evaluate(async () => {
+    const select = document.querySelector('ix-select');
+    if (select) {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      select.innerHTML = `
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      `;
+    }
+  });
+
+  const input = page.locator('input');
+  await expect(input).toHaveValue('Item 1');
+});
