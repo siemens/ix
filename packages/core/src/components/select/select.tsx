@@ -106,7 +106,7 @@ export class Select {
    * Value changed
    * @since 2.0.0
    */
-  @Event() valueChange!: EventEmitter<string | string[] | null>;
+  @Event() valueChange!: EventEmitter<string | string[]>;
 
   /**
    * Item selection changed
@@ -609,7 +609,7 @@ export class Select {
     this.clearInput();
     this.selectedLabels = [];
     this.value = [];
-    this.valueChange.emit(null);
+    this.valueChange.emit('');
     this.dropdownShow = false;
   }
 
