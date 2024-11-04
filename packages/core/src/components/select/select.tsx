@@ -355,9 +355,9 @@ export class Select {
     }
 
     if (!value) {
-      this.valueChange.emit(undefined);
+      this.itemSelectionChange.emit([]);
     } else {
-      this.valueChange.emit(Array.isArray(value) ? value : [value]);
+      this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
     }
 
     return false;
