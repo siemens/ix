@@ -772,7 +772,7 @@ export class DatePicker {
             <div class="calendar-item week-day"></div>
             {this.dayNames.map((name) => (
               <div key={name} class="calendar-item week-day">
-                {name.slice(0, 3)}
+                <div class="overflow">{name.slice(0, 3)}</div>
               </div>
             ))}
             {this.calendar.map((week) => {
