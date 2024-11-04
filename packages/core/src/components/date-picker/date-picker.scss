@@ -9,6 +9,7 @@
 
 @import 'common-variables';
 @import 'mixins/shadow-dom/component';
+@import 'mixins/text-truncation';
 
 :host {
   @include ix-component;
@@ -270,6 +271,7 @@
       }
 
       &.week-day {
+        @include ellipsis;
         color: var(--theme-datepicker-weekday--color);
         font-size: 12px;
         line-height: 20px;
