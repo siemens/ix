@@ -734,8 +734,8 @@ test.describe('Events', () => {
     const select = await page.locator('ix-select');
     const valueChanged = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('valueChange', (e: CustomEvent) =>
-          resolve(e.detail)
+        elm.addEventListener('valueChange', (e: Event) =>
+          resolve((e as CustomEvent).detail)
         );
       });
     });
@@ -753,7 +753,9 @@ test.describe('Events', () => {
     const select = await page.locator('ix-select');
     const itemAdded = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('addItem', (e: CustomEvent) => resolve(e.detail));
+        elm.addEventListener('addItem', (e: Event) =>
+          resolve((e as CustomEvent).detail)
+        );
       });
     });
     const input = await page.locator('input');
