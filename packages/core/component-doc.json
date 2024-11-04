@@ -3596,13 +3596,12 @@
               "text": "2.6.0"
             }
           ],
-          "default": "undefined",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {

@@ -576,7 +576,7 @@ export namespace Components {
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.6.0
          */
-        "locale": string;
+        "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
