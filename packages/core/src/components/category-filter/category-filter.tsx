@@ -23,6 +23,7 @@ import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
 import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-category-filter',
@@ -35,9 +36,10 @@ export class CategoryFilter {
   @State() showDropdown: boolean;
   @State() private textInput?: HTMLInputElement;
   private formElement?: HTMLFormElement;
-  private isScrollStateDirty: boolean;
+  private isScrollStateDirty?: boolean;
+  private a11yAttributes?: A11yAttributes;
 
-  @Element() hostElement: HTMLIxCategoryFilterElement;
+  @Element() hostElement!: HTMLIxCategoryFilterElement;
 
   @State() hasFocus: boolean;
   @State() categoryLogicalOperator = LogicalFilterOperator.EQUAL;
@@ -62,18 +64,18 @@ export class CategoryFilter {
   /**
    * A set of search criteria to populate the component with.
    */
-  @Prop() filterState: FilterState;
+  @Prop() filterState?: FilterState;
 
   /**
    * Placeholder text to be displayed in an empty input field.
    */
-  @Prop() placeholder: string;
+  @Prop() placeholder?: string;
 
   /**
    * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality.
    * Each ID maps to an object with a label and an array of options to select from.
    */
-  @Prop() categories: {
+  @Prop() categories?: {
     [id: string]: {
       label: string;
       options: string[];
@@ -94,7 +96,7 @@ export class CategoryFilter {
   /**
    * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
    */
-  @Prop() suggestions: string[];
+  @Prop() suggestions?: string[];
 
   /**
    * The icon next to the actual text input
@@ -106,7 +108,7 @@ export class CategoryFilter {
    * Allows to hide the icon inside the text input.
    * Defaults to false
    */
-  @Prop() hideIcon: boolean;
+  @Prop() hideIcon: boolean = false;
 
   /**
    * If set categories will always be filtered via the respective logical operator.
@@ -142,17 +144,17 @@ export class CategoryFilter {
   /**
    * Event dispatched whenever a category gets selected in the dropdown
    */
-  @Event() categoryChanged: EventEmitter<string>;
+  @Event() categoryChanged!: EventEmitter<string>;
 
   /**
    * Event dispatched whenever the text input changes.
    */
-  @Event() inputChanged: EventEmitter<InputState>;
+  @Event() inputChanged!: EventEmitter<InputState>;
 
   /**
    * Event dispatched whenever the filter state changes.
    */
-  @Event() filterChanged: EventEmitter<FilterState>;
+  @Event() filterChanged!: EventEmitter<FilterState>;
 
   get dropdown() {
     return this.hostElement.shadowRoot.querySelector('ix-dropdown');
@@ -161,6 +163,10 @@ export class CategoryFilter {
   @Watch('filterState')
   watchFilterState(newValue) {
     this.setFilterState(newValue);
+  }
+
+  componentWillLoad() {
+    this.a11yAttributes = a11yHostAttributes(this.hostElement);
   }
 
   componentDidLoad() {
@@ -418,6 +424,10 @@ export class CategoryFilter {
     e.stopPropagation();
     this.closeDropdown();
     this.filterTokens = [];
+    if (this.category) {
+      this.category = undefined;
+      this.categoryChanged.emit(this.category);
+    }
     this.emitFilterEvent();
   }
 
@@ -707,9 +717,9 @@ export class CategoryFilter {
               size="16"
             ></ix-icon>
             <div class="token-container">
-              <ul class="list-unstyled">
+              <div class="list-unstyled">
                 {this.filterTokens.map((value, index) => (
-                  <li
+                  <span
                     key={value.toString()}
                     class={{
                       animate__animated: true,
@@ -724,19 +734,19 @@ export class CategoryFilter {
                     >
                       {this.getFilterChipLabel(value)}
                     </ix-filter-chip>
-                  </li>
+                  </span>
                 ))}
                 {this.categories === undefined ? (
                   ''
                 ) : (
-                  <li
+                  <span
                     class={{
                       'category-preview': true,
                       'd-none': this.category === undefined,
                     }}
                   >
                     {this.categories[this.category]?.label}
-                  </li>
+                  </span>
                 )}
                 <input
                   class={{
@@ -753,8 +763,9 @@ export class CategoryFilter {
                   ref={(el) => (this.textInput = el)}
                   type="text"
                   placeholder={this.placeholder}
+                  {...this.a11yAttributes}
                 ></input>
-              </ul>
+              </div>
             </div>
             {!this.readonly && !this.disabled && this.getResetButton()}
           </div>

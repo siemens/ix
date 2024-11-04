@@ -17,7 +17,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import Hyperlist from 'hyperlist';
+import { VirtualList, VirtualListConfig } from './../utils/lazy-list';
 import { renderDefaultItem } from '../tree-item/default-tree-item';
 import {
   TreeContext,
@@ -27,6 +27,7 @@ import {
   TreeModel,
   UpdateCallback,
 } from './tree-model';
+import { dropdownController } from '../dropdown/dropdown-controller';
 
 @Component({
   tag: 'ix-tree',
@@ -84,7 +85,7 @@ export class Tree {
    */
   @Event() nodeRemoved!: EventEmitter<any>;
 
-  private hyperlist: Hyperlist;
+  private hyperlist: VirtualList;
 
   private toggleListener = new Map<HTMLElement, Function>();
   private itemClickListener = new Map<HTMLElement, Function>();
@@ -96,7 +97,7 @@ export class Tree {
     element.style.paddingLeft = item.level + 'rem';
   }
 
-  private getVirtualizerOptions() {
+  private getVirtualizerOptions(): VirtualListConfig {
     const list = this.buildTreeList(this.model[this.root]);
 
     let setToggleListener = (
@@ -119,6 +120,8 @@ export class Tree {
     };
 
     return {
+      width: '100%',
+      height: '100%',
       itemHeight: 32,
       total: list.length,
       generate: (index: number) => {
@@ -173,16 +176,30 @@ export class Tree {
         this.updatePadding(el, item);
 
         if (!this.itemClickListener.has(el)) {
-          const itemClickCallback = (e: Event) => {
-            e.preventDefault();
-            e.stopPropagation();
+          const itemClickCallback = (event: Event) => {
+            const path = event.composedPath();
+            const treeIndex = path.indexOf(this.hostElement);
+            const treePath = path.slice(0, treeIndex);
+            const hasTrigger = dropdownController.pathIncludesTrigger(treePath);
+
+            if (event.defaultPrevented) {
+              return;
+            }
+
+            if (hasTrigger) {
+              return;
+            }
+
             Object.values(this.context).forEach((c) => (c.isSelected = false));
             const context = this.getContext(item.id);
             context.isSelected = true;
             this.setContext(item.id, context);
             this.nodeClicked.emit(item.id);
           };
-          el.addEventListener('itemClick', itemClickCallback);
+          el.addEventListener('toggle', (event) => {
+            event.preventDefault();
+          });
+          el.addEventListener('click', itemClickCallback);
           this.itemClickListener.set(el, itemClickCallback);
         }
 
@@ -287,6 +304,7 @@ export class Tree {
   }
 
   private isListInitialized() {
+    //@ts-ignore
     const itemPositions = this.hyperlist?._itemPositions;
 
     return (
@@ -311,7 +329,7 @@ export class Tree {
 
     this.hyperlist?.destroy();
     const config = this.getVirtualizerOptions();
-    this.hyperlist = new Hyperlist(this.hostElement, config);
+    this.hyperlist = new VirtualList(this.hostElement, config);
   }
 
   render() {

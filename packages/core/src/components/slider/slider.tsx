@@ -154,7 +154,7 @@ export class Slider {
 
   private onInput(event: InputEvent) {
     event.stopPropagation();
-    const value = parseInt(this.slider.value);
+    const value = parseFloat(this.slider.value);
 
     if (!isNaN(value)) {
       this.rangeInput = value;

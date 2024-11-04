@@ -6,15 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-/*
- * SPDX-FileCopyrightText: 2023 Siemens AG
- *
- * SPDX-License-Identifier: MIT
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 import { ElementHandle, expect, Locator, Page } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
@@ -640,6 +631,29 @@ regressionTest.describe('resolve during element connect', () => {
   });
 });
 
+regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
+  await mount(`<ix-button id="trigger">Open</ix-icon-button>
+        <ix-dropdown closeBehavior="outside" trigger="trigger">
+          <ix-dropdown-item id="item-1">Item level 1</ix-dropdown-item>
+          <ix-dropdown-button label="Nested">
+            <ix-dropdown-item id="item-1">Item level 2</ix-dropdown-item>
+          </ix-dropdown-button>
+        </ix-dropdown>`);
+  const trigger = page.locator('ix-button').first();
+  await trigger.click();
+  const dropdown = page.locator('ix-dropdown').first();
+
+  await expect(dropdown).toBeVisible();
+
+  await dropdown.evaluate((dd) => {
+    dd.removeChild(dd.querySelector('ix-dropdown-button'));
+  });
+
+  await trigger.click();
+  await trigger.click();
+  await expect(dropdown).toBeVisible();
+});
+
 regressionTest.describe('A11y', () => {
   regressionTest.describe('Keyboard navigation', () => {
     regressionTest.beforeEach(async ({ page, mount }) => {
@@ -680,7 +694,7 @@ regressionTest.describe('A11y', () => {
         await page.keyboard.press('ArrowDown');
         await page.waitForTimeout(100);
         await page.keyboard.press('ArrowUp');
-        const item = await page.locator('ix-dropdown-item').first();
+        const item = page.locator('ix-dropdown-item').first();
         await expect(item).toBeFocused();
       });
     });

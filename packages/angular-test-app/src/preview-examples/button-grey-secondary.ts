@@ -15,6 +15,6 @@ import { Component } from '@angular/core';
     <ix-button outline variant="secondary"> Button </ix-button>
     <ix-button disabled outline variant="secondary"> Button </ix-button>
   `,
-  styleUrls: ['./styles/buttons.css'],
+  styleUrls: ['./button-grey-secondary.css'],
 })
 export default class Buttons {}

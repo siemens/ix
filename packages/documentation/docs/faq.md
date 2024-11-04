@@ -13,8 +13,8 @@ Welcome to the Industrial Experience Design System FAQ. This document serves as 
 ## System access and use
 </div>
 
-<Accordion title="What’s the difference between the Siemens brand and the open-source libraries?" id="brand-vs-os">
-The Siemens brand library within the design system is only available to Siemens employees and business partners as it contains Siemens brand elements. The open source library comes with the classic theme that can be used by non-Siemens applications. It’s possible to create custom themes that fit third-party style guides. Both libraries are available in dark and light modes.
+<Accordion title="What’s the difference between the classic theme and the Siemens brand theme?" id="brand-vs-os">
+The classic theme is the default that can be utilized by any application, including non-Siemens applications. In contrast, the Siemens brand theme is exclusively available to Siemens employees and business partners, incorporating specific Siemens brand elements. Both themes are offered in dark and light modes. Additionally, you have the flexibility to create custom themes that align with third-party style guides. 
 </Accordion>
 
 <Accordion title="Which browsers are supported?" id="vendor-support">
@@ -31,6 +31,11 @@ Our design system is tailored for tablets and desktop computers, not smartphones
 - Large screens: &gt;1280 pixels
 </Accordion>
 
+<Accordion title="Can I build mobile applications with Siemens Industrial Experience?" id="mobile">
+With the help of our design system, you are able to swiftly build the user interface of your mobile web app or hybrid app.
+Read more on the topic in our development and UX guides on mobile development with the Industrial Experience Design System [here](/docs/mobile/mobile-app-dev).
+</Accordion>
+
 <Accordion title="What languages does Industrial Experience support?" id="i18n" showBorderBottom>
 Our design system uses English as default, but it can be used with any language. All texts are fully customizable and therefore integrate nicely with third-party i18n solutions which means your software can easily be adapted for users of different cultures and languages.
 </Accordion>
@@ -41,7 +46,7 @@ Our design system uses English as default, but it can be used with any language.
 
 <Accordion title="How do I contribute to or report issues in the design system?" id="contributions">
 We want everyone to contribute to our design system and play a part in its development. There are three main ways to contribute to or report issues:
-- As a siemens employee or business partner: Post in our [Viva Engage community](https://web.yammer.com/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI1ODIzNzc5NjM1MiJ9)
+- As a Siemens employee or business partner: Post in our [Viva Engage community](https://web.yammer.com/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI1ODIzNzc5NjM1MiJ9)
 - As an open-source library user: Contribute within the [Siemens Xcelerator Community](https://community.siemens.com/c/ix/30) or open tickets in [Github](https://github.com/siemens/ix)
 - Directly contact our team regarding larger topics: experience.industry@siemens.com
 For more information, see our [Github Contributing Guide](https://github.com/siemens/ix/blob/main/CONTRIBUTING.md) which has guidance on bug reporting, workflow issues and suggesting enhancements.

@@ -3,19 +3,54 @@ SPDX-FileCopyrightText: 2024 Siemens AG
 
 SPDX-License-Identifier: MIT
 -->
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
+    <meta
+      name="ix-icons:path"
+      content="/www/node_modules/@siemens/ix-icons/svg"
+    />
+
+    <script type="module" src="/www/build/siemens-ix.esm.js"></script>
+    <script nomodule src="/www/build/siemens-ix.js"></script>
+
+    <link rel="stylesheet" href="/www/build/siemens-ix.css" />
+
+    <script type="module">
+      import { defineCustomElements } from '/www/node_modules/@siemens/ix-icons/loader/index.es2017.js';
+
+      defineCustomElements();
+    </script>
+
     <title>Stencil Component Starter</title>
+    <style>
+      html,
+      body {
+        margin: 0px;
+        padding: 0px;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #mount {
+        height: 100vh;
+        width: 100vw;
+      }
+    </style>
   </head>
   <body>
     <div id="mount"></div>
-
-    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+    <script>
+      const searchParams = new URLSearchParams(location.search);
+      if (searchParams.has('theme')) {
+        const theme = searchParams.get('theme');
+        document.body.classList.add(theme);
+      }
+    </script>
   </body>
 </html>

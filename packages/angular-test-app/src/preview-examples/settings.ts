@@ -12,7 +12,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './settings.html',
-  styleUrls: ['./styles/application.css'],
+  styleUrls: ['./settings.css'],
 })
 export default class Settings implements AfterViewInit {
   @ViewChild('menu', { read: ElementRef })

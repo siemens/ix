@@ -82,24 +82,71 @@ regressionTest(
   }
 );
 
-regressionTest('prevent default', async ({ mount, page }) => {
-  await mount(`
+regressionTest(
+  'item prevent default selection item event',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-group>
       <ix-group-item>Item 1</ix-group-item>
       <ix-group-item>Item 2</ix-group-item>
     </ix-group>
   `);
-  const group = page.locator('ix-group');
-  const expandIcon = group.getByTestId('expand-collapsed-icon');
-  await expandIcon.click();
+    const group = page.locator('ix-group');
+    const expandIcon = group.getByTestId('expand-collapsed-icon');
+    await expandIcon.click();
 
-  const groupItem = page.locator('ix-group-item').first();
-  await expect(group).toHaveClass(/hydrated/);
+    const groupItem = page.locator('ix-group-item').first();
+    await expect(group).toHaveClass(/hydrated/);
 
-  await group.evaluate((item) => {
-    item.addEventListener('selectedChanged', (e) => e.preventDefault());
-  });
+    await group.evaluate((item) => {
+      item.addEventListener('selectItem', (e) => e.preventDefault());
+    });
 
-  await groupItem.click();
-  await expect(groupItem).not.toHaveClass('/hydrated selected');
-});
+    await groupItem.click();
+    await expect(groupItem).not.toHaveClass(/hydrated selected/);
+  }
+);
+
+regressionTest(
+  'group header prevent default collapse/expand',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-group>
+      <ix-group-item>Item 1</ix-group-item>
+      <ix-group-item>Item 2</ix-group-item>
+    </ix-group>
+  `);
+    const group = page.locator('ix-group');
+    const expandIcon = group.getByTestId('expand-collapsed-icon');
+
+    await group.evaluate((item) => {
+      item.addEventListener('collapsedChanged', (e) => e.preventDefault());
+    });
+
+    await expandIcon.click();
+
+    await expect(group).toHaveAttribute('collapsed');
+  }
+);
+
+regressionTest(
+  'group header prevent default selection event',
+  async ({ mount, page }) => {
+    await mount(`
+    <ix-group header="Test" sub-header="Test2">
+      <ix-group-item>Item 1</ix-group-item>
+      <ix-group-item>Item 2</ix-group-item>
+    </ix-group>
+  `);
+    const group = page.locator('ix-group');
+    const groupHeader = group.locator('.group-header');
+
+    await group.evaluate((item) => {
+      item.addEventListener('selectGroup', (e) => e.preventDefault());
+    });
+
+    await groupHeader.click();
+
+    await expect(group).not.toHaveAttribute('selected');
+  }
+);

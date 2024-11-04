@@ -10,13 +10,13 @@
 import { Component, OnInit } from '@angular/core';
 import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
-import * as echarts from 'echarts/core';
+import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 @Component({
   selector: 'app-example',
   templateUrl: './echarts.html',
-  styleUrls: ["./styles/charts.css"],
+  styleUrls: ['./echarts.css'],
 })
 export default class Echarts implements OnInit {
   theme = convertThemeName(themeSwitcher.getCurrentTheme());

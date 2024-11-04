@@ -13,7 +13,7 @@ import { createMutationObserver } from '../utils/mutation-observer';
 import { iconChevronDown, iconMoreMenu } from '@siemens/ix-icons/icons';
 
 function CardListTitle(props: {
-  label: string;
+  label?: string;
   isCollapsed: boolean;
   onClick: (e: MouseEvent) => void;
   onShowAllClick: (e: MouseEvent) => void;
@@ -21,7 +21,7 @@ function CardListTitle(props: {
   showAllCounter: number;
   hideShowAll: boolean;
 }) {
-  if (props.label === '') {
+  if (!props.label) {
     return null;
   }
 
@@ -37,7 +37,7 @@ function CardListTitle(props: {
           CardList__Title__Button__Collapsed: props.isCollapsed,
         }}
       ></ix-icon-button>
-      <ix-typography class="CardList_Title__Label" variant="large-single">
+      <ix-typography class="CardList_Title__Label" format="body-lg">
         {props.label}
       </ix-typography>
       {!props.hideShowAll && (
@@ -68,7 +68,7 @@ export class CardList {
   /**
    * Name the card list
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Collapse the list
@@ -90,7 +90,7 @@ export class CardList {
   /**
    * Overwrite the default show all count.
    * */
-  @Prop() showAllCount: number | undefined;
+  @Prop() showAllCount?: number;
 
   /**
    * Suppress the overflow handling of child elements
@@ -117,23 +117,23 @@ export class CardList {
   /**
    * Fire event when the collapse state is changed by the user
    */
-  @Event() collapseChanged: EventEmitter<boolean>;
+  @Event() collapseChanged!: EventEmitter<boolean>;
 
   /**
    * Fire event when the collapse state is changed by the user
    */
-  @Event() showAllClick: EventEmitter<{
+  @Event() showAllClick!: EventEmitter<{
     nativeEvent: MouseEvent;
   }>;
 
   /**
    * Fire event when the show more card is clicked.
    */
-  @Event() showMoreCardClick: EventEmitter<{
+  @Event() showMoreCardClick!: EventEmitter<{
     nativeEvent: MouseEvent;
   }>;
 
-  @Element() hostElement: HTMLIxCardListElement;
+  @Element() hostElement!: HTMLIxCardListElement;
 
   @State() private hasOverflowingElements = false;
   @State() private numberOfOverflowingElements = 0;
@@ -141,7 +141,7 @@ export class CardList {
   @State() private leftScrollDistance = 0;
   @State() private rightScrollDistance = 0;
 
-  private observer: MutationObserver;
+  private observer?: MutationObserver;
 
   private onCardListVisibilityToggle() {
     this.collapse = !this.collapse;
@@ -155,7 +155,7 @@ export class CardList {
   }
 
   private getListChildren() {
-    const slot = this.hostElement.shadowRoot.querySelector(
+    const slot = this.hostElement.shadowRoot!.querySelector(
       '.CardList__Content > slot'
     ) as HTMLSlotElement;
     return slot.assignedElements({ flatten: true });
@@ -186,7 +186,7 @@ export class CardList {
     });
 
     this.observer.observe(
-      this.hostElement.shadowRoot.querySelector('.CardList__Content'),
+      this.hostElement.shadowRoot!.querySelector('.CardList__Content')!,
       {
         childList: true,
         subtree: true,
@@ -208,7 +208,7 @@ export class CardList {
   }
 
   private get listElement() {
-    return this.hostElement.shadowRoot.querySelector('.CardList__Content');
+    return this.hostElement.shadowRoot!.querySelector('.CardList__Content');
   }
 
   private onCardListScroll() {
@@ -261,6 +261,9 @@ export class CardList {
 
   @Listen('resize', { target: 'window' })
   private detectOverflow() {
+    if (!this.listElement) {
+      return;
+    }
     const { clientWidth, scrollWidth, scrollLeft } = this.listElement;
 
     this.leftScrollDistance = scrollLeft;

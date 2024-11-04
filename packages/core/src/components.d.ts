@@ -44,7 +44,7 @@ import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-import { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
+import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
 import { UploadFileState } from "./components/upload/upload-file-state";
 export { ActionCardVariant } from "./components/action-card/action-card";
 export { IxTheme } from "./components/utils/theme-switcher";
@@ -85,7 +85,7 @@ export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
-export { TextDecoration, TypographyColors, TypographyFormat, TypographyVariants } from "./components/typography/typography";
+export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
 export { UploadFileState } from "./components/upload/upload-file-state";
 export namespace Components {
     /**
@@ -95,7 +95,7 @@ export namespace Components {
         /**
           * Card heading
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Card icon
          */
@@ -107,7 +107,7 @@ export namespace Components {
         /**
           * Card subheading
          */
-        "subheading": string;
+        "subheading"?: string;
         /**
           * Card variant
           * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
@@ -163,20 +163,20 @@ export namespace Components {
           * Optional description text that will be displayed underneath the username. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
-        "extra": string;
+        "extra"?: string;
         /**
           * Display an avatar image
          */
-        "image": string;
+        "image"?: string;
         /**
           * Display the initials of the user. Will be overwritten by image
          */
-        "initials": string;
+        "initials"?: string;
         /**
           * If set an info card displaying the username will be placed inside the dropdown. Note: Only working if avatar is part of the ix-application-header
           * @since 2.1.0
          */
-        "username": string;
+        "username"?: string;
     }
     interface IxBasicNavigation {
         /**
@@ -184,7 +184,8 @@ export namespace Components {
          */
         "applicationName": string;
         /**
-          * Supported layouts e.g ['sm', 'md']
+          * Supported layouts
+          * @example ['sm', 'md']
          */
         "breakpoints": Breakpoint[];
         /**
@@ -205,16 +206,16 @@ export namespace Components {
           * Optional icon to be displayed next to the header label
           * @since 1.5.0
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Label of blind
          */
-        "label": string;
+        "label"?: string;
         /**
           * Secondary label inside blind header
           * @since 2.0.0
          */
-        "sublabel": string;
+        "sublabel"?: string;
         /**
           * Blind variant
           * @since 2.0.0
@@ -267,7 +268,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         "iconSize": '12' | '16' | '24';
         /**
           * Loading button
@@ -341,7 +342,7 @@ export namespace Components {
         /**
           * Name the card list
          */
-        "label": string;
+        "label"?: string;
         /**
           * List style
          */
@@ -353,7 +354,7 @@ export namespace Components {
         /**
           * Overwrite the default show all count.
          */
-        "showAllCount": number | undefined;
+        "showAllCount"?: number;
         /**
           * Suppress the overflow handling of child elements
          */
@@ -368,7 +369,7 @@ export namespace Components {
         /**
           * Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
          */
-        "categories": {
+        "categories"?: {
     [id: string]: {
       label: string;
       options: string[];
@@ -381,7 +382,7 @@ export namespace Components {
         /**
           * A set of search criteria to populate the component with.
          */
-        "filterState": FilterState;
+        "filterState"?: FilterState;
         /**
           * Allows to hide the icon inside the text input. Defaults to false
          */
@@ -407,7 +408,7 @@ export namespace Components {
         /**
           * Placeholder text to be displayed in an empty input field.
          */
-        "placeholder": string;
+        "placeholder"?: string;
         /**
           * If true the filter will be in readonly mode
          */
@@ -424,7 +425,7 @@ export namespace Components {
         /**
           * A list of strings that will be supplied as type-ahead suggestions not tied to any categories.
          */
-        "suggestions": string[];
+        "suggestions"?: string[];
         "tmpDisableScrollIntoView": boolean;
     }
     interface IxChip {
@@ -507,7 +508,7 @@ export namespace Components {
         /**
           * Title of Header
          */
-        "headerTitle": string;
+        "headerTitle"?: string;
         /**
           * Variant of content header
          */
@@ -517,7 +518,7 @@ export namespace Components {
         /**
           * Define css grid template
          */
-        "templates": Partial<Record<CssGridTemplateType, string[][]>>;
+        "templates"?: Partial<Record<CssGridTemplateType, string[][]>>;
     }
     interface IxCssGridItem {
         /**
@@ -983,7 +984,7 @@ export namespace Components {
           * @link https://ix.siemens.io/docs/theming/colors/
           * @deprecated since 2.1.0 use `item-color`
          */
-        "color": string;
+        "color"?: string;
         /**
           * Disable event list item
          */
@@ -992,7 +993,7 @@ export namespace Components {
           * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
           * @link https://ix.siemens.io/docs/theming/colors/
          */
-        "itemColor": string;
+        "itemColor"?: string;
         /**
           * Show event list item as selected
          */
@@ -1344,7 +1345,7 @@ export namespace Components {
         /**
           * Should only be set if you use ix-menu standalone
          */
-        "applicationName": string;
+        "applicationName"?: string;
         "enableMapExpand": boolean;
         /**
           * Is settings tab is visible
@@ -1660,11 +1661,11 @@ export namespace Components {
         /**
           * Icon of the Header
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Icon color
          */
-        "iconColor": string;
+        "iconColor"?: string;
     }
     interface IxModalLoading {
     }
@@ -1724,7 +1725,7 @@ export namespace Components {
         /**
           * Title of the side panel
          */
-        "heading": string;
+        "heading"?: string;
         /**
           * Define if the pane should have a collapsed state
          */
@@ -1732,7 +1733,7 @@ export namespace Components {
         /**
           * Name of the icon
          */
-        "icon": string;
+        "icon"?: string;
         "ignoreLayoutSettings": boolean;
         "isMobile": boolean;
         /**
@@ -2322,30 +2323,25 @@ export namespace Components {
           * Text color based on theme variables
           * @deprecated since 2.1.0 use property `text-color`
          */
-        "color": TypographyColors;
+        "color"?: TypographyColors;
         /**
           * Text format
          */
-        "format": TypographyFormat;
+        "format"?: TypographyFormat;
         /**
           * Text color based on theme variables
          */
-        "textColor": TypographyColors;
+        "textColor"?: TypographyColors;
         /**
           * Text decoration
          */
         "textDecoration": TextDecoration;
-        /**
-          * Font variant based on theme variables
-          * @deprecated Use `format` property
-         */
-        "variant": TypographyVariants;
     }
     interface IxUpload {
         /**
           * The accept attribute specifies the types of files that the server accepts (that can be submitted through a file upload). [accept]{@link "https://www.w3schools.com/tags/att_input_accept.asp"}
          */
-        "accept": string;
+        "accept"?: string;
         /**
           * Disable all input events
          */
@@ -4219,7 +4215,8 @@ declare namespace LocalJSX {
          */
         "applicationName"?: string;
         /**
-          * Supported layouts e.g ['sm', 'md']
+          * Supported layouts
+          * @example ['sm', 'md']
          */
         "breakpoints"?: Breakpoint[];
         /**
@@ -4418,7 +4415,7 @@ declare namespace LocalJSX {
         /**
           * Overwrite the default show all count.
          */
-        "showAllCount"?: number | undefined;
+        "showAllCount"?: number;
         /**
           * Suppress the overflow handling of child elements
          */
@@ -6571,7 +6568,7 @@ declare namespace LocalJSX {
          */
         "hasChildren"?: boolean;
         /**
-          * Clicked
+          * Click on item not on the expand/collapse icon
          */
         "onItemClick"?: (event: IxTreeItemCustomEvent<void>) => void;
         /**
@@ -6608,11 +6605,6 @@ declare namespace LocalJSX {
           * Text decoration
          */
         "textDecoration"?: TextDecoration;
-        /**
-          * Font variant based on theme variables
-          * @deprecated Use `format` property
-         */
-        "variant"?: TypographyVariants;
     }
     interface IxUpload {
         /**

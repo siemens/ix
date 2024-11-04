@@ -71,6 +71,39 @@ regressionTest.describe('tooltip', () => {
     });
   });
 
+  regressionTest('placement near viewport edge', async ({ page }) => {
+    await page.goto('tooltip/placement-on-edge');
+
+    const tooltips = [
+      'myTooltip-left',
+      'myTooltip-right',
+      'myTooltip-top',
+      'myTooltip-bottom',
+    ];
+
+    for (const tooltip of tooltips) {
+      const tooltipTriggerHandler = await page.waitForSelector(
+        `[data-tooltip="${tooltip}"]`
+      );
+
+      await tooltipTriggerHandler.hover();
+      await page.waitForTimeout(500);
+
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    }
+  });
+
+  regressionTest('global style not bleeding into tooltip', async ({ page }) => {
+    await page.goto('tooltip/overlapping-styles');
+
+    const tooltipTriggerHandler = await page.waitForSelector('#test');
+
+    await tooltipTriggerHandler.hover();
+    await page.waitForTimeout(500);
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('tooltip position top', async ({ mount, page }) => {
     await mount(`
       <div style="padding: 10rem">

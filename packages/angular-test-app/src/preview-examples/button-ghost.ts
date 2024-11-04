@@ -15,6 +15,6 @@ import { Component } from '@angular/core';
     <ix-button ghost> Button </ix-button>
     <ix-button disabled ghost> Button </ix-button>
   `,
-  styleUrls: ['./styles/buttons.css'],
+  styleUrls: ['./button-ghost.css'],
 })
 export default class Buttons {}

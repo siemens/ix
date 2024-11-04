@@ -2,8 +2,8 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.19.2",
-    "typescriptVersion": "5.4.5"
+    "version": "4.22.1",
+    "typescriptVersion": "5.5.4"
   },
   "components": [
     {
@@ -55,7 +55,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -120,7 +120,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -583,7 +583,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -604,7 +604,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -625,7 +625,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -651,7 +651,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -734,8 +734,13 @@
           },
           "mutable": false,
           "reflectToAttr": false,
-          "docs": "Supported layouts e.g ['sm', 'md']",
-          "docsTags": [],
+          "docs": "Supported layouts",
+          "docsTags": [
+            {
+              "name": "example",
+              "text": "['sm', 'md']"
+            }
+          ],
           "default": "['sm', 'md', 'lg']",
           "values": [
             {
@@ -885,7 +890,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -906,7 +911,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -932,7 +937,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1401,7 +1406,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1528,7 +1533,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "click",
+          "capture": true,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/card",
@@ -1583,6 +1594,7 @@
               "text": "2.1.0"
             }
           ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -1930,7 +1942,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1964,7 +1976,7 @@
           "name": "showAllCount",
           "type": "number",
           "complexType": {
-            "original": "number | undefined",
+            "original": "number",
             "resolved": "number",
             "references": {}
           },
@@ -1978,7 +1990,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2165,7 +2177,7 @@
               "type": "{ [id: string]: { label: string; options: string[]; }; }"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2213,7 +2225,7 @@
               "type": "FilterState"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2229,6 +2241,7 @@
           "reflectToAttr": false,
           "docs": "Allows to hide the icon inside the text input.\nDefaults to false",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -2341,7 +2354,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2440,7 +2453,7 @@
               "type": "string[]"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -3242,7 +3255,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6271,6 +6284,7 @@
           "reflectToAttr": false,
           "docs": "Display a chevron icon in list items. Defaults to 'false'",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6368,6 +6382,7 @@
           "reflectToAttr": false,
           "docs": "Show chevron on right side of the event list item",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6404,7 +6419,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6420,6 +6435,7 @@
           "reflectToAttr": false,
           "docs": "Disable event list item",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6451,7 +6467,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6467,6 +6483,7 @@
           "reflectToAttr": false,
           "docs": "Show event list item as selected",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7182,7 +7199,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "selectedChanged",
+          "capture": false,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/group",
@@ -9243,7 +9266,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -11610,7 +11633,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -11631,7 +11654,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -12060,7 +12083,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12103,7 +12126,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16454,7 +16477,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Clicked",
+          "docs": "Click on item not on the expand/collapse icon",
           "docsTags": []
         },
         {
@@ -16657,7 +16680,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16696,7 +16719,7 @@
               "type": "TypographyFormatCode"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16756,7 +16779,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16849,7 +16872,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17551,11 +17574,6 @@
       "docstring": "",
       "path": "src/components/card/card.tsx"
     },
-    "src/components/typography/typography.tsx::TypographyVariants": {
-      "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
     "src/components/typography/typography.tsx::TypographyFormat": {
       "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
       "docstring": "",
@@ -17785,6 +17803,11 @@
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
+    },
+    "../../node_modules/.pnpm/@stencil+core@4.22.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "../../node_modules/.pnpm/@stencil+core@4.22.1/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",

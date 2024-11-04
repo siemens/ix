@@ -20,36 +20,29 @@ Most chatbots use a pre-trained model that knows grammar and syntax from a large
 ### Concise
 Use concise and short responses while considering device type and use case. Lengthy responses overwhelm users and take up precious space. However, we do not recommend using one-word responses like “Yes” and “No”. Always provide useful context for informative and engaging interactions. 
  
-**User**: Is there maintenance scheduled today?  
-**Chatbot:** Yes. 
+![Concise wording example without engagement](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4276&t=etx1DcSbA7VDx5xD-4)
 
 Although the chatbot responds accurately and concisely, it’s robotic, unnatural and does not encourage engagement. 
 
-**User:** Is there maintenance scheduled today?   
-**Chatbot:** Yes. Zone 1 and 3 have maintenance today. Shall I open the maintenance log?   
-**User:** Yes please. 
+![Concise wording example with engagement](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4318&t=etx1DcSbA7VDx5xD-4)
 
 Here the chatbot knows to be concise but informative, based on its knowledge of the user’s working environment. 
 
 ### Polite
 Always use polite language such as “Please wait a moment.” and “Thank you for your patience.” However, only apologize when it’s clear the user is dissatisfied or the chatbot has provided incorrect information. 
 
-**User:** That’s not the right number.  
-**Chatbot:** I apologize. As an AI language model, I am constantly looking to develop. Please feel free to ask something else and I’ll do my best to answer. 
+![Polite apology](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4279&t=etx1DcSbA7VDx5xD-4)
 
 Here the chatbot apologizes immediately, makes their limitations transparent and then works to engage the user again. 
 
 ### Domain-specific 
 Use the language of your users’ industrial working environment. If your chatbot is within a power plant, for example, it should be trained to understand that the word “current” means both the present and an electrical current. 
 
-**User:** What’s the current of the relay?  
-**Chatbot:** The current status of the relay is online and ready for operation.   
-**User:** That’s not what I mean.  
+![Incorrect domain example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4282&t=etx1DcSbA7VDx5xD-4) 
 
 Here the chatbot mistakenly assumed the user missed the word “status” in their query and provided an incorrect response, not knowing enough about user to answer accurately. 
 
-**User:** What’s the current of the relay?  
-**Chatbot:** It’s 50 mA (milliamperes). If you need more detailed information, feel free to ask.
+![Domain-specific example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4315&t=etx1DcSbA7VDx5xD-4)
 
 Here the chatbot knows the word “current” refers to voltage as it’s a domain-specific word that’s often used within their user queries. 
 
@@ -58,7 +51,7 @@ Here the chatbot knows the word “current” refers to voltage as it’s a doma
 ### Pronouns 
 Chatbots typically refer to themselves as “I” and always avoid gender-specific language and terms. 
 
-**Chatbot:** Hello Susanne! I’m your industrial assistant. How can I help you today, my dear? 
+![Pronoun example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4286&t=etx1DcSbA7VDx5xD-4)
 
 Here the chatbot has used the name and the phrase “my dear” to make assumptions about the user. It’s essential to have inclusive, unbiased and neutral responses. 
 
@@ -77,48 +70,38 @@ For more question examples within specific communicative functions, see the desi
 ### Contractions 
 We recommend using contractions (connecting words such as it is – it’s) as these sound less formal and more conversational. Unlike in our UX Writing style guide, we recommend using negative contractions such as “can’t” instead of “cannot” as these sound more personable and natural within chatbots.  
 
-**User:** Show me my tasks for today  
-**Chatbot:** I cannot process your request at the moment.  
+![Using contractions example 1](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4297&t=etx1DcSbA7VDx5xD-4) 
 
-**User:** Show me my tasks for today  
-**Chatbot:** I can’t process your request right now. 
+![Using contractions example 2](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4300&t=etx1DcSbA7VDx5xD-4)
 
 Although both express the same meaning, using “cannot” sounds stricter and more robotic.  
 
 ### Discourse markers
 Probably the most important language feature to enhance engagement with your users is discourse markers. These are words or phrases that connect responses and express tone, emotion and acknowledgement, such as certainly, of course, right, ok, etc. They help maintain a conversation flow with users and work as natural turn-taking mechanisms to encourage human to machine interaction. 
 
+![Using discourse markers example 1](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4303&t=etx1DcSbA7VDx5xD-4)
 
-**User:** Can you provide more details about our pricing plans?  
-**Chatbot:** Certainly! We have three pricing tiers: Basic, Premium, and Enterprise.
+![Using discourse markers example 2](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4306&t=etx1DcSbA7VDx5xD-4)
 
-**User:** Is there a trial period for your software?  
-**Chatbot:** Of course! You can try our software free for 14 days.
+![Using discourse markers example 3](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4309&t=etx1DcSbA7VDx5xD-4)
 
-**User:** Can I customize the dashboard layout?  
-**Chatbot:** Absolutely! You can rearrange widgets and choose your preferred layout.
-
-**User:** Are there any discounts for adding user licenses?  
-**Chatbot:** Indeed! Every additional 10 user licenses offer a 2% discount.
+![Using discourse markers example 4](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4312&t=etx1DcSbA7VDx5xD-4)
 
 ## Punctuation
 
-We recommend a minimal approach to punctuation in terms of how chatbots use it and the level expected by users’ queries. Unnecessary punctuation, such as excessive exclamation marks, add to our users’ cognitive load. 
+We recommend a minimal approach to punctuation in terms of how chatbots use it and the level expected by users’ queries. Unnecessary punctuation, such as excessive exclamation marks, add to our users’ cognitive load (see example below). 
 
-**User:** Can you tell me what assigned tasks I have today?  
-**Chatbot:** Your tasks!?! Sure!!!!! Not a problem!!! 
+![Using too much punctuation example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4288&t=etx1DcSbA7VDx5xD-4)
 
 ## Emojis 
 
 Although emojis are used in many chatbots to enhance communications to add some emotion and tone to their responses, they are more appropriate for social media and messaging. Using emojis in industrial settings can be seen as minimizing the work and environment of the user. Consequently, we do not recommend using emojis at all for industrial software applications. 
 
-**User:** There’s an issue with the storage tank  
-**Chatbot:** Oh no! 😱 The tank is broken! 🛠️ Don’t worry; we’ll fix it soon! 😊 
+![Unprofessional example of emoji use](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4291&t=etx1DcSbA7VDx5xD-4)
 
 Here if the chatbot is assisting with technical troubleshooting in a manufacturing plant, and a worker is reporting an issue with a manufacturing machine, this undermines the seriousness of the situation. 
 
-**User:** There’s an issue with the storage tank    
-**Chatbot:** Thank you for reporting the issue. Our maintenance team is on it. Feel free to give me more details to pass on to the team. 
+![Professional response example without emojis](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3218-4294&t=etx1DcSbA7VDx5xD-4)
 
 Here the response is more concise, professional and shows the chatbot is aware of the working environment and the seriousness of the situation. 
 

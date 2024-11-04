@@ -2348,7 +2348,7 @@ export declare interface IxTreeItem extends Components.IxTreeItem {
    */
   toggle: EventEmitter<CustomEvent<void>>;
   /**
-   * Clicked
+   * Click on item not on the expand/collapse icon
    */
   itemClick: EventEmitter<CustomEvent<void>>;
 }

@@ -148,7 +148,7 @@ const config: Config = {
           // Please change this to your repo.
           editUrl:
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
-          remarkPlugins: useFastStart ? [] : [
+          remarkPlugins: [
             figmaPlugin({
               baseUrl: `${baseUrl}figma`,
               figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
