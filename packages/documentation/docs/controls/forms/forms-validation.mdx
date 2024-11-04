@@ -1,8 +1,9 @@
-import Code from "./_forms-validation_code.mdx";
+import LinkableDocsTabs from "../../../src/components/LinkableDocsTabs";
+
+import DocsUx from './\_forms-validation_style.md'
+import DocsCode from './\_forms-validation_code.mdx'
+
 import DeprecatedTags from '@site/src/components/Tags';
-import Style from "./_forms-validation_style.md";
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Validation
 
@@ -13,14 +14,8 @@ import TabItem from '@theme/TabItem';
 <br />
 <br />
 
-<Tabs queryString="current-tab">
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>
 
-  <TabItem value="style" label="Style">
-    <Style />
-  </TabItem>
-
-  <TabItem value="code" label="Code">
-    <Code />
-  </TabItem>
-
-</Tabs>
