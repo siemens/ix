@@ -2440,7 +2440,7 @@ export namespace Components {
          */
         "hideListHeader": boolean;
         /**
-          * Hint inside of dropdown if no items where found with current filter text
+          * Information inside of dropdown if no items where found with current filter text
           * @since 1.5.0
          */
         "i18nNoMatches": string;
@@ -7609,7 +7609,7 @@ declare namespace LocalJSX {
          */
         "hideListHeader"?: boolean;
         /**
-          * Hint inside of dropdown if no items where found with current filter text
+          * Information inside of dropdown if no items where found with current filter text
           * @since 1.5.0
          */
         "i18nNoMatches"?: string;
