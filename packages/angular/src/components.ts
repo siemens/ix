@@ -1929,7 +1929,7 @@ export declare interface IxSelect extends Components.IxSelect {
   /**
    * Value changed @since 2.0.0
    */
-  valueChange: EventEmitter<CustomEvent<string | string[] | null>>;
+  valueChange: EventEmitter<CustomEvent<string | string[]>>;
   /**
    * Item selection changed @deprecated since 2.0.0. Use `valueChange` instead.
    */
