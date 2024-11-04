@@ -144,7 +144,7 @@ export class DateDropdown {
    *
    * @since 2.6.0
    */
-  @Prop() locale: string = undefined;
+  @Prop() locale?: string;
 
   /**
    * Text for custom dropdown item. Will be used for translation.
