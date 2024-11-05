@@ -1,15 +1,22 @@
 {
   "root": true,
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.lib.json"
   },
-  "extends": [/* "plugin:@typescript-eslint/recommended", */ "plugin:@stencil-community/recommended", "ix"],
+  "extends": [
+    /* "plugin:@typescript-eslint/recommended", */ "plugin:@stencil-community/recommended",
+    "eslint-config-ix/index.js"
+  ],
   "rules": {
     "@stencil-community/async-methods": 0,
     "@stencil-community/own-props-must-be-private": 0,
     "@stencil-community/own-methods-must-be-private": 0,
     "@stencil-community/strict-boolean-conditions": 0,
     "@stencil-community/ban-default-true": ["warn"],
+    "@stencil-community/decorators-style": [
+      "error",
+      { "prop": "inline", "method": "multiline" }
+    ],
     "react/jsx-no-bind": 0,
     "react/jsx-uses-react": 0,
     "react/react-in-jsx-scope": 0,
