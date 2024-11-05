@@ -693,7 +693,7 @@ export class DatePicker {
       <Host>
         <ix-date-time-card
           corners={this.corners}
-          individual={this.standaloneAppearance}
+          standaloneAppearance={this.standaloneAppearance}
         >
           <div class="header" slot="header">
             <ix-icon-button
