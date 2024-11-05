@@ -6,21 +6,21 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 @import 'mixins/shadow-dom/component';
 
 :host {
   @include ix-component;
   display: flex;
-  padding: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
   align-items: center;
-  align-self: stretch;
+  gap: 1rem;
 
-  .modal-close {
-    margin-left: auto;
-    margin-right: -1rem;
+  .modal-title {
+    flex-grow: 1;
   }
 
-  .modal-icon {
-    margin-right: 1rem;
+  .modal-close  {
+    align-self: flex-start;
   }
 }
