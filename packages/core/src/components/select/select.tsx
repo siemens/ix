@@ -758,7 +758,11 @@ export class Select {
           >
             {this.i18nSelectListHeader}
           </div>
-          <slot></slot>
+          <slot
+            onSlotchange={() => {
+              this.updateSelection();
+            }}
+          ></slot>
           <div
             ref={(ref) => (this.customItemsContainerRef = ref)}
             class="d-contents"
