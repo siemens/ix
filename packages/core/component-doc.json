@@ -3688,6 +3688,33 @@
           ],
           "optional": false,
           "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
         }
       ],
       "methods": [
@@ -17766,16 +17793,6 @@
       "docstring": "",
       "path": "src/components/css-grid/css-grid.tsx"
     },
-    "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption": {
-      "declaration": "{\n  id: string;\n  label: string;\n  from: string;\n  to: string;\n}",
-      "docstring": "",
-      "path": "src/components/date-dropdown/date-dropdown.tsx"
-    },
-    "src/components/date-dropdown/date-dropdown.tsx::DateRangeChangeEvent": {
-      "declaration": "{\n  id: string;\n  from: string;\n  to: string;\n}",
-      "docstring": "",
-      "path": "src/components/date-dropdown/date-dropdown.tsx"
-    },
     "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
       "docstring": "",
@@ -17785,6 +17802,16 @@
       "declaration": "{\n  from: string;\n  to: string;\n}",
       "docstring": "",
       "path": "src/components/date-picker/date-picker.tsx"
+    },
+    "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption": {
+      "declaration": "{\n  id: string;\n  label: string;\n  from: string;\n  to: string;\n}",
+      "docstring": "",
+      "path": "src/components/date-dropdown/date-dropdown.tsx"
+    },
+    "src/components/date-dropdown/date-dropdown.tsx::DateRangeChangeEvent": {
+      "declaration": "{\n  id: string;\n  from: string;\n  to: string;\n}",
+      "docstring": "",
+      "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
     "src/components/datetime-picker/datetime-picker.tsx::DateTimeDateChangeEvent": {
       "declaration": "export type DateTimeDateChangeEvent =\n  | string\n  | Omit<DateTimeSelectEvent, 'time'>;",
@@ -17802,7 +17829,7 @@
       "path": "src/components/dropdown-button/dropdown-button.tsx"
     },
     "src/components/dropdown/placement.ts::AlignedPlacement": {
-      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
+      "declaration": "\"bottom-start\" | \"left-start\" | \"left-end\" | \"right-start\" | \"right-end\" | \"top-start\" | \"top-end\" | \"bottom-end\"",
       "docstring": "",
       "path": "src/components/dropdown/placement.ts"
     },

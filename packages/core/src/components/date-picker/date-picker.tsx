@@ -24,6 +24,7 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 import { DateTime, Info } from 'luxon';
 import { OnListener } from '../utils/listener';
+import { IxDatePickerComponent } from '../utils/date-picker/date-picker';
 
 export type DateChangeEvent = {
   from: string;
@@ -42,7 +43,7 @@ interface CalendarWeek {
   styleUrl: 'date-picker.scss',
   shadow: true,
 })
-export class DatePicker {
+export class DatePicker implements IxDatePickerComponent {
   @Element() hostElement: HTMLIxDatePickerElement;
 
   /**

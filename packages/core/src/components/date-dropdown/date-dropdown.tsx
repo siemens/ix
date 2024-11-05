@@ -21,6 +21,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { IxDatePickerComponent } from '../utils/date-picker/date-picker';
 
 export type DateDropdownOption = {
   id: string;
@@ -43,7 +44,7 @@ export type DateRangeChangeEvent = {
   styleUrl: 'date-dropdown.scss',
   shadow: true,
 })
-export class DateDropdown {
+export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
   @Element() hostElement: HTMLIxDateDropdownElement;
 
   /**
@@ -145,6 +146,14 @@ export class DateDropdown {
    * @since 2.6.0
    */
   @Prop() locale?: string;
+
+  /**
+   * The index of which day to start the week on, based on the Locale#weekdays array.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   *
+   * @since 2.6.0
+   */
+  @Prop() weekStartIndex = 0;
 
   /**
    * Text for custom dropdown item. Will be used for translation.
@@ -378,6 +387,7 @@ export class DateDropdown {
                       minDate={this.minDate}
                       maxDate={this.maxDate}
                       today={this.today}
+                      weekStartIndex={this.weekStartIndex}
                     ></ix-date-picker>
                     <div class="pull-right">
                       <ix-button
