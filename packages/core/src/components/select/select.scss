@@ -129,6 +129,13 @@
       }
     }
 
+    ix-icon-button {
+      height: 1.875rem;
+      width: 1.875rem;
+      min-height: 1.875rem;
+      min-width: 1.875rem;
+    }
+
     input {
       @include ellipsis;
       @include text-default;

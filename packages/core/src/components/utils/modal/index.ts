@@ -8,7 +8,7 @@
  */
 
 export { showModalLoading } from './loading';
-export { showMessage } from './message';
+export { MessageConfig, showMessage } from './message';
 export {
   closeModal,
   dismissModal,
