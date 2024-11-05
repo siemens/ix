@@ -9,6 +9,13 @@
 
 import { getCoreDelegate } from '../delegate';
 import { TypedEvent } from '../typed-event';
+import { ModalConfig } from './modal';
+
+export type MessageConfig<T> = Omit<
+  ModalConfig<T, unknown>,
+  'content' | 'title'
+> &
+  MessageContent;
 
 function setA11yAttributes(element: HTMLElement, config: MessageContent) {
   const ariaDescribedby = config.ariaDescribedby;
@@ -32,7 +39,8 @@ function createConfirmButtons(
   payloadOkay?: any,
   payloadCancel?: any
 ) {
-  let actions = [];
+  let actions: MessageAction[] = [];
+
   if (textCancel !== undefined) {
     actions = [
       ...actions,
@@ -41,7 +49,7 @@ function createConfirmButtons(
         text: textCancel,
         type: 'cancel',
         payload: payloadCancel,
-      },
+      } as MessageAction,
     ];
   }
   return [
@@ -51,26 +59,28 @@ function createConfirmButtons(
       text: textOkay,
       type: 'okay',
       payload: payloadOkay,
-    },
+    } as MessageAction,
   ];
 }
+
+export type MessageAction = {
+  id: string;
+  type: 'button-primary' | 'button-secondary' | 'okay' | 'cancel';
+  text: string;
+  payload?: any;
+};
 
 export type MessageContent = {
   icon: string;
   iconColor?: string;
   messageTitle: string;
   message: string;
-  actions: {
-    id: string;
-    type: 'button-primary' | 'button-secondary' | 'okay' | 'cancel';
-    text: string;
-    payload?: any;
-  }[];
+  actions: MessageAction[];
   ariaLabelledby?: string;
   ariaDescribedby?: string;
 };
 
-export async function showMessage<T>(config: MessageContent) {
+export async function showMessage<T>(config: MessageConfig<T>) {
   const onMessageAction = new TypedEvent<{
     actionId: string;
     payload: T;
@@ -103,8 +113,7 @@ export async function showMessage<T>(config: MessageContent) {
         })
       );
       return;
-    }
-    if (type === 'cancel') {
+    } else if (type === 'cancel') {
       button.variant = 'primary';
       button.outline = true;
       button.addEventListener('click', () =>
@@ -149,6 +158,9 @@ export async function showMessage<T>(config: MessageContent) {
       dialogRef.remove();
     }
   );
+
+  setA11yAttributes(dialogRef, config);
+  Object.assign(dialogRef, config);
 
   dialogRef.showModal();
   return onMessageAction;
