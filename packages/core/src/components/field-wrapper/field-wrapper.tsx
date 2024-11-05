@@ -126,7 +126,11 @@ export class FieldWrapper implements FieldWrapperInterface {
         </div>
 
         {this.showTextAsTooltip === true && (
-          <ix-tooltip for={this.slotRef.waitForCurrent()} showDelay={500}>
+          <ix-tooltip
+            for={this.slotRef.waitForCurrent()}
+            showDelay={500}
+            placement="bottom"
+          >
             {renderHelperText(textOptions)}
           </ix-tooltip>
         )}
