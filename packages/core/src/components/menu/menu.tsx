@@ -67,7 +67,7 @@ export class Menu {
   /**
    * Should only be set if you use ix-menu standalone
    */
-  @Prop() applicationName: string;
+  @Prop() applicationName?: string;
 
   /**
    * Should only be set if you use ix-menu standalone
@@ -143,20 +143,19 @@ export class Menu {
   /**
    * Menu expanded
    */
-  @Event() expandChange: EventEmitter<boolean>;
+  @Event() expandChange!: EventEmitter<boolean>;
 
   /**
    * Map Sidebar expanded
    */
-  @Event() mapExpandChange: EventEmitter<boolean>;
+  @Event() mapExpandChange!: EventEmitter<boolean>;
 
   @State() showPinned = false;
   @State() mapExpand = true;
-  @State() activeTab: HTMLIxMenuItemElement | null;
   @State() breakpoint: Breakpoint = 'lg';
   @State() itemsScrollShadowTop = false;
   @State() itemsScrollShadowBottom = false;
-  @State() applicationLayoutContext: ContextType<
+  @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
   private isTransitionDisabled = false;
@@ -182,7 +181,7 @@ export class Menu {
   }
 
   get overlayContainer() {
-    return this.hostElement.shadowRoot.querySelector(
+    return this.hostElement.shadowRoot!.querySelector(
       '.menu-overlay'
     ) as HTMLDivElement;
   }
@@ -192,7 +191,7 @@ export class Menu {
       this.hostElement.querySelectorAll(
         'ix-menu-item:not(.internal-tab):not(.home-tab):not(.bottom-tab):not([slot="bottom"])'
       )
-    ).filter(this.isVisible);
+    ).filter((elm) => this.isVisible(elm as HTMLElement));
   }
 
   get menuBottomItems() {
@@ -200,7 +199,7 @@ export class Menu {
       this.hostElement.querySelectorAll(
         'ix-menu-item.bottom-tab:not(.internal-tab):not(.home-tab)'
       )
-    ).filter(this.isVisible);
+    ).filter((elm) => this.isVisible(elm as HTMLElement));
   }
 
   get homeTab() {
@@ -248,7 +247,7 @@ export class Menu {
     );
   }
 
-  get aboutTab(): HTMLElement {
+  get aboutTab(): HTMLElement | null {
     return this.hostElement.shadowRoot!.querySelector('#aboutAndLegal');
   }
 
@@ -305,11 +304,10 @@ export class Menu {
     this.onBreakpointChange(applicationLayoutService.breakpoint, true);
   }
 
-  componentWillRender() {
-    this.appendTabs();
-  }
-
   componentDidRender() {
+    if (!this.about) {
+      this.aboutNewsPopover.show = false;
+    }
     this.appendFragments();
   }
 
@@ -345,18 +343,13 @@ export class Menu {
     this.appendAboutNewsPopover();
   }
 
-  private resetActiveTab() {
-    this.activeTab = null;
-  }
-
-  private appendTabs() {
-    this.activeTab = null;
-  }
-
   private getAboutPopoverVerticalPosition() {
     const heightArrow = 12;
     const offsetArrow = 6;
-    const rectAbout = this.aboutTab.getBoundingClientRect();
+    const rectAbout = this.aboutTab?.getBoundingClientRect() || {
+      bottom: -window.innerHeight,
+      height: 0,
+    };
     const offset =
       window.innerHeight -
       (rectAbout.bottom - rectAbout.height / 2 + heightArrow / 2 + offsetArrow);
@@ -364,7 +357,7 @@ export class Menu {
   }
 
   private appendAboutNewsPopover() {
-    if (!this.aboutNewsPopover) {
+    if (!this.aboutNewsPopover || !this.about) {
       return;
     }
 
@@ -599,13 +592,10 @@ export class Menu {
         }}
         slot="menu"
       >
-        <aside
+        <nav
           class={{
             menu: true,
             expanded: this.expand,
-          }}
-          onClick={() => {
-            this.resetActiveTab();
           }}
         >
           <div class="menu-buttons">
@@ -620,11 +610,15 @@ export class Menu {
               ></ix-menu-expand-icon>
             )}
             {this.breakpoint === 'sm' &&
-              this.applicationLayoutContext.appSwitchConfig && (
+              this.applicationLayoutContext?.appSwitchConfig && (
                 <ix-icon-button
-                  onClick={() =>
-                    showAppSwitch(this.applicationLayoutContext.appSwitchConfig)
-                  }
+                  onClick={() => {
+                    if (this.applicationLayoutContext?.appSwitchConfig) {
+                      showAppSwitch(
+                        this.applicationLayoutContext.appSwitchConfig
+                      );
+                    }
+                  }}
                   icon="apps"
                   ghost
                 ></ix-icon-button>
@@ -724,7 +718,7 @@ export class Menu {
               label={this.getCollapseText()}
             ></ix-menu-item>
           ) : null}
-        </aside>
+        </nav>
         <div
           class={{
             'menu-overlay': true,

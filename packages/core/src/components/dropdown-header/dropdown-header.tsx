@@ -26,7 +26,7 @@ export class DropdownHeader {
   render() {
     return (
       <Host>
-        <ix-typography class={'category-text'} variant={'default-title'}>
+        <ix-typography class={'category-text'} format={'h5'}>
           {this.label}
         </ix-typography>
       </Host>

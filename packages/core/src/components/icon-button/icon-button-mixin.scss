@@ -63,25 +63,4 @@
   @include icon-button-size('12', 1rem);
   @include icon-button-size('16', 1.5rem);
   @include icon-button-size('32', 2rem);
-
-  :host(.btn-icon-12) {
-    ix-spinner {
-      height: 12px;
-      width: 12px;
-    }
-  }
-
-  :host(.btn-icon-16) {
-    ix-spinner {
-      height: 16px;
-      width: 16px;
-    }
-  }
-
-  :host(.btn-icon-32) {
-    ix-spinner {
-      height: 24px;
-      width: 24px;
-    }
-  }
 }

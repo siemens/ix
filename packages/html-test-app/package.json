@@ -17,7 +17,6 @@
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-icons": "^2.0.0",
-    "example-styles": "workspace:*",
     "vite": "^3.1.0"
   },
   "dependencies": {

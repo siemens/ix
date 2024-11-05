@@ -55,7 +55,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -120,7 +120,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -583,7 +583,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -604,7 +604,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -625,7 +625,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -651,7 +651,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -890,7 +890,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -911,7 +911,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -937,7 +937,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1406,7 +1406,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1533,7 +1533,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "click",
+          "capture": true,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/card",
@@ -1588,6 +1594,7 @@
               "text": "2.1.0"
             }
           ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -1935,7 +1942,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1969,7 +1976,7 @@
           "name": "showAllCount",
           "type": "number",
           "complexType": {
-            "original": "number | undefined",
+            "original": "number",
             "resolved": "number",
             "references": {}
           },
@@ -1983,7 +1990,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -3249,7 +3256,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6301,6 +6308,7 @@
           "reflectToAttr": false,
           "docs": "Display a chevron icon in list items. Defaults to 'false'",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6398,6 +6406,7 @@
           "reflectToAttr": false,
           "docs": "Show chevron on right side of the event list item",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6434,7 +6443,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6450,6 +6459,7 @@
           "reflectToAttr": false,
           "docs": "Disable event list item",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6481,7 +6491,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6497,6 +6507,7 @@
           "reflectToAttr": false,
           "docs": "Show event list item as selected",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9280,7 +9291,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -11735,7 +11746,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -11756,7 +11767,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -12185,7 +12196,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12228,7 +12239,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16785,7 +16796,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16824,7 +16835,7 @@
               "type": "TypographyFormatCode"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16884,7 +16895,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16977,7 +16988,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17678,11 +17689,6 @@
       "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/card/card.tsx"
-    },
-    "src/components/typography/typography.tsx::TypographyVariants": {
-      "declaration": "export type TypographyVariants =\n  | 'x-small'\n  | 'small'\n  | 'caption'\n  | 'caption-single'\n  | 'default'\n  | 'default-single'\n  | 'default-title'\n  | 'default-title-single'\n  | 'large'\n  | 'large-single'\n  | 'large-title'\n  | 'large-title-single'\n  | 'h2'\n  | 'display-large';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
     },
     "src/components/typography/typography.tsx::TypographyFormat": {
       "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",

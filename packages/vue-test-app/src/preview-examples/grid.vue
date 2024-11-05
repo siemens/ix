@@ -11,7 +11,7 @@
 import { IxCol, IxLayoutGrid, IxRow, IxTypography } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles/grid.css"></style>
+<style scoped src="./grid.css"></style>
 
 <template>
   <div class="grid">

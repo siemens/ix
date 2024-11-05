@@ -20,6 +20,9 @@ export type TypographyVariants =
   | 'h2'
   | 'display-large';
 
+/**
+ * @deprecated Will be removed with 3.0.0
+ */
 export const VariantsMapping: Record<TypographyVariants, string> = {
   'x-small': 'text-xs',
   small: 'text-s',
