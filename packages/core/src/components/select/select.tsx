@@ -166,7 +166,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() i18nSelectListHeader = 'Select an option';
 
   /**
-   * Hint inside of dropdown if no items where found with current filter text
+   * Information inside of dropdown if no items where found with current filter text
    *
    * @since 1.5.0
    */
