@@ -15466,18 +15466,13 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-typography"
       ],
       "dependencyGraph": {
         "ix-radio": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-radio"
         ]
       },
       "props": [
@@ -15646,9 +15641,7 @@
         }
       ],
       "encapsulation": "shadow",
-      "dependents": [
-        "ix-playground-internal"
-      ],
+      "dependents": [],
       "dependencies": [
         "ix-field-wrapper"
       ],
@@ -15666,9 +15659,6 @@
         ],
         "ix-tooltip": [
           "ix-typography"
-        ],
-        "ix-playground-internal": [
-          "ix-radio-group"
         ]
       },
       "props": [
