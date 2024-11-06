@@ -51,10 +51,10 @@ export class ArrowFocusController {
       case 'ArrowDown':
         if (activeIndex < this.items.length - 1) {
           e.preventDefault();
-          this.callback(activeIndex + 1);
+          this.callback?.(activeIndex + 1);
         } else if (this.wrap) {
           e.preventDefault();
-          this.callback(0);
+          this.callback?.(0);
         }
         break;
 
@@ -62,10 +62,10 @@ export class ArrowFocusController {
         {
           if (activeIndex > 0) {
             e.preventDefault();
-            this.callback(activeIndex - 1);
+            this.callback?.(activeIndex - 1);
           } else if (this.wrap && activeIndex === 0) {
             e.preventDefault();
-            this.callback(this.items.length - 1);
+            this.callback?.(this.items.length - 1);
           }
         }
         break;
