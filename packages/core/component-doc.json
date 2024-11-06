@@ -583,7 +583,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -604,7 +604,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -625,7 +625,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -651,7 +651,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         }
       ],
@@ -1533,13 +1533,7 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": [
-        {
-          "event": "click",
-          "capture": true,
-          "passive": false
-        }
-      ]
+      "listeners": []
     },
     {
       "dirPath": "src/components/card",
@@ -1942,7 +1936,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -1976,7 +1970,7 @@
           "name": "showAllCount",
           "type": "number",
           "complexType": {
-            "original": "number",
+            "original": "number | undefined",
             "resolved": "number",
             "references": {}
           },
@@ -1990,7 +1984,7 @@
               "type": "number"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -7452,7 +7446,6 @@
           "reflectToAttr": false,
           "docs": "Display a chevron icon in list items. Defaults to 'false'",
           "docsTags": [],
-          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7550,7 +7543,6 @@
           "reflectToAttr": false,
           "docs": "Show chevron on right side of the event list item",
           "docsTags": [],
-          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7587,7 +7579,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -7603,7 +7595,6 @@
           "reflectToAttr": false,
           "docs": "Disable event list item",
           "docsTags": [],
-          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -7635,7 +7626,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -7651,7 +7642,6 @@
           "reflectToAttr": false,
           "docs": "Show event list item as selected",
           "docsTags": [],
-          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -11239,7 +11229,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -13694,7 +13684,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -13715,7 +13705,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         }
       ],
@@ -14696,7 +14686,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -14739,7 +14729,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {

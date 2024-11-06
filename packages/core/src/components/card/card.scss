@@ -41,24 +41,12 @@
   }
 }
 
-@mixin accordionChevronColorPrimary {
-  ::slotted(ix-card-accordion) {
-    color: var(--theme-color-primary);
-  }
-}
-
-:host(.card-insight),
-:host(.card-outline) {
-  @include accordionChevronColorPrimary;
-
-  --ix-card-background: var(--theme-color-ghost);
+:host(.card-insight), :host(.card-outline) {
+  --ix-card-background: transparent;
   --ix-card-border-color: var(--theme-color-soft-bdr);
 }
 
-:host(.card-notification),
-:host(.card-filled) {
-  @include accordionChevronColorPrimary;
-
+:host(.card-notification), :host(.card-filled) {
   --ix-card-background: var(--theme-color-component-1);
 }
 
@@ -97,19 +85,17 @@
   color: var(--theme-color-neutral--contrast);
 }
 
-:host(:not(.card-insight, .card-outline)) {
+:host(:not(.card-insight)) {
   --ix-card-border-color: transparent;
 }
 
 // ### Hover ###
 
-:host(.card-insight:hover),
-:host(.card-outline:hover) {
+:host(.card-insight:hover) {
   --ix-card-background: var(--theme-color-ghost--hover);
 }
 
-:host(.card-notification:hover),
-:host(.card-filled:hover) {
+:host(.card-notification:hover) {
   --ix-card-background: var(--theme-color-component-1--hover);
 }
 
@@ -143,13 +129,11 @@
 
 // ### Active ###
 
-:host(.card-insight:active),
-:host(.card-outline:active) {
+:host(.card-insight:active) {
   --ix-card-background: var(--theme-color-ghost--active);
 }
 
-:host(.card-notification:active),
-:host(.card-filled:active) {
+:host(.card-notification:active) {
   --ix-card-background: var(--theme-color-component-1--active);
 }
 
@@ -187,13 +171,11 @@
   --ix-card-border-color: var(--theme-color-dynamic);
 }
 
-:host(.selected.card-insight),
-:host(.selected.card-outline) {
+:host(.selected.card-insight) {
   --ix-card-background: var(--theme-color-ghost--selected);
 }
 
-:host(.selected.card-notification),
-:host(.selected.card-filled) {
+:host(.selected.card-notification) {
   --ix-card-background: var(--theme-color-ghost--selected);
 }
 

@@ -3,9 +3,6 @@
   "license": "MIT",
   "version": "1.0.0",
   "main": "index.js",
-  "files": [
-    "index.js"
-  ],
   "private": true,
   "dependencies": {
     "eslint": "~8.21.0",
@@ -15,5 +12,4 @@
     "eslint-plugin-turbo": "^2.0.4",
     "prettier": "^3.0.3"
   }
-
 }

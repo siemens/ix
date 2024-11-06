@@ -397,7 +397,7 @@ test.describe('arrow key navigation', () => {
       await page.waitForSelector('.checkmark');
 
       await page.keyboard.down('ArrowDown');
-      const addItem = await page.locator('ix-dropdown-item');
+      const addItem = page.locator('ix-dropdown-item');
       await expect(addItem).toBeFocused();
     });
 
@@ -775,9 +775,10 @@ test.describe('Events', () => {
     const select = await page.locator('ix-select');
     const valueChanged = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('valueChange', (e: Event) =>
-          resolve((e as CustomEvent).detail)
-        );
+        elm.addEventListener('valueChange', (e: Event) => {
+          const event = e as CustomEvent;
+          resolve(event.detail);
+        });
       });
     });
 
@@ -794,9 +795,9 @@ test.describe('Events', () => {
     const select = await page.locator('ix-select');
     const itemAdded = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('addItem', (e: Event) =>
-          resolve((e as CustomEvent).detail)
-        );
+        elm.addEventListener('addItem', (e: Event) => {
+          resolve((e as CustomEvent).detail);
+        });
       });
     });
     const input = await page.locator('input');
@@ -837,22 +838,4 @@ test.describe('Events', () => {
       await expect(count).toBe(0);
     });
   });
-});
-
-test('async set content and check input value', async ({ mount, page }) => {
-  await mount(`<ix-select value="1"></ix-select>`);
-
-  await page.evaluate(async () => {
-    const select = document.querySelector('ix-select');
-    if (select) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      select.innerHTML = `
-        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-      `;
-    }
-  });
-
-  const input = page.locator('input');
-  await expect(input).toHaveValue('Item 1');
 });

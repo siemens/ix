@@ -939,11 +939,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           >
             {this.i18nSelectListHeader}
           </div>
-          <slot
-            onSlotchange={() => {
-              this.updateSelection();
-            }}
-          ></slot>
+          <slot></slot>
           <div
             ref={(ref) => (this.customItemsContainerRef = ref!)}
             class="d-contents"

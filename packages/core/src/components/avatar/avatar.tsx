@@ -53,23 +53,23 @@ function DefaultAvatar(props: { initials?: string }) {
   );
 }
 
-function AvatarImage(props: { image?: string; initials?: string }) {
+function AvatarImage(props: { image: string; initials: string }) {
   return (
-    <div class="avatar">
+    <li class="avatar">
       {props.image ? (
         <img src={props.image} class="avatar-image"></img>
       ) : (
         <DefaultAvatar initials={props.initials} />
       )}
-    </div>
+    </li>
   );
 }
 
 function UserInfo(props: {
-  image?: string;
-  initials?: string;
+  image: string;
+  initials: string;
   userName: string;
-  extra?: string;
+  extra: string;
 }) {
   return (
     <Fragment>
@@ -97,19 +97,19 @@ function UserInfo(props: {
   shadow: true,
 })
 export class Avatar {
-  @Element() hostElement!: HTMLIxAvatarElement;
+  @Element() hostElement: HTMLIxAvatarElement;
 
   /**
    * Display an avatar image
    *
    */
-  @Prop() image?: string;
+  @Prop() image: string;
 
   /**
    * Display the initials of the user. Will be overwritten by image
    *
    */
-  @Prop() initials?: string;
+  @Prop() initials: string;
 
   /**
    * If set an info card displaying the username will be placed inside the dropdown.
@@ -117,7 +117,7 @@ export class Avatar {
    *
    * @since 2.1.0
    */
-  @Prop() username?: string;
+  @Prop() username: string;
 
   /**
    * Optional description text that will be displayed underneath the username.
@@ -125,13 +125,13 @@ export class Avatar {
    *
    * @since 2.1.0
    */
-  @Prop() extra?: string;
+  @Prop() extra: string;
 
   @State() isClosestApplicationHeader = false;
   @State() hasSlottedElements = false;
 
-  private slotElement?: HTMLSlotElement;
-  private dropdownElement?: HTMLIxDropdownElement;
+  private slotElement: HTMLSlotElement;
+  private dropdownElement: HTMLIxDropdownElement;
 
   componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
@@ -143,15 +143,10 @@ export class Avatar {
   }
 
   private resolveAvatarTrigger() {
-    return new Promise<HTMLElement>((resolve, reject) => {
-      readTask(() => {
-        const button = this.hostElement.shadowRoot!.querySelector('button');
-        if (button) {
-          resolve(button);
-        } else {
-          reject(new Error('ix-avatar - trigger element not found'));
-        }
-      });
+    return new Promise<HTMLElement>((resolve) => {
+      readTask(() =>
+        resolve(this.hostElement.shadowRoot.querySelector('button'))
+      );
     });
   }
 
