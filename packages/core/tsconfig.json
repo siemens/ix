@@ -24,6 +24,6 @@
     // "strictPropertyInitialization": true,
     // "noImplicitAny": true
   },
-  "include": ["src", "playwright.config.ts", "playwright-ct.config.ts"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

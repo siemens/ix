@@ -76,11 +76,11 @@ export class MenuItem {
   @State() tooltip?: string;
   @State() menuExpanded: boolean = false;
 
-  private readonly buttonRef = makeRef<HTMLButtonElement>();
+  private buttonRef = makeRef<HTMLButtonElement>();
   private isHostedInsideCategory = false;
-  private menuExpandedDisposer?: Disposable;
+  private menuExpandedDisposer: Disposable;
 
-  private readonly observer: MutationObserver = createMutationObserver(() => {
+  private observer: MutationObserver = createMutationObserver(() => {
     this.setTooltip();
   });
 
@@ -91,7 +91,7 @@ export class MenuItem {
     this.onIconChange();
     this.onTabIconChange();
 
-    this.menuExpanded = menuController.nativeElement?.expand || false;
+    this.menuExpanded = menuController.nativeElement.expand;
     this.menuExpandedDisposer = menuController.expandChange.on(
       (expand) => (this.menuExpanded = expand)
     );
@@ -102,7 +102,7 @@ export class MenuItem {
   }
 
   setTooltip() {
-    this.tooltip = this.label ?? this.hostElement.textContent ?? undefined;
+    this.tooltip = this.label ?? this.hostElement.textContent;
   }
 
   connectedCallback() {
@@ -172,6 +172,7 @@ export class MenuItem {
         <button
           class="tab"
           tabIndex={this.disabled ? -1 : 0}
+          role="listitem"
           ref={this.buttonRef}
         >
           {(this.icon || this.tabIcon) && (

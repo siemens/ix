@@ -48,7 +48,7 @@ export class EventList {
   /**
    * Display a chevron icon in list items. Defaults to 'false'
    */
-  @Prop() chevron = false;
+  @Prop() chevron: boolean;
 
   @Watch('chevron')
   watchChevron(chevron: boolean | undefined) {
@@ -111,7 +111,7 @@ export class EventList {
 
       const keyframes = [{ opacity: 1, easing: 'easeInSine' }, { opacity: 0 }];
 
-      const listElement = this.hostElement.shadowRoot!.querySelector('ul');
+      const listElement = this.hostElement.shadowRoot.querySelector('ul');
 
       anime({
         targets: listElement,
@@ -166,9 +166,9 @@ export class EventList {
           compact: this.compact,
         }}
       >
-        <div role="list">
+        <ul>
           <slot></slot>
-        </div>
+        </ul>
       </Host>
     );
   }

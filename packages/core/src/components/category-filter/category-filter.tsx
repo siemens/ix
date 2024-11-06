@@ -22,7 +22,6 @@ import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
   tag: 'ix-category-filter',
@@ -36,7 +35,6 @@ export class CategoryFilter {
   @State() private textInput?: HTMLInputElement;
   private formElement?: HTMLFormElement;
   private isScrollStateDirty?: boolean;
-  private a11yAttributes?: A11yAttributes;
 
   @Element() hostElement!: HTMLIxCategoryFilterElement;
 
@@ -162,10 +160,6 @@ export class CategoryFilter {
   @Watch('filterState')
   watchFilterState(newValue) {
     this.setFilterState(newValue);
-  }
-
-  componentWillLoad() {
-    this.a11yAttributes = a11yHostAttributes(this.hostElement);
   }
 
   componentDidLoad() {
@@ -716,9 +710,9 @@ export class CategoryFilter {
               size="16"
             ></ix-icon>
             <div class="token-container">
-              <div class="list-unstyled">
+              <ul class="list-unstyled">
                 {this.filterTokens.map((value, index) => (
-                  <span
+                  <li
                     key={value.toString()}
                     class={{
                       animate__animated: true,
@@ -733,19 +727,19 @@ export class CategoryFilter {
                     >
                       {this.getFilterChipLabel(value)}
                     </ix-filter-chip>
-                  </span>
+                  </li>
                 ))}
                 {this.categories === undefined ? (
                   ''
                 ) : (
-                  <span
+                  <li
                     class={{
                       'category-preview': true,
                       'd-none': this.category === undefined,
                     }}
                   >
                     {this.categories[this.category]?.label}
-                  </span>
+                  </li>
                 )}
                 <input
                   class={{
@@ -762,9 +756,8 @@ export class CategoryFilter {
                   ref={(el) => (this.textInput = el)}
                   type="text"
                   placeholder={this.placeholder}
-                  {...this.a11yAttributes}
                 ></input>
-              </div>
+              </ul>
             </div>
             {!this.readonly && !this.disabled && this.getResetButton()}
           </div>

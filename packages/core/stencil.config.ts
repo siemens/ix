@@ -17,7 +17,6 @@ import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
 
 export const config: Config = {
-  tsconfig: 'tsconfig.lib.json',
   globalScript: './src/setup.ts',
   extras: {
     enableImportInjection: true,

@@ -54,12 +54,12 @@ export type BorderlessChangedEvent = {
   shadow: true,
 })
 export class Pane {
-  @Element() hostElement!: HTMLIxPaneElement;
+  @Element() hostElement: HTMLIxPaneElement;
 
   /**
    * Title of the side panel
    */
-  @Prop() heading?: string;
+  @Prop() heading: string;
 
   /**
    * Variant of the side pane.
@@ -104,7 +104,7 @@ export class Pane {
   /**
    * Name of the icon
    */
-  @Prop() icon?: string;
+  @Prop() icon: string;
 
   /**
    * @internal
@@ -120,27 +120,27 @@ export class Pane {
   /**
    * This event is triggered when the pane either expands or contracts
    */
-  @Event() expandedChanged!: EventEmitter<ExpandedChangedEvent>;
+  @Event() expandedChanged: EventEmitter<ExpandedChangedEvent>;
 
   /**
    * This event is triggered when the variant of the pane is changed
    */
-  @Event() variantChanged!: EventEmitter<VariantChangedEvent>;
+  @Event() variantChanged: EventEmitter<VariantChangedEvent>;
 
   /**
    * This event is triggered when the variant of the pane is changed
    */
-  @Event() borderlessChanged!: EventEmitter<BorderlessChangedEvent>;
+  @Event() borderlessChanged: EventEmitter<BorderlessChangedEvent>;
 
   /**
    * @internal
    */
-  @Event() hideOnCollapseChanged!: EventEmitter<HideOnCollapseChangedEvent>;
+  @Event() hideOnCollapseChanged: EventEmitter<HideOnCollapseChangedEvent>;
 
   /**
    * @internal
    */
-  @Event() slotChanged!: EventEmitter<SlotChangedEvent>;
+  @Event() slotChanged: EventEmitter<SlotChangedEvent>;
 
   @State() private expandIcon = '';
   @State() private showContent = false;
@@ -149,14 +149,14 @@ export class Pane {
   @State() private parentWidthPx = 0;
   @State() private parentHeightPx = 0;
 
-  private static readonly validPositions = ['top', 'left', 'bottom', 'right'];
-  private static readonly collapsedPane = '40px';
-  private static readonly collapsedPaneMobile = '48px';
-  private readonly animations: Map<string, anime.AnimeInstance> = new Map();
+  private validPositions = ['top', 'left', 'bottom', 'right'];
+  private collapsedPane = '40px';
+  private collapsedPaneMobile = '48px';
+  private animations: Map<string, anime.AnimeInstance> = new Map();
   private animationCounter = 0;
 
-  private mutationObserver?: MutationObserver;
-  private resizeObserver?: ResizeObserver;
+  private mutationObserver: MutationObserver;
+  private resizeObserver: ResizeObserver;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -188,9 +188,7 @@ export class Pane {
       this.isMobile = matchBreakpoint('sm');
     });
 
-    if (this.currentSlot) {
-      this.setPosition(this.currentSlot);
-    }
+    this.setPosition(this.currentSlot);
 
     this.mutationObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -203,13 +201,10 @@ export class Pane {
 
           if (newSlot !== oldSlot) {
             this.slotChanged.emit({
-              slot: oldSlot ?? '',
-              newSlot: newSlot ?? '',
+              slot: oldSlot,
+              newSlot: newSlot,
             });
-
-            if (newSlot) {
-              this.setPosition(newSlot);
-            }
+            this.setPosition(newSlot);
           }
         }
       });
@@ -233,7 +228,7 @@ export class Pane {
   }
 
   private setPosition(value: string) {
-    if (Pane.validPositions.includes(value)) {
+    if (this.validPositions.includes(value)) {
       this.composition = value as Composition;
     }
   }
@@ -382,7 +377,7 @@ export class Pane {
 
   private removePadding() {
     anime({
-      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
+      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
       duration: 0,
       paddingTop: 0,
       paddingBottom: 0,
@@ -398,7 +393,7 @@ export class Pane {
   ) {
     let key = this.getKey();
     let animation = anime({
-      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
+      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
       duration: duration,
       paddingTop: size,
       paddingBottom: size,
@@ -418,7 +413,7 @@ export class Pane {
   ) {
     let key = this.getKey();
     let animation = anime({
-      targets: this.hostElement.shadowRoot!.querySelector('#title-div'),
+      targets: this.hostElement.shadowRoot.querySelector('#title-div'),
       duration: duration,
       paddingLeft: size,
       paddingRight: size,
@@ -460,7 +455,7 @@ export class Pane {
     this.onParentSizeChange();
 
     this.hideOnCollapseChanged.emit({
-      slot: this.currentSlot ?? '',
+      slot: this.currentSlot,
       hideOnCollapse: value,
     });
   }
@@ -470,7 +465,7 @@ export class Pane {
     this.floating = value === 'floating';
 
     this.variantChanged.emit({
-      slot: this.currentSlot ?? '',
+      slot: this.currentSlot,
       variant: value,
     });
   }
@@ -478,7 +473,7 @@ export class Pane {
   @Watch('borderless')
   onBorderlessChange(value: boolean) {
     this.borderlessChanged.emit({
-      slot: this.currentSlot ?? '',
+      slot: this.currentSlot,
       borderless: value,
     });
   }
@@ -488,7 +483,7 @@ export class Pane {
     this.onSizeChange();
 
     this.expandedChanged.emit({
-      slot: this.currentSlot ?? '',
+      slot: this.currentSlot,
       expanded: this.expanded,
     });
   }
@@ -521,16 +516,16 @@ export class Pane {
       if (this.isMobile) {
         this.hostElement.style.height = this.hideOnCollapse
           ? '0'
-          : Pane.collapsedPaneMobile;
+          : this.collapsedPaneMobile;
       } else {
         if (this.isBottomTopPane) {
           this.hostElement.style.height = this.hideOnCollapse
             ? '0'
-            : Pane.collapsedPane;
+            : this.collapsedPane;
         } else {
           this.hostElement.style.width = this.hideOnCollapse
             ? '0'
-            : Pane.collapsedPane;
+            : this.collapsedPane;
         }
       }
     }
@@ -542,7 +537,7 @@ export class Pane {
       if (this.isMobile) {
         this.hostElement.style.minHeight = this.hideOnCollapse
           ? '0'
-          : Pane.collapsedPaneMobile;
+          : this.collapsedPaneMobile;
         this.animateHorizontalFadeIn('100%');
       } else {
         const expandPaneSize = this.getExpandPaneSize();
@@ -550,12 +545,12 @@ export class Pane {
         if (this.isBottomTopPane) {
           this.hostElement.style.height = this.hideOnCollapse
             ? '0'
-            : Pane.collapsedPane;
+            : this.collapsedPane;
           this.animateHorizontalFadeIn(expandPaneSize);
         } else {
           this.hostElement.style.width = this.hideOnCollapse
             ? '0'
-            : Pane.collapsedPane;
+            : this.collapsedPane;
           this.animateVerticalFadeIn(expandPaneSize);
         }
       }
@@ -563,12 +558,12 @@ export class Pane {
       this.showContent = false;
 
       if (this.isMobile) {
-        this.hostElement.style.height = Pane.collapsedPaneMobile;
+        this.hostElement.style.height = this.collapsedPaneMobile;
       } else {
         if (this.isBottomTopPane) {
-          this.animateHorizontalFadeIn(Pane.collapsedPane);
+          this.animateHorizontalFadeIn(this.collapsedPane);
         } else {
-          this.animateVerticalFadeIn(Pane.collapsedPane);
+          this.animateVerticalFadeIn(this.collapsedPane);
         }
       }
     }
@@ -610,7 +605,6 @@ export class Pane {
         }}
       >
         <aside
-          id={`pane-${this.composition}`}
           class={{
             'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
             'left-right-pane': this.isLeftRightPane && !this.isMobile,
@@ -646,7 +640,7 @@ export class Pane {
               onClick={() => {
                 this.expanded = !this.expanded;
               }}
-              aria-controls={`pane-${this.composition}`}
+              aria-controls={this.composition + 'ToggleButton'}
             />
             <span
               class={{

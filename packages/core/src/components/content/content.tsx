@@ -25,7 +25,7 @@ export class Content {
   @State() isContentHeaderSlotted = false;
 
   get contentHeaderSlot() {
-    return this.hostElement.shadowRoot!.querySelector(
+    return this.hostElement.shadowRoot.querySelector(
       '.content-header slot'
     ) as HTMLSlotElement;
   }

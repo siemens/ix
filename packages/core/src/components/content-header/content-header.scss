@@ -11,20 +11,16 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 0;
+  padding: 0px;
 
   .titleGroup {
     display: flex;
     flex-direction: column;
-    flex: 1 1 0;
-
-    .secondary {
-      padding: 0.25rem 0;
-    }
+    flex: 1 1 0%;
   }
 
   .subtitle {
-    margin-top: -0.125rem;
+    margin-top: 0.5rem;
   }
 
   .backButton {
