@@ -147,6 +147,7 @@ export class DatePicker {
    * @since 2.1.0
    */
   @Prop() locale: string = undefined;
+
   @Watch('locale')
   onLocaleChange() {
     this.setTranslations();
@@ -518,7 +519,11 @@ export class DatePicker {
     }
   }
 
-  private selectDay(selectedDay: number) {
+  private selectDay(selectedDay: number, target: Element) {
+    if (target.classList.contains('disabled')) {
+      return;
+    }
+
     const date = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, selectedDay)
     );
@@ -781,8 +786,16 @@ export class DatePicker {
                       id={`day-cell-${day}`}
                       date-calender-day
                       class={this.getDayClasses(day)}
-                      onClick={() => this.selectDay(day)}
-                      onKeyUp={(e) => e.key === 'Enter' && this.selectDay(day)}
+                      onClick={(e) => {
+                        const target = e.currentTarget as HTMLElement;
+                        this.selectDay(day, target);
+                      }}
+                      onKeyUp={(e) => {
+                        const target = e.currentTarget as HTMLElement;
+                        if (e.key === 'Enter') {
+                          this.selectDay(day, target);
+                        }
+                      }}
                       tabIndex={day === this.focusedDay ? 0 : -1}
                       onFocus={() => this.onDayFocus()}
                       onBlur={() => this.onDayBlur()}
