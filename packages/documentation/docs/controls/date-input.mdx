@@ -1,8 +1,19 @@
+import DeprecatedTags from '@site/src/components/Tags';
 import DocsTabs from '@site/src/components/DocsTabs';
 
 import DocsUx from './\_date-input_styleguide.mdx'
 import DocsCode from './\_date-input_code.mdx'
 
+import Tags from '@site/docs/auto-generated/ix-date-input/tags.md';
+
 # Date input
+
+<div className="d-flex gap-2 align-items-center">
+  <Tags />
+  <DeprecatedTags url='/docs/legacy/input' hasDeprecatedAncestor={true}></DeprecatedTags>
+</div>
+
+<br/>
+<br/>
 
 <DocsTabs styleguide={DocsUx} code={DocsCode} />

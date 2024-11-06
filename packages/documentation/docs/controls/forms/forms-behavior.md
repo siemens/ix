@@ -50,9 +50,9 @@ In this strategy, there is no need for a submit button. The form is automaticall
 - Con: Handling validation and error messages without a submit button can be challenging.
 - Con: Users may not have a chance to review and confirm their input before submission.
 
-For more information on form validation, refer to the [Validation](forms-validation.md) chapter.
+For more information on form validation, refer to the [Validation](forms-validation.mdx) chapter.
 
 ## Related patterns
 
-- [Validation](forms-validation.md)
+- [Validation](forms-validation.mdx)
 - [Layout](forms-layout.md)

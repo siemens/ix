@@ -4,16 +4,16 @@ A checkbox is a small interactive box that allows the user to toggle between an 
 
 ## Options
 
-- **Checkbox label:** See [form field](forms-field.md).
+- **Checkbox label:** See [form field](forms/forms-field.md).
 - **Group label:** Add a label to the group of checkboxes to provide context to your users. We typically use short and descriptive labels to summarize the options in the group.
-- **Helper text**: See [form field](forms-field.md).
-- **Feedback text**: See [form field](forms-field.md).
+- **Helper text**: See [form field](forms/forms-field.md).
+- **Feedback text**: See [form field](forms/forms-field.md).
 - **Indeterminate checkbox:** Indicates that only some items in a checkbox group are selected. We offer the indeterminate state, but the implementation when this state is active is the responsibility of each individual.
 - **Checkbox group**: Group checkboxes to indicate that they are related. We typically use checkbox groups when multiple options need to be presented for selection, allowing users to choose any combination of the available choices. They are particularly useful in user interface design for forms, settings and preferences where multiple selections are possible.
 
 ## Behavior in context
 
-- **Validation**: See [validation](forms-validation.md).
+- **Validation**: See [validation](forms/forms-validation.mdx).
 - **Interaction**: Clicking on the checkbox toggles the state between checked and unchecked. 
 - **Grouping**: Checkbox groups have only one label and helper text for the entire group. Grouped checkboxes are validated collectively, not individually.
 

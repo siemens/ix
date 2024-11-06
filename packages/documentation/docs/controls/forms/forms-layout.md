@@ -32,5 +32,5 @@ Effective ways to organize form elements enhance user comprehension and interact
 
 ## Related patterns
 
-- [Validation](forms-validation.md)
+- [Validation](forms-validation.mdx)
 - [Behavior](forms-behavior.md)

@@ -1,13 +1,16 @@
+import DeprecatedTags from '@site/src/components/Tags';
 import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_textarea-field_styleguide.mdx'
 import DocsCode from './\_textarea-field_code.mdx'
 import Tags from '@site/docs/auto-generated/ix-textarea/tags.md';
 
-
 # Textarea
 
-<Tags />
+<div className="d-flex gap-2 align-items-center">
+  <Tags />
+  <DeprecatedTags url='/docs/legacy/textarea' hasDeprecatedAncestor={true}></DeprecatedTags>
+</div>
 
 <br/>
 <br/>

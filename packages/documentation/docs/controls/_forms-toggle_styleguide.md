@@ -4,13 +4,13 @@ A toggle is a user interface element that enables users to switch between two st
 
 ## Options
 
-- **Label:** See [form field](forms-field.md).
-- **Helper text**: See [form field](forms-field.md).
-- **Feedback text**: See [form field](forms-field.md).
+- **Label:** See [form field](forms/forms-field.md).
+- **Helper text**: See [form field](forms/forms-field.md).
+- **Feedback text**: See [form field](forms/forms-field.md).
 
 ## Behavior in context
 
-- **Validation**: See [validation](forms-validation.md).
+- **Validation**: See [validation](forms/forms-validation.mdx).
 - **Interaction**: Clicking on the toggle switch changes its state from on to off or vice versa. The toggle visually reflects the current state.
 
 ## States
@@ -19,17 +19,17 @@ A toggle is a user interface element that enables users to switch between two st
 
 ## Dos and Don’ts
 
-Do use toggles for single features or options that need to be switched quickly and easily  
-Do provide clear labels for toggles to indicate what they control  
-Do use toggles consistently throughout the interface for similar actions or settings  
-Don't use toggles for complex multi-state options or settings  
-Don't use toggles for actions that require a confirmation or additional input  
-Don't use toggles for actions that are irreversible or have serious consequences
+- Do use toggles for single features or options that need to be switched quickly and easily  
+- Do provide clear labels for toggles to indicate what they control  
+- Do use toggles consistently throughout the interface for similar actions or settings  
+- Don't use toggles for complex multi-state options or settings  
+- Don't use toggles for actions that require a confirmation or additional input  
+- Don't use toggles for actions that are irreversible or have serious consequences
 
 ## Related patterns
 
-- [Form field](forms-field.md)
-- [Validation](forms-validation.md)
-- [Layout](forms-layout.md)
--  Checkbox
--  Radio button
+- [Form field](forms/forms-field.md)
+- [Validation](forms/forms-validation.mdx)
+- [Layout](forms/forms-layout.md)
+- [Checkbox](checkbox.mdx)
+- [Radio](radio.mdx)
