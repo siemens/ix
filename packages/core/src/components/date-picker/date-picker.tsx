@@ -337,7 +337,7 @@ export class DatePicker {
       return;
     }
 
-    const dayElem = this.hostElement.shadowRoot?.querySelector(
+    const dayElem = this.hostElement.shadowRoot!.querySelector(
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
     dayElem.focus();
@@ -512,7 +512,7 @@ export class DatePicker {
     this.selectedYear = this.tempYear;
     this.tempMonth = month;
 
-    const dropdown = this.hostElement.shadowRoot?.querySelector('ix-dropdown');
+    const dropdown = this.hostElement.shadowRoot!.querySelector('ix-dropdown');
     if (dropdown) {
       dropdown.show = false;
     }
