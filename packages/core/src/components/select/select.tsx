@@ -185,7 +185,7 @@ export class Select {
   }
 
   get addItemButton() {
-    return this.hostElement.shadowRoot?.querySelector('.add-item');
+    return this.hostElement.shadowRoot!.querySelector('.add-item');
   }
 
   get isSingleMode() {

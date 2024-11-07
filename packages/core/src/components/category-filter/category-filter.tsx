@@ -168,7 +168,7 @@ export class CategoryFilter {
   @Event() filterChanged!: EventEmitter<FilterState>;
 
   get dropdown() {
-    return this.hostElement.shadowRoot?.querySelector('ix-dropdown');
+    return this.hostElement.shadowRoot!.querySelector('ix-dropdown');
   }
 
   @Watch('filterState')
@@ -360,13 +360,13 @@ export class CategoryFilter {
         const selector = `.category-item-${
           this.category !== '' ? 'value' : 'id'
         }`;
-        let item = this.hostElement.shadowRoot?.querySelector(selector);
+        let item = this.hostElement.shadowRoot!.querySelector(selector);
 
         if (item instanceof HTMLElement) {
           item.focus();
           e.stopPropagation();
         } else if (this.suggestions?.length) {
-          item = this.hostElement.shadowRoot?.querySelector('.category-item');
+          item = this.hostElement.shadowRoot!.querySelector('.category-item');
           if (item instanceof HTMLElement) {
             item.focus();
             e.stopPropagation();
