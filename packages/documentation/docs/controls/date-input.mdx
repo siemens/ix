@@ -1,5 +1,5 @@
 import DeprecatedTags from '@site/src/components/Tags';
-import DocsTabs from '@site/src/components/DocsTabs';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_date-input_styleguide.mdx'
 import DocsCode from './\_date-input_code.mdx'
@@ -16,4 +16,7 @@ import Tags from '@site/docs/auto-generated/ix-date-input/tags.md';
 <br/>
 <br/>
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>
