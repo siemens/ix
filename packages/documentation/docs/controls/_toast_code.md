@@ -11,20 +11,22 @@ import ApiToastConfigAngular from './\_toast/angular/toast-config.md';
 
 import ApiToastConfigReact from './\_toast/react/toast-config.md';
 
-# Toast
+## Examples
+
+### Basic
 
 <Playground
 name="toast" height="18rem"
 ></Playground>
 
-## Custom toast message
+### Custom toast message
 
 <Playground
 name="toast-custom" height="18rem"
 hideInitalCodePreview
 ></Playground>
 
-## Position
+### Position
 
 <ApiTableSinceTag message="1.5.0" />
 
