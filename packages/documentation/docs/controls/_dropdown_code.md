@@ -8,8 +8,6 @@ import TagsQuickActions from './../auto-generated/ix-dropdown-quick-actions/tags
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Dropdown
-
 ## Examples
 
 <Playground

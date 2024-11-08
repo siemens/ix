@@ -17,7 +17,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground
   name="dropdown-button-icon" 
-  eight="16rem"
+  height="16rem"
   >
 </Playground>
 

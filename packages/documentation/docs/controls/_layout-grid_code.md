@@ -6,8 +6,6 @@ import ColEvents from './../auto-generated/ix-col/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3'
 
-# Message bar
-
 ## Examples
 
 ### Basic

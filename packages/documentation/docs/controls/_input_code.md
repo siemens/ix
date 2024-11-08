@@ -3,10 +3,6 @@ import Props from '@site/docs/auto-generated/ix-input/props.md';
 import Events from '@site/docs/auto-generated/ix-input/events.md';
 import Tags from '@site/docs/auto-generated/ix-input/tags.md';
 
-# Input
-
-<Tags />
-
 ## Examples
 
 ### Basic
@@ -31,14 +27,14 @@ import Tags from '@site/docs/auto-generated/ix-input/tags.md';
 
 ### Types
 
-<Playground name="input-types" examplesByName height="15rem"></Playground>
+<Playground name="input-types" examplesByName height="24rem"></Playground>
 
 ### Validation
 
 <Playground
   name="input-validation"
   examplesByName
-  height="25rem"
+  height="27rem"
 ></Playground>
 
 ## API

@@ -22,7 +22,7 @@ function htmlFormReadyTag(value: string) {
 }
 
 function htmlSinceTag(value: string) {
-  return `<span className="Api__Table Docs__Tag">Since: ${value}</span>`;
+  return `<span className="Api__Table Docs__Tag">Since ${value}</span>`;
 }
 
 function htmlDeprecatedTag(value: string) {
