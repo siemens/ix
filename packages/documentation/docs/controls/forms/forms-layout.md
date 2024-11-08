@@ -26,7 +26,7 @@ Effective ways to organize form elements enhance user comprehension and interact
 - **Button alignment:** Position primary action buttons, e.g. submit and cancel consistently. We recommend: - Bottom left: Short forms (up to 5 fields) - Bottom right: Long forms (more than 5 fields) - Bottom right and sticky: Long forms that are already filled in (e.g. edit) with a large number of fields
   %% - Top right: ??? %%
 - **Label alignment:** By default, the label is positioned above its input field. Use a custom field component for long forms with a lot of fields to position the label on the left (which saves vertical space).
-- **Grouping fields:** In some cases, it makes sense to combine multiple fields in one [custom field](../custom-field.md) with a single label that are connected contextually or through validation, e.g. entering the value and unit of an entity, selecting start and end date. It allows a clearer validation, e.g. the end date must be after the start date.
+- **Grouping fields:** In some cases, it makes sense to combine multiple fields in one [custom field](../custom-field.mdx) with a single label that are connected contextually or through validation, e.g. entering the value and unit of an entity, selecting start and end date. It allows a clearer validation, e.g. the end date must be after the start date.
 - **Field width:** Use a consistent width for input fields to create a harmonious layout. For example, use a width of 100% for full-width fields and 50% for two-column fields.
   %% - **Responsive behavior**: xxx - Layout grid or flexbox - should I use 1 or 2 columns? %%
 
