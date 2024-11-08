@@ -10,7 +10,7 @@ A field is a form element when user input is needed. It's typically used with ot
 4. Required indicator
 5. Counter (input and textarea field only)
 
-**Note:** In this chapter, we describe the default field component. For details about [custom fields](../custom-field.md), refer to the [layouts](forms-layout.md) chapter.
+**Note:** In this chapter, we describe the default field component. For details about [custom fields](../custom-field.mdx), refer to the [layouts](forms-layout.md) chapter.
 
 ## Options
 
