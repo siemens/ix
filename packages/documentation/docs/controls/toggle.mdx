@@ -1,19 +1,57 @@
-import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
+import Props from './../auto-generated/ix-toggle/props.md';
+import Events from './../auto-generated/ix-toggle/events.md';
 
-import DocsUx from './_forms-toggle_styleguide.md';
-import DocsCode from './_toggle_code.mdx';
-
-import Tags from '@site/docs/auto-generated/ix-number-input/tags.md';
-
+import Playground from '@site/src/components/PlaygroundV3';
 
 # Toggle
 
-<Tags />
+## Examples
 
-<br/>
-<br/>
+### Basic
 
-<LinkableDocsTabs>
-  <DocsUx />
-  <DocsCode />
-</LinkableDocsTabs>
+<Playground
+  name="toggle"
+  >
+</Playground>
+
+### Custom label
+
+<Playground
+  name="toggle-custom-label"
+  hideInitalCodePreview
+  >
+</Playground>
+
+### Disabled
+
+<Playground
+  name="toggle-disabled"
+  hideInitalCodePreview
+  >
+</Playground>
+
+### Checked
+
+<Playground
+  name="toggle-checked"
+  hideInitalCodePreview
+  >
+</Playground>
+
+### Indeterminate
+
+<Playground
+name="toggle-indeterminate"
+hideInitalCodePreview
+>
+</Playground>
+
+## API
+
+### Properties
+
+<Props />
+
+### Events
+
+<Events />

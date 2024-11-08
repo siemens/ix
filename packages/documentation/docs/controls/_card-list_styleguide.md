@@ -31,7 +31,7 @@ The scroll card list style displays the content items from left to right next to
 - **"Show all" button**:  Sometimes card lists only need to show the most important or most recent items. Clicking on the "Show all" button in the header section shows all items. Typically, these items are displayed on a new page.
 - **"Show more" card**: The number of visible items inside a list can be limited to reduce the user's cognitive load. The "Show more" card indicates  that more information is available. Selecting the card either displays the next chunk of items or shows all items on a new page, similar to the "Show all" button pattern.
 
-## Dos and don'ts
+## Dos and Don'ts
 - Do keep cards and items within card lists the same size
 - Don't place different types of components within card lists
 - Don't nest card lists within each other

@@ -32,7 +32,7 @@ Interactive items can take one of four states: Default, hover, active and focuse
 
 ![States of breadcrumb items](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=120-7463&mode=design&t=JS1Aklcq48swr0Im-1)
 
-## Dos and don'ts
+## Dos and Don'ts
 
 - Do label each item, i.e. use more than icons 
 - Do use single-line text entries as breadcrumb items have a fixed height

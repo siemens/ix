@@ -52,8 +52,8 @@ Clicking the avatar opens a dropdown (6) with additional user information (7, 8,
 ![Examples of access login](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1636-62468&mode=design&t=4XzscFw57dE7McUX-11)
 
 If your application can be used without being logged in to, you can offer access to a login process in different ways, for example:
-- Show a log in button in the [slot for additional elements](#slot) and hide the avatar
-- Show the avatar with a placeholder image and show text in the user information section
+- Show a log in button in the [slot for additional elements](#slot) and hide the avatar.
+- Show the avatar with a placeholder image and show text in the user information section.
 
 ## Options
 
@@ -75,10 +75,10 @@ The header automatically adapts the breakpoints defined in the [application](./a
 
 At breakpoints "lg" and "md" the application header behaves identically. At breakpoint "sm" the layout changes in the following way: 
 
-- The application menu hides, displaying the application menu icon (12); a click opens the application menu (16)
-- The application switch (if used) moves to the application menu (16)
-- The brand logo disappears
-- The slot for additional elements (if used) moves to the overflow dropdown that opens on click on the overflow icon (13)
+- The application menu hides, displaying the application menu icon (12), a click opens the application menu (16).
+- The application switch (if used) moves to the application menu (16).
+- The brand logo disappears.
+- The slot for additional elements (if used) moves to the overflow dropdown that opens on click on the overflow icon (13).
 
 
 ## Dos and Don’ts
