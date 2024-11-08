@@ -12,8 +12,8 @@ The About and legal component is an overlay we typically use to show application
 Overlay opens on top of application content with a semi-transparent background with a background blur effect to emphasize the overlay character. Closing this overlay brings users back to the previous content.  
 
 The overlay can be closed in three ways:
-- Select the close button
-- Click the info icon again
-- Click another navigation item
+- Select the close button.
+- Click the info icon again.
+- Click another navigation item.
 
 When the navigation menu is collapsed, the overlay stays open.

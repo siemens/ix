@@ -41,13 +41,13 @@ A select component allows users to choose from a list of options. It supports si
 	- The text in an input field is truncated with the length of the container.
 	- On the multiselect, the selected items break into a second line and then show a scrollbar if it extends beyond two lines.
 	- The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item.
-- **Alignment:** Selects are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input.mdx).
+- **Alignment:** Selects are always aligned to the left, while right alignment is reserved exclusively for [number inputs](number-input.mdx).
 
 ## States
 
 The select field has five states: default, hover, focused, disabled and read-only. In the disabled state, the input field is displayed without offering any user interaction.
 
-![Field States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3960-760&t=MWpyPDZDK5B531n9-4)
+![Field states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3960-760&t=MWpyPDZDK5B531n9-4)
 
 ## Dos and Don’ts
 

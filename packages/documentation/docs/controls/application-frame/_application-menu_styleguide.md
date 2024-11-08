@@ -79,9 +79,9 @@ See the code tab for more information and other options available.
 
 ![Navigation menu overflow behavior](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-68267&mode=design&t=RG8M7S3eIKxiDqv5-11)
 
-- Navigation menu expands and collapses with a transition
-- The width of the collapse and expand state are fixed and cannot be configured
-- The number of menu items can overflow, this is recognizable by the shadow at the bottom and/or top 
+- Navigation menu expands and collapses with a transition.
+- The width of the collapse and expand state are fixed and cannot be configured.
+- The number of menu items can overflow, this is recognizable by the shadow at the bottom and/or top.
 
 <br></br>
 

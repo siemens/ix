@@ -13,7 +13,7 @@ Cards are interactive elements. The entire container is clickable and triggers a
 
 ## Card types
 
-We currently offer two types of cards: **action** and **push**
+We currently offer two types of cards: **action** and **push**.
 
 Action cards have an icon, a heading and a subheading. We use them to trigger key actions.
 
@@ -49,7 +49,7 @@ Cards can take one of three states: Default, hover and active. Action cards also
 
 ![Card states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=858-4979&mode=design&t=RDimbEsIHFIXIByo-1)
 
-## Dos and don'ts
+## Dos and Don'ts
 - Do group cards in lists or grids (use the [card list](card-list.md) control)
 - Do keep multiple cards equal in size
 - Don't nest cards inside each other

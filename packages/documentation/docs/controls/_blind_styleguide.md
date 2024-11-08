@@ -45,7 +45,7 @@ For all blind variants, a default, hover, active and focused state is available.
 
 ![Blind states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2-352&mode=design&t=9faEnH99BaAxqCGM-1)
 
-## Dos and don'ts
+## Dos and Don'ts
 
 - Do stay within the recommended number of blinds - between 3 and 7
 - Don't use multi-line text in the header. The header section has a fixed height for single-line text entries
