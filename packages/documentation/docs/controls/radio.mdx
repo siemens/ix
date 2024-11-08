@@ -1,11 +1,10 @@
-import Admonition from '@theme/Admonition';
-
 import DeprecatedTags from '@site/src/components/Tags';
-import Playground from '@site/src/components/PlaygroundV3';
-
-import Props from '@site/docs/auto-generated/ix-radio/props.md';
-import Events from '@site/docs/auto-generated/ix-radio/events.md';
 import Tags from '@site/docs/auto-generated/ix-radio/tags.md';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
+
+import DocsUx from './_radio_styleguide.mdx';
+import DocsCode from './_radio_code.mdx';
+
 
 # Radio
 
@@ -14,30 +13,10 @@ import Tags from '@site/docs/auto-generated/ix-radio/tags.md';
   <DeprecatedTags url='/docs/legacy/radiobutton' hasDeprecatedAncestor={true}></DeprecatedTags>
 </div>
 
-## Examples
+<br />
+<br />
 
-### Basic
-
-<Playground name="radio"></Playground>
-
-### Disabled
-
-<Playground name="radio-disabled"></Playground>
-
-### Group
-
-<Playground name="radio-group" height="12rem"></Playground>
-
-### Validation
-
-<Playground name="radio-validation" height="16rem"></Playground>
-
-## API
-
-### Properties
-
-<Props />
-
-### Events
-
-<Events />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>
