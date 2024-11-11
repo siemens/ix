@@ -4385,7 +4385,7 @@
           "name": "from",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -4404,7 +4404,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4458,7 +4458,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4484,7 +4484,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4510,7 +4510,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4623,13 +4623,12 @@
               "text": "1.1.0"
             }
           ],
-          "default": "undefined",
           "values": [
             {
               "type": "any"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4660,7 +4659,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4686,7 +4685,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4729,6 +4728,7 @@
           "reflectToAttr": false,
           "docs": "Set time reference",
           "docsTags": [],
+          "default": "'AM'",
           "values": [
             {
               "value": "AM",
@@ -4746,7 +4746,7 @@
           "name": "to",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -4765,7 +4765,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4800,11 +4800,11 @@
       "events": [
         {
           "event": "dateChange",
-          "detail": "string | { from: string; to: string; }",
+          "detail": "string | { from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateTimeDateChangeEvent",
-            "resolved": "string | { from: string; to: string; }",
+            "resolved": "string | { from?: string; to?: string; }",
             "references": {
               "DateTimeDateChangeEvent": {
                 "location": "local",
@@ -4825,11 +4825,11 @@
         },
         {
           "event": "dateSelect",
-          "detail": "{ from: string; to: string; time: string; }",
+          "detail": "{ from?: string; to?: string; time?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateTimeSelectEvent",
-            "resolved": "{ from: string; to: string; time: string; }",
+            "resolved": "{ from?: string; to?: string; time?: string; }",
             "references": {
               "DateTimeSelectEvent": {
                 "location": "local",
@@ -17787,7 +17787,7 @@
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
     "src/components/datetime-picker/datetime-picker.tsx::DateTimeSelectEvent": {
-      "declaration": "{\n  from: string;\n  to: string;\n  time: string;\n}",
+      "declaration": "{\n  from?: string;\n  to?: string;\n  time?: string;\n}",
       "docstring": "",
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },

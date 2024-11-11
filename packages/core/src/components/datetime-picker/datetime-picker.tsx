@@ -11,9 +11,9 @@ import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import type { DateChangeEvent } from '../date-picker/date-picker';
 
 export type DateTimeSelectEvent = {
-  from: string;
-  to: string;
-  time: string;
+  from?: string;
+  to?: string;
+  time?: string;
 };
 
 export type DateTimeDateChangeEvent =
@@ -52,7 +52,7 @@ export class DatetimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() minDate: string;
+  @Prop() minDate?: string;
 
   /**
    * The latest date that can be selected by the date picker.
@@ -60,7 +60,7 @@ export class DatetimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() maxDate: string;
+  @Prop() maxDate?: string;
 
   /**
    * Date format string.
@@ -84,7 +84,7 @@ export class DatetimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() from: string | undefined;
+  @Prop() from?: string;
 
   /**
    * The selected end date. If the the picker is not in range mode this property has no impact.
@@ -92,14 +92,14 @@ export class DatetimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() to: string | undefined;
+  @Prop() to?: string;
 
   /**
    * Select time with format string
    *
    * @since 1.1.0
    */
-  @Prop() time: string;
+  @Prop() time?: string;
 
   /**
    * Show time reference input
@@ -107,12 +107,12 @@ export class DatetimePicker {
    *
    * @since 1.1.0
    */
-  @Prop() showTimeReference = undefined;
+  @Prop() showTimeReference?: any;
 
   /**
    * Set time reference
    */
-  @Prop() timeReference: 'AM' | 'PM';
+  @Prop() timeReference: 'AM' | 'PM' = 'AM';
 
   /**
    * Text of date select button
@@ -120,7 +120,7 @@ export class DatetimePicker {
    * @since 1.1.0
    * @deprecated since 2.1.0. Use `i18nDone`
    */
-  @Prop() textSelectDate: string;
+  @Prop() textSelectDate?: string;
 
   /**
    * Text of date select button
@@ -143,7 +143,7 @@ export class DatetimePicker {
    *
    * @since 2.1.0
    */
-  @Prop() locale: string = undefined;
+  @Prop() locale?: string = undefined;
 
   /**
    * Default behavior of the done event is to join the two events (date and time) into one combined string output.
@@ -160,43 +160,43 @@ export class DatetimePicker {
    * Set `doneEventDelimiter` to null or undefine to get the typed event
    * @deprecated Use `this.dateChange`
    */
-  @Event() done: EventEmitter<string>;
+  @Event() done!: EventEmitter<string>;
 
   /**
    * Time change
    *
    * @since 1.1.0
    */
-  @Event() timeChange: EventEmitter<string>;
+  @Event() timeChange!: EventEmitter<string>;
 
   /**
    * Date change
    *
    * @since 1.1.0
    */
-  @Event() dateChange: EventEmitter<DateTimeDateChangeEvent>;
+  @Event() dateChange!: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
    * Datetime selection event is fired after confirm button is pressed
    *
    * @since 1.1.0
    */
-  @Event() dateSelect: EventEmitter<DateTimeSelectEvent>;
+  @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 
-  private datePickerElement: HTMLIxDatePickerElement;
-  private timePickerElement: HTMLIxTimePickerElement;
+  private datePickerElement?: HTMLIxDatePickerElement;
+  private timePickerElement?: HTMLIxTimePickerElement;
 
   private async onDone() {
-    const date = await this.datePickerElement.getCurrentDate();
-    const time = await this.timePickerElement.getCurrentTime();
+    const date = await this.datePickerElement?.getCurrentDate();
+    const time = await this.timePickerElement?.getCurrentTime();
 
     this.dateSelect.emit({
-      from: date.from,
-      to: date.to,
+      from: date?.from,
+      to: date?.to,
       time: time,
     });
 
-    this.done.emit([date.from, date.to ?? '', time].join(this.eventDelimiter));
+    this.done.emit([date?.from, date?.to ?? '', time].join(this.eventDelimiter));
   }
 
   private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
@@ -253,10 +253,7 @@ export class DatetimePicker {
             </ix-col>
           </ix-row>
           <ix-row class="btn-select-date-container">
-            <ix-button
-              class="btn-select-date"
-              onClick={() => this.onDone()}
-            >
+            <ix-button class="btn-select-date" onClick={() => this.onDone()}>
               {this.textSelectDate || this.i18nDone}
             </ix-button>
           </ix-row>
