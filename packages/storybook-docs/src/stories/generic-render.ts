@@ -11,8 +11,8 @@ import jsonFile from '@siemens/ix/component-doc.json';
 export function genericRender(selector: string, args: any) {
   const element = document.createElement(selector);
 
-  if ('textContent' in args) {
-    element.textContent = args.textContent;
+  if ('defaultSlot' in args) {
+    element.textContent = args.defaultSlot;
   }
   Object.assign(element, args);
   return element;

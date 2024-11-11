@@ -960,9 +960,15 @@ importers:
       '@storybook/web-components-vite':
         specifier: ^8.4.2
         version: 8.4.2(lit@3.2.1)(storybook@8.4.2(prettier@3.0.3))(vite@5.4.11(@types/node@20.16.5)(less@4.2.0)(sass@1.77.8)(stylus@0.59.0)(terser@5.22.0))(webpack-sources@3.2.3)
+      '@types/fs-extra':
+        specifier: ^9.0.13
+        version: 9.0.13
       axe-playwright:
         specifier: ^2.0.3
         version: 2.0.3(playwright@1.39.0)
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.2.0
       start-server-and-test:
         specifier: ^1.14.0
         version: 1.15.5

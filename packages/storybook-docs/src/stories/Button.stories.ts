@@ -10,7 +10,7 @@ import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './generic-render';
 
-type Element = Components.IxButton & { textContent: string };
+type Element = Components.IxButton & { defaultSlot: string };
 
 const meta = {
   title: 'Example/Button',
@@ -38,13 +38,13 @@ type Story = StoryObj<Element>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
-    textContent: 'Button',
+    defaultSlot: 'Button',
   },
 };
 
 export const Loading: Story = {
   args: {
-    textContent: 'Button',
+    defaultSlot: 'Button',
     loading: true,
     ghost: false,
   },
@@ -52,7 +52,7 @@ export const Loading: Story = {
 
 export const ButtonOutlineWithIcon: Story = {
   args: {
-    textContent: 'Button',
+    defaultSlot: 'Button',
     disabled: false,
     ghost: false,
     icon: 'eye',

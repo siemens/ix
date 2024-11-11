@@ -6,6 +6,21 @@ import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 
 defineCustomElements();
 
+const additionalTheme = {};
+
+function addAdditionalThemeIfExist() {
+  const hasAdditionalTheme = window['hasAdditionalTheme'];
+
+  if (hasAdditionalTheme) {
+    additionalTheme['brand-dark'] = 'theme-brand-dark';
+    additionalTheme['brand-light'] = 'theme-brand-light';
+  }
+
+  return hasAdditionalTheme;
+}
+
+const hasAdditionalTheme = addAdditionalThemeIfExist();
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -17,10 +32,11 @@ const preview: Preview = {
   },
   decorators: [
     withThemeByClassName({
-      defaultTheme: 'classic-dark',
+      defaultTheme: hasAdditionalTheme ? 'brand-dark' : 'classic-dark',
       themes: {
         'classic-dark': 'theme-classic-dark',
         'classic-light': 'theme-classic-light',
+        ...additionalTheme,
       },
       parentSelector: 'body',
     }),
