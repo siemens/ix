@@ -13407,6 +13407,11 @@
           "passive": false
         },
         {
+          "event": "ix-select-item:valueChange",
+          "capture": false,
+          "passive": false
+        },
+        {
           "event": "ix-select-item:labelChange",
           "capture": false,
           "passive": false
