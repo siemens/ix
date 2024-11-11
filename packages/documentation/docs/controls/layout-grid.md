@@ -2,7 +2,7 @@
 title: Layout grid
 ---
 
-import DocsTabs from '@site/src/components/DocsTabs';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_layout-grid_styleguide.md';
 import DocsCode from './\_layout-grid_code.md';
@@ -13,4 +13,7 @@ import Tags from './../auto-generated/ix-layout-grid/tags.md';
 <br/>
 <br/>
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>
