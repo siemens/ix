@@ -41,7 +41,7 @@ A select component allows users to choose from a list of options. It supports si
 	- The text in an input field is truncated with the length of the container.
 	- On the multiselect, the selected items break into a second line and then show a scrollbar if it extends beyond two lines.
 	- The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item.
-- **Alignment:** Selects are always aligned to the left, while right alignment is reserved exclusively for [number inputs](number-input.mdx).
+- **Alignment:** Selects are always aligned to the left, while right alignment is reserved exclusively for [number inputs](input-number.mdx).
 
 ## States
 
@@ -69,4 +69,4 @@ The select field has five states: default, hover, focused, disabled and read-onl
 - [Radio button](radio.mdx)
 - [Checkbox](checkbox.mdx)
 - [Toggle](toggle.mdx)
-- [Date input](date-input.mdx)
+- [Date input](input-date.mdx)

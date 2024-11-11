@@ -25,7 +25,7 @@ An input field is a user interface element that allows users to enter and edit t
 - **Validation:** See [validation](./forms/forms-validation.mdx).
 - **Interaction**: Clicking in the container enables the editing of the field.
 - **Text truncation**: The text in an input field is cut off with the length of the container.
-- **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](number-input.mdx).
+- **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](input-number.mdx).
 
 ## States
 
@@ -46,5 +46,5 @@ The input field has five states: default, focused, hover, disabled and read-only
 - [Form field](./forms/forms-field.md)
 - [Validation](./forms/forms-validation.mdx)
 - [Layout](./forms/forms-layout.md)
-- [Number input](number-input.mdx)
-- [Date input](date-input.mdx)
+- [Number input](input-number.mdx)
+- [Date input](input-date.mdx)
