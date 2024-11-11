@@ -23,5 +23,9 @@
     flex-direction: row;
     flex-wrap: nowrap;
     margin-left: 0.5rem;
+
+    &.container-hidden {
+      display: none;
+    }
   }
 }
