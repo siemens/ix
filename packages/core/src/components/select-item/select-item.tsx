@@ -18,7 +18,10 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { IxSelectItemLabelChangeEvent } from './events';
+import {
+  IxSelectItemLabelChangeEvent,
+  IxSelectItemValueChangeEvent,
+} from './events';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 
 @Component({
@@ -83,6 +86,16 @@ export class SelectItem implements DropdownItemWrapper {
     if (this.value === undefined || this.value === null) {
       throw Error('ix-select-item must have a `value` property');
     }
+  }
+
+  @Watch('value')
+  onValueChange(newValue: string, oldValue: string) {
+    this.hostElement.dispatchEvent(
+      new IxSelectItemValueChangeEvent({
+        newValue: newValue,
+        oldValue: oldValue,
+      })
+    );
   }
 
   @Watch('label')
