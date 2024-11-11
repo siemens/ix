@@ -1,4 +1,8 @@
-# Fields
+---
+sidebar_position: 2
+---
+
+# Field
 
 A field is a form element when user input is needed. It's typically used with other form elements in a fieldset.
 

@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Behavior
 
 Forms behavior refers to the way in which user input is handled and validated within a form. It plays a crucial role in providing a seamless and user-friendly experience for form interactions.
