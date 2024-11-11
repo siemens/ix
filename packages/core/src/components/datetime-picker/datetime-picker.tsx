@@ -196,7 +196,9 @@ export class DatetimePicker {
       time: time,
     });
 
-    this.done.emit([date?.from, date?.to ?? '', time].join(this.eventDelimiter));
+    this.done.emit(
+      [date?.from, date?.to ?? '', time].join(this.eventDelimiter)
+    );
   }
 
   private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
