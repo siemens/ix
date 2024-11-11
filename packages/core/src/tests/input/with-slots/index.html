@@ -29,6 +29,11 @@ SPDX-License-Identifier: MIT
         <ix-typography slot="end" color="weak">unit</ix-typography>
       </ix-input>
 
+      <h4>dynamic slot insertion</h4>
+      <ix-input value="Lorem ipsum" id="inputOne"> </ix-input>
+      <ix-input value="Lorem ipsum" id="inputTwo"> </ix-input>
+      <ix-button id="addSlotsButton"> Insert slots </ix-button>
+
       <h4>icon-16</h4>
       <ix-input value="Lorem ipsum">
         <ix-icon slot="start" size="16" name="bulb"></ix-icon>
@@ -61,6 +66,31 @@ SPDX-License-Identifier: MIT
         <ix-icon-button slot="end" icon="star" size="24"></ix-icon-button>
       </ix-input>
     </div>
+
+    <script>
+      document
+        .getElementById('addSlotsButton')
+        .addEventListener('click', function () {
+          const inputOne = document.getElementById('inputOne');
+
+          const startSlot = document.createElement('ix-typography');
+          startSlot.setAttribute('slot', 'start');
+          startSlot.setAttribute('color', 'weak');
+          startSlot.textContent = 'Text';
+
+          inputOne.appendChild(startSlot);
+
+          const inputTwo = document.getElementById('inputTwo');
+
+          const endSlot = document.createElement('ix-typography');
+          endSlot.setAttribute('slot', 'end');
+          endSlot.setAttribute('color', 'weak');
+          endSlot.textContent = 'unit';
+
+          inputTwo.appendChild(endSlot);
+        });
+    </script>
+
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>
 </html>
