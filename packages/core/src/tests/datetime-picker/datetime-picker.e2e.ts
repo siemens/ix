@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import {regressionTest, viewPorts} from '@utils/test';
+import { regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('datetime picker', () => {
   regressionTest('basic', async ({ page }) => {
