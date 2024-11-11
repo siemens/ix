@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { DateTimeCorners } from 'src/components/date-picker/date-picker';
+import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 export interface IxDatePickerComponent {
   /**
@@ -23,7 +23,7 @@ export interface IxDatePickerComponent {
   /**
    * Annotae with @Prop() decorator
    */
-  corners: DateTimeCorners;
+  corners: DateTimeCardCorners;
 
   /**
    * Annotae with @Prop() decorator

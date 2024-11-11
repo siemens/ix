@@ -24,14 +24,12 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 import { DateTime, Info } from 'luxon';
 import { OnListener } from '../utils/listener';
-import { IxDatePickerComponent } from '../utils/date-picker/date-picker';
+import { IxDatePickerComponent } from './date-picker-component';
 
 export type DateChangeEvent = {
   from: string;
   to: string;
 };
-
-export type DateTimeCorners = DateTimeCardCorners;
 
 interface CalendarWeek {
   weekNumber: number;

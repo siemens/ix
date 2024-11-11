@@ -17798,11 +17798,6 @@
       "docstring": "",
       "path": "src/components/date-time-card/date-time-card.tsx"
     },
-    "src/components/date-picker/date-picker.tsx::DateChangeEvent": {
-      "declaration": "{\n  from: string;\n  to: string;\n}",
-      "docstring": "",
-      "path": "src/components/date-picker/date-picker.tsx"
-    },
     "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption": {
       "declaration": "{\n  id: string;\n  label: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
@@ -17812,6 +17807,11 @@
       "declaration": "{\n  id: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
+    },
+    "src/components/date-picker/date-picker.tsx::DateChangeEvent": {
+      "declaration": "{\n  from: string;\n  to: string;\n}",
+      "docstring": "",
+      "path": "src/components/date-picker/date-picker.tsx"
     },
     "src/components/datetime-picker/datetime-picker.tsx::DateTimeDateChangeEvent": {
       "declaration": "export type DateTimeDateChangeEvent =\n  | string\n  | Omit<DateTimeSelectEvent, 'time'>;",

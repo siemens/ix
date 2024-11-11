@@ -4,4 +4,4 @@
 "@siemens/ix-vue": minor
 ---
 
-feat(core/date-dropdown): expose locale of nested date-picker
+feat(core/date-dropdown): implement date picker interface

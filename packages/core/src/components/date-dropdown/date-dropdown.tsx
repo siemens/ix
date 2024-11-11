@@ -21,7 +21,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { IxDatePickerComponent } from '../utils/date-picker/date-picker';
+import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 
 export type DateDropdownOption = {
   id: string;
