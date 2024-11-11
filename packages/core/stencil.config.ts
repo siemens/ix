@@ -15,6 +15,7 @@ import { sass } from '@stencil/sass';
 import { vueOutputTarget } from '@stencil/vue-output-target';
 import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
+import { storybookOutputTarget } from './scripts/build/storybook';
 
 export const config: Config = {
   tsconfig: 'tsconfig.lib.json',
@@ -43,6 +44,9 @@ export const config: Config = {
     }),
   ],
   outputTargets: [
+    storybookOutputTarget({
+      dist: '../storybook-docs/.storybook/define-custom-elements.ts',
+    }),
     vueOutputTarget({
       componentCorePackage: '@siemens/ix',
       proxiesFile: '../vue/src/components.ts',
