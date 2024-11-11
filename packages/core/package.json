@@ -29,12 +29,11 @@
     "hydrate/"
   ],
   "scripts": {
-    "build": "stencil build --prod && npm run build:scss",
-    "build:scss": "ts-node -P ./scripts/build/tsconfig.json ./scripts/build/build-css.ts",
-    "build:dev": "stencil build",
+    "build": "stencil build --prod && npm run build.scss",
+    "build.scss": "ts-node -P ./scripts/build/tsconfig.json ./scripts/build/build-css.ts",
+    "build.watch": "stencil build --watch",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "start": "stencil build --dev --watch --serve",
-    "dev": "stencil build --watch",
     "test": "npm run test:spec && npm run test:ct",
     "test:spec": "stencil test --spec",
     "test:ct": "playwright test --config playwright-ct.config.ts --reporter list",

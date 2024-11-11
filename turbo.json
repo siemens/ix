@@ -18,10 +18,6 @@
       ],
       "outputLogs": "new-only"
     },
-    "pkg": {
-      "dependsOn": ["^build"],
-      "cache": true
-    },
     "start": {
       "dependsOn": ["^build"],
       "cache": true
@@ -35,6 +31,14 @@
     },
     "test": {
       "dependsOn": ["^build"],
+      "cache": false
+    },
+    "build.watch": {
+      "cache": false
+    },
+    "storybook": {
+      "persistent": true,
+      "dependsOn": ["build.watch"],
       "cache": false
     }
   }

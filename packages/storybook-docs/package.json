@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "storybook dev -p 6006",
+    "build.watch": "storybook dev -p 6006",
     "build": "storybook build"
   },
   "dependencies": {
