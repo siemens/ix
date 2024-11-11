@@ -20,6 +20,7 @@ const meta = {
     variant: {
       options: ['primary', 'secondary'],
       control: { type: 'select' },
+      description: 'test',
     },
   }),
   args: {},

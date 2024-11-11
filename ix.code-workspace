@@ -4,6 +4,7 @@
       "name": "@siemens/ix",
       "path": "./packages/core"
     },
+
     {
       "name": "@siemens/ix-react",
       "path": "./packages/react"
@@ -55,6 +56,10 @@
     {
       "name": "figma-plugin",
       "path": "./packages/figma-plugin"
+    },
+    {
+      "name": "storybook",
+      "path": "./packages/storybook-docs"
     },
     {
       "name": "root",
