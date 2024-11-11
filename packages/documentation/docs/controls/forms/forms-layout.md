@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Layout
 
 Effective form layouts play a crucial role in usability. Well-structured forms include fieldsets, considering the hierarchy of information, and understanding how to strike the right balance between aesthetics and functionality.
