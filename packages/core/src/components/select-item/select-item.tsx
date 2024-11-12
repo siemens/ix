@@ -30,12 +30,12 @@ import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
   shadow: true,
 })
 export class SelectItem implements DropdownItemWrapper {
-  @Element() hostElement: HTMLIxSelectItemElement;
+  @Element() hostElement!: HTMLIxSelectItemElement;
 
   /**
    * Displayed name of the item
    */
-  @Prop({ reflect: true }) label: string;
+  @Prop({ reflect: true }) label?: string;
 
   /**
    * The value of the item.
@@ -58,11 +58,11 @@ export class SelectItem implements DropdownItemWrapper {
   /**
    * Item clicked
    */
-  @Event() itemClick: EventEmitter<string>;
+  @Event() itemClick!: EventEmitter<string>;
 
   /** @internal */
   @Method()
-  async getDropdownItemElement(): Promise<HTMLIxDropdownItemElement> {
+  async getDropdownItemElement(): Promise<HTMLIxDropdownItemElement | null> {
     return this.dropdownItem;
   }
 
