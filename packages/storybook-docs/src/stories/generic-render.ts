@@ -11,13 +11,21 @@ import jsonFile from '@siemens/ix/component-doc.json';
 import { ArgTypes } from '@storybook/web-components';
 
 export function genericRender(selector: string, args: any) {
+  const rootInner = document.createElement('div');
+  rootInner.id = 'root-inner';
   const element = document.createElement(selector);
 
   if ('defaultSlot' in args) {
     element.textContent = args.defaultSlot;
+    delete args.defaultSlot;
   }
-  Object.assign(element, args);
-  return element;
+
+  Object.keys(args).forEach((key) => {
+    element.setAttribute(key, args[key]);
+  });
+
+  rootInner.appendChild(element);
+  return rootInner;
 }
 
 export function getLoremIpsum() {
@@ -40,26 +48,47 @@ function getComponent(selector: string) {
 export function makeArgTypes<T = unknown>(
   selector: string,
   overwriteArgTypes: T = {} as T,
-  generateAll: boolean = true
+  generateAll: boolean = true,
+  ignore: string[] = []
 ) {
   const component = getComponent(selector);
   const props = component.props;
   const argTypes: Record<string, ExtractedInputType<T>> = {};
 
   if (generateAll) {
-    props.forEach((prop) => {
-      if (prop.name.includes('icon')) {
-        argTypes[prop.name] = {
-          control: { type: 'select' },
-          options: icons,
-        };
+    props
+      .filter((prop) => {
+        return !ignore.includes(prop.name);
+      })
+      .forEach((prop) => {
+        if (
+          prop.values.length > 1 &&
+          prop.values.every((value) => value.type === 'string')
+        ) {
+          argTypes[prop.name] = {
+            name: `${prop.name}*`,
+            control: { type: 'select' },
+            options: (prop.values as { type: 'string'; value: string }[])
+              .filter((v) => v.value !== '')
+              .map((v) => v.value),
+          };
 
-        return;
-      }
-      argTypes[prop.name] = {
-        control: switchTypes(prop.type),
-      };
-    });
+          return;
+        }
+
+        if (prop.name.includes('icon')) {
+          argTypes[prop.name] = {
+            control: { type: 'select' },
+            options: icons,
+          };
+
+          return;
+        }
+
+        argTypes[prop.name] = {
+          control: switchTypes(prop.type),
+        };
+      });
   }
   return { ...argTypes, ...overwriteArgTypes };
 }

@@ -29,6 +29,10 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    html: {
+      root: '#root-inner',
+      removeComments: true,
+    },
   },
   decorators: [
     withThemeByClassName({
