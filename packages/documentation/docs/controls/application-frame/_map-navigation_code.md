@@ -5,44 +5,46 @@ import EventsOverlay from './../../auto-generated/ix-map-navigation-overlay/even
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Basic 
+### Examples
 
-<Playground
-  name="map-navigation" 
-  height="35rem" 
-  oMargin
-  hideInitalCodePreview
-  >
-</Playground>
-
-### Custom overlay
+#### Basic
 
 <Playground
-  name="map-navigation-overlay" 
-  height="35rem" 
-  noMargin
-  hideInitalCodePreview
-  >
-</Playground>
+name="map-navigation"
+height="35rem"
+oMargin
+hideInitalCodePreview
 
-## API (ix-map-navigation)
+> </Playground>
 
-### Properties
+#### Custom overlay
+
+<Playground
+name="map-navigation-overlay"
+height="35rem"
+noMargin
+hideInitalCodePreview
+
+> </Playground>
+
+### API (ix-map-navigation)
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-map-navigation-overlay)
+### API (ix-map-navigation-overlay)
 
-### Properties
+#### Properties
 
 <PropsOverlay/>
 
-### Events
+#### Events
 
 <EventsOverlay/>

@@ -1,4 +1,4 @@
-## Style
+## Guidelines
 
 Form validation gives users feedback on their input to ensure accurate, consistent data is submitted. When requirements are not met or data is incorrect, it’s rejected.
 

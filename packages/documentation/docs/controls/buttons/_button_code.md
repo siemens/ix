@@ -5,16 +5,18 @@ import Events from './../../auto-generated/ix-button/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Primary
+### Examples
+
+#### Primary
 
 <Playground
-  name="buttons"
-  >
-</Playground>
+name="buttons"
 
-### Primary Outline
+> </Playground>
+
+#### Primary Outline
 
 :::info
 
@@ -23,12 +25,12 @@ Will be used as **Secondary** in UX context
 :::
 
 <Playground
-  name="button-secondary"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-secondary"
+hideInitalCodePreview
 
-### Primary Ghost
+> </Playground>
+
+#### Primary Ghost
 
 :::info
 
@@ -37,12 +39,12 @@ Will be used as **Ghost** in UX context
 :::
 
 <Playground
-  name="button-ghost"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-ghost"
+hideInitalCodePreview
 
-### Secondary
+> </Playground>
+
+#### Secondary
 
 :::info
 
@@ -51,12 +53,12 @@ Will be used as **Grey button** in UX context
 :::
 
 <Playground
-  name="button-grey"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-grey"
+hideInitalCodePreview
 
-### Secondary Outline
+> </Playground>
+
+#### Secondary Outline
 
 :::info
 
@@ -65,12 +67,12 @@ Will be used as **Grey secondary** in UX context
 :::
 
 <Playground
-  name="button-grey-secondary"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-grey-secondary"
+hideInitalCodePreview
 
-### Secondary Ghost
+> </Playground>
+
+#### Secondary Ghost
 
 :::info
 
@@ -79,71 +81,71 @@ Will be used as **Grey ghost** in UX context
 :::
 
 <Playground
-  name="button-grey-ghost"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-grey-ghost"
+hideInitalCodePreview
 
-### Danger
+> </Playground>
 
-<ApiTableSinceTag message="2.3.0" />
-
-<Playground
-  name="button-danger"
-  hideInitalCodePreview
-  >
-</Playground>
-
-### Danger Outline
+#### Danger
 
 <ApiTableSinceTag message="2.3.0" />
 
 <Playground
-  name="button-danger-outline"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-danger"
+hideInitalCodePreview
 
-### Danger Ghost
+> </Playground>
+
+#### Danger Outline
 
 <ApiTableSinceTag message="2.3.0" />
 
 <Playground
-  name="button-danger-ghost"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-danger-outline"
+hideInitalCodePreview
 
-### Button group
+> </Playground>
 
-<Playground
-  name="button-group"
-  hideInitalCodePreview
-  >
-</Playground>
+#### Danger Ghost
 
-### Button with text and icon
+<ApiTableSinceTag message="2.3.0" />
 
 <Playground
-  name="button-text-icon"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-danger-ghost"
+hideInitalCodePreview
 
-### Loading button
+> </Playground>
+
+#### Button group
 
 <Playground
-  name="button-loading"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-group"
+hideInitalCodePreview
 
-## API
+> </Playground>
 
-### Properties
+#### Button with text and icon
+
+<Playground
+name="button-text-icon"
+hideInitalCodePreview
+
+> </Playground>
+
+#### Loading button
+
+<Playground
+name="button-loading"
+hideInitalCodePreview
+
+> </Playground>
+
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

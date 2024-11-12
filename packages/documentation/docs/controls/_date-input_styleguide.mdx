@@ -1,6 +1,9 @@
+## Guidelines
+
 The date input component enables users to enter and select a date in a standardized format. We typically use this component in forms, filters and scheduling tools to ensure consistent and accurate date entries.
 
 ![Date input overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3629-6200&t=ADQCetGKOEH1WG2r-4)
+
 1. Label
 2. Required field indicator
 3. Current value
@@ -9,11 +12,11 @@ The date input component enables users to enter and select a date in a standardi
 6. Date dropdown
 7. Month and year selection
 8. Weekdays
-9. Week numbers 
+9. Week numbers
 10. Indicator for current day
 11. Indicator for selected day
 
-## Options
+### Options
 
 - **Label**: See [form field](./forms/forms-field.md).
 - **Required**: See [form field](./forms/forms-field.md).
@@ -24,7 +27,7 @@ The date input component enables users to enter and select a date in a standardi
 - **Error message**: Feedback text when date is not parsable. We typically use this to inform users that the entered date format is incorrect and guide them to enter a valid date.
 - **Format**: Specify the date format, default ‘yyyy/LL/dd’ to ensure that dates are entered in a consistent and recognizable format.
 
-## Behavior in context
+### Behavior in context
 
 - **Interaction**:
   - Click or focus opens the date picker.
@@ -39,14 +42,13 @@ The date input component enables users to enter and select a date in a standardi
 - **Overflow**: The input field should be wide enough to display the full date without truncation.
 - **Alignment**: Date inputs are always aligned to the left.
 
-## States
+### States
 
 Date input has five states: Default, hover, disabled, read-only and focused.
 
 ![Date input states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3989-2545&t=ADQCetGKOEH1WG2r-4)
 
-
-## Dos and Don’ts
+### Dos and Don’ts
 
 - Do use consistent date formats throughout the application to avoid confusion
 - Do use separate inputs for start and end dates to simplify date ranges
@@ -55,7 +57,7 @@ Date input has five states: Default, hover, disabled, read-only and focused.
 - Don't use ambiguous formats like 09/08/2006 without giving clear context
 - Don't allow free text without validation or formatting guidance
 
-## Related patterns
+### Related patterns
 
 - [Date dropdown](./date-dropdown.md)
 - [Date picker](./date-picker.md)

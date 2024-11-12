@@ -10,101 +10,103 @@ import TagsToggleButton from './../../auto-generated/ix-toggle-button/tags.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Toggle button primary
+### Examples
 
-<Playground
-  name="toggle-button-primary"
-  >
-</Playground>
-
-### Toggle button primary outline
+#### Toggle button primary
 
 <Playground
-  name="toggle-button-primary-outline"
-  >
-</Playground>
+name="toggle-button-primary"
 
-### Toggle button primary ghost
+> </Playground>
 
-<Playground
-  name="toggle-button-primary-ghost"
-  >
-</Playground>
-
-### Toggle button secondary
+#### Toggle button primary outline
 
 <Playground
-  name="toggle-button-secondary"
-  >
-</Playground>
+name="toggle-button-primary-outline"
 
-### Toggle button secondary outline
+> </Playground>
 
-<Playground
-  name="toggle-button-secondary-outline"
-  >
-</Playground>
-
-### Toggle button secondary ghost
+#### Toggle button primary ghost
 
 <Playground
-  name="toggle-button-secondary-ghost"
-  >
-</Playground>
+name="toggle-button-primary-ghost"
 
-### Icon Toggle button secondary outline
+> </Playground>
 
-<Playground
-  name="icon-toggle-button-secondary-outline"
-  >
-</Playground>
-
-### Icon Toggle button secondary ghost
+#### Toggle button secondary
 
 <Playground
-  name="icon-toggle-button-secondary-ghost"
-  >
-</Playground>
+name="toggle-button-secondary"
 
-### Icon Toggle Button secondary
+> </Playground>
 
-<Playground
-  name="icon-toggle-button-secondary"
-  >
-</Playground>
-
-### Icon Toggle button primary outline
+#### Toggle button secondary outline
 
 <Playground
-  name="icon-toggle-button-primary-outline"
-  >
-</Playground>
+name="toggle-button-secondary-outline"
 
-### Icon Toggle Button primary ghost
+> </Playground>
+
+#### Toggle button secondary ghost
 
 <Playground
-  name="icon-toggle-button-primary-ghost"
-  >
-</Playground>
+name="toggle-button-secondary-ghost"
 
-## API (ix-toggle-button)
+> </Playground>
 
-### Properties 
+#### Icon Toggle button secondary outline
+
+<Playground
+name="icon-toggle-button-secondary-outline"
+
+> </Playground>
+
+#### Icon Toggle button secondary ghost
+
+<Playground
+name="icon-toggle-button-secondary-ghost"
+
+> </Playground>
+
+#### Icon Toggle Button secondary
+
+<Playground
+name="icon-toggle-button-secondary"
+
+> </Playground>
+
+#### Icon Toggle button primary outline
+
+<Playground
+name="icon-toggle-button-primary-outline"
+
+> </Playground>
+
+#### Icon Toggle Button primary ghost
+
+<Playground
+name="icon-toggle-button-primary-ghost"
+
+> </Playground>
+
+### API (ix-toggle-button)
+
+#### Properties
 
 <PropsToggleButton />
 
-### Events
+#### Events
 
 <EventsToggleButton />
 
-## API (ix-icon-toggle-button)
+### API (ix-icon-toggle-button)
 
-### Properties 
+#### Properties
 
 <PropsIconToggleButton />
 
-### Events
+#### Events
 
 <EventsIconToggleButton />
