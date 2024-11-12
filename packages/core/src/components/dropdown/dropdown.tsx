@@ -38,7 +38,7 @@ import {
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
-import { resolveSelector } from '../utils/find-element';
+import { findElement } from '../utils/find-element';
 
 let sequenceId = 0;
 
@@ -304,7 +304,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private async resolveElement(
     element: string | HTMLElement | Promise<HTMLElement>
   ) {
-    const el = await this.findElement(element);
+    const el = await findElement(element);
 
     return this.checkForSubmenuAnchor(el);
   }
@@ -326,61 +326,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
 
     return element;
-  }
-
-  private findElement(
-    element: string | HTMLElement | Promise<HTMLElement>
-  ): Promise<Element> {
-    if (element instanceof Promise) {
-      return element;
-    }
-
-    if (typeof element === 'object') {
-      return Promise.resolve(element);
-    }
-
-    if (typeof element != 'string') {
-      return;
-    }
-
-    const selector = `#${element}`;
-
-    const resolve = (el: Element[]) => {
-      if (el?.length > 1) {
-        console.warn(
-          `ix-dropdown: Ambiguous selector ${selector}. Multiple elements found:`,
-          el
-        );
-      } else if (el && el[0]) {
-        return el[0];
-      }
-    };
-
-    return resolveSelector(selector, this.hostElement).then((el) => {
-      let element = resolve(el);
-
-      if (element) {
-        return element;
-      }
-
-      return new Promise<Element | undefined>(() => {
-        const observer = new MutationObserver(() => {
-          resolveSelector(selector, this.hostElement).then((el) => {
-            element = resolve(el);
-
-            if (element) {
-              observer.disconnect();
-              return element;
-            }
-          });
-
-          observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-          });
-        });
-      });
-    });
   }
 
   @Watch('show')
