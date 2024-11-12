@@ -755,7 +755,7 @@ export namespace Components {
         /**
           * Set time reference
          */
-        "timeReference": 'AM' | 'PM';
+        "timeReference"?: 'AM' | 'PM';
         /**
           * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0

@@ -4728,7 +4728,6 @@
           "reflectToAttr": false,
           "docs": "Set time reference",
           "docsTags": [],
-          "default": "'AM'",
           "values": [
             {
               "value": "AM",
@@ -4739,7 +4738,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
