@@ -37,6 +37,12 @@
   font-weight: bold;
 }
 
+a.Docs__Tag,
+a.Docs__Tag:hover {
+  color: var(--theme-color-inv-std-text) !important;
+  text-decoration: none !important;
+}
+
 .Docs__Tag.Docs__Tag__Deprecated {
   background-color: var(--theme-color-alarm);
 }
