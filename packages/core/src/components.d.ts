@@ -1914,12 +1914,12 @@ export namespace Components {
         "value"?: string | string[];
     }
     interface IxSelectItem {
-        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
+        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement | null>;
         "hover": boolean;
         /**
           * Displayed name of the item
          */
-        "label": string;
+        "label"?: string;
         /**
           * @param event
          */
