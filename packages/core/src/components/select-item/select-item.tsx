@@ -22,14 +22,13 @@ import {
   IxSelectItemLabelChangeEvent,
   IxSelectItemValueChangeEvent,
 } from './events';
-import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
   shadow: true,
 })
-export class SelectItem implements DropdownItemWrapper {
+export class SelectItem {
   @Element() hostElement!: HTMLIxSelectItemElement;
 
   /**
@@ -60,12 +59,6 @@ export class SelectItem implements DropdownItemWrapper {
    */
   @Event() itemClick!: EventEmitter<string>;
 
-  /** @internal */
-  @Method()
-  async getDropdownItemElement(): Promise<HTMLIxDropdownItemElement | null> {
-    return this.dropdownItem;
-  }
-
   /**
    * @internal
    * @param event
@@ -76,10 +69,6 @@ export class SelectItem implements DropdownItemWrapper {
     event?.stopPropagation();
 
     this.itemClick.emit(this.value);
-  }
-
-  get dropdownItem() {
-    return this.hostElement.querySelector('ix-dropdown-item');
   }
 
   componentDidRender() {
