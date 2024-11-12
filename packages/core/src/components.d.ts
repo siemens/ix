@@ -24,6 +24,7 @@ import { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 import { DateChangeEvent } from "./components/date-picker/date-picker";
 import { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 import { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+import { ElementReference } from "./components/utils/element-reference";
 import { CloseBehavior } from "./components/dropdown/dropdown-controller";
 import { AlignedPlacement, Side } from "./components/dropdown/placement";
 import { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -42,6 +43,7 @@ import { TabClickDetail } from "./components/tab-item/tab-item";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
+import { ElementReference as ElementReference1 } from "./components/utils/element-reference";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
@@ -65,6 +67,7 @@ export { DateTimeCardCorners } from "./components/date-time-card/date-time-card"
 export { DateChangeEvent } from "./components/date-picker/date-picker";
 export { DateTimeCardCorners as DateTimeCardCorners1 } from "./components/date-time-card/date-time-card";
 export { DateTimeDateChangeEvent, DateTimeSelectEvent } from "./components/datetime-picker/datetime-picker";
+export { ElementReference } from "./components/utils/element-reference";
 export { CloseBehavior } from "./components/dropdown/dropdown-controller";
 export { AlignedPlacement, Side } from "./components/dropdown/placement";
 export { DropdownButtonVariant } from "./components/dropdown-button/dropdown-button";
@@ -83,6 +86,7 @@ export { TabClickDetail } from "./components/tab-item/tab-item";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
+export { ElementReference as ElementReference1 } from "./components/utils/element-reference";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
@@ -637,7 +641,7 @@ export namespace Components {
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.1.0
          */
-        "locale": string;
+        "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
@@ -812,7 +816,7 @@ export namespace Components {
         /**
           * Define an anchor element
          */
-        "anchor": string | HTMLElement;
+        "anchor"?: ElementReference;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
@@ -827,12 +831,12 @@ export namespace Components {
         /**
           * Move dropdown along main axis of alignment
          */
-        "offset": {
+        "offset"?: {
     mainAxis?: number;
     crossAxis?: number;
     alignmentAxis?: number;
   };
-        "overwriteDropdownStyle": (delegate: {
+        "overwriteDropdownStyle"?: (delegate: {
     dropdownRef: HTMLElement;
     triggerRef?: HTMLElement;
   }) => Promise<Partial<CSSStyleDeclaration>>;
@@ -856,7 +860,7 @@ export namespace Components {
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
-        "trigger": string | HTMLElement | Promise<HTMLElement>;
+        "trigger"?: ElementReference;
         /**
           * Update position of dropdown
          */
@@ -882,11 +886,11 @@ export namespace Components {
         /**
           * Button icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Set label
          */
-        "label": string;
+        "label"?: string;
         /**
           * Outline button
          */
@@ -895,7 +899,7 @@ export namespace Components {
           * Placement of the dropdown
           * @since 2.0.0
          */
-        "placement": AlignedPlacement;
+        "placement"?: AlignedPlacement;
         /**
           * Button variant
          */
@@ -2279,7 +2283,7 @@ export namespace Components {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: string | HTMLElement | Promise<HTMLElement>;
+        "for"?: ElementReference1;
         "hideDelay": number;
         "hideTooltip": () => Promise<void>;
         /**
@@ -4958,7 +4962,7 @@ declare namespace LocalJSX {
         /**
           * Define an anchor element
          */
-        "anchor"?: string | HTMLElement;
+        "anchor"?: ElementReference;
         /**
           * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
          */
@@ -5005,7 +5009,7 @@ declare namespace LocalJSX {
         /**
           * Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
          */
-        "trigger"?: string | HTMLElement | Promise<HTMLElement>;
+        "trigger"?: ElementReference;
     }
     /**
      * @since 1.3.0
@@ -6546,7 +6550,7 @@ declare namespace LocalJSX {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: string | HTMLElement | Promise<HTMLElement>;
+        "for"?: ElementReference1;
         "hideDelay"?: number;
         /**
           * Define if the user can access the tooltip via mouse.
