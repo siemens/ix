@@ -19,19 +19,21 @@ import AvatarTags from './../../auto-generated/ix-menu-avatar/tags.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Basic
+### Examples
+
+#### Basic
 
 <Playground
-  name="vertical-tabs" 
-  height="30rem" 
-  noMargin
-  hideInitalCodePreview
-  >
-</Playground>
+name="vertical-tabs"
+height="30rem"
+noMargin
+hideInitalCodePreview
 
-### 2nd navigation level
+> </Playground>
+
+#### 2nd navigation level
 
 <CategoryTags />
 <Playground 
@@ -42,78 +44,78 @@ import Playground from '@site/src/components/PlaygroundV3';
   >
 </Playground>
 
-### Avatar
+#### Avatar
 
 <AvatarTags />
 
 <Playground
-  name="vertical-tabs-with-avatar" 
-  height="30rem" 
-  noMargin
-  hideInitalCodePreview
-  >
-</Playground>
+name="vertical-tabs-with-avatar"
+height="30rem"
+noMargin
+hideInitalCodePreview
 
-### Bottom tabs
+> </Playground>
+
+#### Bottom tabs
 
 <div class="siemens-brand-section">
   <strong>Caution</strong>: Since the old implementation using the bottom property on menu items had some problems and will not work anymore, please use slot="bottom" instead.
 </div>
 
 <Playground
-  name="menu-with-bottom-tabs" 
-  height="30rem" 
-  noMargin
-  hideInitalCodePreview
-  >
-</Playground>
+name="menu-with-bottom-tabs"
+height="30rem"
+noMargin
+hideInitalCodePreview
 
-## API (ix-menu)
+> </Playground>
 
-### Properties
+### API (ix-menu)
+
+#### Properties
 
 <MenuProps />
 
-### Events
+#### Events
 
 <MenuEvents />
 
-## API (ix-menu-item)
+### API (ix-menu-item)
 
-### Props
+#### Props
 
 <ItemProps />
 
-### Events
+#### Events
 
 <ItemEvents />
 
-## API (ix-menu-category)
+### API (ix-menu-category)
 
-### Properties
+#### Properties
 
 <CategoryProps />
 
-### Events
+#### Events
 
 <CategoryEvents />
 
-## API (ix-menu-avatar)
+### API (ix-menu-avatar)
 
-### Properties
+#### Properties
 
 <AvatarProps />
 
-### Events
+#### Events
 
 <AvatarEvents />
 
-## API (ix-menu-avatar-item)
+### API (ix-menu-avatar-item)
 
-### Properties
+#### Properties
 
 <AvatarItemProps />
 
-### Events
+#### Events
 
 <AvatarItemEvents />

@@ -6,7 +6,9 @@ import Events from './../auto-generated/ix-blind/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3'
 
-## Examples
+## Development
+
+### Examples
 
 <Playground
 name="blind"
@@ -14,7 +16,7 @@ height="16rem"
 
 > </Playground>
 
-### Header actions
+#### Header actions
 
 <ApiTableSinceTag message="1.5.0" />
 
@@ -24,7 +26,7 @@ height="16rem"
 
 > </Playground>
 
-### Variants
+#### Variants
 
 <ApiTableSinceTag message="2.0.0" />
 
@@ -34,12 +36,12 @@ height="55rem"
 
 > </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

@@ -6,44 +6,46 @@ import Tags from './../auto-generated/ix-pane/tags.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Example
+## Development
 
-### Basic
+### Example
+
+#### Basic
 
 <Playground
-  name="pane" 
-  height="24rem" 
-  noMargin
-  >
-</Playground>
+name="pane"
+height="24rem"
+noMargin
 
-### Pane Layout
+> </Playground>
+
+#### Pane Layout
 
 <Tags />
 
 <Playground
-  name="pane-layout" 
-  height="24rem" 
-  noMargin 
-  >
-</Playground>
+name="pane-layout"
+height="24rem"
+noMargin
 
-## API (ix-pane)
+> </Playground>
 
-### Properties
+### API (ix-pane)
+
+#### Properties
 
 <PaneProps />
 
-### Events
+#### Events
 
 <PaneEvents />
 
-## API (ix-pane-layout)
+### API (ix-pane-layout)
 
-### Properties
+#### Properties
 
 <PaneLayoutProps />
 
-### Events
+#### Events
 
 <PaneLayoutEvents />

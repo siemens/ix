@@ -6,31 +6,33 @@ import Events from './../auto-generated/ix-category-filter/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Basic 
+### Examples
 
-<Playground
-  name="category-filter"
-  height="12rem"
-  >
-</Playground>
-
-### Without categories
+#### Basic
 
 <Playground
-  name="category-filter-suggestions"
-  hideInitalCodePreview
-  height="12rem"
-  >
-</Playground>
+name="category-filter"
+height="12rem"
 
-## API
+> </Playground>
 
-### Properties
+#### Without categories
+
+<Playground
+name="category-filter-suggestions"
+hideInitalCodePreview
+height="12rem"
+
+> </Playground>
+
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

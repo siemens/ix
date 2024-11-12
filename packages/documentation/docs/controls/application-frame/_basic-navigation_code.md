@@ -3,33 +3,35 @@ import Events from './../../auto-generated/ix-basic-navigation/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Basic
+### Examples
 
-<Playground 
-  name="basic-navigation" 
-  height="30rem" 
-  noMargin 
-  >
-</Playground>
-
-### Without header
+#### Basic
 
 <Playground
-  name="basic-navigation-without-header" 
-  height="30rem" 
-  noMargin
-  hideInitalCodePreview
-  >
-</Playground>
+name="basic-navigation"
+height="30rem"
+noMargin
 
-## API
+> </Playground>
 
-### Properties
+#### Without header
+
+<Playground
+name="basic-navigation-without-header"
+height="30rem"
+noMargin
+hideInitalCodePreview
+
+> </Playground>
+
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
