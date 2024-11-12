@@ -10,19 +10,13 @@ import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './generic-render';
 
-type Element = Components.IxButton & { defaultSlot: string };
+type Element = Components.IxActionCard & { defaultSlot: string };
 
 const meta = {
-  title: 'Example/Button',
+  title: 'Example/ActionCard',
   tags: [],
-  render: (args) => genericRender('ix-button', args),
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-button', {
-    variant: {
-      options: ['primary', 'secondary'],
-      control: { type: 'select' },
-    },
-  }),
-  args: {},
+  render: (args) => genericRender('ix-action-card', args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-action-card', {}),
   parameters: {
     design: {
       type: 'figma',
@@ -35,28 +29,8 @@ export default meta;
 type Story = StoryObj<Element>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     defaultSlot: 'Button',
-  },
-};
-
-export const Loading: Story = {
-  args: {
-    defaultSlot: 'Button',
-    loading: true,
-    ghost: false,
-  },
-};
-
-export const ButtonOutlineWithIcon: Story = {
-  args: {
-    defaultSlot: 'Button',
-    disabled: false,
-    ghost: false,
-    icon: 'eye',
-    loading: false,
-    outline: true,
-    variant: 'primary',
   },
 };

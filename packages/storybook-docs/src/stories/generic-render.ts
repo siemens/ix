@@ -6,7 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { icons } from '@siemens/ix-icons/dist/sample.json';
 import jsonFile from '@siemens/ix/component-doc.json';
+import { ArgTypes } from '@storybook/web-components';
 
 export function genericRender(selector: string, args: any) {
   const element = document.createElement(selector);
@@ -22,11 +24,9 @@ export function getLoremIpsum() {
   return `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.`;
 }
 
-export function makeArgTypes<T = unknown>(
-  selector: string,
-  overwriteArgTypes: T = {} as T,
-  generateAll: boolean = true
-) {
+type ExtractedInputType<T = unknown> = ArgTypes<T>[keyof T];
+
+function getComponent(selector: string) {
   const { components } = jsonFile;
   const component = components.find((c) => c.tag === selector);
 
@@ -34,20 +34,37 @@ export function makeArgTypes<T = unknown>(
     throw new Error(`Component ${selector} not found in component-doc.json`);
   }
 
+  return component;
+}
+
+export function makeArgTypes<T = unknown>(
+  selector: string,
+  overwriteArgTypes: T = {} as T,
+  generateAll: boolean = true
+) {
+  const component = getComponent(selector);
   const props = component.props;
-  const argTypes: Record<string, unknown> = {};
+  const argTypes: Record<string, ExtractedInputType<T>> = {};
 
   if (generateAll) {
     props.forEach((prop) => {
-      console.log(prop.name, prop.type);
+      if (prop.name.includes('icon')) {
+        argTypes[prop.name] = {
+          control: { type: 'select' },
+          options: icons,
+        };
 
-      argTypes[prop.name] = { control: switchTypes(prop.type) };
+        return;
+      }
+      argTypes[prop.name] = {
+        control: switchTypes(prop.type),
+      };
     });
   }
   return { ...argTypes, ...overwriteArgTypes };
 }
 
-function switchTypes(type: string) {
+function switchTypes(type: string): any {
   switch (type) {
     case 'string':
       return { type: 'text' };
