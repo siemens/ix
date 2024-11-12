@@ -4,4 +4,4 @@
 "@siemens/ix-vue": minor
 ---
 
-feat(core/date-dropdown): implement date picker interface
+feat(core/date-dropdown|date-picker|datetime-picker): add missing properties to picker components
