@@ -28,6 +28,7 @@ import {
 import { OnListener } from '../utils/listener';
 import { tooltipController } from './tooltip-controller';
 import { IxOverlayComponent } from '../utils/overlay';
+import { resolveSelector } from '../utils/find-element';
 
 type ArrowPosition = {
   top?: string;
@@ -254,7 +255,7 @@ export class Tooltip implements IxOverlayComponent {
 
   private async queryAnchorElements(): Promise<Array<HTMLElement> | undefined> {
     if (typeof this.for === 'string') {
-      return Promise.resolve(Array.from(document.querySelectorAll(this.for)));
+      return resolveSelector(this.for);
     }
 
     if (this.for instanceof HTMLElement) {

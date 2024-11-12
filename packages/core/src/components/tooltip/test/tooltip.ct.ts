@@ -23,6 +23,23 @@ test('renders', async ({ mount, page }) => {
   await expect(tooltip).toBeVisible();
 });
 
+test('renders in shadow DOM', async ({ mount, page }) => {
+  await mount(`
+    <ix-blind>
+      <ix-tooltip for=".test">tooltip</ix-tooltip>
+      <ix-button class="test">button</ix-button>
+    </ix-blind>
+  `);
+
+  const tooltip = page.locator('ix-tooltip');
+  const button = page.locator('ix-button');
+
+  await button.hover();
+
+  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toBeVisible();
+});
+
 test.describe('a11y', () => {
   test('closes on ESC', async ({ mount, page }) => {
     await mount(`

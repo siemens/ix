@@ -38,6 +38,7 @@ import {
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
+import { resolveSelector } from '../utils/find-element';
 
 let sequenceId = 0;
 
@@ -343,21 +344,41 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
 
     const selector = `#${element}`;
-    return new Promise((resolve) => {
-      if (document.querySelector(selector)) {
-        return resolve(document.querySelector(selector));
+
+    const resolve = (el: Element[]) => {
+      if (el?.length > 1) {
+        console.warn(
+          `ix-dropdown: Ambiguous selector ${selector}. Multiple elements found:`,
+          el
+        );
+      } else if (el && el[0]) {
+        return el[0];
+      }
+    };
+
+    return resolveSelector(selector, this.hostElement).then((el) => {
+      let element = resolve(el);
+
+      if (element) {
+        return element;
       }
 
-      const observer = new MutationObserver(() => {
-        if (document.querySelector(selector)) {
-          resolve(document.querySelector(selector));
-          observer.disconnect();
-        }
-      });
+      return new Promise<Element | undefined>(() => {
+        const observer = new MutationObserver(() => {
+          resolveSelector(selector, this.hostElement).then((el) => {
+            element = resolve(el);
 
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
+            if (element) {
+              observer.disconnect();
+              return element;
+            }
+          });
+
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+          });
+        });
       });
     });
   }
