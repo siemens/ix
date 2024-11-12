@@ -22,13 +22,14 @@ import {
   IxSelectItemLabelChangeEvent,
   IxSelectItemValueChangeEvent,
 } from './events';
+import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 
 @Component({
   tag: 'ix-select-item',
   styleUrl: 'select-item.scss',
   shadow: true,
 })
-export class SelectItem {
+export class SelectItem implements DropdownItemWrapper {
   @Element() hostElement!: HTMLIxSelectItemElement;
 
   /**
@@ -59,6 +60,14 @@ export class SelectItem {
    */
   @Event() itemClick!: EventEmitter<string>;
 
+  private componentLoaded = false;
+
+  /** @internal */
+  @Method()
+  async getDropdownItemElement(): Promise<HTMLIxDropdownItemElement | null> {
+    return this.dropdownItem;
+  }
+
   /**
    * @internal
    * @param event
@@ -71,30 +80,39 @@ export class SelectItem {
     this.itemClick.emit(this.value);
   }
 
+  get dropdownItem() {
+    return this.hostElement.querySelector('ix-dropdown-item');
+  }
+
   componentDidRender() {
     if (this.value === undefined || this.value === null) {
       throw Error('ix-select-item must have a `value` property');
     }
+    this.componentLoaded = true;
   }
 
   @Watch('value')
   onValueChange(newValue: string, oldValue: string) {
-    this.hostElement.dispatchEvent(
-      new IxSelectItemValueChangeEvent({
-        newValue: newValue,
-        oldValue: oldValue,
-      })
-    );
+    if (this.componentLoaded) {
+      this.hostElement.dispatchEvent(
+        new IxSelectItemValueChangeEvent({
+          newValue: newValue,
+          oldValue: oldValue,
+        })
+      );
+    }
   }
 
   @Watch('label')
   labelChange(newValue: string, oldValue: string) {
-    this.hostElement.dispatchEvent(
-      new IxSelectItemLabelChangeEvent({
-        newValue: newValue,
-        oldValue: oldValue,
-      })
-    );
+    if (this.componentLoaded) {
+      this.hostElement.dispatchEvent(
+        new IxSelectItemLabelChangeEvent({
+          newValue: newValue,
+          oldValue: oldValue,
+        })
+      );
+    }
   }
 
   render() {
