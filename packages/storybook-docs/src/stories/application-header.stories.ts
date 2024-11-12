@@ -47,7 +47,7 @@ export const withAvatar: Story = {
       name="${args.name}"
       ?show-menu="${args.showMenu}"
     >
-      <ix-avatar name="John Doe">
+      <ix-avatar name="John Doe" aria-label="user-avatar">
         <ix-dropdown-item>Profile</ix-dropdown-item>
         <ix-dropdown-item>Settings</ix-dropdown-item>
         <ix-dropdown-item>Logout</ix-dropdown-item>
