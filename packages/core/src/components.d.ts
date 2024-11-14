@@ -35,7 +35,7 @@ import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal";
-import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+import { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, PaneWillChangeEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 import { PushCardVariant } from "./components/push-card/push-card";
 import { SliderMarker } from "./components/slider/slider";
 import { SplitButtonVariant } from "./components/split-button/split-button";
@@ -78,7 +78,7 @@ export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal";
-export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
+export { BorderlessChangedEvent, Composition, ExpandedChangedEvent, HideOnCollapseChangedEvent, PaneWillChangeEvent, SlotChangedEvent, VariantChangedEvent } from "./components/pane/pane";
 export { PushCardVariant } from "./components/push-card/push-card";
 export { SliderMarker } from "./components/slider/slider";
 export { SplitButtonVariant } from "./components/split-button/split-button";
@@ -3634,6 +3634,7 @@ declare global {
     };
     interface HTMLIxPaneElementEventMap {
         "expandedChanged": ExpandedChangedEvent;
+        "paneWillChange": PaneWillChangeEvent;
         "variantChanged": VariantChangedEvent;
         "borderlessChanged": BorderlessChangedEvent;
         "hideOnCollapseChanged": HideOnCollapseChangedEvent;
@@ -5955,6 +5956,7 @@ declare namespace LocalJSX {
          */
         "onExpandedChanged"?: (event: IxPaneCustomEvent<ExpandedChangedEvent>) => void;
         "onHideOnCollapseChanged"?: (event: IxPaneCustomEvent<HideOnCollapseChangedEvent>) => void;
+        "onPaneWillChange"?: (event: IxPaneCustomEvent<PaneWillChangeEvent>) => void;
         "onSlotChanged"?: (event: IxPaneCustomEvent<SlotChangedEvent>) => void;
         /**
           * This event is triggered when the variant of the pane is changed

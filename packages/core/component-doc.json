@@ -12367,6 +12367,26 @@
           "docsTags": []
         },
         {
+          "event": "paneWillChange",
+          "detail": "{ slot: string; action: \"close\" | \"open\"; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "PaneWillChangeEvent",
+            "resolved": "{ slot: string; action: \"close\" | \"open\"; }",
+            "references": {
+              "PaneWillChangeEvent": {
+                "location": "local",
+                "path": "src/components/pane/pane.tsx",
+                "id": "src/components/pane/pane.tsx::PaneWillChangeEvent"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        },
+        {
           "event": "variantChanged",
           "detail": "{ slot: string; variant: \"floating\" | \"inline\"; }",
           "bubbles": true,
@@ -17816,6 +17836,11 @@
     },
     "src/components/pane/pane.tsx::ExpandedChangedEvent": {
       "declaration": "{\n  slot: string;\n  expanded: boolean;\n}",
+      "docstring": "",
+      "path": "src/components/pane/pane.tsx"
+    },
+    "src/components/pane/pane.tsx::PaneWillChangeEvent": {
+      "declaration": "{\n  slot: string;\n  action: 'open' | 'close';\n}",
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },

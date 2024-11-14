@@ -28,6 +28,10 @@ export type ExpandedChangedEvent = {
   slot: string;
   expanded: boolean;
 };
+export type PaneWillChangeEvent = {
+  slot: string;
+  action: 'open' | 'close';
+};
 export type SlotChangedEvent = {
   slot: string;
   newSlot: string;
@@ -121,6 +125,11 @@ export class Pane {
    * This event is triggered when the pane either expands or contracts
    */
   @Event() expandedChanged!: EventEmitter<ExpandedChangedEvent>;
+
+  /*
+   * This event is triggered when the pane either expands or contracts
+   */
+  @Event() paneWillChange!: EventEmitter<PaneWillChangeEvent>;
 
   /**
    * This event is triggered when the variant of the pane is changed
@@ -493,6 +502,20 @@ export class Pane {
     });
   }
 
+  private togglePane() {
+    const action = this.expanded ? 'close' : 'open';
+    const event = this.paneWillChange.emit({
+      slot: this.currentSlot ?? '',
+      action,
+    });
+
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    this.expanded = !this.expanded;
+  }
+
   @Watch('parentHeightPx')
   @Watch('parentWidthPx')
   onParentSizeChange() {
@@ -643,9 +666,7 @@ export class Pane {
                   : this.minimizeIcon
               }
               ghost
-              onClick={() => {
-                this.expanded = !this.expanded;
-              }}
+              onClick={() => this.togglePane()}
               aria-controls={`pane-${this.composition}`}
             />
             <span
