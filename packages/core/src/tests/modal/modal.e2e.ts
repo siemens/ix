@@ -9,6 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
+import { IxModalSize } from 'src/components';
 
 regressionTest.describe('modal', () => {
   regressionTest('basic', async ({ page }) => {
@@ -94,15 +95,23 @@ regressionTest('modal with dropdown', async ({ mount, page }) => {
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
-[`360`, `480`, `600`, `720`, `840`, `full-width`, `full-screen`].forEach(
-  (size) => {
-    regressionTest(`modal size ${size}`, async ({ page, mount }) => {
-      await page.setViewportSize({
-        height: 1080,
-        width: 1920,
-      });
+const screenWidths: IxModalSize[] = [
+  `360`,
+  `480`,
+  `600`,
+  `720`,
+  `840`,
+  `full-width`,
+  `full-screen`,
+];
+screenWidths.forEach((size) => {
+  regressionTest(`modal size ${size}`, async ({ page, mount }) => {
+    await page.setViewportSize({
+      height: 1080,
+      width: 1920,
+    });
 
-      await mount(`
+    await mount(`
         <ix-modal size="${size}">
           <ix-modal-header>Header</ix-modal-header>
           <ix-modal-content>Some Content 123 content 123 content 123 content 123</ix-modal-content>
@@ -112,14 +121,13 @@ regressionTest('modal with dropdown', async ({ mount, page }) => {
         </ix-modal>
       `);
 
-      const modal = page.locator('ix-modal');
-      await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
+    const modal = page.locator('ix-modal');
+    await modal.evaluate((modal: HTMLIxModalElement) => modal.showModal());
 
-      await page.waitForTimeout(1000);
-      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-    });
-  }
-);
+    await page.waitForTimeout(1000);
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+});
 
 regressionTest('modal should show centered', async ({ mount, page }) => {
   await mount(`
