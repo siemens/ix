@@ -196,15 +196,14 @@ export class DateInput implements IxInputFieldComponent<string> {
   }
 
   componentDidRender(): void {
-    this.updatePaddings(0);
+    this.updatePaddings();
   }
 
-  private updatePaddings(timeout?: number) {
+  private updatePaddings() {
     adjustPaddingForStartAndEnd(
       this.slotStartRef.current,
       this.slotEndRef.current,
-      this.inputElementRef.current,
-      timeout
+      this.inputElementRef.current
     );
   }
 

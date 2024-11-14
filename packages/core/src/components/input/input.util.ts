@@ -114,28 +114,29 @@ export function applyPaddingEnd(
 export function adjustPaddingForStartAndEnd(
   startElement: HTMLElement | null,
   endElement: HTMLElement | null,
-  inputElement: HTMLElement | null,
-  timeout: number = 20
+  inputElement: HTMLElement | null
 ) {
-  setTimeout(() => {
-    if (startElement) {
-      const startBoundingRect = startElement.getBoundingClientRect();
-      if (startBoundingRect) {
-        applyPaddingEnd(inputElement, startBoundingRect.width, {
-          slotEnd: false,
-        });
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      if (startElement) {
+        const startBoundingRect = startElement.getBoundingClientRect();
+        if (startBoundingRect) {
+          applyPaddingEnd(inputElement, startBoundingRect.width, {
+            slotEnd: false,
+          });
+        }
       }
-    }
 
-    if (endElement) {
-      const endBoundingRect = endElement.getBoundingClientRect();
-      if (endBoundingRect) {
-        applyPaddingEnd(inputElement, endBoundingRect.width, {
-          slotEnd: true,
-        });
+      if (endElement) {
+        const endBoundingRect = endElement.getBoundingClientRect();
+        if (endBoundingRect) {
+          applyPaddingEnd(inputElement, endBoundingRect.width, {
+            slotEnd: true,
+          });
+        }
       }
-    }
-  }, timeout);
+    });
+  });
 }
 
 export function getAriaAttributesForInput(

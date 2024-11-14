@@ -177,15 +177,14 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   componentDidRender() {
-    this.updatePaddings(0);
+    this.updatePaddings();
   }
 
-  private updatePaddings(timeout?: number) {
+  private updatePaddings() {
     adjustPaddingForStartAndEnd(
       this.slotStartRef.current,
       this.slotEndRef.current,
-      this.inputRef.current,
-      timeout
+      this.inputRef.current
     );
   }
 
