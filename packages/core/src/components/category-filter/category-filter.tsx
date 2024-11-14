@@ -167,6 +167,11 @@ export class CategoryFilter {
    */
   @Event() filterChanged!: EventEmitter<FilterState>;
 
+  /**
+   * Event dispatched whenever the filter gets cleared.
+   */
+  @Event() filterCleared!: EventEmitter<void>;
+
   get dropdown() {
     return this.hostElement.shadowRoot!.querySelector('ix-dropdown');
   }
@@ -213,7 +218,8 @@ export class CategoryFilter {
       this.formKeyDownListener = addDisposableEventListener(
         this.formElement,
         'keydown',
-        () => this.handleFormElementKeyDown
+        ((e: KeyboardEvent) =>
+          this.handleFormElementKeyDown(e)) as EventListener
       );
 
       this.preventDefaultListener = addDisposableEventListener(
@@ -233,7 +239,7 @@ export class CategoryFilter {
     this.inputKeyDownListener = addDisposableEventListener(
       this.textInput.current,
       'keydown',
-      () => this.handleInputElementKeyDown
+      ((e: KeyboardEvent) => this.handleInputElementKeyDown(e)) as EventListener
     );
 
     this.focusInListener = addDisposableEventListener(
@@ -393,7 +399,10 @@ export class CategoryFilter {
 
       case 'Enter':
       case 'NumpadEnter':
-        this.addToken(this.inputValue, this.category);
+        this.addToken(
+          this.inputValue,
+          this.category || this.ID_CUSTOM_FILTER_VALUE
+        );
         e.preventDefault();
         break;
     }
@@ -482,6 +491,12 @@ export class CategoryFilter {
   }
 
   private resetFilter(e: Event) {
+    const { defaultPrevented } = this.filterCleared.emit();
+
+    if (defaultPrevented) {
+      return;
+    }
+
     e.stopPropagation();
     this.closeDropdown();
     this.filterTokens = [];
@@ -489,6 +504,7 @@ export class CategoryFilter {
       this.category = '';
       this.categoryChanged.emit(undefined);
     }
+
     this.emitFilterEvent();
   }
 

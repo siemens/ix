@@ -38,6 +38,17 @@ test.describe('category-preview test', () => {
     });
   });
 
+  test('add token', async ({ page }) => {
+    const token = 'Test';
+    await page.waitForSelector('ix-category-filter');
+    const input = await page.locator('input').first();
+    await input.click();
+    await input.fill(token);
+    await page.keyboard.press('Enter');
+    const chip = await page.locator('ix-filter-chip').first();
+    await expect(chip).toContainText(token);
+  });
+
   test('clear category-preview', async ({ page }) => {
     await page.waitForSelector('ix-category-filter');
     await page.locator('input').first().click();

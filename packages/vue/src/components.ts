@@ -237,7 +237,8 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
   'i18nPlainText',
   'categoryChanged',
   'inputChanged',
-  'filterChanged'
+  'filterChanged',
+  'filterCleared'
 ]);
 
 
