@@ -139,10 +139,8 @@ export class Select {
   private customItemsContainerRef!: HTMLDivElement;
   private addItemRef!: HTMLIxDropdownItemElement;
 
-  private itemMutationObserver: MutationObserver;
-
   private arrowFocusController: ArrowFocusController;
-  private focusControllerCallbackBind = this.focusDropdownItem.bind(this);
+  private readonly focusControllerCallbackBind = this.focusDropdownItem.bind(this);
 
   private itemObserver = createMutationObserver(() => {
     this.arrowFocusController.items = this.visibleNonShadowItems;
@@ -375,12 +373,6 @@ export class Select {
     event.preventDefault();
     event.stopImmediatePropagation();
     this.updateSelection();
-  }
-
-  disconnectedCallback() {
-    if (this.itemMutationObserver) {
-      this.itemMutationObserver.disconnect();
-    }
   }
 
   private itemExists(item: string) {
