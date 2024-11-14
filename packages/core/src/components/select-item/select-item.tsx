@@ -65,7 +65,7 @@ export class SelectItem implements DropdownItemWrapper {
   /** @internal */
   @Method()
   async getDropdownItemElement(): Promise<HTMLIxDropdownItemElement> {
-    return this.dropdownItem as HTMLIxDropdownItemElement;
+    return this.dropdownItem!;
   }
 
   /**
