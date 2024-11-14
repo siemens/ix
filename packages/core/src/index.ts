@@ -16,6 +16,7 @@ export * from './components/tree-item/default-tree-item';
 export * from './components/tree/tree-model';
 export * from './components/upload/upload-file-state';
 export * from './components/utils/delegate';
+export { ElementReference } from './components/utils/element-reference';
 export * from './components/utils/modal';
 export * from './components/utils/typed-event';
 export { NotificationColor } from './components/utils/notification-color';

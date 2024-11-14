@@ -41,6 +41,9 @@ test('should show hidden items', async ({ mount, page }) => {
     <ix-breadcrumb-item label="Item 2"></ix-breadcrumb-item>
     <ix-breadcrumb-item label="Item 3"></ix-breadcrumb-item>
   </ix-breadcrumb>`);
+
+  await page.waitForTimeout(250);
+
   const breadcrumb = page.locator('ix-breadcrumb');
   await breadcrumb.evaluate((breadcrumbElement: HTMLIxBreadcrumbElement) => {
     const item = document.createElement('ix-breadcrumb-item');
@@ -54,7 +57,8 @@ test('should show hidden items', async ({ mount, page }) => {
 
   const showHiddenButton = breadcrumb.getByRole('button', { name: '...' });
 
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(250);
+
   await expect(breadcrumbItem1).not.toBeVisible();
   await expect(breadcrumbItemNewItem).toBeVisible();
 

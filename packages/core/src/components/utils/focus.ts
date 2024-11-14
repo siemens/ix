@@ -7,29 +7,41 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { addDisposableEventListener } from './disposable-event-listener';
+
 export class ArrowFocusController {
   public items: Element[];
 
-  container: HTMLElement;
+  container?: HTMLElement;
   wrap = false;
   callback: any;
 
-  private keyListenerBind = this.keyListener.bind(this);
+  private readonly keyListener: () => void;
 
   constructor(
     items: any[],
     container: HTMLElement,
-    callback: (index: number) => void
+    callback?: (index: number) => void
   ) {
     this.items = items;
     this.container = container;
     this.callback = callback;
-
-    this.container.addEventListener('keydown', this.keyListenerBind);
+    this.keyListener = addDisposableEventListener(
+      container,
+      'keydown',
+      (e: Event) => this.onKeyDown(e as KeyboardEvent)
+    );
   }
 
-  private keyListener(e) {
-    const activeIndex = this.items.indexOf(document.activeElement);
+  private getActiveIndex() {
+    if (!document.activeElement) {
+      return -1;
+    }
+    return this.items.indexOf(document.activeElement);
+  }
+
+  private onKeyDown(e: KeyboardEvent) {
+    const activeIndex = this.getActiveIndex();
 
     if (activeIndex < 0) {
       return;
@@ -39,14 +51,10 @@ export class ArrowFocusController {
       case 'ArrowDown':
         if (activeIndex < this.items.length - 1) {
           e.preventDefault();
-          if (this.callback) {
-            this.callback(activeIndex + 1);
-          }
+          this.callback?.(activeIndex + 1);
         } else if (this.wrap) {
           e.preventDefault();
-          if (this.callback) {
-            this.callback(0);
-          }
+          this.callback?.(0);
         }
         break;
 
@@ -54,14 +62,10 @@ export class ArrowFocusController {
         {
           if (activeIndex > 0) {
             e.preventDefault();
-            if (this.callback) {
-              this.callback(activeIndex - 1);
-            }
+            this.callback?.(activeIndex - 1);
           } else if (this.wrap && activeIndex === 0) {
             e.preventDefault();
-            if (this.callback) {
-              this.callback(this.items.length - 1);
-            }
+            this.callback?.(this.items.length - 1);
           }
         }
         break;
@@ -69,6 +73,11 @@ export class ArrowFocusController {
   }
 
   disconnect() {
-    this.container.removeEventListener('keydown', this.keyListenerBind);
+    if (this.keyListener) {
+      this.keyListener();
+    }
+
+    this.container = undefined;
+    this.callback = undefined;
   }
 }
