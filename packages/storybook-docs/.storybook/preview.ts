@@ -3,7 +3,7 @@ import { withThemeByClassName } from '@storybook/addon-themes';
 import { defineCustomElements } from '@siemens/ix-icons/loader';
 import './define-custom-elements';
 import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-
+import './preview.css';
 defineCustomElements();
 
 const additionalTheme = {};
