@@ -6,7 +6,7 @@
   "scripts": {
     "build.watch": "storybook dev -p 6006",
     "build": "storybook build",
-    "test": "start-server-and-test build.watch http://localhost:6006 test-storybook"
+    "test.a11y": "start-server-and-test build.watch http://localhost:6006 test-storybook"
   },
   "dependencies": {
     "lit": "^3.2.1"
