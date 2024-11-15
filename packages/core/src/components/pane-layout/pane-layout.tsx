@@ -341,6 +341,7 @@ export class Panes {
                     class="content"
                     onClick={() => this.closeFloatingPanes()}
                   >
+                    <slot name="content"></slot>
                     <slot></slot>
                   </div>
                   <div
@@ -391,6 +392,7 @@ export class Panes {
                     class="content"
                     onClick={() => this.closeFloatingPanes()}
                   >
+                    <slot name="content"></slot>
                     <slot></slot>
                   </div>
                   <div
@@ -434,6 +436,7 @@ export class Panes {
               class="content"
               onClick={() => this.closeFloatingPanes()}
             >
+              <slot name="content"></slot>
               <slot></slot>
             </div>
             <div
