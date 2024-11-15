@@ -4,15 +4,22 @@ title: Select
 
 import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
-import DocsUx from './\_select_styleguide.md';
-import DocsCode from './\_select_code.mdx';
+import DocsUx from './_select_styleguide.md';
+import DocsCode from './_select_code.mdx';
 
 import Tags from './../auto-generated/ix-select/tags.md';
+import DeprecatedTags from '@site/src/components/Tags';
 
-<Tags />
+<div className="d-flex gap-2 align-items-center">
+  <Tags />
+  <DeprecatedTags
+    url="/docs/legacy/select"
+    hasDeprecatedAncestor={true}
+  ></DeprecatedTags>
+</div>
 
-<br/>
-<br/>
+<br />
+<br />
 
 <LinkableDocsTabs>
   <DocsUx />
