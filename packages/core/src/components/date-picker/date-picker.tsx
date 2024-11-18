@@ -662,7 +662,7 @@ export class DatePicker {
               hidden: this.tempYear !== year,
               arrowPosition: true,
             }}
-            name="chevron-right"
+            name="chevron-right-small"
             size="12"
           ></ix-icon>
           <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
@@ -684,7 +684,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(-1)}
               ghost
-              icon="chevron-left"
+              icon="chevron-left-small"
               variant="primary"
               class="arrows"
             ></ix-icon-button>
@@ -759,7 +759,7 @@ export class DatePicker {
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(1)}
               ghost
-              icon="chevron-right"
+              icon="chevron-right-small"
               variant="primary"
               class="arrows"
             ></ix-icon-button>

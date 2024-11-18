@@ -104,7 +104,7 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(8, 40px);
+    grid-template-columns: 24px repeat(7, 40px);
     grid-template-rows: repeat(7, 40px);
     align-items: center;
     justify-items: center;
@@ -294,6 +294,7 @@
         border: none;
         background: none;
         cursor: initial;
+        width: 1.5rem;
       }
     }
   }

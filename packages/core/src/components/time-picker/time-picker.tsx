@@ -261,7 +261,7 @@ export class TimePicker {
                       }))
                     }
                     ghost
-                    icon="chevron-up"
+                    icon="chevron-up-small"
                     variant="primary"
                     class="arrows"
                   ></ix-icon-button>
@@ -302,7 +302,7 @@ export class TimePicker {
                       }))
                     }
                     ghost
-                    icon="chevron-down"
+                    icon="chevron-down-small"
                     variant="primary"
                     class="arrows"
                   ></ix-icon-button>
