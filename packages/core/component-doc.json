@@ -4142,6 +4142,7 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -4217,6 +4218,32 @@
           "required": false
         },
         {
+          "name": "locale",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "maxDate",
           "type": "string",
           "complexType": {
@@ -4229,6 +4256,7 @@
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -4250,6 +4278,7 @@
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -4293,9 +4322,37 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -5090,20 +5147,19 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Locale identifier (e.g. 'en' or 'de').",
           "docsTags": [
             {
               "name": "since",
               "text": "2.1.0"
             }
           ],
-          "default": "undefined",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -5124,6 +5180,7 @@
               "text": "1.1.0"
             }
           ],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -5150,6 +5207,7 @@
               "text": "1.1.0"
             }
           ],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -5202,6 +5260,7 @@
               "text": "since 2.1.0. Use `i18nDone`"
             }
           ],
+          "default": "''",
           "deprecation": "since 2.1.0. Use `i18nDone`",
           "values": [
             {
@@ -6356,14 +6415,15 @@
       "props": [
         {
           "name": "anchor",
-          "type": "HTMLElement | string",
+          "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string | HTMLElement",
-            "resolved": "HTMLElement | string",
+            "original": "ElementReference",
+            "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "HTMLElement": {
-                "location": "global",
-                "id": "global::HTMLElement"
+              "ElementReference": {
+                "location": "import",
+                "path": "src/components/utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -6377,10 +6437,13 @@
               "type": "HTMLElement"
             },
             {
+              "type": "Promise<HTMLElement>"
+            },
+            {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6581,16 +6644,13 @@
           "name": "trigger",
           "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string | HTMLElement | Promise<HTMLElement>",
+            "original": "ElementReference",
             "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "HTMLElement": {
-                "location": "global",
-                "id": "global::HTMLElement"
-              },
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
+              "ElementReference": {
+                "location": "import",
+                "path": "src/components/utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -6610,7 +6670,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -6804,7 +6864,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6825,7 +6885,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -6908,7 +6968,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16665,6 +16725,11 @@
           "passive": false
         },
         {
+          "event": "ix-select-item:valueChange",
+          "capture": false,
+          "passive": false
+        },
+        {
           "event": "ix-select-item:labelChange",
           "capture": false,
           "passive": false
@@ -16720,7 +16785,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -20060,16 +20125,13 @@
           "name": "for",
           "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string | HTMLElement | Promise<HTMLElement>",
+            "original": "ElementReference",
             "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "HTMLElement": {
-                "location": "global",
-                "id": "global::HTMLElement"
-              },
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
+              "ElementReference": {
+                "location": "import",
+                "path": "../utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -21693,6 +21755,11 @@
       "docstring": "",
       "path": "src/components/css-grid/css-grid.tsx"
     },
+    "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners": {
+      "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
+      "docstring": "",
+      "path": "src/components/date-time-card/date-time-card.tsx"
+    },
     "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption": {
       "declaration": "{\n  id: string;\n  label: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
@@ -21707,11 +21774,6 @@
       "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
       "docstring": "",
       "path": "src/components/date-input/date-input.tsx"
-    },
-    "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners": {
-      "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
-      "docstring": "",
-      "path": "src/components/date-time-card/date-time-card.tsx"
     },
     "src/components/date-picker/date-picker.tsx::DateChangeEvent": {
       "declaration": "{\n  from: string;\n  to: string;\n}",
@@ -21734,7 +21796,7 @@
       "path": "src/components/dropdown-button/dropdown-button.tsx"
     },
     "src/components/dropdown/placement.ts::AlignedPlacement": {
-      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
+      "declaration": "\"bottom-start\" | \"left-start\" | \"left-end\" | \"right-start\" | \"right-end\" | \"top-start\" | \"top-end\" | \"bottom-end\"",
       "docstring": "",
       "path": "src/components/dropdown/placement.ts"
     },
@@ -21867,6 +21929,11 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
+    },
+    "src/components/utils/element-reference.ts::ElementReference": {
+      "declaration": "export type ElementReference = string | HTMLElement | Promise<HTMLElement>;",
+      "docstring": "",
+      "path": "src/components/utils/element-reference.ts"
     },
     "src/components/utils/make-ref.ts::MakeRef": {
       "declaration": "{\n  (ref: T | undefined): void;\n  current: T | null;\n  waitForCurrent(): Promise<T>;\n}",

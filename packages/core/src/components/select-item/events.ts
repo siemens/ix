@@ -17,3 +17,15 @@ export class IxSelectItemLabelChangeEvent extends CustomEvent<{
     });
   }
 }
+
+export class IxSelectItemValueChangeEvent extends CustomEvent<{
+  oldValue: string;
+  newValue: string;
+}> {
+  constructor(detail: { oldValue: string; newValue: string }) {
+    super('ix-select-item:valueChange', {
+      bubbles: true,
+      detail,
+    });
+  }
+}

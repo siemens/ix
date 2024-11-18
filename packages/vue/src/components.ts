@@ -333,6 +333,8 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'dateRangeId',
   'customRangeAllowed',
   'dateRangeOptions',
+  'locale',
+  'weekStartIndex',
   'i18nCustomItem',
   'i18nDone',
   'i18nNoRange',
