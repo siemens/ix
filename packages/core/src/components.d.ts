@@ -577,6 +577,11 @@ export namespace Components {
          */
         "i18nNoRange": string;
         /**
+          * Locale identifier (e.g. 'en' or 'de').
+          * @since 2.6.0
+         */
+        "locale"?: string;
+        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
         "maxDate": string;
@@ -593,6 +598,11 @@ export namespace Components {
          */
         "to": string;
         "today": string;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @since 2.6.0
+         */
+        "weekStartIndex": number;
     }
     interface IxDatePicker {
         /**
@@ -628,7 +638,7 @@ export namespace Components {
          */
         "individual": boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Locale identifier (e.g. 'en' or 'de').
           * @since 2.1.0
          */
         "locale"?: string;
@@ -4670,6 +4680,11 @@ declare namespace LocalJSX {
          */
         "i18nNoRange"?: string;
         /**
+          * Locale identifier (e.g. 'en' or 'de').
+          * @since 2.6.0
+         */
+        "locale"?: string;
+        /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
          */
         "maxDate"?: string;
@@ -4690,6 +4705,11 @@ declare namespace LocalJSX {
          */
         "to"?: string;
         "today"?: string;
+        /**
+          * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+          * @since 2.6.0
+         */
+        "weekStartIndex"?: number;
     }
     interface IxDatePicker {
         /**
@@ -4721,7 +4741,7 @@ declare namespace LocalJSX {
          */
         "individual"?: boolean;
         /**
-          * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+          * Locale identifier (e.g. 'en' or 'de').
           * @since 2.1.0
          */
         "locale"?: string;
