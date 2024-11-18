@@ -11,7 +11,9 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html, render } from 'lit';
 import { icon } from './utils/arg-types';
 
-type Element = any;
+type Element = {
+  icon: string;
+};
 
 const meta = {
   title: 'Example/Modal',

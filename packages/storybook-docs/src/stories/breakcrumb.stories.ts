@@ -6,17 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
-import { genericRender, makeArgTypes } from './utils/generic-render';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxBreadcrumb;
 
 const meta = {
   title: 'Example/Breadcrumb',
   tags: [],
-    render: ({ ghost, visibleItemCount }) => {
+  render: ({ ghost, visibleItemCount }) => {
     return html`
       <ix-breadcrumb ?ghost=${ghost} visible-item-count=${visibleItemCount}>
         <ix-breadcrumb-item>Item 1</ix-breadcrumb-item>
