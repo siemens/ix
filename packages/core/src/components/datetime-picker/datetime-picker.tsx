@@ -112,7 +112,7 @@ export class DatetimePicker {
   /**
    * Set time reference
    */
-  @Prop() timeReference: 'AM' | 'PM' = 'AM';
+  @Prop() timeReference?: 'AM' | 'PM';
 
   /**
    * Text of date select button
