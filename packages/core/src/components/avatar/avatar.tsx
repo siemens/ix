@@ -19,7 +19,6 @@ import {
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 function DefaultAvatar(props: { initials?: string }) {
   const { initials } = props;
@@ -133,10 +132,8 @@ export class Avatar {
 
   private slotElement?: HTMLSlotElement;
   private dropdownElement?: HTMLIxDropdownElement;
-  private a11yAttributes?: A11yAttributes;
 
   componentWillLoad() {
-    this.a11yAttributes = a11yHostAttributes(this.hostElement);
     const closest = closestElement('ix-application-header', this.hostElement);
     this.isClosestApplicationHeader = closest !== null;
   }
@@ -169,7 +166,6 @@ export class Avatar {
       return (
         <Host slot="ix-application-header-avatar" class={'avatar-button'}>
           <BaseButton
-            ariaAttributes={this.a11yAttributes}
             disabled={false}
             ghost={true}
             iconOval={false}
