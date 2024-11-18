@@ -10,6 +10,7 @@ import { showModal } from '@siemens/ix/components';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html, render } from 'lit';
 import { icon } from './utils/arg-types';
+import exampleImage from './introduction.png';
 
 type Element = {
   icon: string;
@@ -83,7 +84,14 @@ export const ShowFunction: Story = {
         refs.set(ctx.id, mount);
       }
     };
-    // setTimeout(show, 250);
-    return html`<ix-button @click=${show}>Show Modal</ix-button>`;
+    setTimeout(show, 250);
+    return html`
+      <div>
+        <ix-button @click=${show}>Show Modal</ix-button>
+        <br />
+        <h2>Just some background noise, to see the backdrop:</h2>
+        <img src=${exampleImage} style="width: 50vw" />
+      </div>
+    `;
   },
 };
