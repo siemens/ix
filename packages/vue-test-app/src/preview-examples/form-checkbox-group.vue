@@ -7,13 +7,17 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script setup lang='ts'>
-import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
+<script setup lang="ts">
+import { IxCheckbox, IxCustomField } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./form-checkbox-group.css"></style>
+
 <template>
-  <IxCheckboxGroup label="Terms of something">
-    <IxCheckbox label="I agree everything" name="agreed"></IxCheckbox>
-    <IxCheckbox label="I agree with most of it" name="most"></IxCheckbox>
-  </IxCheckboxGroup>
+  <IxCustomField label="Terms of something">
+    <div className="checkbox-container">
+      <IxCheckbox label="I agree everything" name="agreed"></IxCheckbox>
+      <IxCheckbox label="I agree with most of it" name="most"></IxCheckbox>
+    </div>
+  </IxCustomField>
 </template>

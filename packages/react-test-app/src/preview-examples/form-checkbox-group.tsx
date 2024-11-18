@@ -7,13 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-react';
+import { IxCheckbox, IxCustomField } from '@siemens/ix-react';
 
 export default () => {
   return (
-    <IxCheckboxGroup label="Terms of something">
-      <IxCheckbox label="I agree everything" name="agreed"></IxCheckbox>
-      <IxCheckbox label="I agree with most of it" name="most"></IxCheckbox>
-    </IxCheckboxGroup>
+    <IxCustomField label="Terms of something">
+      <div className="checkbox-container">
+        <IxCheckbox label="I agree everything" name="agreed"></IxCheckbox>
+        <IxCheckbox label="I agree with most of it" name="most"></IxCheckbox>
+      </div>
+    </IxCustomField>
   );
 };

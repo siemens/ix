@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: `./form-checkbox-group.html`,
+  styleUrls: ['./form-checkbox-group.css'],
 })
 export default class FormCheckboxGroup {
 }

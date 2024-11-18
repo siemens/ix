@@ -13,13 +13,15 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form checkbox group example</title>
+    <link rel="stylesheet" href="./form-checkbox-group.css" />
   </head>
   <body>
-    <ix-checkbox-group label="Terms of something">
-      <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
-      <ix-checkbox label="I agree with most of it" name="most"></ix-checkbox>
-    </ix-checkbox-group>
-
+    <ix-custom-field label="Terms of something">
+      <div class="checkbox-container">
+        <ix-checkbox label="I agree everything" name="agreed"></ix-checkbox>
+        <ix-checkbox label="I agree with most of it" name="most"></ix-checkbox>
+      </div>
+    </ix-custom-field>
     <script type="module" src="./init.js"></script>
   </body>
 </html>
