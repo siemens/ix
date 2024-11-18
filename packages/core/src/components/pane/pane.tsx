@@ -27,10 +27,7 @@ export type Composition = 'top' | 'left' | 'bottom' | 'right';
 export type ExpandedChangedEvent = {
   slot: string;
   expanded: boolean;
-};
-export type PaneWillChangeEvent = {
-  slot: string;
-  action: 'open' | 'close';
+  userInitiated: boolean;
 };
 export type SlotChangedEvent = {
   slot: string;
@@ -126,11 +123,6 @@ export class Pane {
    */
   @Event() expandedChanged!: EventEmitter<ExpandedChangedEvent>;
 
-  /*
-   * This event is triggered when the pane either expands or contracts
-   */
-  @Event() paneWillChange!: EventEmitter<PaneWillChangeEvent>;
-
   /**
    * This event is triggered when the variant of the pane is changed
    */
@@ -163,6 +155,8 @@ export class Pane {
   private static readonly collapsedPaneMobile = '48px';
   private readonly animations: Map<string, anime.AnimeInstance> = new Map();
   private animationCounter = 0;
+  private isExpandedChangePrevented = false;
+  private userInitiated = false;
 
   private mutationObserver?: MutationObserver;
   private resizeObserver?: ResizeObserver;
@@ -494,26 +488,26 @@ export class Pane {
 
   @Watch('expanded')
   onExpandedChange() {
-    this.onSizeChange();
-
-    this.expandedChanged.emit({
-      slot: this.currentSlot ?? '',
-      expanded: this.expanded,
-    });
-  }
-
-  private togglePane() {
-    const action = this.expanded ? 'close' : 'open';
-    const event = this.paneWillChange.emit({
-      slot: this.currentSlot ?? '',
-      action,
-    });
-
-    if (event.defaultPrevented) {
+    if (this.isExpandedChangePrevented) {
+      this.userInitiated = false;
+      this.isExpandedChangePrevented = false;
       return;
     }
 
-    this.expanded = !this.expanded;
+    const event = this.expandedChanged.emit({
+      slot: this.currentSlot ?? '',
+      expanded: this.expanded,
+      userInitiated: this.userInitiated,
+    });
+
+    if (event.defaultPrevented) {
+      this.isExpandedChangePrevented = true;
+      this.expanded = !this.expanded;
+
+      return;
+    }
+
+    this.onSizeChange();
   }
 
   @Watch('parentHeightPx')
@@ -666,7 +660,10 @@ export class Pane {
                   : this.minimizeIcon
               }
               ghost
-              onClick={() => this.togglePane()}
+              onClick={() => {
+                this.userInitiated = true;
+                this.expanded = !this.expanded;
+              }}
               aria-controls={`pane-${this.composition}`}
             />
             <span

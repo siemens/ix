@@ -1793,13 +1793,12 @@ export class IxPane {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['expandedChanged', 'paneWillChange', 'variantChanged', 'borderlessChanged']);
+    proxyOutputs(this, this.el, ['expandedChanged', 'variantChanged', 'borderlessChanged']);
   }
 }
 
 
 import type { ExpandedChangedEvent as IIxPaneExpandedChangedEvent } from '@siemens/ix';
-import type { PaneWillChangeEvent as IIxPanePaneWillChangeEvent } from '@siemens/ix';
 import type { VariantChangedEvent as IIxPaneVariantChangedEvent } from '@siemens/ix';
 import type { BorderlessChangedEvent as IIxPaneBorderlessChangedEvent } from '@siemens/ix';
 
@@ -1808,8 +1807,6 @@ export declare interface IxPane extends Components.IxPane {
    * This event is triggered when the pane either expands or contracts
    */
   expandedChanged: EventEmitter<CustomEvent<IIxPaneExpandedChangedEvent>>;
-
-  paneWillChange: EventEmitter<CustomEvent<IIxPanePaneWillChangeEvent>>;
   /**
    * This event is triggered when the variant of the pane is changed
    */
