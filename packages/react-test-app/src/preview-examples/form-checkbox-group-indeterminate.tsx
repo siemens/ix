@@ -10,7 +10,7 @@
 import { IxCheckboxCustomEvent } from '@siemens/ix';
 import './form-checkbox-group-indeterminate.css';
 
-import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-react';
+import { IxCheckbox, IxCustomField } from '@siemens/ix-react';
 import { useEffect, useState } from 'react';
 
 export default () => {
@@ -72,24 +72,26 @@ export default () => {
   }
 
   return (
-    <IxCheckboxGroup>
-      <IxCheckbox
-        indeterminate={parentCheckboxState.indeterminate}
-        checked={parentCheckboxState.checked || false}
-        onCheckedChange={parentCheckedChange}
-        label="Option group"
-      ></IxCheckbox>
-      {childCheckboxesState.map((cb, index) => {
-        return (
-          <IxCheckbox
-            checked={cb.checked || false}
-            onCheckedChange={(e) => checkedChange(e, index)}
-            label="Sub option one"
-            className="cb-padding"
-            key={cb.label}
-          ></IxCheckbox>
-        );
-      })}
-    </IxCheckboxGroup>
+    <IxCustomField>
+      <div className="checkbox-container">
+        <IxCheckbox
+          indeterminate={parentCheckboxState.indeterminate}
+          checked={parentCheckboxState.checked || false}
+          onCheckedChange={parentCheckedChange}
+          label="Option group"
+        ></IxCheckbox>
+        {childCheckboxesState.map((cb, index) => {
+          return (
+            <IxCheckbox
+              checked={cb.checked || false}
+              onCheckedChange={(e) => checkedChange(e, index)}
+              label="Sub option one"
+              className="checkbox-padding"
+              key={cb.label}
+            ></IxCheckbox>
+          );
+        })}
+      </div>
+    </IxCustomField>
   );
 };

@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { IxCheckboxCustomEvent } from '@siemens/ix';
-import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
+import { IxCheckbox, IxCustomField } from '@siemens/ix-vue';
 import { reactive, watch } from 'vue';
 
 const parentCheckboxState = reactive({
@@ -56,21 +56,23 @@ watch(childCheckboxesState, () => {
 <style scoped src="./form-checkbox-group-indeterminate.css"></style>
 
 <template>
-  <ix-checkbox-group>
-    <ix-checkbox
-      :label="parentCheckboxState.label"
-      :indeterminate="parentCheckboxState.indeterminate"
-      v-model="parentCheckboxState.checked"
-      @checkedChange="parentCheckedChange($event)"
-    >
-    </ix-checkbox>
-    <ix-checkbox
-      v-for="(cb, index) in childCheckboxesState"
-      :label="cb.label"
-      v-model="cb.checked"
-      @checkedChange="checkedChange($event, index)"
-      class="cb-padding"
-    >
-    </ix-checkbox>
-  </ix-checkbox-group>
+  <ix-custom-field>
+    <div className="checkbox-container">
+      <ix-checkbox
+        :label="parentCheckboxState.label"
+        :indeterminate="parentCheckboxState.indeterminate"
+        v-model="parentCheckboxState.checked"
+        @checkedChange="parentCheckedChange($event)"
+      >
+      </ix-checkbox>
+      <ix-checkbox
+        v-for="(cb, index) in childCheckboxesState"
+        :label="cb.label"
+        v-model="cb.checked"
+        @checkedChange="checkedChange($event, index)"
+        class="checkbox-padding"
+      >
+      </ix-checkbox>
+    </div>
+  </ix-custom-field>
 </template>

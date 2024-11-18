@@ -11,6 +11,14 @@
  * If you want to modify the example styles do this only inside the html-test-app
  */
 
-.cb-padding {
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0.375rem 0;
+  flex-wrap: wrap;
+}
+
+.checkbox-padding {
   padding-left: 1rem;
 }
