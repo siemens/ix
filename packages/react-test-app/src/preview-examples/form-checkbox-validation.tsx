@@ -7,65 +7,48 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-react';
+import { IxCheckbox, IxCustomField } from '@siemens/ix-react';
 
 export default () => {
   return (
     <>
-      <div>
-        <IxCheckboxGroup label="Terms of something" infoText="Info text">
-          <IxCheckbox
-            label="I agree everything"
-            name="agreed"
-            className="ix-info"
-          ></IxCheckbox>
-        </IxCheckboxGroup>
-      </div>
+      <IxCustomField infoText="Info text">
+        <IxCheckbox
+          label="I agree everything"
+          name="agreed"
+          className="ix-info"
+        ></IxCheckbox>
+      </IxCustomField>
 
-      <div>
-        <IxCheckboxGroup label="Terms of something" warningText="Warning text">
-          <IxCheckbox
-            label="I agree everything"
-            name="agreed"
-            className="ix-warning"
-          ></IxCheckbox>
-          <IxCheckbox
-            label="I disagree everything"
-            name="agreed"
-            className="ix-warning"
-          ></IxCheckbox>
-        </IxCheckboxGroup>
-      </div>
+      <br />
 
-      <div>
-        <IxCheckboxGroup label="Terms of something" invalidText="Invalid text">
-          <IxCheckbox
-            label="I agree everything"
-            name="agreed"
-            className="ix-invalid"
-          ></IxCheckbox>
-          <IxCheckbox
-            label="I disagree everything"
-            name="agreed"
-            className="ix-invalid"
-          ></IxCheckbox>
-        </IxCheckboxGroup>
-      </div>
+      <IxCustomField warningText="Warning text">
+        <IxCheckbox
+          label="I disagree everything"
+          name="agreed"
+          className="ix-warning"
+        ></IxCheckbox>
+      </IxCustomField>
 
-      <div>
-        <IxCheckboxGroup label="Terms of something" validText="Valid text">
-          <IxCheckbox
-            label="I agree everything"
-            name="agreed"
-            className="ix-valid"
-          ></IxCheckbox>
-          <IxCheckbox
-            label="I disagree everything"
-            name="agreed"
-            className="ix-valid"
-          ></IxCheckbox>
-        </IxCheckboxGroup>
-      </div>
+      <br />
+
+      <IxCustomField invalidText="Invalid text">
+        <IxCheckbox
+          label="I disagree everything"
+          name="agreed"
+          className="ix-invalid"
+        ></IxCheckbox>
+      </IxCustomField>
+
+      <br />
+
+      <IxCustomField validText="Valid text">
+        <IxCheckbox
+          label="I disagree everything"
+          name="agreed"
+          className="ix-valid"
+        ></IxCheckbox>
+      </IxCustomField>
     </>
   );
 };

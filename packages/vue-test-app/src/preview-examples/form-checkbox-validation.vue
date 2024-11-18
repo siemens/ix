@@ -8,45 +8,45 @@
 -->
 
 <script setup lang="ts">
-import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-vue';
+import { IxCheckbox, IxCustomField } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <div>
-    <IxCheckboxGroup
-      label="Terms of something"
-      info-text="Info text"
-    >
-      <IxCheckbox label="I agree everything" name="agreed" class="ix-info"></IxCheckbox>
-    </IxCheckboxGroup>
-  </div>
+  <IxCustomField info-text="Info text">
+    <IxCheckbox
+      label="I agree everything"
+      name="agreed"
+      class="ix-info"
+    ></IxCheckbox>
+  </IxCustomField>
 
-  <div>
-    <IxCheckboxGroup
-      label="Terms of something"
-      warning-text="Warning text"
-    >
-      <IxCheckbox label="I agree everything" name="agreed" class="ix-warning"></IxCheckbox>
-      <IxCheckbox label="I disagree everything" name="agreed" class="ix-warning"></IxCheckbox>
-    </IxCheckboxGroup>
-  </div>
+  <br />
 
-  <div>
-    <IxCheckboxGroup
-      label="Terms of something"
-      invalid-text="Invalid text"
-    >
-      <IxCheckbox label="I agree everything" name="agreed" class="ix-invalid"></IxCheckbox>
-      <IxCheckbox label="I disagree everything" name="agreed" class="ix-invalid"></IxCheckbox>
-    </IxCheckboxGroup>
-  </div>
+  <IxCustomField warning-text="Warning text">
+    <IxCheckbox
+      label="I disagree everything"
+      name="agreed"
+      class="ix-warning"
+    ></IxCheckbox>
+  </IxCustomField>
 
-  <div>
-    <IxCheckboxGroup
-      label="Terms of something"
-      valid-text="Valid text"
-    >
-      <IxCheckbox label="I agree everything" name="agreed" class="ix-valid"></IxCheckbox>
-      <IxCheckbox label="I disagree everything" name="agreed" class="ix-valid"></IxCheckbox>
-    </IxCheckboxGroup>
-  </div>
+  <br />
+
+  <IxCustomField invalid-text="Invalid text">
+    <IxCheckbox
+      label="I disagree everything"
+      name="agreed"
+      class="ix-invalid"
+    ></IxCheckbox>
+  </IxCustomField>
+
+  <br />
+
+  <IxCustomField valid-text="Valid text">
+    <IxCheckbox
+      label="I disagree everything"
+      name="agreed"
+      class="ix-valid"
+    ></IxCheckbox>
+  </IxCustomField>
+</template>
