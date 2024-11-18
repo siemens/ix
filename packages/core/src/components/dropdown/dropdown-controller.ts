@@ -32,7 +32,7 @@ export function hasDropdownItemWrapperImplemented(
   item: unknown
 ): item is DropdownItemWrapper {
   return (
-    item &&
+    item !== null &&
     (item as DropdownItemWrapper).getDropdownItemElement !== undefined &&
     typeof (item as DropdownItemWrapper).getDropdownItemElement === 'function'
   );
@@ -95,7 +95,7 @@ class DropdownController {
   }
 
   present(dropdown: DropdownInterface) {
-    if (!dropdown.isPresent() && dropdown.willPresent()) {
+    if (!dropdown.isPresent() && dropdown.willPresent?.()) {
       this.submenuIds[dropdown.getId()] = dropdown.getAssignedSubmenuIds();
       dropdown.present();
     }
@@ -104,12 +104,15 @@ class DropdownController {
   dismissChildren(uid: string) {
     const childIds = this.submenuIds[uid] || [];
     for (const id of childIds) {
-      this.dismiss(this.dropdowns.get(id));
+      const dropdown = this.dropdowns.get(id);
+      if (dropdown) {
+        this.dismiss(dropdown);
+      }
     }
   }
 
   dismiss(dropdown: DropdownInterface) {
-    if (dropdown.isPresent() && dropdown.willDismiss()) {
+    if (dropdown.isPresent() && dropdown.willDismiss?.()) {
       this.dismissChildren(dropdown.getId());
       dropdown.dismiss();
       delete this.submenuIds[dropdown.getId()];
@@ -179,7 +182,8 @@ class DropdownController {
 
   private pathIncludesDropdown(eventTargets: EventTarget[]) {
     return !!eventTargets.find(
-      (element: HTMLElement) => element.tagName === 'IX-DROPDOWN'
+      (element: EventTarget) =>
+        (element as HTMLElement).tagName === 'IX-DROPDOWN'
     );
   }
 
@@ -200,7 +204,7 @@ class DropdownController {
   private addOverlayListeners() {
     this.isWindowListenerActive = true;
 
-    window.addEventListener('click', (event: PointerEvent) => {
+    window.addEventListener('click', (event: MouseEvent) => {
       const hasTrigger = this.pathIncludesTrigger(event.composedPath());
       const hasDropdown = this.pathIncludesDropdown(event.composedPath());
 
@@ -216,31 +220,5 @@ class DropdownController {
     });
   }
 }
-
-export const addDisposableEventListener = (
-  element: Element | Window | Document,
-  eventType: string,
-  callback: EventListenerOrEventListenerObject
-) => {
-  element.addEventListener(eventType, callback);
-
-  return () => {
-    element.removeEventListener(eventType, callback);
-  };
-};
-
-export const addDisposableEventListenerAsArray = (
-  listener: {
-    element: Element | Window | Document;
-    eventType: string;
-    callback: EventListenerOrEventListenerObject;
-  }[]
-) => {
-  const disposables = listener.map(({ callback, element, eventType }) =>
-    addDisposableEventListener(element, eventType, callback)
-  );
-
-  return () => disposables.forEach((dispose) => dispose());
-};
 
 export const dropdownController = new DropdownController();
