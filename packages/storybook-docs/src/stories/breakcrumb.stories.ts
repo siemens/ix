@@ -16,7 +16,7 @@ type Element = Components.IxBreadcrumb;
 const meta = {
   title: 'Example/Breadcrumb',
   tags: [],
-  render: ({ ghost, visibleItemCount }) => {
+    render: ({ ghost, visibleItemCount }) => {
     return html`
       <ix-breadcrumb ?ghost=${ghost} visible-item-count=${visibleItemCount}>
         <ix-breadcrumb-item>Item 1</ix-breadcrumb-item>

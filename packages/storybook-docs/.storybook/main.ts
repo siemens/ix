@@ -4,7 +4,8 @@ import fs from 'fs-extra';
 
 function copyAdditionalThemeIfPresent() {
   try {
-    const additionalTheme = require.resolve('@siemens-ix/corporate-theme');
+    const additionalTheme = require.resolve('@siemens/ix-brand-theme');
+
     const sourcePath = path.resolve(additionalTheme, '..');
     const targetPath = path.resolve(__dirname, '..', 'public', 'themes');
 
@@ -50,11 +51,10 @@ const config: StorybookConfig = {
 
     if (hasAdditionalTheme) {
       return `${newHead}
-      <link rel="stylesheet" href="themes/css/brand-theme.css" />
+      <link rel="stylesheet" href="themes/ix-brand-theme/ix-brand-theme.css" />
       <script type="module">
         window.hasAdditionalTheme = true;
-      </script>
-      <script type="module" src="themes/index.js"></script>`;
+      </script>`;
     }
 
     return head;

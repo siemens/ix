@@ -8,18 +8,26 @@ defineCustomElements();
 
 const additionalTheme = {};
 
-function addAdditionalThemeIfExist() {
+async function addAdditionalThemeIfExist() {
   const hasAdditionalTheme = window['hasAdditionalTheme'];
 
   if (hasAdditionalTheme) {
     additionalTheme['brand-dark'] = 'theme-brand-dark';
     additionalTheme['brand-light'] = 'theme-brand-light';
+    try {
+      const { defineCustomElements: defineAdditionalComponents } = await import(
+        '@siemens/ix-brand-theme/loader'
+      );
+      defineAdditionalComponents();
+    } catch (e) {
+      // Fail silently
+    }
   }
 
   return hasAdditionalTheme;
 }
 
-const hasAdditionalTheme = addAdditionalThemeIfExist();
+const hasAdditionalTheme = await addAdditionalThemeIfExist();
 
 const preview: Preview = {
   parameters: {
