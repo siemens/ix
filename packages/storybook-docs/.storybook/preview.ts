@@ -8,26 +8,25 @@ defineCustomElements();
 
 const additionalTheme = {};
 
-async function addAdditionalThemeIfExist() {
+function addAdditionalThemeIfExist() {
   const hasAdditionalTheme = window['hasAdditionalTheme'];
 
   if (hasAdditionalTheme) {
     additionalTheme['brand-dark'] = 'theme-brand-dark';
     additionalTheme['brand-light'] = 'theme-brand-light';
-    try {
-      const { defineCustomElements: defineAdditionalComponents } = await import(
-        '@siemens/ix-brand-theme/loader'
-      );
-      defineAdditionalComponents();
-    } catch (e) {
-      // Fail silently
-    }
+    import('@siemens/ix-brand-theme/loader')
+      .then(({ defineCustomElements: defineAdditionalComponents }) =>
+        defineAdditionalComponents()
+      )
+      .catch(() => {
+        // fail silently
+      });
   }
 
   return hasAdditionalTheme;
 }
 
-const hasAdditionalTheme = await addAdditionalThemeIfExist();
+const hasAdditionalTheme = addAdditionalThemeIfExist();
 
 const preview: Preview = {
   parameters: {

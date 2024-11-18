@@ -50,6 +50,14 @@ export const Primary: Story = {
 
 const refs = new Map<string, HTMLElement>();
 export const ShowFunction: Story = {
+  beforeEach: (ctx) => {
+    return () => {
+      if (refs.has(ctx.id)) {
+        refs.get(ctx.id)?.remove();
+        refs.delete(ctx.id);
+      }
+    };
+  },
   render: (args, ctx) => {
     const show = () => {
       const isMounted = refs.has(ctx.id);
