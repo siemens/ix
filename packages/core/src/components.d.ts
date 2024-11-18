@@ -1923,7 +1923,7 @@ export namespace Components {
         /**
           * Displayed name of the item
          */
-        "label": string;
+        "label"?: string;
         /**
           * @param event
          */
