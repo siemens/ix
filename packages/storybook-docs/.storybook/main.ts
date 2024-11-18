@@ -6,11 +6,14 @@ function copyAdditionalThemeIfPresent() {
   try {
     const additionalTheme = require.resolve('@siemens/ix-brand-theme');
 
-    const sourcePath = path.resolve(additionalTheme, '..');
-    const targetPath = path.resolve(__dirname, '..', 'public', 'themes');
+    const basePath = path.join(additionalTheme, '..', '..');
+    const targetPath = path.join(__dirname, '..', 'public', 'themes');
+    const distPath = path.join(basePath, 'dist');
+    const loaderPath = path.join(basePath, 'loader');
 
     fs.ensureDirSync(targetPath);
-    fs.copySync(sourcePath, path.resolve(targetPath));
+    fs.copySync(distPath, path.join(targetPath, 'dist'));
+    fs.copySync(loaderPath, path.join(targetPath, 'loader'));
 
     return true;
   } catch (e) {
@@ -44,17 +47,41 @@ const config: StorybookConfig = {
     options: {},
   },
   async viteFinal(config) {
+    config.plugins!.push({
+      name: 'vite-plugin-load-ix-brand-theme',
+      transformIndexHtml: {
+        order: 'post',
+        handler: async (html: string) => {
+          if (!hasAdditionalTheme) {
+            return html;
+          }
+
+          return html.replace(
+            /_%INSERT%_/g,
+            `
+            <script type="module">
+              import * as lib from './themes/loader/index.es2017.js';
+              lib.defineCustomElements()
+            </script>
+            `
+          );
+        },
+      },
+    });
     return config;
   },
+
   previewHead: (head) => {
     const newHead = `${head}\n`;
 
     if (hasAdditionalTheme) {
       return `${newHead}
-      <link rel="stylesheet" href="themes/ix-brand-theme/ix-brand-theme.css" />
+      <link rel="stylesheet" href="themes/dist/ix-brand-theme/ix-brand-theme.css" />
       <script type="module">
         window.hasAdditionalTheme = true;
-      </script>`;
+      </script>
+      _%INSERT%_
+      `;
     }
 
     return head;

@@ -14,13 +14,13 @@ function addAdditionalThemeIfExist() {
   if (hasAdditionalTheme) {
     additionalTheme['brand-dark'] = 'theme-brand-dark';
     additionalTheme['brand-light'] = 'theme-brand-light';
-    import('@siemens/ix-brand-theme/loader')
-      .then(({ defineCustomElements: defineAdditionalComponents }) =>
-        defineAdditionalComponents()
-      )
-      .catch(() => {
-        // fail silently
-      });
+    // import('@siemens/ix-brand-theme/loader')
+    //   .then(({ defineCustomElements: defineAdditionalComponents }) =>
+    //     defineAdditionalComponents()
+    //   )
+    //   .catch(() => {
+    //     // fail silently
+    //   });
   }
 
   return hasAdditionalTheme;
