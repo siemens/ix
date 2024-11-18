@@ -8,7 +8,7 @@
  */
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
-import { genericRender, getLoremIpsum, makeArgTypes } from './generic-render';
+import { genericRender, getLoremIpsum, makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxBlind;
 

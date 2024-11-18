@@ -8,7 +8,7 @@
  */
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
-import { genericRender, makeArgTypes } from './generic-render';
+import { genericRender, makeArgTypes } from './utils/generic-render';
 import { html } from 'lit';
 
 type Element = Components.IxAvatar;
