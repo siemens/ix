@@ -1297,7 +1297,6 @@
         "ix-dropdown-button",
         "ix-empty-state",
         "ix-menu-about-news",
-        "ix-modal-example",
         "ix-split-button",
         "ix-time-picker",
         "ix-upload"
@@ -1328,9 +1327,6 @@
           "ix-button"
         ],
         "ix-menu-about-news": [
-          "ix-button"
-        ],
-        "ix-modal-example": [
           "ix-button"
         ],
         "ix-split-button": [
@@ -7508,7 +7504,6 @@
         "ix-menu-expand-icon",
         "ix-menu-settings",
         "ix-message-bar",
-        "ix-modal-example",
         "ix-modal-header",
         "ix-pagination",
         "ix-pane",
@@ -7582,9 +7577,6 @@
           "ix-icon-button"
         ],
         "ix-message-bar": [
-          "ix-icon-button"
-        ],
-        "ix-modal-example": [
           "ix-icon-button"
         ],
         "ix-modal-header": [
@@ -11594,43 +11586,6 @@
       "dependencyGraph": {
         "ix-application-switch-modal": [
           "ix-modal-content"
-        ]
-      },
-      "props": [],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "src/components/playground",
-      "filePath": "src/components/playground/example-modal.tsx",
-      "fileName": "example-modal.tsx",
-      "readmePath": "src/components/playground/readme.md",
-      "usagesDir": "src/components/playground/usage",
-      "tag": "ix-modal-example",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "none",
-      "dependents": [],
-      "dependencies": [
-        "ix-icon-button",
-        "ix-button"
-      ],
-      "dependencyGraph": {
-        "ix-modal-example": [
-          "ix-icon-button",
-          "ix-button"
-        ],
-        "ix-icon-button": [
-          "ix-spinner"
-        ],
-        "ix-button": [
-          "ix-spinner"
         ]
       },
       "props": [],

@@ -1658,8 +1658,6 @@ export namespace Components {
      */
     interface IxModalContent {
     }
-    interface IxModalExample {
-    }
     /**
      * @since 2.0.0
      */
@@ -1820,8 +1818,6 @@ export namespace Components {
     | 'neutral'
     | 'success'
     | 'custom';
-    }
-    interface IxPlaygroundInternal {
     }
     /**
      * @since 1.6.0
@@ -3566,12 +3562,6 @@ declare global {
         prototype: HTMLIxModalContentElement;
         new (): HTMLIxModalContentElement;
     };
-    interface HTMLIxModalExampleElement extends Components.IxModalExample, HTMLStencilElement {
-    }
-    var HTMLIxModalExampleElement: {
-        prototype: HTMLIxModalExampleElement;
-        new (): HTMLIxModalExampleElement;
-    };
     /**
      * @since 2.0.0
      */
@@ -3666,12 +3656,6 @@ declare global {
     var HTMLIxPillElement: {
         prototype: HTMLIxPillElement;
         new (): HTMLIxPillElement;
-    };
-    interface HTMLIxPlaygroundInternalElement extends Components.IxPlaygroundInternal, HTMLStencilElement {
-    }
-    var HTMLIxPlaygroundInternalElement: {
-        prototype: HTMLIxPlaygroundInternalElement;
-        new (): HTMLIxPlaygroundInternalElement;
     };
     /**
      * @since 1.6.0
@@ -4093,7 +4077,6 @@ declare global {
         "ix-message-bar": HTMLIxMessageBarElement;
         "ix-modal": HTMLIxModalElement;
         "ix-modal-content": HTMLIxModalContentElement;
-        "ix-modal-example": HTMLIxModalExampleElement;
         "ix-modal-footer": HTMLIxModalFooterElement;
         "ix-modal-header": HTMLIxModalHeaderElement;
         "ix-modal-loading": HTMLIxModalLoadingElement;
@@ -4101,7 +4084,6 @@ declare global {
         "ix-pane": HTMLIxPaneElement;
         "ix-pane-layout": HTMLIxPaneLayoutElement;
         "ix-pill": HTMLIxPillElement;
-        "ix-playground-internal": HTMLIxPlaygroundInternalElement;
         "ix-push-card": HTMLIxPushCardElement;
         "ix-row": HTMLIxRowElement;
         "ix-select": HTMLIxSelectElement;
@@ -5837,8 +5819,6 @@ declare namespace LocalJSX {
      */
     interface IxModalContent {
     }
-    interface IxModalExample {
-    }
     /**
      * @since 2.0.0
      */
@@ -6025,8 +6005,6 @@ declare namespace LocalJSX {
     | 'neutral'
     | 'success'
     | 'custom';
-    }
-    interface IxPlaygroundInternal {
     }
     /**
      * @since 1.6.0
@@ -6813,7 +6791,6 @@ declare namespace LocalJSX {
         "ix-message-bar": IxMessageBar;
         "ix-modal": IxModal;
         "ix-modal-content": IxModalContent;
-        "ix-modal-example": IxModalExample;
         "ix-modal-footer": IxModalFooter;
         "ix-modal-header": IxModalHeader;
         "ix-modal-loading": IxModalLoading;
@@ -6821,7 +6798,6 @@ declare namespace LocalJSX {
         "ix-pane": IxPane;
         "ix-pane-layout": IxPaneLayout;
         "ix-pill": IxPill;
-        "ix-playground-internal": IxPlaygroundInternal;
         "ix-push-card": IxPushCard;
         "ix-row": IxRow;
         "ix-select": IxSelect;
@@ -6990,7 +6966,6 @@ declare module "@stencil/core" {
              * @since 2.0.0
              */
             "ix-modal-content": LocalJSX.IxModalContent & JSXBase.HTMLAttributes<HTMLIxModalContentElement>;
-            "ix-modal-example": LocalJSX.IxModalExample & JSXBase.HTMLAttributes<HTMLIxModalExampleElement>;
             /**
              * @since 2.0.0
              */
@@ -7013,7 +6988,6 @@ declare module "@stencil/core" {
              */
             "ix-pane-layout": LocalJSX.IxPaneLayout & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             "ix-pill": LocalJSX.IxPill & JSXBase.HTMLAttributes<HTMLIxPillElement>;
-            "ix-playground-internal": LocalJSX.IxPlaygroundInternal & JSXBase.HTMLAttributes<HTMLIxPlaygroundInternalElement>;
             /**
              * @since 1.6.0
              */

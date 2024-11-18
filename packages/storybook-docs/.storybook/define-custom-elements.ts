@@ -63,7 +63,6 @@ import { defineCustomElement as ixMenuSettingsItem } from '@siemens/ix/component
 import { defineCustomElement as ixMessageBar } from '@siemens/ix/components/ix-message-bar.js';
 import { defineCustomElement as ixModal } from '@siemens/ix/components/ix-modal.js';
 import { defineCustomElement as ixModalContent } from '@siemens/ix/components/ix-modal-content.js';
-import { defineCustomElement as ixModalExample } from '@siemens/ix/components/ix-modal-example.js';
 import { defineCustomElement as ixModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as ixModalHeader } from '@siemens/ix/components/ix-modal-header.js';
 import { defineCustomElement as ixPagination } from '@siemens/ix/components/ix-pagination.js';
@@ -157,7 +156,6 @@ ixMenuSettingsItem();
 ixMessageBar();
 ixModal();
 ixModalContent();
-ixModalExample();
 ixModalFooter();
 ixModalHeader();
 ixPagination();
