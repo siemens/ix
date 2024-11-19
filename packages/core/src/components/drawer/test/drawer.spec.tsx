@@ -22,8 +22,8 @@ describe('ix-drawer', () => {
       html: '<ix-drawer>Example Content</ix-drawer>',
     });
 
-    drawer = document.querySelector('ix-drawer');
-    container = document.querySelector('[data-testid="container"]');
+    drawer = document.querySelector('ix-drawer')!;
+    container = document.querySelector('[data-testid="container"]')!;
   });
 
   it('opens the drawer', async () => {
@@ -42,8 +42,9 @@ describe('ix-drawer', () => {
 
     const closeButton = drawer.shadowRoot.querySelector(
       '[data-testid="close-button"]'
-    );
+    )!;
     fireEvent.click(closeButton);
+
     await page.waitForChanges();
     expect(drawer.show).toBeFalsy();
     expect(drawer.innerHTML).not.toContain('toggle');
@@ -78,7 +79,7 @@ describe('ix-drawer', () => {
 
     const closeButton = drawer.shadowRoot.querySelector(
       '[data-testid="close-button"]'
-    );
+    )!;
     fireEvent.click(closeButton);
 
     window.removeEventListener('open', mockCallback);
