@@ -12348,11 +12348,11 @@
         },
         {
           "event": "expandedChanged",
-          "detail": "{ slot: string; expanded: boolean; userInitiated: boolean; }",
+          "detail": "{ slot: string; expanded: boolean; }",
           "bubbles": true,
           "complexType": {
             "original": "ExpandedChangedEvent",
-            "resolved": "{ slot: string; expanded: boolean; userInitiated: boolean; }",
+            "resolved": "{ slot: string; expanded: boolean; }",
             "references": {
               "ExpandedChangedEvent": {
                 "location": "local",
@@ -17815,7 +17815,7 @@
       "path": "src/components/pane/pane.tsx"
     },
     "src/components/pane/pane.tsx::ExpandedChangedEvent": {
-      "declaration": "{\n  slot: string;\n  expanded: boolean;\n  userInitiated: boolean;\n}",
+      "declaration": "{\n  slot: string;\n  expanded: boolean;\n}",
       "docstring": "",
       "path": "src/components/pane/pane.tsx"
     },
