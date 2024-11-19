@@ -56,7 +56,7 @@ describe('ix-drawer', () => {
     drawer.fullHeight = true;
     await page.waitForChanges();
 
-    expect(container.classList.contains('full-height')).toBeTruthy();
+    expect(container.style.height.includes('100%')).toBeTruthy();
   });
 
   it('drawer is NOT displayed at full height, if fullHeight is set to false', async () => {
@@ -66,7 +66,7 @@ describe('ix-drawer', () => {
     drawer.fullHeight = false;
     await page.waitForChanges();
 
-    expect(container.classList.contains('full-height')).toBeFalsy();
+    expect(container.style.height.includes('auto')).toBeTruthy();
   });
 
   it('emits an event, when show changed', async () => {
