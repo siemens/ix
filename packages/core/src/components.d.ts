@@ -632,17 +632,17 @@ export namespace Components {
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
          */
-        "locale"?: string;
+        "locale": string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
-        "maxDate"?: string;
+        "maxDate": string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
-        "minDate"?: string;
+        "minDate": string;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -653,7 +653,7 @@ export namespace Components {
           * @since 1.1.0
           * @deprecated since 2.1.0. Use `i18nDone`
          */
-        "textSelectDate"?: string;
+        "textSelectDate": string;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
@@ -675,7 +675,7 @@ export namespace Components {
           * set styles
          */
         "individual": boolean;
-        "standaloneAppearance"?: boolean;
+        "standaloneAppearance": any;
     }
     interface IxDatetimePicker {
         /**
@@ -4793,7 +4793,7 @@ declare namespace LocalJSX {
           * set styles
          */
         "individual"?: boolean;
-        "standaloneAppearance"?: boolean;
+        "standaloneAppearance"?: any;
     }
     interface IxDatetimePicker {
         /**

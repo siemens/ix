@@ -19,12 +19,6 @@ import { Component, h, Host } from '@stencil/core';
 })
 export class PlaygroundInternal {
   render() {
-    return (
-      <Host>
-        <ix-datetime-picker></ix-datetime-picker>
-        <ix-time-picker></ix-time-picker>
-        <ix-date-picker></ix-date-picker>
-      </Host>
-    );
+    return <Host></Host>;
   }
 }

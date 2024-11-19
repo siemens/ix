@@ -3978,12 +3978,13 @@
               "text": "2.1.0"
             }
           ],
+          "default": "undefined",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -4009,7 +4010,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -4035,7 +4036,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -4088,7 +4089,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
