@@ -156,13 +156,13 @@ export class Drawer {
         class={{
           'drawer-container': true,
           toggle: this.show,
-          'full-height': this.fullHeight,
           'd-none': true,
         }}
         style={{
           width: this.width === 'auto' ? this.width : `${this.width}rem`,
           'min-width': `${this.minWidth}rem`,
           'max-width': `${this.maxWidth}rem`,
+          height: this.fullHeight ? '100%' : 'auto',
         }}
         ref={(el) => (this.divElement = el as HTMLElement)}
         data-testid="container"
