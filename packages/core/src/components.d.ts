@@ -474,40 +474,6 @@ export namespace Components {
          */
         "value": string;
     }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
-    interface IxCheckboxGroup {
-        /**
-          * Alignment of the checkboxes in the group
-         */
-        "direction": 'row' | 'column';
-        /**
-          * Optional helper text displayed below the checkbox group
-         */
-        "helperText"?: string;
-        /**
-          * Info text for the checkbox group
-         */
-        "infoText"?: string;
-        /**
-          * Error text for the checkbox group
-         */
-        "invalidText"?: string;
-        /**
-          * Label for the checkbox group
-         */
-        "label"?: string;
-        /**
-          * Valid text for the checkbox group
-         */
-        "validText"?: string;
-        /**
-          * Warning text for the checkbox group
-         */
-        "warningText"?: string;
-    }
     interface IxChip {
         /**
           * Determines if the chip is interactive. If false no user input (e.g. mouse states, keyboard navigation) will be possible and also the close button will not be present.
@@ -3667,16 +3633,6 @@ declare global {
         prototype: HTMLIxCheckboxElement;
         new (): HTMLIxCheckboxElement;
     };
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
-    interface HTMLIxCheckboxGroupElement extends Components.IxCheckboxGroup, HTMLStencilElement {
-    }
-    var HTMLIxCheckboxGroupElement: {
-        prototype: HTMLIxCheckboxGroupElement;
-        new (): HTMLIxCheckboxGroupElement;
-    };
     interface HTMLIxChipElementEventMap {
         "closeChip": any;
     }
@@ -5005,7 +4961,6 @@ declare global {
         "ix-card-title": HTMLIxCardTitleElement;
         "ix-category-filter": HTMLIxCategoryFilterElement;
         "ix-checkbox": HTMLIxCheckboxElement;
-        "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
         "ix-col": HTMLIxColElement;
         "ix-content": HTMLIxContentElement;
@@ -5532,40 +5487,6 @@ declare namespace LocalJSX {
           * Value of the checkbox component
          */
         "value"?: string;
-    }
-    /**
-     * @since 2.6.0
-     * @form-ready 2.6.0
-     */
-    interface IxCheckboxGroup {
-        /**
-          * Alignment of the checkboxes in the group
-         */
-        "direction"?: 'row' | 'column';
-        /**
-          * Optional helper text displayed below the checkbox group
-         */
-        "helperText"?: string;
-        /**
-          * Info text for the checkbox group
-         */
-        "infoText"?: string;
-        /**
-          * Error text for the checkbox group
-         */
-        "invalidText"?: string;
-        /**
-          * Label for the checkbox group
-         */
-        "label"?: string;
-        /**
-          * Valid text for the checkbox group
-         */
-        "validText"?: string;
-        /**
-          * Warning text for the checkbox group
-         */
-        "warningText"?: string;
     }
     interface IxChip {
         /**
@@ -8470,7 +8391,6 @@ declare namespace LocalJSX {
         "ix-card-title": IxCardTitle;
         "ix-category-filter": IxCategoryFilter;
         "ix-checkbox": IxCheckbox;
-        "ix-checkbox-group": IxCheckboxGroup;
         "ix-chip": IxChip;
         "ix-col": IxCol;
         "ix-content": IxContent;
@@ -8618,11 +8538,6 @@ declare module "@stencil/core" {
              * @form-ready 2.6.0
              */
             "ix-checkbox": LocalJSX.IxCheckbox & JSXBase.HTMLAttributes<HTMLIxCheckboxElement>;
-            /**
-             * @since 2.6.0
-             * @form-ready 2.6.0
-             */
-            "ix-checkbox-group": LocalJSX.IxCheckboxGroup & JSXBase.HTMLAttributes<HTMLIxCheckboxGroupElement>;
             "ix-chip": LocalJSX.IxChip & JSXBase.HTMLAttributes<HTMLIxChipElement>;
             /**
              * @since 2.0.0

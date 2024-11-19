@@ -14,18 +14,17 @@ import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
 import {
   IxButton,
   IxCheckbox,
-  IxCheckboxGroup,
   IxCustomField,
   IxDateInput,
   IxIcon,
   IxIconButton,
+  IxInput,
   IxLayoutAuto,
   IxNumberInput,
   IxRadio,
   IxRadioGroup,
   IxSelect,
   IxSelectItem,
-  IxInput,
   IxTextarea,
   IxTypography,
 } from '@siemens/ix-react';
@@ -146,7 +145,7 @@ export default function FormValidation() {
           {...register('room-size')}
         >
           <IxIcon slot="start" name={iconBezierCurve} size="16"></IxIcon>
-          <IxTypography slot="end" color="weak" className='padding-right'>
+          <IxTypography slot="end" color="weak" className="padding-right">
             m<sup>2</sup>
           </IxTypography>
         </IxNumberInput>
@@ -207,11 +206,7 @@ export default function FormValidation() {
           {...register('comment')}
         ></IxTextarea>
 
-        <IxInput
-          type="email"
-          label="Email"
-          {...register('email')}
-        ></IxInput>
+        <IxInput type="email" label="Email" {...register('email')}></IxInput>
 
         {/* Implement custom form component */}
         <IxCustomField label="Upload" invalidText="You need to upload a file">
@@ -263,7 +258,7 @@ export default function FormValidation() {
           control={control}
           name="agreed"
           render={({ field }) => (
-            <IxCheckboxGroup invalidText={errors.agreed?.message}>
+            <IxCustomField invalidText={errors.agreed?.message}>
               <IxCheckbox
                 label="I agree everything"
                 data-colspan="2"
@@ -273,7 +268,7 @@ export default function FormValidation() {
                 onCheckedChange={(evt) => setValue('agreed', evt.detail)}
                 className={clsx({ 'ix-invalid': errors.agreed })}
               ></IxCheckbox>
-            </IxCheckboxGroup>
+            </IxCustomField>
           )}
         />
 

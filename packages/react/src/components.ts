@@ -21,7 +21,6 @@ import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
-import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
@@ -125,7 +124,6 @@ export const IxCardList = /*@__PURE__*/createReactComponent<JSX.IxCardList, HTML
 export const IxCardTitle = /*@__PURE__*/createReactComponent<JSX.IxCardTitle, HTMLIxCardTitleElement>('ix-card-title', undefined, undefined, defineIxCardTitle);
 export const IxCategoryFilter = /*@__PURE__*/createReactComponent<JSX.IxCategoryFilter, HTMLIxCategoryFilterElement>('ix-category-filter', undefined, undefined, defineIxCategoryFilter);
 export const IxCheckbox = /*@__PURE__*/createReactComponent<JSX.IxCheckbox, HTMLIxCheckboxElement>('ix-checkbox', undefined, undefined, defineIxCheckbox);
-export const IxCheckboxGroup = /*@__PURE__*/createReactComponent<JSX.IxCheckboxGroup, HTMLIxCheckboxGroupElement>('ix-checkbox-group', undefined, undefined, defineIxCheckboxGroup);
 export const IxChip = /*@__PURE__*/createReactComponent<JSX.IxChip, HTMLIxChipElement>('ix-chip', undefined, undefined, defineIxChip);
 export const IxCol = /*@__PURE__*/createReactComponent<JSX.IxCol, HTMLIxColElement>('ix-col', undefined, undefined, defineIxCol);
 export const IxContent = /*@__PURE__*/createReactComponent<JSX.IxContent, HTMLIxContentElement>('ix-content', undefined, undefined, defineIxContent);

@@ -21,7 +21,6 @@ import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
 import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
-import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
@@ -264,17 +263,6 @@ export const IxCheckbox = /*@__PURE__*/ defineContainer<JSX.IxCheckbox, JSX.IxCh
   'valueChange'
 ],
 'checked', 'checkedChange');
-
-
-export const IxCheckboxGroup = /*@__PURE__*/ defineContainer<JSX.IxCheckboxGroup>('ix-checkbox-group', defineIxCheckboxGroup, [
-  'helperText',
-  'label',
-  'direction',
-  'invalidText',
-  'infoText',
-  'validText',
-  'warningText'
-]);
 
 
 export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', defineIxChip, [

@@ -20,4 +20,9 @@ regressionTest.describe('checkbox', () => {
     await page.goto('checkbox/indeterminate');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('group checkboxes with custom field', async ({ page }) => {
+    await page.goto('checkbox/group');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });

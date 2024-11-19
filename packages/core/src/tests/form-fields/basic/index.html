@@ -14,6 +14,19 @@ SPDX-License-Identifier: MIT
     />
     <title>Stencil Component Starter</title>
   </head>
+  <style>
+    .custom-checkbox-group {
+      display: inline-block;
+      position: relative;
+    }
+
+    .checkbox-container {
+      display: flex;
+      gap: 1rem;
+      margin: 0.375rem 0;
+      flex-wrap: wrap;
+    }
+  </style>
   <body>
     <h1>Empty</h1>
     <ix-custom-field
@@ -27,72 +40,58 @@ SPDX-License-Identifier: MIT
     >
       <input data-field />
     </ix-custom-field>
-      <ix-input
-        data-field="input"
-        label="Text Field"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      ></ix-input>
-      <ix-number-input
-        data-field="number-input"
-        label="Number Field"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      ></ix-number-input>
-      <ix-textarea
-        data-field="text-area"
-        label="Text Area"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      ></ix-textarea>
-      <ix-date-input
-        data-field="date-input"
-        label="Date Field"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      ></ix-date-input>
-      <ix-select
-        data-field="select"
-        label="Select"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-      >
-        <ix-select-item label="Item 1" value="0"></ix-select-item>
-        <ix-select-item label="Item 2" value="2"></ix-select-item>
-        <ix-select-item label="Item 3" value="3"></ix-select-item>
-      </ix-select>
-        <ix-radio-group
-        data-field="radio-group"
-        label="Radio Group"
-        helper-text="Helper text"
-        info-text="Info text"
-        warning-text="Warning text"
-        valid-text="Valid text"
-        invalid-text="Invalid text"
-        direction="row"
-      >
-        <ix-radio label="Label 1" value="0"></ix-radio>
-        <ix-radio label="Label 2" value="1" checked></ix-radio>
-        <ix-radio label="Label 3" value="2"></ix-radio>
-      </ix-radio-group>
-      <ix-checkbox-group
-      data-field="checkbox-group"
-      label="Checkbox Group"
+    <ix-input
+      data-field="input"
+      label="Text Field"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    ></ix-input>
+    <ix-number-input
+      data-field="number-input"
+      label="Number Field"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    ></ix-number-input>
+    <ix-textarea
+      data-field="text-area"
+      label="Text Area"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    ></ix-textarea>
+    <ix-date-input
+      data-field="date-input"
+      label="Date Field"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    ></ix-date-input>
+    <ix-select
+      data-field="select"
+      label="Select"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    >
+      <ix-select-item label="Item 1" value="0"></ix-select-item>
+      <ix-select-item label="Item 2" value="2"></ix-select-item>
+      <ix-select-item label="Item 3" value="3"></ix-select-item>
+    </ix-select>
+    <ix-radio-group
+      data-field="radio-group"
+      label="Radio Group"
       helper-text="Helper text"
       info-text="Info text"
       warning-text="Warning text"
@@ -100,10 +99,26 @@ SPDX-License-Identifier: MIT
       invalid-text="Invalid text"
       direction="row"
     >
-      <ix-checkbox label="Label 1" value="0"></ix-checkbox>
-      <ix-checkbox label="Label 2" value="1" checked></ix-checkbox>
-      <ix-checkbox label="Label 3" value="2"></ix-checkbox>
-    </ix-checkbox-group>
+      <ix-radio label="Label 1" value="0"></ix-radio>
+      <ix-radio label="Label 2" value="1" checked></ix-radio>
+      <ix-radio label="Label 3" value="2"></ix-radio>
+    </ix-radio-group>
+    <ix-custom-field
+      class="custom-checkbox-group"
+      data-field="checkbox-group"
+      label="Checkbox Group"
+      helper-text="Helper text"
+      info-text="Info text"
+      warning-text="Warning text"
+      valid-text="Valid text"
+      invalid-text="Invalid text"
+    >
+      <div class="checkbox-container">
+        <ix-checkbox label="Label 1" value="0"></ix-checkbox>
+        <ix-checkbox label="Label 2" value="1" checked></ix-checkbox>
+        <ix-checkbox label="Label 3" value="2"></ix-checkbox>
+      </div>
+    </ix-custom-field>
 
     <h1>With value</h1>
     <ix-custom-field
@@ -187,7 +202,8 @@ SPDX-License-Identifier: MIT
       <ix-radio label="Label 2" value="1" checked></ix-radio>
       <ix-radio label="Label 3" value="2"></ix-radio>
     </ix-radio-group>
-    <ix-checkbox-group
+    <ix-custom-field
+      class="custom-checkbox-group"
       data-field="checkbox-group"
       label="Checkbox Group"
       helper-text="Helper text"
@@ -195,12 +211,13 @@ SPDX-License-Identifier: MIT
       warning-text="Warning text"
       valid-text="Valid text"
       invalid-text="Invalid text"
-      direction="row"
     >
-      <ix-checkbox label="Label 1" value="0"></ix-checkbox>
-      <ix-checkbox label="Label 2" value="1" checked></ix-checkbox>
-      <ix-checkbox label="Label 3" value="2"></ix-checkbox>
-    </ix-checkbox-group>
+      <div class="checkbox-container">
+        <ix-checkbox label="Label 1" value="0"></ix-checkbox>
+        <ix-checkbox label="Label 2" value="1" checked></ix-checkbox>
+        <ix-checkbox label="Label 3" value="2"></ix-checkbox>
+      </div>
+    </ix-custom-field>
 
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>

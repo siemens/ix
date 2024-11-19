@@ -421,28 +421,6 @@ export declare interface IxCheckbox extends Components.IxCheckbox {
 
 
 @ProxyCmp({
-  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'validText', 'warningText']
-})
-@Component({
-  selector: 'ix-checkbox-group',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['direction', 'helperText', 'infoText', 'invalidText', 'label', 'validText', 'warningText'],
-})
-export class IxCheckboxGroup {
-  protected el: HTMLElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface IxCheckboxGroup extends Components.IxCheckboxGroup {}
-
-
-@ProxyCmp({
   inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'variant']
 })
 @Component({
