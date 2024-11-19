@@ -1533,7 +1533,13 @@
       "styles": [],
       "slots": [],
       "parts": [],
-      "listeners": []
+      "listeners": [
+        {
+          "event": "click",
+          "capture": true,
+          "passive": false
+        }
+      ]
     },
     {
       "dirPath": "src/components/card",
@@ -1936,7 +1942,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1970,7 +1976,7 @@
           "name": "showAllCount",
           "type": "number",
           "complexType": {
-            "original": "number | undefined",
+            "original": "number",
             "resolved": "number",
             "references": {}
           },
@@ -1984,7 +1990,7 @@
               "type": "number"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -2154,33 +2160,6 @@
         ]
       },
       "props": [
-        {
-          "name": "ariaLabel",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "aria-label",
-          "reflectToAttr": false,
-          "docs": "Aria label for the filter input field",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "2.6.0"
-            }
-          ],
-          "default": "'Filter'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
         {
           "name": "categories",
           "type": "{ [id: string]: { label: string; options: string[]; }; }",
@@ -3525,6 +3504,7 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the start date.\nIf set to `null` no default start date will be pre-selected.\n\nFormat is based on `format`",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -3612,6 +3592,7 @@
           "reflectToAttr": false,
           "docs": "The latest date that can be selected by the date picker.\nIf not set there will be no restriction.",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -3633,6 +3614,7 @@
           "reflectToAttr": false,
           "docs": "The earliest date that can be selected by the date picker.\nIf not set there will be no restriction.",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -3676,6 +3658,7 @@
           "reflectToAttr": false,
           "docs": "Picker date. If the picker is in range mode this property is the end date.\nIf the picker is not in range mode leave this value `null`\n\nFormat is based on `format`",
           "docsTags": [],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -3978,13 +3961,12 @@
               "text": "2.1.0"
             }
           ],
-          "default": "undefined",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4005,6 +3987,7 @@
               "text": "1.1.0"
             }
           ],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -4031,6 +4014,7 @@
               "text": "1.1.0"
             }
           ],
+          "default": "''",
           "values": [
             {
               "type": "string"
@@ -4083,6 +4067,7 @@
               "text": "since 2.1.0. Use `i18nDone`"
             }
           ],
+          "default": "''",
           "deprecation": "since 2.1.0. Use `i18nDone`",
           "values": [
             {
@@ -5232,14 +5217,15 @@
       "props": [
         {
           "name": "anchor",
-          "type": "HTMLElement | string",
+          "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string | HTMLElement",
-            "resolved": "HTMLElement | string",
+            "original": "ElementReference",
+            "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "HTMLElement": {
-                "location": "global",
-                "id": "global::HTMLElement"
+              "ElementReference": {
+                "location": "import",
+                "path": "src/components/utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -5253,10 +5239,13 @@
               "type": "HTMLElement"
             },
             {
+              "type": "Promise<HTMLElement>"
+            },
+            {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -5457,16 +5446,13 @@
           "name": "trigger",
           "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string | HTMLElement | Promise<HTMLElement>",
+            "original": "ElementReference",
             "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "HTMLElement": {
-                "location": "global",
-                "id": "global::HTMLElement"
-              },
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
+              "ElementReference": {
+                "location": "import",
+                "path": "src/components/utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -5486,7 +5472,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -5680,7 +5666,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -5701,7 +5687,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -5784,7 +5770,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -16155,16 +16141,13 @@
           "name": "for",
           "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string | HTMLElement | Promise<HTMLElement>",
+            "original": "ElementReference",
             "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "HTMLElement": {
-                "location": "global",
-                "id": "global::HTMLElement"
-              },
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
+              "ElementReference": {
+                "location": "import",
+                "path": "../utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -17924,6 +17907,11 @@
       "declaration": "any",
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
+    },
+    "src/components/utils/element-reference.ts::ElementReference": {
+      "declaration": "export type ElementReference = string | HTMLElement | Promise<HTMLElement>;",
+      "docstring": "",
+      "path": "src/components/utils/element-reference.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",

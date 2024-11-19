@@ -159,12 +159,14 @@ test('open filtered dropdown on input', async ({ mount, page }) => {
   const element = page.locator('ix-select');
   await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
 
-  await page.locator('[data-testid="input"]').focus();
+  const input = await page.locator('[data-testid="input"]');
+  await input.focus();
+
   page.keyboard.down('Escape');
   const dropdown = element.locator('ix-dropdown');
   await expect(dropdown).not.toBeVisible();
 
-  page.keyboard.down('1');
+  await input.fill('1');
 
   const item1 = page.getByRole('button', { name: 'Item 1' });
   const item2 = page.getByRole('button', { name: 'Item 2' });
@@ -734,8 +736,8 @@ test.describe('Events', () => {
     const select = await page.locator('ix-select');
     const valueChanged = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('valueChange', (e: CustomEvent) =>
-          resolve(e.detail)
+        elm.addEventListener('valueChange', (e: Event) =>
+          resolve((e as CustomEvent).detail)
         );
       });
     });
@@ -753,7 +755,9 @@ test.describe('Events', () => {
     const select = await page.locator('ix-select');
     const itemAdded = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('addItem', (e: CustomEvent) => resolve(e.detail));
+        elm.addEventListener('addItem', (e: Event) =>
+          resolve((e as CustomEvent).detail)
+        );
       });
     });
     const input = await page.locator('input');
@@ -794,4 +798,22 @@ test.describe('Events', () => {
       await expect(count).toBe(0);
     });
   });
+});
+
+test('async set content and check input value', async ({ mount, page }) => {
+  await mount(`<ix-select value="1"></ix-select>`);
+
+  await page.evaluate(async () => {
+    const select = document.querySelector('ix-select');
+    if (select) {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      select.innerHTML = `
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      `;
+    }
+  });
+
+  const input = page.locator('input');
+  await expect(input).toHaveValue('Item 1');
 });

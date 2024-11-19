@@ -24,6 +24,7 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 import { DateTime, Info } from 'luxon';
 import { OnListener } from '../utils/listener';
+import { makeRef } from '../utils/make-ref';
 
 export type DateChangeEvent = {
   from: string;
@@ -34,7 +35,7 @@ export type DateTimeCorners = DateTimeCardCorners;
 
 interface CalendarWeek {
   weekNumber: number;
-  dayNumbers: number[];
+  dayNumbers: (number | undefined)[];
 }
 
 @Component({
@@ -43,7 +44,7 @@ interface CalendarWeek {
   shadow: true,
 })
 export class DatePicker {
-  @Element() hostElement: HTMLIxDatePickerElement;
+  @Element() hostElement!: HTMLIxDatePickerElement;
 
   /**
    * Date format string.
@@ -107,7 +108,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() minDate: string;
+  @Prop() minDate = '';
 
   /**
    * The latest date that can be selected by the date picker.
@@ -115,7 +116,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() maxDate: string;
+  @Prop() maxDate = '';
 
   /**
    * Text of the button that confirms date selection.
@@ -123,7 +124,7 @@ export class DatePicker {
    * @since 1.1.0
    * @deprecated since 2.1.0. Use `i18nDone`
    */
-  @Prop() textSelectDate: string;
+  @Prop() textSelectDate = '';
 
   /**
    * Text of date select button
@@ -146,7 +147,7 @@ export class DatePicker {
    *
    * @since 2.1.0
    */
-  @Prop() locale: string = undefined;
+  @Prop() locale?: string;
   @Watch('locale')
   onLocaleChange() {
     this.setTranslations();
@@ -178,7 +179,7 @@ export class DatePicker {
    *
    * @since 2.1.0
    */
-  @Event() dateChange: EventEmitter<DateChangeEvent>;
+  @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
   /**
    * Triggers if the date selection changes.
@@ -186,21 +187,21 @@ export class DatePicker {
    *
    * @since 2.1.0
    */
-  @Event() dateRangeChange: EventEmitter<DateChangeEvent>;
+  @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
    * Date selection confirmed via button action
    *
    * @since 1.1.0
    */
-  @Event() dateSelect: EventEmitter<DateChangeEvent>;
+  @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 
   /**
    * Date selection confirmed via button action
    *
    * @deprecated NOT getting dispatched after 2.0.0. Use `dateSelect`.
    */
-  @Event() done: EventEmitter<string>;
+  @Event() done!: EventEmitter<string>;
 
   /**
    * Get the currently selected date-range.
@@ -227,29 +228,28 @@ export class DatePicker {
     };
   }
 
-  @State() currFromDate: DateTime;
-  @State() currToDate: DateTime;
+  @State() currFromDate?: DateTime;
+  @State() currToDate?: DateTime;
 
-  @State() selectedYear: number;
-  @State() tempYear: number;
-  @State() startYear: number;
-  @State() endYear: number;
-  @State() selectedMonth: number;
-  @State() tempMonth: number;
+  @State() selectedYear = 0;
+  @State() tempYear = 0;
+  @State() startYear = 0;
+  @State() endYear = 0;
+  @State() selectedMonth = 0;
+  @State() tempMonth = 0;
 
-  @State() dropdownButtonRef: HTMLElement;
-  @State() yearContainerRef: HTMLElement;
+  private readonly dropdownButtonRef = makeRef<HTMLElement>();
+  private readonly yearContainerRef = makeRef<HTMLElement>();
+  private readonly firstMonthRef = makeRef<HTMLElement>();
 
-  @State() dayNames: string[];
-  @State() monthNames: string[];
-  @State() firstMonthRef: HTMLElement;
+  @State() dayNames!: string[];
+  @State() monthNames!: string[];
   @State() focusedDay: number = 1;
-  @State() focusedDayElem: HTMLElement;
 
-  private isDayFocus: boolean;
-  private monthChangedFromFocus: boolean;
+  private isDayFocus = false;
+  private monthChangedFromFocus = false;
   private readonly DAYS_IN_WEEK = 7;
-  private calendar: CalendarWeek[];
+  private calendar: CalendarWeek[] = [];
 
   @OnListener<DatePicker>('keydown')
   handleKeyUp(event: KeyboardEvent) {
@@ -290,7 +290,9 @@ export class DatePicker {
   }
 
   private getDaysInCurrentMonth(): number {
-    return DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth;
+    return (
+      DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth || 0
+    );
   }
 
   private getDateTimeNow() {
@@ -335,7 +337,7 @@ export class DatePicker {
       return;
     }
 
-    const dayElem = this.hostElement.shadowRoot.querySelector(
+    const dayElem = this.hostElement.shadowRoot!.querySelector(
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
     dayElem.focus();
@@ -374,6 +376,7 @@ export class DatePicker {
 
   private async onDone() {
     const date = await this.getCurrentDate();
+    // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
     this.dateSelect.emit(date);
   }
 
@@ -421,7 +424,7 @@ export class DatePicker {
       weekIndex <= endWeek && currDayNumber <= 31;
       weekIndex++
     ) {
-      const daysArr: number[] = [];
+      const daysArr: (number | undefined)[] = [];
 
       for (let j = 0; j < this.DAYS_IN_WEEK && currDayNumber <= 31; j++) {
         // Display empty cells until the calender starts/has ended
@@ -470,31 +473,37 @@ export class DatePicker {
   }
 
   private focusMonth() {
-    this.firstMonthRef.focus();
+    this.firstMonthRef.current?.focus();
   }
 
   private infiniteScrollYears() {
-    const scroll = this.yearContainerRef.scrollTop;
-    const maxScroll = this.yearContainerRef.scrollHeight;
+    const yearContainer = this.yearContainerRef.current;
+
+    if (!yearContainer) {
+      return;
+    }
+
+    const scroll = yearContainer.scrollTop;
+    const maxScroll = yearContainer.scrollHeight;
     const atTop = scroll === 0;
     const atBottom =
-      Math.round(scroll + this.yearContainerRef.offsetHeight) >= maxScroll;
+      Math.round(scroll + yearContainer.offsetHeight) >= maxScroll;
     const limit = 200;
 
     if (this.endYear - this.startYear > limit) return;
 
     if (atTop) {
-      const first = this.yearContainerRef.firstElementChild as HTMLElement;
+      const first = yearContainer.firstElementChild as HTMLElement;
       this.startYear -= 5;
-      this.yearContainerRef.scrollTo(0, first.offsetTop);
+      yearContainer.scrollTo(0, first.offsetTop);
 
       return;
     }
 
     if (atBottom) {
-      const last = this.yearContainerRef.lastElementChild as HTMLElement;
+      const last = yearContainer.lastElementChild as HTMLElement;
       this.endYear += 5;
-      this.yearContainerRef.scrollTo(0, last.offsetTop);
+      yearContainer.scrollTo(0, last.offsetTop);
     }
   }
 
@@ -503,7 +512,10 @@ export class DatePicker {
     this.selectedYear = this.tempYear;
     this.tempMonth = month;
 
-    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
+    const dropdown = this.hostElement.shadowRoot!.querySelector('ix-dropdown');
+    if (dropdown) {
+      dropdown.show = false;
+    }
   }
 
   private changeToAdjacentMonth(number: -1 | 1) {
@@ -518,7 +530,11 @@ export class DatePicker {
     }
   }
 
-  private selectDay(selectedDay: number) {
+  private selectDay(selectedDay: number, target: Element) {
+    if (target.classList.contains('disabled')) {
+      return;
+    }
+
     const date = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, selectedDay)
     );
@@ -555,18 +571,16 @@ export class DatePicker {
 
   private onDateChange() {
     this.getCurrentDate().then((date) => {
+      // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
       this.dateChange.emit(date);
       if (this.range) {
+        // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
         this.dateRangeChange.emit(date);
       }
     });
   }
 
   private getDayClasses(day: number): any {
-    if (!day) {
-      return;
-    }
-
     const todayObj = this.getDateTimeNow();
     const selectedDayObj = DateTime.fromJSDate(
       new Date(this.selectedYear, this.selectedMonth, day)
@@ -580,7 +594,8 @@ export class DatePicker {
         this.currFromDate?.hasSame(selectedDayObj, 'day') ||
         this.currToDate?.hasSame(selectedDayObj, 'day'),
       range:
-        selectedDayObj.startOf('day') > this.currFromDate?.startOf('day') &&
+        this.currFromDate &&
+        selectedDayObj.startOf('day') > this.currFromDate.startOf('day') &&
         this.currToDate !== undefined &&
         selectedDayObj.startOf('day') < this.currToDate?.startOf('day'),
       disabled: !this.isWithinMinMaxDate(selectedDayObj),
@@ -651,7 +666,7 @@ export class DatePicker {
           onClick={(event) => this.selectTempYear(event, year)}
           onKeyUp={(event) => {
             if (event.key === 'Enter') {
-              this.selectTempYear(null, year);
+              this.tempYear = year;
               this.focusMonth();
             }
           }}
@@ -691,7 +706,7 @@ export class DatePicker {
             <div class="selector">
               <ix-button
                 ghost
-                ref={(ref) => (this.dropdownButtonRef = ref)}
+                ref={this.dropdownButtonRef}
                 data-testid="year-month-button"
               >
                 <span class="fontSize capitalize">
@@ -701,7 +716,7 @@ export class DatePicker {
               <ix-dropdown
                 data-testid="year-month-dropdown"
                 class="dropdown"
-                trigger={this.dropdownButtonRef}
+                trigger={this.dropdownButtonRef.waitForCurrent()}
                 ignoreRelatedSubmenu
                 placement="bottom-start"
               >
@@ -710,7 +725,7 @@ export class DatePicker {
                     data-testid="year-container"
                     class="overflow"
                     onScroll={() => this.infiniteScrollYears()}
-                    ref={(ref) => (this.yearContainerRef = ref)}
+                    ref={this.yearContainerRef}
                   >
                     {this.renderYears()}
                   </div>
@@ -720,7 +735,7 @@ export class DatePicker {
                         key={month}
                         ref={(ref) => {
                           if (month === this.monthNames[0]) {
-                            this.firstMonthRef = ref as HTMLElement;
+                            this.firstMonthRef(ref);
                           }
                         }}
                         class={{
@@ -775,21 +790,33 @@ export class DatePicker {
               return (
                 <Fragment>
                   <div class="calendar-item week-number">{week.weekNumber}</div>
-                  {week.dayNumbers.map((day) => (
-                    <div
-                      key={day}
-                      id={`day-cell-${day}`}
-                      date-calender-day
-                      class={this.getDayClasses(day)}
-                      onClick={() => this.selectDay(day)}
-                      onKeyUp={(e) => e.key === 'Enter' && this.selectDay(day)}
-                      tabIndex={day === this.focusedDay ? 0 : -1}
-                      onFocus={() => this.onDayFocus()}
-                      onBlur={() => this.onDayBlur()}
-                    >
-                      {day}
-                    </div>
-                  ))}
+                  {week.dayNumbers.map((day) => {
+                    return day ? (
+                      <div
+                        key={day}
+                        id={`day-cell-${day}`}
+                        date-calender-day
+                        class={this.getDayClasses(day)}
+                        onClick={(e) => {
+                          const target = e.currentTarget as HTMLElement;
+                          this.selectDay(day, target);
+                        }}
+                        onKeyUp={(e) => {
+                          const target = e.currentTarget as HTMLElement;
+                          if (e.key === 'Enter') {
+                            this.selectDay(day, target);
+                          }
+                        }}
+                        tabIndex={day === this.focusedDay ? 0 : -1}
+                        onFocus={() => this.onDayFocus()}
+                        onBlur={() => this.onDayBlur()}
+                      >
+                        {day}
+                      </div>
+                    ) : (
+                      <div></div>
+                    );
+                  })}
                 </Fragment>
               );
             })}

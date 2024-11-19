@@ -235,7 +235,6 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
   'tmpDisableScrollIntoView',
   'labelCategories',
   'i18nPlainText',
-  'ariaLabel',
   'categoryChanged',
   'inputChanged',
   'filterChanged'
