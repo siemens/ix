@@ -69,6 +69,8 @@ regressionTest.describe('input', () => {
 
   regressionTest('with slots', async ({ page }) => {
     await page.goto('input/with-slots');
+    const button = await page.waitForSelector('ix-button');
+    await button.click();
     await expect(page).toHaveScreenshot();
   });
 

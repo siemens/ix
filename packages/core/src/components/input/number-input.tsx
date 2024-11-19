@@ -28,7 +28,7 @@ import {
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
-  applyPaddingEnd,
+  adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
   mapValidationResult,
@@ -177,26 +177,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   componentDidRender() {
-    setTimeout(() => this.updatePaddings());
+    this.updatePaddings();
   }
 
   private updatePaddings() {
-    const slotStartBoundingRect =
-      this.slotStartRef.current?.getBoundingClientRect();
-    const slotEndBoundingRect =
-      this.slotEndRef.current?.getBoundingClientRect();
-
-    if (slotStartBoundingRect) {
-      applyPaddingEnd(this.inputRef.current, slotStartBoundingRect.width, {
-        slotEnd: false,
-      });
-    }
-
-    if (slotEndBoundingRect) {
-      applyPaddingEnd(this.inputRef.current, slotEndBoundingRect.width, {
-        slotEnd: true,
-      });
-    }
+    adjustPaddingForStartAndEnd(
+      this.slotStartRef.current,
+      this.slotEndRef.current,
+      this.inputRef.current
+    );
   }
 
   updateFormInternalValue(value: number) {
@@ -293,44 +282,47 @@ export class NumberInput implements IxInputFieldComponent<number> {
               slotEndRef={this.slotEndRef}
               onSlotChange={() => this.updatePaddings()}
             >
-              {showStepperButtons && (
-                <div class="number-stepper-container">
-                  <ix-icon-button
-                    ghost
-                    icon={iconMinus}
-                    size="16"
-                    class="number-stepper-button step-minus"
-                    onClick={() => {
-                      if (!this.inputRef.current) {
-                        return;
-                      }
-                      this.inputRef.current.stepDown();
-                      checkInternalValidity(this, this.inputRef.current);
-                      this.updateFormInternalValue(
-                        Number(this.inputRef.current.value)
-                      );
-                      this.valueChange.emit(this.value);
-                    }}
-                  ></ix-icon-button>
-                  <ix-icon-button
-                    ghost
-                    icon={iconPlus}
-                    size="16"
-                    class="number-stepper-button step-plus"
-                    onClick={() => {
-                      if (!this.inputRef.current) {
-                        return;
-                      }
-                      this.inputRef.current.stepUp();
-                      checkInternalValidity(this, this.inputRef.current);
-                      this.updateFormInternalValue(
-                        Number(this.inputRef.current.value)
-                      );
-                      this.valueChange.emit(this.value);
-                    }}
-                  ></ix-icon-button>
-                </div>
-              )}
+              <div
+                class={{
+                  'number-stepper-container': true,
+                  'container-hidden': !showStepperButtons,
+                }}
+              >
+                <ix-icon-button
+                  ghost
+                  icon={iconMinus}
+                  size="16"
+                  class="number-stepper-button step-minus"
+                  onClick={() => {
+                    if (!this.inputRef.current) {
+                      return;
+                    }
+                    this.inputRef.current.stepDown();
+                    checkInternalValidity(this, this.inputRef.current);
+                    this.updateFormInternalValue(
+                      Number(this.inputRef.current.value)
+                    );
+                    this.valueChange.emit(this.value);
+                  }}
+                ></ix-icon-button>
+                <ix-icon-button
+                  ghost
+                  icon={iconPlus}
+                  size="16"
+                  class="number-stepper-button step-plus"
+                  onClick={() => {
+                    if (!this.inputRef.current) {
+                      return;
+                    }
+                    this.inputRef.current.stepUp();
+                    checkInternalValidity(this, this.inputRef.current);
+                    this.updateFormInternalValue(
+                      Number(this.inputRef.current.value)
+                    );
+                    this.valueChange.emit(this.value);
+                  }}
+                ></ix-icon-button>
+              </div>
             </SlotEnd>
           </div>
         </ix-field-wrapper>

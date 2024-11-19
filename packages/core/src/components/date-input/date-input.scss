@@ -13,15 +13,19 @@
 @include input-field;
 
 :host {
-   @include ix-component;
+  @include ix-component;
 
-   display: inline-block;
-   position: relative;
+  display: inline-block;
+  position: relative;
 
-   input {
-     width: 100%;
-     height: 100%;
-   }
+  input {
+    width: 100%;
+    height: 100%;
+  }
+
+  .calendar-hidden {
+    display: none;
+  }
 }
 
 :host(.readonly) {

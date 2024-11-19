@@ -196,7 +196,7 @@ export class DateInput implements IxInputFieldComponent<string> {
   }
 
   componentDidRender(): void {
-    setTimeout(() => this.updatePaddings());
+    this.updatePaddings();
   }
 
   private updatePaddings() {
@@ -341,14 +341,13 @@ export class DateInput implements IxInputFieldComponent<string> {
           slotEndRef={this.slotEndRef}
           onSlotChange={() => this.updatePaddings()}
         >
-          {this.disabled || this.readonly ? null : (
-            <ix-icon-button
-              data-testid="open-calendar"
-              ghost
-              icon={iconCalendar}
-              onClick={(event) => this.onCalenderClick(event)}
-            ></ix-icon-button>
-          )}
+          <ix-icon-button
+            data-testid="open-calendar"
+            class={{ 'calendar-hidden': this.disabled || this.readonly }}
+            ghost
+            icon={iconCalendar}
+            onClick={(event) => this.onCalenderClick(event)}
+          ></ix-icon-button>
         </SlotEnd>
       </div>
     );

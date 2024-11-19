@@ -22,6 +22,10 @@
     position: relative;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin-left: 0.5rem;
+    margin-right: 0.25rem;
+
+    &.container-hidden {
+      display: none;
+    }
   }
 }

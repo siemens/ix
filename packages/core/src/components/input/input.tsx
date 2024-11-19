@@ -30,7 +30,7 @@ import {
 import { MakeRef, makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
-  applyPaddingEnd,
+  adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   getAriaAttributesForInput,
   mapValidationResult,
@@ -188,26 +188,15 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   componentDidRender() {
-    setTimeout(() => this.updatePaddings());
+    this.updatePaddings();
   }
 
   private updatePaddings() {
-    const slotStartBoundingRect =
-      this.slotStartRef.current?.getBoundingClientRect();
-    const slotEndBoundingRect =
-      this.slotEndRef.current?.getBoundingClientRect();
-
-    if (slotStartBoundingRect) {
-      applyPaddingEnd(this.inputRef.current, slotStartBoundingRect.width, {
-        slotEnd: false,
-      });
-    }
-
-    if (slotEndBoundingRect) {
-      applyPaddingEnd(this.inputRef.current, slotEndBoundingRect.width, {
-        slotEnd: true,
-      });
-    }
+    adjustPaddingForStartAndEnd(
+      this.slotStartRef.current,
+      this.slotEndRef.current,
+      this.inputRef.current
+    );
   }
 
   updateFormInternalValue(value: string) {
@@ -298,24 +287,25 @@ export class Input implements IxInputFieldComponent<string> {
               slotEndRef={this.slotEndRef}
               onSlotChange={() => this.updatePaddings()}
             >
-              {this.type === 'password' && (
-                <ix-icon-button
-                  color="color-weak-text"
-                  class={'password-eye'}
-                  ghost
-                  icon={
-                    this.inputType === 'password' ? iconEye : iconEyeCancelled
+              <ix-icon-button
+                color="color-weak-text"
+                class={{
+                  'password-eye': true,
+                  'eye-hidden': this.type !== 'password',
+                }}
+                ghost
+                icon={
+                  this.inputType === 'password' ? iconEye : iconEyeCancelled
+                }
+                onClick={() => {
+                  if (this.inputType === 'password') {
+                    this.inputType = 'text';
+                    return;
                   }
-                  onClick={() => {
-                    if (this.inputType === 'password') {
-                      this.inputType = 'text';
-                      return;
-                    }
 
-                    this.inputType = 'password';
-                  }}
-                ></ix-icon-button>
-              )}
+                  this.inputType = 'password';
+                }}
+              ></ix-icon-button>
             </SlotEnd>
           </div>
           {!!this.maxLength && this.maxLength > 0 && (

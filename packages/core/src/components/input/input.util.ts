@@ -99,10 +99,6 @@ export function applyPaddingEnd(
     return;
   }
 
-  if (width === 0) {
-    return;
-  }
-
   const remInPixels = 16;
   const padding = convertToRemString(width + remInPixels / 2);
 
@@ -120,24 +116,27 @@ export function adjustPaddingForStartAndEnd(
   endElement: HTMLElement | null,
   inputElement: HTMLElement | null
 ) {
-  if (startElement) {
-    const startBoundingRect = startElement.getBoundingClientRect();
-    if (startBoundingRect) {
-      applyPaddingEnd(inputElement, startBoundingRect.width, {
-        slotEnd: false,
-      });
-    }
-  }
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      if (startElement) {
+        const startBoundingRect = startElement.getBoundingClientRect();
+        if (startBoundingRect) {
+          applyPaddingEnd(inputElement, startBoundingRect.width, {
+            slotEnd: false,
+          });
+        }
+      }
 
-  if (endElement) {
-    const endBoundingRect = endElement.getBoundingClientRect();
-
-    if (endBoundingRect) {
-      applyPaddingEnd(inputElement, endBoundingRect.width, {
-        slotEnd: true,
-      });
-    }
-  }
+      if (endElement) {
+        const endBoundingRect = endElement.getBoundingClientRect();
+        if (endBoundingRect) {
+          applyPaddingEnd(inputElement, endBoundingRect.width, {
+            slotEnd: true,
+          });
+        }
+      }
+    });
+  });
 }
 
 export function getAriaAttributesForInput(
