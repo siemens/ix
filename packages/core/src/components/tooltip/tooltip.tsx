@@ -255,7 +255,7 @@ export class Tooltip implements IxOverlayComponent {
 
   private async queryAnchorElements(): Promise<Array<HTMLElement> | undefined> {
     if (typeof this.for === 'string') {
-      return resolveSelector(this.for);
+      return resolveSelector(this.for, this.hostElement);
     }
 
     if (this.for instanceof HTMLElement) {

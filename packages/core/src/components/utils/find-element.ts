@@ -10,7 +10,8 @@
 /**
  * Will try to resolve the selector in the light dom, shadow dom or slot
  * @param selector The selector to resolve
- * @returns Promse with the resolved elements
+ * @param hostElement The element to start the search from
+ * @returns Promise with the resolved elements
  */
 export async function resolveSelector(
   selector: string,
@@ -20,39 +21,49 @@ export async function resolveSelector(
     document.querySelectorAll(selector)
   );
 
-  if (elementsInLightDom.length === 0) {
-    const shadowRoot = getRootFor(hostElement);
-
-    if (shadowRoot === undefined) {
-      return Promise.resolve(undefined);
-    }
-
-    const slots = shadowRoot.querySelectorAll('slot');
-    let elementsInSlot: HTMLElement[] = [];
-
-    slots.forEach((slot) => {
-      const assignedElements = slot.assignedElements({ flatten: true });
-      assignedElements.forEach((element) => {
-        if (element.matches(selector)) {
-          elementsInSlot.push(element as HTMLElement);
-        } else if (element.querySelector(selector)) {
-          elementsInSlot.push(element.querySelector(selector) as HTMLElement);
-        }
-      });
-    });
-
-    if (elementsInSlot.length > 0) {
-      return Promise.resolve(elementsInSlot);
-    }
-
-    const elementsInShadowRoot: HTMLElement[] = Array.from(
-      shadowRoot.querySelectorAll(selector)
-    );
-
-    return Promise.resolve(elementsInShadowRoot);
-  } else {
+  if (elementsInLightDom.length > 0) {
     return Promise.resolve(elementsInLightDom);
   }
+
+  if (hostElement === undefined) {
+    return Promise.resolve(undefined);
+  }
+
+  const shadowRoot = getRootFor(hostElement);
+
+  if (shadowRoot === undefined || !(shadowRoot instanceof ShadowRoot)) {
+    return Promise.resolve(undefined);
+  }
+
+  let elementsInSlot: HTMLElement[] = getSlottedElements(shadowRoot, selector);
+
+  if (elementsInSlot.length > 0) {
+    return Promise.resolve(elementsInSlot);
+  }
+
+  const elementsInShadowRoot: HTMLElement[] = Array.from(
+    shadowRoot.querySelectorAll(selector)
+  );
+
+  return Promise.resolve(elementsInShadowRoot);
+}
+
+function getSlottedElements(shadowRoot: ShadowRoot, selector: string) {
+  const slots = shadowRoot.querySelectorAll('slot');
+  let elementsInSlot: HTMLElement[] = [];
+
+  slots.forEach((slot) => {
+    const assignedElements = slot.assignedElements({ flatten: true });
+    assignedElements.forEach((element) => {
+      if (element.matches(selector)) {
+        elementsInSlot.push(element as HTMLElement);
+      } else if (element.querySelector(selector)) {
+        elementsInSlot.push(element.querySelector(selector) as HTMLElement);
+      }
+    });
+  });
+
+  return elementsInSlot;
 }
 
 /**
@@ -62,8 +73,12 @@ export async function resolveSelector(
  * @returns The root element
  */
 export function getRootFor(element: HTMLElement, parent = document.body) {
-  if (!element.parentElement) {
+  if (!element.parentElement && !element.parentNode) {
     return undefined;
+  }
+
+  if (element.parentNode instanceof ShadowRoot) {
+    return element.parentNode;
   }
 
   let currentNode = element.parentElement;
@@ -71,6 +86,8 @@ export function getRootFor(element: HTMLElement, parent = document.body) {
   while (currentNode) {
     if (currentNode.shadowRoot) {
       return currentNode.shadowRoot;
+    } else if (currentNode.parentNode instanceof ShadowRoot) {
+      return currentNode.parentNode;
     }
 
     currentNode = currentNode.parentElement;
@@ -81,18 +98,23 @@ export function getRootFor(element: HTMLElement, parent = document.body) {
 
 export function waitForSelector(
   selector: string,
-  node = document
+  node = document,
+  hostElement?: HTMLElement
 ): Promise<Element> {
   return new Promise((resolve) => {
-    if (node.querySelector(selector)) {
-      return resolve(node.querySelector(selector));
-    }
+    const waitForElements = () => {
+      resolveSelector(selector, hostElement).then((elements) => {
+        if (elements && elements.length > 0) {
+          resolve(elements[0]);
+          observer?.disconnect();
+        }
+      });
+    };
+
+    waitForElements();
 
     const observer = new MutationObserver(() => {
-      if (node.querySelector(selector)) {
-        resolve(node.querySelector(selector));
-        observer.disconnect();
-      }
+      waitForElements();
     });
 
     observer.observe(node.body, {
@@ -102,8 +124,15 @@ export function waitForSelector(
   });
 }
 
+/**
+ * Find an element by ID or reference
+ * @param element The element to find
+ * @param hostElement The element to start the search from
+ * @returns A promise that will resolve to the element
+ */
 export function findElement(
-  element: string | HTMLElement | Promise<HTMLElement>
+  element: string | HTMLElement | Promise<HTMLElement>,
+  hostElement?: HTMLElement
 ): Promise<Element> {
   if (element instanceof Promise) {
     return element;
@@ -113,10 +142,6 @@ export function findElement(
     return Promise.resolve(element);
   }
 
-  if (typeof element != 'string') {
-    return;
-  }
-
   const selector = `#${element}`;
-  return waitForSelector(selector);
+  return waitForSelector(selector, document, hostElement);
 }

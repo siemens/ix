@@ -304,7 +304,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private async resolveElement(
     element: string | HTMLElement | Promise<HTMLElement>
   ) {
-    const el = await findElement(element);
+    const el = await findElement(element, this.hostElement);
 
     return this.checkForSubmenuAnchor(el);
   }
