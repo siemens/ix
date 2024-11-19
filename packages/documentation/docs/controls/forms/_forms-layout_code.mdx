@@ -1,0 +1,69 @@
+import Admonition from '@theme/Admonition';
+import Playground, {
+  SourceCodePreview,
+} from '@site/src/components/PlaygroundV2';
+import StackblitzEmbedded from '@site/src/components/StackblitzEmbedded';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Props from '@site/docs/auto-generated/ix-validation-tooltip/props.md';
+
+## Development
+
+### Using custom layout
+
+To align `form-ready` components in a complex form layout, you typically omit the `label` attribute and define the label
+as an `ix-field-label` component.
+
+You can follow the example here:
+
+1. Define the `ix-input` component including an `id` attribute.
+
+```html
+<ix-input id="mytest"></ix-input>
+```
+
+2. Define an `ix-field-label` component with a `for` attribute to link the label to the `ix-input` component.
+
+```html
+<ix-field-label htmlFor="mytest">Test</ix-field-label>
+```
+
+3. Define an `ix-helper-text` component with a `for` attribute to link the helper text to the `ix-input` component.
+
+```html
+<ix-helper-text
+  htmlFor="mytest"
+  helperText="Helper text"
+  invalidText="Error text"
+  validText="Valid text"
+  warningText="Warning text"
+  infoText="Info text"
+></ix-helper-text>
+```
+
+### Using ix-layout-form
+
+```html
+<form>
+  <ix-layout-grid>
+    <ix-row>
+      <ix-col size="2">
+        <ix-field-label htmlFor="my-select-1">Example</ix-field-label>
+      </ix-col>
+      <ix-col>
+        <ix-select id="my-select-1"></ix-select>
+      </ix-col>
+    </ix-row>
+    <ix-row>
+      <ix-col size="2">
+        <ix-field-label htmlFor="my-select-2">Example</ix-field-label>
+      </ix-col>
+      <ix-col>
+        <ix-input id="my-select-2"></ix-ix-input>
+      </ix-col>
+    </ix-row>
+  </ix-layout-grid>
+</form>
+```
+
+
