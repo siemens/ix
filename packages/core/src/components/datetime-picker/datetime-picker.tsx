@@ -12,9 +12,9 @@ import type { DateChangeEvent } from '../date-picker/date-picker';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 
 export type DateTimeSelectEvent = {
-  from?: string;
-  to?: string;
-  time?: string;
+  from: string;
+  to: string;
+  time: string;
 };
 
 export type DateTimeDateChangeEvent =
@@ -110,7 +110,7 @@ export class DatetimePicker
    *
    * @since 1.1.0
    */
-  @Prop() showTimeReference?: any;
+  @Prop() showTimeReference?: boolean;
 
   /**
    * Set time reference
@@ -194,9 +194,9 @@ export class DatetimePicker
     const time = await this.timePickerElement?.getCurrentTime();
 
     this.dateSelect.emit({
-      from: date?.from,
-      to: date?.to,
-      time: time,
+      from: date?.from ?? '',
+      to: date?.to ?? '',
+      time: time ?? '',
     });
 
     this.done.emit(

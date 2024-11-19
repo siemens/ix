@@ -744,7 +744,7 @@ export namespace Components {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: any;
+        "showTimeReference"?: boolean;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -4887,7 +4887,7 @@ declare namespace LocalJSX {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: any;
+        "showTimeReference"?: boolean;
         /**
           * Text of date select button
           * @since 1.1.0

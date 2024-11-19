@@ -38,12 +38,12 @@ export interface IxDatePickerComponent {
   /**
    * Annotae with @Prop() decorator
    */
-  minDate: string;
+  minDate?: string;
 
   /**
    * Annotae with @Prop() decorator
    */
-  maxDate: string;
+  maxDate?: string;
 
   /**
    * Annotate with @Prop({ attribute: 'i18n-done' }) decorator
