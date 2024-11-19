@@ -9,6 +9,7 @@
 
 import { Component, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
 import type { DateChangeEvent } from '../date-picker/date-picker';
+import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 
 export type DateTimeSelectEvent = {
   from?: string;
@@ -25,7 +26,9 @@ export type DateTimeDateChangeEvent =
   styleUrl: 'datetime-picker.scss',
   shadow: true,
 })
-export class DatetimePicker {
+export class DatetimePicker
+  implements Omit<IxDatePickerComponent, 'corners' | 'format'>
+{
   /**
    * If true a date-range can be selected (from/to).
    */
@@ -243,7 +246,6 @@ export class DatetimePicker {
               <ix-time-picker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
-                corners="right"
                 standaloneAppearance={false}
                 showHour={this.showHour}
                 showMinutes={this.showMinutes}

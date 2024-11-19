@@ -142,11 +142,10 @@ export class Select {
 
   private arrowFocusController?: ArrowFocusController;
 
-  private itemObserver = createMutationObserver(() => {
+  private readonly itemObserver = createMutationObserver(() => {
     if (!this.arrowFocusController) {
       return;
     }
-
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
 
@@ -326,7 +325,7 @@ export class Select {
 
     this.items.forEach((item) => {
       item.selected = ids.some((i) => {
-        if (typeof i !== typeof item.value) {
+        if (item.value !== undefined && typeof i !== typeof item.value) {
           return i.toString() === item.value.toString();
         } else {
           return i === item.value;
@@ -375,6 +374,7 @@ export class Select {
     this.updateSelection();
   }
 
+  @Listen('ix-select-item:valueChange')
   @Listen('ix-select-item:labelChange')
   onLabelChange(event: IxSelectItemLabelChangeEvent) {
     event.preventDefault();

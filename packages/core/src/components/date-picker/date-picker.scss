@@ -9,6 +9,7 @@
 
 @import 'common-variables';
 @import 'mixins/shadow-dom/component';
+@import 'mixins/text-truncation';
 
 :host {
   @include ix-component;
@@ -279,6 +280,10 @@
         border: none;
         background: none;
         cursor: initial;
+
+        .overflow {
+          @include ellipsis;
+        }
       }
 
       &.empty-day {
