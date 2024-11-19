@@ -40,7 +40,7 @@ describe('ix-drawer', () => {
     drawer.show = true;
     await page.waitForChanges();
 
-    const closeButton = drawer.shadowRoot.querySelector(
+    const closeButton = drawer.shadowRoot!.querySelector(
       '[data-testid="close-button"]'
     )!;
     fireEvent.click(closeButton);
@@ -77,7 +77,7 @@ describe('ix-drawer', () => {
     drawer.toggleDrawer();
     await page.waitForChanges();
 
-    const closeButton = drawer.shadowRoot.querySelector(
+    const closeButton = drawer.shadowRoot!.querySelector(
       '[data-testid="close-button"]'
     )!;
     fireEvent.click(closeButton);
