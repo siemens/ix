@@ -149,13 +149,13 @@ export class Pane {
   @State() private floating = false;
   @State() private parentWidthPx = 0;
   @State() private parentHeightPx = 0;
+  @State() private internalExpanded: boolean = false;
 
   private static readonly validPositions = ['top', 'left', 'bottom', 'right'];
   private static readonly collapsedPane = '40px';
   private static readonly collapsedPaneMobile = '48px';
   private readonly animations: Map<string, anime.AnimeInstance> = new Map();
   private animationCounter = 0;
-  private isExpandedChangePrevented = false;
   private userInitiated = false;
 
   private mutationObserver?: MutationObserver;
@@ -178,6 +178,7 @@ export class Pane {
   }
 
   componentWillLoad() {
+    this.internalExpanded = this.expanded;
     this.setIcons();
 
     this.floating = this.variant === 'floating';
@@ -336,7 +337,7 @@ export class Pane {
       easing: 'easeInOutSine',
       delay: 0,
       begin: () => {
-        if (!this.expanded) {
+        if (!this.internalExpanded) {
           this.showContent = false;
           this.animateVerticalPadding('0px');
         } else {
@@ -344,7 +345,7 @@ export class Pane {
         }
       },
       complete: () => {
-        if (this.expanded) {
+        if (this.internalExpanded) {
           this.showContent = true;
         }
 
@@ -364,7 +365,7 @@ export class Pane {
       easing: 'easeInOutSine',
       delay: 0,
       begin: () => {
-        if (!this.expanded) {
+        if (!this.internalExpanded) {
           this.showContent = false;
           if (!this.isMobile) this.animateHorizontalPadding('0px');
         } else {
@@ -372,7 +373,7 @@ export class Pane {
         }
       },
       complete: () => {
-        if (this.expanded) {
+        if (this.internalExpanded) {
           this.showContent = true;
         }
 
@@ -441,6 +442,22 @@ export class Pane {
     this.animationCounter = 0;
   }
 
+  private async setExpanded(newState: boolean) {
+    const event = this.expandedChanged.emit({
+      slot: this.currentSlot ?? '',
+      expanded: newState,
+      userInitiated: this.userInitiated,
+    });
+
+    if (!event.defaultPrevented) {
+      this.expanded = newState;
+      this.internalExpanded = newState;
+      this.onSizeChange();
+    }
+
+    this.userInitiated = false;
+  }
+
   @Watch('isMobile')
   onMobileChange() {
     this.setIcons();
@@ -487,27 +504,10 @@ export class Pane {
   }
 
   @Watch('expanded')
-  onExpandedChange() {
-    if (this.isExpandedChangePrevented) {
-      this.userInitiated = false;
-      this.isExpandedChangePrevented = false;
-      return;
+  onExpandedChange(newValue: boolean) {
+    if (this.internalExpanded !== newValue) {
+      this.setExpanded(newValue);
     }
-
-    const event = this.expandedChanged.emit({
-      slot: this.currentSlot ?? '',
-      expanded: this.expanded,
-      userInitiated: this.userInitiated,
-    });
-
-    if (event.defaultPrevented) {
-      this.isExpandedChangePrevented = true;
-      this.expanded = !this.expanded;
-
-      return;
-    }
-
-    this.onSizeChange();
   }
 
   @Watch('parentHeightPx')
@@ -516,7 +516,7 @@ export class Pane {
     this.clearAnimations();
     this.removePadding();
 
-    if (this.expanded) {
+    if (this.internalExpanded) {
       if (this.isMobile) {
         this.hostElement.style.height = '100%';
       } else {
@@ -555,7 +555,7 @@ export class Pane {
 
   @Watch('size')
   onSizeChange() {
-    if (this.expanded) {
+    if (this.internalExpanded) {
       if (this.isMobile) {
         this.hostElement.style.minHeight = this.hideOnCollapse
           ? '0'
@@ -596,10 +596,11 @@ export class Pane {
       <Host
         class={{
           'inline-color': !this.floating,
-          'mobile-overlay': this.expanded && this.isMobile,
-          'top-expanded': this.expanded && this.isMobileTop && this.isMobile,
+          'mobile-overlay': this.internalExpanded && this.isMobile,
+          'top-expanded':
+            this.internalExpanded && this.isMobileTop && this.isMobile,
           'bottom-expanded':
-            this.expanded && !this.isMobileTop && this.isMobile,
+            this.internalExpanded && !this.isMobileTop && this.isMobile,
           'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
           'left-right-pane': this.isLeftRightPane && !this.isMobile,
           [`${this.composition}-pane-border`]:
@@ -613,17 +614,17 @@ export class Pane {
             !this.borderless &&
             this.isMobileTop &&
             this.isMobile &&
-            !this.expanded &&
+            !this.internalExpanded &&
             !this.floating,
           'mobile-border-bottom':
             !this.borderless &&
             !this.isMobileTop &&
             this.isMobile &&
-            !this.expanded &&
+            !this.internalExpanded &&
             !this.floating,
           'box-shadow': this.floating,
-          'aria-expanded': this.expanded,
-          'not-visible': this.hideOnCollapse && !this.expanded,
+          'aria-expanded': this.internalExpanded,
+          'not-visible': this.hideOnCollapse && !this.internalExpanded,
         }}
       >
         <aside
@@ -632,7 +633,7 @@ export class Pane {
             'top-bottom-pane': this.isBottomTopPane && !this.isMobile,
             'left-right-pane': this.isLeftRightPane && !this.isMobile,
             'mobile-pane': this.isMobile,
-            expanded: this.expanded,
+            expanded: this.internalExpanded,
           }}
         >
           <div
@@ -643,7 +644,7 @@ export class Pane {
               'title-finished':
                 !this.isMobile && !this.hideOnCollapse && this.showContent,
               'title-expanded':
-                !this.isMobile && !this.hideOnCollapse && this.expanded,
+                !this.isMobile && !this.hideOnCollapse && this.internalExpanded,
               'title-hide-on-collapse': !this.isMobile && this.hideOnCollapse,
               'title-mobile': this.isMobile,
               'header-gap': !this.isMobile && !this.hideOnCollapse,
@@ -653,7 +654,7 @@ export class Pane {
               class="title-icon"
               size="24"
               icon={
-                this.expanded
+                this.internalExpanded
                   ? this.isMobile || this.hideOnCollapse
                     ? 'close'
                     : this.expandIcon
@@ -662,7 +663,7 @@ export class Pane {
               ghost
               onClick={() => {
                 this.userInitiated = true;
-                this.expanded = !this.expanded;
+                this.setExpanded(!this.internalExpanded);
               }}
               aria-controls={`pane-${this.composition}`}
             />
@@ -670,7 +671,9 @@ export class Pane {
               class={{
                 'title-text': true,
                 rotate:
-                  !this.expanded && !this.isMobile && this.isLeftRightPane,
+                  !this.internalExpanded &&
+                  !this.isMobile &&
+                  this.isLeftRightPane,
               }}
             >
               {this.icon ? (
