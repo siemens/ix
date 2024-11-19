@@ -4,7 +4,6 @@
       "name": "@siemens/ix",
       "path": "./packages/core"
     },
-
     {
       "name": "@siemens/ix-react",
       "path": "./packages/react"
