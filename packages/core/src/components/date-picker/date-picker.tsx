@@ -34,7 +34,7 @@ export type DateTimeCorners = DateTimeCardCorners;
 
 interface CalendarWeek {
   weekNumber: number;
-  dayNumbers: number[];
+  dayNumbers: (number | undefined)[];
 }
 
 @Component({
@@ -43,7 +43,7 @@ interface CalendarWeek {
   shadow: true,
 })
 export class DatePicker {
-  @Element() hostElement: HTMLIxDatePickerElement;
+  @Element() hostElement!: HTMLIxDatePickerElement;
 
   /**
    * Date format string.
@@ -107,7 +107,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() minDate: string;
+  @Prop() minDate?: string;
 
   /**
    * The latest date that can be selected by the date picker.
@@ -115,7 +115,7 @@ export class DatePicker {
    *
    * @since 1.1.0
    */
-  @Prop() maxDate: string;
+  @Prop() maxDate?: string;
 
   /**
    * Text of the button that confirms date selection.
@@ -123,7 +123,7 @@ export class DatePicker {
    * @since 1.1.0
    * @deprecated since 2.1.0. Use `i18nDone`
    */
-  @Prop() textSelectDate: string;
+  @Prop() textSelectDate?: string;
 
   /**
    * Text of date select button
@@ -146,7 +146,8 @@ export class DatePicker {
    *
    * @since 2.1.0
    */
-  @Prop() locale: string = undefined;
+  @Prop() locale?: string;
+
   @Watch('locale')
   onLocaleChange() {
     this.setTranslations();
@@ -178,7 +179,7 @@ export class DatePicker {
    *
    * @since 2.1.0
    */
-  @Event() dateChange: EventEmitter<DateChangeEvent>;
+  @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
   /**
    * Triggers if the date selection changes.
@@ -186,21 +187,21 @@ export class DatePicker {
    *
    * @since 2.1.0
    */
-  @Event() dateRangeChange: EventEmitter<DateChangeEvent>;
+  @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
   /**
    * Date selection confirmed via button action
    *
    * @since 1.1.0
    */
-  @Event() dateSelect: EventEmitter<DateChangeEvent>;
+  @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 
   /**
    * Date selection confirmed via button action
    *
    * @deprecated NOT getting dispatched after 2.0.0. Use `dateSelect`.
    */
-  @Event() done: EventEmitter<string>;
+  @Event() done!: EventEmitter<string>;
 
   /**
    * Get the currently selected date-range.
@@ -209,10 +210,10 @@ export class DatePicker {
   async getCurrentDate() {
     const _from = this.currFromDate?.isValid
       ? this.currFromDate?.toFormat(this.format)
-      : undefined;
+      : '';
     const _to = this.currToDate?.isValid
       ? this.currToDate?.toFormat(this.format)
-      : undefined;
+      : '';
 
     if (this.range) {
       return {
@@ -223,33 +224,33 @@ export class DatePicker {
 
     return {
       from: _from,
-      to: undefined,
+      to: '',
     };
   }
 
-  @State() currFromDate: DateTime;
-  @State() currToDate: DateTime;
+  @State() currFromDate?: DateTime;
+  @State() currToDate?: DateTime;
 
-  @State() selectedYear: number;
-  @State() tempYear: number;
-  @State() startYear: number;
-  @State() endYear: number;
-  @State() selectedMonth: number;
-  @State() tempMonth: number;
+  @State() selectedYear?: number;
+  @State() tempYear?: number;
+  @State() startYear?: number;
+  @State() endYear?: number;
+  @State() selectedMonth?: number;
+  @State() tempMonth?: number;
 
-  @State() dropdownButtonRef: HTMLElement;
-  @State() yearContainerRef: HTMLElement;
+  @State() dropdownButtonRef?: HTMLElement;
+  @State() yearContainerRef?: HTMLElement;
 
-  @State() dayNames: string[];
-  @State() monthNames: string[];
-  @State() firstMonthRef: HTMLElement;
+  @State() dayNames?: string[];
+  @State() monthNames?: string[];
+  @State() firstMonthRef?: HTMLElement;
   @State() focusedDay: number = 1;
-  @State() focusedDayElem: HTMLElement;
+  @State() focusedDayElem?: HTMLElement;
 
-  private isDayFocus: boolean;
-  private monthChangedFromFocus: boolean;
+  private isDayFocus?: boolean;
+  private monthChangedFromFocus?: boolean;
   private readonly DAYS_IN_WEEK = 7;
-  private calendar: CalendarWeek[];
+  private calendar?: CalendarWeek[];
 
   @OnListener<DatePicker>('keydown')
   handleKeyUp(event: KeyboardEvent) {
@@ -276,21 +277,29 @@ export class DatePicker {
         return;
     }
 
-    if (_focusedDay > this.getDaysInCurrentMonth()) {
-      _focusedDay = _focusedDay - this.getDaysInCurrentMonth();
-      this.changeToAdjacentMonth(1);
-      this.monthChangedFromFocus = true;
-    } else if (_focusedDay < 1) {
-      this.changeToAdjacentMonth(-1);
-      _focusedDay = _focusedDay + this.getDaysInCurrentMonth();
-      this.monthChangedFromFocus = true;
+    const daysInMonth = this.getDaysInCurrentMonth();
+    if (daysInMonth) {
+      if (_focusedDay > daysInMonth) {
+        _focusedDay = _focusedDay - daysInMonth;
+        this.changeToAdjacentMonth(1);
+        this.monthChangedFromFocus = true;
+      } else if (_focusedDay < 1) {
+        this.changeToAdjacentMonth(-1);
+        _focusedDay = _focusedDay + daysInMonth;
+        this.monthChangedFromFocus = true;
+      }
     }
 
     this.focusedDay = _focusedDay;
   }
 
-  private getDaysInCurrentMonth(): number {
-    return DateTime.utc(this.selectedYear, this.selectedMonth + 1).daysInMonth;
+  private getDaysInCurrentMonth(): number | undefined {
+    if (this.selectedYear && this.selectedMonth) {
+      return DateTime.utc(this.selectedYear, this.selectedMonth + 1)
+        .daysInMonth;
+    }
+
+    return;
   }
 
   private getDateTimeNow() {
@@ -335,7 +344,7 @@ export class DatePicker {
       return;
     }
 
-    const dayElem = this.hostElement.shadowRoot.querySelector(
+    const dayElem = this.hostElement.shadowRoot!.querySelector(
       `[id=day-cell-${this.focusedDay}]`
     ) as HTMLElement;
     dayElem.focus();
@@ -379,7 +388,11 @@ export class DatePicker {
 
   private calculateCalendar() {
     const calendar: CalendarWeek[] = [];
-    const month = DateTime.utc(this.selectedYear, this.selectedMonth + 1);
+    let month = undefined;
+    if (this.selectedYear && this.selectedMonth) {
+      month = DateTime.utc(this.selectedYear, this.selectedMonth + 1);
+    }
+    if (!month) return;
     const monthStart = month.startOf('month');
     const monthEnd = month.endOf('month');
     let startWeek = monthStart.weekNumber;
@@ -392,13 +405,15 @@ export class DatePicker {
       const weekdays = Info.weekdays();
       const monthStartWeekDayName = weekdays[monthStart.weekday];
 
-      monthStartWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthStartWeekDayName
-      );
-      const monthEndWeekDayName = weekdays[monthEnd.weekday];
-      monthEndWeekDayIndex = this.dayNames.findIndex(
-        (d) => d === monthEndWeekDayName
-      );
+      if (this.dayNames) {
+        monthStartWeekDayIndex = this.dayNames.findIndex(
+          (d) => d === monthStartWeekDayName
+        );
+        const monthEndWeekDayName = weekdays[monthEnd.weekday];
+        monthEndWeekDayIndex = this.dayNames.findIndex(
+          (d) => d === monthEndWeekDayName
+        );
+      }
     }
 
     let correctLastWeek = false;
@@ -421,7 +436,7 @@ export class DatePicker {
       weekIndex <= endWeek && currDayNumber <= 31;
       weekIndex++
     ) {
-      const daysArr: number[] = [];
+      const daysArr: (number | undefined)[] = [];
 
       for (let j = 0; j < this.DAYS_IN_WEEK && currDayNumber <= 31; j++) {
         // Display empty cells until the calender starts/has ended
@@ -464,16 +479,18 @@ export class DatePicker {
     this.calendar = calendar;
   }
 
-  private selectTempYear(event: MouseEvent, year: number) {
+  private selectTempYear(event: MouseEvent | null, year: number) {
     event?.stopPropagation();
     this.tempYear = year;
   }
 
   private focusMonth() {
-    this.firstMonthRef.focus();
+    this.firstMonthRef?.focus();
   }
 
   private infiniteScrollYears() {
+    if (!this.yearContainerRef) return;
+
     const scroll = this.yearContainerRef.scrollTop;
     const maxScroll = this.yearContainerRef.scrollHeight;
     const atTop = scroll === 0;
@@ -481,20 +498,28 @@ export class DatePicker {
       Math.round(scroll + this.yearContainerRef.offsetHeight) >= maxScroll;
     const limit = 200;
 
-    if (this.endYear - this.startYear > limit) return;
+    if (
+      this.endYear !== undefined &&
+      this.startYear !== undefined &&
+      this.endYear - this.startYear > limit
+    )
+      return;
 
     if (atTop) {
       const first = this.yearContainerRef.firstElementChild as HTMLElement;
-      this.startYear -= 5;
-      this.yearContainerRef.scrollTo(0, first.offsetTop);
-
+      if (first && this.startYear !== undefined) {
+        this.startYear -= 5;
+        this.yearContainerRef.scrollTo(0, first.offsetTop);
+      }
       return;
     }
 
     if (atBottom) {
       const last = this.yearContainerRef.lastElementChild as HTMLElement;
-      this.endYear += 5;
-      this.yearContainerRef.scrollTo(0, last.offsetTop);
+      if (last && this.endYear !== undefined) {
+        this.endYear += 5;
+        this.yearContainerRef.scrollTo(0, last.offsetTop);
+      }
     }
   }
 
@@ -503,30 +528,48 @@ export class DatePicker {
     this.selectedYear = this.tempYear;
     this.tempMonth = month;
 
-    this.hostElement.shadowRoot.querySelector('ix-dropdown').show = false;
-  }
-
-  private changeToAdjacentMonth(number: -1 | 1) {
-    if (this.selectedMonth + number < 0) {
-      this.selectedYear--;
-      this.selectedMonth = 11;
-    } else if (this.selectedMonth + number > 11) {
-      this.selectedYear++;
-      this.selectedMonth = 0;
-    } else {
-      this.selectedMonth += number;
+    let dropdown = this.hostElement.shadowRoot!.querySelector('ix-dropdown');
+    if (dropdown) {
+      dropdown.show = false;
     }
   }
 
-  private selectDay(selectedDay: number) {
+  private changeToAdjacentMonth(number: -1 | 1) {
+    if (this.selectedYear === undefined || this.selectedMonth === undefined) {
+      return;
+    }
+
+    const selectedYear = this.selectedYear;
+    const selectedMonth = this.selectedMonth;
+
+    if (selectedMonth + number < 0) {
+      this.selectedYear = selectedYear - 1;
+      this.selectedMonth = 11;
+    } else if (selectedMonth + number > 11) {
+      this.selectedYear = selectedYear + 1;
+      this.selectedMonth = 0;
+    } else {
+      this.selectedMonth = selectedMonth + number;
+    }
+  }
+
+  private selectDay(selectedDay: number | undefined) {
+    if (
+      !selectedDay ||
+      this.selectedYear === undefined ||
+      this.selectedMonth === undefined
+    )
+      return;
+
+    const selectedYear = this.selectedYear;
+    const selectedMonth = this.selectedMonth;
     const date = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, selectedDay)
+      new Date(selectedYear, selectedMonth, selectedDay)
     );
 
     if (!this.range || this.currFromDate === undefined) {
       this.currFromDate = date;
       this.onDateChange();
-
       return;
     }
 
@@ -535,7 +578,6 @@ export class DatePicker {
       this.currFromDate = date;
       this.currToDate = undefined;
       this.onDateChange();
-
       return;
     }
 
@@ -544,7 +586,6 @@ export class DatePicker {
       this.currToDate = this.currFromDate;
       this.currFromDate = date;
       this.onDateChange();
-
       return;
     }
 
@@ -562,14 +603,16 @@ export class DatePicker {
     });
   }
 
-  private getDayClasses(day: number): any {
+  private getDayClasses(day: number | undefined): any {
     if (!day) {
       return;
     }
 
     const todayObj = this.getDateTimeNow();
+    const selectedYear = this.selectedYear ?? 0;
+    const selectedMonth = this.selectedMonth ?? 0;
     const selectedDayObj = DateTime.fromJSDate(
-      new Date(this.selectedYear, this.selectedMonth, day)
+      new Date(selectedYear, selectedMonth, day)
     );
 
     return {
@@ -580,8 +623,9 @@ export class DatePicker {
         this.currFromDate?.hasSame(selectedDayObj, 'day') ||
         this.currToDate?.hasSame(selectedDayObj, 'day'),
       range:
-        selectedDayObj.startOf('day') > this.currFromDate?.startOf('day') &&
         this.currToDate !== undefined &&
+        this.currFromDate !== undefined &&
+        selectedDayObj.startOf('day') > this.currFromDate?.startOf('day') &&
         selectedDayObj.startOf('day') < this.currToDate?.startOf('day'),
       disabled: !this.isWithinMinMaxDate(selectedDayObj),
     };
@@ -639,35 +683,37 @@ export class DatePicker {
   private renderYears(): any[] {
     const rows = [];
 
-    for (let year = this.startYear; year <= this.endYear; year++) {
-      rows.push(
-        <div
-          key={year}
-          class={{
-            arrowYear: true,
-            'month-dropdown-item': true,
-            'disabled-item': !this.isWithinMinMaxYear(year),
-          }}
-          onClick={(event) => this.selectTempYear(event, year)}
-          onKeyUp={(event) => {
-            if (event.key === 'Enter') {
-              this.selectTempYear(null, year);
-              this.focusMonth();
-            }
-          }}
-          tabIndex={0}
-        >
-          <ix-icon
+    if (this.startYear !== undefined && this.endYear !== undefined) {
+      for (let year = this.startYear; year <= this.endYear; year++) {
+        rows.push(
+          <div
+            key={year}
             class={{
-              hidden: this.tempYear !== year,
-              arrowPosition: true,
+              arrowYear: true,
+              'month-dropdown-item': true,
+              'disabled-item': !this.isWithinMinMaxYear(year),
             }}
-            name="chevron-right-small"
-            size="12"
-          ></ix-icon>
-          <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
-        </div>
-      );
+            onClick={(event) => this.selectTempYear(event, year)}
+            onKeyUp={(event) => {
+              if (event.key === 'Enter') {
+                this.selectTempYear(null, year);
+                this.focusMonth();
+              }
+            }}
+            tabIndex={0}
+          >
+            <ix-icon
+              class={{
+                hidden: this.tempYear !== year,
+                arrowPosition: true,
+              }}
+              name="chevron-right-small"
+              size="12"
+            ></ix-icon>
+            <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
+          </div>
+        );
+      }
     }
 
     return rows;
@@ -695,7 +741,10 @@ export class DatePicker {
                 data-testid="year-month-button"
               >
                 <span class="fontSize capitalize">
-                  {this.monthNames[this.selectedMonth]} {this.selectedYear}
+                  {this.selectedMonth !== undefined
+                    ? `${this.monthNames?.[this.selectedMonth]} `
+                    : ''}
+                  {this.selectedYear}
                 </span>
               </ix-button>
               <ix-dropdown
@@ -715,11 +764,11 @@ export class DatePicker {
                     {this.renderYears()}
                   </div>
                   <div class="overflow" data-testid="month-container">
-                    {this.monthNames.map((month, index) => (
+                    {this.monthNames?.map((month, index) => (
                       <div
                         key={month}
                         ref={(ref) => {
-                          if (month === this.monthNames[0]) {
+                          if (month === this.monthNames?.[0]) {
                             this.firstMonthRef = ref as HTMLElement;
                           }
                         }}
@@ -766,12 +815,12 @@ export class DatePicker {
           </div>
           <div class="grid">
             <div class="calendar-item week-day"></div>
-            {this.dayNames.map((name) => (
+            {this.dayNames?.map((name) => (
               <div key={name} class="calendar-item week-day">
                 {name.slice(0, 3)}
               </div>
             ))}
-            {this.calendar.map((week) => {
+            {this.calendar?.map((week) => {
               return (
                 <Fragment>
                   <div class="calendar-item week-number">{week.weekNumber}</div>

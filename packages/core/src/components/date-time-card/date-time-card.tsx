@@ -21,7 +21,7 @@ export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';
 })
 export class DateTimeCard {
   /** @internal */
-  @Prop() standaloneAppearance = undefined;
+  @Prop() standaloneAppearance?: boolean = undefined;
 
   /**
    * set styles
