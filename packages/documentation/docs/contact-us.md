@@ -10,4 +10,4 @@ For feature requests and bug tickets please visit our [github repository](https:
 
 Siemens employees are also welcome to join our [Viva Engage community](https://web.yammer.com/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI1ODIzNzc5NjM1MiJ9) where we can have livley discussions about all aspects of the design system.
 
-For inquiries about collaborations please write to: experience.industry@siemens.com
+For inquiries about collaborations please write to: team.ix.industry@siemens.com

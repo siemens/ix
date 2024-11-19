@@ -31,7 +31,6 @@ import {
 import { ComponentInterface } from '@stencil/core/internal';
 import { ArrowFocusController } from '../utils/focus';
 import {
-  addDisposableEventListener,
   CloseBehavior,
   dropdownController,
   DropdownInterface,
@@ -39,6 +38,7 @@ import {
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
 import { findElement } from '../utils/find-element';
+import { addDisposableEventListener } from '../utils/disposable-event-listener';
 
 let sequenceId = 0;
 
@@ -304,7 +304,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   private async resolveElement(
     element: string | HTMLElement | Promise<HTMLElement>
   ) {
-    const el = await findElement(element, this.hostElement);
+    const el = await findElement(element);
 
     return this.checkForSubmenuAnchor(el);
   }

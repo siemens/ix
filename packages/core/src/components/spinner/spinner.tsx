@@ -35,17 +35,15 @@ export class Spinner {
 
   render() {
     return (
-      <Host
-        class={{
-          primary: this.variant === 'primary',
-          'xx-small': this.size === 'xx-small',
-          'x-small': this.size === 'x-small',
-          small: this.size === 'small',
-          medium: this.size === 'medium',
-          large: this.size === 'large',
-          'hide-track': this.hideTrack,
-        }}
-      ></Host>
+      <Host>
+        <div
+          class={{
+            primary: this.variant === 'primary',
+            [this.size]: true,
+            'hide-track': this.hideTrack,
+          }}
+        ></div>
+      </Host>
     );
   }
 }

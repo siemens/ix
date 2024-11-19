@@ -74,7 +74,10 @@ You can load a specific theme by importing the corresponding CSS file.
 ***Import CSS***
 
 ```tsx
-// Load only the core parts
+// Load 3rd Party libraries
+import 'bootstrap/dist/css/bootstrap.css';
+
+// Load the core parts
 import '@siemens/ix/dist/siemens-ix/siemens-ix-core.css';
 
 // Load theme

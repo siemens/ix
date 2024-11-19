@@ -29,6 +29,7 @@ import { OnListener } from '../utils/listener';
 import { tooltipController } from './tooltip-controller';
 import { IxOverlayComponent } from '../utils/overlay';
 import { resolveSelector } from '../utils/find-element';
+import { ElementReference } from 'src/components';
 
 type ArrowPosition = {
   top?: string;
@@ -54,7 +55,7 @@ export class Tooltip implements IxOverlayComponent {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
-  @Prop() for?: string | HTMLElement | Promise<HTMLElement>;
+  @Prop() for?: ElementReference;
 
   /**
    * Title of the tooltip
