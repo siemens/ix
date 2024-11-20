@@ -9,6 +9,7 @@ import {
   ApplicationInitStatus,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  OnInit,
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IxModule } from '@siemens/ix-angular';
@@ -16,19 +17,25 @@ import { By } from '@angular/platform-browser';
 
 @Component({
   selector: 'ix-example-form-select',
-  template: ` <form [formGroup]="form">
-    <button>Test</button>
-    <ix-button>Test</ix-button>
-    <ix-select formControlName="select">
-      <ix-select-item label="Item 1" value="1"></ix-select-item>
-      <ix-select-item label="Item 2" value="2"></ix-select-item>
-      <ix-select-item label="Item 3" value="3"></ix-select-item>
-      <ix-select-item label="Item 4" value="4"></ix-select-item>
+  template: `
+    <h1>TypeError-Example</h1>
+    <ix-select [value]="value">
+      <ix-select-item
+        *ngFor="let item of selection"
+        [label]="item"
+        [value]="item"
+      ></ix-select-item>
     </ix-select>
-  </form>`,
+  `,
 })
 class SelectComponent {
-  public form = new FormGroup({ select: new FormControl('1') });
+  value = '3';
+  selection = ['3', '4', '5'];
+
+  public updateSelection() {
+    this.value = '6';
+    this.selection = ['6', '7', '8'];
+  }
 }
 
 describe('SelectFormComponent', () => {
@@ -53,10 +60,13 @@ describe('SelectFormComponent', () => {
 
   it('should change the input value', async () => {
     const select = fixture.debugElement.query(By.css('ix-select'));
-    component.form.get('select')!.setValue('2');
+    component.updateSelection();
     fixture.detectChanges();
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    debugger;
 
-    expect(select.nativeElement.value).toBe('2');
+
+    expect(select.nativeElement.value).toBe('3');
     expect(component).toBeDefined();
   });
 });
