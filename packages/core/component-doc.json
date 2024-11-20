@@ -4490,7 +4490,6 @@
               "text": "2.1.0"
             }
           ],
-          "default": "undefined",
           "values": [
             {
               "type": "string"
@@ -4661,12 +4660,13 @@
               "text": "1.1.0"
             }
           ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
