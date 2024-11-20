@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-Adapt disabled and readonly border for legacy inputs
+Remove `border-radius` from `<input />` if `readonly` or `disable` is set
