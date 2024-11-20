@@ -175,7 +175,6 @@ export class Pane {
   }
 
   componentWillLoad() {
-    this.expanded = this.expanded;
     this.setIcons();
 
     this.floating = this.variant === 'floating';
@@ -490,9 +489,7 @@ export class Pane {
       expanded: !this.expanded,
     });
 
-    console.log('this.expanded', this.expanded);
     if (!event.defaultPrevented) {
-      console.log('event not default prevented!');
       this.expanded = !this.expanded;
     }
   }

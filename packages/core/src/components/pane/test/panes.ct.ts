@@ -49,7 +49,7 @@ test('prevent pane expansion', async ({ mount, page }) => {
 
   await page.evaluate(() => {
     const paneElement = document.querySelector('ix-pane');
-    paneElement.addEventListener('expandedChanged', (event: Event) => {
+    paneElement?.addEventListener('expandedChanged', (event: Event) => {
       event.preventDefault();
     });
   });
