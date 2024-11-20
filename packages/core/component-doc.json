@@ -5220,13 +5220,16 @@
           "name": "anchor",
           "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "ElementReference",
+            "original": "string | HTMLElement | Promise<HTMLElement>",
             "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "ElementReference": {
-                "location": "import",
-                "path": "src/components/utils/element-reference",
-                "id": "src/components/utils/element-reference.ts::ElementReference"
+              "HTMLElement": {
+                "location": "global",
+                "id": "global::HTMLElement"
+              },
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
               }
             }
           },
@@ -5246,7 +5249,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         },
         {
@@ -5447,13 +5450,16 @@
           "name": "trigger",
           "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "ElementReference",
+            "original": "string | HTMLElement | Promise<HTMLElement>",
             "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "ElementReference": {
-                "location": "import",
-                "path": "src/components/utils/element-reference",
-                "id": "src/components/utils/element-reference.ts::ElementReference"
+              "HTMLElement": {
+                "location": "global",
+                "id": "global::HTMLElement"
+              },
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
               }
             }
           },
@@ -5473,7 +5479,7 @@
               "type": "string"
             }
           ],
-          "optional": true,
+          "optional": false,
           "required": false
         }
       ],
@@ -16140,15 +16146,15 @@
       "props": [
         {
           "name": "for",
-          "type": "HTMLElement | Promise<HTMLElement> | string",
+          "type": "ElementReference",
           "complexType": {
             "original": "ElementReference",
-            "resolved": "HTMLElement | Promise<HTMLElement> | string",
+            "resolved": "ElementReference",
             "references": {
               "ElementReference": {
                 "location": "import",
-                "path": "../utils/element-reference",
-                "id": "src/components/utils/element-reference.ts::ElementReference"
+                "path": "src/components",
+                "id": "src/components.d.ts::unknown"
               }
             }
           },
@@ -16159,13 +16165,7 @@
           "docsTags": [],
           "values": [
             {
-              "type": "HTMLElement"
-            },
-            {
-              "type": "Promise<HTMLElement>"
-            },
-            {
-              "type": "string"
+              "type": "ElementReference"
             }
           ],
           "optional": true,
@@ -17909,11 +17909,6 @@
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
     },
-    "src/components/utils/element-reference.ts::ElementReference": {
-      "declaration": "export type ElementReference = string | HTMLElement | Promise<HTMLElement>;",
-      "docstring": "",
-      "path": "src/components/utils/element-reference.ts"
-    },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
       "docstring": "",
@@ -17928,6 +17923,11 @@
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
+    },
+    "src/components.d.ts::unknown": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components.d.ts"
     },
     "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",

@@ -39,6 +39,7 @@ import {
 import { AlignedPlacement } from './placement';
 import { findElement } from '../utils/find-element';
 import { addDisposableEventListener } from '../utils/disposable-event-listener';
+import { ElementReference } from '../utils/element-reference';
 
 let sequenceId = 0;
 
@@ -71,7 +72,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   /**
    * Define an anchor element
    */
-  @Prop() anchor: string | HTMLElement;
+  @Prop() anchor: string | HTMLElement | Promise<HTMLElement>;
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
@@ -301,9 +302,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
   }
 
-  private async resolveElement(
-    element: string | HTMLElement | Promise<HTMLElement>
-  ) {
+  private async resolveElement(element: ElementReference) {
     const el = await findElement(element);
 
     return this.checkForSubmenuAnchor(el);
