@@ -5220,16 +5220,13 @@
           "name": "anchor",
           "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string | HTMLElement | Promise<HTMLElement>",
+            "original": "ElementReference",
             "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "HTMLElement": {
-                "location": "global",
-                "id": "global::HTMLElement"
-              },
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
+              "ElementReference": {
+                "location": "import",
+                "path": "../utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -5249,7 +5246,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -5450,16 +5447,13 @@
           "name": "trigger",
           "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "string | HTMLElement | Promise<HTMLElement>",
+            "original": "ElementReference",
             "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
-              "HTMLElement": {
-                "location": "global",
-                "id": "global::HTMLElement"
-              },
-              "Promise": {
-                "location": "global",
-                "id": "global::Promise"
+              "ElementReference": {
+                "location": "import",
+                "path": "../utils/element-reference",
+                "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
           },
@@ -5479,7 +5473,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -16146,15 +16140,15 @@
       "props": [
         {
           "name": "for",
-          "type": "ElementReference",
+          "type": "HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
             "original": "ElementReference",
-            "resolved": "ElementReference",
+            "resolved": "HTMLElement | Promise<HTMLElement> | string",
             "references": {
               "ElementReference": {
                 "location": "import",
                 "path": "src/components",
-                "id": "src/components.d.ts::unknown"
+                "id": "src/components.d.ts::ElementReference"
               }
             }
           },
@@ -16165,7 +16159,13 @@
           "docsTags": [],
           "values": [
             {
-              "type": "ElementReference"
+              "type": "HTMLElement"
+            },
+            {
+              "type": "Promise<HTMLElement>"
+            },
+            {
+              "type": "string"
             }
           ],
           "optional": true,
@@ -17909,6 +17909,11 @@
       "docstring": "",
       "path": "src/components/category-filter/input-state.ts"
     },
+    "src/components/utils/element-reference.ts::ElementReference": {
+      "declaration": "export type ElementReference = string | HTMLElement | Promise<HTMLElement>;",
+      "docstring": "",
+      "path": "src/components/utils/element-reference.ts"
+    },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",
       "docstring": "",
@@ -17924,7 +17929,7 @@
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
     },
-    "src/components.d.ts::unknown": {
+    "src/components.d.ts::ElementReference": {
       "declaration": "any",
       "docstring": "",
       "path": "src/components.d.ts"
