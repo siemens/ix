@@ -42,7 +42,6 @@
     .btn-select-date-container {
       display: inline-flex;
       flex-grow: 1;
-      padding: 0 1rem 1rem;
 
       ix-button {
         margin-left: auto;
@@ -61,7 +60,7 @@
   }
 
   .btn-select-date-container {
-    padding: 0 1rem 1rem;
+    padding: 0 $default-space $default-space;
 
     @media (max-width: 576px) {
       & .btn-select-date {
