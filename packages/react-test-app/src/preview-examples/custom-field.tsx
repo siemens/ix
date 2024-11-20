@@ -14,8 +14,8 @@ export default () => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
-    <IxCustomField info-text="Choose file">
-      <IxInput class="ix-info" value="Enter text here" readonly></IxInput>
+    <IxCustomField helper-text="Choose file">
+      <IxInput value="Enter text here" readonly></IxInput>
       <IxIconButton
         icon="open-file"
         variant="primary"

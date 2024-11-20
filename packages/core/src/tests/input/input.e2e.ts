@@ -13,7 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('input', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('input/basic');
-    await expect(page).toHaveScreenshot();
+    await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('hover', async ({ page }) => {
@@ -22,7 +22,7 @@ regressionTest.describe('input', () => {
     await input.hover();
 
     await page.waitForTimeout(1000);
-    await expect(page).toHaveScreenshot();
+    await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('focus', async ({ page }) => {
@@ -31,7 +31,7 @@ regressionTest.describe('input', () => {
     await input.focus();
 
     await page.waitForTimeout(1000);
-    await expect(page).toHaveScreenshot();
+    await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('with value', async ({ page }) => {
@@ -40,31 +40,31 @@ regressionTest.describe('input', () => {
     await input.fill('Example content');
 
     await page.waitForTimeout(1000);
-    await expect(page).toHaveScreenshot();
+    await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('readonly', async ({ page }) => {
     await page.goto('input/readonly');
-    await expect(page).toHaveScreenshot();
+    await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('readonly and hover', async ({ page }) => {
     await page.goto('input/readonly');
     const input = await page.waitForSelector('input');
     await input.hover();
-    await expect(page).toHaveScreenshot();
+    await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('disabled', async ({ page }) => {
     await page.goto('input/disabled');
-    await expect(page).toHaveScreenshot();
+    await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('disabled and hover', async ({ page }) => {
     await page.goto('input/disabled');
     const input = await page.waitForSelector('input');
     await input.hover();
-    await expect(page).toHaveScreenshot();
+    await expect(page.locator('.inputs')).toHaveScreenshot();
   });
 
   regressionTest('with slots', async ({ page }) => {
