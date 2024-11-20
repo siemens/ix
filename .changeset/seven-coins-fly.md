@@ -4,4 +4,4 @@
 '@siemens/ix-vue': minor
 ---
 
-feat(core/pane-layout): provide close/open event and default slot #1563
+Update expandedChange event to trigger only on user interactions and refine default slot behavior in ix-pane-layout.
