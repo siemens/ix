@@ -7,25 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
   template: `
-    <h1>TypeError-Example</h1>
     <ix-select [value]="value">
-      <ix-select-item *ngFor="let item of selection" [label]="item" [value]="item"></ix-select-item>
+      <ix-select-item label="Item 1" value="1"></ix-select-item>
+      <ix-select-item label="Item 2" value="2"></ix-select-item>
+      <ix-select-item label="Item 3" value="3"></ix-select-item>
+      <ix-select-item label="Item 4" value="4"></ix-select-item>
     </ix-select>
   `,
 })
-export default class Select implements OnInit {
-  value = '3';
-  selection = ['3', '4', '5'];
-
-  ngOnInit() {
-    setTimeout(() => {
-      this.value = '6';
-      this.selection = ['6', '7', '8'];
-    }, 100);
-  }
+export default class Select {
+  value = '1';
 }

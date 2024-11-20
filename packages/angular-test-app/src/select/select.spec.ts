@@ -1,4 +1,9 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import {
   ApplicationInitStatus,
@@ -12,6 +17,14 @@ import { By } from '@angular/platform-browser';
 @Component({
   selector: 'ix-example-form-select',
   template: `
+    <form [formGroup]="form">
+      <ix-select formControlName="select">
+        <ix-select-item label="Item 1" value="1"></ix-select-item>
+        <ix-select-item label="Item 2" value="2"></ix-select-item>
+        <ix-select-item label="Item 3" value="3"></ix-select-item>
+        <ix-select-item label="Item 4" value="4"></ix-select-item>
+      </ix-select>
+    </form>
     <h1>TypeError-Example</h1>
     <ix-select [value]="value">
       <ix-select-item
@@ -23,17 +36,13 @@ import { By } from '@angular/platform-browser';
   `,
 })
 class SelectComponent {
-  value?: string;
-  selection?: string[];
+  public form = new FormGroup({ select: new FormControl('1') });
+  value = '3';
+  selection = ['3', '4', '5'];
 
   public updateSelection() {
     this.value = '6';
     this.selection = ['6', '7', '8'];
-  }
-
-  ngOnInit() {
-    this.value = '3';
-    this.selection = ['3', '4', '5'];
   }
 }
 
@@ -78,10 +87,8 @@ describe('SelectFormComponent', () => {
     fixture = TestBed.createComponent(SelectComponent);
     component = fixture.componentInstance;
 
-    // Spy on console.log
     consoleSpy = spyOn(console, 'error').and.callThrough();
 
-    // Trigger ngOnInit and other lifecycle hooks
     fixture.detectChanges();
   });
 
@@ -90,8 +97,20 @@ describe('SelectFormComponent', () => {
     await TestBed.inject(ApplicationInitStatus).donePromise;
   });
 
-  it('should change the input value', async () => {
-    const select = fixture.debugElement.query(By.css('ix-select'));
+  it('should change the form control value', async () => {
+    const select = fixture.debugElement.query(By.css('ix-select[formControlName="select"]'));
+
+    await waitForHydration(select.nativeElement);
+
+    component.form.get('select')!.setValue('2');
+    fixture.detectChanges();
+
+    expect(select.nativeElement.value).toBe('2');
+    expect(component).toBeDefined();
+  });
+
+  it('should change the input value and check for errors', async () => {
+    const select = fixture.debugElement.query(By.css('ix-select:not([formControlName="select"])'));
 
     await waitForHydration(select.nativeElement);
 
