@@ -1,15 +1,9 @@
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   ApplicationInitStatus,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
-  OnInit,
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IxModule } from '@siemens/ix-angular';
@@ -29,18 +23,50 @@ import { By } from '@angular/platform-browser';
   `,
 })
 class SelectComponent {
-  value = '3';
-  selection = ['3', '4', '5'];
+  value?: string;
+  selection?: string[];
 
   public updateSelection() {
     this.value = '6';
     this.selection = ['6', '7', '8'];
   }
+
+  ngOnInit() {
+    this.value = '3';
+    this.selection = ['3', '4', '5'];
+  }
+}
+
+function waitForHydration(element: HTMLElement, timeout = 5000): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const interval = 50;
+    let elapsedTime = 0;
+
+    const checkClass = () => {
+      if (element.classList.contains('hydrated')) {
+        resolve();
+      } else if (elapsedTime >= timeout) {
+        reject(new Error(`Timeout waiting for hydration`));
+      } else {
+        elapsedTime += interval;
+        setTimeout(checkClass, interval);
+      }
+    };
+
+    checkClass();
+  });
+}
+
+function checkForError(consoleSpy: jasmine.Spy, errorName: string): boolean {
+  return consoleSpy.calls
+    .allArgs()
+    .some((arg) => arg[0].toString().includes(errorName));
 }
 
 describe('SelectFormComponent', () => {
   let component: SelectComponent;
   let fixture: ComponentFixture<SelectComponent>;
+  let consoleSpy: jasmine.Spy;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -51,6 +77,12 @@ describe('SelectFormComponent', () => {
 
     fixture = TestBed.createComponent(SelectComponent);
     component = fixture.componentInstance;
+
+    // Spy on console.log
+    consoleSpy = spyOn(console, 'error').and.callThrough();
+
+    // Trigger ngOnInit and other lifecycle hooks
+    fixture.detectChanges();
   });
 
   beforeEach(async () => {
@@ -60,13 +92,14 @@ describe('SelectFormComponent', () => {
 
   it('should change the input value', async () => {
     const select = fixture.debugElement.query(By.css('ix-select'));
+
+    await waitForHydration(select.nativeElement);
+
     component.updateSelection();
     fixture.detectChanges();
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    debugger;
 
-
-    expect(select.nativeElement.value).toBe('3');
+    expect(checkForError(consoleSpy, 'TypeError')).toBe(false);
+    expect(select.nativeElement.value).toBe('6');
     expect(component).toBeDefined();
   });
 });
