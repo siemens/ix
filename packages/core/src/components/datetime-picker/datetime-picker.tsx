@@ -110,7 +110,7 @@ export class DatetimePicker
    *
    * @since 1.1.0
    */
-  @Prop() showTimeReference?: boolean;
+  @Prop() showTimeReference: boolean = false;
 
   /**
    * Set time reference
@@ -146,7 +146,7 @@ export class DatetimePicker
    *
    * @since 2.1.0
    */
-  @Prop() locale?: string = undefined;
+  @Prop() locale?: string;
 
   /**
    * Default behavior of the done event is to join the two events (date and time) into one combined string output.
@@ -225,7 +225,7 @@ export class DatetimePicker
       <Host>
         <ix-layout-grid class="no-padding">
           <ix-row>
-            <ix-col class="no-padding">
+            <ix-col>
               <ix-date-picker
                 ref={(ref) => (this.datePickerElement = ref)}
                 corners="left"
@@ -242,7 +242,7 @@ export class DatetimePicker
               ></ix-date-picker>
             </ix-col>
 
-            <ix-col class="no-padding">
+            <ix-col class="d-flex flex-column">
               <ix-time-picker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
@@ -254,12 +254,15 @@ export class DatetimePicker
                 format={this.timeFormat}
                 time={this.time}
               ></ix-time-picker>
+              <div class="btn-select-date-container">
+                <ix-button
+                  class="btn-select-date"
+                  onClick={() => this.onDone()}
+                >
+                  {this.textSelectDate || this.i18nDone}
+                </ix-button>
+              </div>
             </ix-col>
-          </ix-row>
-          <ix-row class="btn-select-date-container">
-            <ix-button class="btn-select-date" onClick={() => this.onDone()}>
-              {this.textSelectDate || this.i18nDone}
-            </ix-button>
           </ix-row>
         </ix-layout-grid>
       </Host>

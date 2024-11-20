@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix(core/date-time-picker): responsiveness and spacing, strict typing
+Improve responsive behaviour of `ix-datetime-picker` on small screens 

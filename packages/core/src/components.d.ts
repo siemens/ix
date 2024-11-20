@@ -744,7 +744,7 @@ export namespace Components {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: boolean;
+        "showTimeReference": boolean;
         /**
           * Text of date select button
           * @since 1.1.0

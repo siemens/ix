@@ -12,7 +12,6 @@
 
 :host {
   @include ix-component;
-  --btn-width: 100%;
 
   display: block;
   background-color: var(--theme-menu--background);
@@ -21,6 +20,12 @@
   width: min-content;
 
   .no-padding {
+    padding: 0;
+  }
+
+  ix-col {
+    display: flex;
+    flex-direction: column;
     padding: 0;
   }
 
@@ -35,9 +40,14 @@
     --btn-width: min-content;
 
     .btn-select-date-container {
-      position: absolute;
-      bottom: 0;
-      right: 0;
+      display: inline-flex;
+      flex-grow: 1;
+      padding: 0 1rem 1rem;
+
+      ix-button {
+        margin-left: auto;
+        margin-top: auto;
+      }
     }
 
     .min-width {
@@ -53,8 +63,10 @@
   .btn-select-date-container {
     padding: 0 1rem 1rem;
 
-    & .btn-select-date {
-      width: var(--btn-width);
+    @media (max-width: 576px) {
+      & .btn-select-date {
+        width: 100%;
+      }
     }
   }
 }
