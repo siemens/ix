@@ -24,14 +24,13 @@ import { DateTimeCardCorners } from '../date-time-card/date-time-card';
 
 import { DateTime, Info } from 'luxon';
 import { OnListener } from '../utils/listener';
+import { IxDatePickerComponent } from './date-picker-component';
 import { makeRef } from '../utils/make-ref';
 
 export type DateChangeEvent = {
   from: string;
   to: string;
 };
-
-export type DateTimeCorners = DateTimeCardCorners;
 
 interface CalendarWeek {
   weekNumber: number;
@@ -43,7 +42,7 @@ interface CalendarWeek {
   styleUrl: 'date-picker.scss',
   shadow: true,
 })
-export class DatePicker {
+export class DatePicker implements IxDatePickerComponent {
   @Element() hostElement!: HTMLIxDatePickerElement;
 
   /**
@@ -142,8 +141,7 @@ export class DatePicker {
   @Prop() weekStartIndex = 0;
 
   /**
-   * Format of time string
-   * See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
+   * Locale identifier (e.g. 'en' or 'de').
    *
    * @since 2.1.0
    */
@@ -783,7 +781,7 @@ export class DatePicker {
             <div class="calendar-item week-day"></div>
             {this.dayNames.map((name) => (
               <div key={name} class="calendar-item week-day">
-                {name.slice(0, 3)}
+                <div class="overflow">{name.slice(0, 3)}</div>
               </div>
             ))}
             {this.calendar.map((week) => {
