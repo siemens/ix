@@ -15,7 +15,7 @@
   @include ix-component;
   display: block;
   position: relative;
-  width: 22rem;
+  width: 21rem;
 
   .header {
     display: flex;
@@ -107,6 +107,7 @@
     display: grid;
     grid-template-columns: 24px repeat(7, 40px);
     grid-template-rows: repeat(7, 40px);
+
     align-items: center;
     justify-items: center;
     justify-content: center;
@@ -122,6 +123,10 @@
       width: 40px;
       height: 40px;
       cursor: pointer;
+
+      &:first-child {
+        width: 24px;
+      }
 
       &:focus-visible {
         outline: 1px solid var(--theme-color-focus-bdr);
@@ -307,6 +312,7 @@
   .button {
     display: flex;
     justify-content: flex-end;
+    margin-top: 2rem;
   }
 
   .hidden {
