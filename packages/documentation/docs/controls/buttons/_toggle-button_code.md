@@ -17,9 +17,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 #### Toggle button primary
 
 <Playground
-name="toggle-button-primary"
-
-> </Playground>
+name="toggle-button-primary"> </Playground>
 
 #### Toggle button primary outline
 

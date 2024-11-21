@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-import LinkableDocsTabs from "../../../src/components/LinkableDocsTabs";
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_forms-layout_style.mdx'
 import DocsCode from './\_forms-layout_code.mdx'
