@@ -702,7 +702,7 @@ export namespace Components {
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
-        "from": string | undefined;
+        "from"?: string;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -712,17 +712,17 @@ export namespace Components {
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
          */
-        "locale": string;
+        "locale"?: string;
         /**
           * The latest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
-        "maxDate": string;
+        "maxDate"?: string;
         /**
           * The earliest date that can be selected by the date picker. If not set there will be no restriction.
           * @since 1.1.0
          */
-        "minDate": string;
+        "minDate"?: string;
         /**
           * If true a date-range can be selected (from/to).
          */
@@ -744,18 +744,18 @@ export namespace Components {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference": any;
+        "showTimeReference": boolean;
         /**
           * Text of date select button
           * @since 1.1.0
           * @deprecated since 2.1.0. Use `i18nDone`
          */
-        "textSelectDate": string;
+        "textSelectDate"?: string;
         /**
           * Select time with format string
           * @since 1.1.0
          */
-        "time": string;
+        "time"?: string;
         /**
           * Time format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 1.1.0
@@ -764,12 +764,12 @@ export namespace Components {
         /**
           * Set time reference
          */
-        "timeReference": 'AM' | 'PM';
+        "timeReference"?: 'AM' | 'PM';
         /**
           * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
-        "to": string | undefined;
+        "to"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.1.0
@@ -4825,7 +4825,7 @@ declare namespace LocalJSX {
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
          */
-        "from"?: string | undefined;
+        "from"?: string;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -4887,7 +4887,7 @@ declare namespace LocalJSX {
           * @see { this.timeFormat}
           * @since 1.1.0
          */
-        "showTimeReference"?: any;
+        "showTimeReference"?: boolean;
         /**
           * Text of date select button
           * @since 1.1.0
@@ -4912,7 +4912,7 @@ declare namespace LocalJSX {
           * The selected end date. If the the picker is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
          */
-        "to"?: string | undefined;
+        "to"?: string;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.1.0
