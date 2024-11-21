@@ -3,30 +3,32 @@ import Events from './../../auto-generated/ix-dropdown-button/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Basic 
+### Examples
 
-<Playground
-  name="dropdown-button" 
-  height="16rem"
-  >
-</Playground>
-
-### Icon
+#### Basic
 
 <Playground
-  name="dropdown-button-icon" 
-  eight="16rem"
-  >
-</Playground>
+name="dropdown-button"
+height="16rem"
 
-## API
+> </Playground>
 
-### Properties
+#### Icon
+
+<Playground
+name="dropdown-button-icon"
+height="16rem"
+
+> </Playground>
+
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

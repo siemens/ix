@@ -2,7 +2,7 @@
 title: Select
 ---
 
-import DocsTabs from '@site/src/components/DocsTabs';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_select_styleguide.md';
 import DocsCode from './\_select_code.mdx';
@@ -14,4 +14,7 @@ import Tags from './../auto-generated/ix-select/tags.md';
 <br/>
 <br/>
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>

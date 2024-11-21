@@ -3,7 +3,7 @@ import Props from '@site/docs/auto-generated/ix-layout-auto/props.md';
 import Events from '@site/docs/auto-generated/ix-layout-auto/events.md';
 import Tags from '@site/docs/auto-generated/ix-layout-auto/tags.md';
 
-# Layout Auto
+# Layout auto
 
 <Tags />
 

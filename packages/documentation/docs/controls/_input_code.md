@@ -3,50 +3,49 @@ import Props from '@site/docs/auto-generated/ix-input/props.md';
 import Events from '@site/docs/auto-generated/ix-input/events.md';
 import Tags from '@site/docs/auto-generated/ix-input/tags.md';
 
-# Input
+## Development
 
-<Tags />
+### Examples
 
-## Examples
-
-### Basic
+#### Basic
 
 <Playground name="input" examplesByName></Playground>
 
-### Disabled
+#### Disabled
 
 <Playground name="input-disabled" examplesByName></Playground>
 
-### Label
+#### Label
 
 <Playground name="input-label" examplesByName></Playground>
 
-### Pattern
+#### Pattern
 
 <Playground name="input-pattern" examplesByName></Playground>
 
-### Readonly
+#### Readonly
 
 <Playground name="input-readonly" examplesByName></Playground>
 
-### Types
+#### Types
 
-<Playground name="input-types" examplesByName height="15rem"></Playground>
+<Playground name="input-types" examplesByName height="24rem"></Playground>
 
-### Validation
+#### Validation
 
 <Playground
-  name="input-validation"
-  examplesByName
-  height="25rem"
-></Playground>
+name="input-validation"
+examplesByName
+height="27rem"
 
-## API
+> </Playground>
 
-### Properties
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

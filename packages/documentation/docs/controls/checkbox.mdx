@@ -1,62 +1,24 @@
-import Admonition from '@theme/Admonition';
-import Playground from '@site/src/components/PlaygroundV3';
-import Props from '@site/docs/auto-generated/ix-checkbox/props.md';
-import Events from '@site/docs/auto-generated/ix-checkbox/events.md';
 import Tags from '@site/docs/auto-generated/ix-checkbox/tags.md';
 import DeprecatedTags from '@site/src/components/Tags';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
+
+import DocsUx from './_forms-checkbox_styleguide.md';
+import DocsCode from './_forms-checkbox_code.mdx';
 
 # Checkbox
 
 <div className="d-flex gap-2 align-items-center">
   <Tags />
-  <DeprecatedTags url='/docs/legacy/checkbox' hasDeprecatedAncestor={true}></DeprecatedTags>
+  <DeprecatedTags
+    url="/docs/legacy/checkbox"
+    hasDeprecatedAncestor={true}
+  ></DeprecatedTags>
 </div>
 
-## Examples
+<br />
+<br />
 
-### Basic
-
-<Playground name="form-checkbox"></Playground>
-
-### Disabled
-
-<Playground name="form-checkbox-disabled"></Playground>
-
-### Group
-
-<Playground name="form-checkbox-group"></Playground>
-
-### Indeterminate group
-
-<Playground name="form-checkbox-group-indeterminate"></Playground>
-
-### Validation
-
-<Playground name="form-checkbox-validation" height="32rem"></Playground>
-
-## API
-
-### Properties
-
-<Props />
-
-### Events
-
-<Events />
-
-## Legacy checkbox (Deprecated)
-
-<Admonition type="tip" icon="💡" title="Legacy documentation">
-  Please note that the following documentation for a previous implementation of
-  the component is now deprecated and may be outdated.
-</Admonition>
-
-<Playground name="checkbox" height="8rem"></Playground>
-
-### Indeterminate
-
-<Playground
-  name="checkbox-indeterminate"
-  height="8rem"
-  hideInitalCodePreview
-></Playground>
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>

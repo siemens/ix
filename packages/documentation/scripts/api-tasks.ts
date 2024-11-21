@@ -18,11 +18,11 @@ import { escapeMarkdown } from './utils';
 type DocsTag = { name: string; text: string };
 
 function htmlFormReadyTag(value: string) {
-  return `<span className="Api__Table Docs__Tag">Form-ready since ${value}</span>`;
+  return `<a href="/docs/controls/forms/forms-validation?current-tab=development" target="_blank" className="Api__Table Docs__Tag">Form-ready since ${value}</a>`;
 }
 
 function htmlSinceTag(value: string) {
-  return `<span className="Api__Table Docs__Tag">Since: ${value}</span>`;
+  return `<span className="Api__Table Docs__Tag">Since ${value}</span>`;
 }
 
 function htmlDeprecatedTag(value: string) {
