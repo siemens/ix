@@ -28,7 +28,7 @@ All the variants, options and states of the ix button component apply to the dro
 
 Dropdown buttons have five states: Default, hover, active, disabled and focused. In an active state, dropdown buttons show a dropdown with the available options. The visual appearance of the states is the same as the ix button component.
 
-### Does and Don'ts
+### Dos and Don’ts
 
 - Do use dropdown buttons when selecting an option triggers an action
 - Don't use dropdown buttons when there is a frequent or most-important action (use a standard button or a split button instead)
