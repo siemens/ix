@@ -26,6 +26,11 @@ import { DateTime, Info } from 'luxon';
 import { OnListener } from '../utils/listener';
 import { IxDatePickerComponent } from './date-picker-component';
 import { makeRef } from '../utils/make-ref';
+import {
+  iconChevronLeftSmall,
+  iconChevronRightSmall,
+  iconSingleCheck,
+} from '@siemens/ix-icons/icons';
 
 export type DateChangeEvent = {
   from: string;
@@ -146,6 +151,7 @@ export class DatePicker implements IxDatePickerComponent {
    * @since 2.1.0
    */
   @Prop() locale?: string;
+
   @Watch('locale')
   onLocaleChange() {
     this.setTranslations();
@@ -675,7 +681,7 @@ export class DatePicker implements IxDatePickerComponent {
               hidden: this.tempYear !== year,
               arrowPosition: true,
             }}
-            name="chevron-right-small"
+            name={iconChevronRightSmall}
             size="12"
           ></ix-icon>
           <div style={{ 'min-width': 'max-content' }}>{`${year}`}</div>
@@ -697,7 +703,7 @@ export class DatePicker implements IxDatePickerComponent {
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(-1)}
               ghost
-              icon="chevron-left-small"
+              icon={iconChevronLeftSmall}
               variant="primary"
               class="arrows"
             ></ix-icon-button>
@@ -757,7 +763,7 @@ export class DatePicker implements IxDatePickerComponent {
                               this.tempMonth !== index,
                             checkPosition: true,
                           }}
-                          name="single-check"
+                          name={iconSingleCheck}
                           size="16"
                         ></ix-icon>
                         <div>
@@ -772,7 +778,7 @@ export class DatePicker implements IxDatePickerComponent {
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(1)}
               ghost
-              icon="chevron-right-small"
+              icon={iconChevronLeftSmall}
               variant="primary"
               class="arrows"
             ></ix-icon-button>
