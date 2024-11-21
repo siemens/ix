@@ -56,11 +56,14 @@ test.describe('category-preview test', () => {
 
     const categoryPreviewPromise = page.evaluate(() => {
       return new Promise((resolve) => {
-        function onCategoryChanged(event) {
+        function onCategoryChanged(event: CustomEvent) {
           resolve(event.detail);
         }
 
-        document.addEventListener('categoryChanged', onCategoryChanged);
+        document.addEventListener(
+          'categoryChanged',
+          onCategoryChanged as EventListener
+        );
       });
     });
 

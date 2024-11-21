@@ -360,24 +360,35 @@ export class CategoryFilter {
     }
   }
 
+  private focusElement(selector: string): boolean {
+    const item = this.hostElement.shadowRoot!.querySelector(selector);
+    if (item instanceof HTMLElement) {
+      item.focus();
+      return true;
+    }
+    return false;
+  }
+
+  private onArrowDown(e: KeyboardEvent) {
+    const baseSelector = `.category-item-${
+      this.category !== '' ? 'value' : 'id'
+    }`;
+    const fallbackSelector = '.category-item';
+
+    if (this.focusElement(baseSelector)) {
+      e.stopPropagation();
+      return;
+    }
+
+    if (this.suggestions?.length && this.focusElement(fallbackSelector)) {
+      e.stopPropagation();
+    }
+  }
+
   private handleInputElementKeyDown(e: KeyboardEvent) {
     switch (e.code) {
       case 'ArrowDown': {
-        const selector = `.category-item-${
-          this.category !== '' ? 'value' : 'id'
-        }`;
-        let item = this.hostElement.shadowRoot!.querySelector(selector);
-
-        if (item instanceof HTMLElement) {
-          item.focus();
-          e.stopPropagation();
-        } else if (this.suggestions?.length) {
-          item = this.hostElement.shadowRoot!.querySelector('.category-item');
-          if (item instanceof HTMLElement) {
-            item.focus();
-            e.stopPropagation();
-          }
-        }
+        this.onArrowDown(e);
         break;
       }
 
