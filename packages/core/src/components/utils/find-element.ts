@@ -45,7 +45,11 @@ export async function resolveSelector(
     shadowRoot.querySelectorAll(selector)
   );
 
-  return Promise.resolve(elementsInShadowRoot);
+  if (elementsInShadowRoot.length > 0) {
+    return Promise.resolve(elementsInShadowRoot);
+  }
+  
+  return Promise.resolve(undefined);
 }
 
 function getSlottedElements(shadowRoot: ShadowRoot, selector: string) {
