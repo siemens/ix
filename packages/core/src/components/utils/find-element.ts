@@ -57,8 +57,12 @@ function getSlottedElements(shadowRoot: ShadowRoot, selector: string) {
     assignedElements.forEach((element) => {
       if (element.matches(selector)) {
         elementsInSlot.push(element as HTMLElement);
-      } else if (element.querySelector(selector)) {
-        elementsInSlot.push(element.querySelector(selector) as HTMLElement);
+      } else {
+        const elementInSlot = element.querySelector(selector);
+
+        if (elementInSlot) {
+          elementsInSlot.push(elementInSlot as HTMLElement);
+        }
       }
     });
   });
