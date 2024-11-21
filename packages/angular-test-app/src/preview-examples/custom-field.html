@@ -1,0 +1,19 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-custom-field helper-text="Choose file">
+  <ix-input value="No file chosen" readonly></ix-input>
+  <ix-icon-button
+    icon="open-file"
+    variant="primary"
+    outline
+    (click)="openFileBrowser()"
+  ></ix-icon-button>
+  <input #fileUpload type="file" style="display: none" />
+</ix-custom-field>

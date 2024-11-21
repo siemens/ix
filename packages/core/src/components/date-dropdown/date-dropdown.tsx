@@ -21,6 +21,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { type LiteralStringUnion } from '../utils/type-helper';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import { makeRef } from '../utils/make-ref';
 
@@ -187,7 +188,7 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId: string = 'custom';
+  @State() private selectedDateRangeId: LiteralStringUnion<'custom'>;
   @State() private currentRangeValue?: {
     from: string;
     to: string;

@@ -3,22 +3,24 @@ import Events from './../auto-generated/ix-chip/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Basic
+### Examples
+
+#### Basic
 
 <Playground
-  name="chip" 
-  height="25rem"
-  >
-</Playground>
+name="chip"
+height="25rem"
 
-## API
+> </Playground>
 
-### Properties
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
