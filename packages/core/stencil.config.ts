@@ -15,6 +15,7 @@ import { sass } from '@stencil/sass';
 import { vueOutputTarget } from '@stencil/vue-output-target';
 import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
+import { storybookOutputTarget } from './scripts/build/storybook';
 
 export const config: Config = {
   tsconfig: 'tsconfig.lib.json',
@@ -29,6 +30,7 @@ export const config: Config = {
     browserHeadless: 'new',
   },
   namespace: 'siemens-ix',
+  watchIgnoredRegex: [/scss/, /component-doc.json/],
   globalStyle: './scss/ix.scss',
   minifyCss: false,
   plugins: [
@@ -40,6 +42,9 @@ export const config: Config = {
     }),
   ],
   outputTargets: [
+    storybookOutputTarget({
+      dist: '../storybook-docs/.storybook/define-custom-elements.ts',
+    }),
     vueOutputTarget({
       componentCorePackage: '@siemens/ix',
       proxiesFile: '../vue/src/components.ts',
@@ -70,7 +75,7 @@ export const config: Config = {
       componentCorePackage: '@siemens/ix',
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
-      excludeComponents: ['ix-playground-internal', 'ix-tree', 'ix-icon'],
+      excludeComponents: ['ix-tree', 'ix-icon'],
       valueAccessorConfigs: [
         /** Value accessors should not be generated */
       ],
@@ -81,12 +86,7 @@ export const config: Config = {
       includeImportCustomElements: true,
       includePolyfills: false,
       includeDefineCustomElements: false,
-      excludeComponents: [
-        'ix-playground-internal',
-        'ix-tree',
-        'ix-tree-item',
-        'ix-icon',
-      ],
+      excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
     }),
     {
       type: 'dist',

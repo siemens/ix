@@ -33,6 +33,14 @@
     "test": {
       "dependsOn": ["^build"],
       "cache": false
+    },
+    "build.watch": {
+      "cache": false
+    },
+    "storybook": {
+      "persistent": true,
+      "dependsOn": ["build.watch"],
+      "cache": false
     }
   }
 }
