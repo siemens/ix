@@ -3580,6 +3580,32 @@
           "required": false
         },
         {
+          "name": "locale",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "maxDate",
           "type": "string",
           "complexType": {
@@ -3662,6 +3688,33 @@
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "weekStartIndex",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "week-start-index",
+          "reflectToAttr": false,
+          "docs": "The index of which day to start the week on, based on the Locale#weekdays array.\nE.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
             }
           ],
           "optional": false,
@@ -3954,7 +4007,7 @@
           "mutable": false,
           "attr": "locale",
           "reflectToAttr": false,
-          "docs": "Format of time string\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docs": "Locale identifier (e.g. 'en' or 'de').",
           "docsTags": [
             {
               "name": "since",
@@ -4370,7 +4423,7 @@
           "name": "from",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -4389,7 +4442,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4437,13 +4490,12 @@
               "text": "2.1.0"
             }
           ],
-          "default": "undefined",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4469,7 +4521,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4495,7 +4547,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4588,10 +4640,10 @@
         },
         {
           "name": "showTimeReference",
-          "type": "any",
+          "type": "boolean",
           "complexType": {
-            "original": "any",
-            "resolved": "any",
+            "original": "boolean",
+            "resolved": "boolean",
             "references": {}
           },
           "mutable": false,
@@ -4608,10 +4660,10 @@
               "text": "1.1.0"
             }
           ],
-          "default": "undefined",
+          "default": "false",
           "values": [
             {
-              "type": "any"
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -4645,7 +4697,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4671,7 +4723,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4724,14 +4776,14 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
           "name": "to",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -4750,7 +4802,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13414,6 +13466,11 @@
           "passive": false
         },
         {
+          "event": "ix-select-item:valueChange",
+          "capture": false,
+          "passive": false
+        },
+        {
           "event": "ix-select-item:labelChange",
           "capture": false,
           "passive": false
@@ -13469,7 +13526,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -17744,6 +17801,11 @@
       "docstring": "",
       "path": "src/components/css-grid/css-grid.tsx"
     },
+    "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners": {
+      "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
+      "docstring": "",
+      "path": "src/components/date-time-card/date-time-card.tsx"
+    },
     "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption": {
       "declaration": "{\n  id: string;\n  label: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
@@ -17753,11 +17815,6 @@
       "declaration": "{\n  id: string;\n  from: string;\n  to: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
-    },
-    "src/components/date-time-card/date-time-card.tsx::DateTimeCardCorners": {
-      "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
-      "docstring": "",
-      "path": "src/components/date-time-card/date-time-card.tsx"
     },
     "src/components/date-picker/date-picker.tsx::DateChangeEvent": {
       "declaration": "{\n  from: string;\n  to: string;\n}",
@@ -17780,7 +17837,7 @@
       "path": "src/components/dropdown-button/dropdown-button.tsx"
     },
     "src/components/dropdown/placement.ts::AlignedPlacement": {
-      "declaration": "\"bottom-start\" | \"top-start\" | \"top-end\" | \"right-start\" | \"right-end\" | \"bottom-end\" | \"left-start\" | \"left-end\"",
+      "declaration": "\"bottom-start\" | \"left-start\" | \"left-end\" | \"right-start\" | \"right-end\" | \"top-start\" | \"top-end\" | \"bottom-end\"",
       "docstring": "",
       "path": "src/components/dropdown/placement.ts"
     },
