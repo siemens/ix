@@ -2,11 +2,10 @@
 sidebar_position: 11
 ---
 
-import DocsTabs from '@site/src/components/DocsTabs';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_map-navigation_styleguide.md';
 import DocsCode from './\_map-navigation_code.md';
-
 
 import Tags from './../../auto-generated/ix-map-navigation/tags.md';
 
@@ -14,4 +13,7 @@ import Tags from './../../auto-generated/ix-map-navigation/tags.md';
 
 <Tags />
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>

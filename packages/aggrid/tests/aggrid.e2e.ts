@@ -27,6 +27,7 @@ regressionTest.describe('aggrid', () => {
     await expect(filterMenu).toBeVisible();
 
     const inputHandle = filterMenu.getByPlaceholder('Filter...');
+    await inputHandle.click();
     await inputHandle.fill('Test');
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();

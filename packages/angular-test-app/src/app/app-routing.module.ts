@@ -48,8 +48,15 @@ import Chip from '../preview-examples/chip';
 import ContentExample from '../preview-examples/content';
 import ContentHeader from '../preview-examples/content-header';
 import ContentHeaderNoBack from '../preview-examples/content-header-no-back';
+import CustomField from '../preview-examples/custom-field';
+import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownUserRange from '../preview-examples/date-dropdown-user-range';
+import DateInput from '../preview-examples/date-input';
+import DateInputDisabled from '../preview-examples/date-input-disabled';
+import DateInputLabel from '../preview-examples/date-input-label';
+import DateInputReadonly from '../preview-examples/date-input-readonly';
+import DateInputValidation from '../preview-examples/date-input-validation';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -64,7 +71,6 @@ import DropdownIcon from '../preview-examples/dropdown-icon';
 import DropdownQuickActions from '../preview-examples/dropdown-quick-actions';
 import DropdownSubmenu from '../preview-examples/dropdown-submenu';
 import Echarts from '../preview-examples/echarts';
-import EchartsSpecial3d from '../preview-examples/echarts-special-3d';
 import EchartsBarHorizontalStacked from '../preview-examples/echarts-bar-horizontal-stacked';
 import EchartsBarSimple from '../preview-examples/echarts-bar-simple';
 import EchartsCircle from '../preview-examples/echarts-circle';
@@ -73,11 +79,12 @@ import EchartsGauge from '../preview-examples/echarts-gauge';
 import EchartsLineAdvanced from '../preview-examples/echarts-line-advanced';
 import EchartsLineMultipleYAxis from '../preview-examples/echarts-line-multiple-y-axis';
 import EchartsLineSimple from '../preview-examples/echarts-line-simple';
+import EchartsPie from '../preview-examples/echarts-pie';
+import EchartsProgressArc from '../preview-examples/echarts-progress-arc';
+import EchartsProgressCircle from '../preview-examples/echarts-progress-circle';
+import EchartsSpecial3d from '../preview-examples/echarts-special-3d';
 import EchartsSpecialToolbox from '../preview-examples/echarts-special-toolbox';
 import EchartsSpecialZoom from '../preview-examples/echarts-special-zoom';
-import EchartsPie from '../preview-examples/echarts-pie';
-import EchartsProgressCircle from '../preview-examples/echarts-progress-circle';
-import EchartsProgressArc from '../preview-examples/echarts-progress-arc';
 import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
@@ -87,6 +94,12 @@ import EventListCustomItemHeight from '../preview-examples/event-list-custom-ite
 import EventListSelected from '../preview-examples/event-list-selected';
 import ExpandingSearch from '../preview-examples/expanding-search';
 import FlipTile from '../preview-examples/flip-tile';
+import FormCheckbox from '../preview-examples/form-checkbox';
+import FormCheckboxDisabled from '../preview-examples/form-checkbox-disabled';
+import FormCheckboxGroup from '../preview-examples/form-checkbox-group';
+import FormCheckboxGroupIndeterminate from '../preview-examples/form-checkbox-group-indeterminate';
+import FormCheckboxValidation from '../preview-examples/form-checkbox-validation';
+import FormValidation from '../preview-examples/form-validation';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
 import GridSize from '../preview-examples/grid-size';
@@ -101,11 +114,19 @@ import IconToggleButtonSecondaryGhost from '../preview-examples/icon-toggle-butt
 import IconToggleButtonSecondaryOutline from '../preview-examples/icon-toggle-button-secondary-outline';
 import Input from '../preview-examples/input';
 import InputDisabled from '../preview-examples/input-disabled';
-import InputLabels from '../preview-examples/input-labels';
+import InputFormValidation from '../preview-examples/input-form-validation';
+import InputLabel from '../preview-examples/input-label';
+import InputLegacy from '../preview-examples/input-legacy';
+import InputLegacyDisabled from '../preview-examples/input-legacy-disabled';
+import InputLegacyLabels from '../preview-examples/input-legacy-labels';
+import InputLegacyReadonly from '../preview-examples/input-legacy-readonly';
+import InputLegacySearch from '../preview-examples/input-legacy-search';
+import InputLegacyTypes from '../preview-examples/input-legacy-types';
+import InputLegacyWithIcon from '../preview-examples/input-legacy-with-icon';
+import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
-import InputSearch from '../preview-examples/input-search';
 import InputTypes from '../preview-examples/input-types';
-import InputWithIcon from '../preview-examples/input-with-icon';
+import InputValidation from '../preview-examples/input-validation';
 import KeyValue from '../preview-examples/key-value';
 import KeyValueList from '../preview-examples/key-value-list';
 import KeyValueListStriped from '../preview-examples/key-value-list-striped';
@@ -115,6 +136,8 @@ import KeyValueWithCustomValue from '../preview-examples/key-value-with-custom-v
 import KeyValueWithIcon from '../preview-examples/key-value-with-icon';
 import KeyValueWithLabelLeft from '../preview-examples/key-value-with-label-left';
 import Kpi from '../preview-examples/kpi';
+import LayoutAuto from '../preview-examples/layout-auto';
+import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
@@ -128,6 +151,12 @@ import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalSizes from '../preview-examples/modal-sizes';
+import NumberInput from '../preview-examples/number-input';
+import NumberInputDisabled from '../preview-examples/number-input-disabled';
+import NumberInputLabel from '../preview-examples/number-input-label';
+import NumberInputReadonly from '../preview-examples/number-input-readonly';
+import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
+import NumberInputValidation from '../preview-examples/number-input-validation';
 import Pagination from '../preview-examples/pagination';
 import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pane from '../preview-examples/pane';
@@ -136,11 +165,16 @@ import Pill from '../preview-examples/pill';
 import PillVariants from '../preview-examples/pill-variants';
 import PopoverNews from '../preview-examples/popover-news';
 import PushCard from '../preview-examples/push-card';
-import RadioButton from '../preview-examples/radio-button';
+import Radio from '../preview-examples/radio';
+import Radiobutton from '../preview-examples/radio-button';
+import RadioDisabled from '../preview-examples/radio-disabled';
+import RadioGroup from '../preview-examples/radio-group';
+import RadioValidation from '../preview-examples/radio-validation';
 import Select from '../preview-examples/select';
 import SelectEditable from '../preview-examples/select-editable';
 import SelectMultiple from '../preview-examples/select-multiple';
 import SelectNgModel from '../preview-examples/select-ng-model';
+import SelectValidation from '../preview-examples/select-validation';
 import Settings from '../preview-examples/settings';
 import Slider from '../preview-examples/slider';
 import SliderError from '../preview-examples/slider-error';
@@ -154,7 +188,12 @@ import Tabs from '../preview-examples/tabs';
 import TabsRounded from '../preview-examples/tabs-rounded';
 import Textarea from '../preview-examples/textarea';
 import TextareaDisabled from '../preview-examples/textarea-disabled';
+import TextareaLegacy from '../preview-examples/textarea-legacy';
+import TextareaLegacyDisabled from '../preview-examples/textarea-legacy-disabled';
+import TextareaLegacyReadonly from '../preview-examples/textarea-legacy-readonly';
 import TextareaReadonly from '../preview-examples/textarea-readonly';
+import TextareaRowsCols from '../preview-examples/textarea-rows-cols';
+import TextareaValidation from '../preview-examples/textarea-validation';
 import ThemeService from '../preview-examples/theme-switcher';
 import Tile from '../preview-examples/tile';
 import Timepicker from '../preview-examples/timepicker';
@@ -162,6 +201,7 @@ import Toast from '../preview-examples/toast';
 import ToastCustom from '../preview-examples/toast-custom';
 import ToastPosition from '../preview-examples/toast-position';
 import Toggle from '../preview-examples/toggle';
+import ToggleButtonPrimary from '../preview-examples/toggle-button-primary';
 import ToggleButtonPrimaryGhost from '../preview-examples/toggle-button-primary-ghost';
 import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primary-outline';
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
@@ -177,10 +217,13 @@ import Tree from '../preview-examples/tree';
 import TreeCustom from '../preview-examples/tree-custom';
 import Upload from '../preview-examples/upload';
 import Validation from '../preview-examples/validation';
+import ValidationSelect from '../preview-examples/validation-select';
 import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
+import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
 
 const routes: Routes = [
   {
@@ -213,6 +256,22 @@ const routes: Routes = [
       {
         path: 'content',
         component: ContentExample,
+      },
+      {
+        path: 'custom-field',
+        component: CustomField,
+      },
+      {
+        path: 'custom-field-validation',
+        component: CustomFieldValidation,
+      },
+      {
+        path: 'buttons',
+        component: Buttons,
+      },
+      {
+        path: 'button-group',
+        component: ButtonGroup,
       },
       {
         path: 'aggrid',
@@ -324,6 +383,26 @@ const routes: Routes = [
         component: Checkbox,
       },
       {
+        path: 'form-checkbox',
+        component: FormCheckbox,
+      },
+      {
+        path: 'form-checkbox-disabled',
+        component: FormCheckboxDisabled,
+      },
+      {
+        path: 'form-checkbox-validation',
+        component: FormCheckboxValidation,
+      },
+      {
+        path: 'form-checkbox-group',
+        component: FormCheckboxGroup,
+      },
+      {
+        path: 'form-checkbox-group-indeterminate',
+        component: FormCheckboxGroupIndeterminate,
+      },
+      {
         path: 'chip',
         component: Chip,
       },
@@ -334,6 +413,30 @@ const routes: Routes = [
       {
         path: 'date-dropdown-user-range',
         component: DateDropdownUserRange,
+      },
+      {
+        path: 'date-input',
+        component: DateInput,
+      },
+      {
+        path: 'date-input-disabled',
+        component: DateInputDisabled,
+      },
+      {
+        path: 'date-input-label',
+        component: DateInputLabel,
+      },
+      {
+        path: 'date-input-readonly',
+        component: DateInputReadonly,
+      },
+      {
+        path: 'date-input-validation',
+        component: DateInputValidation,
+      },
+      {
+        path: 'datepicker',
+        component: Datepicker,
       },
       {
         path: 'content-header-no-back',
@@ -507,32 +610,32 @@ const routes: Routes = [
         component: IconToggleButtonSecondary,
       },
       {
-        path: 'input-disabled',
-        component: InputDisabled,
+        path: 'input-legacy-disabled',
+        component: InputLegacyDisabled,
       },
       {
-        path: 'input-labels',
-        component: InputLabels,
+        path: 'input-legacy-labels',
+        component: InputLegacyLabels,
       },
       {
-        path: 'input-readonly',
-        component: InputReadonly,
+        path: 'input-legacy-readonly',
+        component: InputLegacyReadonly,
       },
       {
-        path: 'input-search',
-        component: InputSearch,
+        path: 'input-legacy-search',
+        component: InputLegacySearch,
       },
       {
-        path: 'input-types',
-        component: InputTypes,
+        path: 'input-legacy-types',
+        component: InputLegacyTypes,
       },
       {
-        path: 'input-with-icon',
-        component: InputWithIcon,
+        path: 'input-legacy-with-icon',
+        component: InputLegacyWithIcon,
       },
       {
-        path: 'input',
-        component: Input,
+        path: 'input-legacy',
+        component: InputLegacy,
       },
       {
         path: 'key-value-list-striped',
@@ -632,6 +735,46 @@ const routes: Routes = [
       },
       { path: 'pane', component: Pane },
       { path: 'pane-layout', component: PaneLayout },
+      { path: 'pill', component: Pill },
+      { path: 'pill-variants', component: PillVariants },
+      { path: 'popover-news', component: PopoverNews },
+      { path: 'radio-button', component: Radiobutton },
+      { path: 'radio', component: Radio },
+      { path: 'radio-disabled', component: RadioDisabled },
+      { path: 'radio-group', component: RadioGroup },
+      { path: 'radio-validation', component: RadioValidation },
+      { path: 'select-editable', component: SelectEditable },
+      { path: 'select-multiple', component: SelectMultiple },
+      { path: 'select-ng-model', component: SelectNgModel },
+      { path: 'select-validation', component: SelectValidation },
+      { path: 'select', component: Select },
+      { path: 'settings', component: Settings },
+      { path: 'spinner', component: Spinner },
+      { path: 'spinner-large', component: SpinnerLarge },
+      { path: 'split-button-icons', component: SplitButtonIcons },
+      { path: 'split-button', component: SplitButton },
+      { path: 'tabs', component: Tabs },
+      { path: 'tabs-rounded', component: TabsRounded },
+      { path: 'textarea-legacy', component: TextareaLegacy },
+      { path: 'textarea-legacy-disabled', component: TextareaLegacyDisabled },
+      { path: 'textarea-legacy-readonly', component: TextareaLegacyReadonly },
+      { path: 'textarea', component: Textarea },
+      { path: 'textarea-disabled', component: TextareaDisabled },
+      { path: 'textarea-disabled', component: TextareaReadonly },
+      { path: 'textarea-rows-cols', component: TextareaRowsCols },
+      { path: 'textarea-validation', component: TextareaValidation },
+      { path: 'input', component: Input },
+      { path: 'input-disabled', component: InputDisabled },
+      { path: 'input-label', component: InputLabel },
+      { path: 'input-pattern', component: InputPattern },
+      { path: 'input-readonly', component: InputReadonly },
+      { path: 'input-types', component: InputTypes },
+      { path: 'input-validation', component: InputValidation },
+      { path: 'theme-switcher', component: ThemeService },
+      { path: 'tile', component: Tile },
+      { path: 'timepicker', component: Timepicker },
+      { path: 'toggle-button-primary', component: ToggleButtonPrimary },
+      { path: 'toggle-button-secondary', component: ToggleButtonSecondary },
       {
         path: 'pill',
         component: Pill,
@@ -644,10 +787,6 @@ const routes: Routes = [
       {
         path: 'push-card',
         component: PushCard,
-      },
-      {
-        path: 'radio-button',
-        component: RadioButton,
       },
       {
         path: 'select-editable',
@@ -710,18 +849,6 @@ const routes: Routes = [
         component: Tabs,
       },
       {
-        path: 'textarea-disabled',
-        component: TextareaDisabled,
-      },
-      {
-        path: 'textarea-readonly',
-        component: TextareaReadonly,
-      },
-      {
-        path: 'textarea',
-        component: Textarea,
-      },
-      {
         path: 'theme-switcher',
         component: ThemeService,
       },
@@ -753,6 +880,37 @@ const routes: Routes = [
         path: 'toggle-button-primary-outline',
         component: ToggleButtonPrimaryOutline,
       },
+      { path: 'toggle-disabled', component: ToggleDisabled },
+      { path: 'toggle-custom-label', component: ToggleCustomLabel },
+      { path: 'toggle-ng-model', component: ToggleNgModel },
+      { path: 'toggle', component: Toggle },
+      { path: 'upload', component: Upload },
+      { path: 'vertical-tabs-with-avatar', component: VerticalTabsWithAvatar },
+      { path: 'vertical-tabs', component: VerticalTabs },
+      { path: 'validation', component: Validation },
+      { path: 'workflow', component: Workflow },
+      { path: 'workflow-vertical', component: WorkflowVertical },
+      { path: 'map-navigation', component: MapNavigation },
+      { path: 'map-navigation-overlay', component: MapNavigationOverlay },
+      { path: 'number-input', component: NumberInput },
+      { path: 'number-input-disabled', component: NumberInputDisabled },
+      { path: 'number-input-label', component: NumberInputLabel },
+      { path: 'number-input-readonly', component: NumberInputReadonly },
+      {
+        path: 'number-input-stepper-button',
+        component: NumberInputStepperButton,
+      },
+      { path: 'number-input-validation', component: NumberInputValidation },
+      { path: 'tooltip', component: Tooltip },
+      { path: 'modal-by-instance', component: ModalByInstance },
+      { path: 'push-card', component: PushCard },
+      { path: 'action-card', component: ActionCard },
+      { path: 'card', component: Card },
+      { path: 'card-list', component: CardList },
+      { path: 'empty-state', component: EmptyState },
+      { path: 'empty-state-compact', component: EmptyStateCompact },
+      { path: 'empty-state-compact-break', component: EmptyStateCompactBreak },
+      { path: 'key-value', component: KeyValue },
       {
         path: 'toggle-button-secondary-ghost',
         component: ToggleButtonSecondaryGhost,
@@ -825,6 +983,24 @@ const routes: Routes = [
         path: 'workflow',
         component: Workflow,
       },
+      { path: 'key-value-list-with-icon', component: KeyValueListWithIcon },
+      { path: 'key-value-list-striped', component: KeyValueListStriped },
+      { path: 'menu-category', component: MenuCategory },
+      { path: 'slider', component: Slider },
+      { path: 'slider-trace', component: SliderTrace },
+      { path: 'slider-marker', component: SliderMarker },
+      { path: 'slider-error', component: SliderError },
+      { path: 'grid', component: Grid },
+      { path: 'grid-size', component: GridSize },
+      { path: 'grid-padding', component: GridPadding },
+      { path: 'modal-sizes', component: ModalSizes },
+      { path: 'validation-select', component: ValidationSelect },
+      { path: 'input-form-validation', component: InputFormValidation },
+      { path: 'form-validation', component: FormValidation },
+      { path: 'layout-auto', component: LayoutAuto },
+      { path: 'layout-auto-custom', component: LayoutAutoCustom },
+      { path: 'form-layout-auto', component: FormLayoutAuto },
+      { path: 'form-layout-grid', component: FormLayoutGrid },
     ],
   },
 ];

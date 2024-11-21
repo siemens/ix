@@ -6,50 +6,50 @@ import ColEvents from './../auto-generated/ix-col/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3'
 
-# Message bar
+## Development
 
-## Examples
+### Examples
 
-### Basic
-
-<Playground
-  height="15rem"
-  name="grid"
-  >
-</Playground>
-
-### Size
+#### Basic
 
 <Playground
-  height="17rem"
-  name="grid-size"
-  >
-</Playground>
+height="15rem"
+name="grid"
 
-### Padding
+> </Playground>
+
+#### Size
 
 <Playground
-  name="grid-padding"
-  height="17rem"
-  >
-</Playground>
+height="17rem"
+name="grid-size"
 
-## API (ix-layout-grid)
+> </Playground>
 
-### Properties
+#### Padding
+
+<Playground
+name="grid-padding"
+height="17rem"
+
+> </Playground>
+
+### API (ix-layout-grid)
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-col)
+### API (ix-col)
 
-### Properties
+#### Properties
 
 <ColProps />
 
-### Events
+#### Events
 
 <ColEvents />

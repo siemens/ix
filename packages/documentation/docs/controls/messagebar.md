@@ -3,7 +3,7 @@ import Events from './../auto-generated/ix-message-bar/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Message-bar
+# Message bar
 
 ## Examples
 

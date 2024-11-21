@@ -1,8 +1,8 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalEnv": ["CI", "FIGMA_API_TOKEN", "GITHUB_TOKEN", "CSC"],
-  "ui": "stream",
+  "globalEnv": ["CI", "FIGMA_API_TOKEN", "GITHUB_TOKEN", "CSC", "FAST_START"],
   "globalDependencies": [".env"],
+  "ui": "stream",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -20,7 +20,8 @@
     },
     "start": {
       "dependsOn": ["^build"],
-      "cache": true
+      "cache": true,
+      "persistent": true
     },
     "lint": {
       "cache": false

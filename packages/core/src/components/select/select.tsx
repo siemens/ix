@@ -8,6 +8,7 @@
  */
 
 import {
+  AttachInternals,
   Component,
   Element,
   Event,
@@ -15,6 +16,7 @@ import {
   h,
   Host,
   Listen,
+  Method,
   Prop,
   State,
   Watch,
@@ -24,15 +26,90 @@ import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
-import { makeRef } from '../utils/make-ref';
+import {
+  HookValidationLifecycle,
+  ValidationResults,
+  IxInputFieldComponent,
+} from '../utils/input';
+import { MakeRef, makeRef } from '../utils/make-ref';
+import { a11yBoolean } from '../utils/a11y';
 
+/**
+ * @form-ready 2.6.0
+ */
 @Component({
   tag: 'ix-select',
   styleUrl: 'select.scss',
   shadow: true,
+  formAssociated: true,
 })
-export class Select {
+export class Select implements IxInputFieldComponent<string | string[]> {
   @Element() hostElement!: HTMLIxSelectElement;
+  @AttachInternals() formInternals!: ElementInternals;
+
+  /**
+   * A string that represents the element's name attribute,
+   * containing a name that identifies the element when submitting the form.
+   *
+   * @since 2.6.0
+   */
+  @Prop({ reflect: true }) name?: string;
+
+  /**
+   * A Boolean attribute indicating that an option with a non-empty string value must be selected
+   *
+   * @since 2.6.0
+   */
+  @Prop({ reflect: true }) required: boolean = false;
+
+  /**
+   * Label for the select component
+   *
+   * @since 2.6.0
+   */
+  @Prop() label?: string;
+
+  /**
+   * Warning text for the select component
+   *
+   * @since 2.6.0
+   **/
+  @Prop() warningText?: string;
+
+  /**
+   * Info text for the select component
+   *
+   * @since 2.6.0
+   **/
+  @Prop() infoText?: string;
+
+  /**
+   * Error text for the select component
+   *
+   * @since 2.6.0
+   **/
+  @Prop() invalidText?: string;
+
+  /**
+   * Valid text for the select component
+   *
+   * @since 2.6.0
+   **/
+  @Prop() validText?: string;
+
+  /**
+   * Helper text for the select component
+   *
+   * @since 2.6.0
+   **/
+  @Prop() helperText?: string;
+
+  /**
+   * Show helper, error, info, warning text as tooltip
+   *
+   * @since 2.6.0
+   */
+  @Prop() showTextAsTooltip?: boolean;
 
   /**
    * Indices of selected items.
@@ -46,7 +123,7 @@ export class Select {
    * This corresponds to the value property of ix-select-items
    * @since 2.0.0
    */
-  @Prop({ mutable: true }) value?: string | string[];
+  @Prop({ mutable: true }) value: string | string[] = [];
 
   /**
    * Show clear button
@@ -86,10 +163,10 @@ export class Select {
   /**
    * Select list header
    */
-  @Prop() i18nSelectListHeader = 'Please select an option';
+  @Prop() i18nSelectListHeader = 'Select an option';
 
   /**
-   * Hint inside of dropdown if no items where found with current filter text
+   * Information inside of dropdown if no items where found with current filter text
    *
    * @since 1.5.0
    */
@@ -126,6 +203,11 @@ export class Select {
    */
   @Event() addItem!: EventEmitter<string>;
 
+  /**
+   * Blur input
+   */
+  @Event() ixBlur!: EventEmitter<void>;
+
   @State() dropdownShow = false;
   @State() selectedLabels: string[] = [];
   @State() isDropdownEmpty = false;
@@ -133,13 +215,18 @@ export class Select {
   @State() inputFilterText = '';
   @State() inputValue = '';
 
+  @State() isInvalid = false;
+  @State() isValid = false;
+  @State() isInfo = false;
+  @State() isWarning = false;
+
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
   private readonly dropdownAnchor = makeRef<HTMLElement>();
+
   private inputRef?: HTMLInputElement;
   private dropdownRef?: HTMLIxDropdownElement;
   private customItemsContainerRef?: HTMLDivElement;
   private addItemRef?: HTMLIxDropdownItemElement;
-
   private arrowFocusController?: ArrowFocusController;
 
   private readonly itemObserver = createMutationObserver(() => {
@@ -148,6 +235,8 @@ export class Select {
     }
     this.arrowFocusController.items = this.visibleNonShadowItems;
   });
+  private readonly focusControllerCallbackBind =
+    this.focusDropdownItem.bind(this);
 
   get nonShadowItems() {
     return Array.from(this.hostElement.querySelectorAll('ix-select-item'));
@@ -213,11 +302,11 @@ export class Select {
 
   @Watch('dropdownShow')
   watchDropdownShow(show: boolean) {
-    if (show && this.dropdownRef) {
+    if (show) {
       this.arrowFocusController = new ArrowFocusController(
         this.visibleNonShadowItems,
         this.dropdownRef,
-        (index) => this.focusDropdownItem(index)
+        this.focusControllerCallbackBind
       );
 
       this.arrowFocusController.wrap = !this.editable;
@@ -243,14 +332,41 @@ export class Select {
     this.itemClick(newId);
   }
 
+  async updateFormInternalValue(value: string | string[]) {
+    if (Array.isArray(value)) {
+      this.formInternals.setFormValue(value.join(','));
+      return;
+    }
+
+    this.formInternals.setFormValue(value);
+  }
+
+  /** @internal */
+  @Method()
+  async hasValidValue(): Promise<boolean> {
+    return this.required && !!this.hasValue();
+  }
+
+  private hasValue() {
+    if (Array.isArray(this.value)) {
+      return !!this.value.length;
+    }
+
+    return !!this.value;
+  }
+
   private focusDropdownItem(index: number) {
-    this.navigationItem = undefined;
+    this.navigationItem = null;
 
     if (index < this.visibleNonShadowItems.length) {
       const nestedDropdownItem =
         this.visibleNonShadowItems[index]?.shadowRoot?.querySelector(
           'ix-dropdown-item'
         );
+
+      if (!nestedDropdownItem) {
+        return;
+      }
 
       requestAnimationFrame(() => {
         nestedDropdownItem?.shadowRoot?.querySelector('button')?.focus();
@@ -286,7 +402,7 @@ export class Select {
     newItem.value = value;
     newItem.label = value;
 
-    this.customItemsContainerRef?.appendChild(newItem);
+    this.customItemsContainerRef.appendChild(newItem);
 
     this.clearInput();
     this.itemClick(value);
@@ -325,7 +441,7 @@ export class Select {
 
     this.items.forEach((item) => {
       item.selected = ids.some((i) => {
-        if (item.value !== undefined && typeof i !== typeof item.value) {
+        if (typeof i !== typeof item.value) {
           return i.toString() === item.value.toString();
         } else {
           return i === item.value;
@@ -340,6 +456,7 @@ export class Select {
     } else {
       this.inputValue = '';
     }
+
     this.inputRef && (this.inputRef.value = this.inputValue);
   }
 
@@ -351,11 +468,12 @@ export class Select {
     }
 
     if (!value) {
-      this.itemSelectionChange.emit(undefined);
+      this.itemSelectionChange.emit(null);
     } else {
       this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
     }
 
+    this.updateFormInternalValue(value);
     return false;
   }
 
@@ -372,6 +490,7 @@ export class Select {
     }
 
     this.updateSelection();
+    this.updateFormInternalValue(this.value);
   }
 
   @Listen('ix-select-item:valueChange')
@@ -400,7 +519,7 @@ export class Select {
       this.removeHiddenFromItems();
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
     } else {
-      this.navigationItem = undefined;
+      this.navigationItem = null;
       this.updateSelection();
       this.inputFilterText = '';
     }
@@ -471,9 +590,11 @@ export class Select {
     }
 
     const moveUp = key === 'ArrowUp';
-    const indexNonShadow = this.visibleNonShadowItems.indexOf(
-      document.activeElement as any
-    );
+    const indexNonShadow = document.activeElement
+      ? this.visibleNonShadowItems.indexOf(
+          document.activeElement as HTMLIxSelectItemElement
+        )
+      : -1;
 
     // Slotted select items
     if (indexNonShadow === 0) {
@@ -495,10 +616,14 @@ export class Select {
       return;
     }
 
+    if (!this.navigationItem) {
+      return;
+    }
+
     if (
       this.isAddItemVisible() &&
-      this.addItemRef?.contains(
-        (await this.navigationItem?.getDropdownItemElement()) || null
+      this.addItemRef.contains(
+        await this.navigationItem.getDropdownItemElement()
       )
     ) {
       if (moveUp) {
@@ -513,7 +638,7 @@ export class Select {
 
     // Custom select items
     const indexShadow = this.visibleShadowItems.indexOf(
-      this.navigationItem as any
+      this.navigationItem as HTMLIxSelectItemElement
     );
 
     if (moveUp) {
@@ -605,11 +730,13 @@ export class Select {
     this.clearInput();
     this.selectedLabels = [];
     this.value = [];
-    this.valueChange.emit(undefined);
+    this.emitValueChange([]);
     this.dropdownShow = false;
   }
 
-  private onInputBlur() {
+  private onInputBlur(event: Event) {
+    this.ixBlur.emit();
+
     if (this.editable) {
       return;
     }
@@ -618,11 +745,11 @@ export class Select {
       return;
     }
 
-    if (this.dropdownShow) {
-      return;
-    }
+    const target = event.target as HTMLInputElement;
 
-    this.value = this.selectedLabels;
+    if (!this.dropdownShow && this.mode !== 'multiple') {
+      target.value = this.selectedLabels.toString();
+    }
   }
 
   private placeholderValue() {
@@ -649,90 +776,148 @@ export class Select {
     );
   }
 
+  @HookValidationLifecycle()
+  onValidationChange({
+    isInvalid,
+    isInvalidByRequired,
+    isValid,
+    isInfo,
+    isWarning,
+  }: ValidationResults) {
+    this.isInvalid = isInvalid || isInvalidByRequired;
+    this.isValid = isValid;
+    this.isWarning = isWarning;
+    this.isInfo = isInfo;
+  }
+
+  /** @internal */
+  @Method()
+  async getAssociatedFormElement(): Promise<HTMLFormElement | null> {
+    return this.formInternals.form;
+  }
+
+  /**
+   * Returns the native input element used in the component.
+   */
+  @Method()
+  getNativeInputElement(): Promise<HTMLInputElement> {
+    return Promise.resolve(this.inputRef);
+  }
+
+  /**
+   * Focuses the input field
+   */
+  @Method()
+  async focusInput(): Promise<void> {
+    return (await this.getNativeInputElement()).focus();
+  }
+
   render() {
     return (
-      <Host>
-        <div
-          class={{
-            select: true,
-            disabled: this.disabled,
-            readonly: this.readonly,
-          }}
-          ref={(ref) => {
-            this.dropdownAnchor(ref);
-            if (!this.editable) this.dropdownWrapperRef(ref);
-          }}
+      <Host
+        aria-disabled={a11yBoolean(this.disabled)}
+        class={{
+          disabled: this.disabled,
+        }}
+      >
+        <ix-field-wrapper
+          required={this.required}
+          label={this.label}
+          helperText={this.helperText}
+          invalidText={this.invalidText}
+          infoText={this.infoText}
+          warningText={this.warningText}
+          validText={this.validText}
+          showTextAsTooltip={this.showTextAsTooltip}
+          isInvalid={this.isInvalid}
+          isValid={this.isValid}
+          isInfo={this.isInfo}
+          isWarning={this.isWarning}
+          controlRef={this.inputRef as unknown as MakeRef<HTMLElement>}
         >
-          <div class="input-container">
-            <div class="chips">
-              {this.isMultipleMode
-                ? this.selectedItems?.map((item) => (
-                    <ix-filter-chip
-                      disabled={this.disabled || this.readonly}
-                      key={item.value}
-                      onCloseClick={(e) => {
+          <div
+            class={{
+              select: true,
+              disabled: this.disabled,
+              readonly: this.readonly,
+            }}
+            ref={(ref) => {
+              this.dropdownAnchor(ref);
+              if (!this.editable) this.dropdownWrapperRef(ref);
+            }}
+          >
+            <div class="input-container">
+              <div class="chips">
+                {this.isMultipleMode
+                  ? this.selectedItems?.map((item) => (
+                      <ix-filter-chip
+                        disabled={this.disabled || this.readonly}
+                        key={item.value}
+                        onCloseClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          this.itemClick(item.value);
+                        }}
+                      >
+                        {item.label}
+                      </ix-filter-chip>
+                    ))
+                  : ''}
+                <div class="trigger">
+                  <input
+                    autocomplete="off"
+                    data-testid="input"
+                    disabled={this.disabled}
+                    readOnly={this.readonly}
+                    required={this.required}
+                    type="text"
+                    class={{
+                      'allow-clear':
+                        this.allowClear && !!this.selectedLabels?.length,
+                    }}
+                    placeholder={this.placeholderValue()}
+                    value={this.inputValue ?? ''}
+                    ref={(ref) => (this.inputRef = ref)}
+                    onBlur={(e) => this.onInputBlur(e)}
+                    onFocus={() => {
+                      this.navigationItem = null;
+                    }}
+                    onInput={() => this.filterItemsWithTypeahead()}
+                    onKeyDown={(e) => this.onKeyDown(e)}
+                  />
+                  {this.allowClear &&
+                  (this.selectedLabels?.length || this.inputFilterText) ? (
+                    <ix-icon-button
+                      class="clear"
+                      icon={'clear'}
+                      ghost
+                      oval
+                      size="16"
+                      onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        this.itemClick(item.value);
+                        this.clear();
                       }}
-                    >
-                      {item.label}
-                    </ix-filter-chip>
-                  ))
-                : ''}
-              <div class="trigger">
-                <input
-                  autocomplete="off"
-                  data-testid="input"
-                  disabled={this.disabled}
-                  readOnly={this.readonly}
-                  type="text"
-                  class={{
-                    'allow-clear':
-                      this.allowClear && !!this.selectedLabels?.length,
-                  }}
-                  placeholder={this.placeholderValue()}
-                  value={this.inputValue}
-                  ref={(ref) => (this.inputRef = ref)}
-                  onBlur={() => this.onInputBlur()}
-                  onFocus={() => {
-                    this.navigationItem = undefined;
-                  }}
-                  onInput={() => this.filterItemsWithTypeahead()}
-                  onKeyDown={(e) => this.onKeyDown(e)}
-                />
-                {this.allowClear &&
-                (this.selectedLabels?.length || this.inputFilterText) ? (
-                  <ix-icon-button
-                    class="clear"
-                    icon={'clear'}
-                    ghost
-                    oval
-                    size="16"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      this.clear();
-                    }}
-                  />
-                ) : null}
-                {this.disabled || this.readonly ? null : (
-                  <ix-icon-button
-                    data-select-dropdown
-                    class={{ 'dropdown-visible': this.dropdownShow }}
-                    icon="chevron-down-small"
-                    ghost
-                    ref={(ref) => {
-                      if (this.editable) this.dropdownWrapperRef(ref);
-                    }}
-                  ></ix-icon-button>
-                )}
+                    />
+                  ) : null}
+                  {this.disabled || this.readonly ? null : (
+                    <ix-icon-button
+                      data-select-dropdown
+                      class={{ 'dropdown-visible': this.dropdownShow }}
+                      icon="chevron-down-small"
+                      ghost
+                      ref={(ref) => {
+                        if (this.editable) this.dropdownWrapperRef(ref);
+                      }}
+                    ></ix-icon-button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ix-field-wrapper>
         <ix-dropdown
-          ref={(ref) => (this.dropdownRef = ref)}
+          ref={(ref) => (this.dropdownRef = ref!)}
           show={this.dropdownShow}
           closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
           class={{
@@ -743,8 +928,12 @@ export class Select {
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
           overwriteDropdownStyle={async () => {
+            const minWidth = this.hostElement.shadowRoot
+              ?.querySelector('.select')
+              ?.getBoundingClientRect().width;
+
             return {
-              minWidth: `${this.hostElement.clientWidth}px`,
+              minWidth: `${minWidth}px`,
             };
           }}
         >
@@ -764,7 +953,7 @@ export class Select {
             }}
           ></slot>
           <div
-            ref={(ref) => (this.customItemsContainerRef = ref)}
+            ref={(ref) => (this.customItemsContainerRef = ref!)}
             class="d-contents"
           ></div>
           {this.isAddItemVisible() ? (
@@ -782,7 +971,7 @@ export class Select {
               }}
               onFocus={() => (this.navigationItem = this.addItemRef)}
               ref={(ref) => {
-                this.addItemRef = ref;
+                this.addItemRef = ref!;
               }}
             ></ix-dropdown-item>
           ) : null}

@@ -25,6 +25,7 @@
     "start": "dotenv -- turbo run start",
     "turbo": "dotenv -- turbo",
     "lint": "dotenv -- turbo run lint",
+    "format": "prettier --write ./packages/**/src/**/*.{ts,tsx,js,jsx,css,scss,html,vue,json}",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "visual-regression": "dotenv -- turbo run visual-regression",
     "test": "dotenv -- turbo run test",
@@ -60,6 +61,12 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@stencil/react-output-target@0.5.3": "patches/@stencil__react-output-target@0.5.3.patch",
+      "@stencil/vue-output-target@0.8.8": "patches/@stencil__vue-output-target@0.8.8.patch"
     }
   }
 }

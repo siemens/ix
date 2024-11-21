@@ -325,10 +325,10 @@
         },
         {
           "name": "theme",
-          "type": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & {}",
+          "type": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & Record<never, never>",
           "complexType": {
             "original": "IxTheme",
-            "resolved": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & {}",
+            "resolved": "\"classic\" | \"classic-dark\" | \"classic-light\" | string & Record<never, never>",
             "references": {
               "IxTheme": {
                 "location": "import",
@@ -356,7 +356,7 @@
               "type": "string"
             },
             {
-              "type": "string & {}"
+              "type": "string & Record<never, never>"
             }
           ],
           "optional": false,
@@ -2517,6 +2517,451 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/checkbox",
+      "filePath": "src/components/checkbox/checkbox.tsx",
+      "fileName": "checkbox.tsx",
+      "readmePath": "src/components/checkbox/readme.md",
+      "usagesDir": "src/components/checkbox/usage",
+      "tag": "ix-checkbox",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-checkbox": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "checked",
+          "reflectToAttr": true,
+          "docs": "Checked state of the checkbox component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Disabled state of the checkbox component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "indeterminate",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "indeterminate",
+          "reflectToAttr": true,
+          "docs": "Indeterminate state of the checkbox component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Required state of the checkbox component.\n\nIf true, checkbox needs to be checked to be valid",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Value of the checkbox component",
+          "docsTags": [],
+          "default": "'on'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "checkedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the checked state of the checkbox changes",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the checkbox changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/checkbox-group",
+      "filePath": "src/components/checkbox-group/checkbox-group.tsx",
+      "fileName": "checkbox-group.tsx",
+      "readmePath": "src/components/checkbox-group/readme.md",
+      "usagesDir": "src/components/checkbox-group/usage",
+      "tag": "ix-checkbox-group",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-field-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-checkbox-group": [
+          "ix-field-wrapper"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "direction",
+          "type": "\"column\" | \"row\"",
+          "complexType": {
+            "original": "'row' | 'column'",
+            "resolved": "\"column\" | \"row\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "direction",
+          "reflectToAttr": false,
+          "docs": "Alignment of the checkboxes in the group",
+          "docsTags": [],
+          "default": "'column'",
+          "values": [
+            {
+              "value": "column",
+              "type": "string"
+            },
+            {
+              "value": "row",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Optional helper text displayed below the checkbox group",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "Info text for the checkbox group",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the checkbox group",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the checkbox group",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Show helper, info, warning, error and valid text as tooltip",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "Valid text for the checkbox group",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "Warning text for the checkbox group",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/chip",
       "filePath": "src/components/chip/chip.tsx",
       "fileName": "chip.tsx",
@@ -3312,6 +3757,221 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/custom-field",
+      "filePath": "src/components/custom-field/custom-field.tsx",
+      "fileName": "custom-field.tsx",
+      "readmePath": "src/components/custom-field/readme.md",
+      "usagesDir": "src/components/custom-field/usage",
+      "tag": "ix-custom-field",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-field-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-custom-field": [
+          "ix-field-wrapper"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component which show additional information",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "Info text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "A value is required or must be checked for the form to be submittable",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Show helper, info, warning, error and valid text as tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "Valid text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "Warning text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/date-dropdown",
       "filePath": "src/components/date-dropdown/date-dropdown.tsx",
       "fileName": "date-dropdown.tsx",
@@ -3774,6 +4434,504 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/date-input",
+      "filePath": "src/components/date-input/date-input.tsx",
+      "fileName": "date-input.tsx",
+      "readmePath": "src/components/date-input/readme.md",
+      "usagesDir": "src/components/date-input/usage",
+      "tag": "ix-date-input",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-icon-button",
+        "ix-field-wrapper",
+        "ix-dropdown",
+        "ix-date-picker"
+      ],
+      "dependencyGraph": {
+        "ix-date-input": [
+          "ix-icon-button",
+          "ix-field-wrapper",
+          "ix-dropdown",
+          "ix-date-picker"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-date-picker": [
+          "ix-date-time-card",
+          "ix-icon-button",
+          "ix-button",
+          "ix-dropdown"
+        ],
+        "ix-button": [
+          "ix-spinner"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "disabled attribute",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "format",
+          "reflectToAttr": false,
+          "docs": "Date format string.\nSee {@link \"https://moment.github.io/luxon/#/formatting?id=table-of-tokens\"} for all available tokens.",
+          "docsTags": [],
+          "default": "'yyyy/LL/dd'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "helper text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "i18nErrorDateUnparsable",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i18n-error-date-unparsable",
+          "reflectToAttr": false,
+          "docs": "i18n string for the error message when the date is not parsable",
+          "docsTags": [],
+          "default": "'Date is not valid'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "info text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": true,
+          "docs": "error text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "label of the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "locale",
+          "reflectToAttr": false,
+          "docs": "Locale identifier (e.g. 'en' or 'de').",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "name of the input element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "placeholder of the input element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "readonly attribute",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": false,
+          "docs": "required attribute",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "show text as tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "valid text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "value of the input element",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "warning text below the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Get the native input element",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "validityStateChange",
+          "detail": "{ patternMismatch: boolean; invalidReason?: string; }",
+          "bubbles": true,
+          "complexType": {
+            "original": "DateInputValidityState",
+            "resolved": "{ patternMismatch: boolean; invalidReason?: string; }",
+            "references": {
+              "DateInputValidityState": {
+                "location": "local",
+                "path": "src/components/date-input/date-input.tsx",
+                "id": "src/components/date-input/date-input.tsx::DateInputValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Validation state change event.",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": false,
+          "composed": true,
+          "docs": "Input change event.",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/date-picker",
       "filePath": "src/components/date-picker/date-picker.tsx",
       "fileName": "date-picker.tsx",
@@ -3787,6 +4945,7 @@
       "encapsulation": "shadow",
       "dependents": [
         "ix-date-dropdown",
+        "ix-date-input",
         "ix-datetime-picker"
       ],
       "dependencies": [
@@ -3809,6 +4968,9 @@
           "ix-spinner"
         ],
         "ix-date-dropdown": [
+          "ix-date-picker"
+        ],
+        "ix-date-input": [
           "ix-date-picker"
         ],
         "ix-datetime-picker": [
@@ -5220,6 +6382,7 @@
         "ix-breadcrumb",
         "ix-category-filter",
         "ix-date-dropdown",
+        "ix-date-input",
         "ix-date-picker",
         "ix-dropdown-button",
         "ix-menu-avatar",
@@ -5242,6 +6405,9 @@
           "ix-dropdown"
         ],
         "ix-date-dropdown": [
+          "ix-dropdown"
+        ],
+        "ix-date-input": [
           "ix-dropdown"
         ],
         "ix-date-picker": [
@@ -6742,6 +7908,83 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/field-label",
+      "filePath": "src/components/field-label/field-label.tsx",
+      "fileName": "field-label.tsx",
+      "readmePath": "src/components/field-label/readme.md",
+      "usagesDir": "src/components/field-label/usage",
+      "tag": "ix-field-label",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [
+        "ix-field-wrapper"
+      ],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label"
+        ]
+      },
+      "props": [
+        {
+          "name": "htmlFor",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "html-for",
+          "reflectToAttr": true,
+          "docs": "The id of the form element that the label is associated with",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "A value is required or must be checked for the form to be submittable",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/filter-chip",
       "filePath": "src/components/filter-chip/filter-chip.tsx",
       "fileName": "filter-chip.tsx",
@@ -6997,51 +8240,6 @@
       "dependencies": [],
       "dependencyGraph": {},
       "props": [],
-      "methods": [],
-      "events": [],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "src/components/form-field",
-      "filePath": "src/components/form-field/form-field.tsx",
-      "fileName": "form-field.tsx",
-      "readmePath": "src/components/form-field/readme.md",
-      "usagesDir": "src/components/form-field/usage",
-      "tag": "ix-form-field",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
-      "props": [
-        {
-          "name": "label",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "label",
-          "reflectToAttr": false,
-          "docs": "Label",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
       "methods": [],
       "events": [],
       "styles": [],
@@ -7531,6 +8729,162 @@
       ]
     },
     {
+      "dirPath": "src/components/helper-text",
+      "filePath": "src/components/helper-text/helper-text.tsx",
+      "fileName": "helper-text.tsx",
+      "readmePath": "src/components/helper-text/readme.md",
+      "usagesDir": "src/components/helper-text/usage",
+      "tag": "ix-helper-text",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-helper-text": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "htmlFor",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "html-for",
+          "reflectToAttr": false,
+          "docs": "The id of the form element that the label is associated with",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "Info text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "Valid text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "Warning text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/icon-button",
       "filePath": "src/components/icon-button/icon-button.tsx",
       "fileName": "icon-button.tsx",
@@ -7548,6 +8902,7 @@
         "ix-category-filter",
         "ix-chip",
         "ix-content-header",
+        "ix-date-input",
         "ix-date-picker",
         "ix-drawer",
         "ix-dropdown-button",
@@ -7555,6 +8910,7 @@
         "ix-filter-chip",
         "ix-flip-tile",
         "ix-group-context-menu",
+        "ix-input",
         "ix-map-navigation",
         "ix-map-navigation-overlay",
         "ix-menu",
@@ -7564,6 +8920,7 @@
         "ix-menu-settings",
         "ix-message-bar",
         "ix-modal-header",
+        "ix-number-input",
         "ix-pagination",
         "ix-pane",
         "ix-select",
@@ -7593,6 +8950,9 @@
         "ix-content-header": [
           "ix-icon-button"
         ],
+        "ix-date-input": [
+          "ix-icon-button"
+        ],
         "ix-date-picker": [
           "ix-icon-button"
         ],
@@ -7612,6 +8972,9 @@
           "ix-icon-button"
         ],
         "ix-group-context-menu": [
+          "ix-icon-button"
+        ],
+        "ix-input": [
           "ix-icon-button"
         ],
         "ix-map-navigation": [
@@ -7639,6 +9002,9 @@
           "ix-icon-button"
         ],
         "ix-modal-header": [
+          "ix-icon-button"
+        ],
+        "ix-number-input": [
           "ix-icon-button"
         ],
         "ix-pagination": [
@@ -8236,6 +9602,560 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/input",
+      "filePath": "src/components/input/input.tsx",
+      "fileName": "input.tsx",
+      "readmePath": "src/components/input/readme.md",
+      "usagesDir": "src/components/input/usage",
+      "tag": "ix-input",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-field-wrapper",
+        "ix-icon-button",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-input": [
+          "ix-field-wrapper",
+          "ix-icon-button",
+          "ix-typography"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ]
+      },
+      "props": [
+        {
+          "name": "allowedCharactersPattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "allowed-characters-pattern",
+          "reflectToAttr": false,
+          "docs": "The allowed characters pattern for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": true,
+          "docs": "Specifies whether the text field is disabled.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "The helper text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "The info text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "The error text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "The label for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "max-length",
+          "reflectToAttr": false,
+          "docs": "The maximum length of the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "min-length",
+          "reflectToAttr": false,
+          "docs": "The minimum length of the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "The name of the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "pattern",
+          "reflectToAttr": false,
+          "docs": "The pattern for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "The placeholder text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": true,
+          "docs": "Specifies whether the text field is readonly.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Specifies whether the text field is required.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Specifies whether to show the text as a tooltip.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"email\" | \"password\" | \"tel\" | \"text\" | \"url\"",
+          "complexType": {
+            "original": "'text' | 'email' | 'password' | 'tel' | 'url'",
+            "resolved": "\"email\" | \"password\" | \"tel\" | \"text\" | \"url\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "type",
+          "reflectToAttr": false,
+          "docs": "The type of the text field. Possible values are 'text', 'email', or 'password'.",
+          "docsTags": [],
+          "default": "'text'",
+          "values": [
+            {
+              "value": "email",
+              "type": "string"
+            },
+            {
+              "value": "password",
+              "type": "string"
+            },
+            {
+              "value": "tel",
+              "type": "string"
+            },
+            {
+              "value": "text",
+              "type": "string"
+            },
+            {
+              "value": "url",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "The valid text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "The value of the text field.",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "The warning text for the text field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Returns the native input element used in the text field.",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the text field loses focus.",
+          "docsTags": []
+        },
+        {
+          "event": "validityStateChange",
+          "detail": "ValidityState",
+          "bubbles": true,
+          "complexType": {
+            "original": "ValidityState",
+            "resolved": "ValidityState",
+            "references": {
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the validity state of the text field changes.",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the text field changes.",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/input-group",
       "filePath": "src/components/input-group/input-group.tsx",
       "fileName": "input-group.tsx",
@@ -8591,11 +10511,61 @@
       "listeners": []
     },
     {
-      "dirPath": "src/components/grid",
-      "filePath": "src/components/grid/layout-grid.tsx",
+      "dirPath": "src/components/layout-auto",
+      "filePath": "src/components/layout-auto/layout-auto.tsx",
+      "fileName": "layout-auto.tsx",
+      "readmePath": "src/components/layout-auto/readme.md",
+      "usagesDir": "src/components/layout-auto/usage",
+      "tag": "ix-layout-auto",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {},
+      "props": [
+        {
+          "name": "layout",
+          "type": "{ minWidth: string; columns: number; }[]",
+          "complexType": {
+            "original": "{\n    minWidth: string;\n    columns: number;\n  }[]",
+            "resolved": "{ minWidth: string; columns: number; }[]",
+            "references": {}
+          },
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "Defines the layout of the form.",
+          "docsTags": [],
+          "default": "[\n    { minWidth: '0', columns: 1 },\n    { minWidth: '48em', columns: 2 },\n  ]",
+          "values": [
+            {
+              "type": "{ minWidth: string; columns: number; }[]"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/layout-grid",
+      "filePath": "src/components/layout-grid/layout-grid.tsx",
       "fileName": "layout-grid.tsx",
-      "readmePath": "src/components/grid/readme.md",
-      "usagesDir": "src/components/grid/usage",
+      "readmePath": "src/components/layout-grid/readme.md",
+      "usagesDir": "src/components/layout-grid/usage",
       "tag": "ix-layout-grid",
       "overview": "",
       "usage": {},
@@ -11813,6 +13783,546 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/input",
+      "filePath": "src/components/input/number-input.tsx",
+      "fileName": "number-input.tsx",
+      "readmePath": "src/components/input/readme.md",
+      "usagesDir": "src/components/input/usage",
+      "tag": "ix-number-input",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-field-wrapper",
+        "ix-icon-button"
+      ],
+      "dependencyGraph": {
+        "ix-number-input": [
+          "ix-field-wrapper",
+          "ix-icon-button"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ],
+        "ix-icon-button": [
+          "ix-spinner"
+        ]
+      },
+      "props": [
+        {
+          "name": "allowedCharactersPattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "allowed-characters-pattern",
+          "reflectToAttr": false,
+          "docs": "The allowed characters pattern for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disables the input field",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "The helper text for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "The info text for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "The error text for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "The label for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number | string",
+          "complexType": {
+            "original": "string | number",
+            "resolved": "number | string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "max",
+          "reflectToAttr": false,
+          "docs": "The maximum value for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "min",
+          "type": "number | string",
+          "complexType": {
+            "original": "string | number",
+            "resolved": "number | string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "min",
+          "reflectToAttr": false,
+          "docs": "The minimum value for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "name of the input element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "pattern",
+          "reflectToAttr": false,
+          "docs": "The pattern for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "placeholder of the input element",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "Indicates if the field is read-only",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Indicates if the field is required",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showStepperButtons",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-stepper-buttons",
+          "reflectToAttr": false,
+          "docs": "Indicates if the stepper buttons should be shown",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Indicates if the text should be shown as a tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "The valid text for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "The value of the input field",
+          "docsTags": [],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "The warning text for the input field",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Returns the native input element used under the hood",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the input field loses focus",
+          "docsTags": []
+        },
+        {
+          "event": "validityStateChange",
+          "detail": "ValidityState",
+          "bubbles": true,
+          "complexType": {
+            "original": "ValidityState",
+            "resolved": "ValidityState",
+            "references": {
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the validity state of the input field changes",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "number",
+          "bubbles": true,
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the input field changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/pagination",
       "filePath": "src/components/pagination/pagination.tsx",
       "fileName": "pagination.tsx",
@@ -11850,6 +14360,7 @@
         ],
         "ix-select": [
           "ix-select-item",
+          "ix-field-wrapper",
           "ix-filter-chip",
           "ix-icon-button",
           "ix-dropdown",
@@ -11857,6 +14368,17 @@
         ],
         "ix-select-item": [
           "ix-dropdown-item"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ],
         "ix-filter-chip": [
           "ix-icon-button"
@@ -12960,6 +15482,447 @@
       "listeners": []
     },
     {
+      "dirPath": "src/components/radio",
+      "filePath": "src/components/radio/radio.tsx",
+      "fileName": "radio.tsx",
+      "readmePath": "src/components/radio/readme.md",
+      "usagesDir": "src/components/radio/usage",
+      "tag": "ix-radio",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-radio": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "checked",
+          "reflectToAttr": true,
+          "docs": "Checked state of the radio component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Disabled state of the radio component",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Value of the radio component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "checkedChange",
+          "detail": "boolean",
+          "bubbles": true,
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the checked state of the radio changes",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the radio changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
+      "dirPath": "src/components/radio-group",
+      "filePath": "src/components/radio-group/radio-group.tsx",
+      "fileName": "radio-group.tsx",
+      "readmePath": "src/components/radio-group/readme.md",
+      "usagesDir": "src/components/radio-group/usage",
+      "tag": "ix-radio-group",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-field-wrapper"
+      ],
+      "dependencyGraph": {
+        "ix-radio-group": [
+          "ix-field-wrapper"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "direction",
+          "type": "\"column\" | \"row\"",
+          "complexType": {
+            "original": "'column' | 'row'",
+            "resolved": "\"column\" | \"row\"",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "direction",
+          "reflectToAttr": false,
+          "docs": "Alignment of the radio buttons in the group",
+          "docsTags": [],
+          "default": "'column'",
+          "values": [
+            {
+              "value": "column",
+              "type": "string"
+            },
+            {
+              "value": "row",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Show text below the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "Info text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Show helper, info, warning, error and valid text as tooltip",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "Valid text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": false,
+          "docs": "Value of the radiobutton group component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "Warning text for the field component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the radiobutton group changes",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": [
+        {
+          "event": "checkedChange",
+          "capture": false,
+          "passive": false
+        }
+      ]
+    },
+    {
       "dirPath": "src/components/row",
       "filePath": "src/components/row/row.tsx",
       "fileName": "row.tsx",
@@ -13007,13 +15970,19 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [
         "ix-pagination"
       ],
       "dependencies": [
         "ix-select-item",
+        "ix-field-wrapper",
         "ix-filter-chip",
         "ix-icon-button",
         "ix-dropdown",
@@ -13022,6 +15991,7 @@
       "dependencyGraph": {
         "ix-select": [
           "ix-select-item",
+          "ix-field-wrapper",
           "ix-filter-chip",
           "ix-icon-button",
           "ix-dropdown",
@@ -13029,6 +15999,17 @@
         ],
         "ix-select-item": [
           "ix-dropdown-item"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ],
         "ix-filter-chip": [
           "ix-icon-button"
@@ -13108,6 +16089,32 @@
           "required": false
         },
         {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "Helper text for the select component",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "hideListHeader",
           "type": "boolean",
           "complexType": {
@@ -13145,7 +16152,7 @@
           "mutable": false,
           "attr": "i-1-8n-no-matches",
           "reflectToAttr": false,
-          "docs": "Hint inside of dropdown if no items where found with current filter text",
+          "docs": "Information inside of dropdown if no items where found with current filter text",
           "docsTags": [
             {
               "name": "since",
@@ -13218,13 +16225,91 @@
           "reflectToAttr": false,
           "docs": "Select list header",
           "docsTags": [],
-          "default": "'Please select an option'",
+          "default": "'Select an option'",
           "values": [
             {
               "type": "string"
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "Info text for the select component",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "Error text for the select component",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": false,
+          "docs": "Label for the select component",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {
@@ -13255,6 +16340,32 @@
           "required": false
         },
         {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "A string that represents the element's name attribute,\ncontaining a name that identifies the element when submitting the form.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "readonly",
           "type": "boolean",
           "complexType": {
@@ -13267,6 +16378,33 @@
           "reflectToAttr": false,
           "docs": "If true the select will be in readonly mode",
           "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "A Boolean attribute indicating that an option with a non-empty string value must be selected",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -13307,6 +16445,58 @@
           "required": false
         },
         {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Show helper, error, info, warning text as tooltip",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "Valid text for the select component",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "value",
           "type": "string | string[]",
           "complexType": {
@@ -13324,6 +16514,7 @@
               "text": "2.0.0"
             }
           ],
+          "default": "[]",
           "values": [
             {
               "type": "string"
@@ -13332,11 +16523,86 @@
               "type": "string[]"
             }
           ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "Warning text for the select component",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.6.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
           "optional": true,
           "required": false
         }
       ],
-      "methods": [],
+      "methods": [
+        {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLInputElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLInputElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLInputElement": {
+                "location": "global",
+                "id": "global::HTMLInputElement"
+              }
+            },
+            "return": "Promise<HTMLInputElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "parameters": [],
+          "docs": "Returns the native input element used in the component.",
+          "docsTags": []
+        }
+      ],
       "events": [
         {
           "event": "addItem",
@@ -13390,6 +16656,20 @@
             }
           ],
           "deprecation": "since 2.0.0. Use `valueChange` instead."
+        },
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Blur input",
+          "docsTags": []
         },
         {
           "event": "valueChange",
@@ -14837,6 +18117,599 @@
       ]
     },
     {
+      "dirPath": "src/components/input",
+      "filePath": "src/components/input/textarea.tsx",
+      "fileName": "textarea.tsx",
+      "readmePath": "src/components/input/readme.md",
+      "usagesDir": "src/components/input/usage",
+      "tag": "ix-textarea",
+      "overview": "",
+      "usage": {},
+      "docs": "",
+      "docsTags": [
+        {
+          "name": "since",
+          "text": "2.6.0"
+        },
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
+      "encapsulation": "shadow",
+      "dependents": [],
+      "dependencies": [
+        "ix-field-wrapper",
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-textarea": [
+          "ix-field-wrapper",
+          "ix-typography"
+        ],
+        "ix-field-wrapper": [
+          "ix-field-label",
+          "ix-tooltip",
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "disabled",
+          "reflectToAttr": false,
+          "docs": "Determines if the textarea field is disabled.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "helperText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "helper-text",
+          "reflectToAttr": false,
+          "docs": "The helper text for the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "infoText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "info-text",
+          "reflectToAttr": false,
+          "docs": "The info text for the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "invalidText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "invalid-text",
+          "reflectToAttr": false,
+          "docs": "The error text for the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "label",
+          "reflectToAttr": true,
+          "docs": "The label for the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "max-length",
+          "reflectToAttr": false,
+          "docs": "The maximum length of the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "min-length",
+          "reflectToAttr": false,
+          "docs": "The minimum length of the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "The name of the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": true,
+          "docs": "The placeholder text for the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "readonly",
+          "reflectToAttr": false,
+          "docs": "Determines if the textarea field is readonly.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Determines if the textarea field is required.",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "resizeBehavior",
+          "type": "\"both\" | \"horizontal\" | \"none\" | \"vertical\"",
+          "complexType": {
+            "original": "TextareaResizeBehavior",
+            "resolved": "\"both\" | \"horizontal\" | \"none\" | \"vertical\"",
+            "references": {
+              "TextareaResizeBehavior": {
+                "location": "local",
+                "path": "src/components/input/textarea.tsx",
+                "id": "src/components/input/textarea.tsx::TextareaResizeBehavior"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "resize-behavior",
+          "reflectToAttr": false,
+          "docs": "Determines the resize behavior of the textarea field.\nResizing can be enabled in one direction, both directions or completely disabled.",
+          "docsTags": [],
+          "default": "'both'",
+          "values": [
+            {
+              "value": "both",
+              "type": "string"
+            },
+            {
+              "value": "horizontal",
+              "type": "string"
+            },
+            {
+              "value": "none",
+              "type": "string"
+            },
+            {
+              "value": "vertical",
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Determines if the text should be displayed as a tooltip.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "textareaCols",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "textarea-cols",
+          "reflectToAttr": false,
+          "docs": "The width of the textarea specified by number of characters.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "textareaHeight",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "textarea-height",
+          "reflectToAttr": false,
+          "docs": "The height of the textarea field (e.g. \"52px\").",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "textareaRows",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "textarea-rows",
+          "reflectToAttr": false,
+          "docs": "The height of the textarea specified by number of rows.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "textareaWidth",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "textarea-width",
+          "reflectToAttr": false,
+          "docs": "The width of the textarea field (e.g. \"200px\").",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "validText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "valid-text",
+          "reflectToAttr": false,
+          "docs": "The valid text for the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": true,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "The value of the textarea field.",
+          "docsTags": [],
+          "default": "''",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "warningText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "warning-text",
+          "reflectToAttr": false,
+          "docs": "The warning text for the textarea field.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "focusInput",
+          "returns": {
+            "type": "Promise<void>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<void>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<void>"
+          },
+          "signature": "focusInput() => Promise<void>",
+          "parameters": [],
+          "docs": "Focuses the input field",
+          "docsTags": []
+        },
+        {
+          "name": "getNativeInputElement",
+          "returns": {
+            "type": "Promise<HTMLTextAreaElement>",
+            "docs": ""
+          },
+          "complexType": {
+            "signature": "() => Promise<HTMLTextAreaElement>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              },
+              "HTMLTextAreaElement": {
+                "location": "global",
+                "id": "global::HTMLTextAreaElement"
+              }
+            },
+            "return": "Promise<HTMLTextAreaElement>"
+          },
+          "signature": "getNativeInputElement() => Promise<HTMLTextAreaElement>",
+          "parameters": [],
+          "docs": "Get the native textarea element.",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "ixBlur",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the textarea field loses focus.",
+          "docsTags": []
+        },
+        {
+          "event": "validityStateChange",
+          "detail": "ValidityState",
+          "bubbles": true,
+          "complexType": {
+            "original": "ValidityState",
+            "resolved": "ValidityState",
+            "references": {
+              "ValidityState": {
+                "location": "global",
+                "id": "global::ValidityState"
+              }
+            }
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the validity state of the textarea field changes.",
+          "docsTags": []
+        },
+        {
+          "event": "valueChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the value of the textarea field changes.",
+          "docsTags": []
+        }
+      ],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "listeners": []
+    },
+    {
       "dirPath": "src/components/tile",
       "filePath": "src/components/tile/tile.tsx",
       "fileName": "tile.tsx",
@@ -15705,7 +19578,12 @@
       "overview": "",
       "usage": {},
       "docs": "",
-      "docsTags": [],
+      "docsTags": [
+        {
+          "name": "form-ready",
+          "text": "2.6.0"
+        }
+      ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
@@ -15800,6 +19678,49 @@
           "required": false
         },
         {
+          "name": "name",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "name",
+          "reflectToAttr": true,
+          "docs": "Name of the checkbox component",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "required",
+          "reflectToAttr": true,
+          "docs": "Required state of the checkbox component.\n\nIf true, checkbox needs to be checked to be valid",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "textIndeterminate",
           "type": "string",
           "complexType": {
@@ -15857,6 +19778,28 @@
           "docs": "Text for on state",
           "docsTags": [],
           "default": "'On'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "value",
+          "reflectToAttr": true,
+          "docs": "Value of the checkbox component",
+          "docsTags": [],
+          "default": "'on'",
           "values": [
             {
               "type": "string"
@@ -16132,6 +20075,7 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-field-wrapper",
         "ix-menu-item",
         "ix-slider"
       ],
@@ -16141,6 +20085,9 @@
       "dependencyGraph": {
         "ix-tooltip": [
           "ix-typography"
+        ],
+        "ix-field-wrapper": [
+          "ix-tooltip"
         ],
         "ix-menu-item": [
           "ix-tooltip"
@@ -16656,16 +20603,23 @@
         "ix-avatar",
         "ix-blind",
         "ix-card-list",
+        "ix-checkbox",
         "ix-content-header",
         "ix-dropdown-header",
         "ix-empty-state",
+        "ix-field-label",
+        "ix-field-wrapper",
+        "ix-helper-text",
+        "ix-input",
         "ix-menu-about-news",
         "ix-menu-category",
         "ix-modal-header",
         "ix-pagination",
         "ix-pane",
         "ix-push-card",
+        "ix-radio",
         "ix-slider",
+        "ix-textarea",
         "ix-time-picker",
         "ix-tooltip"
       ],
@@ -16689,6 +20643,9 @@
         "ix-card-list": [
           "ix-typography"
         ],
+        "ix-checkbox": [
+          "ix-typography"
+        ],
         "ix-content-header": [
           "ix-typography"
         ],
@@ -16696,6 +20653,18 @@
           "ix-typography"
         ],
         "ix-empty-state": [
+          "ix-typography"
+        ],
+        "ix-field-label": [
+          "ix-typography"
+        ],
+        "ix-field-wrapper": [
+          "ix-typography"
+        ],
+        "ix-helper-text": [
+          "ix-typography"
+        ],
+        "ix-input": [
           "ix-typography"
         ],
         "ix-menu-about-news": [
@@ -16716,7 +20685,13 @@
         "ix-push-card": [
           "ix-typography"
         ],
+        "ix-radio": [
+          "ix-typography"
+        ],
         "ix-slider": [
+          "ix-typography"
+        ],
+        "ix-textarea": [
           "ix-typography"
         ],
         "ix-time-picker": [
@@ -17771,6 +21746,11 @@
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
+    "src/components/date-input/date-input.tsx::DateInputValidityState": {
+      "declaration": "{\n  patternMismatch: boolean;\n  invalidReason?: string;\n}",
+      "docstring": "",
+      "path": "src/components/date-input/date-input.tsx"
+    },
     "src/components/date-picker/date-picker.tsx::DateChangeEvent": {
       "declaration": "{\n  from: string;\n  to: string;\n}",
       "docstring": "",
@@ -17876,6 +21856,11 @@
       "docstring": "",
       "path": "src/components/tab-item/tab-item.tsx"
     },
+    "src/components/input/textarea.tsx::TextareaResizeBehavior": {
+      "declaration": "export type TextareaResizeBehavior =\n  | 'both'\n  | 'horizontal'\n  | 'vertical'\n  | 'none';",
+      "docstring": "",
+      "path": "src/components/input/textarea.tsx"
+    },
     "src/components/time-picker/time-picker.tsx::TimePickerCorners": {
       "declaration": "export type DateTimeCardCorners = 'rounded' | 'left' | 'right' | 'straight';",
       "docstring": "",
@@ -17892,7 +21877,7 @@
       "path": "src/components/toast/toast-utils.ts"
     },
     "src/components/utils/theme-switcher.ts::IxTheme": {
-      "declaration": "export type IxTheme =\n  | 'classic'\n  | 'classic-dark'\n  | 'classic-light'\n  | (string & {});",
+      "declaration": "export type IxTheme = LiteralStringUnion<\n  'classic' | 'classic-dark' | 'classic-light'\n>;",
       "docstring": "",
       "path": "src/components/utils/theme-switcher.ts"
     },
@@ -17925,6 +21910,11 @@
       "declaration": "export type ElementReference = string | HTMLElement | Promise<HTMLElement>;",
       "docstring": "",
       "path": "src/components/utils/element-reference.ts"
+    },
+    "src/components/utils/make-ref.ts::MakeRef": {
+      "declaration": "{\n  (ref: T | undefined): void;\n  current: T | null;\n  waitForCurrent(): Promise<T>;\n}",
+      "docstring": "",
+      "path": "src/components/utils/make-ref.ts"
     },
     "src/components/flip-tile/flip-tile-state.ts::FlipTileState": {
       "declaration": "export enum FlipTileState {\n  None = 'none',\n  Info = 'info',\n  Warning = 'warning',\n  Alarm = 'alarm',\n  Primary = 'primary',\n}",

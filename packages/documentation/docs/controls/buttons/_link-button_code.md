@@ -4,26 +4,28 @@ import Events from './../../auto-generated/ix-link-button/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
+
+### Examples
 
 <Playground
-  name="link-button"
-  >
-</Playground>
+name="link-button"
 
-### Disabled
+> </Playground>
+
+#### Disabled
 
 <Playground
-  name="link-button-disabled"
-  >
-</Playground>
+name="link-button-disabled"
 
-## API
+> </Playground>
 
-### Properties
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

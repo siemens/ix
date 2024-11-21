@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { getFormValue, preventFormSubmission, test } from '@utils/test';
 
 test('renders', async ({ mount, page }) => {
   await mount(`
@@ -156,14 +156,13 @@ test('open filtered dropdown on input', async ({ mount, page }) => {
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
         </ix-select>
     `);
-  const element = page.locator('ix-select');
-  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
+  const select = page.locator('ix-select');
+  const input = select.locator('input');
+  await select.evaluate((select: HTMLIxSelectElement) => (select.value = []));
 
-  const input = await page.locator('[data-testid="input"]');
   await input.focus();
-
-  page.keyboard.down('Escape');
-  const dropdown = element.locator('ix-dropdown');
+  await page.keyboard.press('Escape');
+  const dropdown = select.locator('ix-dropdown');
   await expect(dropdown).not.toBeVisible();
 
   await input.fill('1');
@@ -398,7 +397,7 @@ test.describe('arrow key navigation', () => {
       await page.waitForSelector('.checkmark');
 
       await page.keyboard.down('ArrowDown');
-      const addItem = await page.locator('ix-dropdown-item');
+      const addItem = page.locator('ix-dropdown-item');
       await expect(addItem).toBeFocused();
     });
 
@@ -492,7 +491,7 @@ test.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('Item 2');
       await page.keyboard.press('Enter');
-      await page.locator('input').clear();
+      await input.clear();
 
       await page.keyboard.down('ArrowDown');
       await page.waitForTimeout(100);
@@ -725,6 +724,46 @@ test.describe('arrow key navigation', () => {
       await expect(addItem).toBeFocused();
     });
   });
+});
+
+test('form-ready', async ({ mount, page }) => {
+  await mount(`
+    <form>
+      <ix-select name="my-custom-entry">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      </ix-select>
+    </form>
+  `);
+
+  const select = page.locator('ix-select');
+  const formElement = page.locator('form');
+  await preventFormSubmission(formElement);
+  await page.locator('[data-select-dropdown]').click();
+  await page.locator('ix-select-item').nth(1).click();
+
+  const inputValue = await select.locator('input').inputValue();
+  expect(inputValue).toEqual('Item 2');
+
+  const formData = await getFormValue(formElement, 'my-custom-entry', page);
+  expect(formData).toEqual('2');
+});
+
+test('form-ready - with initial value', async ({ mount, page }) => {
+  await mount(`
+    <form>
+      <ix-select name="my-custom-entry" value="some other">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="some other" label="Item 3">Test</ix-select-item>
+      </ix-select>
+    </form>
+  `);
+
+  const formElement = page.locator('form');
+  await preventFormSubmission(formElement);
+  const formData = await getFormValue(formElement, 'my-custom-entry', page);
+  expect(formData).toEqual('some other');
 });
 
 test.describe('Events', () => {

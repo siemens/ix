@@ -12,19 +12,11 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ### Basic
 
-<Playground
-  name="pagination" 
-  height="24rem"
-  >
-</Playground>
+<Playground name="pagination"></Playground>
 
 ### Advanced
 
-<Playground
-  name="pagination-advanced" 
-  height="24rem"
-  >
-</Playground>
+<Playground name="pagination-advanced"></Playground>
 
 ## API
 
