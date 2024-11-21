@@ -21,3 +21,7 @@ Enhanced the compatibility with Forms for the following components:
 
 - `ix-select`
 - `ix-toggle`
+
+> _Deprecation:_
+>
+> Native css stylings for `input` and `textarea` (e.g `input[type="checkbox"]` and `input[type="radio"]`) are deprecated and will be removed in upcoming major release.
