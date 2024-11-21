@@ -39,7 +39,7 @@ test('renders in shadow DOM', async ({ mount, page }) => {
     button.innerHTML = 'button';
     button.classList.add('test');
 
-    document.querySelector('#mount')!.appendChild(testComponent);
+    document.querySelector('#mount')?.appendChild(testComponent);
     testComponent.shadowRoot?.appendChild(button);
     testComponent.shadowRoot?.appendChild(tooltip);
   });
