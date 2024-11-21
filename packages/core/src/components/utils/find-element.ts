@@ -48,7 +48,7 @@ export async function resolveSelector(
   if (elementsInShadowRoot.length > 0) {
     return Promise.resolve(elementsInShadowRoot);
   }
-  
+
   return Promise.resolve(undefined);
 }
 
