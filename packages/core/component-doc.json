@@ -4419,7 +4419,7 @@
           "name": "from",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -4438,7 +4438,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4486,13 +4486,12 @@
               "text": "2.1.0"
             }
           ],
-          "default": "undefined",
           "values": [
             {
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4518,7 +4517,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4544,7 +4543,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4637,10 +4636,10 @@
         },
         {
           "name": "showTimeReference",
-          "type": "any",
+          "type": "boolean",
           "complexType": {
-            "original": "any",
-            "resolved": "any",
+            "original": "boolean",
+            "resolved": "boolean",
             "references": {}
           },
           "mutable": false,
@@ -4657,10 +4656,10 @@
               "text": "1.1.0"
             }
           ],
-          "default": "undefined",
+          "default": "false",
           "values": [
             {
-              "type": "any"
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -4694,7 +4693,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4720,7 +4719,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -4773,14 +4772,14 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
           "name": "to",
           "type": "string",
           "complexType": {
-            "original": "string | undefined",
+            "original": "string",
             "resolved": "string",
             "references": {}
           },
@@ -4799,7 +4798,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {

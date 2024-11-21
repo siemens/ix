@@ -55,7 +55,7 @@ export class DatetimePicker
    *
    * @since 1.1.0
    */
-  @Prop() minDate: string;
+  @Prop() minDate?: string;
 
   /**
    * The latest date that can be selected by the date picker.
@@ -63,7 +63,7 @@ export class DatetimePicker
    *
    * @since 1.1.0
    */
-  @Prop() maxDate: string;
+  @Prop() maxDate?: string;
 
   /**
    * Date format string.
@@ -87,7 +87,7 @@ export class DatetimePicker
    *
    * @since 1.1.0
    */
-  @Prop() from: string | undefined;
+  @Prop() from?: string;
 
   /**
    * The selected end date. If the the picker is not in range mode this property has no impact.
@@ -95,14 +95,14 @@ export class DatetimePicker
    *
    * @since 1.1.0
    */
-  @Prop() to: string | undefined;
+  @Prop() to?: string;
 
   /**
    * Select time with format string
    *
    * @since 1.1.0
    */
-  @Prop() time: string;
+  @Prop() time?: string;
 
   /**
    * Show time reference input
@@ -110,12 +110,12 @@ export class DatetimePicker
    *
    * @since 1.1.0
    */
-  @Prop() showTimeReference = undefined;
+  @Prop() showTimeReference: boolean = false;
 
   /**
    * Set time reference
    */
-  @Prop() timeReference: 'AM' | 'PM';
+  @Prop() timeReference?: 'AM' | 'PM';
 
   /**
    * Text of date select button
@@ -123,7 +123,7 @@ export class DatetimePicker
    * @since 1.1.0
    * @deprecated since 2.1.0. Use `i18nDone`
    */
-  @Prop() textSelectDate: string;
+  @Prop() textSelectDate?: string;
 
   /**
    * Text of date select button
@@ -146,7 +146,7 @@ export class DatetimePicker
    *
    * @since 2.1.0
    */
-  @Prop() locale: string = undefined;
+  @Prop() locale?: string;
 
   /**
    * Default behavior of the done event is to join the two events (date and time) into one combined string output.
@@ -163,43 +163,45 @@ export class DatetimePicker
    * Set `doneEventDelimiter` to null or undefine to get the typed event
    * @deprecated Use `this.dateChange`
    */
-  @Event() done: EventEmitter<string>;
+  @Event() done!: EventEmitter<string>;
 
   /**
    * Time change
    *
    * @since 1.1.0
    */
-  @Event() timeChange: EventEmitter<string>;
+  @Event() timeChange!: EventEmitter<string>;
 
   /**
    * Date change
    *
    * @since 1.1.0
    */
-  @Event() dateChange: EventEmitter<DateTimeDateChangeEvent>;
+  @Event() dateChange!: EventEmitter<DateTimeDateChangeEvent>;
 
   /**
    * Datetime selection event is fired after confirm button is pressed
    *
    * @since 1.1.0
    */
-  @Event() dateSelect: EventEmitter<DateTimeSelectEvent>;
+  @Event() dateSelect!: EventEmitter<DateTimeSelectEvent>;
 
-  private datePickerElement: HTMLIxDatePickerElement;
-  private timePickerElement: HTMLIxTimePickerElement;
+  private datePickerElement?: HTMLIxDatePickerElement;
+  private timePickerElement?: HTMLIxTimePickerElement;
 
   private async onDone() {
-    const date = await this.datePickerElement.getCurrentDate();
-    const time = await this.timePickerElement.getCurrentTime();
+    const date = await this.datePickerElement?.getCurrentDate();
+    const time = await this.timePickerElement?.getCurrentTime();
 
     this.dateSelect.emit({
-      from: date.from,
-      to: date.to,
-      time: time,
+      from: date?.from ?? '',
+      to: date?.to ?? '',
+      time: time ?? '',
     });
 
-    this.done.emit([date.from, date.to ?? '', time].join(this.eventDelimiter));
+    this.done.emit(
+      [date?.from, date?.to ?? '', time].join(this.eventDelimiter)
+    );
   }
 
   private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
@@ -223,7 +225,7 @@ export class DatetimePicker
       <Host>
         <ix-layout-grid class="no-padding">
           <ix-row>
-            <ix-col class="no-padding">
+            <ix-col>
               <ix-date-picker
                 ref={(ref) => (this.datePickerElement = ref)}
                 corners="left"
@@ -240,7 +242,7 @@ export class DatetimePicker
               ></ix-date-picker>
             </ix-col>
 
-            <ix-col class="no-padding">
+            <ix-col class="d-flex flex-column">
               <ix-time-picker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}
@@ -252,16 +254,14 @@ export class DatetimePicker
                 format={this.timeFormat}
                 time={this.time}
               ></ix-time-picker>
-            </ix-col>
-          </ix-row>
-          <ix-row>
-            <ix-col>
-              <ix-button
-                class="btn-select-date btn-md-width"
-                onClick={() => this.onDone()}
-              >
-                {this.textSelectDate || this.i18nDone}
-              </ix-button>
+              <div class="btn-select-date-container">
+                <ix-button
+                  class="btn-select-date"
+                  onClick={() => this.onDone()}
+                >
+                  {this.textSelectDate || this.i18nDone}
+                </ix-button>
+              </div>
             </ix-col>
           </ix-row>
         </ix-layout-grid>

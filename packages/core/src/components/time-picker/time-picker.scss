@@ -17,11 +17,11 @@
 
   display: block;
   position: relative;
-  width: 22rem;
+  width: 21rem;
 
   @media (max-width: 576px) {
     .clock {
-      padding: 1.5rem 0;
+      padding: 1.5rem 0 1rem 0;
     }
 
     .header {
@@ -31,7 +31,7 @@
 
   @media (min-width: 576px) {
     .clock {
-      padding: 4.25rem 0;
+      padding: 4.25rem 0 3.75rem 0;
     }
 
     .header {
@@ -97,6 +97,10 @@
   .button {
     display: flex;
     justify-content: flex-end;
+
+    &.standalone {
+      padding-top: 0.5rem;
+    }
   }
 
   .default-space {
