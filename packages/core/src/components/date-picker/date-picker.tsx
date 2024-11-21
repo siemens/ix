@@ -778,7 +778,7 @@ export class DatePicker implements IxDatePickerComponent {
             <ix-icon-button
               onClick={() => this.changeToAdjacentMonth(1)}
               ghost
-              icon={iconChevronLeftSmall}
+              icon={iconChevronRightSmall}
               variant="primary"
               class="arrows"
             ></ix-icon-button>
