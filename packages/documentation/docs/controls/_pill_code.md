@@ -3,29 +3,31 @@ import Events from './../auto-generated/ix-pill/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Basic
+### Examples
 
-<Playground
-  name="pill" 
-  >
-</Playground>
-
-### Variants
+#### Basic
 
 <Playground
-  name="pill-variants" 
-  height="24rem" 
-  >
-</Playground>
+name="pill"
 
-## API
+> </Playground>
 
-### Properties
+#### Variants
+
+<Playground
+name="pill-variants"
+height="24rem"
+
+> </Playground>
+
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

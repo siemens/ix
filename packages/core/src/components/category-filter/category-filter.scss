@@ -25,11 +25,6 @@
   position: relative;
   height: auto;
 
-  @include host-focus-visible {
-    border-color: var(--theme-color-primary);
-    box-shadow: 0 0 $tiny-space 0 var(--theme-color-primary) !important;
-  }
-
   .reset-button {
     position: absolute;
     top: $tiny-space;
@@ -43,6 +38,17 @@
   .input-container {
     &:not(.readonly):not(.disabled) {
       @include element-input('false');
+    }
+
+    &:not(.readonly):not(.disabled):hover {
+      border-color: var(--theme-input--border-color--hover) !important;
+      background-color: var(--theme-input--background--hover);
+    }
+
+    &:not(.readonly):not(.disabled).focus {
+      outline: 1px solid var(--theme-color-focus-bdr);
+      outline-offset: var(--theme-input--focus--outline-offset);
+      border-color: var(--theme-input--border-color--focus) !important;
     }
 
     &.disabled {
@@ -82,9 +88,10 @@
 
     &,
     &:hover,
+    &:focus
     &:focus-visible {
-      border: none;
-      outline: none;
+      border: none !important;
+      outline: none !important;
     }
 
     &.hide-placeholder::placeholder {

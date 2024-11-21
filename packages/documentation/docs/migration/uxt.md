@@ -92,7 +92,7 @@ As some of the components are named differently in Industrial Experience, please
 | Notification                                     | [Toast](../controls/toast.md)                                                                 |
 | Pager                                            | [Pagination](../controls/pagination.md)                                                            |
 | Popover                                          | [Tooltip](../controls/tooltip.md), [dropdown](../controls/dropdown.md)                                                     |
-| Switch                                           | [Toggle](../controls/toggle.md)                                                                |
+| Switch                                           | [Toggle](../controls/toggle.mdx)                                                                |
 | Context region                                   | [Pane](../controls/panes.md) (inline right)                                                   |
 | Item region                                      | [Pane](../controls/panes.md) (floating right)                                                 |
 | Leading region                                   | [Pane](../controls/panes.md) (inline left)                                                    |

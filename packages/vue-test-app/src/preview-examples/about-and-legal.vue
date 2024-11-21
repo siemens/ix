@@ -11,7 +11,6 @@
 import {
   IxApplication,
   IxApplicationHeader,
-  IxBasicNavigation,
   IxMenu,
   IxMenuAbout,
   IxMenuAboutItem,

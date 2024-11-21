@@ -1,0 +1,47 @@
+import Playground from '@site/src/components/PlaygroundV3';
+import StackblitzEmbedded from '@site/src/components/StackblitzEmbedded';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Props from '@site/docs/auto-generated/ix-validation-tooltip/props.md';
+
+## Development
+
+### Using custom layout
+
+To align `form-ready` components in a complex form layout, you typically omit the `label` attribute and define the label
+as an `ix-field-label` component.
+
+You can follow the example here:
+
+1. Define the `ix-input` component including an `id` attribute.
+
+```html
+<ix-input id="mytest"></ix-input>
+```
+
+2. Define an `ix-field-label` component with a `for` attribute to link the label to the `ix-input` component.
+
+```html
+<ix-field-label htmlFor="mytest">Test</ix-field-label>
+```
+
+3. Define an `ix-helper-text` component with a `for` attribute to link the helper text to the `ix-input` component.
+
+```html
+<ix-helper-text
+  htmlFor="mytest"
+  helperText="Helper text"
+  invalidText="Error text"
+  validText="Valid text"
+  warningText="Warning text"
+  infoText="Info text"
+></ix-helper-text>
+```
+
+### Using `ix-layout-auto`
+
+<Playground name="form-layout-auto" height="18rem" />
+
+### Using `ix-layout-grid`
+
+<Playground name="form-layout-grid" height="18rem" />
