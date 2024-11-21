@@ -500,6 +500,10 @@ export namespace Components {
          */
         "label"?: string;
         /**
+          * Show helper, info, warning, error and valid text as tooltip
+         */
+        "showTextAsTooltip": boolean;
+        /**
           * Valid text for the checkbox group
          */
         "validText"?: string;
@@ -5558,6 +5562,10 @@ declare namespace LocalJSX {
           * Label for the checkbox group
          */
         "label"?: string;
+        /**
+          * Show helper, info, warning, error and valid text as tooltip
+         */
+        "showTextAsTooltip"?: boolean;
         /**
           * Valid text for the checkbox group
          */

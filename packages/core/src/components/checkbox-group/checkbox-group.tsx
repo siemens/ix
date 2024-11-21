@@ -53,7 +53,10 @@ export class CheckboxGroup
    */
   @Prop() warningText?: string;
 
-  showTextAsTooltip = false;
+  /**
+   * Show helper, info, warning, error and valid text as tooltip
+   */
+  @Prop() showTextAsTooltip = false;
 
   @State() isInvalid = false;
   @State() isInfo = false;

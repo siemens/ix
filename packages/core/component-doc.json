@@ -2894,6 +2894,28 @@
           "required": false
         },
         {
+          "name": "showTextAsTooltip",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-text-as-tooltip",
+          "reflectToAttr": false,
+          "docs": "Show helper, info, warning, error and valid text as tooltip",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "validText",
           "type": "string",
           "complexType": {

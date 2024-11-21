@@ -273,7 +273,8 @@ export const IxCheckboxGroup = /*@__PURE__*/ defineContainer<JSX.IxCheckboxGroup
   'invalidText',
   'infoText',
   'validText',
-  'warningText'
+  'warningText',
+  'showTextAsTooltip'
 ]);
 
 

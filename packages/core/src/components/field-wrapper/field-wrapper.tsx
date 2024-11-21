@@ -1,7 +1,15 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import { Component, Element, Host, Prop, h } from '@stencil/core';
 import { FieldWrapperInterface } from '../utils/input';
 import { MakeRef, makeRef } from '../utils/make-ref';
-import { renderHelperText } from './helper-text-util';
+import { hasAnyText, renderHelperText } from './helper-text-util';
 
 /** @internal */
 @Component({
@@ -125,7 +133,7 @@ export class FieldWrapper implements FieldWrapperInterface {
           </div>
         </div>
 
-        {this.showTextAsTooltip === true && (
+        {this.showTextAsTooltip === true && hasAnyText(textOptions) && (
           <ix-tooltip
             for={this.slotRef.waitForCurrent()}
             showDelay={500}

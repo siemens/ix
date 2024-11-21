@@ -14,6 +14,22 @@ import {
   iconWarning,
 } from '@siemens/ix-icons/icons';
 
+export function hasAnyText({
+  invalidText,
+  warningText,
+  infoText,
+  validText,
+  helperText,
+}: {
+  invalidText?: string;
+  warningText?: string;
+  infoText?: string;
+  validText?: string;
+  helperText?: string;
+}) {
+  return invalidText || warningText || infoText || validText || helperText;
+}
+
 export function renderHelperText({
   isInvalid,
   invalidText,
