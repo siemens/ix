@@ -18,7 +18,7 @@ const meta = {
   tags: [],
   render: (args) => {
     return html`<ix-application-header
-      .name="${args.name}"
+      name="${args.name}"
       ?show-menu="${args.showMenu}"
     >
     </ix-application-header>`;
