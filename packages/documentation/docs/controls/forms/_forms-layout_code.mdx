@@ -1,6 +1,4 @@
-import Playground, {
-  SourceCodePreview,
-} from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 import StackblitzEmbedded from '@site/src/components/StackblitzEmbedded';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -40,27 +38,10 @@ You can follow the example here:
 ></ix-helper-text>
 ```
 
-### Using ix-layout-form
+### Using `ix-layout-auto`
 
-```html
-<form>
-  <ix-layout-grid>
-    <ix-row>
-      <ix-col size="2">
-        <ix-field-label htmlFor="my-select-1">Example</ix-field-label>
-      </ix-col>
-      <ix-col>
-        <ix-select id="my-select-1"></ix-select>
-      </ix-col>
-    </ix-row>
-    <ix-row>
-      <ix-col size="2">
-        <ix-field-label htmlFor="my-select-2">Example</ix-field-label>
-      </ix-col>
-      <ix-col>
-        <ix-input id="my-select-2"></ix-ix-input>
-      </ix-col>
-    </ix-row>
-  </ix-layout-grid>
-</form>
-```
+<Playground name="form-layout-auto" height="12rem" />
+
+### Using `ix-layout-grid`
+
+<Playground name="form-layout-grid" height="12rem" />

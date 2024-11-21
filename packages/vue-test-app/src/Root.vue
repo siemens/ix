@@ -215,6 +215,8 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import VerticalTabs from './preview-examples/vertical-tabs.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
+import FormLayoutAuto from './preview-examples/form-layout-auto.vue';
+import FormLayoutGrid from './preview-examples/form-layout-grid.vue';
 
 const routes: any = {
   '/': App,
@@ -426,6 +428,8 @@ const routes: any = {
   '/preview/button-danger': ButtonDanger,
   '/preview/button-danger-ghost': ButtonDangerGhost,
   '/preview/button-danger-outline': ButtonDangerOutline,
+  '/preview/form-layout-auto': FormLayoutAuto,
+  '/preview/form-layout-grid': FormLayoutGrid,
 };
 
 const currentPath = ref(window.location.pathname);

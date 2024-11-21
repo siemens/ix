@@ -212,6 +212,7 @@ function ToolbarButtons(props: {
   const theme = useTheme();
   const baseUrl = useBaseUrl('/');
   const baseUrlAssets = useBaseUrl('/img');
+  const stackblizAssetUrl = `${baseUrlAssets}/stackblitz.svg`;
   const iframe = useBaseUrl('/webcomponent-examples/dist/preview-examples');
 
   return (
@@ -236,12 +237,14 @@ function ToolbarButtons(props: {
                 baseUrl: baseUrl,
                 framework: props.activeFramework,
                 snippets: props.snippets,
-                name: props.deviantRootFileName ? props.deviantRootFileName : props.name,
+                name: props.deviantRootFileName
+                  ? props.deviantRootFileName
+                  : props.name,
                 version: 'latest',
               })
             }
             className="Stackblitz"
-            icon={`${baseUrlAssets}/stackblitz.svg`}
+            icon={stackblizAssetUrl}
             outline
             //@ts-ignore
             iconSize="16"

@@ -97,7 +97,7 @@ import FlipTile from '../preview-examples/flip-tile';
 import FormCheckbox from '../preview-examples/form-checkbox';
 import FormCheckboxDisabled from '../preview-examples/form-checkbox-disabled';
 import FormCheckboxGroup from '../preview-examples/form-checkbox-group';
-import FormCheckboxGroupIndeterminate from "../preview-examples/form-checkbox-group-indeterminate";
+import FormCheckboxGroupIndeterminate from '../preview-examples/form-checkbox-group-indeterminate';
 import FormCheckboxValidation from '../preview-examples/form-checkbox-validation';
 import FormValidation from '../preview-examples/form-validation';
 import Grid from '../preview-examples/grid';
@@ -222,6 +222,8 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
+import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
 
 const routes: Routes = [
   {
@@ -997,6 +999,8 @@ const routes: Routes = [
       { path: 'form-validation', component: FormValidation },
       { path: 'layout-auto', component: LayoutAuto },
       { path: 'layout-auto-custom', component: LayoutAutoCustom },
+      { path: 'form-layout-auto', component: FormLayoutAuto },
+      { path: 'form-layout-grid', component: FormLayoutGrid },
     ],
   },
 ];

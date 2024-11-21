@@ -216,6 +216,8 @@ import FormValidation from './preview-examples/form-validation';
 import LayoutAuto from './preview-examples/layout-auto';
 import LayoutAutoCustom from './preview-examples/layout-auto-custom';
 import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-group-indeterminate';
+import FormLayoutAuto from './preview-examples/form-layout-auto';
+import FormLayoutGrid from './preview-examples/form-layout-grid';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -682,6 +684,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<LayoutAutoCustom />}
         />
         <Route path="/preview/workflow" element={<Workflow />} />
+        <Route path="/preview/form-layout-auto" element={<FormLayoutAuto />} />
+        <Route path="/preview/form-layout-grid" element={<FormLayoutGrid />} />
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>
