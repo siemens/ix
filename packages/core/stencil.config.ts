@@ -10,39 +10,27 @@
 import { postcss } from '@stencil-community/postcss';
 import { angularOutputTarget } from '@stencil/angular-output-target';
 import { Config } from '@stencil/core';
-import { reactOutputTarget } from '@stencil/react-output-target';
+import { reactOutputTarget } from './scripts/build/react';
 import { sass } from '@stencil/sass';
 import { vueOutputTarget } from '@stencil/vue-output-target';
 import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
+import { storybookOutputTarget } from './scripts/build/storybook';
 
 const corePackageName = '@siemens/ix';
 
 function getAngularConfig() {
-  const excludeComponents = ['ix-playground-internal', 'ix-tree', 'ix-icon'];
+  const excludeComponents = ['ix-tree', 'ix-icon'];
   const config = [
     angularOutputTarget({
       componentCorePackage: corePackageName,
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
-      valueAccessorConfigs: [
-        {
-          elementSelectors:
-            'ix-select[ngModel],ix-select[formControlName],ix-select[formControl]',
-          event: 'valueChange',
-          targetAttr: 'value',
-          type: 'select',
-        },
-        {
-          elementSelectors:
-            'ix-toggle[ngModel],ix-toggle[formControlName],ix-toggle[formControl]',
-          event: 'checkedChange',
-          targetAttr: 'checked',
-          type: 'boolean',
-        },
-      ],
       excludeComponents,
       outputType: 'component',
+      valueAccessorConfigs: [
+        /** Value accessors should not be generated */
+      ],
     }),
     angularOutputTarget({
       componentCorePackage: corePackageName,
@@ -68,6 +56,7 @@ export const config: Config = {
     browserHeadless: 'new',
   },
   namespace: 'siemens-ix',
+  watchIgnoredRegex: [/scss/, /component-doc.json/],
   globalStyle: './scss/ix.scss',
   minifyCss: false,
   plugins: [
@@ -79,6 +68,9 @@ export const config: Config = {
     }),
   ],
   outputTargets: [
+    storybookOutputTarget({
+      dist: '../storybook-docs/.storybook/define-custom-elements.ts',
+    }),
     vueOutputTarget({
       componentCorePackage: corePackageName,
       proxiesFile: '../vue/src/components.ts',
@@ -86,18 +78,31 @@ export const config: Config = {
       includePolyfills: false,
       includeDefineCustomElements: false,
       excludeComponents: ['ix-playground-internal', 'ix-icon'],
+      componentModels: [
+        {
+          elements: [
+            'ix-select',
+            'ix-input',
+            'ix-textarea',
+            'ix-number-input',
+            'ix-date-input',
+          ],
+          event: 'valueChange',
+          targetAttr: 'value',
+        },
+        {
+          elements: ['ix-checkbox'],
+          event: 'checkedChange',
+          targetAttr: 'checked',
+        },
+      ],
     }),
     ...getAngularConfig(),
     reactOutputTarget({
       stencilPackageName: corePackageName,
       outDir: '../react/src/components',
       esModules: true,
-      excludeComponents: [
-        'ix-playground-internal',
-        'ix-tree',
-        'ix-tree-item',
-        'ix-icon',
-      ],
+      excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
     }),
     {
       type: 'dist',

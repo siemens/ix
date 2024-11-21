@@ -342,6 +342,7 @@ export class Panes {
                     onClick={() => this.closeFloatingPanes()}
                   >
                     <slot name="content"></slot>
+                    <slot></slot>
                   </div>
                   <div
                     key="bottom"
@@ -392,6 +393,7 @@ export class Panes {
                     onClick={() => this.closeFloatingPanes()}
                   >
                     <slot name="content"></slot>
+                    <slot></slot>
                   </div>
                   <div
                     key="right"
@@ -435,6 +437,7 @@ export class Panes {
               onClick={() => this.closeFloatingPanes()}
             >
               <slot name="content"></slot>
+              <slot></slot>
             </div>
             <div
               key="right"

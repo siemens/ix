@@ -2,7 +2,7 @@
 title: Panes
 ---
 
-import DocsTabs from '@site/src/components/DocsTabs';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_panes_styleguide.md';
 import DocsCode from './\_panes_code.md';
@@ -14,4 +14,7 @@ import Tags from './../auto-generated/ix-pane/tags.md';
 <br/>
 <br/>
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>

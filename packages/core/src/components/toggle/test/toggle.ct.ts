@@ -15,7 +15,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+} from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-toggle></ix-toggle>`);
@@ -60,3 +64,38 @@ regressionTest(
     await expect(input).toBeChecked();
   }
 );
+
+regressionTest(`form-ready`, async ({ mount, page }) => {
+  await mount(`<form><ix-toggle name="my-field-name"></ix-toggle></form>`);
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+  await page.locator('ix-toggle').click();
+
+  const formData = await getFormValue(formElement, 'my-field-name', page);
+  expect(formData).toBe('on');
+});
+
+regressionTest(`form-ready with value`, async ({ mount, page }) => {
+  await mount(
+    `<form><ix-toggle name="my-field-name" value="custom-value"></ix-toggle></form>`
+  );
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+  await page.locator('ix-toggle').click();
+
+  const formData = await getFormValue(formElement, 'my-field-name', page);
+  expect(formData).toBe('custom-value');
+});
+
+regressionTest(`form-ready default active`, async ({ mount, page }) => {
+  await mount(
+    `<form><ix-toggle name="my-field-name" checked></ix-toggle></form>`
+  );
+
+  const formElement = page.locator('form');
+  preventFormSubmission(formElement);
+  const formData = await getFormValue(formElement, 'my-field-name', page);
+  expect(formData).toBe('on');
+});

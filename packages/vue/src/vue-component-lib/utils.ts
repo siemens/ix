@@ -90,7 +90,8 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
       created: (el: HTMLElement) => {
         const eventsNames = Array.isArray(modelUpdateEvent) ? modelUpdateEvent : [modelUpdateEvent];
         eventsNames.forEach((eventName: string) => {
-          el.addEventListener(eventName.toLowerCase(), (e: Event) => {
+          // Remove eventName.toLowerCase() from original 0.8.8 to not mutate event naming
+          el.addEventListener(eventName, (e: Event) => {
             /**
              * Only update the v-model binding if the event's target is the element we are
              * listening on. For example, Component A could emit ionChange, but it could also
@@ -115,16 +116,6 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
       if (routerLink === EMPTY_PROP) return;
 
       if (navManager !== undefined) {
-        /**
-         * This prevents the browser from
-         * performing a page reload when pressing
-         * an Ionic component with routerLink.
-         * The page reload interferes with routing
-         * and causes ion-back-button to disappear
-         * since the local history is wiped on reload.
-         */
-        ev.preventDefault();
-
         let navigationPayload: any = { event: ev };
         for (const key in props) {
           const value = props[key];
@@ -193,17 +184,6 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
             [modelProp]: modelPropValue,
           };
         }
-      }
-
-      // If router link is defined, add href to props
-      // in order to properly render an anchor tag inside
-      // of components that should become activatable and
-      // focusable with router link.
-      if (props[ROUTER_LINK_VALUE] !== EMPTY_PROP) {
-        propsToAdd = {
-          ...propsToAdd,
-          href: props[ROUTER_LINK_VALUE],
-        };
       }
 
       /**

@@ -6,39 +6,41 @@ import ItemEvents from './../../auto-generated/ix-split-button-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
+
+### Examples
 
 <Playground
-  name="split-button" 
-  height="16rem"
-  >
-</Playground>
+name="split-button"
+height="16rem"
 
-### With icon only
+> </Playground>
+
+#### With icon only
 
 <Playground
-  name="split-button-icons" 
-  height="16rem"
-  hideInitalCodePreview
-  >
-</Playground>
+name="split-button-icons"
+height="16rem"
+hideInitalCodePreview
 
-## API (ix-split-button)
+> </Playground>
 
-### Properties
+### API (ix-split-button)
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-split-button-item)
+### API (ix-split-button-item)
 
-### Properties
+#### Properties
 
 <ItemProps/>
 
-### Events
+#### Events
 
 <ItemEvents/>

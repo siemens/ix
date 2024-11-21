@@ -21,6 +21,8 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
+import { type LiteralStringUnion } from '../utils/type-helper';
+import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import { makeRef } from '../utils/make-ref';
 
 export type DateDropdownOption = {
@@ -44,7 +46,7 @@ export type DateRangeChangeEvent = {
   styleUrl: 'date-dropdown.scss',
   shadow: true,
 })
-export class DateDropdown {
+export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
   @Element() hostElement!: HTMLIxDateDropdownElement;
 
   /**
@@ -145,6 +147,21 @@ export class DateDropdown {
   }
 
   /**
+   * Locale identifier (e.g. 'en' or 'de').
+   *
+   * @since 2.6.0
+   */
+  @Prop() locale?: string;
+
+  /**
+   * The index of which day to start the week on, based on the Locale#weekdays array.
+   * E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
+   *
+   * @since 2.6.0
+   */
+  @Prop() weekStartIndex = 0;
+
+  /**
    * Text for custom dropdown item. Will be used for translation.
    */
   @Prop({ attribute: 'i18n-custom-item' }) i18nCustomItem = 'Custom...';
@@ -171,7 +188,7 @@ export class DateDropdown {
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId: string = 'custom';
+  @State() private selectedDateRangeId: LiteralStringUnion<'custom'>;
   @State() private currentRangeValue?: {
     from: string;
     to: string;
@@ -365,6 +382,7 @@ export class DateDropdown {
                   <Fragment>
                     <ix-date-picker
                       standaloneAppearance={false}
+                      locale={this.locale}
                       onDateChange={(e) => {
                         e.stopPropagation();
                         this.currentRangeValue = {
@@ -381,6 +399,7 @@ export class DateDropdown {
                       minDate={this.minDate}
                       maxDate={this.maxDate}
                       today={this.today}
+                      weekStartIndex={this.weekStartIndex}
                     ></ix-date-picker>
                     <div class="pull-right">
                       <ix-button

@@ -9,9 +9,9 @@
 
 import './preview-examples/global.css';
 
+import { IxApplicationContext } from '@siemens/ix-react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { IxApplicationContext } from '@siemens/ix-react';
 
 import App from './App';
 import AboutAndLegal from './preview-examples/about-and-legal';
@@ -50,6 +50,8 @@ import Checkbox from './preview-examples/checkbox';
 import CheckboxIndeterminate from './preview-examples/checkbox-indeterminate';
 import Chip from './preview-examples/chip';
 import Content from './preview-examples/content';
+import CustomField from './preview-examples/custom-field';
+import CustomFieldValidation from './preview-examples/custom-field-validation';
 import ContentHeader from './preview-examples/content-header';
 import ContentHeaderNoBack from './preview-examples/content-header-no-back';
 import DateDropdown from './preview-examples/date-dropdown';
@@ -91,6 +93,10 @@ import EventListCustomItemHeight from './preview-examples/event-list-custom-item
 import EventListSelected from './preview-examples/event-list-selected';
 import ExpandingSearch from './preview-examples/expanding-search';
 import FlipTile from './preview-examples/flip-tile';
+import FormCheckbox from './preview-examples/form-checkbox';
+import FormCheckboxDisabled from './preview-examples/form-checkbox-disabled';
+import FormCheckboxGroup from './preview-examples/form-checkbox-group';
+import FormCheckboxValidation from './preview-examples/form-checkbox-validation';
 import Grid from './preview-examples/grid';
 import GridPadding from './preview-examples/grid-padding';
 import GridSize from './preview-examples/grid-size';
@@ -103,13 +109,13 @@ import IconToggleButtonPrimaryOutline from './preview-examples/icon-toggle-butto
 import IconToggleButtonSecondary from './preview-examples/icon-toggle-button-secondary';
 import IconToggleButtonSecondaryGhost from './preview-examples/icon-toggle-button-secondary-ghost';
 import IconToggleButtonSecondaryOutline from './preview-examples/icon-toggle-button-secondary-outline';
-import Input from './preview-examples/input';
-import InputDisabled from './preview-examples/input-disabled';
-import InputLabels from './preview-examples/input-labels';
-import InputReadonly from './preview-examples/input-readonly';
-import InputSearch from './preview-examples/input-search';
-import InputTypes from './preview-examples/input-types';
-import InputWithIcon from './preview-examples/input-with-icon';
+import InputLegacy from './preview-examples/input-legacy';
+import InputLegacyDisabled from './preview-examples/input-legacy-disabled';
+import InputLegacyLabels from './preview-examples/input-legacy-labels';
+import InputLegacyReadonly from './preview-examples/input-legacy-readonly';
+import InputLegacySearch from './preview-examples/input-legacy-search';
+import InputLegacyTypes from './preview-examples/input-legacy-types';
+import InputLegacyWithIcon from './preview-examples/input-legacy-with-icon';
 import KeyValue from './preview-examples/key-value';
 import KeyValueList from './preview-examples/key-value-list';
 import KeyValueListStriped from './preview-examples/key-value-list-striped';
@@ -130,6 +136,12 @@ import Message from './preview-examples/message';
 import MessageBar from './preview-examples/message-bar';
 import Modal from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
+import NumberInput from './preview-examples/number-input';
+import NumberInputDisabled from './preview-examples/number-input-disabled';
+import NumberInputLabel from './preview-examples/number-input-label';
+import NumberInputReadonly from './preview-examples/number-input-readonly';
+import NumberInputStepperButton from './preview-examples/number-input-stepper-button';
+import NumberInputValidation from './preview-examples/number-input-validation';
 import Pagination from './preview-examples/pagination';
 import PaginationAdvanced from './preview-examples/pagination-advanced';
 import Pane from './preview-examples/pane';
@@ -139,9 +151,14 @@ import PillVariants from './preview-examples/pill-variants';
 import PopoverNews from './preview-examples/popover-news';
 import PushCard from './preview-examples/push-card';
 import RadioButton from './preview-examples/radio-button';
+import Radio from './preview-examples/radio';
+import RadioDisabled from './preview-examples/radio-disabled';
+import RadioGroup from './preview-examples/radio-group';
+import RadioValidation from './preview-examples/radio-validation';
 import Select from './preview-examples/select';
 import SelectEditable from './preview-examples/select-editable';
 import SelectMultiple from './preview-examples/select-multiple';
+import SelecValidation from './preview-examples/select-validation';
 import Settings from './preview-examples/settings';
 import Slider from './preview-examples/slider';
 import SliderError from './preview-examples/slider-error';
@@ -153,9 +170,21 @@ import SplitButton from './preview-examples/split-button';
 import SplitButtonIcons from './preview-examples/split-button-icons';
 import Tabs from './preview-examples/tabs';
 import TabsRounded from './preview-examples/tabs-rounded';
+import TextareaLegacy from './preview-examples/textarea-legacy';
+import TextareaLegacyDisabled from './preview-examples/textarea-legacy-disabled';
+import TextareaLegacyReadonly from './preview-examples/textarea-legacy-readonly';
 import Textarea from './preview-examples/textarea';
 import TextareaDisabled from './preview-examples/textarea-disabled';
 import TextareaReadonly from './preview-examples/textarea-readonly';
+import TextareaRowCols from './preview-examples/textarea-rows-cols';
+import TextareaValidation from './preview-examples/textarea-validation';
+import Input from './preview-examples/input';
+import InputDisabled from './preview-examples/input-disabled';
+import InputLabel from './preview-examples/input-label';
+import InputPattern from './preview-examples/input-pattern';
+import InputReadonly from './preview-examples/input-readonly';
+import InputTypes from './preview-examples/input-types';
+import InputValidation from './preview-examples/input-validation';
 import ThemeSwitcher from './preview-examples/theme-switcher';
 import Tile from './preview-examples/tile';
 import Timepicker from './preview-examples/timepicker';
@@ -182,12 +211,22 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import Workflow from './preview-examples/workflow';
 import WorkflowVertical from './preview-examples/workflow-vertical';
 import reportWebVitals from './reportWebVitals';
+import ValidationSelect from './preview-examples/validation-select';
+import FormValidation from './preview-examples/form-validation';
+import LayoutAuto from './preview-examples/layout-auto';
+import LayoutAutoCustom from './preview-examples/layout-auto-custom';
+import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-group-indeterminate';
+import FormLayoutAuto from './preview-examples/form-layout-auto';
+import FormLayoutGrid from './preview-examples/form-layout-grid';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/preview/grid-padding" element={<GridPadding />} />
+        <Route path="/preview/grid-size" element={<GridSize />} />
+        <Route path="/preview/grid" element={<Grid />} />
         <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
         <Route path="/preview/action-card" element={<ActionCard />} />
         <Route path="/preview/aggrid" element={<AgGrid />} />
@@ -255,6 +294,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<CheckboxIndeterminate />}
         />
         <Route path="/preview/checkbox" element={<Checkbox />} />
+        <Route path="/preview/custom-field" element={<CustomField />} />
+        <Route
+          path="/preview/custom-field-validation"
+          element={<CustomFieldValidation />}
+        />
         <Route path="/preview/chip" element={<Chip />} />
         <Route path="/preview/content" element={<Content />} />
         <Route path="/preview/date-dropdown" element={<DateDropdown />} />
@@ -361,9 +405,23 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/event-list" element={<EventList />} />
         <Route path="/preview/expanding-search" element={<ExpandingSearch />} />
         <Route path="/preview/flip-tile" element={<FlipTile />} />
-        <Route path="/preview/grid-padding" element={<GridPadding />} />
-        <Route path="/preview/grid-size" element={<GridSize />} />
-        <Route path="/preview/grid" element={<Grid />} />
+        <Route path="/preview/form-checkbox" element={<FormCheckbox />} />
+        <Route
+          path="/preview/form-checkbox-disabled"
+          element={<FormCheckboxDisabled />}
+        />
+        <Route
+          path="/preview/form-checkbox-group"
+          element={<FormCheckboxGroup />}
+        />
+        <Route
+          path="/preview/form-checkbox-validation"
+          element={<FormCheckboxValidation />}
+        />
+        <Route
+          path="/preview/form-checkbox-group-indeterminate"
+          element={<FormCheckboxGroupIndeterminate />}
+        />
         <Route
           path="/preview/group-context-menu"
           element={<GroupContextMenu />}
@@ -397,13 +455,31 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/icon-toggle-button-secondary"
           element={<IconToggleButtonSecondary />}
         />
-        <Route path="/preview/input-disabled" element={<InputDisabled />} />
-        <Route path="/preview/input-labels" element={<InputLabels />} />
-        <Route path="/preview/input-readonly" element={<InputReadonly />} />
-        <Route path="/preview/input-search" element={<InputSearch />} />
-        <Route path="/preview/input-types" element={<InputTypes />} />
-        <Route path="/preview/input-with-icon" element={<InputWithIcon />} />
-        <Route path="/preview/input" element={<Input />} />
+        <Route
+          path="/preview/input-legacy-disabled"
+          element={<InputLegacyDisabled />}
+        />
+        <Route
+          path="/preview/input-legacy-labels"
+          element={<InputLegacyLabels />}
+        />
+        <Route
+          path="/preview/input-legacy-readonly"
+          element={<InputLegacyReadonly />}
+        />
+        <Route
+          path="/preview/input-legacy-search"
+          element={<InputLegacySearch />}
+        />
+        <Route
+          path="/preview/input-legacy-types"
+          element={<InputLegacyTypes />}
+        />
+        <Route
+          path="/preview/input-legacy-with-icon"
+          element={<InputLegacyWithIcon />}
+        />
+        <Route path="/preview/input-legacy" element={<InputLegacy />} />
         <Route
           path="/preview/key-value-list-striped"
           element={<KeyValueListStriped />}
@@ -449,6 +525,18 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/message" element={<Message />} />
         <Route path="/preview/message-bar" element={<MessageBar />} />
+        <Route path="/preview/radio-button" element={<RadioButton />} />
+        <Route path="/preview/radio" element={<Radio />} />
+        <Route path="/preview/radio-disabled" element={<RadioDisabled />} />
+        <Route path="/preview/radio-group" element={<RadioGroup />} />
+        <Route path="/preview/radio-validation" element={<RadioValidation />} />
+        <Route path="/preview/select" element={<Select />} />
+        <Route path="/preview/select-editable" element={<SelectEditable />} />
+        <Route path="/preview/select-multiple" element={<SelectMultiple />} />
+        <Route
+          path="/preview/select-validation"
+          element={<SelecValidation />}
+        />
         <Route path="/preview/modal-sizes" element={<ModalSizes />} />
         <Route path="/preview/modal" element={<Modal />} />
         <Route
@@ -481,6 +569,15 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/tabs-rounded" element={<TabsRounded />} />
         <Route path="/preview/tabs" element={<Tabs />} />
         <Route
+          path="/preview/textarea-legacy-disabled"
+          element={<TextareaLegacyDisabled />}
+        />
+        <Route
+          path="/preview/textarea-legacy-readonly"
+          element={<TextareaLegacyReadonly />}
+        />
+        <Route path="/preview/textarea" element={<Textarea />} />
+        <Route
           path="/preview/textarea-disabled"
           element={<TextareaDisabled />}
         />
@@ -488,7 +585,22 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/textarea-readonly"
           element={<TextareaReadonly />}
         />
-        <Route path="/preview/textarea" element={<Textarea />} />
+        <Route
+          path="/preview/textarea-rows-cols"
+          element={<TextareaRowCols />}
+        />
+        <Route
+          path="/preview/textarea-validation"
+          element={<TextareaValidation />}
+        />
+        <Route path="/preview/input" element={<Input />} />
+        <Route path="/preview/input-disabled" element={<InputDisabled />} />
+        <Route path="/preview/input-label" element={<InputLabel />} />
+        <Route path="/preview/input-pattern" element={<InputPattern />} />
+        <Route path="/preview/input-readonly" element={<InputReadonly />} />
+        <Route path="/preview/input-types" element={<InputTypes />} />
+        <Route path="/preview/input-validation" element={<InputValidation />} />
+        <Route path="/preview/textarea-legacy" element={<TextareaLegacy />} />
         <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
         <Route path="/preview/tile" element={<Tile />} />
         <Route path="/preview/timepicker" element={<Timepicker />} />
@@ -528,6 +640,27 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/toggle" element={<Toggle />} />
         <Route path="/preview/tooltip" element={<Tooltip />} />
         <Route path="/preview/tree-custom" element={<TreeCustom />} />
+        <Route path="/preview/number-input" element={<NumberInput />} />
+        <Route
+          path="/preview/number-input-disabled"
+          element={<NumberInputDisabled />}
+        />
+        <Route
+          path="/preview/number-input-label"
+          element={<NumberInputLabel />}
+        />
+        <Route
+          path="/preview/number-input-readonly"
+          element={<NumberInputReadonly />}
+        />
+        <Route
+          path="/preview/number-input-stepper-button"
+          element={<NumberInputStepperButton />}
+        />
+        <Route
+          path="/preview/number-input-validation"
+          element={<NumberInputValidation />}
+        />
         <Route path="/preview/tree" element={<Tree />} />
         <Route path="/preview/upload" element={<Upload />} />
         <Route path="/preview/validation" element={<Validation />} />
@@ -540,7 +673,19 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           path="/preview/workflow-vertical"
           element={<WorkflowVertical />}
         />
+        <Route
+          path="/preview/validation-select"
+          element={<ValidationSelect />}
+        />
+        <Route path="/preview/form-validation" element={<FormValidation />} />
+        <Route path="/preview/layout-auto" element={<LayoutAuto />} />
+        <Route
+          path="/preview/layout-auto-custom"
+          element={<LayoutAutoCustom />}
+        />
         <Route path="/preview/workflow" element={<Workflow />} />
+        <Route path="/preview/form-layout-auto" element={<FormLayoutAuto />} />
+        <Route path="/preview/form-layout-grid" element={<FormLayoutGrid />} />
       </Routes>
     </BrowserRouter>
   </IxApplicationContext>

@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-import DocsTabs from '@site/src/components/DocsTabs';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_link-button_styleguide.md';
 import DocsCode from './\_link-button_code.md';
@@ -16,4 +16,7 @@ import Tags from './../../auto-generated/ix-link-button/tags.md';
 <br/>
 <br/>
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>

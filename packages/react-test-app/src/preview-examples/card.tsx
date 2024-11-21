@@ -18,10 +18,14 @@ export default () => {
         <IxIcon name="capacity"></IxIcon>
         <IxTypography bold>Number of components</IxTypography>
         <IxTypography>
-          Vanilla JavaScript<br />
-          Angular<br />
-          Blazor<br />
-          React<br />
+          Vanilla JavaScript
+          <br />
+          Angular
+          <br />
+          Blazor
+          <br />
+          React
+          <br />
           Vue.js
         </IxTypography>
         <IxTypography format="h1">123</IxTypography>

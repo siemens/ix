@@ -12,6 +12,8 @@
 @import 'mixins/hover';
 @import 'mixins/text-truncation';
 @import 'mixins/shadow-dom/component';
+@import 'mixins/field';
+@import 'mixins/validation/form-component';
 
 :host {
   @include ix-component;
@@ -30,6 +32,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
     background-color: var(--theme-input--background);
     border: var(--theme-input--border-thickness) solid
       var(--theme-input--border-color);
@@ -176,5 +179,53 @@
     height: $default-control-height;
     color: var(--theme-select-list-item-hint--color);
     margin: 0 $small-space 0 1rem;
+  }
+}
+
+
+
+@include host-valid;
+
+@include host-info {
+  .select {
+    border-color: var(--theme-input--border-color--info);
+  }
+
+  .select:hover {
+    border-color: var(--theme-input--border-color--info--hover) !important;
+  }
+
+  .select:active {
+    border-color: var(--theme-input--border-color--info--active) !important;
+  }
+}
+
+@include host-warning {
+  .select {
+    border-color: var(--theme-input--border-color--warning);
+  }
+
+  .select:hover {
+    border-color: var(--theme-input--border-color--warning--hover) !important;
+  }
+
+  .select:active {
+    border-color: var(--theme-input--border-color--warning--active) !important;
+  }
+}
+
+@include host-invalid {
+  .select {
+    border-color: var(--theme-input--border-color--invalid);
+    background-color: var(--theme-input--background--invalid);
+    box-shadow: none;
+  }
+
+  .select:hover {
+    border-color: var(--theme-input--border-color--invalid--hover) !important;
+  }
+
+  .select:active {
+    border-color: var(--theme-input--border-color--invalid--active) !important;
   }
 }

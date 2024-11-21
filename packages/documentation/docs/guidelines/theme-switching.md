@@ -2,11 +2,14 @@
 sidebar_position: 2
 ---
 
-import DocsTabs from '@site/src/components/DocsTabs';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_theme-switching_styleguide.md';
 import DocsCode from './\_theme-switching_code.md';
 
 # Theme Switching
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>
