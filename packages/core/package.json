@@ -51,7 +51,7 @@
     "luxon": "^3.4.4"
   },
   "devDependencies": {
-    "@playwright/test": "^1.45.3",
+    "@playwright/test": "^1.49.0",
     "@siemens/ix-icons": "0.0.0-20240827135516",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",

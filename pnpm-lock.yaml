@@ -73,7 +73,7 @@ importers:
         version: link:../core
     devDependencies:
       '@playwright/test':
-        specifier: ^1.45.3
+        specifier: ^1.49.0
         version: 1.49.0
       '@siemens/ix-icons':
         specifier: 0.0.0-20240827135516
@@ -390,7 +390,7 @@ importers:
         version: 3.5.0
     devDependencies:
       '@playwright/test':
-        specifier: ^1.45.3
+        specifier: ^1.49.0
         version: 1.49.0
       '@siemens/ix-icons':
         specifier: 0.0.0-20240827135516
@@ -628,7 +628,7 @@ importers:
   packages/echarts:
     devDependencies:
       '@playwright/test':
-        specifier: ^1.45.3
+        specifier: ^1.49.0
         version: 1.49.0
       '@rollup/plugin-typescript':
         specifier: ^8.5.0

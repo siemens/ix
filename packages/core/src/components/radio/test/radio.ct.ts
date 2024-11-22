@@ -7,7 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { getFormValue, preventFormSubmission, regressionTest } from '@utils/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+} from '@utils/test';
 
 regressionTest('form-ready', async ({ mount, page }) => {
   await mount(

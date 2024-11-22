@@ -24,7 +24,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1.45.3",
+    "@playwright/test": "^1.49.0",
     "@rollup/plugin-typescript": "^8.5.0",
     "echarts": "^5.5.1",
     "http-server": "^14.1.1",
