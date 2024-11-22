@@ -1,7 +1,7 @@
 ---
-"@siemens/ix-angular": patch
-"@siemens/ix": patch
-"@siemens/ix-vue": patch
+"@siemens/ix-angular": minor
+"@siemens/ix": minor
+"@siemens/ix-vue": minor
 ---
 
 Add filter cleared event to ix-categroy-filter.
