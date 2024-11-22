@@ -931,6 +931,12 @@ importers:
 
   packages/storybook-docs:
     dependencies:
+      '@maskito/core':
+        specifier: ^3.2.0
+        version: 3.2.0
+      '@maskito/kit':
+        specifier: ^3.2.0
+        version: 3.2.0(@maskito/core@3.2.0)
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -3993,6 +3999,14 @@ packages:
 
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
+
+  '@maskito/core@3.2.0':
+    resolution: {integrity: sha512-c8GNwuz4PQmZqf5CSXIncwIkZSwBeU2FZtpBJtD21DaIe4uBQ541C0BncHMqEbLP2+n+HyFKEnT90m03BBlGrw==}
+
+  '@maskito/kit@3.2.0':
+    resolution: {integrity: sha512-fIUBu+RzWQtmDyBCV9cksFqLqCq4ag1Gv1pwn9PgB7m0pkjhJoBMfQAVkded6MKrUk+QLIZUjzbUwgJm0D98Aw==}
+    peerDependencies:
+      '@maskito/core': ^3.2.0
 
   '@mdx-js/mdx@3.0.0':
     resolution: {integrity: sha512-Icm0TBKBLYqroYbNW3BPnzMGn+7mwpQOK310aZ7+fkCtiU3aqv2cdcX+nd0Ydo3wI5Rx8bX2Z2QmGb/XcAClCw==}
@@ -19926,6 +19940,12 @@ snapshots:
       fs-extra: 8.1.0
       globby: 11.1.0
       read-yaml-file: 1.1.0
+
+  '@maskito/core@3.2.0': {}
+
+  '@maskito/kit@3.2.0(@maskito/core@3.2.0)':
+    dependencies:
+      '@maskito/core': 3.2.0
 
   '@mdx-js/mdx@3.0.0':
     dependencies:
