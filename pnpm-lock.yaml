@@ -72,7 +72,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.5.0
+        specifier: ~2.6.0
         version: link:../core
     devDependencies:
       '@playwright/test':
@@ -124,7 +124,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.5.0
+        specifier: ~2.6.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -159,7 +159,7 @@ importers:
         version: 29.7.0(@types/node@20.16.5)(ts-node@10.9.2(@swc/core@1.9.2)(@types/node@20.16.5)(typescript@4.6.4))
       jest-preset-angular:
         specifier: ^12.2.3
-        version: 12.2.6(pvu6pqmetsb6sbccsdfy65wrey)
+        version: 12.2.6(2gswdnumpqaamxfw66okvj6rse)
       ng-packagr:
         specifier: ^14.2.0
         version: 14.3.0(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@types/node@20.16.5)(tslib@2.6.2)(typescript@4.6.4)
@@ -245,7 +245,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^14.2.0
-        version: 14.2.13(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@swc/core@1.9.2)(chokidar@3.5.3)(html-webpack-plugin@5.5.3(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5)))(karma@6.4.2)(ng-packagr@14.3.0(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@types/node@20.16.5)(tslib@2.6.2)(typescript@4.7.4))(typescript@4.7.4)
+        version: 14.2.13(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@swc/core@1.9.2)(chokidar@3.5.3)(html-webpack-plugin@5.5.3(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5)))(karma@6.4.2)(ng-packagr@14.3.0(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@types/node@20.5.1)(tslib@2.6.2)(typescript@4.7.4))(typescript@4.7.4)
       '@angular/cli':
         specifier: ~14.2.0
         version: 14.2.13(chokidar@3.5.3)
@@ -768,7 +768,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.5.0
+        specifier: ~2.6.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -1005,7 +1005,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.5.0
+        specifier: ~2.6.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -12545,7 +12545,7 @@ packages:
   puppeteer@21.1.1:
     resolution: {integrity: sha512-2TLntjGA4qLrI9/8N0UK/5OoZJ2Ue7QgphN2SD+RsaHiha12AEiVyMGsB+i6LY1IoPAtEgYIjblQ7lw3kWDNRw==}
     engines: {node: '>=16.3.0'}
-    deprecated: < 22.6.4 is no longer supported
+    deprecated: < 22.8.2 is no longer supported
 
   pure-rand@6.0.4:
     resolution: {integrity: sha512-LA0Y9kxMYv47GIPJy6MI84fqTd2HmYZI83W/kM/SkKfDlajnZYfmXFTxkbY+xSBPkLJxltMa9hIkmdc29eguMA==}
@@ -15528,7 +15528,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@14.2.13(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@swc/core@1.9.2)(chokidar@3.5.3)(html-webpack-plugin@5.5.3(webpack@5.89.0(@swc/core@1.9.2)))(karma@6.4.2)(ng-packagr@14.3.0(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@types/node@20.16.5)(tslib@2.6.2)(typescript@4.6.4))(typescript@4.6.4)':
+  '@angular-devkit/build-angular@14.2.13(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@swc/core@1.9.2)(chokidar@3.5.3)(html-webpack-plugin@5.5.3)(karma@6.4.2)(ng-packagr@14.3.0(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@types/node@20.16.5)(tslib@2.6.2)(typescript@4.6.4))(typescript@4.6.4)':
     dependencies:
       '@ampproject/remapping': 2.2.0
       '@angular-devkit/architect': 0.1402.13(chokidar@3.5.3)
@@ -15593,7 +15593,7 @@ snapshots:
       webpack-dev-middleware: 5.3.3(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5))
       webpack-dev-server: 4.11.0(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5))
       webpack-merge: 5.8.0
-      webpack-subresource-integrity: 5.1.0(html-webpack-plugin@5.5.3(webpack@5.89.0(@swc/core@1.9.2)))(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5))
+      webpack-subresource-integrity: 5.1.0(html-webpack-plugin@5.5.3)(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5))
     optionalDependencies:
       esbuild: 0.15.5
       karma: 6.4.2
@@ -15613,7 +15613,7 @@ snapshots:
       - utf-8-validate
       - webpack-cli
 
-  '@angular-devkit/build-angular@14.2.13(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@swc/core@1.9.2)(chokidar@3.5.3)(html-webpack-plugin@5.5.3(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5)))(karma@6.4.2)(ng-packagr@14.3.0(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@types/node@20.16.5)(tslib@2.6.2)(typescript@4.7.4))(typescript@4.7.4)':
+  '@angular-devkit/build-angular@14.2.13(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@swc/core@1.9.2)(chokidar@3.5.3)(html-webpack-plugin@5.5.3(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5)))(karma@6.4.2)(ng-packagr@14.3.0(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@types/node@20.5.1)(tslib@2.6.2)(typescript@4.7.4))(typescript@4.7.4)':
     dependencies:
       '@ampproject/remapping': 2.2.0
       '@angular-devkit/architect': 0.1402.13(chokidar@3.5.3)
@@ -15682,7 +15682,7 @@ snapshots:
     optionalDependencies:
       esbuild: 0.15.5
       karma: 6.4.2
-      ng-packagr: 14.3.0(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@types/node@20.16.5)(tslib@2.6.2)(typescript@4.7.4)
+      ng-packagr: 14.3.0(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@types/node@20.5.1)(tslib@2.6.2)(typescript@4.7.4)
     transitivePeerDependencies:
       - '@swc/core'
       - bluebird
@@ -27689,9 +27689,9 @@ snapshots:
     optionalDependencies:
       jest-resolve: 29.7.0
 
-  jest-preset-angular@12.2.6(pvu6pqmetsb6sbccsdfy65wrey):
+  jest-preset-angular@12.2.6(2gswdnumpqaamxfw66okvj6rse):
     dependencies:
-      '@angular-devkit/build-angular': 14.2.13(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@swc/core@1.9.2)(chokidar@3.5.3)(html-webpack-plugin@5.5.3(webpack@5.89.0(@swc/core@1.9.2)))(karma@6.4.2)(ng-packagr@14.3.0(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@types/node@20.16.5)(tslib@2.6.2)(typescript@4.6.4))(typescript@4.6.4)
+      '@angular-devkit/build-angular': 14.2.13(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@swc/core@1.9.2)(chokidar@3.5.3)(html-webpack-plugin@5.5.3)(karma@6.4.2)(ng-packagr@14.3.0(@angular/compiler-cli@13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4))(@types/node@20.16.5)(tslib@2.6.2)(typescript@4.6.4))(typescript@4.6.4)
       '@angular/compiler-cli': 13.4.0(@angular/compiler@13.4.0)(typescript@4.6.4)
       '@angular/core': 13.4.0(rxjs@7.5.7)(zone.js@0.11.8)
       '@angular/platform-browser-dynamic': 14.3.0(@angular/common@13.4.0(@angular/core@13.4.0(rxjs@7.5.7)(zone.js@0.11.8))(rxjs@7.5.7))(@angular/compiler@13.4.0)(@angular/core@13.4.0(rxjs@7.5.7)(zone.js@0.11.8))(@angular/platform-browser@14.3.0(@angular/animations@14.3.0(@angular/core@13.4.0(rxjs@7.5.7)(zone.js@0.11.8)))(@angular/common@13.4.0(@angular/core@13.4.0(rxjs@7.5.7)(zone.js@0.11.8))(rxjs@7.5.7))(@angular/core@13.4.0(rxjs@7.5.7)(zone.js@0.11.8)))
@@ -29551,7 +29551,7 @@ snapshots:
       - bluebird
       - supports-color
 
-  ng-packagr@14.3.0(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@types/node@20.16.5)(tslib@2.6.2)(typescript@4.7.4):
+  ng-packagr@14.3.0(@angular/compiler-cli@14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4))(@types/node@20.5.1)(tslib@2.6.2)(typescript@4.7.4):
     dependencies:
       '@angular/compiler-cli': 14.3.0(@angular/compiler@14.3.0(@angular/core@14.3.0(rxjs@7.5.7)(zone.js@0.11.8)))(typescript@4.7.4)
       '@rollup/plugin-json': 4.1.0(rollup@2.79.1)
@@ -29574,7 +29574,7 @@ snapshots:
       postcss-preset-env: 7.8.3(postcss@8.4.31)
       postcss-url: 10.1.3(postcss@8.4.31)
       rollup: 2.79.1
-      rollup-plugin-sourcemaps: 0.6.3(@types/node@20.16.5)(rollup@2.79.1)
+      rollup-plugin-sourcemaps: 0.6.3(@types/node@20.5.1)(rollup@2.79.1)
       rxjs: 7.5.7
       sass: 1.69.5
       stylus: 0.59.0
@@ -32135,6 +32135,15 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.16.5
 
+  rollup-plugin-sourcemaps@0.6.3(@types/node@20.5.1)(rollup@2.79.1):
+    dependencies:
+      '@rollup/pluginutils': 3.1.0(rollup@2.79.1)
+      rollup: 2.79.1
+      source-map-resolve: 0.6.0
+    optionalDependencies:
+      '@types/node': 20.5.1
+    optional: true
+
   rollup-plugin-terser@7.0.2(rollup@2.79.1):
     dependencies:
       '@babel/code-frame': 7.22.13
@@ -34444,12 +34453,12 @@ snapshots:
     optionalDependencies:
       html-webpack-plugin: 5.5.3(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5))
 
-  webpack-subresource-integrity@5.1.0(html-webpack-plugin@5.5.3(webpack@5.89.0(@swc/core@1.9.2)))(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5)):
+  webpack-subresource-integrity@5.1.0(html-webpack-plugin@5.5.3)(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5)):
     dependencies:
       typed-assert: 1.0.9
       webpack: 5.76.1(@swc/core@1.9.2)(esbuild@0.15.5)
     optionalDependencies:
-      html-webpack-plugin: 5.5.3(webpack@5.89.0(@swc/core@1.9.2))
+      html-webpack-plugin: 5.5.3(webpack@5.76.1(@swc/core@1.9.2)(esbuild@0.15.5))
 
   webpack-virtual-modules@0.6.2: {}
 
