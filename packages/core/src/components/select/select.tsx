@@ -691,7 +691,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       this.items.forEach((item) => {
         item.classList.remove('d-none');
         if (
-          item.label?.toLowerCase().includes(this.inputFilterText.toLowerCase())
+          !item.label
+            ?.toLowerCase()
+            .includes(this.inputFilterText.toLowerCase())
         ) {
           item.classList.add('d-none');
         }
