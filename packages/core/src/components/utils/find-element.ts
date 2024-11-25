@@ -11,18 +11,18 @@
  * Will try to resolve the selector in the light dom, shadow dom or slot
  * @param selector The selector to resolve
  * @param hostElement The element to start the search from
- * @returns Promise with the resolved elements
+ * @returns Promise with the resolved elements or undefined if not found
  */
 export async function resolveSelector(
   selector: string,
   hostElement?: HTMLElement
 ): Promise<HTMLElement[] | undefined> {
-  const elementsInLightDom: HTMLElement[] = Array.from(
+  const elements: HTMLElement[] = Array.from(
     document.querySelectorAll(selector)
   );
 
-  if (elementsInLightDom.length > 0) {
-    return Promise.resolve(elementsInLightDom);
+  if (elements.length > 0) {
+    return Promise.resolve(elements);
   }
 
   if (hostElement === undefined) {
@@ -35,43 +35,24 @@ export async function resolveSelector(
     return Promise.resolve(undefined);
   }
 
-  let elementsInSlot: HTMLElement[] = getSlottedElements(shadowRoot, selector);
-
-  if (elementsInSlot.length > 0) {
-    return Promise.resolve(elementsInSlot);
-  }
-
   const elementsInShadowRoot: HTMLElement[] = Array.from(
     shadowRoot.querySelectorAll(selector)
   );
 
-  if (elementsInShadowRoot.length > 0) {
-    return Promise.resolve(elementsInShadowRoot);
+  const elementsInHost: HTMLElement[] = Array.from(
+    shadowRoot.host.querySelectorAll(selector)
+  );
+
+  const elementsInComponent: HTMLElement[] = [
+    ...elementsInHost,
+    ...elementsInShadowRoot,
+  ];
+
+  if (elementsInComponent.length > 0) {
+    return Promise.resolve(elementsInComponent);
   }
 
   return Promise.resolve(undefined);
-}
-
-function getSlottedElements(shadowRoot: ShadowRoot, selector: string) {
-  const slots = shadowRoot.querySelectorAll('slot');
-  let elementsInSlot: HTMLElement[] = [];
-
-  slots.forEach((slot) => {
-    const assignedElements = slot.assignedElements({ flatten: true });
-    assignedElements.forEach((element) => {
-      if (element.matches(selector)) {
-        elementsInSlot.push(element as HTMLElement);
-      } else {
-        const elementInSlot = element.querySelector(selector);
-
-        if (elementInSlot) {
-          elementsInSlot.push(elementInSlot as HTMLElement);
-        }
-      }
-    });
-  });
-
-  return elementsInSlot;
 }
 
 /**
