@@ -50,22 +50,21 @@ test.describe('category-preview test', () => {
   });
 
   test('clear category-preview', async ({ page }) => {
-    await page.waitForSelector('ix-category-filter');
-    await page.locator('input').first().click();
-    await page.locator('.category-item').first().click();
+    const categoryFilter = page.locator('ix-category-filter');
+    await categoryFilter.locator('input').first().click();
+    await categoryFilter.locator('.category-item').first().click();
 
-    const categoryPreviewPromise = page.evaluate(() => {
-      return new Promise((resolve) => {
-        function onCategoryChanged(event: CustomEvent) {
-          resolve(event.detail);
-        }
+    const categoryPreviewPromise = categoryFilter.evaluate(
+      (element: HTMLIxCategoryFilterElement) => {
+        return new Promise((resolve) => {
+          function onCategoryChanged(event: CustomEvent) {
+            resolve(event.detail);
+          }
 
-        document.addEventListener(
-          'categoryChanged',
-          onCategoryChanged as EventListener
-        );
-      });
-    });
+          element.addEventListener('categoryChanged', onCategoryChanged);
+        });
+      }
+    );
 
     await page.locator('ix-icon-button').first().click();
     const categoryPreview = await categoryPreviewPromise;
