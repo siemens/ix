@@ -2491,6 +2491,20 @@
           "docsTags": []
         },
         {
+          "event": "filterCleared",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event dispatched whenever the filter gets cleared.",
+          "docsTags": []
+        },
+        {
           "event": "inputChanged",
           "detail": "InputState",
           "bubbles": true,

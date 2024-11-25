@@ -3630,6 +3630,7 @@ declare global {
         "categoryChanged": string;
         "inputChanged": InputState;
         "filterChanged": FilterState;
+        "filterCleared": void;
     }
     interface HTMLIxCategoryFilterElement extends Components.IxCategoryFilter, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCategoryFilterElementEventMap>(type: K, listener: (this: HTMLIxCategoryFilterElement, ev: IxCategoryFilterCustomEvent<HTMLIxCategoryFilterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5450,6 +5451,10 @@ declare namespace LocalJSX {
           * Event dispatched whenever the filter state changes.
          */
         "onFilterChanged"?: (event: IxCategoryFilterCustomEvent<FilterState>) => void;
+        /**
+          * Event dispatched whenever the filter gets cleared.
+         */
+        "onFilterCleared"?: (event: IxCategoryFilterCustomEvent<void>) => void;
         /**
           * Event dispatched whenever the text input changes.
          */
