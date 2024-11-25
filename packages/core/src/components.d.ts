@@ -46,7 +46,7 @@ import { TextareaResizeBehavior } from "./components/input/textarea";
 import { TimePickerCorners } from "./components/time-picker/time-picker";
 import { ToastConfig, ToastType } from "./components/toast/toast-utils";
 import { ShowToastResult } from "./components/toast/toast-container";
-import { ElementReference as ElementReference1 } from "./components/utils/element-reference";
+import { ElementReference as ElementReference1 } from "./components.d";
 import { Element } from "@stencil/core";
 import { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 import { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
@@ -92,7 +92,7 @@ export { TextareaResizeBehavior } from "./components/input/textarea";
 export { TimePickerCorners } from "./components/time-picker/time-picker";
 export { ToastConfig, ToastType } from "./components/toast/toast-utils";
 export { ShowToastResult } from "./components/toast/toast-container";
-export { ElementReference as ElementReference1 } from "./components/utils/element-reference";
+export { ElementReference as ElementReference1 } from "./components.d";
 export { Element } from "@stencil/core";
 export { TreeContext, TreeItemContext, TreeModel, UpdateCallback } from "./components/tree/tree-model";
 export { TextDecoration, TypographyColors, TypographyFormat } from "./components/typography/typography";
@@ -2998,7 +2998,7 @@ export namespace Components {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: ElementReference1;
+        "for"?: ElementReference;
         "hideDelay": number;
         "hideTooltip": () => Promise<void>;
         /**
@@ -8225,7 +8225,7 @@ declare namespace LocalJSX {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: ElementReference1;
+        "for"?: ElementReference;
         "hideDelay"?: number;
         /**
           * Define if the user can access the tooltip via mouse.

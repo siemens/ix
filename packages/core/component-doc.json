@@ -6453,7 +6453,7 @@
             "references": {
               "ElementReference": {
                 "location": "import",
-                "path": "src/components/utils/element-reference",
+                "path": "../utils/element-reference",
                 "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
@@ -6680,7 +6680,7 @@
             "references": {
               "ElementReference": {
                 "location": "import",
-                "path": "src/components/utils/element-reference",
+                "path": "../utils/element-reference",
                 "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
@@ -20120,8 +20120,8 @@
             "references": {
               "ElementReference": {
                 "location": "import",
-                "path": "../utils/element-reference",
-                "id": "src/components/utils/element-reference.ts::ElementReference"
+                "path": "src/components",
+                "id": "src/components.d.ts::ElementReference"
               }
             }
           },
@@ -21944,6 +21944,11 @@
       "declaration": "export type ToastType = 'info' | 'success' | 'error' | 'warning';",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
+    },
+    "src/components.d.ts::ElementReference": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "src/components.d.ts"
     },
     "../../node_modules/.pnpm/@stencil+core@4.17.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
