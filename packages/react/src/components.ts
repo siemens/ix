@@ -75,7 +75,6 @@ import { defineCustomElement as defineIxMenuSettingsItem } from '@siemens/ix/com
 import { defineCustomElement as defineIxMessageBar } from '@siemens/ix/components/ix-message-bar.js';
 import { defineCustomElement as defineIxModal } from '@siemens/ix/components/ix-modal.js';
 import { defineCustomElement as defineIxModalContent } from '@siemens/ix/components/ix-modal-content.js';
-import { defineCustomElement as defineIxModalExample } from '@siemens/ix/components/ix-modal-example.js';
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
 import { defineCustomElement as defineIxNumberInput } from '@siemens/ix/components/ix-number-input.js';
@@ -179,7 +178,6 @@ export const IxMenuSettingsItem = /*@__PURE__*/createReactComponent<JSX.IxMenuSe
 export const IxMessageBar = /*@__PURE__*/createReactComponent<JSX.IxMessageBar, HTMLIxMessageBarElement>('ix-message-bar', undefined, undefined, defineIxMessageBar);
 export const IxModal = /*@__PURE__*/createReactComponent<JSX.IxModal, HTMLIxModalElement>('ix-modal', undefined, undefined, defineIxModal);
 export const IxModalContent = /*@__PURE__*/createReactComponent<JSX.IxModalContent, HTMLIxModalContentElement>('ix-modal-content', undefined, undefined, defineIxModalContent);
-export const IxModalExample = /*@__PURE__*/createReactComponent<JSX.IxModalExample, HTMLIxModalExampleElement>('ix-modal-example', undefined, undefined, defineIxModalExample);
 export const IxModalFooter = /*@__PURE__*/createReactComponent<JSX.IxModalFooter, HTMLIxModalFooterElement>('ix-modal-footer', undefined, undefined, defineIxModalFooter);
 export const IxModalHeader = /*@__PURE__*/createReactComponent<JSX.IxModalHeader, HTMLIxModalHeaderElement>('ix-modal-header', undefined, undefined, defineIxModalHeader);
 export const IxNumberInput = /*@__PURE__*/createReactComponent<JSX.IxNumberInput, HTMLIxNumberInputElement>('ix-number-input', undefined, undefined, defineIxNumberInput);

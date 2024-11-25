@@ -75,7 +75,6 @@ import { defineCustomElement as defineIxMenuSettingsItem } from '@siemens/ix/com
 import { defineCustomElement as defineIxMessageBar } from '@siemens/ix/components/ix-message-bar.js';
 import { defineCustomElement as defineIxModal } from '@siemens/ix/components/ix-modal.js';
 import { defineCustomElement as defineIxModalContent } from '@siemens/ix/components/ix-modal-content.js';
-import { defineCustomElement as defineIxModalExample } from '@siemens/ix/components/ix-modal-example.js';
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
 import { defineCustomElement as defineIxNumberInput } from '@siemens/ix/components/ix-number-input.js';
@@ -827,9 +826,6 @@ export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', de
 
 
 export const IxModalContent = /*@__PURE__*/ defineContainer<JSX.IxModalContent>('ix-modal-content', defineIxModalContent);
-
-
-export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', defineIxModalExample);
 
 
 export const IxModalFooter = /*@__PURE__*/ defineContainer<JSX.IxModalFooter>('ix-modal-footer', defineIxModalFooter);
