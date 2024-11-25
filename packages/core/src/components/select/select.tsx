@@ -649,12 +649,16 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       } else {
         this.applyFocusTo(this.visibleShadowItems[indexShadow - 1]);
       }
-    } else if (indexShadow === this.visibleShadowItems.length - 1) {
-      if (this.isAddItemVisible()) {
-        this.focusAddItemButton();
-      }
     } else {
-      this.applyFocusTo(this.visibleShadowItems[indexShadow + 1]);
+      if (indexShadow === this.visibleShadowItems.length - 1) {
+        if (this.isAddItemVisible()) {
+          this.focusAddItemButton();
+        } else {
+          this.applyFocusTo(this.visibleItems.shift());
+        }
+      } else {
+        this.applyFocusTo(this.visibleShadowItems[indexShadow + 1]);
+      }
     }
   }
 
