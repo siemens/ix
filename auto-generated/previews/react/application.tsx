@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles/application.css';
+import './application.css';
 
 import {
   IxApplication,

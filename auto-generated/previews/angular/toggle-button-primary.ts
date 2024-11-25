@@ -19,6 +19,6 @@ import { Component } from '@angular/core';
       Loading
     </ix-toggle-button>
   `,
-  styleUrls: ['./styles/toggle-buttons.css'],
+  styleUrls: ['./toggle-button-primary.css'],
 })
 export default class Buttons {}

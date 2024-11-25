@@ -11,7 +11,7 @@
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./styles/tile.css"></style>
+<style scoped src="./tile.css"></style>
 
 <template>
   <div className="example">

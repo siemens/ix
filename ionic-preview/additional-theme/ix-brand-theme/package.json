@@ -1,6 +1,6 @@
 {
   "name": "@siemens/ix-brand-theme",
-  "version": "2.2.0-beta.0",
+  "version": "2.2.0",
   "description": "Theme for Siemens ix",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",

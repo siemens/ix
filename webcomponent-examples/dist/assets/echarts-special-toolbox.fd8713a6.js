@@ -1,0 +1,64 @@
+import "./global.2bfd6008.js";
+import { r as registerEChartsThemes, c as convertThemeName } from "./index.esm.40fdebf6.js";
+import "./index.50971e87.js";
+import { t as themeSwitcher } from "./theme-switcher-5fcf712d.42146bb7.js";
+import "./init.aa12a02f.js";
+import "./logical-filter-operator-d793d1c3.ce417adc.js";
+import "./flip-tile-state-76dd224a.ffe63233.js";
+import "./upload-file-state-de676cd5.96d9c6b3.js";
+import "./modal-101eef04.04114a11.js";
+import "./typed-event-ad6484c5.eb731a3b.js";
+import "./animation-4a73b1c3.59b7eda0.js";
+const echartsSpecialToolbox = "";
+const data = {
+  months: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  values: [150, 230, 224, 218, 135, 147, 260]
+};
+function initChart(theme, options2) {
+  var myChart2 = echarts.init(
+    document.querySelector("#main"),
+    convertThemeName(theme)
+  );
+  myChart2.setOption(options2);
+  return myChart2;
+}
+const options = {
+  toolbox: {
+    feature: {
+      dataZoom: {
+        yAxisIndex: "none"
+      },
+      restore: {},
+      saveAsImage: {},
+      magicType: {
+        type: ["line", "bar"]
+      },
+      dataView: {
+        show: true
+      }
+    }
+  },
+  xAxis: {
+    type: "category",
+    data: data.months
+  },
+  yAxis: {
+    type: "value"
+  },
+  series: [
+    {
+      data: data.values,
+      type: "line",
+      step: "end"
+    }
+  ]
+};
+registerEChartsThemes(echarts);
+var myChart = initChart(themeSwitcher.getCurrentTheme(), options);
+themeSwitcher.themeChanged.on((theme) => {
+  myChart.dispose();
+  myChart = initChart(theme, options);
+});
+window.onresize = function() {
+  myChart.resize();
+};

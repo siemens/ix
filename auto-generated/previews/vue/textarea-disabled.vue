@@ -7,8 +7,18 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script setup lang="ts"></script>
+<script lang="ts">
+import { IxTextarea } from '@siemens/ix-vue';
+
+export default {
+  name: 'TextareaDisabled',
+  components: { IxTextarea },
+};
+</script>
 
 <template>
-  <textarea placeholder="Enter text here" disabled>Some example text</textarea>
+  <IxTextarea
+    value="Some text"
+    disabled
+  ></IxTextarea>
 </template>
