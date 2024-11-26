@@ -12,6 +12,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   templateUrl: './form-layout-grid.html',
-  styleUrls: ['./form-layout-grid.css'],
+  styleUrls: ['./form-layout-grid.scss'],
 })
 export default class FormLayoutGrid {}
