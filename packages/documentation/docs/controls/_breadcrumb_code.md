@@ -6,48 +6,50 @@ import ItemEvents from './../auto-generated/ix-breadcrumb-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3'
 
-## Examples
+## Development
+
+### Examples
 
 <Playground
-  name="breadcrumb"
-  height="8rem"
-  >
-</Playground>
+name="breadcrumb"
+height="8rem"
 
-### Truncate
+> </Playground>
 
-<Playground
-  name="breadcrumb-truncate"
-  height="10rem"
-  hideInitalCodePreview
-  >
-</Playground>
-
-### Lazy loaded next items
+#### Truncate
 
 <Playground
-  name="breadcrumb-next-items"
-  height="8rem"
-  hideInitalCodePreview
-  >
-</Playground>
+name="breadcrumb-truncate"
+height="10rem"
+hideInitalCodePreview
 
-## API (ix-breadcrumb)
+> </Playground>
 
-### Properties
+#### Lazy loaded next items
+
+<Playground
+name="breadcrumb-next-items"
+height="8rem"
+hideInitalCodePreview
+
+> </Playground>
+
+### API (ix-breadcrumb)
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-breadcrumb-item)
+### API (ix-breadcrumb-item)
 
-### Properties
+#### Properties
 
 <ItemProps />
 
-#### Events
+##### Events
 
 <ItemEvents />

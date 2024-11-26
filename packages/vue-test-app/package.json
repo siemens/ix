@@ -15,6 +15,8 @@
     "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-icons": "0.0.0-20240827135516",
     "@siemens/ix-vue": "workspace:*",
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
     "ag-grid-community": "^30.2.1",
     "ag-grid-vue3": "^30.2.1",
     "echarts": "^5.5.1",
@@ -22,7 +24,6 @@
     "html-test-app": "workspace:*",
     "vue": "^3.4.34",
     "vue-echarts": "~6.6.10",
-    "vue-hooks-form": "^0.3.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

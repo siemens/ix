@@ -22,8 +22,8 @@ describe('ix-drawer', () => {
       html: '<ix-drawer>Example Content</ix-drawer>',
     });
 
-    drawer = document.querySelector('ix-drawer');
-    container = document.querySelector('[data-testid="container"]');
+    drawer = document.querySelector('ix-drawer')!;
+    container = document.querySelector('[data-testid="container"]')!;
   });
 
   it('opens the drawer', async () => {
@@ -40,10 +40,11 @@ describe('ix-drawer', () => {
     drawer.show = true;
     await page.waitForChanges();
 
-    const closeButton = drawer.shadowRoot.querySelector(
+    const closeButton = drawer.shadowRoot!.querySelector(
       '[data-testid="close-button"]'
-    );
+    )!;
     fireEvent.click(closeButton);
+
     await page.waitForChanges();
     expect(drawer.show).toBeFalsy();
     expect(drawer.innerHTML).not.toContain('toggle');
@@ -56,7 +57,7 @@ describe('ix-drawer', () => {
     drawer.fullHeight = true;
     await page.waitForChanges();
 
-    expect(container.classList.contains('full-height')).toBeTruthy();
+    expect(container.style.height.includes('100%')).toBeTruthy();
   });
 
   it('drawer is NOT displayed at full height, if fullHeight is set to false', async () => {
@@ -66,7 +67,7 @@ describe('ix-drawer', () => {
     drawer.fullHeight = false;
     await page.waitForChanges();
 
-    expect(container.classList.contains('full-height')).toBeFalsy();
+    expect(container.style.height.includes('auto')).toBeTruthy();
   });
 
   it('emits an event, when show changed', async () => {
@@ -76,9 +77,9 @@ describe('ix-drawer', () => {
     drawer.toggleDrawer();
     await page.waitForChanges();
 
-    const closeButton = drawer.shadowRoot.querySelector(
+    const closeButton = drawer.shadowRoot!.querySelector(
       '[data-testid="close-button"]'
-    );
+    )!;
     fireEvent.click(closeButton);
 
     window.removeEventListener('open', mockCallback);

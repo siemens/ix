@@ -8,6 +8,7 @@
  */
 @import 'common-variables';
 @import 'mixins/fonts';
+@import 'mixins/validation/form-component';
 
 @mixin element-input($feature-read-only: true) {
   & {
@@ -19,7 +20,8 @@
     color: var(--theme-input--color);
     appearance: textfield;
     text-overflow: ellipsis;
-    border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color);
+    border: var(--theme-input--border-thickness, 1px) solid
+      var(--theme-input--border-color);
     border-radius: var(--theme-input--border-radius);
     box-shadow: var(--theme-input--box-shadow);
   }
@@ -29,7 +31,8 @@
     -webkit-box-shadow: 0 0 0 1000px var(--theme-color-component-info) inset !important;
     -webkit-text-fill-color: var(--theme-input--color--autofill) !important;
     background-color: var(--theme-input--background--autofill) !important;
-    border: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color--autofill) !important;
+    border: var(--theme-input--border-thickness, 1px) solid
+      var(--theme-input--border-color--autofill) !important;
     color: var(--theme-input--color--autofill) !important;
   }
 
@@ -37,15 +40,31 @@
     color: var(--theme-input-hint--color);
   }
 
-  &.hover, &:hover {
-    &:not(.read-only, .disabled, [readonly], [disabled]) {
+  &.hover,
+  &:hover {
+    &:not(
+        .readonly,
+        .read-only,
+        .disabled,
+        [readonly],
+        [disabled],
+        :read-only
+      ) {
       border-color: var(--theme-input--border-color--hover) !important;
       background-color: var(--theme-input--background--hover);
     }
   }
 
-  &.focus, &:focus {
-    &:not(.read-only, .disabled, [readonly], [disabled]) {
+  &.focus,
+  &:focus {
+    &:not(
+        .readonly,
+        .read-only,
+        .disabled,
+        [readonly],
+        [disabled],
+        :read-only
+      ) {
       outline: 1px solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-input--focus--outline-offset);
       border-color: var(--theme-input--border-color--focus) !important;
@@ -59,7 +78,10 @@
       background-color: transparent;
       outline: none;
       border: none;
-      border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color-bottom--readonly);
+      border-radius: 0;
+      border-bottom: var(--theme-input--border-thickness, 1px)
+        solid
+        var(--theme-input--border-color-bottom--readonly);
     }
 
     &.read-only,
@@ -70,16 +92,20 @@
     }
   }
 
-  &:disabled, &.disabled {
+  &:disabled,
+  &.disabled {
     box-shadow: none;
     background-color: transparent;
     outline: none;
     border: none;
+    border-radius: 0;
     color: var(--theme-input--color--disabled);
-    border-bottom: var(--theme-input--border-thickness, 1px) solid var(--theme-input--border-color-bottom--disabled);
+    border-bottom: var(--theme-input--border-thickness, 1px) solid
+      var(--theme-input--border-color-bottom--disabled);
   }
 
-  &:disabled::placeholder, &.disabled::placeholder {
+  &:disabled::placeholder,
+  &.disabled::placeholder {
     color: transparent;
   }
 }
@@ -178,6 +204,59 @@
     .invalid-feedback,
     .valid-feedback {
       display: none !important;
+    }
+  }
+
+  @include input-valid;
+
+  @include input-info {
+    & {
+      border-color: var(--theme-input--border-color--info);
+    }
+
+    &:hover {
+      border-color: var(--theme-input--border-color--info--hover) !important;
+    }
+
+    &:active {
+      border-color: var(--theme-input--border-color--info--active) !important;
+    }
+  }
+
+  @include input-warning {
+    & {
+      border-color: var(
+        --theme-input--border-color--warning--active
+      ) !important;
+    }
+
+    &:hover {
+      border-color: var(
+        --theme-input--border-color--warning--active
+      ) !important;
+    }
+
+    &:active {
+      border-color: var(
+        --theme-input--border-color--warning--active
+      ) !important;
+    }
+  }
+
+  @include input-invalid {
+    & {
+      background-color: var(--theme-input--background--invalid);
+      border-color: var(--theme-input--border-color--invalid) !important;
+    }
+
+    &:hover {
+      border-color: var(--theme-input--border-color--invalid--hover) !important;
+    }
+
+    &:active {
+      border-color: var(
+        --theme-input--border-color--invalid--active
+      ) !important;
     }
   }
 }

@@ -304,7 +304,7 @@ export class Menu {
   }
 
   componentDidRender() {
-    if (!this.about) {
+    if (!this.about && this.aboutNewsPopover) {
       this.aboutNewsPopover.show = false;
     }
     this.appendFragments();

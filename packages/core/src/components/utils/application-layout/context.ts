@@ -8,18 +8,16 @@
  */
 
 import { createContext } from '../context';
+import { type LiteralStringUnion } from '../type-helper';
 
 export const closestIxMenu = (element: Element) => {
   const menuElement = element.closest('ix-menu');
   return menuElement;
 };
 
-export type AppSwitchConfigurationTarget =
-  | '_self'
-  | '_blank'
-  | '_parent'
-  | '_top'
-  | (string & {});
+export type AppSwitchConfigurationTarget = LiteralStringUnion<
+  '_self' | '_blank' | '_parent' | '_top'
+>;
 
 export type AppSwitchConfiguration = {
   currentAppId: string;

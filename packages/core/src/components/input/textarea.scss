@@ -1,0 +1,56 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import './input.mixins.scss';
+
+@include input-field;
+
+@include host-valid;
+
+@include host-info {
+  textarea {
+    border-color: var(--theme-input--border-color--info);
+  }
+
+  textarea:hover {
+    border-color: var(--theme-input--border-color--info--hover) !important;
+  }
+
+  textarea:active {
+    border-color: var(--theme-input--border-color--info--active) !important;
+  }
+}
+
+@include host-warning {
+  textarea {
+    border-color: var(--theme-input--border-color--warning--active) !important;
+  }
+
+  textarea:hover {
+    border-color: var(--theme-input--border-color--warning--active) !important;
+  }
+
+  textarea:active {
+    border-color: var(--theme-input--border-color--warning--active) !important;
+  }
+}
+
+@include host-invalid {
+  textarea {
+    background-color: var(--theme-input--background--invalid);
+    border-color: var(--theme-input--border-color--invalid) !important;
+  }
+
+  textarea:hover {
+    border-color: var(--theme-input--border-color--invalid--hover) !important;
+  }
+
+  textarea:active {
+    border-color: var(--theme-input--border-color--invalid--active) !important;
+  }
+}

@@ -16,7 +16,8 @@ type IxSelectEvents = {
     onValueChange: EventName<CustomEvent<string | string[]>>,
     onItemSelectionChange: EventName<CustomEvent<string[]>>,
     onInputChange: EventName<CustomEvent<string>>,
-    onAddItem: EventName<CustomEvent<string>>
+    onAddItem: EventName<CustomEvent<string>>,
+    onIxBlur: EventName<CustomEvent<void>>
 };
 
 const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = /*@__PURE__*/ createComponent<IxSelectElement, IxSelectEvents>({
@@ -28,7 +29,8 @@ const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = /*@__PU
         onValueChange: 'valueChange',
         onItemSelectionChange: 'itemSelectionChange',
         onInputChange: 'inputChange',
-        onAddItem: 'addItem'
+        onAddItem: 'addItem',
+        onIxBlur: 'ixBlur'
     } as IxSelectEvents,
     defineCustomElement: defineIxSelect
 });

@@ -7,7 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+} from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
@@ -156,15 +160,16 @@ regressionTest('open filtered dropdown on input', async ({ mount, page }) => {
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
         </ix-select>
     `);
-  const element = page.locator('ix-select');
-  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
+  const select = page.locator('ix-select');
+  const input = select.locator('input');
+  await select.evaluate((select: HTMLIxSelectElement) => (select.value = []));
 
-  await page.locator('[data-testid="input"]').focus();
-  page.keyboard.down('Escape');
-  const dropdown = element.locator('ix-dropdown');
+  await input.focus();
+  await page.keyboard.press('Escape');
+  const dropdown = select.locator('ix-dropdown');
   await expect(dropdown).not.toBeVisible();
 
-  page.keyboard.down('1');
+  await input.fill('1');
 
   const item1 = page.getByRole('button', { name: 'Item 1' });
   const item2 = page.getByRole('button', { name: 'Item 2' });
@@ -405,7 +410,7 @@ regressionTest.describe('arrow key navigation', () => {
       await page.waitForSelector('.checkmark');
 
       await page.keyboard.down('ArrowDown');
-      const addItem = await page.locator('ix-dropdown-item');
+      const addItem = page.locator('ix-dropdown-item');
       await expect(addItem).toBeFocused();
     });
 
@@ -499,7 +504,7 @@ regressionTest.describe('arrow key navigation', () => {
       await input.focus();
       await input.fill('Item 2');
       await page.keyboard.press('Enter');
-      await page.locator('input').clear();
+      await input.clear();
 
       await page.keyboard.down('ArrowDown');
       await page.waitForTimeout(100);
@@ -740,6 +745,46 @@ regressionTest.describe('arrow key navigation', () => {
   });
 });
 
+regressionTest('form-ready', async ({ mount, page }) => {
+  await mount(`
+    <form>
+      <ix-select name="my-custom-entry">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      </ix-select>
+    </form>
+  `);
+
+  const select = page.locator('ix-select');
+  const formElement = page.locator('form');
+  await preventFormSubmission(formElement);
+  await page.locator('[data-select-dropdown]').click();
+  await page.locator('ix-select-item').nth(1).click();
+
+  const inputValue = await select.locator('input').inputValue();
+  expect(inputValue).toEqual('Item 2');
+
+  const formData = await getFormValue(formElement, 'my-custom-entry', page);
+  expect(formData).toEqual('2');
+});
+
+regressionTest('form-ready - with initial value', async ({ mount, page }) => {
+  await mount(`
+    <form>
+      <ix-select name="my-custom-entry" value="some other">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="some other" label="Item 3">Test</ix-select-item>
+      </ix-select>
+    </form>
+  `);
+
+  const formElement = page.locator('form');
+  await preventFormSubmission(formElement);
+  const formData = await getFormValue(formElement, 'my-custom-entry', page);
+  expect(formData).toEqual('some other');
+});
+
 regressionTest.describe('Events', () => {
   regressionTest('value change', async ({ mount, page }) => {
     await mount(`<ix-select>
@@ -749,8 +794,8 @@ regressionTest.describe('Events', () => {
     const select = await page.locator('ix-select');
     const valueChanged = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('valueChange', (e: CustomEvent) =>
-          resolve(e.detail)
+        elm.addEventListener('valueChange', (e: Event) =>
+          resolve((e as CustomEvent).detail)
         );
       });
     });
@@ -768,7 +813,9 @@ regressionTest.describe('Events', () => {
     const select = await page.locator('ix-select');
     const itemAdded = select.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('addItem', (e: CustomEvent) => resolve(e.detail));
+        elm.addEventListener('addItem', (e: Event) =>
+          resolve((e as CustomEvent).detail)
+        );
       });
     });
     const input = await page.locator('input');
@@ -810,3 +857,24 @@ regressionTest.describe('Events', () => {
     });
   });
 });
+
+regressionTest(
+  'async set content and check input value',
+  async ({ mount, page }) => {
+    await mount(`<ix-select value="1"></ix-select>`);
+
+    await page.evaluate(async () => {
+      const select = document.querySelector('ix-select');
+      if (select) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        select.innerHTML = `
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      `;
+      }
+    });
+
+    const input = page.locator('input');
+    await expect(input).toHaveValue('Item 1');
+  }
+);

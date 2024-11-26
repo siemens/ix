@@ -1,3 +1,4 @@
+import { type LiteralStringUnion } from './type-helper';
 import { TypedEvent } from './typed-event';
 
 export type ThemeVariant = 'light' | 'dark';
@@ -160,11 +161,9 @@ class ThemeSwitcher {
   }
 }
 
-export type IxTheme =
-  | 'classic'
-  | 'classic-dark'
-  | 'classic-light'
-  | (string & {});
+export type IxTheme = LiteralStringUnion<
+  'classic' | 'classic-dark' | 'classic-light'
+>;
 
 export const getCurrentSystemAppearance = (): ThemeVariant => {
   const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');

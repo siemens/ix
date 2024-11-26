@@ -490,14 +490,15 @@ export class Pane {
     });
   }
 
-  @Watch('expanded')
-  onExpandedChange() {
-    this.onSizeChange();
-
-    this.expandedChanged.emit({
+  private dispatchExpandedChangedEvent() {
+    const event = this.expandedChanged.emit({
       slot: this.currentSlot ?? '',
-      expanded: this.expanded,
+      expanded: !this.expanded,
     });
+
+    if (!event.defaultPrevented) {
+      this.expanded = !this.expanded;
+    }
   }
 
   @Watch('parentHeightPx')
@@ -543,6 +544,7 @@ export class Pane {
     }
   }
 
+  @Watch('expanded')
   @Watch('size')
   onSizeChange() {
     if (this.expanded) {
@@ -650,9 +652,7 @@ export class Pane {
                   : this.minimizeIcon
               }
               ghost
-              onClick={() => {
-                this.expanded = !this.expanded;
-              }}
+              onClick={() => this.dispatchExpandedChangedEvent()}
               aria-controls={`pane-${this.composition}`}
             />
             <span

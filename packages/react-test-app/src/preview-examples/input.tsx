@@ -7,16 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-
+import { IxInput } from '@siemens/ix-react';
 
 export default () => {
-  return (
-    <form className="needs-validation m-2">
-      <input
-        defaultValue="Some example text"
-        placeholder="Enter text here"
-        type="text"
-      />
-    </form>
-  );
+  return <IxInput placeholder="Enter your Username"></IxInput>;
 };

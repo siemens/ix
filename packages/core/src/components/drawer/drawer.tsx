@@ -59,12 +59,12 @@ export class Drawer {
   /**
    * Fire event after drawer is open
    */
-  @Event() open: EventEmitter;
+  @Event() open!: EventEmitter;
 
   /**
    * Fire event after drawer is close
    */
-  @Event() drawerClose: EventEmitter;
+  @Event() drawerClose!: EventEmitter;
 
   private static duration = 300;
   private callback = this.clickedOutside.bind(this);
@@ -121,30 +121,34 @@ export class Drawer {
     }
   }
 
-  private slideOutRight(el: HTMLElement) {
-    anime({
-      targets: el,
-      duration: Drawer.duration,
-      translateX: [0, '16rem'],
-      opacity: [1, 0],
-      easing: 'easeInSine',
-      complete: () => {
-        el.classList.add('d-none');
-      },
-    });
+  private slideOutRight(el?: HTMLElement) {
+    if (el) {
+      anime({
+        targets: el,
+        duration: Drawer.duration,
+        translateX: [0, '16rem'],
+        opacity: [1, 0],
+        easing: 'easeInSine',
+        complete: () => {
+          el.classList.add('d-none');
+        },
+      });
+    }
   }
 
-  private slideInRight(el: HTMLElement) {
-    anime({
-      targets: el,
-      duration: Drawer.duration,
-      translateX: ['16rem', 0],
-      opacity: [0, 1],
-      easing: 'easeOutSine',
-      begin: () => {
-        el.classList.remove('d-none');
-      },
-    });
+  private slideInRight(el?: HTMLElement) {
+    if (el) {
+      anime({
+        targets: el,
+        duration: Drawer.duration,
+        translateX: ['16rem', 0],
+        opacity: [0, 1],
+        easing: 'easeOutSine',
+        begin: () => {
+          el.classList.remove('d-none');
+        },
+      });
+    }
   }
 
   componentDidLoad() {
@@ -157,13 +161,13 @@ export class Drawer {
         class={{
           'drawer-container': true,
           toggle: this.show,
-          'full-height': this.fullHeight,
           'd-none': true,
         }}
         style={{
           width: this.width === 'auto' ? this.width : `${this.width}rem`,
           'min-width': `${this.minWidth}rem`,
           'max-width': `${this.maxWidth}rem`,
+          height: this.fullHeight ? '100%' : 'auto',
         }}
         ref={(el) => (this.divElement = el as HTMLElement)}
         data-testid="container"

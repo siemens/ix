@@ -28,7 +28,7 @@ export async function getVueRuntime(baseUrl: string) {
 
   await Promise.all(runtime$);
   const globalCss = await docusaurusFetch(
-    `${baseUrl}auto-generated/previews/vue/styles/global.css`
+    `${baseUrl}auto-generated/previews/vue/global.css`
   );
   runtime['src/styles/global.css'] = globalCss;
   return runtime;
@@ -88,7 +88,7 @@ export async function getAngularRuntime(baseUrl: string) {
   await Promise.all(runtime$);
 
   const globalCss = await docusaurusFetch(
-    `${baseUrl}auto-generated/previews/angular/styles/global.css`
+    `${baseUrl}auto-generated/previews/angular/global.css`
   );
   runtime['src/styles.css'] = globalCss;
   return runtime;

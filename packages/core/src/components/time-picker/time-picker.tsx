@@ -20,7 +20,12 @@ import {
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
-import { iconChevronDown, iconChevronUp } from '@siemens/ix-icons/icons';
+import {
+  iconChevronDown,
+  iconChevronDownSmall,
+  iconChevronUp,
+  iconChevronUpSmall,
+} from '@siemens/ix-icons/icons';
 
 export type TimePickerCorners = DateTimeCardCorners;
 
@@ -127,22 +132,22 @@ export class TimePicker {
   /**
    * Time event
    */
-  @Event() timeSelect: EventEmitter<string>;
+  @Event() timeSelect!: EventEmitter<string>;
 
   /**
    * Time event
    * @deprecated Will be removed in 3.0.0. Use `time-select` event.
    */
-  @Event() done: EventEmitter<string>;
+  @Event() done!: EventEmitter<string>;
 
   /**
    * Time change event
    */
-  @Event() timeChange: EventEmitter<string>;
+  @Event() timeChange!: EventEmitter<string>;
 
-  @State() private _time: DateTime;
-  @State() private _timeRef: 'AM' | 'PM' | undefined;
-  @State() private _formattedTime: TimeOutputFormat;
+  @State() private _time?: DateTime;
+  @State() private _timeRef?: 'AM' | 'PM';
+  @State() private _formattedTime?: TimeOutputFormat;
 
   componentWillLoad() {
     this._time = DateTime.fromFormat(this.time, this.format);
@@ -164,6 +169,10 @@ export class TimePicker {
 
   @Watch('_time')
   formatTime() {
+    if (!this._time) {
+      return;
+    }
+
     const [hour, minute, second] = this._time
       .toFormat(this.format)
       .split(' ')[0]
@@ -178,8 +187,8 @@ export class TimePicker {
 
   @Watch('_time')
   onInternalTimeChange() {
-    this.timeChange.emit(this._time.toFormat(this.format));
-    if (this._timeRef) this._timeRef = this._time.toFormat('a') as 'AM' | 'PM';
+    this.timeChange.emit(this._time?.toFormat(this.format));
+    if (this._timeRef) this._timeRef = this._time?.toFormat('a') as 'AM' | 'PM';
   }
 
   timeUpdate(unit: 'hour' | 'minute' | 'second', value: number): number {
@@ -194,7 +203,7 @@ export class TimePicker {
       value = 0;
     }
 
-    this._time = this._time.set({
+    this._time = this._time?.set({
       [unit]: value,
     });
     return value;
@@ -203,8 +212,8 @@ export class TimePicker {
   changeTimeReference() {
     this._timeRef = this._timeRef === 'AM' ? 'PM' : 'AM';
 
-    if (!this._time.toFormat('a').includes(this._timeRef)) {
-      this._time = this._time.plus({
+    if (!this._time?.toFormat('a').includes(this._timeRef)) {
+      this._time = this._time?.plus({
         hour: 12,
       });
     }
@@ -215,7 +224,7 @@ export class TimePicker {
    */
   @Method()
   async getCurrentTime() {
-    return this._time.toFormat(this.format);
+    return this._time?.toFormat(this.format);
   }
 
   render() {
@@ -257,12 +266,12 @@ export class TimePicker {
                   <ix-icon-button
                     size="16"
                     onClick={() =>
-                      (this._time = this._time.plus({
+                      (this._time = this._time?.plus({
                         [descriptor.unit]: 1,
                       }))
                     }
                     ghost
-                    icon={iconChevronUp}
+                    icon={iconChevronUpSmall}
                     variant="primary"
                     class="arrows"
                   ></ix-icon-button>
@@ -275,13 +284,13 @@ export class TimePicker {
                     value={
                       this._formattedTime
                         ? this._formattedTime[descriptor.unit]
-                        : null
+                        : ''
                     }
                     onKeyDown={(e) => {
                       if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
 
                       const value = e.key === 'ArrowUp' ? 1 : -1;
-                      this._time = this._time.plus({
+                      this._time = this._time?.plus({
                         [descriptor.unit]: value,
                       });
                       e.preventDefault();
@@ -298,12 +307,12 @@ export class TimePicker {
                   <ix-icon-button
                     size="16"
                     onClick={() =>
-                      (this._time = this._time.minus({
+                      (this._time = this._time?.minus({
                         [descriptor.unit]: 1,
                       }))
                     }
                     ghost
-                    icon={iconChevronDown}
+                    icon={iconChevronDownSmall}
                     variant="primary"
                     class="arrows"
                   ></ix-icon-button>
@@ -348,11 +357,17 @@ export class TimePicker {
               ></ix-icon-button>
             </div>
           </div>
-          <div class={{ button: true, hidden: !this.standaloneAppearance }}>
+          <div
+            class={{
+              button: true,
+              hidden: !this.standaloneAppearance,
+              standalone: true,
+            }}
+          >
             <ix-button
               onClick={() => {
-                this.timeSelect.emit(this._time.toFormat(this.format));
-                this.done.emit(this._time.toFormat(this.format));
+                this.timeSelect.emit(this._time?.toFormat(this.format));
+                this.done.emit(this._time?.toFormat(this.format));
               }}
             >
               {this.textSelectTime}

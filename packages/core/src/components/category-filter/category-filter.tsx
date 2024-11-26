@@ -23,6 +23,11 @@ import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
 import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
+import { makeRef } from '../utils/make-ref';
+import {
+  addDisposableEventListener,
+  DisposableEventListener,
+} from '../utils/disposable-event-listener';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 
 @Component({
@@ -33,18 +38,25 @@ import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 export class CategoryFilter {
   private readonly ID_CUSTOM_FILTER_VALUE = 'CW_CUSTOM_FILTER_VALUE';
 
-  @State() showDropdown: boolean;
-  @State() private textInput?: HTMLInputElement;
+  private formKeyDownListener?: DisposableEventListener;
+  private preventDefaultListener?: DisposableEventListener;
+  private inputKeyDownListener?: DisposableEventListener;
+  private focusInListener?: DisposableEventListener;
+  private focusOutListener?: DisposableEventListener;
+  private inputListener?: DisposableEventListener;
+
+  private readonly textInput? = makeRef<HTMLInputElement>();
   private formElement?: HTMLFormElement;
   private isScrollStateDirty?: boolean;
   private a11yAttributes?: A11yAttributes;
 
   @Element() hostElement!: HTMLIxCategoryFilterElement;
 
-  @State() hasFocus: boolean;
+  @State() showDropdown = false;
+  @State() hasFocus = false;
   @State() categoryLogicalOperator = LogicalFilterOperator.EQUAL;
-  @State() inputValue: string;
-  @State() category: string;
+  @State() inputValue: string = '';
+  @State() category: string = '';
   @State() filterTokens: Array<{
     id: string;
     value: string;
@@ -156,13 +168,40 @@ export class CategoryFilter {
    */
   @Event() filterChanged!: EventEmitter<FilterState>;
 
+  /**
+   * Event dispatched whenever the filter gets cleared.
+   */
+  @Event() filterCleared!: EventEmitter<void>;
+
   get dropdown() {
-    return this.hostElement.shadowRoot.querySelector('ix-dropdown');
+    return this.hostElement.shadowRoot!.querySelector('ix-dropdown');
   }
 
   @Watch('filterState')
-  watchFilterState(newValue) {
+  watchFilterState(newValue: FilterState) {
     this.setFilterState(newValue);
+  }
+
+  private preventDefault(e: Event) {
+    e.preventDefault();
+  }
+
+  private onFocusIn() {
+    this.hasFocus = true;
+  }
+
+  private onFocusOut() {
+    this.hasFocus = false;
+  }
+
+  private onInput() {
+    this.inputValue = this.textInput?.current?.value || '';
+    const inputState = new InputState(this.inputValue, this.category);
+    this.inputChanged.emit(inputState);
+
+    if (!this.dropdown?.show) {
+      this.openDropdown();
+    }
   }
 
   componentWillLoad() {
@@ -170,40 +209,56 @@ export class CategoryFilter {
   }
 
   componentDidLoad() {
-    if (this.filterState !== undefined) {
-      setTimeout(() => this.setFilterState(this.filterState));
+    setTimeout(() => {
+      if (this.filterState !== undefined) {
+        this.setFilterState(this.filterState);
+      }
+    });
+
+    if (this.formElement !== undefined) {
+      this.formKeyDownListener = addDisposableEventListener(
+        this.formElement,
+        'keydown',
+        ((e: KeyboardEvent) =>
+          this.handleFormElementKeyDown(e)) as EventListener
+      );
+
+      this.preventDefaultListener = addDisposableEventListener(
+        this.formElement,
+        'submit',
+        this.preventDefault
+      );
     }
 
-    this.hostElement?.addEventListener(
-      'keydown',
-      this.handleFormElementKeyDown.bind(this)
-    );
-
-    this.formElement?.addEventListener('submit', (e) => e.preventDefault());
-
-    if (this.textInput == null) {
+    if (this.textInput?.current == null) {
       console.warn(
         'ix-category-filter - unable to add event listeners to native input element'
       );
       return;
     }
 
-    this.textInput.addEventListener('focusin', () => {
-      this.hasFocus = true;
-    });
-    this.textInput.addEventListener('focusout', () => (this.hasFocus = false));
-    this.textInput.addEventListener('input', () => {
-      this.inputValue = this.textInput.value;
-      const inputState = new InputState(this.inputValue, this.category);
-      this.inputChanged.emit(inputState);
-
-      if (!this.dropdown.show) {
-        this.openDropdown();
-      }
-    });
-    this.textInput.addEventListener(
+    this.inputKeyDownListener = addDisposableEventListener(
+      this.textInput.current,
       'keydown',
-      this.handleInputElementKeyDown.bind(this)
+      ((e: KeyboardEvent) => this.handleInputElementKeyDown(e)) as EventListener
+    );
+
+    this.focusInListener = addDisposableEventListener(
+      this.textInput.current,
+      'focusin',
+      () => this.onFocusIn()
+    );
+
+    this.focusOutListener = addDisposableEventListener(
+      this.textInput.current,
+      'focusout',
+      () => this.onFocusOut()
+    );
+
+    this.inputListener = addDisposableEventListener(
+      this.textInput.current,
+      'input',
+      () => this.onInput()
     );
   }
 
@@ -231,7 +286,9 @@ export class CategoryFilter {
       return;
     }
 
-    this.dropdown.show = false;
+    if (this.dropdown) {
+      this.dropdown.show = false;
+    }
   }
 
   private openDropdown() {
@@ -239,21 +296,27 @@ export class CategoryFilter {
       return;
     }
 
-    this.dropdown.show = true;
+    if (this.dropdown) {
+      this.dropdown.show = true;
+    }
   }
 
   private handleFormElementKeyDown(e: KeyboardEvent) {
     switch (e.code) {
       case 'Enter':
       case 'NumpadEnter':
-        if (!document.activeElement.classList.contains('dropdown-item')) {
+        if (!document.activeElement?.classList.contains('dropdown-item')) {
           return;
         }
 
         const token = document.activeElement.getAttribute('data-id');
 
+        if (token === null) {
+          break;
+        }
+
         if (this.hasCategorySelection()) {
-          if (this.category !== undefined) {
+          if (this.category !== '') {
             this.addToken(token, this.category);
           } else if (
             document.activeElement.classList.contains('category-item-id')
@@ -285,46 +348,58 @@ export class CategoryFilter {
   }
 
   private focusPreviousItem() {
-    const sibling = document.activeElement.previousSibling;
+    const sibling = document.activeElement?.previousSibling;
     if (sibling instanceof HTMLElement) {
       sibling.focus();
     }
   }
 
   private focusNextItem() {
-    const sibling = document.activeElement.nextSibling;
+    const sibling = document.activeElement?.nextSibling;
     if (sibling instanceof HTMLElement) {
       sibling.focus();
     }
   }
 
+  private focusElement(selector: string): boolean {
+    const item = this.hostElement.shadowRoot!.querySelector(selector);
+    if (item instanceof HTMLElement) {
+      item.focus();
+      return true;
+    }
+    return false;
+  }
+
+  private onArrowDown(e: KeyboardEvent) {
+    const baseSelector = `.category-item-${
+      this.category !== '' ? 'value' : 'id'
+    }`;
+    const fallbackSelector = '.category-item';
+
+    if (this.focusElement(baseSelector)) {
+      e.stopPropagation();
+      return;
+    }
+
+    if (this.suggestions?.length && this.focusElement(fallbackSelector)) {
+      e.stopPropagation();
+    }
+  }
+
   private handleInputElementKeyDown(e: KeyboardEvent) {
     switch (e.code) {
-      case 'ArrowDown':
-        const selector = `.category-item-${
-          this.category !== undefined ? 'value' : 'id'
-        }`;
-        let item = this.hostElement.shadowRoot.querySelector(selector);
-
-        if (item instanceof HTMLElement) {
-          item.focus();
-          e.stopPropagation();
-        } else if (this.suggestions?.length) {
-          item = this.hostElement.shadowRoot.querySelector('.category-item');
-          if (item instanceof HTMLElement) {
-            item.focus();
-            e.stopPropagation();
-          }
-        }
+      case 'ArrowDown': {
+        this.onArrowDown(e);
         break;
+      }
 
       case 'Backspace':
-        if (this.textInput.value !== '') {
+        if (this.textInput?.current?.value !== '') {
           return;
         }
 
-        if (this.category !== undefined) {
-          this.category = undefined;
+        if (this.category !== '') {
+          this.category = '';
           return;
         }
 
@@ -336,7 +411,10 @@ export class CategoryFilter {
 
       case 'Enter':
       case 'NumpadEnter':
-        this.addToken(this.inputValue, this.category);
+        this.addToken(
+          this.inputValue,
+          this.category || this.ID_CUSTOM_FILTER_VALUE
+        );
         e.preventDefault();
         break;
     }
@@ -379,17 +457,19 @@ export class CategoryFilter {
 
     const pair = { id: category, value: newToken, operator };
     this.filterTokens = [...this.filterTokens, pair];
-    this.textInput.value = '';
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
     this.inputValue = '';
     this.categoryLogicalOperator = LogicalFilterOperator.EQUAL;
 
-    if (this.category !== undefined) {
-      this.category = undefined;
+    if (this.category !== '') {
+      this.category = '';
     }
 
     this.isScrollStateDirty = true;
 
-    this.textInput.focus();
+    this.textInput?.current?.focus();
 
     if (emitEvent) {
       this.emitFilterEvent();
@@ -414,20 +494,29 @@ export class CategoryFilter {
 
   private selectCategory(category: string) {
     this.category = category;
-    this.textInput.value = '';
+    if (this.textInput?.current) {
+      this.textInput.current.value = '';
+    }
     this.inputValue = '';
-    this.textInput.focus();
+    this.textInput?.current?.focus();
     this.categoryChanged.emit(category);
   }
 
   private resetFilter(e: Event) {
+    const { defaultPrevented } = this.filterCleared.emit();
+
+    if (defaultPrevented) {
+      return;
+    }
+
     e.stopPropagation();
     this.closeDropdown();
     this.filterTokens = [];
     if (this.category) {
-      this.category = undefined;
-      this.categoryChanged.emit(this.category);
+      this.category = '';
+      this.categoryChanged.emit(undefined);
     }
+
     this.emitFilterEvent();
   }
 
@@ -451,7 +540,7 @@ export class CategoryFilter {
         return false;
       }
 
-      if (this.category !== undefined) {
+      if (this.category !== '') {
         return this.category === filterToken.id;
       }
 
@@ -499,8 +588,8 @@ export class CategoryFilter {
     const operatorString =
       value.operator === LogicalFilterOperator.EQUAL ? '=' : '!=';
     const label =
-      this.categories[value.id]?.label ??
-      this.nonSelectableCategories[value.id] ??
+      this.categories?.[value.id]?.label ??
+      this.nonSelectableCategories?.[value.id] ??
       value.id;
 
     return `${label} ${operatorString} ${value.value}`;
@@ -584,6 +673,10 @@ export class CategoryFilter {
   }
 
   private renderCategoryValues() {
+    if (this.categories === undefined) {
+      return;
+    }
+
     return (
       <div class="dropdown-item-container">
         {this.renderOperatorButton()}
@@ -613,7 +706,7 @@ export class CategoryFilter {
 
   private renderDropdownContent() {
     if (this.hasCategorySelection()) {
-      if (this.category !== undefined) {
+      if (this.category !== '') {
         return this.renderCategoryValues();
       } else {
         return this.renderCategorySelection();
@@ -625,13 +718,16 @@ export class CategoryFilter {
     return (
       <div class="dropdown-item-container">
         {this.getCategoryIds()
-          ?.filter((id) => this.filterByInput(this.categories[id].label))
+          ?.filter(
+            (id) =>
+              this.categories && this.filterByInput(this.categories[id].label)
+          )
           .filter((id) => this.filterMultiples(id))
           .map((id) => (
             <button
               class="dropdown-item category-item category-item-id"
               data-id={id}
-              title={this.categories[id].label}
+              title={this.categories?.[id]?.label}
               key={id}
               onClick={(e) => {
                 e.preventDefault();
@@ -639,7 +735,7 @@ export class CategoryFilter {
               }}
               tabindex="0"
             >
-              {this.categories[id]?.label}
+              {this.categories?.[id]?.label}
             </button>
           ))}
       </div>
@@ -648,8 +744,8 @@ export class CategoryFilter {
 
   private getDropdownHeader() {
     if (this.categories !== undefined) {
-      if (this.category !== undefined) {
-        return null;
+      if (this.category !== '') {
+        return undefined;
       } else {
         return this.labelCategories;
       }
@@ -661,9 +757,30 @@ export class CategoryFilter {
   componentDidRender() {
     if (this.isScrollStateDirty) {
       if (!this.tmpDisableScrollIntoView) {
-        this.textInput.scrollIntoView();
+        this.textInput?.current?.scrollIntoView();
       }
       this.isScrollStateDirty = false;
+    }
+  }
+
+  disconnectedCallback() {
+    if (this.preventDefaultListener) {
+      this.preventDefaultListener();
+    }
+    if (this.formKeyDownListener) {
+      this.formKeyDownListener();
+    }
+    if (this.inputKeyDownListener) {
+      this.inputKeyDownListener?.();
+    }
+    if (this.focusInListener) {
+      this.focusInListener();
+    }
+    if (this.focusOutListener) {
+      this.focusOutListener();
+    }
+    if (this.inputListener) {
+      this.inputListener();
     }
   }
 
@@ -674,7 +791,7 @@ export class CategoryFilter {
         class={{
           'reset-button': true,
           'hide-reset-button':
-            !this.filterTokens.length && this.category === undefined,
+            !this.filterTokens.length && this.category === '',
         }}
         ghost
         oval
@@ -742,7 +859,7 @@ export class CategoryFilter {
                   <span
                     class={{
                       'category-preview': true,
-                      'd-none': this.category === undefined,
+                      'd-none': this.category === '',
                     }}
                   >
                     {this.categories[this.category]?.label}
@@ -752,15 +869,13 @@ export class CategoryFilter {
                   class={{
                     'text-input': true,
                     'hide-placeholder':
-                      this.readonly ||
-                      this.disabled ||
-                      this.category !== undefined,
+                      this.readonly || this.disabled || this.category !== '',
                   }}
                   autocomplete="off"
                   name="category-filter-input"
                   disabled={this.disabled}
                   readonly={this.readonly}
-                  ref={(el) => (this.textInput = el)}
+                  ref={this.textInput}
                   type="text"
                   placeholder={this.placeholder}
                   {...this.a11yAttributes}
@@ -778,7 +893,7 @@ export class CategoryFilter {
             show={this.showDropdown}
             closeBehavior="outside"
             offset={{ mainAxis: 2 }}
-            anchor={this.textInput}
+            anchor={this.textInput?.waitForCurrent()}
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
           >
