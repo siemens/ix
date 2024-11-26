@@ -1,4 +1,4 @@
-import Playground from '@site/src/components/PlaygroundV2';
+import Playground from '@site/src/components/PlaygroundV3';
 import Props from '@site/docs/auto-generated/ix-layout-auto/props.md';
 import Events from '@site/docs/auto-generated/ix-layout-auto/events.md';
 import Tags from '@site/docs/auto-generated/ix-layout-auto/tags.md';
@@ -13,7 +13,6 @@ import Tags from '@site/docs/auto-generated/ix-layout-auto/tags.md';
 
 <Playground
 name="layout-auto"
-examplesByName
 height="14rem"
 
 > </Playground>
@@ -22,7 +21,6 @@ height="14rem"
 
 <Playground
 name="layout-auto-custom"
-examplesByName
 height="14rem"
 
 > </Playground>

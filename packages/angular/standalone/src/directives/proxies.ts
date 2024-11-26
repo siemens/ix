@@ -496,7 +496,7 @@ export class IxCategoryFilter {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['categoryChanged', 'inputChanged', 'filterChanged']);
+    proxyOutputs(this, this.el, ['categoryChanged', 'inputChanged', 'filterChanged', 'filterCleared']);
   }
 }
 
@@ -517,6 +517,10 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
    * Event dispatched whenever the filter state changes.
    */
   filterChanged: EventEmitter<CustomEvent<IIxCategoryFilterFilterState>>;
+  /**
+   * Event dispatched whenever the filter gets cleared.
+   */
+  filterCleared: EventEmitter<CustomEvent<void>>;
 }
 
 

@@ -1,8 +1,5 @@
 import Admonition from '@theme/Admonition';
-import Playground, {
-  SourceCodePreview,
-} from '@site/src/components/PlaygroundV2';
-import StackblitzEmbedded from '@site/src/components/StackblitzEmbedded';
+import { SourceCodePreview } from '@site/src/components/PlaygroundV2';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Props from '@site/docs/auto-generated/ix-validation-tooltip/props.md';
@@ -59,18 +56,11 @@ To suppress the internal validation of a component, you have to provide the `nov
 
 <Tabs>
   <TabItem value="angular" label="Angular" default>
-
     <Admonition type="tip" icon="💡" title="Important">
       Please note that using the `required` attribute in an Angular application could result in unfavourabe behaviour displaying the field as invalid even if there was no user interaction yet.
       To avoid that it is suggested not to add the `required` attribute, but implement a custom validator for required fields instead (see `name` and `last-name` in the following code).
     </Admonition>
-
-    <details>
-      <summary>Just want to see the source code?</summary>
-      <SourceCodePreview framework="angular" name="form-validation" examplesByName/>
-    </details>
-
-    <StackblitzEmbedded exampleName="form-validation" height="800px" framework="angular" />
+    <SourceCodePreview framework="angular" name="form-validation" examplesByName/>
 
   </TabItem>
   <TabItem value="react" label="React">
@@ -78,27 +68,15 @@ To suppress the internal validation of a component, you have to provide the `nov
       Using `react-form-hook` is just an example to demonstrate how validation could be done
       within React. You can use any other validation library or write your own validation logic.
     </Admonition>
-
-    <details>
-      <summary>Just want to see the source code?</summary>
-
-      <SourceCodePreview framework="react" name="form-validation" examplesByName/>
-    </details>
-    <StackblitzEmbedded exampleName="form-validation" height="800px" framework="react" />
+    <SourceCodePreview framework="react" name="form-validation" examplesByName/>
 
   </TabItem>
   <TabItem value="vue" label="Vue">
-  <Admonition type="tip" icon="💡" title="Just an example">
+    <Admonition type="tip" icon="💡" title="Just an example">
       Using `@vuelidate/core` is just an example to demonstrate how validation could be done
       within Vue. You can use any other validation library or write your own validation logic.
     </Admonition>
-
-    <details>
-      <summary>Just want to see the source code?</summary>
-
-      <SourceCodePreview framework="vue" name="form-validation" examplesByName/>
-    </details>
-    <StackblitzEmbedded exampleName="form-validation" height="800px" framework="vue" />
+    <SourceCodePreview framework="vue" name="form-validation" examplesByName/>
 
   </TabItem>
 </Tabs>

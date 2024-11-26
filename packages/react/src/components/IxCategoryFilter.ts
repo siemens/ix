@@ -16,7 +16,8 @@ import React from 'react';
 type IxCategoryFilterEvents = {
     onCategoryChanged: EventName<CustomEvent<string>>,
     onInputChanged: EventName<IxCategoryFilterCustomEvent<InputState>>,
-    onFilterChanged: EventName<IxCategoryFilterCustomEvent<FilterState>>
+    onFilterChanged: EventName<IxCategoryFilterCustomEvent<FilterState>>,
+    onFilterCleared: EventName<CustomEvent<void>>
 };
 
 const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, IxCategoryFilterEvents> = /*@__PURE__*/ createComponent<IxCategoryFilterElement, IxCategoryFilterEvents>({
@@ -27,7 +28,8 @@ const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, IxCategor
     events: {
         onCategoryChanged: 'categoryChanged',
         onInputChanged: 'inputChanged',
-        onFilterChanged: 'filterChanged'
+        onFilterChanged: 'filterChanged',
+        onFilterCleared: 'filterCleared'
     } as IxCategoryFilterEvents,
     defineCustomElement: defineIxCategoryFilter
 });

@@ -37,11 +37,12 @@ import {
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
+import { findElement } from '../utils/find-element';
 import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
-import { ElementReference } from 'src/components/utils/element-reference';
+import { ElementReference } from '../utils/element-reference';
 
 let sequenceId = 0;
 
@@ -322,7 +323,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private async resolveElement(element: ElementReference) {
-    const el = await this.findElement(element);
+    const el = await findElement(element);
 
     return this.checkForSubmenuAnchor(el);
   }
@@ -344,41 +345,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
 
     return element;
-  }
-
-  private findElement(element: ElementReference): Promise<Element | undefined> {
-    if (element instanceof Promise) {
-      return element;
-    }
-
-    if (typeof element === 'object') {
-      return Promise.resolve(element);
-    }
-
-    if (typeof element != 'string') {
-      return Promise.resolve(undefined);
-    }
-
-    const selector = `#${element}`;
-    return new Promise((resolve) => {
-      const el = document.querySelector(selector);
-      if (el !== null) {
-        return resolve(el);
-      }
-
-      const observer = new MutationObserver(() => {
-        const el = document.querySelector(selector);
-        if (el) {
-          resolve(el);
-          observer.disconnect();
-        }
-      });
-
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
-    });
   }
 
   private async resolveAnchorElement() {

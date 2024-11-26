@@ -38,20 +38,33 @@ regressionTest.describe('category-preview test', () => {
     });
   });
 
-  regressionTest('clear category-preview', async ({ page }) => {
+  regressionTest('add token', async ({ page }) => {
+    const token = 'Test';
     await page.waitForSelector('ix-category-filter');
-    await page.locator('input').first().click();
-    await page.locator('.category-item').first().click();
+    const input = await page.locator('input').first();
+    await input.click();
+    await input.fill(token);
+    await page.keyboard.press('Enter');
+    const chip = await page.locator('ix-filter-chip').first();
+    await expect(chip).toContainText(token);
+  });
 
-    const categoryPreviewPromise = page.evaluate(() => {
-      return new Promise((resolve) => {
-        function onCategoryChanged(event) {
-          resolve(event.detail);
-        }
+  regressionTest('clear category-preview', async ({ page }) => {
+    const categoryFilter = page.locator('ix-category-filter');
+    await categoryFilter.locator('input').first().click();
+    await categoryFilter.locator('.category-item').first().click();
 
-        document.addEventListener('categoryChanged', onCategoryChanged);
-      });
-    });
+    const categoryPreviewPromise = categoryFilter.evaluate(
+      (element: HTMLIxCategoryFilterElement) => {
+        return new Promise((resolve) => {
+          function onCategoryChanged(event: CustomEvent) {
+            resolve(event.detail);
+          }
+
+          element.addEventListener('categoryChanged', onCategoryChanged);
+        });
+      }
+    );
 
     await page.locator('ix-icon-button').first().click();
     const categoryPreview = await categoryPreviewPromise;

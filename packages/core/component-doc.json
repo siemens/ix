@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.22.2",
+    "version": "4.22.3",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -2487,6 +2487,20 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event dispatched whenever the filter state changes.",
+          "docsTags": []
+        },
+        {
+          "event": "filterCleared",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event dispatched whenever the filter gets cleared.",
           "docsTags": []
         },
         {
@@ -6438,7 +6452,7 @@
             "references": {
               "ElementReference": {
                 "location": "import",
-                "path": "src/components/utils/element-reference",
+                "path": "../utils/element-reference",
                 "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
@@ -6665,7 +6679,7 @@
             "references": {
               "ElementReference": {
                 "location": "import",
-                "path": "src/components/utils/element-reference",
+                "path": "../utils/element-reference",
                 "id": "src/components/utils/element-reference.ts::ElementReference"
               }
             }
@@ -19990,8 +20004,8 @@
             "references": {
               "ElementReference": {
                 "location": "import",
-                "path": "../utils/element-reference",
-                "id": "src/components/utils/element-reference.ts::ElementReference"
+                "path": "src/components",
+                "id": "src/components.d.ts::ElementReference"
               }
             }
           },
@@ -21815,10 +21829,15 @@
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.22.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "src/components.d.ts::ElementReference": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.22.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "src/components.d.ts"
+    },
+    "../../node_modules/.pnpm/@stencil+core@4.22.3/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+      "declaration": "any",
+      "docstring": "",
+      "path": "../../node_modules/.pnpm/@stencil+core@4.22.3/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",
