@@ -117,13 +117,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * Indices of selected items.
-   * This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
-   * @deprecated since 2.0.0. Use the `value` property instead.
-   */
-  @Prop({ mutable: true }) selectedIndices?: string | string[];
-
-  /**
    * Current selected value.
    * This corresponds to the value property of ix-select-items
    * @since 2.0.0
@@ -189,12 +182,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * @since 2.0.0
    */
   @Event() valueChange!: EventEmitter<string | string[]>;
-
-  /**
-   * Item selection changed
-   * @deprecated since 2.0.0. Use `valueChange` instead.
-   */
-  @Event() itemSelectionChange!: EventEmitter<string[]>;
 
   /**
    * Event dispatched whenever the text input changes.
@@ -293,15 +280,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return this.items.every((item) => item.classList.contains('d-none'));
   }
 
-  @Watch('selectedIndices')
-  watchSelectedIndices(value: string | string[]) {
-    this.value = value;
-    this.updateSelection();
-  }
-
   @Watch('value')
   watchValue(value: string | string[]) {
-    this.selectedIndices = value;
+    this.value = value;
     this.updateSelection();
   }
 
@@ -472,12 +453,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       return true;
     }
 
-    if (!value) {
-      this.itemSelectionChange.emit(null);
-    } else {
-      this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
-    }
-
     this.updateFormInternalValue(value);
     return false;
   }
@@ -490,10 +465,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   componentWillLoad() {
-    if (this.selectedIndices && !this.value) {
-      this.value = this.selectedIndices;
-    }
-
     this.updateSelection();
     this.updateFormInternalValue(this.value);
   }

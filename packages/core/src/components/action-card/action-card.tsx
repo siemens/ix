@@ -9,7 +9,6 @@
 
 import { Component, h, Host, Prop } from '@stencil/core';
 import { CardVariant } from '../card/card';
-import { TypographyColors } from '../typography/typography';
 
 export type ActionCardVariant = CardVariant;
 
@@ -24,9 +23,8 @@ export type ActionCardVariant = CardVariant;
 export class IxActionCard {
   /**
    * Card variant
-   * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
    */
-  @Prop() variant: ActionCardVariant = 'insight';
+  @Prop() variant: ActionCardVariant = 'outline';
 
   /**
    * Card icon
@@ -48,18 +46,8 @@ export class IxActionCard {
    */
   @Prop() selected = false;
 
-  private getSubheadingColor(): TypographyColors | undefined {
-    switch (this.variant) {
-      case 'insight':
-      case 'notification':
-        return 'soft';
-
-      default:
-        return undefined;
-    }
-  }
-
   render() {
+    //Check subheading color
     return (
       <Host>
         <ix-card
@@ -76,9 +64,7 @@ export class IxActionCard {
                 <ix-typography format="h4">{this.heading}</ix-typography>
               ) : null}
               {this.subheading ? (
-                <ix-typography format="h5" color={this.getSubheadingColor()}>
-                  {this.subheading}
-                </ix-typography>
+                <ix-typography format="h5">{this.subheading}</ix-typography>
               ) : null}
               <slot></slot>
             </div>

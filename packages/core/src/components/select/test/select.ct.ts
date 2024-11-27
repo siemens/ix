@@ -344,8 +344,13 @@ regressionTest(
       await page
         .locator('ix-select-item')
         .nth(index)
-        .evaluate((e: HTMLIxSelectItemElement, index) => {
-          e.value = { selectLabel: `Item ${index}`, selectValue: `${index}` };
+        .evaluate((e: HTMLIxSelectItemElement, innerIndex) => {
+          console.log(index);
+          console.log(innerIndex);
+          //TODO: Check if this is okay
+          if (typeof innerIndex === 'string') {
+            e.value = innerIndex;
+          }
         });
     }
 

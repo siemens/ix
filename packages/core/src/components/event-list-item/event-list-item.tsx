@@ -31,18 +31,6 @@ export class EventListItem {
    * Example values are `--theme-color-alarm` or `color-alarm`
    *
    * @link https://ix.siemens.io/docs/theming/colors/
-   *
-   * @deprecated since 2.1.0 use `item-color`
-   */
-  // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color?: string;
-
-  /**
-   * Color of the status indicator.
-   * You can find a list of all available colors in our documentation.
-   * Example values are `--theme-color-alarm` or `color-alarm`
-   *
-   * @link https://ix.siemens.io/docs/theming/colors/
    */
   @Prop() itemColor?: string;
 
@@ -76,12 +64,6 @@ export class EventListItem {
       ? `var(${this.itemColor})`
       : `var(--theme-${this.itemColor})`;
 
-    if (this.color) {
-      color = this.color?.startsWith('--theme')
-        ? `var(${this.color})`
-        : `var(--theme-${this.color})`;
-    }
-
     return (
       <Host
         class={{
@@ -98,12 +80,9 @@ export class EventListItem {
           }}
         >
           <div
-            class={`indicator ${
-              !(this.itemColor ?? this.color) ? 'indicator-empty' : ''
-            }`}
+            class={`indicator ${!this.itemColor ? 'indicator-empty' : ''}`}
             style={{
-              'background-color':
-                (this.itemColor ?? this.color) ? color : 'inherit',
+              'background-color': this.itemColor ? color : 'inherit',
               opacity: `${this.disabled ? 0.4 : 1}`,
             }}
           ></div>

@@ -73,14 +73,6 @@ export class IxTypography {
 
   /**
    * Text color based on theme variables
-   *
-   * @deprecated since 2.1.0 use property `text-color`
-   */
-  // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color?: TypographyColors;
-
-  /**
-   * Text color based on theme variables
    */
   @Prop() textColor?: TypographyColors;
 
@@ -104,13 +96,7 @@ export class IxTypography {
 
     typographyClass['typography-weight-bold'] = this.bold;
 
-    let style = {};
-
-    if (this.color) {
-      style = {
-        color: `var(--theme-color-${this.color}-text)`,
-      };
-    }
+    let style;
 
     if (this.textColor) {
       style = {

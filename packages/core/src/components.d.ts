@@ -120,7 +120,6 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card variant
-          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant": ActionCardVariant;
     }
@@ -309,7 +308,6 @@ export namespace Components {
         "selected": boolean;
         /**
           * Card variant
-          * @deprecated variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.
          */
         "variant": CardVariant;
     }
@@ -529,11 +527,6 @@ export namespace Components {
           * Show close icon
          */
         "closable": boolean;
-        /**
-          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
-          * @deprecated since 2.1.0 use `chip-color`
-         */
-        "color": string | undefined;
         /**
           * Show icon
          */
@@ -809,12 +802,6 @@ export namespace Components {
          */
         "corners": DateTimeCardCorners;
         /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-          * @deprecated Not used anymore see `this.dateChange`
-         */
-        "eventDelimiter": string;
-        /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format": string;
@@ -832,10 +819,6 @@ export namespace Components {
           * @since 2.1.0
          */
         "i18nDone": string;
-        /**
-          * @deprecated Not supported since 2.0.0.
-         */
-        "individual": boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.1.0
@@ -856,12 +839,6 @@ export namespace Components {
          */
         "range": boolean;
         "standaloneAppearance": boolean;
-        /**
-          * Text of the button that confirms date selection.
-          * @since 1.1.0
-          * @deprecated since 2.1.0. Use `i18nDone`
-         */
-        "textSelectDate": string;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
@@ -891,12 +868,6 @@ export namespace Components {
           * @since 1.1.0
          */
         "dateFormat": string;
-        /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-          * @deprecated Not used anymore see `done` event
-         */
-        "eventDelimiter": string;
         /**
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
@@ -944,12 +915,6 @@ export namespace Components {
           * @since 1.1.0
          */
         "showTimeReference": boolean;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-          * @deprecated since 2.1.0. Use `i18nDone`
-         */
-        "textSelectDate"?: string;
         /**
           * Select time with format string
           * @since 1.1.0
@@ -1193,12 +1158,6 @@ export namespace Components {
           * Show chevron on right side of the event list item
          */
         "chevron": boolean;
-        /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
-          * @deprecated since 2.1.0 use `item-color`
-         */
-        "color"?: string;
         /**
           * Disable event list item
          */
@@ -1465,9 +1424,8 @@ export namespace Components {
         "oval": boolean;
         /**
           * Size of icon in button
-          * @deprecated Only size 32 will be removed in 3.0.0
          */
-        "size": '32' | '24' | '16' | '12';
+        "size": '24' | '16' | '12';
         /**
           * Type of the button
          */
@@ -1773,11 +1731,6 @@ export namespace Components {
         "i18nSettings": string;
         "i18nToggleTheme": string;
         /**
-          * Maximum number of menu items to show in case enough vertical space is available. Extra menu items will be collapsed to 'show more' menu item.
-          * @deprecated - Has no effect on component. Will get removed with next major release (v3)
-         */
-        "maxVisibleMenuItems": number;
-        /**
           * Menu stays pinned to the left
          */
         "pinned": boolean;
@@ -1959,12 +1912,6 @@ export namespace Components {
           * Show notification count on tab
          */
         "notifications"?: number;
-        /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
-          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
-         */
-        "tabIcon"?: string;
     }
     interface IxMenuSettings {
         /**
@@ -2027,11 +1974,6 @@ export namespace Components {
           * Dismiss the dialog
          */
         "dismissModal": <T = any>(reason?: T) => Promise<void>;
-        /**
-          * Use ESC to dismiss the modal
-          * @deprecated - Use closeOnEscape instead
-         */
-        "keyboard": boolean;
         /**
           * Show the dialog
          */
@@ -2268,11 +2210,6 @@ export namespace Components {
          */
         "background": string | undefined;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
-          * @deprecated since 2.1.0 use `pill-color`
-         */
-        "color": string | undefined;
-        /**
           * Show icon
          */
         "icon"?: string;
@@ -2323,7 +2260,6 @@ export namespace Components {
         "subheading"?: string;
         /**
           * Card variant
-          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant": PushCardVariant;
     }
@@ -2489,11 +2425,6 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * Indices of selected items. This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
-          * @deprecated since 2.0.0. Use the `value` property instead.
-         */
-        "selectedIndices"?: string | string[];
-        /**
           * Show helper, error, info, warning text as tooltip
           * @since 2.6.0
          */
@@ -2531,9 +2462,8 @@ export namespace Components {
         "selected": boolean;
         /**
           * The value of the item. Important: The select component uses string values to handle selection and will call toString() on this value. Therefor a string should be passed to value to prevent unexpected behavior.
-          * @deprecated will be changed to type string with next major release (3.0.0)
          */
-        "value": any;
+        "value": string;
     }
     /**
      * @since 2.0.0
@@ -2626,20 +2556,6 @@ export namespace Components {
           * Color variant of button
          */
         "variant": SplitButtonVariant;
-    }
-    /**
-     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
-     */
-    interface IxSplitButtonItem {
-        "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
-        /**
-          * Dropdown icon
-         */
-        "icon": string;
-        /**
-          * Dropdown label
-         */
-        "label": string;
     }
     interface IxTabItem {
         /**
@@ -2814,10 +2730,6 @@ export namespace Components {
          */
         "getCurrentTime": () => Promise<string>;
         /**
-          * @deprecated Not supported since 2.0.0.
-         */
-        "individual": boolean;
-        /**
           * Show hour input
          */
         "showHour": boolean;
@@ -2829,12 +2741,6 @@ export namespace Components {
           * Show seconds input
          */
         "showSeconds": boolean;
-        /**
-          * Show time reference input
-          * @since 1.1.0 time reference is default aligned with format tt
-          * @deprecated Since 2.0.0 time reference will be displayed depending on format.
-         */
-        "showTimeReference"?: boolean;
         /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
@@ -3365,10 +3271,6 @@ export interface IxSplitButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxSplitButtonElement;
 }
-export interface IxSplitButtonItemCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIxSplitButtonItemElement;
-}
 export interface IxTabItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxTabItemElement;
@@ -3784,7 +3686,6 @@ declare global {
         "dateChange": DateChangeEvent;
         "dateRangeChange": DateChangeEvent;
         "dateSelect": DateChangeEvent;
-        "done": string;
     }
     interface HTMLIxDatePickerElement extends Components.IxDatePicker, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxDatePickerElementEventMap>(type: K, listener: (this: HTMLIxDatePickerElement, ev: IxDatePickerCustomEvent<HTMLIxDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3807,7 +3708,6 @@ declare global {
         new (): HTMLIxDateTimeCardElement;
     };
     interface HTMLIxDatetimePickerElementEventMap {
-        "done": string;
         "timeChange": string;
         "dateChange": DateTimeDateChangeEvent;
         "dateSelect": DateTimeSelectEvent;
@@ -4599,7 +4499,6 @@ declare global {
     };
     interface HTMLIxSelectElementEventMap {
         "valueChange": string | string[];
-        "itemSelectionChange": string[];
         "inputChange": string;
         "addItem": string;
         "ixBlur": void;
@@ -4681,26 +4580,6 @@ declare global {
         prototype: HTMLIxSplitButtonElement;
         new (): HTMLIxSplitButtonElement;
     };
-    interface HTMLIxSplitButtonItemElementEventMap {
-        "itemClick": MouseEvent;
-    }
-    /**
-     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
-     */
-    interface HTMLIxSplitButtonItemElement extends Components.IxSplitButtonItem, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLIxSplitButtonItemElementEventMap>(type: K, listener: (this: HTMLIxSplitButtonItemElement, ev: IxSplitButtonItemCustomEvent<HTMLIxSplitButtonItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLIxSplitButtonItemElementEventMap>(type: K, listener: (this: HTMLIxSplitButtonItemElement, ev: IxSplitButtonItemCustomEvent<HTMLIxSplitButtonItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLIxSplitButtonItemElement: {
-        prototype: HTMLIxSplitButtonItemElement;
-        new (): HTMLIxSplitButtonItemElement;
-    };
     interface HTMLIxTabItemElementEventMap {
         "tabClick": TabClickDetail;
     }
@@ -4766,7 +4645,6 @@ declare global {
     };
     interface HTMLIxTimePickerElementEventMap {
         "timeSelect": string;
-        "done": string;
         "timeChange": string;
     }
     interface HTMLIxTimePickerElement extends Components.IxTimePicker, HTMLStencilElement {
@@ -5055,7 +4933,6 @@ declare global {
         "ix-slider": HTMLIxSliderElement;
         "ix-spinner": HTMLIxSpinnerElement;
         "ix-split-button": HTMLIxSplitButtonElement;
-        "ix-split-button-item": HTMLIxSplitButtonItemElement;
         "ix-tab-item": HTMLIxTabItemElement;
         "ix-tabs": HTMLIxTabsElement;
         "ix-textarea": HTMLIxTextareaElement;
@@ -5098,7 +4975,6 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card variant
-          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant"?: ActionCardVariant;
     }
@@ -5305,7 +5181,6 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * Card variant
-          * @deprecated variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.
          */
         "variant"?: CardVariant;
     }
@@ -5564,11 +5439,6 @@ declare namespace LocalJSX {
           * Show close icon
          */
         "closable"?: boolean;
-        /**
-          * Custom font and icon color. Only has an effect on chips with `variant='custom'`
-          * @deprecated since 2.1.0 use `chip-color`
-         */
-        "color"?: string | undefined;
         /**
           * Show icon
          */
@@ -5852,12 +5722,6 @@ declare namespace LocalJSX {
          */
         "corners"?: DateTimeCardCorners;
         /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-          * @deprecated Not used anymore see `this.dateChange`
-         */
-        "eventDelimiter"?: string;
-        /**
           * Date format string. See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
          */
         "format"?: string;
@@ -5871,10 +5735,6 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "i18nDone"?: string;
-        /**
-          * @deprecated Not supported since 2.0.0.
-         */
-        "individual"?: boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.1.0
@@ -5906,21 +5766,10 @@ declare namespace LocalJSX {
          */
         "onDateSelect"?: (event: IxDatePickerCustomEvent<DateChangeEvent>) => void;
         /**
-          * Date selection confirmed via button action
-          * @deprecated NOT getting dispatched after 2.0.0. Use `dateSelect`.
-         */
-        "onDone"?: (event: IxDatePickerCustomEvent<string>) => void;
-        /**
           * If true a date-range can be selected (from/to).
          */
         "range"?: boolean;
         "standaloneAppearance"?: boolean;
-        /**
-          * Text of the button that confirms date selection.
-          * @since 1.1.0
-          * @deprecated since 2.1.0. Use `i18nDone`
-         */
-        "textSelectDate"?: string;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
           * @since 1.1.0
@@ -5950,12 +5799,6 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "dateFormat"?: string;
-        /**
-          * Default behavior of the done event is to join the two events (date and time) into one combined string output. This combination can be configured over the delimiter
-          * @since 1.1.0
-          * @deprecated Not used anymore see `done` event
-         */
-        "eventDelimiter"?: string;
         /**
           * The selected starting date. If the picker is not in range mode this is the selected date. Format has to match the `format` property.
           * @since 1.1.0
@@ -5992,11 +5835,6 @@ declare namespace LocalJSX {
          */
         "onDateSelect"?: (event: IxDatetimePickerCustomEvent<DateTimeSelectEvent>) => void;
         /**
-          * Done event  Set `doneEventDelimiter` to null or undefine to get the typed event
-          * @deprecated Use `this.dateChange`
-         */
-        "onDone"?: (event: IxDatetimePickerCustomEvent<string>) => void;
-        /**
           * Time change
           * @since 1.1.0
          */
@@ -6023,12 +5861,6 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "showTimeReference"?: boolean;
-        /**
-          * Text of date select button
-          * @since 1.1.0
-          * @deprecated since 2.1.0. Use `i18nDone`
-         */
-        "textSelectDate"?: string;
         /**
           * Select time with format string
           * @since 1.1.0
@@ -6277,12 +6109,6 @@ declare namespace LocalJSX {
           * Show chevron on right side of the event list item
          */
         "chevron"?: boolean;
-        /**
-          * Color of the status indicator. You can find a list of all available colors in our documentation. Example values are `--theme-color-alarm` or `color-alarm`
-          * @link https://ix.siemens.io/docs/theming/colors/
-          * @deprecated since 2.1.0 use `item-color`
-         */
-        "color"?: string;
         /**
           * Disable event list item
          */
@@ -6577,9 +6403,8 @@ declare namespace LocalJSX {
         "oval"?: boolean;
         /**
           * Size of icon in button
-          * @deprecated Only size 32 will be removed in 3.0.0
          */
-        "size"?: '32' | '24' | '16' | '12';
+        "size"?: '24' | '16' | '12';
         /**
           * Type of the button
          */
@@ -6883,11 +6708,6 @@ declare namespace LocalJSX {
         "i18nSettings"?: string;
         "i18nToggleTheme"?: string;
         /**
-          * Maximum number of menu items to show in case enough vertical space is available. Extra menu items will be collapsed to 'show more' menu item.
-          * @deprecated - Has no effect on component. Will get removed with next major release (v3)
-         */
-        "maxVisibleMenuItems"?: number;
-        /**
           * Menu expanded
          */
         "onExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
@@ -7081,12 +6901,6 @@ declare namespace LocalJSX {
           * Show notification count on tab
          */
         "notifications"?: number;
-        /**
-          * Name of the icon you want to display. Icon names can be resolved from the documentation
-          * @link https://ix.siemens.io/docs/icon-library/icons
-          * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
-         */
-        "tabIcon"?: string;
     }
     interface IxMenuSettings {
         /**
@@ -7153,11 +6967,6 @@ declare namespace LocalJSX {
           * If set to true the modal can be closed by pressing the Escape key
          */
         "closeOnEscape"?: boolean;
-        /**
-          * Use ESC to dismiss the modal
-          * @deprecated - Use closeOnEscape instead
-         */
-        "keyboard"?: boolean;
         /**
           * Dialog close
          */
@@ -7426,11 +7235,6 @@ declare namespace LocalJSX {
          */
         "background"?: string | undefined;
         /**
-          * Custom font color for pill. Only working for `variant='custom'`
-          * @deprecated since 2.1.0 use `pill-color`
-         */
-        "color"?: string | undefined;
-        /**
           * Show icon
          */
         "icon"?: string;
@@ -7481,7 +7285,6 @@ declare namespace LocalJSX {
         "subheading"?: string;
         /**
           * Card variant
-          * @deprecated variant "insight" and "notification" will be removed in 3.0. Use "outline" or "filled" instead.
          */
         "variant"?: PushCardVariant;
     }
@@ -7647,11 +7450,6 @@ declare namespace LocalJSX {
          */
         "onInputChange"?: (event: IxSelectCustomEvent<string>) => void;
         /**
-          * Item selection changed
-          * @deprecated since 2.0.0. Use `valueChange` instead.
-         */
-        "onItemSelectionChange"?: (event: IxSelectCustomEvent<string[]>) => void;
-        /**
           * Blur input
          */
         "onIxBlur"?: (event: IxSelectCustomEvent<void>) => void;
@@ -7669,11 +7467,6 @@ declare namespace LocalJSX {
           * @since 2.6.0
          */
         "required"?: boolean;
-        /**
-          * Indices of selected items. This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
-          * @deprecated since 2.0.0. Use the `value` property instead.
-         */
-        "selectedIndices"?: string | string[];
         /**
           * Show helper, error, info, warning text as tooltip
           * @since 2.6.0
@@ -7711,9 +7504,8 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         /**
           * The value of the item. Important: The select component uses string values to handle selection and will call toString() on this value. Therefor a string should be passed to value to prevent unexpected behavior.
-          * @deprecated will be changed to type string with next major release (3.0.0)
          */
-        "value": any;
+        "value": string;
     }
     /**
      * @since 2.0.0
@@ -7811,23 +7603,6 @@ declare namespace LocalJSX {
           * Color variant of button
          */
         "variant"?: SplitButtonVariant;
-    }
-    /**
-     * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
-     */
-    interface IxSplitButtonItem {
-        /**
-          * Dropdown icon
-         */
-        "icon"?: string;
-        /**
-          * Dropdown label
-         */
-        "label"?: string;
-        /**
-          * Dropdown item clicked
-         */
-        "onItemClick"?: (event: IxSplitButtonItemCustomEvent<MouseEvent>) => void;
     }
     interface IxTabItem {
         /**
@@ -8010,15 +7785,6 @@ declare namespace LocalJSX {
          */
         "format"?: string;
         /**
-          * @deprecated Not supported since 2.0.0.
-         */
-        "individual"?: boolean;
-        /**
-          * Time event
-          * @deprecated Will be removed in 3.0.0. Use `time-select` event.
-         */
-        "onDone"?: (event: IxTimePickerCustomEvent<string>) => void;
-        /**
           * Time change event
          */
         "onTimeChange"?: (event: IxTimePickerCustomEvent<string>) => void;
@@ -8038,12 +7804,6 @@ declare namespace LocalJSX {
           * Show seconds input
          */
         "showSeconds"?: boolean;
-        /**
-          * Show time reference input
-          * @since 1.1.0 time reference is default aligned with format tt
-          * @deprecated Since 2.0.0 time reference will be displayed depending on format.
-         */
-        "showTimeReference"?: boolean;
         /**
           * Controls the visual presentation and styling of the component when it is displayed as a standalone element
          */
@@ -8510,7 +8270,6 @@ declare namespace LocalJSX {
         "ix-slider": IxSlider;
         "ix-spinner": IxSpinner;
         "ix-split-button": IxSplitButton;
-        "ix-split-button-item": IxSplitButtonItem;
         "ix-tab-item": IxTabItem;
         "ix-tabs": IxTabs;
         "ix-textarea": IxTextarea;
@@ -8758,10 +8517,6 @@ declare module "@stencil/core" {
             "ix-slider": LocalJSX.IxSlider & JSXBase.HTMLAttributes<HTMLIxSliderElement>;
             "ix-spinner": LocalJSX.IxSpinner & JSXBase.HTMLAttributes<HTMLIxSpinnerElement>;
             "ix-split-button": LocalJSX.IxSplitButton & JSXBase.HTMLAttributes<HTMLIxSplitButtonElement>;
-            /**
-             * @deprecated since 2.0.0. Use the `ix-dropdown-item` component instead.
-             */
-            "ix-split-button-item": LocalJSX.IxSplitButtonItem & JSXBase.HTMLAttributes<HTMLIxSplitButtonItemElement>;
             "ix-tab-item": LocalJSX.IxTabItem & JSXBase.HTMLAttributes<HTMLIxTabItemElement>;
             "ix-tabs": LocalJSX.IxTabs & JSXBase.HTMLAttributes<HTMLIxTabsElement>;
             /**
