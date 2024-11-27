@@ -6,11 +6,58 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
-import { html, render } from 'lit';
-import { icon } from './utils/arg-types';
 import { Components } from '@siemens/ix';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
+import { html, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { icon } from './utils/arg-types';
 import { makeArgTypes } from './utils/generic-render';
+
+@customElement('story-map-navigation')
+export class ExampleMapNavigation extends LitElement {
+  @property() args: Partial<ArgTypes<Element>> = {};
+  @property() overlay = false;
+
+  protected render() {
+    return html`
+      <ix-map-navigation
+        application-name=${this.args.applicationName}
+        hide-context-menu=${this.args.hideContextMenu}
+        navigation-title=${this.args.navigationTitle}
+      >
+        <ix-menu>
+          <ix-menu-item>Item 1</ix-menu-item>
+          <ix-menu-item>Item 2</ix-menu-item>
+          <ix-menu-item>Item 3</ix-menu-item>
+        </ix-menu>
+        <ix-icon slot="logo" name=${this.args.icon}></ix-icon>
+        <div slot="sidebar-content">${this.args.sidebarContentSlot}</div>
+        <div>
+          ${this.args.defaultSlot}
+          <br />
+          <br />
+          <ix-button @click=${() => (this.overlay = !this.overlay)}
+            >Open overlay ${this.overlay}</ix-button
+          >
+        </div>
+        ${this.overlay
+          ? html`
+              <ix-map-navigation-overlay
+                name=${this.args.overlayName}
+                icon=${this.args.overlayIcon}
+                @closeClick=${() => {
+                  this.overlay = false;
+                }}
+                slot="overlay"
+              >
+                ${this.args.overlayDefaultSlot}
+              </ix-map-navigation-overlay>
+            `
+          : ''}
+      </ix-map-navigation>
+    `;
+  }
+}
 
 type Element = Components.IxMapNavigation & {
   icon: string;
@@ -19,6 +66,7 @@ type Element = Components.IxMapNavigation & {
   overlayIcon: string;
   overlayName: string;
   overlayDefaultSlot: string;
+  showExampleOverlay: boolean;
 };
 
 const meta = {
@@ -38,6 +86,11 @@ const meta = {
     overlayDefaultSlot: {
       control: { type: 'text' },
     },
+    showExampleOverlay: {
+      control: {
+        type: 'boolean',
+      },
+    },
   }),
 } satisfies Meta<Element>;
 
@@ -56,56 +109,12 @@ export const Primary: Story = {
     overlayName: 'Custom overlay',
     overlayIcon: 'bulb',
     overlayDefaultSlot: 'Overlay content',
+    showExampleOverlay: true,
   },
   render: (args) => {
-    const show = () => {
-      const mount = document.querySelector('ix-map-navigation')!;
-      console.log('mount', mount);
-
-      render(
-        html`
-          <ix-map-navigation-overlay
-            name=${args.overlayName}
-            icon=${args.overlayIcon}
-            slot="overlay"
-          >
-            ${args.overlayDefaultSlot}
-          </ix-map-navigation-overlay>
-        `,
-        mount
-      );
-
-      const overlay = mount.querySelector('ix-map-navigation-overlay')!;
-      console.log('overlay', overlay);
-
-      const listener = () => {
-        overlay.removeEventListener('closeClick', listener);
-        overlay.remove();
-        console.log('remove');
-      };
-      overlay.addEventListener('closeClick', listener);
-    };
-
-    return html`
-      <ix-map-navigation
-        application-name=${args.applicationName}
-        hide-context-menu=${args.hideContextMenu}
-        navigation-title=${args.navigationTitle}
-      >
-        <ix-menu>
-          <ix-menu-item>Item 1</ix-menu-item>
-          <ix-menu-item>Item 2</ix-menu-item>
-          <ix-menu-item>Item 3</ix-menu-item>
-        </ix-menu>
-        <ix-icon slot="logo" name=${args.icon}></ix-icon>
-        <div slot="sidebar-content">${args.sidebarContentSlot}</div>
-        <div>
-          ${args.defaultSlot}
-          <br />
-          <br />
-          <ix-button @click=${show}>Open overlay</ix-button>
-        </div>
-      </ix-map-navigation>
-    `;
+    return html`<story-map-navigation
+      .args=${args}
+      .overlay=${args.showExampleOverlay}
+    ></story-map-navigation>`;
   },
 };
