@@ -1385,14 +1385,14 @@ export declare interface IxHelperText extends Components.IxHelperText {}
 
 @ProxyCmp({
   defineCustomElementFn: defineIxIconButton,
-  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'iconColor', 'loading', 'outline', 'oval', 'size', 'type', 'variant']
+  inputs: ['a11yLabel', 'disabled', 'ghost', 'icon', 'iconColor', 'loading', 'outline', 'oval', 'size', 'type', 'variant']
 })
 @Component({
   selector: 'ix-icon-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['a11yLabel', 'color', 'disabled', 'ghost', 'icon', 'iconColor', 'loading', 'outline', 'oval', 'size', 'type', 'variant'],
+  inputs: ['a11yLabel', 'disabled', 'ghost', 'icon', 'iconColor', 'loading', 'outline', 'oval', 'size', 'type', 'variant'],
   standalone: true
 })
 export class IxIconButton {
@@ -2919,14 +2919,14 @@ export declare interface IxTreeItem extends Components.IxTreeItem {
 
 @ProxyCmp({
   defineCustomElementFn: defineIxTypography,
-  inputs: ['bold', 'color', 'format', 'textColor', 'textDecoration']
+  inputs: ['bold', 'format', 'textColor', 'textDecoration']
 })
 @Component({
   selector: 'ix-typography',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['bold', 'color', 'format', 'textColor', 'textDecoration'],
+  inputs: ['bold', 'format', 'textColor', 'textDecoration'],
   standalone: true
 })
 export class IxTypography {

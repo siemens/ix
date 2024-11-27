@@ -584,7 +584,6 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
   'oval',
   'icon',
   'size',
-  'color',
   'iconColor',
   'disabled',
   'type',
@@ -1166,7 +1165,6 @@ export const IxTreeItem = /*@__PURE__*/ defineContainer<JSX.IxTreeItem>('ix-tree
 
 export const IxTypography = /*@__PURE__*/ defineContainer<JSX.IxTypography>('ix-typography', defineIxTypography, [
   'format',
-  'color',
   'textColor',
   'bold',
   'textDecoration'

@@ -22,6 +22,7 @@ import anime from 'animejs';
 import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
+import { makeRef } from '../utils/make-ref';
 
 export type BlindVariant = CardVariant;
 
@@ -68,7 +69,7 @@ export class Blind {
 
   @Element() hostElement!: HTMLIxBlindElement;
 
-  private chevronRef?: HTMLElement;
+  private readonly chevronRef = makeRef<HTMLIxIconElement>();
   private blindId = ++sequentialInstanceId;
 
   constructor() {}
@@ -101,7 +102,7 @@ export class Blind {
 
   private rotateChevronDown() {
     anime({
-      targets: this.chevronRef,
+      targets: this.chevronRef.waitForCurrent(),
       duration: 150,
       easing: 'easeInOutSine',
       rotateZ: 90,
@@ -116,7 +117,7 @@ export class Blind {
 
   private rotateChevronRight() {
     anime({
-      targets: this.chevronRef,
+      targets: this.chevronRef.waitForCurrent(),
       duration: 150,
       easing: 'easeInOutSine',
       rotateZ: 0,
@@ -161,7 +162,7 @@ export class Blind {
                   ? 'color-primary'
                   : `color-${this.variant}--contrast`
               }
-              ref={(ref: HTMLElement) => (this.chevronRef = ref)}
+              ref={this.chevronRef}
             ></ix-icon>
             <div
               class="blind-header-title"

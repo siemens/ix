@@ -530,7 +530,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Show chip with outline style
          */
@@ -813,7 +813,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -1387,12 +1387,7 @@ export namespace Components {
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
           * @since 2.1.0
          */
-        "a11yLabel": string;
-        /**
-          * Color of icon in  button
-          * @deprecated since 2.1.0 use `icon-color`
-         */
-        "color": string;
+        "a11yLabel"?: string;
         /**
           * Disabled
          */
@@ -1404,11 +1399,11 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Color of icon in  button
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Loading button
           * @since 2.0.0
@@ -1952,7 +1947,7 @@ export namespace Components {
         /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
-        "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
+        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
          */
@@ -2728,7 +2723,7 @@ export namespace Components {
         /**
           * Get the current time based on the wanted format
          */
-        "getCurrentTime": () => Promise<string>;
+        "getCurrentTime": () => Promise<string | undefined>;
         /**
           * Show hour input
          */
@@ -2954,11 +2949,6 @@ export namespace Components {
           * Display text bold
          */
         "bold": boolean;
-        /**
-          * Text color based on theme variables
-          * @deprecated since 2.1.0 use property `text-color`
-         */
-        "color"?: TypographyColors;
         /**
           * Text format
          */
@@ -6368,11 +6358,6 @@ declare namespace LocalJSX {
          */
         "a11yLabel"?: string;
         /**
-          * Color of icon in  button
-          * @deprecated since 2.1.0 use `icon-color`
-         */
-        "color"?: string;
-        /**
           * Disabled
          */
         "disabled"?: boolean;
@@ -8047,11 +8032,6 @@ declare namespace LocalJSX {
           * Display text bold
          */
         "bold"?: boolean;
-        /**
-          * Text color based on theme variables
-          * @deprecated since 2.1.0 use property `text-color`
-         */
-        "color"?: TypographyColors;
         /**
           * Text format
          */

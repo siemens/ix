@@ -24,7 +24,7 @@ import {
   shadow: true,
 })
 export class Chip {
-  @Element() el: HTMLIxChipElement;
+  @Element() hostElement!: HTMLIxChipElement;
 
   /**
    * Chip variant
@@ -53,7 +53,7 @@ export class Chip {
   /**
    * Show icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Custom background color.
@@ -77,7 +77,7 @@ export class Chip {
    *
    * @since 1.5.0
    */
-  @Event() closeChip: EventEmitter;
+  @Event() closeChip!: EventEmitter;
 
   private getCloseButton() {
     return (
@@ -115,7 +115,7 @@ export class Chip {
     return (
       <Host
         tabIndex="-1"
-        title={this.el.textContent}
+        title={this.hostElement.textContent}
         style={
           this.variant === 'custom'
             ? {
