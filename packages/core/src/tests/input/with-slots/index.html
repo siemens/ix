@@ -23,10 +23,10 @@ SPDX-License-Identifier: MIT
     <div>
       <h4>text</h4>
       <ix-input value="Lorem ipsum">
-        <ix-typography slot="start" color="weak"> Text </ix-typography>
+        <ix-typography slot="start" text-color="weak"> Text </ix-typography>
       </ix-input>
       <ix-input value="Lorem ipsum">
-        <ix-typography slot="end" color="weak">unit</ix-typography>
+        <ix-typography slot="end" text-color="weak">unit</ix-typography>
       </ix-input>
 
       <h4>dynamic slot insertion</h4>
@@ -75,7 +75,7 @@ SPDX-License-Identifier: MIT
 
           const startSlot = document.createElement('ix-typography');
           startSlot.setAttribute('slot', 'start');
-          startSlot.setAttribute('color', 'weak');
+          startSlot.setAttribute('text-color', 'weak');
           startSlot.textContent = 'Text';
 
           inputOne.appendChild(startSlot);
@@ -84,7 +84,7 @@ SPDX-License-Identifier: MIT
 
           const endSlot = document.createElement('ix-typography');
           endSlot.setAttribute('slot', 'end');
-          endSlot.setAttribute('color', 'weak');
+          endSlot.setAttribute('text-color', 'weak');
           endSlot.textContent = 'unit';
 
           inputTwo.appendChild(endSlot);

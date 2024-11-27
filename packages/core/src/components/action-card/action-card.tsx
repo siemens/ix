@@ -47,7 +47,6 @@ export class IxActionCard {
   @Prop() selected = false;
 
   render() {
-    //Check subheading color
     return (
       <Host>
         <ix-card

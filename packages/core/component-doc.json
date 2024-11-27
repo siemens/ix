@@ -950,7 +950,7 @@
               "text": "2.0.0"
             }
           ],
-          "default": "'outline'",
+          "default": "'filled'",
           "values": [
             {
               "value": "alarm",
@@ -13029,6 +13029,10 @@
               "Promise": {
                 "location": "global",
                 "id": "global::Promise"
+              },
+              "HTMLDialogElement": {
+                "location": "global",
+                "id": "global::HTMLDialogElement"
               }
             },
             "return": "Promise<void>"

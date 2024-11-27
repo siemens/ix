@@ -22,7 +22,6 @@ import anime from 'animejs';
 import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
-import { makeRef } from '../utils/make-ref';
 
 export type BlindVariant = CardVariant;
 
@@ -60,7 +59,7 @@ export class Blind {
    * Blind variant
    * @since 2.0.0
    */
-  @Prop() variant: BlindVariant = 'outline';
+  @Prop() variant: BlindVariant = 'filled';
 
   /**
    * Collapsed state changed
@@ -69,7 +68,7 @@ export class Blind {
 
   @Element() hostElement!: HTMLIxBlindElement;
 
-  private readonly chevronRef = makeRef<HTMLIxIconElement>();
+  private chevronRef?: HTMLElement;
   private blindId = ++sequentialInstanceId;
 
   constructor() {}
@@ -102,7 +101,7 @@ export class Blind {
 
   private rotateChevronDown() {
     anime({
-      targets: this.chevronRef.waitForCurrent(),
+      targets: this.chevronRef,
       duration: 150,
       easing: 'easeInOutSine',
       rotateZ: 90,
@@ -117,7 +116,7 @@ export class Blind {
 
   private rotateChevronRight() {
     anime({
-      targets: this.chevronRef.waitForCurrent(),
+      targets: this.chevronRef,
       duration: 150,
       easing: 'easeInOutSine',
       rotateZ: 0,
@@ -158,11 +157,11 @@ export class Blind {
               class="collapse-icon"
               name={iconChevronRightSmall}
               color={
-                this.variant === 'outline'
+                this.variant === 'filled' || this.variant === 'outline'
                   ? 'color-primary'
                   : `color-${this.variant}--contrast`
               }
-              ref={this.chevronRef}
+              ref={(ref: HTMLElement) => (this.chevronRef = ref)}
             ></ix-icon>
             <div
               class="blind-header-title"
@@ -175,7 +174,7 @@ export class Blind {
                       class="blind-header-title-icon"
                       name={this.icon}
                       color={
-                        this.variant === 'outline'
+                        this.variant === 'filled' || this.variant === 'outline'
                           ? 'color-std-text'
                           : `color-${this.variant}--contrast`
                       }

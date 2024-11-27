@@ -21,7 +21,7 @@ import anime from 'animejs';
 import { A11yAttributes, a11yBoolean, a11yHostAttributes } from '../utils/a11y';
 import Animation from '../utils/animation';
 import { OnListener } from '../utils/listener';
-import { makeRef } from '../utils/make-ref';
+import { waitForElement } from '../utils/waitForElement';
 
 export type IxModalFixedSize = '360' | '480' | '600' | '720' | '840';
 export type IxModalDynamicSize = 'full-width' | 'full-screen';
@@ -98,7 +98,9 @@ export class Modal {
     }
   }
 
-  private readonly dialog = makeRef<HTMLDialogElement>();
+  get dialog() {
+    return this.hostElement.shadowRoot!.querySelector('dialog');
+  }
 
   private slideInModal() {
     const duration = this.animation ? Animation.mediumTime : 0;
@@ -106,7 +108,7 @@ export class Modal {
     let transformY = this.centered ? '-50%' : 40;
 
     anime({
-      targets: this.dialog.waitForCurrent(),
+      targets: this.dialog,
       duration,
       opacity: [0, 1],
       translateY: [0, transformY],
@@ -121,7 +123,7 @@ export class Modal {
     let transformY = this.centered ? '-50%' : 40;
 
     anime({
-      targets: this.dialog.waitForCurrent(),
+      targets: this.dialog,
       duration,
       opacity: [1, 0],
       translateY: [transformY, 0],
@@ -135,13 +137,12 @@ export class Modal {
     });
   }
 
-  private async onModalClick(event: MouseEvent) {
-    const dialog = await this.dialog.waitForCurrent();
-    if (event.target !== dialog) {
+  private onModalClick(event: MouseEvent) {
+    if (event.target !== this.dialog || !this.dialog) {
       return;
     }
 
-    const rect = dialog.getBoundingClientRect();
+    const rect = this.dialog.getBoundingClientRect();
     const isClickOutside =
       rect.top <= event.clientY &&
       event.clientY <= rect.top + rect.height &&
@@ -159,7 +160,10 @@ export class Modal {
   @Method()
   async showModal() {
     try {
-      const dialog = await this.dialog.waitForCurrent();
+      const dialog = await waitForElement<HTMLDialogElement>(
+        'dialog',
+        this.hostElement.shadowRoot
+      );
       this.modalVisible = true;
       dialog.showModal();
     } catch (e) {
@@ -185,9 +189,9 @@ export class Modal {
       return;
     }
 
-    this.slideOutModal(async () => {
+    this.slideOutModal(() => {
       this.modalVisible = false;
-      (await this.dialog.waitForCurrent()).close(
+      this.dialog?.close(
         JSON.stringify(
           {
             type: 'dismiss',
@@ -211,9 +215,9 @@ export class Modal {
       return;
     }
 
-    this.slideOutModal(async () => {
+    this.slideOutModal(() => {
       this.modalVisible = false;
-      (await this.dialog.waitForCurrent()).close(
+      this.dialog?.close(
         JSON.stringify(
           {
             type: 'close',
@@ -247,7 +251,6 @@ export class Modal {
       >
         <div class="dialog-backdrop">
           <dialog
-            ref={this.dialog}
             aria-modal={a11yBoolean(true)}
             aria-describedby={this.ariaAttributes['aria-describedby']}
             aria-labelledby={this.ariaAttributes['aria-labelledby']}
