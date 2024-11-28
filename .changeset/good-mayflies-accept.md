@@ -1,5 +1,4 @@
 ---
-'storybook-docs': patch
 '@siemens/ix-react': patch
 '@siemens/ix': patch
 '@siemens/ix-vue': patch

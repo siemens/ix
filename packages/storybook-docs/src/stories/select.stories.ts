@@ -21,7 +21,7 @@ const meta = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=594-9899&m=dev',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=42365-175539&m=dev',
     },
   },
 } satisfies Meta<Element>;
@@ -34,14 +34,18 @@ export const Default: Story = {
 };
 
 export const editableSelect: Story = {
-  render: ({ value, editable, allowClear, disabled, }) => {
-    return html`
-      <ix-select value=${value} ?editable=${editable} ?allow-clear=${allowClear} disabled=${disabled}>
-        <ix-select-item label="Item 1" value="1"></ix-select-item>
-        <ix-select-item label="Item 2" value="2"></ix-select-item>
-        <ix-select-item label="Item 3" value="3"></ix-select-item>
-        <ix-select-item label="Item 4" value="4"></ix-select-item>
-      </ix-select>`;
+  render: ({ value, editable, allowClear, disabled }) => {
+    return html` <ix-select
+      value=${value}
+      ?editable=${editable}
+      ?allow-clear=${allowClear}
+      disabled=${disabled}
+    >
+      <ix-select-item label="Item 1" value="1"></ix-select-item>
+      <ix-select-item label="Item 2" value="2"></ix-select-item>
+      <ix-select-item label="Item 3" value="3"></ix-select-item>
+      <ix-select-item label="Item 4" value="4"></ix-select-item>
+    </ix-select>`;
   },
   args: {
     value: 'Administrator',

@@ -505,7 +505,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.cleanupResources();
   }
 
-  private itemExists(item: string) {
+  private itemExists(item: string | undefined) {
     return this.items.find((i) => i.label === item);
   }
 
@@ -551,15 +551,17 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       return;
     }
 
+    const trimmedInput = this.inputFilterText.trim();
+    const itemLabel = (el as HTMLIxSelectItemElement)?.label;
+
     if (
-      !this.itemExists(this.inputFilterText.trim()) &&
-      !this.itemExists((el as HTMLIxSelectItemElement)?.label ?? '')
+      this.editable &&
+      !this.itemExists(trimmedInput) &&
+      !this.itemExists(itemLabel)
     ) {
-      if (this.editable) {
-        const defaultPrevented = this.emitAddItem(this.inputFilterText.trim());
-        if (defaultPrevented) {
-          return;
-        }
+      const defaultPrevented = this.emitAddItem(trimmedInput);
+      if (defaultPrevented) {
+        return;
       }
     }
 
