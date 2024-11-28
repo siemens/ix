@@ -18,12 +18,49 @@ export class ExampleMapNavigation extends LitElement {
   @property() args: Partial<ArgTypes<Element>> = {};
   @property() overlay = false;
 
+  private attachDropdown() {
+    const staticContent = this.shadowRoot
+      ?.querySelector('ix-map-navigation')
+      ?.shadowRoot?.querySelector('.map-nav-sidebar-static-content');
+
+    if (staticContent) {
+      const hasDropdown = staticContent.querySelector('ix-dropdown');
+
+      if (!hasDropdown) {
+        const dropdown = document.createElement('ix-dropdown');
+        dropdown.setAttribute('trigger', 'triggerId');
+        const dropdownItem = document.createElement('ix-dropdown-item');
+        dropdownItem.setAttribute('label', 'Action');
+        dropdown.appendChild(dropdownItem);
+        staticContent.appendChild(dropdown);
+      }
+
+      const triggerButton = staticContent.querySelector('.btn-icon-32');
+
+      if (triggerButton) {
+        triggerButton.setAttribute('id', 'triggerId');
+      }
+    }
+  }
+
+  protected firstUpdated() {
+    requestAnimationFrame(() => {
+      this.attachDropdown();
+    });
+  }
+
+  protected updated(changedProperties: Map<string | number | symbol, unknown>) {
+    super.updated(changedProperties);
+    this.attachDropdown();
+  }
+
   protected render() {
     return html`
       <ix-map-navigation
         application-name=${this.args.applicationName}
         hide-context-menu=${this.args.hideContextMenu}
         navigation-title=${this.args.navigationTitle}
+        @contextMenuClick=${this.attachDropdown}
       >
         <ix-menu>
           <ix-menu-item>Item 1</ix-menu-item>
@@ -31,15 +68,21 @@ export class ExampleMapNavigation extends LitElement {
           <ix-menu-item>Item 3</ix-menu-item>
         </ix-menu>
         <ix-icon slot="logo" name=${this.args.icon}></ix-icon>
-        <div slot="sidebar-content">${this.args.sidebarContentSlot}</div>
-        <div>
+        <ix-content
+          slot="sidebar-content"
+          style="width: 100%; box-sizing: border-box"
+          >${this.args.sidebarContentSlot}
+        </ix-content>
+
+        <ix-content>
           ${this.args.defaultSlot}
           <br />
           <br />
           <ix-button @click=${() => (this.overlay = !this.overlay)}
-            >Open overlay ${this.overlay}</ix-button
+            >Open overlay</ix-button
           >
-        </div>
+        </ix-content>
+
         ${this.overlay
           ? html`
               <ix-map-navigation-overlay
@@ -50,7 +93,7 @@ export class ExampleMapNavigation extends LitElement {
                 }}
                 slot="overlay"
               >
-                ${this.args.overlayDefaultSlot}
+                <ix-content> ${this.args.overlayDefaultSlot} </ix-content>
               </ix-map-navigation-overlay>
             `
           : ''}
@@ -71,6 +114,12 @@ type Element = Components.IxMapNavigation & {
 
 const meta = {
   title: 'Example/Map-Navigation',
+  render: (args) => {
+    return html`<story-map-navigation
+      .args=${args}
+      .overlay=${args.showExampleOverlay}
+    ></story-map-navigation>`;
+  },
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-map-navigation', {
     icon: icon('application icon', false),
     defaultSlot: {
@@ -104,17 +153,11 @@ export const Primary: Story = {
     hideContextMenu: false,
     navigationTitle: 'Navigation Title',
     icon: 'barchart',
-    defaultSlot: 'Content',
+    defaultSlot: 'Main Content',
     sidebarContentSlot: 'Sidebar Content',
-    overlayName: 'Custom overlay',
+    overlayName: 'Custom Overlay',
     overlayIcon: 'bulb',
-    overlayDefaultSlot: 'Overlay content',
+    overlayDefaultSlot: 'Overlay Content',
     showExampleOverlay: true,
-  },
-  render: (args) => {
-    return html`<story-map-navigation
-      .args=${args}
-      .overlay=${args.showExampleOverlay}
-    ></story-map-navigation>`;
   },
 };
