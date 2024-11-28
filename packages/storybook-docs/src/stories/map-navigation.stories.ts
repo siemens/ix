@@ -24,21 +24,21 @@ export class ExampleMapNavigation extends LitElement {
       ?.shadowRoot?.querySelector('.map-nav-sidebar-static-content');
 
     if (staticContent) {
-      const hasDropdown = staticContent.querySelector('ix-dropdown');
+      const triggerButton = staticContent.querySelector('.btn-icon-32');
 
-      if (!hasDropdown) {
+      if (triggerButton) {
+        triggerButton.setAttribute('id', 'triggerId');
+      }
+
+      const dropdown = staticContent.querySelector('ix-dropdown');
+
+      if (!dropdown) {
         const dropdown = document.createElement('ix-dropdown');
         dropdown.setAttribute('trigger', 'triggerId');
         const dropdownItem = document.createElement('ix-dropdown-item');
         dropdownItem.setAttribute('label', 'Action');
         dropdown.appendChild(dropdownItem);
         staticContent.appendChild(dropdown);
-      }
-
-      const triggerButton = staticContent.querySelector('.btn-icon-32');
-
-      if (triggerButton) {
-        triggerButton.setAttribute('id', 'triggerId');
       }
     }
   }
