@@ -162,7 +162,7 @@ export namespace Components {
     interface IxApplicationSidebar {
     }
     interface IxApplicationSwitchModal {
-        "config": AppSwitchConfiguration;
+        "config"?: AppSwitchConfiguration;
     }
     /**
      * @since 2.0.0
@@ -813,7 +813,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
+        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -1847,15 +1847,15 @@ export namespace Components {
         /**
           * Icon of the category
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Display name of the category
          */
-        "label": string;
+        "label"?: string;
         /**
           * Show notification count on the category
          */
-        "notifications": number;
+        "notifications"?: number;
     }
     interface IxMenuExpandIcon {
         /**
@@ -2723,7 +2723,7 @@ export namespace Components {
         /**
           * Get the current time based on the wanted format
          */
-        "getCurrentTime": () => Promise<string | undefined>;
+        "getCurrentTime": () => Promise<string>;
         /**
           * Show hour input
          */

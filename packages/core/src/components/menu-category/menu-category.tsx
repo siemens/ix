@@ -35,36 +35,36 @@ const DefaultAnimationTimeout = 150;
   shadow: true,
 })
 export class MenuCategory {
-  @Element() hostElement: HTMLIxMenuCategoryElement;
+  @Element() hostElement!: HTMLIxMenuCategoryElement;
 
   /**
    * Display name of the category
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Icon of the category
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Show notification count on the category
    */
-  @Prop() notifications: number;
+  @Prop() notifications?: number;
 
   /** @internal */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Event({ bubbles: true, cancelable: true })
-  closeOtherCategories: EventEmitter;
+  closeOtherCategories!: EventEmitter;
 
   @State() menuExpand = false;
   @State() showItems = false;
   @State() showDropdown = false;
   @State() nestedItems: HTMLIxMenuItemElement[] = [];
 
-  private observer: MutationObserver;
-  private menuItemsContainer: HTMLDivElement;
-  private ixMenu: HTMLIxMenuElement;
+  private observer?: MutationObserver;
+  private menuItemsContainer?: HTMLDivElement;
+  private ixMenu?: HTMLIxMenuElement;
 
   private enterLeaveDebounce = createEnterLeaveDebounce(
     () => {
@@ -131,7 +131,7 @@ export class MenuCategory {
   }
 
   private onPointerEnter() {
-    if (this.ixMenu.expand) {
+    if (this.ixMenu?.expand) {
       return;
     }
     this.closeOtherCategories.emit();
@@ -145,7 +145,7 @@ export class MenuCategory {
 
   private onCategoryClick(e: MouseEvent) {
     e.stopPropagation();
-    if (this.ixMenu.expand) {
+    if (this.ixMenu?.expand) {
       e?.stopPropagation();
       this.onExpandCategory(!this.showItems);
       return;
@@ -183,7 +183,7 @@ export class MenuCategory {
       this.onNestedItemsChanged();
     });
 
-    this.ixMenu.addEventListener(
+    this.ixMenu?.addEventListener(
       'expandChange',
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
@@ -196,8 +196,8 @@ export class MenuCategory {
   }
 
   clearMenuItemStyles() {
-    this.menuItemsContainer.style.removeProperty('max-height');
-    this.menuItemsContainer.style.removeProperty('opacity');
+    this.menuItemsContainer?.style.removeProperty('max-height');
+    this.menuItemsContainer?.style.removeProperty('opacity');
   }
 
   disconnectedCallback() {

@@ -19,6 +19,7 @@ import {
 } from '@stencil/core';
 import { BaseButton } from '../button/base-button';
 import { closestElement, hasSlottedElements } from '../utils/shadow-dom';
+import { makeRef } from '../utils/make-ref';
 
 function DefaultAvatar(props: { initials?: string }) {
   const { initials } = props;
@@ -130,16 +131,18 @@ export class Avatar {
   @State() isClosestApplicationHeader = false;
   @State() hasSlottedElements = false;
 
-  private slotElement?: HTMLSlotElement;
-  private dropdownElement?: HTMLIxDropdownElement;
+  private readonly slotElement = makeRef<HTMLSlotElement>();
+  private dropdownElement = makeRef<HTMLIxDropdownElement>();
 
   componentWillLoad() {
     const closest = closestElement('ix-application-header', this.hostElement);
     this.isClosestApplicationHeader = closest !== null;
   }
 
-  private slottedChanged() {
-    this.hasSlottedElements = hasSlottedElements(this.slotElement);
+  private async slottedChanged() {
+    this.hasSlottedElements = hasSlottedElements(
+      await this.slotElement.waitForCurrent()
+    );
   }
 
   private resolveAvatarTrigger() {
@@ -155,8 +158,8 @@ export class Avatar {
     });
   }
 
-  private onDropdownClick(event: MouseEvent) {
-    if (event.target === this.dropdownElement) {
+  private async onDropdownClick(event: MouseEvent) {
+    if (event.target === (await this.dropdownElement.waitForCurrent())) {
       event.preventDefault();
     }
   }
@@ -180,7 +183,7 @@ export class Avatar {
             <AvatarImage image={this.image} initials={this.initials} />
           </BaseButton>
           <ix-dropdown
-            ref={(ref: HTMLIxDropdownElement) => (this.dropdownElement = ref)}
+            ref={this.dropdownElement}
             trigger={this.resolveAvatarTrigger()}
             class="avatar-dropdown"
             onClick={(e) => this.onDropdownClick(e)}
@@ -200,7 +203,9 @@ export class Avatar {
             )}
             <slot
               onSlotchange={() => this.slottedChanged()}
-              ref={(ref: HTMLSlotElement) => (this.slotElement = ref)}
+              ref={(elm?: Element) =>
+                this.slotElement(elm as HTMLSlotElement | undefined)
+              }
             ></slot>
           </ix-dropdown>
         </Host>

@@ -188,7 +188,7 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId: LiteralStringUnion<'custom'>;
+  @State() private selectedDateRangeId?: LiteralStringUnion<'custom'>;
   @State() private currentRangeValue?: {
     from?: string;
     to?: string;
@@ -244,7 +244,7 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
 
   private updateCurrentDate() {
     this.currentRangeValue = {
-      id: this.selectedDateRangeId,
+      id: this.selectedDateRangeId || '',
       from: this.from,
       to: this.to,
     };
