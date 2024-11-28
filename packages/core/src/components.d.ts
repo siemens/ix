@@ -530,7 +530,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon"?: string;
+        "icon": string;
         /**
           * Show chip with outline style
          */

@@ -59,7 +59,7 @@ export class Blind {
    * Blind variant
    * @since 2.0.0
    */
-  @Prop() variant: BlindVariant = 'filled';
+  @Prop() variant: BlindVariant = 'outline';
 
   /**
    * Collapsed state changed
@@ -99,7 +99,7 @@ export class Blind {
     }
   }
 
-  private async rotateChevronDown() {
+  private rotateChevronDown() {
     anime({
       targets: this.chevronRef,
       duration: 150,
@@ -114,7 +114,7 @@ export class Blind {
     });
   }
 
-  private async rotateChevronRight() {
+  private rotateChevronRight() {
     anime({
       targets: this.chevronRef,
       duration: 150,
