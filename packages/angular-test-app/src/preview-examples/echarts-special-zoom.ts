@@ -28,7 +28,7 @@ export default class EchartsSpecialZoom implements OnInit {
   //create some random data
   private base = +new Date(1968, 9, 3);
   private oneDay = 24 * 3600 * 1000;
-  private readonly date: (string | number)[] = [];
+  private date: (string | number)[] = [];
 
   data: number[] = [0];
 

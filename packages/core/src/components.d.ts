@@ -162,7 +162,7 @@ export namespace Components {
     interface IxApplicationSidebar {
     }
     interface IxApplicationSwitchModal {
-        "config"?: AppSwitchConfiguration;
+        "config": AppSwitchConfiguration;
     }
     /**
      * @since 2.0.0
@@ -1387,7 +1387,7 @@ export namespace Components {
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
           * @since 2.1.0
          */
-        "a11yLabel"?: string;
+        "a11yLabel": string;
         /**
           * Disabled
          */
@@ -1399,11 +1399,11 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon"?: string;
+        "icon": string;
         /**
           * Color of icon in  button
          */
-        "iconColor"?: string;
+        "iconColor": string;
         /**
           * Loading button
           * @since 2.0.0
@@ -1847,15 +1847,15 @@ export namespace Components {
         /**
           * Icon of the category
          */
-        "icon"?: string;
+        "icon": string;
         /**
           * Display name of the category
          */
-        "label"?: string;
+        "label": string;
         /**
           * Show notification count on the category
          */
-        "notifications"?: number;
+        "notifications": number;
     }
     interface IxMenuExpandIcon {
         /**
@@ -1947,7 +1947,7 @@ export namespace Components {
         /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
-        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
+        "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
          */

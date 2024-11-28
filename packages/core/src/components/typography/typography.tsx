@@ -96,7 +96,7 @@ export class IxTypography {
 
     typographyClass['typography-weight-bold'] = this.bold;
 
-    let style;
+    let style = {};
 
     if (this.textColor) {
       style = {

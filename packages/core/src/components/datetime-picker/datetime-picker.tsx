@@ -12,8 +12,8 @@ import type { DateChangeEvent } from '../date-picker/date-picker';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 
 export type DateTimeSelectEvent = {
-  from?: string;
-  to?: string;
+  from: string;
+  to: string;
   time: string;
 };
 

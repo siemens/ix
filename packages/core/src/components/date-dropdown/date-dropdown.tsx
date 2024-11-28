@@ -28,14 +28,14 @@ import { makeRef } from '../utils/make-ref';
 export type DateDropdownOption = {
   id: string;
   label: string;
-  from?: string;
-  to?: string;
+  from: string;
+  to: string;
 };
 
 export type DateRangeChangeEvent = {
   id: string;
-  from?: string;
-  to?: string;
+  from: string;
+  to: string;
 };
 
 /**
@@ -188,10 +188,10 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId?: LiteralStringUnion<'custom'>;
+  @State() private selectedDateRangeId: LiteralStringUnion<'custom'>;
   @State() private currentRangeValue?: {
-    from?: string;
-    to?: string;
+    from: string;
+    to: string;
     id: string;
   };
   private readonly triggerRef = makeRef<HTMLElement>();
@@ -244,14 +244,14 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
 
   private updateCurrentDate() {
     this.currentRangeValue = {
-      id: this.selectedDateRangeId || '',
+      id: this.selectedDateRangeId,
       from: this.from,
       to: this.to,
     };
   }
 
   private onDateSelect(
-    rangeValue: { from?: string; to?: string; id: string },
+    rangeValue: { from: string; to: string; id: string },
     preserveDropdown = true
   ) {
     this.dateRangeChange.emit(rangeValue);

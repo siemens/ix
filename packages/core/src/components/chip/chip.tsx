@@ -24,7 +24,7 @@ import {
   shadow: true,
 })
 export class Chip {
-  @Element() hostElement!: HTMLIxChipElement;
+  @Element() el!: HTMLIxChipElement;
 
   /**
    * Chip variant
@@ -115,7 +115,7 @@ export class Chip {
     return (
       <Host
         tabIndex="-1"
-        title={this.hostElement.textContent}
+        title={this.el.textContent}
         style={
           this.variant === 'custom'
             ? {

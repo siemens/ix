@@ -36,7 +36,11 @@ function ApplicationItem(props: {
       return true;
     }
 
-    return target === '_blank';
+    if (target === '_blank') {
+      return true;
+    }
+
+    return false;
   }
 
   return (
@@ -82,7 +86,7 @@ export class ApplicationSwitchModal {
   @Element() hostElement!: HTMLIxApplicationSwitchModalElement;
 
   /** @internal */
-  @Prop() config?: AppSwitchConfiguration;
+  @Prop() config: AppSwitchConfiguration;
 
   componentWillLoad() {
     if (!this.config) {

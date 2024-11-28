@@ -22,7 +22,6 @@ import anime from 'animejs';
 import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
-import { makeRef } from '../utils/make-ref';
 
 export type BlindVariant = CardVariant;
 
@@ -69,8 +68,7 @@ export class Blind {
 
   @Element() hostElement!: HTMLIxBlindElement;
 
-  //private chevronRef?: HTMLElement;
-  private chevronRef1 = makeRef<HTMLElement>();
+  private chevronRef?: HTMLElement;
   private blindId = ++sequentialInstanceId;
 
   constructor() {}
@@ -89,21 +87,21 @@ export class Blind {
   }
 
   @Watch('collapsed')
-  async animation(isCollapsed: boolean) {
-    await this.animateCollapse(isCollapsed);
+  animation(isCollapsed: boolean) {
+    this.animateCollapse(isCollapsed);
   }
 
-  private async animateCollapse(isCollapsed: boolean) {
+  private animateCollapse(isCollapsed: boolean) {
     if (isCollapsed) {
-      await this.rotateChevronRight();
+      this.rotateChevronRight();
     } else {
-      await this.rotateChevronDown();
+      this.rotateChevronDown();
     }
   }
 
   private async rotateChevronDown() {
     anime({
-      targets: await this.chevronRef1.waitForCurrent(),
+      targets: this.chevronRef,
       duration: 150,
       easing: 'easeInOutSine',
       rotateZ: 90,
@@ -118,7 +116,7 @@ export class Blind {
 
   private async rotateChevronRight() {
     anime({
-      targets: await this.chevronRef1.waitForCurrent(),
+      targets: this.chevronRef,
       duration: 150,
       easing: 'easeInOutSine',
       rotateZ: 0,
@@ -163,7 +161,7 @@ export class Blind {
                   ? 'color-primary'
                   : `color-${this.variant}--contrast`
               }
-              ref={this.chevronRef1}
+              ref={(ref: HTMLElement) => (this.chevronRef = ref)}
             ></ix-icon>
             <div
               class="blind-header-title"

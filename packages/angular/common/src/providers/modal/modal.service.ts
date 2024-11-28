@@ -31,9 +31,9 @@ export type ModalContext<T> = {
 })
 export class ModalService {
   constructor(
-    private readonly appRef: ApplicationRef,
-    private readonly componentFactoryResolver: ComponentFactoryResolver,
-    private readonly injector: Injector
+    private appRef: ApplicationRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private injector: Injector
   ) {}
 
   public async open<TData = any, TReason = any>(config: ModalConfig<TData>) {

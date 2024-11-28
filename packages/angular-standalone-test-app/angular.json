@@ -5,8 +5,7 @@
   "cli": {
     "cache": {
       "enabled": false
-    },
-    "analytics": false
+    }
   },
   "projects": {
     "angular-standalone-test-app": {
