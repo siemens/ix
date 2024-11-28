@@ -31,6 +31,17 @@ const docsContextValue: string | undefined = process.env.DOCS_CONTEXT_VALUE;
 
 const plugins: PluginConfig[] = [
   'docusaurus-plugin-sass',
+  [
+    '@docusaurus/plugin-client-redirects',
+    {
+      redirects: [
+        {
+          to: '/docs/controls/forms/forms-validation',
+          from: '/docs/controls/validation',
+        },
+      ]
+    }
+  ]
 ]
 
 if (useFastStart) {

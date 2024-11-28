@@ -3,15 +3,11 @@ import Props from './../auto-generated/ix-kpi/props.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Events
+# KPI
 
 ## Usage
 
-<Playground
-  name="kpi" 
-  height="28rem"
-  >
-</Playground>
+<Playground name="kpi" height="28rem"></Playground>
 
 ## API
 
