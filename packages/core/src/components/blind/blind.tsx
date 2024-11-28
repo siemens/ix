@@ -59,7 +59,7 @@ export class Blind {
    * Blind variant
    * @since 2.0.0
    */
-  @Prop() variant: BlindVariant = 'outline';
+  @Prop() variant: BlindVariant = 'filled';
 
   /**
    * Collapsed state changed

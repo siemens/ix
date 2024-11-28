@@ -950,7 +950,7 @@
               "text": "2.0.0"
             }
           ],
-          "default": "'outline'",
+          "default": "'filled'",
           "values": [
             {
               "value": "alarm",
