@@ -4,4 +4,4 @@
 "@siemens/ix-vue": minor
 ---
 
-feat(core/button): add autofocus property
+Add autofocus property to ix-button and allow ix-modal to set autofocus on nested buttons.
