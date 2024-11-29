@@ -99,7 +99,7 @@ export class Toggle implements IxFormComponent<string> {
   /** @internal */
   @Event() valueChange!: EventEmitter<string>;
 
-  private localId = `ix-toggle-${localId++}`;
+  private readonly localId = `ix-toggle-${localId++}`;
 
   onCheckedChange(newChecked: boolean) {
     if (this.indeterminate) {
