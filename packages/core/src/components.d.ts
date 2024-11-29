@@ -268,6 +268,10 @@ export namespace Components {
     interface IxButton {
         "alignment": 'center' | 'start';
         /**
+          * Autofocus the button
+         */
+        "autofocused": boolean;
+        /**
           * Disable the button
          */
         "disabled": boolean;
@@ -289,6 +293,7 @@ export namespace Components {
           * Outline button
          */
         "outline": boolean;
+        "setFocus": (delay?: number) => Promise<void>;
         /**
           * Type of the button
          */
@@ -5278,6 +5283,10 @@ declare namespace LocalJSX {
     }
     interface IxButton {
         "alignment"?: 'center' | 'start';
+        /**
+          * Autofocus the button
+         */
+        "autofocused"?: boolean;
         /**
           * Disable the button
          */

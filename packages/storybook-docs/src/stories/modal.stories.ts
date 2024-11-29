@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { showModal } from '@siemens/ix/components';
+import { dismissModal, showModal } from '@siemens/ix/components';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html, render } from 'lit';
 import { icon } from './utils/arg-types';
@@ -26,8 +26,8 @@ const meta = {
         <ix-modal-header icon=${args.icon}>Modal Header</ix-modal-header>
         <ix-modal-content>Content</ix-modal-content>
         <ix-modal-footer>
+          <ix-button outline>Close</ix-button>
           <ix-button>Okay</ix-button>
-          <ix-button>Close</ix-button>
         </ix-modal-footer>
       </ix-modal>
     `;
@@ -70,17 +70,20 @@ export const ShowFunction: Story = {
           <ix-modal-header icon=${args.icon}>Modal Header</ix-modal-header>
           <ix-modal-content>Content</ix-modal-content>
           <ix-modal-footer>
-            <ix-button>Okay</ix-button>
-            <ix-button>Close</ix-button>
+            <ix-button outline>Close</ix-button>
+            <ix-button autofocused>Okay</ix-button>
           </ix-modal-footer>
         `,
         mount
       );
       if (!isMounted) {
-        showModal({ content: mount }).then((p) => {
+        showModal({ content: mount, autofocus: true }).then((p) => {
           p.onClose.once(() => refs.delete(ctx.id));
           p.onDismiss.once(() => refs.delete(ctx.id));
         });
+        mount
+          .querySelector('ix-button[autofocused]')
+          ?.addEventListener('click', () => dismissModal(mount));
         refs.set(ctx.id, mount);
       }
     };

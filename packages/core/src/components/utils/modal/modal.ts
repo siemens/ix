@@ -31,6 +31,7 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
   animation?: boolean;
   ariaDescribedby?: string;
   ariaLabelledby?: string;
+  autofocus?: boolean;
   backdrop?: boolean;
   closeOnBackdropClick?: boolean;
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;
@@ -75,7 +76,7 @@ export async function showModal<T>(
   config: ModalConfig<T>
 ): Promise<ModalInstance<T>> {
   const delegate = resolveDelegate();
-  let dialogRef: HTMLIxModalElement;
+  let dialogRef: HTMLIxModalElement | undefined;
   const onClose = new TypedEvent<T>();
   const onDismiss = new TypedEvent<T>();
 
@@ -113,6 +114,13 @@ export async function showModal<T>(
       await delegate.removeView(dialogRef);
     }
   );
+
+  if (config.autofocus) {
+    const autofocusElement = dialogRef.querySelector('ix-button[autofocused]');
+    if (autofocusElement) {
+      (autofocusElement as HTMLIxButtonElement).setFocus(150);
+    }
+  }
 
   return {
     htmlElement: dialogRef,
