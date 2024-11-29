@@ -18,49 +18,12 @@ export class ExampleMapNavigation extends LitElement {
   @property() args: Partial<ArgTypes<Element>> = {};
   @property() overlay = false;
 
-  private attachDropdown() {
-    const staticContent = this.shadowRoot
-      ?.querySelector('ix-map-navigation')
-      ?.shadowRoot?.querySelector('.map-nav-sidebar-static-content');
-
-    if (staticContent) {
-      const triggerButton = staticContent.querySelector('.btn-icon-32');
-
-      if (triggerButton) {
-        triggerButton.setAttribute('id', 'triggerId');
-      }
-
-      const dropdown = staticContent.querySelector('ix-dropdown');
-
-      if (!dropdown) {
-        const dropdown = document.createElement('ix-dropdown');
-        dropdown.setAttribute('trigger', 'triggerId');
-        const dropdownItem = document.createElement('ix-dropdown-item');
-        dropdownItem.setAttribute('label', 'Action');
-        dropdown.appendChild(dropdownItem);
-        staticContent.appendChild(dropdown);
-      }
-    }
-  }
-
-  protected firstUpdated() {
-    requestAnimationFrame(() => {
-      this.attachDropdown();
-    });
-  }
-
-  protected updated(changedProperties: Map<string | number | symbol, unknown>) {
-    super.updated(changedProperties);
-    this.attachDropdown();
-  }
-
   protected render() {
     return html`
       <ix-map-navigation
         application-name=${this.args.applicationName}
         hide-context-menu=${this.args.hideContextMenu}
         navigation-title=${this.args.navigationTitle}
-        @contextMenuClick=${this.attachDropdown}
       >
         <ix-menu>
           <ix-menu-item>Item 1</ix-menu-item>
