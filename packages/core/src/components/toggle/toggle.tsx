@@ -23,6 +23,8 @@ import {
 import { a11yBoolean } from '../utils/a11y';
 import { IxFormComponent } from '../utils/input';
 
+let localId = 0;
+
 /**
  * @form-ready 2.6.0
  * */
@@ -97,6 +99,8 @@ export class Toggle implements IxFormComponent<string> {
   /** @internal */
   @Event() valueChange!: EventEmitter<string>;
 
+  private localId = `ix-toggle-${localId++}`;
+
   onCheckedChange(newChecked: boolean) {
     if (this.indeterminate) {
       this.indeterminate = false;
@@ -140,9 +144,9 @@ export class Toggle implements IxFormComponent<string> {
         class={{
           disabled: this.disabled,
         }}
-        onClick={() => this.onCheckedChange(!this.checked)}
       >
         <input
+          id={this.localId}
           disabled={this.disabled}
           indeterminate={this.indeterminate}
           checked={this.checked}
@@ -154,7 +158,7 @@ export class Toggle implements IxFormComponent<string> {
             this.onCheckedChange((event.target as HTMLInputElement).checked)
           }
         ></input>
-        <label class="switch" tabIndex={-1}>
+        <label class="switch" tabIndex={-1} htmlFor={this.localId}>
           <span class="slider"></span>
         </label>
         {!this.hideText ? (
