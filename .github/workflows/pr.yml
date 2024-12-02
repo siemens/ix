@@ -195,7 +195,7 @@ jobs:
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
 
   strict:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' && github.repository == 'siemens/ix' }}
     needs: [changes]
     runs-on: ubuntu-latest
     steps:
