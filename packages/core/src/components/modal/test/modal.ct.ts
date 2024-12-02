@@ -172,12 +172,11 @@ test('button receives focus on load', async ({ mount, page }) => {
     elm.innerHTML = `
       <ix-modal-header>Title</ix-modal-header>
       <ix-modal-footer>
-        <ix-button autofocused>OK</ix-button>
+        <ix-button autofocus>OK</ix-button>
       </ix-modal-footer>
     `;
     window.showModal({
       content: elm,
-      autofocus: true,
     });
     const okButton = elm.querySelector('ix-button');
     okButton?.addEventListener('click', () => {

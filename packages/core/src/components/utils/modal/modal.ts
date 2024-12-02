@@ -115,11 +115,12 @@ export async function showModal<T>(
     }
   );
 
-  if (config.autofocus) {
-    const autofocusElement = dialogRef.querySelector('ix-button[autofocused]');
-    if (autofocusElement) {
-      (autofocusElement as HTMLIxButtonElement).setFocus(150);
-    }
+  const autofocusElement = dialogRef.querySelector('ix-button[autofocus]');
+
+  if (autofocusElement) {
+    requestAnimationFrame(() =>
+      (autofocusElement as HTMLIxButtonElement).focus()
+    );
   }
 
   return {

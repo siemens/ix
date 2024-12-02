@@ -1341,28 +1341,6 @@
       },
       "props": [
         {
-          "name": "autofocused",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "autofocused",
-          "reflectToAttr": false,
-          "docs": "Autofocus the button",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "disabled",
           "type": "boolean",
           "complexType": {

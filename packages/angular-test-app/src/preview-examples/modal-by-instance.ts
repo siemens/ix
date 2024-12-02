@@ -22,6 +22,7 @@ export default class ModalByInstance {
     await this.modalService.open({
       content: ModalByInstanceExample,
       data: 'Some data',
+      autofocus: true,
     });
   }
 }

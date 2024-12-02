@@ -25,7 +25,11 @@ import { IxActiveModal } from '@siemens/ix-angular';
       >
         Cancel
       </ix-button>
-      <ix-button class="close-modal" (click)="activeModal.close('okay')">
+      <ix-button
+        autofocus
+        class="close-modal"
+        (click)="activeModal.close('okay')"
+      >
         OK
       </ix-button>
     </ix-modal-footer>

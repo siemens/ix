@@ -71,7 +71,7 @@ export const ShowFunction: Story = {
           <ix-modal-content>Content</ix-modal-content>
           <ix-modal-footer>
             <ix-button outline>Close</ix-button>
-            <ix-button autofocused>Okay</ix-button>
+            <ix-button autofocus>Okay</ix-button>
           </ix-modal-footer>
         `,
         mount
@@ -82,7 +82,7 @@ export const ShowFunction: Story = {
           p.onDismiss.once(() => refs.delete(ctx.id));
         });
         mount
-          .querySelector('ix-button[autofocused]')
+          .querySelector('ix-button[autofocus]')
           ?.addEventListener('click', () => dismissModal(mount));
         refs.set(ctx.id, mount);
       }

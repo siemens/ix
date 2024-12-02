@@ -7,15 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Listen,
-  Method,
-  Prop,
-} from '@stencil/core';
+import { Component, Element, h, Host, Listen, Prop } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 
 export type ButtonVariant = 'danger' | 'primary' | 'secondary';
@@ -64,11 +56,6 @@ export class Button {
    */
   @Prop() icon?: string;
 
-  /**
-   * Autofocus the button
-   */
-  @Prop() autofocused = false;
-
   /** @internal */
   @Prop() alignment: 'center' | 'start' = 'center';
 
@@ -113,12 +100,8 @@ export class Button {
     }
   }
 
-  /** @internal */
-  @Method()
-  async setFocus(delay = 0) {
-    setTimeout(() => {
-      this.hostElement.shadowRoot!.querySelector('button')?.focus();
-    }, delay);
+  setFocus() {
+    this.hostElement.shadowRoot!.querySelector('button')?.focus();
   }
 
   render() {
@@ -136,14 +119,17 @@ export class Button {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
-      autofocus: this.autofocused,
+      autofocus: this.hostElement.autofocus,
+      tabIndex: this.hostElement.tabIndex,
     };
 
     return (
       <Host
+        tabindex={this.disabled ? -1 : 0}
         class={{
           disabled: this.disabled || this.loading,
         }}
+        onFocus={() => this.setFocus()}
       >
         <BaseButton {...baseButtonProps}>
           <slot></slot>
