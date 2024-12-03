@@ -115,7 +115,7 @@ export async function showModal<T>(
     }
   );
 
-  const autofocusElement = dialogRef.querySelector('ix-button[autofocus]');
+  const autofocusElement = dialogRef.querySelector('[autofocus]');
 
   if (autofocusElement) {
     requestAnimationFrame(() =>
