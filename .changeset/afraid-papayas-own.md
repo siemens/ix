@@ -27,7 +27,7 @@ Property Updates:
   - The `selectedIndices` attribute has been **replaced by** `value`.
   - The `itemSelectionChange` event has been **replaced by** `valueChange`.
 - **ix-select-item**:
-  - The `value` attribute type has been updated to `string`.
+  - The type of the `value` property type has been updated to `string`.
 
 Date and Time Picker Enhancements:
 - **ix-date-picker**:
