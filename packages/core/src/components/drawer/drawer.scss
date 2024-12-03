@@ -20,17 +20,19 @@
   visibility: hidden;
 
   display: flex;
-  position: absolute;
+  position: fixed;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
+  transform: translateX(16rem);
+  opacity: 0;
 
   max-height: 100vh;
   min-height: $large-space;
   background-color: var(--theme-color-1);
   border-radius: $default-border-radius;
 
-  transition: all var(--theme-medium-time) ease-out;
+  transition: transform var(--theme-medium-time) ease-out;
 
   .toggle {
     z-index: 100;

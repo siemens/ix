@@ -23,6 +23,9 @@ export class InputGroup {
   @State() inputPaddingLeft = 0;
   @State() inputPaddingRight = 0;
 
+  startSlotRef: HTMLElement;
+  endSlotRef: HTMLElement;
+
   private get inputElement() {
     return this.hostElement.querySelector('input') as HTMLInputElement;
   }
@@ -60,6 +63,7 @@ export class InputGroup {
       characterData: true,
     });
   }
+
 
   componentDidRender() {
     this.prepareInputElement();
@@ -100,50 +104,41 @@ export class InputGroup {
   }
 
   private startSlotChanged() {
-    const slot = this.hostElement.shadowRoot.querySelector(
-      'slot[name="input-start"]'
-    );
+    const startPadding = this.getChildrenWidth(this.startSlotRef);
 
-    setTimeout(() => {
-      const startPadding = this.getChildrenWidth(slot);
+    if (startPadding !== 0) {
+      this.inputPaddingLeft = 11 + startPadding;
+    } else {
+      this.inputPaddingLeft = 0;
+    }
 
-      if (startPadding !== 0) {
-        this.inputPaddingLeft = 11 + startPadding;
-      } else {
-        this.inputPaddingLeft = 0;
-      }
+    if (!this.inputElement) {
+      return;
+    }
 
-      if (!this.inputElement) {
-        return;
-      }
+    const isInputInvalid =
+      !this.inputElement.validity.valid ||
+      this.inputElement.classList.contains('is-invalid');
 
-      const isInputInvalid =
-        !this.inputElement.validity.valid ||
-        this.inputElement.classList.contains('is-invalid');
+    const formWasValidated =
+      this.inputElement.form?.classList.contains('was-validated') ||
+      this.inputElement.form?.noValidate === false;
 
-      const formWasValidated =
-        this.inputElement.form?.classList.contains('was-validated') ||
-        this.inputElement.form?.noValidate === false;
+    if (formWasValidated && isInputInvalid) {
+      const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 7;
+      this.inputElement.style.backgroundPosition = `left ${left}px center`;
+      this.inputPaddingLeft += 26;
+    }
 
-      if (formWasValidated && isInputInvalid) {
-        const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 7;
-        this.inputElement.style.backgroundPosition = `left ${left}px center`;
-        this.inputPaddingLeft += 26;
-      }
-    });
   }
 
   private endSlotChanged() {
-    const slot = this.hostElement.shadowRoot.querySelector(
-      'slot[name="input-end"]'
-    );
+    this.inputPaddingRight = 15 + this.getChildrenWidth(this.endSlotRef);
 
-    setTimeout(() => {
-      this.inputPaddingRight = 15 + this.getChildrenWidth(slot);
-    });
   }
 
   private getChildrenWidth(slotElement: Element) {
+
     if (!slotElement) {
       return 0;
     }
@@ -166,11 +161,11 @@ export class InputGroup {
     return (
       <Host class={{ disabled: this.disabled }}>
         <div class="group group-start">
-          <slot name="input-start"></slot>
+          <slot ref={(el: HTMLElement) => this.startSlotRef = el} name="input-start"></slot>
         </div>
         <slot></slot>
         <div class="group group-end">
-          <slot name="input-end"></slot>
+          <slot ref={(el: HTMLElement) => this.endSlotRef = el} name="input-end"></slot>
         </div>
       </Host>
     );
