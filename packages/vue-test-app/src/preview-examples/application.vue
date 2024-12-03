@@ -11,11 +11,8 @@
 import {
   IxApplication,
   IxApplicationHeader,
-  IxAvatar,
   IxContent,
   IxContentHeader,
-  IxDropdownButton,
-  IxDropdownItem,
   IxMenu,
   IxMenuItem,
 } from '@siemens/ix-vue';
@@ -27,18 +24,6 @@ import {
   <IxApplication>
     <IxApplicationHeader name="My Application">
       <div className="placeholder-logo" slot="logo"></div>
-
-      <IxDropdownButton variant="secondary" label="Select config" ghost>
-        <IxDropdownItem label="Config 1"></IxDropdownItem>
-        <IxDropdownItem label="Config 2"></IxDropdownItem>
-        <IxDropdownItem label="Config 3"></IxDropdownItem>
-      </IxDropdownButton>
-
-      <IxAvatar>
-        <IxDropdownItem label="Action 1"></IxDropdownItem>
-        <IxDropdownItem label="Action 2"></IxDropdownItem>
-        <IxDropdownItem label="Action 3"></IxDropdownItem>
-      </IxAvatar>
     </IxApplicationHeader>
 
     <IxMenu>
