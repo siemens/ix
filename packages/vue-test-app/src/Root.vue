@@ -217,6 +217,7 @@ import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import FormLayoutAuto from './preview-examples/form-layout-auto.vue';
 import FormLayoutGrid from './preview-examples/form-layout-grid.vue';
+import MapNavigationMigration from './preview-examples/map-navigation-migration.vue';
 
 const routes: any = {
   '/': App,
@@ -380,6 +381,7 @@ const routes: any = {
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/map-navigation': MapNavigation,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
+  '/preview/map-navigation-migration': MapNavigationMigration,
   '/preview/tooltip': Tooltip,
   '/preview/push-card': PushCard,
   '/preview/page-header': ContentHeader,

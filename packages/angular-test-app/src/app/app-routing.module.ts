@@ -224,6 +224,7 @@ import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
 import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
 import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
+import MapNavigationMigration from 'src/preview-examples/map-navigation-migration';
 
 const routes: Routes = [
   {
@@ -892,6 +893,7 @@ const routes: Routes = [
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
       { path: 'map-navigation-overlay', component: MapNavigationOverlay },
+      { path: 'map-navigation-migration', component: MapNavigationMigration },
       { path: 'number-input', component: NumberInput },
       { path: 'number-input-disabled', component: NumberInputDisabled },
       { path: 'number-input-label', component: NumberInputLabel },
