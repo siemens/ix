@@ -7,15 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Host, Prop, h, Element, Watch } from '@stencil/core';
-import { IxComponent } from '../utils/internal';
+import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
+import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import {
   ClassMutationObserver,
   createClassMutationObserver,
   HTMLIxFormComponentElement,
   isIxInputFieldComponent,
 } from '../utils/input';
-import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
+import { IxComponent } from '../utils/internal';
 import { MakeRef, makeRef } from '../utils/make-ref';
 
 @Component({
@@ -37,7 +37,10 @@ export class FormFieldLabel implements IxComponent {
   @Prop({ reflect: true }) htmlFor?: string;
 
   /** @internal */
-  @Prop() controlRef?: MakeRef<HTMLElement>;
+  @Prop() controlRef?:
+    | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
 
   /** @internal */
   @Prop({ mutable: true }) isInvalid: boolean = false;

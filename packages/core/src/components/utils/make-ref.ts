@@ -6,6 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+export function isMakeRef(obj: unknown): obj is MakeRef<unknown> {
+  return obj.hasOwnProperty('current') && obj.hasOwnProperty('waitForCurrent');
+}
+
 export type MakeRef<T> = {
   (ref: T | undefined): void;
   current: T | null;

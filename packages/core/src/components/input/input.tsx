@@ -27,7 +27,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { MakeRef, makeRef } from '../utils/make-ref';
+import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
   adjustPaddingForStartAndEnd,
@@ -255,7 +255,7 @@ export class Input implements IxInputFieldComponent<string> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          controlRef={this.inputRef as unknown as MakeRef<HTMLElement>}
+          controlRef={this.inputRef}
         >
           <div class="input-wrapper">
             <SlotStart
