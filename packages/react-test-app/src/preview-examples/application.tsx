@@ -33,7 +33,7 @@ export default () => {
       <IxContent>
         <IxContentHeader
           slot="header"
-          header-title="My Content Page"
+          headerTitle="My Content Page"
         ></IxContentHeader>
       </IxContent>
     </IxApplication>

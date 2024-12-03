@@ -53,7 +53,7 @@ export default () => {
       <IxContent>
         <IxContentHeader
           slot="header"
-          header-title="Choose breakpoint"
+          headerTitle="Choose breakpoint"
         ></IxContentHeader>
         <input
           id="small"
