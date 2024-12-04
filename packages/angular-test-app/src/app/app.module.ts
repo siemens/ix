@@ -18,6 +18,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import * as echarts from 'echarts';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AgGrid from '../preview-examples/aggrid';
@@ -497,7 +498,7 @@ import BasicNavigationMigration from '../preview-examples/basic-navigation-migra
     FormsModule,
     ReactiveFormsModule,
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
+      echarts,
     }),
   ],
   providers: [],
