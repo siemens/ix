@@ -45,13 +45,10 @@ export function TextareaElement(props: {
       required={props.required}
       value={props.value}
       placeholder={props.placeholder}
-      onChange={(changeEvent) => {
-        const target = changeEvent.target as HTMLInputElement;
-        props.valueChange(target.value);
-      }}
       onInput={(inputEvent) => {
         const target = inputEvent.target as HTMLInputElement;
         props.updateFormInternalValue(target.value);
+        props.valueChange(target.value);
       }}
       onBlur={() => props.onBlur()}
       style={{
@@ -105,13 +102,10 @@ export function InputElement(props: {
       value={props.value}
       placeholder={props.placeholder}
       onKeyPress={(event) => props.onKeyPress(event)}
-      onChange={(changeEvent) => {
-        const target = changeEvent.target as HTMLInputElement;
-        props.valueChange(target.value);
-      }}
       onInput={(inputEvent) => {
         const target = inputEvent.target as HTMLInputElement;
         props.updateFormInternalValue(target.value);
+        props.valueChange(target.value);
       }}
       onBlur={() => props.onBlur()}
       {...props.ariaAttributes}
