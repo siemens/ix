@@ -21,7 +21,6 @@ import {
   Watch,
 } from '@stencil/core';
 import { DateTimeCardCorners } from '../date-time-card/date-time-card';
-
 import { DateTime, Info } from 'luxon';
 import { OnListener } from '../utils/listener';
 import { IxDatePickerComponent } from './date-picker-component';

@@ -24,6 +24,11 @@ import {
 import { IxSelectItemLabelChangeEvent } from '../select-item/events';
 import { ArrowFocusController } from '../utils/focus';
 import { OnListener } from '../utils/listener';
+import {
+  iconChevronDownSmall,
+  iconClear,
+  iconPlus,
+} from '@siemens/ix-icons/icons';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
 import {
@@ -889,7 +894,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                   (this.selectedLabels?.length || this.inputFilterText) ? (
                     <ix-icon-button
                       class="clear"
-                      icon={'clear'}
+                      icon={iconClear}
                       ghost
                       oval
                       size="16"
@@ -904,7 +909,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     <ix-icon-button
                       data-select-dropdown
                       class={{ 'dropdown-visible': this.dropdownShow }}
-                      icon="chevron-down-small"
+                      icon={iconChevronDownSmall}
                       ghost
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
@@ -959,7 +964,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           {this.isAddItemVisible() ? (
             <ix-dropdown-item
               data-testid="add-item"
-              icon={'plus'}
+              icon={iconPlus}
               class={{
                 'add-item': true,
               }}

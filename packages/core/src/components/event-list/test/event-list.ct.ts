@@ -16,10 +16,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import 'jest';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 import { expect } from '@playwright/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
       <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
@@ -33,7 +33,7 @@ test('renders', async ({ mount, page }) => {
   await expect(eventList).toHaveClass(/hydrated/);
 });
 
-test('check if items still clickable', async ({ mount, page }) => {
+regressionTest('check if items still clickable', async ({ mount, page }) => {
   await mount(`
     <ix-event-list>
       <ix-event-list-item color="color-primary" selected>Text 1</ix-event-list-item>

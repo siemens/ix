@@ -10,12 +10,38 @@
 import { postcss } from '@stencil-community/postcss';
 import { angularOutputTarget } from '@stencil/angular-output-target';
 import { Config } from '@stencil/core';
-import { reactOutputTarget } from '@stencil/react-output-target';
+import { reactOutputTarget } from './scripts/build/react';
 import { sass } from '@stencil/sass';
 import { vueOutputTarget } from '@stencil/vue-output-target';
 import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
 import { storybookOutputTarget } from './scripts/build/storybook';
+
+const corePackageName = '@siemens/ix';
+
+function getAngularConfig() {
+  const excludeComponents = ['ix-tree', 'ix-icon'];
+  const config = [
+    angularOutputTarget({
+      componentCorePackage: corePackageName,
+      directivesProxyFile: '../angular/src/components.ts',
+      directivesArrayFile: '../angular/src/declare-components.ts',
+      excludeComponents,
+      outputType: 'component',
+      valueAccessorConfigs: [
+        /** Value accessors should not be generated */
+      ],
+    }),
+    angularOutputTarget({
+      componentCorePackage: corePackageName,
+      directivesProxyFile: '../angular/standalone/src/directives/proxies.ts',
+      excludeComponents,
+      outputType: 'standalone',
+    }),
+  ];
+
+  return config;
+}
 
 export const config: Config = {
   tsconfig: 'tsconfig.lib.json',
@@ -24,7 +50,7 @@ export const config: Config = {
     enableImportInjection: true,
   },
   testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],
+    testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/', '/www/'],
     setupFilesAfterEnv: ['<rootDir>/src/tests/utils/test/matchMedia.mock.js'],
     browserArgs: ['--no-sandbox', '--disable-stuid-sandbox'],
     browserHeadless: 'new',
@@ -46,7 +72,7 @@ export const config: Config = {
       dist: '../storybook-docs/.storybook/define-custom-elements.ts',
     }),
     vueOutputTarget({
-      componentCorePackage: '@siemens/ix',
+      componentCorePackage: corePackageName,
       proxiesFile: '../vue/src/components.ts',
       includeImportCustomElements: true,
       includePolyfills: false,
@@ -71,21 +97,11 @@ export const config: Config = {
         },
       ],
     }),
-    angularOutputTarget({
-      componentCorePackage: '@siemens/ix',
-      directivesProxyFile: '../angular/src/components.ts',
-      directivesArrayFile: '../angular/src/declare-components.ts',
-      excludeComponents: ['ix-tree', 'ix-icon'],
-      valueAccessorConfigs: [
-        /** Value accessors should not be generated */
-      ],
-    }),
+    ...getAngularConfig(),
     reactOutputTarget({
-      componentCorePackage: '@siemens/ix',
-      proxiesFile: '../react/src/components.ts',
-      includeImportCustomElements: true,
-      includePolyfills: false,
-      includeDefineCustomElements: false,
+      stencilPackageName: corePackageName,
+      outDir: '../react/src/components',
+      esModules: true,
       excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
     }),
     {
@@ -103,6 +119,7 @@ export const config: Config = {
         },
       ],
       includeGlobalScripts: false,
+      externalRuntime: false,
     },
     {
       type: 'docs-custom',
@@ -115,6 +132,7 @@ export const config: Config = {
     },
     {
       type: 'dist-hydrate-script',
+      dir: './hydrate',
     },
   ],
 };

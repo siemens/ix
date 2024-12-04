@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
-test.describe('menu', () => {
+regressionTest.describe('menu', () => {
   regressionTest(
     'basic md - no default icon on second level, scaling for popup window',
     async ({ page }) => {
@@ -91,16 +91,14 @@ test.describe('menu', () => {
       await category.click();
       await page.waitForTimeout(1000);
 
-      const collapseButton = page.getByRole('button', {
-        name: 'Double Chevron Left',
-      });
+      const collapseButton = basicNavigationElement
+        .locator('ix-menu')
+        .getByTestId('expand-collapse-menu');
+
       await collapseButton.click();
       await page.waitForTimeout(1000);
 
-      const expandButton = page.getByRole('button', {
-        name: 'Double Chevron Right',
-      });
-      await expandButton.click();
+      await collapseButton.click();
       await page.waitForTimeout(1000);
 
       expect(
@@ -184,9 +182,10 @@ test.describe('menu', () => {
 
       const application = page.locator('ix-application');
 
-      const collapseButton = page.getByRole('button', {
-        name: 'Double Chevron Left',
-      });
+      const menu = application.locator('ix-menu');
+
+      const collapseButton = menu.getByTestId('expand-collapse-menu');
+
       await collapseButton.click();
       await page.waitForTimeout(1000);
 

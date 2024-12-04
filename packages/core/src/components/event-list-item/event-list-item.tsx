@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconChevronRight } from '@siemens/ix-icons/icons';
 import {
   Component,
   Event,
@@ -102,7 +103,7 @@ export class EventListItem {
             }`}
             style={{
               'background-color':
-                this.itemColor ?? this.color ? color : 'inherit',
+                (this.itemColor ?? this.color) ? color : 'inherit',
               opacity: `${this.disabled ? 0.4 : 1}`,
             }}
           ></div>
@@ -113,7 +114,7 @@ export class EventListItem {
             </div>
             {this.chevron && (
               <ix-icon
-                name={'chevron-right'}
+                name={iconChevronRight}
                 size="16"
                 class="chevron-icon"
               ></ix-icon>

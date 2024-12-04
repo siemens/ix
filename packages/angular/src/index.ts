@@ -9,11 +9,16 @@
 
 export * from '@siemens/ix';
 export * from './components';
-export * from './dropdown/trigger.directive';
 export { IxIcon } from './ix-icon';
-export * from './modal';
 export * from './module';
 export * from './theme';
-export * from './toast';
 export * from './tree';
+export { IxDropdownTriggerDirective } from './directives/dropdown/trigger.directive';
+export {
+  ModalService,
+  IxActiveModal,
+  ModalConfig,
+  ModalContext,
+} from './modal';
+export { ToastConfig, ToastService } from './toast';
 export * from './control-value-accessors';

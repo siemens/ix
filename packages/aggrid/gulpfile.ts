@@ -15,7 +15,7 @@ import path from 'path';
 import { rimraf } from 'rimraf';
 import dartSass from 'sass';
 
-const e2eTestFiles = [require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css'), require.resolve('@siemens/ix-icons/dist/css/ix-icons.css')];
+const e2eTestFiles = [require.resolve('@siemens/ix/dist/siemens-ix/siemens-ix.css')];
 
 const sass = gulpSass(dartSass);
 

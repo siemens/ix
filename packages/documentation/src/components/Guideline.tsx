@@ -10,15 +10,20 @@
 import clsx from 'clsx';
 import React from 'react';
 import styles from './Guideline.module.css';
+import { iconSingleCheck, iconClose } from '@siemens/ix-icons/icons';
 
 export function Guideline(props: { label: string; do?: boolean }) {
   function getIcon() {
     if (props.do) {
       return (
-        <ix-icon name="single-check" size="16" color="color-success"></ix-icon>
+        <ix-icon
+          name={iconSingleCheck}
+          size="16"
+          color="color-success"
+        ></ix-icon>
       );
     } else {
-      return <ix-icon name="close" size="16" color="color-alarm"></ix-icon>;
+      return <ix-icon name={iconClose} size="16" color="color-alarm"></ix-icon>;
     }
   }
 

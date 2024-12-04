@@ -230,10 +230,10 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
-import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
-import MapNavigationMigration from 'src/preview-examples/map-navigation-migration';
-import BasicNavigationMigration from 'src/preview-examples/basic-navigation-migration';
+import FormLayoutAuto from '../preview-examples/form-layout-auto';
+import FormLayoutGrid from '../preview-examples/form-layout-grid';
+import MapNavigationMigration from '../preview-examples/map-navigation-migration';
+import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
 
 @NgModule({
   declarations: [

@@ -22,6 +22,13 @@ import anime from 'animejs';
 import Animation from '../utils/animation';
 import { applicationLayoutService } from '../utils/application-layout';
 import { matchBreakpoint } from '../utils/breakpoints';
+import {
+  iconClose,
+  iconDoubleChevronDown,
+  iconDoubleChevronLeft,
+  iconDoubleChevronRight,
+  iconDoubleChevronUp,
+} from '@siemens/ix-icons/icons';
 
 export type Composition = 'top' | 'left' | 'bottom' | 'right';
 export type ExpandedChangedEvent = {
@@ -293,27 +300,27 @@ export class Pane {
     switch (this.composition) {
       case 'left':
         expandIcon = this.isMobile
-          ? 'double-chevron-up'
-          : 'double-chevron-left';
+          ? iconDoubleChevronUp
+          : iconDoubleChevronLeft;
         minimizeIcon = this.isMobile
-          ? 'double-chevron-down'
-          : 'double-chevron-right';
+          ? iconDoubleChevronDown
+          : iconDoubleChevronRight;
         break;
       case 'right':
         expandIcon = this.isMobile
-          ? 'double-chevron-down'
-          : 'double-chevron-right';
+          ? iconDoubleChevronDown
+          : iconDoubleChevronRight;
         minimizeIcon = this.isMobile
-          ? 'double-chevron-up'
-          : 'double-chevron-left';
+          ? iconDoubleChevronUp
+          : iconDoubleChevronLeft;
         break;
       case 'bottom':
-        expandIcon = 'double-chevron-down';
-        minimizeIcon = 'double-chevron-up';
+        expandIcon = iconDoubleChevronDown;
+        minimizeIcon = iconDoubleChevronUp;
         break;
       case 'top':
-        expandIcon = 'double-chevron-up';
-        minimizeIcon = 'double-chevron-down';
+        expandIcon = iconDoubleChevronUp;
+        minimizeIcon = iconDoubleChevronDown;
         break;
     }
 
@@ -640,7 +647,7 @@ export class Pane {
               icon={
                 this.expanded
                   ? this.isMobile || this.hideOnCollapse
-                    ? 'close'
+                    ? iconClose
                     : this.expandIcon
                   : this.minimizeIcon
               }

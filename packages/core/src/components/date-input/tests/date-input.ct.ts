@@ -7,7 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { Locator, expect } from '@playwright/test';
-import { getFormValue, preventFormSubmission, test } from '@utils/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+} from '@utils/test';
 
 const createDateInputAccessor = async (dateInput: Locator) => {
   const handle = {
@@ -27,25 +31,28 @@ const createDateInputAccessor = async (dateInput: Locator) => {
   return handle;
 };
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
   await expect(dateInputElement).toHaveClass(/hydrated/);
 });
 
-test('select date by open calendar trigger', async ({ mount, page }) => {
-  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
-  const dateInputElement = page.locator('ix-date-input');
-  await expect(dateInputElement).toHaveClass(/hydrated/);
+regressionTest(
+  'select date by open calendar trigger',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
 
-  const dateInput = await createDateInputAccessor(dateInputElement);
-  await dateInput.openByCalender();
+    const dateInput = await createDateInputAccessor(dateInputElement);
+    await dateInput.openByCalender();
 
-  await dateInput.selectDay(10);
-  await expect(dateInputElement).toHaveAttribute('value', '2024/05/10');
-});
+    await dateInput.selectDay(10);
+    await expect(dateInputElement).toHaveAttribute('value', '2024/05/10');
+  }
+);
 
-test('select date by focus', async ({ mount, page }) => {
+regressionTest('select date by focus', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
   await expect(dateInputElement).toHaveClass(/hydrated/);
@@ -60,7 +67,7 @@ test('select date by focus', async ({ mount, page }) => {
   );
 });
 
-test('select date by input', async ({ mount, page }) => {
+regressionTest('select date by input', async ({ mount, page }) => {
   await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
   await expect(dateInputElement).toHaveClass(/hydrated/);
@@ -84,48 +91,51 @@ test('select date by input', async ({ mount, page }) => {
   );
 });
 
-test('select date by input with invalid date', async ({ mount, page }) => {
-  await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
-  const dateInputElement = page.locator('ix-date-input');
-  await expect(dateInputElement).toHaveClass(/hydrated/);
+regressionTest(
+  'select date by input with invalid date',
+  async ({ mount, page }) => {
+    await mount(`<ix-date-input value="2024/05/05"></ix-date-input>`);
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
 
-  const dateInput = await createDateInputAccessor(dateInputElement);
-  await dateInputElement.locator('input').fill('2025/10/10/10');
-  await dateInput.openByCalender();
-  await expect(dateInputElement).toHaveAttribute('value', '2025/10/10/10');
+    const dateInput = await createDateInputAccessor(dateInputElement);
+    await dateInputElement.locator('input').fill('2025/10/10/10');
+    await dateInput.openByCalender();
+    await expect(dateInputElement).toHaveAttribute('value', '2025/10/10/10');
 
-  await expect(
-    dateInputElement
-      .locator('ix-field-wrapper')
-      .locator('ix-typography')
-      .filter({ hasText: 'Date is not valid' })
-  ).toHaveText('Date is not valid');
-});
+    await expect(
+      dateInputElement
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: 'Date is not valid' })
+    ).toHaveText('Date is not valid');
+  }
+);
 
-test('select date by input with invalid date - i18n', async ({
-  mount,
-  page,
-}) => {
-  await mount(
-    `<ix-date-input value="2024/05/05" i18n-error-date-unparsable="Datum nicht korrekt!"></ix-date-input>`
-  );
-  const dateInputElement = page.locator('ix-date-input');
-  await expect(dateInputElement).toHaveClass(/hydrated/);
+regressionTest(
+  'select date by input with invalid date - i18n',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-input value="2024/05/05" i18n-error-date-unparsable="Datum nicht korrekt!"></ix-date-input>`
+    );
+    const dateInputElement = page.locator('ix-date-input');
+    await expect(dateInputElement).toHaveClass(/hydrated/);
 
-  const dateInput = await createDateInputAccessor(dateInputElement);
-  await dateInputElement.locator('input').fill('2025/10/10/10');
-  await dateInput.openByCalender();
-  await expect(dateInputElement).toHaveAttribute('value', '2025/10/10/10');
+    const dateInput = await createDateInputAccessor(dateInputElement);
+    await dateInputElement.locator('input').fill('2025/10/10/10');
+    await dateInput.openByCalender();
+    await expect(dateInputElement).toHaveAttribute('value', '2025/10/10/10');
 
-  await expect(
-    dateInputElement
-      .locator('ix-field-wrapper')
-      .locator('ix-typography')
-      .filter({ hasText: 'Datum nicht korrekt!' })
-  ).toHaveText('Datum nicht korrekt!');
-});
+    await expect(
+      dateInputElement
+        .locator('ix-field-wrapper')
+        .locator('ix-typography')
+        .filter({ hasText: 'Datum nicht korrekt!' })
+    ).toHaveText('Datum nicht korrekt!');
+  }
+);
 
-test('required', async ({ mount, page }) => {
+regressionTest('required', async ({ mount, page }) => {
   await mount(`<ix-date-input required label="MyLabel"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
   await expect(dateInputElement).toHaveAttribute('required');
@@ -137,7 +147,7 @@ test('required', async ({ mount, page }) => {
   await expect(dateInputElement).toHaveClass(/ix-invalid--required/);
 });
 
-test(`form-ready - ix-date-input`, async ({ mount, page }) => {
+regressionTest(`form-ready - ix-date-input`, async ({ mount, page }) => {
   await mount(
     `<form><ix-date-input name="my-field-name"></ix-date-input></form>`
   );
@@ -152,13 +162,16 @@ test(`form-ready - ix-date-input`, async ({ mount, page }) => {
   expect(formData).toBe('2024/05/05');
 });
 
-test(`form-ready - ix-date-input initial value`, async ({ mount, page }) => {
-  await mount(
-    `<form><ix-date-input name="my-field-name" value="2024/12/12"></ix-date-input></form>`
-  );
+regressionTest(
+  `form-ready - ix-date-input initial value`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-date-input name="my-field-name" value="2024/12/12"></ix-date-input></form>`
+    );
 
-  const formElement = page.locator('form');
-  preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('2024/12/12');
-});
+    const formElement = page.locator('form');
+    preventFormSubmission(formElement);
+    const formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe('2024/12/12');
+  }
+);

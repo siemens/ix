@@ -404,7 +404,7 @@ export namespace Components {
         /**
           * The icon next to the actual text input Defaults to 'search'
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * i18n
          */
@@ -1123,9 +1123,6 @@ export namespace Components {
           * Disable item and remove event listeners
          */
         "disabled": boolean;
-        /**
-          * Internal usage only
-         */
         "emitItemClick": () => Promise<void>;
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
@@ -1225,7 +1222,7 @@ export namespace Components {
         /**
           * Search icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Placeholder text
          */
@@ -1753,9 +1750,6 @@ export namespace Components {
           * Should only be set if you use ix-menu standalone
          */
         "applicationName"?: string;
-        /**
-          * Internal
-         */
         "enableMapExpand": boolean;
         /**
           * Is settings tab is visible
@@ -1830,9 +1824,6 @@ export namespace Components {
           * Content of the header
          */
         "label": string;
-        /**
-          * Internal
-         */
         "show": boolean;
     }
     interface IxMenuAboutItem {
@@ -1846,9 +1837,6 @@ export namespace Components {
           * Subtitle of the about news
          */
         "aboutItemLabel": string;
-        /**
-          * Internal
-         */
         "expanded": boolean;
         "i18nShowMore": string;
         /**
@@ -1987,9 +1975,6 @@ export namespace Components {
           * Label of first tab
          */
         "label": string;
-        /**
-          * Internal
-         */
         "show": boolean;
     }
     interface IxMenuSettingsItem {
@@ -2290,7 +2275,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string | undefined;
+        "icon"?: string;
         /**
           * Show pill as outline
          */
@@ -2327,7 +2312,7 @@ export namespace Components {
         /**
           * Card icon
          */
-        "icon": string | undefined;
+        "icon"?: string;
         /**
           * Card KPI value
          */
@@ -2620,11 +2605,11 @@ export namespace Components {
         /**
           * Button icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Button label
          */
-        "label": string;
+        "label"?: string;
         /**
           * Button outline variant
          */
@@ -2636,7 +2621,7 @@ export namespace Components {
         /**
           * Icon of the button on the right
          */
-        "splitIcon": string;
+        "splitIcon"?: string;
         /**
           * Color variant of button
          */
@@ -6875,9 +6860,6 @@ declare namespace LocalJSX {
           * Should only be set if you use ix-menu standalone
          */
         "applicationName"?: string;
-        /**
-          * Internal
-         */
         "enableMapExpand"?: boolean;
         /**
           * Is settings tab is visible
@@ -6944,9 +6926,6 @@ declare namespace LocalJSX {
           * About and Legal closed
          */
         "onClose"?: (event: IxMenuAboutCustomEvent<CustomCloseEvent>) => void;
-        /**
-          * Internal
-         */
         "show"?: boolean;
     }
     interface IxMenuAboutItem {
@@ -6964,9 +6943,6 @@ declare namespace LocalJSX {
           * Subtitle of the about news
          */
         "aboutItemLabel"?: string;
-        /**
-          * Internal
-         */
         "expanded"?: boolean;
         "i18nShowMore"?: string;
         /**
@@ -7125,9 +7101,6 @@ declare namespace LocalJSX {
           * Popover closed
          */
         "onClose"?: (event: IxMenuSettingsCustomEvent<CustomCloseEvent>) => void;
-        /**
-          * Internal
-         */
         "show"?: boolean;
     }
     interface IxMenuSettingsItem {
@@ -7460,7 +7433,7 @@ declare namespace LocalJSX {
         /**
           * Show icon
          */
-        "icon"?: string | undefined;
+        "icon"?: string;
         /**
           * Show pill as outline
          */
@@ -7497,7 +7470,7 @@ declare namespace LocalJSX {
         /**
           * Card icon
          */
-        "icon"?: string | undefined;
+        "icon"?: string;
         /**
           * Card KPI value
          */

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconClose } from '@siemens/ix-icons/icons';
 import {
   Component,
   Event,
@@ -178,7 +179,7 @@ export class Drawer {
           </div>
           <ix-icon-button
             class="close-button"
-            icon={'close'}
+            icon={iconClose}
             size="24"
             ghost
             onClick={() => this.onCloseClicked()}
