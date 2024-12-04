@@ -62,7 +62,8 @@ function useSnippetFetcher(
   activeFramework: TargetFramework,
   name: string,
   alternativeSnippets?: Record<TargetFramework, string[]>,
-  preventDefaultExample?: boolean
+  preventDefaultExample?: boolean,
+  removeComments?: boolean
 ): {
   isFetching: boolean;
   hasError: boolean;
@@ -84,19 +85,19 @@ function useSnippetFetcher(
 
     if (!preventDefaultExample && url) {
       if (activeFramework === TargetFramework.ANGULAR) {
-        fetchExamplePreview$ = fetchSourceForAngular(url, name);
+        fetchExamplePreview$ = fetchSourceForAngular(url, name, removeComments);
       }
 
       if (activeFramework === TargetFramework.REACT) {
-        fetchExamplePreview$ = fetchSourceForReact(url, name);
+        fetchExamplePreview$ = fetchSourceForReact(url, name, removeComments);
       }
 
       if (activeFramework === TargetFramework.VUE) {
-        fetchExamplePreview$ = fetchSourceForVue(url, name);
+        fetchExamplePreview$ = fetchSourceForVue(url, name, removeComments);
       }
 
       if (activeFramework === TargetFramework.JAVASCRIPT) {
-        fetchExamplePreview$ = fetchSourceForHtml(url, name);
+        fetchExamplePreview$ = fetchSourceForHtml(url, name, removeComments);
       }
 
       if (!fetchExamplePreview$) {
@@ -110,7 +111,10 @@ function useSnippetFetcher(
         Promise.all(
           alternativeSnippets[activeFramework].map(async (file) => {
             try {
-              const data = await docusaurusFetch(`${url}/${file}`);
+              const data = await docusaurusFetch(
+                `${url}/${file}`,
+                removeComments
+              );
               _snippets[file] = data;
             } catch (error) {
               reject(error);
@@ -143,7 +147,6 @@ function useSnippetFetcher(
 }
 
 function SnippetPreview(props: { snippets: Record<string, string> }) {
-  const baseUrl = useBaseUrl('/');
   const [activeFile, setActiveFile] = useState<string | null>(
     Object.keys(props.snippets)[0]
   );
@@ -268,6 +271,7 @@ export type PlaygroundV3Props = {
   preventDefaultExample?: boolean;
   additionalFiles?: Record<TargetFramework, string[]>;
   deviantRootFileName?: string;
+  removeComments?: boolean;
 } & DemoProps;
 
 export default function PlaygroundV3(props: PlaygroundV3Props) {
@@ -279,14 +283,13 @@ export default function PlaygroundV3(props: PlaygroundV3Props) {
     activeFramework,
     props.name,
     props.additionalFiles,
-    props.preventDefaultExample
+    props.preventDefaultExample,
+    props.removeComments
   );
 
   function onActiveFrameworkChange(framework: TargetFramework) {
     setActiveFramework(framework);
   }
-
-  const showCode = activeFramework !== TargetFramework.PREVIEW;
 
   return (
     <div className="Playground">
@@ -330,7 +333,7 @@ export default function PlaygroundV3(props: PlaygroundV3Props) {
           name={props.name}
           deviantRootFileName={props.deviantRootFileName}
           activeFramework={activeFramework}
-          noMargin={false}
+          noMargin={props.noMargin}
           snippets={snippets}
         ></ToolbarButtons>
       </div>
