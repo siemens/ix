@@ -7,8 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export function isMakeRef(obj: unknown): obj is MakeRef<unknown> {
-  return obj.hasOwnProperty('current') && obj.hasOwnProperty('waitForCurrent');
+export function isMakeRef<T>(obj: unknown): obj is MakeRef<T> {
+  return (
+    typeof obj === 'function' &&
+    'current' in obj &&
+    (obj.current === null || typeof obj.current !== 'undefined') &&
+    'waitForCurrent' in obj &&
+    typeof obj.waitForCurrent === 'function'
+  );
 }
 
 export type MakeRef<T> = {
