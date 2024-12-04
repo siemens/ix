@@ -7,6 +7,16 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
+### Migration
+
+The following example demonstrates how to translate the functionalities of the deprecated `ix-map-navigation` to the new `ix-application` component.
+
+<Playground
+name="map-navigation-migration"
+height="35rem"
+noMargin>
+</Playground>
+
 ### Examples
 
 #### Basic
@@ -14,20 +24,16 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
 name="map-navigation"
 height="35rem"
-oMargin
-hideInitalCodePreview
-
-> </Playground>
+noMargin>
+</Playground>
 
 #### Custom overlay
 
 <Playground
 name="map-navigation-overlay"
 height="35rem"
-noMargin
-hideInitalCodePreview
-
-> </Playground>
+noMargin>
+</Playground>
 
 ### API (ix-map-navigation)
 
