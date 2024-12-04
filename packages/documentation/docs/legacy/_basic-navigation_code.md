@@ -5,6 +5,16 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
+### Migration
+
+The following example demonstrates how to translate the functionalities of the deprecated `ix-basic-navigation` to the new `ix-application` component.
+
+<Playground
+name="basic-navigation-migration"
+height="35rem"
+noMargin>
+</Playground>
+
 ### Examples
 
 #### Basic
