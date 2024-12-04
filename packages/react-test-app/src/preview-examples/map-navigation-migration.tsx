@@ -39,7 +39,7 @@ export default () => {
       <IxApplicationHeader name="My Application">
         <div className="placeholder-logo" slot="logo"></div>
 
-        {/* Compare context menu */}
+        {/*{KEEP} Compare context menu */}
         <IxDropdownButton variant="secondary" label="Select config" ghost>
           <IxDropdownItem label="Config 1"></IxDropdownItem>
           <IxDropdownItem label="Config 2"></IxDropdownItem>
@@ -52,7 +52,7 @@ export default () => {
         <IxMenuItem>Item 2</IxMenuItem>
       </IxMenu>
 
-      {/* Compare overlay */}
+      {/*{KEEP} Compare overlay */}
       <IxPane
         className="overlay"
         composition="right"
@@ -68,7 +68,7 @@ export default () => {
       </IxPane>
 
       <IxPaneLayout>
-        {/* Compare sidebar */}
+        {/*{KEEP} Compare sidebar */}
         <IxPane
           slot="left"
           heading="Navigation title"
