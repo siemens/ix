@@ -16,23 +16,14 @@ import {
 } from '@siemens/ix-react';
 import { useTheme } from '@site/src/utils/hooks/useTheme';
 import CodeBlock from '@theme/CodeBlock';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Demo, { DemoProps } from '../Demo';
 import { getDisplay, TargetFramework } from '../PlaygroundV2/framework-types';
-import {
-  fetchSourceForAngular,
-  getAngularTestAppGithubPath,
-} from './angular-snippets';
-import {
-  fetchSourceForHtml,
-  getJavascriptTestAppGithubPath,
-} from './html-snippets';
+import { fetchSourceForAngular } from './angular-snippets';
+import { fetchSourceForHtml } from './html-snippets';
 import './playground.css';
-import {
-  fetchSourceForReact,
-  getReactTestAppGithubPath,
-} from './react-snippets';
-import { fetchSourceForVue, getVueTestAppGithubPath } from './vue-snippets';
+import { fetchSourceForReact } from './react-snippets';
+import { fetchSourceForVue } from './vue-snippets';
 import { docusaurusFetch } from './fetching';
 import { openStackBlitz } from '../../utils/stackblitz';
 
@@ -212,7 +203,7 @@ function ToolbarButtons(props: {
   const theme = useTheme();
   const baseUrl = useBaseUrl('/');
   const baseUrlAssets = useBaseUrl('/img');
-  const stackblizAssetUrl = `${baseUrlAssets}/stackblitz.svg`;
+  const stackblitzAssetUrl = `${baseUrlAssets}/stackblitz.svg`;
   const iframe = useBaseUrl('/webcomponent-examples/dist/preview-examples');
 
   return (
@@ -244,7 +235,7 @@ function ToolbarButtons(props: {
               })
             }
             className="Stackblitz"
-            icon={stackblizAssetUrl}
+            icon={stackblitzAssetUrl}
             outline
             //@ts-ignore
             iconSize="16"
