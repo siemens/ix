@@ -233,6 +233,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
 import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
 import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
 import MapNavigationMigration from 'src/preview-examples/map-navigation-migration';
+import BasicNavigationMigration from 'src/preview-examples/basic-navigation-migration';
 
 @NgModule({
   declarations: [
@@ -253,6 +254,7 @@ import MapNavigationMigration from 'src/preview-examples/map-navigation-migratio
     Avatar,
     BasicNavigationWithoutHeader,
     BasicNavigation,
+    BasicNavigationMigration,
     BlindHeaderActions,
     BlindVariants,
     Blind,

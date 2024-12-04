@@ -218,6 +218,7 @@ import Workflow from './preview-examples/workflow.vue';
 import FormLayoutAuto from './preview-examples/form-layout-auto.vue';
 import FormLayoutGrid from './preview-examples/form-layout-grid.vue';
 import MapNavigationMigration from './preview-examples/map-navigation-migration.vue';
+import BasicNavigationMigration from './preview-examples/basic-navigation-migration.vue';
 
 const routes: any = {
   '/': App,
@@ -234,6 +235,7 @@ const routes: any = {
   '/preview/avatar': Avatar,
   '/preview/basic-navigation-without-header': BasicNavigationWithoutHeader,
   '/preview/basic-navigation': BasicNavigation,
+  '/preview/basic-navigation-migration': BasicNavigationMigration,
   '/preview/blind-header-actions': BlindHeaderActions,
   '/preview/blind-variants': BlindVariants,
   '/preview/blind': Blind,

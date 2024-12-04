@@ -219,6 +219,7 @@ import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-gro
 import FormLayoutAuto from './preview-examples/form-layout-auto';
 import FormLayoutGrid from './preview-examples/form-layout-grid';
 import MapNavigationMigration from './preview-examples/map-navigation-migration';
+import BasicNavigationMigration from './preview-examples/basic-navigation-migration';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -252,6 +253,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<BasicNavigationWithoutHeader />}
         />
         <Route path="/preview/basic-navigation" element={<BasicNavigation />} />
+        <Route
+          path="/preview/basic-navigation-migration"
+          element={<BasicNavigationMigration />}
+        />
         <Route
           path="/preview/blind-header-actions"
           element={<BlindHeaderActions />}
