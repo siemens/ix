@@ -28,7 +28,11 @@ function prependHref(node: ReactNode): ReactNode {
   return node;
 }
 
-export default function NoteBlock(props: { children: React.ReactNode }) {
+interface NoteBlockProps {
+  readonly children: React.ReactNode;
+}
+
+export default function NoteBlock(props: NoteBlockProps) {
   const modifiedChildren = React.Children.map(props.children, prependHref);
 
   return (
