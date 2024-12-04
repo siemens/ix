@@ -108,6 +108,8 @@ import FormCheckboxDisabled from '../preview-examples/form-checkbox-disabled';
 import FormCheckboxGroup from '../preview-examples/form-checkbox-group';
 import FormCheckboxGroupIndeterminate from '../preview-examples/form-checkbox-group-indeterminate';
 import FormCheckboxValidation from '../preview-examples/form-checkbox-validation';
+import FormLayoutAuto from '../preview-examples/form-layout-auto';
+import FormLayoutGrid from '../preview-examples/form-layout-grid';
 import FormValidation from '../preview-examples/form-validation';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
@@ -231,8 +233,6 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import FormLayoutAuto from '../preview-examples/form-layout-auto';
-import FormLayoutGrid from '../preview-examples/form-layout-grid';
 import MapNavigationMigration from '../preview-examples/map-navigation-migration';
 import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
 
