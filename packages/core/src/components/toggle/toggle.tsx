@@ -13,7 +13,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Fragment,
   h,
   Host,
   Method,
@@ -22,8 +21,6 @@ import {
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import { IxFormComponent } from '../utils/input';
-
-let localId = 0;
 
 /**
  * @form-ready 2.6.0
@@ -99,9 +96,11 @@ export class Toggle implements IxFormComponent<string> {
   /** @internal */
   @Event() valueChange!: EventEmitter<string>;
 
-  private readonly localId = `ix-toggle-${localId++}`;
-
   onCheckedChange(newChecked: boolean) {
+    if (this.disabled) {
+      return;
+    }
+
     if (this.indeterminate) {
       this.indeterminate = false;
     }
@@ -145,35 +144,39 @@ export class Toggle implements IxFormComponent<string> {
           disabled: this.disabled,
         }}
       >
-        <input
-          id={this.localId}
-          disabled={this.disabled}
-          indeterminate={this.indeterminate}
-          checked={this.checked}
-          role="switch"
-          tabindex={0}
-          type="checkbox"
-          aria-checked={a11yBoolean(this.checked)}
-          onChange={(event) =>
-            this.onCheckedChange((event.target as HTMLInputElement).checked)
-          }
-        ></input>
-        <label class="switch" tabIndex={-1} htmlFor={this.localId}>
-          <span class="slider"></span>
+        <label class="wrapper">
+          <button
+            role="switch"
+            class={{
+              switch: true,
+              checked: this.checked,
+              indeterminate: this.indeterminate,
+            }}
+            onClick={() => this.onCheckedChange(!this.checked)}
+          >
+            <div class="slider"></div>
+          </button>
+          <input
+            type="checkbox"
+            disabled={this.disabled}
+            indeterminate={this.indeterminate}
+            checked={this.checked}
+            tabindex={0}
+            aria-checked={a11yBoolean(this.checked)}
+            onChange={(event) =>
+              this.onCheckedChange((event.target as HTMLInputElement).checked)
+            }
+          />
+          {!this.hideText && (
+            <ix-typography class="label">
+              {!this.indeterminate
+                ? this.checked
+                  ? this.textOn
+                  : this.textOff
+                : this.textIndeterminate}
+            </ix-typography>
+          )}
         </label>
-        {!this.hideText ? (
-          <Fragment>
-            {!this.indeterminate ? (
-              <span class={'toggle-text'} aria-hidden={a11yBoolean(true)}>
-                {this.checked ? this.textOn : this.textOff}
-              </span>
-            ) : (
-              <span class={'toggle-text'} aria-hidden={a11yBoolean(true)}>
-                {this.textIndeterminate}
-              </span>
-            )}
-          </Fragment>
-        ) : null}
       </Host>
     );
   }

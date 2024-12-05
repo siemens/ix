@@ -14,20 +14,29 @@ import { action } from '@storybook/addon-actions';
 type Element = Components.IxToggle & {
   defaultSlot: string;
   ['checked-change']: any;
+  validation: string;
+  'text-on': string;
+};
+
+const toggleRender = (args: Element) => {
+  const container = genericRender('ix-toggle', args);
+  const ixToggle = container.querySelector('ix-toggle') as HTMLIxToggleElement;
+  ixToggle.addEventListener('checkedChange', action('checkedChange'));
+  ixToggle.classList.remove('ix-invalid', 'ix-valid', 'ix-warning', 'ix-info');
+  ixToggle.classList.add(args.validation);
+  return container;
 };
 
 const meta = {
   title: 'Example/Toggle',
   tags: [],
-  render: (args) => {
-    const container = genericRender('ix-toggle', args);
-    const ixToggle = container.querySelector(
-      'ix-toggle'
-    ) as HTMLIxToggleElement;
-    ixToggle.addEventListener('checkedChange', action('checkedChange'));
-    return container;
-  },
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-toggle'),
+  render: (args) => toggleRender(args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-toggle', {
+    validation: {
+      control: { type: 'select' },
+      options: ['ix-invalid', 'ix-valid', 'ix-warning', 'ix-info'],
+    },
+  }),
   parameters: {
     design: {
       type: 'figma',
@@ -43,5 +52,52 @@ type Story = StoryObj<Element>;
 export const Default: Story = {
   args: {
     disabled: false,
+  },
+};
+
+export const Valid: Story = {
+  args: {
+    checked: true,
+    disabled: false,
+    validation: 'ix-valid',
+  },
+};
+
+export const Invalid: Story = {
+  args: {
+    checked: true,
+    disabled: false,
+    validation: 'ix-invalid',
+  },
+};
+
+export const Info: Story = {
+  args: {
+    checked: true,
+    disabled: false,
+    validation: 'ix-info',
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    checked: true,
+    disabled: false,
+    validation: 'ix-warning',
+  },
+};
+
+export const Overflow: Story = {
+  args: {
+    disabled: false,
+    'text-on': 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+    checked: true,
+  },
+  render: (args) => {
+    const container = toggleRender(args);
+    const ixToggle = container.querySelector('ix-toggle')!;
+    ixToggle.style.width = '10rem';
+
+    return container;
   },
 };
