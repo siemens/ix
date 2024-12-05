@@ -15,15 +15,15 @@ Commands are scannable, giving users just the right amount of information at the
 - Make things time out and notify users promptly
 - Assume users need support 
 
-![Informing 1 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-9127&t=2JP2nlNciwS43htp-1)
+![Informing 1 - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20596&t=sN9pWBoxiiVCyam3-4)
 
-![Informing 1 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-11427&t=2JP2nlNciwS43htp-1)
+![Informing 1 - Don't](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20584&t=sN9pWBoxiiVCyam3-4)
 
 <Separator></Separator>
 
-![Informing 2 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-9130&t=2JP2nlNciwS43htp-1)
+![Informing 2 - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20599&t=sN9pWBoxiiVCyam3-4)
 
-![Informing 2 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-11430&t=2JP2nlNciwS43htp-1)
+![Informing 2 - Don't](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20587&t=sN9pWBoxiiVCyam3-4)
 
 ### Robustness
 - Ensure your program validates user input
@@ -32,12 +32,12 @@ Commands are scannable, giving users just the right amount of information at the
 - Ensure system resilience by implementing retries and failovers
 - Ensure your program cannot be misused or abused
 
-![Robustness 1 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-9133&t=2JP2nlNciwS43htp-1)
+![Robustness 1 - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20602&t=sN9pWBoxiiVCyam3-4)
 
-![Robustness 1 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-11433&t=2JP2nlNciwS43htp-1)
+![Robustness 1 - Don't](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20590&t=sN9pWBoxiiVCyam3-4)
 
 <Separator></Separator>
 
-![Robustness 2 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-9136&t=2JP2nlNciwS43htp-1)
+![Robustness 2 - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20605&t=sN9pWBoxiiVCyam3-4)
 
-![Robustness 2 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-11436&t=2JP2nlNciwS43htp-1)
+![Robustness 2 - Don't](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20593&t=sN9pWBoxiiVCyam3-4)
