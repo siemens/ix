@@ -119,7 +119,6 @@ export class Button {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
-      autofocus: this.hostElement.autofocus,
       tabIndex: this.hostElement.tabIndex,
     };
 

@@ -76,8 +76,9 @@ export const ShowFunction: Story = {
         `,
         mount
       );
+
       if (!isMounted) {
-        showModal({ content: mount, autofocus: true }).then((p) => {
+        showModal({ content: mount }).then((p) => {
           p.onClose.once(() => refs.delete(ctx.id));
           p.onDismiss.once(() => refs.delete(ctx.id));
         });

@@ -31,7 +31,6 @@ export interface ModalConfig<TReason = any, CONTENT = any> {
   animation?: boolean;
   ariaDescribedby?: string;
   ariaLabelledby?: string;
-  autofocus?: boolean;
   backdrop?: boolean;
   closeOnBackdropClick?: boolean;
   beforeDismiss?: (reason?: TReason) => boolean | Promise<boolean>;

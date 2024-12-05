@@ -70,7 +70,6 @@ export type BaseButtonProps = {
   alignment?: ButtonAlignment;
   tabIndex?: number;
   afterContent?: any;
-  autofocus?: boolean;
 };
 
 const getSpinnerSize = (btnProps: BaseButtonProps) => {
@@ -103,7 +102,6 @@ export const BaseButton: FunctionalComponent<BaseButtonProps> = (
     <button
       {...ariaAttributes}
       onClick={(e: Event) => (props.onClick ? props.onClick(e) : undefined)}
-      autoFocus={props.autofocus}
       tabindex={props.disabled ? -1 : props.tabIndex ?? 0}
       type={props.type}
       class={{
