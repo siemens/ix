@@ -9,6 +9,8 @@
     "test.a11y": "start-server-and-test build.watch http://localhost:6006 test-storybook"
   },
   "dependencies": {
+    "@maskito/core": "^3.2.0",
+    "@maskito/kit": "^3.2.0",
     "lit": "^3.2.1"
   },
   "devDependencies": {

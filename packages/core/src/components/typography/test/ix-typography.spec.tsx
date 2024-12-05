@@ -20,10 +20,10 @@ describe('ix-typography', () => {
   it('should render color', async () => {
     const page = await newSpecPage({
       components: [IxTypography],
-      html: `<ix-typography color="soft">Example content</ix-typography>`,
+      html: `<ix-typography text-color="soft">Example content</ix-typography>`,
     });
     expect(page.root).toEqualHtml(`
-      <ix-typography color="soft" class="typography-body" style="color: var(--theme-color-soft-text);">
+      <ix-typography text-color="soft" class="typography-body" style="color: var(--theme-color-soft-text);">
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
