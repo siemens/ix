@@ -37,7 +37,7 @@ export class Logger {
   }
 
   private shouldLog(level: LogLevel): boolean {
-    const levels: LogLevel[] = ['LOG', 'DEBUG', 'ERROR'];
+    const levels: LogLevel[] = ['DEBUG', 'LOG', 'ERROR'];
     return levels.indexOf(level) >= levels.indexOf(this.logLevel);
   }
 }

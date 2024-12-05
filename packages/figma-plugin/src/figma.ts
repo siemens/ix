@@ -13,7 +13,7 @@ import { rimrafSync } from 'rimraf';
 import { visit } from 'unist-util-visit';
 import { Logger } from './logger.js';
 
-const logger = new Logger('ERROR', 'figma-plugin');
+const logger = new Logger('LOG', 'figma-plugin');
 
 type MDXImageNode = {
   url: string;
@@ -29,7 +29,7 @@ type FigmaConfig = {
   baseUrl: string;
   error_image: string;
   figmaFolder: string;
-  figmaVersion?: string;
+  fileVersionId?: string;
   rimraf?: boolean;
 };
 
@@ -48,11 +48,14 @@ const isFetching = new Set<string>();
 async function getImageResource(
   fileName: string,
   nodeIds: string[],
-  figmaToken: string
+  figmaToken: string,
+  fileVersion?: string
 ): Promise<Record<string, string>> {
   const ids = nodeIds.join(',');
 
-  const url = `https://api.figma.com/v1/images/${fileName}?ids=${ids}`;
+  const url = `https://api.figma.com/v1/images/${fileName}?ids=${ids}${
+    fileVersion ? `&version=${fileVersion}` : ''
+  }`;
   const response = await fetch(url, {
     headers: {
       'X-FIGMA-TOKEN': figmaToken,
@@ -170,42 +173,10 @@ async function modifyMDXUrl(
   }
 }
 
-async function lookupFigmaVersions(
-  fileNames: Set<string>,
-  versionTable: Map<string, FigmaVersion[]>,
-  token: string
-): Promise<Map<string, FigmaVersion[]>> {
-  for (const fileName of fileNames) {
-    if (versionTable.has(fileName)) {
-      continue;
-    }
-
-    const url = `https://api.figma.com/v1/files/${fileName}/versions`;
-    const response = await fetch(url, {
-      headers: {
-        'X-FIGMA-TOKEN': token,
-      },
-    });
-
-    if (response.status !== 200) {
-      logger.error(
-        `🪲 Oops! Received unexpected status code ${response.status} during fetch versions`,
-        fileName
-      );
-      continue;
-    }
-
-    const { versions } = await response.json();
-    versionTable.set(
-      fileName,
-      versions.filter((v: FigmaVersion) => !!v.label)
-    );
-  }
-  return versionTable;
-}
-
 export default (config: FigmaConfig) => {
-  logger.log('Figma plugin running');
+  logger.log(
+    `Figma plugin running (version: ${config.fileVersionId ?? 'current'})`
+  );
 
   if (config.apiToken === undefined || config.apiToken === '') {
     logger.error('@siemens/figma-plugin no auth token provided');
@@ -216,10 +187,8 @@ export default (config: FigmaConfig) => {
     rimrafSync(config.figmaFolder);
     fs.mkdirSync(config.figmaFolder);
   }
-  return () => {
-    const uniqueFileNames = new Set<string>();
-    const versions: Map<string, FigmaVersion[]> = new Map();
 
+  return () => {
     const transformer = async (ast: any) => {
       const nodes: EnhancedMDXImageNode[] = [];
       const bucketUrls = new Map<string, Record<string, string>>();
@@ -227,15 +196,12 @@ export default (config: FigmaConfig) => {
 
       visit(ast, 'image', (node: any) => {
         const { fileName, nodeId } = getFigmaMeta(node);
-        uniqueFileNames.add(fileName);
         nodes.push({
           ...node,
           fileName,
           nodeId,
         } satisfies EnhancedMDXImageNode);
       });
-
-      await lookupFigmaVersions(uniqueFileNames, versions, config.apiToken);
 
       for (const node of nodes) {
         const { fileName, nodeId } = node;
@@ -249,11 +215,14 @@ export default (config: FigmaConfig) => {
       const requestImagesFromFigma: Promise<void>[] = [];
       for (const [fileName, ids] of imageRequests) {
         requestImagesFromFigma.push(
-          getImageResource(fileName, Array.from(ids), config.apiToken).then(
-            (images) => {
-              bucketUrls.set(fileName, images);
-            }
-          )
+          getImageResource(
+            fileName,
+            Array.from(ids),
+            config.apiToken,
+            config.fileVersionId
+          ).then((images) => {
+            bucketUrls.set(fileName, images);
+          })
         );
       }
 
