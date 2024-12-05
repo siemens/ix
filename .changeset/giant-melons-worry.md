@@ -2,4 +2,4 @@
 '@siemens/ix-angular': patch
 ---
 
-Change selector in value-accessor for **ix-number-input**
+Use `ix-number-input` selector in text-value-accessor for **ix-number-input**
