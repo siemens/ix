@@ -2,4 +2,4 @@
 "@siemens/ix": patch
 ---
 
-Enable autofocus in ix-modal dialogs.
+Enable the possibility to use autofocus within **ix-modal**
