@@ -10,33 +10,62 @@
 <script setup lang="ts">
 import {
   IxButton,
+  IxContent,
+  IxContentHeader,
   IxMapNavigation,
   IxMapNavigationOverlay,
   IxMenu,
   IxMenuItem,
 } from '@siemens/ix-vue';
-import { ref } from 'vue';
+</script>
 
-const overlay = ref(false);
+<script lang="ts">
+export default {
+  data(): {
+    overlay: boolean;
+  } {
+    return {
+      overlay: false,
+    };
+  },
+  methods: {
+    showOverlay(show: boolean) {
+      this.overlay = show;
+    },
+  },
+};
 </script>
 
 <template>
-  <IxMapNavigation>
+  <IxMapNavigation
+    applicationName="My Application"
+    navigationTitle="Navigation title"
+    :hideContextMenu="false"
+  >
     <div className="placeholder-logo" slot="logo"></div>
+
     <IxMenu>
       <IxMenuItem>Item 1</IxMenuItem>
       <IxMenuItem>Item 2</IxMenuItem>
-      <IxMenuItem>Item 3</IxMenuItem>
     </IxMenu>
-    <IxButton @click="overlay = true"> Open overlay </IxButton>
-    <div>
-      <IxMapNavigationOverlay
-        name="Custom overlay title"
-        icon="bulb"
-        @close-click="overlay = false"
-      >
-        Lorem ipsum
-      </IxMapNavigationOverlay>
-    </div>
+
+    <IxContent slot="sidebar-content">Sidebar content</IxContent>
+
+    <IxContent>
+      <IxContentHeader slot="header" headerTitle="My Content Page">
+      </IxContentHeader>
+
+      <IxButton @click="() => showOverlay(true)">Open overlay</IxButton>
+    </IxContent>
+
+    <IxMapNavigationOverlay
+      v-if="overlay"
+      slot="overlay"
+      name="Custom overlay"
+      icon="bulb"
+      @close-click="() => showOverlay(false)"
+    >
+      <IxContent>Overlay content</IxContent>
+    </IxMapNavigationOverlay>
   </IxMapNavigation>
 </template>
