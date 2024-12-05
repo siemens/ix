@@ -97,6 +97,7 @@ export const Overflow: Story = {
     const container = toggleRender(args);
     const ixToggle = container.querySelector('ix-toggle')!;
     ixToggle.style.width = '10rem';
+    ixToggle.style.height = '3rem';
 
     return container;
   },

@@ -147,6 +147,7 @@ export class Toggle implements IxFormComponent<string> {
         <label class="wrapper">
           <button
             role="switch"
+            aria-checked={a11yBoolean(this.checked)}
             class={{
               switch: true,
               checked: this.checked,
@@ -162,6 +163,7 @@ export class Toggle implements IxFormComponent<string> {
             indeterminate={this.indeterminate}
             checked={this.checked}
             tabindex={0}
+            aria-hidden={a11yBoolean(true)}
             aria-checked={a11yBoolean(this.checked)}
             onChange={(event) =>
               this.onCheckedChange((event.target as HTMLInputElement).checked)
