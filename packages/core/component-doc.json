@@ -125,10 +125,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "ActionCardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "ActionCardVariant": {
                 "location": "local",
@@ -141,14 +141,8 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
-            }
-          ],
-          "default": "'insight'",
-          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
+          "docsTags": [],
+          "default": "'outline'",
           "values": [
             {
               "value": "alarm",
@@ -167,15 +161,7 @@
               "type": "string"
             },
             {
-              "value": "insight",
-              "type": "string"
-            },
-            {
               "value": "neutral",
-              "type": "string"
-            },
-            {
-              "value": "notification",
               "type": "string"
             },
             {
@@ -942,10 +928,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "BlindVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "BlindVariant": {
                 "location": "local",
@@ -964,7 +950,7 @@
               "text": "2.0.0"
             }
           ],
-          "default": "'insight'",
+          "default": "'filled'",
           "values": [
             {
               "value": "alarm",
@@ -983,15 +969,7 @@
               "type": "string"
             },
             {
-              "value": "insight",
-              "type": "string"
-            },
-            {
               "value": "neutral",
-              "type": "string"
-            },
-            {
-              "value": "notification",
               "type": "string"
             },
             {
@@ -1601,10 +1579,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "CardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "CardVariant": {
                 "location": "local",
@@ -1617,14 +1595,8 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead."
-            }
-          ],
-          "default": "'insight'",
-          "deprecation": "variant insight and notification will be removed in 3.0. Use 'outline' or 'filled' instead.",
+          "docsTags": [],
+          "default": "'outline'",
           "values": [
             {
               "value": "alarm",
@@ -1643,15 +1615,7 @@
               "type": "string"
             },
             {
-              "value": "insight",
-              "type": "string"
-            },
-            {
               "value": "neutral",
-              "type": "string"
-            },
-            {
-              "value": "notification",
               "type": "string"
             },
             {
@@ -3080,33 +3044,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "color",
-          "type": "string",
-          "complexType": {
-            "original": "string | undefined",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Custom font and icon color.\nOnly has an effect on chips with `variant='custom'`",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "since 2.1.0 use `chip-color`"
-            }
-          ],
-          "deprecation": "since 2.1.0 use `chip-color`",
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,
@@ -5033,38 +4970,6 @@
           "required": false
         },
         {
-          "name": "eventDelimiter",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "event-delimiter",
-          "reflectToAttr": false,
-          "docs": "Default behavior of the done event is to join the two events (date and time) into one combined string output.\nThis combination can be configured over the delimiter",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            },
-            {
-              "name": "deprecated",
-              "text": "Not used anymore see `this.dateChange`"
-            }
-          ],
-          "default": "' - '",
-          "deprecation": "Not used anymore see `this.dateChange`",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "format",
           "type": "string",
           "complexType": {
@@ -5134,34 +5039,6 @@
           "values": [
             {
               "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "individual",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "individual",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Not supported since 2.0.0."
-            }
-          ],
-          "default": "true",
-          "deprecation": "Not supported since 2.0.0.",
-          "values": [
-            {
-              "type": "boolean"
             }
           ],
           "optional": false,
@@ -5264,38 +5141,6 @@
           "values": [
             {
               "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "textSelectDate",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-select-date",
-          "reflectToAttr": false,
-          "docs": "Text of the button that confirms date selection.",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            },
-            {
-              "name": "deprecated",
-              "text": "since 2.1.0. Use `i18nDone`"
-            }
-          ],
-          "default": "''",
-          "deprecation": "since 2.1.0. Use `i18nDone`",
-          "values": [
-            {
-              "type": "string"
             }
           ],
           "optional": false,
@@ -5454,26 +5299,6 @@
               "text": "1.1.0"
             }
           ]
-        },
-        {
-          "event": "done",
-          "detail": "string",
-          "bubbles": true,
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Date selection confirmed via button action",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "NOT getting dispatched after 2.0.0. Use `dateSelect`."
-            }
-          ],
-          "deprecation": "NOT getting dispatched after 2.0.0. Use `dateSelect`."
         }
       ],
       "styles": [],
@@ -5550,38 +5375,6 @@
             }
           ],
           "default": "'yyyy/LL/dd'",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "eventDelimiter",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "event-delimiter",
-          "reflectToAttr": false,
-          "docs": "Default behavior of the done event is to join the two events (date and time) into one combined string output.\nThis combination can be configured over the delimiter",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            },
-            {
-              "name": "deprecated",
-              "text": "Not used anymore see `done` event"
-            }
-          ],
-          "default": "' - '",
-          "deprecation": "Not used anymore see `done` event",
           "values": [
             {
               "type": "string"
@@ -5841,37 +5634,6 @@
           "required": false
         },
         {
-          "name": "textSelectDate",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "text-select-date",
-          "reflectToAttr": false,
-          "docs": "Text of date select button",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0"
-            },
-            {
-              "name": "deprecated",
-              "text": "since 2.1.0. Use `i18nDone`"
-            }
-          ],
-          "deprecation": "since 2.1.0. Use `i18nDone`",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
           "name": "time",
           "type": "string",
           "complexType": {
@@ -6055,26 +5817,6 @@
               "text": "1.1.0"
             }
           ]
-        },
-        {
-          "event": "done",
-          "detail": "string",
-          "bubbles": true,
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Done event\n\nSet `doneEventDelimiter` to null or undefine to get the typed event",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Use `this.dateChange`"
-            }
-          ],
-          "deprecation": "Use `this.dateChange`"
         },
         {
           "event": "timeChange",
@@ -7120,8 +6862,7 @@
         "ix-menu-avatar-item",
         "ix-menu-category",
         "ix-select",
-        "ix-select-item",
-        "ix-split-button-item"
+        "ix-select-item"
       ],
       "dependencies": [],
       "dependencyGraph": {
@@ -7141,9 +6882,6 @@
           "ix-dropdown-item"
         ],
         "ix-select-item": [
-          "ix-dropdown-item"
-        ],
-        "ix-split-button-item": [
           "ix-dropdown-item"
         ]
       },
@@ -7624,37 +7362,6 @@
             }
           ],
           "optional": false,
-          "required": false
-        },
-        {
-          "name": "color",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Color of the status indicator.\nYou can find a list of all available colors in our documentation.\nExample values are `--theme-color-alarm` or `color-alarm`",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/theming/colors/"
-            },
-            {
-              "name": "deprecated",
-              "text": "since 2.1.0 use `item-color`"
-            }
-          ],
-          "deprecation": "since 2.1.0 use `item-color`",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
           "required": false
         },
         {
@@ -9043,33 +8750,6 @@
           "required": false
         },
         {
-          "name": "color",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Color of icon in  button",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "since 2.1.0 use `icon-color`"
-            }
-          ],
-          "deprecation": "since 2.1.0 use `icon-color`",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "disabled",
           "type": "boolean",
           "complexType": {
@@ -9225,24 +8905,18 @@
         },
         {
           "name": "size",
-          "type": "\"12\" | \"16\" | \"24\" | \"32\"",
+          "type": "\"12\" | \"16\" | \"24\"",
           "complexType": {
-            "original": "'32' | '24' | '16' | '12'",
-            "resolved": "\"12\" | \"16\" | \"24\" | \"32\"",
+            "original": "'24' | '16' | '12'",
+            "resolved": "\"12\" | \"16\" | \"24\"",
             "references": {}
           },
           "mutable": false,
           "attr": "size",
           "reflectToAttr": false,
           "docs": "Size of icon in button",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Only size 32 will be removed in 3.0.0"
-            }
-          ],
+          "docsTags": [],
           "default": "'24'",
-          "deprecation": "Only size 32 will be removed in 3.0.0",
           "values": [
             {
               "value": "12",
@@ -9254,10 +8928,6 @@
             },
             {
               "value": "24",
-              "type": "string"
-            },
-            {
-              "value": "32",
               "type": "string"
             }
           ],
@@ -11503,34 +11173,6 @@
           "required": false
         },
         {
-          "name": "maxVisibleMenuItems",
-          "type": "number",
-          "complexType": {
-            "original": "number",
-            "resolved": "number",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "max-visible-menu-items",
-          "reflectToAttr": false,
-          "docs": "Maximum number of menu items to show in case enough vertical space is available.\nExtra menu items will be collapsed to 'show more' menu item.",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "- Has no effect on component. Will get removed with next major release (v3)"
-            }
-          ],
-          "default": "9",
-          "deprecation": "- Has no effect on component. Will get removed with next major release (v3)",
-          "values": [
-            {
-              "type": "number"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "pinned",
           "type": "boolean",
           "complexType": {
@@ -12794,37 +12436,6 @@
           ],
           "optional": true,
           "required": false
-        },
-        {
-          "name": "tabIcon",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": true,
-          "attr": "tab-icon",
-          "reflectToAttr": false,
-          "docs": "Name of the icon you want to display. Icon names can be resolved from the documentation",
-          "docsTags": [
-            {
-              "name": "link",
-              "text": "https://ix.siemens.io/docs/icon-library/icons"
-            },
-            {
-              "name": "deprecated",
-              "text": "since 2.0.0 use `icon` property. Will be removed in 3.0.0"
-            }
-          ],
-          "deprecation": "since 2.0.0 use `icon` property. Will be removed in 3.0.0",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
         }
       ],
       "methods": [],
@@ -13258,34 +12869,6 @@
           "docs": "If set to true the modal can be closed by pressing the Escape key",
           "docsTags": [],
           "default": "true",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "keyboard",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "keyboard",
-          "reflectToAttr": false,
-          "docs": "Use ESC to dismiss the modal",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "- Use closeOnEscape instead"
-            }
-          ],
-          "default": "true",
-          "deprecation": "- Use closeOnEscape instead",
           "values": [
             {
               "type": "boolean"
@@ -15003,33 +14586,6 @@
           "required": false
         },
         {
-          "name": "color",
-          "type": "string",
-          "complexType": {
-            "original": "string | undefined",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Custom font color for pill. Only working for `variant='custom'`",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "since 2.1.0 use `pill-color`"
-            }
-          ],
-          "deprecation": "since 2.1.0 use `pill-color`",
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "icon",
           "type": "string",
           "complexType": {
@@ -15300,10 +14856,10 @@
         },
         {
           "name": "variant",
-          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
             "original": "PushCardVariant",
-            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"insight\" | \"neutral\" | \"notification\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
+            "resolved": "\"alarm\" | \"critical\" | \"filled\" | \"info\" | \"neutral\" | \"outline\" | \"primary\" | \"success\" | \"warning\"",
             "references": {
               "PushCardVariant": {
                 "location": "local",
@@ -15316,14 +14872,8 @@
           "attr": "variant",
           "reflectToAttr": false,
           "docs": "Card variant",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead."
-            }
-          ],
-          "default": "'insight'",
-          "deprecation": "variant \"insight\" and \"notification\" will be removed in 3.0. Use \"outline\" or \"filled\" instead.",
+          "docsTags": [],
+          "default": "'outline'",
           "values": [
             {
               "value": "alarm",
@@ -15342,15 +14892,7 @@
               "type": "string"
             },
             {
-              "value": "insight",
-              "type": "string"
-            },
-            {
               "value": "neutral",
-              "type": "string"
-            },
-            {
-              "value": "notification",
               "type": "string"
             },
             {
@@ -16315,36 +15857,6 @@
           "required": false
         },
         {
-          "name": "selectedIndices",
-          "type": "string | string[]",
-          "complexType": {
-            "original": "string | string[]",
-            "resolved": "string | string[]",
-            "references": {}
-          },
-          "mutable": true,
-          "attr": "selected-indices",
-          "reflectToAttr": false,
-          "docs": "Indices of selected items.\nThis corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "since 2.0.0. Use the `value` property instead."
-            }
-          ],
-          "deprecation": "since 2.0.0. Use the `value` property instead.",
-          "values": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "string[]"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
           "name": "showTextAsTooltip",
           "type": "boolean",
           "complexType": {
@@ -16538,26 +16050,6 @@
           ]
         },
         {
-          "event": "itemSelectionChange",
-          "detail": "string[]",
-          "bubbles": true,
-          "complexType": {
-            "original": "string[]",
-            "resolved": "string[]",
-            "references": {}
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Item selection changed",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "since 2.0.0. Use `valueChange` instead."
-            }
-          ],
-          "deprecation": "since 2.0.0. Use `valueChange` instead."
-        },
-        {
           "event": "ixBlur",
           "detail": "void",
           "bubbles": true,
@@ -16688,26 +16180,20 @@
         },
         {
           "name": "value",
-          "type": "any",
+          "type": "string",
           "complexType": {
-            "original": "any",
-            "resolved": "any",
+            "original": "string",
+            "resolved": "string",
             "references": {}
           },
           "mutable": false,
           "attr": "value",
           "reflectToAttr": true,
           "docs": "The value of the item.\nImportant: The select component uses string values to handle selection and will call toString() on this value.\nTherefor a string should be passed to value to prevent unexpected behavior.",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "will be changed to type string with next major release (3.0.0)"
-            }
-          ],
-          "deprecation": "will be changed to type string with next major release (3.0.0)",
+          "docsTags": [],
           "values": [
             {
-              "type": "any"
+              "type": "string"
             }
           ],
           "optional": false,
@@ -17477,104 +16963,6 @@
           "cancelable": true,
           "composed": true,
           "docs": "Button clicked",
-          "docsTags": []
-        }
-      ],
-      "styles": [],
-      "slots": [],
-      "parts": [],
-      "listeners": []
-    },
-    {
-      "dirPath": "src/components/split-button-item",
-      "filePath": "src/components/split-button-item/split-button-item.tsx",
-      "fileName": "split-button-item.tsx",
-      "readmePath": "src/components/split-button-item/readme.md",
-      "usagesDir": "src/components/split-button-item/usage",
-      "tag": "ix-split-button-item",
-      "overview": "",
-      "usage": {},
-      "docs": "",
-      "docsTags": [
-        {
-          "name": "deprecated",
-          "text": "since 2.0.0. Use the `ix-dropdown-item` component instead."
-        }
-      ],
-      "encapsulation": "shadow",
-      "dependents": [],
-      "dependencies": [
-        "ix-dropdown-item"
-      ],
-      "dependencyGraph": {
-        "ix-split-button-item": [
-          "ix-dropdown-item"
-        ]
-      },
-      "deprecation": "since 2.0.0. Use the `ix-dropdown-item` component instead.",
-      "props": [
-        {
-          "name": "icon",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "icon",
-          "reflectToAttr": false,
-          "docs": "Dropdown icon",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
-          "name": "label",
-          "type": "string",
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "label",
-          "reflectToAttr": false,
-          "docs": "Dropdown label",
-          "docsTags": [],
-          "values": [
-            {
-              "type": "string"
-            }
-          ],
-          "optional": false,
-          "required": false
-        }
-      ],
-      "methods": [],
-      "events": [
-        {
-          "event": "itemClick",
-          "detail": "MouseEvent",
-          "bubbles": true,
-          "complexType": {
-            "original": "MouseEvent",
-            "resolved": "MouseEvent",
-            "references": {
-              "MouseEvent": {
-                "location": "global",
-                "id": "global::MouseEvent"
-              }
-            }
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Dropdown item clicked",
           "docsTags": []
         }
       ],
@@ -18770,34 +18158,6 @@
           "required": false
         },
         {
-          "name": "individual",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "individual",
-          "reflectToAttr": false,
-          "docs": "",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Not supported since 2.0.0."
-            }
-          ],
-          "default": "true",
-          "deprecation": "Not supported since 2.0.0.",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "showHour",
           "type": "boolean",
           "complexType": {
@@ -18861,38 +18221,6 @@
             }
           ],
           "optional": false,
-          "required": false
-        },
-        {
-          "name": "showTimeReference",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": true,
-          "attr": "show-time-reference",
-          "reflectToAttr": false,
-          "docs": "Show time reference input",
-          "docsTags": [
-            {
-              "name": "since",
-              "text": "1.1.0 time reference is default aligned with format tt"
-            },
-            {
-              "name": "deprecated",
-              "text": "Since 2.0.0 time reference will be displayed depending on format."
-            }
-          ],
-          "default": "undefined",
-          "deprecation": "Since 2.0.0 time reference will be displayed depending on format.",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": true,
           "required": false
         },
         {
@@ -19050,26 +18378,6 @@
         }
       ],
       "events": [
-        {
-          "event": "done",
-          "detail": "string",
-          "bubbles": true,
-          "complexType": {
-            "original": "string",
-            "resolved": "string",
-            "references": {}
-          },
-          "cancelable": true,
-          "composed": true,
-          "docs": "Time event",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "Will be removed in 3.0.0. Use `time-select` event."
-            }
-          ],
-          "deprecation": "Will be removed in 3.0.0. Use `time-select` event."
-        },
         {
           "event": "timeChange",
           "detail": "string",
@@ -20623,72 +19931,6 @@
           "required": false
         },
         {
-          "name": "color",
-          "type": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
-          "complexType": {
-            "original": "TypographyColors",
-            "resolved": "\"alarm\" | \"contrast\" | \"inv-contrast\" | \"inv-soft\" | \"inv-std\" | \"inv-weak\" | \"soft\" | \"std\" | \"weak\"",
-            "references": {
-              "TypographyColors": {
-                "location": "local",
-                "path": "src/components/typography/typography.tsx",
-                "id": "src/components/typography/typography.tsx::TypographyColors"
-              }
-            }
-          },
-          "mutable": false,
-          "attr": "color",
-          "reflectToAttr": false,
-          "docs": "Text color based on theme variables",
-          "docsTags": [
-            {
-              "name": "deprecated",
-              "text": "since 2.1.0 use property `text-color`"
-            }
-          ],
-          "deprecation": "since 2.1.0 use property `text-color`",
-          "values": [
-            {
-              "value": "alarm",
-              "type": "string"
-            },
-            {
-              "value": "contrast",
-              "type": "string"
-            },
-            {
-              "value": "inv-contrast",
-              "type": "string"
-            },
-            {
-              "value": "inv-soft",
-              "type": "string"
-            },
-            {
-              "value": "inv-std",
-              "type": "string"
-            },
-            {
-              "value": "inv-weak",
-              "type": "string"
-            },
-            {
-              "value": "soft",
-              "type": "string"
-            },
-            {
-              "value": "std",
-              "type": "string"
-            },
-            {
-              "value": "weak",
-              "type": "string"
-            }
-          ],
-          "optional": true,
-          "required": false
-        },
-        {
           "name": "format",
           "type": "TypographyFormatLabel | TypographyFormatBody | TypographyFormatDisplay | TypographyFormatHeading | TypographyFormatCode",
           "complexType": {
@@ -21575,32 +20817,17 @@
   ],
   "typeLibrary": {
     "src/components/card/card.tsx::CardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
+      "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/card/card.tsx"
     },
-    "src/components/typography/typography.tsx::TypographyFormat": {
-      "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
-    "src/components/typography/typography.tsx::TypographyColors": {
-      "declaration": "export type TypographyColors =\n  | 'contrast'\n  | 'std'\n  | 'soft'\n  | 'weak'\n  | 'inv-contrast'\n  | 'inv-std'\n  | 'inv-soft'\n  | 'inv-weak'\n  | 'alarm';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
-    "src/components/typography/typography.tsx::TextDecoration": {
-      "declaration": "export type TextDecoration = 'none' | 'underline' | 'line-through';",
-      "docstring": "",
-      "path": "src/components/typography/typography.tsx"
-    },
     "src/components/action-card/action-card.tsx::ActionCardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
+      "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/action-card/action-card.tsx"
     },
     "src/components/blind/blind.tsx::BlindVariant": {
-      "declaration": "export type BlindVariant = CardVariant | 'outline';",
+      "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/blind/blind.tsx"
     },
@@ -21730,7 +20957,7 @@
       "path": "src/components/pane/pane.tsx"
     },
     "src/components/push-card/push-card.tsx::PushCardVariant": {
-      "declaration": "export type CardVariant =\n  | 'insight'\n  | 'notification'\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
+      "declaration": "export type CardVariant =\n  | 'alarm'\n  | 'critical'\n  | 'warning'\n  | 'info'\n  | 'neutral'\n  | 'success'\n  | 'primary'\n  | 'outline'\n  | 'filled';",
       "docstring": "",
       "path": "src/components/push-card/push-card.tsx"
     },
@@ -21773,6 +21000,21 @@
       "declaration": "export interface ToastConfig {\n  title?: string;\n  message: string | HTMLElement;\n  type?: ToastType;\n  autoClose?: boolean;\n  autoCloseDelay?: number;\n  icon?: string;\n  iconColor?: string;\n}",
       "docstring": "",
       "path": "src/components/toast/toast-utils.ts"
+    },
+    "src/components/typography/typography.tsx::TypographyFormat": {
+      "declaration": "export type TypographyFormat =\n  | TypographyFormatLabel\n  | TypographyFormatBody\n  | TypographyFormatDisplay\n  | TypographyFormatHeading\n  | TypographyFormatCode;",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
+    "src/components/typography/typography.tsx::TypographyColors": {
+      "declaration": "export type TypographyColors =\n  | 'contrast'\n  | 'std'\n  | 'soft'\n  | 'weak'\n  | 'inv-contrast'\n  | 'inv-std'\n  | 'inv-soft'\n  | 'inv-weak'\n  | 'alarm';",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
+    },
+    "src/components/typography/typography.tsx::TextDecoration": {
+      "declaration": "export type TextDecoration = 'none' | 'underline' | 'line-through';",
+      "docstring": "",
+      "path": "src/components/typography/typography.tsx"
     },
     "src/components/utils/theme-switcher.ts::IxTheme": {
       "declaration": "export type IxTheme = LiteralStringUnion<\n  'classic' | 'classic-dark' | 'classic-light'\n>;",

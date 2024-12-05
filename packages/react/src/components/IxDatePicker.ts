@@ -16,8 +16,7 @@ import React from 'react';
 type IxDatePickerEvents = {
     onDateChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
     onDateRangeChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
-    onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
-    onDone: EventName<CustomEvent<string>>
+    onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>
 };
 
 const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePickerEvents> = /*@__PURE__*/ createComponent<IxDatePickerElement, IxDatePickerEvents>({
@@ -28,8 +27,7 @@ const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePickerEvent
     events: {
         onDateChange: 'dateChange',
         onDateRangeChange: 'dateRangeChange',
-        onDateSelect: 'dateSelect',
-        onDone: 'done'
+        onDateSelect: 'dateSelect'
     } as IxDatePickerEvents,
     defineCustomElement: defineIxDatePicker
 });

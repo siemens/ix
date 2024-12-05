@@ -78,7 +78,7 @@ function UserInfo(props: {
         <div class="user">
           <div class="username">{props.userName}</div>
           {props.extra && (
-            <ix-typography class="extra" color={'soft'}>
+            <ix-typography class="extra" text-color={'soft'}>
               {props.extra}
             </ix-typography>
           )}
@@ -138,7 +138,7 @@ export class Avatar {
     this.isClosestApplicationHeader = closest !== null;
   }
 
-  private slottedChanged() {
+  private async slottedChanged() {
     this.hasSlottedElements = hasSlottedElements(this.slotElement);
   }
 

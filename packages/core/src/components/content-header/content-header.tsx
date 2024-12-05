@@ -66,7 +66,7 @@ export class ContentHeader {
           {!!this.headerSubtitle && (
             <ix-typography
               format={'h6'}
-              color={'soft'}
+              text-color={'soft'}
               class={this.variant === 'secondary' ? 'subtitle' : ''}
             >
               {this.headerSubtitle}

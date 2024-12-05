@@ -301,6 +301,31 @@ regressionTest(
 );
 
 regressionTest(
+  'check if clear button visible in disabled',
+  async ({ mount, page }) => {
+    await mount(`
+        <ix-select value="2" allow-clear>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="3" label="Item 3">Test</ix-select-item>
+        </ix-select>
+    `);
+
+    const selectElement = page.locator('ix-select');
+    await expect(selectElement).toHaveClass(/hydrated/);
+
+    const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
+    await expect(clearButton).toBeVisible();
+
+    await selectElement.evaluate(
+      (select: HTMLIxSelectElement) => (select.disabled = true)
+    );
+
+    await expect(clearButton).not.toBeAttached();
+  }
+);
+
+regressionTest(
   'type in a novel item name in multiple mode, click outside',
   async ({ mount, page }) => {
     await mount(`
@@ -328,7 +353,7 @@ regressionTest(
 );
 
 regressionTest(
-  'pass object as value and check if it is selectable',
+  'pass string as value and check if it is selectable',
   async ({ mount, page }) => {
     await mount(`
         <ix-select>
@@ -345,7 +370,7 @@ regressionTest(
         .locator('ix-select-item')
         .nth(index)
         .evaluate((e: HTMLIxSelectItemElement, index) => {
-          e.value = { selectLabel: `Item ${index}`, selectValue: `${index}` };
+          e.value = `Item ${index}`;
         });
     }
 
