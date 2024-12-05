@@ -17,7 +17,7 @@ import {
   IxSelect,
 } from '@siemens/ix-react';
 
-import './form-layout-grid.css';
+import './form-layout-grid.scoped.css';
 
 export default () => {
   return (

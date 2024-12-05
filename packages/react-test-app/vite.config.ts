@@ -11,6 +11,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
+import { reactScopedCssPlugin } from 'rollup-plugin-react-scoped-css';
 
 const previewPath = path.join(
   __dirname,
@@ -26,13 +27,19 @@ export default defineConfig(() => {
   fs.readdirSync(previewPath)
     .filter((f) => f.endsWith('.css'))
     .forEach((file) => {
+      const fileName = file.split('.')[0];
       fs.copyFileSync(
         path.join(previewPath, file),
-        path.join(__dirname, 'src', 'preview-examples', file)
+        path.join(
+          __dirname,
+          'src',
+          'preview-examples',
+          fileName !== 'global' ? `${fileName}.scoped.css` : `${fileName}.css`
+        )
       );
     });
 
   return {
-    plugins: [react()],
+    plugins: [react(), reactScopedCssPlugin() as any],
   };
 });
