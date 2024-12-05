@@ -17,7 +17,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import Hyperlist from 'hyperlist';
+import { VirtualList, VirtualListConfig } from './../utils/lazy-list';
 import { renderDefaultItem } from '../tree-item/default-tree-item';
 import {
   TreeContext,
@@ -85,7 +85,7 @@ export class Tree {
    */
   @Event() nodeRemoved!: EventEmitter<any>;
 
-  private hyperlist: Hyperlist;
+  private hyperlist: VirtualList;
 
   private toggleListener = new Map<HTMLElement, Function>();
   private itemClickListener = new Map<HTMLElement, Function>();
@@ -97,7 +97,7 @@ export class Tree {
     element.style.paddingLeft = item.level + 'rem';
   }
 
-  private getVirtualizerOptions() {
+  private getVirtualizerOptions(): VirtualListConfig {
     const list = this.buildTreeList(this.model[this.root]);
 
     let setToggleListener = (
@@ -120,6 +120,8 @@ export class Tree {
     };
 
     return {
+      width: '100%',
+      height: '100%',
       itemHeight: 32,
       total: list.length,
       generate: (index: number) => {
@@ -302,6 +304,7 @@ export class Tree {
   }
 
   private isListInitialized() {
+    //@ts-ignore
     const itemPositions = this.hyperlist?._itemPositions;
 
     return (
@@ -326,7 +329,7 @@ export class Tree {
 
     this.hyperlist?.destroy();
     const config = this.getVirtualizerOptions();
-    this.hyperlist = new Hyperlist(this.hostElement, config);
+    this.hyperlist = new VirtualList(this.hostElement, config);
   }
 
   render() {

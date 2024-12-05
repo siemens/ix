@@ -21,6 +21,10 @@ import {
 } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { hasSlottedElements } from '../utils/shadow-dom';
+import {
+  iconChevronDownSmall,
+  iconChevronRightSmall,
+} from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-group',
@@ -241,7 +245,7 @@ export class Group {
                   hidden: !this.showExpandCollapsedIcon,
                 }}
                 name={
-                  this.collapsed ? 'chevron-right-small' : 'chevron-down-small'
+                  this.collapsed ? iconChevronRightSmall : iconChevronDownSmall
                 }
                 onClick={(e) => this.onExpandClick(e)}
               ></ix-icon>

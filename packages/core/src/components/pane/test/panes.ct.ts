@@ -8,15 +8,15 @@
  */
 
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane></ix-pane>`);
   const pane = page.locator('ix-pane');
   await expect(pane).toHaveClass(/hydrated/);
 });
 
-test('expanded', async ({ mount, page }) => {
+regressionTest('expanded', async ({ mount, page }) => {
   await mount(`
     <ix-pane
       heading="LEFT"
@@ -32,7 +32,7 @@ test('expanded', async ({ mount, page }) => {
   await expect(title).toBeVisible();
 });
 
-test('prevent pane expansion', async ({ mount, page }) => {
+regressionTest('prevent pane expansion', async ({ mount, page }) => {
   await mount(`
     <ix-pane
       heading="LEFT"

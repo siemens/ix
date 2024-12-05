@@ -99,6 +99,8 @@ import FormCheckboxDisabled from '../preview-examples/form-checkbox-disabled';
 import FormCheckboxGroup from '../preview-examples/form-checkbox-group';
 import FormCheckboxGroupIndeterminate from '../preview-examples/form-checkbox-group-indeterminate';
 import FormCheckboxValidation from '../preview-examples/form-checkbox-validation';
+import FormLayoutAuto from '../preview-examples/form-layout-auto';
+import FormLayoutGrid from '../preview-examples/form-layout-grid';
 import FormValidation from '../preview-examples/form-validation';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
@@ -144,12 +146,8 @@ import Loading from '../preview-examples/loading';
 import MapNavigation from '../preview-examples/map-navigation';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
-import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
-import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import ModalByInstance from '../preview-examples/modal-by-instance';
-import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
-import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
 import NumberInputDisabled from '../preview-examples/number-input-disabled';
@@ -158,7 +156,6 @@ import NumberInputReadonly from '../preview-examples/number-input-readonly';
 import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
 import NumberInputValidation from '../preview-examples/number-input-validation';
 import Pagination from '../preview-examples/pagination';
-import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
@@ -207,10 +204,8 @@ import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primar
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
 import ToggleButtonSecondaryGhost from '../preview-examples/toggle-button-secondary-ghost';
 import ToggleButtonSecondaryOutline from '../preview-examples/toggle-button-secondary-outline';
-import ToggleChecked from '../preview-examples/toggle-checked';
 import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
 import ToggleDisabled from '../preview-examples/toggle-disabled';
-import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 import ToggleNgModel from '../preview-examples/toggle-ng-model';
 import Tooltip from '../preview-examples/tooltip';
 import Tree from '../preview-examples/tree';
@@ -222,8 +217,14 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
-import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
+
+import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
+import Message from '../preview-examples/message';
+import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
+import ModalByTemplate from '../preview-examples/modal-by-template';
+import PaginationAdvanced from '../preview-examples/pagination-advanced';
+import ToggleChecked from '../preview-examples/toggle-checked';
+import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 
 const routes: Routes = [
   {

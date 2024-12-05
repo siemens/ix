@@ -91,7 +91,6 @@ import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/component
 import { defineCustomElement as defineIxSlider } from '@siemens/ix/components/ix-slider.js';
 import { defineCustomElement as defineIxSpinner } from '@siemens/ix/components/ix-spinner.js';
 import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/components/ix-split-button.js';
-import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/components/ix-split-button-item.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
 import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
@@ -284,7 +283,6 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', defin
   'closable',
   'icon',
   'background',
-  'color',
   'chipColor',
   'outline',
   'closeChip'
@@ -377,18 +375,14 @@ export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-
   'to',
   'minDate',
   'maxDate',
-  'textSelectDate',
   'i18nDone',
   'weekStartIndex',
   'locale',
-  'individual',
-  'eventDelimiter',
   'standaloneAppearance',
   'today',
   'dateChange',
   'dateRangeChange',
-  'dateSelect',
-  'done'
+  'dateSelect'
 ]);
 
 
@@ -406,12 +400,9 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
   'time',
   'showTimeReference',
   'timeReference',
-  'textSelectDate',
   'i18nDone',
   'weekStartIndex',
   'locale',
-  'eventDelimiter',
-  'done',
   'timeChange',
   'dateChange',
   'dateSelect'
@@ -502,7 +493,6 @@ export const IxEventList = /*@__PURE__*/ defineContainer<JSX.IxEventList>('ix-ev
 
 
 export const IxEventListItem = /*@__PURE__*/ defineContainer<JSX.IxEventListItem>('ix-event-list-item', defineIxEventListItem, [
-  'color',
   'itemColor',
   'selected',
   'disabled',
@@ -594,7 +584,6 @@ export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-
   'oval',
   'icon',
   'size',
-  'color',
   'iconColor',
   'disabled',
   'type',
@@ -711,7 +700,6 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', defin
   'enableMapExpand',
   'applicationName',
   'applicationDescription',
-  'maxVisibleMenuItems',
   'i18nExpandSidebar',
   'expand',
   'startExpanded',
@@ -782,7 +770,6 @@ export const IxMenuItem = /*@__PURE__*/ defineContainer<JSX.IxMenuItem>('ix-menu
   'label',
   'home',
   'bottom',
-  'tabIcon',
   'icon',
   'notifications',
   'active',
@@ -819,7 +806,6 @@ export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', de
   'closeOnBackdropClick',
   'beforeDismiss',
   'centered',
-  'keyboard',
   'closeOnEscape',
   'dialogClose',
   'dialogDismiss'
@@ -911,7 +897,6 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', defin
   'outline',
   'icon',
   'background',
-  'color',
   'pillColor',
   'alignLeft'
 ]);
@@ -965,7 +950,6 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect
   'validText',
   'helperText',
   'showTextAsTooltip',
-  'selectedIndices',
   'value',
   'allowClear',
   'mode',
@@ -978,7 +962,6 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect
   'i18nNoMatches',
   'hideListHeader',
   'valueChange',
-  'itemSelectionChange',
   'inputChange',
   'addItem',
   'ixBlur'
@@ -1027,13 +1010,6 @@ export const IxSplitButton = /*@__PURE__*/ defineContainer<JSX.IxSplitButton>('i
   'disabled',
   'placement',
   'buttonClick'
-]);
-
-
-export const IxSplitButtonItem = /*@__PURE__*/ defineContainer<JSX.IxSplitButtonItem>('ix-split-button-item', defineIxSplitButtonItem, [
-  'icon',
-  'label',
-  'itemClick'
 ]);
 
 
@@ -1097,17 +1073,14 @@ export const IxTimePicker = /*@__PURE__*/ defineContainer<JSX.IxTimePicker>('ix-
   'format',
   'corners',
   'standaloneAppearance',
-  'individual',
   'showHour',
   'showMinutes',
   'showSeconds',
   'time',
-  'showTimeReference',
   'timeReference',
   'textSelectTime',
   'textTime',
   'timeSelect',
-  'done',
   'timeChange'
 ]);
 
@@ -1192,7 +1165,6 @@ export const IxTreeItem = /*@__PURE__*/ defineContainer<JSX.IxTreeItem>('ix-tree
 
 export const IxTypography = /*@__PURE__*/ defineContainer<JSX.IxTypography>('ix-typography', defineIxTypography, [
   'format',
-  'color',
   'textColor',
   'bold',
   'textDecoration'

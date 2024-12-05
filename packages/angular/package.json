@@ -19,26 +19,32 @@
     "@siemens/ix": "~2.6.0"
   },
   "peerDependencies": {
-    "@angular/core": ">=13.4.0",
-    "@angular/forms": ">=13.4.0",
-    "@siemens/ix-icons": "^2.0.0"
+    "@angular/core": ">=17.3.0",
+    "@angular/forms": ">=17.3.0",
+    "@siemens/ix-icons": "0.0.0-20240827135516"
   },
   "devDependencies": {
-    "@angular/common": "v13-lts",
-    "@angular/compiler": "v13-lts",
-    "@angular/compiler-cli": "v13-lts",
-    "@angular/core": "v13-lts",
-    "@angular/forms": "v13-lts",
-    "@jest/globals": "^29.3.1",
+    "@angular/animations": "^17.3.12",
+    "@angular/common": "^17.3.12",
+    "@angular/compiler": "^17.3.12",
+    "@angular/compiler-cli": "^17.3.12",
+    "@angular/core": "^17.3.12",
+    "@angular/forms": "^17.3.12",
+    "@angular/platform-browser": "^17.3.12",
+    "@angular/platform-browser-dynamic": "^17.3.12",
+    "@angular/router": "^17.3.12",
+    "@jest/globals": "^29.7.0",
     "@siemens/ix": "workspace:*",
-    "@types/jest": "^29.2.3",
+    "@types/jest": "^29.5.12",
     "fs-extra": "^10.1.0",
-    "jest": "^29.3.1",
-    "rxjs": "^7.4.0",
-    "jest-preset-angular": "^12.2.3",
-    "ng-packagr": "^14.2.0",
-    "ts-jest": "^29.0.3",
-    "typescript": "4.6.4"
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.2.0",
+    "ng-packagr": "^17.3.0",
+    "rxjs": "~7.8.1",
+    "ts-jest": "^29.2.3",
+    "tslib": "^2.3.0",
+    "typescript": "~5.4.5",
+    "zone.js": "~0.14.8"
   },
   "publishConfig": {
     "directory": "dist"

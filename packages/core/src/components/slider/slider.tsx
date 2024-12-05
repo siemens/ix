@@ -297,7 +297,7 @@ export class Slider {
           </div>
         </div>
         {this.error ? (
-          <ix-typography class={'label-error'} color="alarm">
+          <ix-typography class={'label-error'} textColor="alarm">
             {this.error}
           </ix-typography>
         ) : null}

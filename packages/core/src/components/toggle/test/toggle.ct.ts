@@ -15,16 +15,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { getFormValue, preventFormSubmission, test } from '@utils/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+} from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-toggle></ix-toggle>`);
   const drawer = page.locator('ix-toggle');
   await expect(drawer).toHaveClass(/hydrated/);
   await expect(drawer).toBeVisible();
 });
 
-test('should toggle', async ({ mount, page }) => {
+regressionTest('should toggle', async ({ mount, page }) => {
   await mount(`<ix-toggle></ix-toggle>`);
   const toggle = page.locator('ix-toggle');
   await expect(toggle).toHaveClass(/hydrated/);
@@ -34,7 +38,7 @@ test('should toggle', async ({ mount, page }) => {
   await expect(input).toBeChecked();
 });
 
-test('should not toggle if disabled', async ({ mount, page }) => {
+regressionTest('should not toggle if disabled', async ({ mount, page }) => {
   await mount(`<ix-toggle disabled></ix-toggle>`);
   const toggle = page.locator('ix-toggle');
   await expect(toggle).toHaveClass(/hydrated/);
@@ -46,19 +50,22 @@ test('should not toggle if disabled', async ({ mount, page }) => {
   await expect(input).not.toBeChecked();
 });
 
-test('should be toggled ON after indeterminate', async ({ mount, page }) => {
-  await mount(`<ix-toggle indeterminate></ix-toggle>`);
-  const toggle = page.locator('ix-toggle');
-  await expect(toggle).toHaveClass(/hydrated/);
-  const input = toggle.locator('input');
-  await expect(input).not.toBeChecked();
+regressionTest(
+  'should be toggled ON after indeterminate',
+  async ({ mount, page }) => {
+    await mount(`<ix-toggle indeterminate></ix-toggle>`);
+    const toggle = page.locator('ix-toggle');
+    await expect(toggle).toHaveClass(/hydrated/);
+    const input = toggle.locator('input');
+    await expect(input).not.toBeChecked();
 
-  await toggle.click();
+    await toggle.click();
 
-  await expect(input).toBeChecked();
-});
+    await expect(input).toBeChecked();
+  }
+);
 
-test(`form-ready`, async ({ mount, page }) => {
+regressionTest(`form-ready`, async ({ mount, page }) => {
   await mount(`<form><ix-toggle name="my-field-name"></ix-toggle></form>`);
 
   const formElement = page.locator('form');
@@ -69,7 +76,7 @@ test(`form-ready`, async ({ mount, page }) => {
   expect(formData).toBe('on');
 });
 
-test(`form-ready with value`, async ({ mount, page }) => {
+regressionTest(`form-ready with value`, async ({ mount, page }) => {
   await mount(
     `<form><ix-toggle name="my-field-name" value="custom-value"></ix-toggle></form>`
   );
@@ -82,7 +89,7 @@ test(`form-ready with value`, async ({ mount, page }) => {
   expect(formData).toBe('custom-value');
 });
 
-test(`form-ready default active`, async ({ mount, page }) => {
+regressionTest(`form-ready default active`, async ({ mount, page }) => {
   await mount(
     `<form><ix-toggle name="my-field-name" checked></ix-toggle></form>`
   );

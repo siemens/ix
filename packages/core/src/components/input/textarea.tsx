@@ -238,7 +238,11 @@ export class Textarea implements IxInputFieldComponent<string> {
           controlRef={this.textAreaRef as unknown as MakeRef<HTMLElement>}
         >
           {!!this.maxLength && this.maxLength > 0 && (
-            <ix-typography class="bottom-text" slot="bottom-right" color="soft">
+            <ix-typography
+              class="bottom-text"
+              slot="bottom-right"
+              textColor="soft"
+            >
               {this.value.length}/{this.maxLength}
             </ix-typography>
           )}

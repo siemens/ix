@@ -22,6 +22,7 @@ import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { FilterState } from './filter-state';
 import { InputState } from './input-state';
 import { LogicalFilterOperator } from './logical-filter-operator';
+import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 import { makeRef } from '../utils/make-ref';
 import {
   addDisposableEventListener,
@@ -113,7 +114,7 @@ export class CategoryFilter {
    * The icon next to the actual text input
    * Defaults to 'search'
    */
-  @Prop() icon = 'search';
+  @Prop() icon?: string;
 
   /**
    * Allows to hide the icon inside the text input.
@@ -794,7 +795,7 @@ export class CategoryFilter {
         }}
         ghost
         oval
-        icon={'clear'}
+        icon={iconClear}
         size="16"
       ></ix-icon-button>
     );
@@ -829,7 +830,7 @@ export class CategoryFilter {
             <ix-icon
               color={this.getIconColor()}
               class={{ 'd-none': this.hideIcon }}
-              name={this.icon}
+              name={this.icon ?? iconSearch}
               size="16"
             ></ix-icon>
             <div class="token-container">

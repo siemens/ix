@@ -18,6 +18,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import * as echarts from 'echarts';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
 import AgGrid from '../preview-examples/aggrid';
@@ -107,6 +108,8 @@ import FormCheckboxDisabled from '../preview-examples/form-checkbox-disabled';
 import FormCheckboxGroup from '../preview-examples/form-checkbox-group';
 import FormCheckboxGroupIndeterminate from '../preview-examples/form-checkbox-group-indeterminate';
 import FormCheckboxValidation from '../preview-examples/form-checkbox-validation';
+import FormLayoutAuto from '../preview-examples/form-layout-auto';
+import FormLayoutGrid from '../preview-examples/form-layout-grid';
 import FormValidation from '../preview-examples/form-validation';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
@@ -230,8 +233,6 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
-import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
 
 @NgModule({
   declarations: [
@@ -493,7 +494,7 @@ import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
     FormsModule,
     ReactiveFormsModule,
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
+      echarts,
     }),
   ],
   providers: [],

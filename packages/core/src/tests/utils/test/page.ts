@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
+  ElementHandle,
   Page,
   PageScreenshotOptions,
   test as testBase,
@@ -21,6 +22,10 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     type: theme,
   });
   page.goto = async (url: string, options) => {
+    if ((testInfo as any).componentTest) {
+      return originalGoto(url, options);
+    }
+
     const response = await originalGoto(
       `http://127.0.0.1:8080/src/tests/${url}?theme=${theme}`,
       options
@@ -38,15 +43,38 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
   return page;
 }
 
-export const regressionTest = testBase.extend({
+export const regressionTest = testBase.extend<{
+  mount: (selector: string) => Promise<ElementHandle<HTMLElement>>;
+  createElement: (
+    selector: string,
+    appendTo?: ElementHandle<Element>
+  ) => Promise<ElementHandle<HTMLElement>>;
+}>({
   page: async ({ page }, use, testInfo) => {
     page = await extendPageFixture(page, testInfo);
     await use(page);
   },
-});
+  createElement: async ({ page }, use) => {
+    use((selector, appendTo) =>
+      page.evaluateHandle(
+        async ({ selector, appendTo }) => {
+          const elm = document.createElement(selector);
 
-export const test = testBase.extend({
+          if (appendTo) {
+            appendTo.appendChild(elm);
+          }
+
+          return elm;
+        },
+        {
+          selector,
+          appendTo,
+        }
+      )
+    );
+  },
   mount: async ({ page }, use, testInfo) => {
+    (testInfo as any).componentTest = true;
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
     testInfo.annotations.push({
       type: theme,
