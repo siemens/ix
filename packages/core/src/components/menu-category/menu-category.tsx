@@ -35,7 +35,7 @@ const DefaultAnimationTimeout = 150;
   shadow: true,
 })
 export class MenuCategory {
-  @Element() hostElement: HTMLIxMenuCategoryElement;
+  @Element() hostElement!: HTMLIxMenuCategoryElement;
 
   /**
    * Display name of the category
@@ -275,7 +275,7 @@ export class MenuCategory {
           }}
         >
           <ix-dropdown-item class={'category-dropdown-header'}>
-            <ix-typography format="label" bold color="std">
+            <ix-typography format="label" bold textColor="std">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>

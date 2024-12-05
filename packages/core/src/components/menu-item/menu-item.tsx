@@ -44,13 +44,6 @@ export class MenuItem {
 
   /**
    * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
-   *
-   * @deprecated since 2.0.0 use `icon` property. Will be removed in 3.0.0
-   */
-  @Prop({ mutable: true }) tabIcon?: string;
-
-  /**
-   * Name of the icon you want to display. Icon names can be resolved from the documentation @link https://ix.siemens.io/docs/icon-library/icons
    */
   @Prop({ mutable: true }) icon?: string;
 
@@ -90,7 +83,6 @@ export class MenuItem {
       !!this.hostElement.closest('ix-menu-category');
 
     this.onIconChange();
-    this.onTabIconChange();
 
     this.menuExpanded = menuController.nativeElement?.expand || false;
     this.menuExpandedDisposer = menuController.expandChange.on(
@@ -126,23 +118,8 @@ export class MenuItem {
 
   @Watch('icon')
   onIconChange() {
-    if (
-      !this.isHostedInsideCategory &&
-      !this.hostElement.icon &&
-      !this.hostElement.tabIcon
-    ) {
+    if (!this.isHostedInsideCategory && !this.hostElement.icon) {
       this.icon = iconDocument;
-    }
-  }
-
-  @Watch('tabIcon')
-  onTabIconChange() {
-    if (
-      !this.isHostedInsideCategory &&
-      !this.hostElement.icon &&
-      !this.hostElement.tabIcon
-    ) {
-      this.tabIcon = iconDocument;
     }
   }
 
@@ -175,12 +152,7 @@ export class MenuItem {
           tabIndex={this.disabled ? -1 : 0}
           ref={this.buttonRef}
         >
-          {(this.icon || this.tabIcon) && (
-            <ix-icon
-              class={'tab-icon'}
-              name={this.icon ?? this.tabIcon}
-            ></ix-icon>
-          )}
+          {this.icon && <ix-icon class={'tab-icon'} name={this.icon}></ix-icon>}
           {this.notifications ? (
             <div class="notification">
               <div class="pill">{this.notifications}</div>

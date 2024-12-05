@@ -328,7 +328,7 @@ regressionTest(
 );
 
 regressionTest(
-  'pass object as value and check if it is selectable',
+  'pass string as value and check if it is selectable',
   async ({ mount, page }) => {
     await mount(`
         <ix-select>
@@ -345,7 +345,7 @@ regressionTest(
         .locator('ix-select-item')
         .nth(index)
         .evaluate((e: HTMLIxSelectItemElement, index) => {
-          e.value = { selectLabel: `Item ${index}`, selectValue: `${index}` };
+          e.value = `Item ${index}`;
         });
     }
 

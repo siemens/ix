@@ -23,7 +23,7 @@ import { CardVariant } from '../card/card';
 import { a11yBoolean } from '../utils/a11y';
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
-export type BlindVariant = CardVariant | 'outline';
+export type BlindVariant = CardVariant;
 
 let sequentialInstanceId = 0;
 
@@ -59,7 +59,7 @@ export class Blind {
    * Blind variant
    * @since 2.0.0
    */
-  @Prop() variant: BlindVariant = 'insight';
+  @Prop() variant: BlindVariant = 'filled';
 
   /**
    * Collapsed state changed
@@ -157,7 +157,7 @@ export class Blind {
               class="collapse-icon"
               name={iconChevronRightSmall}
               color={
-                this.variant === 'insight' || this.variant === 'outline'
+                this.variant === 'filled' || this.variant === 'outline'
                   ? 'color-primary'
                   : `color-${this.variant}--contrast`
               }
@@ -174,7 +174,7 @@ export class Blind {
                       class="blind-header-title-icon"
                       name={this.icon}
                       color={
-                        this.variant === 'insight' || this.variant === 'outline'
+                        this.variant === 'filled' || this.variant === 'outline'
                           ? 'color-std-text'
                           : `color-${this.variant}--contrast`
                       }

@@ -14,7 +14,6 @@ import React from 'react';
 
 type IxTimePickerEvents = {
     onTimeSelect: EventName<CustomEvent<string>>,
-    onDone: EventName<CustomEvent<string>>,
     onTimeChange: EventName<CustomEvent<string>>
 };
 
@@ -25,7 +24,6 @@ const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePickerEvent
     react: React,
     events: {
         onTimeSelect: 'timeSelect',
-        onDone: 'done',
         onTimeChange: 'timeChange'
     } as IxTimePickerEvents,
     defineCustomElement: defineIxTimePicker

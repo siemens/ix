@@ -14,7 +14,6 @@ import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
 type IxDatetimePickerEvents = {
-    onDone: EventName<CustomEvent<string>>,
     onTimeChange: EventName<CustomEvent<string>>,
     onDateChange: EventName<IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>>,
     onDateSelect: EventName<IxDatetimePickerCustomEvent<DateTimeSelectEvent>>
@@ -26,7 +25,6 @@ const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, IxDatetim
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
-        onDone: 'done',
         onTimeChange: 'timeChange',
         onDateChange: 'dateChange',
         onDateSelect: 'dateSelect'
