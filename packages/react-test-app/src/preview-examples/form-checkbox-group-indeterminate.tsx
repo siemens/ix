@@ -8,7 +8,7 @@
  */
 
 import { IxCheckboxCustomEvent } from '@siemens/ix';
-import './form-checkbox-group-indeterminate.css';
+import './form-checkbox-group-indeterminate.scoped.css';
 
 import { IxCheckbox, IxCheckboxGroup } from '@siemens/ix-react';
 import { useEffect, useState } from 'react';

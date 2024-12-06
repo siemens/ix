@@ -100,6 +100,10 @@ export class Button {
     }
   }
 
+  setFocus() {
+    this.hostElement.shadowRoot!.querySelector('button')?.focus();
+  }
+
   render() {
     const baseButtonProps: BaseButtonProps = {
       variant: this.variant,
@@ -115,13 +119,16 @@ export class Button {
       onClick: () => this.dispatchFormEvents(),
       type: this.type,
       alignment: this.alignment,
+      tabIndex: this.hostElement.tabIndex,
     };
 
     return (
       <Host
+        tabindex={this.disabled ? -1 : 0}
         class={{
           disabled: this.disabled || this.loading,
         }}
+        onFocus={() => this.setFocus()}
       >
         <BaseButton {...baseButtonProps}>
           <slot></slot>

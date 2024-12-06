@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-gauge.css';
+import './echarts-gauge.scoped.css';
 
 import { useEffect, useState } from 'react';
 import {

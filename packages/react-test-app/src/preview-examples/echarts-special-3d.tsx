@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-special-3d.css';
+import './echarts-special-3d.scoped.css';
 
 import { useEffect, useState } from 'react';
 import {
