@@ -1,5 +1,77 @@
 # @siemens/ix-angular
 
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1581](https://github.com/siemens/ix/pull/1581) [`7eb4d5147056e1e3252e387e5a718df7e593909e`](https://github.com/siemens/ix/commit/7eb4d5147056e1e3252e387e5a718df7e593909e) Thanks [@matthiashader](https://github.com/matthiashader)! - Component Updates and Enhancements
+
+  New Variants for Card Components:
+
+  - **ix-action-card**, **ix-card**, and **ix-push-card**:
+    - The `insight` and `notification` variants have been **replaced by** `outline` and `filled`.
+
+  Property Updates:
+
+  - **ix-chip**:
+    - The `color` property has been **replaced by** `chipColor`.
+  - **ix-event-list**:
+    - The `color` attribute has been **replaced by** `itemColor`.
+  - **ix-icon-button**:
+    - The `color` attribute has been **replaced by** `iconColor`.
+    - Size `32` has been removed.
+  - **ix-pill**:
+    - The `color` attribute has been **replaced by** `pillColor`.
+  - **ix-typography**:
+    - The `color` attribute has been **replaced by** `textColor`.
+  - **ix-select**:
+    - The `selectedIndices` attribute has been **replaced by** `value`.
+    - The `itemSelectionChange` event has been **replaced by** `valueChange`.
+  - **ix-select-item**:
+    - The type of the `value` property type has been updated to `string`.
+
+  Date and Time Picker Enhancements:
+
+  - **ix-date-picker**:
+    - Removed attributes: `individual` and `eventDelimiter`.
+    - The `textSelectedDate` property has been **replaced by** `i18nDone`.
+    - The `done` event has been **replaced by** `dateSelect`.
+  - **ix-datetime-picker**:
+    - The `textSelectedDate` property has been **replaced by** `i18nDone`.
+    - The `done` event has been **replaced by** `dateSelect`.
+    - Removed the `eventDelimiter` property.
+  - **ix-time-picker**:
+    - Removed attributes: `individual` and `showTimeReference`.
+
+  Removed Features:
+
+  - **ix-menu**:
+    - Removed the `maxVisibleMenuItems` attribute.
+  - **ix-menu-item**:
+    - The `tabIcon` attribute has been removed and replaced with `icon`.
+
+  Other Changes:
+
+  - **ix-modal**:
+    - The `keyboard` attribute has been **replaced by** `closeOnEscape`.
+
+- [#1325](https://github.com/siemens/ix/pull/1325) [`71411db86c37d5cd0f5f71c4059322ea5e9d6f2d`](https://github.com/siemens/ix/commit/71411db86c37d5cd0f5f71c4059322ea5e9d6f2d) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(angular): change angular compiler version to v17
+
+- [#1238](https://github.com/siemens/ix/pull/1238) [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3) Thanks [@danielleroux](https://github.com/danielleroux)! - feat: reduce bundle size in combination with icons
+
+- [#1394](https://github.com/siemens/ix/pull/1394) [`24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff`](https://github.com/siemens/ix/commit/24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - refactor: replace internal comments with annotations
+
+### Minor Changes
+
+- [#1325](https://github.com/siemens/ix/pull/1325) [`71411db86c37d5cd0f5f71c4059322ea5e9d6f2d`](https://github.com/siemens/ix/commit/71411db86c37d5cd0f5f71c4059322ea5e9d6f2d) Thanks [@danielleroux](https://github.com/danielleroux)! - feat(angular/standalone): add angular standalone components
+
+### Patch Changes
+
+- [#1589](https://github.com/siemens/ix/pull/1589) [`ce681e2baf0954c8d3479453cff8b1c858272360`](https://github.com/siemens/ix/commit/ce681e2baf0954c8d3479453cff8b1c858272360) Thanks [@Johanneslueke](https://github.com/Johanneslueke)! - Use `ix-number-input` selector in text-value-accessor for **ix-number-input**
+
+- Updated dependencies [[`7eb4d5147056e1e3252e387e5a718df7e593909e`](https://github.com/siemens/ix/commit/7eb4d5147056e1e3252e387e5a718df7e593909e), [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3), [`57586a7fd1766d0b8bef04d7c0e32f348775b977`](https://github.com/siemens/ix/commit/57586a7fd1766d0b8bef04d7c0e32f348775b977), [`77f76febbc00df91a3d27f43845f2cfadd9234ac`](https://github.com/siemens/ix/commit/77f76febbc00df91a3d27f43845f2cfadd9234ac), [`3d62fffdc107bfc92b2ecad8437662dc7c03796f`](https://github.com/siemens/ix/commit/3d62fffdc107bfc92b2ecad8437662dc7c03796f), [`24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff`](https://github.com/siemens/ix/commit/24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff), [`b5e2da18f871d6189c064a72bd9b29a82d0685eb`](https://github.com/siemens/ix/commit/b5e2da18f871d6189c064a72bd9b29a82d0685eb), [`1c65a17d6911e5be72e7612e87d0b7fbeeeacc73`](https://github.com/siemens/ix/commit/1c65a17d6911e5be72e7612e87d0b7fbeeeacc73), [`e8f825f7f494c8cc05dcce075afcff77839f8096`](https://github.com/siemens/ix/commit/e8f825f7f494c8cc05dcce075afcff77839f8096)]:
+  - @siemens/ix@3.0.0-alpha.0
+
 ## 2.6.0
 
 ### Minor Changes
