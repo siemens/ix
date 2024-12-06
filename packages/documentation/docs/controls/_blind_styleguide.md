@@ -3,7 +3,7 @@ import Preview from '@site/src/components/Preview';
 import Props from './../auto-generated/ix-blind/props.md';
 import Events from './../auto-generated/ix-blind/events.md';
 
-## Guidelines
+## Guidelines test
 
 Blinds are UI controls that allow the users to hide or reveal content by clicking on a control element. Blinds can display a large amount of content in a compact space or present information in an organized and hierarchical way. Blinds reduce the user's cognitive load by removing clutter and less important information from an interface. We typically don't use blinds if the content is central to the user's task due to its reduced visibility and accessibility.
 
