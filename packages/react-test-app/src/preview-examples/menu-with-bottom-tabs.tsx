@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './menu-with-bottom-tabs.css';
+import './menu-with-bottom-tabs.scoped.css';
 
 import { IxMenu, IxMenuItem } from '@siemens/ix-react';
 

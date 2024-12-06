@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './vertical-tabs.css';
+import './vertical-tabs.scoped.css';
 
 import { IxMenu, IxMenuItem } from '@siemens/ix-react';
 
