@@ -59,6 +59,11 @@ export class Upload {
   @Prop() selectFileText = '+ Drag files here or…';
 
   /**
+   * Label for Select file text
+   */
+  @Prop() i18nSelectFileText = '+ Drag files here or…';
+
+  /**
    * Will be used by state = UploadFileState.LOADING
    */
   @Prop() loadingText = 'Checking files…';
@@ -197,7 +202,7 @@ export class Upload {
       case UploadFileState.SELECT_FILE:
         return (
           <span class="state">
-            <span class="upload-text">{this.selectFileText}</span>
+            <span class="upload-text">{this.i18nSelectFileText || this.selectFileText}</span>
           </span>
         );
       case UploadFileState.LOADING:
