@@ -102,6 +102,7 @@ export const config: Config = {
       stencilPackageName: corePackageName,
       outDir: '../react/src/components',
       esModules: true,
+      hydrateModule: '@siemens/ix/hydrate',
       excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
     }),
     {
