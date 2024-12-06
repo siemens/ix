@@ -88,7 +88,10 @@ export class FieldWrapper implements FieldWrapperInterface {
   /**
    * The control element that the label is associated with
    */
-  @Prop() controlRef?: MakeRef<HTMLElement>;
+  @Prop() controlRef?:
+    | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
 
   private readonly slotRef = makeRef<HTMLDivElement>();
 
