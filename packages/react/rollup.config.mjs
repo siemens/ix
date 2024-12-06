@@ -1,16 +1,17 @@
 import typescript from '@rollup/plugin-typescript';
 import preserveDirectives from 'rollup-plugin-preserve-directives';
 import { resolve } from 'path';
+import path from 'path';
 
 const __dirname = resolve();
 
 const external = ['react', 'react-dom', 'react-dom/client', 'tslib'];
 
 export default {
-  input: 'src/index.ts',
+  // input: ['src/index.ts', 'src/ssr/index.ts'],
   output: [
     {
-      dir: 'dist/',
+      dir: 'dist',
       entryFileNames: '[name].js',
       chunkFileNames: '[name]-[hash].js',
       format: 'es',
@@ -18,6 +19,11 @@ export default {
       preserveModules: true,
     },
   ],
+  input: {
+    index: 'src/index.ts',
+    ssr: 'src/ssr/components.ts',
+  },
+
   plugins: [
     typescript({
       tsconfig: resolve(__dirname, 'tsconfig.lib.json'),

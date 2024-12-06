@@ -20,6 +20,10 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/types/index.d.ts"
+    },
+    "./ssr": {
+      "import": "./dist/ssr.js",
+      "types": "./dist/types/components.d.ts"
     }
   },
   "scripts": {
