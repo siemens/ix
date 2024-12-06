@@ -138,6 +138,15 @@ export class Toggle implements IxFormComponent<string> {
   }
 
   render() {
+    let toggleText = this.textOff;
+
+    if (this.checked) {
+      toggleText = this.textOn;
+    }
+
+    if (this.indeterminate) {
+      toggleText = this.textIndeterminate;
+    }
     return (
       <Host
         class={{
@@ -170,13 +179,7 @@ export class Toggle implements IxFormComponent<string> {
             }
           />
           {!this.hideText && (
-            <ix-typography class="label">
-              {!this.indeterminate
-                ? this.checked
-                  ? this.textOn
-                  : this.textOff
-                : this.textIndeterminate}
-            </ix-typography>
+            <ix-typography class="label">{toggleText}</ix-typography>
           )}
         </label>
       </Host>

@@ -128,10 +128,6 @@
   .switch.indeterminate > .slider::before {
     transform: translateX(0.7rem);
   }
-
-  .switch.indeterminate > .slider::before {
-    transform: translateX(0.7rem);
-  }
 }
 
 :host(:not(.disabled)) {
