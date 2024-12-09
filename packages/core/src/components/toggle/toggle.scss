@@ -60,7 +60,7 @@
     background-color: var(--theme-switch-off--background);
     transition: var(--theme-default-time);
     border-radius: 1.5rem;
-    border: 1px solid transparent;
+    border: 0.0625rem solid transparent;
   }
 
   .slider:before {
@@ -68,8 +68,8 @@
     content: '';
     height: 1.125rem;
     width: 1.125rem;
-    left: 4px;
-    bottom: 2px;
+    left: 0.125rem;
+    bottom: 0.125rem;
     background-color: var(--theme-switch-thumb-off--background);
     transition: var(--theme-default-time);
     border-radius: 50%;
@@ -77,7 +77,7 @@
 
   .switch.checked > .slider::before {
     background-color: var(--theme-switch-thumb-on--background);
-    transform: translateX(1.35rem);
+    transform: translateX(1.5rem);
   }
 
   .switch > .slider {
@@ -126,14 +126,14 @@
   }
 
   .switch.indeterminate > .slider::before {
-    transform: translateX(0.7rem);
+    transform: translateX(0.75rem);
   }
 }
 
 :host(:not(.disabled)) {
   .switch:focus-visible > .slider {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: 1px;
+    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+    outline-offset: 0.0625rem;
   }
 }
 
