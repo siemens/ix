@@ -1,0 +1,22 @@
+<div className="container pl-0 pr-0 pt-2 pb-6 rounded-lg">
+  <div className="grid gap-4">
+    <div className="row-span-1 rounded grid grid-cols-6">
+      <div className="col-span-2 font-bold text-sm">
+        Event
+      </div>
+      <div className="col-span-2 font-bold text-sm">
+        Description
+      </div>
+      <div className="col-span-2 font-bold text-sm">
+        Type
+      </div>
+    </div>
+    {{#props}}
+    <div className="row-span-1 grid grid-cols-6 border-solid border-t-0 border-l-0 border-r-0 border-b pb-2 border-slate-800 border-radius-0">
+      <div className="col-span-2">{{event}}</div>
+      <div className="col-span-2">{ `{{docs}}` }</div>
+      <div className="col-span-2"><code className="p-1">{ `{{ detail }}` }</code></div>
+    </div>
+    {{/props}}
+  </div>
+</div>

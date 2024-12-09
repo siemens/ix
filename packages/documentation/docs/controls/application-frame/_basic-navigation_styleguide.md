@@ -1,5 +1,4 @@
 import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
-import Playground from '@site/src/components/Demo';
 
 ## Guidelines
 
@@ -53,12 +52,3 @@ Basic navigation automatically adapts, by default, to the three breakpoints lg (
 - `only screen and (min-width: 36em)`
 - The navigation menu disappears and the icon moves into the application header
 - Clicking the icon displays the navigation menu as an overlay
-
-#### Examples
-
-<Playground 
-  name="application-breakpoints" 
-  height="30rem" 
-  noMargin 
-  frameworks={{}}>
-</Playground>

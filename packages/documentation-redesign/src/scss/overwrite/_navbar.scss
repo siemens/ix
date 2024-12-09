@@ -1,0 +1,19 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
+ */
+
+#__docusaurus {
+  .navbar {
+    border-bottom: 1px solid var(--theme-color-x-weak-bdr);
+    .navbar__inner {
+      padding: 0 2rem;
+    }
+    .navbar__logo {
+      height: 1.25rem;
+    }
+  }
+
+  .navbar-sidebar__brand {
+    padding: 0 2rem;
+  }
+}

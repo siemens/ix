@@ -1,0 +1,24 @@
+---
+doc-type: 'component'
+component-tabs: [{{#tabs}}'{{.}}', {{/tabs}}]
+description: '{{description}}'
+title: '{{title}}'
+---
+{{#hasGuide}}
+import Guide from './guide.md';
+{{/hasGuide}}
+import Code from './code.mdx';
+import QueryStringContent from '@site/src/components/theme/QueryStringContent';
+import ThemeFrame from '@site/src/components/ThemeFrame';
+import Playground from '@site/src/components/Playground';
+
+#
+
+Example
+
+<QueryStringContent>
+{{#hasGuide}}
+  <Guide />
+{{/hasGuide}}
+  <Code />
+</QueryStringContent>

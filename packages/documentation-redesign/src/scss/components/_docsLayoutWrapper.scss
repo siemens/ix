@@ -1,0 +1,9 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
+ */
+
+.docLayoutWrapper {
+  &.docLayout--default {
+    padding: var(--default-content-padding);
+  }
+}

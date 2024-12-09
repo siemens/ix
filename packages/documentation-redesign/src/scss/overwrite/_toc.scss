@@ -1,0 +1,33 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+#__docusaurus {
+  .theme-doc-toc-desktop {
+    min-width: 15rem;
+  }
+
+  .table-of-contents {
+    position: relative;
+  }
+
+  .toc-indicator {
+    top: 3rem;
+    display: block;
+    position: relative;
+  }
+
+  .toc-indicator::before {
+    content: '';
+    position: absolute;
+    top: var(--toc-offset);
+    left: 0;
+    width: 5px;
+    height: 5px;
+  }
+}

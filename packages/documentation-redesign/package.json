@@ -1,0 +1,66 @@
+{
+  "name": "documentation-redesign",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "pnpm copy:demo && docusaurus start",
+    "build": "pnpm copy:demo && docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc",
+    "copy:demo": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/build.ts",
+    "migrate": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/migrate.ts"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.6.3",
+    "@docusaurus/preset-classic": "3.6.3",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.6.3",
+    "@docusaurus/tsconfig": "3.6.3",
+    "@docusaurus/types": "3.6.3",
+    "@siemens/ix": "workspace:*",
+    "@types/fs-extra": "^9.0.13",
+    "@types/mustache": "^4.1.1",
+    "@types/node": "^20.16.0",
+    "@types/react": "^18.3.10",
+    "angular-test-app": "workspace:*",
+    "autoprefixer": "10.4.5",
+    "docusaurus-plugin-sass": "^0.2.5",
+    "fs-extra": "^11.2.0",
+    "html-test-app": "workspace:*",
+    "mustache": "^4.2.0",
+    "postcss": "^8.4.29",
+    "react-test-app": "workspace:*",
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^3.4.12",
+    "tsx": "^4.15.4",
+    "typescript": "~5.5.2",
+    "vue-test-app": "workspace:*"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
+  }
+}

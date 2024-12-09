@@ -1,8 +1,8 @@
 import DeprecatedTags from '@site/src/components/Tags';
 import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
-import DocsUx from './\_date-input_styleguide.mdx'
-import DocsCode from './\_date-input_code.mdx'
+import DocsUx from './_input-date_styleguide.mdx';
+import DocsCode from './_input-date_code.mdx';
 
 import Tags from '@site/docs/auto-generated/ix-date-input/tags.md';
 
@@ -10,11 +10,14 @@ import Tags from '@site/docs/auto-generated/ix-date-input/tags.md';
 
 <div className="d-flex gap-2 align-items-center">
   <Tags />
-  <DeprecatedTags url='/docs/legacy/input' hasDeprecatedAncestor={true}></DeprecatedTags>
+  <DeprecatedTags
+    url="/docs/legacy/input"
+    hasDeprecatedAncestor={true}
+  ></DeprecatedTags>
 </div>
 
-<br/>
-<br/>
+<br />
+<br />
 
 <LinkableDocsTabs>
   <DocsUx />

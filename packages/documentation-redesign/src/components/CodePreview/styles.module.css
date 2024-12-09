@@ -1,0 +1,92 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
+ */
+.codePreview {
+  display: block;
+  position: relative;
+
+  border: 1px solid var(--theme-color-x-weak-bdr);
+  border-top: none;
+  background: var(--theme-color-3);
+}
+
+.toolbar {
+  display: flex;
+  position: relative;
+  height: 4rem;
+  border-radius: 0.1875rem 0.1875rem 0rem 0rem;
+  border: 1px solid var(--theme-color-x-weak-bdr);
+  border-bottom: none;
+
+  align-items: center;
+
+  padding: 0rem 0.5rem;
+  gap: 0.25rem;
+}
+
+.code {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.pill {
+  cursor: pointer;
+  display: flex;
+  height: 2rem;
+  min-width: 4rem;
+  padding: 0rem 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--theme-color-ghost);
+  border-radius: 6.25rem;
+  color: var(--theme-color-std-text);
+}
+
+.pill:hover {
+  background-color: var(--theme-color-ghost--hover);
+}
+
+.pill:active {
+  background-color: var(--theme-color-ghost--active);
+}
+
+.pill--alt {
+  background-color: var(--theme-color-primary--contrast);
+}
+
+.pill--active {
+  color: var(--theme-color-inv-std-text);
+  background-color: var(--theme-color-primary);
+}
+
+.pill--alt.pill--active {
+  color: var(--theme-color-std-text);
+  background-color: var(--theme-color-primary--contrast);
+}
+
+.pill--active:hover {
+  background-color: var(--theme-color-primary--hover);
+}
+
+.pill--active:active {
+  background-color: var(--theme-color-primary--active);
+}
+
+.pill--alt.pill--active:hover {
+  background-color: var(--theme-color-2);
+}
+
+.pill--alt.pill--active:active {
+  background-color: var(--theme-color-1);
+}
+
+.spacer {
+  height: 70%;
+  border-left: 2px solid var(--theme-color-x-weak-bdr);
+  margin-right: 1rem;
+}

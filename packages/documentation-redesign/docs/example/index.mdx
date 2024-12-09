@@ -1,0 +1,35 @@
+---
+doc-type: 'component'
+component-tabs: ['Usage', 'Code']
+description: 'Split buttons are button elements that allow users to either trigger an action with one click or select an action from a list of options. They consist of two parts: a button labeled with text and/or an icon on the left and a dropdown button labeled with an icon on the right. We typically use split buttons when a default action is available but more options need to be offered. Split buttons group similar or related actions.'
+title: 'Example 1'
+---
+
+import Guide from './_guide.md';
+import Code from './_code.md';
+import QueryStringContent from '@site/src/components/theme/QueryStringContent';
+import ThemeFrame from '@site/src/components/ThemeFrame';
+import Playground from '@site/src/components/Playground';
+
+#
+
+Hello me 123
+
+<Playground
+  name="buttons"
+  files={{
+    react: {
+      'example.tsx': 'v2/react/buttons.tsx',
+      'styles.css': 'v2/react/styles/buttons.css',
+    },
+    angular: {
+      'example.tsx': 'v2/angular/buttons.tsx',
+      'styles.css': 'v2/angular/styles/buttons.css',
+    },
+  }}
+></Playground>
+
+<QueryStringContent>
+  <Guide />
+  <Code />
+</QueryStringContent>
