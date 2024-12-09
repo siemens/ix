@@ -14,6 +14,12 @@ import Tags from './../../auto-generated/ix-application/tags.md';
 <Tags />
 
 <br/>
+
+<!-- introduction start -->
+Applications manage the layout and theming of top-level app elements, ensuring a cohesive user experience.
+<!-- introduction end -->
+
+<br/>
 <br/>
 
 <LinkableDocsTabs>
