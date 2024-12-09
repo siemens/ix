@@ -21041,6 +21041,28 @@
           "required": false
         },
         {
+          "name": "i18nSelectFileText",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-select-file-text",
+          "reflectToAttr": false,
+          "docs": "Label for select file text",
+          "docsTags": [],
+          "default": "'+ Drag files here or…'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "i18nUploadFile",
           "type": "string",
           "complexType": {
