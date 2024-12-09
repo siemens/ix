@@ -8,4 +8,4 @@ Add `meta`-tag feature to disable default load of `@siemens/ix-icons`
 <meta name="ix:legacy-icons" content="false" />
 ```
 
-In addition the warning is removed is no icon component is provided.
+In addition the warning is removed if no icon component is provided.
