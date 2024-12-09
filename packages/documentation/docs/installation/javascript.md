@@ -67,6 +67,17 @@ import { defineCustomElements as defineIxIconCustomElement } from '@siemens/ix-i
 })();
 ```
 
+## Prevent `@siemens/ix-icons` to be defined during library load
+
+> This can be useful if you have configured CSP nonce, because of the lazy bootstrap behavior of the components.
+
+To prevent the define of the `ix-icon` component via the setup function of the library you have to
+set a `meta[ix:legacy-icons="false"]` tag.
+
+```html
+<meta name="ix:legacy-icons" content="false" />
+```
+
 ## Example
 
 <Playground
