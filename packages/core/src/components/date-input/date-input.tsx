@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconCalendar } from '@siemens/ix-icons/icons';
 import {
   AttachInternals,
   Component,
@@ -22,7 +23,8 @@ import {
 } from '@stencil/core';
 import { DateTime } from 'luxon';
 import { dropdownController } from '../dropdown/dropdown-controller';
-import { MakeRef, makeRef } from '../utils/make-ref';
+import { SlotEnd, SlotStart } from '../input/input.fc';
+import { adjustPaddingForStartAndEnd } from '../input/input.util';
 import {
   ClassMutationObserver,
   HookValidationLifecycle,
@@ -30,9 +32,7 @@ import {
   ValidationResults,
   createClassMutationObserver,
 } from '../utils/input';
-import { SlotEnd, SlotStart } from '../input/input.fc';
-import { adjustPaddingForStartAndEnd } from '../input/input.util';
-import { iconCalendar } from '@siemens/ix-icons/icons';
+import { makeRef } from '../utils/make-ref';
 
 export type DateInputValidityState = {
   patternMismatch: boolean;
@@ -435,7 +435,7 @@ export class DateInput implements IxInputFieldComponent<string> {
           validText={this.validText}
           showTextAsTooltip={this.showTextAsTooltip}
           required={this.required}
-          controlRef={this.inputElementRef as unknown as MakeRef<HTMLElement>}
+          controlRef={this.inputElementRef}
         >
           {this.renderInput()}
         </ix-field-wrapper>
