@@ -5,6 +5,10 @@ import DocsCode from './\_blind_code.md'
 
 # Blind
 
+<!-- introduction start -->
+Blinds enhance content organization by allowing users to toggle visibility through collapsing and expanding sections.
+<!-- introduction end -->
+
 <LinkableDocsTabs>
   <DocsUx />
   <DocsCode />
