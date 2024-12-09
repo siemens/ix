@@ -23,7 +23,7 @@
     },
     "./ssr": {
       "import": "./dist/ssr.js",
-      "types": "./dist/types/components.d.ts"
+      "types": "./dist/types/ssr/components.d.ts"
     }
   },
   "scripts": {

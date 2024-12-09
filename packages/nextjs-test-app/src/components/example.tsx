@@ -6,15 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 import { IxButton } from '@siemens/ix-react/ssr';
 
-function App() {
-  return (
-    <div>
-      <IxButton>TEst</IxButton>
-    </div>
-  );
+export default async function Example() {
+  return <IxButton>XXX</IxButton>;
 }
-
-export default App;
