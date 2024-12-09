@@ -233,6 +233,8 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import MapNavigationMigration from '../preview-examples/map-navigation-migration';
+import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
 
 @NgModule({
   declarations: [
@@ -253,6 +255,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     Avatar,
     BasicNavigationWithoutHeader,
     BasicNavigation,
+    BasicNavigationMigration,
     BlindHeaderActions,
     BlindVariants,
     Blind,
@@ -445,6 +448,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     WorkflowVertical,
     MapNavigation,
     MapNavigationOverlay,
+    MapNavigationMigration,
     NumberInput,
     NumberInputDisabled,
     NumberInputLabel,

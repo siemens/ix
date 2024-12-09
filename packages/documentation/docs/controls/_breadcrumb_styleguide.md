@@ -46,6 +46,6 @@ Interactive items can take one of four states: Default, hover, active and focuse
 ### Related patterns:
 
 - [Dropdown](dropdown.md)
-- [Basic navigation](application-frame/basic-navigation.md)
-- [Map navigation](application-frame/map-navigation.md)
+- [Basic navigation](../legacy/basic-navigation.md)
+- [Map navigation](../legacy/map-navigation.md)
 - [Workflow](workflow.md)
