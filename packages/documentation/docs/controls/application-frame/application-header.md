@@ -12,9 +12,9 @@ import Tags from './../../auto-generated/ix-application-header/tags.md';
 
 <Tags />
 
-<!-- introduction start ->
+<!-- introduction start -->
 Application headers provide a structured area for key elements like the brand logo, application name, and user avatar.
-<!- introduction end -->
+<!-- introduction end -->
 
 <LinkableDocsTabs>
   <DocsUx />
