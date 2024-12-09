@@ -11,16 +11,16 @@ export default {
   themeName: 'classic-light',
   theme: {
     color: [
-      '#00b8a6',
-      '#0094f0',
-      '#b63b8c',
-      '#617d8c',
-      '#2351a4',
-      '#5560ff',
-      '#94947b',
-      '#007362',
-      '#dd886a',
-      '#909700',
+      '#00b8a6', /* theme-chart-1 */
+      '#0094f0', /* theme-chart-8 */
+      '#b63b8c', /* theme-chart-13 */
+      '#617d8c', /* theme-chart-14 */
+      '#2351a4', /* theme-chart-7 */
+      '#5560ff', /* theme-chart-5 */
+      '#94947b', /* theme-chart-4 */
+      '#007362', /* theme-chart-11 */
+      '#dd886a', /* theme-chart-15 */
+      '#909700', /* theme-chart-3 */
     ],
     backgroundColor: 'rgba(0,0,0,0)',
     textStyle: {},
@@ -124,16 +124,16 @@ export default {
       symbol: 'circle',
       smooth: false,
       color: [
-        '#00b8a6',
-        '#0094f0',
-        '#b63b8c',
-        '#617d8c',
-        '#2351a4',
-        '#5560ff',
-        '#94947b',
-        '#007362',
-        '#dd886a',
-        '#909700',
+        '#00b8a6', /* theme-chart-1 */
+        '#0094f0', /* theme-chart-8 */
+        '#b63b8c', /* theme-chart-13 */
+        '#617d8c', /* theme-chart-14 */
+        '#2351a4', /* theme-chart-7 */
+        '#5560ff', /* theme-chart-5 */
+        '#94947b', /* theme-chart-4 */
+        '#007362', /* theme-chart-11 */
+        '#dd886a', /* theme-chart-15 */
+        '#909700', /* theme-chart-3 */
       ],
       label: {
         color: '#ffffff',

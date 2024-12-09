@@ -11,16 +11,16 @@ export default {
   themeName: 'brand-light',
   theme: {
     color: [
-      '#00af8e',
-      '#0087be',
-      '#aa32be',
-      '#71758f',
-      '#00557c',
-      '#4660b4',
-      '#94947b',
-      '#007362',
-      '#dd886a',
-      '#909700',
+      '#1A747D', /* theme-chart-1 */
+      '#00004A', /* theme-chart-8 */
+      '#4F153D', /* theme-chart-13 */
+      '#BE5925', /* theme-chart-14 */
+      '#00237A', /* theme-chart-7 */
+      '#4C4C68', /* theme-chart-5 */
+      '#002949', /* theme-chart-4 */
+      '#740089', /* theme-chart-11 */
+      '#801100', /* theme-chart-15 */
+      '#009999', /* theme-chart-3 */
     ],
     backgroundColor: 'rgba(0,0,0,0)',
     textStyle: {},
@@ -124,16 +124,16 @@ export default {
       symbol: 'circle',
       smooth: false,
       color: [
-        '#00af8e',
-        '#0087be',
-        '#aa32be',
-        '#71758f',
-        '#00557c',
-        '#4660b4',
-        '#94947b',
-        '#007362',
-        '#dd886a',
-        '#909700',
+        '#1A747D', /* theme-chart-1 */
+        '#00004A', /* theme-chart-8 */
+        '#4F153D', /* theme-chart-13 */
+        '#BE5925', /* theme-chart-14 */
+        '#00237A', /* theme-chart-7 */
+        '#4C4C68', /* theme-chart-5 */
+        '#002949', /* theme-chart-4 */
+        '#740089', /* theme-chart-11 */
+        '#801100', /* theme-chart-15 */
+        '#009999', /* theme-chart-3 */
       ],
       label: {
         color: '#ffffff',
