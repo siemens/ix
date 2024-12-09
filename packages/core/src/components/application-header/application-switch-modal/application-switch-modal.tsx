@@ -68,7 +68,7 @@ function ApplicationItem(props: {
             ></ix-icon>
           )}
         </ix-typography>
-        <ix-typography format="label-sm" color="soft">
+        <ix-typography format="label-sm" textColor="soft">
           {props.description}
         </ix-typography>
       </div>

@@ -15,7 +15,7 @@ export default () => {
       icon="refresh"
       heading="Scan for new devices"
       subheading="Secondary text"
-      variant="insight"
+      variant="outline"
       onClick={console.log}
     ></IxActionCard>
   );

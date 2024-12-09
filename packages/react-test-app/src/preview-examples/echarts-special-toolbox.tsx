@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-special-toolbox.css';
+import './echarts-special-toolbox.scoped.css';
 
 import { useEffect, useState } from 'react';
 import {convertThemeName, registerTheme} from '@siemens/ix-echarts';

@@ -31,7 +31,7 @@ function CardListTitle(props: {
         ghost
         icon={iconChevronDown}
         onClick={props.onClick}
-        color="color-primary"
+        iconColor="color-primary"
         class={{
           CardList__Title__Button: true,
           CardList__Title__Button__Collapsed: props.isCollapsed,

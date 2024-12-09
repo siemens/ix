@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './application-app-switch.css';
+import './application-app-switch.scoped.css';
 
 import { AppSwitchConfiguration } from '@siemens/ix';
 import {

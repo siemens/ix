@@ -64,15 +64,6 @@ export class Chip {
   /**
    * Custom font and icon color.
    * Only has an effect on chips with `variant='custom'`
-   *
-   * @deprecated since 2.1.0 use `chip-color`
-   */
-  // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color: string | undefined;
-
-  /**
-   * Custom font and icon color.
-   * Only has an effect on chips with `variant='custom'`
    */
   @Prop() chipColor: string | undefined;
 
@@ -98,11 +89,7 @@ export class Chip {
           class="close-button"
           oval
           size="16"
-          style={
-            this.variant === 'custom'
-              ? { color: this.chipColor ?? this.color }
-              : {}
-          }
+          style={this.variant === 'custom' ? { color: this.chipColor } : {}}
           ghost
           onClick={(event) => {
             this.closeChip.emit(event);
@@ -120,7 +107,7 @@ export class Chip {
 
     if (this.variant === 'custom') {
       customStyle = {
-        color: this.chipColor ?? this.color,
+        color: this.chipColor,
         [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
       };
     }
@@ -132,7 +119,7 @@ export class Chip {
         style={
           this.variant === 'custom'
             ? {
-                '--ix-icon-button-color': this.chipColor ?? this.color,
+                '--ix-icon-button-color': this.chipColor,
               }
             : {}
         }

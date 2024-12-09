@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-special-zoom.css';
+import './echarts-special-zoom.scoped.css';
 
 import { useEffect, useState } from 'react';
 import {

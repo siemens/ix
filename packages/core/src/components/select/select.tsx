@@ -8,6 +8,11 @@
  */
 
 import {
+  iconChevronDownSmall,
+  iconClear,
+  iconPlus,
+} from '@siemens/ix-icons/icons';
+import {
   AttachInternals,
   Component,
   Element,
@@ -21,23 +26,18 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { IxSelectItemLabelChangeEvent } from '../select-item/events';
-import { ArrowFocusController } from '../utils/focus';
-import { OnListener } from '../utils/listener';
-import {
-  iconChevronDownSmall,
-  iconClear,
-  iconPlus,
-} from '@siemens/ix-icons/icons';
-import { createMutationObserver } from '../utils/mutation-observer';
 import { DropdownItemWrapper } from '../dropdown/dropdown-controller';
+import { IxSelectItemLabelChangeEvent } from '../select-item/events';
+import { a11yBoolean } from '../utils/a11y';
+import { ArrowFocusController } from '../utils/focus';
 import {
   HookValidationLifecycle,
-  ValidationResults,
   IxInputFieldComponent,
+  ValidationResults,
 } from '../utils/input';
-import { MakeRef, makeRef } from '../utils/make-ref';
-import { a11yBoolean } from '../utils/a11y';
+import { OnListener } from '../utils/listener';
+import { makeRef } from '../utils/make-ref';
+import { createMutationObserver } from '../utils/mutation-observer';
 
 /**
  * @form-ready 2.6.0
@@ -117,13 +117,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * Indices of selected items.
-   * This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
-   * @deprecated since 2.0.0. Use the `value` property instead.
-   */
-  @Prop({ mutable: true }) selectedIndices?: string | string[];
-
-  /**
    * Current selected value.
    * This corresponds to the value property of ix-select-items
    * @since 2.0.0
@@ -191,12 +184,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Event() valueChange!: EventEmitter<string | string[]>;
 
   /**
-   * Item selection changed
-   * @deprecated since 2.0.0. Use `valueChange` instead.
-   */
-  @Event() itemSelectionChange!: EventEmitter<string[]>;
-
-  /**
    * Event dispatched whenever the text input changes.
    *
    * @since 2.0.0
@@ -214,7 +201,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Event() ixBlur!: EventEmitter<void>;
 
   @State() dropdownShow = false;
-  @State() selectedLabels: string[] = [];
+  @State() selectedLabels: (string | undefined)[] = [];
   @State() isDropdownEmpty = false;
   @State() navigationItem?: DropdownItemWrapper;
   @State() inputFilterText = '';
@@ -226,12 +213,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @State() isWarning = false;
 
   private readonly dropdownWrapperRef = makeRef<HTMLElement>();
-  private readonly dropdownAnchor = makeRef<HTMLElement>();
+  private readonly dropdownAnchorRef = makeRef<HTMLElement>();
+  private readonly inputRef = makeRef<HTMLInputElement>();
 
-  private inputRef?: HTMLInputElement;
-  private dropdownRef?: HTMLIxDropdownElement;
-  private customItemsContainerRef?: HTMLDivElement;
-  private addItemRef?: HTMLIxDropdownItemElement;
+  private inputElement?: HTMLInputElement;
+  private dropdownElement?: HTMLIxDropdownElement;
+  private customItemsContainerElement?: HTMLDivElement;
+  private addItemElement?: HTMLIxDropdownItemElement;
   private arrowFocusController?: ArrowFocusController;
 
   private readonly itemObserver = createMutationObserver(() => {
@@ -293,30 +281,24 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return this.items.every((item) => item.classList.contains('d-none'));
   }
 
-  @Watch('selectedIndices')
-  watchSelectedIndices(value: string | string[]) {
-    this.value = value;
-    this.updateSelection();
-  }
-
   @Watch('value')
   watchValue(value: string | string[]) {
-    this.selectedIndices = value;
+    this.value = value;
     this.updateSelection();
   }
 
   @Watch('dropdownShow')
   watchDropdownShow(show: boolean) {
-    if (show) {
+    if (show && this.dropdownElement) {
       this.arrowFocusController = new ArrowFocusController(
         this.visibleNonShadowItems,
-        this.dropdownRef,
+        this.dropdownElement,
         this.focusControllerCallbackBind
       );
 
       this.arrowFocusController.wrap = !this.editable;
 
-      this.itemObserver.observe(this.dropdownRef, {
+      this.itemObserver.observe(this.dropdownElement, {
         childList: true,
         subtree: true,
       });
@@ -361,7 +343,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private focusDropdownItem(index: number) {
-    this.navigationItem = null;
+    this.navigationItem = undefined;
 
     if (index < this.visibleNonShadowItems.length) {
       const nestedDropdownItem =
@@ -407,7 +389,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     newItem.value = value;
     newItem.label = value;
 
-    this.customItemsContainerRef.appendChild(newItem);
+    this.customItemsContainerElement?.appendChild(newItem);
 
     this.clearInput();
     this.itemClick(value);
@@ -457,12 +439,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.selectedLabels = this.selectedItems.map((item) => item.label);
 
     if (this.selectedLabels?.length && this.isSingleMode) {
-      this.inputValue = this.selectedLabels[0];
+      this.inputValue = this.selectedLabels[0] ?? '';
     } else {
       this.inputValue = '';
     }
 
-    this.inputRef && (this.inputRef.value = this.inputValue);
+    this.inputElement && (this.inputElement.value = this.inputValue);
   }
 
   private emitValueChange(value: string | string[]) {
@@ -472,28 +454,18 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       return true;
     }
 
-    if (!value) {
-      this.itemSelectionChange.emit(null);
-    } else {
-      this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
-    }
-
     this.updateFormInternalValue(value);
     return false;
   }
 
   componentDidLoad() {
-    this.inputRef?.addEventListener('input', () => {
+    this.inputElement?.addEventListener('input', () => {
       this.dropdownShow = true;
-      this.inputChange.emit(this.inputRef?.value);
+      this.inputChange.emit(this.inputElement?.value);
     });
   }
 
   componentWillLoad() {
-    if (this.selectedIndices && !this.value) {
-      this.value = this.selectedIndices;
-    }
-
     this.updateSelection();
     this.updateFormInternalValue(this.value);
   }
@@ -510,7 +482,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.cleanupResources();
   }
 
-  private itemExists(item: string) {
+  private itemExists(item: string | undefined) {
     return this.items.find((i) => i.label === item);
   }
 
@@ -518,13 +490,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     this.dropdownShow = event.detail;
 
     if (event.detail) {
-      this.inputRef?.focus();
-      this.inputRef?.select();
+      this.inputElement?.focus();
+      this.inputElement?.select();
 
       this.removeHiddenFromItems();
       this.isDropdownEmpty = this.isEveryDropdownItemHidden;
     } else {
-      this.navigationItem = null;
+      this.navigationItem = undefined;
       this.updateSelection();
       this.inputFilterText = '';
     }
@@ -556,15 +528,17 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       return;
     }
 
+    const trimmedInput = this.inputFilterText.trim();
+    const itemLabel = (el as HTMLIxSelectItemElement)?.label;
+
     if (
-      !this.itemExists(this.inputFilterText.trim()) &&
-      !this.itemExists((el as HTMLIxSelectItemElement)?.label)
+      this.editable &&
+      !this.itemExists(trimmedInput) &&
+      !this.itemExists(itemLabel)
     ) {
-      if (this.editable) {
-        const defaultPrevented = this.emitAddItem(this.inputFilterText.trim());
-        if (defaultPrevented) {
-          return;
-        }
+      const defaultPrevented = this.emitAddItem(trimmedInput);
+      if (defaultPrevented) {
+        return;
       }
     }
 
@@ -627,16 +601,14 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     if (
       this.isAddItemVisible() &&
-      this.addItemRef.contains(
+      this.addItemElement?.contains(
         await this.navigationItem.getDropdownItemElement()
       )
     ) {
       if (moveUp) {
         this.applyFocusTo(this.visibleItems.pop());
-      } else {
-        if (this.visibleItems.length) {
-          this.applyFocusTo(this.visibleItems.shift());
-        }
+      } else if (this.visibleItems.length) {
+        this.applyFocusTo(this.visibleItems.shift());
       }
       return;
     }
@@ -687,12 +659,12 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private focusAddItemButton() {
     if (this.addItemButton) {
       this.addItemButton.shadowRoot?.querySelector('button')?.focus();
-      this.navigationItem = this.addItemRef;
+      this.navigationItem = this.addItemElement;
     }
   }
 
   private filterItemsWithTypeahead() {
-    this.inputFilterText = this.inputRef?.value || '';
+    this.inputFilterText = this.inputElement?.value ?? '';
 
     if (this.isSingleMode && this.inputFilterText === this.selectedLabels[0]) {
       return;
@@ -702,7 +674,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       this.items.forEach((item) => {
         item.classList.remove('d-none');
         if (
-          !item.label.toLowerCase().includes(this.inputFilterText.toLowerCase())
+          !item.label
+            ?.toLowerCase()
+            .includes(this.inputFilterText.toLowerCase())
         ) {
           item.classList.add('d-none');
         }
@@ -725,8 +699,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   private clearInput() {
-    if (this.inputRef) {
-      this.inputRef.value = '';
+    if (this.inputElement) {
+      this.inputElement.value = '';
     }
     this.inputFilterText = '';
   }
@@ -806,7 +780,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    */
   @Method()
   getNativeInputElement(): Promise<HTMLInputElement> {
-    return Promise.resolve(this.inputRef);
+    if (this.inputElement) {
+      return Promise.resolve(this.inputElement);
+    } else {
+      return Promise.reject(new Error('Input element not found'));
+    }
   }
 
   /**
@@ -814,7 +792,10 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    */
   @Method()
   async focusInput(): Promise<void> {
-    return (await this.getNativeInputElement()).focus();
+    const inputElement = await this.getNativeInputElement();
+    if (inputElement) {
+      inputElement.focus();
+    }
   }
 
   render() {
@@ -838,7 +819,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          controlRef={this.inputRef as unknown as MakeRef<HTMLElement>}
+          controlRef={this.inputRef}
         >
           <div
             class={{
@@ -847,7 +828,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               readonly: this.readonly,
             }}
             ref={(ref) => {
-              this.dropdownAnchor(ref);
+              this.dropdownAnchorRef(ref);
               if (!this.editable) this.dropdownWrapperRef(ref);
             }}
           >
@@ -882,15 +863,20 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     }}
                     placeholder={this.placeholderValue()}
                     value={this.inputValue ?? ''}
-                    ref={(ref) => (this.inputRef = ref)}
+                    ref={(ref) => {
+                      this.inputElement = ref;
+                      this.inputRef(ref);
+                    }}
                     onBlur={(e) => this.onInputBlur(e)}
                     onFocus={() => {
-                      this.navigationItem = null;
+                      this.navigationItem = undefined;
                     }}
                     onInput={() => this.filterItemsWithTypeahead()}
                     onKeyDown={(e) => this.onKeyDown(e)}
                   />
                   {this.allowClear &&
+                  !this.disabled &&
+                  !this.readonly &&
                   (this.selectedLabels?.length || this.inputFilterText) ? (
                     <ix-icon-button
                       class="clear"
@@ -922,13 +908,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           </div>
         </ix-field-wrapper>
         <ix-dropdown
-          ref={(ref) => (this.dropdownRef = ref!)}
+          ref={(ref) => (this.dropdownElement = ref!)}
           show={this.dropdownShow}
           closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
           class={{
             'd-none': this.disabled || this.readonly,
           }}
-          anchor={this.dropdownAnchor.waitForCurrent()}
+          anchor={this.dropdownAnchorRef.waitForCurrent()}
           trigger={this.dropdownWrapperRef.waitForCurrent()}
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
@@ -958,7 +944,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
             }}
           ></slot>
           <div
-            ref={(ref) => (this.customItemsContainerRef = ref!)}
+            ref={(ref) => (this.customItemsContainerElement = ref!)}
             class="d-contents"
           ></div>
           {this.isAddItemVisible() ? (
@@ -974,9 +960,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                 e.stopPropagation();
                 this.emitAddItem(this.inputFilterText);
               }}
-              onFocus={() => (this.navigationItem = this.addItemRef)}
+              onFocus={() => (this.navigationItem = this.addItemElement)}
               ref={(ref) => {
-                this.addItemRef = ref!;
+                this.addItemElement = ref!;
               }}
             ></ix-dropdown-item>
           ) : null}

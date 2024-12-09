@@ -92,7 +92,6 @@ export { default as IxSelectItem } from "./IxSelectItem";
 export { default as IxSlider } from "./IxSlider";
 export { default as IxSpinner } from "./IxSpinner";
 export { default as IxSplitButton } from "./IxSplitButton";
-export { default as IxSplitButtonItem } from "./IxSplitButtonItem";
 export { default as IxTabItem } from "./IxTabItem";
 export { default as IxTabs } from "./IxTabs";
 export { default as IxTextarea } from "./IxTextarea";

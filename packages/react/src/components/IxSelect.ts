@@ -14,7 +14,6 @@ import React from 'react';
 
 type IxSelectEvents = {
     onValueChange: EventName<CustomEvent<string | string[]>>,
-    onItemSelectionChange: EventName<CustomEvent<string[]>>,
     onInputChange: EventName<CustomEvent<string>>,
     onAddItem: EventName<CustomEvent<string>>,
     onIxBlur: EventName<CustomEvent<void>>
@@ -27,7 +26,6 @@ const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = /*@__PU
     react: React,
     events: {
         onValueChange: 'valueChange',
-        onItemSelectionChange: 'itemSelectionChange',
         onInputChange: 'inputChange',
         onAddItem: 'addItem',
         onIxBlur: 'ixBlur'

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './form-validation.css';
+import './form-validation.scoped.css';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { iconBezierCurve, iconLocation } from '@siemens/ix-icons/icons';
