@@ -15,7 +15,7 @@ height="35rem"
 noMargin>
 </Playground>
 
-### Examples
+### Legacy Examples
 
 #### Basic
 
