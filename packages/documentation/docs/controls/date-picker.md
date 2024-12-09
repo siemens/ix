@@ -4,6 +4,9 @@ import Events from './../auto-generated/ix-date-picker/events.md';
 import Playground from '@site/src/components/PlaygroundV3';
 
 # Date picker
+<!-- introduction start -->
+The date picker component provides a versatile calendar menu that can be used as a standalone element or within a dropdown for date input, offering a seamless way to select dates.
+<!-- introduction end -->
 
 ## Examples 
 
