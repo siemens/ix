@@ -14,19 +14,19 @@ Design your commands for humans. Have a conversation. Speak the Siemens brand: A
 - Use --no-input when you don't want to interact with your terminal
 - Ensure users can exit anytime
 
-![Interactivity 1 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-12943&t=2JP2nlNciwS43htp-1)
+![Interactivity 1 - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20680&t=sN9pWBoxiiVCyam3-4)
 
-![Interactivity 1 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-13477&t=2JP2nlNciwS43htp-1)
-
-<Separator></Separator>
-
-![Interactivity 2 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-12988&t=2JP2nlNciwS43htp-1)
+![Interactivity 1 - Don't](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20737&t=sN9pWBoxiiVCyam3-4)
 
 <Separator></Separator>
 
-![Interactivity 3 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-12991&t=2JP2nlNciwS43htp-1)
+![Interactivity 2 - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20725&t=sN9pWBoxiiVCyam3-4)
 
-![Interactivity 3 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-13525&t=2JP2nlNciwS43htp-1)
+<Separator></Separator>
+
+![Interactivity 3 - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20728&t=sN9pWBoxiiVCyam3-4)
+
+![Interactivity 3 - Don't](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20782&t=sN9pWBoxiiVCyam3-4)
 
 ### Output
 - Return brief response messages, e.g. x done / x created / x named / x not done / x not created / x not named
@@ -39,12 +39,12 @@ Design your commands for humans. Have a conversation. Speak the Siemens brand: A
 - Avoid buzz words and jargon
 - Avoid emojis to express emotions to align with our brand voice and style
 
-![Output 1 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-12994&t=2JP2nlNciwS43htp-1)
+![Output 1 - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20731&t=sN9pWBoxiiVCyam3-4)
 
-![Output 1 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-13528&t=2JP2nlNciwS43htp-1)
+![Output 1 - Don't](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20785&t=sN9pWBoxiiVCyam3-4)
 
 <Separator></Separator>
 
-![Output 2 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-12997&t=2JP2nlNciwS43htp-1)
+![Output 2 - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20734&t=sN9pWBoxiiVCyam3-4)
 
-![Output 2 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1037-13531&t=2JP2nlNciwS43htp-1)
+![Output 2 - Don't](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20788&t=sN9pWBoxiiVCyam3-4)
