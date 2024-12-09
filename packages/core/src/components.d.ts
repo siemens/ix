@@ -1236,7 +1236,9 @@ export namespace Components {
         "value": string;
     }
     interface IxFieldLabel {
-        "controlRef"?: MakeRef<HTMLElement>;
+        "controlRef"?: | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
         /**
           * The id of the form element that the label is associated with
          */
@@ -1251,7 +1253,9 @@ export namespace Components {
         /**
           * The control element that the label is associated with
          */
-        "controlRef"?: MakeRef<HTMLElement>;
+        "controlRef"?: | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
         /**
           * Show text below the field component
          */
@@ -6340,7 +6344,9 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IxFieldLabel {
-        "controlRef"?: MakeRef<HTMLElement>;
+        "controlRef"?: | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
         /**
           * The id of the form element that the label is associated with
          */
@@ -6355,7 +6361,9 @@ declare namespace LocalJSX {
         /**
           * The control element that the label is associated with
          */
-        "controlRef"?: MakeRef<HTMLElement>;
+        "controlRef"?: | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
         /**
           * Show text below the field component
          */
