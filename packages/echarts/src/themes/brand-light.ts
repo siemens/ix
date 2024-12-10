@@ -11,16 +11,23 @@ export default {
   themeName: 'brand-light',
   theme: {
     color: [
-      '#1A747D', /* theme-chart-1 */
-      '#00004A', /* theme-chart-8 */
-      '#4F153D', /* theme-chart-13 */
-      '#BE5925', /* theme-chart-14 */
-      '#00237A', /* theme-chart-7 */
-      '#4C4C68', /* theme-chart-5 */
-      '#002949', /* theme-chart-4 */
-      '#740089', /* theme-chart-11 */
-      '#801100', /* theme-chart-15 */
       '#009999', /* theme-chart-3 */
+      '#005159', /* theme-chart-2 */
+      '#00004A', /* theme-chart-8 */
+      '#1A747D', /* theme-chart-1 */
+      '#3664C6', /* theme-chart-6 */
+      '#002949', /* theme-chart-4 */
+      '#7353E5', /* theme-chart-10 */
+      '#553BA3', /* theme-chart-9 */
+      '#740089', /* theme-chart-11 */
+      '#BE5925', /* theme-chart-14 */
+      '#4F153D', /* theme-chart-13 */
+      '#C04774', /* theme-chart-12 */
+      '#00237A', /* theme-chart-7 */
+      '#801100', /* theme-chart-15 */
+      '#805800', /* theme-chart-16 */
+      '#5E5E4A', /* theme-chart-17 */
+      '#801100', /* theme-chart-5 */
     ],
     backgroundColor: 'rgba(0,0,0,0)',
     textStyle: {},
@@ -124,16 +131,23 @@ export default {
       symbol: 'circle',
       smooth: false,
       color: [
-        '#1A747D', /* theme-chart-1 */
-        '#00004A', /* theme-chart-8 */
-        '#4F153D', /* theme-chart-13 */
-        '#BE5925', /* theme-chart-14 */
-        '#00237A', /* theme-chart-7 */
-        '#4C4C68', /* theme-chart-5 */
-        '#002949', /* theme-chart-4 */
-        '#740089', /* theme-chart-11 */
-        '#801100', /* theme-chart-15 */
         '#009999', /* theme-chart-3 */
+        '#005159', /* theme-chart-2 */
+        '#00004A', /* theme-chart-8 */
+        '#1A747D', /* theme-chart-1 */
+        '#3664C6', /* theme-chart-6 */
+        '#002949', /* theme-chart-4 */
+        '#7353E5', /* theme-chart-10 */
+        '#553BA3', /* theme-chart-9 */
+        '#740089', /* theme-chart-11 */
+        '#BE5925', /* theme-chart-14 */
+        '#4F153D', /* theme-chart-13 */
+        '#C04774', /* theme-chart-12 */
+        '#00237A', /* theme-chart-7 */
+        '#801100', /* theme-chart-15 */
+        '#805800', /* theme-chart-16 */
+        '#5E5E4A', /* theme-chart-17 */
+        '#801100', /* theme-chart-5 */
       ],
       label: {
         color: '#ffffff',
