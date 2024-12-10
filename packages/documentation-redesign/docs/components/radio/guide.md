@@ -14,13 +14,13 @@ A radio button is an interface element that enables the user to choose only one 
 
 #### Options
 
-- **Label:** See [form field](forms/forms-field.md).
-- **Helper text**: See [form field](forms/forms-field.md).
-- **Feedback text**: See [form field](forms/forms-field.md).
+- **Label:** See [form field](../forms/forms-field).
+- **Helper text**: See [form field](../forms/forms-field).
+- **Feedback text**: See [form field](../forms/forms-field).
 
 #### Behavior in context
 
-- **Validation**: Radio buttons are validated collectively, not individually. For more information on validation, see [validation](forms/forms-validation.mdx).
+- **Validation**: Radio buttons are validated collectively, not individually. For more information on validation, see [validation](../forms/forms-validation).
 - **Interaction**: Clicking on a radio button toggles its state between checked and unchecked/default. Every other radio button in the group is automatically unchecked.
 
 #### States
@@ -37,8 +37,8 @@ A radio button is an interface element that enables the user to choose only one 
 
 #### Related patterns
 
-- [Form field](forms/forms-field.md)
-- [Validation](forms/forms-validation.mdx)
-- [Layout](forms/forms-layout.md)
-- [Checkbox](checkbox.mdx)
-- [Toggle](toggle.mdx)
+- [Form field](../forms/forms-field)
+- [Validation](../forms/forms-validation)
+- [Layout](../forms/forms-layout)
+- [Checkbox](../checkbox)
+- [Toggle](../toggle)

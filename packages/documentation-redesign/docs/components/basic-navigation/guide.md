@@ -2,15 +2,15 @@
 
 ### Guidelines
 
-Basic navigation is a combination of essential infrastructure components forming the basic application layout structure. Alternatively, the [map navigation](./map-navigation.md) offers an additional but less flexible layout.  
-The new [application](./application.md) component released February 2024 is even more flexible, has a modular approach and introduces new features. Hence, we highly recommend using the new application frame.
+Basic navigation is a combination of essential infrastructure components forming the basic application layout structure. Alternatively, the [map navigation](.././map-navigation) offers an additional but less flexible layout.  
+The new [application](.././application) component released February 2024 is even more flexible, has a modular approach and introduces new features. Hence, we highly recommend using the new application frame.
 
 ![Basic navigation overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=984-33226&mode=design&t=SxUA6AcHswBAiIzi-11)
 
 Basic navigation has:
 
 1. Application header
-2. [Navigation menu](./application-menu.md)
+2. [Navigation menu](.././application-menu)
 3. Application content
 
 ##### Application header

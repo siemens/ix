@@ -13,16 +13,16 @@ A checkbox is a small interactive box that allows the user to toggle between an 
 
 #### Options
 
-- **Checkbox label:** See [form field](forms/forms-field.md).
+- **Checkbox label:** See [form field](../forms/forms-field).
 - **Indeterminate checkbox:** Indicates that only some items in a checkbox group are selected. We offer the indeterminate state, but the implementation when this state is active is the responsibility of each individual.
 - **Checkbox group**: Group checkboxes to indicate that they are related. We typically use checkbox groups when multiple options need to be presented for selection, allowing users to choose any combination of the available choices. They are particularly useful in user interface design for forms, settings and preferences where multiple selections are possible.
 - **Group label:** Add a label to the group of checkboxes to provide context to your users. We typically use short and descriptive labels to summarize the options in the group.
-- **Group helper text**: See [form field](forms/forms-field.md).
-- **Group feedback text**: See [form field](forms/forms-field.md).
+- **Group helper text**: See [form field](../forms/forms-field).
+- **Group feedback text**: See [form field](../forms/forms-field).
 
 #### Behavior in context
 
-- **Validation**: See [validation](forms/forms-validation.mdx).
+- **Validation**: See [validation](../forms/forms-validation).
 - **Interaction**: Clicking on the checkbox toggles the state between checked and unchecked.
 - **Grouping**: Checkbox groups have only one label and helper text for the entire group. Grouped checkboxes are validated collectively, not individually.
 
@@ -36,5 +36,5 @@ A checkbox is a small interactive box that allows the user to toggle between an 
 - Do group related checkboxes together to indicate their relationship
 - Do use checkboxes in forms to allow users to select multiple options
 - Don’t use a checkbox for binary choices (yes/no, true/false) - use a toggle switch instead
-- Don’t use checkboxes for mutually exclusive options - use [radio buttons](radio.mdx) instead
-- Don’t use checkboxes for actions that have immediate consequences - use [buttons](buttons/button.md) or links instead
+- Don’t use checkboxes for mutually exclusive options - use [radio buttons](../radio) instead
+- Don’t use checkboxes for actions that have immediate consequences - use [buttons](../buttons/button) or links instead

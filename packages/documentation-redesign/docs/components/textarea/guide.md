@@ -15,14 +15,14 @@ The textarea component allows users to input multi-line text, making it ideal fo
 
 #### Options
 
-- **Label**: See [form field](./forms/forms-field.md).
-- **Value**: See [form field](./forms/forms-field.md).
-- **Required**: See [form field](./forms/forms-field.md).
-- **Helper text**: See [form field](./forms/forms-field.md).
-- **Feedback text**: See [form field](./forms/forms-field.md).
-- **Show text as tooltip**: See [form field](./forms/forms-field.md).
-- **Placeholder**: See [form field](./forms/forms-field.md).
-- **Counter**: See [form field](./forms/forms-field.md).
+- **Label**: See [form field](.././forms/forms-field).
+- **Value**: See [form field](.././forms/forms-field).
+- **Required**: See [form field](.././forms/forms-field).
+- **Helper text**: See [form field](.././forms/forms-field).
+- **Feedback text**: See [form field](.././forms/forms-field).
+- **Show text as tooltip**: See [form field](.././forms/forms-field).
+- **Placeholder**: See [form field](.././forms/forms-field).
+- **Counter**: See [form field](.././forms/forms-field).
 - **Resize behavior**: Determines how textareas can be resized (both directions, horizontally, vertically, or no resizing). Default size is 300px x 100px.
 - **Columns and width**: Defines initial width by number of columns and/or width.
 - **Rows and height**: Defines initial height by number of rows and/or height.
@@ -35,7 +35,7 @@ The textarea component allows users to input multi-line text, making it ideal fo
   - Optional: Users can resize textareas to fit their needs. For example, vertical resizing can be useful in feedback forms when the entry exceeds the default height.
 - **Validation**:
   - Minimum and maximum length defines number of characters allowed.
-  - See [form validation](./forms/forms-validation.mdx).
+  - See [form validation](.././forms/forms-validation).
 - **Overflow**: Text within the textarea is not truncated; it supports scrolling for overflow content.
 - **Alignment**: Text is always left-aligned in textareas.
 - **Sizing**:
@@ -53,11 +53,11 @@ Textareas have five states: Default, hover, focused, read-only and disabled.
 - Do ensure the textarea size matches the expected input, e.g. 5 to 10 rows for detailed feedback
 - Do use the placeholder to give users an example of the expected input
 - Do set minimum and maximum character limits to ensure appropriate input length
-- Don’t use the textarea for short, single-line input like name or email address, use an [input field](./input.mdx) instead
+- Don’t use the textarea for short, single-line input like name or email address, use an [input field](.././input) instead
 
 #### Related patterns
 
-- [Form fields](./forms/forms-field.md)
-- [Validation](./forms/forms-validation.mdx)
-- [Layout](./forms/forms-layout.md)
-- [Input](./input.mdx)
+- [Form fields](.././forms/forms-field)
+- [Validation](.././forms/forms-validation)
+- [Layout](.././forms/forms-layout)
+- [Input](.././input)

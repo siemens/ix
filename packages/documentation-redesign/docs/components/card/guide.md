@@ -48,7 +48,7 @@ Cards are available in nine variants: Insight (outline style), notification (fil
 
 - **Interaction**: As a general rule, the entire card container is interactive and clickable. If the card also contains interactive elements, the corresponding actions are triggered.
 - **Size**: By default, cards have a fixed width and height. However, content overflow is not managed automatically, so the card size must be manually adjusted.
-- **Placement**: We typically group cards and position them at the top-left corner of the page or content area. Within the group, cards can be organized into lists or grids using the [card list](card-list.md) component.
+- **Placement**: We typically group cards and position them at the top-left corner of the page or content area. Within the group, cards can be organized into lists or grids using the [card list](../card-list) component.
 
 #### States
 
@@ -58,13 +58,13 @@ Cards can take one of three states: Default, hover and active. Action cards also
 
 #### Dos and Don'ts
 
-- Do group cards in lists or grids (use the [card list](card-list.md) control)
+- Do group cards in lists or grids (use the [card list](../card-list) control)
 - Do keep multiple cards equal in size
 - Don't nest cards inside each other
 - Don't use cards to collect user input
 
 #### Related patterns:
 
-- [Card list](card-list.md)
-- [Flip](flip.md)
-- [Tile](tile.md)
+- [Card list](../card-list)
+- [Flip](../flip)
+- [Tile](../tile)

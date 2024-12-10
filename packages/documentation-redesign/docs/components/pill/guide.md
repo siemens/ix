@@ -49,4 +49,4 @@ Pills are read-only.
 
 #### Related patterns
 
-- [Chip](chip.md)
+- [Chip](../chip)

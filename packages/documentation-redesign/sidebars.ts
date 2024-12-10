@@ -59,6 +59,35 @@ const sidebars: SidebarsConfig = {
       ],
       collapsed: false,
     },
+    {
+      type: 'category',
+      label: 'Releases',
+      items: [
+        'home/releases/roadmap',
+        'home/releases/release-version',
+        'home/releases/changelog',
+      ],
+      collapsed: false,
+    },
+    {
+      type: 'category',
+      label: 'Support',
+      items: [
+        'home/support/contact-us',
+        'home/support/faq',
+        {
+          type: 'link',
+          href: 'https://github.com/siemens/ix',
+          label: 'GitHub',
+        },
+        {
+          type: 'link',
+          href: 'https://github.com/siemens/ix/blob/main/CONTRIBUTING.md',
+          label: 'Contribution',
+        },
+      ],
+      collapsed: false,
+    },
   ],
   components: [
     {
@@ -258,7 +287,12 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
     },
   ],
-  styles: ['styles/overview'],
+  styles: [
+    'styles/colors',
+    'styles/typography',
+    'styles/borders',
+    'styles/shadows',
+  ],
 };
 
 export default sidebars;

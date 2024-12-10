@@ -23,7 +23,7 @@ const config: Config = {
   projectName: 'Siemens Industrial Experience', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -140,9 +140,10 @@ const config: Config = {
           position: 'left',
           label: 'Styles',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
+        // TODO: Clarify if blog is needed
+        // { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/siemens/ix',
           label: 'GitHub',
           position: 'right',
         },
@@ -150,30 +151,54 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
+      copyright: `© Siemens 1996 - ${new Date().getFullYear()}`,
       links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
-        },
         {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'GitHub',
+              href: 'https://github.com/siemens/ix',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'iX Community',
+              href: 'https://community.siemens.com/c/ix',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              label: 'Siemens Xcelerator Developer Portal',
+              href: 'https://developer.siemens.com',
+            },
+          ],
+        },
+        {
+          title: 'About',
+          items: [
+            {
+              label: 'Corporate Information',
+              href: 'https://www.siemens.com/corporate-information',
+            },
+            {
+              label: 'Privacy Notice',
+              href: 'https://www.siemens.com/privacy-notice',
+            },
+            {
+              label: 'Cookie notice',
+              href: '/cookie-notice',
+            },
+            {
+              html: '<a class="footer__link-item" href="javascript:void(0)" onClick="UC_UI.showSecondLayer();">Privacy Settings</a>',
+            },
+            {
+              label: 'Terms of use',
+              href: 'https://www.siemens.com/terms-of-use',
+            },
+            {
+              label: 'Digital ID',
+              href: 'https://www.siemens.com/digital-id',
+            },
+            {
+              label: 'Contact us',
+              to: 'docs/home/support/contact-us',
             },
           ],
         },
@@ -181,17 +206,11 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              html: '<a href="https://www.netlify.com"> <img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /> </a>',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

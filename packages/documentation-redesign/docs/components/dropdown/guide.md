@@ -32,7 +32,7 @@ Dropdown containers display a menu with additional items when users click on the
   - Both: clicking within and outside the dropdown closes the dropdown.
   - False: dropdown will only close if it's parent gets closed.
 - **Placement:** Place a dropdown at the top, bottom, left or right edge as well as at the beginning or end of the trigger/anchor element. The placement may be automatically adjusted in case it cannot be displayed correctly (detailed behavior described in the context section below). We typically use the default (bottom right) placement option to ensure consistency.
-- **Date selection:** Use the component [date dropdown](date-dropdown.md) to get a date selection in the dropdown.
+- **Date selection:** Use the component [date dropdown](../date-dropdown) to get a date selection in the dropdown.
 
 ![Dropdown Examples](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2372-2696&mode=design&t=OVHeXvLZYLkP2CzN-4)
 
@@ -58,11 +58,11 @@ Dropdown items have five states: Default, hover, active, disabled and focused. W
 - Do disable items that cannot be used at that moment
 - Don’t use global navigation options in a dropdown
 - Don’t use too many dropdown items - we recommend a maximum of seven
-- Don’t insert the [date picker](date-picker.md) or [date time picker](date-time-picker.md) components into a dropdown (use [date dropdown](date-dropdown.md) instead)
+- Don’t insert the [date picker](../date-picker) or [date time picker](../date-time-picker) components into a dropdown (use [date dropdown](../date-dropdown) instead)
 
 #### Related patterns
 
-- [Dropdown button](buttons/dropdown-button.md)
-- [Split button](buttons/split-button.md)
-- [Date dropdown](date-dropdown.md)
-- [Select](select.mdx)
+- [Dropdown button](../buttons/dropdown-button)
+- [Split button](../buttons/split-button)
+- [Date dropdown](../date-dropdown)
+- [Select](../select)

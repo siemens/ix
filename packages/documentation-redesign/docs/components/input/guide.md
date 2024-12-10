@@ -16,19 +16,19 @@ An input field is a user interface element that allows users to enter and edit t
 
 #### Options
 
-- **Label:** See [form field](./forms/forms-field.md).
+- **Label:** See [form field](.././forms/forms-field).
 - **Slot options:** Add optional elements at the end and/or start of the input field, e.g. an icon, a button or a text option. We typically use slots for additional indications, options or information like a visibility toggle in a password field.
 - **Placeholder**: Use a placeholder to provide a hint about what to enter or additional relevant context while the input field is empty. We typically use a placeholder when the label is not visible or we need to provide additional context.
-- **Helper text:** See [form field](./forms/forms-field.md).
-- **Counter:** See [form field](./forms/forms-field.md).
-- **Feedback text**: See [form field](./forms/forms-field.md).
+- **Helper text:** See [form field](.././forms/forms-field).
+- **Counter:** See [form field](.././forms/forms-field).
+- **Feedback text**: See [form field](.././forms/forms-field).
 
 #### Behavior in context
 
-- **Validation:** See [validation](./forms/forms-validation.mdx).
+- **Validation:** See [validation](.././forms/forms-validation).
 - **Interaction**: Clicking in the container enables the editing of the field.
 - **Text truncation**: The text in an input field is cut off with the length of the container.
-- **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](input-number.mdx).
+- **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](../input-number).
 
 #### States
 
@@ -46,8 +46,8 @@ The input field has five states: default, focused, hover, disabled and read-only
 
 #### Related patterns
 
-- [Form field](./forms/forms-field.md)
-- [Validation](./forms/forms-validation.mdx)
-- [Layout](./forms/forms-layout.md)
-- [Number input](input-number.mdx)
-- [Date input](input-date.mdx)
+- [Form field](.././forms/forms-field)
+- [Validation](.././forms/forms-validation)
+- [Layout](.././forms/forms-layout)
+- [Number input](../input-number)
+- [Date input](../input-date)

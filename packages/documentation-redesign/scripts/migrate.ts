@@ -132,6 +132,12 @@ function replaceTagImports(id: string, file: string) {
   return file;
 }
 
+function tryToResolveBrokenLinks(file: string) {
+  const regex = /\[(.*?)\]\((?!http)(.*?)(\.md|\.mdx)\)/g;
+
+  return file.replace(regex, '[$1](../$2)');
+}
+
 Object.keys(newDocs).forEach((name) => {
   const { guidePath, codePath } = newDocs[name];
   const folderName = path.resolve(__newDocumentationComponents, name);
@@ -151,6 +157,8 @@ Object.keys(newDocs).forEach((name) => {
 
     guideFile = guideFile.replace(/^#/gm, '##');
     guideFile = ['## Usage', guideFile].join('\n');
+
+    guideFile = tryToResolveBrokenLinks(guideFile);
 
     fs.writeFileSync(path.resolve(folderName, 'guide.md'), guideFile);
   }
@@ -226,6 +234,8 @@ Object.keys(newDocs).forEach((name) => {
       /#+\sAPI.*\/>/gms,
       `## API\n\n${apiComponents.map((c) => `<${c} />`).join('\n')}`
     );
+
+    codeFile = tryToResolveBrokenLinks(codeFile);
 
     fs.writeFileSync(path.resolve(folderName, 'code.mdx'), codeFile);
   }

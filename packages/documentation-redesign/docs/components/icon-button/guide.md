@@ -8,7 +8,7 @@ Icon buttons are button elements containing only an icon and no text. Due to the
 1. Container
 2. Icon
 
-All the variants, options and states of the [button](./button.md) component apply to the icon button. We’ve listed additional or deviating specifications here.
+All the variants, options and states of the [button](.././button) component apply to the icon button. We’ve listed additional or deviating specifications here.
 
 #### Options
 
@@ -24,5 +24,5 @@ All the variants, options and states of the [button](./button.md) component appl
 
 #### Related patterns
 
-- [Button](./button.md)
+- [Button](.././button)
 <!-- - [Toolbar](...) -->

@@ -46,5 +46,5 @@ The scroll card list style displays the content items from left to right next to
 
 #### Related patterns:
 
-- [Blind](blind.md)
-- [Card](card.md)
+- [Blind](../blind)
+- [Card](../card)

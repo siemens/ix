@@ -18,10 +18,10 @@ A select component allows users to choose from a list of options. It supports si
 
 #### Options
 
-- **Label:** See [form field](./forms/forms-field.md).
+- **Label:** See [form field](.././forms/forms-field).
 - **Placeholder:** Use a placeholder to provide information about what to enter or additional relevant context while the input field is empty. We typically use a placeholder when the label is not visible or we need to provide additional context.
-- **Helper text:** See [form field](./forms/forms-field.md).
-- **Feedback text:** See [form field](./forms/forms-field.md).
+- **Helper text:** See [form field](.././forms/forms-field).
+- **Feedback text:** See [form field](.././forms/forms-field).
 - **Show clear button:** Select components can have a dedicated button to easily clear the selection. Hide the button when offering users other ways to reset, e.g. a default item like "none", or if you aim for simplified keyboard accessibility.
 - **List header:** Use a header to provide additional context or instructions about the items to help users understand the choices better.
   - **Hide list header:** Hide the header of the dropdown list when not required.
@@ -33,7 +33,7 @@ A select component allows users to choose from a list of options. It supports si
 
 #### Behavior in context
 
-- **Validation:** See [validation](./forms/forms-validation.mdx).
+- **Validation:** See [validation](.././forms/forms-validation).
 - **Interaction:**
   - Click or Enter key on button opens dropdown list.
   - Typing in the input field filters the dropdown list.
@@ -44,7 +44,7 @@ A select component allows users to choose from a list of options. It supports si
   - The text in an input field is truncated with the length of the container.
   - On the multiselect, the selected items break into a second line and then show a scrollbar if it extends beyond two lines.
   - The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item.
-- **Alignment:** Selects are always aligned to the left, while right alignment is reserved exclusively for [number inputs](input-number.mdx).
+- **Alignment:** Selects are always aligned to the left, while right alignment is reserved exclusively for [number inputs](../input-number).
 
 #### States
 
@@ -57,19 +57,19 @@ The select field has five states: default, hover, focused, disabled and read-onl
 - Do consider performance when loading an extensive list of items
 - Do use the select component when there is a finite list of items available to avoid manual input errors or duplicates
 - Do sort items logically, e.g. alphabetically or numerically
-- Don't use selects for binary choices, like yes and no, use [radio buttons](radio.mdx), [checkboxes](checkbox.mdx) or [toggles](toggle.mdx) instead
-- Don't use selects for navigational or search patterns, use [category filters](category-filter.md) or [search fields](expanding-search.md) instead
-- Don't combine several data attributes in an item label, use [tables](html-grid.mdx) or [event lists](event-list.md) with a search functionality instead
+- Don't use selects for binary choices, like yes and no, use [radio buttons](../radio), [checkboxes](../checkbox) or [toggles](../toggle) instead
+- Don't use selects for navigational or search patterns, use [category filters](../category-filter) or [search fields](../expanding-search) instead
+- Don't combine several data attributes in an item label, use [tables](../html-grid) or [event lists](../event-list) with a search functionality instead
 
 ![Don't combine data attributes](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3978-800&t=MWpyPDZDK5B531n9-4)
 
 #### Related patterns
 
-- [Form field](./forms/forms-field.md)
-- [Validation](./forms/forms-validation.mdx)
-- [Layout](./forms/forms-layout.md)
-- [Input](input.mdx)
-- [Radio button](radio.mdx)
-- [Checkbox](checkbox.mdx)
-- [Toggle](toggle.mdx)
-- [Date input](input-date.mdx)
+- [Form field](.././forms/forms-field)
+- [Validation](.././forms/forms-validation)
+- [Layout](.././forms/forms-layout)
+- [Input](../input)
+- [Radio button](../radio)
+- [Checkbox](../checkbox)
+- [Toggle](../toggle)
+- [Date input](../input-date)

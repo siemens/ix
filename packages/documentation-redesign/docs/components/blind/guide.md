@@ -54,6 +54,6 @@ For all blind variants, a default, hover, active and focused state is available.
 
 #### Related patterns:
 
-- [Tabs](tabs.md)
-- [Tree](tree.md)
-- [Workflow](workflow.md)
+- [Tabs](../tabs)
+- [Tree](../tree)
+- [Workflow](../workflow)

@@ -8,5 +8,5 @@ The content component is a simple layout component made for hosting content.
 
 The purple dotted line illustrates the extent of the content component.
 
-1. Header slot (optional): Hosts a header component like the [content header](../content-header.md).
+1. Header slot (optional): Hosts a header component like the [content header](../../content-header).
 2. Current content

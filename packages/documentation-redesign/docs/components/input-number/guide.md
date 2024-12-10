@@ -14,13 +14,13 @@ The number input component allows users to enter and adjust numerical values. It
 
 #### Options
 
-- **Label**: See [form field](./forms/forms-field.md).
-- **Value**: See [form field](./forms/forms-field.md).
-- **Required**: See [form field](./forms/forms-field.md).
-- **Helper text**: See [form field](./forms/forms-field.md).
-- **Feedback text**: See [form field](./forms/forms-field.md).
-- **Show text as tooltip**: See [form field](./forms/forms-field.md).
-- **Placeholder**: See [form field](./forms/forms-field.md).
+- **Label**: See [form field](.././forms/forms-field).
+- **Value**: See [form field](.././forms/forms-field).
+- **Required**: See [form field](.././forms/forms-field).
+- **Helper text**: See [form field](.././forms/forms-field).
+- **Feedback text**: See [form field](.././forms/forms-field).
+- **Show text as tooltip**: See [form field](.././forms/forms-field).
+- **Placeholder**: See [form field](.././forms/forms-field).
 - **Allowed characters pattern**: Specify the characters allowed for input. We typically use this to reject invalid characters, such as decimal points. When users type an invalid character, a shaking animation is immediately triggered.
 - **Pattern**: Define the expected input using regular expressions, such as an integer between 1 and 100. We often use this to validate the input when the user leaves the field or clicks submit.
 - **Min/Max**: Specify the minimum and maximum values that can be entered to ensure the input stays within the defined range. We typically use this option to prevent invalid entries and guide users towards acceptable values.
@@ -29,7 +29,7 @@ The number input component allows users to enter and adjust numerical values. It
 #### Behavior in context
 
 - **Interaction:** Users can type a value or use stepper buttons to adjust it. We recommend using stepper buttons, especially for touch interactions, to enhance usability and precision.
-- **Validation:** See [form field](./forms/forms-validation.mdx).
+- **Validation:** See [form field](.././forms/forms-validation).
 - **Overflow:** Numbers are truncated to fit within the input field. Ensure that the expected value is visible in the input field so it can be properly displayed.
 - **Alignment:** Number inputs are always aligned to the right.
 
@@ -47,8 +47,8 @@ The number input has five states: default, hover, focused, disabled and read-onl
 
 #### Related patterns
 
-- [Form fields](./forms/forms-field.md)
-- [Validation](./forms/forms-validation.mdx)
-- [Layout](./forms/forms-layout.md)
-- [Input](./input.mdx)
-- [Select](./select.mdx)
+- [Form fields](.././forms/forms-field)
+- [Validation](.././forms/forms-validation)
+- [Layout](.././forms/forms-layout)
+- [Input](.././input)
+- [Select](.././select)

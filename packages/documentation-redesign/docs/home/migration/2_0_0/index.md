@@ -7,7 +7,7 @@ title: Updating to v2
 # Updating to v2.0.0
 
 Welcome to the migration guide for upgrading from Siemens Industrial Experience design system v1 to v2.
-This guide introduces all major changes. This includes, inter alia, the switch from offering an icon font to a SVG based implementation, changes and extensions to the ix-menu and the migration of our components to Shadow DOM. 
+This guide introduces all major changes. This includes, inter alia, the switch from offering an icon font to a SVG based implementation, changes and extensions to the ix-menu and the migration of our components to Shadow DOM.
 
 ## Breaking changes in v2.0.0
 
@@ -19,19 +19,18 @@ The most important breaking changes result from the switch to an SVG based imple
 The internal implementation of `@siemens/ix-icons` changed from icon font to a `SVG` based implementation.
 This shouldn't have any direct impact on your application.
 
-
 ### Custom icon support for @siemens/ix, @siemens/ix-react, @siemens/ix-angular and @siemens/ix-vue
 
 You can now provide custom icons as inline SVG or via relative/absolute path to the asset.
 
 Example of a custom icon via path:
+
 ```tsx
   <ix-icon name="./assets/my-icon.svg"></ix-icon>
   <ix-icon name="https://my.example.cdn.address/assets/my-icon.svg"></ix-icon>
 ```
 
-
-There are some constraints for using custom icons. For more information please refer to the guide in the documentation [here](./../../icon-library/icons.md).
+There are some constraints for using custom icons. For more information please refer to the guide in the documentation [here](/docs/icons/icon-library).
 
 ### Move @siemens/ix-icons from "dependencies" to "peerDependencies"
 
@@ -47,7 +46,6 @@ import { defineCustomElements } from '@siemens/ix-icons/loader';
   await defineCustomElements();
 })();
 ```
-
 
 For more information check out the [@siemens/ix-icons repository](https://github.com/siemens/ix-icons).
 
@@ -69,14 +67,13 @@ Please note that as part of this migration, some changes may be required in your
 
 We replaced the old theme with a more modern looking theme.
 
-__Old:__
+**Old:**
 
 ![ix theme old](theme_old.png)
 
-__New:__
+**New:**
 
 ![ix theme new](theme_new.png)
-
 
 ### Updates in ix-basic-navigation and ix-menu
 
@@ -86,7 +83,7 @@ This ensures that all menu items remain contained within the menu, offering a mo
 
 ### Replacement of Bootstrap Modal parts with our modal components
 
-__Old:__
+**Old:**
 
 ```html
   <div class="modal-header>My Header</div>
@@ -97,25 +94,22 @@ __Old:__
   </div>
 ```
 
-__New:__
+**New:**
 
 ```html
-  <ix-modal-header>My Header</ix-modal-header>
-  <ix-modal-content>My Content</ix-modal-content>
-  <ix-modal-footer>
-    <ix-button>Save</ix-button>
-    <ix-button>Cancel</ix-button>
-  </ix-modal-footer>
+<ix-modal-header>My Header</ix-modal-header>
+<ix-modal-content>My Content</ix-modal-content>
+<ix-modal-footer>
+  <ix-button>Save</ix-button>
+  <ix-button>Cancel</ix-button>
+</ix-modal-footer>
 ```
-
-
 
 ### Spinner animation
 
 We replaced the previous animation with a cleaner and more refined alternative.
 
 ![Spinner](spinner.gif)
-
 
 ## Added
 
@@ -129,7 +123,6 @@ With `ix-menu-category` there is a new addition to the `ix-menu` that enables th
   <ix-menu-item>Nested Item 2</ix-menu-item>
 </ix-menu-category>
 ```
-
 
 ### Multiple screen layouts within ix-basic-navigation
 
@@ -160,7 +153,6 @@ In addition, you can specify which layout modes should be enabled for your menu 
   </ix-menu>
 </ix-basic-navigation>
 ```
-
 
 ## Preparation for removing Bootstrap as dependency
 
