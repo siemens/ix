@@ -12,10 +12,9 @@ import Tags from './../auto-generated/ix-card-list/tags.md';
 # Card list
 
 <Tags />
-
-<br/>
-<br/>
-
+<!-- introduction start -->
+Card lists are UI controls that display a large number of cards or items of the same type in a lightweight, grouped manner.
+<!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />
   <DocsCode />
