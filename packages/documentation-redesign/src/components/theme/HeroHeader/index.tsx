@@ -50,11 +50,10 @@ export default function HeroHeader(props: {
   const { description, tabs, title } = props;
   return (
     <>
+      <h1 className={styles.sticky_h1}>{title}</h1>
+
       <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
-        <h1 className={styles.sticky_h1}>{title}</h1>
-        <p>
           <ReadMore>{description}</ReadMore>
-        </p>
       </div>
 
       {tabs.length > 0 && (

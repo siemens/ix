@@ -20,7 +20,6 @@ export default function ReadMore({ children }: { children: string }) {
     <div>
       <p>
         {text}
-
         <a
           href="#"
           className="ml-2"

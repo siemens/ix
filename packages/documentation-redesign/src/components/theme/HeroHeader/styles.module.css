@@ -13,7 +13,20 @@
   justify-content: space-between;
 
   padding: var(--default-content-padding);
+  padding-top: 0;
   padding-bottom: 0px;
+  margin: 0 0 var(--ifm-paragraph-margin-bottom);
+}
+
+.sticky_h1 {
+  background-color: var(--ix-docs-hero-background);
+  padding-left: var(--default-content-padding-left);
+  padding-top: 2rem;
+  position: sticky;
+  top: 3rem;
+  z-index: 1;
+  margin: 0;
+  padding-bottom: 1rem;
 }
 
 .Tabs {
@@ -24,7 +37,7 @@
   gap: 1rem;
 
   position: sticky;
-  top: 3.5rem;
+  top: 8.5rem;
   padding-top: 0.5rem;
   padding-left: var(--default-content-padding-left);
   padding-right: var(--default-content-padding-left);

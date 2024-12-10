@@ -15,14 +15,15 @@ export default function Playground(props: {
   name: string;
   files: CodePreviewFiles;
   source: SourceFiles;
+  height?: string;
 }) {
   const iframeSrc = useBaseUrl(
-    `/demo/v2/preview/html/preview-examples/${props.name}.html`
+    `/demo/v2/preview/html/preview-examples/${props.name}.html?no-margin=true`
   );
 
   return (
     <div className={styles.playground}>
-      <ThemeFrame>
+      <ThemeFrame height={props.height}>
         <iframe src={iframeSrc} className={styles.iframe}></iframe>
       </ThemeFrame>
       <CodePreview

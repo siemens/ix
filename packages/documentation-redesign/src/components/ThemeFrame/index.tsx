@@ -3,18 +3,22 @@
  */
 import clsx from 'clsx';
 import styles from './styles.module.css';
+
 export default function ThemeFrame({
   children,
   embedded,
+  height,
 }: {
   children: React.ReactNode;
   embedded?: boolean;
+  height?: string;
 }) {
   return (
     <div
       className={clsx(styles.themeFrame, {
         [styles.embedded]: embedded,
       })}
+      style={{ height: height ?? '15rem' }}
     >
       <div className={styles.frameContent}>{children}</div>
       <div className={styles.frameTools}>

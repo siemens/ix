@@ -42,7 +42,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/siemens/ix/tree/main/packages/documentation',
           remarkPlugins: [
             figmaPlugin({
               baseUrl: `${baseUrl}figma`,
@@ -72,6 +72,8 @@ const config: Config = {
           customCss: [
             './src/scss/theme.tmp/ix-brand-theme.css',
             './src/scss/custom.scss',
+            './node_modules/@siemens/ix/scss/_common-variables.scss',
+            './node_modules/@siemens/ix/scss/components/form/_input.scss',
           ],
         },
       } satisfies Preset.Options,
@@ -108,6 +110,12 @@ const config: Config = {
         href: '/',
       },
       items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'home',
+          position: 'left',
+          label: 'Home',
+        },
         {
           type: 'docSidebar',
           sidebarId: 'guidelines',

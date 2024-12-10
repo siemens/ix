@@ -85,24 +85,26 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
   return (
     <div>
       <HeroHeader title={title} description={description} tabs={tabs} />
-      <div className={clsx('col')}>
-        {/* <ContentVisibility metadata={metadata} /> */}
-        {/* <DocVersionBanner /> */}
-        {/* <div className={styles.docItemContainer}> */}
-        <div className={styles.docItemContainer}>
-          <article>
-            {/* <DocBreadcrumbs /> */}
-            {/* <DocVersionBadge /> */}
-            {docTOC.mobile}
+      <div className="row">
+        <div className="col">
+          {/* <ContentVisibility metadata={metadata} /> */}
+          {/* <DocVersionBanner /> */}
+          {/* <div className={styles.docItemContainer}> */}
+          <div className={styles.docItemContainer}>
+            <article>
+              {/* <DocBreadcrumbs /> */}
+              {/* <DocVersionBadge /> */}
+              {docTOC.mobile}
 
-            <div className={styles.docContentComponent}>
-              <DocItemContent>{children}</DocItemContent>
-              {docTOC.desktop}
-            </div>
-          </article>
-          <DocItemFooter />
-          <DocItemPaginator />
+              <div className={styles.docContentComponent}>
+                <DocItemContent>{children}</DocItemContent>
+              </div>
+            </article>
+            <DocItemFooter />
+            <DocItemPaginator />
+          </div>
         </div>
+        <div className="col">{docTOC.desktop}</div>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@
 @use './overwrite/doc-footer';
 @use './overwrite/container';
 @use './overwrite/table';
-// @use './components/logoWrapper';
+@use './overwrite/admonition';
 @use './components/docsLayoutWrapper';
 
 @tailwind base;

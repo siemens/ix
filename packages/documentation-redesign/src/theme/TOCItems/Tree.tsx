@@ -16,8 +16,6 @@ export default function TreeWrapper(props: Props): JSX.Element {
   const toc = props.toc;
   const [nestedToc, setNestedToc] = useState<readonly any[]>(toc);
   const { currentIndex } = useSubPageHook();
-  const [tocOffset, setTocOffset] = useState(0);
-  const tocRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (metadata.frontMatter['doc-type'] !== 'component') {
@@ -30,39 +28,9 @@ export default function TreeWrapper(props: Props): JSX.Element {
     }
   }, [currentIndex, setNestedToc, metadata]);
 
-  useLayoutEffect(() => {
-    const onscroll = () => {
-      const tocElement = tocRef.current;
-      if (!tocElement) {
-        return;
-      }
-
-      const scrollY = window.scrollY;
-      const tocHeight = tocElement.offsetHeight;
-
-      const nOffset = (scrollY / window.innerHeight) * 100;
-      setTocOffset(Math.max(0, Math.min(100, nOffset)));
-    };
-    window.addEventListener('scroll', onscroll);
-
-    return () => {
-      window.removeEventListener('scroll', onscroll);
-    };
-  }, []);
-
-  console.log('nestedToc', tocOffset);
-
   return (
-    <div
-      ref={tocRef}
-      className="toc-indicator"
-      style={
-        {
-          ['--toc-offset']: `${tocOffset}%`,
-        } as unknown
-      }
-    >
+    <>
       <Tree {...props} toc={nestedToc} />
-    </div>
+    </>
   );
 }
