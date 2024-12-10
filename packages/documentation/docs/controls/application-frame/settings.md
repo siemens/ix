@@ -8,7 +8,9 @@ import DocsUx from './\_settings_styleguide.md';
 import DocsCode from './\_settings_code.md';
 
 # Settings overlay
-
+<!-- introduction start -->
+The settings overlay provides a centralized location for application settings.
+<!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />
   <DocsCode />
