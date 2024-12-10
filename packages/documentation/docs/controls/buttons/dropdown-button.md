@@ -12,10 +12,9 @@ import Tags from './../../auto-generated/ix-dropdown-button/tags.md'
 # Dropdown button
 
 <Tags/>
-
-<br/>
-<br/>
-
+<!-- introduction start -->
+Dropdown buttons enable users to choose from a list of actions by clicking a button to reveal a dropdown menu.
+<!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />
   <DocsCode />
