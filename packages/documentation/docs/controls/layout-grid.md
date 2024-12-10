@@ -10,8 +10,9 @@ import Tags from './../auto-generated/ix-layout-grid/tags.md';
 
 <Tags />
 
-<br/>
-<br/>
+<!-- introduction start -->
+Grids are typically used to make layouts more cohesive and consistent.
+<!-- introduction end -->
 
 <LinkableDocsTabs>
   <DocsUx />
