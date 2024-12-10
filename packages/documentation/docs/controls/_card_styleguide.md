@@ -1,6 +1,6 @@
 ## Guidelines
 
-Cards are UI controls used to neatly organize and group related information about a specific subject. They make it easy for users to quickly scan small chunks of information. We typically use cards to create dashboards or modular, flexible designs that adapt seamlessly to various screen sizes. Additionally, cards can be used to draw attention to important content and serve as an entry point to deeper levels of navigation or detailed views.
+Cards make it easy for users to quickly scan small chunks of information. We typically use cards to create dashboards or modular, flexible designs that adapt seamlessly to various screen sizes. Additionally, cards can be used to draw attention to important content and serve as an entry point to deeper levels of navigation or detailed views.
 
 Cards are interactive elements. The entire container is clickable and triggers a single action.
 
