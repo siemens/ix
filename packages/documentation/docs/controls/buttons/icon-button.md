@@ -12,10 +12,9 @@ import Tags from './../../auto-generated/ix-icon-button/tags.md';
 # Icon button
 
 <Tags />
-
-<br/>
-<br/>
-
+<!-- introduction start -->
+Icon buttons use only icons to represent actions, making them ideal for space-constrained layouts.
+<!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />
   <DocsCode />
