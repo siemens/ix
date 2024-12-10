@@ -22,6 +22,10 @@
     position: relative;
   }
 
+  .theme-doc-toc-mobile .toc-indicator {
+    top: 0px;
+  }
+
   .toc-indicator::before {
     content: '';
     position: absolute;

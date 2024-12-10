@@ -21,6 +21,8 @@ const __node_modules = path.resolve(__dirname, '../node_modules');
 const __core = path.join(__node_modules, '@siemens/ix');
 
 const __htmlTestAppDist = path.join(__node_modules, 'html-test-app', 'dist');
+const __mobileTestAppDist = path.join(__node_modules, 'ionic-test-app', 'dist');
+
 const __htmlTestApp = path.join(
   __node_modules,
   'html-test-app',
@@ -74,7 +76,8 @@ async function copyStorybook() {
 
 async function copyStaticFiles() {
   console.log('Copying demo source');
-  fs.copySync(__htmlTestAppDist, __demo);
+  fs.copySync(__htmlTestAppDist, path.join(__demo, 'preview', 'html'));
+  fs.copySync(__mobileTestAppDist, path.join(__demo, 'preview', 'mobile'));
   fs.copySync(__htmlTestApp, path.join(__demo, 'html'));
   fs.copySync(__reactTestApp, path.join(__demo, 'react'));
   fs.copySync(__angularTestApp, path.join(__demo, 'angular'));

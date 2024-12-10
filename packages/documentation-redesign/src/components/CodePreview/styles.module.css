@@ -4,6 +4,7 @@
 .codePreview {
   display: block;
   position: relative;
+  overflow: hidden;
 
   border: 1px solid var(--theme-color-x-weak-bdr);
   border-top: none;
@@ -12,7 +13,10 @@
 
 .toolbar {
   display: flex;
+  flex: 1 1 auto;
   position: relative;
+  overflow: auto;
+
   height: 4rem;
   border-radius: 0.1875rem 0.1875rem 0rem 0rem;
   border: 1px solid var(--theme-color-x-weak-bdr);

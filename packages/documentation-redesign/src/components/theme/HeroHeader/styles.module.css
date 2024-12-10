@@ -3,7 +3,6 @@
  */
 .componentHeroHeader {
   height: fit-content;
-  max-height: 19rem;
   width: 100%;
   background-color: var(--ix-docs-hero-background);
 
@@ -56,7 +55,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid var(--theme-color-dynamic);
+  border-bottom: 1px solid transparent;
   z-index: 1;
   min-width: 11rem;
   height: 2.875rem;
@@ -65,10 +64,12 @@
 
 .Tab:not(.Tab--active):hover {
   background-color: var(--theme-color-1--hover);
+  border-bottom: 1px solid var(--theme-color-dynamic);
 }
 
 .Tab:not(.Tab--active):active {
   background-color: var(--theme-color-1--active);
+  border-bottom: 1px solid var(--theme-color-dynamic);
 }
 
 .Tab--active {

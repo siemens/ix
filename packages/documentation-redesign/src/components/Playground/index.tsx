@@ -16,7 +16,9 @@ export default function Playground(props: {
   files: CodePreviewFiles;
   source: SourceFiles;
 }) {
-  const iframeSrc = useBaseUrl(`/demo/v2/preview-examples/${props.name}.html`);
+  const iframeSrc = useBaseUrl(
+    `/demo/v2/preview/html/preview-examples/${props.name}.html`
+  );
 
   return (
     <div className={styles.playground}>

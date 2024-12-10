@@ -1,0 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+.Separator {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: var(--theme-color-3);
+  margin: 1.5rem 0;
+}

@@ -11,4 +11,12 @@
   .pagination-nav {
     max-width: var(--ifm-container-width-xl);
   }
+
+  .footer {
+    border-top: 1px solid var(--theme-color-x-weak-bdr);
+  }
+
+  .footer--dark {
+    --ifm-footer-background-color: var(--theme-color-1);
+  }
 }

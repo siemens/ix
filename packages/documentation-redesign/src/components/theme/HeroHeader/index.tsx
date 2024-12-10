@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 import clsx from 'clsx';
 import { useHistory, useLocation } from '@docusaurus/router';
 import useSearchParams from '@site/src/utils/hooks/useSearchParams';
+import ReadMore from '@site/src/components/ReadMore';
 import { useCallback, useEffect, useState } from 'react';
 
 function Tabs({ children }) {
@@ -51,7 +52,9 @@ export default function HeroHeader(props: {
     <>
       <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
         <h1 className={styles.sticky_h1}>{title}</h1>
-        <p>{description}</p>
+        <p>
+          <ReadMore>{description}</ReadMore>
+        </p>
       </div>
 
       {tabs.length > 0 && (

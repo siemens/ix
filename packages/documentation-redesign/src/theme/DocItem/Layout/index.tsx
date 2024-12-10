@@ -93,7 +93,7 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
           <article>
             {/* <DocBreadcrumbs /> */}
             {/* <DocVersionBadge /> */}
-            {/* {docTOC.mobile} */}
+            {docTOC.mobile}
 
             <div className={styles.docContentComponent}>
               <DocItemContent>{children}</DocItemContent>

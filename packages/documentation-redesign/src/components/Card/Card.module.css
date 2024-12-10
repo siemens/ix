@@ -1,0 +1,124 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.Card__List {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  width: 19.375rem;
+  min-width: 19.375rem;
+  height: 60px;
+  background-color: var(--theme-color-2);
+  margin: 0 1.25rem 1.25rem 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease-in-out;
+}
+
+@media (max-width: 684px) {
+  .Card {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 664px) and (max-width: 684px) {
+  .Card {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 997px) and (max-width: 1087px) {
+  .Card {
+    width: 100%;
+  }
+}
+
+.Card:hover {
+  transform: scale(1.07);
+  text-decoration: none !important;
+}
+
+.Card.Auto__Width {
+  width: auto;
+}
+
+.Card_big {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  width: 100%;
+  min-width: 19.375rem;
+  height: 60px;
+  background-color: var(--theme-color-2);
+  margin: 0 0 1.25rem 0;
+  cursor: pointer;
+}
+
+@media (min-width: 994px) {
+  .Card_big {
+    margin-right: 1.25rem;
+  }
+}
+
+.Card.With__Icon {
+  height: 19.25rem;
+}
+
+.Splitter {
+  height: 2px;
+  width: 100%;
+  background-color: var(--theme-color-1);
+}
+
+.Label {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 3.75rem;
+  min-height: 3.75rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.Label.Full__Height {
+  height: 100%;
+}
+
+.Card__Primary {
+  background-color: var(--theme-color-primary);
+}
+
+.Card__Primary .Label {
+  color: var(--theme-color-inv-std-text);
+}
+
+.Card__Primary .Icon ix-icon {
+  color: var(--theme-color-inv-std-text) !important;
+}
+
+.Icon {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: var(--theme-color-std-text);
+}
+
+.Icon ix-icon {
+  transform: scale(4.5);
+}

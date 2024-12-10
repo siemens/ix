@@ -6,6 +6,8 @@
   flex-direction: column;
   padding: 3rem var(--default-content-padding-left) 3rem
     var(--default-content-padding-left);
+  width: 100%;
+  position: relative;
 }
 
 .docContentComponent {

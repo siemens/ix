@@ -1,6 +1,10 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import figmaPlugin from 'figma-plugin';
+import path from 'path';
+
+const baseUrl = process.env.BASE_URL || '/';
 
 const config: Config = {
   title: 'Siemens Industrial Experience',
@@ -39,6 +43,15 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          remarkPlugins: [
+            figmaPlugin({
+              baseUrl: `${baseUrl}figma`,
+              figmaFolder: `${path.join(__dirname, 'static', 'figma')}`,
+              error_image: path.join('..', 'img', 'figma_error.png'),
+              apiToken: process.env.FIGMA_API_TOKEN!,
+              rimraf: true,
+            }),
+          ],
         },
         blog: {
           showReadingTime: true,
