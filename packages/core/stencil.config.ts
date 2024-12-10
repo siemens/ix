@@ -30,7 +30,7 @@ export const config: Config = {
     browserHeadless: 'new',
   },
   namespace: 'siemens-ix',
-  watchIgnoredRegex: [/scss/, /component-doc.json/],
+  watchIgnoredRegex: [/component-doc.json/],
   globalStyle: './scss/ix.scss',
   minifyCss: false,
   plugins: [

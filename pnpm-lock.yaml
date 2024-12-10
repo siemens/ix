@@ -956,6 +956,9 @@ importers:
       '@storybook/addon-a11y':
         specifier: ^8.4.2
         version: 8.4.2(storybook@8.4.2(prettier@3.0.3))
+      '@storybook/addon-actions':
+        specifier: ^8.4.2
+        version: 8.4.2(storybook@8.4.2(prettier@3.0.3))
       '@storybook/addon-designs':
         specifier: ^8.0.4
         version: 8.0.4(@storybook/blocks@8.4.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(storybook@8.4.2(prettier@3.0.3)))(@storybook/components@8.4.2(storybook@8.4.2(prettier@3.0.3)))(@storybook/theming@8.4.2(storybook@8.4.2(prettier@3.0.3)))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)

@@ -13,7 +13,6 @@ import {
   Element,
   Event,
   EventEmitter,
-  Fragment,
   h,
   Host,
   Method,
@@ -98,6 +97,10 @@ export class Toggle implements IxFormComponent<string> {
   @Event() valueChange!: EventEmitter<string>;
 
   onCheckedChange(newChecked: boolean) {
+    if (this.disabled) {
+      return;
+    }
+
     if (this.indeterminate) {
       this.indeterminate = false;
     }
@@ -135,41 +138,50 @@ export class Toggle implements IxFormComponent<string> {
   }
 
   render() {
+    let toggleText = this.textOff;
+
+    if (this.checked) {
+      toggleText = this.textOn;
+    }
+
+    if (this.indeterminate) {
+      toggleText = this.textIndeterminate;
+    }
     return (
       <Host
         class={{
           disabled: this.disabled,
         }}
-        onClick={() => this.onCheckedChange(!this.checked)}
       >
-        <input
-          disabled={this.disabled}
-          indeterminate={this.indeterminate}
-          checked={this.checked}
-          role="switch"
-          tabindex={0}
-          type="checkbox"
-          aria-checked={a11yBoolean(this.checked)}
-          onChange={(event) =>
-            this.onCheckedChange((event.target as HTMLInputElement).checked)
-          }
-        ></input>
-        <label class="switch" tabIndex={-1}>
-          <span class="slider"></span>
+        <label class="wrapper">
+          <button
+            role="switch"
+            aria-checked={a11yBoolean(this.checked)}
+            class={{
+              switch: true,
+              checked: this.checked,
+              indeterminate: this.indeterminate,
+            }}
+            onClick={() => this.onCheckedChange(!this.checked)}
+          >
+            <div class="slider"></div>
+          </button>
+          <input
+            type="checkbox"
+            disabled={this.disabled}
+            indeterminate={this.indeterminate}
+            checked={this.checked}
+            tabindex={0}
+            aria-hidden={a11yBoolean(true)}
+            aria-checked={a11yBoolean(this.checked)}
+            onChange={(event) =>
+              this.onCheckedChange((event.target as HTMLInputElement).checked)
+            }
+          />
+          {!this.hideText && (
+            <ix-typography class="label">{toggleText}</ix-typography>
+          )}
         </label>
-        {!this.hideText ? (
-          <Fragment>
-            {!this.indeterminate ? (
-              <span class={'toggle-text'} aria-hidden={a11yBoolean(true)}>
-                {this.checked ? this.textOn : this.textOff}
-              </span>
-            ) : (
-              <span class={'toggle-text'} aria-hidden={a11yBoolean(true)}>
-                {this.textIndeterminate}
-              </span>
-            )}
-          </Fragment>
-        ) : null}
       </Host>
     );
   }

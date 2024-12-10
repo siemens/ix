@@ -61,12 +61,18 @@ export function makeArgTypes<T = unknown>(
         return !ignore.includes(prop.name);
       })
       .forEach((prop) => {
+        let attributeName = prop.name;
+
+        if ('attr' in prop && prop.attr) {
+          attributeName = prop.attr;
+        }
+
         if (
           prop.values.length > 1 &&
           prop.values.every((value) => value.type === 'string')
         ) {
-          argTypes[prop.name] = {
-            name: `${prop.name}*`,
+          argTypes[attributeName] = {
+            name: `${attributeName}*`,
             control: { type: 'select' },
             options: (prop.values as { type: 'string'; value: string }[])
               .filter((v) => v.value !== '')
@@ -76,8 +82,8 @@ export function makeArgTypes<T = unknown>(
           return;
         }
 
-        if (prop.name.includes('icon')) {
-          argTypes[prop.name] = {
+        if (attributeName.includes('icon')) {
+          argTypes[attributeName] = {
             control: { type: 'select' },
             options: icons,
           };
@@ -85,7 +91,7 @@ export function makeArgTypes<T = unknown>(
           return;
         }
 
-        argTypes[prop.name] = {
+        argTypes[attributeName] = {
           control: switchTypes(prop.type),
         };
       });
