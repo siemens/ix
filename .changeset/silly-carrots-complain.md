@@ -2,4 +2,4 @@
 "@siemens/ix": major
 ---
 
-__ix-application__ now utilizes full view height and full view width
+__ix-application__ now utilizes full viewport height and full viewport width
