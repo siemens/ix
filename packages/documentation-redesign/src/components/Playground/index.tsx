@@ -12,6 +12,7 @@ import ThemeSelection from '../UI/ThemeSelection';
 import CodeBlock from '@theme/CodeBlock';
 import FrameworkSelection from '../UI/FrameworkSelection';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
+import OpenStackblitz from '../UI/OpenStackblitz';
 
 function PreviewActions(props: { openExternalUrl: string }) {
   return (
@@ -33,10 +34,13 @@ function PreviewActions(props: { openExternalUrl: string }) {
 }
 
 function CodeActions(props: {
+  framework: FrameworkTypes;
+  files: Record<string, string>;
   onFrameworkChange: (framework: FrameworkTypes) => void;
 }) {
   return (
     <>
+      <OpenStackblitz framework={props.framework} files={props.files} />
       <FrameworkSelection onFrameworkChange={props.onFrameworkChange} />
     </>
   );
@@ -85,7 +89,11 @@ export default function Playground(props: {
           {isPreview ? (
             <PreviewActions openExternalUrl={iframeSrc} />
           ) : (
-            <CodeActions onFrameworkChange={setFramework} />
+            <CodeActions
+              onFrameworkChange={setFramework}
+              framework={framework}
+              files={props.files[framework]}
+            />
           )}
         </div>
       </div>

@@ -21,6 +21,7 @@
     "@docusaurus/preset-classic": "3.6.3",
     "@mdx-js/react": "^3.0.0",
     "@siemens/ix-icons": "^2.2.0",
+    "@stackblitz/sdk": "^1.11.0",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",
@@ -44,13 +45,13 @@
     "html-test-app": "workspace:*",
     "ionic-test-app": "workspace:*",
     "mustache": "^4.2.0",
+    "octokit": "^3",
     "postcss": "^8.4.29",
     "react-test-app": "workspace:*",
     "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.12",
     "tsx": "^4.15.4",
     "typescript": "~5.5.2",
-    "octokit": "^3",
     "vue-test-app": "workspace:*"
   },
   "browserslist": {

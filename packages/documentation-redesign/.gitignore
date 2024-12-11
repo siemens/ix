@@ -20,7 +20,11 @@ yarn-debug.log*
 yarn-error.log*
 
 
-static/demo
+static/demo/v*/angular
+static/demo/v*/html
+static/demo/v*/react
+static/demo/v*/vue
+static/demo/v*/preview
 static/usage
 
 
