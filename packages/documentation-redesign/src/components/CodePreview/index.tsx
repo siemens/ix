@@ -6,30 +6,8 @@ import styles from './styles.module.css';
 import CodeBlock from '@theme/CodeBlock';
 import { useEffect, useState, useRef, ReactElement } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-
-function Pill({
-  children,
-  active,
-  alt,
-  onClick,
-}: {
-  children: React.ReactNode;
-  active?: boolean;
-  alt?: boolean;
-  onClick?: () => void;
-}) {
-  return (
-    <div
-      className={clsx(styles.pill, {
-        [styles['pill--alt']]: alt,
-        [styles['pill--active']]: active,
-      })}
-      onClick={onClick}
-    >
-      {children}
-    </div>
-  );
-}
+import Pill from '../UI/Pill';
+import { FrameworkTypes } from '@site/src/hooks/use-framework';
 
 export async function docusaurusFetch(url: string) {
   const response = await fetch(url);
@@ -102,10 +80,13 @@ export type CodePreviewProps = {
   files: CodePreviewFiles;
   source: SourceFiles;
   name: string;
+  selectedFramework: FrameworkTypes;
+  onShowSource: (source: React.FC) => void;
 };
 
 export default function CodePreview(props: CodePreviewProps) {
-  const [selectedFramework, setSelectedFramework] = useState('angular');
+  // const [selectedFramework, setSelectedFramework] = useState('angular');
+  const { selectedFramework } = props;
   const [selectedFile, setSelectedFile] = useState<string>('');
   const [SourceCode, setSourceCode] = useState<React.FC>(() => () => (
     <CodeBlock children={['Test']}></CodeBlock>
@@ -119,57 +100,29 @@ export default function CodePreview(props: CodePreviewProps) {
     }
   }, [selectedFramework]);
 
+  useEffect(() => {
+    props.onShowSource(SourceCode);
+  }, [SourceCode]);
+
   return (
-    <div className={styles.codePreview}>
-      <div className={styles.toolbar}>
-        <Pill
-          active={selectedFramework === 'angular'}
-          onClick={() => setSelectedFramework('angular')}
-        >
-          Angular
-        </Pill>
-        <Pill
-          active={selectedFramework === 'react'}
-          onClick={() => setSelectedFramework('react')}
-        >
-          React
-        </Pill>
-        <Pill
-          active={selectedFramework === 'vue'}
-          onClick={() => setSelectedFramework('vue')}
-        >
-          Vue
-        </Pill>
-        <Pill
-          active={selectedFramework === 'html'}
-          onClick={() => setSelectedFramework('html')}
-        >
-          HTML
-        </Pill>
-        <div className={styles.spacer}></div>
-        {props.source && props.source[selectedFramework] && (
-          <>
-            {Object.keys(props.source[selectedFramework]).map((name) => {
-              return (
-                <Pill
-                  key={name}
-                  alt={selectedFile === name}
-                  onClick={() => {
-                    setSelectedFile(name);
-                    setSourceCode(() => props.source[selectedFramework][name]);
-                  }}
-                >
-                  {name}
-                </Pill>
-              );
-            })}
-          </>
-        )}
-      </div>
-      {selectedFramework && selectedFile && SourceCode && (
-        <div className="ixCodePreview">
-          <SourceCode></SourceCode>
-        </div>
+    <div className={styles.CodePreview}>
+      {props.source && props.source[selectedFramework] && (
+        <>
+          {Object.keys(props.source[selectedFramework]).map((name) => {
+            return (
+              <Pill
+                key={name}
+                active={selectedFile === name}
+                onClick={() => {
+                  setSelectedFile(name);
+                  setSourceCode(() => props.source[selectedFramework][name]);
+                }}
+              >
+                {name}
+              </Pill>
+            );
+          })}
+        </>
       )}
     </div>
   );

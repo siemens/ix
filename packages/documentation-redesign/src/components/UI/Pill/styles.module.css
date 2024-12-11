@@ -1,0 +1,33 @@
+/*
+ * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
+ */
+
+.pill {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  height: 1.5rem;
+  padding: 0rem 0.75rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--theme-color-ghost);
+  border-radius: 6.25rem;
+  color: var(--theme-color-soft-text);
+
+  white-space: nowrap;
+}
+
+.pill:hover {
+  background-color: var(--theme-color-ghost--hover);
+}
+
+.pill:active {
+  background-color: var(--theme-color-ghost--active);
+}
+
+.pill__active {
+  color: var(--theme-color-std-text);
+  background-color: var(--theme-color-2);
+}

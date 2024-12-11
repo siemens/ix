@@ -143,9 +143,15 @@ const config: Config = {
         // TODO: Clarify if blog is needed
         // { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/siemens/ix',
-          label: 'GitHub',
+          type: 'html',
           position: 'right',
+          value: '<div class="separator" aria-hidden></div>',
+        },
+        {
+          type: 'html',
+          position: 'right',
+          value:
+            '<a href="https://github.com/siemens/ix" target="_blank" class="icon-link icon-link-github" alt="Rounded avatar"></a>',
         },
       ],
     },

@@ -1,0 +1,28 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+.Button {
+  all: unset;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 1.5rem;
+  padding: 0.15rem 0.25rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-color-soft-text);
+  gap: 0.25rem;
+}
+
+.Button:hover {
+  background-color: var(--theme-color-ghost--hover);
+}
+
+.Button:active {
+  background-color: var(--theme-color-ghost--active);
+}

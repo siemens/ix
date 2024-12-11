@@ -104,7 +104,7 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
             <DocItemPaginator />
           </div>
         </div>
-        <div className="col">{docTOC.desktop}</div>
+        <div className={clsx('col', styles.toc)}>{docTOC.desktop}</div>
       </div>
     </div>
   );

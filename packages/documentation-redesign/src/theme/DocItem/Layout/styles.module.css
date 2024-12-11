@@ -16,6 +16,10 @@
   flex-wrap: nowrap;
 }
 
+.toc {
+  max-width: 14rem;
+}
+
 @media (max-width: 997px) {
   .docItemContainer {
     padding: 3rem 2rem;

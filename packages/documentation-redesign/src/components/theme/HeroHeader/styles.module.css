@@ -24,7 +24,7 @@
   padding-top: 2rem;
   position: sticky;
   top: 3rem;
-  z-index: 1;
+  z-index: 2;
   margin: 0;
   padding-bottom: 1rem;
 }
@@ -41,7 +41,7 @@
   padding-top: 0.5rem;
   padding-left: var(--default-content-padding-left);
   padding-right: var(--default-content-padding-left);
-  z-index: 1;
+  z-index: 2;
   background-color: var(--ix-docs-hero-background);
 }
 
@@ -69,7 +69,7 @@
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid transparent;
-  z-index: 1;
+  z-index: 2;
   min-width: 11rem;
   height: 2.875rem;
   cursor: pointer;
