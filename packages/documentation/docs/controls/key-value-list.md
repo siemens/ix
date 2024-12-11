@@ -7,7 +7,9 @@ import Playground from '@site/src/components/PlaygroundV3';
 # Key value list
 
 <Tags />
-
+<!-- introduction start -->
+Key value lists organizes and lists a series of [key-value pairs](key-value.md).
+<!-- introduction end -->
 ## Examples
 
 <Playground

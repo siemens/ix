@@ -7,6 +7,9 @@ import Playground from '@site/src/components/PlaygroundV3';
 # Pagination
 
 <Tags />
+<!-- introduction start -->
+Paginations allow users to navigate between pages of content when it is split for performance reasons.
+<!-- introduction end -->
 
 ## Examples
 

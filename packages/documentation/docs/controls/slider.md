@@ -8,6 +8,9 @@ import Playground from '@site/src/components/PlaygroundV3';
 # Slider
 
 <Tags />
+<!-- introduction start -->
+Sliders allow users to select a value from a range of values.
+<!-- introduction end -->
 
 ## Examples
 

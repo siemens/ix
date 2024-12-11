@@ -4,7 +4,9 @@ import Events from './../auto-generated/ix-time-picker/events.md';
 import Playground from '@site/src/components/PlaygroundV3';
 
 # Time picker
-
+<!-- introduction start -->
+Time pickers allow users to select specific times ensuring accurate time input.
+<!-- introduction end -->
 ## Examples
 
 ### Basic

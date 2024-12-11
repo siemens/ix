@@ -8,6 +8,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Tabs
 
+<!-- introduction start -->
+Tabs consist of tab items and organize content into separate sections by grouping similar information.
+<!-- introduction end -->
+
 ## Examples
 
 ### Basic

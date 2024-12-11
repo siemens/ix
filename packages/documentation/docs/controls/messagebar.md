@@ -5,6 +5,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Message bar
 
+<!-- introduction start -->
+Message bars display important information to users, e.g. feedback, warnings, or errors.
+<!-- introduction end -->
+
 ## Examples
 
 <Playground
