@@ -5,6 +5,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Drawer
 
+<!-- introduction start -->
+The drawer is a component that opens on click on a button and shows additional content.
+<!-- introduction end -->
+
 ## Examples
 
 ### Basic
