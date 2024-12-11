@@ -6,7 +6,9 @@ import Tags from '@site/docs/auto-generated/ix-layout-auto/tags.md';
 # Layout auto
 
 <Tags />
-
+<!-- introduction start -->
+Auto-layouts are containers that automatically adjust the size of their columns based on the content.
+<!-- introduction end -->
 ## Examples
 
 ### Basic

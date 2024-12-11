@@ -8,6 +8,9 @@ import Playground from '@site/src/components/PlaygroundV3';
 # Key value
 
 <Tags />
+<!-- introduction start -->
+Key value pairs display a label (key) and a value in a structured, easy way.
+<!-- introduction end -->
 
 ## Example
 
