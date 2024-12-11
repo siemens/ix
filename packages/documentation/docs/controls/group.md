@@ -8,6 +8,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Group
 
+<!-- introduction start -->
+Groups are expandable containers for a list of selectable options.
+<!-- introduction end -->
+
 ## Examples
 
 ### Basic 
