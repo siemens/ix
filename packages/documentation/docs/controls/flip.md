@@ -5,6 +5,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Flip
 
+<!-- introduction start -->
+Flips are containers that flip on click to reveal additional content.
+<!-- introduction end -->
+
 ## Examples
 
 ### Basic
