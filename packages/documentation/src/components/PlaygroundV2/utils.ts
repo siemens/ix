@@ -34,10 +34,16 @@ export function getBranchPath(framework: TargetFramework) {
 }
 
 export function stripComments(code: string) {
-  return code
-    .replace(/\/\*[^]*?\*\//gs, '')
-    .replace(/<!--[^]*?-->/gs, '')
+  const trimmedCode = code
+    .replace(/\/\*[^]*?\*\//gs, (match) => {
+      return match.includes('{KEEP}') ? match.replace('{KEEP}', '') : '';
+    })
+    .replace(/<!--[^]*?-->/gs, (match) => {
+      return match.includes('{KEEP}') ? match.replace('{KEEP}', '') : '';
+    })
     .trim();
+
+  return trimmedCode;
 }
 
 export type SourceFile = {

@@ -218,6 +218,8 @@ import LayoutAutoCustom from './preview-examples/layout-auto-custom';
 import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-group-indeterminate';
 import FormLayoutAuto from './preview-examples/form-layout-auto';
 import FormLayoutGrid from './preview-examples/form-layout-grid';
+import MapNavigationMigration from './preview-examples/map-navigation-migration';
+import BasicNavigationMigration from './preview-examples/basic-navigation-migration';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -251,6 +253,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<BasicNavigationWithoutHeader />}
         />
         <Route path="/preview/basic-navigation" element={<BasicNavigation />} />
+        <Route
+          path="/preview/basic-navigation-migration"
+          element={<BasicNavigationMigration />}
+        />
         <Route
           path="/preview/blind-header-actions"
           element={<BlindHeaderActions />}
@@ -518,6 +524,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element={<MapNavigationOverlay />}
         />
         <Route path="/preview/map-navigation" element={<MapNavigation />} />
+        <Route
+          path="/preview/map-navigation-migration"
+          element={<MapNavigationMigration />}
+        />
         <Route path="/preview/menu-category" element={<MenuCategory />} />
         <Route
           path="/preview/menu-with-bottom-tabs"

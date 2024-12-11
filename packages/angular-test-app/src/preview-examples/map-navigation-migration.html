@@ -1,0 +1,46 @@
+<ix-application class="application">
+  <ix-application-header name="My Application">
+    <div class="placeholder-logo" slot="logo"></div>
+
+    <!--{KEEP} Compare context menu -->
+    <ix-dropdown-button variant="secondary" label="Select config" ghost>
+      <ix-dropdown-item label="Config 1"></ix-dropdown-item>
+      <ix-dropdown-item label="Config 2"></ix-dropdown-item>
+      <ix-dropdown-item label="Config 3"></ix-dropdown-item>
+    </ix-dropdown-button>
+  </ix-application-header>
+
+  <ix-menu>
+    <ix-menu-item>Item 1</ix-menu-item>
+    <ix-menu-item>Item 2</ix-menu-item>
+  </ix-menu>
+
+  <!--{KEEP} Compare overlay -->
+  <ix-pane
+    class="overlay"
+    composition="right"
+    heading="Custom overlay"
+    icon="bulb"
+    size="320px"
+    variant="floating"
+    hide-on-collapse
+    [expanded]="expanded"
+    (expandedChanged)="resetExpanded($event)"
+  >
+    Overlay content
+  </ix-pane>
+
+  <ix-pane-layout>
+    <!--{KEEP} Compare sidebar -->
+    <ix-pane slot="left" heading="Navigation title" size="320px" expanded>
+      Sidebar content
+    </ix-pane>
+
+    <ix-content class="content">
+      <ix-content-header slot="header" header-title="My Content Page">
+      </ix-content-header>
+
+      <ix-button (click)="toggleOverlay()">Open overlay</ix-button>
+    </ix-content>
+  </ix-pane-layout>
+</ix-application>
