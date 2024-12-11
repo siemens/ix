@@ -2,7 +2,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Pie chart
 <!-- introduction start -->
-Pie charts are a popular and visually appealing way to represent data. They are circular graphs divided into slices, where each slice represents a proportion of the whole.
+Pie charts are circular graphs divided into slices, where each slice represents a proportion of the whole.
 <!-- introduction end -->
 This type of chart is particularly useful for displaying categorical data and showing the relative sizes of different categories. By providing a clear and immediate visual comparison, pie charts make it easy to understand the distribution and composition of data at a glance.
 ## Examples

@@ -11,7 +11,7 @@ import Tags from './../auto-generated/ix-layout-grid/tags.md';
 <Tags />
 
 <!-- introduction start -->
-Grids are typically used to make layouts more cohesive and consistent.
+Layout grids are used to structure the layout of a page or screen responsively.
 <!-- introduction end -->
 
 <LinkableDocsTabs>

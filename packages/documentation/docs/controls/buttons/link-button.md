@@ -13,7 +13,7 @@ import Tags from './../../auto-generated/ix-link-button/tags.md';
 
 <Tags />
 <!-- introduction start -->
-Link buttons are simple button components that lead users to another location within the application or outside of it. Link buttons contain a chevron and a text label.
+Link buttons lead users to another location within the application or outside of it and  contain a chevron and a text label.
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

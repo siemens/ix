@@ -2,7 +2,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Bar chart
 <!-- introduction start -->
-Bar charts are widely used visual tools that simplify data representation and comparison across different categories.
+Bar charts display data to visualize and compare relationships between or trends across different categories.
 <!-- introduction end -->
 Bar charts can be oriented horizontally or vertically, providing a straightforward way to represent and compare data across various categories or assets. Each bar in a bar chart represents a category of data, with the length or height of the bar proportional to the value it represents. This makes it easy to quickly identify which categories are larger or smaller and to compare values across different groups.
 ## Examples

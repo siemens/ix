@@ -5,7 +5,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Time picker
 <!-- introduction start -->
-The time picker component allows users to select specific times ensuring accurate time input.
+Time pickers allow users to select specific times ensuring accurate time input.
 <!-- introduction end -->
 ## Examples
 

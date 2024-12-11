@@ -5,7 +5,7 @@ import DocsCode from './\_content-header_code.md'
 
 # Content header
 <!-- introduction start -->
-The content header provides a brief overview of the content on a page. 
+Content headers provide a brief overview of the content on a page. 
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

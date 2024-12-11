@@ -5,7 +5,7 @@ import DocsCode from './\_pill_code.md'
 
 # Pill
 <!-- introduction start -->
-Pills are compact UI components designed to display small pieces of information in a visually appealing manner.
+Pills display small pieces of information, e.g. counters or statuses.
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

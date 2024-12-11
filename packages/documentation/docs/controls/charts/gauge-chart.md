@@ -2,7 +2,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Gauge chart
 <!-- introduction start -->
-Gauge charts are a type of data visualization used to display information as a reading on a dial. They are particularly effective for showing progress towards a goal, performance metrics, or any data that falls within a range.
+Gauge charts display information as a reading on a dial. They are particularly effective for showing progress towards a goal, performance metrics, or any data that falls within a range.
 <!-- introduction end -->
 The chart consists of a circular arc with a needle pointing to a specific value, making it easy to quickly assess the status or performance level. Gauge charts are commonly used in dashboards to provide an at-a-glance view of key performance indicators (KPIs).
 ## Examples

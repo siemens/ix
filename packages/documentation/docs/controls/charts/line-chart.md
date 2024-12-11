@@ -2,7 +2,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Line chart
 <!-- introduction start -->
-Line charts are effective graphical tools for displaying data trends over time, helping users identify patterns and anomalies.
+Line charts display data trends over time to help users identify patterns and anomalies.
 <!-- introduction end -->
 Line charts can reveal patterns or fluctuations in data, making it easier for users to identify anomalies. By analyzing past trends, line charts can help in predicting future values. Multiple lines can be used to compare different sets of data, such as the performance of various assets or technical devices, providing a clear visual comparison.
 

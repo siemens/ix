@@ -5,7 +5,7 @@ import DocsCode from './\_card_code.md';
 
 # Card
 <!-- introduction start -->
-Cards are UI controls used to neatly organize and group related information about a specific subject.
+Cards neatly organize and group related information about a specific subject.
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

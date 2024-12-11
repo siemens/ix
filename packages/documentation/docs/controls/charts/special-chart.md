@@ -5,7 +5,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Functionalities
 <!-- introduction start -->
-ECharts offers a wide variety of different chart types and features. Following page deals with some more special chart types and chart features, which might become handy in some use cases.
+ECharts offers a wide variety of different chart types and features, including interacting with charts that users need in some use cases.
 <!-- introduction end -->
 
 ## Examples
