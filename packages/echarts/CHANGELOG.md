@@ -1,5 +1,11 @@
 # @siemens/ix-echarts
 
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1238](https://github.com/siemens/ix/pull/1238) [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3) Thanks [@danielleroux](https://github.com/danielleroux)! - feat: reduce bundle size in combination with icons
+
 ## 2.3.0
 
 ### Minor Changes
