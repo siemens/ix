@@ -15,7 +15,8 @@
     "incremental": false,
     "useUnknownInCatchVariables": true,
     "types": ["node"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "preserveSymlinks": true
   },
   "include": ["**/*.ts"],
   "exclude": ["**/*.spec.ts"]

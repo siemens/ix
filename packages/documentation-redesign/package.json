@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "pnpm copy:demo && docusaurus start",
-    "build": "pnpm copy:demo && docusaurus build",
+    "start": "pnpm build.docs && docusaurus start",
+    "build": "pnpm build.docs && docusaurus build",
+    "build.docs": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/build.ts",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -13,7 +14,6 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "copy:demo": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/build.ts",
     "migrate": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/migrate.ts"
   },
   "dependencies": {

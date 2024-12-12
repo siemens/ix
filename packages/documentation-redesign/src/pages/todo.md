@@ -5,7 +5,7 @@
   - [x] Stackblitz source code fetching
   - [ ] Stackblitz root file selection for example
   - [ ] Change Theme of preview
-  - [ ] Toggle between light and dark
+  - [x] Toggle between light and dark
 - Component Markdowns
   - [ ] Tags (see Migration Tagging)
   - [ ] Deprecated links (unlisted content)

@@ -8,32 +8,33 @@
  */
 import axios from 'axios';
 import fs, { ensureDirSync } from 'fs-extra';
-import rimraf from 'rimraf';
+import { rimrafSync } from 'rimraf';
 import path from 'path';
-import tar from 'tar';
+import { extract } from 'tar/extract';
 import zlib from 'zlib';
 
 const pkgRoot = path.join(__dirname, '..');
+const __tgzFile = path.join(pkgRoot, '.build.temp', 'theme.tgz');
+const __buildTemp = path.join(__tgzFile, '..');
 
 const version = '2.2.0';
 const token = process.env.CSC;
 const ci = process.env.CI;
 
 export async function downloadTheme(targetPath: string) {
-  const file = path.join(pkgRoot, '.build-temp', 'theme.tgz');
-  rimraf.sync(path.join(file, '..'));
+  if (fs.existsSync(__buildTemp)) {
+    rimrafSync(__buildTemp);
+  }
 
   if (!ci) {
-    console.log('No CI! Skip download theme.');
-    process.exit(0);
+    throw new Error('No CI! Skip download theme.');
   }
 
   if (!token) {
-    console.error('No CSC! Skip download theme.');
-    process.exit(0);
+    throw new Error('No CSC! Skip download theme.');
   }
 
-  ensureDirSync(path.join(file, '..'));
+  ensureDirSync(__buildTemp);
   const response = await axios.get(
     `https://code.siemens.com/api/v4/projects/249177/packages/npm/@siemens/ix-brand-theme/-/@siemens/ix-brand-theme-${version}.tgz`,
     {
@@ -44,8 +45,8 @@ export async function downloadTheme(targetPath: string) {
     }
   );
   const fileData = Buffer.from(response.data, 'binary');
-  await fs.writeFile(file, fileData);
-  await unpack(file, targetPath);
+  await fs.writeFile(__tgzFile, fileData);
+  await unpack(__tgzFile, targetPath);
 }
 
 async function unpack(file: string, targetPath: string) {
@@ -54,7 +55,7 @@ async function unpack(file: string, targetPath: string) {
       .createReadStream(file)
       .pipe(zlib.createGunzip())
       .pipe(
-        tar.extract({
+        extract({
           cwd: targetPath,
         })
       )
