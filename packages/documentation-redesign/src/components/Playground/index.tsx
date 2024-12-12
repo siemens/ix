@@ -14,7 +14,10 @@ import FrameworkSelection from '../UI/FrameworkSelection';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import OpenStackblitz from '../UI/OpenStackblitz';
 
-function PreviewActions(props: { openExternalUrl: string }) {
+function PreviewActions(props: {
+  openExternalUrl: string;
+  onChangeColorMode: () => void;
+}) {
   return (
     <>
       <a
@@ -28,7 +31,7 @@ function PreviewActions(props: { openExternalUrl: string }) {
         Full preview
       </a>
       <ThemeSelection />
-      <ThemeVariantToggle />
+      <ThemeVariantToggle onChangeColorMode={props.onChangeColorMode} />
     </>
   );
 }
@@ -52,17 +55,20 @@ export default function Playground(props: {
   source: SourceFiles;
   height?: string;
 }) {
-  const [isPreview, setIsPreview] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+  const [isPreview, setIsPreview] = useState(true);
   const iframeSrc = useBaseUrl(
-    `/demo/v2/preview/html/preview-examples/${props.name}.html?no-margin=true`
+    `/demo/v2/preview/html/preview-examples/${
+      props.name
+    }.html?no-margin=true&theme=theme-brand-${isDark ? 'dark' : 'light'}`
   );
   const [framework, setFramework] = useState<FrameworkTypes>('angular');
   const [SourceCode, setSourceCode] = useState<React.FC>(() => () => (
-    <CodeBlock children={['Test']}></CodeBlock>
+    <CodeBlock children={['Nothing to see here 🥸']}></CodeBlock>
   ));
 
   return (
-    <div className={styles.playground}>
+    <div className={styles.playground} style={{ height: props.height }}>
       <div className={styles.toolbar}>
         <Pill onClick={() => setIsPreview(true)} active={isPreview}>
           Preview
@@ -87,7 +93,10 @@ export default function Playground(props: {
 
         <div className={styles.toolbar__actions}>
           {isPreview ? (
-            <PreviewActions openExternalUrl={iframeSrc} />
+            <PreviewActions
+              openExternalUrl={iframeSrc}
+              onChangeColorMode={() => setIsDark(!isDark)}
+            />
           ) : (
             <CodeActions
               onFrameworkChange={setFramework}

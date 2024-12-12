@@ -178,11 +178,18 @@ Object.keys(newDocs).forEach((name) => {
 
     playgrounds?.forEach((playground) => {
       const nameRegex = /name="([^"]+)"/gms;
+      const heightRegex = /height="([^"]+)"/gms;
 
-      const match = nameRegex.exec(playground);
+      const nameMatch = nameRegex.exec(playground);
+      const heightMatch = heightRegex.exec(playground);
 
-      if (match) {
-        const [, playgroundName] = match;
+      if (nameMatch) {
+        const [, playgroundName] = nameMatch;
+        let height = '';
+
+        if (heightMatch?.length) {
+          height = ` height="${heightMatch[1]}"`;
+        }
 
         imports.push(
           `import ${kebabToCamelCase(
@@ -192,7 +199,7 @@ Object.keys(newDocs).forEach((name) => {
 
         codeFile = codeFile.replace(
           playground,
-          `<${kebabToCamelCase(playgroundName)}Playground />`
+          `<${kebabToCamelCase(playgroundName)}Playground${height} />`
         );
       }
     });

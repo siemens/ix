@@ -10,9 +10,9 @@
 import { iconMoon, iconSun } from '@siemens/ix-icons/icons';
 import React from 'react';
 import Button from '../Button';
-export default function ThemeVariantToggle({ isLight }: { isLight?: boolean }) {
+export default function ThemeVariantToggle({ isLight, onChangeColorMode }: { isLight?: boolean, onChangeColorMode: () => void }) {
   return (
-    <Button>
+    <Button onClick={onChangeColorMode}>
       {React.createElement('ix-icon', {
         name: isLight ? iconSun : iconMoon,
       })}
