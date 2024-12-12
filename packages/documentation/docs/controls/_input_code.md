@@ -1,6 +1,7 @@
 import Playground from '@site/src/components/PlaygroundV3';
 import Props from '@site/docs/auto-generated/ix-input/props.md';
 import Events from '@site/docs/auto-generated/ix-input/events.md';
+import Slots from '@site/docs/auto-generated/ix-input/slots.md';
 import Tags from '@site/docs/auto-generated/ix-input/tags.md';
 
 ## Development
@@ -48,3 +49,7 @@ height="27rem"
 #### Events
 
 <Events />
+
+#### Slots
+
+<Slots />
