@@ -217,6 +217,7 @@ import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
 import FormLayoutAuto from './preview-examples/form-layout-auto.vue';
 import FormLayoutGrid from './preview-examples/form-layout-grid.vue';
+import InputWithSlots from './preview-examples/input-with-slots.vue';
 
 const routes: any = {
   '/': App,
@@ -357,6 +358,7 @@ const routes: any = {
   '/preview/input-readonly': InputReadonly,
   '/preview/input-types': InputTypes,
   '/preview/input-validation': InputValidation,
+  '/preview/input-with-slots': InputWithSlots,
   '/preview/tile': Tile,
   '/preview/timepicker': Timepicker,
   '/preview/toast': Toast,

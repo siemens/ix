@@ -232,6 +232,7 @@ import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
 import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
 import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
+import InputWithSlots from 'src/preview-examples/input-with-slots';
 
 @NgModule({
   declarations: [
@@ -413,6 +414,7 @@ import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
     InputReadonly,
     InputTypes,
     InputValidation,
+    InputWithSlots,
     InputPattern,
     TextareaLegacyReadonly,
     TextareaLegacy,

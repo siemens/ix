@@ -218,6 +218,7 @@ import LayoutAutoCustom from './preview-examples/layout-auto-custom';
 import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-group-indeterminate';
 import FormLayoutAuto from './preview-examples/form-layout-auto';
 import FormLayoutGrid from './preview-examples/form-layout-grid';
+import InputWithSlots from './preview-examples/input-with-slots';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -600,6 +601,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/input-readonly" element={<InputReadonly />} />
         <Route path="/preview/input-types" element={<InputTypes />} />
         <Route path="/preview/input-validation" element={<InputValidation />} />
+        <Route path="/preview/input-with-slots" element={<InputWithSlots />} />
         <Route path="/preview/textarea-legacy" element={<TextareaLegacy />} />
         <Route path="/preview/theme-switcher" element={<ThemeSwitcher />} />
         <Route path="/preview/tile" element={<Tile />} />

@@ -224,6 +224,7 @@ import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
 import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
 import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
+import InputWithSlots from 'src/preview-examples/input-with-slots';
 
 const routes: Routes = [
   {
@@ -770,6 +771,7 @@ const routes: Routes = [
       { path: 'input-readonly', component: InputReadonly },
       { path: 'input-types', component: InputTypes },
       { path: 'input-validation', component: InputValidation },
+      { path: 'input-with-slots', component: InputWithSlots },
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },

@@ -28,17 +28,17 @@ import Tags from '@site/docs/auto-generated/ix-input/tags.md';
 
 <Playground name="input-readonly"></Playground>
 
+#### Slots
+
+<Playground name="input-with-slots"></Playground>
+
 #### Types
 
 <Playground name="input-types" height="24rem"></Playground>
 
 #### Validation
 
-<Playground
-name="input-validation"
-height="27rem"
-
-> </Playground>
+<Playground name="input-validation" height="27rem"></Playground>
 
 ### API
 
