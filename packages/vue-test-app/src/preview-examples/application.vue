@@ -23,6 +23,7 @@ import {
     <IxApplicationHeader name="My Application">
       <div className="placeholder-logo" slot="logo"></div>
     </IxApplicationHeader>
+
     <IxMenu>
       <IxMenuItem>Item 1</IxMenuItem>
       <IxMenuItem>Item 2</IxMenuItem>

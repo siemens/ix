@@ -146,8 +146,12 @@ import Loading from '../preview-examples/loading';
 import MapNavigation from '../preview-examples/map-navigation';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
+import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
+import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import ModalByInstance from '../preview-examples/modal-by-instance';
+import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
+import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
 import NumberInputDisabled from '../preview-examples/number-input-disabled';
@@ -156,6 +160,7 @@ import NumberInputReadonly from '../preview-examples/number-input-readonly';
 import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
 import NumberInputValidation from '../preview-examples/number-input-validation';
 import Pagination from '../preview-examples/pagination';
+import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
@@ -204,8 +209,10 @@ import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primar
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
 import ToggleButtonSecondaryGhost from '../preview-examples/toggle-button-secondary-ghost';
 import ToggleButtonSecondaryOutline from '../preview-examples/toggle-button-secondary-outline';
+import ToggleChecked from '../preview-examples/toggle-checked';
 import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
 import ToggleDisabled from '../preview-examples/toggle-disabled';
+import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 import ToggleNgModel from '../preview-examples/toggle-ng-model';
 import Tooltip from '../preview-examples/tooltip';
 import Tree from '../preview-examples/tree';
@@ -217,14 +224,8 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-
-import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
-import Message from '../preview-examples/message';
-import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
-import ModalByTemplate from '../preview-examples/modal-by-template';
-import PaginationAdvanced from '../preview-examples/pagination-advanced';
-import ToggleChecked from '../preview-examples/toggle-checked';
-import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
+import MapNavigationMigration from '../preview-examples/map-navigation-migration';
+import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
 
 const routes: Routes = [
   {
@@ -297,6 +298,10 @@ const routes: Routes = [
       {
         path: 'basic-navigation',
         component: BasicNavigation,
+      },
+      {
+        path: 'basic-navigation-migration',
+        component: BasicNavigationMigration,
       },
       {
         path: 'blind-header-actions',
@@ -893,6 +898,7 @@ const routes: Routes = [
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
       { path: 'map-navigation-overlay', component: MapNavigationOverlay },
+      { path: 'map-navigation-migration', component: MapNavigationMigration },
       { path: 'number-input', component: NumberInput },
       { path: 'number-input-disabled', component: NumberInputDisabled },
       { path: 'number-input-label', component: NumberInputLabel },
