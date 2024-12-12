@@ -11,6 +11,14 @@
   display: block;
   position: relative;
 
+  ix-card {
+    cursor: default;
+  }
+
+  ix-card-accordion {
+    cursor: pointer;
+  }
+
   .icon {
     transform: scale(1.25);
   }
