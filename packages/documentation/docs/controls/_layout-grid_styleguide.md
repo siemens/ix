@@ -1,6 +1,6 @@
 ## Guidelines
 
-Grids are typically used to make layouts more cohesive and consistent. With layout grids, a two-dimensional layout system is available to create responsive layouts. Our layout grids are made of three elements: a grid, row(s) and column(s). The layout grid adapts to screen size and orientation.
+With layout grids, a two-dimensional layout system is available to create responsive layouts. Our layout grids are made of three elements: a grid, row(s) and column(s). The layout grid adapts to screen size and orientation.
 
 Commonly, the layout grid is based on a 12 column layout. Columns are nested in rows and adapt in width according to the available space. Content is placed within columns. Column widths are set as percentage.
 

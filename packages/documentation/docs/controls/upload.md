@@ -5,6 +5,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Upload
 
+<!-- introduction start -->
+Uploads allow users to select and upload files from their device by drag-and-drop.
+<!-- introduction end -->
+
 ## Examples
 
 <Playground

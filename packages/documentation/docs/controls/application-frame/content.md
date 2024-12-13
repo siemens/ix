@@ -12,7 +12,9 @@ import Tags from './../../auto-generated/ix-content/tags.md';
 # Content
 
 <Tags />
-
+<!-- introduction start -->
+The content component is a simple layout component made for hosting content.
+<!-- introduction end -->
 <br/>
 <br/>
 

@@ -4,7 +4,9 @@ sidebar_position: 0
 import Playground from '@site/src/components/PlaygroundV3';
 
 # Basics
-
+<!-- introduction start -->
+Charts are essential tools for visualizing data, making complex information more accessible and easier to understand.
+<!-- introduction end -->
 Siemens Industrial Experience provides a theme for the popular chart library [ECharts](https://echarts.apache.org/handbook/en/get-started).
 This lets you harness the power of ECharts with seamless integration into the Siemens Industrial Experience styleguide.
 

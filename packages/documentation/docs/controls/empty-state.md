@@ -7,6 +7,9 @@ import Playground from '@site/src/components/PlaygroundV3';
 # Empty state
 
 <Tags />
+<!-- introduction start -->
+Empty states inform users that there is no content to display. 
+<!-- introduction end -->
 
 ## Examples
 

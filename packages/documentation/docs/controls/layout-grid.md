@@ -10,8 +10,9 @@ import Tags from './../auto-generated/ix-layout-grid/tags.md';
 
 <Tags />
 
-<br/>
-<br/>
+<!-- introduction start -->
+Layout grids are used to structure the layout of a page or screen responsively.
+<!-- introduction end -->
 
 <LinkableDocsTabs>
   <DocsUx />

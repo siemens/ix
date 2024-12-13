@@ -5,6 +5,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Tile
 
+<!-- introduction start -->
+Tiles are containers that display content in a [card](card.md)-like format.
+<!-- introduction end -->
+
 ## Examples
 
 ### Basic

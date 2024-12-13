@@ -5,6 +5,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Expanding search
 
+<!-- introduction start -->
+Expanding searches are search fields that expand on click to save space.
+<!-- introduction end -->
+
 ## Examples
 
 ### Basic

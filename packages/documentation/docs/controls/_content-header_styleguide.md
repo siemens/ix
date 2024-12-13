@@ -1,7 +1,6 @@
 ## Guidelines
 
-The content header provides a brief overview of the content on a page. It helps our users understand what the page is about.
-We typically use it at the very top of the page to show a clear hierarchy of the page.
+The content header helps our users understand what the page is about. We typically use it at the very top of the page to show a clear hierarchy of the page.
 
 ![Content header overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2250-4784&mode=design&t=XmCepM9jPR9PImPw-4)
 

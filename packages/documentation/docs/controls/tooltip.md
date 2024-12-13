@@ -8,7 +8,9 @@ import Playground from '@site/src/components/PlaygroundV3'
 # Tooltip
 
 <Tags />
-
+<!-- introduction start -->
+Tooltips provide additional information when users hover over or focus an element.
+<!-- introduction end -->
 ## Examples
 
 <Playground
