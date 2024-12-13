@@ -225,6 +225,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
 import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
 import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
 import InputWithSlots from 'src/preview-examples/input-with-slots';
+import NumberInputWithSlots from 'src/preview-examples/number-input-with-slots';
 
 const routes: Routes = [
   {
@@ -903,6 +904,7 @@ const routes: Routes = [
         component: NumberInputStepperButton,
       },
       { path: 'number-input-validation', component: NumberInputValidation },
+      { path: 'number-input-with-slots', component: NumberInputWithSlots },
       { path: 'tooltip', component: Tooltip },
       { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },

@@ -219,6 +219,7 @@ import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-gro
 import FormLayoutAuto from './preview-examples/form-layout-auto';
 import FormLayoutGrid from './preview-examples/form-layout-grid';
 import InputWithSlots from './preview-examples/input-with-slots';
+import NumberInputWithSlots from './preview-examples/number-input-with-slots';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -643,6 +644,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/tooltip" element={<Tooltip />} />
         <Route path="/preview/tree-custom" element={<TreeCustom />} />
         <Route path="/preview/number-input" element={<NumberInput />} />
+        <Route path="/preview/number-input-with-slots" element={<NumberInputWithSlots />} />
         <Route
           path="/preview/number-input-disabled"
           element={<NumberInputDisabled />}
