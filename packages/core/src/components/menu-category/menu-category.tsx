@@ -153,7 +153,7 @@ export class MenuCategory {
   private onNestedItemsChanged(mutations?: MutationRecord[]) {
     this.nestedItems = this.getNestedItems();
 
-    if (!this.menuExpand || !this.showItems || !mutations) {
+    if (!this.menuExpand || this.showItems || !mutations) {
       return;
     }
 
