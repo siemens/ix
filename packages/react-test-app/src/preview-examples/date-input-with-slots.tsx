@@ -12,8 +12,8 @@ import { IxDateInput, IxIcon, IxTypography } from '@siemens/ix-react';
 export default () => {
   return (
     <IxDateInput value="1970/01/01">
-      <IxIcon name="bulb" slot="start"></IxIcon>
-      <IxTypography slot="end">example text</IxTypography>
+      <IxIcon name="bulb" slot="start" size="16"></IxIcon>
+      <IxTypography slot="end">Slot</IxTypography>
     </IxDateInput>
   );
 };

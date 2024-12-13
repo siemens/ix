@@ -13,7 +13,7 @@ import { IxInput, IxIcon, IxTypography } from '@siemens/ix-vue';
 
 <template>
   <IxInput>
-    <IxIcon name="bulb" slot="start"></IxIcon>
+    <IxIcon name="bulb" slot="start" size="16"></IxIcon>
     <IxTypography slot="end">unit</IxTypography>
   </IxInput>
 </template>

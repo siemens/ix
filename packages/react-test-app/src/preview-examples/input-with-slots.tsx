@@ -12,7 +12,7 @@ import { IxIcon, IxInput, IxTypography } from '@siemens/ix-react';
 export default () => {
   return (
     <IxInput>
-      <IxIcon name="bulb" slot="start"></IxIcon>
+      <IxIcon name="bulb" slot="start" size="16"></IxIcon>
       <IxTypography slot="end">unit</IxTypography>
     </IxInput>
   );
