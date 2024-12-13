@@ -141,8 +141,16 @@ function tryToGetIntroductionText(name: string, file: string) {
     /<!-- introduction start -->\s(.*)\s<!-- introduction end -->/g;
   const [match] = file.matchAll(introductionRegex);
   if (match?.length) {
-    return match[1];
+    return {
+      text: match[1],
+      file: file.replace(introductionRegex, ''),
+    };
   }
+
+  return {
+    text: '',
+    file,
+  };
 }
 
 Object.keys(newDocs).forEach((name) => {
@@ -169,9 +177,11 @@ Object.keys(newDocs).forEach((name) => {
 
     guideFile = tryToResolveBrokenLinks(guideFile);
 
-    const _introductionText = tryToGetIntroductionText(name, guideFile);
-    if (_introductionText) {
-      introductionText = _introductionText;
+    const { file, text } = tryToGetIntroductionText(name, guideFile);
+
+    guideFile = file;
+    if (text) {
+      introductionText = text;
     }
 
     fs.writeFileSync(path.resolve(folderName, 'guide.md'), guideFile);
@@ -258,9 +268,10 @@ Object.keys(newDocs).forEach((name) => {
 
     codeFile = tryToResolveBrokenLinks(codeFile);
 
-    const _introductionText = tryToGetIntroductionText(name, codeFile);
-    if (_introductionText) {
-      introductionText = _introductionText;
+    const { text, file } = tryToGetIntroductionText(name, codeFile);
+    codeFile = file;
+    if (text) {
+      introductionText = text;
     }
 
     fs.writeFileSync(path.resolve(folderName, 'code.mdx'), codeFile);
