@@ -120,6 +120,7 @@ test.describe('menu', () => {
         .locator('ix-menu-item')
         .nth(2)
         .evaluate((el: HTMLIxMenuItemElement) => (el.active = true));
+
       await expect(page).toHaveScreenshot({
         animations: 'disabled',
       });

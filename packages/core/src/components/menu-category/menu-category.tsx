@@ -163,8 +163,7 @@ export class MenuCategory {
         mutation.attributeName === 'class' &&
         mutation.target instanceof HTMLElement
       ) {
-        const target = mutation.target as HTMLElement;
-        if (target.classList.contains('active')) {
+        if (mutation.target.classList.contains('active')) {
           if (!this.showItems) {
             this.showItems = true;
             this.onExpandCategory(true);
