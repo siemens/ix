@@ -1,7 +1,7 @@
 ## Usage
 ### Guidelines
 
-Split buttons are button elements that allow users to either trigger an action with one click or select an action from a list of options. They consist of two parts: a button labeled with text and/or an icon on the left and a dropdown button labeled with an icon on the right. We typically use split buttons when a default action is available but more options need to be offered. Split buttons group similar or related actions.
+Split buttons consist of two parts: a button labeled with text and/or an icon on the left and a dropdown button labeled with an icon on the right. We typically use split buttons when a default action is available but more options need to be offered. Split buttons group similar or related actions.
 
 ![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1480-30799&mode=design&t=97WS5dUS2rk3MCp2-11)
 

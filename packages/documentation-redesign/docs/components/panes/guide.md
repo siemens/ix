@@ -1,7 +1,7 @@
 ## Usage
 ### Guidelines
 
-Panes are interactive components that allow users to access content that isn't constantly visible on the screen. Panes have a header and a content area. When collapsed, panes are either hidden or reduced to a bar. In our applications, we often include contextual information, options, trees and lists inside panes.
+Panes have a header and a content area. When collapsed, panes are either hidden or reduced to a bar. In our applications, we often include contextual information, options, trees and lists inside panes.
 
 Panes help users focus on tasks as related controls are visually grouped and the main content has less information. They are also beneficial for compact and hierarchically organized content and provide a more dynamic layout.
 

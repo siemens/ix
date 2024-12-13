@@ -23,7 +23,7 @@
   - [ ] Reorganize props, events and slots table
 - Migration
   - [ ] Headline levels not same causing issues e.g blind
-  - [ ] Component introduction sentence
+  - [x] Component introduction sentence
   - [ ] Migrate Tagging
 - Navbar
   - [ ] Search

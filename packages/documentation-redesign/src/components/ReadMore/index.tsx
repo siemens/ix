@@ -16,20 +16,23 @@ export default function ReadMore({ children }: { children: string }) {
   };
 
   const text = isExpanded ? children : `${children.substring(0, 215)}...`;
+  const textFit = children.length <= 215;
   return (
     <div>
       <p>
-        {text}
-        <a
-          href="#"
-          className="ml-2"
-          onClick={({ nativeEvent }) => {
-            nativeEvent.preventDefault();
-            toggleReadMore();
-          }}
-        >
-          {isExpanded ? 'Read Less' : 'Read More'}
-        </a>
+        {textFit ? children : text}
+        {!textFit && (
+          <a
+            href="#"
+            className="ml-2"
+            onClick={({ nativeEvent }) => {
+              nativeEvent.preventDefault();
+              toggleReadMore();
+            }}
+          >
+            {isExpanded ? 'Read Less' : 'Read More'}
+          </a>
+        )}
       </p>
     </div>
   );

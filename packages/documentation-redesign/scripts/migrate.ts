@@ -28,6 +28,7 @@ const __migrationIndexTemplate = path.resolve(
 const newDocs: Record<
   string,
   {
+    componentText?: string;
     guidePath: string;
     codePath: string;
   }
@@ -60,9 +61,6 @@ function flatMarkdowns(
       const regex = /_(.*)_(code|styleguide|guide)\.(md|mdx)$/g;
 
       const match = regex.exec(file);
-      if (parent) {
-        console.log('Parent', parent, file);
-      }
       if (match) {
         const [, name, type, extension] = match;
 
@@ -138,9 +136,20 @@ function tryToResolveBrokenLinks(file: string) {
   return file.replace(regex, '[$1](../$2)');
 }
 
+function tryToGetIntroductionText(name: string, file: string) {
+  const introductionRegex =
+    /<!-- introduction start -->\s(.*)\s<!-- introduction end -->/g;
+  const [match] = file.matchAll(introductionRegex);
+  if (match?.length) {
+    return match[1];
+  }
+}
+
 Object.keys(newDocs).forEach((name) => {
   const { guidePath, codePath } = newDocs[name];
   const folderName = path.resolve(__newDocumentationComponents, name);
+
+  let introductionText = '';
 
   fs.ensureDirSync(folderName);
 
@@ -159,6 +168,11 @@ Object.keys(newDocs).forEach((name) => {
     guideFile = ['## Usage', guideFile].join('\n');
 
     guideFile = tryToResolveBrokenLinks(guideFile);
+
+    const _introductionText = tryToGetIntroductionText(name, guideFile);
+    if (_introductionText) {
+      introductionText = _introductionText;
+    }
 
     fs.writeFileSync(path.resolve(folderName, 'guide.md'), guideFile);
   }
@@ -244,6 +258,11 @@ Object.keys(newDocs).forEach((name) => {
 
     codeFile = tryToResolveBrokenLinks(codeFile);
 
+    const _introductionText = tryToGetIntroductionText(name, codeFile);
+    if (_introductionText) {
+      introductionText = _introductionText;
+    }
+
     fs.writeFileSync(path.resolve(folderName, 'code.mdx'), codeFile);
   }
 
@@ -257,8 +276,7 @@ Object.keys(newDocs).forEach((name) => {
     hasGuide: tabs.includes('Usage'),
     tabs: tabs,
     title: title.replace(/-/g, ' '),
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+    description: introductionText,
   });
 
   // Remove last comma

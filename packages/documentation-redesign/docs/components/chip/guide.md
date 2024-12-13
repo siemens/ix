@@ -1,7 +1,7 @@
 ## Usage
 ### Guidelines
 
-Chips are components used to display small pieces of information in a compact and visually appealing way. Typically chips contain a concise label and sometimes an icon, and they are clickable and closable.
+Typically chips contain a concise label and sometimes an icon, and they are clickable and closable.
 
 ![Chip overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1149-41643&mode=design&t=ruQOzpPQJMKwnk8f-1)
 

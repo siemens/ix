@@ -1,7 +1,7 @@
 ## Usage
 ### Guidelines
 
-Pills are components used to display small pieces of information in a compact and visually appealing way. Typically pills contain a concise label and sometimes an icon, and they aren't clickable or closable.
+Typically, pills contain a concise label and sometimes an icon. They are not clickable or closable, making them ideal for presenting static information succinctly within an application.
 
 ![Pill overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1377-3110&mode=design&t=ZmcRP4ggXtr8b7vZ-1)
 

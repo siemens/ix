@@ -1,8 +1,5 @@
 ## Usage
 ### Guidelines
-
-Link buttons are simple button components that lead users to another location within the application or outside of it. Link buttons contain a chevron and a text label.
-
 ![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1506-4003&mode=design&t=5MYmq6zAbfw7xIkC-11)
 
 1. Chevron

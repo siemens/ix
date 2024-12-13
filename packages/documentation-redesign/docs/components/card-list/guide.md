@@ -1,7 +1,7 @@
 ## Usage
 ### Guidelines
 
-Card lists are UI controls that display a large number of cards or items of the same type in a lightweight, grouped manner. Users can hide and reveal the card list content by clicking on a control element. We typically use card lists on dashboards to show a huge amount of information in an organized and hierarchical way.
+Users can hide and reveal the card list content by clicking on a control element. We typically use card lists on dashboards to show a huge amount of information in an organized and hierarchical way.
 
 Card lists consist of a header section at the top and a content section below. The header section includes an icon button with a chevron on the left, followed by the card list's label. In the content section, items of the same type can be arranged in two different layout styles: stack and scroll.
 

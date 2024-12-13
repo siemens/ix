@@ -13,6 +13,7 @@ import CodeBlock from '@theme/CodeBlock';
 import FrameworkSelection from '../UI/FrameworkSelection';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import OpenStackblitz from '../UI/OpenStackblitz';
+import clsx from 'clsx';
 
 function PreviewActions(props: {
   openExternalUrl: string;
@@ -68,7 +69,7 @@ export default function Playground(props: {
   ));
 
   return (
-    <div className={styles.playground} style={{ height: props.height }}>
+    <div className={styles.playground}>
       <div className={styles.toolbar}>
         <Pill onClick={() => setIsPreview(true)} active={isPreview}>
           Preview
@@ -106,7 +107,12 @@ export default function Playground(props: {
           )}
         </div>
       </div>
-      <div className={styles.preview}>
+      <div
+        className={clsx(styles.preview, {
+          [styles.code]: isPreview,
+        })}
+        style={{ ['--preview-height']: props.height } as any}
+      >
         {isPreview ? (
           <iframe src={iframeSrc} className={styles.iframe}></iframe>
         ) : (
