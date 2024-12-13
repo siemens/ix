@@ -153,21 +153,19 @@ export class MenuCategory {
   private onNestedItemsChanged(mutations?: MutationRecord[]) {
     this.nestedItems = this.getNestedItems();
 
-    if (!this.menuExpand) {
+    if (!this.menuExpand || !this.showItems || !mutations) {
       return;
     }
 
-    for (let i = 0; i < (mutations!.length ?? 0); i++) {
-      const mutation = mutations![i];
+    for (let i = 0; i < (mutations.length ?? 0); i++) {
+      const mutation = mutations[i];
       if (
         mutation.attributeName === 'class' &&
         mutation.target instanceof HTMLElement
       ) {
         if (mutation.target.classList.contains('active')) {
-          if (!this.showItems) {
-            this.showItems = true;
-            this.onExpandCategory(true);
-          }
+          this.showItems = true;
+          this.onExpandCategory(true);
           return;
         }
       }
