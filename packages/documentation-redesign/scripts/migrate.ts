@@ -153,6 +153,36 @@ function tryToGetIntroductionText(name: string, file: string) {
   };
 }
 
+function normalizeHeadlines(file: string): string {
+  const fileContent = file;
+  const lines = fileContent.split('\n');
+  let minLevel = 6;
+
+  // Determine the minimum headline level in the file
+  lines.forEach((line) => {
+    const match = line.match(/^(#+)\s/);
+    if (match) {
+      const level = match[1].length;
+      if (level < minLevel) {
+        minLevel = level;
+      }
+    }
+  });
+
+  // Normalize headlines to start from level 1
+  const normalizedLines = lines.map((line) => {
+    const match = line.match(/^(#+)\s/);
+    if (match) {
+      const level = match[1].length;
+      const newLevel = level - minLevel + 1;
+      return '#'.repeat(newLevel) + line.slice(level);
+    }
+    return line;
+  });
+
+  return normalizedLines.join('\n');
+}
+
 Object.keys(newDocs).forEach((name) => {
   const { guidePath, codePath } = newDocs[name];
   const folderName = path.resolve(__newDocumentationComponents, name);
@@ -273,6 +303,8 @@ Object.keys(newDocs).forEach((name) => {
     if (text) {
       introductionText = text;
     }
+
+    codeFile = normalizeHeadlines(codeFile);
 
     fs.writeFileSync(path.resolve(folderName, 'code.mdx'), codeFile);
   }
