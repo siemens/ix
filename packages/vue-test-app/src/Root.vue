@@ -56,6 +56,8 @@ import CustomFieldValidation from './preview-examples/custom-field-validation.vu
 import CustomField from './preview-examples/custom-field.vue';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range.vue';
 import DateDropdown from './preview-examples/date-dropdown.vue';
+import DateInputWithSlots from './preview-examples/date-input-with-slots.vue';
+import DateInput from './preview-examples/date-input.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
@@ -380,6 +382,8 @@ const routes: any = {
   '/preview/number-input-readonly': NumberInputReadOnly,
   '/preview/number-input-stepper-button': NumberInputStepperButton,
   '/preview/number-input-with-slots': NumberInputWithSlots,
+  '/preview/date-input': DateInput,
+  '/preview/date-input-with-slots': DateInputWithSlots,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/map-navigation': MapNavigation,

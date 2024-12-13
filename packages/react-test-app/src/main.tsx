@@ -220,6 +220,8 @@ import FormLayoutAuto from './preview-examples/form-layout-auto';
 import FormLayoutGrid from './preview-examples/form-layout-grid';
 import InputWithSlots from './preview-examples/input-with-slots';
 import NumberInputWithSlots from './preview-examples/number-input-with-slots';
+import DateInput from './preview-examples/date-input';
+import DateInputWithSlots from './preview-examples/date-input-with-slots';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <IxApplicationContext>
@@ -644,7 +646,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/tooltip" element={<Tooltip />} />
         <Route path="/preview/tree-custom" element={<TreeCustom />} />
         <Route path="/preview/number-input" element={<NumberInput />} />
-        <Route path="/preview/number-input-with-slots" element={<NumberInputWithSlots />} />
+        <Route
+          path="/preview/number-input-with-slots"
+          element={<NumberInputWithSlots />}
+        />
         <Route
           path="/preview/number-input-disabled"
           element={<NumberInputDisabled />}
@@ -664,6 +669,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route
           path="/preview/number-input-validation"
           element={<NumberInputValidation />}
+        />
+        <Route path="/preview/date-input" element={<DateInput />} />
+        <Route
+          path="/preview/date-input-with-slots"
+          element={<DateInputWithSlots />}
         />
         <Route path="/preview/tree" element={<Tree />} />
         <Route path="/preview/upload" element={<Upload />} />

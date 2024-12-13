@@ -65,6 +65,7 @@ import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
 import DateInputValidation from '../preview-examples/date-input-validation';
+import DateInputWithSlots from '../preview-examples/date-input-with-slots';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -286,6 +287,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     DateInputLabel,
     DateInputReadonly,
     DateInputValidation,
+    DateInputWithSlots,
     ContentExample,
     DateDropdown,
     DateDropdownUserRange,

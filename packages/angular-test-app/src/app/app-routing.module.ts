@@ -57,6 +57,7 @@ import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
 import DateInputValidation from '../preview-examples/date-input-validation';
+import DateInputWithSlots from '../preview-examples/date-input-with-slots';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -99,6 +100,8 @@ import FormCheckboxDisabled from '../preview-examples/form-checkbox-disabled';
 import FormCheckboxGroup from '../preview-examples/form-checkbox-group';
 import FormCheckboxGroupIndeterminate from '../preview-examples/form-checkbox-group-indeterminate';
 import FormCheckboxValidation from '../preview-examples/form-checkbox-validation';
+import FormLayoutAuto from '../preview-examples/form-layout-auto';
+import FormLayoutGrid from '../preview-examples/form-layout-grid';
 import FormValidation from '../preview-examples/form-validation';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
@@ -127,6 +130,7 @@ import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
 import InputTypes from '../preview-examples/input-types';
 import InputValidation from '../preview-examples/input-validation';
+import InputWithSlots from '../preview-examples/input-with-slots';
 import KeyValue from '../preview-examples/key-value';
 import KeyValueList from '../preview-examples/key-value-list';
 import KeyValueListStriped from '../preview-examples/key-value-list-striped';
@@ -157,6 +161,7 @@ import NumberInputLabel from '../preview-examples/number-input-label';
 import NumberInputReadonly from '../preview-examples/number-input-readonly';
 import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
 import NumberInputValidation from '../preview-examples/number-input-validation';
+import NumberInputWithSlots from '../preview-examples/number-input-with-slots';
 import Pagination from '../preview-examples/pagination';
 import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pane from '../preview-examples/pane';
@@ -222,10 +227,6 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import FormLayoutAuto from 'src/preview-examples/form-layout-auto';
-import FormLayoutGrid from 'src/preview-examples/form-layout-grid';
-import InputWithSlots from 'src/preview-examples/input-with-slots';
-import NumberInputWithSlots from 'src/preview-examples/number-input-with-slots';
 
 const routes: Routes = [
   {
@@ -435,6 +436,10 @@ const routes: Routes = [
       {
         path: 'date-input-validation',
         component: DateInputValidation,
+      },
+      {
+        path: 'date-input-with-slots',
+        component: DateInputWithSlots,
       },
       {
         path: 'datepicker',
