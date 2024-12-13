@@ -145,14 +145,34 @@ export class MenuCategory {
   private onCategoryClick(e: MouseEvent) {
     e.stopPropagation();
     if (this.ixMenu.expand) {
-      e?.stopPropagation();
       this.onExpandCategory(!this.showItems);
       return;
     }
   }
 
-  private onNestedItemsChanged() {
+  private onNestedItemsChanged(mutations?: MutationRecord[]) {
     this.nestedItems = this.getNestedItems();
+
+    if (!this.menuExpand) {
+      return;
+    }
+
+    for (let i = 0; i < mutations?.length; i++) {
+      const mutation = mutations[i];
+      if (
+        mutation.attributeName === 'class' &&
+        mutation.target instanceof HTMLElement
+      ) {
+        const target = mutation.target as HTMLElement;
+        if (target.classList.contains('active')) {
+          if (!this.showItems) {
+            this.showItems = true;
+            this.onExpandCategory(true);
+          }
+          return;
+        }
+      }
+    }
   }
 
   private isCategoryItemListVisible() {
@@ -171,7 +191,10 @@ export class MenuCategory {
   }
 
   componentDidLoad() {
-    this.observer = createMutationObserver(() => this.onNestedItemsChanged());
+    this.observer = createMutationObserver((mutations: MutationRecord[]) =>
+      this.onNestedItemsChanged(mutations)
+    );
+
     this.observer.observe(this.hostElement, {
       attributes: true,
       childList: true,
