@@ -7,7 +7,6 @@ import Tree from '@theme-original/TOCItems/Tree';
 import type TreeType from '@theme/TOCItems/Tree';
 import type { WrapperProps } from '@docusaurus/types';
 import { useSubPageHook } from '@site/src/components/theme/QueryStringContent';
-import { c } from '@site/static/demo/v2/assets/_commonjsHelpers-e557d4a5.97812a83';
 
 type Props = WrapperProps<typeof TreeType>;
 

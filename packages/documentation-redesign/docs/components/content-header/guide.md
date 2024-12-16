@@ -40,6 +40,6 @@ Our content header variants makes it easier to achieve a well-balanced visual hi
 
 #### Related patterns
 
-- [Application header](.././application-frame/application-header)
-- [Content](.././application-frame/content)
-- [Button](.././buttons/button)
+- [Application header](../application-header)
+- [Content](../content)
+- [Button](../button)

@@ -11,16 +11,16 @@ A field is a form element when user input is needed. It's typically used with ot
 4. Required indicator
 5. Counter (input and textarea field only)
 
-**Note:** In this chapter, we describe the default field component. For details about [custom fields](../../custom-field), refer to the [layouts](../forms-layout) chapter.
+**Note:** In this chapter, we describe the default field component. For details about [custom fields](../forms-layout) chapter.
 
 ### Options
 
 - **Label:** Add a label for the field that provides context to your users.
 - **Required:** The asterisk states whether user input is required on the field before submitting the form.
-- **Field:** Use the appropriate field based on the type of input data, e.g. use [text inputs](../../input) for text-based data, [checkboxes](../../checkbox) for selecting from a list of predefined options, or [toggle switches](../../toggle) for a binary choice.
+- **Field:** Use the appropriate field based on the type of input data, e.g. use [text inputs](../toggle) for a binary choice.
 - **Helper text:** Use to help users understand the field better. We typically use this when there are input restrictions or more information is required.
 - **Show text as tooltip:** Display validation feedback either below the input field or as tooltip when the user hovers or focuses on the form field. Use a different text for the individual validation states that apply (see [validation](../forms-validation)).
-- **Counter:** Use a counter to show the number of characters entered into the field and the maximum number of characters allowed. We typically use it for [text input](../../input) or [textarea](../../textarea) fields.
+- **Counter:** Use a counter to show the number of characters entered into the field and the maximum number of characters allowed. We typically use it for [text input](../textarea) fields.
 
 ### Behavior in context
 
@@ -50,9 +50,9 @@ When a feedback tooltip is chosen over a message, the field shows a tooltip when
 
 - [Validation](../forms-validation)
 - [Behavior](../forms-behavior)
-- [Input](../../input)
-- [Textarea](../../textarea)
-- [Select](../../select)
-- [Checkbox](../../checkbox)
-- [Radio button](../../radio)
-- [Toggle switch](../../toggle)
+- [Input](../input)
+- [Textarea](../textarea)
+- [Select](../select)
+- [Checkbox](../checkbox)
+- [Radio button](../radio)
+- [Toggle switch](../toggle)

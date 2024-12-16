@@ -44,6 +44,6 @@ Split buttons have five states: Default, hover, active, disabled and focused. St
 #### Related patterns
 
 - [Button](../button)
-- [Dropdown](../../dropdown)
-- [Select](../../select)
+- [Dropdown](../dropdown)
+- [Select](../select)
 - [Split button](../split-button)

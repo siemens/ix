@@ -1,7 +1,7 @@
 ## Usage
 ### Guidelines
 
-Application is a technical and infrastructural component without a direct visual appearance. It lays out the top level app elements like [header](.././application-header), [navigation menu](.././application-menu) and [content](.././content). Furthermore, it controls the breakpoint handling and the theming of an application.
+Application is a technical and infrastructural component without a direct visual appearance. It lays out the top level app elements like [header](../content). Furthermore, it controls the breakpoint handling and the theming of an application.
 
 #### Application switch
 
@@ -14,7 +14,7 @@ Application is a technical and infrastructural component without a direct visual
 5. Indicator "open in a new browser tab"
 6. Close icon
 
-With the application switch, users can navigate across applications. The interaction control – the application switch button (1) – is in the [application header](.././application-header). Clicking the button opens a modal (2) with a list of available applications your users can switch to. This list is technically defined in the application component and its content depends on your product strategy. Our lists typically contain applications belonging to a software suite, applications with a similar scope or applications a user has purchased.
+With the application switch, users can navigate across applications. The interaction control – the application switch button (1) – is in the [application header](../application-header). Clicking the button opens a modal (2) with a list of available applications your users can switch to. This list is technically defined in the application component and its content depends on your product strategy. Our lists typically contain applications belonging to a software suite, applications with a similar scope or applications a user has purchased.
 
 Clicking the current application closes the modal. Clicking another application closes the modal and opens the target application in the same or in a new browser tab, depending on the defined target option. Switching between browser tabs is much faster than loading the applications each time in the same browser tab, however, switching between multiple browser tabs could confuse users.
 

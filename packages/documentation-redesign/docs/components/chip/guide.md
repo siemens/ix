@@ -57,4 +57,4 @@ Chips take a default, hover, focused or active state with a varying background c
 
 #### Related patterns
 
-- [Pill](.././pill)
+- [Pill](../pill)

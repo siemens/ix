@@ -7,14 +7,14 @@ The navigation menu is an essential part of your application. It offers a way to
 
 1. Expand/collapse icon button: Expands and collapses the navigation menu.
 2. [Avatar button](#avatar-button,): Shows the logged-in user and provides access to user-related actions (optional)  
-   **Please note:** Only basic navigation and map navigation still use the avatar at this position. The new [application](.././application) frame uses the avatar inside the [application header](.././application-header).
+   **Please note:** Only basic navigation and map navigation still use the avatar at this position. The new [application](../application-header).
 3. Navigation section: Navigates through the main parts of an application.
 4. [Bottom section](#bottom-section): Hosts infrastructural actions and additional content but does not navigate away from the selected main part.
 
 #### Avatar button
 
 The avatar button is optional. It shows information about the logged-in user. When collapsed it shows only the avatar, and when expanded it shows additional user information. A dropdown menu with user-related actions appears when selecting (note the available actions are specific to each application). The log out item is available by default.  
-**Please note:** Only basic navigation and map navigation still use the avatar in the navigation menu. The new [application](.././application) frame uses the avatar inside the [application header](.././application-header).
+**Please note:** Only basic navigation and map navigation still use the avatar in the navigation menu. The new [application](../application-header).
 
 ![Avatar dropdown menu](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-70909&mode=design&t=Ch2wsi2EtQ3sPBpS-11)
 
@@ -61,19 +61,19 @@ Items in this section do not navigate away from the current content. They either
 
 ![Bottom section icons](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1005-10817&mode=design&t=ljAWsgheUZngQeQG-11)
 
-1. Settings: Opens the [settings](.././settings) overlay.
+1. Settings: Opens the [settings](../settings) overlay.
 2. Toggle theme: Toggles between light and dark themes.
 3. Custom item
-4. About & legal information: Opens the [about & legal](.././about-and-legal) overlay to display legal information, release notes, license information, etc.
-5. Collapse/expand side panel: Only relevant for [map navigation](.././map-navigation).
+4. About & legal information: Opens the [about & legal](../about-and-legal) overlay to display legal information, release notes, license information, etc.
+5. Collapse/expand side panel: Only relevant for [map navigation](../map-navigation).
 
 <br></br>
 
 #### Navigation menu options
 
-- **enableSettings `default: true`:** Shows the settings icon (gear wheel) in the bottom section, it opens the [settings](.././settings) overlay and the content can be freely defined.
+- **enableSettings `default: true`:** Shows the settings icon (gear wheel) in the bottom section, it opens the [settings](../settings) overlay and the content can be freely defined.
 - **enableToggleTheme `default: false`:** Shows the theme toggle icon, offers an easy and direct way to toggle between light and dark themes. We don’t typically use this when dedicated theme settings are available elsewhere, e.g. in the settings overlay.
-- **enableMapExpand `default: false`:** Only relevant for [map navigation](.././map-navigation), shows an icon that expands/collapses the side panel of the map navigation.
+- **enableMapExpand `default: false`:** Only relevant for [map navigation](../map-navigation), shows an icon that expands/collapses the side panel of the map navigation.
 
 See the code tab for more information and other options available.
 

@@ -1,7 +1,7 @@
 ## Usage
 ### Guidelines
 
-Use the popover news component to present news and information when the application starts like release notes, new app features or marketing-related information. For Siemens applications, provide the information within the [About and legal overlay](.././about-and-legal) as well.
+Use the popover news component to present news and information when the application starts like release notes, new app features or marketing-related information. For Siemens applications, provide the information within the [About and legal overlay](../about-and-legal) as well.
 
 ![Popover news](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1013-70517&mode=design&t=Ntzn8IlSOlPey8s5-11)
 
@@ -19,16 +19,16 @@ Use the popover news component to present news and information when the applicat
 
 #### Behavior
 
-Unlike a modal, popover news does not prevent users from navigating and interacting with the content. It only overlays the content partially and appears once triggered by the app. As soon as the user closes the popover, it does not appear again until it is re-triggered. Therefore we recommend that the information should be additionally available in the [About and legal overlay](.././about-and-legal). The popover spike should always point to the information icon so users can find the information again. The `offsetBottom` option can be used to control its exact position.
+Unlike a modal, popover news does not prevent users from navigating and interacting with the content. It only overlays the content partially and appears once triggered by the app. As soon as the user closes the popover, it does not appear again until it is re-triggered. Therefore we recommend that the information should be additionally available in the [About and legal overlay](../about-and-legal). The popover spike should always point to the information icon so users can find the information again. The `offsetBottom` option can be used to control its exact position.
 
 #### Dos and Don’ts
 
 - Do use popover news for "nice to know" information
-- Don‘t use popover news for essential information a user must read, instead use a [modal](../../modal) or a [message bar](../../messagebar)
-- Don‘t use popover news for system feedback or messages, instead use a [modal](../../modal) or a [toast message](../../toast)
+- Don‘t use popover news for essential information a user must read, instead use a [modal](../messagebar)
+- Don‘t use popover news for system feedback or messages, instead use a [modal](../toast)
 
 #### Related patterns
 
-- [Toast message](../../toast)
-- [Modal](../../modal)
-- [Message bar](../../messagebar)
+- [Toast message](../toast)
+- [Modal](../modal)
+- [Message bar](../messagebar)

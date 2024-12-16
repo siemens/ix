@@ -18,10 +18,10 @@ The select component supports single or multiple selections and the editable var
 
 #### Options
 
-- **Label:** See [form field](.././forms/forms-field).
+- **Label:** See [form field](../forms-field).
 - **Placeholder:** Use a placeholder to provide information about what to enter or additional relevant context while the input field is empty. We typically use a placeholder when the label is not visible or we need to provide additional context.
-- **Helper text:** See [form field](.././forms/forms-field).
-- **Feedback text:** See [form field](.././forms/forms-field).
+- **Helper text:** See [form field](../forms-field).
+- **Feedback text:** See [form field](../forms-field).
 - **Show clear button:** Select components can have a dedicated button to easily clear the selection. Hide the button when offering users other ways to reset, e.g. a default item like "none", or if you aim for simplified keyboard accessibility.
 - **List header:** Use a header to provide additional context or instructions about the items to help users understand the choices better.
   - **Hide list header:** Hide the header of the dropdown list when not required.
@@ -33,7 +33,7 @@ The select component supports single or multiple selections and the editable var
 
 #### Behavior in context
 
-- **Validation:** See [validation](.././forms/forms-validation).
+- **Validation:** See [validation](../forms-validation).
 - **Interaction:**
   - Click or Enter key on button opens dropdown list.
   - Typing in the input field filters the dropdown list.
@@ -57,17 +57,17 @@ The select field has five states: default, hover, focused, disabled and read-onl
 - Do consider performance when loading an extensive list of items
 - Do use the select component when there is a finite list of items available to avoid manual input errors or duplicates
 - Do sort items logically, e.g. alphabetically or numerically
-- Don't use selects for binary choices, like yes and no, use [radio buttons](../radio), [checkboxes](../checkbox) or [toggles](../toggle) instead
-- Don't use selects for navigational or search patterns, use [category filters](../category-filter) or [search fields](../expanding-search) instead
-- Don't combine several data attributes in an item label, use [tables](../html-grid) or [event lists](../event-list) with a search functionality instead
+- Don't use selects for binary choices, like yes and no, use [radio buttons](../toggle) instead
+- Don't use selects for navigational or search patterns, use [category filters](../expanding-search) instead
+- Don't combine several data attributes in an item label, use [tables](../event-list) with a search functionality instead
 
 ![Don't combine data attributes](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3978-800&t=MWpyPDZDK5B531n9-4)
 
 #### Related patterns
 
-- [Form field](.././forms/forms-field)
-- [Validation](.././forms/forms-validation)
-- [Layout](.././forms/forms-layout)
+- [Form field](../forms-field)
+- [Validation](../forms-validation)
+- [Layout](../forms-layout)
 - [Input](../input)
 - [Radio button](../radio)
 - [Checkbox](../checkbox)

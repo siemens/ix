@@ -91,3 +91,9 @@
   background-color: var(--ix-docs-hero-tab-active);
   color: var(--theme-color-dynamic);
 }
+
+.Tags {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}

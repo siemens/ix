@@ -63,7 +63,6 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
   const docTOC = useDocTOC();
   const { metadata } = useDoc();
   const [tabs, setTabs] = useState<string[]>([]);
-
   const { title, description } = metadata;
 
   useEffect(() => {
@@ -85,29 +84,29 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
   }, [currentTab, tabs]);
 
   return (
-    <div>
+    <>
       <HeroHeader title={title} description={description} tabs={tabs} />
-      <div className="row">
-        <div className="col">
-          {/* <ContentVisibility metadata={metadata} /> */}
-          {/* <DocVersionBanner /> */}
-          {/* <div className={styles.docItemContainer}> */}
-          <div className={styles.docItemContainer}>
-            <article>
-              {/* <DocBreadcrumbs /> */}
-              {/* <DocVersionBadge /> */}
-              {docTOC.mobile}
+      <div className={styles.Row}>
+        {/* <div className="col"> */}
+        {/* <ContentVisibility metadata={metadata} /> */}
+        {/* <DocVersionBanner /> */}
+        {/* <div className={styles.docItemContainer}> */}
+        <div className={styles.docItemContainer}>
+          <article>
+            {/* <DocBreadcrumbs /> */}
+            {/* <DocVersionBadge /> */}
+            {docTOC.mobile}
 
-              <div className={styles.docContentComponent}>
-                <DocItemContent>{children}</DocItemContent>
-              </div>
-            </article>
-            <DocItemFooter />
-            <DocItemPaginator />
-          </div>
+            <div className={styles.docContentComponent}>
+              <DocItemContent>{children}</DocItemContent>
+            </div>
+          </article>
+          <DocItemFooter />
+          <DocItemPaginator />
         </div>
+        {/* </div> */}
         <div className={clsx('col', styles.toc)}>{docTOC.desktop}</div>
       </div>
-    </div>
+    </>
   );
 }

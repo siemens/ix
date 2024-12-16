@@ -1,34 +1,27 @@
-import CodeBlock from '@theme/CodeBlock';
-
-<div className="container pl-0 pr-0 pt-2 pb-6 rounded-lg">
-  <div className="grid gap-4">
-    <div className="row-span-1 rounded grid grid-cols-10">
-      <div className="col-span-2 font-bold text-sm">Property</div>
-      <div className="col-span-2 font-bold text-sm">Attribute</div>
-      <div className="col-span-2 font-bold text-sm">Type</div>
-      <div className="col-span-2 font-bold text-sm">Default</div>
-      <div className="col-span-2 font-bold text-sm">Description</div>
-    </div>
-    {{#props}}
-    <div
-      className="row-span-1 grid grid-cols-10 border-solid border-t-0 border-l-0 border-r-0 border-b pb-2 border-slate-800 border-radius-0"
-    >
-      <div className="col-span-2">
-        {{ name }}
-      </div>
-      <div className="col-span-2">
-        <code className="p-1">{{ attr }}</code>
-      </div>
-      <div className="col-span-2">
-        <code className="p-1">{ `{{{ type }}}` }</code>
-      </div>
-      <div className="col-span-2">
-        <code className="p-1">{ `{{{ default }}}` }</code>
-      </div>
-      <div className="col-span-2">
-        { `{{ docs }}` }
-      </div>
-    </div>
-    {{/props}}
-  </div>
-</div>
+{{#props}}
+#### {{ name }}
+<table className="table-auto">
+  <tbody>
+    {{#attr}}
+    <tr>
+      <td>Attribute</td>
+      <td><code className="p-1">{{ attr }}</code></td>
+    </tr>
+    {{/attr}}
+    <tr>
+      <td>Type</td>
+      <td><code className="p-1">{ `{{{ type }}}` }</code></td>
+    </tr>
+    {{#default}}
+    <tr>
+      <td>Default</td>
+      <td><code className="p-1">{ `{{{ default }}}` }</code></td>
+    </tr>
+    {{/default}}
+    <tr>
+      <td>Description</td>
+      <td>{ `{{ docs }}` }</td>
+    </tr>
+  </tbody>
+</table>
+{{/props}}

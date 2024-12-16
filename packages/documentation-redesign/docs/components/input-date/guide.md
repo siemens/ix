@@ -19,12 +19,12 @@ The date input component is typically used in forms, filters, and scheduling too
 
 #### Options
 
-- **Label**: See [form field](.././forms/forms-field).
-- **Required**: See [form field](.././forms/forms-field).
-- **Helper text**: See [form field](.././forms/forms-field).
-- **Feedback text**: See [form field](.././forms/forms-field).
-- **Show text as tooltip**: See [form field](.././forms/forms-field).
-- **Placeholder**: See [form field](.././forms/forms-field). We typically use a placeholder to show an example date format to assist users when the field is empty.
+- **Label**: See [form field](../forms-field).
+- **Required**: See [form field](../forms-field).
+- **Helper text**: See [form field](../forms-field).
+- **Feedback text**: See [form field](../forms-field).
+- **Show text as tooltip**: See [form field](../forms-field).
+- **Placeholder**: See [form field](../forms-field). We typically use a placeholder to show an example date format to assist users when the field is empty.
 - **Error message**: Feedback text when date is not parsable. We typically use this to inform users that the entered date format is incorrect and guide them to enter a valid date.
 - **Format**: Specify the date format, default ‘yyyy/LL/dd’ to ensure that dates are entered in a consistent and recognizable format.
 
@@ -39,7 +39,7 @@ The date input component is typically used in forms, filters, and scheduling too
 - **Validation**:
   - Use feedback text for validation types valid, info, warning and invalid.
   - Invalid feedback automatically provided if entered date in not parsable.
-  - Refer to the [validation](.././forms/forms-validation) chapter for detailed guidelines.
+  - Refer to the [validation](../forms-validation) chapter for detailed guidelines.
 - **Overflow**: The input field should be wide enough to display the full date without truncation.
 - **Alignment**: Date inputs are always aligned to the left.
 
@@ -60,11 +60,11 @@ Date input has five states: Default, hover, disabled, read-only and focused.
 
 #### Related patterns
 
-- [Date dropdown](.././date-dropdown)
-- [Date picker](.././date-picker)
-- [Date time picker](.././date-picker)
-- [Forms field](.././forms/forms-field)
-- [Validation](.././forms/forms-validation)
-- [Dropdown](.././dropdown)
+- [Date dropdown](../date-dropdown)
+- [Date picker](../date-picker)
+- [Date time picker](../date-picker)
+- [Forms field](../forms-field)
+- [Validation](../forms-validation)
+- [Dropdown](../dropdown)
 - [Input](../input)
 - [Select](../select)

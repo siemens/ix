@@ -6,20 +6,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { useEffect, useRef, useState } from 'react';
+import { iconChevronDownSmall, iconShield } from '@siemens/ix-icons/icons';
 import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
-import Button from '../Button';
-import {
-  iconChevronDownSmall,
-  iconPen,
-  iconShield,
-} from '@siemens/ix-icons/icons';
-import React from 'react';
 import {
   FrameworkTypes,
   getDisplayNameFrameworkTypes,
   useFramework,
 } from '@site/src/hooks/use-framework';
+import React, { useEffect, useRef } from 'react';
+import Button from '../Button';
 
 export default function (props: {
   onFrameworkChange: (framework: FrameworkTypes) => void;

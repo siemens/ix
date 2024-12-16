@@ -8,12 +8,14 @@
  */
 import React from 'react';
 import styles from './styles.module.css';
+import clsx from 'clsx';
 
 export function ApiTableDeprecatedTag(props: { message: string }) {
   return (
     <div className={styles.ApiTableTag}>
-      <div className={styles['Tag Tag--Deprecated']}>Deprecated</div>
-      <div className={styles['Tag__Message--Deprecated']}>{props.message}</div>
+      <div className={clsx(styles.Tag, styles['Tag--Deprecated'])}>
+        Deprecated {props.message}
+      </div>
     </div>
   );
 }

@@ -14,6 +14,7 @@ import FrameworkSelection from '../UI/FrameworkSelection';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import OpenStackblitz from '../UI/OpenStackblitz';
 import clsx from 'clsx';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 function PreviewActions(props: {
   openExternalUrl: string;
@@ -38,18 +39,22 @@ function PreviewActions(props: {
 }
 
 function CodeActions(props: {
-  hideFrameworkSelection: FrameworkTypes;
+  hideFrameworkSelection: boolean;
   framework: FrameworkTypes;
   files: Record<string, string>;
   onFrameworkChange: (framework: FrameworkTypes) => void;
 }) {
   return (
-    <>
-      <OpenStackblitz framework={props.framework} files={props.files} />
-      {!props.hideFrameworkSelection && (
-        <FrameworkSelection onFrameworkChange={props.onFrameworkChange} />
+    <BrowserOnly>
+      {() => (
+        <>
+          <OpenStackblitz framework={props.framework} files={props.files} />
+          {!props.hideFrameworkSelection && (
+            <FrameworkSelection onFrameworkChange={props.onFrameworkChange} />
+          )}
+        </>
       )}
-    </>
+    </BrowserOnly>
   );
 }
 

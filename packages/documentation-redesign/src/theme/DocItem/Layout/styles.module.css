@@ -10,10 +10,9 @@
   position: relative;
 }
 
-.docContentComponent {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+.Row {
+  display: grid;
+  grid-template-columns: 80% 20%;
 }
 
 .toc {
@@ -23,5 +22,9 @@
 @media (max-width: 997px) {
   .docItemContainer {
     padding: 3rem 2rem;
+  }
+
+  .Row {
+    grid-template-columns: 100%;
   }
 }

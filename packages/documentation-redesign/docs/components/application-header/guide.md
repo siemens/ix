@@ -11,7 +11,7 @@
 
 ##### Application switch
 
-Use the application switch (see [application](.././application)) to allow users to navigate across applications. When clicking the application switch (1), a modal with a list of available applications opens.
+Use the application switch (see [application](../application)) to allow users to navigate across applications. When clicking the application switch (1), a modal with a list of available applications opens.
 
 ##### Brand logo
 
@@ -37,7 +37,7 @@ We typically use the slot for:
 
 ##### Avatar
 
-With the new modular application frame we moved the avatar from the navigation menu to the application header. This ensures the avatar has security-relevant information available at all breakpoints. Nonetheless, if you still use the [basic navigation](.././basic-navigation) or the [map navigation](.././map-navigation), the avatar is still in the navigation menu for compatibility reasons.
+With the new modular application frame we moved the avatar from the navigation menu to the application header. This ensures the avatar has security-relevant information available at all breakpoints. Nonetheless, if you still use the [basic navigation](../map-navigation), the avatar is still in the navigation menu for compatibility reasons.
 
 ![Avatar and avatar dropdown](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1635-60462&mode=design&t=UPXhDWuRHtygtfFI-11)
 
@@ -63,7 +63,7 @@ If the application is hosted inside a framework that comes with its own header, 
 
 #### Behavior
 
-The header automatically adapts the breakpoints defined in the [application](.././application).
+The header automatically adapts the breakpoints defined in the [application](../application).
 
 ![Application header at breakpoints lg/md and sm](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1636-62980&mode=design&t=4XzscFw57dE7McUX-11)
 

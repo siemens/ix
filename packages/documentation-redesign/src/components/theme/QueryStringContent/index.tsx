@@ -49,9 +49,13 @@ export function useSubPageHook() {
 
 export default function QueryStringContent(props: QueryStringContentProps) {
   const { componentTabs, hasQueryString, currentTab } = useSubPageHook();
-  const [mdxContent, setMDXContent] = useState<ReactNode | null>(
-    props.children[0]
-  );
+  const [mdxContent, setMDXContent] = useState<ReactNode | null>(() => {
+    if (Array.isArray(props.children)) {
+      return props.children[0];
+    }
+
+    return props.children;
+  });
 
   useEffect(() => {
     if (!componentTabs) {
@@ -59,7 +63,12 @@ export default function QueryStringContent(props: QueryStringContentProps) {
     }
 
     const index = componentTabs.findIndex((tab) => tab === currentTab);
-    setMDXContent(props.children[index]);
+
+    if (Array.isArray(props.children)) {
+      setMDXContent(props.children[index]);
+    } else {
+      setMDXContent(props.children);
+    }
   }, [componentTabs, props.children]);
 
   return <div>{mdxContent}</div>;

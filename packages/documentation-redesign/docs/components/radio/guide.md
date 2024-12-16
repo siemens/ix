@@ -14,13 +14,13 @@ Radio buttons are presented in groups to signify that only one selection is allo
 
 #### Options
 
-- **Label:** See [form field](../forms/forms-field).
-- **Helper text**: See [form field](../forms/forms-field).
-- **Feedback text**: See [form field](../forms/forms-field).
+- **Label:** See [form field](../forms-field).
+- **Helper text**: See [form field](../forms-field).
+- **Feedback text**: See [form field](../forms-field).
 
 #### Behavior in context
 
-- **Validation**: Radio buttons are validated collectively, not individually. For more information on validation, see [validation](../forms/forms-validation).
+- **Validation**: Radio buttons are validated collectively, not individually. For more information on validation, see [validation](../forms-validation).
 - **Interaction**: Clicking on a radio button toggles its state between checked and unchecked/default. Every other radio button in the group is automatically unchecked.
 
 #### States
@@ -37,8 +37,8 @@ Radio buttons are presented in groups to signify that only one selection is allo
 
 #### Related patterns
 
-- [Form field](../forms/forms-field)
-- [Validation](../forms/forms-validation)
-- [Layout](../forms/forms-layout)
+- [Form field](../forms-field)
+- [Validation](../forms-validation)
+- [Layout](../forms-layout)
 - [Checkbox](../checkbox)
 - [Toggle](../toggle)

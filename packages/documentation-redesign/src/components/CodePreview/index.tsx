@@ -1,13 +1,13 @@
 /*
  * COPYRIGHT (c) Siemens AG 2018-2024 ALL RIGHTS RESERVED.
  */
-import clsx from 'clsx';
-import styles from './styles.module.css';
-import CodeBlock from '@theme/CodeBlock';
-import { useEffect, useState, useRef, ReactElement } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import Pill from '../UI/Pill';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
+import CodeBlock from '@theme/CodeBlock';
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+import Pill from '../UI/Pill';
+import styles from './styles.module.css';
 
 export async function docusaurusFetch(url: string) {
   const response = await fetch(url);

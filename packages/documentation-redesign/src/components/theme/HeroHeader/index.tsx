@@ -7,6 +7,10 @@ import { useHistory, useLocation } from '@docusaurus/router';
 import useSearchParams from '@site/src/utils/hooks/useSearchParams';
 import ReadMore from '@site/src/components/ReadMore';
 import { useCallback, useEffect, useState } from 'react';
+import {
+  ApiTableDeprecatedTag,
+  ApiTableSinceTag,
+} from '@site/src/components/ApiTableTag';
 
 function Tabs({ children }) {
   return <div className={styles.Tabs}>{children}</div>;
@@ -53,7 +57,7 @@ export default function HeroHeader(props: {
       <h1 className={styles.sticky_h1}>{title}</h1>
 
       <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
-          <ReadMore>{description}</ReadMore>
+        <ReadMore>{description}</ReadMore>
       </div>
 
       {tabs.length > 0 && (

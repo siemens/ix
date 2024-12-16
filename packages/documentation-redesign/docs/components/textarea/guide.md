@@ -15,14 +15,14 @@ The textarea component is typically used in scenarios such as feedback forms, co
 
 #### Options
 
-- **Label**: See [form field](.././forms/forms-field).
-- **Value**: See [form field](.././forms/forms-field).
-- **Required**: See [form field](.././forms/forms-field).
-- **Helper text**: See [form field](.././forms/forms-field).
-- **Feedback text**: See [form field](.././forms/forms-field).
-- **Show text as tooltip**: See [form field](.././forms/forms-field).
-- **Placeholder**: See [form field](.././forms/forms-field).
-- **Counter**: See [form field](.././forms/forms-field).
+- **Label**: See [form field](../forms-field).
+- **Value**: See [form field](../forms-field).
+- **Required**: See [form field](../forms-field).
+- **Helper text**: See [form field](../forms-field).
+- **Feedback text**: See [form field](../forms-field).
+- **Show text as tooltip**: See [form field](../forms-field).
+- **Placeholder**: See [form field](../forms-field).
+- **Counter**: See [form field](../forms-field).
 - **Resize behavior**: Determines how textareas can be resized (both directions, horizontally, vertically, or no resizing). Default size is 300px x 100px.
 - **Columns and width**: Defines initial width by number of columns and/or width.
 - **Rows and height**: Defines initial height by number of rows and/or height.
@@ -35,7 +35,7 @@ The textarea component is typically used in scenarios such as feedback forms, co
   - Optional: Users can resize textareas to fit their needs. For example, vertical resizing can be useful in feedback forms when the entry exceeds the default height.
 - **Validation**:
   - Minimum and maximum length defines number of characters allowed.
-  - See [form validation](.././forms/forms-validation).
+  - See [form validation](../forms-validation).
 - **Overflow**: Text within the textarea is not truncated; it supports scrolling for overflow content.
 - **Alignment**: Text is always left-aligned in textareas.
 - **Sizing**:
@@ -53,11 +53,11 @@ Textareas have five states: Default, hover, focused, read-only and disabled.
 - Do ensure the textarea size matches the expected input, e.g. 5 to 10 rows for detailed feedback
 - Do use the placeholder to give users an example of the expected input
 - Do set minimum and maximum character limits to ensure appropriate input length
-- Don’t use the textarea for short, single-line input like name or email address, use an [input field](.././input) instead
+- Don’t use the textarea for short, single-line input like name or email address, use an [input field](../input) instead
 
 #### Related patterns
 
-- [Form fields](.././forms/forms-field)
-- [Validation](.././forms/forms-validation)
-- [Layout](.././forms/forms-layout)
-- [Input](.././input)
+- [Form fields](../forms-field)
+- [Validation](../forms-validation)
+- [Layout](../forms-layout)
+- [Input](../input)

@@ -31,10 +31,6 @@
   margin: 0.5rem 0;
 }
 
-.ApiTableTag .Tag.Tag--Deprecated {
+.ApiTableTag .Tag--Deprecated {
   background-color: var(--theme-color-alarm);
-}
-
-.ApiTableTag .Tag__Message--Deprecated {
-  color: var(--theme-color-alarm-text);
 }
