@@ -76,10 +76,12 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
   }, [metadata.frontMatter]);
 
   useEffect(() => {
-    if (!currentTab && tabs.length > 0) {
-      searchParams.set('current-tabs', tabs[0]);
-      history.push({ search: searchParams.toString() });
-    }
+    requestAnimationFrame(() => {
+      if (!currentTab && tabs.length > 0) {
+        searchParams.set('current-tabs', tabs[0]);
+        history.push({ search: searchParams.toString() });
+      }
+    });
   }, [currentTab, tabs]);
 
   return (

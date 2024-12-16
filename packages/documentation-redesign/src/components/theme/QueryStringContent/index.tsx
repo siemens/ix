@@ -49,26 +49,18 @@ export function useSubPageHook() {
 
 export default function QueryStringContent(props: QueryStringContentProps) {
   const { componentTabs, hasQueryString, currentTab } = useSubPageHook();
+  const [mdxContent, setMDXContent] = useState<ReactNode | null>(
+    props.children[0]
+  );
 
-  let docItem: ReactNode;
+  useEffect(() => {
+    if (!componentTabs) {
+      return;
+    }
 
-  if (hasQueryString === null || !componentTabs) {
-    docItem = props.children[0];
-    return <div>{docItem}</div>;
-  }
+    const index = componentTabs.findIndex((tab) => tab === currentTab);
+    setMDXContent(props.children[index]);
+  }, [componentTabs, props.children]);
 
-  console.log('componentTabs', componentTabs, props.children);
-  const index = componentTabs.findIndex((tab) => tab === currentTab);
-  docItem = props.children[index];
-
-  if (!Array.isArray(props.children)) {
-    return <div>{props.children}</div>;
-  }
-
-  if (!docItem) {
-    console.warn('No document found to switch for', index);
-    docItem = props.children[0];
-  }
-
-  return <div>{props.children[index]}</div>;
+  return <div>{mdxContent}</div>;
 }

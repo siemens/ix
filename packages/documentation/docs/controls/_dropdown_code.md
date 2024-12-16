@@ -4,7 +4,7 @@ import Events from './../auto-generated/ix-dropdown/events.md';
 import ItemProps from './../auto-generated/ix-dropdown-item/props.md';
 import ItemEvents from './../auto-generated/ix-dropdown-item/events.md';
 
-import TagsQuickActions from './../auto-generated/ix-dropdown-quick-actions/tags.md';
+import QuickActionsTag from './../auto-generated/ix-dropdown-quick-actions/tags.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
@@ -28,7 +28,7 @@ height="18rem"
 
 #### Dropdown with quick actions menu
 
-<TagsQuickActions />
+<QuickActionsTag />
 
 <Playground
 name="dropdown-quick-actions"
