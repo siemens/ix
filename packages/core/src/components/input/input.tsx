@@ -42,6 +42,8 @@ let inputIds = 0;
 /**
  * @since 2.6.0
  * @form-ready 2.6.0
+ * @slot start - Element will be displayed at the start of the input
+ * @slot end - Element will be displayed at the end of the input
  */
 @Component({
   tag: 'ix-input',
