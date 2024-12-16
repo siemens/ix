@@ -57,6 +57,7 @@ import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
 import DateInputValidation from '../preview-examples/date-input-validation';
+import DateInputWithSlots from '../preview-examples/date-input-with-slots';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -129,6 +130,7 @@ import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
 import InputTypes from '../preview-examples/input-types';
 import InputValidation from '../preview-examples/input-validation';
+import InputWithSlots from '../preview-examples/input-with-slots';
 import KeyValue from '../preview-examples/key-value';
 import KeyValueList from '../preview-examples/key-value-list';
 import KeyValueListStriped from '../preview-examples/key-value-list-striped';
@@ -159,6 +161,7 @@ import NumberInputLabel from '../preview-examples/number-input-label';
 import NumberInputReadonly from '../preview-examples/number-input-readonly';
 import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
 import NumberInputValidation from '../preview-examples/number-input-validation';
+import NumberInputWithSlots from '../preview-examples/number-input-with-slots';
 import Pagination from '../preview-examples/pagination';
 import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pane from '../preview-examples/pane';
@@ -439,6 +442,10 @@ const routes: Routes = [
       {
         path: 'date-input-validation',
         component: DateInputValidation,
+      },
+      {
+        path: 'date-input-with-slots',
+        component: DateInputWithSlots,
       },
       {
         path: 'datepicker',
@@ -776,6 +783,7 @@ const routes: Routes = [
       { path: 'input-readonly', component: InputReadonly },
       { path: 'input-types', component: InputTypes },
       { path: 'input-validation', component: InputValidation },
+      { path: 'input-with-slots', component: InputWithSlots },
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
@@ -908,6 +916,7 @@ const routes: Routes = [
         component: NumberInputStepperButton,
       },
       { path: 'number-input-validation', component: NumberInputValidation },
+      { path: 'number-input-with-slots', component: NumberInputWithSlots },
       { path: 'tooltip', component: Tooltip },
       { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },
