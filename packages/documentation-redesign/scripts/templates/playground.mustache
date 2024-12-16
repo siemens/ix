@@ -6,7 +6,9 @@ import Playground from '@site/src/components/Playground'
 
 <Playground
   name="<%name%>"
+  <%#isPreviewAvailable%>noPreview<%/isPreviewAvailable%>
   source={{<%> markdown%>}}
   files={{<%> files%>}}
   height={props.height}
+  onlyFramework={props.onlyFramework}
 ></Playground>

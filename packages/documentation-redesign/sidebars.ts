@@ -140,15 +140,12 @@ const sidebars: SidebarsConfig = {
       ],
       collapsed: false,
     },
-    // TODO (not part of migration script)
-    // {
-    //   type: 'category',
-    //   label: 'Forms',
-    //   items: [
-    //     // 'components/chip/index',
-    //   ],
-    //   collapsed: false,
-    // },
+    {
+      type: 'category',
+      label: 'Forms',
+      items: ['components/forms-validation/index'],
+      collapsed: false,
+    },
     {
       type: 'category',
       label: 'Input fields and selections',

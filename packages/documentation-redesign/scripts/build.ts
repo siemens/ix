@@ -132,7 +132,7 @@ async function copyUsage() {
   generateSourceCodeMarkdown(__vueTestApp, 'vue');
 }
 
-async function generatePlaygroundMarkdown() {
+async function generatePlaygroundMarkdown(extendedPlayground: string[] = []) {
   const __playgroundTemplate = path.join(__templates, 'playground.mustache');
   const playgroundFilesTemplate = fs.readFileSync(
     path.join(__templates, 'playground-files.mustache'),
@@ -147,11 +147,15 @@ async function generatePlaygroundMarkdown() {
   const files = await fs.readdir(__htmlTestApp);
   const demoFiles = files.filter((file) => file.endsWith('.html'));
 
-  for (const file of demoFiles) {
+  extendedPlayground = extendedPlayground.map((f) => f + '.html');
+
+  for (const file of [...demoFiles, ...extendedPlayground]) {
     const reactFiles: Record<string, string> = {};
     const angularFiles: Record<string, string> = {};
     const vueFiles: Record<string, string> = {};
     const htmlFiles: Record<string, string> = {};
+
+    let isPreviewAvailable = false;
 
     const name = file.replace('.html', '');
 
@@ -187,6 +191,7 @@ async function generatePlaygroundMarkdown() {
 
     if (fs.existsSync(path.join(__htmlTestApp, `${name}.html`))) {
       htmlFiles[`${name}.html`] = `html/${name}.html`;
+      isPreviewAvailable = true;
     }
 
     if (fs.existsSync(path.join(__htmlTestAppDist, `${name}.css`))) {
@@ -231,6 +236,7 @@ async function generatePlaygroundMarkdown() {
     const view = {
       name,
       imports,
+      isPreviewAvailable: !isPreviewAvailable,
       react: mapValues(reactFiles),
       angular: mapValues(angularFiles),
       vue: mapValues(vueFiles),
@@ -347,7 +353,7 @@ async function downloadAdditionalTheme() {
   // await copyStorybook();
   await copyStaticFiles();
   await copyUsage();
-  await generatePlaygroundMarkdown();
+  await generatePlaygroundMarkdown(['form-validation']);
   await generateApiMarkdown();
   await downloadAdditionalTheme();
   await generateChangelog();

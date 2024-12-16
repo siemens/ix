@@ -38,6 +38,7 @@ function PreviewActions(props: {
 }
 
 function CodeActions(props: {
+  hideFrameworkSelection: FrameworkTypes;
   framework: FrameworkTypes;
   files: Record<string, string>;
   onFrameworkChange: (framework: FrameworkTypes) => void;
@@ -45,7 +46,9 @@ function CodeActions(props: {
   return (
     <>
       <OpenStackblitz framework={props.framework} files={props.files} />
-      <FrameworkSelection onFrameworkChange={props.onFrameworkChange} />
+      {!props.hideFrameworkSelection && (
+        <FrameworkSelection onFrameworkChange={props.onFrameworkChange} />
+      )}
     </>
   );
 }
@@ -55,15 +58,19 @@ export default function Playground(props: {
   files: CodePreviewFiles;
   source: SourceFiles;
   height?: string;
+  noPreview?: boolean;
+  onlyFramework?: FrameworkTypes;
 }) {
   const [isDark, setIsDark] = useState(true);
-  const [isPreview, setIsPreview] = useState(true);
+  const [isPreview, setIsPreview] = useState(!props.noPreview);
   const iframeSrc = useBaseUrl(
     `/demo/v2/preview/html/preview-examples/${
       props.name
     }.html?no-margin=true&theme=theme-brand-${isDark ? 'dark' : 'light'}`
   );
-  const [framework, setFramework] = useState<FrameworkTypes>('angular');
+  const [framework, setFramework] = useState<FrameworkTypes>(
+    props.onlyFramework ?? 'angular'
+  );
   const [SourceCode, setSourceCode] = useState<React.FC>(() => () => (
     <CodeBlock children={['Nothing to see here 🥸']}></CodeBlock>
   ));
@@ -71,14 +78,17 @@ export default function Playground(props: {
   return (
     <div className={styles.playground}>
       <div className={styles.toolbar}>
-        <Pill onClick={() => setIsPreview(true)} active={isPreview}>
-          Preview
-        </Pill>
-        <Pill onClick={() => setIsPreview(false)} active={!isPreview}>
-          Code
-        </Pill>
-
-        <div className={styles.spacer}></div>
+        {!props.noPreview && (
+          <>
+            <Pill onClick={() => setIsPreview(true)} active={isPreview}>
+              Preview
+            </Pill>
+            <Pill onClick={() => setIsPreview(false)} active={!isPreview}>
+              Code
+            </Pill>
+            <div className={styles.spacer}></div>
+          </>
+        )}
 
         {!isPreview && (
           <CodePreview
@@ -100,6 +110,7 @@ export default function Playground(props: {
             />
           ) : (
             <CodeActions
+              hideFrameworkSelection={!!props.onlyFramework}
               onFrameworkChange={setFramework}
               framework={framework}
               files={props.files[framework]}
