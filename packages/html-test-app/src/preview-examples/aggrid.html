@@ -14,7 +14,8 @@ LICENSE file in the root directory of this source tree.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AG Grid example</title>
     <!-- External resources -->
-    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32.1/dist/ag-grid-community.min.js"></script>
+
     <!-- External resources -->
   </head>
   <body>
@@ -70,7 +71,7 @@ LICENSE file in the root directory of this source tree.
           checkboxSelection: true,
         };
 
-        new agGrid.Grid(container, gridOptions);
+        agGrid.createGrid(container, gridOptions);
       })();
     </script>
     <script type="module" src="./init.js"></script>
