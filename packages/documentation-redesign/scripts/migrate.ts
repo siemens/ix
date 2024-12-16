@@ -8,7 +8,7 @@
  */
 import path from 'path';
 import fs from 'fs-extra';
-import Mustache, { name } from 'mustache';
+import Mustache from 'mustache';
 
 console.log('Migration script');
 
