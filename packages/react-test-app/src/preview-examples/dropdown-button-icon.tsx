@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './dropdown-button-icon.css';
+import './dropdown-button-icon.scoped.css';
 
 import { IxDropdownButton, IxDropdownItem } from '@siemens/ix-react';
 

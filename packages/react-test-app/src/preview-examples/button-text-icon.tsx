@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './button-text-icon.css';
+import './button-text-icon.scoped.css';
 
 import { IxButton } from '@siemens/ix-react';
 

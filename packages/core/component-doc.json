@@ -4465,6 +4465,14 @@
         {
           "name": "form-ready",
           "text": "2.6.0"
+        },
+        {
+          "name": "slot",
+          "text": "start - Element will be displayed at the start of the input"
+        },
+        {
+          "name": "slot",
+          "text": "end - Element will be displayed at the end of the input"
         }
       ],
       "encapsulation": "shadow",
@@ -4941,7 +4949,16 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "end",
+          "docs": "Element will be displayed at the end of the input"
+        },
+        {
+          "name": "start",
+          "docs": "Element will be displayed at the start of the input"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -9633,6 +9650,14 @@
         {
           "name": "form-ready",
           "text": "2.6.0"
+        },
+        {
+          "name": "slot",
+          "text": "start - Element will be displayed at the start of the input"
+        },
+        {
+          "name": "slot",
+          "text": "end - Element will be displayed at the end of the input"
         }
       ],
       "encapsulation": "shadow",
@@ -10165,7 +10190,16 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "end",
+          "docs": "Element will be displayed at the end of the input"
+        },
+        {
+          "name": "start",
+          "docs": "Element will be displayed at the start of the input"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -13814,6 +13848,14 @@
         {
           "name": "form-ready",
           "text": "2.6.0"
+        },
+        {
+          "name": "slot",
+          "text": "start - Element will be displayed at the start of the input"
+        },
+        {
+          "name": "slot",
+          "text": "end - Element will be displayed at the end of the input"
         }
       ],
       "encapsulation": "shadow",
@@ -14332,7 +14374,16 @@
         }
       ],
       "styles": [],
-      "slots": [],
+      "slots": [
+        {
+          "name": "end",
+          "docs": "Element will be displayed at the end of the input"
+        },
+        {
+          "name": "start",
+          "docs": "Element will be displayed at the start of the input"
+        }
+      ],
       "parts": [],
       "listeners": []
     },
@@ -19600,8 +19651,14 @@
       ],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-typography"
+      ],
+      "dependencyGraph": {
+        "ix-toggle": [
+          "ix-typography"
+        ]
+      },
       "props": [
         {
           "name": "checked",
@@ -20635,6 +20692,7 @@
         "ix-slider",
         "ix-textarea",
         "ix-time-picker",
+        "ix-toggle",
         "ix-tooltip"
       ],
       "dependencies": [],
@@ -20709,6 +20767,9 @@
           "ix-typography"
         ],
         "ix-time-picker": [
+          "ix-typography"
+        ],
+        "ix-toggle": [
           "ix-typography"
         ],
         "ix-tooltip": [

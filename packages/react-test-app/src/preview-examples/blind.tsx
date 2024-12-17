@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './blind.css';
+import './blind.scoped.css';
 
 import { IxBlind } from '@siemens/ix-react';
 
