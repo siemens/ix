@@ -13,33 +13,44 @@
 :host {
   @include ix-component;
   display: inline-flex;
+  flex-direction: row;
   position: relative;
-  height: 2rem;
-  justify-content: flex-start;
-  align-items: center;
-  margin-right: 0.25rem;
+  height: 1.5rem;
+  margin-block-start: 0.25rem;
+  margin-block-end: 0.25rem;
 
-  cursor: pointer;
+  input[type='checkbox'] {
+    display: none;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+  }
+
+  .label {
+    display: inline-block;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-block-start: 0.125rem;
+    margin-inline-start: 0.5625rem;
+  }
 
   .switch {
+    all: unset;
     position: relative;
     display: inline-block;
     width: 3rem;
     min-width: 3rem;
     max-width: 3rem;
     height: 1.5rem;
-    margin-right: 0.25rem;
-  }
-
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
   }
 
   .slider {
     position: absolute;
-    cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
@@ -47,6 +58,7 @@
     background-color: var(--theme-switch-off--background);
     transition: var(--theme-default-time);
     border-radius: 1.5rem;
+    border: 0.0625rem solid transparent;
   }
 
   .slider:before {
@@ -54,107 +66,167 @@
     content: '';
     height: 1.125rem;
     width: 1.125rem;
-    left: 4px;
-    bottom: 3px;
+    left: 0.125rem;
+    bottom: 0.125rem;
     background-color: var(--theme-switch-thumb-off--background);
     transition: var(--theme-default-time);
     border-radius: 50%;
   }
 
-  input {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-
-  input:focus-visible + .switch > .slider {
-    outline: 1px solid var(--theme-color-focus-bdr);
-    outline-offset: 1px;
-  }
-
-  input:checked + .switch > .slider {
-    background-color: var(--theme-switch-on--background);
-  }
-
-  input:checked + .switch > .slider::before {
+  .switch.checked > .slider::before {
     background-color: var(--theme-switch-thumb-on--background);
-    transform: translateX(1.35rem);
+    transform: translateX(1.5rem);
   }
 
-  // Toggle NOT checked
-  input + .switch:hover > .slider {
+  .switch > .slider {
+    border-color: var(--theme-switch-off--border-color);
+  }
+
+  .switch:hover > .slider {
     background-color: var(--theme-switch-off--background--hover);
+    border-color: var(--theme-switch-off--border-color--hover);
   }
 
-  input + .switch:hover > .slider:before {
+  .switch:hover > .slider:before {
     background-color: var(--theme-switch-thumb-off--background--hover);
   }
 
-  input + .switch:active > .slider {
+  .switch:active > .slider {
     background-color: var(--theme-switch-off--background--active);
+    border-color: var(--theme-switch-off--border-color--active);
   }
 
-  input + .switch:active > .slider:before {
+  .switch:active > .slider:before {
     background-color: var(--theme-switch-thumb-off--background--active);
   }
 
-  // Toggle checked
-  input:checked + .switch:hover > .slider {
-    background-color: var(--theme-switch-on--background--hover);
+  .switch.checked > .slider {
+    background-color: var(--theme-switch-on--background);
+    border-color: var(--theme-switch-on--border-color);
   }
 
-  input:checked + .switch:hover > .slider:before {
+  .switch.checked:hover > .slider {
+    background-color: var(--theme-switch-on--background--hover);
+    border-color: var(--theme-switch-on--border-color--hover);
+  }
+
+  .switch.checked:hover > .slider:before {
     background-color: var(--theme-switch-thumb-on--background--hover);
   }
 
-  input:checked + .switch:active > .slider {
+  .switch.checked:active > .slider {
     background-color: var(--theme-switch-on--background--active);
+    border-color: var(--theme-switch-on--border-color--active);
   }
 
-  input:checked + .switch:active > .slider:before {
+  .switch.checked:active > .slider:before {
     background-color: var(--theme-switch-thumb-on--background--active);
   }
 
-  input:indeterminate + .switch > .slider::before {
-    transform: translateX(0.7rem);
+  .switch.indeterminate > .slider::before {
+    transform: translateX(0.75rem);
+  }
+}
+
+:host(:not(.disabled)) {
+  .wrapper {
+    cursor: pointer;
   }
 
-  .toggle-text {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  .switch:focus-visible > .slider {
+    outline: 0.0625rem solid var(--theme-color-focus-bdr);
+    outline-offset: 0.0625rem;
   }
 }
 
 :host(.disabled) {
   pointer-events: none;
 
-  input + .switch {
+  .switch {
     opacity: 0.5;
   }
 
-  input + .switch > .slider {
+  .switch > .slider {
     background-color: var(--theme-switch-off--background--disabled);
   }
 
-  input + .switch > .slider:before {
+  .switch > .slider:before {
     background-color: var(--theme-switch-thumb-off--background--disabled);
   }
 
-  input:checked + .switch > .slider {
+  .switch.checked > .slider {
     background-color: var(--theme-switch-on--background--disabled);
   }
 
-  input:checked + .switch > .slider:before {
+  .switch.checked > .slider:before {
     background-color: var(--theme-switch-thumb-on--background--disabled);
   }
 
-  .toggle-text {
+  .label {
     color: var(--theme-color-weak-text);
   }
+}
+
+@mixin toggle-variant($selector) {
+  :host(#{$selector}:not(.disabled)) {
+    .slider {
+      @content;
+    }
+  }
+}
+
+@mixin define-toggle-vars($state, $type) {
+  --theme-switch-#{$state}--background: var(
+    --theme-switch-#{$state}--background--#{$type}
+  );
+  --theme-switch-#{$state}--background--hover: var(
+    --theme-switch-#{$state}--background--#{$type}--hover
+  );
+  --theme-switch-#{$state}--background--active: var(
+    --theme-switch-#{$state}--background--#{$type}--active
+  );
+
+  --theme-switch-thumb-#{$state}--background: var(
+    --theme-switch-thumb-#{$state}--background--#{$type}
+  );
+  --theme-switch-thumb-#{$state}--background--hover: var(
+    --theme-switch-thumb-#{$state}--background--#{$type}--hover
+  );
+  --theme-switch-thumb-#{$state}--background--active: var(
+    --theme-switch-thumb-#{$state}--background--#{$type}--active
+  );
+
+  --theme-switch-#{$state}--border-color: var(
+    --theme-switch-#{$state}--border-color--#{$type}
+  );
+  --theme-switch-#{$state}--border-color--hover: var(
+    --theme-switch-#{$state}--border-color--#{$type}--hover
+  );
+  --theme-switch-#{$state}--border-color--active: var(
+    --theme-switch-#{$state}--border-color--#{$type}--active
+  );
+}
+
+@include toggle-variant($selector: '.ix-info') {
+  @include define-toggle-vars('off', 'info');
+  @include define-toggle-vars('on', 'info');
+  @include define-toggle-vars('mixed', 'info');
+}
+
+@include toggle-variant($selector: '.ix-warning') {
+  @include define-toggle-vars('off', 'warning');
+  @include define-toggle-vars('on', 'warning');
+  @include define-toggle-vars('mixed', 'warning');
+}
+
+@include toggle-variant($selector: '.ix-invalid--required') {
+  @include define-toggle-vars('off', 'invalid');
+  @include define-toggle-vars('on', 'invalid');
+  @include define-toggle-vars('mixed', 'invalid');
+}
+
+@include toggle-variant($selector: '.ix-invalid') {
+  @include define-toggle-vars('off', 'invalid');
+  @include define-toggle-vars('on', 'invalid');
+  @include define-toggle-vars('mixed', 'invalid');
 }

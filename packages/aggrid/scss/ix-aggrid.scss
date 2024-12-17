@@ -157,5 +157,20 @@
     .ag-radio-button .ag-input-wrapper {
       color: var(--theme-color-primary);
     }
+
+    .ag-input-field-input {
+      &.focus,
+      &:focus {
+        &:not(.readonly, .read-only, .disabled, [readonly], [disabled], :read-only) {
+          outline: 1px solid var(--theme-color-focus-bdr) !important;
+          outline-offset: var(--theme-input--focus--outline-offset) !important;
+          border-color: var(--theme-input--border-color--focus) !important;
+        }
+      }
+    }
+  }
+
+  .ag-sticky-bottom {
+    display: none;
   }
 }

@@ -7,37 +7,49 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { IxInputGroup } from '@siemens/ix-react';
+import { IxInput } from '@siemens/ix-react';
 
 export default () => {
   return (
-    <form className="needs-validation m-2">
-      <IxInputGroup>
-        <span slot="input-start">Text:</span>
-        <input placeholder="Enter text" type="text" />
-      </IxInputGroup>
+    <>
+      <div>
+        <IxInput type="text" label="Username" value="MaxMuster1"></IxInput>
+      </div>
 
-      <IxInputGroup>
-        <span slot="input-start">Number:</span>
-        <input type="number" />
-        <span slot="input-end">.00</span>
-        <span slot="input-end">$</span>
-      </IxInputGroup>
+      <div>
+        <IxInput
+          type="email"
+          label="Email"
+          value="example@example.com"
+        ></IxInput>
+      </div>
 
-      <IxInputGroup>
-        <span slot="input-start">Password:</span>
-        <input placeholder="Enter password" type="password" />
-      </IxInputGroup>
+      <div>
+        <IxInput
+          type="password"
+          label="Password"
+          placeholder="Enter your password"
+          value="1234"
+        ></IxInput>
+      </div>
 
-      <IxInputGroup>
-        <span slot="input-start">Email:</span>
-        <input placeholder="example@domain.com" type="email" />
-      </IxInputGroup>
+      <div>
+        <IxInput
+          type="tel"
+          label="Telephone"
+          placeholder="Enter your phone number"
+          value="+49 123 456789"
+        ></IxInput>
+      </div>
 
-      <IxInputGroup>
-        <span slot="input-start">Telephone:</span>
-        <input placeholder="111-111-111" type="tel" />
-      </IxInputGroup>
-    </form>
+      <div>
+        <IxInput
+          type="url"
+          label="URL"
+          placeholder="Enter your URL"
+          value="https://ix.siemens.io"
+        ></IxInput>
+      </div>
+    </>
   );
 };

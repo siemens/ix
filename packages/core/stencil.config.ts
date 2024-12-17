@@ -15,15 +15,13 @@ import { sass } from '@stencil/sass';
 import { vueOutputTarget } from '@stencil/vue-output-target';
 import autoprefixer from 'autoprefixer';
 import { customComponentDocGenerator, getDevAssets } from './scripts/build/dev';
+import { storybookOutputTarget } from './scripts/build/storybook';
 
 export const config: Config = {
   tsconfig: 'tsconfig.lib.json',
   globalScript: './src/setup.ts',
   extras: {
-    appendChildSlotFix: true,
-    slotChildNodesFix: true,
     enableImportInjection: true,
-    scopedSlotTextContentFix: true,
   },
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/tests/', '/dist/'],
@@ -32,6 +30,7 @@ export const config: Config = {
     browserHeadless: 'new',
   },
   namespace: 'siemens-ix',
+  watchIgnoredRegex: [/component-doc.json/],
   globalStyle: './scss/ix.scss',
   minifyCss: false,
   plugins: [
@@ -43,6 +42,9 @@ export const config: Config = {
     }),
   ],
   outputTargets: [
+    storybookOutputTarget({
+      dist: '../storybook-docs/.storybook/define-custom-elements.ts',
+    }),
     vueOutputTarget({
       componentCorePackage: '@siemens/ix',
       proxiesFile: '../vue/src/components.ts',
@@ -50,27 +52,32 @@ export const config: Config = {
       includePolyfills: false,
       includeDefineCustomElements: false,
       excludeComponents: ['ix-playground-internal', 'ix-icon'],
+      componentModels: [
+        {
+          elements: [
+            'ix-select',
+            'ix-input',
+            'ix-textarea',
+            'ix-number-input',
+            'ix-date-input',
+          ],
+          event: 'valueChange',
+          targetAttr: 'value',
+        },
+        {
+          elements: ['ix-checkbox'],
+          event: 'checkedChange',
+          targetAttr: 'checked',
+        },
+      ],
     }),
     angularOutputTarget({
       componentCorePackage: '@siemens/ix',
       directivesProxyFile: '../angular/src/components.ts',
       directivesArrayFile: '../angular/src/declare-components.ts',
-      excludeComponents: ['ix-playground-internal', 'ix-tree', 'ix-icon'],
+      excludeComponents: ['ix-tree', 'ix-icon'],
       valueAccessorConfigs: [
-        {
-          elementSelectors:
-            'ix-select[ngModel],ix-select[formControlName],ix-select[formControl]',
-          event: 'valueChange',
-          targetAttr: 'value',
-          type: 'select',
-        },
-        {
-          elementSelectors:
-            'ix-toggle[ngModel],ix-toggle[formControlName],ix-toggle[formControl]',
-          event: 'checkedChange',
-          targetAttr: 'checked',
-          type: 'boolean',
-        },
+        /** Value accessors should not be generated */
       ],
     }),
     reactOutputTarget({
@@ -79,12 +86,7 @@ export const config: Config = {
       includeImportCustomElements: true,
       includePolyfills: false,
       includeDefineCustomElements: false,
-      excludeComponents: [
-        'ix-playground-internal',
-        'ix-tree',
-        'ix-tree-item',
-        'ix-icon',
-      ],
+      excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
     }),
     {
       type: 'dist',

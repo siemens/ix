@@ -3,22 +3,24 @@ import Playground from '@site/src/components/PlaygroundV3';
 import Props from './../../auto-generated/ix-icon-button/props.md';
 import Events from './../../auto-generated/ix-icon-button/events.md';
 
-## Examples
+## Development
 
-### Basic
+### Examples
+
+#### Basic
 
 <Playground
-  name="button-with-icon"
-  hideInitalCodePreview
-  >
-</Playground>
+name="button-with-icon"
+hideInitalCodePreview
 
-## API (ix-icon-button)
+> </Playground>
 
-### Properties
+### API (ix-icon-button)
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

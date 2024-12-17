@@ -8,10 +8,18 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { regressionTest, viewPorts } from '@utils/test';
 
 regressionTest.describe('datetime picker', () => {
   regressionTest('basic', async ({ page }) => {
+    await page.goto('datetime-picker/basic');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixels: 5,
+    });
+  });
+
+  regressionTest('mobile', async ({ page }) => {
+    await page.setViewportSize(viewPorts.sm);
     await page.goto('datetime-picker/basic');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
       maxDiffPixels: 5,

@@ -57,6 +57,10 @@
       "path": "./packages/figma-plugin"
     },
     {
+      "name": "storybook",
+      "path": "./packages/storybook-docs"
+    },
+    {
       "name": "root",
       "path": "."
     }

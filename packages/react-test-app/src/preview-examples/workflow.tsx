@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './workflow.css';
+import './workflow.scoped.css';
 
 import { IxWorkflowStep, IxWorkflowSteps } from '@siemens/ix-react';
 

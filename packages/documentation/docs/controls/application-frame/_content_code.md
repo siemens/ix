@@ -5,30 +5,31 @@ import Events from './../../auto-generated/ix-content/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
+
+### Examples
 
 The `ix-content` is usually used as layouting component on a single page.
 
-### Basic
+#### Basic
 
-<Playground 
-  name="content" 
-   
-  height="18rem" 
-  noMargin>
+<Playground
+name="content"
+
+height="18rem"
+noMargin>
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-### Slots
+#### Slots
 
 <Slots />
-

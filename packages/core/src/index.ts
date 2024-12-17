@@ -25,3 +25,11 @@ export {
   convertToRemString,
 } from './components/utils/rwd.util';
 export * from './components/utils/theme-switcher';
+export { handlePlatformHelpers, IxConfig } from './setup';
+
+export async function applyPolyfills() {
+  /**
+   * Placeholder to not break existing applications
+   * https://github.com/ionic-team/stencil/issues/5780
+   */
+}

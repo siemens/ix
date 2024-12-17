@@ -4,20 +4,22 @@ import Events from './../auto-generated/ix-card-list/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
+
+### Examples
 
 <Playground
-  height="55rem"
-  name="card-list"
-  >
-</Playground>
+height="55rem"
+name="card-list"
 
-## API
+> </Playground>
 
-### Properties
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { Locator, Page } from '@playwright/test';
 export * from './page';
 
 export const viewPorts = {
@@ -23,3 +24,23 @@ export const viewPorts = {
     width: 1920,
   },
 } as const;
+
+export const preventFormSubmission = async (formLocator: Locator) => {
+  return formLocator.evaluate((form: HTMLFormElement) =>
+    form.addEventListener('submit', (submitEvent) => {
+      submitEvent.preventDefault();
+    })
+  );
+};
+
+export const getFormValue = async (
+  formLocator: Locator,
+  key: string,
+  page: Page
+) => {
+  await page.waitForTimeout(100);
+  return formLocator.evaluate((form: HTMLFormElement, key: string) => {
+    const formData = new FormData(form);
+    return formData.get(key);
+  }, key);
+};

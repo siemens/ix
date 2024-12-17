@@ -6,38 +6,40 @@ import EventsItem from './../../auto-generated/ix-menu-about-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Basic
+### Examples
+
+#### Basic
 
 <Playground
-  name="about-and-legal" 
-  height="30rem" 
-  width="100%" 
-  noMargin 
-  >
-</Playground>
+name="about-and-legal"
+height="30rem"
+width="100%"
+noMargin
 
-### Change language of legal links
+> </Playground>
+
+#### Change language of legal links
 
 Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
 
-## API (ix-menu-about)
+### API (ix-menu-about)
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-menu-about-item)
+### API (ix-menu-about-item)
 
-### Properties
+#### Properties
 
 <PropsItem />
 
-### Events
+#### Events
 
 <EventsItem />

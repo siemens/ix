@@ -37,11 +37,12 @@ import {
   hasDropdownItemWrapperImplemented,
 } from './dropdown-controller';
 import { AlignedPlacement } from './placement';
+import { findElement } from '../utils/find-element';
 import {
   addDisposableEventListener,
   DisposableEventListener,
 } from '../utils/disposable-event-listener';
-import { ElementReference } from 'src/components/utils/element-reference';
+import { ElementReference } from '../utils/element-reference';
 
 let sequenceId = 0;
 
@@ -118,13 +119,16 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   /**
    * @internal
-   * If initialisation of this dropdown is expected to be defered submenu discovery will have to be re-run globally by the controller.
+   * If initialization of this dropdown is expected to be deferred submenu discovery will have to be re-run globally by the controller.
    * This property indicates the need for that to the controller.
    */
   @Prop() discoverAllSubmenus = false;
 
   /** @internal */
   @Prop() ignoreRelatedSubmenu = false;
+
+  /** @internal */
+  @Prop() suppressOverflowBehavior = false;
 
   /**
    * Fire event after visibility of dropdown has changed
@@ -135,11 +139,10 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
 
   private triggerElement?: Element;
   private anchorElement?: Element;
+  private arrowFocusController?: ArrowFocusController;
 
   private localUId = `dropdown-${sequenceId++}`;
   private assignedSubmenu: string[] = [];
-
-  private arrowFocusController?: ArrowFocusController;
 
   private itemObserver? = new MutationObserver(() => {
     if (this.arrowFocusController) {
@@ -320,7 +323,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
   }
 
   private async resolveElement(element: ElementReference) {
-    const el = await this.findElement(element);
+    const el = await findElement(element);
 
     return this.checkForSubmenuAnchor(el);
   }
@@ -342,41 +345,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
     }
 
     return element;
-  }
-
-  private findElement(element: ElementReference): Promise<Element | undefined> {
-    if (element instanceof Promise) {
-      return element;
-    }
-
-    if (typeof element === 'object') {
-      return Promise.resolve(element);
-    }
-
-    if (typeof element != 'string') {
-      return Promise.resolve(undefined);
-    }
-
-    const selector = `#${element}`;
-    return new Promise((resolve) => {
-      const el = document.querySelector(selector);
-      if (el !== null) {
-        return resolve(el);
-      }
-
-      const observer = new MutationObserver(() => {
-        const el = document.querySelector(selector);
-        if (el) {
-          resolve(el);
-          observer.disconnect();
-        }
-      });
-
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
-    });
   }
 
   private async resolveAnchorElement() {
@@ -582,7 +550,7 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
         class={{
           'dropdown-menu': true,
           show: this.show,
-          overflow: true,
+          overflow: !this.suppressOverflowBehavior,
         }}
         style={{
           margin: '0',

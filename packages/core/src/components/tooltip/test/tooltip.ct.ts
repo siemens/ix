@@ -23,6 +23,53 @@ test('renders', async ({ mount, page }) => {
   await expect(tooltip).toBeVisible();
 });
 
+test('renders in shadow DOM', async ({ mount, page }) => {
+  await mount(``);
+
+  await page.evaluate(() => {
+    customElements.define('test-component', class extends HTMLElement {});
+    const testComponent = document.createElement('test-component');
+    testComponent.attachShadow({ mode: 'open' });
+
+    const tooltip = document.createElement('ix-tooltip');
+    tooltip.innerHTML = 'tooltip';
+    tooltip.for = '.test';
+
+    const button = document.createElement('ix-button');
+    button.innerHTML = 'button';
+    button.classList.add('test');
+
+    document.querySelector('#mount')?.appendChild(testComponent);
+    testComponent.shadowRoot?.appendChild(button);
+    testComponent.shadowRoot?.appendChild(tooltip);
+  });
+
+  const tooltip = page.locator('ix-tooltip');
+  const button = page.locator('ix-button');
+
+  await button.hover();
+
+  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toBeVisible();
+});
+
+test('renders in slot', async ({ mount, page }) => {
+  await mount(`
+    <ix-blind>
+      <ix-tooltip for=".test">tooltip</ix-tooltip>
+      <ix-button class="test">button</ix-button>
+    </ix-blind>
+  `);
+
+  const tooltip = page.locator('ix-tooltip');
+  const button = page.locator('ix-button');
+
+  await button.hover();
+
+  await expect(tooltip).toHaveClass(/hydrated/);
+  await expect(tooltip).toBeVisible();
+});
+
 test.describe('a11y', () => {
   test('closes on ESC', async ({ mount, page }) => {
     await mount(`

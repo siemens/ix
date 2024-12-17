@@ -37,8 +37,7 @@ Please make sure to correctly add `NgxEcharts` in your module file.
 <Playground
 height="40rem"
 name="echarts"
-noMargin
->
+noMargin>
 </Playground>
 
 ## Empty state
@@ -46,6 +45,5 @@ noMargin
 <Playground
 height="40rem"
 name="echarts-empty-state"
-noMargin
-examplesByName>
+noMargin>
 </Playground>

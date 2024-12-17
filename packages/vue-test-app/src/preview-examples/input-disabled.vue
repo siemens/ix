@@ -7,15 +7,14 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { IxInput } from '@siemens/ix-vue';
+</script>
 
 <template>
-  <form className="needs-validation m-2">
-    <input
-      value="Some example text"
-      placeholder="Enter text here"
-      type="text"
-      disabled
-    />
-  </form>
+  <IxInput
+    placeholder="Some placeholder"
+    value="Some example text"
+    disabled
+  ></IxInput>
 </template>
