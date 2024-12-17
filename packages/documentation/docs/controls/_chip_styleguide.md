@@ -1,6 +1,6 @@
 ## Guidelines
 
-Typically chips contain a concise label and sometimes an icon, and they are clickable and closable.
+Chips typically contain a concise label and sometimes an icon, and they are both clickable and closable.
 
 ![Chip overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1149-41643&mode=design&t=ruQOzpPQJMKwnk8f-1)
 

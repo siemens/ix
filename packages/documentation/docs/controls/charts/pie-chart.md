@@ -17,7 +17,7 @@ examplesByName>
 </Playground>
 
 ### Donut chart
-Donut charts are a variation of pie charts. They feature a central hole, giving them a distinctive “donut” shape. This design not only makes them visually appealing but also allows for additional information or labels to be placed in the center.
+Donut charts are a variation of pie charts. They feature a central hole, giving them a distinctive 'donut' shape. This design not only makes them visually appealing but also allows for additional information or labels to be placed in the center.
 <Playground
 height="40rem"
 name="echarts-circle"

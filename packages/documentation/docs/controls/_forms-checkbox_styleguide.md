@@ -1,6 +1,6 @@
 ## Guidelines
 
-Checkboxes are commonly used when there are multiple options that can be selected or to easily enable or disable a setting. They are often utilized in forms where users can choose multiple options, such as selecting items or categories that apply to a specific product or service.
+Checkboxes are commonly used when there are multiple options that can be selected or used to easily enable or disable a setting. They are often utilized in forms where users can choose multiple options, such as selecting items or categories that apply to a specific product or service.
 
 ![Checkbox anatomy](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3364-8247&t=VCAAFzKIYCDb7nIX-4)
 

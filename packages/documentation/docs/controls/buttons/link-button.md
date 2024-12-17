@@ -13,7 +13,7 @@ import Tags from './../../auto-generated/ix-link-button/tags.md';
 
 <Tags />
 <!-- introduction start -->
-Link buttons lead users to another location within the application or outside of it and  contain a chevron and a text label.
+Link buttons take users to another location either within or outside the application and contain a chevron and a text label.
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

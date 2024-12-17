@@ -9,7 +9,7 @@ Line charts can reveal patterns or fluctuations in data, making it easier for us
 ## Examples
 
 ### Basic line chart
-Basic line charts use a series of data points connected by straight lines to show changes in values, making it easy to identify patterns, trends, and fluctuations. They are particularly effective for displaying continuous data, such as stock prices, temperature changes, or sales figures. Their simplicity and clarity make them a popular choice for dashboards, where understanding data trends is essential.
+Basic line charts use a series of data points connected by straight lines to show changes in values, making it easy to identify patterns, trends and fluctuations. They are particularly effective for displaying continuous data, such as stock prices, temperature changes or sales figures. Their simplicity and clarity make them a popular choice for dashboards where understanding data trends is essential.
 <Playground
 height="40rem"
 name="echarts-line-simple"
@@ -27,7 +27,7 @@ examplesByName>
 </Playground>
 
 ### Advanced line chart
-Advanced line charts are an enhanced version of basic line charts, designed to provide deeper insights and more detailed analysis of data trends. These charts often incorporate features such as multiple data series, interactive elements, and additional annotations to highlight key points or events. Advanced line charts can also include trend lines, moving averages, and other statistical tools to help identify patterns and correlations.
+Advanced line charts are an enhanced version of basic line charts, designed to provide deeper insights and more detailed analysis of data trends. These charts often incorporate features such as multiple data series, interactive elements and additional annotations to highlight key points or events. Advanced line charts can also include trend lines, moving averages and other statistical tools to help identify patterns and correlations.
 <Playground
 height="40rem"
 name="echarts-line-advanced"

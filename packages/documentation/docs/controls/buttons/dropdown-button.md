@@ -13,7 +13,7 @@ import Tags from './../../auto-generated/ix-dropdown-button/tags.md'
 
 <Tags/>
 <!-- introduction start -->
-Dropdown buttons reveal a list of actions on click on a button.
+Dropdown buttons reveal a list of actions when selected.
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

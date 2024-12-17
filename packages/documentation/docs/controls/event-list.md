@@ -9,7 +9,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 # Event list
 
 <!-- introduction start -->
-Event lists display a list of any type of elements with additional details.
+Event lists display a list of any type of element with additional details.
 <!-- introduction end -->
 
 ## Examples

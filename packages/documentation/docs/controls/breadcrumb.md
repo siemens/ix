@@ -5,7 +5,7 @@ import DocsCode from './\_breadcrumb_code.md'
 
 # Breadcrumb
 <!-- introduction start -->
-Breadcrumbs provide a clear path of navigation within an application.
+Breadcrumbs provide a clear navigation path within an application.
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

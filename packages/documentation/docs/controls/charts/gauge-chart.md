@@ -2,13 +2,13 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Gauge chart
 <!-- introduction start -->
-Gauge charts display information as a reading on a dial. They are particularly effective for showing progress towards a goal, performance metrics, or any data that falls within a range.
+Gauge charts display information as a reading on a dial. They are particularly effective for showing progress towards a goal, performance metrics or any data that falls within a range.
 <!-- introduction end -->
 The chart consists of a circular arc with a needle pointing to a specific value, making it easy to quickly assess the status or performance level. Gauge charts are commonly used in dashboards to provide an at-a-glance view of key performance indicators (KPIs).
 ## Examples
 
 ### Performance metrics gauge
-Performance metrics gauge charts, also known as dial or speedometer charts, are an effective way to visualize key performance indicators (KPIs) and other metrics. These charts use a needle or pointer to indicate the current value of a metric within a predefined range, often segmented into different zones (e.g., red for poor performance, green for good performance). This design allows for a quick and intuitive understanding of performance levels.
+Performance metrics gauge charts, also known as dial or speedometer charts, are an effective way to visualize key performance indicators (KPIs) and other metrics. These charts use a needle or pointer to indicate the current value of a metric within a predefined range, often segmented into different zones, e.g. red for poor performance, green for good performance. This design allows for a quick and intuitive understanding of performance levels.
 <Playground
 height="25rem"
 name="echarts-gauge"
@@ -26,7 +26,7 @@ examplesByName>
 </Playground>
 
 ### Progress arc gauge
-Progress arc charts, also known as semi-circular progress bars, are a dynamic way to visualize data and track progress. Unlike (full) circle charts, progress arc charts use a semi-circle or arc to represent the percentage of completion. This design can be particularly effective in dashboards and user interfaces where space is limited, yet a clear and engaging visual representation is needed. 
+Progress arc charts, also known as semi-circular progress bars, are a dynamic way to visualize data and track progress. Unlike full circle charts, progress arc charts use a semi-circle or arc to represent the percentage of completion. This design can be particularly effective in dashboards and user interfaces where space is limited, yet a clear and engaging visual representation is needed. 
 <Playground
 height="30rem"
 name="echarts-progress-arc"
