@@ -3103,6 +3103,10 @@ export namespace Components {
          */
         "i18nUploadFile": string;
         /**
+          * Label for select file text
+         */
+        "i18nSelectFileText": string;
+        /**
           * Will be used by state = UploadFileState.LOADING
          */
         "loadingText": string;
@@ -8357,6 +8361,10 @@ declare namespace LocalJSX {
           * Label for upload file button
          */
         "i18nUploadFile"?: string;
+        /**
+          * Label for select file text
+         */
+        "i18nSelectFileText"?: string;
         /**
           * Will be used by state = UploadFileState.LOADING
          */
