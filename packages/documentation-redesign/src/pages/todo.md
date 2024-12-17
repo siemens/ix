@@ -7,7 +7,7 @@
   - [ ] Change Theme of preview
   - [x] Toggle between light and dark
 - Component Markdowns
-  - [ ] Tags (see Migration Tagging)
+  - [x] Tags (see Migration Tagging)
   - [ ] Deprecated links (unlisted content)
   - [ ] Unlisted content missing
   - [ ] Create markdowns for (migration not possible) '_divider.md',
@@ -16,7 +16,7 @@
   - [ ] Create markdowns for (migration not possible) 'modal',
   - [ ] Create markdowns for (migration not possible) '_toast',
   - [ ] Create markdowns for (migration not possible) '_modal',
-  - [ ] Create markdowns for (migration not possible) 'toggle-buttons',
+  - [x] Create markdowns for (migration not possible) 'toggle-buttons',
   - [ ] Create markdowns for (migration not possible) '_forms-toggle_styleguide.md',
   - [ ] Create markdowns for (migration not possible) 'forms',
 - API Table
@@ -24,7 +24,7 @@
 - Migration
   - [ ] Headline levels not same causing issues e.g blind
   - [x] Component introduction sentence
-  - [ ] Migrate Tagging
+  - [x] Migrate Tagging
 - Navbar
   - [ ] Search
   - [ ] Support und Demo entry (?)

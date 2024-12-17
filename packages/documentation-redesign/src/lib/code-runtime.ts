@@ -27,9 +27,7 @@ export async function getVueRuntime(baseUrl: string) {
   });
 
   await Promise.all(runtime$);
-  const globalCss = await docusaurusFetch(
-    `${baseUrl}auto-generated/previews/vue/global.css`
-  );
+  const globalCss = await docusaurusFetch(`${baseUrl}/vue/global.css`);
   runtime['src/styles/global.css'] = globalCss;
   return runtime;
 }
@@ -56,9 +54,7 @@ export async function getReactRuntime(baseUrl: string) {
   });
 
   await Promise.all(runtime$);
-  const globalCss = await docusaurusFetch(
-    `${baseUrl}auto-generated/previews/react/global.css`
-  );
+  const globalCss = await docusaurusFetch(`${baseUrl}/react/global.css`);
   runtime['src/styles/global.css'] = globalCss;
   return runtime;
 }
@@ -107,9 +103,7 @@ export async function getHTMLRuntime(baseUrl: string) {
   runtime['src/init.js'] = runtime['src/main.js'];
   delete runtime['src/main.js'];
 
-  const globalCss = await docusaurusFetch(
-    `${baseUrl}auto-generated/previews/web-components/global.css`
-  );
+  const globalCss = await docusaurusFetch(`${baseUrl}/html/global.css`);
   runtime['src/styles/global.css'] = globalCss;
   return runtime;
 }

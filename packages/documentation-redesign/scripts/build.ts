@@ -166,7 +166,7 @@ async function generatePlaygroundMarkdown(extendedPlayground: string[] = []) {
     }
 
     if (fs.existsSync(path.join(__reactTestApp, `${name}.css`))) {
-      reactFiles[`${name}.css`] = `react/${name}.css`;
+      reactFiles[`${name}.css`] = `react/${name}.scoped.css`;
     }
 
     if (fs.existsSync(path.join(__angularTestApp, `${name}.ts`))) {

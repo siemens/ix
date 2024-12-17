@@ -39,6 +39,7 @@ function PreviewActions(props: {
 }
 
 function CodeActions(props: {
+  mount: string;
   hideFrameworkSelection: boolean;
   framework: FrameworkTypes;
   files: Record<string, string>;
@@ -48,7 +49,11 @@ function CodeActions(props: {
     <BrowserOnly>
       {() => (
         <>
-          <OpenStackblitz framework={props.framework} files={props.files} />
+          <OpenStackblitz
+            framework={props.framework}
+            files={props.files}
+            mount={props.mount}
+          />
           {!props.hideFrameworkSelection && (
             <FrameworkSelection onFrameworkChange={props.onFrameworkChange} />
           )}
@@ -115,6 +120,7 @@ export default function Playground(props: {
             />
           ) : (
             <CodeActions
+              mount={props.name}
               hideFrameworkSelection={!!props.onlyFramework}
               onFrameworkChange={setFramework}
               framework={framework}

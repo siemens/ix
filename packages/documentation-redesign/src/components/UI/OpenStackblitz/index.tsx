@@ -14,6 +14,7 @@ import { openStackBlitz } from '@site/src/lib/stackblitz';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
 
 export default function OpenStackblitz(props: {
+  mount: string;
   framework: FrameworkTypes;
   files: Record<string, string>;
 }) {
@@ -25,7 +26,7 @@ export default function OpenStackblitz(props: {
         openStackBlitz({
           baseUrl,
           framework: props.framework,
-          name: 'example',
+          name: props.mount,
           sourcePath: props.files,
           version: 'latest',
         });
