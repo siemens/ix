@@ -157,17 +157,15 @@ export class MenuCategory {
       return;
     }
 
-    for (let i = 0; i < (mutations.length ?? 0); i++) {
-      const mutation = mutations[i];
+    for (const mutation of mutations ?? []) {
       if (
         mutation.attributeName === 'class' &&
-        mutation.target instanceof HTMLElement
+        mutation.target instanceof HTMLElement &&
+        mutation.target.classList.contains('active')
       ) {
-        if (mutation.target.classList.contains('active')) {
-          this.showItems = true;
-          this.onExpandCategory(true);
-          return;
-        }
+        this.showItems = true;
+        this.onExpandCategory(true);
+        return;
       }
     }
   }
