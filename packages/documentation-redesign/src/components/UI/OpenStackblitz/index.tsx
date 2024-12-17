@@ -12,6 +12,7 @@ import { iconElectricalEnergyFilled } from '@siemens/ix-icons/icons';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { openStackBlitz } from '@site/src/lib/stackblitz';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export default function OpenStackblitz(props: {
   mount: string;
@@ -21,19 +22,23 @@ export default function OpenStackblitz(props: {
   const baseUrl = useBaseUrl('/demo/v2/');
 
   return (
-    <Button
-      onClick={() => {
-        openStackBlitz({
-          baseUrl,
-          framework: props.framework,
-          name: props.mount,
-          sourcePath: props.files,
-          version: 'latest',
-        });
-      }}
-    >
-      {React.createElement('ix-icon', { name: iconElectricalEnergyFilled })}
-      Open Stackblitz
-    </Button>
+    <BrowserOnly>
+      {() => (
+        <Button
+          onClick={() => {
+            openStackBlitz({
+              baseUrl,
+              framework: props.framework,
+              name: props.mount,
+              sourcePath: props.files,
+              version: 'latest',
+            });
+          }}
+        >
+          {React.createElement('ix-icon', { name: iconElectricalEnergyFilled })}
+          Open Stackblitz
+        </Button>
+      )}
+    </BrowserOnly>
   );
 }

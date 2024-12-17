@@ -6,6 +6,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+import { escapeMarkdown } from './escape';
+
 export function convertDocsTagsToTSXElement(
   tagName: string,
   docsTags: {
@@ -15,9 +18,14 @@ export function convertDocsTagsToTSXElement(
 ) {
   return docsTags.map((tag) => {
     const { name, text } = tag;
+    const escapedText = escapeMarkdown(text).replace(/`/g, '\\`');
     let template = '';
     if (name === 'since') {
-      template = `<ApiTableSinceTag message="${text}" />`;
+      template = `<ApiTableSinceTag message={\`${escapedText}\`} />`;
+    }
+
+    if (name === 'deprecated') {
+      template = `<ApiTableDeprecatedTag message={\`${escapedText}\`} />`;
     }
 
     if (template === '') {

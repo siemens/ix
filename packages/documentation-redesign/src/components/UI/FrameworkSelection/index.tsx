@@ -19,8 +19,15 @@ import {
 } from '@site/src/hooks/use-framework';
 import React, { useEffect, useRef } from 'react';
 import Button from '../Button';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export default function (props: {
+  onFrameworkChange?: (framework: FrameworkTypes) => void;
+}) {
+  return <BrowserOnly>{() => <FrameworkSelection {...props} />}</BrowserOnly>;
+}
+
+function FrameworkSelection(props: {
   onFrameworkChange?: (framework: FrameworkTypes) => void;
 }) {
   const { framework, setFramework } = useFramework();

@@ -46,20 +46,16 @@ function CodeActions(props: {
   onFrameworkChange: (framework: FrameworkTypes) => void;
 }) {
   return (
-    <BrowserOnly>
-      {() => (
-        <>
-          <OpenStackblitz
-            framework={props.framework}
-            files={props.files}
-            mount={props.mount}
-          />
-          {!props.hideFrameworkSelection && (
-            <FrameworkSelection onFrameworkChange={props.onFrameworkChange} />
-          )}
-        </>
+    <>
+      <OpenStackblitz
+        framework={props.framework}
+        files={props.files}
+        mount={props.mount}
+      />
+      {!props.hideFrameworkSelection && (
+        <FrameworkSelection onFrameworkChange={props.onFrameworkChange} />
       )}
-    </BrowserOnly>
+    </>
   );
 }
 
