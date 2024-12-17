@@ -167,7 +167,7 @@ Always consider whether necessary
 
 <span class="m-2">
 <Guideline do label='Tuesday: no data'></Guideline>
-<Guideline do={false} label='Tuesday: no data'></Guideline>
+<Guideline do={false} label='Tuesday:no data'></Guideline>
 </span>
 
 <span class="m-2">
