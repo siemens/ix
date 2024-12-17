@@ -9,10 +9,11 @@
     will-change: initial;
     height: 100vh;
     --ifm-navbar-height: 0;
-    // background-color: var(--theme-color-1);
   }
 
-  .theme-doc-sidebar-item-category:not(:last-child) {
+  .theme-doc-sidebar-item-category:not(
+      .theme-doc-sidebar-item-category-level-2
+    ):not(:last-child) {
     margin-bottom: 2rem;
   }
 

@@ -6,7 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { iconChevronDownSmall, iconShield } from '@siemens/ix-icons/icons';
+import {
+  iconChevronDownSmall,
+  iconCode,
+  iconShield,
+} from '@siemens/ix-icons/icons';
 import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import {
   FrameworkTypes,
@@ -29,7 +33,7 @@ export default function (props: {
     <>
       <Button ref={ref}>
         {React.createElement('ix-icon', {
-          name: iconShield,
+          name: iconCode,
         })}
         {getDisplayNameFrameworkTypes(framework)}{' '}
         {React.createElement('ix-icon', {
