@@ -12,18 +12,12 @@ import clsx from 'clsx';
 
 export function ApiTableDeprecatedTag(props: { message: string }) {
   return (
-    <div className={styles.ApiTableTag}>
-      <div className={clsx(styles.Tag, styles['Tag--Deprecated'])}>
-        Deprecated {props.message}
-      </div>
+    <div className={clsx(styles.Tag, styles['Tag--Deprecated'])}>
+      Deprecated {props.message}
     </div>
   );
 }
 
 export function ApiTableSinceTag(props: { message: string }) {
-  return (
-    <div className={styles.ApiTableTag}>
-      <div className={styles.Tag}>Since {props.message}</div>
-    </div>
-  );
+  return <div className={styles.Tag}>Since {props.message}</div>;
 }

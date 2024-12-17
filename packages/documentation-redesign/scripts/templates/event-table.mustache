@@ -1,28 +1,40 @@
-{{#events}}
-#### {{ name }}
-<table className="table-auto">
-  <tbody>
-    {{#name}}
-    <tr>
-      <td>Name</td>
-      <td><code className="p-1">{{ name }}</code></td>
-    </tr>
-    {{/name}}
-    <tr>
-      <td>Event</td>
-      <td><code className="p-1">{ `{{ event }}` }</code></td>
-    </tr>
-    {{#detail}}
-    <tr>
-      <td>Detail</td>
-      <td><code className="p-1">{ `{{ detail }}` }</code></td>
-    </tr>
-    {{/detail}}
-    <tr>
-      <td>Description</td>
-      <td>{ `{{ docs }}` }</td>
-    </tr>
-  </tbody>
-</table>
-{{/events}}
+import {ApiTableSinceTag, ApiTableDeprecatedTag} from '@site/src/components/ApiTableTag';
+import FrameworkSelection from '@site/src/components/UI/FrameworkSelection';
 
+{{#events}}
+<div className="api-table container mx-auto mb-8">
+  <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
+    <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+      <div className="font-bold">{{ event }}</div>
+      <div className="flex items-center ml-auto gap-2">
+      {{#docsTags}}
+        {{{ rTag }}}
+      {{/docsTags}}
+        <FrameworkSelection />
+      </div>
+    </div>
+
+    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
+        Description
+      </div>
+      <div className="p-4 w-auto">{ `{{ docs }}` }</div>
+    </div>
+
+    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
+        Event
+      </div>
+      <div className="p-4 w-auto"><code className="p-1">{ `{{ event }}` }</code></div>
+    </div>
+
+    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
+        Detail
+      </div>
+      <div className="p-4 w-auto"><code className="p-1">{ `{{ detail }}` }</code></div>
+    </div>
+
+  </div>
+</div>
+{{/events}}

@@ -3,7 +3,7 @@
 ```
 - Playground
   - [x] Stackblitz source code fetching
-  - [ ] Stackblitz root file selection for example
+  - [x] Stackblitz root file selection for example
   - [ ] Change Theme of preview
   - [x] Toggle between light and dark
 - Component Markdowns

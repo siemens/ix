@@ -21,13 +21,13 @@ import React, { useEffect, useRef } from 'react';
 import Button from '../Button';
 
 export default function (props: {
-  onFrameworkChange: (framework: FrameworkTypes) => void;
+  onFrameworkChange?: (framework: FrameworkTypes) => void;
 }) {
   const { framework, setFramework } = useFramework();
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    props.onFrameworkChange(framework);
+    props.onFrameworkChange && props.onFrameworkChange(framework);
   }, [framework]);
   return (
     <>
