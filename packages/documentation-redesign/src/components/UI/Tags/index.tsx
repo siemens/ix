@@ -9,3 +9,4 @@
 export { SinceTag } from './since';
 export { DeprecatedTag } from './deprecated';
 export { RedirectTag } from './redirect';
+export { FormReady } from './form-ready';

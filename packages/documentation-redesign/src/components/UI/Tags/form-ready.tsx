@@ -9,10 +9,10 @@
 import BaseTag from './baseTag';
 import styles from './base.module.css';
 
-export function SinceTag({ message }: { message: string }) {
+export function FormReady({ message }: { message: string }) {
   return (
     <BaseTag>
-      <div className={styles.Since}>Since {message}</div>
+      <div className={styles.FormReady}>Form ready since {message}</div>
     </BaseTag>
   );
 }

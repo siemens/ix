@@ -1,3 +1,9 @@
-{{#tags}}
-<div className="component-tag component-tag-{{name}}">{{text}}</div>
-{{/tags}}
+import {
+  SinceTag,
+  DeprecatedTag,
+  FormReady,
+} from '@site/src/components/UI/Tags';
+
+{{#docsTags}}
+{{{ rTag }}}
+{{/docsTags}}

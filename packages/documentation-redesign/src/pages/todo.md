@@ -8,8 +8,8 @@
   - [x] Toggle between light and dark
 - Component Markdowns
   - [x] Tags (see Migration Tagging)
-  - [ ] Deprecated links (unlisted content)
-  - [ ] Unlisted content missing
+  - [x] Deprecated links (unlisted content)
+  - [x] Unlisted content missing
   - [ ] Create markdowns for (migration not possible) '_divider.md',
   - [ ] Create markdowns for (migration not possible) '_category_.json',
   - [ ] Create markdowns for (migration not possible) 'toast',

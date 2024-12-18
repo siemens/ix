@@ -6,10 +6,31 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export function RedirectTag({ message }: { message: string; link: string }) {
+import React from 'react';
+import styles from './base.module.css';
+import BaseTag from './baseTag';
+import { iconOpenExternal } from '@siemens/ix-icons/icons';
+import clsx from 'clsx';
+
+export function RedirectTag({
+  link,
+  children,
+}: {
+  link: string;
+  children?: string;
+}) {
   return (
-    <div>
-      Redirect {message} {link}
-    </div>
+    <BaseTag>
+      <div className={clsx(styles.Redirect)}>
+        {React.createElement('ix-icon', {
+          name: iconOpenExternal,
+          color: 'color-primary',
+          size: '16',
+        })}
+        <a href={link} target="_blank" rel="noreferrer" className={styles.Link}>
+          {children}
+        </a>
+      </div>
+    </BaseTag>
   );
 }

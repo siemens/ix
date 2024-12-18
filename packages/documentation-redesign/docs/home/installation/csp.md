@@ -4,7 +4,7 @@ sidebar_title: Content Security Policy Nonces
 title: Content Security Policy Nonces
 ---
 
-import { SinceTag } from '@site/src/components/UI/Tagss';
+import { SinceTag } from '@site/src/components/UI/Tags';
 import AngularIcon from '@site/static/img/angular.svg';
 import ReactIcon from '@site/static/img/react.svg';
 import WebComponentsIcon from '@site/static/img/webcomponents.svg';

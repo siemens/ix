@@ -85,7 +85,12 @@ export function ComponentDocItemLayout({ children }: Props): JSX.Element {
 
   return (
     <>
-      <HeroHeader title={title} description={description} tabs={tabs} />
+      <HeroHeader
+        title={title}
+        description={description}
+        tabs={tabs}
+        frontMatter={metadata.frontMatter}
+      />
       <div className={styles.Row}>
         {/* <div className="col"> */}
         {/* <ContentVisibility metadata={metadata} /> */}

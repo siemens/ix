@@ -7,10 +7,7 @@ import { useHistory, useLocation } from '@docusaurus/router';
 import useSearchParams from '@site/src/utils/hooks/useSearchParams';
 import ReadMore from '@site/src/components/ReadMore';
 import { useCallback, useEffect, useState } from 'react';
-import {
-  ApiTableDeprecatedTag,
-  ApiTableSinceTag,
-} from '@site/src/components/ApiTableTag';
+import { RedirectTag } from '@site/src/components/UI/Tags';
 
 function Tabs({ children }) {
   return <div className={styles.Tabs}>{children}</div>;
@@ -50,14 +47,23 @@ export default function HeroHeader(props: {
   title: string;
   description: string;
   tabs: string[];
+  frontMatter: any;
 }) {
-  const { description, tabs, title } = props;
+  const { description, tabs, title, frontMatter } = props;
+
   return (
     <>
       <h1 className={styles.sticky_h1}>{title}</h1>
 
       <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
         <ReadMore>{description}</ReadMore>
+        {frontMatter.deprecated &&
+          Array.from(frontMatter.deprecated) &&
+          frontMatter.deprecated.map((link: string) => (
+            <RedirectTag key={link} link={link}>
+              Show deprecated version
+            </RedirectTag>
+          ))}
       </div>
 
       {tabs.length > 0 && (
