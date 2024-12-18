@@ -17,9 +17,9 @@ export async function fetchSourceForReact(baseUrl: string, name: string) {
   snippets[`${name}.tsx`] = tsFile;
 
   try {
-    const styleFile = await docusaurusFetch(`${baseUrl}/${name}.css`);
+    const styleFile = await docusaurusFetch(`${baseUrl}/${name}.scoped.css`);
     if (styleFile) {
-      snippets[`./${name}.css`] = styleFile;
+      snippets[`./${name}.scoped.css`] = styleFile;
     }
   } catch (e) {}
 
