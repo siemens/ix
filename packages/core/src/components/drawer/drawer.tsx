@@ -145,7 +145,7 @@ export class Drawer {
         opacity: [0, 1],
         easing: 'easeOutSine',
         begin: () => {
-          el.classList.add('test');
+          el.classList.add('toggle');
         },
       });
     }
