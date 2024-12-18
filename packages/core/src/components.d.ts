@@ -1915,15 +1915,15 @@ export namespace Components {
         /**
           * Icon of the category
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Display name of the category
          */
-        "label": string;
+        "label"?: string;
         /**
           * Show notification count on the category
          */
-        "notifications": number;
+        "notifications"?: number;
     }
     interface IxMenuExpandIcon {
         /**

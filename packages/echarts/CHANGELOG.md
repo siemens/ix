@@ -1,5 +1,11 @@
 # @siemens/ix-echarts
 
+## 2.3.1
+
+### Patch Changes
+
+- [#1604](https://github.com/siemens/ix/pull/1604) [`7ef10e3f6d`](https://github.com/siemens/ix/commit/7ef10e3f6d71f3067b068c5d1f3707f1b3e8cfcd) Thanks [@silviowolf](https://github.com/silviowolf)! - Update **ECharts** theme chart colors.
+
 ## 2.3.0
 
 ### Minor Changes
