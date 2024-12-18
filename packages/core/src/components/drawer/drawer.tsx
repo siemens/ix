@@ -121,24 +121,34 @@ export class Drawer {
     }
   }
 
-  private slideOutRight(el: HTMLElement) {
-    anime({
-      targets: el,
-      duration: Drawer.duration,
-      translateX: [0, '16rem'],
-      opacity: [1, 0],
-      easing: 'easeInSine',
-    });
+  private slideOutRight(el?: HTMLElement) {
+    if (el) {
+      anime({
+        targets: el,
+        duration: Drawer.duration,
+        translateX: [0, '16rem'],
+        opacity: [1, 0],
+        easing: 'easeInSine',
+        complete: () => {
+          el.classList.remove('toggle');
+        },
+      });
+    }
   }
 
-  private slideInRight(el: HTMLElement) {
-    anime({
-      targets: el,
-      duration: Drawer.duration,
-      translateX: ['16rem', 0],
-      opacity: [0, 1],
-      easing: 'easeOutSine',
-    });
+  private slideInRight(el?: HTMLElement) {
+    if (el) {
+      anime({
+        targets: el,
+        duration: Drawer.duration,
+        translateX: ['16rem', 0],
+        opacity: [0, 1],
+        easing: 'easeOutSine',
+        begin: () => {
+          el.classList.add('toggle');
+        },
+      });
+    }
   }
 
   componentDidLoad() {
@@ -150,9 +160,6 @@ export class Drawer {
       <Host
         class={{
           'drawer-container': true,
-          toggle: this.show,
-          'full-height': this.fullHeight,
-
         }}
         style={{
           width: this.width === 'auto' ? this.width : `${this.width}rem`,

@@ -24,4 +24,11 @@ regressionTest.describe('drawer', () => {
     await page.waitForTimeout(2000);
     expect(await page.screenshot()).toMatchSnapshot();
   });
+
+  regressionTest('input-group', async ({ page }) => {
+    await page.goto('drawer/input-group');
+    await page.locator('ix-button').click();
+    await page.waitForTimeout(2000);
+    expect(await page.screenshot()).toMatchSnapshot();
+  });
 });
