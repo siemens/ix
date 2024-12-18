@@ -19,8 +19,11 @@
   - [x] Create markdowns for (migration not possible) 'toggle-buttons',
   - [ ] Create markdowns for (migration not possible) '_forms-toggle_styleguide.md',
   - [ ] Create markdowns for (migration not possible) 'forms',
+  - [ ] Fix broken links after markdowns are created
+  - [ ] Figma plugin not showing images even if executed
 - API Table
   - [x] Reorganize props, events and slots table
+  - [ ] Make props, events and slots linkable
   - [ ] Create scss file for props, event, slots table
   - [ ] Show attribute/event usage depending on selected framework (tbd)
 - Migration
@@ -37,4 +40,6 @@
   - [ ] Fonts (rename to typography) preview
   - [ ] Borders preview
   - [ ] Shadows preview
+- [ ] Implement redirection of old links
+
 ```
