@@ -4,7 +4,7 @@ sidebar_title: Content Security Policy Nonces
 title: Content Security Policy Nonces
 ---
 
-import { ApiTableSinceTag } from '@site/src/components/ApiTableTag';
+import { SinceTag } from '@site/src/components/UI/Tagss';
 import AngularIcon from '@site/static/img/angular.svg';
 import ReactIcon from '@site/static/img/react.svg';
 import WebComponentsIcon from '@site/static/img/webcomponents.svg';
@@ -12,7 +12,7 @@ import VueIcon from '@site/static/img/vue.svg';
 
 # Content Security Policy Nonces
 
-<ApiTableSinceTag message="1.5.0" />
+<SinceTag message="1.5.0" />
 
 In order to prevent certain XSS (Cross-Site Scripting) attacks a [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) can be implemented.
 Depending on the CSP configuration in place inline styles and scripts can be forbidden.

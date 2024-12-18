@@ -2,16 +2,22 @@ import Properties from './props.mdx';
 import Events from './events.mdx';
 import Slots from './slots.mdx';
 
-### API ({{ tag }})
+#### {{ tag }}
 
-#### Properties
+{{#hasProps}}
+##### Properties
 
 <Properties />
+{{/hasProps}}
 
-#### Events
+{{#hasEvents}}
+##### Events
 
 <Events />
+{{/hasEvents}}
 
-#### Slot
+{{#hasSlots}}
+##### Slot
 
 <Slots />
+{{/hasSlots}}

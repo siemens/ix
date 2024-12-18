@@ -284,9 +284,10 @@ async function generateApiMarkdown() {
   const tagsTemplate = fs.readFileSync(__tagsTemplate, 'utf-8');
 
   for (const component of components) {
+    const { props, events, slots } = component;
     const propertyOutput = Mustache.render(propertyTemplate, {
       tag: component.tag,
-      props: component.props.map((prop) => ({
+      props: props.map((prop) => ({
         ...prop,
         docsTags: convertDocsTagsToTSXElement(component.tag, prop.docsTags),
         docs: prop.docs.replace(/\n/g, ''),
@@ -295,20 +296,26 @@ async function generateApiMarkdown() {
 
     const eventOutput = Mustache.render(eventTemplate, {
       tag: component.tag,
-      events: component.events.map((event) => ({
+      events: events.map((event) => ({
         ...event,
         docsTags: convertDocsTagsToTSXElement(component.tag, event.docsTags),
       })),
     });
 
     const slotOutput = Mustache.render(slotTemplate, {
-      slots: component.slots.map((tag) => ({
+      slots: slots.map((tag) => ({
         tag: tag,
         docsTags: convertDocsTagsToTSXElement(component.tag, []),
       })),
     });
 
-    const apiOutput = Mustache.render(apiTemplate, { tag: component.tag });
+    const apiOutput = Mustache.render(apiTemplate, {
+      tag: component.tag,
+      hasSlots: slots.length > 0,
+      hasEvents: events.length > 0,
+      hasProps: props.length > 0,
+    });
+
     const tagsOutput = Mustache.render(tagsTemplate, {
       tags: component.docsTags,
     });

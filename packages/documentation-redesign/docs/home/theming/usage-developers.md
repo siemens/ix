@@ -91,7 +91,7 @@ import '@siemens/ix/dist/siemens-ix/theme/classic-dark.css';
 
 ## Working with themes during runtime
 
-<!-- <ApiTableSinceTag message="1.3.0" />
+<!-- <SinceTag message="1.3.0" />
 
 <PlaygroundV3 name="theme-switcher" height="15rem">
 </PlaygroundV3> -->

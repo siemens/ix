@@ -21,11 +21,11 @@ export function convertDocsTagsToTSXElement(
     const escapedText = escapeMarkdown(text).replace(/`/g, '\\`');
     let template = '';
     if (name === 'since') {
-      template = `<ApiTableSinceTag message={\`${escapedText}\`} />`;
+      template = `<SinceTag message={\`${escapedText}\`} />`;
     }
 
     if (name === 'deprecated') {
-      template = `<ApiTableDeprecatedTag message={\`${escapedText}\`} />`;
+      template = `<DeprecatedTag message={\`${escapedText}\`} />`;
     }
 
     if (template === '') {

@@ -21,6 +21,8 @@
   - [ ] Create markdowns for (migration not possible) 'forms',
 - API Table
   - [x] Reorganize props, events and slots table
+  - [ ] Create scss file for props, event, slots table
+  - [ ] Show attribute/event usage depending on selected framework (tbd)
 - Migration
   - [ ] Headline levels not same causing issues e.g blind
   - [x] Component introduction sentence
