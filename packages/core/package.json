@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "2.6.0",
+  "version": "2.6.1",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
