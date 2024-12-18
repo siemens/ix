@@ -45,12 +45,5 @@ SPDX-License-Identifier: MIT
   </head>
   <body>
     <div id="mount"></div>
-    <script>
-      const searchParams = new URLSearchParams(location.search);
-      if (searchParams.has('theme')) {
-        const theme = searchParams.get('theme');
-        document.body.classList.add(theme);
-      }
-    </script>
   </body>
 </html>
