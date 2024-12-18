@@ -3,8 +3,48 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import figmaPlugin from 'figma-plugin';
 import path from 'path';
-
+import fs from 'fs';
 const baseUrl = process.env.BASE_URL || '/';
+
+const customCss = [
+  './src/scss/theme.tmp/ix-brand-theme.css',
+  './src/scss/custom.scss',
+  './node_modules/@siemens/ix/scss/_common-variables.scss',
+  './node_modules/@siemens/ix/scss/components/form/_input.scss',
+];
+
+let withBrandTheme = false;
+
+if (!process.env.CI) {
+  try {
+    // Check if theme is existing inside node_modes
+    const path = require.resolve(
+      '@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css'
+    );
+    console.log('Found optionalDependency @siemens/ix-brand-theme.');
+    customCss.push(path);
+    withBrandTheme = true;
+  } catch (e) {
+    console.warn('optionalDependency @siemens/ix-brand-theme not found!');
+  }
+} else {
+  const themeCssFile = path.join(
+    __dirname,
+    '.build-temp',
+    'package',
+    'dist',
+    'ix-brand-theme',
+    'ix-brand-theme.css'
+  );
+
+  if (fs.existsSync(themeCssFile)) {
+    customCss.push(themeCssFile);
+    withBrandTheme = true;
+    console.log('Found optionalDependency @siemens/ix-brand-theme.');
+  } else {
+    console.warn('optionalDependency @siemens/ix-brand-theme not found!');
+  }
+}
 
 const config: Config = {
   title: 'Siemens Industrial Experience',
@@ -12,7 +52,7 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://ix.siemens.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -31,6 +71,10 @@ const config: Config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
+  },
+
+  customFields: {
+    withBrandTheme,
   },
 
   presets: [
@@ -69,12 +113,7 @@ const config: Config = {
           onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: [
-            './src/scss/theme.tmp/ix-brand-theme.css',
-            './src/scss/custom.scss',
-            './node_modules/@siemens/ix/scss/_common-variables.scss',
-            './node_modules/@siemens/ix/scss/components/form/_input.scss',
-          ],
+          customCss,
         },
       } satisfies Preset.Options,
     ],

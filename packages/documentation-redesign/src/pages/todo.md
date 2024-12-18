@@ -4,7 +4,7 @@
 - Playground
   - [x] Stackblitz source code fetching
   - [x] Stackblitz root file selection for example
-  - [ ] Change Theme of preview
+  - [x] Change Theme of preview
   - [x] Toggle between light and dark
 - Component Markdowns
   - [x] Tags (see Migration Tagging)
@@ -20,7 +20,7 @@
   - [ ] Create markdowns for (migration not possible) '_forms-toggle_styleguide.md',
   - [ ] Create markdowns for (migration not possible) 'forms',
 - API Table
-  - [ ] Reorganize props, events and slots table
+  - [x] Reorganize props, events and slots table
 - Migration
   - [ ] Headline levels not same causing issues e.g blind
   - [x] Component introduction sentence

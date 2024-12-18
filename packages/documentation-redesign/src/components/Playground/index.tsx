@@ -8,7 +8,7 @@ import CodePreview, { CodePreviewFiles, SourceFiles } from '../CodePreview';
 import Pill from '../UI/Pill';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './styles.module.css';
-import ThemeSelection from '../UI/ThemeSelection';
+import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import CodeBlock from '@theme/CodeBlock';
 import FrameworkSelection from '../UI/FrameworkSelection';
 import { FrameworkTypes } from '@site/src/hooks/use-framework';
@@ -17,8 +17,10 @@ import clsx from 'clsx';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
 function PreviewActions(props: {
+  colorModeLight: boolean;
   openExternalUrl: string;
   onChangeColorMode: () => void;
+  onChangeTheme: (theme: string) => void;
 }) {
   return (
     <>
@@ -32,8 +34,11 @@ function PreviewActions(props: {
         })}
         Full preview
       </a>
-      <ThemeSelection />
-      <ThemeVariantToggle onChangeColorMode={props.onChangeColorMode} />
+      <ThemeSelection onThemeChange={props.onChangeTheme} />
+      <ThemeVariantToggle
+        isLight={props.colorModeLight}
+        onChangeColorMode={props.onChangeColorMode}
+      />
     </>
   );
 }
@@ -67,12 +72,14 @@ export default function Playground(props: {
   noPreview?: boolean;
   onlyFramework?: FrameworkTypes;
 }) {
+  const defaultTheme = useDefaultTheme();
   const [isDark, setIsDark] = useState(true);
   const [isPreview, setIsPreview] = useState(!props.noPreview);
+  const [theme, setTheme] = useState(defaultTheme);
   const iframeSrc = useBaseUrl(
     `/demo/v2/preview/html/preview-examples/${
       props.name
-    }.html?no-margin=true&theme=theme-brand-${isDark ? 'dark' : 'light'}`
+    }.html?no-margin=true&theme=theme-${theme}-${isDark ? 'dark' : 'light'}`
   );
   const [framework, setFramework] = useState<FrameworkTypes>(
     props.onlyFramework ?? 'angular'
@@ -111,8 +118,10 @@ export default function Playground(props: {
         <div className={styles.toolbar__actions}>
           {isPreview ? (
             <PreviewActions
+              colorModeLight={!isDark}
               openExternalUrl={iframeSrc}
               onChangeColorMode={() => setIsDark(!isDark)}
+              onChangeTheme={setTheme}
             />
           ) : (
             <CodeActions
