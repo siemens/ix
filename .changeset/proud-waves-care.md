@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix(core/input-group): update slot references
+Update slot references for **ix-input-group**.

@@ -121,33 +121,35 @@ export class Drawer {
   }
 
   private slideOutRight(el?: HTMLElement) {
-    if (el) {
-      anime({
-        targets: el,
-        duration: Drawer.duration,
-        translateX: [0, '16rem'],
-        opacity: [1, 0],
-        easing: 'easeInSine',
-        complete: () => {
-          el.classList.add('display-none');
-        },
-      });
+    if (!el) {
+      return;
     }
+    anime({
+      targets: el,
+      duration: Drawer.duration,
+      translateX: [0, '16rem'],
+      opacity: [1, 0],
+      easing: 'easeInSine',
+      complete: () => {
+        el.classList.add('display-none');
+      },
+    });
   }
 
   private slideInRight(el?: HTMLElement) {
-    if (el) {
-      anime({
-        targets: el,
-        duration: Drawer.duration,
-        translateX: ['16rem', 0],
-        opacity: [0, 1],
-        easing: 'easeOutSine',
-        begin: () => {
-          el.classList.remove('display-none');
-        },
-      });
+    if (!el) {
+      return;
     }
+    anime({
+      targets: el,
+      duration: Drawer.duration,
+      translateX: ['16rem', 0],
+      opacity: [0, 1],
+      easing: 'easeOutSine',
+      begin: () => {
+        el.classList.remove('display-none');
+      },
+    });
   }
 
   componentDidLoad() {
