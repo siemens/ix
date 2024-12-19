@@ -12,9 +12,9 @@ import Tags from './../../auto-generated/ix-toggle-button/tags.md';
 # Toggle buttons
 
 <Tags />
-<br/>
-<br/>
-
+<!-- introduction start -->
+Toggle buttons allow users to either activate or deactivate a function.
+<!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />
   <DocsCode />

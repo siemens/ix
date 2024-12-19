@@ -8,6 +8,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Tree
 
+<!-- introduction start -->
+Trees display hierarchical data structures and allow users to navigate by expanding and collapsing nodes.
+<!-- introduction end -->
+
 ## Examples
 
 <Playground

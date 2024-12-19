@@ -11,8 +11,9 @@ import Tags from './../auto-generated/ix-pane/tags.md';
 
 <Tags />
 
-<br/>
-<br/>
+<!-- introduction start -->
+Panes are interactive components that allow users to access content that isn't constantly visible on the screen.
+<!-- introduction end -->
 
 <LinkableDocsTabs>
   <DocsUx />

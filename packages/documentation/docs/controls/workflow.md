@@ -7,6 +7,10 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Workflow
 
+<!-- introduction start -->
+Workflows are a series of logical steps that guide users through a process.
+<!-- introduction end -->
+
 ## Examples
 
 <Playground
