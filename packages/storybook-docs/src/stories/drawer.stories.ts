@@ -17,25 +17,24 @@ const meta = {
   title: 'Example/Drawer',
   tags: [],
   render: (args) => {
-    return html` <ix-drawer
-      closeOnClickOutside=${args.closeOnClickOutside}
-      ?fullHeight=${true}
-      show=${args.show}
-      onDrawerClose=${true}
-    >
-      <div>
-        <ix-input-group>
-          <ix-icon
-            slot="input-start"
-            name="success"
-            color="color-success"
-            size="16"
-          />
-          <input slot="input-end" />
-          <span> dasda </span>
-        </ix-input-group>
-      </div>
-    </ix-drawer>`;
+    const toggleDrawer = () => {
+      args.show = !args.show;
+      const drawer = document.querySelector('ix-drawer');
+      if (drawer) {
+        drawer.toggleDrawer(args.show);
+      }
+    };
+
+    return html`
+      <ix-drawer
+        closeOnClickOutside=${args.closeOnClickOutside}
+        ?fullHeight=${true}
+        @drawerClose=${() => (args.show = false)}
+      >
+        <span>Some content of drawer</span>
+      </ix-drawer>
+      <ix-button @click=${toggleDrawer}>Toggle drawer</ix-button>
+    `;
   },
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-drawer'),
   parameters: {
@@ -52,5 +51,6 @@ type Story = StoryObj<Element>;
 export const Default: Story = {
   args: {
     closeOnClickOutside: true,
+    show: false,
   },
 };

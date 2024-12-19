@@ -70,8 +70,7 @@ export class Drawer {
   private divElement?: HTMLElement;
 
   @Watch('show')
-  onShowChanged(newValue: boolean, oldValue?: boolean) {
-    if (newValue === !!oldValue) return;
+  onShowChanged(newValue: boolean) {
     this.show = newValue !== undefined ? newValue : !this.show;
     this.toggleDrawer(this.show);
   }
