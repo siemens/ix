@@ -20,11 +20,15 @@ import { defineCustomElement as defineIxCardContent } from '@siemens/ix/componen
 import { defineCustomElement as defineIxCardList } from '@siemens/ix/components/ix-card-list.js';
 import { defineCustomElement as defineIxCardTitle } from '@siemens/ix/components/ix-card-title.js';
 import { defineCustomElement as defineIxCategoryFilter } from '@siemens/ix/components/ix-category-filter.js';
+import { defineCustomElement as defineIxCheckbox } from '@siemens/ix/components/ix-checkbox.js';
+import { defineCustomElement as defineIxCheckboxGroup } from '@siemens/ix/components/ix-checkbox-group.js';
 import { defineCustomElement as defineIxChip } from '@siemens/ix/components/ix-chip.js';
 import { defineCustomElement as defineIxCol } from '@siemens/ix/components/ix-col.js';
 import { defineCustomElement as defineIxContent } from '@siemens/ix/components/ix-content.js';
 import { defineCustomElement as defineIxContentHeader } from '@siemens/ix/components/ix-content-header.js';
+import { defineCustomElement as defineIxCustomField } from '@siemens/ix/components/ix-custom-field.js';
 import { defineCustomElement as defineIxDateDropdown } from '@siemens/ix/components/ix-date-dropdown.js';
+import { defineCustomElement as defineIxDateInput } from '@siemens/ix/components/ix-date-input.js';
 import { defineCustomElement as defineIxDatePicker } from '@siemens/ix/components/ix-date-picker.js';
 import { defineCustomElement as defineIxDatetimePicker } from '@siemens/ix/components/ix-datetime-picker.js';
 import { defineCustomElement as defineIxDivider } from '@siemens/ix/components/ix-divider.js';
@@ -38,19 +42,22 @@ import { defineCustomElement as defineIxEmptyState } from '@siemens/ix/component
 import { defineCustomElement as defineIxEventList } from '@siemens/ix/components/ix-event-list.js';
 import { defineCustomElement as defineIxEventListItem } from '@siemens/ix/components/ix-event-list-item.js';
 import { defineCustomElement as defineIxExpandingSearch } from '@siemens/ix/components/ix-expanding-search.js';
+import { defineCustomElement as defineIxFieldLabel } from '@siemens/ix/components/ix-field-label.js';
 import { defineCustomElement as defineIxFilterChip } from '@siemens/ix/components/ix-filter-chip.js';
 import { defineCustomElement as defineIxFlipTile } from '@siemens/ix/components/ix-flip-tile.js';
 import { defineCustomElement as defineIxFlipTileContent } from '@siemens/ix/components/ix-flip-tile-content.js';
-import { defineCustomElement as defineIxFormField } from '@siemens/ix/components/ix-form-field.js';
 import { defineCustomElement as defineIxGroup } from '@siemens/ix/components/ix-group.js';
 import { defineCustomElement as defineIxGroupContextMenu } from '@siemens/ix/components/ix-group-context-menu.js';
 import { defineCustomElement as defineIxGroupItem } from '@siemens/ix/components/ix-group-item.js';
+import { defineCustomElement as defineIxHelperText } from '@siemens/ix/components/ix-helper-text.js';
 import { defineCustomElement as defineIxIconButton } from '@siemens/ix/components/ix-icon-button.js';
 import { defineCustomElement as defineIxIconToggleButton } from '@siemens/ix/components/ix-icon-toggle-button.js';
+import { defineCustomElement as defineIxInput } from '@siemens/ix/components/ix-input.js';
 import { defineCustomElement as defineIxInputGroup } from '@siemens/ix/components/ix-input-group.js';
 import { defineCustomElement as defineIxKeyValue } from '@siemens/ix/components/ix-key-value.js';
 import { defineCustomElement as defineIxKeyValueList } from '@siemens/ix/components/ix-key-value-list.js';
 import { defineCustomElement as defineIxKpi } from '@siemens/ix/components/ix-kpi.js';
+import { defineCustomElement as defineIxLayoutAuto } from '@siemens/ix/components/ix-layout-auto.js';
 import { defineCustomElement as defineIxLayoutGrid } from '@siemens/ix/components/ix-layout-grid.js';
 import { defineCustomElement as defineIxLinkButton } from '@siemens/ix/components/ix-link-button.js';
 import { defineCustomElement as defineIxMapNavigation } from '@siemens/ix/components/ix-map-navigation.js';
@@ -68,14 +75,16 @@ import { defineCustomElement as defineIxMenuSettingsItem } from '@siemens/ix/com
 import { defineCustomElement as defineIxMessageBar } from '@siemens/ix/components/ix-message-bar.js';
 import { defineCustomElement as defineIxModal } from '@siemens/ix/components/ix-modal.js';
 import { defineCustomElement as defineIxModalContent } from '@siemens/ix/components/ix-modal-content.js';
-import { defineCustomElement as defineIxModalExample } from '@siemens/ix/components/ix-modal-example.js';
 import { defineCustomElement as defineIxModalFooter } from '@siemens/ix/components/ix-modal-footer.js';
 import { defineCustomElement as defineIxModalHeader } from '@siemens/ix/components/ix-modal-header.js';
+import { defineCustomElement as defineIxNumberInput } from '@siemens/ix/components/ix-number-input.js';
 import { defineCustomElement as defineIxPagination } from '@siemens/ix/components/ix-pagination.js';
 import { defineCustomElement as defineIxPane } from '@siemens/ix/components/ix-pane.js';
 import { defineCustomElement as defineIxPaneLayout } from '@siemens/ix/components/ix-pane-layout.js';
 import { defineCustomElement as defineIxPill } from '@siemens/ix/components/ix-pill.js';
 import { defineCustomElement as defineIxPushCard } from '@siemens/ix/components/ix-push-card.js';
+import { defineCustomElement as defineIxRadio } from '@siemens/ix/components/ix-radio.js';
+import { defineCustomElement as defineIxRadioGroup } from '@siemens/ix/components/ix-radio-group.js';
 import { defineCustomElement as defineIxRow } from '@siemens/ix/components/ix-row.js';
 import { defineCustomElement as defineIxSelect } from '@siemens/ix/components/ix-select.js';
 import { defineCustomElement as defineIxSelectItem } from '@siemens/ix/components/ix-select-item.js';
@@ -85,6 +94,7 @@ import { defineCustomElement as defineIxSplitButton } from '@siemens/ix/componen
 import { defineCustomElement as defineIxSplitButtonItem } from '@siemens/ix/components/ix-split-button-item.js';
 import { defineCustomElement as defineIxTabItem } from '@siemens/ix/components/ix-tab-item.js';
 import { defineCustomElement as defineIxTabs } from '@siemens/ix/components/ix-tabs.js';
+import { defineCustomElement as defineIxTextarea } from '@siemens/ix/components/ix-textarea.js';
 import { defineCustomElement as defineIxTile } from '@siemens/ix/components/ix-tile.js';
 import { defineCustomElement as defineIxTimePicker } from '@siemens/ix/components/ix-time-picker.js';
 import { defineCustomElement as defineIxToast } from '@siemens/ix/components/ix-toast.js';
@@ -237,7 +247,34 @@ export const IxCategoryFilter = /*@__PURE__*/ defineContainer<JSX.IxCategoryFilt
   'i18nPlainText',
   'categoryChanged',
   'inputChanged',
-  'filterChanged'
+  'filterChanged',
+  'filterCleared'
+]);
+
+
+export const IxCheckbox = /*@__PURE__*/ defineContainer<JSX.IxCheckbox, JSX.IxCheckbox["checked"]>('ix-checkbox', defineIxCheckbox, [
+  'name',
+  'value',
+  'label',
+  'checked',
+  'disabled',
+  'indeterminate',
+  'required',
+  'checkedChange',
+  'valueChange'
+],
+'checked', 'checkedChange');
+
+
+export const IxCheckboxGroup = /*@__PURE__*/ defineContainer<JSX.IxCheckboxGroup>('ix-checkbox-group', defineIxCheckboxGroup, [
+  'helperText',
+  'label',
+  'direction',
+  'invalidText',
+  'infoText',
+  'validText',
+  'warningText',
+  'showTextAsTooltip'
 ]);
 
 
@@ -274,6 +311,18 @@ export const IxContentHeader = /*@__PURE__*/ defineContainer<JSX.IxContentHeader
 ]);
 
 
+export const IxCustomField = /*@__PURE__*/ defineContainer<JSX.IxCustomField>('ix-custom-field', defineIxCustomField, [
+  'required',
+  'label',
+  'helperText',
+  'infoText',
+  'warningText',
+  'invalidText',
+  'validText',
+  'showTextAsTooltip'
+]);
+
+
 export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>('ix-date-dropdown', defineIxDateDropdown, [
   'disabled',
   'format',
@@ -285,12 +334,39 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'dateRangeId',
   'customRangeAllowed',
   'dateRangeOptions',
+  'locale',
+  'weekStartIndex',
   'i18nCustomItem',
   'i18nDone',
   'i18nNoRange',
   'today',
   'dateRangeChange'
 ]);
+
+
+export const IxDateInput = /*@__PURE__*/ defineContainer<JSX.IxDateInput, JSX.IxDateInput["value"]>('ix-date-input', defineIxDateInput, [
+  'name',
+  'placeholder',
+  'value',
+  'locale',
+  'format',
+  'required',
+  'helperText',
+  'label',
+  'invalidText',
+  'readonly',
+  'disabled',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
+  'i18nErrorDateUnparsable',
+  'valueChange',
+  'validityStateChange',
+  'ixFocus',
+  'ixBlur'
+],
+'value', 'valueChange');
 
 
 export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-date-picker', defineIxDatePicker, [
@@ -370,6 +446,7 @@ export const IxDropdown = /*@__PURE__*/ defineContainer<JSX.IxDropdown>('ix-drop
   'overwriteDropdownStyle',
   'discoverAllSubmenus',
   'ignoreRelatedSubmenu',
+  'suppressOverflowBehavior',
   'showChanged'
 ]);
 
@@ -443,6 +520,14 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
 ]);
 
 
+export const IxFieldLabel = /*@__PURE__*/ defineContainer<JSX.IxFieldLabel>('ix-field-label', defineIxFieldLabel, [
+  'required',
+  'htmlFor',
+  'controlRef',
+  'isInvalid'
+]);
+
+
 export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-filter-chip', defineIxFilterChip, [
   'disabled',
   'readonly',
@@ -459,11 +544,6 @@ export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip
 
 export const IxFlipTileContent = /*@__PURE__*/ defineContainer<JSX.IxFlipTileContent>('ix-flip-tile-content', defineIxFlipTileContent, [
   'contentVisible'
-]);
-
-
-export const IxFormField = /*@__PURE__*/ defineContainer<JSX.IxFormField>('ix-form-field', defineIxFormField, [
-  'label'
 ]);
 
 
@@ -496,6 +576,16 @@ export const IxGroupItem = /*@__PURE__*/ defineContainer<JSX.IxGroupItem>('ix-gr
 ]);
 
 
+export const IxHelperText = /*@__PURE__*/ defineContainer<JSX.IxHelperText>('ix-helper-text', defineIxHelperText, [
+  'htmlFor',
+  'helperText',
+  'invalidText',
+  'validText',
+  'infoText',
+  'warningText'
+]);
+
+
 export const IxIconButton = /*@__PURE__*/ defineContainer<JSX.IxIconButton>('ix-icon-button', defineIxIconButton, [
   'a11yLabel',
   'variant',
@@ -525,6 +615,32 @@ export const IxIconToggleButton = /*@__PURE__*/ defineContainer<JSX.IxIconToggle
 ]);
 
 
+export const IxInput = /*@__PURE__*/ defineContainer<JSX.IxInput, JSX.IxInput["value"]>('ix-input', defineIxInput, [
+  'type',
+  'name',
+  'placeholder',
+  'value',
+  'required',
+  'disabled',
+  'readonly',
+  'helperText',
+  'infoText',
+  'showTextAsTooltip',
+  'validText',
+  'warningText',
+  'label',
+  'invalidText',
+  'pattern',
+  'maxLength',
+  'minLength',
+  'allowedCharactersPattern',
+  'valueChange',
+  'validityStateChange',
+  'ixBlur'
+],
+'value', 'valueChange');
+
+
 export const IxInputGroup = /*@__PURE__*/ defineContainer<JSX.IxInputGroup>('ix-input-group', defineIxInputGroup);
 
 
@@ -547,6 +663,11 @@ export const IxKpi = /*@__PURE__*/ defineContainer<JSX.IxKpi>('ix-kpi', defineIx
   'unit',
   'state',
   'orientation'
+]);
+
+
+export const IxLayoutAuto = /*@__PURE__*/ defineContainer<JSX.IxLayoutAuto>('ix-layout-auto', defineIxLayoutAuto, [
+  'layout'
 ]);
 
 
@@ -708,9 +829,6 @@ export const IxModal = /*@__PURE__*/ defineContainer<JSX.IxModal>('ix-modal', de
 export const IxModalContent = /*@__PURE__*/ defineContainer<JSX.IxModalContent>('ix-modal-content', defineIxModalContent);
 
 
-export const IxModalExample = /*@__PURE__*/ defineContainer<JSX.IxModalExample>('ix-modal-example', defineIxModalExample);
-
-
 export const IxModalFooter = /*@__PURE__*/ defineContainer<JSX.IxModalFooter>('ix-modal-footer', defineIxModalFooter);
 
 
@@ -720,6 +838,32 @@ export const IxModalHeader = /*@__PURE__*/ defineContainer<JSX.IxModalHeader>('i
   'iconColor',
   'closeClick'
 ]);
+
+
+export const IxNumberInput = /*@__PURE__*/ defineContainer<JSX.IxNumberInput, JSX.IxNumberInput["value"]>('ix-number-input', defineIxNumberInput, [
+  'name',
+  'placeholder',
+  'value',
+  'required',
+  'disabled',
+  'readonly',
+  'helperText',
+  'infoText',
+  'showTextAsTooltip',
+  'validText',
+  'warningText',
+  'label',
+  'invalidText',
+  'pattern',
+  'min',
+  'max',
+  'allowedCharactersPattern',
+  'showStepperButtons',
+  'valueChange',
+  'validityStateChange',
+  'ixBlur'
+],
+'value', 'valueChange');
 
 
 export const IxPagination = /*@__PURE__*/ defineContainer<JSX.IxPagination>('ix-pagination', defineIxPagination, [
@@ -783,10 +927,44 @@ export const IxPushCard = /*@__PURE__*/ defineContainer<JSX.IxPushCard>('ix-push
 ]);
 
 
+export const IxRadio = /*@__PURE__*/ defineContainer<JSX.IxRadio>('ix-radio', defineIxRadio, [
+  'name',
+  'value',
+  'label',
+  'disabled',
+  'checked',
+  'checkedChange',
+  'valueChange'
+]);
+
+
+export const IxRadioGroup = /*@__PURE__*/ defineContainer<JSX.IxRadioGroup>('ix-radio-group', defineIxRadioGroup, [
+  'helperText',
+  'label',
+  'value',
+  'invalidText',
+  'infoText',
+  'warningText',
+  'validText',
+  'showTextAsTooltip',
+  'direction',
+  'valueChange'
+]);
+
+
 export const IxRow = /*@__PURE__*/ defineContainer<JSX.IxRow>('ix-row', defineIxRow);
 
 
-export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select', defineIxSelect, [
+export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect["value"]>('ix-select', defineIxSelect, [
+  'name',
+  'required',
+  'label',
+  'warningText',
+  'infoText',
+  'invalidText',
+  'validText',
+  'helperText',
+  'showTextAsTooltip',
   'selectedIndices',
   'value',
   'allowClear',
@@ -802,8 +980,10 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect>('ix-select',
   'valueChange',
   'itemSelectionChange',
   'inputChange',
-  'addItem'
-]);
+  'addItem',
+  'ixBlur'
+],
+'value', 'valueChange');
 
 
 export const IxSelectItem = /*@__PURE__*/ defineContainer<JSX.IxSelectItem>('ix-select-item', defineIxSelectItem, [
@@ -880,6 +1060,34 @@ export const IxTabs = /*@__PURE__*/ defineContainer<JSX.IxTabs>('ix-tabs', defin
 ]);
 
 
+export const IxTextarea = /*@__PURE__*/ defineContainer<JSX.IxTextarea, JSX.IxTextarea["value"]>('ix-textarea', defineIxTextarea, [
+  'name',
+  'placeholder',
+  'value',
+  'required',
+  'disabled',
+  'readonly',
+  'helperText',
+  'infoText',
+  'showTextAsTooltip',
+  'validText',
+  'warningText',
+  'label',
+  'invalidText',
+  'textareaHeight',
+  'textareaWidth',
+  'textareaRows',
+  'textareaCols',
+  'resizeBehavior',
+  'maxLength',
+  'minLength',
+  'valueChange',
+  'validityStateChange',
+  'ixBlur'
+],
+'value', 'valueChange');
+
+
 export const IxTile = /*@__PURE__*/ defineContainer<JSX.IxTile>('ix-tile', defineIxTile, [
   'size'
 ]);
@@ -923,6 +1131,8 @@ export const IxToastContainer = /*@__PURE__*/ defineContainer<JSX.IxToastContain
 
 
 export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle', defineIxToggle, [
+  'name',
+  'value',
   'checked',
   'disabled',
   'indeterminate',
@@ -930,7 +1140,9 @@ export const IxToggle = /*@__PURE__*/ defineContainer<JSX.IxToggle>('ix-toggle',
   'textOff',
   'textIndeterminate',
   'hideText',
-  'checkedChange'
+  'required',
+  'checkedChange',
+  'valueChange'
 ]);
 
 
@@ -979,7 +1191,6 @@ export const IxTreeItem = /*@__PURE__*/ defineContainer<JSX.IxTreeItem>('ix-tree
 
 
 export const IxTypography = /*@__PURE__*/ defineContainer<JSX.IxTypography>('ix-typography', defineIxTypography, [
-  'variant',
   'format',
   'color',
   'textColor',

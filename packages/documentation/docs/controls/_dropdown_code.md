@@ -8,58 +8,58 @@ import TagsQuickActions from './../auto-generated/ix-dropdown-quick-actions/tags
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Dropdown
+## Development
 
-## Examples
+### Examples
 
 <Playground
 name="dropdown"
 height="28rem"
->
-</Playground>
 
-### Dropdown with icon
+> </Playground>
+
+#### Dropdown with icon
 
 <Playground
 name="dropdown-icon"
 height="18rem"
->
-</Playground>
 
-### Dropdown with quick actions menu
+> </Playground>
+
+#### Dropdown with quick actions menu
 
 <TagsQuickActions />
 
 <Playground
 name="dropdown-quick-actions"
 height="22rem"
->
-</Playground>
 
-### Dropdown with submenu
+> </Playground>
+
+#### Dropdown with submenu
 
 <Playground
 name="dropdown-submenu"
 height="22rem"
->
-</Playground>
 
-## API (ix-dropdown)
+> </Playground>
 
-### Properties
+### API (ix-dropdown)
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-dropdown-item)
+### API (ix-dropdown-item)
 
-### Properties
+#### Properties
 
 <ItemProps />
 
-### Events
+#### Events
 
 <ItemEvents />

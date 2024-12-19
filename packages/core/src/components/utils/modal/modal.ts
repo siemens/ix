@@ -75,7 +75,7 @@ export async function showModal<T>(
   config: ModalConfig<T>
 ): Promise<ModalInstance<T>> {
   const delegate = resolveDelegate();
-  let dialogRef: HTMLIxModalElement;
+  let dialogRef: HTMLIxModalElement | undefined;
   const onClose = new TypedEvent<T>();
   const onDismiss = new TypedEvent<T>();
 
@@ -113,6 +113,16 @@ export async function showModal<T>(
       await delegate.removeView(dialogRef);
     }
   );
+
+  requestAnimationFrame(() => {
+    const autofocusElement = dialogRef.querySelector(
+      '[autofocus],[auto-focus]'
+    );
+
+    if (autofocusElement) {
+      (autofocusElement as HTMLIxButtonElement).focus();
+    }
+  });
 
   return {
     htmlElement: dialogRef,

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-line-advanced.css';
+import './echarts-line-advanced.scoped.css';
 
 import { useEffect, useState } from 'react';
 import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';

@@ -2,11 +2,14 @@
 title: Chip
 ---
 
-import DocsTabs from '@site/src/components/DocsTabs';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
 import DocsUx from './\_chip_styleguide.md'
 import DocsCode from './\_chip_code.md'
 
 # Chip
 
-<DocsTabs styleguide={DocsUx} code={DocsCode} />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>

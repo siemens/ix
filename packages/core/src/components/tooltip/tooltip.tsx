@@ -28,6 +28,8 @@ import {
 import { OnListener } from '../utils/listener';
 import { tooltipController } from './tooltip-controller';
 import { IxOverlayComponent } from '../utils/overlay';
+import { resolveSelector } from '../utils/find-element';
+import { ElementReference } from 'src/components';
 
 type ArrowPosition = {
   top?: string;
@@ -35,7 +37,8 @@ type ArrowPosition = {
   right?: string;
 };
 
-const numberToPixel = (value: number) => (value != null ? `${value}px` : '');
+const numberToPixel = (value?: number | null) =>
+  value != null ? `${value}px` : '';
 
 /**
  * @slot title-icon - Icon of tooltip title
@@ -52,7 +55,7 @@ export class Tooltip implements IxOverlayComponent {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
-  @Prop() for?: string | HTMLElement | Promise<HTMLElement>;
+  @Prop() for?: ElementReference;
 
   /**
    * Title of the tooltip
@@ -91,7 +94,7 @@ export class Tooltip implements IxOverlayComponent {
   private disposeListener?: () => void;
 
   private get arrowElement(): HTMLElement {
-    return this.hostElement.shadowRoot.querySelector('.arrow');
+    return this.hostElement.shadowRoot!.querySelector('.arrow')!;
   }
 
   private destroyAutoUpdate() {
@@ -133,8 +136,8 @@ export class Tooltip implements IxOverlayComponent {
   private computeArrowPosition({
     placement,
     middlewareData,
-  }: ComputePositionReturn): ArrowPosition {
-    let { x, y } = middlewareData.arrow;
+  }: ComputePositionReturn): ArrowPosition | undefined {
+    let { x, y } = middlewareData.arrow!;
     const resetPosition = {
       top: 'unset',
       right: 'unset',
@@ -253,7 +256,7 @@ export class Tooltip implements IxOverlayComponent {
 
   private async queryAnchorElements(): Promise<Array<HTMLElement> | undefined> {
     if (typeof this.for === 'string') {
-      return Promise.resolve(Array.from(document.querySelectorAll(this.for)));
+      return resolveSelector(this.for, this.hostElement);
     }
 
     if (this.for instanceof HTMLElement) {
@@ -380,7 +383,7 @@ export class Tooltip implements IxOverlayComponent {
         <div class="tooltip-container">
           <div class={'tooltip-title'}>
             <slot name="title-icon"></slot>
-            <ix-typography variant="default-title">
+            <ix-typography format="h5">
               {this.titleContent}
               <slot name="title-content"></slot>
             </ix-typography>

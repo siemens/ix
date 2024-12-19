@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
-  ElementHandle,
   Page,
   PageScreenshotOptions,
   test as testBase,
@@ -46,32 +45,7 @@ export const regressionTest = testBase.extend({
   },
 });
 
-export const test = testBase.extend<{
-  mount: (selector: string) => Promise<ElementHandle<HTMLElement>>;
-  createElement: (
-    selector: string,
-    appendTo?: ElementHandle<Element>
-  ) => Promise<ElementHandle<HTMLElement>>;
-}>({
-  createElement: async ({ page }, use) => {
-    use((selector, appendTo) =>
-      page.evaluateHandle(
-        async ({ selector, appendTo }) => {
-          const elm = document.createElement(selector);
-
-          if (appendTo) {
-            appendTo.appendChild(elm);
-          }
-
-          return elm;
-        },
-        {
-          selector,
-          appendTo,
-        }
-      )
-    );
-  },
+export const test = testBase.extend({
   mount: async ({ page }, use, testInfo) => {
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
     testInfo.annotations.push({
@@ -80,16 +54,49 @@ export const test = testBase.extend<{
     await page.goto(
       `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
     );
-    use((selector) => {
-      return page.evaluateHandle(
-        async ({ componentSelector }) => {
-          await window.customElements.whenDefined('ix-button');
-          const mount = document.querySelector('#mount');
-          mount.innerHTML = componentSelector;
-          return mount.children.item(0) as HTMLElement;
-        },
-        { componentSelector: selector }
-      );
-    });
+    use(
+      (
+        selector: string,
+        config?: {
+          headTags?: string[];
+        }
+      ) => {
+        return page.evaluateHandle(
+          async ({ componentSelector, config }) => {
+            if (config?.headTags) {
+              config.headTags.forEach((tag) => {
+                const head = document.querySelector('head');
+                if (!head) {
+                  throw new Error('No head tag found in the document.');
+                }
+
+                head.innerHTML += tag;
+              });
+            }
+
+            const loadScript = document.createElement('script');
+            loadScript.src = '/scripts/e2e/load-e2e-runtime.js';
+            document.body.appendChild(loadScript);
+
+            await new Promise<void>((resolve) => {
+              loadScript.onload = async () => {
+                resolve();
+              };
+            });
+
+            await window.customElements.whenDefined('ix-button');
+            const mount = document.querySelector('#mount');
+
+            if (!mount) {
+              throw new Error('No mount point found in the document.');
+            }
+
+            mount.innerHTML = componentSelector;
+            return mount.children.item(0) as HTMLElement;
+          },
+          { componentSelector: selector, config }
+        );
+      }
+    );
   },
 });

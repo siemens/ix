@@ -34,36 +34,36 @@ const DefaultAnimationTimeout = 150;
   shadow: true,
 })
 export class MenuCategory {
-  @Element() hostElement: HTMLIxMenuCategoryElement;
+  @Element() hostElement!: HTMLIxMenuCategoryElement;
 
   /**
    * Display name of the category
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Icon of the category
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Show notification count on the category
    */
-  @Prop() notifications: number;
+  @Prop() notifications?: number;
 
   /** @internal */
   // eslint-disable-next-line @stencil-community/decorators-style
   @Event({ bubbles: true, cancelable: true })
-  closeOtherCategories: EventEmitter;
+  closeOtherCategories!: EventEmitter;
 
   @State() menuExpand = false;
   @State() showItems = false;
   @State() showDropdown = false;
   @State() nestedItems: HTMLIxMenuItemElement[] = [];
 
-  private observer: MutationObserver;
-  private menuItemsContainer: HTMLDivElement;
-  private ixMenu: HTMLIxMenuElement;
+  private observer?: MutationObserver;
+  private menuItemsContainer?: HTMLDivElement;
+  private ixMenu?: HTMLIxMenuElement;
 
   private enterLeaveDebounce = createEnterLeaveDebounce(
     () => {
@@ -130,7 +130,7 @@ export class MenuCategory {
   }
 
   private onPointerEnter() {
-    if (this.ixMenu.expand) {
+    if (this.ixMenu?.expand) {
       return;
     }
     this.closeOtherCategories.emit();
@@ -144,15 +144,30 @@ export class MenuCategory {
 
   private onCategoryClick(e: MouseEvent) {
     e.stopPropagation();
-    if (this.ixMenu.expand) {
-      e?.stopPropagation();
+    if (this.ixMenu?.expand) {
       this.onExpandCategory(!this.showItems);
       return;
     }
   }
 
-  private onNestedItemsChanged() {
+  private onNestedItemsChanged(mutations?: MutationRecord[]) {
     this.nestedItems = this.getNestedItems();
+
+    if (!this.menuExpand || this.showItems || !mutations) {
+      return;
+    }
+
+    for (const mutation of mutations ?? []) {
+      if (
+        mutation.attributeName === 'class' &&
+        mutation.target instanceof HTMLElement &&
+        mutation.target.classList.contains('active')
+      ) {
+        this.showItems = true;
+        this.onExpandCategory(true);
+        return;
+      }
+    }
   }
 
   private isCategoryItemListVisible() {
@@ -171,7 +186,10 @@ export class MenuCategory {
   }
 
   componentDidLoad() {
-    this.observer = createMutationObserver(() => this.onNestedItemsChanged());
+    this.observer = createMutationObserver((mutations: MutationRecord[]) =>
+      this.onNestedItemsChanged(mutations)
+    );
+
     this.observer.observe(this.hostElement, {
       attributes: true,
       childList: true,
@@ -182,7 +200,7 @@ export class MenuCategory {
       this.onNestedItemsChanged();
     });
 
-    this.ixMenu.addEventListener(
+    this.ixMenu?.addEventListener(
       'expandChange',
       ({ detail: menuExpand }: CustomEvent<boolean>) => {
         this.menuExpand = menuExpand;
@@ -195,8 +213,8 @@ export class MenuCategory {
   }
 
   clearMenuItemStyles() {
-    this.menuItemsContainer.style.removeProperty('max-height');
-    this.menuItemsContainer.style.removeProperty('opacity');
+    this.menuItemsContainer?.style.removeProperty('max-height');
+    this.menuItemsContainer?.style.removeProperty('opacity');
   }
 
   disconnectedCallback() {
@@ -274,7 +292,7 @@ export class MenuCategory {
           }}
         >
           <ix-dropdown-item class={'category-dropdown-header'}>
-            <ix-typography variant="default-title-single" color="std">
+            <ix-typography format="label" bold color="std">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>

@@ -18,7 +18,7 @@ import defaultConfig from './playwright.config';
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config: PlaywrightTestConfig = {
   ...defaultConfig,
-  testMatch: path.join(__dirname, 'src', 'components', '**', '*.ct.ts'),
+  testMatch: path.join(__dirname, 'src', '**', '*.ct.ts'),
   reporter: 'list',
   projects: [
     {

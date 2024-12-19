@@ -70,8 +70,7 @@ For comparing data within a category, we recommend using the matching -40 color 
 <Playground
 height="40rem"
 name="echarts"
-noMargin
->
+noMargin>
 </Playground>
 
 ### Loading indicators
@@ -85,8 +84,7 @@ An empty state occurs when a user first opens an application, no data is avail
 <Playground
 height="40rem"
 name="echarts-empty-state"
-noMargin
-examplesByName>
+noMargin>
 </Playground>
 
 ### Failure and error messages

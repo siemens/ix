@@ -3,28 +3,30 @@ import Events from './../auto-generated/ix-content-header/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-## Examples
+## Development
 
-### Basic
+### Examples
 
-<Playground
-  name="content-header"
-  >
-</Playground>
-
-### No back button
+#### Basic
 
 <Playground
-  name="content-header-no-back"
-  >
-</Playground>
+name="content-header"
 
-## API
+> </Playground>
 
-### Properties
+#### No back button
+
+<Playground
+name="content-header-no-back"
+
+> </Playground>
+
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

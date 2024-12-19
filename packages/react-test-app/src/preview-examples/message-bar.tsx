@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './message-bar.css';
+import './message-bar.scoped.css';
 
 import { IxButton, IxMessageBar } from '@siemens/ix-react';
 
@@ -15,12 +15,8 @@ export default () => {
   return (
     <>
       <div className="message-bar">
-        <IxMessageBar>
-          Message text
-        </IxMessageBar>
-        <IxMessageBar type="warning">
-          Message text
-        </IxMessageBar>
+        <IxMessageBar>Message text</IxMessageBar>
+        <IxMessageBar type="warning">Message text</IxMessageBar>
         <IxMessageBar type="danger">
           <div className="d-flex align-items-center justify-content-between">
             Message text <IxButton>Action</IxButton>

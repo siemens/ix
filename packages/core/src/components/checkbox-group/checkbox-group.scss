@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@import 'mixins/shadow-dom/component';
+
+:host {
+  display: inline-block;
+  position: relative;
+
+  .checkbox-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0.375rem 0;
+    flex-wrap: wrap;
+
+    &.row-layout {
+      flex-direction: row;
+    }
+  }
+}

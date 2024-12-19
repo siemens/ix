@@ -10,6 +10,7 @@
 import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
+
 const __dirname = path.resolve();
 
 const previewPath = path.join(__dirname, 'src', 'preview-examples');

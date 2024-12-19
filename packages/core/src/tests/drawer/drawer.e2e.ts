@@ -17,4 +17,11 @@ regressionTest.describe('drawer', () => {
     await page.waitForTimeout(2000);
     expect(await page.screenshot()).toMatchSnapshot();
   });
+
+  regressionTest('full-height', async ({ page }) => {
+    await page.goto('drawer/full-height');
+    await page.locator('ix-button').click();
+    await page.waitForTimeout(2000);
+    expect(await page.screenshot()).toMatchSnapshot();
+  });
 });
