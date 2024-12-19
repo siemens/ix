@@ -1,5 +1,12 @@
 # @siemens/ix-react
 
+## 2.7.0
+
+### Patch Changes
+
+- Updated dependencies [[`89801b1149`](https://github.com/siemens/ix/commit/89801b1149b18c580a4fee6563638a8883fad2d1), [`e2316d8b6d`](https://github.com/siemens/ix/commit/e2316d8b6d514217b97790f9a86bd1bbf30e7f44)]:
+  - @siemens/ix@2.7.0
+
 ## 2.6.1
 
 ### Patch Changes

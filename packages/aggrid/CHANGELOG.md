@@ -1,5 +1,14 @@
 # @siemens/ix-aggrid
 
+## 2.2.3
+
+### Patch Changes
+
+- [#1624](https://github.com/siemens/ix/pull/1624) [`b016f93a16`](https://github.com/siemens/ix/commit/b016f93a16d2b4d04511225b75f043b167508682) Thanks [@jul-lam](https://github.com/jul-lam)! - Set typography globally for **ag-grid** theme.
+
+- Updated dependencies [[`89801b1149`](https://github.com/siemens/ix/commit/89801b1149b18c580a4fee6563638a8883fad2d1), [`e2316d8b6d`](https://github.com/siemens/ix/commit/e2316d8b6d514217b97790f9a86bd1bbf30e7f44)]:
+  - @siemens/ix@2.7.0
+
 ## 2.2.2
 
 ### Patch Changes
