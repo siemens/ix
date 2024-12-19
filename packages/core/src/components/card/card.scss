@@ -16,6 +16,7 @@
   align-items: flex-start;
   align-self: flex-start;
   overflow: hidden;
+  cursor: pointer;
 
   width: 20rem;
 
@@ -32,6 +33,7 @@
     background-color: var(--ix-card-background, transparent);
     border-top-left-radius: var(--theme-default-border-radius);
     border-top-right-radius: var(--theme-default-border-radius);
+    overflow: hidden;
   }
 
   .card-footer {
