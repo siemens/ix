@@ -39,12 +39,10 @@ LICENSE file in the root directory of this source tree.
         const searchParams = new URLSearchParams(location.search);
 
         if (!searchParams.has('theme')) {
-          return 'brand-dark';
+          return 'theme-brand-dark';
         }
 
-        const theme = searchParams.get('theme');
-
-        return theme.substring('theme-'.length, theme.length);
+        return searchParams.get('theme');
       }
 
       registerTheme(echarts);
@@ -185,7 +183,7 @@ LICENSE file in the root directory of this source tree.
       };
 
       switch (theme) {
-        case 'classic-dark':
+        case 'theme-classic-dark':
           options.color = [
             '#EF9A9A' /* theme-chart-14 */,
             '#F38FC2' /* theme-chart-13 */,
@@ -198,7 +196,7 @@ LICENSE file in the root directory of this source tree.
           ];
           break;
 
-        case 'classic-light':
+        case 'theme-classic-light':
           options.color = [
             '#9E5833' /* theme-chart-14 */,
             '#6F2542' /* theme-chart-13 */,
@@ -211,7 +209,7 @@ LICENSE file in the root directory of this source tree.
           ];
           break;
 
-        case 'brand-dark':
+        case 'theme-brand-dark':
           options.color = [
             '#BE5925' /* theme-chart-14 */,
             '#FF98C4' /* theme-chart-13 */,
@@ -224,7 +222,7 @@ LICENSE file in the root directory of this source tree.
           ];
           break;
 
-        case 'brand-light':
+        case 'theme-brand-light':
           options.color = [
             '#BE5925' /* theme-chart-14 */,
             '#4F153D' /* theme-chart-13 */,
