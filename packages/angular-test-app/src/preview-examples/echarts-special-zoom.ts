@@ -8,11 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import {
-  convertThemeName,
-  registerTheme,
-  getComputedCSSProperty,
-} from '@siemens/ix-echarts';
+import { registerTheme, getComputedCSSProperty } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
@@ -23,7 +19,7 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./echarts-special-zoom.css'],
 })
 export default class EchartsSpecialZoom implements OnInit {
-  theme = convertThemeName(themeSwitcher.getCurrentTheme());
+  theme = themeSwitcher.getCurrentTheme();
 
   //create some random data
   private base = +new Date(1968, 9, 3);
@@ -99,7 +95,7 @@ export default class EchartsSpecialZoom implements OnInit {
     registerTheme(echarts);
 
     themeSwitcher.themeChanged.on((theme: string) => {
-      this.theme = convertThemeName(theme);
+      this.theme = theme;
     });
   }
 }
