@@ -10,7 +10,7 @@
 import './echarts-empty-state.scoped.css';
 
 import { useEffect, useState } from 'react';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
@@ -20,13 +20,11 @@ import { IxEmptyState } from '@siemens/ix-react';
 export default function Echarts() {
   registerTheme(echarts);
 
-  const [theme, setTheme] = useState(
-    convertThemeName(themeSwitcher.getCurrentTheme())
-  );
+  const [theme, setTheme] = useState(themeSwitcher.getCurrentTheme());
 
   useEffect(() => {
     themeSwitcher.themeChanged.on((theme: string) => {
-      setTheme(convertThemeName(theme));
+      setTheme(theme);
     });
   }, []);
 

@@ -9,11 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {
-  convertThemeName,
-  getComputedCSSProperty,
-  registerTheme,
-} from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts/core';
@@ -34,7 +30,7 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(convertThemeName(themeSwitcher.getCurrentTheme()));
+const theme = ref(themeSwitcher.getCurrentTheme());
 
 const dates = Array.from({ length: 2025 - 2013 }, (_, i) =>
   (2013 + i).toString()
