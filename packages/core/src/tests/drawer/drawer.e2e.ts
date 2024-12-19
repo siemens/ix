@@ -28,10 +28,7 @@ regressionTest.describe('drawer', () => {
   regressionTest('input-group', async ({ page }) => {
     await page.goto('drawer/input-group');
     await page.locator('ix-button').click();
-    await page.waitForFunction(() => {
-      const drawer = document.querySelector('ix-drawer');
-      return drawer && window.getComputedStyle(drawer).opacity === '1';
-    });
-    expect(await page.screenshot()).toMatchSnapshot();
+    await page.waitForSelector('ix-drawer[style*="opacity: 1;"]');
+    expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
 });
