@@ -20,6 +20,7 @@ const config: PlaywrightTestConfig = {
   ...defaultConfig,
   testMatch: path.join(__dirname, 'src', '**', '*.ct.ts'),
   reporter: 'list',
+  retries: 0,
   projects: [
     {
       name: `chromium`,
@@ -32,7 +33,6 @@ const config: PlaywrightTestConfig = {
     command: 'pnpm run host-root',
     port: 8080,
   },
-  retries: 2,
 };
 
 export default config;
