@@ -7,57 +7,48 @@ Buttons initiate actions, apply actions to selected objects and activate/deactiv
 
 ## Variants
 
-- **Primary:** The primary button variant has a solid background in the primary color. We typically use primary buttons for the most important or most-likely next action within the user interface. 
-- **Secondary:** The secondary button variant has a transparent background in the secondary color. We typically use secondary buttons for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. 
-- **Danger:** The danger button variant has a red background and is used for destructive or critical actions like "delete" or "remove", especially in confirmation dialogs. We typically use the danger button for actions that are irreversible or have a significant impact on the user’s data or the application state.  
-- **Ghost :** The ghost button variant has a transparent background and a border in the primary color. We typically use ghost buttons for actions that are not part of the core user journey but serve specialized or conditional purposes. 
-- **Outline**: All Button variants have also an outline variant. The outline variant has a transparent background and a border in the corresponding color. This variant is used when the button needs to be more subtle or when it is placed on a dark background. 
+- **Primary:** Has a solid background in the primary color. We typically use primary buttons for the most important or most-likely next action within the UI. 
+- **Secondary:** Has a transparent background in the secondary color. We typically use secondary buttons for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. 
+- **Danger:** Has a red background and is used for destructive or critical actions like "delete" or "remove", especially in confirmation dialogs. We typically use the danger button for actions that are irreversible or have a significant impact on the user’s data or the application state.
 
 **Note:** Please be aware that the terms *primary* and *secondary* are not used in accordance to common UX terminology for primary, secondary and ghost button.
 
 ## Options
-- **Label**: The label is the text displayed on the button. We typically use short, descriptive labels that clearly communicate the action the button triggers. 
+
+- **Label**: The label is the text displayed on the button. We typically use short, descriptive labels that clearly communicate the action the button triggers.
 - **Icon:** An icon can be displayed on the button. We typically use icons to support the label and make the button more easy to discover by the user. The icon should be widely known for representing the action or function among your users.
-- **Type:** A submit button is available. Submit buttons are typically used in forms and trigger a submit event. Apply this type to make a submit button more accessible.
+- **Type:** Use a plain button for actions that do not involve form submission, such as triggering dialogs or performing navigation. Otherwise, use a submit button to send user input from a form to a server.
+- **Outline:** Use outline buttons for standard actions that need to be easily recognizable or for actions supporting the primary action, e.g. "Cancel", "Reset" or "Advanced Options". These are typically called *secondary* buttons in UX.
+- **Ghost:** Use ghost buttons for actions that are not part of the core user journey but serve specialized or conditional purposes, e.g. "Advanced settings", "More options", "Help" or "Customize", "Change preferences" or "View details".
 
 ## Behavior in context
+
 - **Interaction:** Buttons can be triggered by pressing anywhere within the button container. When buttons are focused, they can be triggered by pressing `Space`.
 - **Text truncation:** Button labels are not truncated. All text on buttons is one line only. 
-- **Ellipsis (…):** Ellipsis can be used to indicate that an action requires further input or choice from the user, such as "Save as…" which opens a further list of file types to choose from. Ellipses is typically not used for actions with a subsequent confirmation dialog.
-- **Alignment:** Buttons can be left-justified or right-justified or fully span a container’s width.
-- **Cluster buttons:** Buttons can be clustered in groups based on their relationship. A cluster can contain a mixture of buttons, e.g. a combination of a primary button with two primary ghost buttons. We recommend a minimum distance of `0.5rem` between adjacent buttons, and we typically cluster buttons if actions/functions are related but not excluding each other. Otherwise, consider using a `button group`. 
-- **Button width:** Button width depends on its content. In addition, buttons have a default minimum width of 5rem to lay out common combinations such as "OK" and "Cancel" more harmoniously with equal widths. The minimum width is customizable to accommodate other combinations.
+- **Alignment:** Buttons can be left- or right-justified or fully span a container’s width.
+- **Cluster buttons:** Cluster buttons in groups with related functions. A cluster might include various types of buttons, e.g. a primary and  secondary ghost button. We recommend a gap of `0.5rem` between buttons.
+- **Button width:** Buttons dynamically adjust their width based on content but have a default minimum width of `5rem` to ensure harmonious alignment for common pairs like "OK" and "Cancel." The minimum width can be customized for different needs.
 
 ## States
 
-Buttons have six states: Default, hover, active, disabled, loading and focused. In a disabled state, buttons are visually displayed but don’t offer any user interaction.
-
-- **Default:** Use for the most important or most-likely next action within the user interface. These are typically actions that advance the user through a process, such as "Submit", "Save" or "Add". We use these sparingly and recommend only one per layout. These are typically called *primary* buttons in UX. 
-- **Outline:** Use for standard actions that need to be easily recognizable or for actions supporting the default (primary) action. These could include actions like "Cancel", "Reset" or "Advanced Options". These are typically called *secondary* buttons in UX.
-- **Ghost:** Use for actions that are typically not part of the core user journey but serve specialized or conditional purposes. Tertiary buttons can represent actions such as "Advanced settings", "More options", "Help" or "Customize". They may also be used for conditional actions like "Change preferences" or "View details".
-- **Disabled:** Buttons can be disabled (see also button states).
--  **Loading:** A loading spinner is displayed on the button. The spinner replaces an icon when available.
-- **Focused:** Buttons can be focused via keyboard navigation. The focus state is used to indicate that the button is currently selected. 
+Buttons have six states: Default, hover, active, disabled, loading and focused. In a disabled and loading state, buttons are visually displayed but don’t offer any user interaction.
 
 ![Button states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=132-13020&mode=design&t=KAxDgJoFX436Uk0b-11)
 
 ## Dos and Don’ts
 
-- Do use short button labels to allow users to quickly scan, understand and remember them (follow our writing style guide for more support)
-- Do use only one primary (default) button in one visual unit for a clear and singular focus on the main call to action
-- Do use the danger button for destructive or critical actions like "delete" or "remove", especially in confirmation dialogs
-- Do use a default margin between adjacent buttons of at least `0.5rem`
-- Do adjust default and outline button width to label length or container width
+- Do use short button labels to allow users to quickly scan, understand and remember them (see our [writing style guide](./../.../language/writing-style-guide-getting-started.md))
+- Do use ellipsis (...) to indicate that an action requires further input or choice from the user, e.g. "Save as…" which opens a list of file types to choose from.
+- Do use only one primary button in one visual unit for a clear and singular focus on the main call to action
 - Don’t use the danger button excessively or repetitively in lists or tables
-- Don’t extend your ghost button width beyond the label’s available width
-- Don’t rely on standard buttons when many actions/functions are necessary (use dropdown, split or menu buttons or move some functionality to a panel or a dialog)
-- Don’t use buttons for navigation
+- Don’t rely on standard buttons when many actions are necessary (use [dropdown buttons](dropdown-button.md) or [split buttons](split-button.md) instead, or move some functionality to a [pane](../pane.md) or a [dialog](../modal.md))
 
-## Related patterns:
+## Related patterns
 
 - [Dropdown button](./dropdown-button.md)
 - [Split button](./split-button.md)
 - [Toggle button](./toggle-buttons.md)
 - [Modal](./../modal.md)
+- [Forms behavior](./../forms/forms-behavior.md)
 
 
