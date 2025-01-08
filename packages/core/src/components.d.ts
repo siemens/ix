@@ -19,6 +19,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
+import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 import { DateInputValidityState } from "./components/date-input/date-input";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -33,7 +34,6 @@ import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
-import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal";
@@ -65,6 +65,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
+export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 export { DateInputValidityState } from "./components/date-input/date-input";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -79,7 +80,6 @@ export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
-export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal";
@@ -652,6 +652,22 @@ export namespace Components {
      */
     interface IxDateDropdown {
         /**
+          * Button with no background or outline
+         */
+        "buttonGhost": boolean;
+        /**
+          * Loading button
+         */
+        "buttonLoading": boolean;
+        /**
+          * Outline button
+         */
+        "buttonOutline": boolean;
+        /**
+          * button variant
+         */
+        "buttonVariant": ButtonVariant1;
+        /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
          */
         "customRangeAllowed": boolean;
@@ -1217,6 +1233,22 @@ export namespace Components {
         "selected": boolean;
     }
     interface IxExpandingSearch {
+        /**
+          * Button with no background or outline
+         */
+        "buttonGhost": boolean;
+        /**
+          * Loading button
+         */
+        "buttonLoading": boolean;
+        /**
+          * Outline button
+         */
+        "buttonOutline": boolean;
+        /**
+          * button variant
+         */
+        "buttonVariant": ButtonVariant1;
         /**
           * If true the search field will fill all available horizontal space of it's parent container when expanded.
           * @since 1.6.0
@@ -5715,6 +5747,22 @@ declare namespace LocalJSX {
      */
     interface IxDateDropdown {
         /**
+          * Button with no background or outline
+         */
+        "buttonGhost"?: boolean;
+        /**
+          * Loading button
+         */
+        "buttonLoading"?: boolean;
+        /**
+          * Outline button
+         */
+        "buttonOutline"?: boolean;
+        /**
+          * button variant
+         */
+        "buttonVariant"?: ButtonVariant1;
+        /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
          */
         "customRangeAllowed"?: boolean;
@@ -6321,6 +6369,22 @@ declare namespace LocalJSX {
         "selected"?: boolean;
     }
     interface IxExpandingSearch {
+        /**
+          * Button with no background or outline
+         */
+        "buttonGhost"?: boolean;
+        /**
+          * Loading button
+         */
+        "buttonLoading"?: boolean;
+        /**
+          * Outline button
+         */
+        "buttonOutline"?: boolean;
+        /**
+          * button variant
+         */
+        "buttonVariant"?: ButtonVariant1;
         /**
           * If true the search field will fill all available horizontal space of it's parent container when expanded.
           * @since 1.6.0

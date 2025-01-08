@@ -24,6 +24,7 @@ import { DateTime } from 'luxon';
 import { type LiteralStringUnion } from '../utils/type-helper';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import { makeRef } from '../utils/make-ref';
+import { ButtonVariant } from '../button/button';
 
 export type DateDropdownOption = {
   id: string;
@@ -100,6 +101,27 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
    * if not set or no according date range label is found, nothing will be selected
    */
   @Prop() dateRangeId = 'custom';
+
+  /**
+   * button variant
+   */
+  @Prop() buttonVariant: ButtonVariant = 'primary';
+
+  /**
+   * Outline button
+   */
+  @Prop() buttonOutline = false;
+
+  /**
+   * Button with no background or outline
+   */
+  @Prop() buttonGhost = false;
+
+  /**
+   * Loading button
+   */
+  @Prop() buttonLoading: boolean = false;
+
   @Watch('dateRangeId')
   @Watch('to')
   @Watch('from')
@@ -140,6 +162,7 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
    *   // ... other predefined date range options ...
    */
   @Prop() dateRangeOptions: DateDropdownOption[] = [];
+
   @Watch('dateRangeOptions')
   onDateRangeOptionsChange() {
     this.initialize();
@@ -202,6 +225,7 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
       this.closeDropdown();
     }
   }
+
   private datePickerTouched = false;
 
   componentWillLoad() {
@@ -327,7 +351,10 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
         <ix-button
           data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
-          variant="primary"
+          variant={this.buttonVariant}
+          ghost={this.buttonGhost}
+          outline={this.buttonOutline}
+          loading={this.buttonLoading}
           icon="history"
           ref={this.triggerRef}
           disabled={this.disabled}

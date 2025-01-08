@@ -16,6 +16,7 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { ButtonVariant } from '../button/button';
 
 @Component({
   tag: 'ix-expanding-search',
@@ -43,6 +44,26 @@ export class ExpandingSearch {
    * @since 1.6.0
    */
   @Prop() fullWidth = false;
+
+  /**
+   * button variant
+   */
+  @Prop() buttonVariant: ButtonVariant = 'primary';
+
+  /**
+   * Outline button
+   */
+  @Prop() buttonOutline = false;
+
+  /**
+   * Button with no background or outline
+   */
+  @Prop() buttonGhost = true;
+
+  /**
+   * Loading button
+   */
+  @Prop() buttonLoading: boolean = false;
 
   @State() isFieldChanged = false;
   @State() expanded = false;
@@ -108,8 +129,10 @@ export class ExpandingSearch {
         <ix-icon-button
           size={this.expanded ? '16' : '24'}
           icon={this.icon}
-          ghost
-          variant="primary"
+          variant={this.buttonVariant}
+          ghost={this.buttonGhost || this.expanded}
+          outline={this.buttonOutline}
+          loading={this.buttonLoading}
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}

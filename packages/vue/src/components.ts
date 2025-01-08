@@ -332,6 +332,10 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'minDate',
   'maxDate',
   'dateRangeId',
+  'buttonVariant',
+  'buttonOutline',
+  'buttonGhost',
+  'buttonLoading',
   'customRangeAllowed',
   'dateRangeOptions',
   'locale',
@@ -516,6 +520,10 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
   'placeholder',
   'value',
   'fullWidth',
+  'buttonVariant',
+  'buttonOutline',
+  'buttonGhost',
+  'buttonLoading',
   'valueChange'
 ]);
 
