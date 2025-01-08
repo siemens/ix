@@ -211,7 +211,7 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId: LiteralStringUnion<'custom'>;
+  @State() private selectedDateRangeId: LiteralStringUnion<'custom'> = '';
   @State() private currentRangeValue?: {
     from: string;
     to: string;

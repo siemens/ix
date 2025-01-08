@@ -72,7 +72,7 @@ export class ExpandingSearch {
   /**
    * Value changed
    */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange!: EventEmitter<string>;
 
   private expandInput() {
     setTimeout(this.focusTextInput, 300);
