@@ -652,22 +652,6 @@ export namespace Components {
      */
     interface IxDateDropdown {
         /**
-          * Button with no background or outline
-         */
-        "buttonGhost": boolean;
-        /**
-          * Loading button
-         */
-        "buttonLoading": boolean;
-        /**
-          * Outline button
-         */
-        "buttonOutline": boolean;
-        /**
-          * button variant
-         */
-        "buttonVariant": ButtonVariant1;
-        /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
          */
         "customRangeAllowed": boolean;
@@ -698,6 +682,10 @@ export namespace Components {
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
           * Text for custom dropdown item. Will be used for translation.
          */
         "i18nCustomItem": string;
@@ -709,6 +697,10 @@ export namespace Components {
           * Text for the done button. Will be used for translation.
          */
         "i18nNoRange": string;
+        /**
+          * Loading button
+         */
+        "loading": boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.6.0
@@ -723,6 +715,10 @@ export namespace Components {
          */
         "minDate": string;
         /**
+          * Outline button
+         */
+        "outline": boolean;
+        /**
           * If true a range of dates can be selected.
          */
         "range": boolean;
@@ -731,6 +727,10 @@ export namespace Components {
          */
         "to": string;
         "today": string;
+        /**
+          * button variant
+         */
+        "variant": ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.6.0
@@ -1234,30 +1234,26 @@ export namespace Components {
     }
     interface IxExpandingSearch {
         /**
-          * Button with no background or outline
-         */
-        "buttonGhost": boolean;
-        /**
-          * Loading button
-         */
-        "buttonLoading": boolean;
-        /**
-          * Outline button
-         */
-        "buttonOutline": boolean;
-        /**
-          * button variant
-         */
-        "buttonVariant": ButtonVariant1;
-        /**
           * If true the search field will fill all available horizontal space of it's parent container when expanded.
           * @since 1.6.0
          */
         "fullWidth": boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
           * Search icon
          */
         "icon": string;
+        /**
+          * Loading button
+         */
+        "loading": boolean;
+        /**
+          * Outline button
+         */
+        "outline": boolean;
         /**
           * Placeholder text
          */
@@ -1266,6 +1262,10 @@ export namespace Components {
           * Default value
          */
         "value": string;
+        /**
+          * button variant
+         */
+        "variant": ButtonVariant1;
     }
     interface IxFieldLabel {
         "controlRef"?: | MakeRef<HTMLElement>
@@ -5747,22 +5747,6 @@ declare namespace LocalJSX {
      */
     interface IxDateDropdown {
         /**
-          * Button with no background or outline
-         */
-        "buttonGhost"?: boolean;
-        /**
-          * Loading button
-         */
-        "buttonLoading"?: boolean;
-        /**
-          * Outline button
-         */
-        "buttonOutline"?: boolean;
-        /**
-          * button variant
-         */
-        "buttonVariant"?: ButtonVariant1;
-        /**
           * Controls whether the user is allowed to pick custom date ranges in the component. When set to 'true', the user can select a custom date range using the date picker. When set to 'false', only predefined time date ranges are available for selection.
          */
         "customRangeAllowed"?: boolean;
@@ -5789,6 +5773,10 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
           * Text for custom dropdown item. Will be used for translation.
          */
         "i18nCustomItem"?: string;
@@ -5800,6 +5788,10 @@ declare namespace LocalJSX {
           * Text for the done button. Will be used for translation.
          */
         "i18nNoRange"?: string;
+        /**
+          * Loading button
+         */
+        "loading"?: boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.6.0
@@ -5818,6 +5810,10 @@ declare namespace LocalJSX {
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
+          * Outline button
+         */
+        "outline"?: boolean;
+        /**
           * If true a range of dates can be selected.
          */
         "range"?: boolean;
@@ -5826,6 +5822,10 @@ declare namespace LocalJSX {
          */
         "to"?: string;
         "today"?: string;
+        /**
+          * button variant
+         */
+        "variant"?: ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.6.0
@@ -6370,34 +6370,30 @@ declare namespace LocalJSX {
     }
     interface IxExpandingSearch {
         /**
-          * Button with no background or outline
-         */
-        "buttonGhost"?: boolean;
-        /**
-          * Loading button
-         */
-        "buttonLoading"?: boolean;
-        /**
-          * Outline button
-         */
-        "buttonOutline"?: boolean;
-        /**
-          * button variant
-         */
-        "buttonVariant"?: ButtonVariant1;
-        /**
           * If true the search field will fill all available horizontal space of it's parent container when expanded.
           * @since 1.6.0
          */
         "fullWidth"?: boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
           * Search icon
          */
         "icon"?: string;
         /**
+          * Loading button
+         */
+        "loading"?: boolean;
+        /**
           * Value changed
          */
         "onValueChange"?: (event: IxExpandingSearchCustomEvent<string>) => void;
+        /**
+          * Outline button
+         */
+        "outline"?: boolean;
         /**
           * Placeholder text
          */
@@ -6406,6 +6402,10 @@ declare namespace LocalJSX {
           * Default value
          */
         "value"?: string;
+        /**
+          * button variant
+         */
+        "variant"?: ButtonVariant1;
     }
     interface IxFieldLabel {
         "controlRef"?: | MakeRef<HTMLElement>

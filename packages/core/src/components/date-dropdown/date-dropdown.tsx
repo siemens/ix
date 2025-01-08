@@ -25,6 +25,7 @@ import { type LiteralStringUnion } from '../utils/type-helper';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import { makeRef } from '../utils/make-ref';
 import { ButtonVariant } from '../button/button';
+import { IxButtonComponent } from '../button/button-component';
 
 export type DateDropdownOption = {
   id: string;
@@ -47,7 +48,11 @@ export type DateRangeChangeEvent = {
   styleUrl: 'date-dropdown.scss',
   shadow: true,
 })
-export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
+export class DateDropdown
+  implements
+    Omit<IxDatePickerComponent, 'corners'>,
+    Omit<IxButtonComponent, 'type' | 'icon' | 'disabled'>
+{
   @Element() hostElement!: HTMLIxDateDropdownElement;
 
   /**
@@ -105,22 +110,22 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
   /**
    * button variant
    */
-  @Prop() buttonVariant: ButtonVariant = 'primary';
+  @Prop() variant: ButtonVariant = 'primary';
 
   /**
    * Outline button
    */
-  @Prop() buttonOutline = false;
+  @Prop() outline = false;
 
   /**
    * Button with no background or outline
    */
-  @Prop() buttonGhost = false;
+  @Prop() ghost = false;
 
   /**
    * Loading button
    */
-  @Prop() buttonLoading: boolean = false;
+  @Prop() loading: boolean = false;
 
   @Watch('dateRangeId')
   @Watch('to')
@@ -351,10 +356,10 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
         <ix-button
           data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
-          variant={this.buttonVariant}
-          ghost={this.buttonGhost}
-          outline={this.buttonOutline}
-          loading={this.buttonLoading}
+          variant={this.variant}
+          ghost={this.ghost}
+          outline={this.outline}
+          loading={this.loading}
           icon="history"
           ref={this.triggerRef}
           disabled={this.disabled}
