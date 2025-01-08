@@ -85,13 +85,17 @@ export class Drawer {
 
     if (show) {
       this.open.emit();
-      this.slideInRight(this.divElement);
+      if (this.divElement) {
+        this.slideInRight(this.divElement);
+      }
       setTimeout(() => {
         window.addEventListener('mousedown', this.callback);
       }, 300);
     } else {
       this.drawerClose.emit();
-      this.slideOutRight(this.divElement);
+      if (this.divElement) {
+        this.slideOutRight(this.divElement);
+      }
       window.removeEventListener('mousedown', this.callback);
     }
 
@@ -120,10 +124,7 @@ export class Drawer {
     }
   }
 
-  private slideOutRight(el?: HTMLElement) {
-    if (!el) {
-      return;
-    }
+  private slideOutRight(el: HTMLElement) {
     anime({
       targets: el,
       duration: Drawer.duration,
@@ -136,10 +137,7 @@ export class Drawer {
     });
   }
 
-  private slideInRight(el?: HTMLElement) {
-    if (!el) {
-      return;
-    }
+  private slideInRight(el: HTMLElement) {
     anime({
       targets: el,
       duration: Drawer.duration,
