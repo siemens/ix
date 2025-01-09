@@ -34,7 +34,13 @@ function selectController(select: Locator) {
       if (!skipDropdownCheck) {
         await dropdownVisible();
       }
-      await select.page().keyboard.press('ArrowDown');
+      await select.page().keyboard.press('ArrowDown', { delay: 50 });
+    },
+    async arrowUp(skipDropdownCheck = false) {
+      if (!skipDropdownCheck) {
+        await dropdownVisible();
+      }
+      await select.page().keyboard.press('ArrowUp', { delay: 50 });
     },
     async getDropdownItemsLocator(onlyVisible = false) {
       let selector = 'ix-select-item';
@@ -62,6 +68,11 @@ function selectController(select: Locator) {
       await expect(addItem).toBeVisible();
       return addItem;
     },
+
+    async getItemCheckedLocator() {
+      await dropdownVisible();
+      return select.locator('ix-select-item .checkmark');
+    },
   };
 }
 
@@ -72,8 +83,8 @@ test.describe('arrow key navigation', () => {
     test('input -> slotted item', async ({ mount, page }) => {
       await mount(`
         <ix-select>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="1" label="Item 1"></ix-select-item>
+          <ix-select-item value="2" label="Item 2"></ix-select-item>
         </ix-select>
       `);
 
@@ -95,22 +106,22 @@ test.describe('arrow key navigation', () => {
     test('slot -> dynamic item', async ({ mount, page }) => {
       await mount(`
         <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+          <ix-select-item value="1" label="Item 1"></ix-select-item>
+          <ix-select-item value="2" label="Item 2"></ix-select-item>
         </ix-select>
       `);
 
       const selectCtrl = selectController(page.locator('ix-select'));
 
       await selectCtrl.focusInput();
-
       await selectCtrl.fillInput('New Item');
       await page.keyboard.press('Enter');
 
       await selectCtrl.clickDropdownChevron();
 
       await selectCtrl.arrowDown();
-      await selectCtrl.arrowDown(true);
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
 
       const dropdownItems = await selectCtrl.getDropdownItemsLocator();
       const focusItem = await selectCtrl.getFocusDropdownItemLocator();
@@ -129,15 +140,16 @@ test.describe('arrow key navigation', () => {
 
       await selectCtrl.focusInput();
       await selectCtrl.fillInput('New Item');
+
       await selectCtrl.arrowDown();
+
       const visibleDropdownItems =
         await selectCtrl.getDropdownItemsLocator(true);
+      expect(visibleDropdownItems).toHaveLength(0);
 
       const addItem = await selectCtrl.getAddItemDropdownItemLocator();
-
-      expect(visibleDropdownItems).toHaveLength(0);
-      await expect(addItem).toBeFocused();
       await expect(addItem).toHaveText('New Item');
+      await expect(addItem).toBeFocused();
     });
 
     test('input -> add item', async ({ mount, page }) => {
@@ -160,251 +172,311 @@ test.describe('arrow key navigation', () => {
       await expect(focusItem).toHaveText('New Item');
     });
 
-    // test('slot -> add item', async ({ mount, page }) => {
-    //   await mount(`
-    //     <ix-select editable>
-    //       <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-    //       <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-    //     </ix-select>
-    //   `);
+    test('slot -> add item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1"></ix-select-item>
+          <ix-select-item value="2" label="Item 2"></ix-select-item>
+        </ix-select>
+      `);
 
-    //   await page.waitForSelector('ix-select');
-    //   const input = page.locator('ix-select input');
-    //   await input.focus();
-    //   await page.keyboard.down('I');
-    //   await page.waitForSelector('.dropdown-item-icon');
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('Item');
 
-    //   await expectFocusMoved('ArrowDown', '1', page);
-    //   await expectFocusMoved('ArrowDown', 'odd', page);
-    //   await page.keyboard.press('ArrowDown');
+      expect(await selectCtrl.getDropdownItemsLocator()).toHaveLength(2);
 
-    //   const addItem = page.locator('.add-item');
-    //   await expect(addItem).toBeFocused();
-    // });
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
 
-    // test('dynamic item -> add item', async ({ mount, page }) => {
-    //   await mount(`
-    //     <ix-select editable>
-    //       <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-    //     </ix-select>
-    //   `);
+      await expect(
+        await selectCtrl.getAddItemDropdownItemLocator()
+      ).toBeFocused();
+    });
 
-    //   const input = page.locator('ix-select input');
-    //   await input.focus();
-    //   await input.fill('Item 2');
-    //   await page.keyboard.down('Enter');
-    //   await page.locator('ix-icon-button').click();
-    //   await page.waitForSelector('.checkmark');
+    test('dynamic item -> add item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1"></ix-select-item>
+        </ix-select>
+      `);
 
-    //   await input.clear();
-    //   await input.fill('I');
-    //   await page.waitForSelector('.add-item');
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('Item 2');
+      await page.keyboard.press('Enter');
 
-    //   await expectFocusMoved('ArrowDown', '1', page);
-    //   await expectFocusMoved('ArrowDown', 'odd', page);
-    //   await page.keyboard.down('ArrowDown');
+      await selectCtrl.clickDropdownChevron();
+      expect(await selectCtrl.getItemCheckedLocator()).toBeVisible();
 
-    //   const addItem = page.locator('.add-item');
-    //   await expect(addItem).toBeFocused();
-    // });
+      await selectCtrl.fillInput('');
+      await selectCtrl.fillInput('I');
 
-    // test('wrap - dynamic item -> slot', async ({ mount, page }) => {
-    //   await mount(`
-    //     <ix-select editable>
-    //       <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-    //     </ix-select>
-    //  `);
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
 
-    //   const input = page.locator('ix-select input');
-    //   await input.focus();
-    //   await input.fill('Item 2');
-    //   await page.keyboard.press('Enter');
-    //   await input.clear();
+      await expect(
+        await selectCtrl.getAddItemDropdownItemLocator()
+      ).toBeFocused();
+    });
 
-    //   await page.keyboard.down('ArrowDown');
-    //   await page.waitForSelector('ix-dropdown');
-    //   await page.keyboard.down('ArrowDown');
+    test('wrap - dynamic item -> slot', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1"></ix-select-item>
+        </ix-select>
+     `);
 
-    //   const itemTwo = page.locator('ix-select-item').nth(1);
-    //   await expect(itemTwo).toBeFocused();
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('Item 2');
+      await page.keyboard.press('Enter');
 
-    //   await expectFocusMoved('ArrowDown', '1', page);
-    // });
+      await selectCtrl.clickDropdownChevron();
 
-    // test('wrap - add item -> slot', async ({ mount, page }) => {
-    //   await mount(`
-    //     <ix-select editable>
-    //       <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-    //     </ix-select>
-    //  `);
+      expect(await selectCtrl.getDropdownItemsLocator()).toHaveLength(2);
 
-    //   const input = page.locator('ix-select input');
-    //   await input.focus();
-    //   await input.fill('I');
-    //   await page.waitForSelector('.add-item');
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
 
-    //   await page.keyboard.down('ArrowDown');
-    //   await page.keyboard.down('ArrowDown');
+      const itemsBeforeNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsBeforeNavigation.at(1)).toHaveText('Item 2');
+      expect(itemsBeforeNavigation.at(0)).not.toBeFocused();
+      expect(itemsBeforeNavigation.at(1)).toBeFocused();
 
-    //   const addItem = page.locator('.add-item');
-    //   await expect(addItem).toBeFocused();
+      await selectCtrl.arrowDown();
 
-    //   await expectFocusMoved('ArrowDown', '1', page);
-    // });
+      const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsAfterNavigation.at(0)).toHaveText('Item 1');
+      expect(itemsAfterNavigation.at(0)).toBeFocused();
+      expect(itemsAfterNavigation.at(1)).not.toBeFocused();
+    });
 
-    // test('wrap - add item -> dynamic item', async ({ mount, page }) => {
-    //   await mount(`
-    //     <ix-select editable></ix-select>
-    //  `);
+    test('wrap - add item -> slot', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1"></ix-select-item>
+        </ix-select>
+     `);
 
-    //   const input = page.locator('ix-select input');
-    //   await input.focus();
-    //   await input.fill('Item 1');
-    //   await page.keyboard.press('Enter');
-    //   await page.locator('ix-icon-button').click();
-    //   await page.waitForSelector('.checkmark');
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('I');
 
-    //   await input.clear();
-    //   await input.fill('I');
-    //   await page.waitForSelector('.add-item');
+      const addItem = await selectCtrl.getAddItemDropdownItemLocator();
 
-    //   await page.keyboard.down('ArrowDown');
-    //   await page.keyboard.down('ArrowDown');
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
 
-    //   const addItem = page.locator('.add-item');
-    //   await expect(addItem).toBeFocused();
+      await expect(addItem).toBeFocused();
 
-    //   await expectFocusMoved('ArrowDown', '1', page);
-    // });
+      await selectCtrl.arrowDown();
+
+      const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsAfterNavigation.at(0)).toHaveText('Item 1');
+      expect(itemsAfterNavigation.at(0)).toBeFocused();
+    });
+
+    test('wrap - add item -> dynamic item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable></ix-select>
+     `);
+
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('Item 1');
+      await page.keyboard.press('Enter');
+
+      await selectCtrl.clickDropdownChevron();
+      expect(await selectCtrl.getItemCheckedLocator()).toBeVisible();
+
+      await selectCtrl.fillInput('');
+      await selectCtrl.fillInput('I');
+
+      const addItem = await selectCtrl.getAddItemDropdownItemLocator();
+
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
+
+      expect(addItem).toBeFocused();
+
+      await selectCtrl.arrowDown();
+
+      const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsAfterNavigation.at(0)).toHaveText('Item 1');
+      expect(itemsAfterNavigation.at(0)).toBeFocused();
+    });
   });
 
-  // test.describe('ArrowUp', () => {
-  //   test('dynamic item -> slot', async ({ mount, page }) => {
-  //     await mount(`
-  //       <ix-select editable>
-  //         <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-  //       </ix-select>
-  //     `);
+  test.describe('ArrowUp', () => {
+    test('dynamic item -> slot', async ({ mount, page }) => {
+      await mount(`
+          <ix-select editable>
+            <ix-select-item value="1" label="Item 1"></ix-select-item>
+          </ix-select>
+        `);
 
-  //     const input = page.locator('ix-select input');
-  //     await input.focus();
-  //     await input.fill('I');
-  //     await page.keyboard.down('Enter');
-  //     await page.locator('ix-icon-button').click();
-  //     await page.waitForSelector('.checkmark');
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('I');
+      await page.keyboard.press('Enter');
 
-  //     await expectFocusMoved('ArrowDown', '1', page);
-  //     await expectFocusMoved('ArrowDown', 'odd', page);
-  //     await expectFocusMoved('ArrowUp', '1', page);
-  //   });
+      await selectCtrl.clickDropdownChevron();
+      await selectCtrl.getItemCheckedLocator();
 
-  //   test('add item -> slot', async ({ mount, page }) => {
-  //     await mount(`
-  //       <ix-select editable>
-  //         <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-  //       </ix-select>
-  //     `);
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
 
-  //     const input = page.locator('ix-select input');
-  //     await input.focus();
-  //     await input.fill('I');
-  //     await page.waitForSelector('.add-item');
+      const itemsBeforeNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsBeforeNavigation.at(1)).toHaveText('I');
+      expect(itemsBeforeNavigation.at(1)).toBeFocused();
 
-  //     await expectFocusMoved('ArrowDown', '1', page);
-  //     await page.keyboard.down('ArrowDown');
+      await selectCtrl.arrowUp();
 
-  //     const addItem = page.locator('.add-item');
-  //     await expect(addItem).toBeFocused();
+      const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsAfterNavigation.at(0)).toHaveText('Item 1');
+      expect(itemsAfterNavigation.at(0)).toBeFocused();
+    });
 
-  //     await expectFocusMoved('ArrowUp', '1', page);
-  //   });
+    test('add item -> slot', async ({ mount, page }) => {
+      await mount(`
+          <ix-select editable>
+            <ix-select-item value="1" label="Item 1"></ix-select-item>
+          </ix-select>
+        `);
 
-  //   test('add item -> dynamic item', async ({ mount, page }) => {
-  //     await mount(`
-  //       <ix-select editable></ix-select>
-  //     `);
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('I');
 
-  //     const input = page.locator('ix-select input');
-  //     await input.focus();
-  //     await input.fill('Item 1');
-  //     await page.keyboard.press('Enter');
-  //     await page.locator('ix-icon-button').click();
-  //     await page.waitForSelector('.checkmark');
+      const addItem = await selectCtrl.getAddItemDropdownItemLocator();
 
-  //     await input.clear();
-  //     await input.fill('I');
-  //     await page.waitForSelector('.add-item');
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
 
-  //     await expectFocusMoved('ArrowDown', '1', page);
-  //     await page.keyboard.down('ArrowDown');
+      await expect(addItem).toBeFocused();
 
-  //     const addItem = page.locator('.add-item');
-  //     await expect(addItem).toBeFocused();
+      await selectCtrl.arrowUp();
 
-  //     await expectFocusMoved('ArrowUp', '1', page);
-  //   });
+      const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsAfterNavigation.at(0)).toHaveText('Item 1');
+      expect(itemsAfterNavigation.at(0)).toBeFocused();
+    });
 
-  //   test('wrap - slot -> dynamic item', async ({ mount, page }) => {
-  //     await mount(`
-  //       <ix-select editable>
-  //         <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-  //       </ix-select>
-  //    `);
+    test('add item -> dynamic item', async ({ mount, page }) => {
+      await mount(`
+          <ix-select editable></ix-select>
+       `);
 
-  //     const input = page.locator('input');
-  //     await input.focus();
-  //     await input.fill('Item 2');
-  //     await page.keyboard.press('Enter');
-  //     await page.locator('ix-icon-button').click();
-  //     await page.locator('input').clear();
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('Item 1');
+      await page.keyboard.press('Enter');
 
-  //     await page.keyboard.down('ArrowDown');
-  //     await page.keyboard.down('ArrowUp');
+      await selectCtrl.clickDropdownChevron();
+      expect(await selectCtrl.getItemCheckedLocator()).toBeVisible();
 
-  //     const itemTwo = page.locator('ix-select-item').last();
-  //     await expect(itemTwo).toBeFocused();
-  //   });
+      await selectCtrl.fillInput('');
+      await selectCtrl.fillInput('I');
 
-  //   test('wrap - slot -> add-item', async ({ mount, page }) => {
-  //     await mount(`
-  //       <ix-select editable>
-  //         <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-  //       </ix-select>
-  //    `);
+      const addItem = await selectCtrl.getAddItemDropdownItemLocator();
 
-  //     const input = page.locator('ix-select input');
-  //     await input.focus();
-  //     await input.fill('I');
-  //     await page.waitForSelector('.add-item');
+      await selectCtrl.arrowDown();
+      await selectCtrl.arrowDown();
 
-  //     await expectFocusMoved('ArrowDown', '1', page);
-  //     await page.keyboard.down('ArrowUp');
+      expect(addItem).toBeFocused();
 
-  //     const addItem = page.locator('.add-item');
-  //     await expect(addItem).toBeFocused();
-  //   });
+      await selectCtrl.arrowUp();
 
-  //   test('wrap - dynamic item -> add item', async ({ mount, page }) => {
-  //     await mount(`
-  //       <ix-select editable></ix-select>
-  //    `);
+      const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsAfterNavigation.at(0)).toHaveText('Item 1');
+      expect(itemsAfterNavigation.at(0)).toBeFocused();
+    });
 
-  //     const input = page.locator('ix-select input');
-  //     await input.focus();
-  //     await input.fill('Item 1');
-  //     await page.keyboard.press('Enter');
-  //     await page.locator('ix-icon-button').click();
-  //     await page.waitForSelector('.checkmark');
+    test('wrap - slot -> dynamic item', async ({ mount, page }) => {
+      await mount(`
+        <ix-select editable>
+          <ix-select-item value="1" label="Item 1"></ix-select-item>
+        </ix-select>
+     `);
 
-  //     await input.clear();
-  //     await input.fill('I');
-  //     await page.waitForSelector('.add-item');
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('Item 2');
+      await page.keyboard.press('Enter');
 
-  //     await expectFocusMoved('ArrowDown', '1', page);
-  //     await page.keyboard.down('ArrowUp');
+      await selectCtrl.clickDropdownChevron();
 
-  //     const addItem = page.locator('.add-item');
-  //     await expect(addItem).toBeFocused();
-  //   });
-  // });
+      expect(await selectCtrl.getDropdownItemsLocator()).toHaveLength(2);
+
+      await selectCtrl.arrowDown();
+
+      const itemsBeforeNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsBeforeNavigation.at(0)).toHaveText('Item 1');
+      expect(itemsBeforeNavigation.at(0)).toBeFocused();
+      expect(itemsBeforeNavigation.at(1)).not.toBeFocused();
+
+      await selectCtrl.arrowUp();
+
+      const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsAfterNavigation.at(1)).toHaveText('Item 2');
+      expect(itemsAfterNavigation.at(0)).not.toBeFocused();
+      expect(itemsAfterNavigation.at(1)).toBeFocused();
+    });
+
+    test('wrap - slot -> add-item', async ({ mount, page }) => {
+      await mount(`
+          <ix-select editable>
+            <ix-select-item value="1" label="Item 1"></ix-select-item>
+          </ix-select>
+       `);
+
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('I');
+
+      const addItem = await selectCtrl.getAddItemDropdownItemLocator();
+
+      await selectCtrl.arrowDown();
+
+      const itemsBeforeNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsBeforeNavigation.at(0)).toHaveText('Item 1');
+      expect(itemsBeforeNavigation.at(0)).toBeFocused();
+
+      await selectCtrl.arrowUp();
+
+      await expect(addItem).toBeFocused();
+    });
+
+    test('wrap - dynamic item -> add item', async ({ mount, page }) => {
+      await mount(`
+          <ix-select editable></ix-select>
+       `);
+
+      const selectCtrl = selectController(page.locator('ix-select'));
+      await selectCtrl.focusInput();
+      await selectCtrl.fillInput('Item 1');
+      await page.keyboard.press('Enter');
+
+      await selectCtrl.clickDropdownChevron();
+      expect(await selectCtrl.getItemCheckedLocator()).toBeVisible();
+
+      await selectCtrl.fillInput('');
+      await selectCtrl.fillInput('I');
+
+      const addItem = await selectCtrl.getAddItemDropdownItemLocator();
+
+      await selectCtrl.arrowDown();
+
+      const itemsAfterNavigation = await selectCtrl.getDropdownItemsLocator();
+      expect(itemsAfterNavigation.at(0)).toHaveText('Item 1');
+      expect(itemsAfterNavigation.at(0)).toBeFocused();
+
+      await selectCtrl.arrowUp();
+
+      expect(addItem).toBeFocused();
+    });
+  });
 });
