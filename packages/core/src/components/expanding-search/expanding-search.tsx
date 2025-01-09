@@ -132,9 +132,9 @@ export class ExpandingSearch
         <ix-icon-button
           size={this.expanded ? '16' : '24'}
           icon={this.icon}
-          variant={this.variant}
+          variant={this.expanded ? 'primary' : this.variant}
           ghost={this.ghost || this.expanded}
-          outline={this.outline}
+          outline={this.outline && !this.expanded}
           loading={this.loading}
           data-testid="button"
           onClick={() => this.expandInput()}

@@ -4446,7 +4446,7 @@
           "mutable": false,
           "attr": "variant",
           "reflectToAttr": false,
-          "docs": "button variant",
+          "docs": "Button variant",
           "docsTags": [],
           "default": "'primary'",
           "values": [

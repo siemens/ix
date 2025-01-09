@@ -728,7 +728,7 @@ export namespace Components {
         "to": string;
         "today": string;
         /**
-          * button variant
+          * Button variant
          */
         "variant": ButtonVariant1;
         /**
@@ -5823,7 +5823,7 @@ declare namespace LocalJSX {
         "to"?: string;
         "today"?: string;
         /**
-          * button variant
+          * Button variant
          */
         "variant"?: ButtonVariant1;
         /**

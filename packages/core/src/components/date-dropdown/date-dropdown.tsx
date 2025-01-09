@@ -51,7 +51,7 @@ export type DateRangeChangeEvent = {
 export class DateDropdown
   implements
     Omit<IxDatePickerComponent, 'corners'>,
-    Omit<IxButtonComponent, 'type' | 'icon' | 'disabled'>
+    Omit<IxButtonComponent, 'type' | 'icon'>
 {
   @Element() hostElement!: HTMLIxDateDropdownElement;
 
@@ -108,7 +108,7 @@ export class DateDropdown
   @Prop() dateRangeId = 'custom';
 
   /**
-   * button variant
+   * Button variant
    */
   @Prop() variant: ButtonVariant = 'primary';
 
