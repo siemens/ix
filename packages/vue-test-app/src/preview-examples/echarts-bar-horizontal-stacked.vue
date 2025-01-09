@@ -9,14 +9,14 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {convertThemeName, registerTheme} from '@siemens/ix-echarts';
+import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts/core';
 import * as charts from 'echarts/charts';
 import * as components from 'echarts/components';
 import * as renderer from 'echarts/renderers';
-import {BarSeriesOption, EChartsOption} from 'echarts';
+import { BarSeriesOption, EChartsOption } from 'echarts';
 
 echarts.use([
   components.TooltipComponent,
@@ -29,10 +29,10 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(convertThemeName(themeSwitcher.getCurrentTheme()));
+const theme = ref(themeSwitcher.getCurrentTheme());
 
 themeSwitcher.themeChanged.on((newTheme: string) => {
-  theme.value = convertThemeName(newTheme);
+  theme.value = newTheme;
 });
 
 const data = {
@@ -48,12 +48,15 @@ const seriesData = [
   { name: 'China', data: data.salesChina },
 ];
 
-const series = seriesData.map(({ name, data }) => ({
-  name,
-  data,
-  type: 'bar',
-  stack: 'x',
-} as BarSeriesOption));
+const series = seriesData.map(
+  ({ name, data }) =>
+    ({
+      name,
+      data,
+      type: 'bar',
+      stack: 'x',
+    } as BarSeriesOption)
+);
 
 const options: EChartsOption = {
   xAxis: {
@@ -80,7 +83,5 @@ const options: EChartsOption = {
 <style scoped src="./echarts-bar-horizontal-stacked.css"></style>
 
 <template>
-    <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
+  <VueECharts :theme="theme" :option="options" autoresize></VueECharts>
 </template>
-
-
