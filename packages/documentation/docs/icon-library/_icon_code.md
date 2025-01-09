@@ -14,15 +14,7 @@ Therefor icons need to be imported explicitly.
 
 #### Angular
 
-Use the 'addIcon' function to load individual icons once during bootstrapping.
-TODO (IX-2072): Add real code example
-
-```js
-addIcon('star')
-```
-
-Alternatively the whole icon set can be loaded via `angular.json`.
-Keep in mind that loading all icons can have a negative impact on the performance of your application and is therefor not recommended.
+Copy iX icons into your project folder via `angular.json`.
 
 ```json
 "assets": [
@@ -30,11 +22,27 @@ Keep in mind that loading all icons can have a negative impact on the performanc
   "src/assets",
   {
   "glob": "**/*.svg",
-  "input": "node_modules/@siemens/ix-icons/svg",
+  "input": "node_modules/@siemens/ix-icons/incoming-svg",
   "output": "./svg"
   }
 ],
 ```
+
+You can use the `loadIcons` function to load individual icons once during bootstrapping.
+
+```js
+import { loadIcons } from @siemens/ix-icons;
+
+const icons = [
+  'star',
+  'star-filled',
+  // ...
+];
+
+loadIcons(icons);
+```
+
+Then you can reference the loaded iX icons by name anywhere in your application.
 
 ```html
 <ix-icon name="star" size="16"></ix-icon>
@@ -53,8 +61,6 @@ import { iconStar } from '@siemens/ix-icons/icons';
 ```
 
 #### Web components
-
-TODO: Add sample code that loads icons
 
 ```html
 <ix-icon name="star" size="16"></ix-icon>
