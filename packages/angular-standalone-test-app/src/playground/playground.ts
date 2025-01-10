@@ -8,26 +8,10 @@
  */
 
 import { Component } from '@angular/core';
-import {
-  IxApplication,
-  IxApplicationHeader,
-  IxContent,
-  IxContentHeader,
-  IxMenu,
-  IxMenuItem,
-} from '@siemens/ix-angular/standalone';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [
-    IxApplication,
-    IxApplicationHeader,
-    IxMenu,
-    IxMenuItem,
-    IxContent,
-    IxContentHeader,
-  ],
   templateUrl: './playground.html',
 })
 export default class Playground {}
