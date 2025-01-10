@@ -7,22 +7,24 @@ Dropdown buttons are button elements that allow users to select an action from a
 3. Chevron
 4. Icon
 
-All the variants, options and states of the ix button component apply to the dropdown button. We've listed additional or deviating specifications here.
+**Note:** All the variants, options and states of the [button](button.md) component apply to the split button. We've listed additional or deviating specifications here.
 
 ## Options
-- **Label:** Set a label for the dropdown button. We typically use short labels including verbs.
-- Icon: An icon can be displayed on the button. We typically use icons to support the label and make the button more easy to discover by the user. The icon should be widely known for representing the action or function among your users.
-- **Placement:** Define where the dropdown appears when the button is active. Choose between different directions (top, bottom, left, right) and two options for alignment with the button (start, end). When there isn't enough space for the chosen placement, it's automatically corrected.
+- **Placement:** Define where the dropdown appears. Choose between different directions (top, bottom, left, right) and two options for alignment with the button (start, end). When there isn't enough space for the chosen placement, it's automatically corrected.
 
 ![Placement example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1504-2203&mode=design&t=5MYmq6zAbfw7xIkC-11)
 1. Bottom-end placement
 2. Bottom-start placement
 
-- For options of the dropdown triggered when pressing the button, please refer to our separate dropdown component guide.
-- The options **loading** and **type** are not available for split buttons.
+ Note: For options of the dropdown triggered when clicking on the button, see [dropdown](../dropdown.md). The **type** option is not available for dropdown buttons.
+
+# Behavior in context
+- **Interaction:** When users click on the button, the dropdown is shown.
 
 ## States
-Dropdown buttons have five states: Default, hover, active, disabled and focused. In an active state, dropdown buttons show a dropdown with the available options. The visual appearance of the states is the same as the ix button component.
+Dropdown buttons have five states: Default, hover, active, disabled and focused (loading is not available).
+
+The visual appearance and the behavior of the states is the same as the [button](button.md) and the [dropdown button](dropdown-buttom.md).
 
 ## Dos and Don'ts
 - Do use dropdown buttons when selecting an option triggers an action
