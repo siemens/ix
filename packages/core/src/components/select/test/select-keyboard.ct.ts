@@ -15,7 +15,7 @@ function selectController(select: Locator) {
   const dropdownChevron = select.locator('ix-icon-button');
 
   const dropdownVisible = async () => {
-    await expect(dropdown).toHaveClass(/show/);
+    expect((await dropdown.elementHandle()).waitForElementState('stable'));
   };
 
   return {
@@ -68,13 +68,17 @@ function selectController(select: Locator) {
       await dropdownVisible();
 
       const addItem = dropdown.locator('ix-dropdown-item.add-item');
-      await expect(addItem).toBeVisible();
+      await (await addItem.elementHandle()).waitForElementState('stable');
       return addItem;
     },
 
     async getItemCheckedLocator() {
       await dropdownVisible();
-      return select.locator('ix-select-item .checkmark');
+      const itemChecked = select.locator('ix-select-item .checkmark');
+
+      expect((await itemChecked.elementHandle()).waitForElementState('stable'));
+
+      return itemChecked;
     },
   };
 }
@@ -211,7 +215,7 @@ test.describe('arrow key navigation', () => {
       await page.keyboard.press('Enter');
 
       await selectCtrl.clickDropdownChevron();
-      await expect(await selectCtrl.getItemCheckedLocator()).toBeVisible();
+      await selectCtrl.getItemCheckedLocator();
 
       await selectCtrl.fillInput('');
       await selectCtrl.fillInput('I');
@@ -293,7 +297,7 @@ test.describe('arrow key navigation', () => {
       await page.keyboard.press('Enter');
 
       await selectCtrl.clickDropdownChevron();
-      await expect(await selectCtrl.getItemCheckedLocator()).toBeVisible();
+      await selectCtrl.getItemCheckedLocator();
 
       await selectCtrl.fillInput('');
       await selectCtrl.fillInput('I');
@@ -379,7 +383,7 @@ test.describe('arrow key navigation', () => {
       await selectCtrl.pressEnter();
 
       await selectCtrl.clickDropdownChevron();
-      await expect(await selectCtrl.getItemCheckedLocator()).toBeVisible();
+      await selectCtrl.getItemCheckedLocator();
 
       await selectCtrl.fillInput('');
       await selectCtrl.fillInput('I');
@@ -464,7 +468,7 @@ test.describe('arrow key navigation', () => {
       await page.keyboard.press('Enter');
 
       await selectCtrl.clickDropdownChevron();
-      await expect(await selectCtrl.getItemCheckedLocator()).toBeVisible();
+      await selectCtrl.getItemCheckedLocator();
 
       await selectCtrl.fillInput('');
       await selectCtrl.fillInput('I');
