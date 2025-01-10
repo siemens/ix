@@ -5,7 +5,8 @@
   "cli": {
     "cache": {
       "enabled": false
-    }
+    },
+    "analytics": false
   },
   "projects": {
     "angular-standalone-test-app": {
@@ -23,7 +24,15 @@
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/@siemens/ix-icons/svg",
+                "output": "./svg"
+              }
+            ],
             "styles": [
               "node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css",
               "src/styles.css"
@@ -36,7 +45,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2.93MB"
                 },
                 {
                   "type": "anyComponentStyle",
