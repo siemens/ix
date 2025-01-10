@@ -11,7 +11,7 @@ import { Component, Element, h, Host, State } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
 
 /**
- * @deprecated since 2.6.1. Will be removed with 3.0.0.
+ * @deprecated since 3.0.0. Will be removed with 4.0.0.
  * Use the 'ix-input' component instead
  */
 @Component({
