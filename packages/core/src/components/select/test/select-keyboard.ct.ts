@@ -15,7 +15,8 @@ function selectController(select: Locator) {
   const dropdownChevron = select.locator('ix-icon-button');
 
   const dropdownVisible = async () => {
-    expect((await dropdown.elementHandle()).waitForElementState('stable'));
+    await (await dropdown.elementHandle()).waitForElementState('stable');
+    await expect(dropdown).toBeVisible();
   };
 
   return {
