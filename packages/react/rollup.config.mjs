@@ -31,12 +31,14 @@ export default {
     preserveDirectives(),
   ],
   external: (id) => {
+    console.log(id);
     return (
       external.includes(id) ||
       id.startsWith('@siemens/ix') ||
       id.startsWith('@siemens/ix/hydrate') ||
       id.startsWith('@siemens/ix-icons') ||
-      id.startsWith('@stencil/react-output-target')
+      id.startsWith('@stencil/react-output-target') ||
+      id.startsWith('@stencil/react-output-target/runtime')
     );
   },
 };
