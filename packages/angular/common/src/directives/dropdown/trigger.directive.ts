@@ -8,9 +8,7 @@
  */
 import { Directive, ElementRef, Input } from '@angular/core';
 
-@Directive({
-  selector: '[ixDropdownTrigger]',
-})
+@Directive()
 export class DropdownTriggerBaseDirective {
   @Input() ixDropdownTrigger!: any;
 
