@@ -156,6 +156,7 @@ import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
 import MapNavigation from '../preview-examples/map-navigation';
+import MapNavigationMigration from '../preview-examples/map-navigation-migration';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
@@ -237,7 +238,6 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-import MapNavigationMigration from '../preview-examples/map-navigation-migration';
 
 @NgModule({
   declarations: [
