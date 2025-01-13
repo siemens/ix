@@ -15,9 +15,9 @@ import {
 
 @Directive({
   selector: 'ix-checkbox,ix-toggle',
-  providers: [createValueAccessorProvider(BooleanValueAccessorDirective)],
+  providers: [createValueAccessorProvider(IxBooleanValueAccessorDirective)],
 })
-export class BooleanValueAccessorDirective extends BooleanValueAccessorBaseDirective {
+export class IxBooleanValueAccessorDirective extends BooleanValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
   }

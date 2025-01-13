@@ -16,9 +16,9 @@ import {
 @Directive({
   standalone: true,
   selector: 'ix-date-input',
-  providers: [createValueAccessorProvider(DateValueAccessorDirective)],
+  providers: [createValueAccessorProvider(IxDateValueAccessorDirective)],
 })
-export class DateValueAccessorDirective extends DateValueAccessorBaseDirective {
+export class IxDateValueAccessorDirective extends DateValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
   }
