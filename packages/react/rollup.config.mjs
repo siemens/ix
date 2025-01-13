@@ -1,7 +1,6 @@
 import typescript from '@rollup/plugin-typescript';
 import preserveDirectives from 'rollup-plugin-preserve-directives';
 import { resolve } from 'path';
-import path from 'path';
 
 const __dirname = resolve();
 
