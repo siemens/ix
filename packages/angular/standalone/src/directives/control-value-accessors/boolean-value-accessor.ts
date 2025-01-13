@@ -9,19 +9,20 @@
 
 import { Directive, ElementRef, Injector } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioValueAccessorBaseDirective } from '@siemens/ix-angular/common';
+import { BooleanValueAccessorBaseDirective } from '@siemens/ix-angular/common';
 
 @Directive({
-  selector: 'ix-radio',
+  standalone: true,
+  selector: 'ix-checkbox,ix-toggle',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: RadioValueAccessorDirective,
+      useExisting: BooleanValueAccessorDirective,
       multi: true,
     },
   ],
 })
-export class RadioValueAccessorDirective extends RadioValueAccessorBaseDirective {
+export class BooleanValueAccessorDirective extends BooleanValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
   }

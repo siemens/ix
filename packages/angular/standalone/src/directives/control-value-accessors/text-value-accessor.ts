@@ -7,21 +7,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Directive, ElementRef, Injector } from '@angular/core';
+import { ElementRef, Injector, Directive } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioValueAccessorBaseDirective } from '@siemens/ix-angular/common';
+import { TextValueAccessorBaseDirective } from '@siemens/ix-angular/common';
 
 @Directive({
-  selector: 'ix-radio',
+  standalone: true,
+  selector: 'ix-input,ix-number-input,ix-textarea',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: RadioValueAccessorDirective,
+      useExisting: TextValueAccessorDirective,
       multi: true,
     },
   ],
 })
-export class RadioValueAccessorDirective extends RadioValueAccessorBaseDirective {
+export class TextValueAccessorDirective extends TextValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
   }

@@ -1,14 +1,15 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Directive, HostListener, ElementRef, Injector } from '@angular/core';
+
+import { Directive, ElementRef, Injector } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ValueAccessor, mapNgToIxClassNames } from './value-accessor';
+import { BooleanValueAccessorBaseDirective } from '@siemens/ix-angular/common';
 
 @Directive({
   selector: 'ix-checkbox,ix-toggle',
@@ -20,18 +21,8 @@ import { ValueAccessor, mapNgToIxClassNames } from './value-accessor';
     },
   ],
 })
-export class BooleanValueAccessorDirective extends ValueAccessor {
+export class BooleanValueAccessorDirective extends BooleanValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
-  }
-
-  override writeValue(value: boolean): void {
-    this.elementRef.nativeElement.checked = this.lastValue = value;
-    mapNgToIxClassNames(this.elementRef);
-  }
-
-  @HostListener('checkedChange', ['$event.target'])
-  handleChangeEvent(el: any): void {
-    super.handleValueChange(el, el.checked);
   }
 }

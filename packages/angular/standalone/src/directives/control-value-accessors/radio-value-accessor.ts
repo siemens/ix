@@ -12,6 +12,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioValueAccessorBaseDirective } from '@siemens/ix-angular/common';
 
 @Directive({
+  standalone: true,
   selector: 'ix-radio',
   providers: [
     {

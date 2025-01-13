@@ -1,14 +1,15 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { ElementRef, Injector, Directive, HostListener } from '@angular/core';
+
+import { ElementRef, Injector, Directive } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ValueAccessor } from './value-accessor';
+import { SelectValueAccessorBaseDirective } from '@siemens/ix-angular/common';
 
 @Directive({
   selector: 'ix-select',
@@ -20,13 +21,8 @@ import { ValueAccessor } from './value-accessor';
     },
   ],
 })
-export class SelectValueAccessorDirective extends ValueAccessor {
+export class SelectValueAccessorDirective extends SelectValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
-  }
-
-  @HostListener('valueChange', ['$event.target'])
-  handleChangeEvent(el: any): void {
-    super.handleValueChange(el, el.value);
   }
 }

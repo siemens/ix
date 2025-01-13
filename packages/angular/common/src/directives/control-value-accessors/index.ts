@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export * from './providers/modal';
-export * from './providers/toast';
-export * from './directives/dropdown/trigger.directive';
-export * from './directives/control-value-accessors';
+export * from './boolean-value-accessor';
+export * from './radio-value-accessor';
+export * from './select-value-accessor';
+export * from './text-value-accessor';
+export * from './date-value-accessor';
