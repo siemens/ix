@@ -45,7 +45,9 @@ export class Card {
         }}
       >
         <div class="card-content">
-          <slot></slot>
+          <div class="card-content-wrapper">
+            <slot></slot>
+          </div>
         </div>
         <div class="card-footer">
           <slot name="card-accordion"></slot>
