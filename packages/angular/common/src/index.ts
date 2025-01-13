@@ -11,4 +11,3 @@ export * from './providers/modal';
 export * from './providers/toast';
 export * from './directives/dropdown/trigger.directive';
 export * from './directives/control-value-accessors';
-export * from './angular-component-lib/utils';
