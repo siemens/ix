@@ -48,6 +48,8 @@ const config: PlaywrightTestConfig = {
      * For example in `await expect(locator).toHaveText();`
      */
     timeout: 5000,
+    toMatchSnapshot: { _comparator: 'ssim-cie94' } as any,
+    toHaveScreenshot: { _comparator: 'ssim-cie94' } as any,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
