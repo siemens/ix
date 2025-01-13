@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export * from './directives/proxies';
+export * from './components';
 export * from './internal-components';
 export { IxIcon } from './ix-icon';
 export * from './providers/modal';

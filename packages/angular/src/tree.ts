@@ -26,7 +26,7 @@ import type {
   UpdateCallback,
 } from '@siemens/ix';
 import { Subscription } from 'rxjs';
-import { ProxyCmp, proxyOutputs } from '@siemens/ix-angular/common';
+import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 
 export declare interface IxTree extends Omit<Components.IxTree, 'renderItem'> {
   /**

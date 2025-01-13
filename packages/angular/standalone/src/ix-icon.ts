@@ -16,7 +16,7 @@ import {
   NgZone,
 } from '@angular/core';
 import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/components/ix-icon';
-import { ProxyCmp } from '@siemens/ix-angular/common';
+import { ProxyCmp } from './angular-component-lib/utils';
 
 @ProxyCmp({
   inputs: ['color', 'size', 'name', 'lazyLoading'],
