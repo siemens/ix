@@ -8,19 +8,15 @@
  */
 
 import { Directive, ElementRef, Injector } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioValueAccessorBaseDirective } from '@siemens/ix-angular/common';
+import {
+  createValueAccessorProvider,
+  RadioValueAccessorBaseDirective,
+} from '@siemens/ix-angular/common';
 
 @Directive({
   standalone: true,
   selector: 'ix-radio',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: RadioValueAccessorDirective,
-      multi: true,
-    },
-  ],
+  providers: [createValueAccessorProvider(RadioValueAccessorDirective)],
 })
 export class RadioValueAccessorDirective extends RadioValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {

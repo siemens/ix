@@ -8,18 +8,14 @@
  */
 
 import { ElementRef, Injector, Directive } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectValueAccessorBaseDirective } from '@siemens/ix-angular/common';
+import {
+  createValueAccessorProvider,
+  SelectValueAccessorBaseDirective,
+} from '@siemens/ix-angular/common';
 
 @Directive({
   selector: 'ix-select',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: SelectValueAccessorDirective,
-      multi: true,
-    },
-  ],
+  providers: [createValueAccessorProvider(SelectValueAccessorDirective)],
 })
 export class SelectValueAccessorDirective extends SelectValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {

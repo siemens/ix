@@ -8,19 +8,15 @@
  */
 
 import { Directive, ElementRef, Injector } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BooleanValueAccessorBaseDirective } from '@siemens/ix-angular/common';
+import {
+  BooleanValueAccessorBaseDirective,
+  createValueAccessorProvider,
+} from '@siemens/ix-angular/common';
 
 @Directive({
   standalone: true,
   selector: 'ix-checkbox,ix-toggle',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: BooleanValueAccessorDirective,
-      multi: true,
-    },
-  ],
+  providers: [createValueAccessorProvider(BooleanValueAccessorDirective)],
 })
 export class BooleanValueAccessorDirective extends BooleanValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {

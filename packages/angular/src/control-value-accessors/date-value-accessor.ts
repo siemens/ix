@@ -8,18 +8,14 @@
  */
 
 import { ElementRef, Injector, Directive } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DateValueAccessorBaseDirective } from '@siemens/ix-angular/common';
+import {
+  createValueAccessorProvider,
+  DateValueAccessorBaseDirective,
+} from '@siemens/ix-angular/common';
 
 @Directive({
   selector: 'ix-date-input',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: DateValueAccessorDirective,
-      multi: true,
-    },
-  ],
+  providers: [createValueAccessorProvider(DateValueAccessorDirective)],
 })
 export class DateValueAccessorDirective extends DateValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {

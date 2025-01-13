@@ -8,18 +8,14 @@
  */
 
 import { ElementRef, Injector, Directive } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TextValueAccessorBaseDirective } from '@siemens/ix-angular/common';
+import {
+  createValueAccessorProvider,
+  TextValueAccessorBaseDirective,
+} from '@siemens/ix-angular/common';
 
 @Directive({
   selector: 'ix-input,ix-number-input,ix-textarea',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: TextValueAccessorDirective,
-      multi: true,
-    },
-  ],
+  providers: [createValueAccessorProvider(TextValueAccessorDirective)],
 })
 export class TextValueAccessorDirective extends TextValueAccessorBaseDirective {
   constructor(injector: Injector, el: ElementRef) {
