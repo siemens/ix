@@ -21,4 +21,4 @@ export {
   ModalContext,
 } from './modal';
 export { ToastConfig, ToastService } from './toast';
-export * from './control-value-accessors';
+export * from './directives/control-value-accessors';
