@@ -1247,10 +1247,6 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Loading button
-         */
-        "loading": boolean;
-        /**
           * Outline button
          */
         "outline": boolean;
@@ -6382,10 +6378,6 @@ declare namespace LocalJSX {
           * Search icon
          */
         "icon"?: string;
-        /**
-          * Loading button
-         */
-        "loading"?: boolean;
         /**
           * Value changed
          */

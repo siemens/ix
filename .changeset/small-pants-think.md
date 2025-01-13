@@ -4,4 +4,4 @@
 '@siemens/ix-vue': minor
 ---
 
-reflect button properties to 'date-dropdown' and 'expanded-search'
+Add additional button properties to **ix-date-dropdown** and **ix-expanding-search**.

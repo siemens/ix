@@ -25,7 +25,7 @@ import { IxButtonComponent } from '../button/button-component';
   shadow: true,
 })
 export class ExpandingSearch
-  implements Omit<IxButtonComponent, 'type' | 'icon' | 'disabled'>
+  implements Omit<IxButtonComponent, 'type' | 'icon' | 'disabled' | 'loading'>
 {
   /**
    * Search icon
@@ -62,11 +62,6 @@ export class ExpandingSearch
    * Button with no background or outline
    */
   @Prop() ghost = true;
-
-  /**
-   * Loading button
-   */
-  @Prop() loading: boolean = false;
 
   @State() isFieldChanged = false;
   @State() expanded = false;
@@ -135,7 +130,6 @@ export class ExpandingSearch
           variant={this.expanded ? 'primary' : this.variant}
           ghost={this.ghost || this.expanded}
           outline={this.outline && !this.expanded}
-          loading={this.loading}
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}

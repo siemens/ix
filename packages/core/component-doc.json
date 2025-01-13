@@ -7997,28 +7997,6 @@
           "required": false
         },
         {
-          "name": "loading",
-          "type": "boolean",
-          "complexType": {
-            "original": "boolean",
-            "resolved": "boolean",
-            "references": {}
-          },
-          "mutable": false,
-          "attr": "loading",
-          "reflectToAttr": false,
-          "docs": "Loading button",
-          "docsTags": [],
-          "default": "false",
-          "values": [
-            {
-              "type": "boolean"
-            }
-          ],
-          "optional": false,
-          "required": false
-        },
-        {
           "name": "outline",
           "type": "boolean",
           "complexType": {
