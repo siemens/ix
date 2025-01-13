@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -26,7 +26,7 @@ import type {
   UpdateCallback,
 } from '@siemens/ix';
 import { Subscription } from 'rxjs';
-import { ProxyCmp, proxyOutputs } from './../angular-component-lib/utils';
+import { ProxyCmp, proxyOutputs } from '@siemens/ix-angular/common';
 
 export declare interface IxTree extends Omit<Components.IxTree, 'renderItem'> {
   /**

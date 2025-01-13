@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -15,7 +15,7 @@ import {
   NgZone,
 } from '@angular/core';
 import type { Components } from '@siemens/ix';
-import { ProxyCmp } from './angular-component-lib/utils';
+import { ProxyCmp } from '@siemens/ix-angular/common';
 
 export declare interface IxIcon extends Components.IxIcon {}
 
