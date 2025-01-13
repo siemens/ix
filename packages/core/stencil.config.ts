@@ -101,8 +101,6 @@ export const config: Config = {
     reactOutputTarget({
       stencilPackageName: corePackageName,
       outDir: '../react/src',
-      // esModules: true,
-      // hydrateModule: '@siemens/ix/hydrate',
       excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
     }),
     reactOutputTarget({
@@ -111,13 +109,6 @@ export const config: Config = {
       hydrateModule: '@siemens/ix/hydrate',
       excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
     }),
-    // reactOutputTarget({
-    //   stencilPackageName: corePackageName,
-    //   outDir: '../react/src/components',
-    //   esModules: true,
-    //   hydrateModule: '@siemens/ix/hydrate',
-    //   excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
-    // }),
     {
       type: 'dist',
       esmLoaderPath: '../loader',

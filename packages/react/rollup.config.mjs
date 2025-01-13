@@ -8,7 +8,6 @@ const __dirname = resolve();
 const external = ['react', 'react-dom', 'react-dom/client', 'tslib'];
 
 export default {
-  // input: ['src/index.ts', 'src/ssr/index.ts'],
   output: [
     {
       dir: 'dist',
