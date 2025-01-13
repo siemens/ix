@@ -7,8 +7,8 @@ It also comes with the ```ix-icon``` component that displays them in your applic
 Additionally custom SVG icons (that are not part of the library) can be used.
 
 As of iX version 3.0.0 not all available iX icons will be loaded automatically anymore.
-Only the icons actually used in an app will be part of the bundle to save bandwidth and memory.
-Therefor icons need to be imported explicitly.
+Only the icons actually used in the application will be part of the bundle to save bandwidth and memory.
+As a result, icons must now be imported explicitly.
 
 ### Usage
 
