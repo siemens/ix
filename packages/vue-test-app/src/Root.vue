@@ -21,6 +21,7 @@ import Application from './preview-examples/application.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
+import BasicNavigationMigration from './preview-examples/basic-navigation-migration.vue';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header.vue';
 import BasicNavigation from './preview-examples/basic-navigation.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
@@ -144,6 +145,7 @@ import LayoutAuto from './preview-examples/layout-auto.vue';
 import LinkButtonDisabled from './preview-examples/link-button-disabled.vue';
 import LinkButton from './preview-examples/link-button.vue';
 import Loading from './preview-examples/loading.vue';
+import MapNavigationMigration from './preview-examples/map-navigation-migration.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
@@ -221,8 +223,6 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import VerticalTabs from './preview-examples/vertical-tabs.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
-import MapNavigationMigration from './preview-examples/map-navigation-migration.vue';
-import BasicNavigationMigration from './preview-examples/basic-navigation-migration.vue';
 
 const routes: any = {
   '/': App,
