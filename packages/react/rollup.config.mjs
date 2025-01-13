@@ -31,7 +31,6 @@ export default {
     preserveDirectives(),
   ],
   external: (id) => {
-    console.log(id);
     return (
       external.includes(id) ||
       id.startsWith('@siemens/ix') ||
