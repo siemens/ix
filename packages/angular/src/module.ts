@@ -1,12 +1,13 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { TextValueAccessorDirective } from './control-value-accessors/text-value-accessor';
+
+import { IxTextValueAccessorDirective } from './directives/control-value-accessors/text-value-accessor';
 import { DOCUMENT } from '@angular/common';
 import {
   APP_INITIALIZER,
@@ -22,20 +23,21 @@ import { ThemeService } from './theme';
 import { ToastService } from './toast';
 import * as tree from './tree';
 import { IxDropdownTriggerDirective } from './directives/dropdown/trigger.directive';
-import { SelectValueAccessorDirective } from './control-value-accessors/select-value-accessor';
-import { RadioValueAccessorDirective } from './control-value-accessors/radio-value-accessor';
-import { BooleanValueAccessorDirective } from './control-value-accessors/boolean-value-accessor';
-import { DateValueAccessorDirective } from './control-value-accessors';
+import { IxSelectValueAccessorDirective } from './directives/control-value-accessors/select-value-accessor';
+import { IxRadioValueAccessorDirective } from './directives/control-value-accessors/radio-value-accessor';
+import { IxBooleanValueAccessorDirective } from './directives/control-value-accessors/boolean-value-accessor';
+import { IxDateValueAccessorDirective } from './directives/control-value-accessors';
+
 const DECLARATIONS = [
   ...DIRECTIVES,
   tree.IxTree,
   IxIcon,
   IxDropdownTriggerDirective,
-  TextValueAccessorDirective,
-  SelectValueAccessorDirective,
-  RadioValueAccessorDirective,
-  BooleanValueAccessorDirective,
-  DateValueAccessorDirective,
+  IxTextValueAccessorDirective,
+  IxSelectValueAccessorDirective,
+  IxRadioValueAccessorDirective,
+  IxBooleanValueAccessorDirective,
+  IxDateValueAccessorDirective,
 ];
 
 @NgModule({
