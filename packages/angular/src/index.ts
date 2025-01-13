@@ -16,9 +16,9 @@ export {
   IxActiveModal,
   ModalConfig,
   ModalContext,
-} from './modal';
-export { ToastConfig, ToastService } from './toast';
-export * from './theme';
+} from './providers/modal';
+export { ToastConfig, ToastService } from './providers/toast';
+export * from './providers/theme';
 export { IxDropdownTriggerDirective } from './directives/dropdown/trigger.directive';
 export * from './directives/control-value-accessors';
 export * from './module';
