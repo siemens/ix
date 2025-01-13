@@ -12,6 +12,6 @@ export * from './internal-components';
 export { IxIcon } from './ix-icon';
 export * from './providers/modal';
 export * from './providers/toast';
-export { IxDropdownTriggerDirective } from './directives/dropdown-trigger/trigger.directive';
+export { IxDropdownTriggerDirective as IxDropdownTrigger } from './directives/dropdown-trigger/trigger.directive';
 export * from './directives/control-value-accessors';
-export { IxFormsModule } from './modules/forms.module';
+export { IxFormsModule as IxForms } from './modules/forms.module';
