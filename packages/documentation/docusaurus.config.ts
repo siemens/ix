@@ -39,6 +39,14 @@ const plugins: PluginConfig[] = [
           to: '/docs/controls/forms/forms-validation',
           from: '/docs/controls/validation',
         },
+        {
+          to: '/docs/legacy/basic-navigation',
+          from: '/docs/controls/application-frame/basic-navigation',
+        },
+        {
+          to: '/docs/legacy/map-navigation',
+          from: '/docs/controls/application-frame/map-navigation',
+        },
       ]
     }
   ]

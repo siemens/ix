@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/react"
   },
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "Siemens iX for React",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -65,7 +65,7 @@
     "react-dom": "^18 || ^19"
   },
   "dependencies": {
-    "@siemens/ix": "~2.6.0",
+    "@siemens/ix": "~2.6.1",
     "@stencil/react-output-target": "^0.8.2",
     "tslib": "*"
   }

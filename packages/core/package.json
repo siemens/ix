@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "2.6.0",
+  "version": "2.6.1",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
@@ -50,7 +50,7 @@
     "luxon": "^3.4.4"
   },
   "devDependencies": {
-    "@playwright/test": "^1.49.0",
+    "@playwright/test": "^1.49.1",
     "@siemens/ix-icons": "0.0.0-20240827135516",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",

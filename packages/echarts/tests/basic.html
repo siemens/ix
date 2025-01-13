@@ -37,12 +37,10 @@ LICENSE file in the root directory of this source tree.
         const searchParams = new URLSearchParams(location.search);
 
         if (!searchParams.has('theme')) {
-          return 'brand-dark';
+          return 'theme-brand-dark';
         }
 
-        const theme = searchParams.get('theme');
-
-        return theme.substring('theme-'.length, theme.length);
+        return searchParams.get('theme');
       }
 
       registerTheme(echarts);

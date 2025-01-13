@@ -110,6 +110,22 @@ regressionTest.describe('menu', () => {
   );
 
   regressionTest(
+    'expands category if nested item becomes active',
+    async ({ page }) => {
+      await page.goto('menu/basic');
+      await page.locator('ix-menu-expand-icon').click();
+      await page
+        .locator('ix-menu-item')
+        .nth(2)
+        .evaluate((el: HTMLIxMenuItemElement) => (el.active = true));
+
+      await expect(page).toHaveScreenshot({
+        animations: 'disabled',
+      });
+    }
+  );
+
+  regressionTest(
     'show scrollbar on overflow on expand on lg',
     async ({ page }) => {
       await page.setViewportSize(viewPorts.lg);

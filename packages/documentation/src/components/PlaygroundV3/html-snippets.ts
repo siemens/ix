@@ -10,14 +10,24 @@ import { TargetFramework } from '../PlaygroundV2/framework-types';
 import { getBranchPath } from '../PlaygroundV2/utils';
 import { docusaurusFetch } from './fetching';
 
-export async function fetchSourceForHtml(baseUrl: string, name: string) {
+export async function fetchSourceForHtml(
+  baseUrl: string,
+  name: string,
+  removeComments?: boolean
+) {
   const snippets: Record<string, string> = {};
-  const htmlFile = await docusaurusFetch(`${baseUrl}/${name}.html`, true);
+  const htmlFile = await docusaurusFetch(
+    `${baseUrl}/${name}.html`,
+    removeComments
+  );
 
   snippets[`${name}.html`] = htmlFile;
 
   try {
-    const styleFile = await docusaurusFetch(`${baseUrl}/${name}.css`);
+    const styleFile = await docusaurusFetch(
+      `${baseUrl}/${name}.css`,
+      removeComments
+    );
 
     if (styleFile) {
       snippets[`./${name}.css`] = styleFile;

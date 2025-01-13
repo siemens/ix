@@ -44,7 +44,12 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
 }
 
 export const regressionTest = testBase.extend<{
-  mount: (selector: string) => Promise<ElementHandle<HTMLElement>>;
+  mount: (
+    selector: string,
+    config?: {
+      headTags?: string[];
+    }
+  ) => Promise<ElementHandle<HTMLElement>>;
   createElement: (
     selector: string,
     appendTo?: ElementHandle<Element>
@@ -82,21 +87,49 @@ export const regressionTest = testBase.extend<{
     await page.goto(
       `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
     );
-    use((selector: string) => {
-      return page.evaluateHandle(
-        async ({ componentSelector }) => {
-          await window.customElements.whenDefined('ix-button');
-          const mount = document.querySelector('#mount');
+    use(
+      (
+        selector: string,
+        config?: {
+          headTags?: string[];
+        }
+      ) => {
+        return page.evaluateHandle(
+          async ({ componentSelector, config }) => {
+            if (config?.headTags) {
+              config.headTags.forEach((tag) => {
+                const head = document.querySelector('head');
+                if (!head) {
+                  throw new Error('No head tag found in the document.');
+                }
 
-          if (!mount) {
-            throw new Error('No mount point found in the document.');
-          }
+                head.innerHTML += tag;
+              });
+            }
 
-          mount.innerHTML = componentSelector;
-          return mount.children.item(0) as HTMLElement;
-        },
-        { componentSelector: selector }
-      );
-    });
+            const loadScript = document.createElement('script');
+            loadScript.src = '/scripts/e2e/load-e2e-runtime.js';
+            document.body.appendChild(loadScript);
+
+            await new Promise<void>((resolve) => {
+              loadScript.onload = async () => {
+                resolve();
+              };
+            });
+
+            await window.customElements.whenDefined('ix-button');
+            const mount = document.querySelector('#mount');
+
+            if (!mount) {
+              throw new Error('No mount point found in the document.');
+            }
+
+            mount.innerHTML = componentSelector;
+            return mount.children.item(0) as HTMLElement;
+          },
+          { componentSelector: selector, config }
+        );
+      }
+    );
   },
 });
