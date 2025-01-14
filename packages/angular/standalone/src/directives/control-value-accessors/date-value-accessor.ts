@@ -13,6 +13,9 @@ import {
   DateValueAccessorBaseDirective,
 } from '@siemens/ix-angular/common';
 
+/**
+ * Value Accessor for ix-date-input
+ */
 @Directive({
   standalone: true,
   selector: 'ix-date-input',

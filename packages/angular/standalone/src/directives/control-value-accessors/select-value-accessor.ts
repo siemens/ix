@@ -13,6 +13,9 @@ import {
   SelectValueAccessorBaseDirective,
 } from '@siemens/ix-angular/common';
 
+/**
+ * Value Accessor for ix-select
+ */
 @Directive({
   standalone: true,
   selector: 'ix-select',

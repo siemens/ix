@@ -13,6 +13,9 @@ import {
   RadioValueAccessorBaseDirective,
 } from '@siemens/ix-angular/common';
 
+/**
+ * Value Accessor for ix-radio
+ */
 @Directive({
   standalone: true,
   selector: 'ix-radio',
