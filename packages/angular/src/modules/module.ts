@@ -15,7 +15,7 @@ import {
   NgModule,
   NgZone,
 } from '@angular/core';
-import { appInitialize } from '../app-initialize';
+import { appInitialize } from '../utils/app-initialize';
 import { DIRECTIVES } from '../declare-components';
 import { IxIcon } from '../ix-icon';
 import { ModalService } from '../providers/modal';
