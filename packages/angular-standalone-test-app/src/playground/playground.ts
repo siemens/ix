@@ -17,13 +17,9 @@ import {
   Validators,
 } from '@angular/forms';
 import {
-  IxBooleanValueAccessorDirective,
-  IxDateValueAccessorDirective,
   IxIcon,
   IxInput,
-  IxRadioValueAccessorDirective,
-  IxSelectValueAccessorDirective,
-  IxTextValueAccessorDirective,
+  IxValueAccessorDirectives,
 } from '@siemens/ix-angular/standalone';
 
 export function customRequiredValidator(): ValidatorFn {
@@ -35,22 +31,12 @@ export function customRequiredValidator(): ValidatorFn {
   };
 }
 
-/* Zum testen lokal definiert. Auch als export verfügbar */
-export const IxValueAccessorDirectives = [
-  IxBooleanValueAccessorDirective,
-  IxRadioValueAccessorDirective,
-  IxSelectValueAccessorDirective,
-  IxTextValueAccessorDirective,
-  IxDateValueAccessorDirective,
-];
-
 @Component({
   selector: 'app-playground',
   standalone: true,
-  imports: [ReactiveFormsModule, IxInput, IxIcon],
+  imports: [ReactiveFormsModule, IxInput, IxIcon, ...IxValueAccessorDirectives],
   templateUrl: './playground.html',
   styleUrls: ['./playground.css'],
-  hostDirectives: [...IxValueAccessorDirectives],
 })
 export default class Playground implements OnInit {
   firstNameLength = 10;
