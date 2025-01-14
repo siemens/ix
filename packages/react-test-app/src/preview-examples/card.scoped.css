@@ -22,6 +22,6 @@ ix-card {
 
 ix-card ix-typography:last-of-type {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 1rem;
+  right: 1rem;
 }
