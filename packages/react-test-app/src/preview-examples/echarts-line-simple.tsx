@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-line-simple.css';
+import './echarts-line-simple.scoped.css';
 
 import { useEffect, useState } from 'react';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
@@ -19,13 +19,11 @@ import { EChartsOption } from 'echarts';
 export default function EchartsLineSimple() {
   registerTheme(echarts);
 
-  const [theme, setTheme] = useState(
-    convertThemeName(themeSwitcher.getCurrentTheme())
-  );
+  const [theme, setTheme] = useState(themeSwitcher.getCurrentTheme());
 
   useEffect(() => {
     themeSwitcher.themeChanged.on((theme: string) => {
-      setTheme(convertThemeName(theme));
+      setTheme(theme);
     });
   }, []);
 

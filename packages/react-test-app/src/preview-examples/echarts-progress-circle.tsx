@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-progress-circle.css';
+import './echarts-progress-circle.scoped.css';
 
 import { useEffect, useState } from 'react';
-import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
@@ -19,13 +19,11 @@ import { EChartsOption } from 'echarts';
 export default function EchartsGauge() {
   registerTheme(echarts);
 
-  const [theme, setTheme] = useState(
-    convertThemeName(themeSwitcher.getCurrentTheme())
-  );
+  const [theme, setTheme] = useState(themeSwitcher.getCurrentTheme());
 
   useEffect(() => {
     themeSwitcher.themeChanged.on((theme: string) => {
-      setTheme(convertThemeName(theme));
+      setTheme(theme);
     });
   }, []);
 
@@ -40,9 +38,7 @@ export default function EchartsGauge() {
           show: true,
           lineStyle: {
             width: 15,
-            color: [
-              [1, getComputedCSSProperty('color-neutral-40')],
-            ],
+            color: [[1, getComputedCSSProperty('color-neutral-40')]],
           },
         },
         axisTick: {

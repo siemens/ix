@@ -9,6 +9,8 @@
 @import '@siemens/ix/scss/mixins/fonts';
 
 [class*='ag-theme-ix'] {
+  @include typography-body;
+
   --ag-background-color: transparent;
 
   --ag-foreground-color: var(--theme-color-std-text);
@@ -60,7 +62,6 @@
   }
 
   .ag-select-list {
-    @include typography-body;
     color: var(--theme-color-std-text);
     background-color: var(--ag-control-panel-background-color);
   }
@@ -117,13 +118,11 @@
   }
 
   .ag-header-cell {
-    @include typography-body;
     font-weight: 700;
     color: var(--theme-table-header-cell--color);
   }
 
   .ag-cell {
-    @include typography-body;
     color: var(--theme-table-data-cell--color);
     line-height: min(var(--ag-internal-calculated-line-height), var(--ag-internal-padded-row-height));
   }
@@ -168,5 +167,9 @@
         }
       }
     }
+  }
+
+  .ag-sticky-bottom {
+    display: none;
   }
 }

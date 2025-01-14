@@ -1192,7 +1192,9 @@ export namespace Components {
         "value": string;
     }
     interface IxFieldLabel {
-        "controlRef"?: MakeRef<HTMLElement>;
+        "controlRef"?: | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
         /**
           * The id of the form element that the label is associated with
          */
@@ -1207,7 +1209,9 @@ export namespace Components {
         /**
           * The control element that the label is associated with
          */
-        "controlRef"?: MakeRef<HTMLElement>;
+        "controlRef"?: | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
         /**
           * Show text below the field component
          */
@@ -1847,15 +1851,15 @@ export namespace Components {
         /**
           * Icon of the category
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Display name of the category
          */
-        "label": string;
+        "label"?: string;
         /**
           * Show notification count on the category
          */
-        "notifications": number;
+        "notifications"?: number;
     }
     interface IxMenuExpandIcon {
         /**
@@ -6141,7 +6145,9 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface IxFieldLabel {
-        "controlRef"?: MakeRef<HTMLElement>;
+        "controlRef"?: | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
         /**
           * The id of the form element that the label is associated with
          */
@@ -6156,7 +6162,9 @@ declare namespace LocalJSX {
         /**
           * The control element that the label is associated with
          */
-        "controlRef"?: MakeRef<HTMLElement>;
+        "controlRef"?: | MakeRef<HTMLElement>
+    | MakeRef<HTMLInputElement>
+    | MakeRef<HTMLTextAreaElement>;
         /**
           * Show text below the field component
          */

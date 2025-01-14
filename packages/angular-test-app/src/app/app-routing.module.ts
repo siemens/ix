@@ -21,6 +21,7 @@ import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
 import BasicNavigation from '../preview-examples/basic-navigation';
+import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
 import BasicNavigationWithoutHeader from '../preview-examples/basic-navigation-without-header';
 import Blind from '../preview-examples/blind';
 import BlindHeaderActions from '../preview-examples/blind-header-actions';
@@ -57,6 +58,7 @@ import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
 import DateInputValidation from '../preview-examples/date-input-validation';
+import DateInputWithSlots from '../preview-examples/date-input-with-slots';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -129,6 +131,7 @@ import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
 import InputTypes from '../preview-examples/input-types';
 import InputValidation from '../preview-examples/input-validation';
+import InputWithSlots from '../preview-examples/input-with-slots';
 import KeyValue from '../preview-examples/key-value';
 import KeyValueList from '../preview-examples/key-value-list';
 import KeyValueListStriped from '../preview-examples/key-value-list-striped';
@@ -144,10 +147,15 @@ import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
 import MapNavigation from '../preview-examples/map-navigation';
+import MapNavigationMigration from '../preview-examples/map-navigation-migration';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
+import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
+import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
 import ModalByInstance from '../preview-examples/modal-by-instance';
+import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
+import ModalByTemplate from '../preview-examples/modal-by-template';
 import ModalSizes from '../preview-examples/modal-sizes';
 import NumberInput from '../preview-examples/number-input';
 import NumberInputDisabled from '../preview-examples/number-input-disabled';
@@ -155,7 +163,9 @@ import NumberInputLabel from '../preview-examples/number-input-label';
 import NumberInputReadonly from '../preview-examples/number-input-readonly';
 import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
 import NumberInputValidation from '../preview-examples/number-input-validation';
+import NumberInputWithSlots from '../preview-examples/number-input-with-slots';
 import Pagination from '../preview-examples/pagination';
+import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pane from '../preview-examples/pane';
 import PaneLayout from '../preview-examples/pane-layout';
 import Pill from '../preview-examples/pill';
@@ -204,8 +214,10 @@ import ToggleButtonPrimaryOutline from '../preview-examples/toggle-button-primar
 import ToggleButtonSecondary from '../preview-examples/toggle-button-secondary';
 import ToggleButtonSecondaryGhost from '../preview-examples/toggle-button-secondary-ghost';
 import ToggleButtonSecondaryOutline from '../preview-examples/toggle-button-secondary-outline';
+import ToggleChecked from '../preview-examples/toggle-checked';
 import ToggleCustomLabel from '../preview-examples/toggle-custom-label';
 import ToggleDisabled from '../preview-examples/toggle-disabled';
+import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 import ToggleNgModel from '../preview-examples/toggle-ng-model';
 import Tooltip from '../preview-examples/tooltip';
 import Tree from '../preview-examples/tree';
@@ -217,14 +229,6 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
-
-import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
-import Message from '../preview-examples/message';
-import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
-import ModalByTemplate from '../preview-examples/modal-by-template';
-import PaginationAdvanced from '../preview-examples/pagination-advanced';
-import ToggleChecked from '../preview-examples/toggle-checked';
-import ToggleIndeterminate from '../preview-examples/toggle-indeterminate';
 
 const routes: Routes = [
   {
@@ -297,6 +301,10 @@ const routes: Routes = [
       {
         path: 'basic-navigation',
         component: BasicNavigation,
+      },
+      {
+        path: 'basic-navigation-migration',
+        component: BasicNavigationMigration,
       },
       {
         path: 'blind-header-actions',
@@ -434,6 +442,10 @@ const routes: Routes = [
       {
         path: 'date-input-validation',
         component: DateInputValidation,
+      },
+      {
+        path: 'date-input-with-slots',
+        component: DateInputWithSlots,
       },
       {
         path: 'datepicker',
@@ -771,6 +783,7 @@ const routes: Routes = [
       { path: 'input-readonly', component: InputReadonly },
       { path: 'input-types', component: InputTypes },
       { path: 'input-validation', component: InputValidation },
+      { path: 'input-with-slots', component: InputWithSlots },
       { path: 'theme-switcher', component: ThemeService },
       { path: 'tile', component: Tile },
       { path: 'timepicker', component: Timepicker },
@@ -893,6 +906,7 @@ const routes: Routes = [
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
       { path: 'map-navigation-overlay', component: MapNavigationOverlay },
+      { path: 'map-navigation-migration', component: MapNavigationMigration },
       { path: 'number-input', component: NumberInput },
       { path: 'number-input-disabled', component: NumberInputDisabled },
       { path: 'number-input-label', component: NumberInputLabel },
@@ -902,6 +916,7 @@ const routes: Routes = [
         component: NumberInputStepperButton,
       },
       { path: 'number-input-validation', component: NumberInputValidation },
+      { path: 'number-input-with-slots', component: NumberInputWithSlots },
       { path: 'tooltip', component: Tooltip },
       { path: 'modal-by-instance', component: ModalByInstance },
       { path: 'push-card', component: PushCard },

@@ -30,6 +30,7 @@ import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
 import BasicNavigation from '../preview-examples/basic-navigation';
+import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
 import BasicNavigationWithoutHeader from '../preview-examples/basic-navigation-without-header';
 import Blind from '../preview-examples/blind';
 import BlindHeaderActions from '../preview-examples/blind-header-actions';
@@ -66,6 +67,7 @@ import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
 import DateInputValidation from '../preview-examples/date-input-validation';
+import DateInputWithSlots from '../preview-examples/date-input-with-slots';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -138,6 +140,7 @@ import InputPattern from '../preview-examples/input-pattern';
 import InputReadonly from '../preview-examples/input-readonly';
 import InputTypes from '../preview-examples/input-types';
 import InputValidation from '../preview-examples/input-validation';
+import InputWithSlots from '../preview-examples/input-with-slots';
 import KeyValue from '../preview-examples/key-value';
 import KeyValueList from '../preview-examples/key-value-list';
 import KeyValueListStriped from '../preview-examples/key-value-list-striped';
@@ -153,6 +156,7 @@ import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
 import MapNavigation from '../preview-examples/map-navigation';
+import MapNavigationMigration from '../preview-examples/map-navigation-migration';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
@@ -168,6 +172,7 @@ import NumberInputLabel from '../preview-examples/number-input-label';
 import NumberInputReadonly from '../preview-examples/number-input-readonly';
 import NumberInputStepperButton from '../preview-examples/number-input-stepper-button';
 import NumberInputValidation from '../preview-examples/number-input-validation';
+import NumberInputWithSlots from '../preview-examples/number-input-with-slots';
 import Pagination from '../preview-examples/pagination';
 import PaginationAdvanced from '../preview-examples/pagination-advanced';
 import Pane from '../preview-examples/pane';
@@ -253,6 +258,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     Avatar,
     BasicNavigationWithoutHeader,
     BasicNavigation,
+    BasicNavigationMigration,
     BlindHeaderActions,
     BlindVariants,
     Blind,
@@ -285,6 +291,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     DateInputLabel,
     DateInputReadonly,
     DateInputValidation,
+    DateInputWithSlots,
     ContentExample,
     DateDropdown,
     DateDropdownUserRange,
@@ -414,6 +421,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     InputReadonly,
     InputTypes,
     InputValidation,
+    InputWithSlots,
     InputPattern,
     TextareaLegacyReadonly,
     TextareaLegacy,
@@ -445,12 +453,14 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     WorkflowVertical,
     MapNavigation,
     MapNavigationOverlay,
+    MapNavigationMigration,
     NumberInput,
     NumberInputDisabled,
     NumberInputLabel,
     NumberInputReadonly,
     NumberInputStepperButton,
     NumberInputValidation,
+    NumberInputWithSlots,
     TabsRounded,
     DatepickerRange,
     Tooltip,

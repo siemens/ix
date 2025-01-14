@@ -13,10 +13,11 @@ import { docusaurusFetch } from './fetching';
 async function fetchFile(
   snippets: Record<string, string>,
   url: string,
-  fileName: string
+  fileName: string,
+  removeComments?: boolean
 ) {
   try {
-    const file = await docusaurusFetch(url);
+    const file = await docusaurusFetch(url, removeComments);
 
     if (file) {
       snippets[fileName] = file;
@@ -24,14 +25,28 @@ async function fetchFile(
   } catch (e) {}
 }
 
-export async function fetchSourceForAngular(baseUrl: string, name: string) {
+export async function fetchSourceForAngular(
+  baseUrl: string,
+  name: string,
+  removeComments?: boolean
+) {
   const snippets: Record<string, string> = {};
 
-  await fetchFile(snippets, `${baseUrl}/${name}.html`, `${name}.html`);
+  await fetchFile(
+    snippets,
+    `${baseUrl}/${name}.html`,
+    `${name}.html`,
+    removeComments
+  );
 
   await Promise.all([
-    fetchFile(snippets, `${baseUrl}/${name}.ts`, `${name}.ts`),
-    fetchFile(snippets, `${baseUrl}/${name}.css`, `${name}.css`),
+    fetchFile(snippets, `${baseUrl}/${name}.ts`, `${name}.ts`, removeComments),
+    fetchFile(
+      snippets,
+      `${baseUrl}/${name}.css`,
+      `${name}.css`,
+      removeComments
+    ),
   ]);
 
   return snippets;

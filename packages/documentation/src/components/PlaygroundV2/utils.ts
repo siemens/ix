@@ -34,10 +34,16 @@ export function getBranchPath(framework: TargetFramework) {
 }
 
 export function stripComments(code: string) {
-  return code
-    .replace(/\/\*[^]*?\*\//gs, '')
-    .replace(/<!--[^]*?-->/gs, '')
+  const trimmedCode = code
+    .replace(/\/\*[^]*?\*\//gs, (match) => {
+      return match.includes('{KEEP}') ? match.replace('{KEEP}', '') : '';
+    })
+    .replace(/<!--[^]*?-->/gs, (match) => {
+      return match.includes('{KEEP}') ? match.replace('{KEEP}', '') : '';
+    })
     .trim();
+
+  return trimmedCode;
 }
 
 export type SourceFile = {
@@ -152,9 +158,7 @@ export async function fetchSourceFilesByFileName(
     files.map(async (file) => {
       try {
         const source = await fetchSource(
-          getLanguage(file) === 'css'
-            ? `${path}/previews/styles/${file}`
-            : `${path}/previews/${frameworkPath}/${file}`
+          `${path}/previews/${frameworkPath}/${file}`
         );
 
         if (!source) {
@@ -198,7 +202,11 @@ export async function fetchSourceFilesFromExample(
   }
 
   if (includeCssFile) {
-    filesToFetch.push(`${exampleName}.css`);
+    if (framework === TargetFramework.REACT) {
+      filesToFetch.push(`${exampleName}.scoped.css`);
+    } else {
+      filesToFetch.push(`${exampleName}.css`);
+    }
   }
 
   return fetchSourceFilesByFileName(baseUrl, framework, filesToFetch);

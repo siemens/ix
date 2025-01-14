@@ -13,24 +13,37 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `
     <ix-map-navigation
-      application-name="Test Application"
-      navigation-title="Some other content"
+      application-name="My Application"
+      navigation-title="Navigation title"
+      hide-context-menu="false"
     >
       <div class="placeholder-logo" slot="logo"></div>
+
       <ix-menu>
         <ix-menu-item>Item 1</ix-menu-item>
         <ix-menu-item>Item 2</ix-menu-item>
-        <ix-menu-item>Item 3</ix-menu-item>
       </ix-menu>
-      <div slot="sidebar-content">Sidebar content</div>
-      <ix-button (click)="showOverlay = true">Show overlay</ix-button>
+
+      <ix-content slot="sidebar-content">Sidebar content</ix-content>
+
+      <ix-content>
+        <ix-content-header
+          slot="header"
+          header-title="My Content Page"
+        ></ix-content-header>
+
+        <ix-button (click)="showOverlay = true">Show overlay</ix-button>
+      </ix-content>
+
       <ix-map-navigation-overlay
         *ngIf="showOverlay"
-        name="Custom overlay title"
-        icon="bulb"
         slot="overlay"
+        name="Custom overlay"
+        icon="bulb"
         (closeClick)="showOverlay = false"
-      ></ix-map-navigation-overlay>
+      >
+        <ix-content>Overlay content</ix-content>
+      </ix-map-navigation-overlay>
     </ix-map-navigation>
   `,
 })

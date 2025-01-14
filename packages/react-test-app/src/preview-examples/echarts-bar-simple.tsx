@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-bar-simple.css';
+import './echarts-bar-simple.scoped.css';
 
 import { useEffect, useState } from 'react';
-import { convertThemeName, registerTheme } from '@siemens/ix-echarts';
+import { registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
@@ -19,18 +19,23 @@ import { EChartsOption } from 'echarts';
 export default function EchartsBarSimple() {
   registerTheme(echarts);
 
-  const [theme, setTheme] = useState(
-    convertThemeName(themeSwitcher.getCurrentTheme())
-  );
+  const [theme, setTheme] = useState(themeSwitcher.getCurrentTheme());
 
   useEffect(() => {
     themeSwitcher.themeChanged.on((theme: string) => {
-      setTheme(convertThemeName(theme));
+      setTheme(theme);
     });
   }, []);
 
   const data = {
-    products: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E', 'Product F'],
+    products: [
+      'Product A',
+      'Product B',
+      'Product C',
+      'Product D',
+      'Product E',
+      'Product F',
+    ],
     sales: [10.3, 9.2, 7.3, 6.4, 6.2, 4.4],
   };
 
