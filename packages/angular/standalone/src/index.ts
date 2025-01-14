@@ -14,4 +14,3 @@ export * from './providers/modal';
 export * from './providers/toast';
 export { IxDropdownTriggerDirective } from './directives/dropdown-trigger/trigger.directive';
 export * from './directives/control-value-accessors';
-export { IxFormsModule } from './modules/forms.module';
