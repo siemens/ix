@@ -10,4 +10,4 @@ export const IxValueAccessorDirectives = [
   IxSelectValueAccessorDirective,
   IxTextValueAccessorDirective,
   IxDateValueAccessorDirective,
-];
+] as const;
