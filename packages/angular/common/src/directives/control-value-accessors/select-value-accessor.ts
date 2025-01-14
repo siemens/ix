@@ -10,9 +10,7 @@
 import { ElementRef, Injector, Directive, HostListener } from '@angular/core';
 import { ValueAccessor } from './value-accessor';
 
-@Directive({
-  selector: 'ix-select',
-})
+@Directive()
 export class SelectValueAccessorBaseDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);

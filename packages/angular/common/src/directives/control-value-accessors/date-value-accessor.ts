@@ -10,9 +10,7 @@
 import { ElementRef, Injector, Directive, HostListener } from '@angular/core';
 import { ValueAccessor } from './value-accessor';
 
-@Directive({
-  selector: 'ix-date-input',
-})
+@Directive()
 export class DateValueAccessorBaseDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);

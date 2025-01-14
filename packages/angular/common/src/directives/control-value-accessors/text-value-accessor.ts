@@ -10,9 +10,7 @@
 import { ElementRef, Injector, Directive, HostListener } from '@angular/core';
 import { ValueAccessor } from './value-accessor';
 
-@Directive({
-  selector: 'ix-input,ix-number-input,ix-textarea',
-})
+@Directive()
 export class TextValueAccessorBaseDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);

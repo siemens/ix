@@ -10,9 +10,7 @@
 import { Directive, HostListener, ElementRef, Injector } from '@angular/core';
 import { ValueAccessor, mapNgToIxClassNames } from './value-accessor';
 
-@Directive({
-  selector: 'ix-radio',
-})
+@Directive()
 export class RadioValueAccessorBaseDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
     super(injector, el);
