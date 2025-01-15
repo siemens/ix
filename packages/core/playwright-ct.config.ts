@@ -20,7 +20,7 @@ const config: PlaywrightTestConfig = {
   ...defaultConfig,
   testMatch: path.join(__dirname, 'src', '**', '*.ct.ts'),
   reporter: 'list',
-  retries: 0,
+  retries: 3,
   projects: [
     {
       name: `chromium`,

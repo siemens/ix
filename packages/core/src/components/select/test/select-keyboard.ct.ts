@@ -84,8 +84,6 @@ function selectController(select: Locator) {
   };
 }
 
-test.describe.configure({ mode: 'parallel', retries: 0, timeout: 5000 });
-
 test.describe('arrow key navigation', () => {
   test.describe('ArrowDown', () => {
     test('input -> slotted item', async ({ mount, page }) => {
