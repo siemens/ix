@@ -10216,14 +10216,14 @@
       "docsTags": [
         {
           "name": "deprecated",
-          "text": "since 2.6.1. Will be removed with 3.0.0.\nUse the 'ix-input' component instead"
+          "text": "since 3.0.0. Will be removed with 4.0.0.\nUse the 'ix-input' component instead"
         }
       ],
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [],
       "dependencyGraph": {},
-      "deprecation": "since 2.6.1. Will be removed with 3.0.0.\nUse the 'ix-input' component instead",
+      "deprecation": "since 3.0.0. Will be removed with 4.0.0.\nUse the 'ix-input' component instead",
       "props": [],
       "methods": [],
       "events": [],
