@@ -23,7 +23,7 @@ regressionTest.describe('workflow-steps', () => {
 
     const stepItems = workflowSteps.locator('ix-workflow-step');
 
-    stepItems.nth(4).scrollIntoViewIfNeeded();
+    await stepItems.nth(4).scrollIntoViewIfNeeded();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
