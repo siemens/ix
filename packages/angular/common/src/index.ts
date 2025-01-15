@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+export { IxTreeBase } from './tree';
 export * from './providers/modal';
 export * from './providers/toast';
 export * from './directives/dropdown/trigger.directive';

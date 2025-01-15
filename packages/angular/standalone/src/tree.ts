@@ -14,18 +14,20 @@ import {
   ElementRef,
   NgZone,
 } from '@angular/core';
+import { defineCustomElement as defineIxTree } from '@siemens/ix/components/ix-tree';
 import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 import { IxTreeBase } from '@siemens/ix-angular/common';
 
 @ProxyCmp({
-  defineCustomElementFn: undefined,
-  inputs: ['context', 'model', 'root'],
+  inputs: ['context', 'model', 'root', 'lazyLoading'],
+  defineCustomElementFn: defineIxTree,
 })
 @Component({
   selector: 'ix-tree',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['context', 'model', 'root'],
+  inputs: ['context', 'model', 'root', 'lazyLoading'],
+  standalone: true,
 })
 export class IxTree extends IxTreeBase {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
