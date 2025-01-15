@@ -22,7 +22,7 @@ import { ModalService } from '../providers/modal';
 import { ThemeService } from '../providers/theme';
 import { ToastService } from '../providers/toast';
 import * as tree from '../tree';
-import { IxDropdownTriggerDirective } from '../directives/dropdown/trigger.directive';
+import { IxDropdownTriggerDirective } from '../directives/dropdown-trigger';
 import { IxSelectValueAccessorDirective } from '../directives/control-value-accessors/select-value-accessor';
 import { IxRadioValueAccessorDirective } from '../directives/control-value-accessors/radio-value-accessor';
 import { IxBooleanValueAccessorDirective } from '../directives/control-value-accessors/boolean-value-accessor';

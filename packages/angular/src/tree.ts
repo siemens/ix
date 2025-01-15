@@ -15,7 +15,7 @@ import {
   NgZone,
 } from '@angular/core';
 import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
-import { IxTreeBase } from '@siemens/ix-angular/common';
+import { TreeBaseDirective } from '@siemens/ix-angular/common';
 
 @ProxyCmp({
   defineCustomElementFn: undefined,
@@ -27,7 +27,7 @@ import { IxTreeBase } from '@siemens/ix-angular/common';
   template: '<ng-content></ng-content>',
   inputs: ['context', 'model', 'root'],
 })
-export class IxTree extends IxTreeBase {
+export class IxTree extends TreeBaseDirective {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     super(c, r, z, proxyOutputs);
   }

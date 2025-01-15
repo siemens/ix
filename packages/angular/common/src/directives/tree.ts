@@ -8,9 +8,8 @@
  */
 
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component,
+  Directive,
   ElementRef,
   EmbeddedViewRef,
   EventEmitter,
@@ -28,7 +27,7 @@ import type {
 } from '@siemens/ix';
 import { Subscription } from 'rxjs';
 
-export declare interface IxTreeBase
+export declare interface TreeBaseDirective
   extends Omit<Components.IxTree, 'renderItem'> {
   /**
    * Context changed
@@ -40,13 +39,8 @@ export declare interface IxTreeBase
   nodeRemoved: EventEmitter<CustomEvent<any>>;
 }
 
-@Component({
-  selector: 'ix-tree-base',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  inputs: ['context', 'model', 'root'],
-})
-export class IxTreeBase implements OnDestroy {
+@Directive()
+export class TreeBaseDirective implements OnDestroy {
   renderCache = new Map<HTMLElement, EmbeddedViewRef<any>>();
 
   @Input()
