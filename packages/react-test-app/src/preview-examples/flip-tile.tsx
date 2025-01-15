@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './flip-tile.css';
+import './flip-tile.scoped.css';
 
 import { FlipTileState } from '@siemens/ix';
 import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-react';

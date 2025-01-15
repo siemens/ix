@@ -22,6 +22,7 @@
     "html-test-app",
     "ionic-test-app",
     "figma-plugin",
-    "documentation"
+    "documentation",
+    "storybook-docs"
   ]
 }

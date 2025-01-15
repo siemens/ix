@@ -7,21 +7,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+const colors = [
+  '#00C2CC' /* theme-chart-3 */,
+  '#94FFC9' /* theme-chart-2 */,
+  '#3664C6' /* theme-chart-8 */,
+  '#00FFE7' /* theme-chart-1 */,
+  '#42C6FF' /* theme-chart-6 */,
+  '#A3EEFF' /* theme-chart-4 */,
+  '#B999FF' /* theme-chart-10 */,
+  '#9EA3FF' /* theme-chart-9 */,
+  '#D08FFF' /* theme-chart-11 */,
+  '#EF9A9A' /* theme-chart-14 */,
+  '#F38FC2' /* theme-chart-13 */,
+  '#ED85FF' /* theme-chart-12 */,
+  '#7AAAFF' /* theme-chart-7 */,
+  '#FFB180' /* theme-chart-15 */,
+  '#CACAB4' /* theme-chart-16 */,
+  '#AAAA96' /* theme-chart-17 */,
+  '#90B4C5' /* theme-chart-5 */,
+];
+
 export default {
-  themeName: 'classic-dark',
+  themeName: 'theme-classic-dark',
   theme: {
-    color: [
-      '#00ebd5',
-      '#42b3ff',
-      '#dd65b5',
-      '#86acc0',
-      '#2473ff',
-      '#757eff',
-      '#baba9d',
-      '#009e78',
-      '#ffb180',
-      '#b5bd00',
-    ],
+    color: colors,
     backgroundColor: 'rgba(0,0,0,0)',
     textStyle: {},
     title: {
@@ -123,18 +132,7 @@ export default {
       symbolSize: 4,
       symbol: 'circle',
       smooth: false,
-      color: [
-        '#00ebd5',
-        '#42b3ff',
-        '#dd65b5',
-        '#86acc0',
-        '#2473ff',
-        '#757eff',
-        '#baba9d',
-        '#009e78',
-        '#ffb180',
-        '#b5bd00',
-      ],
+      color: colors,
       label: {
         color: '#000000',
       },

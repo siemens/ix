@@ -6,6 +6,7 @@ export default function LegacyTag(
     url: string;
     hasDeprecatedAncestor: boolean;
     deprecationVersion?: string;
+    ancestorName?: string;
   }>
 ) {
   return (
@@ -18,7 +19,7 @@ export default function LegacyTag(
       <a href={props.url} target="_blank" className="TagContainer">
         <IxIcon name="open-external" color="color-primary" size="16"></IxIcon>
         {props.hasDeprecatedAncestor
-          ? 'Show deprecated version'
+          ? 'Show deprecated ' + (props.ancestorName || 'version')
           : 'Show latest version'}
       </a>
     </div>

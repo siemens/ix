@@ -14,7 +14,7 @@ CLIs support users by giving suggestions, being empathetic and providing error m
 - Document commands and extend documentation for your commands
 - Provide auto-completion when possible
 
-![Support - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-8879&t=2JP2nlNciwS43htp-1)
+![Support - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20618&t=sN9pWBoxiiVCyam3-4)
 
 
 ### Errors
@@ -23,6 +23,6 @@ CLIs support users by giving suggestions, being empathetic and providing error m
 - Present errors logically, e.g. by location or type
 - Present all errors where they are the most discoverable, e.g. at the end of the command line
 
-![Errors - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-8921&t=2JP2nlNciwS43htp-1)
+![Errors - Do](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20612&t=sN9pWBoxiiVCyam3-4)
 
-![Errors - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-9024&t=2JP2nlNciwS43htp-1)
+![Errors - Don't](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=4406-20615&t=sN9pWBoxiiVCyam3-4)

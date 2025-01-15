@@ -25,7 +25,7 @@ import {
   IxInputFieldComponent,
   ValidationResults,
 } from '../utils/input';
-import { MakeRef, makeRef } from '../utils/make-ref';
+import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
   adjustPaddingForStartAndEnd,
@@ -40,6 +40,8 @@ let numberInputIds = 0;
 /**
  * @since 2.6.0
  * @form-ready 2.6.0
+ * @slot start - Element will be displayed at the start of the input
+ * @slot end - Element will be displayed at the end of the input
  */
 @Component({
   tag: 'ix-number-input',
@@ -246,7 +248,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
           isValid={this.isValid}
           isInfo={this.isInfo}
           isWarning={this.isWarning}
-          controlRef={this.inputRef as unknown as MakeRef<HTMLElement>}
+          controlRef={this.inputRef}
         >
           <div
             class={{

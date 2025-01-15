@@ -21,6 +21,7 @@ import Application from './preview-examples/application.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
+import BasicNavigationMigration from './preview-examples/basic-navigation-migration.vue';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header.vue';
 import BasicNavigation from './preview-examples/basic-navigation.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
@@ -56,6 +57,8 @@ import CustomFieldValidation from './preview-examples/custom-field-validation.vu
 import CustomField from './preview-examples/custom-field.vue';
 import DateDropdownUserRange from './preview-examples/date-dropdown-user-range.vue';
 import DateDropdown from './preview-examples/date-dropdown.vue';
+import DateInputWithSlots from './preview-examples/date-input-with-slots.vue';
+import DateInput from './preview-examples/date-input.vue';
 import DatepickerLocale from './preview-examples/datepicker-locale.vue';
 import DatepickerRange from './preview-examples/datepicker-range.vue';
 import Datepicker from './preview-examples/datepicker.vue';
@@ -98,6 +101,8 @@ import FormCheckboxGroupIndeterminate from './preview-examples/form-checkbox-gro
 import FormCheckboxGroup from './preview-examples/form-checkbox-group.vue';
 import FormCheckboxValidation from './preview-examples/form-checkbox-validation.vue';
 import FormCheckbox from './preview-examples/form-checkbox.vue';
+import FormLayoutAuto from './preview-examples/form-layout-auto.vue';
+import FormLayoutGrid from './preview-examples/form-layout-grid.vue';
 import FormValidation from './preview-examples/form-validation.vue';
 import GridPadding from './preview-examples/grid-padding.vue';
 import GridSize from './preview-examples/grid-size.vue';
@@ -124,6 +129,7 @@ import InputPattern from './preview-examples/input-pattern.vue';
 import InputReadonly from './preview-examples/input-readonly.vue';
 import InputTypes from './preview-examples/input-types.vue';
 import InputValidation from './preview-examples/input-validation.vue';
+import InputWithSlots from './preview-examples/input-with-slots.vue';
 import Input from './preview-examples/input.vue';
 import KeyValueListStriped from './preview-examples/key-value-list-striped.vue';
 import KeyValueListWithCustomValue from './preview-examples/key-value-list-with-custom-value.vue';
@@ -139,6 +145,7 @@ import LayoutAuto from './preview-examples/layout-auto.vue';
 import LinkButtonDisabled from './preview-examples/link-button-disabled.vue';
 import LinkButton from './preview-examples/link-button.vue';
 import Loading from './preview-examples/loading.vue';
+import MapNavigationMigration from './preview-examples/map-navigation-migration.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
@@ -151,6 +158,7 @@ import NumberInputDisabled from './preview-examples/number-input-disabled.vue';
 import NumberInputLabel from './preview-examples/number-input-label.vue';
 import NumberInputReadOnly from './preview-examples/number-input-readonly.vue';
 import NumberInputStepperButton from './preview-examples/number-input-stepper-button.vue';
+import NumberInputWithSlots from './preview-examples/number-input-with-slots.vue';
 import NumberInput from './preview-examples/number-input.vue';
 import PaginationAdvanced from './preview-examples/pagination-advanced.vue';
 import Pagination from './preview-examples/pagination.vue';
@@ -215,8 +223,6 @@ import VerticalTabsWithAvatar from './preview-examples/vertical-tabs-with-avatar
 import VerticalTabs from './preview-examples/vertical-tabs.vue';
 import WorkflowVertical from './preview-examples/workflow-vertical.vue';
 import Workflow from './preview-examples/workflow.vue';
-import FormLayoutAuto from './preview-examples/form-layout-auto.vue';
-import FormLayoutGrid from './preview-examples/form-layout-grid.vue';
 
 const routes: any = {
   '/': App,
@@ -233,6 +239,7 @@ const routes: any = {
   '/preview/avatar': Avatar,
   '/preview/basic-navigation-without-header': BasicNavigationWithoutHeader,
   '/preview/basic-navigation': BasicNavigation,
+  '/preview/basic-navigation-migration': BasicNavigationMigration,
   '/preview/blind-header-actions': BlindHeaderActions,
   '/preview/blind-variants': BlindVariants,
   '/preview/blind': Blind,
@@ -357,6 +364,7 @@ const routes: any = {
   '/preview/input-readonly': InputReadonly,
   '/preview/input-types': InputTypes,
   '/preview/input-validation': InputValidation,
+  '/preview/input-with-slots': InputWithSlots,
   '/preview/tile': Tile,
   '/preview/timepicker': Timepicker,
   '/preview/toast': Toast,
@@ -376,10 +384,14 @@ const routes: any = {
   '/preview/number-input-label': NumberInputLabel,
   '/preview/number-input-readonly': NumberInputReadOnly,
   '/preview/number-input-stepper-button': NumberInputStepperButton,
+  '/preview/number-input-with-slots': NumberInputWithSlots,
+  '/preview/date-input': DateInput,
+  '/preview/date-input-with-slots': DateInputWithSlots,
   '/preview/workflow': Workflow,
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/map-navigation': MapNavigation,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
+  '/preview/map-navigation-migration': MapNavigationMigration,
   '/preview/tooltip': Tooltip,
   '/preview/push-card': PushCard,
   '/preview/page-header': ContentHeader,

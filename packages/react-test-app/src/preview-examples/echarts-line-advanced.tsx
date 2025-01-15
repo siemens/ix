@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './echarts-line-advanced.css';
+import './echarts-line-advanced.scoped.css';
 
 import { useEffect, useState } from 'react';
-import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
@@ -19,17 +19,17 @@ import { EChartsOption } from 'echarts';
 export default function EchartsLineAdvanced() {
   registerTheme(echarts);
 
-  const [theme, setTheme] = useState(
-    convertThemeName(themeSwitcher.getCurrentTheme())
-  );
+  const [theme, setTheme] = useState(themeSwitcher.getCurrentTheme());
 
   useEffect(() => {
     themeSwitcher.themeChanged.on((theme: string) => {
-      setTheme(convertThemeName(theme));
+      setTheme(theme);
     });
   }, []);
 
-  const dates = Array.from({ length: 2025 - 2013 }, (_, i) => (2013 + i).toString());
+  const dates = Array.from({ length: 2025 - 2013 }, (_, i) =>
+    (2013 + i).toString()
+  );
 
   const stockData = [
     77.67, 82.81, 84.09, 91.75, 118.15, 107.48, 99.36, 93.07, 137.18, 104.38,

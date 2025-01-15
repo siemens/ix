@@ -11,8 +11,6 @@
 import { IxMenu, IxMenuItem } from '@siemens/ix-vue';
 </script>
 
-<style scoped src="./menu-with-bottom-tabs.css"></style>
-
 <template>
   <IxMenu>
     <IxMenuItem home-tab tab-icon="home"> Home </IxMenuItem>
