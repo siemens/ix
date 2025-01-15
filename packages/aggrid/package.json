@@ -20,7 +20,7 @@
     "host-root": "http-server -a 127.0.0.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.32.1",
+    "@playwright/test": "^1.49.1",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-icons": "^2.0.0",
     "@types/gulp": "^4.0.14",
