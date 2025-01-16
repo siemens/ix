@@ -1,5 +1,20 @@
 # @siemens/ix-aggrid
 
+## 3.0.0-alpha.0
+
+### Major Changes
+
+- [#1238](https://github.com/siemens/ix/pull/1238) [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3) Thanks [@danielleroux](https://github.com/danielleroux)! - feat: reduce bundle size in combination with icons
+
+- [#1394](https://github.com/siemens/ix/pull/1394) [`24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff`](https://github.com/siemens/ix/commit/24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - refactor: replace internal comments with annotations
+
+### Patch Changes
+
+- [#1623](https://github.com/siemens/ix/pull/1623) [`0de0a6759d4df1dd104937c5e6d1fc2658a7a986`](https://github.com/siemens/ix/commit/0de0a6759d4df1dd104937c5e6d1fc2658a7a986) Thanks [@danielleroux](https://github.com/danielleroux)! - Set typography globally for **ag-grid** theme.
+
+- Updated dependencies [[`7eb4d5147056e1e3252e387e5a718df7e593909e`](https://github.com/siemens/ix/commit/7eb4d5147056e1e3252e387e5a718df7e593909e), [`1625ddc001b451069a200da171fd1df92846c3a6`](https://github.com/siemens/ix/commit/1625ddc001b451069a200da171fd1df92846c3a6), [`8803f3185b8a183926576d9f28894f9e1aa92ec3`](https://github.com/siemens/ix/commit/8803f3185b8a183926576d9f28894f9e1aa92ec3), [`0de0a6759d4df1dd104937c5e6d1fc2658a7a986`](https://github.com/siemens/ix/commit/0de0a6759d4df1dd104937c5e6d1fc2658a7a986), [`0de0a6759d4df1dd104937c5e6d1fc2658a7a986`](https://github.com/siemens/ix/commit/0de0a6759d4df1dd104937c5e6d1fc2658a7a986), [`3d62fffdc107bfc92b2ecad8437662dc7c03796f`](https://github.com/siemens/ix/commit/3d62fffdc107bfc92b2ecad8437662dc7c03796f), [`24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff`](https://github.com/siemens/ix/commit/24f3ad61ab275bf7c9bbd7e9ee84f6b4f7d3b5ff), [`b5e2da18f871d6189c064a72bd9b29a82d0685eb`](https://github.com/siemens/ix/commit/b5e2da18f871d6189c064a72bd9b29a82d0685eb), [`b3846c925ec4f03fd5d26b0b66042185b766f099`](https://github.com/siemens/ix/commit/b3846c925ec4f03fd5d26b0b66042185b766f099), [`9a5fff63e6230a95ce6f6abfe39c1256fb26b515`](https://github.com/siemens/ix/commit/9a5fff63e6230a95ce6f6abfe39c1256fb26b515), [`e263955649d8377ec592e81dfca1387e04936d94`](https://github.com/siemens/ix/commit/e263955649d8377ec592e81dfca1387e04936d94), [`e8f825f7f494c8cc05dcce075afcff77839f8096`](https://github.com/siemens/ix/commit/e8f825f7f494c8cc05dcce075afcff77839f8096)]:
+  - @siemens/ix@3.0.0-alpha.0
+
 ## 2.2.2
 
 ### Patch Changes
