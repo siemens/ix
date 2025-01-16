@@ -110,6 +110,31 @@ jobs:
             ./packages/core/blob-report/
           retention-days: 1
 
+  merge-core-reports:
+    if: failure()
+    needs: [visual-testing-core]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: core-blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-html-report--attempt-${{ github.run_attempt }}
+          path: playwright-report
+          retention-days: 14
+
   visual-testing-aggrid:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' }}
     needs: [build, changes]
@@ -155,31 +180,6 @@ jobs:
           path: |
             ./packages/echarts/playwright-report/
           retention-days: 1
-
-  merge-core-reports:
-    if: failure()
-    needs: [visual-testing-core]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/workflows/actions/turbo
-
-      - name: Download blob reports from GitHub Actions Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: all-blob-reports
-          pattern: blob-report-*
-          merge-multiple: true
-
-      - name: Merge into HTML Report
-        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
-
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: core-html-report--attempt-${{ github.run_attempt }}
-          path: playwright-report
-          retention-days: 14
 
   unit:
     if: ${{ needs.changes.outputs.unittests_any_changed == 'true' }}
