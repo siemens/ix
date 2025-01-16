@@ -9,6 +9,7 @@
 
 import { Component, Element, h, Host, Listen, Prop } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
+import { IxButtonComponent } from './button-component';
 
 export type ButtonVariant = 'danger' | 'primary' | 'secondary';
 
@@ -17,7 +18,7 @@ export type ButtonVariant = 'danger' | 'primary' | 'secondary';
   shadow: true,
   styleUrl: './button.scss',
 })
-export class Button {
+export class Button implements IxButtonComponent {
   /**
    * Button variant
    * @since 2.3.0 - variant danger

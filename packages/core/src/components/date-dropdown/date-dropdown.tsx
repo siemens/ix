@@ -24,6 +24,8 @@ import { DateTime } from 'luxon';
 import { type LiteralStringUnion } from '../utils/type-helper';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import { makeRef } from '../utils/make-ref';
+import { ButtonVariant } from '../button/button';
+import { IxButtonComponent } from '../button/button-component';
 
 export type DateDropdownOption = {
   id: string;
@@ -46,7 +48,11 @@ export type DateRangeChangeEvent = {
   styleUrl: 'date-dropdown.scss',
   shadow: true,
 })
-export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
+export class DateDropdown
+  implements
+    Omit<IxDatePickerComponent, 'corners'>,
+    Omit<IxButtonComponent, 'type' | 'icon'>
+{
   @Element() hostElement!: HTMLIxDateDropdownElement;
 
   /**
@@ -100,6 +106,27 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
    * if not set or no according date range label is found, nothing will be selected
    */
   @Prop() dateRangeId = 'custom';
+
+  /**
+   * Button variant
+   */
+  @Prop() variant: ButtonVariant = 'primary';
+
+  /**
+   * Outline button
+   */
+  @Prop() outline = false;
+
+  /**
+   * Button with no background or outline
+   */
+  @Prop() ghost = false;
+
+  /**
+   * Loading button
+   */
+  @Prop() loading: boolean = false;
+
   @Watch('dateRangeId')
   @Watch('to')
   @Watch('from')
@@ -140,6 +167,7 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
    *   // ... other predefined date range options ...
    */
   @Prop() dateRangeOptions: DateDropdownOption[] = [];
+
   @Watch('dateRangeOptions')
   onDateRangeOptionsChange() {
     this.initialize();
@@ -188,7 +216,7 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
 
-  @State() private selectedDateRangeId: LiteralStringUnion<'custom'>;
+  @State() private selectedDateRangeId: LiteralStringUnion<'custom'> = '';
   @State() private currentRangeValue?: {
     from: string;
     to: string;
@@ -202,6 +230,7 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
       this.closeDropdown();
     }
   }
+
   private datePickerTouched = false;
 
   componentWillLoad() {
@@ -327,7 +356,10 @@ export class DateDropdown implements Omit<IxDatePickerComponent, 'corners'> {
         <ix-button
           data-testid="date-dropdown-trigger"
           data-date-dropdown-trigger
-          variant="primary"
+          variant={this.variant}
+          ghost={this.ghost}
+          outline={this.outline}
+          loading={this.loading}
           icon="history"
           ref={this.triggerRef}
           disabled={this.disabled}
