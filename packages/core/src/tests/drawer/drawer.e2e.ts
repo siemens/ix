@@ -31,4 +31,11 @@ regressionTest.describe('drawer', () => {
     await page.waitForSelector('ix-drawer[style*="opacity: 1;"]');
     expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
+
+  regressionTest('inside container', async ({ page }) => {
+    await page.goto('drawer/inside-container');
+    await page.locator('ix-button').click();
+    await page.waitForSelector('ix-drawer[style*="opacity: 1;"]');
+    expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
+  });
 });
