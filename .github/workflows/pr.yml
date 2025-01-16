@@ -83,8 +83,7 @@ jobs:
         run: pnpm build --cache-dir=.turbo --filter documentation
 
   visual-testing-core:
-    # Disabled for testing
-    # if: ${{ needs.changes.outputs.core_any_changed == 'true' }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
