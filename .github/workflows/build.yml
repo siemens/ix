@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: ./.github/workflows/actions/turbo
 
@@ -29,31 +29,57 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1/4, 2/4, 3/4, 4/4]
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard ${{ matrix.shard }}
+        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: core-blob-report
+          name: core-blob-report-${{ matrix.shardIndex }}
           path: |
             ./packages/core/blob-report/
           retention-days: 1
+
+  merge-core-reports:
+    if: failure()
+    needs: [visual-testing-core]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: core-blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-html-report--attempt-${{ github.run_attempt }}
+          path: playwright-report
+          retention-days: 14
 
   visual-testing-aggrid:
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
@@ -62,7 +88,7 @@ jobs:
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: aggrid-html-report--attempt-${{ github.run_attempt }}
@@ -75,7 +101,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
@@ -84,7 +110,7 @@ jobs:
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: echarts-html-report--attempt-${{ github.run_attempt }}
@@ -92,37 +118,12 @@ jobs:
             ./packages/echarts/playwright-report/
           retention-days: 1
 
-  merge-core-reports:
-    if: failure()
-    needs: [visual-testing-core]
-
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/workflows/actions/turbo
-
-      - name: Download blob reports from GitHub Actions Artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: core-blob-report
-          path: all-blob-reports
-
-      - name: Merge into HTML Report
-        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
-
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v3
-        with:
-          name: core-html-report--attempt-${{ github.run_attempt }}
-          path: playwright-report
-          retention-days: 2
-
   unit:
     needs: [build]
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
