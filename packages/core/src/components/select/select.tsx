@@ -304,14 +304,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Watch('dropdownShow')
   watchDropdownShow(show: boolean) {
     if (show && this.dropdownElement) {
-      this.arrowFocusController = new ArrowFocusController(
-        this.visibleNonShadowItems,
-        this.dropdownElement,
-        this.focusControllerCallbackBind
-      );
-
-      this.arrowFocusController.wrap = !this.editable;
-
       this.itemObserver.observe(this.dropdownElement, {
         childList: true,
         subtree: true,
@@ -492,6 +484,21 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     this.updateSelection();
     this.updateFormInternalValue(this.value);
+  }
+
+  componentDidRender(): void {
+    if (!this.dropdownShow || this.arrowFocusController) {
+      return;
+    }
+
+    this.arrowFocusController = new ArrowFocusController(
+      this.visibleNonShadowItems,
+      this.dropdownElement,
+      this.focusControllerCallbackBind
+    );
+
+    this.arrowFocusController.wrap =
+      !this.isAddItemVisible() && !this.visibleShadowItems.length;
   }
 
   @Listen('ix-select-item:valueChange')
