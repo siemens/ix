@@ -6,14 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Page } from '@playwright/test';
-import {
-  getFormValue,
-  preventFormSubmission,
-  regressionTest,
-} from '@utils/test';
+import { expect } from '@playwright/test';
+import { getFormValue, preventFormSubmission, test } from '@utils/test';
 
-regressionTest('renders', async ({ mount, page }) => {
+test('renders', async ({ mount, page }) => {
   await mount(`
         <ix-select>
           <ix-select-item value="11" label="Item 1">Test</ix-select-item>
@@ -32,7 +28,7 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
 });
 
-regressionTest('editable mode', async ({ mount, page }) => {
+test('editable mode', async ({ mount, page }) => {
   await mount(`
         <ix-select editable>
           <ix-select-item value="11" label="Item 1">Test</ix-select-item>
@@ -68,7 +64,7 @@ regressionTest('editable mode', async ({ mount, page }) => {
   await expect(addedItem).toBeVisible();
 });
 
-regressionTest('single selection', async ({ mount, page }) => {
+test('single selection', async ({ mount, page }) => {
   await mount(`
         <ix-select>
           <ix-select-item value="11" label="Item 1">Test</ix-select-item>
@@ -91,7 +87,7 @@ regressionTest('single selection', async ({ mount, page }) => {
   ).toBeVisible();
 });
 
-regressionTest('multiple selection', async ({ mount, page }) => {
+test('multiple selection', async ({ mount, page }) => {
   await mount(`
         <ix-select mode="multiple">
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
@@ -124,7 +120,7 @@ regressionTest('multiple selection', async ({ mount, page }) => {
   await expect(chip3).toBeVisible();
 });
 
-regressionTest('filter', async ({ mount, page }) => {
+test('filter', async ({ mount, page }) => {
   await mount(`
         <ix-select mode="multiple">
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
@@ -153,7 +149,7 @@ regressionTest('filter', async ({ mount, page }) => {
   await expect(item_abc).toBeVisible();
 });
 
-regressionTest('open filtered dropdown on input', async ({ mount, page }) => {
+test('open filtered dropdown on input', async ({ mount, page }) => {
   await mount(`
         <ix-select>
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
@@ -178,10 +174,11 @@ regressionTest('open filtered dropdown on input', async ({ mount, page }) => {
   await expect(item2).not.toBeVisible();
 });
 
-regressionTest(
-  'remove text from input and reselect the element',
-  async ({ mount, page }) => {
-    await mount(`
+test('remove text from input and reselect the element', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
         <ix-select value="2">
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
@@ -189,60 +186,54 @@ regressionTest(
         </ix-select>
     `);
 
-    await page.locator('[data-select-dropdown]').click();
-    const element = page.locator('ix-select');
-    await element.evaluate(
-      (select: HTMLIxSelectElement) => (select.value = [])
-    );
-    const dropdown = element.locator('ix-dropdown');
-    await expect(dropdown).toBeVisible();
+  await page.locator('[data-select-dropdown]').click();
+  const element = page.locator('ix-select');
+  await element.evaluate((select: HTMLIxSelectElement) => (select.value = []));
+  const dropdown = element.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
 
-    const item2 = page.getByRole('button', { name: 'Item 2' });
-    await item2.click();
+  const item2 = page.getByRole('button', { name: 'Item 2' });
+  await item2.click();
 
-    const inputValue = await element.locator('input').inputValue();
-    expect(inputValue).toEqual('Item 2');
-  }
-);
+  const inputValue = await element.locator('input').inputValue();
+  expect(inputValue).toEqual('Item 2');
+});
 
-regressionTest(
-  'type in a novel item name in editable mode and then remove it',
-  async ({ mount, page }) => {
-    await mount(`
+test('type in a novel item name in editable mode and then remove it', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
         <ix-select value="2" editable>
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
         </ix-select>
     `);
 
-    const element = page.locator('ix-select');
-    await expect(element).toHaveClass(/hydrated/);
+  const element = page.locator('ix-select');
+  await expect(element).toHaveClass(/hydrated/);
 
-    await page.locator('[data-select-dropdown]').click();
-    await page.getByTestId('input').fill('test');
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
 
-    await expect(
-      page.getByRole('button', { name: 'Item 1' })
-    ).not.toBeVisible();
-    await expect(
-      page.getByRole('button', { name: 'Item 2' })
-    ).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 1' })).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).not.toBeVisible();
 
-    const add = page.getByRole('button', { name: 'test' });
-    await expect(add).toBeVisible();
+  const add = page.getByRole('button', { name: 'test' });
+  await expect(add).toBeVisible();
 
-    await page.getByTestId('input').fill('');
+  await page.getByTestId('input').fill('');
 
-    await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
-    await expect(add).not.toBeVisible();
-  }
-);
+  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
+  await expect(add).not.toBeVisible();
+});
 
-regressionTest(
-  'type in a novel item name in editable mode, click outside and reopen the select',
-  async ({ mount, page }) => {
-    await mount(`
+test('type in a novel item name in editable mode, click outside and reopen the select', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
         <ix-select value="2" editable>
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
@@ -251,34 +242,31 @@ regressionTest(
         <ix-button>outside</ix-button>
     `);
 
-    const selectElement = page.locator('ix-select');
-    const btnElement = page.locator('ix-button');
-    await expect(selectElement).toHaveClass(/hydrated/);
-    await expect(btnElement).toBeVisible();
+  const selectElement = page.locator('ix-select');
+  const btnElement = page.locator('ix-button');
+  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(btnElement).toBeVisible();
 
-    await page.locator('[data-select-dropdown]').click();
-    await page.getByTestId('input').fill('test');
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
 
-    const add = page.getByRole('button', { name: 'test' });
-    await expect(add).toBeVisible();
+  const add = page.getByRole('button', { name: 'test' });
+  await expect(add).toBeVisible();
 
-    await btnElement.click();
-    const inputValue = await page.getByTestId('input').inputValue();
+  await btnElement.click();
+  const inputValue = await page.getByTestId('input').inputValue();
 
-    expect(inputValue).toBe('Item 2');
+  expect(inputValue).toBe('Item 2');
 
-    await page.locator('[data-select-dropdown]').click();
+  await page.locator('[data-select-dropdown]').click();
 
-    await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
-  }
-);
+  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
+});
 
-regressionTest(
-  'type in a novel item name and click outside',
-  async ({ mount, page }) => {
-    await mount(`
+test('type in a novel item name and click outside', async ({ mount, page }) => {
+  await mount(`
         <ix-select value="2">
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
@@ -287,23 +275,20 @@ regressionTest(
         <ix-button>outside</ix-button>
     `);
 
-    const selectElement = page.locator('ix-select');
-    await expect(selectElement).toHaveClass(/hydrated/);
+  const selectElement = page.locator('ix-select');
+  await expect(selectElement).toHaveClass(/hydrated/);
 
-    await page.locator('[data-select-dropdown]').click();
-    await page.getByTestId('input').fill('test');
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
 
-    await page.keyboard.press('Enter');
-    const inputValue = await page.getByTestId('input').inputValue();
+  await page.keyboard.press('Enter');
+  const inputValue = await page.getByTestId('input').inputValue();
 
-    expect(inputValue).toBe('Item 2');
-  }
-);
+  expect(inputValue).toBe('Item 2');
+});
 
-regressionTest(
-  'check if clear button visible in disabled',
-  async ({ mount, page }) => {
-    await mount(`
+test('check if clear button visible in disabled', async ({ mount, page }) => {
+  await mount(`
         <ix-select value="2" allow-clear>
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
@@ -311,24 +296,24 @@ regressionTest(
         </ix-select>
     `);
 
-    const selectElement = page.locator('ix-select');
-    await expect(selectElement).toHaveClass(/hydrated/);
+  const selectElement = page.locator('ix-select');
+  await expect(selectElement).toHaveClass(/hydrated/);
 
-    const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
-    await expect(clearButton).toBeVisible();
+  const clearButton = page.locator('ix-icon-button.clear.btn-icon-16');
+  await expect(clearButton).toBeVisible();
 
-    await selectElement.evaluate(
-      (select: HTMLIxSelectElement) => (select.disabled = true)
-    );
+  await selectElement.evaluate(
+    (select: HTMLIxSelectElement) => (select.disabled = true)
+  );
 
-    await expect(clearButton).not.toBeAttached();
-  }
-);
+  await expect(clearButton).not.toBeAttached();
+});
 
-regressionTest(
-  'type in a novel item name in multiple mode, click outside',
-  async ({ mount, page }) => {
-    await mount(`
+test('type in a novel item name in multiple mode, click outside', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
         <ix-select value="2" mode="multiple">
           <ix-select-item value="1" label="Item 1">Test</ix-select-item>
           <ix-select-item value="2" label="Item 2">Test</ix-select-item>
@@ -337,394 +322,60 @@ regressionTest(
         <ix-button>outside</ix-button>
     `);
 
-    const selectElement = page.locator('ix-select');
-    const btnElement = page.locator('ix-button');
-    await expect(selectElement).toHaveClass(/hydrated/);
-    await expect(btnElement).toBeVisible();
+  const selectElement = page.locator('ix-select');
+  const btnElement = page.locator('ix-button');
+  await expect(selectElement).toHaveClass(/hydrated/);
+  await expect(btnElement).toBeVisible();
 
-    await page.locator('[data-select-dropdown]').click();
-    await page.getByTestId('input').fill('test');
+  await page.locator('[data-select-dropdown]').click();
+  await page.getByTestId('input').fill('test');
 
-    await btnElement.click();
-    const inputValue = await page.getByTestId('input').inputValue();
+  await btnElement.click();
+  const inputValue = await page.getByTestId('input').inputValue();
 
-    expect(inputValue).toBe('');
-  }
-);
+  expect(inputValue).toBe('');
+});
 
-regressionTest(
-  'pass string as value and check if it is selectable',
-  async ({ mount, page }) => {
-    await mount(`
+test('pass object as value and check if it is selectable', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
         <ix-select>
           <ix-select-item label="Item 1">Test</ix-select-item>
           <ix-select-item label="Item 2">Test</ix-select-item>
           <ix-select-item label="Item 3">Test</ix-select-item>
         </ix-select>
     `);
-    const selectElement = page.locator('ix-select');
-    await expect(selectElement).toHaveClass(/hydrated/);
+  const selectElement = page.locator('ix-select');
+  await expect(selectElement).toHaveClass(/hydrated/);
 
-    async function setSelectItemValue(index: number): Promise<void> {
-      await page
-        .locator('ix-select-item')
-        .nth(index)
-        .evaluate((e: HTMLIxSelectItemElement, index) => {
-          e.value = `Item ${index}`;
-        });
-    }
-
-    for (let index = 0; index < 3; index++) {
-      await setSelectItemValue(index);
-    }
-
-    await page.locator('[data-select-dropdown]').click();
-    await page.locator('ix-select-item').last().click();
-    await page.locator('[data-select-dropdown]').click();
-
-    await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
-    await expect(
-      page.getByRole('button', { name: 'Item 3' }).locator('ix-icon')
-    ).toBeVisible();
+  async function setSelectItemValue(index: number): Promise<void> {
+    await page
+      .locator('ix-select-item')
+      .nth(index)
+      .evaluate((e: HTMLIxSelectItemElement, index) => {
+        e.value = `${index}`;
+      });
   }
-);
 
-regressionTest.describe('arrow key navigation', () => {
-  const expectFocusMoved = async (
-    direction: 'ArrowDown' | 'ArrowUp',
-    pattern: string,
-    page: Page
-  ) => {
-    const selector = `.dropdown-item:nth-of-type(${pattern}):focus-visible`;
-    await page.keyboard.press(direction);
-    await page.locator(selector);
-    await expect(page.locator(selector)).toBeFocused();
-  };
-
-  regressionTest.describe('ArrowDown', () => {
-    regressionTest('input -> slotted item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      await page.locator('ix-select input').click();
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    regressionTest('input -> dynamic item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable></ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    regressionTest('input -> add item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable></ix-select>
-      `);
-
-      await page.waitForSelector('ix-select');
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.keyboard.down('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    regressionTest('slot -> dynamic item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      await page.waitForSelector('ix-select');
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await page.keyboard.down('I');
-      await page.keyboard.down('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('ix-dropdown');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await expectFocusMoved('ArrowDown', 'odd', page);
-      await page.keyboard.down('ArrowDown');
-
-      const itemThree = page.locator('ix-select-item').last();
-      await expect(itemThree).toBeFocused();
-    });
-
-    regressionTest('slot -> add item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      await page.waitForSelector('ix-select');
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await page.keyboard.down('I');
-      await page.waitForSelector('.dropdown-item-icon');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await expectFocusMoved('ArrowDown', 'odd', page);
-      await page.keyboard.press('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-    });
-
-    regressionTest('dynamic item -> add item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('Item 2');
-      await page.keyboard.down('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await input.clear();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await expectFocusMoved('ArrowDown', 'odd', page);
-      await page.keyboard.down('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-    });
-
-    regressionTest('wrap - dynamic item -> slot', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('Item 2');
-      await page.keyboard.press('Enter');
-      await input.clear();
-
-      await page.keyboard.down('ArrowDown');
-      await page.waitForSelector('ix-dropdown');
-      await page.keyboard.down('ArrowDown');
-
-      const itemTwo = page.locator('ix-select-item').nth(1);
-      await expect(itemTwo).toBeFocused();
-
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    regressionTest('wrap - add item -> slot', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await page.keyboard.down('ArrowDown');
-      await page.keyboard.down('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    regressionTest(
-      'wrap - add item -> dynamic item',
-      async ({ mount, page }) => {
-        await mount(`
-        <ix-select editable></ix-select>
-     `);
-
-        const input = page.locator('ix-select input');
-        await input.focus();
-        await input.fill('Item 1');
-        await page.keyboard.press('Enter');
-        await page.locator('ix-icon-button').click();
-        await page.waitForSelector('.checkmark');
-
-        await input.clear();
-        await input.fill('I');
-        await page.waitForSelector('.add-item');
-
-        await page.keyboard.down('ArrowDown');
-        await page.keyboard.down('ArrowDown');
-
-        const addItem = page.locator('.add-item');
-        await expect(addItem).toBeFocused();
-
-        await expectFocusMoved('ArrowDown', '1', page);
-      }
-    );
-  });
-
-  regressionTest.describe('ArrowUp', () => {
-    regressionTest('dynamic item -> slot', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.keyboard.down('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await expectFocusMoved('ArrowDown', 'odd', page);
-      await expectFocusMoved('ArrowUp', '1', page);
-    });
-
-    regressionTest('add item -> slot', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await page.keyboard.down('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-
-      await expectFocusMoved('ArrowUp', '1', page);
-    });
-
-    regressionTest('add item -> dynamic item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable></ix-select>
-      `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('Item 1');
-      await page.keyboard.press('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await input.clear();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await page.keyboard.down('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-
-      await expectFocusMoved('ArrowUp', '1', page);
-    });
-
-    regressionTest('wrap - slot -> dynamic item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-     `);
-
-      const input = page.locator('input');
-      await input.focus();
-      await input.fill('Item 2');
-      await page.keyboard.press('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.locator('input').clear();
-
-      await page.keyboard.down('ArrowDown');
-      await page.keyboard.down('ArrowUp');
-
-      const itemTwo = page.locator('ix-select-item').last();
-      await expect(itemTwo).toBeFocused();
-    });
-
-    regressionTest('wrap - slot -> add-item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await page.keyboard.down('ArrowUp');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-    });
-
-    regressionTest(
-      'wrap - dynamic item -> add item',
-      async ({ mount, page }) => {
-        await mount(`
-        <ix-select editable></ix-select>
-     `);
-
-        const input = page.locator('ix-select input');
-        await input.focus();
-        await input.fill('Item 1');
-        await page.keyboard.press('Enter');
-        await page.locator('ix-icon-button').click();
-        await page.waitForSelector('.checkmark');
-
-        await input.clear();
-        await input.fill('I');
-        await page.waitForSelector('.add-item');
-
-        await expectFocusMoved('ArrowDown', '1', page);
-        await page.keyboard.down('ArrowUp');
-
-        const addItem = page.locator('.add-item');
-        await expect(addItem).toBeFocused();
-      }
-    );
-  });
+  for (let index = 0; index < 3; index++) {
+    await setSelectItemValue(index);
+  }
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.locator('ix-select-item').last().click();
+  await page.locator('[data-select-dropdown]').click();
+
+  await expect(page.getByRole('button', { name: 'Item 1' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 2' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Item 3' })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Item 3' }).locator('ix-icon')
+  ).toBeVisible();
 });
 
-regressionTest('form-ready', async ({ mount, page }) => {
+test('form-ready', async ({ mount, page }) => {
   await mount(`
     <form>
       <ix-select name="my-custom-entry">
@@ -747,7 +398,7 @@ regressionTest('form-ready', async ({ mount, page }) => {
   expect(formData).toEqual('2');
 });
 
-regressionTest('form-ready - with initial value', async ({ mount, page }) => {
+test('form-ready - with initial value', async ({ mount, page }) => {
   await mount(`
     <form>
       <ix-select name="my-custom-entry" value="some other">
@@ -764,8 +415,8 @@ regressionTest('form-ready - with initial value', async ({ mount, page }) => {
   expect(formData).toEqual('some other');
 });
 
-regressionTest.describe('Events', () => {
-  regressionTest('value change', async ({ mount, page }) => {
+test.describe('Events', () => {
+  test('value change', async ({ mount, page }) => {
     await mount(`<ix-select>
       <ix-select-item value="1" label="Item 1"></ix-select-item>
       </ix-select>`);
@@ -786,7 +437,7 @@ regressionTest.describe('Events', () => {
     expect(await valueChanged).toBe('1');
   });
 
-  regressionTest('add item', async ({ mount, page }) => {
+  test('add item', async ({ mount, page }) => {
     const itemText = 'test';
     await mount(`<ix-select editable></ix-select>`);
     const select = page.locator('ix-select');
@@ -806,8 +457,8 @@ regressionTest.describe('Events', () => {
     expect(await itemAdded).toBe(itemText);
   });
 
-  regressionTest.describe('prevent default', () => {
-    regressionTest('value change', async ({ mount, page }) => {
+  test.describe('prevent default', () => {
+    test('value change', async ({ mount, page }) => {
       await mount(`<ix-select>
       <ix-select-item value="1" label="Item 1"></ix-select-item>
       </ix-select>`);
@@ -821,7 +472,7 @@ regressionTest.describe('Events', () => {
       await expect(item).not.toHaveClass('selected');
     });
 
-    regressionTest('add item', async ({ mount, page }) => {
+    test('add item', async ({ mount, page }) => {
       await mount(`<ix-select editable></ix-select>`);
       const select = page.locator('ix-select');
       await select.evaluate((i) =>
@@ -837,23 +488,20 @@ regressionTest.describe('Events', () => {
   });
 });
 
-regressionTest(
-  'async set content and check input value',
-  async ({ mount, page }) => {
-    await mount(`<ix-select value="1"></ix-select>`);
+test('async set content and check input value', async ({ mount, page }) => {
+  await mount(`<ix-select value="1"></ix-select>`);
 
-    await page.evaluate(async () => {
-      const select = document.querySelector('ix-select');
-      if (select) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        select.innerHTML = `
+  await page.evaluate(async () => {
+    const select = document.querySelector('ix-select');
+    if (select) {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      select.innerHTML = `
         <ix-select-item value="1" label="Item 1">Test</ix-select-item>
         <ix-select-item value="2" label="Item 2">Test</ix-select-item>
       `;
-      }
-    });
+    }
+  });
 
-    const input = page.locator('input');
-    await expect(input).toHaveValue('Item 1');
-  }
-);
+  const input = page.locator('input');
+  await expect(input).toHaveValue('Item 1');
+});

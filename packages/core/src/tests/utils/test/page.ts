@@ -133,3 +133,5 @@ export const regressionTest = testBase.extend<{
     );
   },
 });
+
+export const test = regressionTest;
