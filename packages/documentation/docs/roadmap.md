@@ -22,7 +22,7 @@ Here’s what’s happening over the next year so you know what to expect from y
 
 ### 🗓️ Scheduled / With tentative timeline
 - **Tech stack enhancements**: Introducing support for Angular standalone components, direct Next.js support and offering improved component APIs for maximum flexibility.
-- **Styles and design tokens**: Introducing a new design token structure with clearer and consistent naming for colors. Additionally, we are providing detailed style chapters on animations, borders and typography. 
+- **Styles and design tokens**: Introducing a new design token structure with clearer and consistent naming for colors. Additionally, providing detailed style chapters on animations, borders and typography. 
 
 ### ⏳ Planned / Without specific timeline
 - **New components**: Introducing new components providing users with greater flexibility and customization options. Examples: Progress indication, generic list, toolbar
