@@ -14,7 +14,7 @@ Here’s what’s happening over the next year so you know what to expect from y
 </p>
 
 ### 🚧 In progress / Currently being worked on
-- **Documentation redesign**: Revamping our documentation with easier access to main categories
+- **Documentation redesign**: Revamping our documentation with easier access to main categories.
 - **Expanded icon set**: Introducing an expanded icon set with now more than 1000 icons, along with a memory efficient way to integrate them into your projects
 - **Unified Figma library**: Simplifying design workflows by consolidating our Figma libraries into one, with easy theme switching between dark and light modes using Figma variables
 
