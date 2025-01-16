@@ -6,22 +6,3 @@ SPDX-License-Identifier: MIT
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
-
-<form [formGroup]="form">
-  <ix-input
-    formControlName="first"
-    label="First name"
-    helperText="The first name is the first of your names"
-    invalidText="Something is not right"
-    [maxLength]="firstNameLength"
-  ></ix-input>
-  <ix-input
-    formControlName="last"
-    label="Last name"
-    helperText="The last name is the last of your names"
-    invalidText="Something is not right"
-    [maxLength]="lastNameLength"
-  >
-    <ix-icon slot="end" name="user"></ix-icon>
-  </ix-input>
-</form>
