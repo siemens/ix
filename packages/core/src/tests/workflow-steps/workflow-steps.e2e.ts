@@ -18,13 +18,12 @@ regressionTest.describe('workflow-steps', () => {
 
   regressionTest('overflow', async ({ page }) => {
     await page.goto('workflow-steps/overflow');
+    const workflowSteps = page.locator('ix-workflow-steps');
+    await expect(workflowSteps).toHaveClass(/hydrated/);
 
-    const stepItem = await page.waitForSelector(
-      'ix-workflow-step:nth-child(5)'
-    );
+    const stepItems = workflowSteps.locator('ix-workflow-step');
 
-    stepItem.scrollIntoViewIfNeeded();
-    await stepItem.click();
+    await stepItems.nth(4).scrollIntoViewIfNeeded();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });

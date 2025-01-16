@@ -17,13 +17,17 @@ import {
   Prop,
   State,
 } from '@stencil/core';
+import { ButtonVariant } from '../button/button';
+import { IxButtonComponent } from '../button/button-component';
 
 @Component({
   tag: 'ix-expanding-search',
   styleUrl: 'expanding-search.scss',
   shadow: true,
 })
-export class ExpandingSearch {
+export class ExpandingSearch
+  implements Omit<IxButtonComponent, 'type' | 'icon' | 'disabled' | 'loading'>
+{
   /**
    * Search icon
    */
@@ -45,6 +49,21 @@ export class ExpandingSearch {
    */
   @Prop() fullWidth = false;
 
+  /**
+   * button variant
+   */
+  @Prop() variant: ButtonVariant = 'primary';
+
+  /**
+   * Outline button
+   */
+  @Prop() outline = false;
+
+  /**
+   * Button with no background or outline
+   */
+  @Prop() ghost = true;
+
   @State() isFieldChanged = false;
   @State() expanded = false;
   @State() hasFocus = false;
@@ -52,7 +71,7 @@ export class ExpandingSearch {
   /**
    * Value changed
    */
-  @Event() valueChange: EventEmitter<string>;
+  @Event() valueChange!: EventEmitter<string>;
 
   private expandInput() {
     setTimeout(this.focusTextInput, 300);
@@ -109,8 +128,9 @@ export class ExpandingSearch {
         <ix-icon-button
           size={this.expanded ? '16' : '24'}
           icon={this.icon ?? iconSearch}
-          ghost
-          variant="primary"
+          variant={this.expanded ? 'primary' : this.variant}
+          ghost={this.ghost || this.expanded}
+          outline={this.outline && !this.expanded}
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}

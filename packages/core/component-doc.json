@@ -2,7 +2,7 @@
   "timestamp": "",
   "compiler": {
     "name": "@stencil/core",
-    "version": "4.23.0",
+    "version": "4.23.2",
     "typescriptVersion": "5.5.4"
   },
   "components": [
@@ -4332,6 +4332,30 @@
           "setter": false
         },
         {
+          "name": "ghost",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button with no background or outline",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "i18nCustomItem",
           "type": "string",
           "complexType": {
@@ -4396,6 +4420,30 @@
           "values": [
             {
               "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "loading",
+          "reflectToAttr": false,
+          "docs": "Loading button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
             }
           ],
           "optional": false,
@@ -4480,6 +4528,30 @@
           "setter": false
         },
         {
+          "name": "outline",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Outline button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "range",
           "type": "boolean",
           "complexType": {
@@ -4519,6 +4591,45 @@
           "default": "''",
           "values": [
             {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "complexType": {
+            "original": "ButtonVariant",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "references": {
+              "ButtonVariant": {
+                "location": "import",
+                "path": "../button/button",
+                "id": "src/components/button/button.tsx::ButtonVariant"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "Button variant",
+          "docsTags": [],
+          "default": "'primary'",
+          "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -7931,6 +8042,30 @@
           "setter": false
         },
         {
+          "name": "ghost",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "ghost",
+          "reflectToAttr": false,
+          "docs": "Button with no background or outline",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "icon",
           "type": "string",
           "complexType": {
@@ -7949,6 +8084,30 @@
             }
           ],
           "optional": true,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "outline",
+          "reflectToAttr": false,
+          "docs": "Outline button",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
           "required": false,
           "getter": false,
           "setter": false
@@ -7993,6 +8152,45 @@
           "default": "''",
           "values": [
             {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "variant",
+          "type": "\"danger\" | \"primary\" | \"secondary\"",
+          "complexType": {
+            "original": "ButtonVariant",
+            "resolved": "\"danger\" | \"primary\" | \"secondary\"",
+            "references": {
+              "ButtonVariant": {
+                "location": "import",
+                "path": "../button/button",
+                "id": "src/components/button/button.tsx::ButtonVariant"
+              }
+            }
+          },
+          "mutable": false,
+          "attr": "variant",
+          "reflectToAttr": false,
+          "docs": "button variant",
+          "docsTags": [],
+          "default": "'primary'",
+          "values": [
+            {
+              "value": "danger",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "secondary",
               "type": "string"
             }
           ],
@@ -22255,10 +22453,10 @@
       "docstring": "",
       "path": "src/components.d.ts"
     },
-    "../../node_modules/.pnpm/@stencil+core@4.23.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
+    "../../node_modules/.pnpm/@stencil+core@4.23.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts::Element": {
       "declaration": "any",
       "docstring": "",
-      "path": "../../node_modules/.pnpm/@stencil+core@4.23.0/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
+      "path": "../../node_modules/.pnpm/@stencil+core@4.23.2/node_modules/@stencil/core/internal/stencil-core/index.d.ts"
     },
     "src/components/tree/tree-model.ts::TreeModel": {
       "declaration": "{\n    [P in K]: T;\n}",
