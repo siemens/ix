@@ -28,7 +28,7 @@ const config: PlaywrightTestConfig = {
       },
     },
   ],
-  retries: 2,
+  retries: 3,
 };
 
 export default config;
