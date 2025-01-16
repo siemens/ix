@@ -15,20 +15,20 @@ Here’s what’s happening over the next year so you know what to expect from y
 
 ### 🚧 In progress / Currently being worked on
 - **Documentation redesign**: Revamping our documentation with easier access to main categories.
-- **Expanded icon set**: Introducing an expanded icon set with now more than 1000 icons, along with a memory efficient way to integrate them into your projects
-- **Unified Figma library**: Simplifying design workflows by consolidating our Figma libraries into one, with easy theme switching between dark and light modes using Figma variables
+- **Expanded icon set**: Introducing an expanded icon set with now more than 1000 icons, along with a memory efficient way to integrate them into your projects.
+- **Unified Figma library**: Simplifying design workflows by consolidating our Figma libraries into one, with easy theme switching between dark and light modes using Figma variables.
 
-**🔹 Major release 3.0**: Planned for Q1, see info on beta versions & release strategy
+**🔹 Major release 3.0**: Planned for Q1, see info on [beta versions](https://ix.siemens.io/docs/installation/CHANGELOG) & [release strategy](https://ix.siemens.io/docs/release-info)
 
 ### 🗓️ Scheduled / With tentative timeline
 - **Tech stack enhancements**: Introducing support for Angular standalone components, direct Next.js support and offering improved component APIs for maximum flexibility.
 - **Styles and design tokens**: Introducing a new design token structure with clearer and consistent naming for colors. Additionally, providing detailed style chapters on animations, borders and typography. 
 
 ### ⏳ Planned / Without specific timeline
-- **New components**: Introducing new components providing users with greater flexibility and customization options. Examples: Progress indication, generic list, toolbar
-- **Enhanced accessibility support**: Empowering project teams to build accessible products by improving our components and providing comprehensive guidelines on achieving an accessible app with our design system
+- **New components**: Introducing new components providing users with greater flexibility and customization options. Examples: Progress indication, generic list, toolbar.
+- **Enhanced accessibility support**: Empowering project teams to build accessible products by improving our components and providing comprehensive guidelines on achieving an accessible app with our design system.
 
-**🔹 Major release 4.0**: Planned for Q3, see info on beta versions & release strategy
+**🔹 Major release 4.0**: Planned for Q3, see info on [beta versions](https://ix.siemens.io/docs/installation/CHANGELOG) & [release strategy](https://ix.siemens.io/docs/release-info)
 
 ### ✏️ Conceptual / Early stage of consideration
 - **Updated demo application**: Providing an updated demo application showcasing how to effectively utilize the best-of-the-best components. This demo will serve as a practical guide, helping project teams integrate these components seamlessly into their projects.
