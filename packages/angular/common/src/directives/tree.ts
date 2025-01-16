@@ -105,9 +105,7 @@ export class TreeBaseDirective implements OnDestroy {
         treeItem.context = context[itemData.id];
         treeItem.hasChildren = itemData.hasChildren;
 
-        embeddedView.context = {
-          $implicit: itemData.data,
-        };
+        embeddedView.context.$implicit = itemData.data;
 
         embeddedView.detectChanges();
       });
