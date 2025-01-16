@@ -35,6 +35,11 @@ regressionTest.describe('push-card: basic', () => {
   });
 });
 
+regressionTest('should hide overflowing text', async ({ page }) => {
+  await page.goto('push-card/overflow');
+  expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+});
+
 regressionTest('push card expand', async ({ page, mount }) => {
   await mount(`
       <ix-push-card

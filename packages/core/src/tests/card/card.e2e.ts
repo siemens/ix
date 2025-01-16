@@ -24,3 +24,10 @@ regressionTest.describe('card: basic', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
+
+regressionTest.describe('card: overflow', () => {
+  regressionTest('should hide overflowing text', async ({ page }) => {
+    await page.goto('card/overflow');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+});

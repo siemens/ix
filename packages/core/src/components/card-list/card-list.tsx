@@ -327,15 +327,17 @@ export class CardList {
                   })
                 }
               >
-                <ix-card-content class="Show__All__Card__Content">
-                  <ix-icon
-                    name={iconMoreMenu}
-                    size={'32'}
-                    class={'Show__All__Card__Icon'}
-                  ></ix-icon>
-                  <span class="Show__All__Card__Text">
-                    {this.i18nMoreCards} ({this.numberOfOverflowingElements})
-                  </span>
+                <ix-card-content>
+                  <div class="Show__All__Card__Content">
+                    <ix-icon
+                      name={iconMoreMenu}
+                      size={'32'}
+                      class={'Show__All__Card__Icon'}
+                    ></ix-icon>
+                    <span class="Show__All__Card__Text">
+                      {this.i18nMoreCards} ({this.numberOfOverflowingElements})
+                    </span>
+                  </div>
                 </ix-card-content>
               </ix-card>
             ) : null}
