@@ -29,7 +29,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1/4, 2/4, 3/4, 4/4]
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
@@ -38,12 +39,12 @@ jobs:
         run: pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard ${{ matrix.shard }}
+        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: core-blob-report
+          name: core-blob-report-${{ matrix.shardIndex }}
           path: |
             ./packages/core/blob-report/
           retention-days: 1
@@ -102,10 +103,11 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Download blob reports from GitHub Actions Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
-          name: core-blob-report
           path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
 
       - name: Merge into HTML Report
         run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
@@ -115,7 +117,7 @@ jobs:
         with:
           name: core-html-report--attempt-${{ github.run_attempt }}
           path: playwright-report
-          retention-days: 2
+          retention-days: 14
 
   unit:
     needs: [build]
