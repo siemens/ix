@@ -13,9 +13,6 @@ import {
   TextValueAccessorBaseDirective,
 } from '@siemens/ix-angular/common';
 
-/**
- * Value Accessor for ix-input, ix-number-input and ix-textarea
- */
 @Directive({
   selector: 'ix-input,ix-number-input,ix-textarea',
   providers: [createValueAccessorProvider(IxTextValueAccessorDirective)],

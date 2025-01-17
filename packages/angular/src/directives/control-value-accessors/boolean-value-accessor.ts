@@ -13,9 +13,6 @@ import {
   createValueAccessorProvider,
 } from '@siemens/ix-angular/common';
 
-/**
- * Value Accessor for ix-checkbox and ix-toggle
- */
 @Directive({
   selector: 'ix-checkbox,ix-toggle',
   providers: [createValueAccessorProvider(IxBooleanValueAccessorDirective)],
