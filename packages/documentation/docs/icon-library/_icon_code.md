@@ -2,9 +2,47 @@ import Icons from '@site/src/components/Icons';
 
 ## Development
 
+The package ```@siemens/ix-icons``` offers a large set of icons.
+It also comes with the ```ix-icon``` component that displays them in your application.
+Additionally custom SVG icons (that are not part of the library) can be used.
+
+As of iX version 3.0.0 not all available iX icons will be loaded automatically anymore.
+Only the icons actually used in the application will be part of the bundle to save bandwidth and memory.
+As a result, icons must now be imported explicitly.
+
 ### Usage
 
 #### Angular
+
+Copy iX icons into your project folder via `angular.json`.
+
+```json
+"assets": [
+  "src/favicon.ico",
+  "src/assets",
+  {
+  "glob": "**/*.svg",
+  "input": "node_modules/@siemens/ix-icons/svg",
+  "output": "./svg"
+  }
+],
+```
+
+You can use the `loadIcons` function to load individual icons once during bootstrapping.
+
+```js
+import { loadIcons } from @siemens/ix-icons;
+
+const icons = [
+  'star',
+  'star-filled',
+  // ...
+];
+
+loadIcons(icons);
+```
+
+Then you can reference the loaded iX icons by name anywhere in your application.
 
 ```html
 <ix-icon name="star" size="16"></ix-icon>
@@ -15,9 +53,11 @@ import Icons from '@site/src/components/Icons';
 #### React
 
 ```html
-<IxIcon name="star" size="16"></IxIcon>
-<IxIcon name="star" size="24"></IxIcon>
-<IxIcon name="star" size="32"></IxIcon>
+import { iconStar } from '@siemens/ix-icons/icons';
+
+<IxIcon name="{iconStar}" size="16"></IxIcon>
+<IxIcon name="{iconStar}" size="24"></IxIcon>
+<IxIcon name="{iconStar}" size="32"></IxIcon>
 ```
 
 #### Web components
@@ -31,9 +71,11 @@ import Icons from '@site/src/components/Icons';
 #### Vue
 
 ```html
-<IxIcon name="star" size="16"></IxIcon>
-<IxIcon name="star" size="24"></IxIcon>
-<IxIcon name="star" size="32"></IxIcon>
+import { iconStar } from '@siemens/ix-icons/icons';
+
+<IxIcon name="{iconStar}" size="16"></IxIcon>
+<IxIcon name="{iconStar}" size="24"></IxIcon>
+<IxIcon name="{iconStar}" size="32"></IxIcon>
 ```
 
 ### Integrate external icons
