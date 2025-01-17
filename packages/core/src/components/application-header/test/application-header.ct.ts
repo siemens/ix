@@ -33,7 +33,7 @@ test('not response inside map navigation', async ({ mount, page }) => {
   page.setViewportSize(viewPorts.sm);
   await mount(
     `
-    <ix-map-navigation applicationName="TEst">
+    <ix-map-navigation applicationName="Test">
       <div slot="logo">Test</div>
       <ix-menu>
         <ix-menu-item>Test</ix-menu-item>
@@ -180,7 +180,7 @@ test.describe('cross app navigation', () => {
           hideHeader: false,
           host: null,
           sidebar: false,
-          appSwitchConfig: null,
+          appSwitchConfig: undefined,
         } as ContextType<typeof ApplicationLayoutContext>);
       });
     });
@@ -398,7 +398,7 @@ test.describe('cross app navigation', () => {
     await expect(dropdownAfterAvatarButton).toBeVisible();
   });
 
-  Object.keys(viewPorts).forEach((key) => {
+  (Object.keys(viewPorts) as Array<keyof typeof viewPorts>).forEach((key) => {
     test(`should display avatar with viewport ${key}`, async ({
       page,
       mount,

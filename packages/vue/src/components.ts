@@ -132,7 +132,8 @@ export const IxApplication = /*@__PURE__*/ defineContainer<JSX.IxApplication>('i
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', defineIxApplicationHeader, [
   'name',
   'showMenu',
-  'menuToggle'
+  'menuToggle',
+  'openAppSwitch'
 ]);
 
 
@@ -729,7 +730,8 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', defin
   'i18nExpand',
   'i18nCollapse',
   'expandChange',
-  'mapExpandChange'
+  'mapExpandChange',
+  'openAppSwitch'
 ]);
 
 

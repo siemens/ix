@@ -510,6 +510,25 @@
               "text": "2.5.0"
             }
           ]
+        },
+        {
+          "event": "openAppSwitch",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the app switch button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -12075,6 +12094,25 @@
           "composed": true,
           "docs": "Map Sidebar expanded",
           "docsTags": []
+        },
+        {
+          "event": "openAppSwitch",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the app switch button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
         }
       ],
       "styles": [],
