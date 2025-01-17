@@ -7,25 +7,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { loadIcons } from '@siemens/ix-icons';
-import { defineCustomElements as defineCustomIconElements } from '@siemens/ix-icons/loader';
 
 @Component({
   selector: 'app-example',
   templateUrl: './load-icon.html',
   styleUrls: ['./load-icon.css'],
 })
-export default class LoadIcon {
+export default class LoadIcon implements OnInit {
+  private readonly icons = ['info', 'star', 'star-filled'];
+
   @Input() showIcon = false;
 
-  constructor() {
-    (async () => {
-      defineCustomIconElements();
-    })();
-
-    const icons = ['info', 'star', 'star-filled'];
-    loadIcons(icons);
+  ngOnInit() {
+    loadIcons(this.icons);
 
     setTimeout(() => {
       this.showIcon = true;
