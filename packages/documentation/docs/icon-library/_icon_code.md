@@ -22,7 +22,7 @@ Copy iX icons into your project folder via `angular.json`.
   "src/assets",
   {
   "glob": "**/*.svg",
-  "input": "node_modules/@siemens/ix-icons/incoming-svg",
+  "input": "node_modules/@siemens/ix-icons/svg",
   "output": "./svg"
   }
 ],
