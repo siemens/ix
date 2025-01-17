@@ -66,31 +66,37 @@
   }
 
   h6,
+  .h6,
   .typography-h6 {
     @include typography-h6;
   }
 
   h5,
+  .h5,
   .typography-h5 {
     @include typography-h5;
   }
 
   h4,
+  .h4,
   .typography-h4 {
     @include typography-h4;
   }
 
   h3,
+  .h3,
   .typography-h3 {
     @include typography-h3;
   }
 
   h2,
+  .h2,
   .typography-h2 {
     @include typography-h2;
   }
 
   h1,
+  .h1,
   .typography-h1 {
     @include typography-h1;
   }
