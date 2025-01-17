@@ -50,6 +50,31 @@ test(`disabled`, async ({ mount, page }) => {
   await expect(checkboxElement).toBeDisabled();
 });
 
+test(`disabled = undefined`, async ({ mount, page }) => {
+  await mount(`<ix-checkbox label="some label"></ix-checkbox>`);
+  const checkboxElement = page.locator('ix-checkbox');
+  const nativeInput = checkboxElement.locator('input');
+  const label = checkboxElement.locator('ix-typography');
+
+  const checkedChange$ = checkboxElement.evaluate(
+    (element: HTMLIxCheckboxElement) => {
+      element.disabled = undefined;
+      return new Promise<void>((resolve) => {
+        element.addEventListener('checkedChange', () => resolve());
+      });
+    }
+  );
+
+  await checkboxElement.click();
+  await checkedChange$;
+
+  await expect(checkboxElement).not.toHaveClass(/disabled/);
+  await expect(nativeInput).not.toBeDisabled();
+
+  const disableLabelColor = 'rgba(245, 252, 255, 0.93)';
+  await expect(label).toHaveCSS('color', disableLabelColor);
+});
+
 test('label', async ({ mount, page }) => {
   await mount(`<ix-checkbox label="some label"></ix-checkbox>`);
   const checkboxElement = page.locator('ix-checkbox').locator('label');

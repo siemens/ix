@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
- @import 'mixins/shadow-dom/component';
+@import 'mixins/shadow-dom/component';
 
 :host {
   --ix-checkbox-check-color: var(--theme-color-primary--contrast);
@@ -43,7 +43,7 @@
     outline-offset: var(--theme-checkbox--focus--outline-offset);
   }
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     display: none;
   }
 
@@ -114,7 +114,6 @@
     }
   }
 
-  :host(:disabled),
   :host(.disabled) {
     button {
       background-color: var(--theme-checkbox-unchecked--background--disabled);
@@ -123,9 +122,7 @@
     }
   }
 
-  :host(.checked:disabled),
   :host(.checked.disabled),
-  :host(.indeterminate:disabled),
   :host(.indeterminate.disabled) {
     button {
       background-color: var(--theme-checkbox-checked--background--disabled);
@@ -188,7 +185,6 @@
     }
   }
 
-  :host(#{$selector}:disabled),
   :host(#{$selector}.disabled) {
     button {
       background-color: var(--theme-checkbox-unchecked--background--disabled);
@@ -197,9 +193,7 @@
     }
   }
 
-  :host(#{$selector}.checked:disabled),
   :host(#{$selector}.checked.disabled),
-  :host(#{$selector}.indeterminate:disabled),
   :host(#{$selector}.indeterminate.disabled) {
     button {
       background-color: var(--theme-checkbox-checked--background--disabled);
@@ -210,49 +204,52 @@
 }
 
 @mixin define-checkbox-vars($state, $type) {
-  --theme-checkbox-#{$state}--background: var(--theme-checkbox-#{$state}--background--#{$type});
-  --theme-checkbox-#{$state}--background--hover: var(--theme-checkbox-#{$state}--background--#{$type}--hover);
-  --theme-checkbox-#{$state}--background--active: var(--theme-checkbox-#{$state}--background--#{$type}--active);
+  --theme-checkbox-#{$state}--background: var(
+    --theme-checkbox-#{$state}--background--#{$type}
+  );
+  --theme-checkbox-#{$state}--background--hover: var(
+    --theme-checkbox-#{$state}--background--#{$type}--hover
+  );
+  --theme-checkbox-#{$state}--background--active: var(
+    --theme-checkbox-#{$state}--background--#{$type}--active
+  );
 
-  --theme-checkbox-#{$state}--border-color: var(--theme-checkbox-#{$state}--border-color--#{$type});
-  --theme-checkbox-#{$state}--border-color--hover: var(--theme-checkbox-#{$state}--border-color--#{$type}--hover);
-  --theme-checkbox-#{$state}--border-color--active: var(--theme-checkbox-#{$state}--border-color--#{$type}--active);
+  --theme-checkbox-#{$state}--border-color: var(
+    --theme-checkbox-#{$state}--border-color--#{$type}
+  );
+  --theme-checkbox-#{$state}--border-color--hover: var(
+    --theme-checkbox-#{$state}--border-color--#{$type}--hover
+  );
+  --theme-checkbox-#{$state}--border-color--active: var(
+    --theme-checkbox-#{$state}--border-color--#{$type}--active
+  );
 }
 
 @include checkbox-base();
-@include checkbox-variant(
-  $selector: '.ix-info',
-) {
+@include checkbox-variant($selector: '.ix-info') {
   @include define-checkbox-vars('unchecked', 'info');
   @include define-checkbox-vars('checked', 'info');
   @include define-checkbox-vars('mixed', 'info');
 }
 
-@include checkbox-variant(
-  $selector: '.ix-warning',
-) {
+@include checkbox-variant($selector: '.ix-warning') {
   @include define-checkbox-vars('unchecked', 'warning');
   @include define-checkbox-vars('checked', 'warning');
   @include define-checkbox-vars('mixed', 'warning');
 }
 
-@include checkbox-variant(
-  $selector: '.ix-invalid--required',
-) {
+@include checkbox-variant($selector: '.ix-invalid--required') {
   @include define-checkbox-vars('unchecked', 'invalid');
   @include define-checkbox-vars('checked', 'invalid');
   @include define-checkbox-vars('mixed', 'invalid');
 }
 
-@include checkbox-variant(
-  $selector: '.ix-invalid',
-) {
+@include checkbox-variant($selector: '.ix-invalid') {
   @include define-checkbox-vars('unchecked', 'invalid');
   @include define-checkbox-vars('checked', 'invalid');
   @include define-checkbox-vars('mixed', 'invalid');
 }
 
-:host(:disabled),
 :host(.disabled) {
   pointer-events: none;
 
