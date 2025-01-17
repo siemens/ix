@@ -20,7 +20,7 @@ jobs:
       core_any_changed: ${{ steps.changes.outputs.core_any_changed }}
       docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Track changes between commits
       id: changes
       uses: tj-actions/changed-files@v43
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: ./.github/workflows/actions/turbo
 

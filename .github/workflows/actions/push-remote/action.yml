@@ -24,7 +24,7 @@ runs:
   using: 'composite'
   steps:
     - name: Prepare ${{ inputs.branch-name }} repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         path: 'nightly_store_${{ inputs.branch-name }}'
         ref: ${{ inputs.branch-name }}
