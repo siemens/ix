@@ -661,6 +661,10 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
             minDate: 'min-date',
             maxDate: 'max-date',
             dateRangeId: 'date-range-id',
+            variant: 'variant',
+            outline: 'outline',
+            ghost: 'ghost',
+            loading: 'loading',
             customRangeAllowed: 'custom-range-allowed',
             locale: 'locale',
             weekStartIndex: 'week-start-index',
@@ -1037,7 +1041,10 @@ export const IxExpandingSearch: StencilReactComponent<IxExpandingSearchElement, 
             icon: 'icon',
             placeholder: 'placeholder',
             value: 'value',
-            fullWidth: 'full-width'
+            fullWidth: 'full-width',
+            variant: 'variant',
+            outline: 'outline',
+            ghost: 'ghost'
         },
         hydrateModule: import('@siemens/ix/hydrate')
     });
