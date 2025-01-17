@@ -13,7 +13,7 @@ import { regressionTest } from '@utils/test';
 regressionTest.describe('date dropdown', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('date-dropdown/basic');
-    const dateDropdown = page.locator('ix-date-dropdown');
+    const dateDropdown = page.locator('ix-date-dropdown').first();
     await dateDropdown.click();
     const dropdown = dateDropdown.locator('ix-dropdown[data-date-dropdown]');
 
@@ -23,7 +23,7 @@ regressionTest.describe('date dropdown', () => {
 
   regressionTest('range options', async ({ page }) => {
     await page.goto('date-dropdown/range-options');
-    const dateDropdown = page.locator('ix-date-dropdown');
+    const dateDropdown = page.locator('ix-date-dropdown').first();
 
     dateDropdown.evaluate((dateDropdown: HTMLIxDateDropdownElement) => {
       dateDropdown.dateRangeId = 'last-7';
@@ -38,7 +38,7 @@ regressionTest.describe('date dropdown', () => {
 
   regressionTest('range options - custom', async ({ page }) => {
     await page.goto('date-dropdown/range-options');
-    const dateDropdown = page.locator('ix-date-dropdown');
+    const dateDropdown = page.locator('ix-date-dropdown').first();
 
     dateDropdown.evaluate((dateDropdown: HTMLIxDateDropdownElement) => {
       dateDropdown.dateRangeId = 'custom';
