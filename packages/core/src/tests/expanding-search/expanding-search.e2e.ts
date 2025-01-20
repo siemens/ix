@@ -14,7 +14,7 @@ regressionTest.describe('expanding-search', () => {
   regressionTest('basic', async ({ page }) => {
     await page.goto('expanding-search/basic');
 
-    await page.locator('ix-expanding-search button').click();
+    await page.locator('ix-expanding-search button').first().click();
     await page
       .locator('ix-expanding-search .input-container.expanded')
       .waitFor();

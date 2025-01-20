@@ -19,6 +19,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
+import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 import { DateInputValidityState } from "./components/date-input/date-input";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -33,7 +34,6 @@ import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
-import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal";
@@ -65,6 +65,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
+export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 export { DateInputValidityState } from "./components/date-input/date-input";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -79,7 +80,6 @@ export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
-export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal";
@@ -682,6 +682,10 @@ export namespace Components {
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
           * Text for custom dropdown item. Will be used for translation.
          */
         "i18nCustomItem": string;
@@ -693,6 +697,10 @@ export namespace Components {
           * Text for the done button. Will be used for translation.
          */
         "i18nNoRange": string;
+        /**
+          * Loading button
+         */
+        "loading": boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.6.0
@@ -707,6 +715,10 @@ export namespace Components {
          */
         "minDate": string;
         /**
+          * Outline button
+         */
+        "outline": boolean;
+        /**
           * If true a range of dates can be selected.
          */
         "range": boolean;
@@ -715,6 +727,10 @@ export namespace Components {
          */
         "to": string;
         "today": string;
+        /**
+          * Button variant
+         */
+        "variant": ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.6.0
@@ -1223,9 +1239,17 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
           * Search icon
          */
         "icon": string;
+        /**
+          * Outline button
+         */
+        "outline": boolean;
         /**
           * Placeholder text
          */
@@ -1234,6 +1258,10 @@ export namespace Components {
           * Default value
          */
         "value": string;
+        /**
+          * button variant
+         */
+        "variant": ButtonVariant1;
     }
     interface IxFieldLabel {
         "controlRef"?: | MakeRef<HTMLElement>
@@ -5749,6 +5777,10 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
           * Text for custom dropdown item. Will be used for translation.
          */
         "i18nCustomItem"?: string;
@@ -5760,6 +5792,10 @@ declare namespace LocalJSX {
           * Text for the done button. Will be used for translation.
          */
         "i18nNoRange"?: string;
+        /**
+          * Loading button
+         */
+        "loading"?: boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.6.0
@@ -5778,6 +5814,10 @@ declare namespace LocalJSX {
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
+          * Outline button
+         */
+        "outline"?: boolean;
+        /**
           * If true a range of dates can be selected.
          */
         "range"?: boolean;
@@ -5786,6 +5826,10 @@ declare namespace LocalJSX {
          */
         "to"?: string;
         "today"?: string;
+        /**
+          * Button variant
+         */
+        "variant"?: ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.6.0
@@ -6335,6 +6379,10 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
           * Search icon
          */
         "icon"?: string;
@@ -6343,6 +6391,10 @@ declare namespace LocalJSX {
          */
         "onValueChange"?: (event: IxExpandingSearchCustomEvent<string>) => void;
         /**
+          * Outline button
+         */
+        "outline"?: boolean;
+        /**
           * Placeholder text
          */
         "placeholder"?: string;
@@ -6350,6 +6402,10 @@ declare namespace LocalJSX {
           * Default value
          */
         "value"?: string;
+        /**
+          * button variant
+         */
+        "variant"?: ButtonVariant1;
     }
     interface IxFieldLabel {
         "controlRef"?: | MakeRef<HTMLElement>
