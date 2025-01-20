@@ -10,15 +10,15 @@
 export * from '@siemens/ix';
 export * from './components';
 export { IxIcon } from './ix-icon';
-export * from './module';
-export * from './theme';
-export * from './tree';
-export { IxDropdownTriggerDirective } from './directives/dropdown/trigger.directive';
+export { IxTree } from './tree';
 export {
   ModalService,
   IxActiveModal,
   ModalConfig,
   ModalContext,
-} from './modal';
-export { ToastConfig, ToastService } from './toast';
-export * from './control-value-accessors';
+} from './providers/modal';
+export { ToastConfig, ToastService } from './providers/toast';
+export * from './providers/theme';
+export * from './directives/control-value-accessors';
+export { IxDropdownTriggerDirective } from './directives/dropdown-trigger';
+export * from './module';
