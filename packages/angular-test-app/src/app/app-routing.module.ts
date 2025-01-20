@@ -21,6 +21,7 @@ import Avatar from '../preview-examples/avatar';
 import AvatarImage from '../preview-examples/avatar-image';
 import AvatarInitials from '../preview-examples/avatar-initials';
 import BasicNavigation from '../preview-examples/basic-navigation';
+import BasicNavigationMigration from '../preview-examples/basic-navigation-migration';
 import BasicNavigationWithoutHeader from '../preview-examples/basic-navigation-without-header';
 import Blind from '../preview-examples/blind';
 import BlindHeaderActions from '../preview-examples/blind-header-actions';
@@ -146,6 +147,7 @@ import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
 import MapNavigation from '../preview-examples/map-navigation';
+import MapNavigationMigration from '../preview-examples/map-navigation-migration';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
@@ -299,6 +301,10 @@ const routes: Routes = [
       {
         path: 'basic-navigation',
         component: BasicNavigation,
+      },
+      {
+        path: 'basic-navigation-migration',
+        component: BasicNavigationMigration,
       },
       {
         path: 'blind-header-actions',
@@ -900,6 +906,7 @@ const routes: Routes = [
       { path: 'workflow-vertical', component: WorkflowVertical },
       { path: 'map-navigation', component: MapNavigation },
       { path: 'map-navigation-overlay', component: MapNavigationOverlay },
+      { path: 'map-navigation-migration', component: MapNavigationMigration },
       { path: 'number-input', component: NumberInput },
       { path: 'number-input-disabled', component: NumberInputDisabled },
       { path: 'number-input-label', component: NumberInputLabel },

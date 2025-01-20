@@ -355,7 +355,7 @@ test('pass object as value and check if it is selectable', async ({
       .locator('ix-select-item')
       .nth(index)
       .evaluate((e: HTMLIxSelectItemElement, index) => {
-        e.value = { selectLabel: `Item ${index}`, selectValue: `${index}` };
+        e.value = `${index}`;
       });
   }
 

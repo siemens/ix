@@ -8,6 +8,11 @@
  */
 
 import {
+  iconChevronDownSmall,
+  iconClear,
+  iconPlus,
+} from '@siemens/ix-icons/icons';
+import {
   AttachInternals,
   Component,
   Element,
@@ -112,13 +117,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() showTextAsTooltip?: boolean;
 
   /**
-   * Indices of selected items.
-   * This corresponds to the value property of ix-select-items and therefor not necessarily the indices of the items in the list.
-   * @deprecated since 2.0.0. Use the `value` property instead.
-   */
-  @Prop({ mutable: true }) selectedIndices?: string | string[];
-
-  /**
    * Current selected value.
    * This corresponds to the value property of ix-select-items
    * @since 2.0.0
@@ -184,12 +182,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
    * @since 2.0.0
    */
   @Event() valueChange!: EventEmitter<string | string[]>;
-
-  /**
-   * Item selection changed
-   * @deprecated since 2.0.0. Use `valueChange` instead.
-   */
-  @Event() itemSelectionChange!: EventEmitter<string[]>;
 
   /**
    * Event dispatched whenever the text input changes.
@@ -289,15 +281,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     return this.items.every((item) => item.classList.contains('d-none'));
   }
 
-  @Watch('selectedIndices')
-  watchSelectedIndices(value: string | string[]) {
-    this.value = value;
-    this.updateSelection();
-  }
-
   @Watch('value')
   watchValue(value: string | string[]) {
-    this.selectedIndices = value;
+    this.value = value;
     this.updateSelection();
   }
 
@@ -460,12 +446,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
       return true;
     }
 
-    if (!value) {
-      this.itemSelectionChange.emit([]);
-    } else {
-      this.itemSelectionChange.emit(Array.isArray(value) ? value : [value]);
-    }
-
     this.updateFormInternalValue(value);
     return false;
   }
@@ -478,10 +458,6 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   componentWillLoad() {
-    if (this.selectedIndices && !this.value) {
-      this.value = this.selectedIndices;
-    }
-
     this.updateSelection();
     this.updateFormInternalValue(this.value);
   }
@@ -911,7 +887,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                   (this.selectedLabels?.length || this.inputFilterText) ? (
                     <ix-icon-button
                       class="clear"
-                      icon={'clear'}
+                      icon={iconClear}
                       ghost
                       oval
                       size="16"
@@ -926,7 +902,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                     <ix-icon-button
                       data-select-dropdown
                       class={{ 'dropdown-visible': this.dropdownShow }}
-                      icon="chevron-down-small"
+                      icon={iconChevronDownSmall}
                       ghost
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
@@ -981,7 +957,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           {this.isAddItemVisible() ? (
             <ix-dropdown-item
               data-testid="add-item"
-              icon={'plus'}
+              icon={iconPlus}
               class={{
                 'add-item': true,
               }}

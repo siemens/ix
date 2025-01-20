@@ -8,6 +8,15 @@
  */
 
 import {
+  iconCircle,
+  iconCircleDot,
+  iconCircleFilled,
+  iconError,
+  iconSuccess,
+  iconTriangleFilled,
+  iconWarning,
+} from '@siemens/ix-icons/icons';
+import {
   Component,
   Element,
   Event,
@@ -60,24 +69,23 @@ export class WorkflowStep {
    */
   @Prop() position: 'first' | 'last' | 'single' | 'undefined' = 'undefined';
 
-  @State() iconName: 'circle' | 'circle-dot' | 'success' | 'warning' | 'error' =
-    'circle';
+  @State() iconName?: string;
 
   @State() iconColor: string = 'workflow-step-icon-default--color';
 
   /**
    * @internal
    */
-  @Event() selectedChanged: EventEmitter<HTMLIxWorkflowStepElement>;
+  @Event() selectedChanged!: EventEmitter<HTMLIxWorkflowStepElement>;
 
-  private customIconSlot: boolean;
+  private customIconSlot: boolean = false;
 
   @Watch('selected')
   selectedHandler() {
     const selectedStyle = this.selected ? '--selected' : '';
 
     if (this.status === 'open') {
-      this.iconName = this.selected ? 'circle-dot' : 'circle';
+      this.iconName = this.selected ? iconCircleDot : iconCircle;
       this.iconColor = `workflow-step-icon-default--color${selectedStyle}`;
     }
 
@@ -91,28 +99,28 @@ export class WorkflowStep {
   watchPropHandler() {
     switch (this.status) {
       case 'open':
-        this.iconName = 'circle';
+        this.iconName = iconCircle;
         this.iconColor = 'workflow-step-icon-default--color';
         break;
       case 'success':
-        this.iconName = 'success';
+        this.iconName = iconSuccess;
         this.iconColor = 'color-success';
         break;
       case 'done':
-        this.iconName = 'success';
+        this.iconName = iconSuccess;
         this.iconColor = 'workflow-step-icon-done--color';
         break;
       case 'warning':
-        this.iconName = 'warning';
+        this.iconName = iconWarning;
         this.iconColor = 'color-warning';
         break;
       case 'error':
-        this.iconName = 'error';
+        this.iconName = iconError;
         this.iconColor = 'color-alarm';
         break;
 
       default:
-        this.iconName = 'circle';
+        this.iconName = iconCircle;
         break;
     }
 
@@ -142,7 +150,7 @@ export class WorkflowStep {
         <ix-icon
           color="color-1"
           name={
-            this.iconName === 'warning' ? 'triangle-filled' : 'circle-filled'
+            this.status === 'warning' ? iconTriangleFilled : iconCircleFilled
           }
           class="absolute"
           size="24"

@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-icon-button icon="rocket">Content</ix-icon-button>`);
 
   const button = page.locator('ix-icon-button');
@@ -19,7 +19,7 @@ test('renders', async ({ mount, page }) => {
   await expect(button.locator('ix-icon')).toBeVisible();
 });
 
-test('show spinner while loading', async ({ mount, page }) => {
+regressionTest('show spinner while loading', async ({ mount, page }) => {
   await mount(`<ix-icon-button icon="rocket"></ix-icon-button>`);
   const button = page.locator('ix-icon-button');
 

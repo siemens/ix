@@ -21,6 +21,7 @@ import Application from './preview-examples/application.vue';
 import AvatarImage from './preview-examples/avatar-image.vue';
 import AvatarInitials from './preview-examples/avatar-initials.vue';
 import Avatar from './preview-examples/avatar.vue';
+import BasicNavigationMigration from './preview-examples/basic-navigation-migration.vue';
 import BasicNavigationWithoutHeader from './preview-examples/basic-navigation-without-header.vue';
 import BasicNavigation from './preview-examples/basic-navigation.vue';
 import BlindHeaderActions from './preview-examples/blind-header-actions.vue';
@@ -144,6 +145,7 @@ import LayoutAuto from './preview-examples/layout-auto.vue';
 import LinkButtonDisabled from './preview-examples/link-button-disabled.vue';
 import LinkButton from './preview-examples/link-button.vue';
 import Loading from './preview-examples/loading.vue';
+import MapNavigationMigration from './preview-examples/map-navigation-migration.vue';
 import MapNavigationOverlay from './preview-examples/map-navigation-overlay.vue';
 import MapNavigation from './preview-examples/map-navigation.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
@@ -237,6 +239,7 @@ const routes: any = {
   '/preview/avatar': Avatar,
   '/preview/basic-navigation-without-header': BasicNavigationWithoutHeader,
   '/preview/basic-navigation': BasicNavigation,
+  '/preview/basic-navigation-migration': BasicNavigationMigration,
   '/preview/blind-header-actions': BlindHeaderActions,
   '/preview/blind-variants': BlindVariants,
   '/preview/blind': Blind,
@@ -388,6 +391,7 @@ const routes: any = {
   '/preview/workflow-vertical': WorkflowVertical,
   '/preview/map-navigation': MapNavigation,
   '/preview/map-navigation-overlay': MapNavigationOverlay,
+  '/preview/map-navigation-migration': MapNavigationMigration,
   '/preview/tooltip': Tooltip,
   '/preview/push-card': PushCard,
   '/preview/page-header': ContentHeader,

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {convertThemeName, getComputedCSSProperty, registerTheme} from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import VueECharts from 'vue-echarts';
 import * as echarts from 'echarts/core';
@@ -29,10 +29,10 @@ echarts.use([
 
 registerTheme(echarts);
 
-const theme = ref(convertThemeName(themeSwitcher.getCurrentTheme()));
+const theme = ref(themeSwitcher.getCurrentTheme());
 
 themeSwitcher.themeChanged.on((newTheme: string) => {
-  theme.value = convertThemeName(newTheme);
+  theme.value = newTheme;
 });
 
 const value = 60;
@@ -46,9 +46,7 @@ const options: EChartsOption = {
         show: true,
         lineStyle: {
           width: 15,
-          color: [
-            [1, getComputedCSSProperty('color-neutral-40')],
-          ],
+          color: [[1, getComputedCSSProperty('color-neutral-40')]],
         },
       },
       axisTick: {
@@ -109,5 +107,10 @@ const options: EChartsOption = {
 <style scoped src="./echarts-progress-circle.css"></style>
 
 <template>
-    <VueECharts :theme="theme" :option="options" autoresize class="echarts-gauge"></VueECharts>
+  <VueECharts
+    :theme="theme"
+    :option="options"
+    autoresize
+    class="echarts-gauge"
+  ></VueECharts>
 </template>

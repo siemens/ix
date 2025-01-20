@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-flip-tile state="none">
       <div slot="header">Flip header</div>
@@ -33,7 +33,7 @@ test('renders', async ({ mount, page }) => {
   await expect(flipContentTwoElement).not.toBeVisible();
 });
 
-test('should change content', async ({ mount, page }) => {
+regressionTest('should change content', async ({ mount, page }) => {
   await mount(`
     <ix-flip-tile state="none">
       <div slot="header">Flip header</div>

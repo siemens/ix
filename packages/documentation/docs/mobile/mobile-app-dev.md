@@ -146,7 +146,7 @@ Use the defined variables to ensure that the pages of your application displayin
 
 ### Application frame layout
 
-By default, the [Application Frame](./../controls/application-frame/application.md) provides three default layouts (`sm`, `md`, `lg`) that are automatically applied depending on the size of the screen.
+By default, the [Application Frame](./../controls/application-frame/application.mdx) provides three default layouts (`sm`, `md`, `lg`) that are automatically applied depending on the size of the screen.
 
 If you intend to implement an app for both phones and tablets (e.g. iPhone and iPad), it may be necessary to configure the layouts which the application frame can pick from.
 

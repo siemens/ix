@@ -44,9 +44,7 @@ export class MenuAbout {
    */
   @Prop() label = 'About & legal information';
 
-  /**
-   * Internal
-   */
+  /** @internal */
   @Prop() show = false;
 
   /**
