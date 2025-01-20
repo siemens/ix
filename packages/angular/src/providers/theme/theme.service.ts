@@ -19,7 +19,7 @@ import { themeSwitcher } from '@siemens/ix';
 export class ThemeService {
   @Output() themeChanged = new EventEmitter<string>();
 
-  private themeSwitcher: typeof themeSwitcher;
+  private readonly themeSwitcher: typeof themeSwitcher;
 
   constructor() {
     this.themeSwitcher = themeSwitcher;

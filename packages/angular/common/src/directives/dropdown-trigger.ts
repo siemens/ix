@@ -12,7 +12,7 @@ import { Directive, ElementRef, Input } from '@angular/core';
 export class DropdownTriggerBaseDirective {
   @Input() ixDropdownTrigger!: any;
 
-  constructor(private element: ElementRef) {}
+  constructor(private readonly element: ElementRef) {}
 
   protected ngOnChanges() {
     this.element.nativeElement.trigger = this.ixDropdownTrigger.el;
