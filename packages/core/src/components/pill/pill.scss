@@ -9,6 +9,7 @@
 @import 'mixins/shadow-dom/component';
 
 @import './../chip/chip-mixin';
+@import 'pill-mixin.scss';
 @import 'common-variables';
 @import 'mixins/text-truncation';
 
@@ -22,6 +23,7 @@
 }
 
 @include chip-container(false);
+@include pill-container();
 
 :host {
   .container {
