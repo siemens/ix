@@ -15,6 +15,7 @@ import {
   Host,
   Method,
   Prop,
+  State,
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
@@ -69,6 +70,8 @@ export class Drawer {
   private callback = this.clickedOutside.bind(this);
   private divElement?: HTMLElement;
 
+  @State() showContent = true;
+
   @Watch('show')
   onShowChanged(newValue: boolean) {
     this.show = newValue !== undefined ? newValue : !this.show;
@@ -90,7 +93,7 @@ export class Drawer {
       }
       setTimeout(() => {
         window.addEventListener('mousedown', this.callback);
-      }, 300);
+      }, Drawer.duration);
     } else {
       this.drawerClose.emit();
       if (this.divElement) {
@@ -124,13 +127,28 @@ export class Drawer {
     }
   }
 
+  private getConstrainedWidth(width: number) {
+    return Math.min(Math.max(width, this.minWidth), this.maxWidth);
+  }
+
   private slideOutRight(el: HTMLElement) {
+    const initialWidth = `${this.getConstrainedWidth(
+      this.width === 'auto' ? this.minWidth : this.width
+    )}rem`;
+
     anime({
       targets: el,
       duration: Drawer.duration,
-      translateX: [0, '16rem'],
+      width: [initialWidth, 0],
       opacity: [1, 0],
       easing: 'easeInSine',
+      begin: () => {
+        el.style.opacity = '0';
+      },
+      update: (anim) => {
+        const currentWidth = parseInt(anim.animations[0].currentValue);
+        this.showContent = currentWidth >= 1;
+      },
       complete: () => {
         el.classList.add('display-none');
       },
@@ -138,14 +156,23 @@ export class Drawer {
   }
 
   private slideInRight(el: HTMLElement) {
+    const targetWidth = `${this.getConstrainedWidth(
+      this.width === 'auto' ? this.minWidth : this.width
+    )}rem`;
+
     anime({
       targets: el,
       duration: Drawer.duration,
-      translateX: ['16rem', 0],
+      width: [0, targetWidth],
       opacity: [0, 1],
       easing: 'easeOutSine',
       begin: () => {
         el.classList.remove('display-none');
+        el.style.opacity = '0';
+      },
+      update: (anim) => {
+        const currentWidth = parseInt(anim.animations[0].currentValue);
+        this.showContent = currentWidth >= 1;
       },
     });
   }
@@ -163,10 +190,10 @@ export class Drawer {
           'display-none': true,
         }}
         style={{
-          width: this.width === 'auto' ? this.width : `${this.width}rem`,
-          'min-width': `${this.minWidth}rem`,
+          width: '0',
           'max-width': `${this.maxWidth}rem`,
           height: this.fullHeight ? '100%' : 'auto',
+          overflow: 'hidden',
         }}
         ref={(el) => (this.divElement = el as HTMLElement)}
         data-testid="container"
@@ -178,6 +205,9 @@ export class Drawer {
           </div>
           <ix-icon-button
             class="close-button"
+            style={{
+              display: this.showContent ? 'block' : 'none',
+            }}
             icon={'close'}
             size="24"
             ghost
@@ -185,7 +215,12 @@ export class Drawer {
             data-testid="close-button"
           ></ix-icon-button>
         </div>
-        <div class="content">
+        <div
+          class="content"
+          style={{
+            display: this.showContent ? 'block' : 'none',
+          }}
+        >
           <slot></slot>
         </div>
       </Host>
