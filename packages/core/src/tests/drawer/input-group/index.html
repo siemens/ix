@@ -1,0 +1,37 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body>
+    <ix-drawer>
+      <ix-input-group>
+        <ix-icon
+          slot="input-start"
+          name="success"
+          size="16">
+        </ix-icon>
+        <input />
+      </ix-input-group>
+    </ix-drawer>
+    <ix-button>Click</ix-button>
+    <script>
+      const button = document.querySelector('ix-button');
+      button.addEventListener('click', () => {
+        document.querySelector('ix-drawer').toggleDrawer(true);
+      });
+    </script>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>
