@@ -27,7 +27,7 @@ export class InputGroup {
     return this.hostElement.querySelector('input') as HTMLInputElement;
   }
 
-  private observer: MutationObserver;
+  private observer?: MutationObserver;
 
   componentWillLoad() {
     const { valid } = this.inputElement.validity;
@@ -100,9 +100,9 @@ export class InputGroup {
   }
 
   private startSlotChanged() {
-    const slot = this.hostElement.shadowRoot.querySelector(
+    const slot = this.hostElement.shadowRoot!.querySelector(
       'slot[name="input-start"]'
-    );
+    )!;
 
     setTimeout(() => {
       const startPadding = this.getChildrenWidth(slot);
@@ -134,9 +134,9 @@ export class InputGroup {
   }
 
   private endSlotChanged() {
-    const slot = this.hostElement.shadowRoot.querySelector(
+    const slot = this.hostElement.shadowRoot!.querySelector(
       'slot[name="input-end"]'
-    );
+    )!;
 
     setTimeout(() => {
       this.inputPaddingRight = 15 + this.getChildrenWidth(slot);

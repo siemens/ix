@@ -67,7 +67,7 @@ export class Pagination {
   /**
    * Total number of pages
    */
-  @Prop() count: number;
+  @Prop() count: number = 0;
 
   /**
    * Zero based index of currently selected page
@@ -226,8 +226,12 @@ export class Pagination {
               min="1"
               max={this.count}
               value={this.selectedPage + 1}
-              onChange={(e) => {
-                const index = Number.parseInt(e.target['value']);
+              onChange={(event: Event) => {
+                const eventTarget = event.target as HTMLInputElement;
+                if (eventTarget === null) {
+                  return;
+                }
+                const index = Number.parseInt(eventTarget.value);
                 this.selectPage(index - 1);
               }}
             />

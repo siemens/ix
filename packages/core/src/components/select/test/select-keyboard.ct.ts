@@ -15,7 +15,11 @@ function selectController(select: Locator) {
   const dropdownChevron = select.locator('ix-icon-button');
 
   const dropdownVisible = async () => {
-    await (await dropdown.elementHandle()).waitForElementState('stable');
+    const element = await dropdown.elementHandle();
+    if (!element) {
+      throw new Error('Dropdown has no open handle');
+    }
+    await element.waitForElementState('stable');
     await expect(dropdown).toBeVisible();
   };
 
@@ -149,8 +153,9 @@ test.describe('arrow key navigation', () => {
 
       await selectCtrl.arrowDown();
 
-      const visibleDropdownItems =
-        await selectCtrl.getDropdownItemsLocator(true);
+      const visibleDropdownItems = await selectCtrl.getDropdownItemsLocator(
+        true
+      );
       expect(visibleDropdownItems).toHaveLength(0);
 
       const addItem = await selectCtrl.getAddItemDropdownItemLocator();

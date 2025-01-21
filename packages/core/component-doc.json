@@ -734,7 +734,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1264,7 +1264,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -1285,7 +1285,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -3150,7 +3150,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7231,7 +7231,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -7505,7 +7505,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7547,7 +7547,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -7605,7 +7605,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -8416,7 +8416,7 @@
               "type": "FlipTileState.Warning"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -9284,7 +9284,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -9311,7 +9311,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -9349,6 +9349,7 @@
           "reflectToAttr": false,
           "docs": "Button invisible",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9375,7 +9376,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -9396,7 +9397,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -9439,6 +9440,7 @@
           "reflectToAttr": false,
           "docs": "Button outline",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9460,6 +9462,7 @@
           "reflectToAttr": false,
           "docs": "Button in oval shape",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9675,7 +9678,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -10472,7 +10475,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -10547,7 +10550,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -10597,6 +10600,7 @@
           "reflectToAttr": false,
           "docs": "Optional striped key value list style",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -10647,7 +10651,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -10726,7 +10730,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -10750,7 +10754,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -11025,7 +11029,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -11096,7 +11100,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -11139,7 +11143,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -11395,7 +11399,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -11416,7 +11420,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -11437,7 +11441,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -11458,7 +11462,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -12179,7 +12183,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12289,7 +12293,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -12371,7 +12375,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12436,7 +12440,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12578,7 +12582,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12626,7 +12630,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12652,7 +12656,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12700,7 +12704,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -12771,7 +12775,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -12792,7 +12796,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -13233,7 +13237,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -13343,7 +13347,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         }
       ],
@@ -13561,7 +13565,7 @@
               "type": "Promise<boolean>"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -14707,6 +14711,7 @@
           "reflectToAttr": false,
           "docs": "Total number of pages",
           "docsTags": [],
+          "default": "0",
           "values": [
             {
               "type": "number"
@@ -17705,7 +17710,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -19585,7 +19590,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -19606,7 +19611,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -19627,7 +19632,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false
         },
         {
@@ -22209,7 +22214,7 @@
       "path": "src/components/utils/element-reference.ts"
     },
     "src/components/utils/make-ref.ts::MakeRef": {
-      "declaration": "{\n  (ref: T | undefined): void;\n  current: T | null;\n  waitForCurrent(): Promise<T>;\n}",
+      "declaration": "{\n  (ref: T | undefined | null): void;\n  current: T | null;\n  waitForCurrent(): Promise<T>;\n}",
       "docstring": "",
       "path": "src/components/utils/make-ref.ts"
     },

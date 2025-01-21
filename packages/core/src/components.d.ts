@@ -192,7 +192,7 @@ export namespace Components {
         /**
           * Application name
          */
-        "applicationName": string;
+        "applicationName"?: string;
         /**
           * Supported layouts
           * @example ['sm', 'md']
@@ -256,12 +256,12 @@ export namespace Components {
         /**
           * Icon to be displayed next ot the label
          */
-        "icon": string;
+        "icon"?: string;
         "isDropdownTrigger": boolean;
         /**
           * Breadcrumb label
          */
-        "label": string;
+        "label"?: string;
         "showChevron": boolean;
         "visible": boolean;
     }
@@ -537,7 +537,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Show chip with outline style
          */
@@ -1128,7 +1128,7 @@ export namespace Components {
         /**
           * Display name of the header
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxDropdownItem {
         /**
@@ -1171,7 +1171,7 @@ export namespace Components {
         /**
           * Optional empty state action
          */
-        "action": string;
+        "action"?: string;
         /**
           * Empty state header
          */
@@ -1179,7 +1179,7 @@ export namespace Components {
         /**
           * Optional empty state icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
          */
@@ -1187,7 +1187,7 @@ export namespace Components {
         /**
           * Optional empty state sub header
          */
-        "subHeader": string;
+        "subHeader"?: string;
     }
     interface IxEventList {
         /**
@@ -1357,7 +1357,7 @@ export namespace Components {
         /**
           * Variation of the Flip
          */
-        "state": FlipTileState;
+        "state"?: FlipTileState;
         /**
           * Width interpreted as REM
           * @since 1.5.0
@@ -1463,12 +1463,12 @@ export namespace Components {
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
           * @since 2.1.0
          */
-        "a11yLabel": string;
+        "a11yLabel"?: string;
         /**
           * Color of icon in  button
           * @deprecated since 2.1.0 use `icon-color`
          */
-        "color": string;
+        "color"?: string;
         /**
           * Disabled
          */
@@ -1480,11 +1480,11 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Color of icon in  button
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Loading button
           * @since 2.0.0
@@ -1528,7 +1528,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Loading button
          */
@@ -1647,7 +1647,7 @@ export namespace Components {
         /**
           * Optional key value icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Key value label
          */
@@ -1659,7 +1659,7 @@ export namespace Components {
         /**
           * Optional key value text value
          */
-        "value": string;
+        "value"?: string;
     }
     /**
      * @since 1.6.0
@@ -1671,11 +1671,11 @@ export namespace Components {
         "striped": boolean;
     }
     interface IxKpi {
-        "label": string;
+        "label"?: string;
         "orientation": 'horizontal' | 'vertical';
         "state": 'neutral' | 'warning' | 'alarm';
-        "unit": string;
-        "value": string | number;
+        "unit"?: string;
+        "value"?: string | number;
     }
     /**
      * @since 2.6.0
@@ -1721,13 +1721,13 @@ export namespace Components {
         /**
           * Url for the link button
          */
-        "url": string;
+        "url"?: string;
     }
     interface IxMapNavigation {
         /**
           * Application name
          */
-        "applicationName": string;
+        "applicationName"?: string;
         /**
           * Close current shown overlay
           * @deprecated Will be removed in 2.0.0. Use slot based approach
@@ -1740,7 +1740,7 @@ export namespace Components {
         /**
           * Navigation title
          */
-        "navigationTitle": string;
+        "navigationTitle"?: string;
         /**
           * Open a overlay inside content area
           * @deprecated Will be removed in 2.0.0. Use slot based approach
@@ -1762,19 +1762,19 @@ export namespace Components {
           * Color of icon
           * @deprecated since 2.1.0. Use `icon-color`
          */
-        "color": string;
+        "color"?: string;
         /**
           * Icon of overlay
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Color of icon
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Title of overlay
          */
-        "name": string;
+        "name"?: string;
     }
     interface IxMenu {
         /**
@@ -1857,7 +1857,7 @@ export namespace Components {
         /**
           * Active tab
          */
-        "activeTabLabel": string;
+        "activeTabLabel"?: string;
         /**
           * Content of the header
          */
@@ -1871,13 +1871,13 @@ export namespace Components {
         /**
           * About Item label
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxMenuAboutNews {
         /**
           * Subtitle of the about news
          */
-        "aboutItemLabel": string;
+        "aboutItemLabel"?: string;
         /**
           * Internal
          */
@@ -1886,7 +1886,7 @@ export namespace Components {
         /**
           * Title of the about news
          */
-        "label": string;
+        "label"?: string;
         /**
           * Bottom offset
          */
@@ -1900,7 +1900,7 @@ export namespace Components {
         /**
           * Second line of text
          */
-        "bottom": string;
+        "bottom"?: string;
         /**
           * Use for translation
          */
@@ -1909,12 +1909,12 @@ export namespace Components {
           * Display a avatar image
           * @since 1.4.0
          */
-        "image": string;
+        "image"?: string;
         /**
           * Display the initials of the user. Will be overwritten by image
           * @since 1.4.0
          */
-        "initials": string;
+        "initials"?: string;
         /**
           * Control the visibility of the logout button
           * @since 2.1.0
@@ -1923,18 +1923,18 @@ export namespace Components {
         /**
           * First line of text
          */
-        "top": string;
+        "top"?: string;
     }
     interface IxMenuAvatarItem {
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Avatar dropdown icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Avatar dropdown label
          */
-        "label": string;
+        "label"?: string;
     }
     /**
      * @since 2.0.0
@@ -1957,7 +1957,7 @@ export namespace Components {
         /**
           * Controls which icon is displayed
          */
-        "breakpoint": Breakpoint;
+        "breakpoint"?: Breakpoint;
         /**
           * Whether the menu expand icon displays the expanded state or not
          */
@@ -2014,7 +2014,7 @@ export namespace Components {
         /**
           * Active tab
          */
-        "activeTabLabel": string;
+        "activeTabLabel"?: string;
         /**
           * Label of first tab
          */
@@ -2028,7 +2028,7 @@ export namespace Components {
         /**
           * Settings Item label
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxMessageBar {
         /**
@@ -2052,7 +2052,7 @@ export namespace Components {
         /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
-        "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
+        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
          */
@@ -2656,7 +2656,7 @@ export namespace Components {
         /**
           * Button label
          */
-        "label": string;
+        "label"?: string;
         /**
           * Button outline variant
          */
@@ -2918,15 +2918,15 @@ export namespace Components {
         /**
           * Icon of toast
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Icon color of toast
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Toast title
          */
-        "toastTitle": string;
+        "toastTitle"?: string;
         /**
           * Toast type
          */
@@ -5706,7 +5706,7 @@ declare namespace LocalJSX {
         /**
           * Grid item name
          */
-        "itemName"?: string;
+        "itemName": string;
     }
     /**
      * @since 2.6.0
