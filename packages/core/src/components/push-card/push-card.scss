@@ -11,8 +11,17 @@
   display: block;
   position: relative;
 
+  ix-card {
+    cursor: default;
+  }
+
+  ix-card-accordion {
+    cursor: pointer;
+  }
+
   .icon {
-    transform: scale(1.25);
+    height: 2.5rem;
+    width: 2.5rem;
   }
 
   .notification {

@@ -150,6 +150,13 @@ export class Menu {
    */
   @Event() mapExpandChange!: EventEmitter<boolean>;
 
+  /**
+   * Event emitted when the app switch button is clicked
+   *
+   * @since 3.0.0
+   */
+  @Event() openAppSwitch!: EventEmitter<void>;
+
   @State() showPinned = false;
   @State() mapExpand = true;
   @State() breakpoint: Breakpoint = 'lg';
@@ -583,6 +590,18 @@ export class Menu {
     );
   }
 
+  private async showAppSwitch() {
+    const { defaultPrevented } = this.openAppSwitch.emit();
+
+    if (defaultPrevented) {
+      return;
+    }
+
+    if (this.applicationLayoutContext?.appSwitchConfig) {
+      showAppSwitch(this.applicationLayoutContext.appSwitchConfig);
+    }
+  }
+
   render() {
     return (
       <Host
@@ -613,11 +632,7 @@ export class Menu {
               this.applicationLayoutContext?.appSwitchConfig && (
                 <ix-icon-button
                   onClick={() => {
-                    if (this.applicationLayoutContext?.appSwitchConfig) {
-                      showAppSwitch(
-                        this.applicationLayoutContext.appSwitchConfig
-                      );
-                    }
+                    this.showAppSwitch();
                   }}
                   icon="apps"
                   ghost

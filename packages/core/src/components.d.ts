@@ -3485,6 +3485,7 @@ declare global {
     };
     interface HTMLIxApplicationHeaderElementEventMap {
         "menuToggle": boolean;
+        "openAppSwitch": void;
     }
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxApplicationHeaderElementEventMap>(type: K, listener: (this: HTMLIxApplicationHeaderElement, ev: IxApplicationHeaderCustomEvent<HTMLIxApplicationHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4254,6 +4255,7 @@ declare global {
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
         "mapExpandChange": boolean;
+        "openAppSwitch": void;
     }
     interface HTMLIxMenuElement extends Components.IxMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuElementEventMap>(type: K, listener: (this: HTMLIxMenuElement, ev: IxMenuCustomEvent<HTMLIxMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5184,6 +5186,11 @@ declare namespace LocalJSX {
           * @since 2.5.0
          */
         "onMenuToggle"?: (event: IxApplicationHeaderCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the app switch button is clicked
+          * @since 3.0.0
+         */
+        "onOpenAppSwitch"?: (event: IxApplicationHeaderCustomEvent<void>) => void;
         /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
           * @since 2.5.0
@@ -6977,6 +6984,11 @@ declare namespace LocalJSX {
           * Map Sidebar expanded
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the app switch button is clicked
+          * @since 3.0.0
+         */
+        "onOpenAppSwitch"?: (event: IxMenuCustomEvent<void>) => void;
         /**
           * Menu stays pinned to the left
          */
