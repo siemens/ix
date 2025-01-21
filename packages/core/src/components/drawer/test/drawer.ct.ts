@@ -17,11 +17,6 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
-// Reduce flaky behavior
-regressionTest.describe.configure({
-  mode: 'serial',
-});
-
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-drawer>Content</ix-drawer>`);
   const drawer = page.locator('ix-drawer');
