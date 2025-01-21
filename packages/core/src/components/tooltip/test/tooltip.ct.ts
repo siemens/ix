@@ -9,6 +9,11 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+// Reduce flaky behavior
+regressionTest.describe.configure({
+  mode: 'serial',
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-tooltip for=".test">tooltip</ix-tooltip>
