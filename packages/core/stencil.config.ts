@@ -34,7 +34,7 @@ function getAngularConfig() {
     }),
     angularOutputTarget({
       componentCorePackage: corePackageName,
-      directivesProxyFile: '../angular/standalone/src/directives/proxies.ts',
+      directivesProxyFile: '../angular/standalone/src/components.ts',
       excludeComponents,
       outputType: 'standalone',
     }),
