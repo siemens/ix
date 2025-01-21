@@ -487,7 +487,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   componentDidRender(): void {
-    if (!this.dropdownShow || this.arrowFocusController) {
+    if (
+      !this.dropdownShow ||
+      this.arrowFocusController ||
+      !this.dropdownElement
+    ) {
       return;
     }
 
