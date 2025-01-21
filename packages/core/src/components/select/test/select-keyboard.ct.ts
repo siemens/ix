@@ -73,15 +73,23 @@ function selectController(select: Locator) {
       await dropdownVisible();
 
       const addItem = dropdown.locator('ix-dropdown-item.add-item');
-      await (await addItem.elementHandle()).waitForElementState('stable');
+      const element = await addItem.elementHandle();
+      if (!element) {
+        throw new Error('Add item has no open handle');
+      }
+      await element.waitForElementState('stable');
+
       return addItem;
     },
 
     async getItemCheckedLocator() {
       await dropdownVisible();
       const itemChecked = select.locator('ix-select-item .checkmark');
-
-      expect((await itemChecked.elementHandle()).waitForElementState('stable'));
+      const element = await itemChecked.elementHandle();
+      if (!element) {
+        throw new Error('Checked item has no open handle');
+      }
+      await element.waitForElementState('stable');
 
       return itemChecked;
     },
