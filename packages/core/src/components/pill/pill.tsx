@@ -102,6 +102,7 @@ export class Pill {
             custom: this.variant === 'custom',
             closable: false,
             icon: !!this.icon,
+            'with-gap': this.el?.textContent?.length > 0,
           }}
         >
           <ix-icon

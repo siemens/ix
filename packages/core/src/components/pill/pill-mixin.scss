@@ -9,6 +9,10 @@
 
 @mixin pill-container() {
   .container {
+    .with-icon {
+      margin-right: 0;
+    }
+
     &.outline {
       &.icon {
         padding-left: calc(0.5rem - 1px);

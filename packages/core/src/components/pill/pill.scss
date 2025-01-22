@@ -30,6 +30,10 @@
     height: 100%;
     justify-content: center;
   }
+
+  .with-gap {
+    gap: 0.25rem;
+  }
 }
 
 :host(.align-left) {
