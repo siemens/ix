@@ -55,7 +55,8 @@ test(`disabled = undefined`, async ({ mount, page }) => {
 
   const checkedChange$ = radioElement.evaluate(
     (element: HTMLIxCheckboxElement) => {
-      element.disabled = undefined;
+      // Needed for testcase
+      element.disabled = undefined as any;
       return new Promise<void>((resolve) => {
         element.addEventListener('checkedChange', () => resolve());
       });

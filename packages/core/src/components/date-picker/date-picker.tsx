@@ -381,7 +381,7 @@ export class DatePicker implements IxDatePickerComponent {
   private async onDone() {
     const date = await this.getCurrentDate();
     // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-    this.dateSelect.emit(date);
+    this.dateSelect.emit(date as DateChangeEvent);
   }
 
   private calculateCalendar() {
@@ -576,10 +576,10 @@ export class DatePicker implements IxDatePickerComponent {
   private onDateChange() {
     this.getCurrentDate().then((date) => {
       // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-      this.dateChange.emit(date);
+      this.dateChange.emit(date as DateChangeEvent);
       if (this.range) {
         // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-        this.dateRangeChange.emit(date);
+        this.dateRangeChange.emit(date as DateChangeEvent);
       }
     });
   }

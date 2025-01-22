@@ -27,12 +27,12 @@ export class MenuAboutItem {
   /**
    * About Item label
    */
-  @Prop({ reflect: true }) label: string;
+  @Prop({ reflect: true }) label?: string;
 
   /**
    * Label changed
    */
-  @Event() labelChange: EventEmitter<CustomLabelChangeEvent>;
+  @Event() labelChange!: EventEmitter<CustomLabelChangeEvent>;
 
   @Watch('label')
   watchLabel(newValue: string, oldValue: string) {

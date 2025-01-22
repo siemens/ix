@@ -36,7 +36,10 @@ export function initialize(context: MenuSettings | MenuAbout) {
   context.items = getItems(context);
 
   if (context.items.length) {
-    setTab(context, context.activeTabLabel || context.items[0].label);
+    const selectedLabel = context.activeTabLabel || context.items[0].label;
+    if (selectedLabel) {
+      setTab(context, selectedLabel);
+    }
   }
 
   context.items.forEach((item) => {
