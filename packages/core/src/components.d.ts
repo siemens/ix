@@ -131,7 +131,7 @@ export namespace Components {
         /**
           * Define application switch configuration
          */
-        "appSwitchConfig": AppSwitchConfiguration;
+        "appSwitchConfig"?: AppSwitchConfiguration;
         /**
           * Supported layouts
          */
@@ -143,7 +143,7 @@ export namespace Components {
         /**
           * Application theme
          */
-        "theme": IxTheme;
+        "theme"?: IxTheme;
         /**
           * Use the system appearance dark or light
          */
@@ -163,7 +163,7 @@ export namespace Components {
     interface IxApplicationSidebar {
     }
     interface IxApplicationSwitchModal {
-        "config": AppSwitchConfiguration;
+        "config"?: AppSwitchConfiguration;
     }
     /**
      * @since 2.0.0
@@ -842,7 +842,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -2859,7 +2859,7 @@ export namespace Components {
         /**
           * Get the current time based on the wanted format
          */
-        "getCurrentTime": () => Promise<string>;
+        "getCurrentTime": () => Promise<string | undefined>;
         /**
           * @deprecated Not supported since 2.0.0.
          */
