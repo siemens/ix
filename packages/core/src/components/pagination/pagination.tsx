@@ -228,11 +228,10 @@ export class Pagination {
               value={this.selectedPage + 1}
               onChange={(event: Event) => {
                 const eventTarget = event.target as HTMLInputElement;
-                if (eventTarget === null) {
-                  return;
+                if (eventTarget) {
+                  const index = Number.parseInt(eventTarget.value);
+                  this.selectPage(index - 1);
                 }
-                const index = Number.parseInt(eventTarget.value);
-                this.selectPage(index - 1);
               }}
             />
             <span class="total-count">
