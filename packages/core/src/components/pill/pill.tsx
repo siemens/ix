@@ -63,6 +63,17 @@ export class Pill {
    */
   @Prop() alignLeft = false;
 
+  private applySpacing() {
+    if (
+      this.hostElement &&
+      this.hostElement.textContent &&
+      this.hostElement.textContent.length > 0
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
     let customStyle = {};
 
@@ -102,7 +113,7 @@ export class Pill {
             custom: this.variant === 'custom',
             closable: false,
             icon: !!this.icon,
-            'with-gap': this.el?.textContent?.length > 0,
+            'with-gap': this.applySpacing(),
           }}
         >
           <ix-icon
