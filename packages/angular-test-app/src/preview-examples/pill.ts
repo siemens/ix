@@ -22,18 +22,23 @@ import { Component } from '@angular/core';
     <ix-pill class="styled">Label</ix-pill>
 
     <ix-pill icon="star">Label</ix-pill>
-    <ix-pill icon="star" class="styled"> Label </ix-pill>
-    <ix-pill outline alignLeft icon="star" class="styled"> Label </ix-pill>
+    <ix-pill icon="star"></ix-pill>
+    <ix-pill icon="star" class="styled">Label</ix-pill>
+    <ix-pill outline alignLeft icon="star" class="styled">Label</ix-pill>
 
     <ix-pill variant="alarm">Label</ix-pill>
-    <ix-pill variant="alarm" outline> Label </ix-pill>
-    <ix-pill variant="alarm" class="styled"> Label </ix-pill>
+    <ix-pill variant="alarm" outline>Label</ix-pill>
+    <ix-pill variant="alarm" class="styled">Label</ix-pill>
 
-    <ix-pill variant="alarm" icon="star"> Label </ix-pill>
-    <ix-pill variant="alarm" icon="star" class="styled"> Label </ix-pill>
+    <ix-pill variant="alarm" icon="star">Label</ix-pill>
+    <ix-pill variant="alarm" icon="star" class="styled">Label</ix-pill>
     <ix-pill variant="alarm" outline alignLeft icon="star" class="styled">
       Label
     </ix-pill>
+    <ix-pill icon="star" style="width: 4rem">Label</ix-pill>
+    <ix-pill outline icon="star" style="width: 4rem">Label</ix-pill>
+    <ix-pill style="width: 3rem">Label</ix-pill>
+    <ix-pill outline style="width: 3rem">Label</ix-pill>
   `,
 })
 export default class Pill {}

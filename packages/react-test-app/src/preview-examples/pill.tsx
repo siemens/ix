@@ -23,6 +23,7 @@ export default () => {
       <IxPill className="styled">Label</IxPill>
 
       <IxPill icon="star">Label</IxPill>
+      <IxPill icon="star"></IxPill>
       <IxPill icon="star" className="styled">
         Label
       </IxPill>
@@ -47,6 +48,11 @@ export default () => {
       <IxPill variant="alarm" outline alignLeft icon="star" className="styled">
         Label
       </IxPill>
+
+      <IxPill icon='star' style={{ width: '4rem'}}>Label</IxPill>
+      <IxPill outline icon='star' style={{ width: '4rem'}}>Label</IxPill>
+      <IxPill style={{ width: '3rem'}}>Label</IxPill>
+      <IxPill outline style={{ width: '3rem'}}>Label</IxPill>
     </>
   );
 };
