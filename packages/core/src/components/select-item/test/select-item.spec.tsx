@@ -30,14 +30,13 @@ describe('select-item', () => {
       html: '<ix-select-item value="test" label="Test"></ix-select-item>',
     });
 
-    page.doc
-      .querySelector('ix-select-item')
-      .addEventListener('itemClick', eventSpy);
+    const item = page.doc.querySelector('ix-select-item')!;
+    item.addEventListener('itemClick', eventSpy);
 
-    const dropdownItem = page.doc
-      .querySelector('ix-select-item')
-      .shadowRoot.querySelector('ix-dropdown-item') as HTMLElement;
-    dropdownItem.shadowRoot.querySelector('button').click();
+    const dropdownItem = item.shadowRoot!.querySelector(
+      'ix-dropdown-item'
+    ) as HTMLElement;
+    dropdownItem.shadowRoot!.querySelector('button')!.click();
 
     expect(eventSpy).toHaveBeenCalled();
   });

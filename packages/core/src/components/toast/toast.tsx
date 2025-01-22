@@ -33,7 +33,7 @@ export class Toast {
   /**
    * Toast title
    */
-  @Prop() toastTitle: string;
+  @Prop() toastTitle?: string;
 
   /**
    * Autoclose title after delay
@@ -48,17 +48,17 @@ export class Toast {
   /**
    * Icon of toast
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Icon color of toast
    */
-  @Prop() iconColor: string;
+  @Prop() iconColor?: string;
 
   /**
    * Toast closed
    */
-  @Event() closeToast: EventEmitter;
+  @Event() closeToast!: EventEmitter;
 
   @State() progress = 0;
   @State() touched = false;

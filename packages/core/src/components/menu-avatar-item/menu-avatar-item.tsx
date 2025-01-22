@@ -25,22 +25,22 @@ import { makeRef } from '../utils/make-ref';
   shadow: true,
 })
 export class MenuAvatarItem implements DropdownItemWrapper {
+  @Element() hostElement!: HTMLIxMenuAvatarItemElement;
+
   /**
    * Avatar dropdown icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Avatar dropdown label
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Avatar dropdown item clicked
    */
-  @Event() itemClick: EventEmitter<MouseEvent>;
-
-  @Element() hostElement: HTMLIxMenuAvatarItemElement;
+  @Event() itemClick!: EventEmitter<MouseEvent>;
 
   private dropdownItemRef = makeRef<HTMLIxDropdownItemElement>();
 

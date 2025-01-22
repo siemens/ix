@@ -15,7 +15,7 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
   shadow: true,
 })
 export class Tile {
-  @Element() hostElement: HTMLIxTileElement;
+  @Element() hostElement!: HTMLIxTileElement;
 
   /**
    * Size of the tile - one of 'small', 'medium' or 'large'

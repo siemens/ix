@@ -21,11 +21,12 @@ describe('ix-expanding-search', () => {
       components: [ExpandingSearch],
       html: '<ix-expanding-search></ix-expanding-search>',
     });
-    expandingSearch = page.doc.querySelector('ix-expanding-search');
-    expandingSearch.shadowRoot.querySelector('[data-testid="button"]');
-    input = expandingSearch.shadowRoot.querySelector('[data-testid="input"]');
-    expandingSearch.shadowRoot.querySelector('[data-testid="input-wrapper"]');
-    expandingSearch.shadowRoot.querySelector('input').focus = jest.fn();
+    expandingSearch = page.doc.querySelector('ix-expanding-search')!;
+    const shadowRoot = expandingSearch.shadowRoot!;
+    shadowRoot.querySelector('[data-testid="button"]');
+    input = shadowRoot.querySelector('[data-testid="input"]');
+    shadowRoot.querySelector('[data-testid="input-wrapper"]');
+    shadowRoot.querySelector('input')!.focus = jest.fn();
   });
 
   it("emits an event on change and returns 'this.value'", async () => {
