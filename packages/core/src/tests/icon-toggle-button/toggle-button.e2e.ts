@@ -25,7 +25,7 @@ regressionTest.describe('icon-toggle-button: basic', () => {
       body
         .querySelectorAll('ix-icon-toggle-button:not([disabled])')
         .forEach((b) =>
-          b.shadowRoot.querySelector('button').classList.add('hover')
+          b.shadowRoot!.querySelector('button')!.classList.add('hover')
         );
     }, bodyElement);
 
@@ -43,7 +43,7 @@ regressionTest.describe('icon-toggle-button: basic', () => {
       body
         .querySelectorAll('ix-icon-toggle-button:not([disabled])')
         .forEach((b) =>
-          b.shadowRoot.querySelector('button').classList.add('active')
+          b.shadowRoot!.querySelector('button')!.classList.add('active')
         );
     }, bodyElement);
 

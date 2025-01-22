@@ -180,7 +180,7 @@ export class Avatar {
             <AvatarImage image={this.image} initials={this.initials} />
           </BaseButton>
           <ix-dropdown
-            ref={(ref: HTMLIxDropdownElement) => (this.dropdownElement = ref)}
+            ref={(ref) => (this.dropdownElement = ref as HTMLIxDropdownElement)}
             trigger={this.resolveAvatarTrigger()}
             class="avatar-dropdown"
             onClick={(e) => this.onDropdownClick(e)}
@@ -200,7 +200,7 @@ export class Avatar {
             )}
             <slot
               onSlotchange={() => this.slottedChanged()}
-              ref={(ref: HTMLSlotElement) => (this.slotElement = ref)}
+              ref={(ref) => (this.slotElement = ref as HTMLSlotElement)}
             ></slot>
           </ix-dropdown>
         </Host>

@@ -130,7 +130,7 @@ export namespace Components {
         /**
           * Define application switch configuration
          */
-        "appSwitchConfig": AppSwitchConfiguration;
+        "appSwitchConfig"?: AppSwitchConfiguration;
         /**
           * Supported layouts
          */
@@ -142,7 +142,7 @@ export namespace Components {
         /**
           * Application theme
          */
-        "theme": IxTheme;
+        "theme"?: IxTheme;
         /**
           * Use the system appearance dark or light
          */
@@ -162,7 +162,7 @@ export namespace Components {
     interface IxApplicationSidebar {
     }
     interface IxApplicationSwitchModal {
-        "config": AppSwitchConfiguration;
+        "config"?: AppSwitchConfiguration;
     }
     /**
      * @since 2.0.0
@@ -191,7 +191,7 @@ export namespace Components {
         /**
           * Application name
          */
-        "applicationName": string;
+        "applicationName"?: string;
         /**
           * Supported layouts
           * @example ['sm', 'md']
@@ -255,12 +255,12 @@ export namespace Components {
         /**
           * Icon to be displayed next ot the label
          */
-        "icon": string;
+        "icon"?: string;
         "isDropdownTrigger": boolean;
         /**
           * Breadcrumb label
          */
-        "label": string;
+        "label"?: string;
         "showChevron": boolean;
         "visible": boolean;
     }
@@ -530,7 +530,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Show chip with outline style
          */
@@ -1093,7 +1093,7 @@ export namespace Components {
         /**
           * Display name of the header
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxDropdownItem {
         /**
@@ -1133,7 +1133,7 @@ export namespace Components {
         /**
           * Optional empty state action
          */
-        "action": string;
+        "action"?: string;
         /**
           * Empty state header
          */
@@ -1141,7 +1141,7 @@ export namespace Components {
         /**
           * Optional empty state icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
          */
@@ -1149,7 +1149,7 @@ export namespace Components {
         /**
           * Optional empty state sub header
          */
-        "subHeader": string;
+        "subHeader"?: string;
     }
     interface IxEventList {
         /**
@@ -1313,7 +1313,7 @@ export namespace Components {
         /**
           * Variation of the Flip
          */
-        "state": FlipTileState;
+        "state"?: FlipTileState;
         /**
           * Width interpreted as REM
           * @since 1.5.0
@@ -1419,7 +1419,7 @@ export namespace Components {
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
           * @since 2.1.0
          */
-        "a11yLabel": string;
+        "a11yLabel"?: string;
         /**
           * Disabled
          */
@@ -1431,11 +1431,11 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Color of icon in  button
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Loading button
           * @since 2.0.0
@@ -1478,7 +1478,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Loading button
          */
@@ -1597,7 +1597,7 @@ export namespace Components {
         /**
           * Optional key value icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Key value label
          */
@@ -1609,7 +1609,7 @@ export namespace Components {
         /**
           * Optional key value text value
          */
-        "value": string;
+        "value"?: string;
     }
     /**
      * @since 1.6.0
@@ -1621,11 +1621,11 @@ export namespace Components {
         "striped": boolean;
     }
     interface IxKpi {
-        "label": string;
+        "label"?: string;
         "orientation": 'horizontal' | 'vertical';
         "state": 'neutral' | 'warning' | 'alarm';
-        "unit": string;
-        "value": string | number;
+        "unit"?: string;
+        "value"?: string | number;
     }
     /**
      * @since 2.6.0
@@ -1671,13 +1671,13 @@ export namespace Components {
         /**
           * Url for the link button
          */
-        "url": string;
+        "url"?: string;
     }
     interface IxMapNavigation {
         /**
           * Application name
          */
-        "applicationName": string;
+        "applicationName"?: string;
         /**
           * Close current shown overlay
           * @deprecated Will be removed in 2.0.0. Use slot based approach
@@ -1690,7 +1690,7 @@ export namespace Components {
         /**
           * Navigation title
          */
-        "navigationTitle": string;
+        "navigationTitle"?: string;
         /**
           * Open a overlay inside content area
           * @deprecated Will be removed in 2.0.0. Use slot based approach
@@ -1712,19 +1712,19 @@ export namespace Components {
           * Color of icon
           * @deprecated since 2.1.0. Use `icon-color`
          */
-        "color": string;
+        "color"?: string;
         /**
           * Icon of overlay
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Color of icon
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Title of overlay
          */
-        "name": string;
+        "name"?: string;
     }
     interface IxMenu {
         /**
@@ -1799,7 +1799,7 @@ export namespace Components {
         /**
           * Active tab
          */
-        "activeTabLabel": string;
+        "activeTabLabel"?: string;
         /**
           * Content of the header
          */
@@ -1810,19 +1810,19 @@ export namespace Components {
         /**
           * About Item label
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxMenuAboutNews {
         /**
           * Subtitle of the about news
          */
-        "aboutItemLabel": string;
+        "aboutItemLabel"?: string;
         "expanded": boolean;
         "i18nShowMore": string;
         /**
           * Title of the about news
          */
-        "label": string;
+        "label"?: string;
         /**
           * Bottom offset
          */
@@ -1836,7 +1836,7 @@ export namespace Components {
         /**
           * Second line of text
          */
-        "bottom": string;
+        "bottom"?: string;
         /**
           * Use for translation
          */
@@ -1845,12 +1845,12 @@ export namespace Components {
           * Display a avatar image
           * @since 1.4.0
          */
-        "image": string;
+        "image"?: string;
         /**
           * Display the initials of the user. Will be overwritten by image
           * @since 1.4.0
          */
-        "initials": string;
+        "initials"?: string;
         /**
           * Control the visibility of the logout button
           * @since 2.1.0
@@ -1859,18 +1859,18 @@ export namespace Components {
         /**
           * First line of text
          */
-        "top": string;
+        "top"?: string;
     }
     interface IxMenuAvatarItem {
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Avatar dropdown icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Avatar dropdown label
          */
-        "label": string;
+        "label"?: string;
     }
     /**
      * @since 2.0.0
@@ -1893,7 +1893,7 @@ export namespace Components {
         /**
           * Controls which icon is displayed
          */
-        "breakpoint": Breakpoint;
+        "breakpoint"?: Breakpoint;
         /**
           * Whether the menu expand icon displays the expanded state or not
          */
@@ -1944,7 +1944,7 @@ export namespace Components {
         /**
           * Active tab
          */
-        "activeTabLabel": string;
+        "activeTabLabel"?: string;
         /**
           * Label of first tab
          */
@@ -1955,7 +1955,7 @@ export namespace Components {
         /**
           * Settings Item label
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxMessageBar {
         /**
@@ -1979,7 +1979,7 @@ export namespace Components {
         /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
-        "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
+        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
          */
@@ -2804,15 +2804,15 @@ export namespace Components {
         /**
           * Icon of toast
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Icon color of toast
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Toast title
          */
-        "toastTitle": string;
+        "toastTitle"?: string;
         /**
           * Toast type
          */
@@ -2890,7 +2890,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Loading button
          */
@@ -3049,7 +3049,7 @@ export namespace Components {
         /**
           * Message of the tooltip
          */
-        "message": string;
+        "message"?: string;
         /**
           * Placement of the tooltip
          */
@@ -3362,6 +3362,7 @@ declare global {
     };
     interface HTMLIxApplicationHeaderElementEventMap {
         "menuToggle": boolean;
+        "openAppSwitch": void;
     }
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxApplicationHeaderElementEventMap>(type: K, listener: (this: HTMLIxApplicationHeaderElement, ev: IxApplicationHeaderCustomEvent<HTMLIxApplicationHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4129,6 +4130,7 @@ declare global {
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
         "mapExpandChange": boolean;
+        "openAppSwitch": void;
     }
     interface HTMLIxMenuElement extends Components.IxMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuElementEventMap>(type: K, listener: (this: HTMLIxMenuElement, ev: IxMenuCustomEvent<HTMLIxMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5036,6 +5038,11 @@ declare namespace LocalJSX {
          */
         "onMenuToggle"?: (event: IxApplicationHeaderCustomEvent<boolean>) => void;
         /**
+          * Event emitted when the app switch button is clicked
+          * @since 3.0.0
+         */
+        "onOpenAppSwitch"?: (event: IxApplicationHeaderCustomEvent<void>) => void;
+        /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
           * @since 2.5.0
          */
@@ -5544,7 +5551,7 @@ declare namespace LocalJSX {
         /**
           * Grid item name
          */
-        "itemName"?: string;
+        "itemName": string;
     }
     /**
      * @since 2.6.0
@@ -6764,6 +6771,11 @@ declare namespace LocalJSX {
           * Map Sidebar expanded
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the app switch button is clicked
+          * @since 3.0.0
+         */
+        "onOpenAppSwitch"?: (event: IxMenuCustomEvent<void>) => void;
         /**
           * Menu stays pinned to the left
          */

@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Locator, Page } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { Mount, regressionTest } from '@utils/test';
 import { TreeItem } from '../tree-model';
 
 const defaultModel = {
@@ -61,7 +61,7 @@ const defaultModel = {
   },
 };
 
-const initializeTree = async (mount, page: Page) => {
+const initializeTree = async (mount: Mount, page: Page) => {
   await mount(`
       <div style=" height: 20rem; width: 100%;">
         <ix-tree root="root"></ix-tree>

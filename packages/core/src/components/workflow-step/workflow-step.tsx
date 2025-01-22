@@ -35,7 +35,7 @@ import {
   shadow: true,
 })
 export class WorkflowStep {
-  @Element() hostElement: HTMLIxWorkflowStepElement;
+  @Element() hostElement!: HTMLIxWorkflowStepElement;
 
   /**
    * Select orientation

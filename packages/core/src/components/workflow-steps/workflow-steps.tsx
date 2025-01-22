@@ -45,7 +45,7 @@ export class WorkflowSteps {
   /**
    * On step selected event
    */
-  @Event() stepSelected: EventEmitter<number>;
+  @Event() stepSelected!: EventEmitter<number>;
 
   private getSteps() {
     return Array.from(this.hostElement.querySelectorAll('ix-workflow-step'));
@@ -73,7 +73,7 @@ export class WorkflowSteps {
     });
   }
 
-  private observer: MutationObserver;
+  private observer?: MutationObserver;
 
   @Listen('selectedChanged')
   onStepSelectionChanged(event: CustomEvent<HTMLIxWorkflowStepElement>) {

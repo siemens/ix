@@ -114,7 +114,6 @@
     }
   }
 
-  :host(:disabled),
   :host(.disabled) {
     pointer-events: none;
 
@@ -125,9 +124,7 @@
     }
   }
 
-  :host(.checked:disabled),
   :host(.checked.disabled),
-  :host([indeterminate]:disabled),
   :host([indeterminate].disabled) {
     button {
       background-color: var(--theme-radiobtn-checked--background--disabled);
@@ -199,7 +196,6 @@
     }
   }
 
-  :host(#{$selector}:disabled),
   :host(#{$selector}.disabled) {
     button {
       background-color: var(--theme-radiobtn-unchecked--background--disabled);
@@ -208,9 +204,7 @@
     }
   }
 
-  :host(#{$selector}.checked:disabled),
   :host(#{$selector}.checked.disabled),
-  :host(#{$selector}[indeterminate]:disabled),
   :host(#{$selector}[indeterminate].disabled) {
     button {
       background-color: var(--theme-radiobtn-checked--background--disabled);

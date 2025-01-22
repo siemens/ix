@@ -173,7 +173,7 @@ export class IxApplicationHeader {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['menuToggle']);
+    proxyOutputs(this, this.el, ['menuToggle', 'openAppSwitch']);
   }
 }
 
@@ -183,6 +183,10 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
    * Event emitted when the menu toggle button is clicked @since 2.5.0
    */
   menuToggle: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Event emitted when the app switch button is clicked @since 3.0.0
+   */
+  openAppSwitch: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -1726,7 +1730,7 @@ export class IxMenu {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange']);
+    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange', 'openAppSwitch']);
   }
 }
 
@@ -1740,6 +1744,10 @@ export declare interface IxMenu extends Components.IxMenu {
    * Map Sidebar expanded
    */
   mapExpandChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Event emitted when the app switch button is clicked @since 3.0.0
+   */
+  openAppSwitch: EventEmitter<CustomEvent<void>>;
 }
 
 
