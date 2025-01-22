@@ -33,13 +33,71 @@
   --ag-checkbox-checked-color: var(--theme-input--border-color--focus);
   --ag-control-panel-background-color: var(--theme-color-1);
 
+  .ag-checkbox-input-wrapper::after {
+    color: transparent;
+  }
+
+  .ag-checkbox-input-wrapper {
+    border-radius: 0;
+    width: 1.125rem;
+    height: 1.125rem;
+
+    &:not(.ag-checked) {
+      border: var(--theme-checkbox--border-thickness) solid var(--theme-checkbox-unchecked--border-color);
+    }
+
+    &.ag-checked {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: var(--theme-checkbox-checked--background);
+        mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=="),
+        url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMy42NTYyNSA4LjE1NjI1TDguNDM3NSAxMi45Mzc1TDE0LjYyNSAzLjkzNzUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==");
+        mask-composite: subtract;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+
+        &:hover:not(:disabled) {
+          background-color: var(--theme-checkbox-checked--background--hover);
+          border-color: var(--theme-checkbox-checked--border-color--hover);
+        }
+      }
+    }
+
+    &:not(.ag-checked):hover:not(:disabled) {
+      background-color: var(--theme-checkbox-unchecked--background--hover);
+      border-color: var(--theme-checkbox-unchecked--border-color--hover);
+    }
+
+  }
+
+  .ag-checkbox-input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 4px;
+
+    &:focus {
+      box-shadow: 0 0 3px 3px yellow;
+      outline: none;
+    }
+  }
+
   .ag-input-wrapper {
     input {
+      cursor: default;
       clip: unset !important;
       clip-path: unset !important;
-      height: inherit !important;
+      height: 100% !important;
+      min-height: unset !important;
       max-height: unset !important;
-      width: inherit !important;
+      width: 100% !important;
       max-width: unset !important;
       overflow: inherit !important;
       position: inherit !important;
