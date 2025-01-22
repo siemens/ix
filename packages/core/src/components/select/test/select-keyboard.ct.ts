@@ -163,9 +163,8 @@ test.describe('arrow key navigation', () => {
 
       await selectCtrl.arrowDown();
 
-      const visibleDropdownItems = await selectCtrl.getDropdownItemsLocator(
-        true
-      );
+      const visibleDropdownItems =
+        await selectCtrl.getDropdownItemsLocator(true);
       expect(visibleDropdownItems).toHaveLength(0);
 
       const addItem = await selectCtrl.getAddItemDropdownItemLocator();

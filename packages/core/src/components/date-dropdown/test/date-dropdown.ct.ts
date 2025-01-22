@@ -35,7 +35,8 @@ test.describe('date dropdown tests', () => {
       {
         id: 'no-time',
         label: 'No time limit',
-        from: undefined,
+        // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
+        from: undefined as any,
         to: today.toFormat(format),
       },
       {

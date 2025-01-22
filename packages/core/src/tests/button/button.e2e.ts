@@ -30,7 +30,7 @@ regressionTest.describe('button: basic', () => {
       body
         .querySelectorAll('ix-button')
         .forEach((b) =>
-          b.shadowRoot.querySelector('button').classList.add('hover')
+          b.shadowRoot!.querySelector('button')!.classList.add('hover')
         );
     }, bodyElement);
 
@@ -50,7 +50,7 @@ regressionTest.describe('button: basic', () => {
       body
         .querySelectorAll('ix-button')
         .forEach((b) =>
-          b.shadowRoot.querySelector('button').classList.add('active')
+          b.shadowRoot!.querySelector('button')!.classList.add('active')
         );
     }, bodyElement);
 

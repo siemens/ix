@@ -135,3 +135,10 @@ export const regressionTest = testBase.extend<{
 });
 
 export const test = regressionTest;
+
+export type Mount = (
+  selector: string,
+  config?: {
+    headTags?: string[];
+  }
+) => Promise<ElementHandle<HTMLElement>>;

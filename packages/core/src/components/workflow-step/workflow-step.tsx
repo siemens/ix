@@ -26,7 +26,7 @@ import {
   shadow: true,
 })
 export class WorkflowStep {
-  @Element() hostElement: HTMLIxWorkflowStepElement;
+  @Element() hostElement!: HTMLIxWorkflowStepElement;
 
   /**
    * Select orientation
@@ -68,9 +68,9 @@ export class WorkflowStep {
   /**
    * @internal
    */
-  @Event() selectedChanged: EventEmitter<HTMLIxWorkflowStepElement>;
+  @Event() selectedChanged!: EventEmitter<HTMLIxWorkflowStepElement>;
 
-  private customIconSlot: boolean;
+  private customIconSlot: boolean = false;
 
   @Watch('selected')
   selectedHandler() {
