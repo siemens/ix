@@ -9,6 +9,7 @@
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
+import { html } from 'lit';
 
 type Element = Components.IxPill & { defaultSlot: string };
 
@@ -52,8 +53,8 @@ export const With_Icon_and_Text_Ellipsis: Story = {
     const ixPill = container.querySelector('ix-pill')!;
     ixPill.style.width = '5rem';
 
-    return container
-  }
+    return container;
+  },
 };
 
 export const With_Text_only_Ellipsis: Story = {
@@ -65,6 +66,18 @@ export const With_Text_only_Ellipsis: Story = {
     const ixPill = container.querySelector('ix-pill')!;
     ixPill.style.width = '5rem';
 
-    return container
-  }
+    return container;
+  },
+};
+
+export const With_Icon_and_Element: Story = {
+  render: ({ icon }) => {
+    return html`<ix-pill icon=${icon}
+      ><div style="display: flex;">
+        <ix-icon name="${icon}" size="16"></ix-icon></div
+    ></ix-pill>`;
+  },
+  args: {
+    icon: 'info',
+  },
 };
