@@ -842,7 +842,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -2682,11 +2682,11 @@ export namespace Components {
         /**
           * Dropdown icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Dropdown label
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxTabItem {
         /**
@@ -2859,7 +2859,7 @@ export namespace Components {
         /**
           * Get the current time based on the wanted format
          */
-        "getCurrentTime": () => Promise<string>;
+        "getCurrentTime": () => Promise<string | undefined>;
         /**
           * @deprecated Not supported since 2.0.0.
          */
@@ -3004,7 +3004,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Loading button
          */
