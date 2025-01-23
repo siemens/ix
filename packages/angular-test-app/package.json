@@ -24,7 +24,7 @@
     "@siemens/ix-echarts": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-icons": "0.0.0-20240827135516",
-    "ag-grid-angular": "^30.2.1",
+    "ag-grid-angular": "^32.0.2",
     "ag-grid-community": "^32.0.2",
     "echarts": "5.4.3",
     "echarts-gl": "^2.0.9",
