@@ -7,15 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
+import { IxComponent } from '../utils/internal';
 
 @Component({
   tag: 'ix-pill',
   styleUrl: 'pill.scss',
   shadow: true,
 })
-export class Pill {
+export class Pill implements IxComponent {
   @Element() hostElement!: HTMLIxPillElement;
 
   /**
@@ -64,18 +65,19 @@ export class Pill {
    */
   @Prop() alignLeft = false;
 
+  @State() iconOnly = false;
+
   private readonly containerElementRef = makeRef<HTMLDivElement>();
 
-  private updateSpacing() {
-    if (!this.hostElement.textContent) {
-      if (this.containerElementRef.current) {
-        this.containerElementRef.current.classList.remove('with-gap');
-      }
-    } else if (this.hostElement.textContent.length > 0) {
-      if (this.containerElementRef.current) {
-        this.containerElementRef.current.classList.add('with-gap');
-      }
-    }
+  componentWillLoad() {
+    this.checkIfContentAvailable();
+  }
+
+  private checkIfContentAvailable() {
+    const hasChildren = this.hostElement.children.length > 0;
+    const hasTextContent = !!this.hostElement.textContent;
+
+    this.iconOnly = !hasChildren && !hasTextContent;
   }
 
   render() {
@@ -118,6 +120,7 @@ export class Pill {
             custom: this.variant === 'custom',
             closable: false,
             icon: !!this.icon,
+            'with-gap': !this.iconOnly,
           }}
         >
           <ix-icon
@@ -129,7 +132,7 @@ export class Pill {
             size={'16'}
           />
           <span class="slot-container">
-            <slot onSlotchange={() => this.updateSpacing()}></slot>
+            <slot onSlotchange={() => this.checkIfContentAvailable()}></slot>
           </span>
         </div>
       </Host>
