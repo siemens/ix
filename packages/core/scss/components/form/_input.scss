@@ -144,10 +144,6 @@
   textarea {
     @include element-input();
     @include element-textarea();
-
-    &.form-control {
-      padding: 0.375rem 0.5rem;
-    }
   }
 
   textarea ~ .valid-feedback,
