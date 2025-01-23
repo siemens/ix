@@ -33,10 +33,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": [
-              "node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css",
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
