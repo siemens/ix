@@ -76,12 +76,7 @@ export class ValueAccessor
   }
 
   ngAfterViewInit(): void {
-    let ngControl;
-    try {
-      ngControl = this.injector.get<NgControl>(NgControl);
-    } catch {
-      /* No FormControl or ngModel binding */
-    }
+    let ngControl = this.getAssignedNgControl();
 
     if (!ngControl) {
       return;
