@@ -34,7 +34,7 @@ export class GroupContextMenu {
   }
 
   private onSlotChange() {
-    const slot = this.hostElement.shadowRoot.querySelector('slot');
+    const slot = this.hostElement.shadowRoot!.querySelector('slot');
     if (!slot) {
       return;
     }

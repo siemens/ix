@@ -32,17 +32,17 @@ export class MapNavigation {
   private static readonly defaultTime = 150;
   private static readonly slowTime = 500;
 
-  @Element() hostElement: HTMLIxMapNavigationElement;
+  @Element() hostElement!: HTMLIxMapNavigationElement;
 
   /**
    * Application name
    */
-  @Prop() applicationName: string;
+  @Prop() applicationName?: string;
 
   /**
    * Navigation title
    */
-  @Prop() navigationTitle: string;
+  @Prop() navigationTitle?: string;
 
   /**
    * Hide the sidebar context menu button when set to true
@@ -52,34 +52,34 @@ export class MapNavigation {
   /**
    * Navigation toggled
    */
-  @Event() navigationToggled: EventEmitter<boolean>;
+  @Event() navigationToggled!: EventEmitter<boolean>;
 
   /**
    * Context menu clicked
    */
-  @Event() contextMenuClick: EventEmitter<void>;
+  @Event() contextMenuClick!: EventEmitter<void>;
 
   @State() isSidebarOpen = true;
   @State() hasContentHeader = false;
 
   get menu() {
-    return this.hostElement.querySelector('ix-menu');
+    return this.hostElement.querySelector('ix-menu')!;
   }
 
   get menuOverlay() {
-    return this.hostElement.querySelector('ix-menu-overlay');
+    return this.hostElement.querySelector('ix-menu-overlay')!;
   }
 
   get mapNavMenu() {
-    return this.hostElement.shadowRoot.querySelector('.map-nav-menu');
+    return this.hostElement.shadowRoot!.querySelector('.map-nav-menu')!;
   }
 
   get sidebar() {
-    return this.hostElement.shadowRoot.querySelector('.map-nav-sidebar');
+    return this.hostElement.shadowRoot!.querySelector('.map-nav-sidebar')!;
   }
 
   get overlay() {
-    return this.hostElement.shadowRoot.querySelector('#overlay');
+    return this.hostElement.shadowRoot!.querySelector('#overlay')!;
   }
 
   componentDidRender() {
@@ -184,9 +184,9 @@ export class MapNavigation {
     });
 
     const overlayInstance = document.createElement('ix-map-navigation-overlay');
-    overlayInstance.setAttribute('color', color);
+    overlayInstance.setAttribute('color', color ?? '');
     overlayInstance.setAttribute('name', name);
-    overlayInstance.setAttribute('icon', icon);
+    overlayInstance.setAttribute('icon', icon ?? '');
     overlayInstance.setAttribute('slot', 'overlay');
     overlayInstance.addEventListener('closeClick', () => this.closeOverlay());
     overlayInstance.appendChild(component);

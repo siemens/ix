@@ -246,7 +246,7 @@
               "type": "{ currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string; i18nLoadingApps?: string; }"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -361,7 +361,7 @@
               "type": "string & Record<never, never>"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -518,6 +518,25 @@
             {
               "name": "since",
               "text": "2.5.0"
+            }
+          ]
+        },
+        {
+          "event": "openAppSwitch",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the app switch button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
             }
           ]
         }
@@ -733,7 +752,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -1281,7 +1300,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -1304,7 +1323,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -3229,7 +3248,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -7319,7 +7338,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -7578,7 +7597,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -7624,7 +7643,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -7686,7 +7705,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -8507,7 +8526,7 @@
               "type": "FlipTileState.Warning"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -9419,7 +9438,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -9461,6 +9480,7 @@
           "reflectToAttr": false,
           "docs": "Button invisible",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9489,7 +9509,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -9512,7 +9532,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -9559,6 +9579,7 @@
           "reflectToAttr": false,
           "docs": "Button outline",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9582,6 +9603,7 @@
           "reflectToAttr": false,
           "docs": "Button in oval shape",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -9799,7 +9821,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -10644,7 +10666,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -10725,7 +10747,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -10777,6 +10799,7 @@
           "reflectToAttr": false,
           "docs": "Optional striped key value list style",
           "docsTags": [],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -10829,7 +10852,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -10914,7 +10937,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -10940,7 +10963,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -11229,7 +11252,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -11302,7 +11325,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -11349,7 +11372,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -11607,7 +11630,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -11630,7 +11653,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -11653,7 +11676,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -11676,7 +11699,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12294,6 +12317,25 @@
           "composed": true,
           "docs": "Map Sidebar expanded",
           "docsTags": []
+        },
+        {
+          "event": "openAppSwitch",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the app switch button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -12360,7 +12402,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12452,7 +12494,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12536,7 +12578,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12583,7 +12625,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12731,7 +12773,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12783,7 +12825,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12811,7 +12853,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12863,7 +12905,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12936,7 +12978,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -12959,7 +13001,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -13391,7 +13433,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -13483,7 +13525,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -13711,7 +13753,7 @@
               "type": "Promise<boolean>"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -14883,6 +14925,7 @@
           "reflectToAttr": false,
           "docs": "Total number of pages",
           "docsTags": [],
+          "default": "0",
           "values": [
             {
               "type": "number"
@@ -19749,7 +19792,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -19772,7 +19815,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -19795,7 +19838,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -20415,7 +20458,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -21823,7 +21866,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -22429,7 +22472,7 @@
       "path": "src/components/utils/element-reference.ts"
     },
     "src/components/utils/make-ref.ts::MakeRef": {
-      "declaration": "{\n  (ref: T | undefined): void;\n  current: T | null;\n  waitForCurrent(): Promise<T>;\n}",
+      "declaration": "{\n  (ref: T | undefined | null): void;\n  current: T | null;\n  waitForCurrent(): Promise<T>;\n}",
       "docstring": "",
       "path": "src/components/utils/make-ref.ts"
     },

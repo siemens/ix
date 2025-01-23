@@ -6,7 +6,7 @@
     "copy-preview-styles": "node ./scripts/copy-preview.mjs",
     "start": "pnpm copy-preview-styles && ng serve",
     "build": "pnpm copy-preview-styles && ng build --preserve-symlinks -c production --source-map=true --named-chunks=true",
-    "watch": "ng build --watch --configuration development",
+    "watch": "pnpm copy-preview-styles && ng build --watch --configuration development",
     "test": "ng test --watch false --browsers ChromeHeadless"
   },
   "private": true,
@@ -22,6 +22,7 @@
     "@siemens/ix": "workspace:*",
     "@siemens/ix-angular": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
+    "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-icons": "0.0.0-20240827135516",
     "ag-grid-angular": "^30.2.1",
     "ag-grid-community": "^32.0.2",

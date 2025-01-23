@@ -12,14 +12,20 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-type IxApplicationHeaderEvents = { onMenuToggle: EventName<CustomEvent<boolean>> };
+type IxApplicationHeaderEvents = {
+    onMenuToggle: EventName<CustomEvent<boolean>>,
+    onOpenAppSwitch: EventName<CustomEvent<void>>
+};
 
 const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents> = /*@__PURE__*/ createComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents>({
     tagName: 'ix-application-header',
     elementClass: IxApplicationHeaderElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onMenuToggle: 'menuToggle' } as IxApplicationHeaderEvents,
+    events: {
+        onMenuToggle: 'menuToggle',
+        onOpenAppSwitch: 'openAppSwitch'
+    } as IxApplicationHeaderEvents,
     defineCustomElement: defineIxApplicationHeader
 });
 

@@ -29,26 +29,26 @@ export class MenuAvatar {
   /**
    * First line of text
    */
-  @Prop() top: string;
+  @Prop() top?: string;
 
   /**
    * Second line of text
    */
-  @Prop() bottom: string;
+  @Prop() bottom?: string;
 
   /**
    * Display a avatar image
    *
    * @since 1.4.0
    */
-  @Prop() image: string;
+  @Prop() image?: string;
 
   /**
    * Display the initials of the user. Will be overwritten by image
    *
    * @since 1.4.0
    */
-  @Prop() initials: string;
+  @Prop() initials?: string;
 
   /**
    * Use for translation
@@ -70,12 +70,12 @@ export class MenuAvatar {
   /**
    * Logout click
    */
-  @Event() logoutClick: EventEmitter;
+  @Event() logoutClick!: EventEmitter;
 
   private avatarElementId = 'ix-menu-avatar-id';
 
   onSlotChange() {
-    const slot = this.hostElement.shadowRoot.querySelector('slot');
+    const slot = this.hostElement.shadowRoot!.querySelector('slot');
     if (!slot) {
       return;
     }

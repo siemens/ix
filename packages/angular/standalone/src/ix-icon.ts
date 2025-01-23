@@ -1,12 +1,13 @@
 /* tslint:disable */
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import {
   Component,
   ChangeDetectionStrategy,
@@ -15,7 +16,7 @@ import {
   NgZone,
 } from '@angular/core';
 import { defineCustomElement as defineIxIcon } from '@siemens/ix-icons/components/ix-icon';
-import { ProxyCmp } from './directives/angular-component-lib/utils';
+import { ProxyCmp } from './angular-component-lib/utils';
 
 @ProxyCmp({
   inputs: ['color', 'size', 'name', 'lazyLoading'],

@@ -25,7 +25,7 @@ export class KeyValue {
   /**
    * Optional key value icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Key value label
@@ -40,7 +40,7 @@ export class KeyValue {
   /**
    * Optional key value text value
    */
-  @Prop() value: string;
+  @Prop() value?: string;
 
   render() {
     return (

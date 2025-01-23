@@ -16,8 +16,8 @@ describe('ix-pagination', () => {
       components: [Pagination],
       html: `<ix-pagination count="10"></ix-pagination>`,
     });
-    const pagination = page.doc.querySelector('ix-pagination');
-    const button = pagination.shadowRoot.querySelectorAll('button')[5];
+    const pagination = page.doc.querySelector('ix-pagination')!;
+    const button = pagination.shadowRoot!.querySelectorAll('button')[5];
     button.click();
     expect(pagination.selectedPage).toBe(6);
   });
@@ -27,8 +27,8 @@ describe('ix-pagination', () => {
       components: [Pagination],
       html: `<ix-pagination count="10" selected-page="4"></ix-pagination>`,
     });
-    const pagination = page.doc.querySelector('ix-pagination');
-    const button = pagination.shadowRoot.querySelectorAll('button')[6];
+    const pagination = page.doc.querySelector('ix-pagination')!;
+    const button = pagination.shadowRoot!.querySelectorAll('button')[6];
     button.click();
     expect(pagination.selectedPage).toBe(9);
   });
@@ -38,8 +38,8 @@ describe('ix-pagination', () => {
       components: [Pagination],
       html: `<ix-pagination count="10" selected-page="5"></ix-pagination>`,
     });
-    const pagination = page.doc.querySelector('ix-pagination');
-    const button = pagination.shadowRoot.querySelectorAll('button')[1];
+    const pagination = page.doc.querySelector('ix-pagination')!;
+    const button = pagination.shadowRoot!.querySelectorAll('button')[1];
     button.click();
     expect(pagination.selectedPage).toBe(2);
   });
@@ -49,8 +49,8 @@ describe('ix-pagination', () => {
       components: [Pagination],
       html: `<ix-pagination count="10" selected-page="9"></ix-pagination>`,
     });
-    const pagination = page.doc.querySelector('ix-pagination');
-    const button = pagination.shadowRoot.querySelectorAll('button')[1];
+    const pagination = page.doc.querySelector('ix-pagination')!;
+    const button = pagination.shadowRoot!.querySelectorAll('button')[1];
     button.click();
     expect(pagination.selectedPage).toBe(3);
   });

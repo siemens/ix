@@ -15,7 +15,7 @@ import { Component, Element, h, Host, Prop } from '@stencil/core';
   shadow: true,
 })
 export class Pill {
-  @Element() el: HTMLIxPillElement;
+  @Element() hostElement!: HTMLIxPillElement;
 
   /**
    * Pill variant
@@ -73,7 +73,7 @@ export class Pill {
               }
             : {}
         }
-        title={this.el.textContent}
+        title={this.hostElement.textContent}
         class={{
           'align-left': this.alignLeft,
         }}
