@@ -64,7 +64,10 @@ export class Pill {
   @Prop() alignLeft = false;
 
   private applySpacing() {
-    return (this.hostElement?.textContent?.length ?? 0) > 0;
+    if (!this.hostElement.textContent) {
+      return false;
+    }
+    return this.hostElement.textContent.length >= 1;
   }
 
   render() {
