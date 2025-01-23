@@ -2,5 +2,5 @@
 '@siemens/ix': patch
 ---
 
-fix `ix-pill` layout/spacing, adapt tests and add examples to docs
+Adjust `ix-pill` spacing between text + icon and icon only
 
