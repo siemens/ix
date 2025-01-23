@@ -9,7 +9,6 @@
 @import 'mixins/shadow-dom/component';
 
 @import './../chip/chip-mixin';
-@import 'pill-mixin.scss';
 @import 'common-variables';
 @import 'mixins/text-truncation';
 
@@ -23,12 +22,29 @@
 }
 
 @include chip-container(false);
-@include pill-container();
 
 :host {
   .container {
     height: 100%;
     justify-content: center;
+
+    .with-icon {
+      margin-right: 0;
+    }
+
+    &.outline {
+      &.icon {
+        padding-left: calc(0.5rem - 1px);
+        padding-right: calc(0.5rem - 1px) !important;
+      }
+    }
+
+    &:not(.outline) {
+      &.icon {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem !important;
+      }
+    }
   }
 
   .with-gap {
