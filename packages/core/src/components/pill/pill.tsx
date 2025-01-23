@@ -67,7 +67,7 @@ export class Pill {
     if (!this.hostElement.textContent) {
       return false;
     }
-    return this.hostElement.textContent.length >= 1;
+    return this.hostElement.textContent.length > 0;
   }
 
   render() {
