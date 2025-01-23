@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-pill',
@@ -63,11 +64,18 @@ export class Pill {
    */
   @Prop() alignLeft = false;
 
-  private applySpacing() {
+  private readonly containerElementRef = makeRef<HTMLDivElement>();
+
+  private updateSpacing() {
     if (!this.hostElement.textContent) {
-      return false;
+      if (this.containerElementRef.current) {
+        this.containerElementRef.current.classList.remove('with-gap');
+      }
+    } else if (this.hostElement.textContent.length > 0) {
+      if (this.containerElementRef.current) {
+        this.containerElementRef.current.classList.add('with-gap');
+      }
     }
-    return this.hostElement.textContent.length > 0;
   }
 
   render() {
@@ -94,6 +102,7 @@ export class Pill {
         }}
       >
         <div
+          ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{
             container: true,
@@ -109,7 +118,6 @@ export class Pill {
             custom: this.variant === 'custom',
             closable: false,
             icon: !!this.icon,
-            'with-gap': this.applySpacing(),
           }}
         >
           <ix-icon
@@ -121,7 +129,7 @@ export class Pill {
             size={'16'}
           />
           <span class="slot-container">
-            <slot></slot>
+            <slot onSlotchange={() => this.updateSpacing()}></slot>
           </span>
         </div>
       </Host>
