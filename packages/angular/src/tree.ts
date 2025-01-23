@@ -25,7 +25,7 @@ import { TreeBaseDirective } from '@siemens/ix-angular/common';
   selector: 'ix-tree',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
-  inputs: ['context', 'model', 'root'],
+  inputs: ['context', 'model', 'root', 'renderItem'],
 })
 export class IxTree extends TreeBaseDirective {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
