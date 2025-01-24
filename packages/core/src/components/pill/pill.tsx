@@ -7,14 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { IxComponent } from '../utils/internal';
 
 @Component({
   tag: 'ix-pill',
   styleUrl: 'pill.scss',
   shadow: true,
 })
-export class Pill {
+export class Pill implements IxComponent {
   @Element() hostElement!: HTMLIxPillElement;
 
   /**
@@ -63,6 +64,19 @@ export class Pill {
    */
   @Prop() alignLeft = false;
 
+  @State() iconOnly = false;
+
+  componentWillLoad() {
+    this.checkIfContentAvailable();
+  }
+
+  private checkIfContentAvailable() {
+    const hasChildren = this.hostElement.children.length > 0;
+    const hasTextContent = !!this.hostElement.textContent;
+
+    this.iconOnly = !hasChildren && !hasTextContent;
+  }
+
   render() {
     let customStyle = {};
 
@@ -102,6 +116,7 @@ export class Pill {
             custom: this.variant === 'custom',
             closable: false,
             icon: !!this.icon,
+            'with-gap': !this.iconOnly,
           }}
         >
           <ix-icon
@@ -113,7 +128,7 @@ export class Pill {
             size={'16'}
           />
           <span class="slot-container">
-            <slot></slot>
+            <slot onSlotchange={() => this.checkIfContentAvailable()}></slot>
           </span>
         </div>
       </Host>

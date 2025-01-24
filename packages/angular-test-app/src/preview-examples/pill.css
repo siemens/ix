@@ -16,5 +16,13 @@ ix-pill {
 }
 
 .styled {
-  width: 8rem
+  width: 8rem;
+}
+
+.styled-ellipsis-3 {
+  width: 3rem;
+}
+
+.styled-ellipsis-4 {
+  width: 4rem;
 }
