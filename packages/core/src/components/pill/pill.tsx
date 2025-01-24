@@ -67,8 +67,6 @@ export class Pill implements IxComponent {
 
   @State() iconOnly = false;
 
-  private readonly containerElementRef = makeRef<HTMLDivElement>();
-
   componentWillLoad() {
     this.checkIfContentAvailable();
   }
@@ -104,7 +102,6 @@ export class Pill implements IxComponent {
         }}
       >
         <div
-          ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{
             container: true,
