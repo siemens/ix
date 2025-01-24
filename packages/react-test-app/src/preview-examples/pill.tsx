@@ -49,10 +49,16 @@ export default () => {
         Label
       </IxPill>
 
-      <IxPill icon='star' style={{ width: '4rem'}}>Label</IxPill>
-      <IxPill outline icon='star' style={{ width: '4rem'}}>Label</IxPill>
-      <IxPill style={{ width: '3rem'}}>Label</IxPill>
-      <IxPill outline style={{ width: '3rem'}}>Label</IxPill>
+      <IxPill icon="star" className="styled-ellipsis-4">
+        Label
+      </IxPill>
+      <IxPill outline icon="star" className="styled-ellipsis-4">
+        Label
+      </IxPill>
+      <IxPill className="styled-ellipsis-3">Label</IxPill>
+      <IxPill outline className="styled-ellipsis-3">
+        Label
+      </IxPill>
     </>
   );
 };
