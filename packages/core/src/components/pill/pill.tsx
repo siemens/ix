@@ -8,7 +8,6 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
-import { makeRef } from '../utils/make-ref';
 import { IxComponent } from '../utils/internal';
 
 @Component({
