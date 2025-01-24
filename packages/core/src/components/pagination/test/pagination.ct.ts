@@ -52,8 +52,8 @@ test('should dispatch items count change', async ({ mount, page }) => {
 
   const itemChanged = pagination.evaluate((elm) => {
     return new Promise<number>((resolve) => {
-      elm.addEventListener('itemCountChanged', (e: CustomEvent) =>
-        resolve(e.detail)
+      elm.addEventListener('itemCountChanged', (event) =>
+        resolve((event as CustomEvent<number>).detail)
       );
     });
   });

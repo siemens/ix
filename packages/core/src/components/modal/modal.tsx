@@ -67,7 +67,7 @@ export class Modal {
    * - Return `true` to proceed in dismissing the modal
    * - Return `false` to abort in dismissing the modal
    */
-  @Prop() beforeDismiss: (reason?: any) => boolean | Promise<boolean>;
+  @Prop() beforeDismiss?: (reason?: any) => boolean | Promise<boolean>;
 
   /**
    * Centered modal
@@ -88,12 +88,12 @@ export class Modal {
   /**
    * Dialog close
    */
-  @Event() dialogClose: EventEmitter;
+  @Event() dialogClose!: EventEmitter;
 
   /**
    * Dialog cancel
    */
-  @Event() dialogDismiss: EventEmitter;
+  @Event() dialogDismiss!: EventEmitter;
 
   @State() modalVisible = false;
 
@@ -105,7 +105,7 @@ export class Modal {
   }
 
   get dialog() {
-    return this.hostElement.shadowRoot.querySelector('dialog');
+    return this.hostElement.shadowRoot!.querySelector('dialog');
   }
 
   private slideInModal() {
@@ -148,7 +148,7 @@ export class Modal {
       return;
     }
 
-    const rect = this.dialog.getBoundingClientRect();
+    const rect = this.dialog!.getBoundingClientRect();
     const isClickOutside =
       rect.top <= event.clientY &&
       event.clientY <= rect.top + rect.height &&
@@ -197,7 +197,7 @@ export class Modal {
 
     this.slideOutModal(() => {
       this.modalVisible = false;
-      this.dialog.close(
+      this.dialog!.close(
         JSON.stringify(
           {
             type: 'dismiss',
@@ -223,7 +223,7 @@ export class Modal {
 
     this.slideOutModal(() => {
       this.modalVisible = false;
-      this.dialog.close(
+      this.dialog!.close(
         JSON.stringify(
           {
             type: 'close',

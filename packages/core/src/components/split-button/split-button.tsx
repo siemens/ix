@@ -55,7 +55,7 @@ export class SplitButton {
   /**
    * Button label
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Button icon
@@ -82,10 +82,10 @@ export class SplitButton {
   /**
    * Button clicked
    */
-  @Event() buttonClick: EventEmitter<MouseEvent>;
+  @Event() buttonClick!: EventEmitter<MouseEvent>;
 
-  private triggerElement: HTMLElement;
-  private dropdownElement: HTMLIxDropdownElement;
+  private triggerElement?: HTMLElement;
+  private dropdownElement?: HTMLIxDropdownElement;
 
   private linkTriggerRef() {
     if (this.triggerElement && this.dropdownElement) {

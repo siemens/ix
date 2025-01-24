@@ -39,7 +39,7 @@ regressionTest.describe('upload', () => {
             state = UploadFileState.UPLOAD_SUCCESSED;
             break;
           default:
-            console.error('Invalid enum value');
+            throw Error('Invalid upload file state');
         }
 
         await locator.evaluate(
