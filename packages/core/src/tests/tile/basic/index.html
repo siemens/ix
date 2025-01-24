@@ -13,40 +13,52 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
+    <style>
+      .tile-header {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .tile-data {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+
+      .tile-footer {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      ix-tile {
+        margin-bottom: 1rem;
+      }
+    </style>
   </head>
   <body style="padding: 2rem">
     <ix-tile size="small">92.8 °C</ix-tile>
-    <div class="mb-3"></div>
+
     <ix-tile size="medium" class="mr-1">
       <div slot="header">Tile header</div>
       <div class="text-l">92.8 °C</div>
     </ix-tile>
-    <div class="mb-3"></div>
 
     <ix-tile size="big">
-      <div
-        class="d-flex flex-grow-1 align-items-center justify-content-between"
-        slot="header"
-      >
+      <div class="tile-header" slot="header">
         Tile header
         <ix-icon-button ghost icon="context-menu"></ix-icon-button>
       </div>
       <div slot="subheader">Temperature</div>
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          align-items: flex-end;
-          justify-content: space-between;
-        "
-      >
+      <div class="tile-data">
         <span>92.8 °C</span>
       </div>
-      <div
-        class="d-flex h-100 align-items-center justify-content-end"
-        slot="footer"
-      >
+      <div class="tile-footer" slot="footer">
         <ix-button ghost slot="footer" icon="chevron-right-small">
           Details
         </ix-button>
