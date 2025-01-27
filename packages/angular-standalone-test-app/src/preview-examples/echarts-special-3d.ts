@@ -10,14 +10,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 
-import { getComputedCSSProperty } from '@siemens/ix-echarts';
+import { getComputedCSSProperty, registerTheme } from '@siemens/ix-echarts';
 import { themeSwitcher } from '@siemens/ix';
 import { EChartsOption } from 'echarts';
-import * as echarts from 'echarts/core';
-
-// echarts-gl does not provide any types, so we have to use @ts-ignore.
-// @ts-ignore
-import * as _ from 'echarts-gl/dist/echarts-gl';
+import * as echarts from 'echarts';
+/* import 'echarts-gl'; */
 
 @Component({
   standalone: true,
@@ -87,6 +84,8 @@ export default class EchartsSpecial3d implements OnInit {
   };
 
   ngOnInit() {
+    registerTheme(echarts);
+
     themeSwitcher.themeChanged.on((theme: string) => {
       this.theme = theme;
     });
