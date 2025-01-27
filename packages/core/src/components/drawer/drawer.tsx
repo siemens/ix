@@ -144,10 +144,7 @@ export class Drawer {
       easing: 'easeInSine',
       begin: () => {
         el.style.opacity = '0';
-      },
-      update: (anim) => {
-        const currentWidth = parseInt(anim.animations[0].currentValue);
-        this.showContent = currentWidth >= 1;
+        this.showContent = false;
       },
       complete: () => {
         el.classList.add('display-none');
@@ -170,9 +167,8 @@ export class Drawer {
         el.classList.remove('display-none');
         el.style.opacity = '0';
       },
-      update: (anim) => {
-        const currentWidth = parseInt(anim.animations[0].currentValue);
-        this.showContent = currentWidth >= 1;
+      complete: () => {
+        this.showContent = true;
       },
     });
   }
