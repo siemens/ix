@@ -26,7 +26,7 @@ export class LinkButton {
   /**
    * Url for the link button
    */
-  @Prop() url: string;
+  @Prop() url?: string;
 
   /**
    * Specifies where to open the link

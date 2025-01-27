@@ -22,10 +22,10 @@ describe('ix-message-bar', () => {
       html: '<ix-message-bar type="danger"></ix-message-bar>',
     });
 
-    messageBar = document.querySelector('ix-message-bar');
-    closeButton = messageBar.shadowRoot.querySelector(
+    messageBar = document.querySelector('ix-message-bar')!;
+    closeButton = messageBar.shadowRoot!.querySelector(
       '[data-testid="close-btn"]'
-    );
+    )!;
   });
 
   it('closes the alert message bar', (done) => {

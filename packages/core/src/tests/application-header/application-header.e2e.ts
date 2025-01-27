@@ -60,7 +60,7 @@ regressionTest.describe('application header: basic', () => {
 });
 
 regressionTest.describe('application header: standalone', () => {
-  Object.keys(viewPorts).forEach((name: keyof typeof viewPorts) => {
+  (Object.keys(viewPorts) as Array<keyof typeof viewPorts>).forEach((name) => {
     regressionTest(`viewport ${name}`, async ({ page }) => {
       await page.setViewportSize(viewPorts[name]);
       await page.goto('application-header/standalone');

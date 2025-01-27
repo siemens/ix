@@ -125,16 +125,11 @@ export function HookValidationLifecycle(options?: {
           typeof host.getValidityState === 'function'
         ) {
           const validityState = await host.getValidityState();
-          Object.keys(validityState)
-            // Use only the keys that are relevant for the validation state
-            // patternMismatch used for `ix-date-input`
-            .filter((key) => ['patternMismatch'].includes(key))
-            .forEach((key) => {
-              host.classList.toggle(
-                `ix-invalid--${key}`,
-                validityState[key as keyof ValidityState]
-              );
-            });
+
+          host.classList.toggle(
+            `ix-invalid--validity-patternMismatch`,
+            validityState.patternMismatch
+          );
         }
       };
 

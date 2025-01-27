@@ -21,7 +21,7 @@ export class KeyValueList {
   /**
    * Optional striped key value list style
    */
-  @Prop() striped: boolean;
+  @Prop() striped: boolean = false;
 
   render() {
     return (

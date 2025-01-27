@@ -21,10 +21,10 @@ export class CssGridItem {
   /**
    * Grid item name
    */
-  @Prop() itemName: string;
+  @Prop() itemName!: string;
 
   render() {
-    const style = {};
+    const style: Record<string, string> = {};
     style['grid-area'] = this.itemName;
 
     return (

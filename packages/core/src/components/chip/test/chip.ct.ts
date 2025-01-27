@@ -33,8 +33,21 @@ test.describe('chip test', () => {
     const normalChipElement = page.locator('ix-chip').first();
     const outlineChipElement = page.locator('ix-chip').last();
 
-    const normalChipSize = await normalChipElement.boundingBox();
-    const outlineChipSize = await outlineChipElement.boundingBox();
+    const normalChipSize = (await normalChipElement.boundingBox()) as {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    };
+    const outlineChipSize = (await outlineChipElement.boundingBox()) as {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    };
+
+    expect(normalChipSize).not.toBeNull();
+    expect(outlineChipSize).not.toBeNull();
 
     expect(normalChipSize.width).toEqual(outlineChipSize.width);
   });
