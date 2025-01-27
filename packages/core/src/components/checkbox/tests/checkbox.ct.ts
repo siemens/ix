@@ -58,7 +58,9 @@ test(`disabled = undefined`, async ({ mount, page }) => {
 
   const checkedChange$ = checkboxElement.evaluate(
     (element: HTMLIxCheckboxElement) => {
-      element.disabled = undefined;
+      // Needs to be tested because at runtime undefined assignment could happen
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      element.disabled = undefined as any;
       return new Promise<void>((resolve) => {
         element.addEventListener('checkedChange', () => resolve());
       });
