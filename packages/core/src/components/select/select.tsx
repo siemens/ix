@@ -180,6 +180,17 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() hideListHeader = false;
 
   /**
+   * Optional paramater to set the width of the dropdown element in rem.
+   */
+  @Prop() dropdownWidth?: number;
+
+  /**
+   * Optional paramater to set the maximum width of the dropdown element in rem.
+   * By default the maximum width of the dropdown element is set to 100%.
+   */
+  @Prop() dropdownMaxWidth?: number;
+
+  /**
    * Value changed
    * @since 2.0.0
    */
@@ -960,6 +971,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
             return {
               minWidth: `${minWidth}px`,
+              width: `${this.dropdownWidth}rem`,
+              maxWidth: `${this.dropdownMaxWidth}rem`,
             };
           }}
         >

@@ -16947,6 +16947,54 @@
           "required": false
         },
         {
+          "name": "dropdownMaxWidth",
+          "type": "number | undefined",
+          "complexType": {
+            "original": "number",
+            "resolved": "number | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "dropdown-max-width",
+          "reflectToAttr": false,
+          "docs": "Optional paramater to set the maximum width of the dropdown element in rem.\nBy default the maximum width of the dropdown element is set to 100%.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "dropdownWidth",
+          "type": "number | undefined",
+          "complexType": {
+            "original": "number",
+            "resolved": "number | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "dropdown-width",
+          "reflectToAttr": false,
+          "docs": "Optional paramater to set the width of the dropdown element in rem.",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "editable",
           "type": "boolean",
           "complexType": {

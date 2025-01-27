@@ -986,6 +986,8 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect
   'i18nSelectListHeader',
   'i18nNoMatches',
   'hideListHeader',
+  'dropdownWidth',
+  'dropdownMaxWidth',
   'valueChange',
   'itemSelectionChange',
   'inputChange',
