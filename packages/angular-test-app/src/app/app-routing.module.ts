@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
+import AddIconToCache from '../preview-examples/add-icon-to-cache';
 import AgGrid from '../preview-examples/aggrid';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
@@ -242,6 +243,10 @@ const routes: Routes = [
       {
         path: 'action-card',
         component: ActionCard,
+      },
+      {
+        path: 'add-icon-to-cache',
+        component: AddIconToCache,
       },
       {
         path: 'application',

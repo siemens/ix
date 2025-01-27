@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as echarts from 'echarts';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
+import AddIconToCache from '../preview-examples/add-icon-to-cache';
 import AgGrid from '../preview-examples/aggrid';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
@@ -249,6 +250,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     AppComponent,
     AboutAndLegal,
     ActionCard,
+    AddIconToCache,
     AgGrid,
     ApplicationExample,
     ApplicationBreakpointExample,
