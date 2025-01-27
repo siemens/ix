@@ -107,35 +107,39 @@ export class InputGroup {
   }
 
   private startSlotChanged() {
-    const startPadding = this.getChildrenWidth(this.startSlotRef);
+    setTimeout(() => {
+      const startPadding = this.getChildrenWidth(this.startSlotRef);
 
-    if (startPadding !== 0) {
-      this.inputPaddingLeft = 11 + startPadding;
-    } else {
-      this.inputPaddingLeft = 0;
-    }
+      if (startPadding !== 0) {
+        this.inputPaddingLeft = 11 + startPadding;
+      } else {
+        this.inputPaddingLeft = 0;
+      }
 
-    if (!this.inputElement) {
-      return;
-    }
+      if (!this.inputElement) {
+        return;
+      }
 
-    const isInputInvalid =
-      !this.inputElement.validity.valid ||
-      this.inputElement.classList.contains('is-invalid');
+      const isInputInvalid =
+        !this.inputElement.validity.valid ||
+        this.inputElement.classList.contains('is-invalid');
 
-    const formWasValidated =
-      this.inputElement.form?.classList.contains('was-validated') ||
-      this.inputElement.form?.noValidate === false;
+      const formWasValidated =
+        this.inputElement.form?.classList.contains('was-validated') ||
+        this.inputElement.form?.noValidate === false;
 
-    if (formWasValidated && isInputInvalid) {
-      const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 7;
-      this.inputElement.style.backgroundPosition = `left ${left}px center`;
-      this.inputPaddingLeft += 26;
-    }
+      if (formWasValidated && isInputInvalid) {
+        const left = this.inputPaddingLeft !== 0 ? this.inputPaddingLeft : 7;
+        this.inputElement.style.backgroundPosition = `left ${left}px center`;
+        this.inputPaddingLeft += 26;
+      }
+    });
   }
 
   private endSlotChanged() {
-    this.inputPaddingRight = 15 + this.getChildrenWidth(this.endSlotRef);
+    setTimeout(() => {
+      this.inputPaddingRight = 15 + this.getChildrenWidth(this.endSlotRef);
+    });
   }
 
   private getChildrenWidth(slotElement: Element | undefined) {

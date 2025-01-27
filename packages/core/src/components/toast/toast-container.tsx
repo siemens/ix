@@ -63,6 +63,10 @@ export class ToastContainer {
   @Watch('position')
   onPositionChange(newPosition: string, oldPosition: string) {
     const toastContainer = document.getElementById(this.containerId);
+    if (!toastContainer) {
+      console.warn('No toast container found, cannot configure toast position');
+      return;
+    }
     toastContainer.classList.remove(
       `${this.PREFIX_POSITION_CLASS}${oldPosition}`
     );
@@ -84,7 +88,7 @@ export class ToastContainer {
     }
 
     toast.toastTitle = config.title;
-    toast.type = config.type;
+    toast.type = config.type ?? 'info';
     toast.autoClose = config.autoClose ?? true;
     toast.autoCloseDelay = config.autoCloseDelay ?? 5000;
     toast.icon = config.icon;

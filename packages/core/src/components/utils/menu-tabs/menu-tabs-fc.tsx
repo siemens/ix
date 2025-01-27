@@ -21,7 +21,11 @@ const getTabItems = (context: MenuSettings | MenuAbout) => {
     return (
       <ix-tab-item
         selected={label === context.activeTabLabel}
-        onClick={() => setTab(context, label)}
+        onClick={() => {
+          if (label) {
+            setTab(context, label);
+          }
+        }}
       >
         {label}
       </ix-tab-item>
