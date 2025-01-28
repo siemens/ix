@@ -33,10 +33,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": [
-              "node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css",
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -45,7 +42,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1.1mb"
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
