@@ -9,17 +9,23 @@
 import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+// Reduce flaky behavior
+regressionTest.describe.configure({
+  mode: 'serial',
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-tooltip for=".test">tooltip</ix-tooltip>
     <ix-button class="test">button</ix-button>
   `);
   const tooltip = page.locator('ix-tooltip');
+  await expect(tooltip).toHaveClass(/hydrated/);
+
   const button = page.locator('ix-button');
+  await expect(button).toHaveClass(/hydrated/);
 
   await button.hover();
-
-  await expect(tooltip).toHaveClass(/hydrated/);
   await expect(tooltip).toBeVisible();
 });
 
@@ -45,11 +51,12 @@ regressionTest('renders in shadow DOM', async ({ mount, page }) => {
   });
 
   const tooltip = page.locator('ix-tooltip');
+  await expect(tooltip).toHaveClass(/hydrated/);
   const button = page.locator('ix-button');
+  await expect(button).toHaveClass(/hydrated/);
 
   await button.hover();
 
-  await expect(tooltip).toHaveClass(/hydrated/);
   await expect(tooltip).toBeVisible();
 });
 
