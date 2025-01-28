@@ -505,3 +505,102 @@ test('async set content and check input value', async ({ mount, page }) => {
   const input = page.locator('input');
   await expect(input).toHaveValue('Item 1');
 });
+
+test.describe('Dropdown width', () => {
+  test('should be 25rem when dropdown-width is set to 35rem and dropdown-max-width to 25rem', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1" dropdown-width=35 dropdown-max-width=25>
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    expect(box?.width).toBe(16 * 25);
+  });
+
+  test('should be 25rem when dropdown-width is set to 25 and dropdown-max-width to 35rem', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1" dropdown-width=25 dropdown-max-width=35>
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    expect(box?.width).toBe(16 * 25);
+  });
+
+  test('should be 25rem when dropdown-width is set to 25 and dropdown-max-width is not set', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1" dropdown-width=25>
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    expect(box?.width).toBe(16 * 25);
+  });
+
+  test('should be 35rem when dropdown-width is not set and dropdown-max-width is set to 35rem', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1" dropdown-max-width=35>
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    expect(box?.width).toBe(16 * 35);
+  });
+
+  test('should be 100% when dropdown-width and dropdown-max-width are not set', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1">
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    const pageWidth = page.viewportSize()?.width;
+
+    expect(box?.width).toBe(pageWidth);
+  });
+});
