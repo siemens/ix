@@ -16948,16 +16948,16 @@
         },
         {
           "name": "dropdownMaxWidth",
-          "type": "number | undefined",
+          "type": "string | undefined",
           "complexType": {
-            "original": "number",
-            "resolved": "number | undefined",
+            "original": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
           "attr": "dropdown-max-width",
           "reflectToAttr": false,
-          "docs": "Optional paramater to set the maximum width of the dropdown element in rem.\nBy default the maximum width of the dropdown element is set to 100%.",
+          "docs": "The maximum width of the dropdown element (e.g. \"200px\").\nBy default the maximum width of the dropdown element is set to 100%.",
           "docsTags": [
             {
               "name": "since",
@@ -16966,7 +16966,7 @@
           ],
           "values": [
             {
-              "type": "number"
+              "type": "string"
             },
             {
               "type": "undefined"
@@ -16977,16 +16977,16 @@
         },
         {
           "name": "dropdownWidth",
-          "type": "number | undefined",
+          "type": "string | undefined",
           "complexType": {
-            "original": "number",
-            "resolved": "number | undefined",
+            "original": "string",
+            "resolved": "string | undefined",
             "references": {}
           },
           "mutable": false,
           "attr": "dropdown-width",
           "reflectToAttr": false,
-          "docs": "Optional paramater to set the width of the dropdown element in rem.",
+          "docs": "The width of the dropdown element (e.g. \"200px\").",
           "docsTags": [
             {
               "name": "since",
@@ -16995,7 +16995,7 @@
           ],
           "values": [
             {
-              "type": "number"
+              "type": "string"
             },
             {
               "type": "undefined"

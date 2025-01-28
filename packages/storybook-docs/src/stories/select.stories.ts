@@ -56,12 +56,7 @@ export const editableSelect: Story = {
 };
 
 export const editable_with_dropdown_width: Story = {
-  render: ({
-    editable,
-    disabled,
-    dropdownWidth,
-    dropdownMaxWidth,
-  }) => {
+  render: ({ editable, disabled, dropdownWidth, dropdownMaxWidth }) => {
     return html` <ix-select
       editable=${editable}
       disabled=${disabled}
@@ -80,7 +75,7 @@ export const editable_with_dropdown_width: Story = {
   args: {
     editable: true,
     disabled: false,
-    dropdownWidth: 35,
-    dropdownMaxWidth: 25,
+    dropdownWidth: '35rem',
+    dropdownMaxWidth: '25rem',
   },
 };
