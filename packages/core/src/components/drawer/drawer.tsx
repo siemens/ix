@@ -130,7 +130,7 @@ export class Drawer {
         opacity: [1, 0],
         easing: 'easeInSine',
         complete: () => {
-          el.classList.add('d-none');
+          el.classList.add('drawer-hidden');
         },
       });
     }
@@ -145,7 +145,7 @@ export class Drawer {
         opacity: [0, 1],
         easing: 'easeOutSine',
         begin: () => {
-          el.classList.remove('d-none');
+          el.classList.remove('drawer-hidden');
         },
       });
     }
@@ -161,7 +161,7 @@ export class Drawer {
         class={{
           'drawer-container': true,
           toggle: this.show,
-          'd-none': true,
+          'drawer-hidden': true,
         }}
         style={{
           width: this.width === 'auto' ? this.width : `${this.width}rem`,

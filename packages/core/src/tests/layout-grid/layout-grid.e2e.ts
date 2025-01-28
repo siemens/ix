@@ -9,136 +9,38 @@
 import { expect } from '@playwright/test';
 import { regressionTest, viewPorts } from '@utils/test';
 
-regressionTest('should not have regression', async ({ mount, page }) => {
+regressionTest('should not have regression', async ({ page }) => {
   await page.setViewportSize(viewPorts.lg);
-  await mount(htmlSource);
+  await page.goto('layout-grid/basic');
   const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
-regressionTest('should not have regression large', async ({ mount, page }) => {
+regressionTest('should not have regression large', async ({ page }) => {
   await page.setViewportSize(viewPorts.lg);
-  await mount(htmlSimple);
+  await page.goto('layout-grid/simple');
   const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
-regressionTest('should not have regression medium', async ({ mount, page }) => {
+regressionTest('should not have regression medium', async ({ page }) => {
   await page.setViewportSize(viewPorts.md);
-  await mount(htmlSimple);
+  await page.goto('layout-grid/simple');
   const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
 
-regressionTest('should not have regression small', async ({ mount, page }) => {
+regressionTest('should not have regression small', async ({ page }) => {
   await page.setViewportSize(viewPorts.sm);
-  await mount(htmlSimple);
+  await page.goto('layout-grid/simple');
   const grid = page.locator('ix-layout-grid').nth(0);
   await expect(grid).toHaveClass(/hydrated/);
 
   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
 });
-
-const htmlSimple = `
-  <ix-layout-grid>
-    <ix-row>
-      <ix-col size="12" size-sm="12" size-md="2" size-lg="4">
-        1
-      </ix-col>
-      <ix-col size="12" size-sm="12" size-md="2" size-lg="4">
-        2
-      </ix-col>
-      <ix-col size="12" size-sm="12" size-md="2" size-lg="4">
-        3
-      </ix-col>
-    </ix-row>
-  </ix-layout-grid>
-
-  <style>
-    ix-col {
-      background-color: var(--theme-color-success-40);
-      border: solid 1px #fff;
-      color: #fff;
-      text-align: center;
-    }
-  </style>
-`;
-
-const htmlSource = `
-<h4>Column = 4</h4>
-<ix-layout-grid columns="4">
-  <ix-row>
-    <ix-col size="2">1</ix-col>
-    <ix-col size="2">2</ix-col>
-    <ix-col size="2">
-      <ix-button style="width: 100%;">Test</ix-button>
-    </ix-col>
-    <ix-col size="2">4</ix-col>
-    <ix-col size="2">5</ix-col>
-  </ix-row>
-</ix-layout-grid>
-
-<h4>Normal</h4>
-<ix-layout-grid>
-  <ix-row>
-    <ix-col>1</ix-col>
-    <ix-col>2</ix-col>
-    <ix-col size="2">
-      <ix-button style="width: 100%;">Test</ix-button>
-    </ix-col>
-    <ix-col>4</ix-col>
-    <ix-col>5</ix-col>
-  </ix-row>
-</ix-layout-grid>
-
-<h4>No padding</h4>
-<ix-layout-grid no-margin>
-  <ix-row>
-    <ix-col size="2">1</ix-col>
-    <ix-col size="2">2</ix-col>
-    <ix-col>
-      <ix-button style="width: 100%;">Test</ix-button>
-    </ix-col>
-    <ix-col size="2">4</ix-col>
-    <ix-col size="2">5</ix-col>
-  </ix-row>
-</ix-layout-grid>
-
-<h4>No row gap</h4>
-<ix-layout-grid no-row-gap>
-  <ix-row>
-    <ix-col size="2">1</ix-col>
-    <ix-col size="2">2</ix-col>
-    <ix-col>
-      <ix-button style="width: 100%;">Test</ix-button>
-    </ix-col>
-    <ix-col size="2">4</ix-col>
-    <ix-col size="2">5</ix-col>
-  </ix-row>
-
-  <ix-row>
-    <ix-col size="2">1</ix-col>
-    <ix-col size="2">2</ix-col>
-    <ix-col>
-      <ix-button style="width: 100%;">Test</ix-button>
-    </ix-col>
-    <ix-col size="2">4</ix-col>
-    <ix-col size="2">5</ix-col>
-  </ix-row>
-</ix-layout-grid>
-
-<style>
-ix-col {
-  background-color: var(--theme-color-success-40);
-  border: solid 1px #fff;
-  color: #fff;
-  text-align: center;
-}
-</style>
-`;
