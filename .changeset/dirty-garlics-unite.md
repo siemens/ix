@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-fix `ix-select` to correctly select known items in ediable mode on enter navigation
+Fix `ix-select` in editable mode to correctly select a known item when confirmed with Enter.
