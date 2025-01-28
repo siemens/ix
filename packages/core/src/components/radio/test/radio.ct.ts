@@ -45,3 +45,30 @@ test(`form-ready default active`, async ({ mount, page }) => {
   const formData = await getFormValue(formElement, 'my-field-name', page);
   expect(formData).toBe('on');
 });
+
+test(`disabled = undefined`, async ({ mount, page }) => {
+  await mount(`<ix-radio label="test"></ix-radio>`);
+
+  const radioElement = page.locator('ix-radio');
+  const nativeInput = radioElement.locator('input');
+  const label = radioElement.locator('label');
+
+  const checkedChange$ = radioElement.evaluate(
+    (element: HTMLIxCheckboxElement) => {
+      // Needed for testcase
+      element.disabled = undefined as any;
+      return new Promise<void>((resolve) => {
+        element.addEventListener('checkedChange', () => resolve());
+      });
+    }
+  );
+
+  await radioElement.click();
+  await checkedChange$;
+
+  await expect(radioElement).not.toHaveClass(/disabled/);
+  await expect(nativeInput).not.toBeDisabled();
+
+  const disableLabelColor = 'rgba(245, 252, 255, 0.93)';
+  await expect(label).toHaveCSS('color', disableLabelColor);
+});

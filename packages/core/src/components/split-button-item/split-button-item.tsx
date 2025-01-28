@@ -29,22 +29,22 @@ import { makeRef } from '../utils/make-ref';
   shadow: true,
 })
 export class SplitButtonItem implements DropdownItemWrapper {
-  @Element() hostElement: HTMLIxSplitButtonItemElement;
+  @Element() hostElement!: HTMLIxSplitButtonItemElement;
 
   /**
    * Dropdown icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Dropdown label
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Dropdown item clicked
    */
-  @Event() itemClick: EventEmitter<MouseEvent>;
+  @Event() itemClick!: EventEmitter<MouseEvent>;
 
   private wrapperRef = makeRef<HTMLIxDropdownItemElement>();
 

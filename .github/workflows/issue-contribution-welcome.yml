@@ -16,7 +16,7 @@ jobs:
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            Thank you for creating this issue! It has been labeled as `Contribution welcome 👨‍💻`. This issue is open for contributions from the community.
+            The issue has been labeled as `Contribution welcome 👨‍💻`. This issue is open for contributions from the community.
 
             If you'd like to work on this issue, please comment here letting us know that you would like to submit a pull request for it. This helps us to keep track of the pull request and make sure there isn't duplicated effort.
             Thank you!

@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export function closestElement(selector: string, el: any) {
+export function closestElement(selector: string, el: any): null | Element {
   if (!el) {
     return null;
   }
@@ -50,9 +50,9 @@ export function closestPassShadow(node: Node, selector: string) {
     if (node.matches(selector)) {
       return node;
     } else {
-      return closestPassShadow(node.parentNode, selector);
+      return closestPassShadow(node.parentNode!, selector);
     }
   }
 
-  return closestPassShadow(node.parentNode, selector);
+  return closestPassShadow(node.parentNode!, selector);
 }
