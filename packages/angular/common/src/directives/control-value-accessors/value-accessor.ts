@@ -37,7 +37,7 @@ export class ValueAccessor
 
   writeValue(value: any): void {
     this.elementRef.nativeElement.value = this.lastValue = value;
-    mapNgToIxClassNames(this.elementRef);
+    this.setClasses();
   }
 
   handleValueChange(el: HTMLElement, value: any): void {
@@ -46,7 +46,7 @@ export class ValueAccessor
         this.lastValue = value;
         this.onChange(value);
       }
-      mapNgToIxClassNames(this.elementRef);
+      this.setClasses();
     }
   }
 
@@ -54,7 +54,7 @@ export class ValueAccessor
   _handleBlurEvent(el: any): void {
     if (el === this.elementRef.nativeElement) {
       this.onTouched();
-      mapNgToIxClassNames(this.elementRef);
+      this.setClasses();
     }
   }
 
@@ -77,12 +77,7 @@ export class ValueAccessor
   }
 
   ngAfterViewInit(): void {
-    let ngControl;
-    try {
-      ngControl = this.injector.get<NgControl>(NgControl);
-    } catch {
-      /* No FormControl or ngModel binding */
-    }
+    let ngControl = this.getAssignedNgControl();
 
     if (!ngControl) {
       return;
@@ -90,11 +85,30 @@ export class ValueAccessor
 
     if (ngControl.statusChanges) {
       this.statusChanges = ngControl.statusChanges.subscribe(() => {
-        mapNgToIxClassNames(this.elementRef);
+        this.setClasses();
       });
     }
 
     detourFormControlMethods(ngControl, this.elementRef);
+  }
+
+  getAssignedNgControl(): NgControl | null {
+    let ngControl: NgControl | null = null;
+    try {
+      ngControl = this.injector.get<NgControl>(NgControl);
+    } catch {
+      /* No FormControl or ngModel binding */
+    }
+
+    return ngControl;
+  }
+
+  setClasses() {
+    const ngControl = this.getAssignedNgControl();
+    if (!ngControl) {
+      return;
+    }
+    mapNgToIxClassNames(this.elementRef);
   }
 }
 
@@ -123,9 +137,12 @@ const detourFormControlMethods = (
   }
 };
 
-export const mapNgToIxClassNames = (element: ElementRef): void => {
-  setTimeout(() => {
-    const input = element.nativeElement as HTMLInputElement;
+export const mapNgToIxClassNames = async (
+  element: ElementRef
+): Promise<void> => {
+  setTimeout(async () => {
+    const input = element.nativeElement;
+
     const classes = getClasses(input);
     const classList = input.classList;
     classList.remove(
