@@ -41,9 +41,9 @@ Then you can reference iX icons by name anywhere in your application.
 ```html
 import { iconStar } from '@siemens/ix-icons/icons';
 
-<IxIcon name="{iconStar}" size="16"></IxIcon>
-<IxIcon name="{iconStar}" size="24"></IxIcon>
-<IxIcon name="{iconStar}" size="32"></IxIcon>
+<IxIcon name={iconStar} size="16"></IxIcon>
+<IxIcon name={iconStar} size="24"></IxIcon>
+<IxIcon name={iconStar} size="32"></IxIcon>
 ```
 
 #### Web components
@@ -59,9 +59,9 @@ import { iconStar } from '@siemens/ix-icons/icons';
 ```html
 import { iconStar } from '@siemens/ix-icons/icons';
 
-<IxIcon name="{iconStar}" size="16"></IxIcon>
-<IxIcon name="{iconStar}" size="24"></IxIcon>
-<IxIcon name="{iconStar}" size="32"></IxIcon>
+<IxIcon :name="iconStar" size="16"></IxIcon>
+<IxIcon :name="iconStar" size="24"></IxIcon>
+<IxIcon :name="iconStar" size="32"></IxIcon>
 ```
 
 ### Integrate external icons
