@@ -2463,10 +2463,12 @@ export namespace Components {
         "disabled": boolean;
         /**
           * Optional paramater to set the maximum width of the dropdown element in rem. By default the maximum width of the dropdown element is set to 100%.
+          * @since 2.7.0
          */
         "dropdownMaxWidth"?: number;
         /**
           * Optional paramater to set the width of the dropdown element in rem.
+          * @since 2.7.0
          */
         "dropdownWidth"?: number;
         /**
@@ -7695,10 +7697,12 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * Optional paramater to set the maximum width of the dropdown element in rem. By default the maximum width of the dropdown element is set to 100%.
+          * @since 2.7.0
          */
         "dropdownMaxWidth"?: number;
         /**
           * Optional paramater to set the width of the dropdown element in rem.
+          * @since 2.7.0
          */
         "dropdownWidth"?: number;
         /**

@@ -16958,7 +16958,12 @@
           "attr": "dropdown-max-width",
           "reflectToAttr": false,
           "docs": "Optional paramater to set the maximum width of the dropdown element in rem.\nBy default the maximum width of the dropdown element is set to 100%.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.7.0"
+            }
+          ],
           "values": [
             {
               "type": "number"
@@ -16982,7 +16987,12 @@
           "attr": "dropdown-width",
           "reflectToAttr": false,
           "docs": "Optional paramater to set the width of the dropdown element in rem.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.7.0"
+            }
+          ],
           "values": [
             {
               "type": "number"
