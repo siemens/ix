@@ -15,6 +15,8 @@ import {
   IxSelectValueAccessorDirective,
 } from '@siemens/ix-angular/standalone';
 
+type Locale = 'de' | 'en';
+
 @Component({
   standalone: true,
   selector: 'app-example',
@@ -27,11 +29,11 @@ import {
   templateUrl: './datepicker-locale.html',
 })
 export default class DatepickerLocale {
-  locale: 'de' | 'en' | (string & {}) = 'de';
+  locale: Locale = 'de';
 
   setLocale(event: Event) {
     const { detail } = event as CustomEvent<string>;
 
-    this.locale = detail;
+    this.locale = detail as Locale;
   }
 }

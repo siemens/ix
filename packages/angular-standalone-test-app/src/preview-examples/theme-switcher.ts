@@ -44,9 +44,9 @@ export default class ThemeSwitcher {
 
   constructor() {}
 
-  onItemSelectionChange(event: Event) {
-    const customEvent = event as CustomEvent<string | string[]>;
-    const newTheme = customEvent.detail[0];
+  onValueChange(event: Event) {
+    const customEvent = event as CustomEvent<string>;
+    const newTheme = customEvent.detail;
     themeSwitcher.setTheme(newTheme);
     this.selectedTheme = newTheme;
   }

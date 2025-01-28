@@ -28,8 +28,9 @@ export default class EchartsSpecialZoom implements OnInit {
 
   //create some random data
   private base = +new Date(1968, 9, 3);
-  private oneDay = 24 * 3600 * 1000;
-  private date: (string | number)[] = [];
+
+  private readonly oneDay = 24 * 3600 * 1000;
+  private readonly date: (string | number)[] = [];
 
   data: number[] = [0];
 
@@ -86,7 +87,7 @@ export default class EchartsSpecialZoom implements OnInit {
 
   generateData(): void {
     for (let i = 1; i < 20000; i++) {
-      const now = new Date((this.base += this.oneDay));
+      const now = this.createNewBase();
       this.date.push(
         `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}`
       );
@@ -102,5 +103,11 @@ export default class EchartsSpecialZoom implements OnInit {
     themeSwitcher.themeChanged.on((theme: string) => {
       this.theme = theme;
     });
+  }
+
+  private createNewBase() {
+    this.base += this.oneDay;
+
+    return new Date(this.base);
   }
 }
