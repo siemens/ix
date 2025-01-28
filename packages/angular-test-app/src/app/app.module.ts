@@ -156,7 +156,6 @@ import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
 import Loading from '../preview-examples/loading';
-import LoadIcon from '../preview-examples/load-icon';
 import MapNavigation from '../preview-examples/map-navigation';
 import MapNavigationMigration from '../preview-examples/map-navigation-migration';
 import MapNavigationOverlay from '../preview-examples/map-navigation-overlay';
@@ -373,7 +372,6 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     LinkButtonDisabled,
     LinkButton,
     Loading,
-    LoadIcon,
     MapNavigationOverlay,
     MapNavigation,
     MenuCategory,
