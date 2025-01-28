@@ -42,7 +42,7 @@ A select component allows users to choose from a list of options. It supports si
 - **Overflow:**
   - The text in an input field is truncated with the length of the container.
   - On the multiselect, the selected items break into a second line and then show a scrollbar if it extends beyond two lines.
-  - The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item. The maximum width of the dropdown is set to 100% by default. Both the width and maximum width of the dropdown can be defined in rem.
+  - The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item. The maximum width of the dropdown list is set to 100% by default. Use the properties `dropdownWidth` and `dropdownMaxWidth` to customize the dimensions.
 - **Alignment:** Selects are always aligned to the left, while right alignment is reserved exclusively for [number inputs](input-number.mdx).
 
 ### States
