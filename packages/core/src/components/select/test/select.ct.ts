@@ -604,3 +604,24 @@ test.describe('Dropdown width', () => {
     expect(box?.width).toBe(pageWidth);
   });
 });
+
+test('should be 100% when dropdown-max-width is greater than the viewport width', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-select value="1" dropdown-max-width="10000rem">
+    <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+  </ix-select>`);
+
+  const select = page.locator('ix-select');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const dropdown = select.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  const box = await dropdown.boundingBox();
+  const pageWidth = page.viewportSize()?.width;
+
+  expect(box?.width).toBe(pageWidth);
+});
