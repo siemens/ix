@@ -1,0 +1,44 @@
+<!--
+SPDX-FileCopyrightText: 2024 Siemens AG
+SPDX-License-Identifier: MIT
+-->
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Number Input Test</title>
+    <style>
+      .number-input-wrapper {
+        padding: 1rem;
+      }
+      #number-input-container {
+        display: none;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+  <div class="number-input-wrapper">
+    <ix-button onclick="toggleVisibility()">Add Number Input</ix-button>
+    <div id="number-input-container">
+      <ix-number-input show-stepper-buttons value="0"></ix-number-input>
+    </div>
+  </div>
+
+  <script>
+    function toggleVisibility() {
+      const container = document.getElementById('number-input-container');
+      const button = document.querySelector('button');
+      const isVisible = container.style.display === 'block';
+
+      container.style.display = isVisible ? 'none' : 'block';
+      button.textContent = isVisible ? 'Add Number Input' : 'Remove Number Input';
+    }
+  </script>
+  <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

@@ -16,3 +16,19 @@ regressionTest.describe('number-input', () => {
     await expect(page).toHaveScreenshot();
   });
 });
+
+regressionTest.describe('hide number-input initially', () => {
+  regressionTest('show number-input again', async ({ page }) => {
+    await page.goto('number-input/dynamic');
+
+    const toggleButton = page.getByRole('button', {
+      name: 'Add Number Input',
+    });
+    await toggleButton.click();
+
+    const numberInputContainer = page.locator('#number-input-container');
+    await expect(numberInputContainer).toBeVisible();
+
+    await expect(page).toHaveScreenshot();
+  });
+});

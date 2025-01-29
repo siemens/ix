@@ -168,6 +168,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
+  private observer?: IntersectionObserver;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -178,8 +179,29 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.updateFormInternalValue(this.value);
   }
 
-  componentDidRender() {
-    this.updatePaddings();
+  componentDidLoad() {
+    const rect = this.hostElement.getBoundingClientRect();
+    if (rect.width !== 0 && rect.height !== 0) {
+      this.updatePaddings();
+      return;
+    }
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          this.observer?.disconnect();
+          this.updatePaddings();
+        }
+      });
+    });
+
+    this.observer.observe(this.hostElement);
+  }
+
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   private updatePaddings() {
