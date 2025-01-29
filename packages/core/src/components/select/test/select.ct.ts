@@ -505,3 +505,49 @@ test('async set content and check input value', async ({ mount, page }) => {
   const input = page.locator('input');
   await expect(input).toHaveValue('Item 1');
 });
+
+test.describe('Enter selection with non-existing and existing items', () => {
+  test('editable', async ({ mount, page }) => {
+    await mount(`
+      <ix-select editable>
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      </ix-select>
+    `);
+
+    const selectElement = page.locator('ix-select');
+    const input = selectElement.locator('input');
+
+    await input.fill('Item 1');
+    await page.keyboard.press('Enter');
+
+    await expect(input).toHaveValue('Item 1');
+
+    await input.fill('Item 3');
+    await page.keyboard.press('Enter');
+
+    await expect(input).toHaveValue('Item 3');
+  });
+
+  test('non-editable', async ({ mount, page }) => {
+    await mount(`
+      <ix-select>
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      </ix-select>
+    `);
+
+    const selectElement = page.locator('ix-select');
+    const input = selectElement.locator('input');
+
+    await input.fill('Item 1');
+    await page.keyboard.press('Enter');
+
+    await expect(input).toHaveValue('Item 1');
+
+    await input.fill('Item 3');
+    await page.keyboard.press('Enter');
+
+    await expect(input).toHaveValue('Item 1');
+  });
+});
