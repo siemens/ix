@@ -970,19 +970,25 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
           overwriteDropdownStyle={async () => {
+            const styleOverwrites: Partial<CSSStyleDeclaration> = {};
+
             const minWidth = this.hostElement.shadowRoot
               ?.querySelector('.select')
               ?.getBoundingClientRect().width;
 
-            return {
-              minWidth: `${minWidth}px`,
-              ...(this.dropdownWidth && {
-                width: `min(${this.dropdownWidth}, 100%)`,
-              }),
-              ...(this.dropdownMaxWidth && {
-                'max-width': `min(${this.dropdownMaxWidth}, 100%)`,
-              }),
-            } as CSSStyleDeclaration;
+            if (minWidth) {
+              styleOverwrites.minWidth = `${minWidth}px`;
+            }
+
+            if (this.dropdownWidth) {
+              styleOverwrites.width = `min(${this.dropdownWidth}, 100%)`;
+            }
+
+            if (this.dropdownMaxWidth) {
+              styleOverwrites.maxWidth = `min(${this.dropdownMaxWidth}, 100%)`;
+            }
+
+            return styleOverwrites;
           }}
         >
           <div
