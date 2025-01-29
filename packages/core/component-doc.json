@@ -16957,7 +16957,7 @@
           "mutable": false,
           "attr": "dropdown-max-width",
           "reflectToAttr": false,
-          "docs": "The maximum width of the dropdown element (e.g. \"200px\").\nBy default the maximum width of the dropdown element is set to 100%.",
+          "docs": "The maximum width of the dropdown element with value and unit (e.g. \"200px\" or \"12.5rem\").\nBy default the maximum width of the dropdown element is set to 100%.",
           "docsTags": [
             {
               "name": "since",
@@ -16986,7 +16986,7 @@
           "mutable": false,
           "attr": "dropdown-width",
           "reflectToAttr": false,
-          "docs": "The width of the dropdown element (e.g. \"200px\").",
+          "docs": "The width of the dropdown element with value and unit (e.g. \"200px\" or \"12.5rem\").",
           "docsTags": [
             {
               "name": "since",
