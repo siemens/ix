@@ -13,10 +13,6 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AG Grid example</title>
-    <!-- External resources -->
-    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32.1/dist/ag-grid-community.min.js"></script>
-
-    <!-- External resources -->
   </head>
   <body>
     <div
@@ -25,7 +21,20 @@ LICENSE file in the root directory of this source tree.
       class="ag-theme-alpine-dark ag-theme-ix"
     ></div>
 
-    <script>
+    <script type="module">
+      import {
+        AllCommunityModule,
+        ModuleRegistry,
+        provideGlobalGridOptions,
+      } from 'ag-grid-community';
+      import * as agGrid from 'ag-grid-community';
+
+      // Register all community features
+      ModuleRegistry.registerModules([AllCommunityModule]);
+
+      // Mark all grids as using legacy themes
+      provideGlobalGridOptions({ theme: 'legacy' });
+
       (async function () {
         const container = document.querySelector('#grid-container');
 
