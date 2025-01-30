@@ -191,7 +191,7 @@ export class Input implements IxInputFieldComponent<string> {
     this.inputType = this.type;
   }
 
-  componentDidLoad(): void {
+  componentDidRender(): void {
     this.intersectionObserver = observeElementUntilVisible(
       this.hostElement,
       () => this.updatePaddings()

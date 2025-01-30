@@ -201,7 +201,7 @@ export class DateInput implements IxInputFieldComponent<string> {
     this.updateFormInternalValue(this.value);
   }
 
-  componentDidLoad(): void {
+  componentDidRender(): void {
     this.intersectionObserver = observeElementUntilVisible(
       this.hostElement,
       () => this.updatePaddings()
