@@ -48,7 +48,7 @@ Import the design system styling in your global stylesheet (e.g.: `src/styles.sc
 @import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 ```
 
-### Module Setup (legacy)
+### Module setup (legacy)
 
 Import `IxModule` and `BrowserAnimationsModule` (in some cases also the `RouterModule.forRoot([/** your routes **/])`) in your application module.
 
