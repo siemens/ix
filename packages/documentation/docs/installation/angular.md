@@ -71,7 +71,7 @@ export class AppModule {}
 
 ### Standalone setup
 
-Instead of importing the `IxModule` in your module file, iX components and necessary directives are directly imported from `@siemens/ix-angular/standalone` in your component file .
+Standalone setup is a little different to module setup. Instead of importing the `IxModule` in your module file, iX components and necessary directives are directly imported from `@siemens/ix-angular/standalone` in your component file.
 
 ```typescript
 import { Component } from '@angular/core';
