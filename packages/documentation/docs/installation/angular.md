@@ -7,11 +7,18 @@ title: Angular
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### Library installation
+### Peer dependencies
 
-:::info
-With added support for standalone components, Siemens iX is now fully compatible with Angular version 17 and higher.
-:::
+Please note that `@angular/core` and `@angular/forms` are peer dependencies, meaning you should ensure they are installed before installing iX.
+
+```json
+"peerDependencies": {
+  "@angular/core": ">=17.3.0",
+  "@angular/forms": ">=17.3.0",
+}
+```
+
+### Library installation
 
 Install `@siemens/ix`, `@siemens/ix-angular` and `@siemens/ix-icons` using a package manager:
 
