@@ -73,8 +73,8 @@ test(`disabled = undefined`, async ({ mount, page }) => {
   await expect(checkboxElement).not.toHaveClass(/disabled/);
   await expect(nativeInput).not.toBeDisabled();
 
-  const disableLabelColor = 'rgba(245, 252, 255, 0.93)';
-  await expect(label).toHaveCSS('color', disableLabelColor);
+  const checkboxLabelColor = 'rgba(245, 252, 255, 0.93)';
+  await expect(label).toHaveCSS('color', checkboxLabelColor);
 });
 
 test('label', async ({ mount, page }) => {
