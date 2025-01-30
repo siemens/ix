@@ -565,12 +565,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     const trimmedInput = this.inputFilterText.trim();
     const itemLabel = (el as HTMLIxSelectItemElement)?.label;
+    const item = this.itemExists(trimmedInput);
 
-    if (
-      this.editable &&
-      !this.itemExists(trimmedInput) &&
-      !this.itemExists(itemLabel)
-    ) {
+    if (item) {
+      this.itemClick(item.value);
+    } else if (this.editable && !this.itemExists(itemLabel)) {
       const defaultPrevented = this.emitAddItem(trimmedInput);
       if (defaultPrevented) {
         return;
