@@ -2378,6 +2378,16 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
+          * @since 2.7.0
+         */
+        "dropdownMaxWidth"?: string;
+        /**
+          * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+          * @since 2.7.0
+         */
+        "dropdownWidth"?: string;
+        /**
           * Select is extendable
          */
         "editable": boolean;
@@ -7446,6 +7456,16 @@ declare namespace LocalJSX {
           * If true the select will be in disabled state
          */
         "disabled"?: boolean;
+        /**
+          * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
+          * @since 2.7.0
+         */
+        "dropdownMaxWidth"?: string;
+        /**
+          * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+          * @since 2.7.0
+         */
+        "dropdownWidth"?: string;
         /**
           * Select is extendable
          */

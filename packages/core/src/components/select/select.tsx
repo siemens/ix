@@ -178,6 +178,22 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   @Prop() hideListHeader = false;
 
   /**
+   * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+   *
+   * @since 2.7.0
+   */
+  @Prop() dropdownWidth?: string;
+
+  /**
+   * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+   * By default the maximum width of the dropdown element is set to 100%.
+   *
+   * @since 2.7.0
+   *
+   */
+  @Prop() dropdownMaxWidth?: string;
+
+  /**
    * Value changed
    * @since 2.0.0
    */
@@ -541,12 +557,11 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     const trimmedInput = this.inputFilterText.trim();
     const itemLabel = (el as HTMLIxSelectItemElement)?.label;
+    const item = this.itemExists(trimmedInput);
 
-    if (
-      this.editable &&
-      !this.itemExists(trimmedInput) &&
-      !this.itemExists(itemLabel)
-    ) {
+    if (item) {
+      this.itemClick(item.value);
+    } else if (this.editable && !this.itemExists(itemLabel)) {
       const defaultPrevented = this.emitAddItem(trimmedInput);
       if (defaultPrevented) {
         return;
@@ -930,13 +945,25 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           onShowChanged={(e) => this.dropdownVisibilityChanged(e)}
           placement="bottom-start"
           overwriteDropdownStyle={async () => {
+            const styleOverwrites: Partial<CSSStyleDeclaration> = {};
+
             const minWidth = this.hostElement.shadowRoot
               ?.querySelector('.select')
               ?.getBoundingClientRect().width;
 
-            return {
-              minWidth: `${minWidth}px`,
-            };
+            if (minWidth) {
+              styleOverwrites.minWidth = `${minWidth}px`;
+            }
+
+            if (this.dropdownWidth) {
+              styleOverwrites.width = `min(${this.dropdownWidth}, 100%)`;
+            }
+
+            if (this.dropdownMaxWidth) {
+              styleOverwrites.maxWidth = `min(${this.dropdownMaxWidth}, 100%)`;
+            }
+
+            return styleOverwrites;
           }}
         >
           <div

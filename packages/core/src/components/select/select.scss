@@ -160,6 +160,10 @@
     }
   }
 
+  ix-dropdown {
+    max-width: 100%;
+  }
+
   .dropdown-visible {
     --ix-icon-button-color: var(--theme-color-dynamic--hover);
   }
