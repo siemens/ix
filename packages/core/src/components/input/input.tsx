@@ -34,6 +34,7 @@ import {
   checkAllowedKeys,
   getAriaAttributesForInput,
   mapValidationResult,
+  observeElementUntilVisible,
   onInputBlur,
 } from './input.util';
 
@@ -171,6 +172,7 @@ export class Input implements IxInputFieldComponent<string> {
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
+  private intersectionObserver?: IntersectionObserver;
 
   private readonly inputId = `input-${inputIds++}`;
 
@@ -189,8 +191,11 @@ export class Input implements IxInputFieldComponent<string> {
     this.inputType = this.type;
   }
 
-  componentDidRender() {
-    this.updatePaddings();
+  componentDidLoad(): void {
+    this.intersectionObserver = observeElementUntilVisible(
+      this.hostElement,
+      () => this.updatePaddings()
+    );
   }
 
   private updatePaddings() {
@@ -199,6 +204,10 @@ export class Input implements IxInputFieldComponent<string> {
       this.slotEndRef.current,
       this.inputRef.current
     );
+  }
+
+  disconnectedCallback(): void {
+    this.intersectionObserver?.disconnect();
   }
 
   updateFormInternalValue(value: string) {

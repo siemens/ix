@@ -139,6 +139,29 @@ export function adjustPaddingForStartAndEnd(
   });
 }
 
+export function observeElementUntilVisible(
+  hostElement: HTMLElement,
+  updateCallback: () => void
+): IntersectionObserver {
+  const rect = hostElement.getBoundingClientRect();
+
+  if (rect.width !== 0 && rect.height !== 0) {
+    updateCallback();
+  }
+
+  const intersectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        intersectionObserver.disconnect();
+        updateCallback();
+      }
+    });
+  });
+
+  intersectionObserver.observe(hostElement);
+  return intersectionObserver;
+}
+
 export function getAriaAttributesForInput(
   component: IxInputFieldComponent
 ): A11yAttributes {

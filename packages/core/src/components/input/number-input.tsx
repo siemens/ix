@@ -32,6 +32,7 @@ import {
   checkAllowedKeys,
   checkInternalValidity,
   mapValidationResult,
+  observeElementUntilVisible,
   onInputBlur,
 } from './input.util';
 
@@ -168,7 +169,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
-  private observer?: IntersectionObserver;
+  private intersectionObserver?: IntersectionObserver;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -180,27 +181,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   componentDidLoad() {
-    const rect = this.hostElement.getBoundingClientRect();
-    if (rect.width !== 0 && rect.height !== 0) {
-      this.updatePaddings();
-      return;
-    }
-
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.observer?.disconnect();
-          this.updatePaddings();
-        }
-      });
-    });
-
-    this.observer.observe(this.hostElement);
+    this.intersectionObserver = observeElementUntilVisible(
+      this.hostElement,
+      () => this.updatePaddings()
+    );
   }
 
   disconnectedCallback() {
-    if (this.observer) {
-      this.observer.disconnect();
+    if (this.intersectionObserver) {
+      this.intersectionObserver.disconnect();
     }
   }
 
@@ -282,6 +271,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
               slotStartRef={this.slotStartRef}
               onSlotChange={() => this.updatePaddings()}
             ></SlotStart>
+
             <InputElement
               id={this.numberInputId}
               readonly={this.readonly}

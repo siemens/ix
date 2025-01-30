@@ -82,4 +82,18 @@ regressionTest.describe('input', () => {
     await expect(page.locator('ix-tooltip')).toBeVisible();
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('hide input initially', async ({ page }) => {
+    await page.goto('input/dynamic');
+
+    const toggleButton = page.getByRole('button', {
+      name: 'Add Input',
+    });
+    await toggleButton.click();
+
+    const inputContainer = page.locator('#input-container');
+    await expect(inputContainer).toBeVisible();
+
+    await expect(page).toHaveScreenshot();
+  });
 });
