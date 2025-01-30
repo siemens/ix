@@ -8,18 +8,17 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { addIconToCache } from '@siemens/ix-icons';
-import { iconStar } from '@siemens/ix-icons/icons';
+import { addIcons } from '@siemens/ix-icons';
+import { iconStar, iconStarFilled } from '@siemens/ix-icons/icons';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './add-icon-to-cache.html',
-  styleUrls: ['./add-icon-to-cache.css'],
+  templateUrl: './add-icons.html',
+  styleUrls: ['./add-icons.css'],
 })
-export default class AddIconToCache implements OnInit {
+export default class AddIcons implements OnInit {
 
   ngOnInit() {
-    addIconToCache('test', iconStar);
-    addIconToCache('testIcon', iconStar);
+    addIcons({ iconStar, iconStarFilled });
   }
 }
