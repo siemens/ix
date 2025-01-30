@@ -40,7 +40,7 @@
     "vue": "^3.4.34"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "0.0.0-20240827135516",
+    "@siemens/ix-icons": "0.0.0-pr-69-20250130132918",
     "vue": ">=3.2.45"
   }
 }
