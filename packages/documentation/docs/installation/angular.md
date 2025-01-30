@@ -69,7 +69,7 @@ import { AppComponent } from './app.component';
 export class AppModule {}
 ```
 
-### Standalone Setup
+### Standalone setup
 
 Instead of importing the `IxModule` in your module file, iX components and necessary directives are directly imported from `@siemens/ix-angular/standalone` in your component file .
 
