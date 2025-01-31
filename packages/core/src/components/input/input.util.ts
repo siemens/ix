@@ -72,7 +72,7 @@ export async function checkInternalValidity<T>(
   }
 
   const { valid } = validityState;
-  comp.hostElement.classList.toggle('ix-invalid', !valid);
+  comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
 }
 
 export function onInputBlur<T>(

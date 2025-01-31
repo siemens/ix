@@ -44,11 +44,11 @@ export class MessageBar {
   /**
    * An event emitted when the close button is clicked
    */
-  @Event() closedChange: EventEmitter;
+  @Event() closedChange!: EventEmitter;
 
-  @State() icon: string;
+  @State() icon?: string;
 
-  @State() color: NotificationColor;
+  @State() color?: NotificationColor;
 
   private static readonly duration = 300;
 
@@ -102,7 +102,9 @@ export class MessageBar {
               size="24"
               ghost={true}
               onClick={() => {
-                this.closeAlert(this.divElement);
+                if (this.divElement) {
+                  this.closeAlert(this.divElement);
+                }
               }}
               data-testid="close-btn"
             ></ix-icon-button>

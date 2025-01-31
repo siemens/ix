@@ -38,11 +38,11 @@ const addClass = (element: HTMLElement, className: string) => {
 };
 
 export class VirtualList {
-  _config: VirtualListConfig;
+  _config!: VirtualListConfig;
   _lastRepaint: null;
   _maxElementHeight: number;
-  _renderAnimationFrame: number;
-  _averageHeight: number;
+  _renderAnimationFrame!: number;
+  _averageHeight!: number;
 
   static readonly defaultConfig: VirtualListConfig = {
     width: '100%',
@@ -50,14 +50,14 @@ export class VirtualList {
   };
   _element: any;
   _scroller: any;
-  _itemHeights: number[];
-  _containerSize: number | string;
-  _scrollPaddingBottom: number;
-  _scrollPaddingTop: number;
+  _itemHeights!: number[];
+  _containerSize!: number | string;
+  _scrollPaddingBottom!: number;
+  _scrollPaddingTop!: number;
   _scrollHeight: any;
   _itemPositions: any;
-  _screenItemsLen: number;
-  _lastFrom: number;
+  _screenItemsLen!: number;
+  _lastFrom!: number;
   _cachedItemsLen: any;
 
   static create(
@@ -67,10 +67,10 @@ export class VirtualList {
     return new VirtualList(element, userProvidedConfig);
   }
 
-  static mergeStyle(element: HTMLElement, style) {
+  static mergeStyle(element: HTMLElement, style: any) {
     for (let i in style) {
-      if (element.style[i] !== style[i]) {
-        element.style[i] = style[i];
+      if (element.style[i as any] !== style[i]) {
+        element.style[i as any] = style[i];
       }
     }
   }
@@ -157,7 +157,7 @@ export class VirtualList {
 
     this._element = element;
 
-    const config = this._config;
+    const config = this._config as any;
 
     const scroller =
       this._scroller ||
@@ -186,7 +186,7 @@ export class VirtualList {
     } else if (isNumber(config.itemHeight)) {
       this._itemHeights = Array(config.total).fill(config.itemHeight);
     } else {
-      this._itemHeights = [config.itemHeight];
+      this._itemHeights = [config.itemHeight as any];
     }
 
     // Width and height should be coerced to string representations. Either in
@@ -194,7 +194,7 @@ export class VirtualList {
     Object.keys(VirtualList.defaultConfig)
       .filter((prop) => prop in config)
       .forEach((prop) => {
-        const value = config[prop];
+        const value = config[prop as any];
         const isValueNumber = isNumber(value);
 
         if (value && typeof value !== 'string' && typeof value !== 'number') {
@@ -289,8 +289,8 @@ export class VirtualList {
     }
   }
 
-  _getRow(i) {
-    const config = this._config;
+  _getRow(i: number) {
+    const config = this._config as any;
     let item = config.generate(i) as any;
     let height = item.height;
 
@@ -337,7 +337,7 @@ export class VirtualList {
     const config = this._config;
     const element = this._element;
     const scrollTop = this._getScrollPosition();
-    const total = config.total;
+    const total: number = config.total!;
 
     let from = this._getFrom(scrollTop) - 1;
 
@@ -359,7 +359,7 @@ export class VirtualList {
 
     // Append all the new rows in a document fragment that we will later append
     // to the parent node
-    const fragment = config.useFragment
+    const fragment: any = config.useFragment
       ? document.createDocumentFragment()
       : [
           // Sometimes you'll pass fake elements to this tool and Fragments require
@@ -388,7 +388,7 @@ export class VirtualList {
 
   _computePositions(from = 1) {
     const config = this._config;
-    const total = config.total;
+    const total = config.total!;
 
     if (from < 1) {
       from = 1;
@@ -401,7 +401,7 @@ export class VirtualList {
   }
 
   _computeScrollHeight() {
-    const config = this._config;
+    const config = this._config as any;
     const isHorizontal = Boolean(config.horizontal);
     const total = config.total;
     const scrollHeight =

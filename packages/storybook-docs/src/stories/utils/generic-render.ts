@@ -9,7 +9,7 @@
 import { icons } from '@siemens/ix-icons/dist/sample.json';
 import jsonFile from '@siemens/ix/component-doc.json';
 import { ArgTypes } from '@storybook/web-components';
-
+import type { JsonDocsProp } from '@stencil/core/internal';
 export function genericRender(selector: string, args: any) {
   const rootInner = document.createElement('div');
   rootInner.id = 'root-inner';
@@ -21,7 +21,8 @@ export function genericRender(selector: string, args: any) {
   }
 
   Object.keys(args).forEach((key) => {
-    element.setAttribute(key, args[key]);
+    const prop = getProp(selector, key);
+    element.setAttribute((prop as any).attr ?? prop.name, args[key]);
   });
 
   rootInner.appendChild(element);
@@ -45,6 +46,17 @@ function getComponent(selector: string) {
   return component;
 }
 
+function getProp(selector: string, propName: string) {
+  const component = getComponent(selector);
+  const prop = component.props.find((p) => p.name === propName);
+
+  if (!prop) {
+    throw new Error(`Prop ${propName} not found in component ${selector}`);
+  }
+
+  return prop;
+}
+
 export function makeArgTypes<T = unknown>(
   selector: string,
   overwriteArgTypes: T = {} as T,
@@ -62,10 +74,6 @@ export function makeArgTypes<T = unknown>(
       })
       .forEach((prop) => {
         let attributeName = prop.name;
-
-        if ('attr' in prop && prop.attr) {
-          attributeName = prop.attr;
-        }
 
         if (
           prop.values.length > 1 &&
@@ -92,15 +100,15 @@ export function makeArgTypes<T = unknown>(
         }
 
         argTypes[attributeName] = {
-          control: switchTypes(prop.type),
+          control: switchTypes(prop as JsonDocsProp),
         };
       });
   }
   return { ...argTypes, ...overwriteArgTypes };
 }
 
-function switchTypes(type: string): any {
-  switch (type) {
+function switchTypes(prop: JsonDocsProp): any {
+  switch (prop.complexType?.original) {
     case 'string':
       return { type: 'text' };
     case 'boolean':

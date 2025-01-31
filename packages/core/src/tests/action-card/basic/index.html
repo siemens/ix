@@ -17,6 +17,12 @@ SPDX-License-Identifier: MIT
       ix-action-card {
         margin: 1rem;
       }
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     </style>
   </head>
   <body>
@@ -75,7 +81,7 @@ SPDX-License-Identifier: MIT
       variant="filled"
     ></ix-action-card>
     <ix-action-card>
-      <div class="d-flex flex-column align-items-center" style="color: #ff00ff">
+      <div class="card-content" style="color: #ff00ff">
         <ix-icon name="refresh"></ix-icon>
         <ix-typography> Use Swap Instance to replace content </ix-typography>
       </div>

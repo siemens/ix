@@ -23,7 +23,7 @@
     "build": "dotenv -- turbo run build",
     "storybook": "dotenv -- turbo run storybook",
     "start": "dotenv -- turbo run start",
-    "turbo": "dotenv -- turbo",
+    "turbo": "turbo",
     "lint": "dotenv -- turbo run lint",
     "format": "prettier --write ./packages/**/src/**/*.{ts,tsx,js,jsx,css,scss,html,vue,json}",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
@@ -55,7 +55,7 @@
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.4",
     "tsx": "^4.16.2",
-    "turbo": "^2.0.9",
+    "turbo": "^2.1.1",
     "typescript": "^5.5.4"
   },
   "config": {

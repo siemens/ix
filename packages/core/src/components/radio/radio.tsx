@@ -21,6 +21,7 @@ import {
 } from '@stencil/core';
 import { makeRef } from '../utils/make-ref';
 import { IxFormComponent } from '../utils/input';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @since 2.6.0
@@ -132,8 +133,8 @@ export class Radio implements IxFormComponent<string> {
   render() {
     return (
       <Host
-        aria-checked={`${this.checked}`}
-        aria-disabled={`${this.disabled}`}
+        aria-checked={a11yBoolean(this.checked)}
+        aria-disabled={a11yBoolean(this.disabled)}
         role="radio"
         class={{
           disabled: this.disabled,
@@ -142,7 +143,7 @@ export class Radio implements IxFormComponent<string> {
       >
         <label>
           <input
-            aria-checked={`${this.checked}`}
+            aria-checked={a11yBoolean(this.checked)}
             disabled={this.disabled}
             checked={this.checked}
             ref={this.inputRef}

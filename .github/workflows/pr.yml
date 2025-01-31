@@ -24,7 +24,7 @@ jobs:
       docs_any_changed: ${{ steps.changes.outputs.docs_any_changed }}
       unittests_any_changed: ${{ steps.changes.outputs.unittests_any_changed }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Track changes between commits
         id: changes
         uses: tj-actions/changed-files@v43
@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: ./.github/workflows/actions/turbo
 
@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: ./.github/workflows/actions/turbo
 
@@ -90,24 +90,50 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1/4, 2/4, 3/4, 4/4]
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install chromium --with-deps
 
       - name: Visual Regression
-        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard ${{ matrix.shard }}
+        run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix -- --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: core-blob-report
+          name: core-blob-report-${{ matrix.shardIndex }}
           path: |
             ./packages/core/blob-report/
           retention-days: 1
+
+  merge-core-reports:
+    if: failure()
+    needs: [visual-testing-core]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/actions/turbo
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: core-blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-html-report--attempt-${{ github.run_attempt }}
+          path: playwright-report
+          retention-days: 14
 
   visual-testing-aggrid:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' }}
@@ -115,7 +141,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
@@ -124,7 +150,7 @@ jobs:
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-aggrid
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: aggrid-html-report--attempt-${{ github.run_attempt }}
@@ -138,7 +164,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
@@ -147,7 +173,7 @@ jobs:
       - name: Visual Regression
         run: pnpm run visual-regression --cache-dir=.turbo --filter @siemens/ix-echarts
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: echarts-html-report--attempt-${{ github.run_attempt }}
@@ -155,37 +181,13 @@ jobs:
             ./packages/echarts/playwright-report/
           retention-days: 1
 
-  merge-core-reports:
-    if: failure()
-    needs: [visual-testing-core]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/workflows/actions/turbo
-
-      - name: Download blob reports from GitHub Actions Artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: core-blob-report
-          path: all-blob-reports
-
-      - name: Merge into HTML Report
-        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
-
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v3
-        with:
-          name: core-html-report--attempt-${{ github.run_attempt }}
-          path: playwright-report
-          retention-days: 2
-
   unit:
     if: ${{ needs.changes.outputs.unittests_any_changed == 'true' }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
@@ -196,41 +198,3 @@ jobs:
 
       - name: Test
         run: pnpm run test --cache-dir=.turbo --filter !\documentation
-
-  strict:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' && github.repository == 'siemens/ix' }}
-    needs: [changes]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/workflows/actions/turbo
-      - name: Strict
-        id: report
-        env:
-          ALL_CHANGED_FILES: ${{ needs.changes.outputs.core_all_changed_files }}
-        run: pnpm --filter @siemens/ix exec strict-check ${ALL_CHANGED_FILES}
-
-      - name: Find Comment
-        uses: peter-evans/find-comment@v3
-        id: find-comment
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
-          body-includes: '### Report of `strict` check'
-
-      - name: Delete comment
-        if: ${{ steps.report.outputs.has_errors != 'true' }}
-        uses: actions-cool/issues-helper@v3
-        with:
-          actions: 'delete-comment'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          comment-id: ${{ steps.find-comment.outputs.comment-id }}
-
-      - name: Create or update comment
-        if: ${{ steps.report.outputs.has_errors == 'true' }}
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          comment-id: ${{ steps.find-comment.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: ${{ steps.report.outputs.body }}
-          edit-mode: replace

@@ -40,7 +40,7 @@ export class MenuExpandIcon {
   @Prop({ reflect: true }) expanded = false;
 
   /** Controls which icon is displayed */
-  @Prop({ reflect: true }) breakpoint: Breakpoint;
+  @Prop({ reflect: true }) breakpoint?: Breakpoint;
 
   /** Display as pinned */
   @Prop() pinned = false;

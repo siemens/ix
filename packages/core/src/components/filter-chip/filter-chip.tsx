@@ -24,7 +24,7 @@ import {
   shadow: true,
 })
 export class FilterChip {
-  @Element() el: HTMLIxFilterChipElement;
+  @Element() hostElement!: HTMLIxFilterChipElement;
 
   /**
    * If true the filter chip will be in disabled state
@@ -40,7 +40,7 @@ export class FilterChip {
   /**
    * Close clicked
    */
-  @Event() closeClick: EventEmitter<void>;
+  @Event() closeClick!: EventEmitter<void>;
 
   private onCloseClick(event: Event) {
     event.preventDefault();
@@ -52,7 +52,7 @@ export class FilterChip {
     return (
       <Host
         class={{ disabled: this.disabled, readonly: this.readonly }}
-        title={this.el.textContent}
+        title={this.hostElement.textContent}
       >
         <div class="slot-container">
           <slot></slot>

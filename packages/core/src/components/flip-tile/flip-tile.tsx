@@ -23,7 +23,7 @@ export class FlipTile {
   /**
    * Variation of the Flip
    */
-  @Prop() state: FlipTileState;
+  @Prop() state?: FlipTileState;
 
   /**
    * Height interpreted as REM
@@ -38,12 +38,11 @@ export class FlipTile {
   @Prop() width: number | 'auto' = 16;
 
   @State() index = 0;
-  @State() isFlipAnimationActive: boolean;
+  @State() isFlipAnimationActive: boolean = false;
 
   private readonly ANIMATION_DURATION = 150;
-  private contentItems: Array<HTMLIxFlipTileContentElement>;
-
-  private observer: MutationObserver;
+  private contentItems: Array<HTMLIxFlipTileContentElement> = [];
+  private observer?: MutationObserver;
 
   componentDidLoad() {
     this.observer = createMutationObserver(() => this.updateContentItems());

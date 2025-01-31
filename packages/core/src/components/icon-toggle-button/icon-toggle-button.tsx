@@ -50,7 +50,7 @@ export class IconToggleButton {
   /**
    * Icon name
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Show button as pressed
@@ -75,9 +75,9 @@ export class IconToggleButton {
   /**
    * Pressed change event
    */
-  @Event() pressedChange: EventEmitter<boolean>;
+  @Event() pressedChange!: EventEmitter<boolean>;
 
-  @Element() hostElement: HTMLIxIconToggleButtonElement;
+  @Element() hostElement!: HTMLIxIconToggleButtonElement;
 
   private isIllegalToggleButtonConfig() {
     return this.variant === 'primary' && (this.outline || this.ghost);

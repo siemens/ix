@@ -85,7 +85,7 @@ export class Tree {
    */
   @Event() nodeRemoved!: EventEmitter<any>;
 
-  private hyperlist: VirtualList;
+  private hyperlist?: VirtualList;
 
   private toggleListener = new Map<HTMLElement, Function>();
   private itemClickListener = new Map<HTMLElement, Function>();

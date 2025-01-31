@@ -605,8 +605,8 @@ regressionTest.describe('resolve during element connect', () => {
 
   regressionTest('attach and detach from dom', async ({ page }) => {
     await page.evaluate(() => {
-      const dropdown = document.querySelector('ix-dropdown');
-      const mount = document.querySelector('#mount');
+      const dropdown = document.querySelector('ix-dropdown')!;
+      const mount = document.querySelector('#mount')!;
       mount.removeChild(dropdown);
       mount.append(dropdown);
     });
@@ -620,7 +620,7 @@ regressionTest.describe('resolve during element connect', () => {
   regressionTest('add element within runtime', async ({ page }) => {
     await page.evaluate(async () => {
       const divElement = document.createElement('div');
-      const mount = document.querySelector('#mount');
+      const mount = document.querySelector('#mount')!;
       mount.appendChild(divElement);
     });
 
@@ -646,7 +646,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
   await expect(dropdown).toBeVisible();
 
   await dropdown.evaluate((dd) => {
-    dd.removeChild(dd.querySelector('ix-dropdown-button'));
+    dd.removeChild(dd.querySelector('ix-dropdown-button')!);
   });
 
   await trigger.click();

@@ -131,7 +131,8 @@ export const IxApplication = /*@__PURE__*/ defineContainer<JSX.IxApplication>('i
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', defineIxApplicationHeader, [
   'name',
   'showMenu',
-  'menuToggle'
+  'menuToggle',
+  'openAppSwitch'
 ]);
 
 
@@ -330,6 +331,10 @@ export const IxDateDropdown = /*@__PURE__*/ defineContainer<JSX.IxDateDropdown>(
   'minDate',
   'maxDate',
   'dateRangeId',
+  'variant',
+  'outline',
+  'ghost',
+  'loading',
   'customRangeAllowed',
   'dateRangeOptions',
   'locale',
@@ -506,6 +511,9 @@ export const IxExpandingSearch = /*@__PURE__*/ defineContainer<JSX.IxExpandingSe
   'placeholder',
   'value',
   'fullWidth',
+  'variant',
+  'outline',
+  'ghost',
   'valueChange'
 ]);
 
@@ -710,7 +718,8 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', defin
   'i18nExpand',
   'i18nCollapse',
   'expandChange',
-  'mapExpandChange'
+  'mapExpandChange',
+  'openAppSwitch'
 ]);
 
 
@@ -961,6 +970,8 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect
   'i18nSelectListHeader',
   'i18nNoMatches',
   'hideListHeader',
+  'dropdownWidth',
+  'dropdownMaxWidth',
   'valueChange',
   'inputChange',
   'addItem',

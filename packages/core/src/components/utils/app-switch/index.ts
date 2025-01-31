@@ -24,6 +24,11 @@ export async function showAppSwitch(config: AppSwitchConfiguration) {
   );
 
   return (updateAppSwitchConfig: AppSwitchConfiguration) => {
+    if (!appSwitchElement) {
+      console.warn('ix-application-switch-modal element not found!');
+      return;
+    }
+
     appSwitchElement.config = updateAppSwitchConfig;
   };
 }

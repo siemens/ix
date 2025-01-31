@@ -13,16 +13,29 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
+    <style>
+      .custom-message {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
   </head>
   <body>
-  <div style="margin: 0.5rem; display: block">
-    <ix-message-bar style="margin-bottom: 0.5rem; display: block">Message text</ix-message-bar>
-    <ix-message-bar style="margin-bottom: 0.5rem; display: block" type="warning">Message text</ix-message-bar>
-    <ix-message-bar style="display: block" type="danger">
-      <div class="d-flex align-items-center justify-content-between">
-        Message text <ix-button>Action</ix-button>
-      </div>
-    </ix-message-bar>
+    <div style="margin: 0.5rem; display: block">
+      <ix-message-bar style="margin-bottom: 0.5rem; display: block"
+        >Message text</ix-message-bar
+      >
+      <ix-message-bar
+        style="margin-bottom: 0.5rem; display: block"
+        type="warning"
+        >Message text</ix-message-bar
+      >
+      <ix-message-bar style="display: block" type="danger">
+        <div class="custom-message">
+          Message text <ix-button>Action</ix-button>
+        </div>
+      </ix-message-bar>
     </div>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>

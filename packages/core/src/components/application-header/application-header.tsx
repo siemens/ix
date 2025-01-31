@@ -65,6 +65,13 @@ export class ApplicationHeader {
    */
   @Event() menuToggle!: EventEmitter<boolean>;
 
+  /**
+   * Event emitted when the app switch button is clicked
+   *
+   * @since 3.0.0
+   */
+  @Event() openAppSwitch!: EventEmitter<void>;
+
   @State() breakpoint: Breakpoint = 'lg';
   @State() menuExpanded = false;
   @State() suppressResponsive = false;
@@ -77,12 +84,12 @@ export class ApplicationHeader {
     config: AppSwitchConfiguration
   ) => void;
 
-  @State() applicationLayoutContext: ContextType<
+  @State() applicationLayoutContext?: ContextType<
     typeof ApplicationLayoutContext
   >;
 
   get contentBackground() {
-    return this.hostElement.shadowRoot.querySelector('.dropdown-content');
+    return this.hostElement.shadowRoot!.querySelector('.dropdown-content');
   }
 
   componentWillLoad() {
@@ -140,7 +147,7 @@ export class ApplicationHeader {
   }
 
   private isLogoSlotted() {
-    const slotElement = this.hostElement.shadowRoot.querySelector(
+    const slotElement = this.hostElement.shadowRoot!.querySelector(
       'slot[name="logo"]'
     ) as HTMLSlotElement;
     const nodes = slotElement.assignedNodes({
@@ -154,9 +161,9 @@ export class ApplicationHeader {
     await window.customElements.whenDefined('ix-siemens-logo');
     const logoElement = document.createElement('ix-siemens-logo');
     if (!this.isLogoSlotted()) {
-      this.hostElement.shadowRoot
-        .querySelector('.logo')
-        .appendChild(logoElement);
+      this.hostElement
+        .shadowRoot!.querySelector('.logo')
+        ?.appendChild(logoElement);
     }
   }
 
@@ -174,7 +181,7 @@ export class ApplicationHeader {
     return new Promise<HTMLElement>((resolve) =>
       readTask(() =>
         resolve(
-          this.hostElement.shadowRoot.querySelector(
+          this.hostElement.shadowRoot!.querySelector(
             '[data-context-menu]'
           ) as HTMLElement
         )
@@ -183,7 +190,10 @@ export class ApplicationHeader {
   }
 
   private tryUpdateAppSwitch() {
-    if (!this.callbackUpdateAppSwitchModal) {
+    if (
+      !this.callbackUpdateAppSwitchModal ||
+      !this.applicationLayoutContext?.appSwitchConfig
+    ) {
       return;
     }
 
@@ -193,6 +203,16 @@ export class ApplicationHeader {
   }
 
   private async showAppSwitch() {
+    const { defaultPrevented } = this.openAppSwitch.emit();
+
+    if (defaultPrevented) {
+      return;
+    }
+
+    if (!this.applicationLayoutContext?.appSwitchConfig) {
+      return;
+    }
+
     this.callbackUpdateAppSwitchModal = await showAppSwitch(
       this.applicationLayoutContext?.appSwitchConfig
     );
@@ -200,7 +220,7 @@ export class ApplicationHeader {
 
   private updateIsSlottedContent() {
     const slotElement =
-      this.hostElement.shadowRoot.querySelector('.content slot');
+      this.hostElement.shadowRoot!.querySelector('.content slot');
 
     this.hasSlottedElements = hasSlottedElements(slotElement);
   }

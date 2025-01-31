@@ -21,7 +21,7 @@ export type IconButtonVariant = ButtonVariant;
   shadow: true,
 })
 export class IconButton {
-  @Element() hostElement: HTMLIxIconButtonElement;
+  @Element() hostElement!: HTMLIxIconButtonElement;
 
   /**
    * Accessibility label for the icon button
@@ -29,7 +29,7 @@ export class IconButton {
    *
    * @since 2.1.0
    */
-  @Prop({ attribute: 'a11y-label' }) a11yLabel: string;
+  @Prop({ attribute: 'a11y-label' }) a11yLabel?: string;
 
   /**
    * Variant of button
@@ -40,22 +40,22 @@ export class IconButton {
   /**
    * Button outline
    */
-  @Prop() outline: boolean;
+  @Prop() outline: boolean = false;
 
   /**
    * Button invisible
    */
-  @Prop() ghost: boolean;
+  @Prop() ghost: boolean = false;
 
   /**
    * Button in oval shape
    */
-  @Prop() oval: boolean;
+  @Prop() oval: boolean = false;
 
   /**
    * Icon name
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Size of icon in button
@@ -66,7 +66,7 @@ export class IconButton {
   /**
    * Color of icon in  button
    */
-  @Prop() iconColor: string;
+  @Prop() iconColor?: string;
 
   /**
    * Disabled
@@ -88,7 +88,7 @@ export class IconButton {
   /**
    * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
    */
-  submitButtonElement: HTMLButtonElement;
+  submitButtonElement!: HTMLButtonElement;
 
   componentDidLoad() {
     if (this.type === 'submit') {
