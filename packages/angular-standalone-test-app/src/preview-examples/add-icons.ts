@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IxIcon } from '@siemens/ix-angular/standalone';
 import { addIcons } from '@siemens/ix-icons';
 import { iconStar, iconStarFilled } from '@siemens/ix-icons/icons';
