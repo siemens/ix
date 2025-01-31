@@ -228,8 +228,8 @@ importers:
         specifier: workspace:*
         version: link:../echarts
       '@siemens/ix-icons':
-        specifier: 0.0.0-20240827135516
-        version: 0.0.0-20240827135516
+        specifier: 0.0.0-pr-69-20250130132918
+        version: 0.0.0-pr-69-20250130132918
       ag-grid-angular:
         specifier: ^32.0.2
         version: 32.3.3(@angular/common@17.3.12(@angular/core@17.3.12(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@17.3.12(rxjs@7.8.1)(zone.js@0.14.10))(ag-grid-community@32.1.0)
