@@ -13,7 +13,7 @@
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-icons": "0.0.0-pr-69-20250130132918",
+    "@siemens/ix-icons": "0.0.0-pr-69-20250203134847",
     "@siemens/ix-vue": "workspace:*",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
