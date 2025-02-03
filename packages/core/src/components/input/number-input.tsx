@@ -188,9 +188,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   disconnectedCallback() {
-    if (this.intersectionObserver) {
-      this.intersectionObserver.disconnect();
-    }
+    this.intersectionObserver?.disconnect();
   }
 
   private updatePaddings() {
