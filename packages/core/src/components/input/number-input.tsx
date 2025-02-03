@@ -180,7 +180,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.updateFormInternalValue(this.value);
   }
 
-  componentDidLoad() {
+  componentDidRender() {
     this.intersectionObserver = observeElementUntilVisible(
       this.hostElement,
       () => this.updatePaddings()
