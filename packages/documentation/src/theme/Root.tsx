@@ -11,6 +11,8 @@ import { useLocation } from '@docusaurus/router';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
 import { setAssetPath } from '@siemens/ix-icons/components';
+import { setAssetPath as setAssetPath_ } from '@siemens/ix-icons/components';
+
 declare global {
   interface Window {
     ste_statistic: {
@@ -23,10 +25,6 @@ declare global {
 export default function Root({ children }) {
   const { pathname } = useLocation();
   const theme = useTheme();
-
-  useEffect(() => {
-    setAssetPath(location.origin + '/icons');
-  }, []);
 
   useEffect(() => {
     window.ste_statistic = window.ste_statistic || [];
