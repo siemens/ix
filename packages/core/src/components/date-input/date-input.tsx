@@ -25,8 +25,9 @@ import { DateTime } from 'luxon';
 import { dropdownController } from '../dropdown/dropdown-controller';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
+  DisposableObservers,
+  addDisposableObservers,
   adjustPaddingForStartAndEnd,
-  observeElementUntilVisible,
 } from '../input/input.util';
 import {
   ClassMutationObserver,
@@ -175,8 +176,9 @@ export class DateInput implements IxInputFieldComponent<string> {
   private readonly inputElementRef = makeRef<HTMLInputElement>();
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
-  private intersectionObserver?: IntersectionObserver;
   private invalidReason?: string;
+
+  private disposableObservers?: DisposableObservers;
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -186,6 +188,11 @@ export class DateInput implements IxInputFieldComponent<string> {
   connectedCallback(): void {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
+    );
+
+    this.disposableObservers = addDisposableObservers(
+      this.hostElement,
+      this.updatePaddings.bind(this)
     );
   }
 
@@ -201,13 +208,6 @@ export class DateInput implements IxInputFieldComponent<string> {
     this.updateFormInternalValue(this.value);
   }
 
-  componentDidRender(): void {
-    this.intersectionObserver = observeElementUntilVisible(
-      this.hostElement,
-      () => this.updatePaddings()
-    );
-  }
-
   private updatePaddings() {
     adjustPaddingForStartAndEnd(
       this.slotStartRef.current,
@@ -218,7 +218,7 @@ export class DateInput implements IxInputFieldComponent<string> {
 
   disconnectedCallback(): void {
     this.classObserver?.destroy();
-    this.intersectionObserver?.disconnect();
+    this.disposableObservers?.();
   }
 
   @Watch('value')

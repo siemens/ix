@@ -30,11 +30,12 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
+  addDisposableObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
+  DisposableObservers,
   getAriaAttributesForInput,
   mapValidationResult,
-  observeElementUntilVisible,
   onInputBlur,
 } from './input.util';
 
@@ -172,9 +173,10 @@ export class Input implements IxInputFieldComponent<string> {
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
-  private intersectionObserver?: IntersectionObserver;
 
   private readonly inputId = `input-${inputIds++}`;
+
+  private disposableObservers?: DisposableObservers;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -191,10 +193,10 @@ export class Input implements IxInputFieldComponent<string> {
     this.inputType = this.type;
   }
 
-  componentDidRender(): void {
-    this.intersectionObserver = observeElementUntilVisible(
+  connectedCallback(): void {
+    this.disposableObservers = addDisposableObservers(
       this.hostElement,
-      () => this.updatePaddings()
+      this.updatePaddings.bind(this)
     );
   }
 
@@ -207,7 +209,7 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   disconnectedCallback(): void {
-    this.intersectionObserver?.disconnect();
+    this.disposableObservers?.();
   }
 
   updateFormInternalValue(value: string) {

@@ -14,11 +14,11 @@ import {
   Element,
   Event,
   EventEmitter,
+  h,
   Host,
   Method,
   Prop,
   State,
-  h,
 } from '@stencil/core';
 import {
   HookValidationLifecycle,
@@ -28,11 +28,12 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
+  addDisposableObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  DisposableObservers,
   mapValidationResult,
-  observeElementUntilVisible,
   onInputBlur,
 } from './input.util';
 
@@ -169,7 +170,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
-  private intersectionObserver?: IntersectionObserver;
+
+  private disposableObservers?: DisposableObservers;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -180,15 +182,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.updateFormInternalValue(this.value);
   }
 
-  componentDidRender() {
-    this.intersectionObserver = observeElementUntilVisible(
+  connectedCallback() {
+    this.disposableObservers = addDisposableObservers(
       this.hostElement,
-      () => this.updatePaddings()
+      this.updatePaddings.bind(this)
     );
   }
 
   disconnectedCallback() {
-    this.intersectionObserver?.disconnect();
+    this.disposableObservers?.();
   }
 
   private updatePaddings() {
