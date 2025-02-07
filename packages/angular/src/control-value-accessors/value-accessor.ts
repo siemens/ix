@@ -13,6 +13,7 @@ import {
   OnDestroy,
   Directive,
   HostListener,
+  Input,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -31,6 +32,8 @@ export class ValueAccessor
   };
   protected lastValue: any;
   private statusChanges?: Subscription;
+
+  @Input() suppressClassMapping = false;
 
   constructor(protected injector: Injector, protected elementRef: ElementRef) {}
 
@@ -88,7 +91,7 @@ export class ValueAccessor
       });
     }
 
-    detourFormControlMethods(ngControl, this.elementRef);
+    this.detourFormControlMethods(ngControl, this.elementRef);
   }
 
   getAssignedNgControl(): NgControl | null {
@@ -107,63 +110,61 @@ export class ValueAccessor
     if (!ngControl) {
       return;
     }
-    mapNgToIxClassNames(this.elementRef);
+    this.mapNgToIxClassNames(this.elementRef);
   }
-}
 
-const detourFormControlMethods = (
-  ngControl: NgControl,
-  elementRef: ElementRef
-) => {
-  const formControl = ngControl.control as any;
-  if (formControl) {
-    const methodsToPatch = [
-      'markAsTouched',
-      'markAllAsTouched',
-      'markAsUntouched',
-      'markAsDirty',
-      'markAsPristine',
-    ];
-    methodsToPatch.forEach((method) => {
-      if (typeof formControl[method] !== 'undefined') {
-        const oldFn = formControl[method].bind(formControl);
-        formControl[method] = (...params: any[]) => {
-          oldFn(...params);
-          mapNgToIxClassNames(elementRef);
-        };
-      }
-    });
-  }
-};
-
-export const mapNgToIxClassNames = async (
-  element: ElementRef
-): Promise<void> => {
-  setTimeout(async () => {
-    const input = element.nativeElement;
-
-    const classes = getClasses(input);
-    const classList = input.classList;
-    classList.remove(
-      'ix-valid',
-      'ix-invalid',
-      'ix-touched',
-      'ix-untouched',
-      'ix-dirty',
-      'ix-pristine'
-    );
-    classList.add(...classes);
-  });
-};
-
-const getClasses = (element: HTMLElement) => {
-  const classList = element.classList;
-  const classes: string[] = [];
-  for (let i = 0; i < classList.length; i++) {
-    const item = classList.item(i);
-    if (item?.startsWith(ValueAccessor.ANGULAR_CLASS_PREFIX)) {
-      classes.push(`ix-${item.substring(3)}`);
+  detourFormControlMethods(ngControl: NgControl, elementRef: ElementRef) {
+    const formControl = ngControl.control as any;
+    if (formControl) {
+      const methodsToPatch = [
+        'markAsTouched',
+        'markAllAsTouched',
+        'markAsUntouched',
+        'markAsDirty',
+        'markAsPristine',
+      ];
+      methodsToPatch.forEach((method) => {
+        if (typeof formControl[method] !== 'undefined') {
+          const oldFn = formControl[method].bind(formControl);
+          formControl[method] = (...params: any[]) => {
+            oldFn(...params);
+            this.mapNgToIxClassNames(elementRef);
+          };
+        }
+      });
     }
   }
-  return classes;
-};
+
+  async mapNgToIxClassNames(element: ElementRef): Promise<void> {
+    if (this.suppressClassMapping) {
+      return;
+    }
+    setTimeout(async () => {
+      const input = element.nativeElement;
+
+      const classes = this.getClasses(input);
+      const classList = input.classList;
+      classList.remove(
+        'ix-valid',
+        'ix-invalid',
+        'ix-touched',
+        'ix-untouched',
+        'ix-dirty',
+        'ix-pristine'
+      );
+      classList.add(...classes);
+    });
+  }
+
+  getClasses(element: HTMLElement) {
+    const classList = element.classList;
+    const classes: string[] = [];
+    for (let i = 0; i < classList.length; i++) {
+      const item = classList.item(i);
+      if (item?.startsWith(ValueAccessor.ANGULAR_CLASS_PREFIX)) {
+        classes.push(`ix-${item.substring(3)}`);
+      }
+    }
+    return classes;
+  }
+}

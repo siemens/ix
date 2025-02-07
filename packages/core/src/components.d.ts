@@ -778,6 +778,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns whether the text field has been touched.
+         */
+        "isTouched": () => Promise<boolean>;
+        /**
           * label of the input field
          */
         "label"?: string;
@@ -1586,6 +1590,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns whether the text field has been touched.
+         */
+        "isTouched": () => Promise<boolean>;
+        /**
           * The label for the text field.
          */
         "label"?: string;
@@ -2154,6 +2162,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns true if the input field has been touched
+         */
+        "isTouched": () => Promise<boolean>;
+        /**
           * The label for the input field
          */
         "label"?: string;
@@ -2523,6 +2535,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Check if the input field has been touched.
+         */
+        "isTouched": () => Promise<boolean>;
+        /**
           * Label for the select component
           * @since 2.6.0
          */
@@ -2785,6 +2801,10 @@ export namespace Components {
           * The error text for the textarea field.
          */
         "invalidText"?: string;
+        /**
+          * Check if the textarea field has been touched.
+         */
+        "isTouched": () => Promise<boolean>;
         /**
           * The label for the textarea field.
          */

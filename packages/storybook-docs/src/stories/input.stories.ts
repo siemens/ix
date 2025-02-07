@@ -10,13 +10,13 @@ import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
 
-type Element = Components.IxNumberInput;
+type Element = Components.IxInput;
 
 const meta = {
-  title: 'Example/Input/Number',
+  title: 'Example/Input/Text',
   tags: [],
-  render: (args) => genericRender('ix-number-input', args),
-  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-number-input', {}),
+  render: (args) => genericRender('ix-input', args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-input', {}),
   parameters: {
     design: {
       type: 'figma',
@@ -28,16 +28,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
-export const Default: Story = {
-  args: {
-    value: 1337,
-    showStepperButtons: true,
-  },
-};
-
 export const Required: Story = {
   args: {
-    required: true,
     label: 'Required',
+    value: '',
+    required: true,
   },
 };

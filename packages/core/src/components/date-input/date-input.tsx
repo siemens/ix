@@ -173,6 +173,7 @@ export class DateInput implements IxInputFieldComponent<string> {
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
+  private touched = false;
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -337,7 +338,10 @@ export class DateInput implements IxInputFieldComponent<string> {
             this.openDropdown();
             this.ixFocus.emit();
           }}
-          onBlur={() => this.ixBlur.emit()}
+          onBlur={() => {
+            this.ixBlur.emit();
+            this.touched = true;
+          }}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -410,6 +414,15 @@ export class DateInput implements IxInputFieldComponent<string> {
   @Method()
   async focusInput(): Promise<void> {
     return (await this.getNativeInputElement()).focus();
+  }
+
+  /**
+   * Returns whether the text field has been touched.
+   * @internal
+   */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
   }
 
   render() {

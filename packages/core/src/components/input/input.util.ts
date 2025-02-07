@@ -76,7 +76,7 @@ export async function checkInternalValidity<T>(
 }
 
 export function onInputBlur<T>(
-  comp: IxInputFieldComponent<T>,
+  comp: IxFormComponent<T>,
   input?: HTMLInputElement | HTMLTextAreaElement | null
 ) {
   comp.ixBlur.emit();
@@ -84,6 +84,8 @@ export function onInputBlur<T>(
   if (!input) {
     throw new Error('Input element is not available');
   }
+
+  input.setAttribute('data-ix-touched', 'true');
   checkInternalValidity(comp, input);
 }
 

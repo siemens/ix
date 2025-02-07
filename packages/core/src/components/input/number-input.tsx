@@ -168,6 +168,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
+  private touched = false;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -221,6 +222,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Method()
   async focusInput(): Promise<void> {
     return (await this.getNativeInputElement()).focus();
+  }
+
+  /**
+   * Returns true if the input field has been touched
+   * @internal
+   */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
   }
 
   render() {
@@ -278,7 +288,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(Number(value))
               }
-              onBlur={() => onInputBlur(this, this.inputRef.current)}
+              onBlur={() => {
+                onInputBlur(this, this.inputRef.current);
+                this.touched = true;
+              }}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

@@ -24,3 +24,32 @@ test.describe('validation', () => {
     await expect(input).toHaveClass(/ix-invalid/);
   });
 });
+
+test.describe.configure({
+  mode: 'parallel',
+});
+test.describe('prevent initial require validation', async () => {
+  [
+    'ix-input',
+    'ix-number-input',
+    'ix-date-input',
+    'ix-select',
+    'ix-textarea',
+  ].forEach((selector) => {
+    test(selector, async ({ mount, page }) => {
+      await mount(`<${selector} required></${selector}>`);
+
+      const inputComponent = page.locator(selector);
+      const input = inputComponent.locator(
+        selector !== 'ix-textarea' ? 'input' : 'textarea'
+      );
+      await expect(inputComponent).toBeVisible();
+      await expect(inputComponent).not.toHaveClass(/ix-invalid/);
+
+      await input.focus();
+      await input.blur();
+
+      await expect(inputComponent).toHaveClass(/ix-invalid/);
+    });
+  });
+});
