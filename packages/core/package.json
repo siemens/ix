@@ -43,7 +43,7 @@
     "pkg": "pnpm pack"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.10",
+    "@floating-ui/dom": "^1.6.13",
     "@stencil/core": "~4.17.0",
     "@types/luxon": "^3.3.7",
     "animejs": "~3.2.1",
