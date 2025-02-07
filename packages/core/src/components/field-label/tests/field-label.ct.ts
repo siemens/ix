@@ -136,12 +136,14 @@ test('invalid color with invalid text field', async ({ mount, page }) => {
 
   const fieldElement = page.locator('ix-input');
   const inputElement = fieldElement.locator('input');
+  await expect(inputElement).toBeVisible();
+
   const labelElement = page.locator('ix-field-label');
 
   await inputElement.focus();
   await inputElement.blur();
-  await expect(fieldElement).toHaveClass(/ix-invalid--required/);
 
+  await expect(fieldElement).toHaveClass(/ix-invalid--required/);
   await expect(labelElement.locator('ix-typography')).toHaveAttribute(
     'style',
     'color: var(--theme-color-alarm-text);'
@@ -171,6 +173,8 @@ test('invalid color with invalid textarea field', async ({ mount, page }) => {
 
   const fieldElement = page.locator('ix-textarea');
   const textareaElement = fieldElement.locator('textarea');
+  await expect(textareaElement).toBeVisible();
+
   const labelElement = page.locator('ix-field-label');
 
   await textareaElement.focus();
