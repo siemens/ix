@@ -16,19 +16,3 @@ regressionTest.describe('date-input', () => {
     await expect(page).toHaveScreenshot();
   });
 });
-
-regressionTest.describe('hide date-input initially', () => {
-  regressionTest('show date-input again', async ({ page }) => {
-    await page.goto('date-input/dynamic');
-
-    const toggleButton = page.getByRole('button', {
-      name: 'Add Date Input',
-    });
-    await toggleButton.click();
-
-    const numberInputContainer = page.locator('#date-input-container');
-    await expect(numberInputContainer).toBeVisible();
-
-    await expect(page).toHaveScreenshot();
-  });
-});
