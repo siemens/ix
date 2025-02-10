@@ -25,8 +25,8 @@ import { DateTime } from 'luxon';
 import { dropdownController } from '../dropdown/dropdown-controller';
 import { SlotEnd, SlotStart } from '../input/input.fc';
 import {
-  DisposableObservers,
-  addDisposableObservers,
+  DisposableChangesAndVisibilityObservers,
+  addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
 } from '../input/input.util';
 import {
@@ -178,7 +178,7 @@ export class DateInput implements IxInputFieldComponent<string> {
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
 
-  private disposableObservers?: DisposableObservers;
+  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -190,10 +190,11 @@ export class DateInput implements IxInputFieldComponent<string> {
       this.checkClassList()
     );
 
-    this.disposableObservers = addDisposableObservers(
-      this.hostElement,
-      this.updatePaddings.bind(this)
-    );
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
   }
 
   componentWillLoad(): void {
@@ -218,7 +219,7 @@ export class DateInput implements IxInputFieldComponent<string> {
 
   disconnectedCallback(): void {
     this.classObserver?.destroy();
-    this.disposableObservers?.();
+    this.disposableChangesAndVisibilityObservers?.();
   }
 
   @Watch('value')

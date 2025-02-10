@@ -154,12 +154,12 @@ export function getAriaAttributesForInput(
   return inputAria;
 }
 
-export type DisposableObservers = () => void;
+export type DisposableChangesAndVisibilityObservers = () => void;
 
-export const addDisposableObservers = (
+export const addDisposableChangesAndVisibilityObservers = (
   element: HTMLElement,
   callback: () => void
-): DisposableObservers => {
+): DisposableChangesAndVisibilityObservers => {
   const intersectionObserver = observeElementUntilVisible(element, callback);
   const mutationObserver = createMutationObserver(callback);
 

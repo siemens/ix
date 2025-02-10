@@ -28,11 +28,11 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
-  addDisposableObservers,
+  addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
-  DisposableObservers,
+  DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputBlur,
 } from './input.util';
@@ -171,7 +171,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
 
-  private disposableObservers?: DisposableObservers;
+  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -183,14 +183,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
   }
 
   connectedCallback() {
-    this.disposableObservers = addDisposableObservers(
-      this.hostElement,
-      this.updatePaddings.bind(this)
-    );
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
   }
 
   disconnectedCallback() {
-    this.disposableObservers?.();
+    this.disposableChangesAndVisibilityObservers?.();
   }
 
   private updatePaddings() {

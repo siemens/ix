@@ -30,10 +30,10 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
-  addDisposableObservers,
+  addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
-  DisposableObservers,
+  DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
   onInputBlur,
@@ -176,7 +176,7 @@ export class Input implements IxInputFieldComponent<string> {
 
   private readonly inputId = `input-${inputIds++}`;
 
-  private disposableObservers?: DisposableObservers;
+  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -194,10 +194,11 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   connectedCallback(): void {
-    this.disposableObservers = addDisposableObservers(
-      this.hostElement,
-      this.updatePaddings.bind(this)
-    );
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
   }
 
   private updatePaddings() {
@@ -209,7 +210,7 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   disconnectedCallback(): void {
-    this.disposableObservers?.();
+    this.disposableChangesAndVisibilityObservers?.();
   }
 
   updateFormInternalValue(value: string) {
