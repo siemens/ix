@@ -9,6 +9,7 @@
 import type { Components } from '@siemens/ix/components';
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
+import { html } from 'lit';
 
 type Element = Components.IxNumberInput;
 
@@ -31,6 +32,44 @@ type Story = StoryObj<Element>;
 export const Number: Story = {
   args: {
     value: 1337,
+    showStepperButtons: true,
+  },
+};
+
+export const Default: Story = {
+  args: {
+  },
+};
+
+export const toggleNumberInput: Story = {
+  render: ({ value, showStepperButtons }) => {
+    let visible = false;
+
+    const toggleVisibility = () => {
+      visible = !visible;
+      const numberInputContainer = document.getElementById(
+        'number-input-container'
+      );
+      if (numberInputContainer) {
+        numberInputContainer.style.display = visible ? 'block' : 'none';
+      }
+    };
+
+    return html`
+      <ix-button @click=${toggleVisibility}>
+        ${visible ? 'Remove' : 'Add'} Toggle number-input
+      </ix-button>
+      <div id="number-input-container" style="display: none">
+        <ix-number-input
+          style="width: 300px"
+          .value=${value}
+          ?show-stepper-buttons=${showStepperButtons}
+        ></ix-number-input>
+      </div>
+    `;
+  },
+  args: {
+    value: 0,
     showStepperButtons: true,
   },
 };
