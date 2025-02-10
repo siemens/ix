@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  templateUrl: './input-types.html'
+  templateUrl: './input-types.html',
+  styleUrls: ['./input-types.css'],
 })
 export default class InputTypes {}
