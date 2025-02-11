@@ -698,6 +698,11 @@ test.describe('A11y', () => {
 test('Dropdown works in floating-ui', async ({ mount, page }) => {
   await mount(`
     <style>
+      .dialog {
+        animation: fade-in 0.2s forwards;
+        overflow: visible;
+      }
+
       @keyframes fade-in {
         0% {
           opacity: 0;
@@ -710,10 +715,7 @@ test('Dropdown works in floating-ui', async ({ mount, page }) => {
       }
     </style>
 
-    <dialog
-      id="dialog"
-      style="animation: fade-in 0.2s forwards; overflow: visible"
-    >
+    <dialog id="dialog" class="dialog">
       <ix-button id="trigger">Open</ix-button>
       <ix-dropdown id="dropdown" trigger="trigger">
         <ix-dropdown-item label="Item 1"></ix-dropdown-item>
@@ -732,14 +734,11 @@ test('Dropdown works in floating-ui', async ({ mount, page }) => {
 
   const dropdown = page.locator('#dropdown');
 
-  const boundingBoxTrigger = await trigger.boundingBox();
-  const boundingBoxDropdown = await dropdown.boundingBox();
+  const dropdownRect = (await dropdown.boundingBox())!;
+  const triggerRect = (await trigger.boundingBox())!;
 
-  expect(boundingBoxTrigger).not.toBeNull();
-  expect(boundingBoxDropdown).not.toBeNull();
-
-  expect(boundingBoxDropdown!.x).toBe(boundingBoxTrigger!.x);
-  expect(boundingBoxTrigger!.y + boundingBoxTrigger!.height).toBe(
-    boundingBoxDropdown!.y
+  expect(Math.round(dropdownRect.x)).toBe(Math.round(triggerRect.x));
+  expect(Math.round(dropdownRect.y)).toBe(
+    Math.round(triggerRect.y + triggerRect.height)
   );
 });

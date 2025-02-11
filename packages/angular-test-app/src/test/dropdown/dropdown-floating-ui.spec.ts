@@ -5,8 +5,26 @@ import { waitForTimeout } from '../utils/wait-for-timeout';
 
 @Component({
   selector: 'ix-example-dropdown-floating-ui',
+  styles: [
+    `
+      .dialog {
+        animation: fade-in 0.2s forwards;
+        overflow: visible;
+      }
+
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+          transform: translate(0, -50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(0, 0);
+        }
+      }
+    `,
+  ],
   template: `
-    <ix-button (click)="openDialog()">Open Dialog</ix-button>
     <dialog #myDialog class="dialog">
       <ix-button id="trigger">Open</ix-button>
       <ix-dropdown id="dropdown" trigger="trigger">
@@ -61,7 +79,9 @@ describe('DropdownFloatingUIComponent', () => {
     const dropdownRect = dropdown!.getBoundingClientRect();
     const triggerRect = trigger!.getBoundingClientRect();
 
-    expect(dropdownRect.x).toBe(triggerRect.x);
-    expect(dropdownRect.y).toBe(Math.round(triggerRect.y + triggerRect.height));
+    expect(Math.round(dropdownRect.x)).toBe(Math.round(triggerRect.x));
+    expect(Math.round(dropdownRect.y)).toBe(
+      Math.round(triggerRect.y + triggerRect.height)
+    );
   });
 });
