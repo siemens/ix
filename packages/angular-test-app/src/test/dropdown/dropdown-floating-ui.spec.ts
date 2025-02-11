@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IxModule } from '@siemens/ix-angular';
+import { waitForTimeout } from '../utils/wait-for-timeout';
 
 @Component({
   selector: 'ix-example-dropdown-floating-ui',
@@ -49,9 +50,18 @@ describe('DropdownFloatingUIComponent', () => {
 
   it('should open the dialog and then open the dropdown', async () => {
     component.openDialog();
+    await waitForTimeout(200);
 
     component.openDropdown();
+    await waitForTimeout(200);
 
-    expect(document.getElementById('dropdown')).not.toBeNull();
+    const dropdown = document.getElementById('dropdown');
+    const trigger = document.getElementById('trigger');
+
+    const dropdownRect = dropdown!.getBoundingClientRect();
+    const triggerRect = trigger!.getBoundingClientRect();
+
+    expect(dropdownRect.x).toBe(triggerRect.x);
+    expect(dropdownRect.y).toBe(Math.round(triggerRect.y + triggerRect.height));
   });
 });
