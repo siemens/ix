@@ -121,8 +121,8 @@ test('should not open settings', async ({ mount, page }) => {
     `);
   const element = page.locator('ix-menu');
 
-  await element.evaluate(e => {
-    e.addEventListener('openSettings', event => event.preventDefault());
+  await element.evaluate((e) => {
+    e.addEventListener('openSettings', (event) => event.preventDefault());
   });
 
   await clickSettingsButton(element, page);

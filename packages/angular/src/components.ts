@@ -1574,7 +1574,7 @@ export class IxMenuAbout {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close']);
+    proxyOutputs(this, this.el, ['tabChange', 'close']);
   }
 }
 
@@ -1582,6 +1582,10 @@ export class IxMenuAbout {
 import type { CustomCloseEvent as IIxMenuAboutCustomCloseEvent } from '@siemens/ix';
 
 export declare interface IxMenuAbout extends Components.IxMenuAbout {
+  /**
+   * Active tab changed @since 3.0.0
+   */
+  tabChange: EventEmitter<CustomEvent<string>>;
   /**
    * About and Legal closed
    */
@@ -1766,7 +1770,7 @@ export class IxMenuSettings {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close']);
+    proxyOutputs(this, this.el, ['tabChange', 'close']);
   }
 }
 
@@ -1774,6 +1778,10 @@ export class IxMenuSettings {
 import type { CustomCloseEvent as IIxMenuSettingsCustomCloseEvent } from '@siemens/ix';
 
 export declare interface IxMenuSettings extends Components.IxMenuSettings {
+  /**
+   * Active tab changed @since 3.0.0
+   */
+  tabChange: EventEmitter<CustomEvent<string>>;
   /**
    * Popover closed
    */

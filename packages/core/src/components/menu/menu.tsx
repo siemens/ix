@@ -426,7 +426,7 @@ export class Menu {
       this.aboutNewsPopover.expanded = this.expand;
     }
 
-    const { defaultPrevented} = this.expandChange.emit(this.expand);
+    const { defaultPrevented } = this.expandChange.emit(this.expand);
 
     if (defaultPrevented) {
       this.expand = oldExpand;
@@ -478,7 +478,6 @@ export class Menu {
     if (!this.settings) {
       return;
     }
-
 
     const { defaultPrevented } = this.openSettings.emit();
 

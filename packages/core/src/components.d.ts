@@ -4304,6 +4304,7 @@ declare global {
         new (): HTMLIxMenuElement;
     };
     interface HTMLIxMenuAboutElementEventMap {
+        "tabChange": string;
         "close": CustomCloseEvent;
     }
     interface HTMLIxMenuAboutElement extends Components.IxMenuAbout, HTMLStencilElement {
@@ -4422,6 +4423,7 @@ declare global {
         new (): HTMLIxMenuItemElement;
     };
     interface HTMLIxMenuSettingsElementEventMap {
+        "tabChange": string;
         "close": CustomCloseEvent;
     }
     interface HTMLIxMenuSettingsElement extends Components.IxMenuSettings, HTMLStencilElement {
@@ -7073,6 +7075,11 @@ declare namespace LocalJSX {
          */
         "onClose"?: (event: IxMenuAboutCustomEvent<CustomCloseEvent>) => void;
         /**
+          * Active tab changed
+          * @since 3.0.0
+         */
+        "onTabChange"?: (event: IxMenuAboutCustomEvent<string>) => void;
+        /**
           * Internal
          */
         "show"?: boolean;
@@ -7253,6 +7260,11 @@ declare namespace LocalJSX {
           * Popover closed
          */
         "onClose"?: (event: IxMenuSettingsCustomEvent<CustomCloseEvent>) => void;
+        /**
+          * Active tab changed
+          * @since 3.0.0
+         */
+        "onTabChange"?: (event: IxMenuSettingsCustomEvent<string>) => void;
         /**
           * Internal
          */

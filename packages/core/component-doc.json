@@ -12757,6 +12757,25 @@
           "composed": true,
           "docs": "About and Legal closed",
           "docsTags": []
+        },
+        {
+          "event": "tabChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Active tab changed",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -13862,6 +13881,25 @@
           "composed": true,
           "docs": "Popover closed",
           "docsTags": []
+        },
+        {
+          "event": "tabChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Active tab changed",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
         }
       ],
       "styles": [],

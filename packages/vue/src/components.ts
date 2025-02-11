@@ -743,6 +743,7 @@ export const IxMenuAbout = /*@__PURE__*/ defineContainer<JSX.IxMenuAbout>('ix-me
   'activeTabLabel',
   'label',
   'show',
+  'tabChange',
   'close'
 ]);
 
@@ -808,6 +809,7 @@ export const IxMenuSettings = /*@__PURE__*/ defineContainer<JSX.IxMenuSettings>(
   'activeTabLabel',
   'label',
   'show',
+  'tabChange',
   'close'
 ]);
 
