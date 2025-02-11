@@ -1,5 +1,5 @@
 <!--
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -7,10 +7,11 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { IxInput } from '@siemens/ix-vue';
-
 </script>
+
+<style scoped src="./input-types.css"></style>
 
 <template>
   <div>
@@ -22,7 +23,12 @@ import { IxInput } from '@siemens/ix-vue';
   </div>
 
   <div>
-    <IxInput type="password" label="Password" placeholder="Enter your password" value="1234"></IxInput>
+    <IxInput
+      type="password"
+      label="Password"
+      placeholder="Enter your password"
+      value="1234"
+    ></IxInput>
   </div>
 
   <div>
@@ -30,6 +36,11 @@ import { IxInput } from '@siemens/ix-vue';
   </div>
 
   <div>
-    <IxInput type="url" label="URL" placeholder="Enter your URL" value="http://ix.siemens.io"></IxInput>
+    <IxInput
+      type="url"
+      label="URL"
+      placeholder="Enter your URL"
+      value="http://ix.siemens.io"
+    ></IxInput>
   </div>
 </template>

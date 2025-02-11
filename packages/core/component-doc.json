@@ -16953,6 +16953,64 @@
           "required": false
         },
         {
+          "name": "dropdownMaxWidth",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "dropdown-max-width",
+          "reflectToAttr": false,
+          "docs": "The maximum width of the dropdown element with value and unit (e.g. \"200px\" or \"12.5rem\").\nBy default the maximum width of the dropdown element is set to 100%.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.7.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
+          "name": "dropdownWidth",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "dropdown-width",
+          "reflectToAttr": false,
+          "docs": "The width of the dropdown element with value and unit (e.g. \"200px\" or \"12.5rem\").",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "2.7.0"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "editable",
           "type": "boolean",
           "complexType": {

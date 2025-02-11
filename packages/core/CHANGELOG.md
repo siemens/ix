@@ -1,5 +1,45 @@
 # @siemens/ix
 
+## 2.7.0
+
+### Minor Changes
+
+- [#1654](https://github.com/siemens/ix/pull/1654) [`07c9f3d66e`](https://github.com/siemens/ix/commit/07c9f3d66e33ee2770dceaf0046fbdb52f882543) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add openAppSwitch event to **ix-application-header** and **ix-menu**.
+
+- [#1609](https://github.com/siemens/ix/pull/1609) [`89801b1149`](https://github.com/siemens/ix/commit/89801b1149b18c580a4fee6563638a8883fad2d1) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `meta`-tag feature to disable default load of `@siemens/ix-icons`
+
+  ```html
+  <meta name="ix:legacy-icons" content="false" />
+  ```
+
+  In addition the warning is removed if no icon component is provided.
+
+- [#1669](https://github.com/siemens/ix/pull/1669) [`6ce292968e`](https://github.com/siemens/ix/commit/6ce292968ed808e06cde79d459ee8b45a4edc6e4) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Prevent `ix-select` list items to expand beyond screen width and add properties: dropdown-width + dropdown-max-width
+
+- [#1635](https://github.com/siemens/ix/pull/1635) [`9a5fff63e6`](https://github.com/siemens/ix/commit/9a5fff63e6230a95ce6f6abfe39c1256fb26b515) Thanks [@matthiashader](https://github.com/matthiashader)! - Add additional button properties to **ix-date-dropdown** and **ix-expanding-search**.
+
+### Patch Changes
+
+- [#1658](https://github.com/siemens/ix/pull/1658) [`9b91179825`](https://github.com/siemens/ix/commit/9b911798254f74ea16ecb5144bc2a1dc3f4f80ce) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Adjust `ix-pill` spacing between text + icon and icon only
+
+- [#1659](https://github.com/siemens/ix/pull/1659) [`d28d62160e`](https://github.com/siemens/ix/commit/d28d62160e69388089dec58040c915ca69749462) Thanks [@matthiashader](https://github.com/matthiashader)! - Fix `ix-select` in editable mode to correctly select a known item when confirmed with Enter.
+
+- [#1648](https://github.com/siemens/ix/pull/1648) [`1625ddc001`](https://github.com/siemens/ix/commit/1625ddc001b451069a200da171fd1df92846c3a6) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Fix **ix-select** keyboard navigation and wrap behavior when new items are created
+
+- [#1652](https://github.com/siemens/ix/pull/1652) [`3f5d0a4f39`](https://github.com/siemens/ix/commit/3f5d0a4f39c589408f8f352a3c9ec039f42190b9) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix the disable state of `ix-checkbox` if `disabled=undefined` is provided.
+
+- [#1617](https://github.com/siemens/ix/pull/1617) [`e2316d8b6d`](https://github.com/siemens/ix/commit/e2316d8b6d514217b97790f9a86bd1bbf30e7f44) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Automatically expand **ix-menu-category** if nested menu item becomes active.
+
+- [#1672](https://github.com/siemens/ix/pull/1672) [`4558698209`](https://github.com/siemens/ix/commit/455869820982501461b3d75c3f87fbdcf81fab01) Thanks [@matthiashader](https://github.com/matthiashader)! - Fix initial overlapping between value and end slots on `ix-input`, `ix-number-input` and `ix-date-input`
+
+- [#1666](https://github.com/siemens/ix/pull/1666) [`0234ccf941`](https://github.com/siemens/ix/commit/0234ccf9419cd6fee18690106405da26d4e50bb6) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Fix padding for **ix-textarea**.
+
+- [#1665](https://github.com/siemens/ix/pull/1665) [`72dd729926`](https://github.com/siemens/ix/commit/72dd729926578f6f9b78f2268a315b6e7d0d12cc) Thanks [@danielleroux](https://github.com/danielleroux)! - Fix behavior where internal validation logic removes validation classes from `ix-input`, `ix-input-number` etc.
+
+- [#1651](https://github.com/siemens/ix/pull/1651) [`f3c8ab8b01`](https://github.com/siemens/ix/commit/f3c8ab8b01d6bbdf075f19e998f2aa33bde1d68a) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - Fix the disable state of `ix-radio` if `disabled=undefined` is provided.
+
+- [#1621](https://github.com/siemens/ix/pull/1621) [`e263955649`](https://github.com/siemens/ix/commit/e263955649d8377ec592e81dfca1387e04936d94) Thanks [@AndreasBerliner](https://github.com/AndreasBerliner)! - Set correct cursors and handle overflow for **ix-card** and **ix-push-card**.
+
 ## 2.6.1
 
 ### Patch Changes

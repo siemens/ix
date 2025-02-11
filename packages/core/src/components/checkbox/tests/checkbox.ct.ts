@@ -50,6 +50,33 @@ test(`disabled`, async ({ mount, page }) => {
   await expect(checkboxElement).toBeDisabled();
 });
 
+test(`disabled = undefined`, async ({ mount, page }) => {
+  await mount(`<ix-checkbox label="some label"></ix-checkbox>`);
+  const checkboxElement = page.locator('ix-checkbox');
+  const nativeInput = checkboxElement.locator('input');
+  const label = checkboxElement.locator('ix-typography');
+
+  const checkedChange$ = checkboxElement.evaluate(
+    (element: HTMLIxCheckboxElement) => {
+      // Needs to be tested because at runtime undefined assignment could happen
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      element.disabled = undefined as any;
+      return new Promise<void>((resolve) => {
+        element.addEventListener('checkedChange', () => resolve());
+      });
+    }
+  );
+
+  await checkboxElement.click();
+  await checkedChange$;
+
+  await expect(checkboxElement).not.toHaveClass(/disabled/);
+  await expect(nativeInput).not.toBeDisabled();
+
+  const checkboxLabelColor = 'rgba(245, 252, 255, 0.93)';
+  await expect(label).toHaveCSS('color', checkboxLabelColor);
+});
+
 test('label', async ({ mount, page }) => {
   await mount(`<ix-checkbox label="some label"></ix-checkbox>`);
   const checkboxElement = page.locator('ix-checkbox').locator('label');
