@@ -1530,7 +1530,7 @@ export class IxMenu {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange', 'openAppSwitch']);
+    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange', 'openAppSwitch', 'openSettings', 'openAbout']);
   }
 }
 
@@ -1548,6 +1548,14 @@ export declare interface IxMenu extends Components.IxMenu {
    * Event emitted when the app switch button is clicked @since 3.0.0
    */
   openAppSwitch: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the settings button is clicked @since 3.0.0
+   */
+  openSettings: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the about button is clicked @since 3.0.0
+   */
+  openAbout: EventEmitter<CustomEvent<void>>;
 }
 
 

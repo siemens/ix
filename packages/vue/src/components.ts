@@ -733,7 +733,9 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', defin
   'i18nCollapse',
   'expandChange',
   'mapExpandChange',
-  'openAppSwitch'
+  'openAppSwitch',
+  'openSettings',
+  'openAbout'
 ]);
 
 

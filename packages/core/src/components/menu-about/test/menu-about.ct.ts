@@ -49,3 +49,23 @@ test('active-tab-label', async ({ mount, page }) => {
   await expect(tabItems.first()).not.toHaveAttribute('selected', 'true');
   await expect(tabItems.last()).toHaveAttribute('selected', 'true');
 });
+
+test('should not open about', async ({ mount, page }) => {
+  await mount(`
+      <ix-menu>
+        <ix-menu-about>
+        </ix-menu-about>
+      </ix-menu>
+    `);
+  const element = page.locator('ix-menu');
+
+  await element.evaluate((e) => {
+    e.addEventListener('openAbout', (event) => event.preventDefault());
+  });
+
+  const aboutButton = element.locator('ix-menu-item#aboutAndLegal');
+  await aboutButton.click();
+
+  let about = page.locator('ix-menu-about');
+  await expect(about).not.toBeVisible();
+});

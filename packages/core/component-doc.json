@@ -12564,6 +12564,25 @@
           "docsTags": []
         },
         {
+          "event": "openAbout",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the about button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
+        },
+        {
           "event": "openAppSwitch",
           "detail": "void",
           "bubbles": true,
@@ -12575,6 +12594,25 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event emitted when the app switch button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
+        },
+        {
+          "event": "openSettings",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the settings button is clicked",
           "docsTags": [
             {
               "name": "since",

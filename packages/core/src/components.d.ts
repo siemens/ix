@@ -4286,6 +4286,8 @@ declare global {
         "expandChange": boolean;
         "mapExpandChange": boolean;
         "openAppSwitch": void;
+        "openSettings": void;
+        "openAbout": void;
     }
     interface HTMLIxMenuElement extends Components.IxMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuElementEventMap>(type: K, listener: (this: HTMLIxMenuElement, ev: IxMenuCustomEvent<HTMLIxMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7025,10 +7027,20 @@ declare namespace LocalJSX {
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
+          * Event emitted when the about button is clicked
+          * @since 3.0.0
+         */
+        "onOpenAbout"?: (event: IxMenuCustomEvent<void>) => void;
+        /**
           * Event emitted when the app switch button is clicked
           * @since 3.0.0
          */
         "onOpenAppSwitch"?: (event: IxMenuCustomEvent<void>) => void;
+        /**
+          * Event emitted when the settings button is clicked
+          * @since 3.0.0
+         */
+        "onOpenSettings"?: (event: IxMenuCustomEvent<void>) => void;
         /**
           * Menu stays pinned to the left
          */

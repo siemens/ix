@@ -112,6 +112,24 @@ test('should stay open after menu click when pinned', async ({
   await expect(menu).toHaveClass(/expanded/);
 });
 
+test('should not open settings', async ({ mount, page }) => {
+  await mount(`
+      <ix-menu>
+        <ix-menu-settings>
+        </ix-menu-settings>
+      </ix-menu>
+    `);
+  const element = page.locator('ix-menu');
+
+  await element.evaluate(e => {
+    e.addEventListener('openSettings', event => event.preventDefault());
+  });
+
+  await clickSettingsButton(element, page);
+  let settings = page.locator('ix-menu-settings');
+  await expect(settings).not.toBeVisible();
+});
+
 test('should open and close settings', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
