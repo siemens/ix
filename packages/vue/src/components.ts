@@ -546,7 +546,9 @@ export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-
 export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', defineIxFlipTile, [
   'state',
   'height',
-  'width'
+  'width',
+  'index',
+  'toggle'
 ]);
 
 

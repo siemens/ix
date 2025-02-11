@@ -1058,25 +1058,31 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
 
 
 @ProxyCmp({
-  inputs: ['height', 'state', 'width']
+  inputs: ['height', 'index', 'state', 'width']
 })
 @Component({
   selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['height', 'state', 'width'],
+  inputs: ['height', 'index', 'state', 'width'],
 })
 export class IxFlipTile {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['toggle']);
   }
 }
 
 
-export declare interface IxFlipTile extends Components.IxFlipTile {}
+export declare interface IxFlipTile extends Components.IxFlipTile {
+  /**
+   * Event emitted when the index changes @since 3.0.0
+   */
+  toggle: EventEmitter<CustomEvent<number>>;
+}
 
 
 @ProxyCmp({

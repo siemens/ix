@@ -1355,6 +1355,11 @@ export namespace Components {
          */
         "height": number | 'auto';
         /**
+          * Index of the currently visible content
+          * @since 3.0.0
+         */
+        "index": number;
+        /**
           * Variation of the Flip
          */
         "state"?: FlipTileState;
@@ -3314,6 +3319,10 @@ export interface IxFilterChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxFilterChipElement;
 }
+export interface IxFlipTileCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxFlipTileElement;
+}
 export interface IxGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxGroupElement;
@@ -4061,7 +4070,18 @@ declare global {
         prototype: HTMLIxFilterChipElement;
         new (): HTMLIxFilterChipElement;
     };
+    interface HTMLIxFlipTileElementEventMap {
+        "toggle": number;
+    }
     interface HTMLIxFlipTileElement extends Components.IxFlipTile, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxFlipTileElementEventMap>(type: K, listener: (this: HTMLIxFlipTileElement, ev: IxFlipTileCustomEvent<HTMLIxFlipTileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxFlipTileElementEventMap>(type: K, listener: (this: HTMLIxFlipTileElement, ev: IxFlipTileCustomEvent<HTMLIxFlipTileElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxFlipTileElement: {
         prototype: HTMLIxFlipTileElement;
@@ -6511,6 +6531,16 @@ declare namespace LocalJSX {
           * @since 1.5.0
          */
         "height"?: number | 'auto';
+        /**
+          * Index of the currently visible content
+          * @since 3.0.0
+         */
+        "index"?: number;
+        /**
+          * Event emitted when the index changes
+          * @since 3.0.0
+         */
+        "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
         /**
           * Variation of the Flip
          */
