@@ -694,3 +694,52 @@ test.describe('A11y', () => {
     });
   });
 });
+
+test('Dropdown works in floating-ui', async ({ mount, page }) => {
+  await mount(`
+    <style>
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+          transform: translate(0, -50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(0, 0);
+        }
+      }
+    </style>
+
+    <dialog
+      id="dialog"
+      style="animation: fade-in 0.2s forwards; overflow: visible"
+    >
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown id="dropdown" trigger="trigger">
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+      </ix-dropdown>
+    </dialog>
+  `);
+
+  await page.evaluate(() => {
+    const dialog = document.getElementById('dialog') as HTMLDialogElement;
+    dialog!.showModal();
+  });
+
+  const trigger = page.locator('#trigger');
+  await trigger.click();
+
+  const dropdown = page.locator('#dropdown');
+
+  const boundingBoxTrigger = await trigger.boundingBox();
+  const boundingBoxDropdown = await dropdown.boundingBox();
+
+  expect(boundingBoxTrigger).not.toBeNull();
+  expect(boundingBoxDropdown).not.toBeNull();
+
+  expect(boundingBoxDropdown!.x).toBe(boundingBoxTrigger!.x);
+  expect(boundingBoxTrigger!.y + boundingBoxTrigger!.height).toBe(
+    boundingBoxDropdown!.y
+  );
+});
