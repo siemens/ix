@@ -726,7 +726,7 @@ test('Dropdown works in floating-ui', async ({ mount, page }) => {
 
   await page.evaluate(() => {
     const dialog = document.getElementById('dialog') as HTMLDialogElement;
-    dialog!.showModal();
+    dialog.showModal();
   });
 
   const trigger = page.locator('#trigger');
