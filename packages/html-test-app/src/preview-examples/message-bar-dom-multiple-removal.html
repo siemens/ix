@@ -12,26 +12,30 @@ LICENSE file in the root directory of this source tree.
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Message bar example</title>
+    <link rel="stylesheet" href="./message-bar.css" />
   </head>
+
   <body>
     <ix-button id="showMessageBarButton">Show Message Bar</ix-button>
     <div class="message-bar" id="messageBarContainer"></div>
 
     <script type="module">
+      const variants = ['info', 'warning', 'danger'];
+
       document.getElementById('showMessageBarButton').addEventListener('click', () => {
         const messageBarContainer = document.getElementById('messageBarContainer');
-        if (messageBarContainer.children.length === 0) {
-          const messageBar = document.createElement('ix-message-bar');
-          messageBar.textContent = 'Message text';
-          messageBar.addEventListener('closeAnimationCompleted', () => {
-            messageBarContainer.removeChild(messageBar);
-          });
-          messageBarContainer.appendChild(messageBar);
-        }
+        const randomVariant = variants[Math.floor(Math.random() * variants.length)];
+        const messageBar = document.createElement('ix-message-bar');
+        messageBar.setAttribute('type', randomVariant);
+        messageBar.textContent = 'Message text';
+        messageBar.addEventListener('closeAnimationCompleted', () => {
+          messageBarContainer.removeChild(messageBar);
+        });
+        messageBarContainer.appendChild(messageBar);
       });
     </script>
 
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="./init.js"></script>
   </body>
 </html>

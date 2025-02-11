@@ -149,6 +149,8 @@ import MapNavigation from './preview-examples/map-navigation.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
 import MessageBar from './preview-examples/message-bar.vue';
+import MessageBarDomSingleRemoval from './preview-examples/message-bar-dom-single-removal.vue';
+import MessageBarDomMultipleRemoval from './preview-examples/message-bar-dom-multiple-removal.vue';
 import Message from './preview-examples/message.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
 import ModalExample from './preview-examples/modal.vue';
@@ -328,6 +330,8 @@ const routes: any = {
   '/preview/input-legacy-types': InputLegacyTypes,
   '/preview/input-legacy-with-icon': InputLegacyWithIcon,
   '/preview/message-bar': MessageBar,
+  '/preview/message-bar-dom-single-removal': MessageBarDomSingleRemoval,
+  '/preview/message-bar-dom-multiple-removal': MessageBarDomMultipleRemoval,
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
   '/preview/radio-button': RadioButton,

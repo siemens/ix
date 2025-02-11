@@ -134,6 +134,8 @@ import MenuCategory from './preview-examples/menu-category';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs';
 import Message from './preview-examples/message';
 import MessageBar from './preview-examples/message-bar';
+import MessageBarDOMSingleRemoval from './preview-examples/message-bar-dom-single-removal.tsx';
+import MessageBarDOMMultipleRemoval from './preview-examples/message-bar-dom-multiple-removal.tsx';
 import Modal from './preview-examples/modal';
 import ModalSizes from './preview-examples/modal-sizes';
 import NumberInput from './preview-examples/number-input';
@@ -529,6 +531,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         />
         <Route path="/preview/message" element={<Message />} />
         <Route path="/preview/message-bar" element={<MessageBar />} />
+        <Route path="/preview/message-bar-dom-single-removal" element={<MessageBarDOMSingleRemoval />} />
+        <Route path="/preview/message-bar-dom-multiple-removal" element={<MessageBarDOMMultipleRemoval />} />
         <Route path="/preview/radio-button" element={<RadioButton />} />
         <Route path="/preview/radio" element={<Radio />} />
         <Route path="/preview/radio-disabled" element={<RadioDisabled />} />
