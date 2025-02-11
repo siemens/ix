@@ -142,10 +142,6 @@ export class Drawer {
       width: [initialWidth, 0],
       opacity: [1, 0],
       easing: 'easeInSine',
-      begin: () => {
-        el.style.opacity = '0';
-        this.showContent = false;
-      },
       complete: () => {
         el.classList.add('display-none');
       },
@@ -165,7 +161,6 @@ export class Drawer {
       easing: 'easeOutSine',
       begin: () => {
         el.classList.remove('display-none');
-        el.style.opacity = '0';
       },
       complete: () => {
         this.showContent = true;
@@ -195,29 +190,39 @@ export class Drawer {
         data-testid="container"
         id="div-container"
       >
-        <div class="header">
-          <div class="header-content">
-            <slot name="header"></slot>
+        <div
+          style={{
+            width:
+              this.width === 'auto'
+                ? 'auto'
+                : `${this.getConstrainedWidth(this.width)}rem`,
+          }}
+        >
+          {' '}
+          <div class="header">
+            <div class="header-content">
+              <slot name="header"></slot>
+            </div>
+            <ix-icon-button
+              class="close-button"
+              style={{
+                display: this.showContent ? 'block' : 'none',
+              }}
+              icon={'close'}
+              size="24"
+              ghost
+              onClick={() => this.onCloseClicked()}
+              data-testid="close-button"
+            ></ix-icon-button>
           </div>
-          <ix-icon-button
-            class="close-button"
+          <div
+            class="content"
             style={{
               display: this.showContent ? 'block' : 'none',
             }}
-            icon={'close'}
-            size="24"
-            ghost
-            onClick={() => this.onCloseClicked()}
-            data-testid="close-button"
-          ></ix-icon-button>
-        </div>
-        <div
-          class="content"
-          style={{
-            display: this.showContent ? 'block' : 'none',
-          }}
-        >
-          <slot></slot>
+          >
+            <slot></slot>
+          </div>
         </div>
       </Host>
     );

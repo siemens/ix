@@ -19,9 +19,8 @@
 
   visibility: hidden;
 
-  display: flex;
+  display: block;
   position: absolute;
-  flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
   opacity: 0;
