@@ -695,6 +695,9 @@ test.describe('A11y', () => {
   });
 });
 
+/**
+ * This test also exists as a visual regression test since the behavior differs between headless and non-headless
+ */
 test('Dropdown works in floating-ui', async ({ mount, page }) => {
   await mount(`
     <style>
