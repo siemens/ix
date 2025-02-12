@@ -8,7 +8,7 @@
     "directory": "packages/aggrid"
   },
   "description": "AG Grid theme based on ix theme variables",
-  "version": "2.2.1",
+  "version": "2.2.3",
   "files": [
     "LICENSE",
     "README.md",
@@ -20,7 +20,7 @@
     "host-root": "http-server -a 127.0.0.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.32.1",
+    "@playwright/test": "^1.49.1",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-icons": "^2.0.0",
     "@types/gulp": "^4.0.14",
@@ -38,7 +38,7 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "@siemens/ix": "~2.6.0"
+    "@siemens/ix": "~2.7.0"
   },
   "peerDependencies": {
     "ag-grid-community": ">=28"

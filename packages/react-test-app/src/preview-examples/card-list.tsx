@@ -14,7 +14,7 @@ export default () => {
     <>
       <IxCardList label="Stack Layout" showAllCount={12} listStyle={'stack'}>
         <IxPushCard
-          icon="rocket"
+          icon="bulb"
           notification="3"
           heading="Heading content"
           subheading="Subheading"

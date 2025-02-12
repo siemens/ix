@@ -36,7 +36,7 @@ describe('workflow-steps', () => {
     });
 
     const step = document.createElement('ix-workflow-step');
-    page.root.querySelector('ix-workflow-steps').append(step);
+    page.root!.querySelector('ix-workflow-steps')!.append(step);
 
     observerCallback([{ type: 'childList' }]);
 
@@ -56,8 +56,8 @@ describe('workflow-steps', () => {
     const step = document.createElement('ix-workflow-step');
     const step1 = document.createElement('ix-workflow-step');
     const step2 = document.createElement('ix-workflow-step');
-    page.root.querySelector('ix-workflow-steps').append(step);
-    page.root.querySelector('ix-workflow-steps').append(step1);
+    page.root!.querySelector('ix-workflow-steps')!.append(step);
+    page.root!.querySelector('ix-workflow-steps')!.append(step1);
 
     observerCallback([{ type: 'childList' }]);
     await page.waitForChanges();
@@ -68,7 +68,7 @@ describe('workflow-steps', () => {
     expect(step1.position).toEqual('last');
     expect(step1.selected).toEqual(false);
 
-    page.root.querySelector('ix-workflow-steps').append(step2);
+    page.root!.querySelector('ix-workflow-steps')!.append(step2);
     observerCallback([{ type: 'childList' }]);
     await page.waitForChanges();
 

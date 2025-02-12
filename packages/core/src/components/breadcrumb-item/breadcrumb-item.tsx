@@ -40,12 +40,12 @@ export class BreadcrumbItem {
   /**
    * Breadcrumb label
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    * Icon to be displayed next ot the label
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**@internal */
   @Prop() ghost: boolean = true;
@@ -60,7 +60,7 @@ export class BreadcrumbItem {
   @Prop() isDropdownTrigger = false;
 
   /**@internal */
-  @Event() itemClick: EventEmitter<string>;
+  @Event() itemClick!: EventEmitter<string>;
 
   @State() a11y: any;
 

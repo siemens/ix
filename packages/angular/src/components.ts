@@ -66,7 +66,7 @@ export class IxApplicationHeader {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['menuToggle']);
+    proxyOutputs(this, this.el, ['menuToggle', 'openAppSwitch']);
   }
 }
 
@@ -76,6 +76,10 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
    * Event emitted when the menu toggle button is clicked @since 2.5.0
    */
   menuToggle: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Event emitted when the app switch button is clicked @since 3.0.0
+   */
+  openAppSwitch: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -568,7 +572,7 @@ export declare interface IxCustomField extends Components.IxCustomField {}
 
 
 @ProxyCmp({
-  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'locale', 'maxDate', 'minDate', 'range', 'to', 'weekStartIndex'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'ghost', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'outline', 'range', 'to', 'variant', 'weekStartIndex'],
   methods: ['getDateRange']
 })
 @Component({
@@ -576,7 +580,7 @@ export declare interface IxCustomField extends Components.IxCustomField {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'locale', 'maxDate', 'minDate', 'range', 'to', 'weekStartIndex'],
+  inputs: ['customRangeAllowed', 'dateRangeId', 'dateRangeOptions', 'disabled', 'format', 'from', 'ghost', 'i18nCustomItem', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'outline', 'range', 'to', 'variant', 'weekStartIndex'],
 })
 export class IxDateDropdown {
   protected el: HTMLElement;
@@ -976,14 +980,14 @@ export declare interface IxEventListItem extends Components.IxEventListItem {
 
 
 @ProxyCmp({
-  inputs: ['fullWidth', 'icon', 'placeholder', 'value']
+  inputs: ['fullWidth', 'ghost', 'icon', 'outline', 'placeholder', 'value', 'variant']
 })
 @Component({
   selector: 'ix-expanding-search',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['fullWidth', 'icon', 'placeholder', 'value'],
+  inputs: ['fullWidth', 'ghost', 'icon', 'outline', 'placeholder', 'value', 'variant'],
 })
 export class IxExpandingSearch {
   protected el: HTMLElement;
@@ -1520,7 +1524,7 @@ export class IxMenu {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange']);
+    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange', 'openAppSwitch']);
   }
 }
 
@@ -1534,6 +1538,10 @@ export declare interface IxMenu extends Components.IxMenu {
    * Map Sidebar expanded
    */
   mapExpandChange: EventEmitter<CustomEvent<boolean>>;
+  /**
+   * Event emitted when the app switch button is clicked @since 3.0.0
+   */
+  openAppSwitch: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -2178,7 +2186,7 @@ export declare interface IxRow extends Components.IxRow {}
 
 
 @ProxyCmp({
-  inputs: ['allowClear', 'disabled', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'selectedIndices', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['allowClear', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'selectedIndices', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
   methods: ['getNativeInputElement', 'focusInput']
 })
 @Component({
@@ -2186,7 +2194,7 @@ export declare interface IxRow extends Components.IxRow {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['allowClear', 'disabled', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'selectedIndices', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
+  inputs: ['allowClear', 'disabled', 'dropdownMaxWidth', 'dropdownWidth', 'editable', 'helperText', 'hideListHeader', 'i18nNoMatches', 'i18nPlaceholder', 'i18nPlaceholderEditable', 'i18nSelectListHeader', 'infoText', 'invalidText', 'label', 'mode', 'name', 'readonly', 'required', 'selectedIndices', 'showTextAsTooltip', 'validText', 'value', 'warningText'],
 })
 export class IxSelect {
   protected el: HTMLElement;

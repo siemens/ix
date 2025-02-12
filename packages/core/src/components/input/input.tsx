@@ -30,8 +30,10 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
+  addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
+  DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
   onInputBlur,
@@ -42,6 +44,8 @@ let inputIds = 0;
 /**
  * @since 2.6.0
  * @form-ready 2.6.0
+ * @slot start - Element will be displayed at the start of the input
+ * @slot end - Element will be displayed at the end of the input
  */
 @Component({
   tag: 'ix-input',
@@ -172,6 +176,8 @@ export class Input implements IxInputFieldComponent<string> {
 
   private readonly inputId = `input-${inputIds++}`;
 
+  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
@@ -187,8 +193,12 @@ export class Input implements IxInputFieldComponent<string> {
     this.inputType = this.type;
   }
 
-  componentDidRender() {
-    this.updatePaddings();
+  connectedCallback(): void {
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
   }
 
   private updatePaddings() {
@@ -197,6 +207,10 @@ export class Input implements IxInputFieldComponent<string> {
       this.slotEndRef.current,
       this.inputRef.current
     );
+  }
+
+  disconnectedCallback(): void {
+    this.disposableChangesAndVisibilityObservers?.();
   }
 
   updateFormInternalValue(value: string) {

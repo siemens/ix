@@ -1,14 +1,11 @@
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Pie chart
-<!-- introduction start -->
-Pie charts are circular graphs divided into slices, where each slice represents a proportion of the whole.
-<!-- introduction end -->
-This type of chart is particularly useful for displaying categorical data and showing the relative sizes of different categories. By providing a clear and immediate visual comparison, pie charts make it easy to understand the distribution and composition of data at a glance.
-## Examples
+# Pie charts
 
-### Pie chart
-Pie charts are a straightforward and effective way to visualize data proportions within a whole.
+Pie charts display data using a circular graph. The length of each slice is proportional to the value it represents. Pie charts are commonly used to visualize the parts of a whole and are particularly useful for comparing the relative sizes of different categories.
+
+### Pie chart example
+
 <Playground
 height="40rem"
 name="echarts-pie"
@@ -16,8 +13,10 @@ noMargin
 examplesByName>
 </Playground>
 
-### Donut chart
-Donut charts are a variation of pie charts. They feature a central hole, giving them a distinctive 'donut' shape. This design not only makes them visually appealing but also allows for additional information or labels to be placed in the center.
+### Donut charts
+
+Donut charts are a variation of pie charts that have a hole in the center. Donut charts are often used to display the same information as a pie chart, but additional information can be displayed in the center of the chart.
+
 <Playground
 height="40rem"
 name="echarts-circle"

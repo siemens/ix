@@ -152,9 +152,7 @@ export async function fetchSourceFilesByFileName(
     files.map(async (file) => {
       try {
         const source = await fetchSource(
-          getLanguage(file) === 'css'
-            ? `${path}/previews/styles/${file}`
-            : `${path}/previews/${frameworkPath}/${file}`
+          `${path}/previews/${frameworkPath}/${file}`
         );
 
         if (!source) {
@@ -198,7 +196,11 @@ export async function fetchSourceFilesFromExample(
   }
 
   if (includeCssFile) {
-    filesToFetch.push(`${exampleName}.css`);
+    if (framework === TargetFramework.REACT) {
+      filesToFetch.push(`${exampleName}.scoped.css`);
+    } else {
+      filesToFetch.push(`${exampleName}.css`);
+    }
   }
 
   return fetchSourceFilesByFileName(baseUrl, framework, filesToFetch);

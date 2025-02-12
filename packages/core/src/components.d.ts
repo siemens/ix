@@ -19,6 +19,7 @@ import { InputState } from "./components/category-filter/input-state";
 import { ColumnSize } from "./components/col/col";
 import { ContentHeaderVariant } from "./components/content-header/content-header";
 import { CssGridTemplateType } from "./components/css-grid/css-grid";
+import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 import { DateInputValidityState } from "./components/date-input/date-input";
 import { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -33,7 +34,6 @@ import { EmptyStateLayout } from "./components/empty-state/empty-state";
 import { MakeRef } from "./components/utils/make-ref";
 import { FlipTileState } from "./components/flip-tile/flip-tile-state";
 import { IconButtonVariant } from "./components/icon-button/icon-button";
-import { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 import { KeyValueLabelPosition } from "./components/key-value/key-value";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { IxModalSize } from "./components/modal/modal";
@@ -65,6 +65,7 @@ export { InputState } from "./components/category-filter/input-state";
 export { ColumnSize } from "./components/col/col";
 export { ContentHeaderVariant } from "./components/content-header/content-header";
 export { CssGridTemplateType } from "./components/css-grid/css-grid";
+export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { DateDropdownOption, DateRangeChangeEvent } from "./components/date-dropdown/date-dropdown";
 export { DateInputValidityState } from "./components/date-input/date-input";
 export { DateTimeCardCorners } from "./components/date-time-card/date-time-card";
@@ -79,7 +80,6 @@ export { EmptyStateLayout } from "./components/empty-state/empty-state";
 export { MakeRef } from "./components/utils/make-ref";
 export { FlipTileState } from "./components/flip-tile/flip-tile-state";
 export { IconButtonVariant } from "./components/icon-button/icon-button";
-export { ButtonVariant as ButtonVariant1 } from "./components/button/button";
 export { KeyValueLabelPosition } from "./components/key-value/key-value";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { IxModalSize } from "./components/modal/modal";
@@ -131,7 +131,7 @@ export namespace Components {
         /**
           * Define application switch configuration
          */
-        "appSwitchConfig": AppSwitchConfiguration;
+        "appSwitchConfig"?: AppSwitchConfiguration;
         /**
           * Supported layouts
          */
@@ -143,7 +143,7 @@ export namespace Components {
         /**
           * Application theme
          */
-        "theme": IxTheme;
+        "theme"?: IxTheme;
         /**
           * Use the system appearance dark or light
          */
@@ -163,7 +163,7 @@ export namespace Components {
     interface IxApplicationSidebar {
     }
     interface IxApplicationSwitchModal {
-        "config": AppSwitchConfiguration;
+        "config"?: AppSwitchConfiguration;
     }
     /**
      * @since 2.0.0
@@ -192,7 +192,7 @@ export namespace Components {
         /**
           * Application name
          */
-        "applicationName": string;
+        "applicationName"?: string;
         /**
           * Supported layouts
           * @example ['sm', 'md']
@@ -256,12 +256,12 @@ export namespace Components {
         /**
           * Icon to be displayed next ot the label
          */
-        "icon": string;
+        "icon"?: string;
         "isDropdownTrigger": boolean;
         /**
           * Breadcrumb label
          */
-        "label": string;
+        "label"?: string;
         "showChevron": boolean;
         "visible": boolean;
     }
@@ -537,7 +537,7 @@ export namespace Components {
         /**
           * Show icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Show chip with outline style
          */
@@ -682,6 +682,10 @@ export namespace Components {
          */
         "getDateRange": () => Promise<DateRangeChangeEvent>;
         /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
           * Text for custom dropdown item. Will be used for translation.
          */
         "i18nCustomItem": string;
@@ -693,6 +697,10 @@ export namespace Components {
           * Text for the done button. Will be used for translation.
          */
         "i18nNoRange": string;
+        /**
+          * Loading button
+         */
+        "loading": boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.6.0
@@ -707,6 +715,10 @@ export namespace Components {
          */
         "minDate": string;
         /**
+          * Outline button
+         */
+        "outline": boolean;
+        /**
           * If true a range of dates can be selected.
          */
         "range": boolean;
@@ -715,6 +727,10 @@ export namespace Components {
          */
         "to": string;
         "today": string;
+        /**
+          * Button variant
+         */
+        "variant": ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.6.0
@@ -826,7 +842,7 @@ export namespace Components {
         /**
           * Get the currently selected date-range.
          */
-        "getCurrentDate": () => Promise<{ from: string; to: string; }>;
+        "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
           * Text of date select button
           * @since 2.1.0
@@ -1112,7 +1128,7 @@ export namespace Components {
         /**
           * Display name of the header
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxDropdownItem {
         /**
@@ -1155,7 +1171,7 @@ export namespace Components {
         /**
           * Optional empty state action
          */
-        "action": string;
+        "action"?: string;
         /**
           * Empty state header
          */
@@ -1163,7 +1179,7 @@ export namespace Components {
         /**
           * Optional empty state icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
          */
@@ -1171,7 +1187,7 @@ export namespace Components {
         /**
           * Optional empty state sub header
          */
-        "subHeader": string;
+        "subHeader"?: string;
     }
     interface IxEventList {
         /**
@@ -1223,9 +1239,17 @@ export namespace Components {
          */
         "fullWidth": boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost": boolean;
+        /**
           * Search icon
          */
         "icon": string;
+        /**
+          * Outline button
+         */
+        "outline": boolean;
         /**
           * Placeholder text
          */
@@ -1234,6 +1258,10 @@ export namespace Components {
           * Default value
          */
         "value": string;
+        /**
+          * button variant
+         */
+        "variant": ButtonVariant1;
     }
     interface IxFieldLabel {
         "controlRef"?: | MakeRef<HTMLElement>
@@ -1329,7 +1357,7 @@ export namespace Components {
         /**
           * Variation of the Flip
          */
-        "state": FlipTileState;
+        "state"?: FlipTileState;
         /**
           * Width interpreted as REM
           * @since 1.5.0
@@ -1435,12 +1463,12 @@ export namespace Components {
           * Accessibility label for the icon button Will be set as aria-label on the nested HTML button element
           * @since 2.1.0
          */
-        "a11yLabel": string;
+        "a11yLabel"?: string;
         /**
           * Color of icon in  button
           * @deprecated since 2.1.0 use `icon-color`
          */
-        "color": string;
+        "color"?: string;
         /**
           * Disabled
          */
@@ -1452,11 +1480,11 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Color of icon in  button
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Loading button
           * @since 2.0.0
@@ -1500,7 +1528,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Loading button
          */
@@ -1619,7 +1647,7 @@ export namespace Components {
         /**
           * Optional key value icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Key value label
          */
@@ -1631,7 +1659,7 @@ export namespace Components {
         /**
           * Optional key value text value
          */
-        "value": string;
+        "value"?: string;
     }
     /**
      * @since 1.6.0
@@ -1643,11 +1671,11 @@ export namespace Components {
         "striped": boolean;
     }
     interface IxKpi {
-        "label": string;
+        "label"?: string;
         "orientation": 'horizontal' | 'vertical';
         "state": 'neutral' | 'warning' | 'alarm';
-        "unit": string;
-        "value": string | number;
+        "unit"?: string;
+        "value"?: string | number;
     }
     /**
      * @since 2.6.0
@@ -1693,13 +1721,13 @@ export namespace Components {
         /**
           * Url for the link button
          */
-        "url": string;
+        "url"?: string;
     }
     interface IxMapNavigation {
         /**
           * Application name
          */
-        "applicationName": string;
+        "applicationName"?: string;
         /**
           * Close current shown overlay
           * @deprecated Will be removed in 2.0.0. Use slot based approach
@@ -1712,7 +1740,7 @@ export namespace Components {
         /**
           * Navigation title
          */
-        "navigationTitle": string;
+        "navigationTitle"?: string;
         /**
           * Open a overlay inside content area
           * @deprecated Will be removed in 2.0.0. Use slot based approach
@@ -1734,19 +1762,19 @@ export namespace Components {
           * Color of icon
           * @deprecated since 2.1.0. Use `icon-color`
          */
-        "color": string;
+        "color"?: string;
         /**
           * Icon of overlay
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Color of icon
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Title of overlay
          */
-        "name": string;
+        "name"?: string;
     }
     interface IxMenu {
         /**
@@ -1829,7 +1857,7 @@ export namespace Components {
         /**
           * Active tab
          */
-        "activeTabLabel": string;
+        "activeTabLabel"?: string;
         /**
           * Content of the header
          */
@@ -1843,13 +1871,13 @@ export namespace Components {
         /**
           * About Item label
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxMenuAboutNews {
         /**
           * Subtitle of the about news
          */
-        "aboutItemLabel": string;
+        "aboutItemLabel"?: string;
         /**
           * Internal
          */
@@ -1858,7 +1886,7 @@ export namespace Components {
         /**
           * Title of the about news
          */
-        "label": string;
+        "label"?: string;
         /**
           * Bottom offset
          */
@@ -1872,7 +1900,7 @@ export namespace Components {
         /**
           * Second line of text
          */
-        "bottom": string;
+        "bottom"?: string;
         /**
           * Use for translation
          */
@@ -1881,12 +1909,12 @@ export namespace Components {
           * Display a avatar image
           * @since 1.4.0
          */
-        "image": string;
+        "image"?: string;
         /**
           * Display the initials of the user. Will be overwritten by image
           * @since 1.4.0
          */
-        "initials": string;
+        "initials"?: string;
         /**
           * Control the visibility of the logout button
           * @since 2.1.0
@@ -1895,18 +1923,18 @@ export namespace Components {
         /**
           * First line of text
          */
-        "top": string;
+        "top"?: string;
     }
     interface IxMenuAvatarItem {
         "getDropdownItemElement": () => Promise<HTMLIxDropdownItemElement>;
         /**
           * Avatar dropdown icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Avatar dropdown label
          */
-        "label": string;
+        "label"?: string;
     }
     /**
      * @since 2.0.0
@@ -1915,21 +1943,21 @@ export namespace Components {
         /**
           * Icon of the category
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Display name of the category
          */
-        "label": string;
+        "label"?: string;
         /**
           * Show notification count on the category
          */
-        "notifications": number;
+        "notifications"?: number;
     }
     interface IxMenuExpandIcon {
         /**
           * Controls which icon is displayed
          */
-        "breakpoint": Breakpoint;
+        "breakpoint"?: Breakpoint;
         /**
           * Whether the menu expand icon displays the expanded state or not
          */
@@ -1986,7 +2014,7 @@ export namespace Components {
         /**
           * Active tab
          */
-        "activeTabLabel": string;
+        "activeTabLabel"?: string;
         /**
           * Label of first tab
          */
@@ -2000,7 +2028,7 @@ export namespace Components {
         /**
           * Settings Item label
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxMessageBar {
         /**
@@ -2024,7 +2052,7 @@ export namespace Components {
         /**
           * Is called before the modal is dismissed.  - Return `true` to proceed in dismissing the modal - Return `false` to abort in dismissing the modal
          */
-        "beforeDismiss": (reason?: any) => boolean | Promise<boolean>;
+        "beforeDismiss"?: (reason?: any) => boolean | Promise<boolean>;
         /**
           * Centered modal
          */
@@ -2434,6 +2462,16 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
+          * @since 2.7.0
+         */
+        "dropdownMaxWidth"?: string;
+        /**
+          * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+          * @since 2.7.0
+         */
+        "dropdownWidth"?: string;
+        /**
           * Select is extendable
          */
         "editable": boolean;
@@ -2628,7 +2666,7 @@ export namespace Components {
         /**
           * Button label
          */
-        "label": string;
+        "label"?: string;
         /**
           * Button outline variant
          */
@@ -2654,11 +2692,11 @@ export namespace Components {
         /**
           * Dropdown icon
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Dropdown label
          */
-        "label": string;
+        "label"?: string;
     }
     interface IxTabItem {
         /**
@@ -2831,7 +2869,7 @@ export namespace Components {
         /**
           * Get the current time based on the wanted format
          */
-        "getCurrentTime": () => Promise<string>;
+        "getCurrentTime": () => Promise<string | undefined>;
         /**
           * @deprecated Not supported since 2.0.0.
          */
@@ -2890,15 +2928,15 @@ export namespace Components {
         /**
           * Icon of toast
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Icon color of toast
          */
-        "iconColor": string;
+        "iconColor"?: string;
         /**
           * Toast title
          */
-        "toastTitle": string;
+        "toastTitle"?: string;
         /**
           * Toast type
          */
@@ -2976,7 +3014,7 @@ export namespace Components {
         /**
           * Icon name
          */
-        "icon": string;
+        "icon"?: string;
         /**
           * Loading button
          */
@@ -3140,7 +3178,7 @@ export namespace Components {
         /**
           * Message of the tooltip
          */
-        "message": string;
+        "message"?: string;
         /**
           * Placement of the tooltip
          */
@@ -3457,6 +3495,7 @@ declare global {
     };
     interface HTMLIxApplicationHeaderElementEventMap {
         "menuToggle": boolean;
+        "openAppSwitch": void;
     }
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxApplicationHeaderElementEventMap>(type: K, listener: (this: HTMLIxApplicationHeaderElement, ev: IxApplicationHeaderCustomEvent<HTMLIxApplicationHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4226,6 +4265,7 @@ declare global {
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
         "mapExpandChange": boolean;
+        "openAppSwitch": void;
     }
     interface HTMLIxMenuElement extends Components.IxMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuElementEventMap>(type: K, listener: (this: HTMLIxMenuElement, ev: IxMenuCustomEvent<HTMLIxMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -5157,6 +5197,11 @@ declare namespace LocalJSX {
          */
         "onMenuToggle"?: (event: IxApplicationHeaderCustomEvent<boolean>) => void;
         /**
+          * Event emitted when the app switch button is clicked
+          * @since 3.0.0
+         */
+        "onOpenAppSwitch"?: (event: IxApplicationHeaderCustomEvent<void>) => void;
+        /**
           * Controls the visibility of the menu toggle button based on the context of the application header.  When the application header is utilized outside the application frame, the menu toggle button is displayed. Conversely, if the header is within the application frame, this property is ineffective.
           * @since 2.5.0
          */
@@ -5671,7 +5716,7 @@ declare namespace LocalJSX {
         /**
           * Grid item name
          */
-        "itemName"?: string;
+        "itemName": string;
     }
     /**
      * @since 2.6.0
@@ -5741,6 +5786,10 @@ declare namespace LocalJSX {
          */
         "from"?: string;
         /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
           * Text for custom dropdown item. Will be used for translation.
          */
         "i18nCustomItem"?: string;
@@ -5752,6 +5801,10 @@ declare namespace LocalJSX {
           * Text for the done button. Will be used for translation.
          */
         "i18nNoRange"?: string;
+        /**
+          * Loading button
+         */
+        "loading"?: boolean;
         /**
           * Locale identifier (e.g. 'en' or 'de').
           * @since 2.6.0
@@ -5770,6 +5823,10 @@ declare namespace LocalJSX {
          */
         "onDateRangeChange"?: (event: IxDateDropdownCustomEvent<DateRangeChangeEvent>) => void;
         /**
+          * Outline button
+         */
+        "outline"?: boolean;
+        /**
           * If true a range of dates can be selected.
          */
         "range"?: boolean;
@@ -5778,6 +5835,10 @@ declare namespace LocalJSX {
          */
         "to"?: string;
         "today"?: string;
+        /**
+          * Button variant
+         */
+        "variant"?: ButtonVariant1;
         /**
           * The index of which day to start the week on, based on the Locale#weekdays array. E.g. if the locale is en-us, weekStartIndex = 1 results in starting the week on monday.
           * @since 2.6.0
@@ -6327,6 +6388,10 @@ declare namespace LocalJSX {
          */
         "fullWidth"?: boolean;
         /**
+          * Button with no background or outline
+         */
+        "ghost"?: boolean;
+        /**
           * Search icon
          */
         "icon"?: string;
@@ -6335,6 +6400,10 @@ declare namespace LocalJSX {
          */
         "onValueChange"?: (event: IxExpandingSearchCustomEvent<string>) => void;
         /**
+          * Outline button
+         */
+        "outline"?: boolean;
+        /**
           * Placeholder text
          */
         "placeholder"?: string;
@@ -6342,6 +6411,10 @@ declare namespace LocalJSX {
           * Default value
          */
         "value"?: string;
+        /**
+          * button variant
+         */
+        "variant"?: ButtonVariant1;
     }
     interface IxFieldLabel {
         "controlRef"?: | MakeRef<HTMLElement>
@@ -6921,6 +6994,11 @@ declare namespace LocalJSX {
           * Map Sidebar expanded
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
+        /**
+          * Event emitted when the app switch button is clicked
+          * @since 3.0.0
+         */
+        "onOpenAppSwitch"?: (event: IxMenuCustomEvent<void>) => void;
         /**
           * Menu stays pinned to the left
          */
@@ -7617,6 +7695,16 @@ declare namespace LocalJSX {
           * If true the select will be in disabled state
          */
         "disabled"?: boolean;
+        /**
+          * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
+          * @since 2.7.0
+         */
+        "dropdownMaxWidth"?: string;
+        /**
+          * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+          * @since 2.7.0
+         */
+        "dropdownWidth"?: string;
         /**
           * Select is extendable
          */

@@ -1,5 +1,25 @@
 # @siemens/ix-aggrid
 
+## 2.2.3
+
+### Patch Changes
+
+- [#1660](https://github.com/siemens/ix/pull/1660) [`906172a739`](https://github.com/siemens/ix/commit/906172a7391f5c81eaa21f86deffd38e807920c6) Thanks [@matthiashader](https://github.com/matthiashader)! - align checkmark in `ag-grid` with ix-checkbox
+
+- [#1624](https://github.com/siemens/ix/pull/1624) [`b016f93a16`](https://github.com/siemens/ix/commit/b016f93a16d2b4d04511225b75f043b167508682) Thanks [@jul-lam](https://github.com/jul-lam)! - Set typography globally for **ag-grid** theme.
+
+- Updated dependencies [[`9b91179825`](https://github.com/siemens/ix/commit/9b911798254f74ea16ecb5144bc2a1dc3f4f80ce), [`d28d62160e`](https://github.com/siemens/ix/commit/d28d62160e69388089dec58040c915ca69749462), [`1625ddc001`](https://github.com/siemens/ix/commit/1625ddc001b451069a200da171fd1df92846c3a6), [`07c9f3d66e`](https://github.com/siemens/ix/commit/07c9f3d66e33ee2770dceaf0046fbdb52f882543), [`3f5d0a4f39`](https://github.com/siemens/ix/commit/3f5d0a4f39c589408f8f352a3c9ec039f42190b9), [`89801b1149`](https://github.com/siemens/ix/commit/89801b1149b18c580a4fee6563638a8883fad2d1), [`e2316d8b6d`](https://github.com/siemens/ix/commit/e2316d8b6d514217b97790f9a86bd1bbf30e7f44), [`4558698209`](https://github.com/siemens/ix/commit/455869820982501461b3d75c3f87fbdcf81fab01), [`0234ccf941`](https://github.com/siemens/ix/commit/0234ccf9419cd6fee18690106405da26d4e50bb6), [`6ce292968e`](https://github.com/siemens/ix/commit/6ce292968ed808e06cde79d459ee8b45a4edc6e4), [`72dd729926`](https://github.com/siemens/ix/commit/72dd729926578f6f9b78f2268a315b6e7d0d12cc), [`f3c8ab8b01`](https://github.com/siemens/ix/commit/f3c8ab8b01d6bbdf075f19e998f2aa33bde1d68a), [`9a5fff63e6`](https://github.com/siemens/ix/commit/9a5fff63e6230a95ce6f6abfe39c1256fb26b515), [`e263955649`](https://github.com/siemens/ix/commit/e263955649d8377ec592e81dfca1387e04936d94)]:
+  - @siemens/ix@2.7.0
+
+## 2.2.2
+
+### Patch Changes
+
+- [#1615](https://github.com/siemens/ix/pull/1615) [`e6bbb44a43`](https://github.com/siemens/ix/commit/e6bbb44a43fd131a290719a27b423bceab91e3f6) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Hide border sticky bottom in **ag-grid**.
+
+- Updated dependencies [[`0e173504ea`](https://github.com/siemens/ix/commit/0e173504ea5a73f2822c7a322d7a23a9ddfd1fa1), [`0e173504ea`](https://github.com/siemens/ix/commit/0e173504ea5a73f2822c7a322d7a23a9ddfd1fa1), [`57586a7fd1`](https://github.com/siemens/ix/commit/57586a7fd1766d0b8bef04d7c0e32f348775b977), [`77f76febbc`](https://github.com/siemens/ix/commit/77f76febbc00df91a3d27f43845f2cfadd9234ac), [`0fe4d521ed`](https://github.com/siemens/ix/commit/0fe4d521ed0c269e63136d31d17a21022866988c), [`0e173504ea`](https://github.com/siemens/ix/commit/0e173504ea5a73f2822c7a322d7a23a9ddfd1fa1), [`1c65a17d69`](https://github.com/siemens/ix/commit/1c65a17d6911e5be72e7612e87d0b7fbeeeacc73), [`0e173504ea`](https://github.com/siemens/ix/commit/0e173504ea5a73f2822c7a322d7a23a9ddfd1fa1)]:
+  - @siemens/ix@2.6.1
+
 ## 2.2.1
 
 ### Patch Changes

@@ -14,6 +14,7 @@ import {
   ValidationResults,
   shouldSuppressInternalValidation,
 } from '../utils/input';
+import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 import { generateUUID } from '../utils/uuid';
 import { shakeInput } from './input.animation';
@@ -72,7 +73,7 @@ export async function checkInternalValidity<T>(
   }
 
   const { valid } = validityState;
-  comp.hostElement.classList.toggle('ix-invalid', !valid);
+  comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
 }
 
 export function onInputBlur<T>(
@@ -151,4 +152,40 @@ export function getAriaAttributesForInput(
     inputAria['aria-errormessage'] = component.invalidText;
   }
   return inputAria;
+}
+
+export type DisposableChangesAndVisibilityObservers = () => void;
+
+export const addDisposableChangesAndVisibilityObservers = (
+  element: HTMLElement,
+  callback: () => void
+): DisposableChangesAndVisibilityObservers => {
+  const intersectionObserver = observeElementUntilVisible(element, callback);
+  const mutationObserver = createMutationObserver(callback);
+
+  mutationObserver.observe(element, {
+    subtree: true,
+    attributes: true,
+  });
+
+  return () => {
+    intersectionObserver.disconnect();
+    mutationObserver.disconnect();
+  };
+};
+
+function observeElementUntilVisible(
+  hostElement: HTMLElement,
+  updateCallback: () => void
+): IntersectionObserver {
+  const intersectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        updateCallback();
+      }
+    });
+  });
+
+  intersectionObserver.observe(hostElement);
+  return intersectionObserver;
 }

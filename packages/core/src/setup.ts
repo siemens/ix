@@ -9,8 +9,24 @@
 
 import { setPlatformHelpers } from '@stencil/core';
 
+export function shouldDefineIcons(): boolean {
+  const content = document.head
+    ?.querySelector('meta[name="ix:legacy-icons"]')
+    ?.getAttribute('content');
+
+  if (!content) {
+    return true;
+  }
+
+  return content.toLowerCase() === 'true';
+}
+
 async function setupIcons() {
   if (typeof window === 'undefined') {
+    return;
+  }
+
+  if (shouldDefineIcons() === false) {
     return;
   }
 
@@ -18,10 +34,6 @@ async function setupIcons() {
   if (iconComponent) {
     return;
   }
-
-  console.warn(
-    'ix-icon web component not loaded. Using local fallback version'
-  );
 
   const ixIcons = await import('@siemens/ix-icons/loader');
   await ixIcons.defineCustomElements();
