@@ -114,7 +114,7 @@ export class ValueAccessor
   }
 
   detourFormControlMethods(ngControl: NgControl, elementRef: ElementRef) {
-    const formControl = ngControl.control as any;
+    const formControl = ngControl.control;
     if (formControl) {
       const methodsToPatch = [
         'markAsTouched',
@@ -122,7 +122,7 @@ export class ValueAccessor
         'markAsUntouched',
         'markAsDirty',
         'markAsPristine',
-      ];
+      ] as const;
       methodsToPatch.forEach((method) => {
         if (typeof formControl[method] !== 'undefined') {
           const oldFn = formControl[method].bind(formControl);
