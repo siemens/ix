@@ -47,5 +47,5 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
 ### Related patterns
 
 - [Modal](modal.md)
-- [Message bar](messagebar.md)
+- [Message bar](message-bar.mdx)
 - [Drawer](drawer.md)
