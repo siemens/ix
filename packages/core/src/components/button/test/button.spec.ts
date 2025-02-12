@@ -46,6 +46,7 @@ describe('button', () => {
   });
 
   it('should submit form if type is submit', async () => {
+    const mockSubmit = jest.fn();
     const page = await newSpecPage({
       components: [Button],
       html: `
@@ -58,15 +59,16 @@ describe('button', () => {
 
     await page.waitForChanges();
 
+    const form = page.doc.querySelector('form')!;
+    form.requestSubmit = mockSubmit;
+
     const btn = page.doc
       .querySelector('ix-button[type="submit"]')!
       .shadowRoot!.querySelector('button')!;
 
-    const onClick = jest.fn();
-
     expect(btn).toBeDefined();
 
     btn.click();
-    expect(onClick).toHaveBeenCalled();
+    expect(mockSubmit).toHaveBeenCalled();
   });
 });

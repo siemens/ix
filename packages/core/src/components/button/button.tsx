@@ -82,14 +82,23 @@ export class Button implements IxButtonComponent {
     }
   }
 
+  private getAssociatedForm(): HTMLFormElement | null {
+    if (this.internals?.form) {
+      return this.internals.form;
+    }
+    return this.hostElement.closest('form');
+  }
+
   dispatchFormEvents() {
-    if (
-      this.type === 'submit' &&
-      this.internals?.form &&
-      !this.disabled &&
-      !this.loading
-    ) {
-      this.internals.form.requestSubmit();
+    if (this.type === 'submit' && !this.disabled && !this.loading) {
+      const form = this.getAssociatedForm();
+      if (form) {
+        if (typeof form.requestSubmit === 'function') {
+          form.requestSubmit();
+        } else {
+          form.submit();
+        }
+      }
     }
   }
 
