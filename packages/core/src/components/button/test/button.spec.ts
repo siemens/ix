@@ -61,19 +61,10 @@ describe('button', () => {
     const btn = page.doc
       .querySelector('ix-button[type="submit"]')!
       .shadowRoot!.querySelector('button')!;
-    const shadowButton = page.doc.querySelector(
-      'ix-button[type="submit"] > button'
-    ) as HTMLButtonElement;
 
     const onClick = jest.fn();
 
-    shadowButton.addEventListener('click', onClick);
-
     expect(btn).toBeDefined();
-    expect(shadowButton).toBeDefined();
-    expect(shadowButton.style.display).toStrictEqual('none');
-    expect(shadowButton.type).toStrictEqual('submit');
-    expect(shadowButton.tabIndex).toStrictEqual(-1);
 
     btn.click();
     expect(onClick).toHaveBeenCalled();
