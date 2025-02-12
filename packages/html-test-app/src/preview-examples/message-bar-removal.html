@@ -17,16 +17,20 @@ LICENSE file in the root directory of this source tree.
   </head>
 
   <body>
-    <div class="message-bar">
-      <ix-message-bar dismissible="false">Message text</ix-message-bar>
-      <ix-message-bar dismissible="false" type="warning">Message text</ix-message-bar>
-      <ix-message-bar dismissible="false" type="danger">
-        <div class="d-flex align-items-center justify-content-between">
-          Message text
-          <ix-button>Action</ix-button>
-        </div>
+    <div class="message-bar" id="messageBarContainer">
+      <ix-message-bar id="messageBar">
+        Message text
       </ix-message-bar>
     </div>
+
+    <script type="module">
+      const messageBar = document.getElementById('messageBar');
+      const messageBarContainer = document.getElementById('messageBarContainer');
+
+      messageBar.addEventListener('closeAnimationCompleted', () => {
+        messageBarContainer.removeChild(messageBar);
+      });
+    </script>
     <script type="module" src="./init.js"></script>
   </body>
 </html>

@@ -9,25 +9,20 @@
 
 import './message-bar.scoped.css';
 
-import { IxMessageBar } from '@siemens/ix-react';
-import { useState } from 'react';
+import { IxButton, IxMessageBar } from '@siemens/ix-react';
 
 export default () => {
-  const [showMessageBar, setShowMessageBar] = useState(true);
-
-  const handleCloseAnimationCompleted = () => {
-    setShowMessageBar(false);
-  };
-
   return (
-    <div className="message-bar">
-      {showMessageBar && (
-        <IxMessageBar
-          onCloseAnimationCompleted={handleCloseAnimationCompleted}
-        >
-          Message text
+    <>
+      <div className="message-bar">
+        <IxMessageBar dismissible={false}>Message text</IxMessageBar>
+        <IxMessageBar dismissible={false} type="warning">Message text</IxMessageBar>
+        <IxMessageBar dismissible={false} type="danger">
+          <div className="d-flex align-items-center justify-content-between">
+            Message text <IxButton>Action</IxButton>
+          </div>
         </IxMessageBar>
-      )}
-    </div>
+      </div>
+    </>
   );
 };

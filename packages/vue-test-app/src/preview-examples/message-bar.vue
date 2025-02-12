@@ -7,28 +7,21 @@
  * LICENSE file in the root directory of this source tree.
 -->
 
-<template>
-  <div class="message-bar">
-    <ix-message-bar
-      v-if="showMessageBar"
-      @closeAnimationCompleted="handleCloseAnimationCompleted"
-    >
-      Message text
-    </ix-message-bar>
-  </div>
-</template>
-
 <script setup lang="ts">
-import { ref } from 'vue';
-import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
-
-const showMessageBar = ref(true);
-
-const handleCloseAnimationCompleted = () => {
-  showMessageBar.value = false;
-};
+import { IxButton, IxMessageBar } from '@siemens/ix-vue';
 </script>
 
-<style scoped>
-@import './message-bar.css';
-</style>
+<style scoped src="./message-bar.css"></style>
+
+<template>
+  <div class="message-bar">
+    <IxMessageBar :dismissible="false">Message text</IxMessageBar>
+    <IxMessageBar :dismissible="false" type="warning">Message text</IxMessageBar>
+    <IxMessageBar :dismissible="false" type="danger">
+      <div class="d-flex align-items-center justify-content-between">
+        Message text
+        <ix-button>Action</ix-button>
+      </div>
+    </IxMessageBar>
+  </div>
+</template>
