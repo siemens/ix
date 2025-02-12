@@ -7,21 +7,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// import { Component } from '@angular/core';
-//
-// @Component({
-//   selector: 'app-message-bar',
-//   templateUrl: './message-bar.component.html',
-//   styleUrls: ['./message-bar.scoped.css']
-// })
-// export class MessageBarDOMSingleRemoval {
-//   showMessageBar = false;
-//
-//   handleCloseAnimationCompleted() {
-//     this.showMessageBar = false;
-//   }
-//
-//   handleShowMessageBar() {
-//     this.showMessageBar = true;
-//   }
-// }
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-message-bar',
+  template: `
+    <ix-button (click)="handleShowMessageBar()">Show Message Bar</ix-button>
+    <div class="message-bar">
+      <ix-message-bar *ngIf="showMessageBar" (closeAnimationCompleted)="handleCloseAnimationCompleted()">
+        Message text
+      </ix-message-bar>
+    </div>
+  `,
+  styleUrls: ['./message-bar.css']
+})
+export default class MessageBarDOMSingleRemoval {
+  showMessageBar = false;
+
+  handleCloseAnimationCompleted() {
+    this.showMessageBar = false;
+  }
+
+  handleShowMessageBar() {
+    this.showMessageBar = true;
+  }
+}

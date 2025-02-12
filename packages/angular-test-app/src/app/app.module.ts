@@ -159,6 +159,8 @@ import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
 import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
+import MessageBarDOMSingleRemoval from '../preview-examples/message-bar-dom-single-removal';
+import MessageBarDOMMultipleRemoval from '../preview-examples/message-bar-dom-multiple-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
@@ -372,6 +374,8 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     MenuWithBottomTabs,
     Message,
     MessageBar,
+    MessageBarDOMSingleRemoval,
+    MessageBarDOMMultipleRemoval,
     ModalByInstanceContent,
     ModalByInstance,
     ModalByTemplate,
