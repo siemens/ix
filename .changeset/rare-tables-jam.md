@@ -2,4 +2,4 @@
 '@siemens/ix': patch
 ---
 
-Replace form submission workaround with element internals in `ix-button`
+Fix issue of `ix-button` which prevent a form get submitted twice in row.
