@@ -7,7 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Listen, Prop } from '@stencil/core';
+import {
+  AttachInternals,
+  Component,
+  Element,
+  h,
+  Host,
+  Listen,
+  Prop,
+} from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
 
@@ -66,13 +74,7 @@ export class Button implements IxButtonComponent {
 
   @Element() hostElement!: HTMLIxButtonElement;
 
-  internals: ElementInternals | null = null;
-
-  constructor() {
-    if (this.hostElement.attachInternals) {
-      this.internals = this.hostElement.attachInternals();
-    }
-  }
+  @AttachInternals() internals!: ElementInternals;
 
   @Listen('click', { capture: true })
   handleClick(event: Event) {
