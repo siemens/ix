@@ -8,7 +8,6 @@
  */
 
 import {
-  AttachInternals,
   Component,
   Element,
   h,
@@ -74,7 +73,13 @@ export class Button implements IxButtonComponent {
 
   @Element() hostElement!: HTMLIxButtonElement;
 
-  @AttachInternals() internals!: ElementInternals;
+  internals: ElementInternals | null = null;
+
+  constructor() {
+    if (this.hostElement.attachInternals) {
+      this.internals = this.hostElement.attachInternals();
+    }
+  }
 
   @Listen('click', { capture: true })
   handleClick(event: Event) {
@@ -87,7 +92,7 @@ export class Button implements IxButtonComponent {
   dispatchFormEvents() {
     if (
       this.type === 'submit' &&
-      this.internals.form &&
+      this.internals?.form &&
       !this.disabled &&
       !this.loading
     ) {
