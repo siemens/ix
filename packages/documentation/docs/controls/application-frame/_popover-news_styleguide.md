@@ -30,4 +30,4 @@ Unlike a modal, popover news does not prevent users from navigating and interact
 
 - [Toast message](../toast.md)
 - [Modal](../modal.md)
-- [Message bar](../messagebar.md)
+- [Message bar](../message-bar.mdx)

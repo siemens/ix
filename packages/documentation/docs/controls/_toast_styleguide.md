@@ -41,7 +41,7 @@ Toasts are small pop-ups that provide simple feedback on a process. They are UI 
 - Do use toasts to instantly inform a user about the outcome of an action
 - Do include shortcuts to undo an action immediately after it's taken
 - Do stick with a consistent position for toasts within the same app and avoid interchanging their positions
-- Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work (use a [modal](modal.md) or a [message bar](messagebar.md) instead)
+- Don’t use toasts for high-priority or critical alerts that prevent the user from continuing their work (use a [modal](modal.md) or a [message bar](message-bar.mdx) instead)
 - Don’t edit or reuse icons or icon colors from the four predefined toast types when creating custom toasts
 
 ### Related patterns
