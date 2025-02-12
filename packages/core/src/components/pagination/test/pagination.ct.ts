@@ -78,7 +78,7 @@ test('should not change page', async ({ mount, page }) => {
     elm.addEventListener('pageSelected', (event) => event.preventDefault());
   });
 
-  const buttons = pagination.locator('button')
+  const buttons = pagination.locator('button');
   await buttons.nth(1).click();
 
   await expect(buttons.first()).toHaveAttribute('aria-pressed', 'true');
