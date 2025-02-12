@@ -10,11 +10,34 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('aggrid', () => {
-  regressionTest('basic', async ({ page }) => {
-    await page.goto('basic.html');
+  regressionTest.describe('version', () => {
+    regressionTest('newest', async ({ page }) => {
+      await page.goto('basic.html');
 
-    await page.getByRole('columnheader').nth(1).hover();
-    expect(await page.screenshot({ fullPage: true, animations: 'disabled' })).toMatchSnapshot();
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+
+    regressionTest('32', async ({ page }) => {
+      await page.goto('basic_v32.html');
+
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+
+    regressionTest('31', async ({ page }) => {
+      await page.goto('basic_v31.html');
+
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+
+    regressionTest('30', async ({ page }) => {
+      await page.goto('basic_v30.html');
+
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
   });
 
   regressionTest('filter', async ({ page }) => {
