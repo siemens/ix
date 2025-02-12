@@ -14,7 +14,6 @@ type Variant = 'info' | 'warning' | 'danger';
 @Component({
   selector: 'app-message-bar-multiple-removal',
   template: `
-    <ix-button (click)="handleShowMessageBar()">Show Message Bar</ix-button>
     <div class="message-bar">
       <ix-message-bar
         *ngFor="let bar of messageBars"
@@ -27,16 +26,14 @@ type Variant = 'info' | 'warning' | 'danger';
   `,
   styleUrls: ['./message-bar.css']
 })
-export default class MessageBarDOMMultipleRemoval {
-  messageBars: { id: number; variant: Variant }[] = [];
-  variants: Variant[] = ['info', 'warning', 'danger'];
+export default class MessageBarMultiple {
+  messageBars: { id: number; variant: Variant }[] = [
+    { id: 1, variant: 'info' },
+    { id: 2, variant: 'warning' },
+    { id: 3, variant: 'danger' }
+  ];
 
   handleCloseAnimationCompleted(id: number) {
     this.messageBars = this.messageBars.filter(bar => bar.id !== id);
-  }
-
-  handleShowMessageBar() {
-    const randomVariant = this.variants[Math.floor(Math.random() * this.variants.length)];
-    this.messageBars = [...this.messageBars, { id: Date.now(), variant: randomVariant }];
   }
 }
