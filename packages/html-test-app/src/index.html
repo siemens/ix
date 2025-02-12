@@ -15,22 +15,7 @@ LICENSE file in the root directory of this source tree.
     <title>Vite App</title>
   </head>
   <body>
-    <ix-button id="showMessageBarButton">Show Message Bar</ix-button>
-    <div class="message-bar" id="messageBarContainer"></div>
-
-    <script type="module">
-      document.getElementById('showMessageBarButton').addEventListener('click', () => {
-        const messageBarContainer = document.getElementById('messageBarContainer');
-        if (messageBarContainer.children.length === 0) {
-          const messageBar = document.createElement('ix-message-bar');
-          messageBar.textContent = 'Message text';
-          messageBar.addEventListener('closeAnimationCompleted', () => {
-            messageBarContainer.removeChild(messageBar);
-          });
-          messageBarContainer.appendChild(messageBar);
-        }
-      });
-    </script>
+    <ix-button id="test-button" style="margin: 0.25rem">Button</ix-button>
 
     <script type="module" src="./main.js"></script>
   </body>
