@@ -112,6 +112,11 @@ export function HookValidationLifecycle(options?: {
       ) as unknown as HTMLIxFormComponentElement<unknown>;
 
       checkIfRequiredFunction = async () => {
+        const skipValidation = await shouldSuppressInternalValidation(host);
+        if (skipValidation) {
+          return;
+        }
+
         if (host.hasValidValue && typeof host.hasValidValue === 'function') {
           const hasValue = await host.hasValidValue();
           const touched = await isTouched(host);
@@ -120,11 +125,6 @@ export function HookValidationLifecycle(options?: {
           } else {
             host.classList.remove('ix-invalid--required');
           }
-        }
-
-        const skipValidation = await shouldSuppressInternalValidation(host);
-        if (skipValidation) {
-          return;
         }
 
         if (
