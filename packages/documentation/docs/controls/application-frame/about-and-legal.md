@@ -9,7 +9,7 @@ import DocsCode from './\_about-and-legal_code.md';
 
 # About and legal overlay
 <!-- introduction start -->
-The about and legal overlay displays application information, versions, license terms, and other legal content.
+The about and legal overlay displays application information, versions, license terms and other legal content.
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

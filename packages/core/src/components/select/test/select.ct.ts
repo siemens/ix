@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect, Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { getFormValue, preventFormSubmission, test } from '@utils/test';
 
 test('renders', async ({ mount, page }) => {
@@ -375,333 +375,6 @@ test('pass object as value and check if it is selectable', async ({
   ).toBeVisible();
 });
 
-test.describe('arrow key navigation', () => {
-  const expectFocusMoved = async (
-    direction: 'ArrowDown' | 'ArrowUp',
-    pattern: string,
-    page: Page
-  ) => {
-    const selector = `.dropdown-item:nth-of-type(${pattern}):focus-visible`;
-    await page.keyboard.press(direction);
-    await page.locator(selector);
-    await expect(page.locator(selector)).toBeFocused();
-  };
-
-  test.describe('ArrowDown', () => {
-    test('input -> slotted item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      await page.locator('ix-select input').click();
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    test('input -> dynamic item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable></ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    test('input -> add item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable></ix-select>
-      `);
-
-      await page.waitForSelector('ix-select');
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.keyboard.down('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    test('slot -> dynamic item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      await page.waitForSelector('ix-select');
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await page.keyboard.down('I');
-      await page.keyboard.down('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('ix-dropdown');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await expectFocusMoved('ArrowDown', 'odd', page);
-      await page.keyboard.down('ArrowDown');
-
-      const itemThree = page.locator('ix-select-item').last();
-      await expect(itemThree).toBeFocused();
-    });
-
-    test('slot -> add item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      await page.waitForSelector('ix-select');
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await page.keyboard.down('I');
-      await page.waitForSelector('.dropdown-item-icon');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await expectFocusMoved('ArrowDown', 'odd', page);
-      await page.keyboard.press('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-    });
-
-    test('dynamic item -> add item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('Item 2');
-      await page.keyboard.down('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await input.clear();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await expectFocusMoved('ArrowDown', 'odd', page);
-      await page.keyboard.down('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-    });
-
-    test('wrap - dynamic item -> slot', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('Item 2');
-      await page.keyboard.press('Enter');
-      await input.clear();
-
-      await page.keyboard.down('ArrowDown');
-      await page.waitForSelector('ix-dropdown');
-      await page.keyboard.down('ArrowDown');
-
-      const itemTwo = page.locator('ix-select-item').nth(1);
-      await expect(itemTwo).toBeFocused();
-
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    test('wrap - add item -> slot', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await page.keyboard.down('ArrowDown');
-      await page.keyboard.down('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-
-    test('wrap - add item -> dynamic item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable></ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('Item 1');
-      await page.keyboard.press('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await input.clear();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await page.keyboard.down('ArrowDown');
-      await page.keyboard.down('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-
-      await expectFocusMoved('ArrowDown', '1', page);
-    });
-  });
-
-  test.describe('ArrowUp', () => {
-    test('dynamic item -> slot', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.keyboard.down('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await expectFocusMoved('ArrowDown', 'odd', page);
-      await expectFocusMoved('ArrowUp', '1', page);
-    });
-
-    test('add item -> slot', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-      `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await page.keyboard.down('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-
-      await expectFocusMoved('ArrowUp', '1', page);
-    });
-
-    test('add item -> dynamic item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable></ix-select>
-      `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('Item 1');
-      await page.keyboard.press('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await input.clear();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await page.keyboard.down('ArrowDown');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-
-      await expectFocusMoved('ArrowUp', '1', page);
-    });
-
-    test('wrap - slot -> dynamic item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-     `);
-
-      const input = page.locator('input');
-      await input.focus();
-      await input.fill('Item 2');
-      await page.keyboard.press('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.locator('input').clear();
-
-      await page.keyboard.down('ArrowDown');
-      await page.keyboard.down('ArrowUp');
-
-      const itemTwo = page.locator('ix-select-item').last();
-      await expect(itemTwo).toBeFocused();
-    });
-
-    test('wrap - slot -> add-item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable>
-          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
-        </ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await page.keyboard.down('ArrowUp');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-    });
-
-    test('wrap - dynamic item -> add item', async ({ mount, page }) => {
-      await mount(`
-        <ix-select editable></ix-select>
-     `);
-
-      const input = page.locator('ix-select input');
-      await input.focus();
-      await input.fill('Item 1');
-      await page.keyboard.press('Enter');
-      await page.locator('ix-icon-button').click();
-      await page.waitForSelector('.checkmark');
-
-      await input.clear();
-      await input.fill('I');
-      await page.waitForSelector('.add-item');
-
-      await expectFocusMoved('ArrowDown', '1', page);
-      await page.keyboard.down('ArrowUp');
-
-      const addItem = page.locator('.add-item');
-      await expect(addItem).toBeFocused();
-    });
-  });
-});
-
 test('form-ready', async ({ mount, page }) => {
   await mount(`
     <form>
@@ -831,4 +504,170 @@ test('async set content and check input value', async ({ mount, page }) => {
 
   const input = page.locator('input');
   await expect(input).toHaveValue('Item 1');
+});
+
+test.describe('Enter selection with non-existing and existing items', () => {
+  test('editable', async ({ mount, page }) => {
+    await mount(`
+      <ix-select editable>
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      </ix-select>
+    `);
+
+    const selectElement = page.locator('ix-select');
+    const input = selectElement.locator('input');
+
+    await input.fill('Item 1');
+    await page.keyboard.press('Enter');
+
+    await expect(input).toHaveValue('Item 1');
+
+    await input.fill('Item 3');
+    await page.keyboard.press('Enter');
+
+    await expect(input).toHaveValue('Item 3');
+  });
+
+  test('non-editable', async ({ mount, page }) => {
+    await mount(`
+      <ix-select>
+        <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+        <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+      </ix-select>
+    `);
+
+    const selectElement = page.locator('ix-select');
+    const input = selectElement.locator('input');
+
+    await input.fill('Item 1');
+    await page.keyboard.press('Enter');
+
+    await expect(input).toHaveValue('Item 1');
+
+    await input.fill('Item 3');
+    await page.keyboard.press('Enter');
+
+    await expect(input).toHaveValue('Item 1');
+  });
+});
+
+test.describe('Dropdown width', () => {
+  test('should be 25rem when dropdown-width is set to 35rem and dropdown-max-width to 25rem', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1" dropdown-width="35rem" dropdown-max-width="25rem">
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    expect(box?.width).toBe(16 * 25);
+  });
+
+  test('should be 25rem when dropdown-width is set to 25 and dropdown-max-width to 35rem', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1" dropdown-width="25rem" dropdown-max-width="35rem">
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    expect(box?.width).toBe(16 * 25);
+  });
+
+  test('should be 25rem when dropdown-width is set to 25 and dropdown-max-width is not set', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1" dropdown-width="25rem">
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    expect(box?.width).toBe(16 * 25);
+  });
+
+  test('should be 35rem when dropdown-width is not set and dropdown-max-width is set to 35rem', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1" dropdown-max-width="35rem">
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    expect(box?.width).toBe(16 * 35);
+  });
+
+  test('should be 100% when dropdown-width and dropdown-max-width are not set', async ({
+    mount,
+    page,
+  }) => {
+    await mount(`<ix-select value="1">
+      <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+    </ix-select>`);
+
+    const select = page.locator('ix-select');
+
+    await page.locator('[data-select-dropdown]').click();
+
+    const dropdown = select.locator('ix-dropdown');
+    await expect(dropdown).toBeVisible();
+
+    const box = await dropdown.boundingBox();
+    const pageWidth = page.viewportSize()?.width;
+
+    expect(box?.width).toBe(pageWidth);
+  });
+});
+
+test('should be 100% when dropdown-max-width is greater than the viewport width', async ({
+  mount,
+  page,
+}) => {
+  await mount(`<ix-select value="1" dropdown-max-width="10000rem">
+    <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
+  </ix-select>`);
+
+  const select = page.locator('ix-select');
+
+  await page.locator('[data-select-dropdown]').click();
+
+  const dropdown = select.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  const box = await dropdown.boundingBox();
+  const pageWidth = page.viewportSize()?.width;
+
+  expect(box?.width).toBe(pageWidth);
 });

@@ -9,6 +9,12 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { IconButton } from '../icon-button';
 
+function queryButton(page: any) {
+  return page.doc
+    .querySelector('ix-icon-button')
+    .shadowRoot.querySelector('button');
+}
+
 describe('icon-button', () => {
   it('renders', async () => {
     const page = await newSpecPage({
@@ -17,7 +23,7 @@ describe('icon-button', () => {
     });
 
     await page.waitForChanges();
-    const btn = page.doc.querySelector('ix-icon-button');
+    const btn = page.doc.querySelector('ix-icon-button')!;
     expect(btn.className).toContain('disabled');
   });
 
@@ -34,9 +40,7 @@ describe('icon-button', () => {
 
     await page.waitForChanges();
 
-    const btn = page.doc
-      .querySelector('ix-icon-button[type="submit"]')
-      .shadowRoot.querySelector('button');
+    const btn = queryButton(page);
     const shadowButton = page.doc.querySelector(
       'ix-icon-button[type="submit"] > button'
     ) as HTMLButtonElement;
@@ -68,9 +72,7 @@ describe('icon-button', () => {
 
     await page.waitForChanges();
 
-    const btn = page.doc
-      .querySelector('ix-icon-button')
-      .shadowRoot.querySelector('button');
+    const btn = queryButton(page);
     const shadowButton = page.doc.querySelector(
       'ix-icon-button > button'
     ) as HTMLButtonElement;
@@ -88,9 +90,7 @@ describe('icon-button', () => {
 
       await page.waitForChanges();
 
-      const button = page.doc
-        .querySelector('ix-icon-button')
-        .shadowRoot.querySelector('button');
+      const button = queryButton(page);
 
       expect(button).toHaveAttribute('aria-label');
       expect(button.getAttribute('aria-label')).toBe('Rocket');
@@ -104,9 +104,7 @@ describe('icon-button', () => {
 
       await page.waitForChanges();
 
-      const button = page.doc
-        .querySelector('ix-icon-button')
-        .shadowRoot.querySelector('button');
+      const button = queryButton(page);
 
       expect(button).toHaveAttribute('aria-label');
       expect(button.getAttribute('aria-label')).toBe('About');
@@ -120,9 +118,7 @@ describe('icon-button', () => {
 
       await page.waitForChanges();
 
-      const button = page.doc
-        .querySelector('ix-icon-button')
-        .shadowRoot.querySelector('button');
+      const button = queryButton(page);
 
       expect(button).toHaveAttribute('aria-label');
       expect(button.getAttribute('aria-label')).toBe('About Battery');
@@ -136,9 +132,7 @@ describe('icon-button', () => {
 
       await page.waitForChanges();
 
-      const button = page.doc
-        .querySelector('ix-icon-button')
-        .shadowRoot.querySelector('button');
+      const button = queryButton(page);
 
       expect(button).toHaveAttribute('aria-label');
       expect(button.getAttribute('aria-label')).toBe('Battery Percentage');
@@ -152,9 +146,7 @@ describe('icon-button', () => {
 
       await page.waitForChanges();
 
-      const button = page.doc
-        .querySelector('ix-icon-button')
-        .shadowRoot.querySelector('button');
+      const button = queryButton(page);
 
       expect(button).toHaveAttribute('aria-label');
       expect(button.getAttribute('aria-label')).toBe('Battery 100 Percentage');
@@ -168,9 +160,7 @@ describe('icon-button', () => {
 
       await page.waitForChanges();
 
-      const button = page.doc
-        .querySelector('ix-icon-button')
-        .shadowRoot.querySelector('button');
+      const button = queryButton(page);
 
       expect(button).toHaveAttribute('aria-label');
       expect(button.getAttribute('aria-label')).toBe('Text Circle Rectangle');
@@ -184,9 +174,7 @@ describe('icon-button', () => {
 
       await page.waitForChanges();
 
-      const button = page.doc
-        .querySelector('ix-icon-button')
-        .shadowRoot.querySelector('button');
+      const button = queryButton(page);
 
       expect(button).toHaveAttribute('aria-label');
       expect(button.getAttribute('aria-label')).toBe('some label');
@@ -200,9 +188,7 @@ describe('icon-button', () => {
 
       await page.waitForChanges();
 
-      const button = page.doc
-        .querySelector('ix-icon-button')
-        .shadowRoot.querySelector('button');
+      const button = queryButton(page);
 
       expect(button).toHaveAttribute('aria-label');
       expect(button.getAttribute('aria-label')).toBe('Unknown');
@@ -216,9 +202,7 @@ describe('icon-button', () => {
 
       await page.waitForChanges();
 
-      const button = page.doc
-        .querySelector('ix-icon-button')
-        .shadowRoot.querySelector('button');
+      const button = queryButton(page);
 
       expect(button).toHaveAttribute('aria-label');
       expect(button.getAttribute('aria-label')).toBe('Unknown');

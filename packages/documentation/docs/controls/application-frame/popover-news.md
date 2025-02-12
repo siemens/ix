@@ -9,7 +9,7 @@ import DocsCode from './\_popover-news_code.md';
 
 # Popover news
 <!-- introduction start -->
-Popover news present important updates and information when the application starts.
+Popover news presents important updates and information when the application starts.
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

@@ -1,6 +1,6 @@
 ## Guidelines
 
-Input fields are commonly used in forms, search bars, and other areas where data input is required.
+Input fields are commonly used in forms, search bars and other areas where data input is required.
 
 ![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3054-593&t=jhhv5OZGqmBpgXcs-4)
 

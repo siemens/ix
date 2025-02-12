@@ -21,6 +21,7 @@ import {
 } from '@stencil/core';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
+import { a11yBoolean } from '../utils/a11y';
 
 /**
  * @since 2.6.0
@@ -176,8 +177,8 @@ export class Checkbox implements IxFormComponent<string> {
   render() {
     return (
       <Host
-        aria-checked={`${this.checked}`}
-        aria-disabled={`${this.disabled}`}
+        aria-checked={a11yBoolean(this.checked)}
+        aria-disabled={a11yBoolean(this.disabled)}
         role="checkbox"
         class={{
           disabled: this.disabled,
@@ -187,7 +188,7 @@ export class Checkbox implements IxFormComponent<string> {
       >
         <label>
           <input
-            aria-checked={`${this.checked}`}
+            aria-checked={a11yBoolean(this.checked)}
             disabled={this.disabled}
             checked={this.checked}
             ref={this.inputRef}

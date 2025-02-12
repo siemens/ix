@@ -9,7 +9,7 @@
 import { icons } from '@siemens/ix-icons/dist/sample.json';
 import jsonFile from '@siemens/ix/component-doc.json';
 import { ArgTypes } from '@storybook/web-components';
-
+import type { JsonDocsProp } from '@stencil/core/internal';
 export function genericRender(selector: string, args: any) {
   const rootInner = document.createElement('div');
   rootInner.id = 'root-inner';
@@ -21,7 +21,8 @@ export function genericRender(selector: string, args: any) {
   }
 
   Object.keys(args).forEach((key) => {
-    element.setAttribute(key, args[key]);
+    const prop = getProp(selector, key);
+    element.setAttribute((prop as any).attr ?? prop.name, args[key]);
   });
 
   rootInner.appendChild(element);
@@ -45,6 +46,17 @@ function getComponent(selector: string) {
   return component;
 }
 
+function getProp(selector: string, propName: string) {
+  const component = getComponent(selector);
+  const prop = component.props.find((p) => p.name === propName);
+
+  if (!prop) {
+    throw new Error(`Prop ${propName} not found in component ${selector}`);
+  }
+
+  return prop;
+}
+
 export function makeArgTypes<T = unknown>(
   selector: string,
   overwriteArgTypes: T = {} as T,
@@ -61,12 +73,14 @@ export function makeArgTypes<T = unknown>(
         return !ignore.includes(prop.name);
       })
       .forEach((prop) => {
+        let attributeName = prop.name;
+
         if (
           prop.values.length > 1 &&
           prop.values.every((value) => value.type === 'string')
         ) {
-          argTypes[prop.name] = {
-            name: `${prop.name}*`,
+          argTypes[attributeName] = {
+            name: `${attributeName}*`,
             control: { type: 'select' },
             options: (prop.values as { type: 'string'; value: string }[])
               .filter((v) => v.value !== '')
@@ -76,8 +90,8 @@ export function makeArgTypes<T = unknown>(
           return;
         }
 
-        if (prop.name.includes('icon')) {
-          argTypes[prop.name] = {
+        if (attributeName.includes('icon')) {
+          argTypes[attributeName] = {
             control: { type: 'select' },
             options: icons,
           };
@@ -85,16 +99,16 @@ export function makeArgTypes<T = unknown>(
           return;
         }
 
-        argTypes[prop.name] = {
-          control: switchTypes(prop.type),
+        argTypes[attributeName] = {
+          control: switchTypes(prop as JsonDocsProp),
         };
       });
   }
   return { ...argTypes, ...overwriteArgTypes };
 }
 
-function switchTypes(type: string): any {
-  switch (type) {
+function switchTypes(prop: JsonDocsProp): any {
+  switch (prop.complexType?.original) {
     case 'string':
       return { type: 'text' };
     case 'boolean':

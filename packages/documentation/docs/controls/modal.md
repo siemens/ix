@@ -12,7 +12,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 # Modal
 
 <!-- introduction start -->
-Modals present information prominently and are useful to gather essential user input without navigating to another page.
+Modals present information prominently and are useful for gathering essential user input without navigating to another page.
 <!-- introduction end -->
 
 ## Sizes

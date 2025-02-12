@@ -163,13 +163,13 @@ test('valid color with valid textarea field', async ({ mount, page }) => {
 
 test('invalid color with invalid textarea field', async ({ mount, page }) => {
   await mount(`
-    <ix-textarea label="invalid label text" required>valid field</ix-textarea>
+    <ix-textarea label="invalid label text" required>invalid field</ix-textarea>
   `);
 
   const fieldElement = page.locator('ix-textarea');
   const labelElement = page.locator('ix-field-label');
 
-  await expect(fieldElement).not.toHaveClass(/ix-invalid--required/);
+  await expect(fieldElement).toHaveClass(/ix-invalid--required/);
 
   await expect(labelElement.locator('ix-typography')).toHaveAttribute(
     'style',

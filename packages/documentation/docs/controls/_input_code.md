@@ -2,6 +2,7 @@
 import Playground from '@site/src/components/PlaygroundV3';
 import Props from '@site/docs/auto-generated/ix-input/props.md';
 import Events from '@site/docs/auto-generated/ix-input/events.md';
+import Slots from '@site/docs/auto-generated/ix-input/slots.md';
 import Tags from '@site/docs/auto-generated/ix-input/tags.md';
 
 ## Development
@@ -34,11 +35,11 @@ import Tags from '@site/docs/auto-generated/ix-input/tags.md';
 
 #### Validation
 
-<Playground
-name="input-validation"
-height="27rem"
+<Playground name="input-validation" height="27rem"></Playground>
 
-> </Playground>
+#### Slots
+
+<Playground name="input-with-slots"></Playground>
 
 ### API
 
@@ -49,3 +50,7 @@ height="27rem"
 #### Events
 
 <Events />
+
+#### Slots
+
+<Slots />

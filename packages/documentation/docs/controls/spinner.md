@@ -5,7 +5,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Spinner
 <!-- introduction start -->
-Spinners indicate that a process is running, to provide feedback to the user.
+Spinners indicate that a process is running to provide feedback to the user.
 <!-- introduction end -->
 ## Examples
 

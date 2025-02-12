@@ -13,7 +13,7 @@ import Tags from './../../auto-generated/ix-map-navigation/tags.md';
 
 <Tags />
 <!-- introduction start -->
-Map navigation structures layout to present map-like content, supported by a collapsible context panel and temporary overlays.
+Map navigation layout structures present map-like content, supported by a collapsible context panel and temporary overlays.
 <!-- introduction end -->
 <LinkableDocsTabs>
   <DocsUx />

@@ -5,7 +5,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # KPI
 <!-- introduction start -->
-KPIs display measured values together with a status to help the user make better decisions.
+KPIs display measured values together with a status indicator to help users interpret data.
 <!-- introduction end -->
 ## Usage
 

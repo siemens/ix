@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "2.6.0",
+  "version": "2.7.0",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
@@ -43,14 +43,14 @@
     "pkg": "pnpm pack"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.10",
+    "@floating-ui/dom": "^1.6.13",
     "@stencil/core": "~4.17.0",
     "@types/luxon": "^3.3.7",
     "animejs": "~3.2.1",
     "luxon": "^3.4.4"
   },
   "devDependencies": {
-    "@playwright/test": "^1.32.1",
+    "@playwright/test": "^1.49.1",
     "@siemens/ix-icons": "^2.0.0",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
@@ -84,7 +84,6 @@
     "rimraf": "^5.0.5",
     "sass": "^1.58.3",
     "start-server-and-test": "^1.14.0",
-    "strict-check": "workspace:*",
     "ts-node": "^10.0.0",
     "typescript": "^5.3.3"
   },
