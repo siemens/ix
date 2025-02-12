@@ -39,7 +39,7 @@ const meta = {
   parameters: {
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=594-9900&m=dev',
+      url: 'https://www.figma.com/design/r2nqdNNXXZtPmWuVjIlM1Q/iX-Components---Brand-Dark?node-id=602-8519&m=dev',
     },
   },
 } satisfies Meta<Element>;
