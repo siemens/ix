@@ -9,6 +9,17 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { Button } from '../button';
 
+beforeAll(() => {
+  if (typeof HTMLElement.prototype.attachInternals !== 'function') {
+    HTMLElement.prototype.attachInternals = function () {
+      return {
+        form: null,
+        setFormValue: () => {},
+      };
+    } as any;
+  }
+});
+
 describe('button', () => {
   it('should not be clickable with disabled prop', async () => {
     const page = await newSpecPage({
@@ -27,7 +38,7 @@ describe('button', () => {
       html: `
       <form>
         <input type="text" />
-        <ix-button>Submit</ix-button>s
+        <ix-button>Submit</ix-button>
       </form>
       `,
     });
@@ -52,7 +63,7 @@ describe('button', () => {
       html: `
       <form>
         <input type="text" />
-        <ix-button type="submit">Submit</ix-button>s
+        <ix-button type="submit">Submit</ix-button>
       </form>
       `,
     });
