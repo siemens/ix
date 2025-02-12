@@ -7,14 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Listen,
-  Prop,
-} from '@stencil/core';
+import { Component, Element, h, Host, Listen, Prop } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
 
