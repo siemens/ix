@@ -87,6 +87,8 @@ export class Drawer {
    */
   @Method()
   async toggleDrawer(show?: boolean): Promise<void> {
+    show = show !== undefined ? show : !this.show;
+
     if (show) {
       const { defaultPrevented } = this.open.emit();
 
