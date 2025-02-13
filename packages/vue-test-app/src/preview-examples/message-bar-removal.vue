@@ -30,7 +30,7 @@ const handleShowMessage = () => {
       v-if="!messageBarVisible"
       @click="handleShowMessage"
     >
-      Show notification again
+      Show message bar
     </IxButton>
     <IxMessageBar
       v-if="messageBarVisible"

@@ -34,7 +34,7 @@ export default () => {
       )}
       {!messageBarVisible && (
         <IxButton onClick={handleShowMessage}>
-          Show notification again
+          Show message bar
         </IxButton>
       )}
     </div>
