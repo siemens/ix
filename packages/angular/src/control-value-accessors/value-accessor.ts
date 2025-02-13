@@ -35,7 +35,11 @@ export class ValueAccessor
 
   @Input() suppressClassMapping = false;
 
-  constructor(protected injector: Injector, protected elementRef: ElementRef) {}
+  constructor(
+    protected injector: Injector,
+    protected elementRef: ElementRef,
+    private checkRequiredValidator = false
+  ) {}
 
   writeValue(value: any): void {
     this.elementRef.nativeElement.value = this.lastValue = value;
@@ -139,10 +143,11 @@ export class ValueAccessor
     if (this.suppressClassMapping) {
       return;
     }
-    setTimeout(async () => {
-      const input = element.nativeElement;
+    const input = element.nativeElement;
 
+    setTimeout(async () => {
       const classes = this.getClasses(input);
+
       const classList = input.classList;
       classList.remove(
         'ix-valid',
@@ -153,6 +158,18 @@ export class ValueAccessor
         'ix-pristine'
       );
       classList.add(...classes);
+
+      const ngControl = this.getAssignedNgControl();
+      if (ngControl && this.checkRequiredValidator) {
+        const { errors, touched } = ngControl;
+
+        const hasOtherErrors = errors && Object.keys(errors).length > 1;
+        const isRequiredButUntouched = errors?.required && !touched;
+
+        if (hasOtherErrors === false && isRequiredButUntouched) {
+          input.classList.remove('ix-invalid');
+        }
+      }
     });
   }
 

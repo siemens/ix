@@ -22,7 +22,7 @@ import { ValueAccessor } from './value-accessor';
 })
 export class BooleanValueAccessorDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
-    super(injector, el);
+    super(injector, el, true);
   }
 
   override writeValue(value: boolean): void {
