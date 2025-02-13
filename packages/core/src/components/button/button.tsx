@@ -7,15 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  AttachInternals,
-  Component,
-  Element,
-  h,
-  Host,
-  Listen,
-  Prop,
-} from '@stencil/core';
+import { Component, Element, h, Host, Listen, Prop } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from './base-button';
 import { IxButtonComponent } from './button-component';
 
@@ -25,7 +17,6 @@ export type ButtonVariant = 'danger' | 'primary' | 'secondary';
   tag: 'ix-button',
   shadow: true,
   styleUrl: './button.scss',
-  formAssociated: true,
 })
 export class Button implements IxButtonComponent {
   /**
@@ -74,7 +65,10 @@ export class Button implements IxButtonComponent {
 
   @Element() hostElement!: HTMLIxButtonElement;
 
-  @AttachInternals() formInternals!: ElementInternals;
+  /**
+   * Temp. workaround until stencil issue is fixed (https://github.com/ionic-team/stencil/issues/2284)
+   */
+  submitButtonElement?: HTMLButtonElement;
 
   @Listen('click', { capture: true })
   handleClick(event: Event) {
@@ -84,20 +78,35 @@ export class Button implements IxButtonComponent {
     }
   }
 
-  private getAssociatedForm(): HTMLFormElement | null {
-    return this.formInternals.form;
+  componentDidLoad() {
+    if (this.type === 'submit') {
+      const submitButton = document.createElement('button');
+      submitButton.style.display = 'none';
+      submitButton.type = 'submit';
+      submitButton.tabIndex = -1;
+      this.hostElement.appendChild(submitButton);
+
+      this.submitButtonElement = submitButton;
+    }
+  }
+
+  componentDidRender() {
+    if (
+      this.submitButtonElement &&
+      !this.hostElement.contains(this.submitButtonElement)
+    ) {
+      this.hostElement.appendChild(this.submitButtonElement);
+    }
   }
 
   dispatchFormEvents() {
-    if (this.type === 'submit' && !this.disabled && !this.loading) {
-      const form = this.getAssociatedForm();
-      if (form) {
-        if (typeof form.requestSubmit === 'function') {
-          form.requestSubmit();
-        } else {
-          form.submit();
-        }
-      }
+    if (
+      this.type === 'submit' &&
+      this.submitButtonElement &&
+      !this.disabled &&
+      !this.loading
+    ) {
+      this.submitButtonElement.click();
     }
   }
 

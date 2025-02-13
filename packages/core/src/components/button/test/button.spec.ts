@@ -10,15 +10,6 @@ import { newSpecPage } from '@stencil/core/testing';
 import { Button } from '../button';
 
 describe('button', () => {
-  beforeAll(() => {
-    if (typeof HTMLElement.prototype.attachInternals !== 'function') {
-      HTMLElement.prototype.attachInternals = function () {
-        return {
-          form: null,
-        };
-      } as any;
-    }
-  });
   it('should not be clickable with disabled prop', async () => {
     const page = await newSpecPage({
       components: [Button],
@@ -36,7 +27,7 @@ describe('button', () => {
       html: `
       <form>
         <input type="text" />
-        <ix-button>Submit</ix-button>
+        <ix-button>Submit</ix-button>s
       </form>
       `,
     });
@@ -55,29 +46,36 @@ describe('button', () => {
   });
 
   it('should submit form if type is submit', async () => {
-    const mockSubmit = jest.fn();
     const page = await newSpecPage({
       components: [Button],
       html: `
       <form>
         <input type="text" />
-        <ix-button type="submit">Submit</ix-button>
+        <ix-button type="submit">Submit</ix-button>s
       </form>
       `,
     });
 
     await page.waitForChanges();
 
-    const form = page.doc.querySelector('form')!;
-    form.requestSubmit = mockSubmit;
-
     const btn = page.doc
       .querySelector('ix-button[type="submit"]')!
       .shadowRoot!.querySelector('button')!;
+    const shadowButton = page.doc.querySelector(
+      'ix-button[type="submit"] > button'
+    ) as HTMLButtonElement;
+
+    const onClick = jest.fn();
+
+    shadowButton.addEventListener('click', onClick);
 
     expect(btn).toBeDefined();
+    expect(shadowButton).toBeDefined();
+    expect(shadowButton.style.display).toStrictEqual('none');
+    expect(shadowButton.type).toStrictEqual('submit');
+    expect(shadowButton.tabIndex).toStrictEqual(-1);
 
     btn.click();
-    expect(mockSubmit).toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalled();
   });
 });

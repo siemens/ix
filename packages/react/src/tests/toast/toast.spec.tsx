@@ -8,19 +8,9 @@
  */
 import { render, waitFor } from '@testing-library/react';
 import React from 'react';
-import { beforeAll, describe, it } from 'vitest';
+import { describe, it } from 'vitest';
 import Content from './toast';
 import { screen } from 'shadow-dom-testing-library';
-
-beforeAll(() => {
-  if (typeof HTMLElement.prototype.attachInternals !== 'function') {
-    HTMLElement.prototype.attachInternals = function () {
-      return {
-        form: null,
-      };
-    } as any;
-  }
-});
 
 describe(`toast`, () => {
   it(`basic`, async () => {
