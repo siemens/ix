@@ -9,18 +9,16 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { Button } from '../button';
 
-beforeAll(() => {
-  if (typeof HTMLElement.prototype.attachInternals !== 'function') {
-    HTMLElement.prototype.attachInternals = function () {
-      return {
-        form: null,
-        setFormValue: () => {},
-      };
-    } as any;
-  }
-});
-
 describe('button', () => {
+  beforeAll(() => {
+    if (typeof HTMLElement.prototype.attachInternals !== 'function') {
+      HTMLElement.prototype.attachInternals = function () {
+        return {
+          form: null,
+        };
+      } as any;
+    }
+  });
   it('should not be clickable with disabled prop', async () => {
     const page = await newSpecPage({
       components: [Button],

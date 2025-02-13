@@ -85,7 +85,7 @@ export class Button implements IxButtonComponent {
   }
 
   private getAssociatedForm(): HTMLFormElement | null {
-    if (this.internals && 'form' in this.internals && this.internals.form) {
+    if (this.internals?.form) {
       return this.internals.form;
     }
     return this.hostElement.closest('form');
