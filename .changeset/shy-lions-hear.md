@@ -4,4 +4,4 @@
 '@siemens/ix-vue': minor
 ---
 
-Add openSettings and openAbout events to **ix-menu**.
+`ix-menu`: Add `openSettings` and `openAbout` events. Event `expandChange` can now be prevented via `event.preventDefault()`.

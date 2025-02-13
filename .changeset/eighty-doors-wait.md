@@ -4,4 +4,4 @@
 '@siemens/ix-vue': minor
 ---
 
-Expsose index of **ix-flip-tile** and add toggle event.
+`ix-flip-tile`: Expsose `index` property to allow setting of displayed content and add `toggle` event. 

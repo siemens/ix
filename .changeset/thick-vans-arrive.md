@@ -4,4 +4,4 @@
 '@siemens/ix-vue': minor
 ---
 
-Add tabChange event to **ix-menu-settings** and **ix-menu-about**.
+Add `tabChange` event to `ix-menu-settings` and `ix-menu-about`.
