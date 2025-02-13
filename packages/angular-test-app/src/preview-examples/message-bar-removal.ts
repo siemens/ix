@@ -11,16 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-message-bar-single-removal',
-  template: `
-    <div class="message-bar">
-      <ix-message-bar
-        *ngIf="messageBarVisible"
-        (closeAnimationCompleted)="handleCloseAnimationCompleted()"
-      >
-        Message text
-      </ix-message-bar>
-    </div>
-  `,
+  templateUrl: './message-bar-removal.html',
   styleUrls: ['./message-bar.css']
 })
 export default class MessageBarRemoval {

@@ -11,18 +11,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-example',
-  template: `
-    <div class="message-bar">
-      <ix-message-bar dismissible="false">Message text</ix-message-bar>
-      <ix-message-bar dismissible="false" type="warning">Message text</ix-message-bar>
-      <ix-message-bar dismissible="false" type="danger">
-        <div class="d-flex align-items-center justify-content-between">
-          Message text
-          <ix-button>Action</ix-button>
-        </div>
-      </ix-message-bar>
-    </div>
-  `,
+  templateUrl: './message-bar.html',
   styleUrls: ['./message-bar.css'],
 })
 export default class MessageBar {}
