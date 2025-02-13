@@ -122,11 +122,13 @@ export class FlipTile {
   }
 
   private doFlipAnimation(index: number) {
+    if (this.isFlipAnimationActive) {
+      return;
+    }
+
     this.isFlipAnimationActive = true;
 
     setTimeout(() => {
-      this.updateContentVisibility(this.index);
-
       this.index = index;
 
       this.updateContentVisibility(this.index);
