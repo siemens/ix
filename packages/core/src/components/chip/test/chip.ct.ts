@@ -6,8 +6,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { test } from '@utils/test';
 import { expect } from '@playwright/test';
+import { test } from '@utils/test';
 
 test('renders', async ({ mount, page }) => {
   await mount(`<ix-chip></ix-chip>`);
@@ -51,4 +51,10 @@ test.describe('chip test', () => {
 
     expect(normalChipSize.width).toEqual(outlineChipSize.width);
   });
+});
+
+test('check inactive class', async ({ mount, page }) => {
+  await mount(`<ix-chip active="false">test</ix-chip>`);
+  const chip = page.locator('ix-chip');
+  await expect(chip).toHaveClass('inactive hydrated');
 });
