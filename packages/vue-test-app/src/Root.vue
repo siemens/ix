@@ -329,7 +329,7 @@ const routes: any = {
   '/preview/input-legacy-types': InputLegacyTypes,
   '/preview/input-legacy-with-icon': InputLegacyWithIcon,
   '/preview/message-bar': MessageBar,
-  '/preview/message-bar-multiple': MessageBarRemoval,
+  '/preview/message-bar-removal': MessageBarRemoval,
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
   '/preview/radio-button': RadioButton,

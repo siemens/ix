@@ -14,4 +14,11 @@ LICENSE file in the root directory of this source tree.
   >
     Message text
   </ix-message-bar>
+
+  <ix-button
+    *ngIf="!messageBarVisible"
+    (click)="handleShowMessage()"
+  >
+    Show notification again
+  </ix-button>
 </div>

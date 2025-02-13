@@ -9,7 +9,7 @@
 
 import './message-bar.scoped.css';
 
-import { IxMessageBar } from '@siemens/ix-react';
+import { IxMessageBar, IxButton } from '@siemens/ix-react';
 import { useState } from 'react';
 
 export default () => {
@@ -17,6 +17,10 @@ export default () => {
 
   const handleCloseAnimationCompleted = () => {
     setMessageBarVisible(false);
+  };
+
+  const handleShowMessage = () => {
+    setMessageBarVisible(true);
   };
 
   return (
@@ -27,6 +31,11 @@ export default () => {
         >
           Message text
         </IxMessageBar>
+      )}
+      {!messageBarVisible && (
+        <IxButton onClick={handleShowMessage}>
+          Show notification again
+        </IxButton>
       )}
     </div>
   );

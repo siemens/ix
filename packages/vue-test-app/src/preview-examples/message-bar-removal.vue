@@ -9,12 +9,16 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { IxMessageBar } from '@siemens/ix-vue';
+import { IxMessageBar, IxButton } from '@siemens/ix-vue';
 
 const messageBarVisible = ref(true);
 
 const handleCloseAnimationCompleted = () => {
   messageBarVisible.value = false;
+};
+
+const handleShowMessage = () => {
+  messageBarVisible.value = true;
 };
 </script>
 
@@ -22,7 +26,16 @@ const handleCloseAnimationCompleted = () => {
 
 <template>
   <div class="message-bar">
-    <IxMessageBar v-if="messageBarVisible" @closeAnimationCompleted="handleCloseAnimationCompleted">
+    <IxButton
+      v-if="!messageBarVisible"
+      @click="handleShowMessage"
+    >
+      Show notification again
+    </IxButton>
+    <IxMessageBar
+      v-if="messageBarVisible"
+      @closeAnimationCompleted="handleCloseAnimationCompleted"
+    >
       Message text
     </IxMessageBar>
   </div>

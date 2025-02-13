@@ -20,4 +20,8 @@ export default class MessageBarRemoval {
   handleCloseAnimationCompleted() {
     this.messageBarVisible = false;
   }
+
+  handleShowMessage() {
+    this.messageBarVisible = true;
+  }
 }
