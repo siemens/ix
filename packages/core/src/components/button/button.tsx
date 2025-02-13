@@ -74,7 +74,7 @@ export class Button implements IxButtonComponent {
 
   @Element() hostElement!: HTMLIxButtonElement;
 
-  @AttachInternals() internals!: ElementInternals;
+  @AttachInternals() formInternals!: ElementInternals;
 
   @Listen('click', { capture: true })
   handleClick(event: Event) {
@@ -85,10 +85,7 @@ export class Button implements IxButtonComponent {
   }
 
   private getAssociatedForm(): HTMLFormElement | null {
-    if (this.internals?.form) {
-      return this.internals.form;
-    }
-    return this.hostElement.closest('form');
+    return this.formInternals.form;
   }
 
   dispatchFormEvents() {
