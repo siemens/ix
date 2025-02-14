@@ -16,9 +16,8 @@ import { iconStar, iconStarFilled } from '@siemens/ix-icons/icons';
   templateUrl: './add-icons.html',
   styleUrls: ['./add-icons.css'],
 })
-export default class AddIcons implements OnInit {
-
-  ngOnInit() {
+export default class AddIcons {
+  constructor() {
     addIcons({ iconStar, iconStarFilled });
   }
 }
