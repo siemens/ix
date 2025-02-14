@@ -10,18 +10,9 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import { rimrafSync } from 'rimraf';
-import { visit } from 'unist-util-visit';
-import { Logger } from './logger.js';
 
-const logger = new Logger('LOG', 'figma-plugin');
-
-type MDXImageNode = {
+type FigmaNode = {
   url: string;
-};
-
-type EnhancedMDXImageNode = MDXImageNode & {
-  nodeId: string;
-  fileName: string;
 };
 
 type FigmaConfig = {
@@ -29,7 +20,6 @@ type FigmaConfig = {
   baseUrl: string;
   error_image: string;
   figmaFolder: string;
-  fileVersionId?: string;
   rimraf?: boolean;
 };
 
@@ -38,34 +28,24 @@ type FigmaId = {
   nodeId: string;
 };
 
-type FigmaVersion = {
-  id: string;
-  label?: string;
-};
-
-const isFetching = new Set<string>();
-
 async function getImageResource(
   fileName: string,
   nodeIds: string[],
-  figmaToken: string,
-  fileVersion?: string
+  figmaToken: string
 ): Promise<Record<string, string>> {
   const ids = nodeIds.join(',');
 
-  const url = `https://api.figma.com/v1/images/${fileName}?ids=${ids}${
-    fileVersion ? `&version=${fileVersion}` : ''
-  }`;
+  const url = `https://api.figma.com/v1/images/${fileName}?ids=${ids}`;
   const response = await fetch(url, {
     headers: {
       'X-FIGMA-TOKEN': figmaToken,
     },
   });
 
-  logger.log('Fetch image resource for', url);
+  console.log('Fetch image resource for', url);
 
   if (response.status !== 200) {
-    logger.log(
+    console.log(
       `🪲 Oops! Received unexpected status code ${response.status}`,
       fileName,
       'with node ids:',
@@ -73,7 +53,7 @@ async function getImageResource(
     );
 
     if (response.status === 429) {
-      logger.log('🕰️ Retry after 60 seconds');
+      console.log('🕰️ Retry after 60 seconds');
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve(getImageResource(fileName, nodeIds, figmaToken));
@@ -86,7 +66,7 @@ async function getImageResource(
   return data.images;
 }
 
-export function getFigmaMeta(node: MDXImageNode): {
+export function getFigmaMeta(node: FigmaNode): {
   fileName: string;
   nodeId: string;
 } {
@@ -114,8 +94,10 @@ export function getFigmaMeta(node: MDXImageNode): {
   };
 }
 
-async function modifyMDXUrl(
-  node: MDXImageNode,
+const isFetching = new Set<string>();
+
+async function processImage(
+  node: FigmaNode,
   images: Record<string, string>,
   config: FigmaConfig
 ) {
@@ -123,7 +105,7 @@ async function modifyMDXUrl(
   let id = decodeURIComponent(nodeId).replace(/-/, ':');
 
   if (!images) {
-    logger.error(
+    console.error(
       `No image resource found for ${fileName} with node id ${nodeId}`
     );
     node.url = `${config.baseUrl}/${config.error_image}`;
@@ -133,7 +115,7 @@ async function modifyMDXUrl(
   const s3BucketUrl = images[id];
 
   if (s3BucketUrl === null) {
-    logger.error(`Cannot find image in ${fileName} with node id ${nodeId}`);
+    console.error(`Cannot find image in ${fileName} with node id ${nodeId}`);
     node.url = `${config.baseUrl}/${config.error_image}`;
     return;
   }
@@ -147,7 +129,7 @@ async function modifyMDXUrl(
       !isFetching.has(imageUUID)
     ) {
       isFetching.add(imageUUID);
-      logger.log('Download image for filename', fileName, 'node', id);
+      console.log('Download image for filename', fileName, 'node', id);
       const imageResponse = await axios.get(s3BucketUrl, {
         responseType: 'stream',
       });
@@ -162,24 +144,23 @@ async function modifyMDXUrl(
         imageStream.on('error', reject);
       });
 
-      logger.log(`Image downloaded to ${imagePath}`);
+      console.log(`Image downloaded to ${imagePath}`);
     } else {
-      logger.log('Skip download. Image already existing or in fetching phase.');
+      console.log(
+        'Skip download. Image already existing or in fetching phase.'
+      );
     }
     node.url = `${config.baseUrl}/${imageFileName}`;
   } else {
     node.url = s3BucketUrl;
-    logger.log(`Use inline image: ${s3BucketUrl}`);
+    console.log(`Use inline image: ${s3BucketUrl}`);
   }
 }
 
 export default (config: FigmaConfig) => {
-  logger.log(
-    `Figma plugin running (version: ${config.fileVersionId ?? 'current'})`
-  );
-
+  console.log('Figma plugin running');
   if (config.apiToken === undefined || config.apiToken === '') {
-    logger.error('@siemens/figma-plugin no auth token provided');
+    console.error('@siemens/figma-plugin no auth token provided');
     return () => {};
   }
 
@@ -190,54 +171,42 @@ export default (config: FigmaConfig) => {
 
   return () => {
     const transformer = async (ast: any) => {
-      const nodes: EnhancedMDXImageNode[] = [];
-      const bucketUrls = new Map<string, Record<string, string>>();
-      const imageRequests = new Map<string, Set<string>>();
-
+      const { visit } = await import('unist-util-visit');
+      const fileNameIds = new Map<string, Set<string>>();
+      const nodes: FigmaNode[] = [];
       visit(ast, 'image', (node: any) => {
         const { fileName, nodeId } = getFigmaMeta(node);
-        nodes.push({
-          ...node,
-          fileName,
-          nodeId,
-        } satisfies EnhancedMDXImageNode);
+        if (fileNameIds.has(fileName)) {
+          if (!fileNameIds.get(fileName).has(nodeId)) {
+            fileNameIds.get(fileName).add(nodeId);
+          }
+        } else {
+          fileNameIds.set(fileName, new Set([nodeId]));
+        }
+
+        nodes.push(node);
       });
 
-      for (const node of nodes) {
-        const { fileName, nodeId } = node;
-        if (imageRequests.has(fileName)) {
-          imageRequests.get(fileName).add(nodeId);
-        } else {
-          imageRequests.set(fileName, new Set([nodeId]));
-        }
-      }
+      const bucketUrls = new Map<string, Record<string, string>>();
 
-      const requestImagesFromFigma: Promise<void>[] = [];
-      for (const [fileName, ids] of imageRequests) {
-        requestImagesFromFigma.push(
-          getImageResource(
-            fileName,
-            Array.from(ids),
-            config.apiToken,
-            config.fileVersionId
-          ).then((images) => {
-            bucketUrls.set(fileName, images);
-          })
+      for (const [fileName, ids] of fileNameIds) {
+        const imagesForFileName = await getImageResource(
+          fileName,
+          Array.from(ids),
+          config.apiToken
         );
+
+        bucketUrls.set(fileName, imagesForFileName);
       }
 
-      await Promise.all(requestImagesFromFigma);
+      const promises: Promise<void>[] = [];
 
       for (const node of nodes) {
         const { fileName } = getFigmaMeta(node);
-
-        logger.debug('Modify MDX URL for', fileName);
-        requestImagesFromFigma.push(
-          modifyMDXUrl(node, bucketUrls.get(fileName), config)
-        );
+        promises.push(processImage(node, bucketUrls.get(fileName), config));
       }
 
-      await Promise.all(requestImagesFromFigma);
+      await Promise.all(promises);
     };
     return transformer;
   };
