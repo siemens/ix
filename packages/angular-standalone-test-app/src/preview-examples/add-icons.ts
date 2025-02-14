@@ -20,6 +20,8 @@ import { iconStar, iconStarFilled } from '@siemens/ix-icons/icons';
   imports: [IxIcon],
 })
 export default class AddIcons {
+  readonly icons = { iconStar, iconStarFilled };
+
   constructor() {
     addIcons({ iconStar, iconStarFilled });
   }

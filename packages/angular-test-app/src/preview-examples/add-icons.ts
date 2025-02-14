@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { addIcons } from '@siemens/ix-icons';
 import { iconStar, iconStarFilled } from '@siemens/ix-icons/icons';
 
@@ -17,6 +17,8 @@ import { iconStar, iconStarFilled } from '@siemens/ix-icons/icons';
   styleUrls: ['./add-icons.css'],
 })
 export default class AddIcons {
+  readonly icons = { iconStar, iconStarFilled };
+
   constructor() {
     addIcons({ iconStar, iconStarFilled });
   }
