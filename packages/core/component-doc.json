@@ -13645,6 +13645,20 @@
       "methods": [],
       "events": [
         {
+          "event": "closeAnimationCompleted",
+          "detail": "any",
+          "bubbles": true,
+          "complexType": {
+            "original": "any",
+            "resolved": "any",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "An event emitted when the close animation is completed",
+          "docsTags": []
+        },
+        {
           "event": "closedChange",
           "detail": "any",
           "bubbles": true,

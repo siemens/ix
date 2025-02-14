@@ -804,7 +804,8 @@ export const IxMenuSettingsItem = /*@__PURE__*/ defineContainer<JSX.IxMenuSettin
 export const IxMessageBar = /*@__PURE__*/ defineContainer<JSX.IxMessageBar>('ix-message-bar', defineIxMessageBar, [
   'type',
   'dismissible',
-  'closedChange'
+  'closedChange',
+  'closeAnimationCompleted'
 ]);
 
 
