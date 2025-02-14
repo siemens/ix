@@ -28,6 +28,6 @@ import { Component } from '@angular/core';
 })
 export class TestInputFormRequired {
   public form = new FormGroup({
-    name: new FormControl('', Validators.compose([Validators.required])),
+    name: new FormControl('', Validators.required),
   });
 }
