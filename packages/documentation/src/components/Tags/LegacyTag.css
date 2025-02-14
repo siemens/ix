@@ -14,7 +14,7 @@
   width: min-content;
   white-space: nowrap;
 
-  gap: 0.25rem;
+  margin-inline-end: 0.5rem;
 
   border: 1px solid var(--theme-color-primary);
   border-radius: 0.25rem;

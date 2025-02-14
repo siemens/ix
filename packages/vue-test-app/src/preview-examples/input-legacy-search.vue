@@ -19,7 +19,7 @@ function clearInput() {
 </script>
 
 <template>
-  <form className="needs-validation m-2">
+  <form className="needs-validation">
     <IxInputGroup>
       <span slot="input-start">
         <IxIcon name="search" size="16"></IxIcon>

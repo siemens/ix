@@ -25,7 +25,7 @@ import {
 
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div class="d-flex align-items-center">
+          <div class="footer-date">
             <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
@@ -38,7 +38,7 @@ import {
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div class="d-flex align-items-center">
+          <div class="footer-date">
             <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
@@ -50,7 +50,7 @@ import {
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div class="d-flex align-items-center">
+          <div class="footer-date">
             <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
@@ -62,7 +62,7 @@ import {
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div class="d-flex align-items-center">
+          <div class="footer-date">
             <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>
@@ -74,7 +74,7 @@ import {
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div class="d-flex align-items-center">
+          <div class="footer-date">
             <ix-icon name="info" size="16"></ix-icon>2021-06-22
           </div>
         </div>

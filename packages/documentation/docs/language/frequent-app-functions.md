@@ -14,15 +14,15 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Cockpit
 
-<div class="d-flex flex-wrap">
+<div class="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Console'></Guideline>
 </span>
-<span class="m-2">
+<span>
 <Guideline do={false} label='Dash'></Guideline>
 </span>
-<span class="m-2">
+<span>
 <Guideline do={false} label='Control panel'></Guideline>
 </span>
 
@@ -34,12 +34,12 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Anomaly detection
 
-<div class="d-flex flex-wrap">
+<div class="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Assessment'></Guideline>
 </span>
-<span class="m-2">
+<span>
 <Guideline do={false} label='Examination'></Guideline>
 </span>
 
@@ -55,9 +55,9 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Remove from watchlist
 
-<div class="d-flex flex-wrap">
+<div class="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Watch list'></Guideline>
 </span>
 
@@ -71,12 +71,12 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Details
 
-<div class="d-flex flex-wrap">
+<div class="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Facts'></Guideline>
 </span>
-<span class="m-2">
+<span>
 <Guideline do={false} label='Specifics'></Guideline>
 </span>
 
@@ -124,9 +124,9 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Drag files here or select files
 
-<div class="d-flex flex-wrap">
+<div class="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Drag and drop here or browse'></Guideline>
 </span>
 
@@ -142,7 +142,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Write your comments here
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Write a comment'></Guideline>
 </span>
 
@@ -168,7 +168,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Notify me when X occurs
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Error'></Guideline>
 <Guideline do={false} label='Issue'></Guideline>
 <Guideline do={false} label='Problem'></Guideline>
@@ -200,7 +200,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Detected
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Unacklowedged'></Guideline>
 <Guideline do={false} label='Unack.'></Guideline>
 <Guideline do={false} label='Unackn.'></Guideline>

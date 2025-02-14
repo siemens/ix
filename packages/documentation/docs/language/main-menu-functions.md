@@ -14,9 +14,9 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Forgot password?
 
-<div class="d-flex flex-wrap">
+<div class="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Sign in / Sign up'></Guideline>
 <Guideline do={false} label='Login (as it is a noun, not a verb)'></Guideline>
 </span>
@@ -45,18 +45,18 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Edit account
 
-<div class="d-flex flex-wrap">
+<div class="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='id / identification'></Guideline>
 </span>
-<span class="m-2">
+<span>
 <Guideline do={false} label='E-mail'></Guideline>
 </span>
-<span class="m-2">
+<span>
 <Guideline do={false} label='Add a user / Delete a user / Add permission'></Guideline>
 </span>
-<span class="m-2">
+<span>
 <Guideline do={false} label='Surname / Initial name / Given name'></Guideline>
 </span>
 
@@ -108,7 +108,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Expired licenses
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='licence'></Guideline>
 </span>
 
@@ -138,7 +138,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - © Siemens AG 20XX
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='V1'></Guideline>
 </span>
 
@@ -152,7 +152,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - FAQ
 
-<span class="m-2">
+<span>
 <Guideline do={false} label='Documentation'></Guideline>
 <Guideline do={false} label='User manual'></Guideline>
 </span>
@@ -165,7 +165,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - KPIs
 
-<span class="m-2">
+<span>
 <Guideline do={false} label={"KPI's settings"}></Guideline>
 <Guideline do={false} label='KPIS settings'></Guideline>
 </span>

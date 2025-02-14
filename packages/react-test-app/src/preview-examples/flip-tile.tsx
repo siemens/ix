@@ -20,7 +20,7 @@ export default () => {
 
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div className="d-flex align-items-center">
+          <div className="footer-date">
             <IxIcon name="info" size="16"></IxIcon>2021-06-22
           </div>
         </div>
@@ -33,7 +33,7 @@ export default () => {
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div className="d-flex align-items-center">
+          <div className="footer-date">
             <IxIcon name="info" size="16"></IxIcon>2021-06-22
           </div>
         </div>
@@ -45,7 +45,7 @@ export default () => {
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div className="d-flex align-items-center">
+          <div className="footer-date">
             <IxIcon name="info" size="16"></IxIcon>2021-06-22
           </div>
         </div>
@@ -57,7 +57,7 @@ export default () => {
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div className="d-flex align-items-center">
+          <div className="footer-date">
             <IxIcon name="info" size="16"></IxIcon>2021-06-22
           </div>
         </div>
@@ -69,7 +69,7 @@ export default () => {
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
-          <div className="d-flex align-items-center">
+          <div className="footer-date">
             <IxIcon name="info" size="16"></IxIcon>2021-06-22
           </div>
         </div>

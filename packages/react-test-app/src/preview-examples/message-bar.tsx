@@ -18,7 +18,7 @@ export default () => {
         <IxMessageBar>Message text</IxMessageBar>
         <IxMessageBar type="warning">Message text</IxMessageBar>
         <IxMessageBar type="danger">
-          <div className="d-flex align-items-center justify-content-between">
+          <div className="message-bar-danger">
             Message text <IxButton>Action</IxButton>
           </div>
         </IxMessageBar>

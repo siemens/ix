@@ -40,8 +40,8 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - An error message alerts user of a problem that exists and must be addressed
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div class="ux-writing-guidelines">
+<span>
 <Guideline do label='System error: You’re offline. Check your connection and try again.'></Guideline>
 <Guideline do label='File error: We cannot upload this file. Try uploading again.'></Guideline>
 <Guideline do label='Permission error: To carry out this task, you need more permissions. Contact admin to change permissions. '></Guideline>
@@ -61,8 +61,8 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - A warning message alerts users of a condition that may cause a problem in the future
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div class="ux-writing-guidelines">
+<span>
 <Guideline do label='Title: You have not saved all documents'></Guideline>
 <Guideline do label='Explanation: You have to save all documents'></Guideline>
 <Guideline do label='Action: (Ok button)'></Guideline>
@@ -73,13 +73,13 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Notifications are informative and no actions are required from the user
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div class="ux-writing-guidelines">
+<span>
 <Guideline do label='Access Point 2 is connected.'></Guideline>
 <Guideline do={false} label='Access Point connection failed. Try again.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Changes are saved automatically.'></Guideline>
 <Guideline do={false} label='No rows to show.'></Guideline>
 </span>

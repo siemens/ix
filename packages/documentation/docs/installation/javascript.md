@@ -46,8 +46,7 @@ In the following section we will describe how you can build an application with 
   </head>
   <body>
     <div>
-      <ix-button class="m-1" variant="primary">Button</ix-button>
-      <ix-button class="m-1" variant="primary" disabled>Button</ix-button>
+      <ix-button variant="primary">Button</ix-button>
     </div>
     <script type="module" src="./main.js"></script>
   </body>
