@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './card.css';
+import './card.scoped.css';
 
 import { IxCard, IxCardContent, IxIcon, IxTypography } from '@siemens/ix-react';
 

@@ -13,12 +13,10 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AG Grid example</title>
-    <!-- External resources -->
-    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
-    <!-- External resources -->
-    <script type="module" crossorigin src="../assets/global.2bfd6008.js"></script>
-    <script type="module" crossorigin src="../assets/init.aa12a02f.js"></script>
-    <link rel="stylesheet" href="../assets/global.4378a8ca.css">
+    <script type="module" crossorigin src="../assets/aggrid.6efd24b7.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/global.7dd975c7.js">
+    <link rel="modulepreload" crossorigin href="../assets/init.918cefbc.js">
+    <link rel="stylesheet" href="../assets/global.913ec802.css">
   </head>
   <body>
     <div
@@ -27,55 +25,7 @@ LICENSE file in the root directory of this source tree.
       class="ag-theme-alpine-dark ag-theme-ix"
     ></div>
 
-    <script>
-      (async function () {
-        const container = document.querySelector('#grid-container');
-
-        const gridOptions = {
-          columnDefs: [
-            {
-              field: 'type',
-              headerName: 'Type',
-              resizable: true,
-              checkboxSelection: true,
-            },
-            {
-              field: 'status',
-              headerName: 'Status',
-              resizable: true,
-              sortable: true,
-              filter: true,
-            },
-            { field: 'hwVersion', headerName: 'HW version', resizable: true },
-          ],
-          rowData: [
-            {
-              type: 'Equipment',
-              status: 'Normal',
-              hwVersion: '2.0',
-              checked: false,
-            },
-            {
-              type: 'Positioner',
-              status: 'Maintenance',
-              hwVersion: '1.0',
-              checked: true,
-            },
-            {
-              type: 'Pressure sensor',
-              status: 'Unknown',
-              hwVersion: 'N/A',
-              checked: false,
-            },
-          ],
-          rowSelection: 'multiple',
-          suppressCellFocus: true,
-          checkboxSelection: true,
-        };
-
-        new agGrid.Grid(container, gridOptions);
-      })();
-    </script>
+    
     
   </body>
 </html>
