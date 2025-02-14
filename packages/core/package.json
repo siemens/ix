@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/core"
   },
-  "version": "2.6.1",
+  "version": "2.7.0",
   "license": "MIT",
   "description": "Siemens iX Web Components",
   "main": "dist/index.cjs.js",
@@ -44,8 +44,8 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.10",
-    "@stencil/core": "^4.25.1",
+    "@floating-ui/dom": "^1.6.13",
+    "@stencil/core": "^4.26.0",
     "@types/luxon": "^3.4.2",
     "animejs": "~3.2.2",
     "luxon": "^3.4.4"

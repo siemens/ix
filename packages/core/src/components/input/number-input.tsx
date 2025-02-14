@@ -14,11 +14,11 @@ import {
   Element,
   Event,
   EventEmitter,
+  h,
   Host,
   Method,
   Prop,
   State,
-  h,
 } from '@stencil/core';
 import {
   HookValidationLifecycle,
@@ -28,9 +28,11 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
+  addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputBlur,
 } from './input.util';
@@ -169,6 +171,8 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
 
+  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
+
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
@@ -178,8 +182,16 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.updateFormInternalValue(this.value);
   }
 
-  componentDidRender() {
-    this.updatePaddings();
+  connectedCallback() {
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
+  }
+
+  disconnectedCallback() {
+    this.disposableChangesAndVisibilityObservers?.();
   }
 
   private updatePaddings() {
@@ -260,6 +272,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
               slotStartRef={this.slotStartRef}
               onSlotChange={() => this.updatePaddings()}
             ></SlotStart>
+
             <InputElement
               id={this.numberInputId}
               readonly={this.readonly}

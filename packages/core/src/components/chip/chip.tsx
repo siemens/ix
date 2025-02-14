@@ -116,6 +116,9 @@ export class Chip {
       <Host
         tabIndex="-1"
         title={this.hostElement.textContent}
+        class={{
+          inactive: isInactive,
+        }}
         style={
           this.variant === 'custom'
             ? {

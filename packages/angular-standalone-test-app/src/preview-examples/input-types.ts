@@ -18,5 +18,6 @@ import {
   selector: 'app-example',
   imports: [IxInput, IxTextValueAccessorDirective],
   templateUrl: './input-types.html',
+  styleUrls: ['./input-types.css'],
 })
 export default class InputTypes {}
