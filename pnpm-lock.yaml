@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@stencil/core': 4.23.1
+
 patchedDependencies:
   '@stencil/vue-output-target@0.8.8':
     hash: 5yvuqqkqemceot6njn3c7dgkpi
@@ -392,8 +395,8 @@ importers:
         specifier: ^1.6.13
         version: 1.6.13
       '@stencil/core':
-        specifier: ^4.26.0
-        version: 4.26.0
+        specifier: 4.23.1
+        version: 4.23.1
       '@types/luxon':
         specifier: ^3.4.2
         version: 3.4.2
@@ -415,19 +418,19 @@ importers:
         version: 0.7.2(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.4.5))(eslint-plugin-react@7.37.4(eslint@8.57.1))(eslint@8.57.1)(typescript@5.4.5)
       '@stencil-community/postcss':
         specifier: ^2.2.0
-        version: 2.2.0(@stencil/core@4.26.0)
+        version: 2.2.0(@stencil/core@4.23.1)
       '@stencil/angular-output-target':
         specifier: ^0.9.0
-        version: 0.9.1(@stencil/core@4.26.0)
+        version: 0.9.1(@stencil/core@4.23.1)
       '@stencil/react-output-target':
         specifier: ^0.7.1
-        version: 0.7.4(@stencil/core@4.26.0)(@types/react@18.2.33)(react@18.3.1)
+        version: 0.7.4(@stencil/core@4.23.1)(@types/react@18.2.33)(react@18.3.1)
       '@stencil/sass':
         specifier: ^3.0.12
-        version: 3.0.12(@stencil/core@4.26.0)
+        version: 3.0.12(@stencil/core@4.23.1)
       '@stencil/vue-output-target':
         specifier: 0.8.8
-        version: 0.8.8(patch_hash=5yvuqqkqemceot6njn3c7dgkpi)(@stencil/core@4.26.0)
+        version: 0.8.8(patch_hash=5yvuqqkqemceot6njn3c7dgkpi)(@stencil/core@4.23.1)
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -1024,8 +1027,8 @@ importers:
         specifier: 0.0.0-pr-69-20250203134847
         version: 0.0.0-pr-69-20250203134847
       '@stencil/core':
-        specifier: ~4.17.0
-        version: 4.17.2
+        specifier: 4.23.1
+        version: 4.23.1
       '@storybook/addon-a11y':
         specifier: ^8.4.2
         version: 8.4.2(storybook@8.4.2(prettier@3.4.2))
@@ -5358,15 +5361,15 @@ packages:
   '@stencil-community/postcss@2.2.0':
     resolution: {integrity: sha512-PuPdjqgF6HdvSLwS6fpLf1TRzd3bd6zqpsICCUA0u9sxPnwrsIpx1xYyA/K9hSWrmyUg0WhHPvkX9k26N5DCnw==}
     peerDependencies:
-      '@stencil/core': '>=2.0.0 || >=3.0.0 || >=4.0.0'
+      '@stencil/core': 4.23.1
 
   '@stencil/angular-output-target@0.9.1':
     resolution: {integrity: sha512-m59/tUDsBGAuLFqM6BAMQWt3GvOauD1q/xzPFzL2v+MvZu+Qblq9Swc+EZRIWXEYf26EBX3m63le1PVDPthr2g==}
     peerDependencies:
-      '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
+      '@stencil/core': 4.23.1
 
-  '@stencil/core@4.17.2':
-    resolution: {integrity: sha512-MX7yaLmpTU9iZvCire9nhecTcE0qBlV0vPWrLMeIXewYN7/hb8B3NjnhQyBKC93FDPI8NBRmt6KIugLw9zcRZg==}
+  '@stencil/core@4.23.1':
+    resolution: {integrity: sha512-VtGgKTZdqaank5zs/gE5LBTcIYg4pE81pI4rfknMl5NFQbGcp83KISgBeJP/eRgcQCPu+ji/XhOq1joaTepAhQ==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -5378,18 +5381,18 @@ packages:
   '@stencil/react-output-target@0.7.4':
     resolution: {integrity: sha512-MuvUJJXtYvSUo0dcFbWx0orVc8ROB0qfaFq1IbNODECqsCKOP3kU5Oy7/NyWs3xNpa8U2lMWvyBYmRvWNB6ExQ==}
     peerDependencies:
-      '@stencil/core': '>=3 || >= 4.0.0-beta.0 || >= 4.0.0'
+      '@stencil/core': 4.23.1
 
   '@stencil/sass@3.0.12':
     resolution: {integrity: sha512-aXMgpG13ftxLYo2dDauapvE9gKzSxTAqCMOfTqbPhKUCZ43JsknkLx+PArRaFtfYeVGSQ8eTS4ck7/Nlec+PNA==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
-      '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
+      '@stencil/core': 4.23.1
 
   '@stencil/vue-output-target@0.8.8':
     resolution: {integrity: sha512-xrpz92lmTuLgwY9CLgl2Q14+zBXfBuXiRS6uXFPfeaFo0pe+do8cZitOOQ8i8tcoCa/tAqgD9B9CD+yQehSIGg==}
     peerDependencies:
-      '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
+      '@stencil/core': 4.23.1
 
   '@storybook/addon-a11y@8.4.2':
     resolution: {integrity: sha512-v6Tl+qr3Eslf06qmt2hq1ticYi7oRLIFosePQUOlW1+cgdIbV+r1IxsZ7creCDWX4kIMTbUFhbET9LTYGHem1A==}
@@ -21159,7 +21162,7 @@ snapshots:
 
   '@ionic/core@8.2.7':
     dependencies:
-      '@stencil/core': 4.26.0
+      '@stencil/core': 4.23.1
       ionicons: 7.4.0
       tslib: 2.8.1
 
@@ -22258,7 +22261,7 @@ snapshots:
 
   '@siemens/ix-icons@0.0.0-pr-69-20250203134847':
     dependencies:
-      '@stencil/core': 4.26.0
+      '@stencil/core': 4.23.1
 
   '@sigstore/bundle@2.3.2':
     dependencies:
@@ -22334,18 +22337,30 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil-community/postcss@2.2.0(@stencil/core@4.26.0)':
+  '@stencil-community/postcss@2.2.0(@stencil/core@4.23.1)':
     dependencies:
-      '@stencil/core': 4.26.0
+      '@stencil/core': 4.23.1
       postcss: 8.4.48
 
-  '@stencil/angular-output-target@0.9.1(@stencil/core@4.26.0)':
+  '@stencil/angular-output-target@0.9.1(@stencil/core@4.23.1)':
     dependencies:
-      '@stencil/core': 4.26.0
+      '@stencil/core': 4.23.1
 
-  '@stencil/core@4.17.2': {}
+  '@stencil/core@4.23.1': {}
 
   '@stencil/core@4.26.0': {}
+
+  '@stencil/react-output-target@0.7.4(@stencil/core@4.23.1)(@types/react@18.2.33)(react@18.3.1)':
+    dependencies:
+      '@lit/react': 1.0.7(@types/react@18.2.33)
+      '@stencil/core': 4.23.1
+      html-react-parser: 5.2.2(@types/react@18.2.33)(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
+      style-object-to-css-string: 1.1.3
+      ts-morph: 22.0.0
+    transitivePeerDependencies:
+      - '@types/react'
+      - react
 
   '@stencil/react-output-target@0.7.4(@stencil/core@4.26.0)(@types/react@18.2.33)(react@18.3.1)':
     dependencies:
@@ -22359,13 +22374,13 @@ snapshots:
       - '@types/react'
       - react
 
-  '@stencil/sass@3.0.12(@stencil/core@4.26.0)':
+  '@stencil/sass@3.0.12(@stencil/core@4.23.1)':
     dependencies:
-      '@stencil/core': 4.26.0
+      '@stencil/core': 4.23.1
 
-  '@stencil/vue-output-target@0.8.8(patch_hash=5yvuqqkqemceot6njn3c7dgkpi)(@stencil/core@4.26.0)':
+  '@stencil/vue-output-target@0.8.8(patch_hash=5yvuqqkqemceot6njn3c7dgkpi)(@stencil/core@4.23.1)':
     dependencies:
-      '@stencil/core': 4.26.0
+      '@stencil/core': 4.23.1
 
   '@storybook/addon-a11y@8.4.2(storybook@8.4.2(prettier@3.4.2))':
     dependencies:
@@ -28545,7 +28560,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.2.1
     optionalDependencies:
-      webpack: 5.94.0(esbuild@0.23.0)
+      webpack: 5.94.0(esbuild@0.20.1)
     optional: true
 
   html-webpack-plugin@5.6.3(webpack@5.96.1(@swc/core@1.9.2)):
@@ -28895,7 +28910,7 @@ snapshots:
 
   ionicons@7.4.0:
     dependencies:
-      '@stencil/core': 4.17.2
+      '@stencil/core': 4.23.1
 
   ip-address@9.0.5:
     dependencies:
