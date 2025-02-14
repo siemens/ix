@@ -451,14 +451,14 @@ export declare interface IxCheckboxGroup extends Components.IxCheckboxGroup {}
 
 
 @ProxyCmp({
-  inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'variant']
+  inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'tooltipText', 'variant']
 })
 @Component({
   selector: 'ix-chip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'variant'],
+  inputs: ['active', 'background', 'chipColor', 'closable', 'color', 'icon', 'outline', 'tooltipText', 'variant'],
 })
 export class IxChip {
   protected el: HTMLElement;
@@ -2061,14 +2061,14 @@ export declare interface IxPaneLayout extends Components.IxPaneLayout {}
 
 
 @ProxyCmp({
-  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'variant']
+  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'tooltipText', 'variant']
 })
 @Component({
   selector: 'ix-pill',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'variant'],
+  inputs: ['alignLeft', 'background', 'color', 'icon', 'outline', 'pillColor', 'tooltipText', 'variant'],
 })
 export class IxPill {
   protected el: HTMLElement;

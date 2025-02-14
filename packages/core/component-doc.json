@@ -3302,6 +3302,35 @@
           "required": false
         },
         {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Optional text to show in tooltip (title attribute).\nBy default the text content will be used. Set to: 'none' to not show a tooltip.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "TBD"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
+          "required": false
+        },
+        {
           "name": "variant",
           "type": "\"alarm\" | \"critical\" | \"custom\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
@@ -16025,6 +16054,35 @@
             }
           ],
           "optional": false,
+          "required": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "string | undefined",
+          "complexType": {
+            "original": "string",
+            "resolved": "string | undefined",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Optional text to show in tooltip (title attribute).\nBy default the text content will be used. Set to: 'none' to not show a tooltip.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "TBD"
+            }
+          ],
+          "values": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "undefined"
+            }
+          ],
+          "optional": true,
           "required": false
         },
         {

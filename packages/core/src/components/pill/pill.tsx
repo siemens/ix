@@ -8,6 +8,7 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { determineTooltip } from '../chip/chip.util';
 import { IxComponent } from '../utils/internal';
 
 @Component({
@@ -64,6 +65,13 @@ export class Pill implements IxComponent {
    */
   @Prop() alignLeft = false;
 
+  /**
+   * Optional text to show in tooltip (title attribute).
+   * By default the text content will be used. Set to: 'none' to not show a tooltip.
+   * @since TBD
+   */
+  @Prop() tooltipText?: string;
+
   @State() iconOnly = false;
 
   componentWillLoad() {
@@ -95,7 +103,7 @@ export class Pill implements IxComponent {
               }
             : {}
         }
-        title={this.hostElement.textContent}
+        title={determineTooltip(this.tooltipText, this.hostElement.textContent)}
         class={{
           'align-left': this.alignLeft,
         }}

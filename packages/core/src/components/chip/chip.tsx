@@ -16,6 +16,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { determineTooltip } from './chip.util';
 
 @Component({
   tag: 'ix-chip',
@@ -81,6 +82,13 @@ export class Chip {
   @Prop() outline = false;
 
   /**
+   * Optional text to show in tooltip (title attribute).
+   * By default the text content will be used. Set to: 'none' to not show a tooltip.
+   * @since TBD
+   */
+  @Prop() tooltipText?: string;
+
+  /**
    * Fire event if close button is clicked
    *
    * @since 1.5.0
@@ -127,7 +135,7 @@ export class Chip {
     return (
       <Host
         tabIndex="-1"
-        title={this.hostElement.textContent}
+        title={determineTooltip(this.tooltipText, this.hostElement.textContent)}
         class={{
           inactive: isInactive,
         }}
