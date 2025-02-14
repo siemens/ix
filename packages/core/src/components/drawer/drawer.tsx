@@ -66,7 +66,7 @@ export class Drawer {
    */
   @Event() drawerClose!: EventEmitter;
 
-  @State() toggle = false;
+  toggle = false;
 
   private static duration = 300;
   private callback = this.clickedOutside.bind(this);
@@ -187,7 +187,6 @@ export class Drawer {
       <Host
         class={{
           'drawer-container': true,
-          toggle: this.toggle,
           'd-none': true,
         }}
         style={{
