@@ -82,8 +82,8 @@ export class Chip {
   @Prop() outline = false;
 
   /**
-   * Optional text to show in tooltip (title attribute).
-   * By default the text content will be used. Set to: 'none' to not show a tooltip.
+   * Optional text to show as a tooltip (title attribute).
+   * By default the component text content will be used. Set to 'none' to not show a tooltip.
    * @since 3.0.0
    */
   @Prop() tooltipText?: string;

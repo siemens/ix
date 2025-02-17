@@ -543,7 +543,7 @@ export namespace Components {
          */
         "outline": boolean;
         /**
-          * Optional text to show in tooltip (title attribute). By default the text content will be used. Set to: 'none' to not show a tooltip.
+          * Optional text to show as a tooltip (title attribute). By default the component text content will be used. Set to 'none' to not show a tooltip.
           * @since 3.0.0
          */
         "tooltipText"?: string;
@@ -2337,7 +2337,7 @@ export namespace Components {
          */
         "pillColor": string | undefined;
         /**
-          * Optional text to show in tooltip (title attribute). By default the text content will be used. Set to: 'none' to not show a tooltip.
+          * Optional text to show as a tooltip (title attribute). By default the component text content will be used. Set to 'none' to not show a tooltip.
           * @since 3.0.0
          */
         "tooltipText"?: string;
@@ -5657,7 +5657,7 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
-          * Optional text to show in tooltip (title attribute). By default the text content will be used. Set to: 'none' to not show a tooltip.
+          * Optional text to show as a tooltip (title attribute). By default the component text content will be used. Set to 'none' to not show a tooltip.
           * @since 3.0.0
          */
         "tooltipText"?: string;
@@ -7571,7 +7571,7 @@ declare namespace LocalJSX {
          */
         "pillColor"?: string | undefined;
         /**
-          * Optional text to show in tooltip (title attribute). By default the text content will be used. Set to: 'none' to not show a tooltip.
+          * Optional text to show as a tooltip (title attribute). By default the component text content will be used. Set to 'none' to not show a tooltip.
           * @since 3.0.0
          */
         "tooltipText"?: string;

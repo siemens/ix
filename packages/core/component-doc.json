@@ -3312,7 +3312,7 @@
           "mutable": false,
           "attr": "tooltip-text",
           "reflectToAttr": false,
-          "docs": "Optional text to show in tooltip (title attribute).\nBy default the text content will be used. Set to: 'none' to not show a tooltip.",
+          "docs": "Optional text to show as a tooltip (title attribute).\nBy default the component text content will be used. Set to 'none' to not show a tooltip.",
           "docsTags": [
             {
               "name": "since",
@@ -16067,7 +16067,7 @@
           "mutable": false,
           "attr": "tooltip-text",
           "reflectToAttr": false,
-          "docs": "Optional text to show in tooltip (title attribute).\nBy default the text content will be used. Set to: 'none' to not show a tooltip.",
+          "docs": "Optional text to show as a tooltip (title attribute).\nBy default the component text content will be used. Set to 'none' to not show a tooltip.",
           "docsTags": [
             {
               "name": "since",
