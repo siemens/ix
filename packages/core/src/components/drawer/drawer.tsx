@@ -198,7 +198,6 @@ export class Drawer {
                 : `${this.getConstrainedWidth(this.width)}rem`,
           }}
         >
-          {' '}
           <div class="header">
             <div class="header-content">
               <slot name="header"></slot>
