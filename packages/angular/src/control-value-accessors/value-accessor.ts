@@ -38,7 +38,7 @@ export class ValueAccessor
   constructor(
     protected injector: Injector,
     protected elementRef: ElementRef,
-    private checkRequiredValidator = false
+    private readonly checkRequiredValidator = false
   ) {}
 
   writeValue(value: any): void {

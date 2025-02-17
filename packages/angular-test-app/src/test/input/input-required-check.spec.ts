@@ -1,16 +1,15 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ApplicationInitStatus, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ApplicationInitStatus } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
+  flush,
   TestBed,
   tick,
-  flush,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IxModule } from '@siemens/ix-angular';
-import { waitForHydration } from '../utils/wait-for-hydration';
 import { TestInputFormRequired } from './form-ix-input-required';
 import { TestInputFormWithValidators } from './form-ix-input-with-validators';
 
