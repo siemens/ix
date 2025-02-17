@@ -15,7 +15,6 @@ import {
   Host,
   Method,
   Prop,
-  State,
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
