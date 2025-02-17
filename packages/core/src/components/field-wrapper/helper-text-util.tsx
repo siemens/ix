@@ -27,7 +27,7 @@ export function hasAnyText({
   validText?: string;
   helperText?: string;
 }) {
-  return invalidText || warningText || infoText || validText || helperText;
+  return invalidText ?? warningText ?? infoText ?? validText ?? helperText;
 }
 
 export function renderHelperText({

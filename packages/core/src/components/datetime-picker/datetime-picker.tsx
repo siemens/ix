@@ -259,7 +259,7 @@ export class DatetimePicker
                   class="btn-select-date"
                   onClick={() => this.onDone()}
                 >
-                  {this.textSelectDate || this.i18nDone}
+                  {this.textSelectDate ?? this.i18nDone}
                 </ix-button>
               </div>
             </ix-col>
