@@ -15,9 +15,9 @@ export default () => {
   return (
     <>
       <div className="message-bar">
-        <IxMessageBar>Message text</IxMessageBar>
-        <IxMessageBar type="warning">Message text</IxMessageBar>
-        <IxMessageBar type="danger">
+        <IxMessageBar dismissible={false}>Message text</IxMessageBar>
+        <IxMessageBar dismissible={false} type="warning">Message text</IxMessageBar>
+        <IxMessageBar dismissible={false} type="danger">
           <div className="d-flex align-items-center justify-content-between">
             Message text <IxButton>Action</IxButton>
           </div>
