@@ -28,7 +28,7 @@ Pill variants:
 - **Icon**: Pills can include a close icon within the element which is positioned before the pill label.
 - **Outline**: Use for lower visual emphasis.
 - **Width**: Pill width can be set to a specific value, but content length normally determines pill width with a minimum width of '2rem'.
-- **Tooltip text**: The default behavior shows the pill text content as a tooltip. If specified, it shows the defined text as a tooltip. If set to "none", no tooltip is shown.
+- **Tooltip text**: The default behavior displays the pill's text content as a tooltip. If a specific text is provided, it will be shown as the tooltip instead. If set to 'none', no tooltip will be displayed.
 
 ### Behavior
 
