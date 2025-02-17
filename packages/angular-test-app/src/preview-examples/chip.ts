@@ -14,8 +14,12 @@ import { Component } from '@angular/core';
   template: `
     <div class="chip">
       <ix-chip closable outline>Primary</ix-chip>
-      <ix-chip icon="print">Primary with icon</ix-chip>
-      <ix-chip icon="print" style="width: 10rem" closable>Primary</ix-chip>
+      <ix-chip icon="print" tooltip-text="Custom tooltip text"
+        >Primary with icon</ix-chip
+      >
+      <ix-chip icon="print" tooltip-text="none" style="width: 10rem" closable
+        >Primary</ix-chip
+      >
 
       <ix-chip variant="critical" closable outline>Alarm</ix-chip>
       <ix-chip variant="alarm" icon="print">Alarm with icon</ix-chip>
