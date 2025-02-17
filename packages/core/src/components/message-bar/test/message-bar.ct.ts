@@ -1,3 +1,12 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
@@ -12,18 +21,15 @@ test.describe('ix-message-bar', () => {
     const messageBar = page.locator('ix-message-bar');
     const closeButton = messageBar.locator('[data-testid="close-btn"]');
 
-    const [event] = await Promise.all([
-      messageBar.evaluate((element: HTMLElement) => {
-        return new Promise((resolve) => {
-          element.addEventListener('closeAnimationCompleted', (e) =>
-            resolve(e)
-          );
-        });
-      }),
-      closeButton.click(),
-    ]);
+    const onCloseAnimationCompleted = messageBar.evaluate((element) => {
+      return new Promise<void>((resolve) => {
+        element.addEventListener('closeAnimationCompleted', () => resolve());
+      });
+    });
+    await closeButton.click();
+    await onCloseAnimationCompleted;
 
-    expect(event).toBeTruthy();
+    await expect(messageBar).not.toBeVisible();
   });
 
   test('adds d-none class after dismissing', async ({ page }) => {
