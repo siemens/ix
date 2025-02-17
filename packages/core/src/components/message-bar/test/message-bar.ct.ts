@@ -32,7 +32,7 @@ test.describe('ix-message-bar', () => {
     await expect(messageBar).not.toBeVisible();
   });
 
-  test('adds d-none class after dismissing', async ({ page }) => {
+  test('adds message-bar-hidden class after dismissing', async ({ page }) => {
     const messageBar = page.locator('ix-message-bar');
     const closeButton = messageBar.locator('[data-testid="close-btn"]');
 
@@ -40,6 +40,6 @@ test.describe('ix-message-bar', () => {
     await page.waitForTimeout(300);
 
     const messageContainer = messageBar.locator('.message-container');
-    await expect(messageContainer).toHaveClass(/d-none/);
+    await expect(messageContainer).toHaveClass(/message-bar-hidden/);
   });
 });
