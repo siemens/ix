@@ -15,6 +15,7 @@ import {
   Host,
   Method,
   Prop,
+  State,
   Watch,
 } from '@stencil/core';
 import anime from 'animejs';
@@ -69,6 +70,8 @@ export class Drawer {
   private callback = this.clickedOutside.bind(this);
   private divElement?: HTMLElement;
 
+  @State() showContent = true;
+
   @Watch('show')
   onShowChanged(newValue: boolean) {
     this.show = newValue !== undefined ? newValue : !this.show;
@@ -85,13 +88,17 @@ export class Drawer {
 
     if (show) {
       this.open.emit();
-      this.slideInRight(this.divElement);
+      if (this.divElement) {
+        this.slideInRight(this.divElement);
+      }
       setTimeout(() => {
         window.addEventListener('mousedown', this.callback);
-      }, 300);
+      }, Drawer.duration);
     } else {
       this.drawerClose.emit();
-      this.slideOutRight(this.divElement);
+      if (this.divElement) {
+        this.slideOutRight(this.divElement);
+      }
       window.removeEventListener('mousedown', this.callback);
     }
 
@@ -120,34 +127,45 @@ export class Drawer {
     }
   }
 
-  private slideOutRight(el?: HTMLElement) {
-    if (el) {
-      anime({
-        targets: el,
-        duration: Drawer.duration,
-        translateX: [0, '16rem'],
-        opacity: [1, 0],
-        easing: 'easeInSine',
-        complete: () => {
-          el.classList.add('d-none');
-        },
-      });
-    }
+  private getConstrainedWidth(width: number) {
+    return Math.min(Math.max(width, this.minWidth), this.maxWidth);
   }
 
-  private slideInRight(el?: HTMLElement) {
-    if (el) {
-      anime({
-        targets: el,
-        duration: Drawer.duration,
-        translateX: ['16rem', 0],
-        opacity: [0, 1],
-        easing: 'easeOutSine',
-        begin: () => {
-          el.classList.remove('d-none');
-        },
-      });
-    }
+  private slideOutRight(el: HTMLElement) {
+    const initialWidth = `${this.getConstrainedWidth(
+      this.width === 'auto' ? this.minWidth : this.width
+    )}rem`;
+
+    anime({
+      targets: el,
+      duration: Drawer.duration,
+      width: [initialWidth, 0],
+      opacity: [1, 0],
+      easing: 'easeInSine',
+      complete: () => {
+        el.classList.add('display-none');
+      },
+    });
+  }
+
+  private slideInRight(el: HTMLElement) {
+    const targetWidth = `${this.getConstrainedWidth(
+      this.width === 'auto' ? this.minWidth : this.width
+    )}rem`;
+
+    anime({
+      targets: el,
+      duration: Drawer.duration,
+      width: [0, targetWidth],
+      opacity: [0, 1],
+      easing: 'easeOutSine',
+      begin: () => {
+        el.classList.remove('display-none');
+      },
+      complete: () => {
+        this.showContent = true;
+      },
+    });
   }
 
   componentDidLoad() {
@@ -160,33 +178,50 @@ export class Drawer {
         class={{
           'drawer-container': true,
           toggle: this.show,
-          'd-none': true,
+          'display-none': true,
         }}
         style={{
-          width: this.width === 'auto' ? this.width : `${this.width}rem`,
-          'min-width': `${this.minWidth}rem`,
+          width: '0',
           'max-width': `${this.maxWidth}rem`,
           height: this.fullHeight ? '100%' : 'auto',
+          overflow: 'hidden',
         }}
         ref={(el) => (this.divElement = el as HTMLElement)}
         data-testid="container"
         id="div-container"
       >
-        <div class="header">
-          <div class="header-content">
-            <slot name="header"></slot>
+        <div
+          style={{
+            width:
+              this.width === 'auto'
+                ? 'auto'
+                : `${this.getConstrainedWidth(this.width)}rem`,
+          }}
+        >
+          <div class="header">
+            <div class="header-content">
+              <slot name="header"></slot>
+            </div>
+            <ix-icon-button
+              class="close-button"
+              style={{
+                display: this.showContent ? 'block' : 'none',
+              }}
+              icon={'close'}
+              size="24"
+              ghost
+              onClick={() => this.onCloseClicked()}
+              data-testid="close-button"
+            ></ix-icon-button>
           </div>
-          <ix-icon-button
-            class="close-button"
-            icon={'close'}
-            size="24"
-            ghost
-            onClick={() => this.onCloseClicked()}
-            data-testid="close-button"
-          ></ix-icon-button>
-        </div>
-        <div class="content">
-          <slot></slot>
+          <div
+            class="content"
+            style={{
+              display: this.showContent ? 'block' : 'none',
+            }}
+          >
+            <slot></slot>
+          </div>
         </div>
       </Host>
     );
