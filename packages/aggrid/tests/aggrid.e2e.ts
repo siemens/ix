@@ -38,6 +38,20 @@ regressionTest.describe('aggrid', () => {
       await page.getByRole('columnheader').nth(0).hover();
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
+
+    regressionTest('29', async ({ page }) => {
+      await page.goto('basic_v29.html');
+
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+
+    regressionTest('28', async ({ page }) => {
+      await page.goto('basic_v28.html');
+
+      await page.getByRole('columnheader').nth(0).hover();
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
   });
 
   regressionTest('filter', async ({ page }) => {
