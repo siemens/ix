@@ -4443,6 +4443,7 @@ declare global {
     };
     interface HTMLIxMessageBarElementEventMap {
         "closedChange": any;
+        "closeAnimationCompleted": any;
     }
     interface HTMLIxMessageBarElement extends Components.IxMessageBar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMessageBarElementEventMap>(type: K, listener: (this: HTMLIxMessageBarElement, ev: IxMessageBarCustomEvent<HTMLIxMessageBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7243,6 +7244,10 @@ declare namespace LocalJSX {
           * If true, close button is enabled and alert can be dismissed by the user
          */
         "dismissible"?: boolean;
+        /**
+          * An event emitted when the close animation is completed
+         */
+        "onCloseAnimationCompleted"?: (event: IxMessageBarCustomEvent<any>) => void;
         /**
           * An event emitted when the close button is clicked
          */

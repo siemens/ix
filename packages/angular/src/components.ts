@@ -1812,7 +1812,7 @@ export class IxMessageBar {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['closedChange']);
+    proxyOutputs(this, this.el, ['closedChange', 'closeAnimationCompleted']);
   }
 }
 
@@ -1822,6 +1822,10 @@ export declare interface IxMessageBar extends Components.IxMessageBar {
    * An event emitted when the close button is clicked
    */
   closedChange: EventEmitter<CustomEvent<any>>;
+  /**
+   * An event emitted when the close animation is completed
+   */
+  closeAnimationCompleted: EventEmitter<CustomEvent<any>>;
 }
 
 

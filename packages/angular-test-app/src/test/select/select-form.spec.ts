@@ -13,9 +13,11 @@ import {
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IxModule } from '@siemens/ix-angular';
 import { By } from '@angular/platform-browser';
+import { waitForHydration } from '../utils/wait-for-hydration';
+import { checkForError } from '../utils/check-for-error';
 
 @Component({
-  selector: 'ix-example-form-select',
+  selector: 'ix-example-select-form',
   template: `
     <form [formGroup]="form">
       <ix-select formControlName="select">
@@ -35,7 +37,7 @@ import { By } from '@angular/platform-browser';
     </ix-select>
   `,
 })
-class SelectComponent {
+class SelectFormComponent {
   public form = new FormGroup({ select: new FormControl('1') });
   value = '3';
   selection = ['3', '4', '5'];
@@ -46,45 +48,19 @@ class SelectComponent {
   }
 }
 
-function waitForHydration(element: HTMLElement, timeout = 5000): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const interval = 50;
-    let elapsedTime = 0;
-
-    const checkClass = () => {
-      if (element.classList.contains('hydrated')) {
-        resolve();
-      } else if (elapsedTime >= timeout) {
-        reject(new Error(`Timeout waiting for hydration`));
-      } else {
-        elapsedTime += interval;
-        setTimeout(checkClass, interval);
-      }
-    };
-
-    checkClass();
-  });
-}
-
-function checkForError(consoleSpy: jasmine.Spy, errorName: string): boolean {
-  return consoleSpy.calls
-    .allArgs()
-    .some((arg) => arg[0].toString().includes(errorName));
-}
-
 describe('SelectFormComponent', () => {
-  let component: SelectComponent;
-  let fixture: ComponentFixture<SelectComponent>;
+  let component: SelectFormComponent;
+  let fixture: ComponentFixture<SelectFormComponent>;
   let consoleSpy: jasmine.Spy;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SelectComponent],
+      declarations: [SelectFormComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [FormsModule, ReactiveFormsModule, IxModule.forRoot()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SelectComponent);
+    fixture = TestBed.createComponent(SelectFormComponent);
     component = fixture.componentInstance;
 
     consoleSpy = spyOn(console, 'error').and.callThrough();
@@ -98,7 +74,9 @@ describe('SelectFormComponent', () => {
   });
 
   it('should change the form control value', async () => {
-    const select = fixture.debugElement.query(By.css('ix-select[formControlName="select"]'));
+    const select = fixture.debugElement.query(
+      By.css('ix-select[formControlName="select"]')
+    );
 
     await waitForHydration(select.nativeElement);
 
@@ -110,7 +88,9 @@ describe('SelectFormComponent', () => {
   });
 
   it('should change the input value and check for errors', async () => {
-    const select = fixture.debugElement.query(By.css('ix-select:not([formControlName="select"])'));
+    const select = fixture.debugElement.query(
+      By.css('ix-select:not([formControlName="select"])')
+    );
 
     await waitForHydration(select.nativeElement);
 
