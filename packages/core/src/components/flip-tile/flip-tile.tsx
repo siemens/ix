@@ -7,7 +7,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { FlipTileState } from './flip-tile-state';
 
@@ -36,12 +46,32 @@ export class FlipTile {
    */
   @Prop() width: number | 'auto' = 16;
 
-  @State() index = 0;
+  /**
+   * Index of the currently visible content
+   * @since 3.0.0
+   */
+  @Prop() index = 0;
+
+  /**
+   * Event emitted when the index changes
+   * @since 3.0.0
+   */
+  @Event() toggle!: EventEmitter<number>;
+
   @State() isFlipAnimationActive: boolean = false;
 
   private readonly ANIMATION_DURATION = 150;
   private contentItems: Array<HTMLIxFlipTileContentElement> = [];
   private observer?: MutationObserver;
+
+  @Watch('index')
+  watchIndex(newIndex: number, oldIndex: number) {
+    if (newIndex === oldIndex) {
+      return;
+    }
+
+    this.doFlipAnimation(newIndex);
+  }
 
   componentDidLoad() {
     this.observer = createMutationObserver(() => this.updateContentItems());
@@ -74,20 +104,32 @@ export class FlipTile {
   }
 
   private toggleIndex() {
-    this.doFlipAnimation();
+    let newIndex;
+
+    if (this.index >= this.contentItems.length - 1) {
+      newIndex = 0;
+    } else {
+      newIndex = this.index + 1;
+    }
+
+    const { defaultPrevented } = this.toggle.emit(newIndex);
+
+    if (defaultPrevented) {
+      return;
+    }
+
+    this.doFlipAnimation(newIndex);
   }
 
-  private doFlipAnimation() {
+  private doFlipAnimation(index: number) {
+    if (this.isFlipAnimationActive) {
+      return;
+    }
+
     this.isFlipAnimationActive = true;
 
     setTimeout(() => {
-      this.updateContentVisibility(this.index);
-
-      if (this.index >= this.contentItems.length - 1) {
-        this.index = 0;
-      } else {
-        this.index++;
-      }
+      this.index = index;
 
       this.updateContentVisibility(this.index);
     }, this.ANIMATION_DURATION);

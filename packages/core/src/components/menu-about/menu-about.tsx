@@ -50,6 +50,12 @@ export class MenuAbout {
   @Prop() show = false;
 
   /**
+   * Active tab changed
+   * @since 3.0.0
+   */
+  @Event() tabChange!: EventEmitter<string>;
+
+  /**
    * About and Legal closed
    */
   @Event() close!: EventEmitter<CustomCloseEvent>;
