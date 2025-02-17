@@ -31,9 +31,9 @@ import { IxPill } from '@siemens/ix-vue';
 
   <IxPill variant="alarm" icon="star">Label</IxPill>
   <IxPill variant="alarm" icon="star" class="styled">Label</IxPill>
-  <IxPill variant="alarm" outline alignLeft icon="star" class="styled">
-    Label
-  </IxPill>
+  <IxPill variant="alarm" outline alignLeft icon="star" class="styled"
+    >Label</IxPill
+  >
   <IxPill icon="star" class="styled-ellipsis-4">Label</IxPill>
   <IxPill outline icon="star" class="styled-ellipsis-4">Label</IxPill>
   <IxPill class="styled-ellipsis-3">Label</IxPill>

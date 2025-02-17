@@ -15,22 +15,21 @@ import { IxChip } from '@siemens/ix-vue';
 
 <template>
   <div class="chip">
-    <IxChip closable outline> Primary </IxChip>
+    <IxChip closable outline>Primary</IxChip>
     <IxChip icon="print">Primary with icon</IxChip>
-    <IxChip icon="print" closable> Primary </IxChip>
+    <IxChip icon="print" closable>Primary</IxChip>
 
-    <IxChip variant="critical" closable outline> Alarm </IxChip>
-    <IxChip variant="alarm" icon="print"> Alarm with icon </IxChip>
-    <IxChip variant="alarm" icon="print" closable> Alarm </IxChip>
-    <IxChip variant="warning" icon="print" closable> Alarm </IxChip>
+    <IxChip variant="critical" closable outline>Alarm</IxChip>
+    <IxChip variant="alarm" icon="print">Alarm with icon</IxChip>
+    <IxChip variant="alarm" icon="print" closable>Alarm</IxChip>
+    <IxChip variant="warning" icon="print" closable>Alarm</IxChip>
     <IxChip
       background="purple"
       chip-color="green"
       variant="custom"
       icon="print"
       closable
+      >Custom</IxChip
     >
-      Custom
-    </IxChip>
   </div>
 </template>
