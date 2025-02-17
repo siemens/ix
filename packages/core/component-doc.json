@@ -3316,7 +3316,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "TBD"
+              "text": "3.0.0"
             }
           ],
           "values": [
@@ -16071,7 +16071,7 @@
           "docsTags": [
             {
               "name": "since",
-              "text": "TBD"
+              "text": "3.0.0"
             }
           ],
           "values": [

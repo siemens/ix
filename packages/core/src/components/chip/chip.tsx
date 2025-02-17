@@ -84,7 +84,7 @@ export class Chip {
   /**
    * Optional text to show in tooltip (title attribute).
    * By default the text content will be used. Set to: 'none' to not show a tooltip.
-   * @since TBD
+   * @since 3.0.0
    */
   @Prop() tooltipText?: string;
 
