@@ -78,4 +78,15 @@ regressionTest.describe('dropdown', () => {
 
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('tooltip', async ({ page }) => {
+    await page.goto('dropdown/tooltip');
+
+    await page.locator('ix-button').click();
+    await page.waitForSelector('.dropdown-menu.show');
+
+    await page.locator('#item1').hover();
+
+    await expect(page).toHaveScreenshot();
+  });
 });
