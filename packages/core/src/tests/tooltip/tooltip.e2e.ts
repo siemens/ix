@@ -173,7 +173,7 @@ regressionTest.describe('tooltip', () => {
   });
 
   regressionTest('tooltip inside dropdown', async ({ page }) => {
-    await page.goto('dropdown/tooltip');
+    await page.goto('tooltip/dropdown');
 
     await page.locator('ix-button').click();
     await page.waitForSelector('.dropdown-menu.show');
