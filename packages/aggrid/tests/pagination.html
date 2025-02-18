@@ -6,8 +6,9 @@ SPDX-License-Identifier: MIT
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
-<html>
+<html lang="en">
   <head>
+    <title>Ag-Grid pagination</title>
     <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32.1/dist/ag-grid-community.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css" />
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css" />
@@ -55,7 +56,7 @@ LICENSE file in the root directory of this source tree.
         };
 
         const gridDiv = document.querySelector('div.ag-theme-ix');
-        const grid = new agGrid.Grid(gridDiv, gridOptions);
+        new agGrid.Grid(gridDiv, gridOptions);
       })();
     </script>
   </body>
