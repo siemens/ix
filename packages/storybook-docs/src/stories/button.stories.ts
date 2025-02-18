@@ -9,6 +9,7 @@
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
 import { genericRender, makeArgTypes } from './utils/generic-render';
+import { action } from '@storybook/addon-actions';
 
 type Element = Components.IxButton & { defaultSlot: string };
 
@@ -58,5 +59,24 @@ export const ButtonOutlineWithIcon: Story = {
     loading: false,
     outline: true,
     variant: 'primary',
+  },
+};
+
+export const TypeSubmit: Story = {
+  render: (args) => {
+    const button = genericRender('ix-button', args);
+    const form = document.createElement('form');
+    form.appendChild(button);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      action('Form submitted')();
+    });
+
+    return form;
+  },
+  args: {
+    defaultSlot: 'Button',
+    type: 'submit',
   },
 };

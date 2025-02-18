@@ -32,7 +32,7 @@ test('show by property (initial)', async ({ mount, page }) => {
 });
 
 test('show by property', async ({ mount, page }) => {
-  await mount(`<ix-drawer show>Content</ix-drawer>`);
+  await mount(`<ix-drawer>Content</ix-drawer>`);
   const drawer = page.locator('ix-drawer');
 
   await drawer.evaluate(
@@ -44,7 +44,7 @@ test('show by property', async ({ mount, page }) => {
 });
 
 test('toggle by property', async ({ mount, page }) => {
-  await mount(`<ix-drawer show>Content</ix-drawer>`);
+  await mount(`<ix-drawer>Content</ix-drawer>`);
   const drawer = page.locator('ix-drawer');
 
   await drawer.evaluate(
@@ -59,4 +59,30 @@ test('toggle by property', async ({ mount, page }) => {
   );
 
   await expect(drawer).not.toBeVisible();
+});
+
+test('open', async ({ mount, page }) => {
+  await mount('<ix-drawer>Content</ix-drawer');
+  const drawer = page.locator('ix-drawer');
+  await expect(drawer).toHaveClass(/hydrated/);
+  await drawer.evaluate((d: HTMLIxDrawerElement) =>
+    d.addEventListener('open', (event) => {
+      event.preventDefault();
+    })
+  );
+  await drawer.evaluate((d: HTMLIxDrawerElement) => (d.show = true));
+  await expect(drawer).not.toBeVisible();
+});
+
+test('drawerClose', async ({ mount, page }) => {
+  await mount('<ix-drawer show>Content</ix-drawer');
+  const drawer = page.locator('ix-drawer');
+  await expect(drawer).toHaveClass(/hydrated/);
+  await drawer.evaluate((d: HTMLIxDrawerElement) =>
+    d.addEventListener('drawerClose', (event) => {
+      event.preventDefault();
+    })
+  );
+  await drawer.evaluate((d: HTMLIxDrawerElement) => (d.show = false));
+  await expect(drawer).toBeVisible();
 });
