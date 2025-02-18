@@ -11,6 +11,7 @@ import Layout from '@theme/Layout';
 import React, { useEffect, useLayoutEffect } from 'react';
 import './uc.css';
 import Notice from './_notice.md';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const CookieNotice: React.FC = () => {
   useEffect(() => {
@@ -65,4 +66,6 @@ const CookieNotice: React.FC = () => {
   );
 };
 
-export default CookieNotice;
+export default () => {
+  return <BrowserOnly>{() => <CookieNotice />}</BrowserOnly>;
+};

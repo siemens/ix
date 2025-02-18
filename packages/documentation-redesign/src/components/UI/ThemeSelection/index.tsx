@@ -12,6 +12,7 @@ import Button from '../Button';
 import { iconChevronDownSmall, iconPen } from '@siemens/ix-icons/icons';
 import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const brandTheme = 'brand';
 const classicTheme = 'classic';
@@ -28,7 +29,11 @@ export function useDefaultTheme() {
   return classicTheme;
 }
 
-export default function (props: { onThemeChange?: (theme: string) => void }) {
+type ThemeSelectionProps = {
+  onThemeChange?: (theme: string) => void;
+};
+
+export function ThemeSelection(props: ThemeSelectionProps) {
   const context = useDocusaurusContext();
   const [availableThemes] = useState(() => {
     const themes = [classicTheme];
@@ -76,3 +81,7 @@ export default function (props: { onThemeChange?: (theme: string) => void }) {
     </>
   );
 }
+
+export default (props: ThemeSelectionProps) => {
+  return <BrowserOnly>{() => <ThemeSelection {...props} />}</BrowserOnly>;
+};
