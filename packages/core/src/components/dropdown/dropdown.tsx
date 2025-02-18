@@ -460,7 +460,6 @@ export class Dropdown implements ComponentInterface, DropdownInterface {
             transform: `translate(${Math.round(
               computeResponse.x
             )}px,${Math.round(computeResponse.y)}px)`,
-            overflow: 'visible',
           });
         }
         if (this.overwriteDropdownStyle) {
