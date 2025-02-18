@@ -8,18 +8,18 @@
 /* eslint-disable */
 
 import { IxFlipTile as IxFlipTileElement, defineCustomElement as defineIxFlipTile } from "@siemens/ix/components/ix-flip-tile.js";
-import type { StencilReactComponent } from '@stencil/react-output-target/runtime';
+import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-type IxFlipTileEvents = NonNullable<unknown>;
+type IxFlipTileEvents = { onToggle: EventName<CustomEvent<number>> };
 
 const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEvents> = /*@__PURE__*/ createComponent<IxFlipTileElement, IxFlipTileEvents>({
     tagName: 'ix-flip-tile',
     elementClass: IxFlipTileElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: {} as IxFlipTileEvents,
+    events: { onToggle: 'toggle' } as IxFlipTileEvents,
     defineCustomElement: defineIxFlipTile
 });
 

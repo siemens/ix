@@ -15,7 +15,9 @@ import React from 'react';
 type IxMenuEvents = {
     onExpandChange: EventName<CustomEvent<boolean>>,
     onMapExpandChange: EventName<CustomEvent<boolean>>,
-    onOpenAppSwitch: EventName<CustomEvent<void>>
+    onOpenAppSwitch: EventName<CustomEvent<void>>,
+    onOpenSettings: EventName<CustomEvent<void>>,
+    onOpenAbout: EventName<CustomEvent<void>>
 };
 
 const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = /*@__PURE__*/ createComponent<IxMenuElement, IxMenuEvents>({
@@ -26,7 +28,9 @@ const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = /*@__PURE__*/
     events: {
         onExpandChange: 'expandChange',
         onMapExpandChange: 'mapExpandChange',
-        onOpenAppSwitch: 'openAppSwitch'
+        onOpenAppSwitch: 'openAppSwitch',
+        onOpenSettings: 'openSettings',
+        onOpenAbout: 'openAbout'
     } as IxMenuEvents,
     defineCustomElement: defineIxMenu
 });

@@ -13,14 +13,20 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-type IxMenuSettingsEvents = { onClose: EventName<IxMenuSettingsCustomEvent<CustomCloseEvent>> };
+type IxMenuSettingsEvents = {
+    onTabChange: EventName<CustomEvent<string>>,
+    onClose: EventName<IxMenuSettingsCustomEvent<CustomCloseEvent>>
+};
 
 const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenuSettingsEvents> = /*@__PURE__*/ createComponent<IxMenuSettingsElement, IxMenuSettingsEvents>({
     tagName: 'ix-menu-settings',
     elementClass: IxMenuSettingsElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onClose: 'close' } as IxMenuSettingsEvents,
+    events: {
+        onTabChange: 'tabChange',
+        onClose: 'close'
+    } as IxMenuSettingsEvents,
     defineCustomElement: defineIxMenuSettings
 });
 

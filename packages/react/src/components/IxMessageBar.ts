@@ -12,14 +12,20 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-type IxMessageBarEvents = { onClosedChange: EventName<CustomEvent<any>> };
+type IxMessageBarEvents = {
+    onClosedChange: EventName<CustomEvent<any>>,
+    onCloseAnimationCompleted: EventName<CustomEvent<any>>
+};
 
 const IxMessageBar: StencilReactComponent<IxMessageBarElement, IxMessageBarEvents> = /*@__PURE__*/ createComponent<IxMessageBarElement, IxMessageBarEvents>({
     tagName: 'ix-message-bar',
     elementClass: IxMessageBarElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onClosedChange: 'closedChange' } as IxMessageBarEvents,
+    events: {
+        onClosedChange: 'closedChange',
+        onCloseAnimationCompleted: 'closeAnimationCompleted'
+    } as IxMessageBarEvents,
     defineCustomElement: defineIxMessageBar
 });
 
