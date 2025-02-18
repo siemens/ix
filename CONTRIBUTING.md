@@ -7,8 +7,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-
 <!-- omit in toc -->
+
 # Contributing to Siemens Industrial Experience
 
 First off, thanks for taking the time to contribute! ❤️
@@ -16,12 +16,14 @@ First off, thanks for taking the time to contribute! ❤️
 All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
 
 > And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
+>
 > - Star the project
 > - Tweet about it
 > - Refer this project in your project's readme
 > - Mention the project at local meetups and tell your friends/colleagues
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
@@ -31,8 +33,6 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 - [Suggesting Enhancements](#suggesting-enhancements)
 - [Your First Code Contribution](#your-first-code-contribution)
 - [Improving The Documentation](#modify-and-preview-documentation)
-- [Commit Messages](#commit-messages)
-
 
 ## Code of Conduct
 
@@ -43,14 +43,14 @@ to <daniel.leroux@siemens.com> or <lukas.maurer@siemens.com>.
 
 ## I Want To Contribute
 
-
 > ### Legal Notice <!-- omit in toc -->
+>
 > When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project license.
 
 ### Reporting Bugs
 
-
 <!-- omit in toc -->
+
 #### How Do I Submit a Good Bug Report?
 
 > You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <lukas.maurer@siemens.com> or <daniel.leroux@siemens.com>.
@@ -59,7 +59,7 @@ We use GitHub issues to track bugs and errors. If you run into an issue with the
 
 - Open an [Issue](https://github.com/siemens/ix/issues/new?assignees=&labels=triage&projects=&template=bug_report.yml). (Since we can't be sure at this point whether it is a bug or not, we ask you not to talk about a bug yet and not to label the issue.)
 - Explain the behavior you would expect and the actual behavior.
-- Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
+- Please provide as much context as possible and describe the _reproduction steps_ that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
 - Provide the information you collected in the previous section.
 
 Once it's filed:
@@ -74,6 +74,7 @@ Once it's filed:
 ### Suggesting Enhancements
 
 <!-- omit in toc -->
+
 #### Before Submitting an Enhancement
 
 - Read the [documentation](https://ix.siemens.io/docs/getting-started/) carefully and find out if the functionality is already covered, maybe by an individual configuration.
@@ -81,6 +82,7 @@ Once it's filed:
 - Find out whether your idea fits with the scope and aims of the project. It's up to you to make a strong case to convince the project's developers of the merits of this feature. Keep in mind that we want features that will be useful to the majority of our users and not just a small subset. If you're just targeting a minority of users, consider writing an add-on/plugin library.
 
 <!-- omit in toc -->
+
 #### How Do I Submit a Good Enhancement Suggestion?
 
 Enhancement suggestions are tracked as [GitHub issues](https://github.com/siemens/ix/issues).
@@ -112,7 +114,6 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/siemen
 5. [Modify the documentation](#modify-and-preview-documentation) if needed.
 6. [Run lint](#lint-changes) on the directory and make sure there are no errors.
 7. [Build the project](#building-changes).
-8. After the build is finished, commit the changes. Please follow the [commit message format](#commit-message-format) for every commit.
 
 ### Modifying Angular, React, and Vue
 
@@ -121,6 +122,7 @@ Stencil's primary goal is to remove the need for components to be written using 
 
 The experience of integrating web components directly into existing applications can be tricky at times, as frameworks have varying support for vanilla web components. In order to accommodate the various issues the Stencil team has created Framework Wrappers to make the process simpler.
 ```
+
 Read more about the [Stencil Output Targets here](https://stenciljs.com/docs/overview)
 
 > Please be aware you can not modify angular, react and vue components directly.
@@ -129,22 +131,23 @@ Read more about the [Stencil Output Targets here](https://stenciljs.com/docs/ove
 #### Modifying Files
 
 1. Locate the files inside the relevant root directory:
-  - Angular: [`/packages/angular`](/packages/angular/src)
-  - React: [`/packages/react`](/packages/react/src)
-  - Vue: [`/packages/vue`](/packages/vue/src)
+
+- Angular: [`/packages/angular`](/packages/angular/src)
+- React: [`/packages/react`](/packages/react/src)
+- Vue: [`/packages/vue`](/packages/vue/src)
+
 2. Make your changes to the files. If the change is overly complex or out of the ordinary, add comments so we can understand the changes.
 3. Run lint on the directory and make sure there are no errors.
 4. Build the project.
-5. After the build is finished, commit the changes. Please follow the [commit message format](#commit-message-format) for every commit.
+5. After the build is finished, commit the changes.
 6. [Submit a Pull Request](#submit-pull-request) of your changes.
 
 ### Preview Changes
 
 #### Core
 
-1. Run `pnpm start --filter @siemens/ix` from within the `root` directory.
-2. A browser should open at `http://localhost:3333/`.
-3. Edit and safe `/packages/core/src/components/my-component/my-component.tsx` to review your changes.
+1. Run `pnpm run storybook` from within the `root` directory.
+2. A browser should open at `http://localhost:6006/`.
 
 #### Angular
 
@@ -196,19 +199,20 @@ If you execute the visual-regression tests, please be sure to execute the build 
 
 1. Build the library: `pnpm build --filter \!documentation`
 
-2. Start the playwright docker container (Currently *v1.45.1-jammy*, but can be a newer version) mounting the current working directory into the container's *work* directory:
+2. Start the playwright docker container (Currently _v1.45.1-jammy_, but can be a newer version) mounting the current working directory into the container's _work_ directory:
 
 ```sh
-docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.45.1-jammy /bin/bash
+docker run -v $(pwd):/work/ -w /work -it mcr.microsoft.com/playwright:v1.50.0-noble /bin/bash
 ```
 
-3. Install *pnpm* within the container: `npm install -g pnpm`
+3. Install _pnpm_ within the container: `npm install -g pnpm`
 
 4. Install the chromium browser within the container: `pnpm playwright install chromium`
 
 5. Run the test suite:
-  - Run all tests: `pnpm visual-regression`
-  - Run workspace: `pnpm visual-regression --filter @siemens/ix`
+
+- Run all tests: `pnpm visual-regression`
+- Run workspace: `pnpm visual-regression --filter @siemens/ix`
 
 6. Adapt and update snapshots with: `pnpm --filter @siemens/ix run visual-regression <test name> -u`
 
@@ -246,43 +250,6 @@ Serve documentation [locally](http://localhost:3000/siemens-ix/)
 pnpm start --filter=documentation
 ```
 
-### Commit Message Format
-
-```
-<type>(<scope>): <short summary>
-  │       │             │
-  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
-  │       │
-  │       └─⫸ Commit Scope: animations|bazel|benchpress|common|compiler|compiler-cli|core|
-  │                          elements|forms|http|language-service|localize|platform-browser|
-  │                          platform-browser-dynamic|platform-server|router|service-worker|
-  │                          upgrade|zone.js|packaging|changelog|dev-infra|docs-infra|migrations|
-  │                          ngcc|ve
-  │
-  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
-```
-
-The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
-
-##### Git hooks via husky
-
-If you execute `pnpm install` you will get git hooks which verify the git commit message.
-
-Checkout more [details here](https://github.com/typicode/husky)
-
-##### Type
-
-Must be one of the following:
-
-- **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-- **ci**: Changes to our CI configuration files and scripts (example scopes: Circle, BrowserStack, SauceLabs)
-- **docs**: Documentation only changes
-- **feat**: A new feature
-- **fix**: A bug fix
-- **perf**: A code change that improves performance
-- **refactor**: A code change that neither fixes a bug nor adds a feature
-- **test**: Adding missing tests or correcting existing tests
-
 ### Submit Pull Request
 
 1. [Create a new pull request](https://github.com/siemens/ix/compare) with the `main` branch as the `base`. You may need to click on `compare across forks` to find your changes.
@@ -291,4 +258,5 @@ Must be one of the following:
 4. Create a [changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) to help us prepare a release. If you are not sure what to do just skip this step, a maintainer will comment on the pull request.
 
 ## Attribution
+
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!

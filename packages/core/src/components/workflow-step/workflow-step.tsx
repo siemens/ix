@@ -60,8 +60,13 @@ export class WorkflowStep {
    */
   @Prop() position: 'first' | 'last' | 'single' | 'undefined' = 'undefined';
 
-  @State() iconName: 'circle' | 'circle-dot' | 'success' | 'warning' | 'error' =
-    'circle';
+  @State() iconName:
+    | 'circle'
+    | 'circle-dot'
+    | 'circle-filled'
+    | 'success'
+    | 'warning'
+    | 'error' = 'circle';
 
   @State() iconColor: string = 'workflow-step-icon-default--color';
 
@@ -99,7 +104,7 @@ export class WorkflowStep {
         this.iconColor = 'color-success';
         break;
       case 'done':
-        this.iconName = 'success';
+        this.iconName = 'circle-filled';
         this.iconColor = 'workflow-step-icon-done--color';
         break;
       case 'warning':

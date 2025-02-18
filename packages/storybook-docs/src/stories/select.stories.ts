@@ -79,3 +79,10 @@ export const editable_with_dropdown_width: Story = {
     dropdownMaxWidth: '25rem',
   },
 };
+
+export const Required: Story = {
+  args: {
+    required: true,
+    label: 'Required',
+  },
+};

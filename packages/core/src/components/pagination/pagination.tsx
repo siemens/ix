@@ -101,6 +101,8 @@ export class Pagination {
   @Event() itemCountChanged!: EventEmitter<number>;
 
   private selectPage(index: number) {
+    const oldIndex = this.selectedPage;
+
     if (index < 0) {
       this.selectedPage = 0;
     } else if (index > this.count - 1) {
@@ -109,7 +111,11 @@ export class Pagination {
       this.selectedPage = index;
     }
 
-    this.pageSelected.emit(this.selectedPage);
+    const { defaultPrevented } = this.pageSelected.emit(this.selectedPage);
+
+    if (defaultPrevented) {
+      this.selectedPage = oldIndex;
+    }
   }
 
   private increase() {

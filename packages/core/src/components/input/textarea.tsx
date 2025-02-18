@@ -171,6 +171,7 @@ export class Textarea implements IxInputFieldComponent<string> {
   @State() isInvalidByRequired = false;
 
   private readonly textAreaRef = makeRef<HTMLTextAreaElement>();
+  private touched = false;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -212,6 +213,15 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Method()
   async focusInput(): Promise<void> {
     return (await this.getNativeInputElement()).focus();
+  }
+
+  /**
+   * Check if the textarea field has been touched.
+   * @internal
+   * */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
   }
 
   render() {
@@ -262,7 +272,10 @@ export class Textarea implements IxInputFieldComponent<string> {
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
-              onBlur={() => onInputBlur(this, this.textAreaRef.current)}
+              onBlur={() => {
+                onInputBlur(this, this.textAreaRef.current);
+                this.touched = true;
+              }}
             ></TextareaElement>
           </div>
         </ix-field-wrapper>

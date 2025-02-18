@@ -90,6 +90,15 @@ export class Button implements IxButtonComponent {
     }
   }
 
+  componentDidRender() {
+    if (
+      this.submitButtonElement &&
+      !this.hostElement.contains(this.submitButtonElement)
+    ) {
+      this.hostElement.appendChild(this.submitButtonElement);
+    }
+  }
+
   dispatchFormEvents() {
     if (
       this.type === 'submit' &&

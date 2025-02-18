@@ -8663,6 +8663,33 @@
           "required": false
         },
         {
+          "name": "index",
+          "type": "number",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "index",
+          "reflectToAttr": false,
+          "docs": "Index of the currently visible content",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "0",
+          "values": [
+            {
+              "type": "number"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "state",
           "type": "FlipTileState.Alarm | FlipTileState.Info | FlipTileState.None | FlipTileState.Primary | FlipTileState.Warning | undefined",
           "complexType": {
@@ -8737,7 +8764,27 @@
         }
       ],
       "methods": [],
-      "events": [],
+      "events": [
+        {
+          "event": "toggle",
+          "detail": "number",
+          "bubbles": true,
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the index changes",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
+        }
+      ],
       "styles": [],
       "slots": [],
       "parts": [],
@@ -12517,6 +12564,25 @@
           "docsTags": []
         },
         {
+          "event": "openAbout",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the about button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
+        },
+        {
           "event": "openAppSwitch",
           "detail": "void",
           "bubbles": true,
@@ -12528,6 +12594,25 @@
           "cancelable": true,
           "composed": true,
           "docs": "Event emitted when the app switch button is clicked",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
+        },
+        {
+          "event": "openSettings",
+          "detail": "void",
+          "bubbles": true,
+          "complexType": {
+            "original": "void",
+            "resolved": "void",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Event emitted when the settings button is clicked",
           "docsTags": [
             {
               "name": "since",
@@ -12672,6 +12757,25 @@
           "composed": true,
           "docs": "About and Legal closed",
           "docsTags": []
+        },
+        {
+          "event": "tabChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Active tab changed",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -13777,6 +13881,25 @@
           "composed": true,
           "docs": "Popover closed",
           "docsTags": []
+        },
+        {
+          "event": "tabChange",
+          "detail": "string",
+          "bubbles": true,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "Active tab changed",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ]
         }
       ],
       "styles": [],
@@ -13934,6 +14057,20 @@
       ],
       "methods": [],
       "events": [
+        {
+          "event": "closeAnimationCompleted",
+          "detail": "any",
+          "bubbles": true,
+          "complexType": {
+            "original": "any",
+            "resolved": "any",
+            "references": {}
+          },
+          "cancelable": true,
+          "composed": true,
+          "docs": "An event emitted when the close animation is completed",
+          "docsTags": []
+        },
         {
           "event": "closedChange",
           "detail": "any",

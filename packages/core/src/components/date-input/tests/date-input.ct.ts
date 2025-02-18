@@ -128,11 +128,15 @@ test('select date by input with invalid date - i18n', async ({
 test('required', async ({ mount, page }) => {
   await mount(`<ix-date-input required label="MyLabel"></ix-date-input>`);
   const dateInputElement = page.locator('ix-date-input');
+  const input = dateInputElement.locator('input');
   await expect(dateInputElement).toHaveAttribute('required');
 
   await expect(dateInputElement.locator('ix-field-label')).toHaveText(
     'MyLabel *'
   );
+
+  await input.focus();
+  await input.blur();
 
   await expect(dateInputElement).toHaveClass(/ix-invalid--required/);
 });
