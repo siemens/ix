@@ -54,13 +54,6 @@ async function fetchGitHubReleases() {
 }
 
 export async function fetchChangelog() {
-  console.log('Generating changelog...');
-
-  if (!process.env.GITHUB_TOKEN) {
-    console.error('No GITHUB_TOKEN provided, creating empty changelog');
-    return '';
-  }
-
   const releases = await fetchGitHubReleases();
   const markdown = getChangelogMarkdown(releases);
 

@@ -331,6 +331,18 @@ async function generateApiMarkdown() {
 }
 
 async function generateChangelog() {
+  console.log('Generating changelog...');
+
+  const changeLogExist = fs.existsSync(__changelog);
+
+  if (!process.env.GITHUB_TOKEN) {
+    if (changeLogExist) {
+      return;
+    }
+    console.error('No GITHUB_TOKEN provided, creating empty changelog');
+    return;
+  }
+
   const changelog = await fetchChangelog();
   await fs.writeFile(__changelog, changelog);
 }
