@@ -33,6 +33,8 @@ function between(min: number, value: number, max: number) {
   }
 }
 
+let sequenceId = 0;
+
 /**
  * @since 2.0.0
  *
@@ -107,8 +109,13 @@ export class Slider {
 
   private a11yAttributes?: A11yAttributes;
 
+  private localUId = `slider-${sequenceId++}`;
+  private tooltipUId = `tooltip-${sequenceId++}`;
+
   get tooltip() {
-    return this.hostElement.shadowRoot?.querySelector('ix-tooltip');
+    return document.querySelector(
+      `#${this.tooltipUId}`
+    ) as HTMLIxTooltipElement;
   }
 
   get pseudoThumb() {
@@ -218,6 +225,7 @@ export class Slider {
         <div class="slider">
           <div class="track">
             <div
+              data-tooltip={this.localUId}
               class="thumb"
               style={{
                 left: `calc(${valueInPercentage} * 100% - 8px)`,
@@ -287,10 +295,12 @@ export class Slider {
           />
 
           <ix-tooltip
+            id={this.tooltipUId}
             class={{
               'hide-tooltip': !this.showTooltip,
             }}
             animationFrame={true}
+            for={`[data-tooltip="${this.localUId}"]`}
           >
             {this.rangeInput}
           </ix-tooltip>

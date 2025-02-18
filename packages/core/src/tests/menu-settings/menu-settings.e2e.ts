@@ -19,7 +19,9 @@ regressionTest.describe('menu-settings', () => {
 
     //Click is needed otherwise tab item is still hovered
     await page.getByText('First Label - ').click();
-    await expect(settings.locator('ix-tooltip')).toBeVisible();
+    await expect(
+      page.locator('ix-tooltip').getByText('Settings')
+    ).toBeVisible();
 
     await expect(page).toHaveScreenshot({
       animations: 'disabled',
@@ -33,7 +35,9 @@ regressionTest.describe('menu-settings', () => {
     await page.waitForTimeout(500);
 
     await page.getByText('First Content').click();
-    await expect(settings.locator('ix-tooltip')).toBeVisible();
+    await expect(
+      page.locator('ix-tooltip').getByText('Settings')
+    ).toBeVisible();
 
     await expect(page).toHaveScreenshot({
       animations: 'disabled',
@@ -49,7 +53,9 @@ regressionTest.describe('menu-settings', () => {
     await page.getByText('First Content').click();
     await page.getByText('Changed Label').click();
 
-    await expect(settings.locator('ix-tooltip')).toBeVisible();
+    await expect(
+      page.locator('ix-tooltip').getByText('Settings')
+    ).toBeVisible();
 
     await expect(page).toHaveScreenshot({
       animations: 'disabled',
