@@ -66,14 +66,19 @@ export class Drawer {
    */
   @Event() drawerClose!: EventEmitter;
 
+  toggle = false;
+
   private static duration = 300;
   private callback = this.clickedOutside.bind(this);
   private divElement?: HTMLElement;
 
   @Watch('show')
-  onShowChanged(newValue: boolean) {
-    this.show = newValue !== undefined ? newValue : !this.show;
-    this.toggleDrawer(this.show);
+  onShowChanged(newValue: boolean, oldValue?: boolean) {
+    if (newValue === oldValue) {
+      return;
+    }
+
+    this.toggleDrawer(newValue);
   }
 
   /**
@@ -82,25 +87,47 @@ export class Drawer {
    */
   @Method()
   async toggleDrawer(show?: boolean): Promise<void> {
-    this.show = show !== undefined ? show : !this.show;
+    show = show ?? !this.show;
 
     if (show) {
-      this.open.emit();
-      this.slideInRight(this.divElement);
+      const { defaultPrevented } = this.open.emit();
+
+      if (defaultPrevented) {
+        return;
+      }
+
+      this.show = true;
+
+      if (!this.toggle) {
+        this.slideInRight(this.divElement);
+      }
+
       setTimeout(() => {
         window.addEventListener('mousedown', this.callback);
       }, 300);
     } else {
-      this.drawerClose.emit();
-      this.slideOutRight(this.divElement);
+      const { defaultPrevented } = this.drawerClose.emit();
+
+      if (defaultPrevented) {
+        return;
+      }
+
+      this.show = false;
+
+      if (this.toggle) {
+        this.slideOutRight(this.divElement);
+      }
+
       window.removeEventListener('mousedown', this.callback);
     }
+
+    this.toggle = this.show;
 
     return Promise.resolve();
   }
 
   private onCloseClicked() {
-    this.show = false;
+    this.toggleDrawer(false);
   }
 
   private clickedOutside(evt: any) {
@@ -152,7 +179,7 @@ export class Drawer {
   }
 
   componentDidLoad() {
-    this.onShowChanged(this.show);
+    this.toggleDrawer(this.show);
   }
 
   render() {

@@ -86,7 +86,7 @@ export class MessageBar {
         opacity: [1, 0],
         easing: 'easeOutSine',
         complete: () => {
-          el.classList.add('d-none');
+          el.classList.add('message-bar-hidden');
           this.closeAnimationCompleted.emit();
         },
       });

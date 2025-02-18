@@ -221,8 +221,8 @@ export class ValidationTooltip {
             top: '0',
             left: '0',
             transform: `translate(${Math.round(
-              this.tooltipPosition?.x || 0
-            )}px,${Math.round(this.tooltipPosition?.y || 0)}px)`,
+              this.tooltipPosition?.x ?? 0
+            )}px,${Math.round(this.tooltipPosition?.y ?? 0)}px)`,
           }}
           class="validation-tooltip text-default"
         >

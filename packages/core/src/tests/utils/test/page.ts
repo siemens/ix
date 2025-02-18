@@ -16,13 +16,13 @@ import {
 
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
-  const originalSceenshot = page.screenshot.bind(page);
+  const originalScreenshot = page.screenshot.bind(page);
   const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
   testInfo.annotations.push({
     type: theme,
   });
   page.goto = async (url: string, options) => {
-    if ((testInfo as any).componentTest) {
+    if (testInfo.config.metadata['componentTest'] === true) {
       return originalGoto(url, options);
     }
 
@@ -37,10 +37,54 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
 
   page.screenshot = async (options?: PageScreenshotOptions) => {
     await page.waitForTimeout(150);
-    return originalSceenshot(options);
+    return originalScreenshot(options);
   };
 
   return page;
+}
+
+async function mountComponent(
+  page: Page,
+  selector: string,
+  config?: {
+    headTags?: string[];
+  }
+): Promise<ElementHandle<HTMLElement>> {
+  return page.evaluateHandle(
+    async ({ componentSelector, config }) => {
+      if (config?.headTags) {
+        config.headTags.forEach((tag) => {
+          const head = document.querySelector('head');
+          if (!head) {
+            throw new Error('No head tag found in the document.');
+          }
+
+          head.innerHTML += tag;
+        });
+      }
+
+      const loadScript = document.createElement('script');
+      loadScript.src = '/scripts/e2e/load-e2e-runtime.js';
+      document.body.appendChild(loadScript);
+
+      await new Promise<void>((resolve) => {
+        loadScript.onload = async () => {
+          resolve();
+        };
+      });
+
+      await window.customElements.whenDefined('ix-button');
+      const mount = document.querySelector('#mount');
+
+      if (!mount) {
+        throw new Error('No mount point found in the document.');
+      }
+
+      mount.innerHTML = componentSelector;
+      return mount.children.item(0) as HTMLElement;
+    },
+    { componentSelector: selector, config }
+  );
 }
 
 export const regressionTest = testBase.extend<{
@@ -79,7 +123,7 @@ export const regressionTest = testBase.extend<{
     );
   },
   mount: async ({ page }, use, testInfo) => {
-    (testInfo as any).componentTest = true;
+    testInfo.config.metadata['componentTest'] = true;
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
     testInfo.annotations.push({
       type: theme,
@@ -87,50 +131,7 @@ export const regressionTest = testBase.extend<{
     await page.goto(
       `http://127.0.0.1:8080/src/tests/utils/ct/index.html?theme=${theme}`
     );
-    use(
-      (
-        selector: string,
-        config?: {
-          headTags?: string[];
-        }
-      ) => {
-        return page.evaluateHandle(
-          async ({ componentSelector, config }) => {
-            if (config?.headTags) {
-              config.headTags.forEach((tag) => {
-                const head = document.querySelector('head');
-                if (!head) {
-                  throw new Error('No head tag found in the document.');
-                }
-
-                head.innerHTML += tag;
-              });
-            }
-
-            const loadScript = document.createElement('script');
-            loadScript.src = '/scripts/e2e/load-e2e-runtime.js';
-            document.body.appendChild(loadScript);
-
-            await new Promise<void>((resolve) => {
-              loadScript.onload = async () => {
-                resolve();
-              };
-            });
-
-            await window.customElements.whenDefined('ix-button');
-            const mount = document.querySelector('#mount');
-
-            if (!mount) {
-              throw new Error('No mount point found in the document.');
-            }
-
-            mount.innerHTML = componentSelector;
-            return mount.children.item(0) as HTMLElement;
-          },
-          { componentSelector: selector, config }
-        );
-      }
-    );
+    await use((selector, config) => mountComponent(page, selector, config));
   },
 });
 

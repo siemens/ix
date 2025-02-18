@@ -101,11 +101,21 @@ export class Toggle implements IxFormComponent<string> {
       return;
     }
 
+    const wasIndeterminate = this.indeterminate;
+    const oldChecked = this.checked;
+
     if (this.indeterminate) {
       this.indeterminate = false;
     }
+
     this.checked = newChecked;
-    this.checkedChange.emit(this.checked);
+
+    const { defaultPrevented } = this.checkedChange.emit(this.checked);
+
+    if (defaultPrevented) {
+      this.indeterminate = wasIndeterminate;
+      this.checked = oldChecked;
+    }
   }
 
   componentWillLoad() {
