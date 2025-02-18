@@ -10,6 +10,6 @@ If `[suppressClassMapping]="true"` you need to control the `ix-`-classes on your
 <ix-input label="Name:" formControlName="name" [suppressClassMapping]="true" [class.ix-invalid]="!form.get('name')!.valid && form.get('name')!.touched" required> </ix-input>
 ```
 
-`value-accessor` ignores NgControls which are untouched but has `required=true` errors
+`value-accessor` ignores NgControls which are untouched but have `required=true` errors
 
 Fixes #1638 #1680
