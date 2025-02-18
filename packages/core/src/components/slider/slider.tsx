@@ -20,6 +20,7 @@ import {
 } from '@stencil/core';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 import { OnListener } from '../utils/listener';
+import { makeRef } from '../utils/make-ref';
 
 export type SliderMarker = Array<number>;
 
@@ -32,8 +33,6 @@ function between(min: number, value: number, max: number) {
     return value;
   }
 }
-
-let sequenceId = 0;
 
 /**
  * @since 2.0.0
@@ -109,17 +108,15 @@ export class Slider {
 
   private a11yAttributes?: A11yAttributes;
 
-  private localUId = `slider-${sequenceId++}`;
-  private tooltipUId = `tooltip-${sequenceId++}`;
+  private readonly thumbRef = makeRef<HTMLDivElement>();
+  private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
   get tooltip() {
-    return document.querySelector(
-      `#${this.tooltipUId}`
-    ) as HTMLIxTooltipElement;
+    return this.tooltipRef.current as HTMLIxTooltipElement;
   }
 
   get pseudoThumb() {
-    return this.hostElement.shadowRoot?.querySelector('.thumb') as HTMLElement;
+    return this.thumbRef.current as HTMLDivElement;
   }
 
   get slider() {
@@ -225,7 +222,7 @@ export class Slider {
         <div class="slider">
           <div class="track">
             <div
-              data-tooltip={this.localUId}
+              ref={this.thumbRef}
               class="thumb"
               style={{
                 left: `calc(${valueInPercentage} * 100% - 8px)`,
@@ -295,12 +292,12 @@ export class Slider {
           />
 
           <ix-tooltip
-            id={this.tooltipUId}
+            ref={this.tooltipRef}
             class={{
               'hide-tooltip': !this.showTooltip,
             }}
             animationFrame={true}
-            for={`[data-tooltip="${this.localUId}"]`}
+            for={this.thumbRef.waitForCurrent()}
           >
             {this.rangeInput}
           </ix-tooltip>
