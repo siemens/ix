@@ -317,6 +317,9 @@ export class Tooltip implements IxOverlayComponent {
 
   private registerTooltipListener() {
     const { hostElement } = this;
+
+    document.body.appendChild(hostElement);
+
     hostElement.addEventListener('mouseenter', () => this.clearHideTimeout());
     hostElement.addEventListener('focusin', () => this.clearHideTimeout());
 
