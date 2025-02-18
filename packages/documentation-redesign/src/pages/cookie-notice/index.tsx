@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { IxButton } from '@siemens/ix-react';
 import Layout from '@theme/Layout';
 import React, { useEffect, useLayoutEffect } from 'react';
 import './uc.css';
@@ -40,18 +41,16 @@ const CookieNotice: React.FC = () => {
 
           <h1>Cookie Notice</h1>
           <div>
-            {React.createElement(
-              'ix-button',
-              {
-                onClick: () => {
-                  (window as any).UC_UI.showSecondLayer();
-                },
-                style: {
-                  margin: '1rem 2rem 2rem 0',
-                },
-              },
-              'Manage preferences'
-            )}
+            <IxButton
+              onClick={() => {
+                (window as any).UC_UI.showSecondLayer();
+              }}
+              style={{
+                margin: '1rem 2rem 2rem 0',
+              }}
+            >
+              Manage preferences
+            </IxButton>
             <Notice />
             <div
               className="uc-embed"
