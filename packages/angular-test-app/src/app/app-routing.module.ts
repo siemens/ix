@@ -151,6 +151,7 @@ import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
 import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
+import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
@@ -715,6 +716,10 @@ const routes: Routes = [
       {
         path: 'message-bar',
         component: MessageBar,
+      },
+      {
+        path: 'message-bar-removal',
+        component: MessageBarRemoval,
       },
       {
         path: 'modal-by-instance-content',
