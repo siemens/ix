@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { useEffect, useRef, useState } from 'react';
-import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import Button from '../Button';
 import { iconChevronDownSmall, iconPen } from '@siemens/ix-icons/icons';
 import React from 'react';
@@ -64,15 +63,25 @@ export default function (props: { onThemeChange?: (theme: string) => void }) {
           name: iconChevronDownSmall,
         })}
       </Button>
-      {ref.current && (
-        <IxDropdown trigger={ref.current}>
-          {availableThemes.map((theme) => (
-            <IxDropdownItem key={theme} onClick={() => setTheme(theme)}>
-              {toUppercase(theme)}
-            </IxDropdownItem>
-          ))}
-        </IxDropdown>
-      )}
+      {ref.current &&
+        React.createElement(
+          'ix-dropdown',
+          {
+            trigger: ref.current,
+          },
+          [
+            availableThemes.map((theme) =>
+              React.createElement(
+                'ix-dropdown-item',
+                {
+                  key: theme,
+                  onClick: () => setTheme(theme),
+                },
+                toUppercase(theme)
+              )
+            ),
+          ]
+        )}
     </>
   );
 }

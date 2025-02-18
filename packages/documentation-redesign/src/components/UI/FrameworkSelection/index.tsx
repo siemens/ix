@@ -11,7 +11,6 @@ import {
   iconCode,
   iconShield,
 } from '@siemens/ix-icons/icons';
-import { IxDropdown, IxDropdownItem } from '@siemens/ix-react';
 import {
   FrameworkTypes,
   getDisplayNameFrameworkTypes,
@@ -47,22 +46,28 @@ function FrameworkSelection(props: {
           name: iconChevronDownSmall,
         })}
       </Button>
-      {ref.current && (
-        <IxDropdown trigger={ref.current}>
-          <IxDropdownItem onClick={() => setFramework('angular')}>
-            Angular
-          </IxDropdownItem>
-          <IxDropdownItem onClick={() => setFramework('react')}>
-            React
-          </IxDropdownItem>
-          <IxDropdownItem onClick={() => setFramework('vue')}>
-            Vue
-          </IxDropdownItem>
-          <IxDropdownItem onClick={() => setFramework('html')}>
-            HTML
-          </IxDropdownItem>
-        </IxDropdown>
-      )}
+      {ref.current &&
+        React.createElement('ix-dropdown', {
+          trigger: ref.current,
+          children: [
+            React.createElement('ix-dropdown-item', {
+              onClick: () => setFramework('angular'),
+              children: 'Angular',
+            }),
+            React.createElement('ix-dropdown-item', {
+              onClick: () => setFramework('react'),
+              children: 'React',
+            }),
+            React.createElement('ix-dropdown-item', {
+              onClick: () => setFramework('vue'),
+              children: 'Vue',
+            }),
+            React.createElement('ix-dropdown-item', {
+              onClick: () => setFramework('html'),
+              children: 'HTML',
+            }),
+          ],
+        })}
     </>
   );
 }
