@@ -40,6 +40,11 @@ export class MessageBar {
    */
   @Event() closedChange!: EventEmitter;
 
+  /**
+   * An event emitted when the close animation is completed
+   */
+  @Event() closeAnimationCompleted!: EventEmitter;
+
   @State() icon?: 'error' | 'warning' | 'info';
 
   @State() color?: NotificationColor;
@@ -66,16 +71,20 @@ export class MessageBar {
   }
 
   private closeAlert(el: HTMLElement) {
-    anime({
-      targets: el,
-      duration: MessageBar.duration,
-      opacity: [1, 0],
-      easing: 'easeOutSine',
-      complete: () => {
-        el.classList.add('d-none');
-      },
-    });
-    this.closedChange.emit();
+    const { defaultPrevented } = this.closedChange.emit();
+
+    if (!defaultPrevented) {
+      anime({
+        targets: el,
+        duration: MessageBar.duration,
+        opacity: [1, 0],
+        easing: 'easeOutSine',
+        complete: () => {
+          el.classList.add('message-bar-hidden');
+          this.closeAnimationCompleted.emit();
+        },
+      });
+    }
   }
 
   render() {

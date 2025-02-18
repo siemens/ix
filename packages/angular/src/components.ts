@@ -1058,25 +1058,31 @@ export declare interface IxFilterChip extends Components.IxFilterChip {
 
 
 @ProxyCmp({
-  inputs: ['height', 'state', 'width']
+  inputs: ['height', 'index', 'state', 'width']
 })
 @Component({
   selector: 'ix-flip-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['height', 'state', 'width'],
+  inputs: ['height', 'index', 'state', 'width'],
 })
 export class IxFlipTile {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['toggle']);
   }
 }
 
 
-export declare interface IxFlipTile extends Components.IxFlipTile {}
+export declare interface IxFlipTile extends Components.IxFlipTile {
+  /**
+   * Event emitted when the index changes @since 3.0.0
+   */
+  toggle: EventEmitter<CustomEvent<number>>;
+}
 
 
 @ProxyCmp({
@@ -1524,7 +1530,7 @@ export class IxMenu {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange', 'openAppSwitch']);
+    proxyOutputs(this, this.el, ['expandChange', 'mapExpandChange', 'openAppSwitch', 'openSettings', 'openAbout']);
   }
 }
 
@@ -1542,6 +1548,14 @@ export declare interface IxMenu extends Components.IxMenu {
    * Event emitted when the app switch button is clicked @since 3.0.0
    */
   openAppSwitch: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the settings button is clicked @since 3.0.0
+   */
+  openSettings: EventEmitter<CustomEvent<void>>;
+  /**
+   * Event emitted when the about button is clicked @since 3.0.0
+   */
+  openAbout: EventEmitter<CustomEvent<void>>;
 }
 
 
@@ -1560,7 +1574,7 @@ export class IxMenuAbout {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close']);
+    proxyOutputs(this, this.el, ['tabChange', 'close']);
   }
 }
 
@@ -1568,6 +1582,10 @@ export class IxMenuAbout {
 import type { CustomCloseEvent as IIxMenuAboutCustomCloseEvent } from '@siemens/ix';
 
 export declare interface IxMenuAbout extends Components.IxMenuAbout {
+  /**
+   * Active tab changed @since 3.0.0
+   */
+  tabChange: EventEmitter<CustomEvent<string>>;
   /**
    * About and Legal closed
    */
@@ -1752,7 +1770,7 @@ export class IxMenuSettings {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['close']);
+    proxyOutputs(this, this.el, ['tabChange', 'close']);
   }
 }
 
@@ -1760,6 +1778,10 @@ export class IxMenuSettings {
 import type { CustomCloseEvent as IIxMenuSettingsCustomCloseEvent } from '@siemens/ix';
 
 export declare interface IxMenuSettings extends Components.IxMenuSettings {
+  /**
+   * Active tab changed @since 3.0.0
+   */
+  tabChange: EventEmitter<CustomEvent<string>>;
   /**
    * Popover closed
    */
@@ -1812,7 +1834,7 @@ export class IxMessageBar {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['closedChange']);
+    proxyOutputs(this, this.el, ['closedChange', 'closeAnimationCompleted']);
   }
 }
 
@@ -1822,6 +1844,10 @@ export declare interface IxMessageBar extends Components.IxMessageBar {
    * An event emitted when the close button is clicked
    */
   closedChange: EventEmitter<CustomEvent<any>>;
+  /**
+   * An event emitted when the close animation is completed
+   */
+  closeAnimationCompleted: EventEmitter<CustomEvent<any>>;
 }
 
 

@@ -23,6 +23,12 @@ function getItems(
 }
 
 export function setTab(context: MenuSettings | MenuAbout, label: string) {
+  const { defaultPrevented } = context.tabChange.emit(label);
+
+  if (defaultPrevented) {
+    return;
+  }
+
   context.activeTabLabel = label;
   context.items.forEach((i) => {
     i.style.display = 'none';
