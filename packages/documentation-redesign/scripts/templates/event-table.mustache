@@ -1,11 +1,11 @@
-import {SinceTag, DeprecatedTag} from '@site/src/components/UI/Tags';
-import FrameworkSelection from '@site/src/components/UI/FrameworkSelection';
-
 {{#events}}
 <div className="api-table container mx-auto mb-8">
   <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
     <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
-      <div className="flex items-center font-bold">{{ event }}</div>
+      <div className="flex items-center font-bold">
+        {{ event }}
+        <a href="#property-{{ event }}" class="hash-link" aria-label="Direct link to Property {{ event }}" title="Direct link to Property {{ event }}">&ZeroWidthSpace;</a>
+      </div>
       <div className="flex items-center ml-auto gap-2">
       {{#docsTags}}
         {{{ rTag }}}
