@@ -171,6 +171,17 @@ regressionTest.describe('tooltip', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('tooltip inside dropdown', async ({ page }) => {
+    await page.goto('dropdown/tooltip');
+
+    await page.locator('ix-button').click();
+    await page.waitForSelector('.dropdown-menu.show');
+
+    await page.locator('#item1').hover();
+
+    await expect(page).toHaveScreenshot();
+  });
 });
 
 regressionTest.describe('tooltip delay', () => {
