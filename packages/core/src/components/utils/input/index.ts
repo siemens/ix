@@ -75,6 +75,7 @@ export interface IxFormComponent<T = string> extends IxComponent {
   hasValidValue(): Promise<boolean>;
   getValidityState?(): Promise<ValidityState>;
   getAssociatedFormElement(): Promise<HTMLFormElement | null>;
+  isTouched?(): Promise<boolean>;
 }
 
 export interface IxInputFieldComponent<T = string>
@@ -95,9 +96,9 @@ export interface IxInputFieldComponent<T = string>
   focusInput(): void;
 }
 
-export function isIxInputFieldComponent(
-  obj: HTMLElement
-): obj is HTMLIxInputFieldComponentElement<unknown> {
+export function isIxInputFieldComponent<T>(
+  obj: HTMLElement | IxFormComponent<T>
+): obj is HTMLIxInputFieldComponentElement<T> {
   return (
     obj &&
     'getAssociatedFormElement' in obj &&

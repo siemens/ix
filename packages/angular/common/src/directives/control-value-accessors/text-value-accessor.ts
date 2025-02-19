@@ -13,7 +13,7 @@ import { ValueAccessor } from './value-accessor';
 @Directive()
 export class TextValueAccessorBaseDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
-    super(injector, el);
+    super(injector, el, true);
   }
 
   @HostListener('input', ['$event.target'])
