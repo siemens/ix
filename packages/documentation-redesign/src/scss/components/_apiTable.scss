@@ -10,4 +10,12 @@
   p {
     margin: 0 !important;
   }
+
+  &[id]::before {
+    content: '';
+    display: block;
+    height: 15rem;
+    margin-top: -15rem;
+    visibility: hidden;
+  }
 }

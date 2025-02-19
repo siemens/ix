@@ -67,10 +67,4 @@
   --ix-docs-hero-tab-active: var(--theme-color-1);
 }
 
-[id]::before {
-  content: '';
-  display: block;
-  height: 3rem;
-  margin-top: -3rem;
-  visibility: hidden;
-}
+
