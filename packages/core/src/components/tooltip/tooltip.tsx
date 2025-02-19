@@ -16,20 +16,10 @@ import {
   offset,
   shift,
 } from '@floating-ui/dom';
-import {
-  Component,
-  Element,
-  h,
-  Host,
-  Method,
-  Prop,
-  State,
-} from '@stencil/core';
-import { tooltipController } from './tooltip-controller';
-import { IxOverlayComponent } from '../utils/overlay';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { resolveSelector } from '../utils/find-element';
 import { ElementReference } from 'src/components';
-import { addDisposableEventListener } from '../utils/disposable-event-listener';
+import { makeRef } from '../utils/make-ref';
 
 type ArrowPosition = {
   top?: string;
@@ -39,6 +29,8 @@ type ArrowPosition = {
 
 const numberToPixel = (value?: number | null) =>
   value != null ? `${value}px` : '';
+
+let tooltipInstance = 0;
 
 /**
  * @slot title-icon - Icon of tooltip title
@@ -51,7 +43,7 @@ const numberToPixel = (value?: number | null) =>
   styleUrl: 'tooltip.scss',
   shadow: true,
 })
-export class Tooltip implements IxOverlayComponent {
+export class Tooltip {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
@@ -83,8 +75,6 @@ export class Tooltip implements IxOverlayComponent {
   /** @internal */
   @Prop() animationFrame = false;
 
-  @State() visible = false;
-
   @Element() hostElement!: HTMLIxTooltipElement;
 
   private observer?: MutationObserver;
@@ -92,46 +82,50 @@ export class Tooltip implements IxOverlayComponent {
   private showTooltipTimeout?: NodeJS.Timeout;
   private intersectionObserver?: IntersectionObserver;
   private disposeAutoUpdate?: () => void;
-  private disposeKeyDownListener?: () => void;
-  private disposeListener?: () => void;
+  private disposeTriggerListener?: () => void;
+  private disposeTooltipListener?: () => void;
+
+  private instance = tooltipInstance++;
+  private dialogRef = makeRef<HTMLDialogElement>();
 
   private get arrowElement(): HTMLElement {
     return this.hostElement.shadowRoot!.querySelector('.arrow')!;
   }
 
-  private destroyAutoUpdate() {
-    if (this.disposeAutoUpdate !== undefined) {
-      this.disposeAutoUpdate();
-    }
-  }
-
   /** @internal */
   @Method()
   async showTooltip(anchorElement: Element) {
-    clearTimeout(this.hideTooltipTimeout);
-    await this.applyTooltipPosition(anchorElement);
+    this.clearHideTimeout(true);
 
-    this.showTooltipTimeout = setTimeout(() => {
-      tooltipController.present(this);
-      this.registerKeydownListener();
-      // Need to compute and apply tooltip position after initial render,
-      // because arrow has no valid bounding rect before that
-      this.applyTooltipPosition(anchorElement);
-    }, this.showDelay);
+    const dialog = await this.dialogRef.waitForCurrent();
+
+    const show = () => {
+      this.applyTooltipPosition(anchorElement, dialog);
+      dialog.showPopover();
+    };
+
+    if (this.showDelay) {
+      this.showTooltipTimeout = setTimeout(() => {
+        this.clearShowTimeout();
+      }, this.showDelay);
+    } else {
+      show();
+    }
   }
 
   /** @internal */
   @Method()
   async hideTooltip(hideDelay: number = 50) {
-    clearTimeout(this.showTooltipTimeout);
+    this.clearShowTimeout();
 
     if (this.interactive && this.hideDelay === hideDelay) {
       hideDelay = 150;
     }
 
+    const dialog = await this.dialogRef.waitForCurrent();
+
     const hide = () => {
-      this.disposeKeyDownListener?.();
-      tooltipController.dismiss(this);
+      dialog.hidePopover();
     };
 
     if (hideDelay) {
@@ -140,7 +134,7 @@ export class Tooltip implements IxOverlayComponent {
       hide();
     }
 
-    this.destroyAutoUpdate();
+    this.disposeAutoUpdate?.();
   }
 
   private computeArrowPosition({
@@ -188,8 +182,11 @@ export class Tooltip implements IxOverlayComponent {
     }
   }
 
-  private async computeTooltipPosition(target: Element) {
-    return computePosition(target, this.hostElement, {
+  private async computeTooltipPosition(
+    target: Element,
+    dialog: HTMLDialogElement
+  ) {
+    return computePosition(target, dialog, {
       strategy: 'fixed',
       placement: this.placement,
       middleware: [
@@ -213,19 +210,26 @@ export class Tooltip implements IxOverlayComponent {
     Object.assign(this.arrowElement.style, arrowPosition);
   }
 
-  private async applyTooltipPosition(target: Element) {
+  private async applyTooltipPosition(
+    target: Element,
+    dialog: HTMLDialogElement
+  ) {
     if (!target) {
       return;
     }
 
     return new Promise<ComputePositionReturn>((resolve) => {
-      this.destroyAutoUpdate();
+      this.disposeAutoUpdate?.();
+
       this.disposeAutoUpdate = autoUpdate(
         target,
-        this.hostElement,
+        dialog,
         async () => {
           setTimeout(async () => {
-            const computeResponse = await this.computeTooltipPosition(target);
+            const computeResponse = await this.computeTooltipPosition(
+              target,
+              dialog
+            );
 
             const isHidden =
               computeResponse.middlewareData.hide?.referenceHidden;
@@ -240,7 +244,7 @@ export class Tooltip implements IxOverlayComponent {
             }
 
             const { x, y } = computeResponse;
-            Object.assign(this.hostElement.style, {
+            Object.assign(dialog.style, {
               left: x !== null ? `${x}px` : '',
               top: y !== null ? `${y}px` : '',
             });
@@ -256,12 +260,6 @@ export class Tooltip implements IxOverlayComponent {
         }
       );
     });
-  }
-
-  private clearHideTimeout() {
-    if (this.interactive) {
-      clearTimeout(this.hideTooltipTimeout);
-    }
   }
 
   private async queryAnchorElements(): Promise<Array<HTMLElement> | undefined> {
@@ -296,16 +294,15 @@ export class Tooltip implements IxOverlayComponent {
   }
 
   private async registerTriggerListener() {
-    const triggerElementList = await this.queryAnchorElements();
+    this.disposeTriggerListener?.();
 
-    if (this.disposeListener) {
-      this.disposeListener();
-    }
+    const triggerElementList = await this.queryAnchorElements();
 
     if (!triggerElementList) {
       return;
     }
 
+    const listeners: (() => void)[] = [];
     triggerElementList.forEach((element) => {
       const onMouseEnter = () => {
         this.showTooltip(element);
@@ -334,45 +331,39 @@ export class Tooltip implements IxOverlayComponent {
 
       this.createIntersectionObserver(element);
 
-      this.disposeListener = () => {
+      listeners.push(() => {
         element.removeEventListener('mouseenter', onMouseEnter);
         element.removeEventListener('mouseleave', onMouseLeave);
         element.removeEventListener('focusin', onFocusIn);
         element.removeEventListener('focusout', onFocusOut);
 
         this.intersectionObserver?.disconnect();
-      };
+      });
     });
-  }
 
-  private registerTooltipListener() {
-    const { hostElement } = this;
-
-    document.body.appendChild(hostElement);
-
-    hostElement.addEventListener('mouseenter', () => this.clearHideTimeout());
-    hostElement.addEventListener('focusin', () => this.clearHideTimeout());
-
-    hostElement.addEventListener('mouseleave', () => this.hideTooltip());
-    hostElement.addEventListener('focusout', () => this.hideTooltip());
-  }
-
-  private registerKeydownListener() {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.code === 'Escape') {
-        this.hideTooltip();
-      }
+    this.disposeTriggerListener = () => {
+      listeners.forEach((listener) => listener());
     };
+  }
 
-    if (this.disposeKeyDownListener) {
-      this.disposeKeyDownListener();
+  private async registerTooltipListener() {
+    const dialog = await this.dialogRef.waitForCurrent();
+
+    dialog.addEventListener('mouseenter', () => this.clearHideTimeout());
+    dialog.addEventListener('focusin', () => this.clearHideTimeout());
+
+    dialog.addEventListener('mouseleave', () => this.hideTooltip());
+    dialog.addEventListener('focusout', () => this.hideTooltip());
+  }
+
+  private clearHideTimeout(force = false) {
+    if (this.interactive || force) {
+      clearTimeout(this.hideTooltipTimeout);
     }
+  }
 
-    this.disposeKeyDownListener = addDisposableEventListener(
-      document,
-      'keydown',
-      (event) => onKeyDown(event as KeyboardEvent)
-    );
+  private clearShowTimeout() {
+    clearTimeout(this.showTooltipTimeout);
   }
 
   componentWillLoad() {
@@ -394,49 +385,38 @@ export class Tooltip implements IxOverlayComponent {
     this.registerTooltipListener();
   }
 
-  connectedCallback() {
-    tooltipController.connected(this);
-  }
-
   disconnectedCallback() {
     this.observer?.disconnect();
-    this.destroyAutoUpdate();
-    tooltipController.disconnected(this);
-  }
+    this.clearHideTimeout(true);
 
-  isPresent(): boolean {
-    return this.visible;
-  }
-
-  present(): void {
-    this.visible = true;
-  }
-
-  dismiss(): void {
-    this.visible = false;
+    this.disposeAutoUpdate?.();
+    this.disposeTriggerListener?.();
+    this.disposeTooltipListener?.();
   }
 
   render() {
     return (
-      <Host
-        class={{
-          visible: this.visible,
-        }}
-        role="tooltip"
-      >
-        <div class="tooltip-container">
-          <div class={'tooltip-title'}>
-            <slot name="title-icon"></slot>
-            <ix-typography format="h5">
-              {this.titleContent}
-              <slot name="title-content"></slot>
-            </ix-typography>
+      <Host role="tooltip">
+        <dialog
+          ref={this.dialogRef}
+          id={'tooltip-' + this.instance}
+          class="dialog"
+          popover="manual"
+        >
+          <div class="tooltip-container">
+            <div class={'tooltip-title'}>
+              <slot name="title-icon"></slot>
+              <ix-typography format="h5">
+                {this.titleContent}
+                <slot name="title-content"></slot>
+              </ix-typography>
+            </div>
+            <div class={'tooltip-content'}>
+              <slot></slot>
+            </div>
+            <div class="arrow"></div>
           </div>
-          <div class={'tooltip-content'}>
-            <slot></slot>
-          </div>
-          <div class="arrow"></div>
-        </div>
+        </dialog>
       </Host>
     );
   }
