@@ -1,5 +1,40 @@
 # @siemens/ix
 
+## 2.8.0
+
+### Minor Changes
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-flip-tile`: Expsose `index` property to allow setting of displayed content and add `toggle` event.
+
+- [#1688](https://github.com/siemens/ix/pull/1688) [`5a12c6ac20`](https://github.com/siemens/ix/commit/5a12c6ac20e80a77f9fd3ad9aaffd66468f72b40) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-message-bar`: Event `closedChange` can now be prevented via `event.preventDefault()`.
+  An additional event is added to get notified after the close animation of the `ix-message-bar` is finished.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-menu`: Add `openSettings` and `openAbout` events. Event `expandChange` can now be prevented via `event.preventDefault()`.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ìx-drawer`: Events `open` and `drawerClose` can now be prevented via`event.preventDefault()`.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add `tabChange` event to `ix-menu-settings` and `ix-menu-about`.
+
+### Patch Changes
+
+- [#1683](https://github.com/siemens/ix/pull/1683) [`aa63b4fd90`](https://github.com/siemens/ix/commit/aa63b4fd901bc50e98877826699412affa127ae7) Thanks [@ridvandmrc](https://github.com/ridvandmrc)! - `active=false` of the `ix-chip` will now show the chip as not interactable.
+
+  Fixed #1656
+
+- [#1681](https://github.com/siemens/ix/pull/1681) [`5b56d90813`](https://github.com/siemens/ix/commit/5b56d90813239cb34d28b4c20255392b9dd1d66f) Thanks [@jul-lam](https://github.com/jul-lam)! - Update `@floating-ui/dom` dependency to fix a wrong placement of the `ix-dropdown` if the dropdown is placed inside a `dialog`-element with animations in certain environments.
+
+- [#1699](https://github.com/siemens/ix/pull/1699) [`093c783529`](https://github.com/siemens/ix/commit/093c78352916a193e7f2cbfab692362c4ba0de9a) Thanks [@danielleroux](https://github.com/danielleroux)! - Update classic theme colors to match latest figma specs
+
+- [#1687](https://github.com/siemens/ix/pull/1687) [`2d4e3b8cdb`](https://github.com/siemens/ix/commit/2d4e3b8cdb756dff44627941adfea6a0230ccf26) Thanks [@matthiashader](https://github.com/matthiashader)! - Fix issue of `ix-button` which prevent a form get submitted twice in row.
+
+- [#1691](https://github.com/siemens/ix/pull/1691) [`8726afc094`](https://github.com/siemens/ix/commit/8726afc094adf2ddb4f8e927c6a42aa8dc0ed589) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-workflow-step`: change icon for 'done' state to be different from the one shown for 'success' state to pervent confusion.
+
+- [#1682](https://github.com/siemens/ix/pull/1682) [`f41b5d6029`](https://github.com/siemens/ix/commit/f41b5d60299cb874cec9730394038dd4c2df8a60) Thanks [@danielleroux](https://github.com/danielleroux)! - Prevent input elements like (`ix-input`, `ix-number-input`, `ix-date-input`, `ix-select`, `ix-textarea`) to show `required` validation error without any user interaction.
+
+  If the class `ix-invalid` is applied programmatically an error message is still shown even without a user interaction.
+
+  Fixes #1638, #1680
+
 ## 2.7.0
 
 ### Minor Changes

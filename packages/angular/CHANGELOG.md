@@ -1,5 +1,42 @@
 # @siemens/ix-angular
 
+## 2.8.0
+
+### Minor Changes
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-flip-tile`: Expsose `index` property to allow setting of displayed content and add `toggle` event.
+
+- [#1688](https://github.com/siemens/ix/pull/1688) [`5a12c6ac20`](https://github.com/siemens/ix/commit/5a12c6ac20e80a77f9fd3ad9aaffd66468f72b40) Thanks [@matthiashader](https://github.com/matthiashader)! - `ix-message-bar`: Event `closedChange` can now be prevented via `event.preventDefault()`.
+  An additional event is added to get notified after the close animation of the `ix-message-bar` is finished.
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - `ix-menu`: Add `openSettings` and `openAbout` events. Event `expandChange` can now be prevented via `event.preventDefault()`.
+
+- [#1682](https://github.com/siemens/ix/pull/1682) [`f41b5d6029`](https://github.com/siemens/ix/commit/f41b5d60299cb874cec9730394038dd4c2df8a60) Thanks [@danielleroux](https://github.com/danielleroux)! - Add `suppressClassMapping` to value-accessors to prevent that the accessors automatically map `ng-`-classes to `ix-`-classes.
+
+  If `[suppressClassMapping]="true"` you need to control the `ix-`-classes on your own.
+
+  ```html
+  <ix-input
+    label="Name:"
+    formControlName="name"
+    [suppressClassMapping]="true"
+    [class.ix-invalid]="!form.get('name')!.valid && form.get('name')!.touched"
+    required
+  >
+  </ix-input>
+  ```
+
+  `value-accessor` ignores NgControls which are untouched but have `required=true` errors
+
+  Fixes #1638 #1680
+
+- [#1676](https://github.com/siemens/ix/pull/1676) [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a) Thanks [@nuke-ellington](https://github.com/nuke-ellington)! - Add `tabChange` event to `ix-menu-settings` and `ix-menu-about`.
+
+### Patch Changes
+
+- Updated dependencies [[`aa63b4fd90`](https://github.com/siemens/ix/commit/aa63b4fd901bc50e98877826699412affa127ae7), [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a), [`5b56d90813`](https://github.com/siemens/ix/commit/5b56d90813239cb34d28b4c20255392b9dd1d66f), [`093c783529`](https://github.com/siemens/ix/commit/093c78352916a193e7f2cbfab692362c4ba0de9a), [`5a12c6ac20`](https://github.com/siemens/ix/commit/5a12c6ac20e80a77f9fd3ad9aaffd66468f72b40), [`2d4e3b8cdb`](https://github.com/siemens/ix/commit/2d4e3b8cdb756dff44627941adfea6a0230ccf26), [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a), [`8726afc094`](https://github.com/siemens/ix/commit/8726afc094adf2ddb4f8e927c6a42aa8dc0ed589), [`f41b5d6029`](https://github.com/siemens/ix/commit/f41b5d60299cb874cec9730394038dd4c2df8a60), [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a), [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a)]:
+  - @siemens/ix@2.8.0
+
 ## 2.7.0
 
 ### Minor Changes
