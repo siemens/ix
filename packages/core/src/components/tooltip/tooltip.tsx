@@ -1,11 +1,12 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import {
   arrow,
   autoUpdate,
@@ -77,16 +78,18 @@ export class Tooltip {
 
   @Element() hostElement!: HTMLIxTooltipElement;
 
-  private observer?: MutationObserver;
   private hideTooltipTimeout?: NodeJS.Timeout;
   private showTooltipTimeout?: NodeJS.Timeout;
-  private intersectionObserver?: IntersectionObserver;
+
   private disposeAutoUpdate?: () => void;
   private disposeTriggerListener?: () => void;
   private disposeTooltipListener?: () => void;
+  private disposeDomChangeListener?: () => void;
 
   private instance = tooltipInstance++;
-  private dialogRef = makeRef<HTMLDialogElement>();
+  private visible = false;
+
+  private readonly dialogRef = makeRef<HTMLDialogElement>();
 
   private get arrowElement(): HTMLElement {
     return this.hostElement.shadowRoot!.querySelector('.arrow')!;
@@ -94,28 +97,30 @@ export class Tooltip {
 
   /** @internal */
   @Method()
-  async showTooltip(anchorElement: Element) {
-    this.clearHideTimeout(true);
+  async showTooltip(anchorElement: Element): Promise<void> {
+    if (this.showTooltipTimeout || this.visible) {
+      return;
+    }
+
+    this.visible = true;
+    this.clearHideTimeout();
 
     const dialog = await this.dialogRef.waitForCurrent();
 
-    const show = () => {
+    this.showTooltipTimeout = setTimeout(() => {
       this.applyTooltipPosition(anchorElement, dialog);
       dialog.showPopover();
-    };
-
-    if (this.showDelay) {
-      this.showTooltipTimeout = setTimeout(() => {
-        this.clearShowTimeout();
-      }, this.showDelay);
-    } else {
-      show();
-    }
+    }, this.showDelay);
   }
 
   /** @internal */
   @Method()
-  async hideTooltip(hideDelay: number = 50) {
+  async hideTooltip(hideDelay: number = 50): Promise<void> {
+    if (this.hideTooltipTimeout || !this.visible) {
+      return;
+    }
+
+    this.visible = false;
     this.clearShowTimeout();
 
     if (this.interactive && this.hideDelay === hideDelay) {
@@ -124,15 +129,9 @@ export class Tooltip {
 
     const dialog = await this.dialogRef.waitForCurrent();
 
-    const hide = () => {
+    this.hideTooltipTimeout = setTimeout(() => {
       dialog.hidePopover();
-    };
-
-    if (hideDelay) {
-      this.hideTooltipTimeout = setTimeout(hide, hideDelay);
-    } else {
-      hide();
-    }
+    }, hideDelay);
 
     this.disposeAutoUpdate?.();
   }
@@ -185,7 +184,7 @@ export class Tooltip {
   private async computeTooltipPosition(
     target: Element,
     dialog: HTMLDialogElement
-  ) {
+  ): Promise<ComputePositionReturn> {
     return computePosition(target, dialog, {
       strategy: 'fixed',
       placement: this.placement,
@@ -205,7 +204,9 @@ export class Tooltip {
     });
   }
 
-  private applyTooltipArrowPosition(computeResponse: ComputePositionReturn) {
+  private applyTooltipArrowPosition(
+    computeResponse: ComputePositionReturn
+  ): void {
     const arrowPosition = this.computeArrowPosition(computeResponse);
     Object.assign(this.arrowElement.style, arrowPosition);
   }
@@ -213,7 +214,7 @@ export class Tooltip {
   private async applyTooltipPosition(
     target: Element,
     dialog: HTMLDialogElement
-  ) {
+  ): Promise<ComputePositionReturn | undefined> {
     if (!target) {
       return;
     }
@@ -230,14 +231,6 @@ export class Tooltip {
               target,
               dialog
             );
-
-            const isHidden =
-              computeResponse.middlewareData.hide?.referenceHidden;
-
-            if (isHidden) {
-              setTimeout(() => this.hideTooltip());
-              resolve(computeResponse);
-            }
 
             if (computeResponse.middlewareData.arrow) {
               this.applyTooltipArrowPosition(computeResponse);
@@ -277,23 +270,7 @@ export class Tooltip {
     }
   }
 
-  private createIntersectionObserver(element: HTMLElement) {
-    if (this.intersectionObserver) {
-      this.intersectionObserver.disconnect();
-    }
-
-    this.intersectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          this.hideTooltip(0);
-        }
-      });
-    });
-
-    this.intersectionObserver.observe(element);
-  }
-
-  private async registerTriggerListener() {
+  private async registerTriggerListener(): Promise<void> {
     this.disposeTriggerListener?.();
 
     const triggerElementList = await this.queryAnchorElements();
@@ -329,15 +306,11 @@ export class Tooltip {
       element.addEventListener('focusin', onFocusIn);
       element.addEventListener('focusout', onFocusOut);
 
-      this.createIntersectionObserver(element);
-
       listeners.push(() => {
         element.removeEventListener('mouseenter', onMouseEnter);
         element.removeEventListener('mouseleave', onMouseLeave);
         element.removeEventListener('focusin', onFocusIn);
         element.removeEventListener('focusout', onFocusOut);
-
-        this.intersectionObserver?.disconnect();
       });
     });
 
@@ -346,24 +319,66 @@ export class Tooltip {
     };
   }
 
-  private async registerTooltipListener() {
+  private async registerTooltipListener(): Promise<void> {
     const dialog = await this.dialogRef.waitForCurrent();
 
-    dialog.addEventListener('mouseenter', () => this.clearHideTimeout());
-    dialog.addEventListener('focusin', () => this.clearHideTimeout());
+    const onMouseEnter = () => {
+      if (this.interactive) {
+        this.clearHideTimeout();
+      }
+    };
 
-    dialog.addEventListener('mouseleave', () => this.hideTooltip());
-    dialog.addEventListener('focusout', () => this.hideTooltip());
+    const onMouseLeave = () => {
+      if (this.interactive) {
+        this.hideTooltip();
+      }
+    };
+
+    const onFocusIn = () => {
+      if (this.interactive) {
+        this.clearHideTimeout();
+      }
+    };
+
+    const onFocusOut = () => {
+      if (this.interactive) {
+        console.log('B onFocusOut');
+        this.hideTooltip();
+      }
+    };
+
+    dialog.addEventListener('mouseenter', onMouseEnter);
+    dialog.addEventListener('focusin', onFocusIn);
+
+    dialog.addEventListener('mouseleave', onMouseLeave);
+    dialog.addEventListener('focusout', onFocusOut);
   }
 
-  private clearHideTimeout(force = false) {
-    if (this.interactive || force) {
-      clearTimeout(this.hideTooltipTimeout);
-    }
+  private registerDomChangeListener(): void {
+    const observer = new MutationObserver(() => {
+      this.registerTriggerListener();
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['data-ix-tooltip'],
+      childList: true,
+      subtree: true,
+    });
+
+    this.disposeDomChangeListener = () => {
+      observer.disconnect();
+    };
+  }
+
+  private clearHideTimeout() {
+    clearTimeout(this.hideTooltipTimeout);
+    this.hideTooltipTimeout = undefined;
   }
 
   private clearShowTimeout() {
     clearTimeout(this.showTooltipTimeout);
+    this.showTooltipTimeout = undefined;
   }
 
   componentWillLoad() {
@@ -371,27 +386,18 @@ export class Tooltip {
   }
 
   componentDidLoad() {
-    this.observer = new MutationObserver(() => {
-      this.registerTriggerListener();
-    });
-
-    this.observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ['data-ix-tooltip'],
-      childList: true,
-      subtree: true,
-    });
-
+    this.registerDomChangeListener();
     this.registerTooltipListener();
   }
 
   disconnectedCallback() {
-    this.observer?.disconnect();
-    this.clearHideTimeout(true);
+    this.clearHideTimeout();
+    this.clearShowTimeout();
 
     this.disposeAutoUpdate?.();
     this.disposeTriggerListener?.();
     this.disposeTooltipListener?.();
+    this.disposeDomChangeListener?.();
   }
 
   render() {
