@@ -3067,7 +3067,7 @@ export namespace Components {
          */
         "for"?: ElementReference;
         "hideDelay": number;
-        "hideTooltip": () => Promise<void>;
+        "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
          */
