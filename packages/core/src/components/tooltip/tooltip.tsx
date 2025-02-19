@@ -29,6 +29,7 @@ import { tooltipController } from './tooltip-controller';
 import { IxOverlayComponent } from '../utils/overlay';
 import { resolveSelector } from '../utils/find-element';
 import { ElementReference } from 'src/components';
+import { addDisposableEventListener } from '../utils/disposable-event-listener';
 
 type ArrowPosition = {
   top?: string;
@@ -89,6 +90,7 @@ export class Tooltip implements IxOverlayComponent {
   private observer?: MutationObserver;
   private hideTooltipTimeout?: NodeJS.Timeout;
   private showTooltipTimeout?: NodeJS.Timeout;
+  private intersectionObserver?: IntersectionObserver;
   private disposeAutoUpdate?: () => void;
   private disposeKeyDownListener?: () => void;
   private disposeListener?: () => void;
@@ -120,18 +122,24 @@ export class Tooltip implements IxOverlayComponent {
 
   /** @internal */
   @Method()
-  async hideTooltip() {
+  async hideTooltip(hideDelay: number = 50) {
     clearTimeout(this.showTooltipTimeout);
-    let hideDelay = 50;
 
     if (this.interactive && this.hideDelay === hideDelay) {
       hideDelay = 150;
     }
 
-    this.hideTooltipTimeout = setTimeout(() => {
+    const hide = () => {
       this.disposeKeyDownListener?.();
       tooltipController.dismiss(this);
-    }, hideDelay);
+    };
+
+    if (hideDelay) {
+      this.hideTooltipTimeout = setTimeout(hide, hideDelay);
+    } else {
+      hide();
+    }
+
     this.destroyAutoUpdate();
   }
 
@@ -271,6 +279,22 @@ export class Tooltip implements IxOverlayComponent {
     }
   }
 
+  private createIntersectionObserver(element: HTMLElement) {
+    if (this.intersectionObserver) {
+      this.intersectionObserver.disconnect();
+    }
+
+    this.intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          this.hideTooltip(0);
+        }
+      });
+    });
+
+    this.intersectionObserver.observe(element);
+  }
+
   private async registerTriggerListener() {
     const triggerElementList = await this.queryAnchorElements();
 
@@ -308,11 +332,15 @@ export class Tooltip implements IxOverlayComponent {
       element.addEventListener('focusin', onFocusIn);
       element.addEventListener('focusout', onFocusOut);
 
+      this.createIntersectionObserver(element);
+
       this.disposeListener = () => {
         element.removeEventListener('mouseenter', onMouseEnter);
         element.removeEventListener('mouseleave', onMouseLeave);
         element.removeEventListener('focusin', onFocusIn);
         element.removeEventListener('focusout', onFocusOut);
+
+        this.intersectionObserver?.disconnect();
       };
     });
   }
@@ -330,22 +358,21 @@ export class Tooltip implements IxOverlayComponent {
   }
 
   private registerKeydownListener() {
-    if (this.disposeKeyDownListener) {
-      return;
-    }
-
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.code === 'Escape') {
         this.hideTooltip();
       }
     };
 
-    document.addEventListener('keydown', onKeyDown);
+    if (this.disposeKeyDownListener) {
+      this.disposeKeyDownListener();
+    }
 
-    this.disposeKeyDownListener = () => {
-      document.removeEventListener('keydown', onKeyDown);
-      this.disposeKeyDownListener = undefined;
-    };
+    this.disposeKeyDownListener = addDisposableEventListener(
+      document,
+      'keydown',
+      (event) => onKeyDown(event as KeyboardEvent)
+    );
   }
 
   componentWillLoad() {
