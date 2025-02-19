@@ -24,7 +24,7 @@ test('should show tooltip by focus', async ({ page, mount }) => {
 
   const input = slider.locator('input');
 
-  const tooltip = slider.locator('ix-tooltip');
+  const tooltip = page.locator('ix-tooltip').first();
   await input.focus();
   await expect(tooltip).toBeVisible();
   const left = (await tooltip.boundingBox())?.x;
@@ -56,7 +56,7 @@ test('should show tooltip while mouse drags slider handle', async ({
   const slider = page.locator('ix-slider');
   await expect(slider).toHaveClass(/hydrated/);
 
-  const tooltip = slider.locator('ix-tooltip');
+  const tooltip = page.locator('ix-tooltip').first();
 
   await expect(tooltip).not.toBeVisible();
 

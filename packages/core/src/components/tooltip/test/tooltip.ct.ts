@@ -133,23 +133,27 @@ test('avoid double visibility request by focusin event', async ({
   await page.waitForTimeout(5);
   await menuItem1.click();
   await page.waitForTimeout(200);
-  await expect(menuItem1.locator('ix-tooltip')).toBeVisible();
+  await expect(page.locator('ix-tooltip').getByText('Item 1')).toBeVisible();
 
   await menuItem2.hover();
   await page.waitForTimeout(5);
   await menuItem2.click();
   await page.waitForTimeout(200);
-  await expect(menuItem2.locator('ix-tooltip')).toBeVisible();
+  await expect(page.locator('ix-tooltip').getByText('Item 2')).toBeVisible();
 
   await menuItem1.hover();
   await page.waitForTimeout(5);
   await menuItem1.click();
   await page.waitForTimeout(200);
-  await expect(menuItem1.locator('ix-tooltip')).toBeVisible();
+  await expect(page.locator('ix-tooltip').getByText('Item 1')).toBeVisible();
 
   await page.mouse.move(0, 0);
   await page.waitForTimeout(200);
 
-  await expect(menuItem1.locator('ix-tooltip')).not.toBeVisible();
-  await expect(menuItem2.locator('ix-tooltip')).not.toBeVisible();
+  await expect(
+    page.locator('ix-tooltip').getByText('Item 1')
+  ).not.toBeVisible();
+  await expect(
+    page.locator('ix-tooltip').getByText('Item 2')
+  ).not.toBeVisible();
 });

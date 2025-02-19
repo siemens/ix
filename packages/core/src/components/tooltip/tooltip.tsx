@@ -25,7 +25,6 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { OnListener } from '../utils/listener';
 import { tooltipController } from './tooltip-controller';
 import { IxOverlayComponent } from '../utils/overlay';
 import { resolveSelector } from '../utils/find-element';
@@ -91,6 +90,7 @@ export class Tooltip implements IxOverlayComponent {
   private hideTooltipTimeout?: NodeJS.Timeout;
   private showTooltipTimeout?: NodeJS.Timeout;
   private disposeAutoUpdate?: () => void;
+  private disposeKeyDownListener?: () => void;
   private disposeListener?: () => void;
 
   private get arrowElement(): HTMLElement {
@@ -111,6 +111,7 @@ export class Tooltip implements IxOverlayComponent {
 
     this.showTooltipTimeout = setTimeout(() => {
       tooltipController.present(this);
+      this.registerKeydownListener();
       // Need to compute and apply tooltip position after initial render,
       // because arrow has no valid bounding rect before that
       this.applyTooltipPosition(anchorElement);
@@ -128,6 +129,7 @@ export class Tooltip implements IxOverlayComponent {
     }
 
     this.hideTooltipTimeout = setTimeout(() => {
+      this.disposeKeyDownListener?.();
       tooltipController.dismiss(this);
     }, hideDelay);
     this.destroyAutoUpdate();
@@ -327,11 +329,23 @@ export class Tooltip implements IxOverlayComponent {
     hostElement.addEventListener('focusout', () => this.hideTooltip());
   }
 
-  @OnListener<Tooltip>('keydown', (self) => self.visible)
-  async onKeydown(event: KeyboardEvent) {
-    if (event.code === 'Escape') {
-      this.hideTooltip();
+  private registerKeydownListener() {
+    if (this.disposeKeyDownListener) {
+      return;
     }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.code === 'Escape') {
+        this.hideTooltip();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+
+    this.disposeKeyDownListener = () => {
+      document.removeEventListener('keydown', onKeyDown);
+      this.disposeKeyDownListener = undefined;
+    };
   }
 
   componentWillLoad() {

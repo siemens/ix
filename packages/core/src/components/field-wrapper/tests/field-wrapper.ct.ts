@@ -58,7 +58,7 @@ test('show text by tooltip', async ({ mount, page }) => {
 
   await page.mouse.move(10, 10);
 
-  const tooltip = fieldWrapperElement.locator('ix-tooltip');
+  const tooltip = page.locator('ix-tooltip').first();
   await expect(tooltip).toBeVisible();
   await expect(tooltip).toContainText('Helper text');
 });
@@ -76,7 +76,7 @@ test('show text by tooltip invalid', async ({ mount, page }) => {
 
   await page.mouse.move(10, 10);
 
-  const tooltip = fieldWrapperElement.locator('ix-tooltip');
+  const tooltip = page.locator('ix-tooltip').first();
   await expect(tooltip).toBeVisible();
   await expect(tooltip).toContainText('invalid text');
 });
