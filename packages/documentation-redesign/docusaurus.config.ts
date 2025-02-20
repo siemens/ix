@@ -6,8 +6,21 @@ import path from 'path';
 import fs from 'fs';
 const baseUrl = process.env.BASE_URL || '/';
 
+//TODO Use remote theme for installation, and remove check of them environment
+
+const tmpBrandThemeExist = fs.existsSync(
+  path.join(__dirname, 'src', 'scss', 'theme.tmp', 'ix-brand-theme.css')
+);
+
+const theme = tmpBrandThemeExist
+  ? ['./src/scss/theme.tmp/ix-brand-theme.css']
+  : [
+      './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
+      './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css',
+    ];
+
 const customCss = [
-  './src/scss/theme.tmp/ix-brand-theme.css',
+  ...theme,
   './src/scss/custom.scss',
   './node_modules/@siemens/ix/scss/_common-variables.scss',
   './node_modules/@siemens/ix/scss/components/form/_input.scss',
