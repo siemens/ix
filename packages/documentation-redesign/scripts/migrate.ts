@@ -44,7 +44,7 @@ const no_single_tab_files = [
   'overview-chart',
   'gauge-chart',
   'overview'
-]
+];
 
 function removeLeadingNewline(content: string): string {
   return content.startsWith('\n') ? content.slice(1) : content;
@@ -161,7 +161,6 @@ function tryToGetIntroductionText(file: string) {
   };
 }
 
-
 function normalizeHeadlines(name: string, file: string): string {
   const lines = file.split('\n');
   const importLines: string[] = [];
@@ -215,10 +214,6 @@ function normalizeHeadlines(name: string, file: string): string {
       if (headline.trim() === "## Guidelines" || headline.trim() === "## Guideline") {
         return section;
       }
-      // // If the section appears to have no content and is not exempt, discard it.
-      // if (content.every((l) => l.trim() === '')) {
-      //   return null;
-      // }
       if (headline.startsWith('## ')) {
         if (!levelTwoFound) {
           levelTwoFound = true;
@@ -255,6 +250,8 @@ function tryToReplaceTags(file: string, name: string): string {
     "import { SinceTag } from '@site/src/components/UI/Tags';"
   );
   file = file.replace(/<ApiTableSinceTag message=(.*) \/>/g, '<SinceTag message=$1 />');
+
+  file = file.replace(/<Tags\s*\/>/g, '');
 
   return file;
 }
