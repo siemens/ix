@@ -5,13 +5,15 @@ import Slots from './../auto-generated/ix-tooltip/slots.md';
 
 import Playground from '@site/src/components/PlaygroundV3'
 
-# Tooltip
+## Development
 
 <Tags />
+
 <!-- introduction start -->
 Tooltips provide additional information when users hover over or focus on an element.
 <!-- introduction end -->
-## Examples
+
+### Basic
 
 <Playground
   name="tooltip"
@@ -19,25 +21,26 @@ Tooltips provide additional information when users hover over or focus on an ele
   >
 </Playground>
 
-## API
+### A11y
 
-### Properties
+Set the `aria-describedby` attribute on the trigger element to the tooltip `id` attribute. This allows assistive technologies to establish a logical connection between the trigger and the tooltip.
+
+See examples [above](#usage).
+
+[More information](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-### Slots
+#### Slots
 
 <Slots />
 
-## A11y
-
-Set the `aria-describedby` attribute on the trigger element to the tooltip `id` attribute. This allows assistive technologies to establish a logical connection between the trigger and the tooltip. 
-
-See examples [above](#usage). 
-
-[More information](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 

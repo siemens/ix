@@ -4,14 +4,15 @@ import Events from './../auto-generated/ix-date-dropdown/events.md';
 import Playground from '@site/src/components/PlaygroundV3';
 
 # Date dropdown
+
 <!-- introduction start --> Date dropdowns allow users to select a specific date from a date picker or pre-defined date options. <!-- introduction end -->
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="date-dropdown" 
+  name="date-dropdown"
   height="35rem"
   >
 </Playground>
@@ -19,17 +20,17 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### With user defined range options
 
 <Playground
-  name="date-dropdown-user-range" 
+  name="date-dropdown-user-range"
   height="35rem"
   >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props/>
 
-### Events
+#### Events
 
 <Events/>

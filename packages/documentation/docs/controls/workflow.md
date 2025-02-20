@@ -5,13 +5,13 @@ import WorkflowStepsEvents from './../auto-generated/ix-workflow-steps/events.md
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Workflow
+## Development
 
 <!-- introduction start -->
 Workflows are a series of logical steps that guide users through a process.
 <!-- introduction end -->
 
-## Examples
+### Basic
 
 <Playground
   name="workflow"
@@ -21,28 +21,28 @@ Workflows are a series of logical steps that guide users through a process.
 ### Vertical
 
 <Playground
-  name="workflow-vertical" 
+  name="workflow-vertical"
   height="27rem"
   hideInitalCodePreview
   >
 </Playground>
 
-## API (ix-workflow-steps)
+### API (ix-workflow-steps)
 
-### Properties
+#### Properties
 
 <WorkflowStepsProps />
 
-### Events
+#### Events
 
 <WorkflowStepsEvents />
 
-## API (ix-workflow-step)
+### API (ix-workflow-step)
 
-### Properties
+#### Properties
 
 <WorkflowStepProps />
 
-### Events
+#### Events
 
 <WorkflowStepEvents />

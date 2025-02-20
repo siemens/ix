@@ -4,13 +4,15 @@ import Tags from './../auto-generated/ix-key-value-list/tags.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Key value list
+
+## Development
 
 <Tags />
+
 <!-- introduction start -->
 Key value lists organizes and lists a series of [key-value pairs](key-value.md).
 <!-- introduction end -->
-## Examples
+### Basic
 
 <Playground
   name="key-value-list" height="12rem"
@@ -20,7 +22,7 @@ Key value lists organizes and lists a series of [key-value pairs](key-value.md).
 ### With custom value
 
 <Playground
-  name="key-value-list-with-custom-value" 
+  name="key-value-list-with-custom-value"
   height="12rem"
   >
 </Playground>
@@ -28,7 +30,7 @@ Key value lists organizes and lists a series of [key-value pairs](key-value.md).
 ### With icon
 
 <Playground
-  name="key-value-list-with-icon" 
+  name="key-value-list-with-icon"
   height="12rem"
   >
 </Playground>
@@ -36,17 +38,17 @@ Key value lists organizes and lists a series of [key-value pairs](key-value.md).
 ### Striped
 
 <Playground
-  name="key-value-list-striped" 
+  name="key-value-list-striped"
   height="12rem"
   >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

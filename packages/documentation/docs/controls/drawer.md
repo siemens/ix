@@ -9,12 +9,12 @@ import Playground from '@site/src/components/PlaygroundV3';
 Drawers are containers that open on the click of a button to show additional content.
 <!-- introduction end -->
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="drawer-full-height" 
+  name="drawer-full-height"
   height="24rem"
   >
 </Playground>
@@ -22,18 +22,18 @@ Drawers are containers that open on the click of a button to show additional con
 ### Auto height
 
 <Playground
-  name="drawer" 
+  name="drawer"
   height="24rem"
   hideInitalCodePreview
   >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

@@ -6,16 +6,16 @@ import TreeItemEvents from './../auto-generated/ix-tree-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Tree
+## Development
 
 <!-- introduction start -->
 Trees display hierarchical data structures and allow users to navigate by expanding and collapsing nodes.
 <!-- introduction end -->
 
-## Examples
+### Basic
 
 <Playground
-  name="tree" 
+  name="tree"
   height="16rem"
   >
 </Playground>
@@ -23,13 +23,13 @@ Trees display hierarchical data structures and allow users to navigate by expand
 ### Custom tree node
 
 <Playground
-  name="tree-custom" 
+  name="tree-custom"
   height="12rem"
   hideInitalCodePreview
   >
 </Playground>
 
-## API (ix-tree)
+### API (ix-tree)
 
 ### Properties
 
@@ -39,12 +39,12 @@ Trees display hierarchical data structures and allow users to navigate by expand
 
 <Events />
 
-## API (ix-tree-item)
+### API (ix-tree-item)
 
-### Properties
+#### Properties
 
 <TreeItemProps />
 
-### Events
+#### Events
 
 <TreeItemEvents />

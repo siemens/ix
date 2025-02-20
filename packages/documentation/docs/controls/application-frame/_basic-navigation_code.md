@@ -5,26 +5,24 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="basic-navigation"
 height="30rem"
 noMargin
+>
+</Playground>
 
-> </Playground>
-
-#### Without header
+### Without header
 
 <Playground
 name="basic-navigation-without-header"
 height="30rem"
 noMargin
 hideInitalCodePreview
-
-> </Playground>
+>
+</Playground>
 
 ### API
 

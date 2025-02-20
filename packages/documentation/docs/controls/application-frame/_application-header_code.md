@@ -8,18 +8,16 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 The application-header can host custom content which will be displayed on the far right side of the header.
 
-### Examples
-
 ### Basic
 
 <Playground
 name="application-header"
-
 noMargin
-height="18rem">
+height="18rem"
+>
 </Playground>
 
-#### Avatar
+### Avatar
 
 Enhance the interactivity of your application-header by placing the avatar component as part of the content. This not only makes the avatar clickable, but also enables the addition of dropdown-item's directly within the avatar component.
 

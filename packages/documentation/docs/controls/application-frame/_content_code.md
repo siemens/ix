@@ -7,17 +7,15 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
 The `ix-content` is usually used as layouting component on a single page.
 
-#### Basic
+### Basic
 
 <Playground
 name="content"
-
 height="18rem"
-noMargin>
+noMargin
+>
 </Playground>
 
 ### API

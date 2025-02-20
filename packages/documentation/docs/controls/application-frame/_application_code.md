@@ -11,9 +11,7 @@ The component itself is designed with modularity in mind. It can be seamlessly i
 
 It's important to note that the application component focuses solely on layouting and does not dictate visual design.
 
-### Examples
-
-#### Basic
+### Basic
 
 The code snippet below shows an example of a combination of different components, like `ix-application-header` or `ix-content`.
 
@@ -24,7 +22,7 @@ height="30rem"
 noMargin>
 </Playground>
 
-#### Breakpoints
+### Breakpoints
 
 <Playground
 name="application-breakpoints"
@@ -33,20 +31,20 @@ height="30rem"
 noMargin>
 </Playground>
 
-#### Application switch
+### Application switch
 
 The navigation to another application is implemented via `window.open` (https://developer.mozilla.org/en-US/docs/Web/API/Window/open). Therefore you can control if the navigation should happen inside the current browser context `target: '_self'` or inside a new tab `target: '_blank'` (more information about target can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target))
 
 ```javascript
   {
-    id: 'demo-app-2',
+  id: 'demo-app-2',
     name: 'Calculator App',
     description: 'Example description for Calculator App',
     iconSrc: '...url to some icon',
 
     url: '...target url',
     target: '_self', // Define the navigation context (e.g current browser context or new tab)
-  }
+}
 ```
 
 <Playground

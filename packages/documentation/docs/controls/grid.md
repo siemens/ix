@@ -6,6 +6,8 @@ import Playground from '@site/src/components/PlaygroundV3';
 AG Grids are used to display tabular data in a structured way and provide additional functionality, e.g. sorting.
 <!-- introduction end -->
 
+## Development
+
 Siemens Industrial Experience provides a theme for the popular data grid library [AG Grid](https://www.ag-grid.com).
 This lets you harness the power of AG Grid with seamless integration into the Siemens Industrial Experience styleguide.
 
@@ -20,25 +22,25 @@ More information can be found on the [AG Grid licenses page](https://www.ag-grid
 
 </div>
 
-## Installation
+### Installation
 
-### React
+#### React
 
 Follow the official AG Grid [installation instructions](https://www.ag-grid.com/react-data-grid/getting-started/) for React.
 
-### Angular
+#### Angular
 
 Follow the official AG Grid [installation instructions](https://www.ag-grid.com/angular-data-grid/getting-started/) for Angular.
 
-### Vue
+#### Vue
 
 Follow the official AG Grid [installation instructions](https://www.ag-grid.com/vue-data-grid/getting-started/) for Vue.
 
-### Javascript
+#### Javascript
 
 Follow the official AG Grid [installation instruction](https://www.ag-grid.com/javascript-data-grid/getting-started/) for JavaScript.
 
-### Siemens Industrial Experience theme for AG Grid
+#### Siemens Industrial Experience theme for AG Grid
 
 Install the `@siemens/ix-aggrid` package.
 
@@ -64,7 +66,7 @@ e.g.:
 <div class="ag-theme-alpine-dark ag-theme-ix"></div>
 ```
 
-## Usage
+### Basic
 
 <Playground
   name="aggrid"

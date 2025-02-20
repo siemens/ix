@@ -8,9 +8,7 @@ import Playground from '@site/src/components/PlaygroundV3'
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 height="15rem"
@@ -18,7 +16,7 @@ name="grid"
 
 > </Playground>
 
-#### Size
+### Size
 
 <Playground
 height="17rem"
@@ -26,7 +24,7 @@ name="grid-size"
 
 > </Playground>
 
-#### Padding
+### Padding
 
 <Playground
 name="grid-padding"

@@ -9,22 +9,22 @@ import Playground from '@site/src/components/PlaygroundV3';
 Expanding searches are search fields that expand on click to save space.
 <!-- introduction end -->
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="expanding-search" 
+  name="expanding-search"
   height="5rem"
   >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

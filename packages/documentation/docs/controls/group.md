@@ -6,18 +6,16 @@ import ItemEvents from './../auto-generated/ix-group-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Group
+## Development
 
 <!-- introduction start -->
 Groups are expandable containers for a list of selectable options.
 <!-- introduction end -->
 
-## Examples
-
-### Basic 
+### Basic
 
 <Playground
-  name="group" 
+  name="group"
   height="16rem"
   >
 </Playground>
@@ -25,7 +23,7 @@ Groups are expandable containers for a list of selectable options.
 ### Suppress header selection
 
 <Playground
-  name="group-header-suppressed" 
+  name="group-header-suppressed"
   height="16rem"
   hideInitalCodePreview
   >
@@ -34,7 +32,7 @@ Groups are expandable containers for a list of selectable options.
 ### Custom group entry
 
 <Playground
-  name="group-custom-entry" 
+  name="group-custom-entry"
   height="16rem"
   hideInitalCodePreview
   >
@@ -52,28 +50,28 @@ Luckily there exists a workaround for rendering context menus inside the group c
 To show a context menu place an `ix-dropdown` with `slot="dropdown"` combined with `ix-dropdown-item`'s inside the `ix-group-tag` tag.
 
 <Playground
-  name="group-context-menu" 
+  name="group-context-menu"
   height="16rem"
   hideInitalCodePreview
   >
 </Playground>
 
-## API (ix-group)
+### API (ix-group)
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-group-item)
+### API (ix-group-item)
 
-### Properties
+#### Properties
 
 <ItemProps />
 
-### Events
+#### Events
 
 <ItemEvents />

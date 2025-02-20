@@ -4,14 +4,12 @@ import Events from './../auto-generated/ix-pagination/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Pagination
+## Development
 
 <Tags />
 <!-- introduction start -->
 Paginations allow users to navigate between pages of content when it's split for performance reasons.
 <!-- introduction end -->
-
-## Examples
 
 ### Basic
 
@@ -21,12 +19,12 @@ Paginations allow users to navigate between pages of content when it's split for
 
 <Playground name="pagination-advanced"></Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

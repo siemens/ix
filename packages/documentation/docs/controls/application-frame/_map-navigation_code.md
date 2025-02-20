@@ -7,27 +7,24 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="map-navigation"
 height="35rem"
 oMargin
 hideInitalCodePreview
-
 > </Playground>
 
-#### Custom overlay
+### Custom overlay
 
 <Playground
 name="map-navigation-overlay"
 height="35rem"
 noMargin
 hideInitalCodePreview
-
-> </Playground>
+>
+</Playground>
 
 ### API (ix-map-navigation)
 

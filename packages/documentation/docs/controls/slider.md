@@ -5,14 +5,12 @@ import Slots from './../auto-generated/ix-slider/slots.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Slider
+## Development
 
 <Tags />
 <!-- introduction start -->
 Sliders allow users to select a value from a range of values.
 <!-- introduction end -->
-
-## Examples
 
 ### Basic
 
@@ -46,16 +44,16 @@ Sliders allow users to select a value from a range of values.
   >
 </Playground>
 
-## API
+### API
 
-### Properties 
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-### Slots
+#### Slots
 
 <Slots />

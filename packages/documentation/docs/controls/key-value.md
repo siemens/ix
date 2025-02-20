@@ -5,54 +5,52 @@ import Tags from './../auto-generated/ix-key-value/tags.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Key value
+## Development
 
 <Tags />
 <!-- introduction start -->
 Key value pairs display a label (key) and a value in a structured, easy way.
 <!-- introduction end -->
 
-## Example
-
 ### Basic
 
 <Playground
-  name="key-value" 
-  height="16rem"
-  >
+name="key-value"
+height="16rem"
+>
 </Playground>
 
 ### With custom value
 
 <Playground
-  name="key-value-with-custom-value"
-  >
+name="key-value-with-custom-value"
+>
 </Playground>
 
 ### With icon
 
 <Playground
-  name="key-value-with-icon"
-  >
+name="key-value-with-icon"
+>
 </Playground>
 
 ### With label on left side
 
 <Playground
-  name="key-value-with-label-left"
-  >
+name="key-value-with-label-left"
+>
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events 
+#### Events
 
 <Events />
 
-### Slots
+#### Slots
 
 <Slots />

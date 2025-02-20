@@ -13,16 +13,14 @@ import ApiToastConfigReact from './\_toast/react/toast-config.md';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="toast" height="18rem"
 
 > </Playground>
 
-#### Custom toast message
+### Custom toast message
 
 <Playground
 name="toast-custom" height="18rem"
@@ -30,7 +28,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Position
+### Position
 
 <ApiTableSinceTag message="1.5.0" />
 

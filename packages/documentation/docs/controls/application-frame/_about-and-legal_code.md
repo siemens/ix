@@ -8,19 +8,17 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="about-and-legal"
 height="30rem"
 width="100%"
 noMargin
+>
+</Playground>
 
-> </Playground>
-
-#### Change language of legal links
+### Change language of legal links
 
 Supported language codes are `'global/en' | 'global/es' | 'de/de' | 'cn/zh'`
 

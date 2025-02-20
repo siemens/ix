@@ -4,16 +4,17 @@ import Events from './../auto-generated/ix-date-picker/events.md';
 import Playground from '@site/src/components/PlaygroundV3';
 
 # Date picker
+
 <!-- introduction start -->
 Date pickers provide a versatile calendar that can be used as a standalone element or within a dropdown for date input, offering a seamless way to select dates.
 <!-- introduction end -->
 
-## Examples 
+## Development
 
 ### Basic
 
 <Playground
-  name="datepicker-range" 
+  name="datepicker-range"
   height="35rem"
   >
 </Playground>
@@ -21,7 +22,7 @@ Date pickers provide a versatile calendar that can be used as a standalone eleme
 ### Single Selection
 
 <Playground
-  name="datepicker" 
+  name="datepicker"
   height="35rem"
   >
 </Playground>
@@ -31,17 +32,17 @@ Date pickers provide a versatile calendar that can be used as a standalone eleme
 The `ix-date-picker` can be configured using [BCP 47](https://tools.ietf.org/html/rfc5646) locale strings specifying the language to use generating or interpreting strings. More information can be found [here](https://moment.github.io/luxon/#/intl?id=default-locale)
 
 <Playground
-  name="datepicker-locale" 
-  height="35rem" 
+  name="datepicker-locale"
+  height="35rem"
   >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

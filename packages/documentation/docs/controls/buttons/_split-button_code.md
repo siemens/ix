@@ -8,7 +8,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
+### Basic
 
 <Playground
 name="split-button"
@@ -16,7 +16,7 @@ height="16rem"
 
 > </Playground>
 
-#### With icon only
+### With icon only
 
 <Playground
 name="split-button-icons"

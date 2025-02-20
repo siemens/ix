@@ -9,22 +9,22 @@ import Playground from '@site/src/components/PlaygroundV3';
 Flips are containers that flip when clicked to reveal additional content.
 <!-- introduction end -->
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="flip-tile" 
+  name="flip-tile"
   height="35rem"
   >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

@@ -12,12 +12,12 @@ import Playground from '@site/src/components/PlaygroundV3';
 Event lists display a list of any type of element with additional details.
 <!-- introduction end -->
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="event-list" 
+  name="event-list"
   height="14rem"
   >
 </Playground>
@@ -25,7 +25,7 @@ Event lists display a list of any type of element with additional details.
 ### Selected
 
 <Playground
-  name="event-list-selected" 
+  name="event-list-selected"
   height="14rem"
   hideInitalCodePreview
   >
@@ -34,7 +34,7 @@ Event lists display a list of any type of element with additional details.
 ### Custom item height
 
 <Playground
-  name="event-list-custom-item-height" 
+  name="event-list-custom-item-height"
   height="15rem"
   hideInitalCodePreview
   >
@@ -43,28 +43,28 @@ Event lists display a list of any type of element with additional details.
 ### Compact
 
 <Playground
-  name="event-list-compact" 
+  name="event-list-compact"
   height="14rem"
   hideInitalCodePreview
   >
 </Playground>
 
-## API (ix-event-list)
+### API (ix-event-list)
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-event-list-item)
+### API (ix-event-list-item)
 
-### Properties
+#### Properties
 
 <ItemProps />
 
-### Events
+#### Events
 
 <ItemEvents />

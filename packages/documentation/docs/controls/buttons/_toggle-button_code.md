@@ -12,77 +12,75 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
-#### Toggle button primary
+### Toggle button primary
 
 <Playground
 name="toggle-button-primary"> </Playground>
 
-#### Toggle button primary outline
+### Toggle button primary outline
 
 <Playground
 name="toggle-button-primary-outline"
 
 > </Playground>
 
-#### Toggle button primary ghost
+### Toggle button primary ghost
 
 <Playground
 name="toggle-button-primary-ghost"
 
 > </Playground>
 
-#### Toggle button secondary
+### Toggle button secondary
 
 <Playground
 name="toggle-button-secondary"
 
 > </Playground>
 
-#### Toggle button secondary outline
+### Toggle button secondary outline
 
 <Playground
 name="toggle-button-secondary-outline"
 
 > </Playground>
 
-#### Toggle button secondary ghost
+### Toggle button secondary ghost
 
 <Playground
 name="toggle-button-secondary-ghost"
 
 > </Playground>
 
-#### Icon Toggle button secondary outline
+### Icon Toggle button secondary outline
 
 <Playground
 name="icon-toggle-button-secondary-outline"
 
 > </Playground>
 
-#### Icon Toggle button secondary ghost
+### Icon Toggle button secondary ghost
 
 <Playground
 name="icon-toggle-button-secondary-ghost"
 
 > </Playground>
 
-#### Icon Toggle Button secondary
+### Icon Toggle Button secondary
 
 <Playground
 name="icon-toggle-button-secondary"
 
 > </Playground>
 
-#### Icon Toggle button primary outline
+### Icon Toggle button primary outline
 
 <Playground
 name="icon-toggle-button-primary-outline"
 
 > </Playground>
 
-#### Icon Toggle Button primary ghost
+### Icon Toggle Button primary ghost
 
 <Playground
 name="icon-toggle-button-primary-ghost"

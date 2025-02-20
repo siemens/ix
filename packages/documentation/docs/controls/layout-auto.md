@@ -3,13 +3,13 @@ import Props from '@site/docs/auto-generated/ix-layout-auto/props.md';
 import Events from '@site/docs/auto-generated/ix-layout-auto/events.md';
 import Tags from '@site/docs/auto-generated/ix-layout-auto/tags.md';
 
-# Layout auto
+## Development
 
 <Tags />
+
 <!-- introduction start -->
 Auto-layouts are containers that automatically adjust the size of their columns based on the content.
 <!-- introduction end -->
-## Examples
 
 ### Basic
 
@@ -27,12 +27,12 @@ height="14rem"
 
 > </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

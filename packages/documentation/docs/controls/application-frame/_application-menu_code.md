@@ -21,19 +21,17 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="vertical-tabs"
 height="30rem"
 noMargin
 hideInitalCodePreview
+>
+</Playground>
 
-> </Playground>
-
-#### 2nd navigation level
+### 2nd navigation level
 
 <CategoryTags />
 <Playground 
@@ -41,10 +39,10 @@ hideInitalCodePreview
   height="30rem" 
   noMargin
   hideInitalCodePreview
-  >
+>
 </Playground>
 
-#### Avatar
+### Avatar
 
 <AvatarTags />
 
@@ -53,10 +51,10 @@ name="vertical-tabs-with-avatar"
 height="30rem"
 noMargin
 hideInitalCodePreview
+>
+</Playground>
 
-> </Playground>
-
-#### Bottom tabs
+### Bottom tabs
 
 <div class="siemens-brand-section">
   <strong>Caution</strong>: Since the old implementation using the bottom property on menu items had some problems and will not work anymore, please use slot="bottom" instead.
@@ -67,8 +65,8 @@ name="menu-with-bottom-tabs"
 height="30rem"
 noMargin
 hideInitalCodePreview
-
-> </Playground>
+>
+</Playground>
 
 ### API (ix-menu)
 

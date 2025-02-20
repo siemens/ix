@@ -4,43 +4,41 @@ import Tags from './../auto-generated/ix-empty-state/tags.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Empty state
+## Development
 
 <Tags />
 <!-- introduction start -->
 Empty states inform users that there is no content to display. 
 <!-- introduction end -->
 
-## Examples
-
 ### Basic
 
 <Playground
-  name="empty-state" 
-  height="16rem"
-  >
+name="empty-state"
+height="16rem"
+>
 </Playground>
 
 ### Compact
 
 <Playground
-  name="empty-state-compact"
-  >
+name="empty-state-compact"
+>
 </Playground>
 
 ### Compact break
 
 <Playground
-  name="empty-state-compact-break"
-  >
+name="empty-state-compact-break"
+>
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

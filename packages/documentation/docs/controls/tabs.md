@@ -6,13 +6,11 @@ import ItemEvents from './../auto-generated/ix-tab-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Tabs
+## Development
 
 <!-- introduction start -->
 Tabs consist of tab items and organize content into separate sections by grouping similar information.
 <!-- introduction end -->
-
-## Examples
 
 ### Basic
 
@@ -29,22 +27,22 @@ Tabs consist of tab items and organize content into separate sections by groupin
   >
 </Playground>
 
-## API (ix-tabs)
+### API (ix-tabs)
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-tab-item)
+### API (ix-tab-item)
 
-### Properties
+#### Properties
 
 <ItemProps />
 
-### Events
+#### Events
 
 <ItemEvents />

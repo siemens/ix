@@ -1,10 +1,10 @@
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Bar charts
+## Development
 
 Bar charts display data using rectangular bars. The length of each bar is proportional to the value it represents. Bar charts are commonly used to compare the values of different categories. We typically use bar charts to visualize data that is categorical or ordinal in nature.
 
-### Bar chart
+### Basic
 
 Common bar charts normally compare the values of different categories where the length of the bars are proportional to their values.
 

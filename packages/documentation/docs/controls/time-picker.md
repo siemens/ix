@@ -3,26 +3,26 @@ import Events from './../auto-generated/ix-time-picker/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Time picker
+## Development
+
 <!-- introduction start -->
 Time pickers allow users to select specific times ensuring accurate time input.
 <!-- introduction end -->
-## Examples
 
 ### Basic
 
 <Playground
-  name="timepicker" 
+  name="timepicker"
   height="25rem"
   >
 </Playground>
 
-## API 
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

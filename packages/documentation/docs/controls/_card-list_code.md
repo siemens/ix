@@ -6,7 +6,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
+### Basic
 
 <Playground
 height="55rem"

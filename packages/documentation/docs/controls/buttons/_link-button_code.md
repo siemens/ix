@@ -6,14 +6,13 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
+### Basic
 
 <Playground
 name="link-button"
-
 > </Playground>
 
-#### Disabled
+### Disabled
 
 <Playground
 name="link-button-disabled"
