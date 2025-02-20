@@ -29,7 +29,7 @@ type ArrowPosition = {
 };
 
 const numberToPixel = (value?: number | null) =>
-  value != null ? `${value}px` : '';
+  value !== null ? `${value}px` : '';
 
 let tooltipInstance = 0;
 
@@ -238,8 +238,8 @@ export class Tooltip {
 
             const { x, y } = computeResponse;
             Object.assign(dialog.style, {
-              left: x !== null ? `${x}px` : '',
-              top: y !== null ? `${y}px` : '',
+              left: numberToPixel(x),
+              top: numberToPixel(y),
             });
 
             resolve(computeResponse);
