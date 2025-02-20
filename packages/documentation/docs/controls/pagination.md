@@ -4,11 +4,9 @@ import Events from './../auto-generated/ix-pagination/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Pagination
+## Development
 
 <Tags />
-
-## Development
 
 ### Basic
 
@@ -18,12 +16,12 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Playground name="pagination-advanced"></Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

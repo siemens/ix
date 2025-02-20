@@ -3,24 +3,22 @@ import Events from './../auto-generated/ix-time-picker/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Time picker
-
 ## Development
 
 ### Basic
 
 <Playground
-name="timepicker"
-height="25rem"
->
+  name="timepicker"
+  height="25rem"
+  >
 </Playground>
 
 ### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

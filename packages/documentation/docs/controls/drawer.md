@@ -3,8 +3,6 @@ import Events from './../auto-generated/ix-drawer/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Drawer
-
 ## Development
 
 ### Basic
@@ -24,12 +22,12 @@ hideInitalCodePreview
 >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

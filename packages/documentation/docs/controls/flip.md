@@ -3,8 +3,6 @@ import Events from './../auto-generated/ix-flip-tile/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Flip
-
 ## Development
 
 ### Basic
@@ -15,12 +13,12 @@ height="35rem"
 >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

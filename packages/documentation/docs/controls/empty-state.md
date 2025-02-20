@@ -4,11 +4,9 @@ import Tags from './../auto-generated/ix-empty-state/tags.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Empty state
+## Development
 
 <Tags />
-
-## Development
 
 ### Basic
 
@@ -32,12 +30,12 @@ name="empty-state-compact-break"
 >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

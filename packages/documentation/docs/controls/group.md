@@ -6,8 +6,6 @@ import ItemEvents from './../auto-generated/ix-group-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Group
-
 ## Development
 
 ### Basic
@@ -54,22 +52,22 @@ hideInitalCodePreview
 >
 </Playground>
 
-## API (ix-group)
+### API (ix-group)
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-group-item)
+### API (ix-group-item)
 
-### Properties
+#### Properties
 
 <ItemProps />
 
-### Events
+#### Events
 
 <ItemEvents />

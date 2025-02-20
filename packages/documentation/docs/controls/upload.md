@@ -5,6 +5,8 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
+### Basic
+
 <Playground
   name="upload" 
   height="8rem"

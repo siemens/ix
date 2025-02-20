@@ -6,8 +6,6 @@ import ItemEvents from './../auto-generated/ix-event-list-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Event list
-
 ## Development
 
 ### Basic
@@ -45,22 +43,22 @@ hideInitalCodePreview
 >
 </Playground>
 
-## API (ix-event-list)
+### API (ix-event-list)
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-event-list-item)
+### API (ix-event-list-item)
 
-### Properties
+#### Properties
 
 <ItemProps />
 
-### Events
+#### Events
 
 <ItemEvents />

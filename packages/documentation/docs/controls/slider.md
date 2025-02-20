@@ -5,42 +5,40 @@ import Slots from './../auto-generated/ix-slider/slots.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Slider
+## Development
 
 <Tags />
-
-## Development
 
 ### Basic
 
 <Playground
-height="15rem"
-name="slider"
->
+  height="15rem"
+  name="slider"
+  >
 </Playground>
 
 ### Marker
 
 <Playground
-height="15rem"
-name="slider-marker"
->
+  height="15rem"
+  name="slider-marker"
+  >
 </Playground>
 
 ### Trace
 
 <Playground
-height="18rem"
-name="slider-trace"
->
+  height="18rem"
+  name="slider-trace"
+  >
 </Playground>
 
 ### Error
 
 <Playground
-name="slider-error"
-height="14rem"
->
+  name="slider-error"
+  height="14rem"
+  >
 </Playground>
 
 ### API

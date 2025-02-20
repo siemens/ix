@@ -3,8 +3,6 @@ import Props from './../auto-generated/ix-expanding-search/props.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Expanding search
-
 ## Development
 
 ### Basic
@@ -15,12 +13,12 @@ height="5rem"
 >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

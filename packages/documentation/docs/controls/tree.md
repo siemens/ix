@@ -6,23 +6,23 @@ import TreeItemEvents from './../auto-generated/ix-tree-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-### Development
+## Development
 
 ### Basic
 
 <Playground
-name="tree"
-height="16rem"
->
+  name="tree"
+  height="16rem"
+  >
 </Playground>
 
 ### Custom tree node
 
 <Playground
-name="tree-custom"
-height="12rem"
-hideInitalCodePreview
->
+  name="tree-custom"
+  height="12rem"
+  hideInitalCodePreview
+  >
 </Playground>
 
 ### API (ix-tree)

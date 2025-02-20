@@ -5,11 +5,9 @@ import Tags from './../auto-generated/ix-key-value/tags.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Key value
+## Development
 
 <Tags />
-
-## Development
 
 ### Basic
 

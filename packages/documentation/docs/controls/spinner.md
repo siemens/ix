@@ -22,12 +22,12 @@ import Playground from '@site/src/components/PlaygroundV3';
   >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

@@ -3,11 +3,9 @@ import Props from '@site/docs/auto-generated/ix-layout-auto/props.md';
 import Events from '@site/docs/auto-generated/ix-layout-auto/events.md';
 import Tags from '@site/docs/auto-generated/ix-layout-auto/tags.md';
 
-# Layout auto
+## Development
 
 <Tags />
-
-## Development
 
 ### Basic
 
@@ -25,12 +23,12 @@ height="14rem"
 
 > </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
