@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
+import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
@@ -242,6 +243,10 @@ const routes: Routes = [
       {
         path: 'action-card',
         component: ActionCard,
+      },
+      {
+        path: 'add-icons',
+        component: AddIcons,
       },
       {
         path: 'application',

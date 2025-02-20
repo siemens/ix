@@ -7,41 +7,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { toast } from '@siemens/ix';
-import {
-  IxCol,
-  IxIcon,
-  IxIconButton,
-  IxInputGroup,
-  IxLayoutGrid,
-  IxRow,
-} from '@siemens/ix-react';
+import { IxCol, IxIconButton, IxLayoutGrid, IxRow } from '@siemens/ix-react';
 import React, { useState } from 'react';
 import { themeShadows } from './shadows';
 import './ThemeShadows.css';
 import { useTheme } from '@site/src/utils/hooks/useTheme';
-
-function Search(props: { onChange: (value: string) => void }) {
-  return (
-    <IxInputGroup style={{ marginBottom: '2rem' }}>
-      <IxIcon
-        name="search"
-        slot="input-start"
-        size="16"
-        color="color-primary"
-      ></IxIcon>
-
-      <input
-        type={'text'}
-        className={'form-control'}
-        placeholder="Search"
-        onChange={(input) => {
-          const value = input.target.value;
-          props.onChange(value);
-        }}
-      />
-    </IxInputGroup>
-  );
-}
 
 function ShadowPreview(props: { border: string }) {
   return (
@@ -57,19 +27,7 @@ function ShadowPreview(props: { border: string }) {
 
 const ThemeShadows: React.FC = () => {
   useTheme();
-  const [borders, setBorders] = useState(themeShadows);
-
-  const updateFilter = (filter) => {
-    setBorders([
-      ...themeShadows.filter((color) => {
-        if (!filter) {
-          return true;
-        }
-
-        return color.toLowerCase().includes(filter.toLowerCase());
-      }),
-    ]);
-  };
+  const [borders] = useState(themeShadows);
 
   const copyToClipboard = async (value: string) => {
     await navigator.clipboard.writeText(value);
@@ -81,7 +39,6 @@ const ThemeShadows: React.FC = () => {
 
   return (
     <div className="Theme__Shadows">
-      <Search onChange={(value) => updateFilter(value)} />
       <IxLayoutGrid>
         {borders.map((border) => {
           return (
