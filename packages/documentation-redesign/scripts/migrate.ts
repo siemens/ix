@@ -35,6 +35,21 @@ type DocsIndex = {
 
 const newDocs: Record<string, DocsIndex> = {};
 
+const no_single_tab_files = [
+  '3d',
+  'line-chart',
+  'bar-chart',
+  'pie-chart',
+  'special-chart',
+  'overview-chart',
+  'gauge-chart',
+  'overview'
+]
+
+function removeLeadingNewline(content: string): string {
+  return content.startsWith('\n') ? content.slice(1) : content;
+}
+
 function flatMarkdowns(
   filePath: string,
   docs: Record<string, DocsIndex>,
@@ -63,10 +78,9 @@ function flatMarkdowns(
       }
 
       const regex = /_(.*)_(code|styleguide|guide|style)\.(md|mdx)$/g;
-
       const match = regex.exec(file);
       if (match) {
-        const [, name, type, extension] = match;
+        const [, name, type] = match;
 
         if (!docs[name]) {
           docs[name] = {
@@ -74,7 +88,6 @@ function flatMarkdowns(
             codePath: '',
           };
         }
-
         if (type.includes('guide') || type.includes('style')) {
           docs[name].guidePath = _file;
         } else {
@@ -124,13 +137,11 @@ function kebabToCamelCase(str: string): string {
     .join('');
 }
 
-function tryToResolveBrokenLinks(file: string, isNested = false) {
-  const regex = /\[(.*?)\]\((?!http)(\.\/)?(.*?)(\.md|\.mdx)\)/g;
-
+function tryToResolveBrokenLinks(file: string) {
+  const regex = /\[(.*?)]\((?!http)(\.\/)?(.*?)(\.md|\.mdx)\)/g;
   file = file.replace(regex, '[$1](../$3)');
   file = file.replace(/\.\.\/(\.\.\/)?/g, '../');
   file = file.replace(/\.\.\/.*\/(.*)\)/g, '../$1)');
-
   return file;
 }
 
@@ -144,21 +155,31 @@ function tryToGetIntroductionText(file: string) {
       file: file.replace(introductionRegex, ''),
     };
   }
-
   return {
     text: '',
     file,
   };
 }
 
+
 function normalizeHeadlines(name: string, file: string): string {
   const lines = file.split('\n');
-  let levelTwoFound = false;
-  let currentSection = [];
-  const sections = [];
+  const importLines: string[] = [];
+  let contentLines: string[];
 
-  // Process each line
-  lines.forEach((line) => {
+  let i = 0;
+  while (i < lines.length && (lines[i].trim().startsWith('import ') || lines[i].trim() === '')) {
+    importLines.push(lines[i]);
+    i++;
+  }
+
+  contentLines = lines.slice(i);
+
+  let levelTwoFound = false;
+  let currentSection: string[] = [];
+  const sections: string[][] = [];
+
+  contentLines.forEach((line) => {
     if (
       line.startsWith('## ') ||
       line.startsWith('### ') ||
@@ -177,39 +198,49 @@ function normalizeHeadlines(name: string, file: string): string {
     sections.push(currentSection);
   }
 
-  // Normalize headlines and remove empty sections
+  const exemptHeadings = new Set([
+    '### Installation',
+    '#### React',
+    '#### Angular',
+    '#### Vue',
+    '#### Javascript'
+  ]);
+
   const normalizedSections = sections
     .map((section) => {
       const [headline, ...content] = section;
-      if (content.every((line) => line.trim() === '')) {
-        return null; // Remove section if it contains no content
+      if (exemptHeadings.has(headline.trim())) {
+        return section;
       }
+      if (headline.trim() === "## Guidelines" || headline.trim() === "## Guideline") {
+        return section;
+      }
+      // // If the section appears to have no content and is not exempt, discard it.
+      // if (content.every((l) => l.trim() === '')) {
+      //   return null;
+      // }
       if (headline.startsWith('## ')) {
         if (!levelTwoFound) {
           levelTwoFound = true;
-          return section; // Keep the first level two headline
+          return section;
         } else {
-          return [headline.replace('## ', '### '), ...content]; // Convert subsequent level two headlines to level three
+          return [headline.replace('## ', '### '), ...content];
         }
       } else if (
         headline.startsWith('### ') ||
         headline.startsWith('#### ') ||
         headline.startsWith('##### ')
       ) {
-        return [headline.replace(/^(#+)/, '###'), ...content]; // Normalize all other headlines to level three
-      } else {
-        return section; // Keep all other lines unchanged
+        return [headline.replace(/^(#+)/, '###'), ...content];
       }
+      return section;
     })
     .filter((section) => section !== null);
 
-  // Join the processed sections back into a single string
-  let normalizedData = normalizedSections.flat().join('\n');
-
-  return normalizedData;
+  return [...importLines, ...normalizedSections.flat()].join('\n');
 }
 
-function tryToReplaceTags(file: string, name: string) {
+function tryToReplaceTags(file: string, name: string): string {
   const regex = /import (.*) from '.*(ix-.*)\/tags.md';/g;
   const matches = Array.from(file.matchAll(regex));
   if (matches.length) {
@@ -223,54 +254,70 @@ function tryToReplaceTags(file: string, name: string) {
     /import.*from.*'.*ApiTableTag';/gm,
     "import { SinceTag } from '@site/src/components/UI/Tags';"
   );
-
-  file = file.replace(
-    /<ApiTableSinceTag message=(.*) \/>/g,
-    '<SinceTag message=$1 />'
-  );
+  file = file.replace(/<ApiTableSinceTag message=(.*) \/>/g, '<SinceTag message=$1 />');
 
   return file;
 }
 
-function tryToReplaceSourceCodeSnippets(file: string) {
-  const importRegex =
-    /import { (SourceCodePreview) } from '.*\/PlaygroundV2';/g;
-  const match = file.match(importRegex);
+function tryToReplaceSourceCodeSnippets(file: string): string {
+  // Remove any direct import for SourceCodePreview from PlaygroundV2.
+  file = file.replace(/import\s+\{\s*SourceCodePreview\s*}\s+from\s+'.*\/PlaygroundV2';?\n/g, '');
+  const componentRegex = /<SourceCodePreview\s+framework="([^"]+)"\s+name="([^"]+)"([^>]*)\/>/g;
+  const imports = new Set<string>();
+  file = file.replace(componentRegex, (match, framework, name, rest) => {
+    const componentName = kebabToCamelCase(name) + "Playground";
+    imports.add(
+      `import ${componentName} from '@site/docs/autogenerated/playground/${name}.mdx';`
+    );
+    return `<${componentName} onlyFramework="${framework}"${rest} />`;
+  });
+  if (imports.size > 0) {
+    file = Array.from(imports).join('\n') + '\n' + file;
+  }
+  return file;
+}
 
-  if (match) {
-    file = file.replace(importRegex, '');
+function enforceSingleBlankLineAroundHeadings(content: string): string {
+  const lines = content.split('\n');
+  const result: string[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const isHeading = /^#{2,6}\s/.test(line);
+
+    if (isHeading) {
+      if (result.length > 0) {
+        if (result[result.length - 1].trim() !== '') {
+          result.push('');
+        } else {
+          let j = result.length - 1;
+          while (j > 0 && result[j].trim() === '' && result[j - 1].trim() === '') {
+            result.pop();
+            j--;
+          }
+        }
+      }
+      result.push(line);
+      while (i + 1 < lines.length && lines[i + 1].trim() === '') {
+        i++;
+      }
+      if (i + 1 < lines.length) {
+        const nextLineIsHeading = /^#{2,6}\s/.test(lines[i + 1]);
+        if (!nextLineIsHeading) {
+          result.push('');
+        }
+      }
+    } else {
+      result.push(line);
+    }
   }
 
-  const componentRegex =
-    /<SourceCodePreview framework="(.*)" name="(.*)" examplesByName\/>/gm;
-
-  const imports = new Set();
-
-  const matches = Array.from(file.matchAll(componentRegex));
-  matches.forEach((match) => {
-    const [, framework, name] = match;
-
-    file = file.replace(
-      componentRegex,
-      `<${kebabToCamelCase(name)} onlyFramework="$1" />`
-    );
-
-    imports.add(
-      `import ${kebabToCamelCase(
-        name
-      )} from '@site/docs/autogenerated/playground/${name}.mdx';`
-    );
-  });
-
-  file = [...imports, file].join('\n');
-
-  return file;
+  return result.join('\n');
 }
 
-function getComponentDeprecatedTAgs(file: string) {
-  const regex = /DeprecatedTags.*url=('|")(.*)('|")/gms;
+function getComponentDeprecatedTags(file: string): string[] {
+  const regex = /DeprecatedTags.*url=(['"])(.*)(['"])/gms;
   const matches = Array.from(file.matchAll(regex));
-
   return matches.map((match) => match[2]);
 }
 
@@ -284,20 +331,20 @@ Object.keys(newDocs).forEach((name) => {
 
   if (flatMarkdown) {
     let markdown = fs.readFileSync(flatMarkdown, 'utf-8');
-    [tryToResolveBrokenLinks].forEach((fn) => (markdown = fn(markdown)));
+    markdown = markdown.replace(/^# [^\n]*\n/gm, '');
+    markdown = tryToResolveBrokenLinks(markdown);
+    markdown = enforceSingleBlankLineAroundHeadings(markdown);
+    markdown = removeLeadingNewline(markdown);
     fs.writeFileSync(path.resolve(folderName, 'index.mdx'), markdown);
     return;
   }
 
-  let tabs = [];
+  let tabs: string[] = [];
 
   if (guidePath) {
     tabs.push('Usage');
     let guideFile = fs.readFileSync(guidePath, 'utf-8');
     const removeImports = /import.*;\n/gm;
-
-    // replaceTagImports(guidePath, guideFile);
-
     guideFile = guideFile.replace(removeImports, '');
 
     guideFile = guideFile.replace(/^#/gm, '##');
@@ -311,106 +358,87 @@ Object.keys(newDocs).forEach((name) => {
     if (text) {
       introductionText = text;
     }
-
+    guideFile = enforceSingleBlankLineAroundHeadings(guideFile);
+    guideFile = removeLeadingNewline(guideFile);
     fs.writeFileSync(path.resolve(folderName, 'guide.md'), guideFile);
   }
 
+  let codeFile = '';
   if (codePath) {
     tabs.push('Code');
-    let codeFile = fs.readFileSync(codePath, 'utf-8');
-
+    codeFile = fs.readFileSync(codePath, 'utf-8');
+    codeFile = codeFile.replace(/^# [^\n]*\n/gm, '');
     codeFile = codeFile.replace(/import DocsTabs.*;\n/gm, '');
-
-    codeFile = codeFile.replace(
-      /<Playground(.*?)(\/>)/g,
-      '<Playground$1></Playground>'
-    );
-
-    const patchCodeMarkdown =
-      /<Playground.*?name="([^"]+)".*?<\/Playground>/gms;
-
+    codeFile = codeFile.replace(/<Playground(.*?)(\/>)/g, '<Playground$1></Playground>');
+    const patchCodeMarkdown = /<Playground.*?name="([^"]+)".*?<\/Playground>/gms;
     const playgrounds = codeFile.match(patchCodeMarkdown);
-
-    const imports: string[] = [];
-
+    const playgroundImports: string[] = [];
     playgrounds?.forEach((playground) => {
       const nameRegex = /name="([^"]+)"/gms;
       const heightRegex = /height="([^"]+)"/gms;
-
       const nameMatch = nameRegex.exec(playground);
       const heightMatch = heightRegex.exec(playground);
-
       if (nameMatch) {
         const [, playgroundName] = nameMatch;
         let height = '';
-
         if (heightMatch?.length) {
           height = ` height="${heightMatch[1]}"`;
         }
-
-        imports.push(
-          `import ${kebabToCamelCase(
-            playgroundName
-          )}Playground from '@site/docs/autogenerated/playground/${playgroundName}.mdx';`
+        const componentName = `${kebabToCamelCase(playgroundName)}Playground`;
+        playgroundImports.push(
+          `import ${componentName} from '@site/docs/autogenerated/playground/${playgroundName}.mdx';`
         );
-
-        codeFile = codeFile.replace(
-          playground,
-          `<${kebabToCamelCase(playgroundName)}Playground${height} />`
-        );
+        codeFile = codeFile.replace(playground, `<${componentName}${height} />`);
       }
     });
     codeFile = codeFile.replace(/import?.Preview.*;\n/g, '');
-
     codeFile = codeFile.replace(
       /import (.*) from '.*(ix-.*)\/props.md';/g,
       "import $1Api from '@site/docs/autogenerated/api/$2/api.mdx';"
     );
-
-    // codeFile = replaceTagImports(codePath, codeFile);
-
     codeFile = codeFile.replace(
       /import (.*) from.*auto-generated\/(.*)\/(events|slots).md';\n/g,
       ``
     );
-
-    // Remove headings
-    // codeFile = codeFile.replace(/^#/gm, '##');
-    // Replace first heading
-    // codeFile = codeFile.replace(/### Examples/gm, '## Code');
-    // Replace generic playground with specific playground
     codeFile = codeFile.replace(
       /import.*Playground.*from.*Playground.*';?\n/g,
-      `${imports.join('\n')}\n`
+      playgroundImports.join('\n') + '\n'
     );
-
-    // Remove Event and Props headings
     codeFile = codeFile.replace(/#+\s(Properties|Events)\n+/gs, '');
-
     const apiComponents: string[] = [];
-    Array.from(codeFile.matchAll(/import (.*Api) from.*/gm)).forEach(
-      (match) => {
-        apiComponents.push(match[1]);
-      }
-    );
-
+    Array.from(codeFile.matchAll(/import (.*Api) from.*/gm)).forEach((match) => {
+      apiComponents.push(match[1]);
+    });
     codeFile = codeFile.replace(
       /(#+\sAPI.*\/>)/gms,
       `### API\n\n${apiComponents.map((c) => `<${c} />`).join('\n')}`
     );
-
     codeFile = tryToResolveBrokenLinks(codeFile);
-
     const { text, file } = tryToGetIntroductionText(codeFile);
     codeFile = file;
     if (text) {
       introductionText = text;
     }
-
     codeFile = normalizeHeadlines(name, codeFile);
     codeFile = tryToReplaceTags(codeFile, name);
     codeFile = tryToReplaceSourceCodeSnippets(codeFile);
-
+    if (!codeFile.includes('## Development')) {
+      const lines = codeFile.split('\n');
+      let lastImportIndex = -1;
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].startsWith('import ')) {
+          lastImportIndex = i;
+        }
+      }
+      if (lastImportIndex !== -1) {
+        lines.splice(lastImportIndex + 1, 0, '', '## Development');
+      } else {
+        lines.unshift('## Development', '');
+      }
+      codeFile = lines.join('\n');
+    }
+    codeFile = enforceSingleBlankLineAroundHeadings(codeFile);
+    codeFile = removeLeadingNewline(codeFile);
     fs.writeFileSync(path.resolve(folderName, 'code.mdx'), codeFile);
   }
 
@@ -419,29 +447,28 @@ Object.keys(newDocs).forEach((name) => {
   }
 
   const title = name.slice(0, 1).toUpperCase() + name.slice(1);
-
-  let deprecatedTabs: string[] = [];
-
+  let deprecatedTags: string[] = [];
   if (newDocs[name].indexPath) {
     const file = fs.readFileSync(newDocs[name].indexPath, 'utf-8');
-    deprecatedTabs = getComponentDeprecatedTAgs(file);
+    deprecatedTags = getComponentDeprecatedTags(file);
   }
+  console.log("1", deprecatedTags)
 
   if (newDocs[name].codePath) {
     const file = fs.readFileSync(newDocs[name].codePath, 'utf-8');
-    deprecatedTabs = [...deprecatedTabs, ...getComponentDeprecatedTAgs(file)];
+    deprecatedTags = [...deprecatedTags, ...getComponentDeprecatedTags(file)];
   }
 
   let output = Mustache.render(indexMdTemplate, {
     hasGuide: tabs.includes('Usage'),
     tabs: tabs,
+    noSingleTab: no_single_tab_files.includes(name),
     title: title.replace(/-/g, ' '),
     description: introductionText,
-    deprecatedTabs,
+    deprecatedTags,
   });
 
-  // Remove last comma
   output = output.replace(/, ]$/gm, ']');
-
+  output = removeLeadingNewline(output);
   fs.writeFileSync(path.resolve(folderName, 'index.mdx'), output);
 });

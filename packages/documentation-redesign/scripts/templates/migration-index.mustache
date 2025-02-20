@@ -3,6 +3,9 @@ doc-type: 'component'
 component-tabs: [{{#tabs}}'{{.}}', {{/tabs}}]
 description: '{{description}}'
 title: '{{title}}'
+{{#noSingleTab}}
+no_single_tab: true
+{{/noSingleTab}}
 deprecated:
   {{#deprecatedTabs}}
   - {{{.}}}
