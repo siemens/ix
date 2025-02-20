@@ -238,6 +238,8 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   private addItemElement?: HTMLIxDropdownItemElement;
   private arrowFocusController?: ArrowFocusController;
 
+  private touched = false;
+
   private readonly itemObserver = createMutationObserver(() => {
     if (!this.arrowFocusController) {
       return;
@@ -741,6 +743,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   private onInputBlur(event: Event) {
     this.ixBlur.emit();
+    this.touched = true;
 
     if (this.editable) {
       return;
@@ -822,6 +825,15 @@ export class Select implements IxInputFieldComponent<string | string[]> {
     if (inputElement) {
       inputElement.focus();
     }
+  }
+
+  /**
+   * Check if the input field has been touched.
+   * @internal
+   * */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
   }
 
   render() {

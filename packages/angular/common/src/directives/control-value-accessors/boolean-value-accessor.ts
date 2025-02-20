@@ -8,17 +8,17 @@
  */
 
 import { Directive, HostListener, ElementRef, Injector } from '@angular/core';
-import { ValueAccessor, mapNgToIxClassNames } from './value-accessor';
+import { ValueAccessor } from './value-accessor';
 
 @Directive()
 export class BooleanValueAccessorBaseDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
-    super(injector, el);
+    super(injector, el, true);
   }
 
   override writeValue(value: boolean): void {
     this.elementRef.nativeElement.checked = this.lastValue = value;
-    mapNgToIxClassNames(this.elementRef);
+    super.mapNgToIxClassNames(this.elementRef);
   }
 
   @HostListener('checkedChange', ['$event.target'])

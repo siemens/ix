@@ -13,7 +13,7 @@ import { ValueAccessor } from './value-accessor';
 @Directive()
 export class DateValueAccessorBaseDirective extends ValueAccessor {
   constructor(injector: Injector, el: ElementRef) {
-    super(injector, el);
+    super(injector, el, true);
   }
 
   @HostListener('valueChange', ['$event.target'])

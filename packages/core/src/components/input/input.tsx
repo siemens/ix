@@ -173,8 +173,8 @@ export class Input implements IxInputFieldComponent<string> {
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
-
   private readonly inputId = `input-${inputIds++}`;
+  private touched = false;
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
@@ -246,6 +246,15 @@ export class Input implements IxInputFieldComponent<string> {
     return (await this.getNativeInputElement()).focus();
   }
 
+  /**
+   * Returns whether the text field has been touched.
+   * @internal
+   */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
+  }
+
   render() {
     const inputAria: A11yAttributes = getAriaAttributesForInput(this);
     return (
@@ -294,7 +303,10 @@ export class Input implements IxInputFieldComponent<string> {
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
-              onBlur={() => onInputBlur(this, this.inputRef.current)}
+              onBlur={() => {
+                onInputBlur(this, this.inputRef.current);
+                this.touched = true;
+              }}
               ariaAttributes={inputAria}
             ></InputElement>
             <SlotEnd

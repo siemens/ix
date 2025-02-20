@@ -137,10 +137,15 @@ regressionTest(
   `);
 
     const fieldElement = page.locator('ix-input');
+    const inputElement = fieldElement.locator('input');
+    await expect(inputElement).toBeVisible();
+
     const labelElement = page.locator('ix-field-label');
 
-    await expect(fieldElement).toHaveClass(/ix-invalid--required/);
+    await inputElement.focus();
+    await inputElement.blur();
 
+    await expect(fieldElement).toHaveClass(/ix-invalid--required/);
     await expect(labelElement.locator('ix-typography')).toHaveAttribute(
       'style',
       'color: var(--theme-color-alarm-text);'
@@ -175,7 +180,13 @@ regressionTest(
   `);
 
     const fieldElement = page.locator('ix-textarea');
+    const textareaElement = fieldElement.locator('textarea');
+    await expect(textareaElement).toBeVisible();
+
     const labelElement = page.locator('ix-field-label');
+
+    await textareaElement.focus();
+    await textareaElement.blur();
 
     await expect(fieldElement).toHaveClass(/ix-invalid--required/);
 
