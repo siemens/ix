@@ -8,9 +8,9 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### Basic
 
 <Playground
-name="flip-tile"
-height="35rem"
->
+  name="flip-tile"
+  height="35rem"
+  >
 </Playground>
 
 ### API

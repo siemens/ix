@@ -10,7 +10,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="date-dropdown"
   height="35rem"
->
+  >
 </Playground>
 
 ### With user defined range options
@@ -18,7 +18,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
   name="date-dropdown-user-range"
   height="35rem"
->
+  >
 </Playground>
 
 ### API

@@ -11,32 +11,32 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### Basic
 
 <Playground
-name="key-value-list" height="12rem"
->
+  name="key-value-list" height="12rem"
+  >
 </Playground>
 
 ### With custom value
 
 <Playground
-name="key-value-list-with-custom-value"
-height="12rem"
->
+  name="key-value-list-with-custom-value"
+  height="12rem"
+  >
 </Playground>
 
 ### With icon
 
 <Playground
-name="key-value-list-with-icon"
-height="12rem"
->
+  name="key-value-list-with-icon"
+  height="12rem"
+  >
 </Playground>
 
 ### Striped
 
 <Playground
-name="key-value-list-striped"
-height="12rem"
->
+  name="key-value-list-striped"
+  height="12rem"
+  >
 </Playground>
 
 ### API

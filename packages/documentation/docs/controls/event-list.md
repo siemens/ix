@@ -11,36 +11,36 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### Basic
 
 <Playground
-name="event-list"
-height="14rem"
->
+  name="event-list"
+  height="14rem"
+  >
 </Playground>
 
 ### Selected
 
 <Playground
-name="event-list-selected"
-height="14rem"
-hideInitalCodePreview
->
+  name="event-list-selected"
+  height="14rem"
+  hideInitalCodePreview
+  >
 </Playground>
 
 ### Custom item height
 
 <Playground
-name="event-list-custom-item-height"
-height="15rem"
-hideInitalCodePreview
->
+  name="event-list-custom-item-height"
+  height="15rem"
+  hideInitalCodePreview
+  >
 </Playground>
 
 ### Compact
 
 <Playground
-name="event-list-compact"
-height="14rem"
-hideInitalCodePreview
->
+  name="event-list-compact"
+  height="14rem"
+  hideInitalCodePreview
+  >
 </Playground>
 
 ### API (ix-event-list)

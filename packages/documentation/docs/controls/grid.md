@@ -65,7 +65,7 @@ e.g.:
 ### Basic
 
 <Playground
-name="aggrid"
-height="14rem"
->
+  name="aggrid"
+  height="14rem"
+  >
 </Playground>

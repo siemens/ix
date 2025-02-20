@@ -8,9 +8,9 @@ import Playground from '@site/src/components/PlaygroundV3';
 ### Basic
 
 <Playground
-name="expanding-search"
-height="5rem"
->
+  name="expanding-search"
+  height="5rem"
+  >
 </Playground>
 
 ### API
