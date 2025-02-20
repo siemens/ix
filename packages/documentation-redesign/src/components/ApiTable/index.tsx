@@ -1,0 +1,88 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import FrameworkSelection from '../UI/FrameworkSelection';
+
+export type ApiTableProps = {
+  children?: React.ReactNode;
+  name: string;
+  type?: 'event' | 'property' | 'slot';
+};
+
+function ApiTable({ children }) {
+  return (
+    <div className="api-table container mx-auto mb-8">
+      <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function PropertyHeader({ children, name, type }: ApiTableProps) {
+  return (
+    <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+      <div className="flex items-center font-bold">
+        {name}
+        <a
+          href={`#${type ?? 'property'}-${name}`}
+          className="hash-link"
+          aria-label={`Direct link to ${name}`}
+          title={`Direct link to ${name}`}
+        ></a>
+      </div>
+      <div className="flex items-center ml-auto gap-2">
+        {children}
+        <FrameworkSelection />
+      </div>
+    </div>
+  );
+}
+
+function EventHeader({ children, name }: ApiTableProps) {
+  return (
+    <PropertyHeader name={name} type="event">
+      {children}
+    </PropertyHeader>
+  );
+}
+
+function SlotHeader({ children, name }: ApiTableProps) {
+  return (
+    <PropertyHeader name={name} type="slot">
+      {children}
+    </PropertyHeader>
+  );
+}
+
+function Text({ children, name }: ApiTableProps) {
+  return (
+    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
+        {name}
+      </div>
+      <div className="p-4 w-auto">{children}</div>
+    </div>
+  );
+}
+
+function Code({ children, name }: ApiTableProps) {
+  return (
+    <Text name={name}>
+      <code className="p-1">{children}</code>
+    </Text>
+  );
+}
+
+ApiTable.PropertyHeader = PropertyHeader;
+ApiTable.EventHeader = EventHeader;
+ApiTable.SlotHeader = SlotHeader;
+ApiTable.Text = Text;
+ApiTable.Code = Code;
+
+export default ApiTable;

@@ -1,47 +1,26 @@
 {{#props}}
-<div className="api-table container mx-auto mb-8" id="property-{{ name }}">
-  <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
-    <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
-      <div className="flex items-center font-bold">
-        {{ name }}
-        <a href="#property-{{ name }}" class="hash-link" aria-label="Direct link to Property {{ name }}" title="Direct link to Property {{ name }}">&ZeroWidthSpace;</a>
-      </div>
-      <div className="flex items-center ml-auto gap-2">
-      {{#docsTags}}
-        {{{ rTag }}}
-      {{/docsTags}}
-        <FrameworkSelection />
-      </div>
-    </div>
+<ApiTable>
+  <ApiTable.PropertyHeader name="{{name}}">
+    {{#docsTags}}
+      {{{ rTag }}}
+    {{/docsTags}}
+  </ApiTable.PropertyHeader>
 
-    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
-      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
-        Description
-      </div>
-      <div className="p-4 w-auto">{ `{{ docs }}` }</div>
-    </div>
+  <ApiTable.Text name="Description">
+    { `{{ docs }}` }
+  </ApiTable.Text>
 
-    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
-      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
-        Attribute
-      </div>
-      <div className="p-4 w-auto"><code className="p-1">{{ attr }}</code></div>
-    </div>
+  <ApiTable.Code name="Attribute">
+    {`{{{ attr }}}`}
+  </ApiTable.Code>
 
-    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
-      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
-        Type
-      </div>
-      <div className="p-4 w-auto"><code className="p-1">{ `{{{ type }}}` }</code></div>
-    </div>
+  <ApiTable.Code name="Type">
+   {`{{{ type }}}`}
+  </ApiTable.Code>
 
-    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2">
-      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
-        Default
-      </div>
-      <div className="p-4 w-auto"><code className="p-1">{ `{{{ default }}}` }</code></div>
-    </div>
+  <ApiTable.Code name="Default">
+    {`{{{ default }}}`}
+  </ApiTable.Code>
 
-  </div>
-</div>
+</ApiTable>
 {{/props}}
