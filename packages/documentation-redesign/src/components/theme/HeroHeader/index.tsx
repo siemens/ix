@@ -56,16 +56,18 @@ export default function HeroHeader(props: {
     <>
       <h1 className={styles.sticky_h1}>{title}</h1>
 
-      <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
-        <ReadMore>{description}</ReadMore>
-        {frontMatter.deprecated &&
-          Array.from(frontMatter.deprecated) &&
-          frontMatter.deprecated.map((link: string) => (
-            <RedirectTag key={link} link={link}>
-              Show deprecated version
-            </RedirectTag>
-          ))}
-      </div>
+      {description && (
+        <div className={clsx(styles.componentHeroHeader, 'HeroHeader')}>
+          <ReadMore>{description}</ReadMore>
+          {frontMatter.deprecated &&
+            Array.from(frontMatter.deprecated) &&
+            frontMatter.deprecated.map((link: string) => (
+              <RedirectTag key={link} link={link}>
+                Show deprecated version
+              </RedirectTag>
+            ))}
+        </div>
+      )}
 
       {tabs.length > 0 && (
         <Tabs>
