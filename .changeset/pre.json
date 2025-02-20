@@ -15,7 +15,36 @@
     "@siemens/ix-react": "2.2.1",
     "react-test-app": "2.1.2",
     "@siemens/ix-vue": "2.2.1",
-    "vue-test-app": "2.1.2"
+    "vue-test-app": "2.1.2",
+    "angular-standalone-test-app": "0.0.0",
+    "ionic-test-app": "0.0.1",
+    "storybook-docs": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "afraid-papayas-own",
+    "brave-jeans-approve",
+    "clean-squids-retire",
+    "cool-keys-shout",
+    "eighty-doors-wait",
+    "fresh-maps-ring",
+    "gentle-snails-destroy",
+    "heavy-cups-peel",
+    "large-tables-greet",
+    "nervous-badgers-count",
+    "pink-needles-kick",
+    "pretty-guests-jog",
+    "purple-guests-wait",
+    "rare-numbers-double",
+    "rare-tables-jam",
+    "shy-experts-rest",
+    "shy-lions-hear",
+    "silly-carrots-complain",
+    "six-wombats-grow",
+    "sixty-carpets-sniff",
+    "stale-ladybugs-wave",
+    "tame-emus-poke",
+    "tender-planes-bathe",
+    "thick-vans-arrive",
+    "wicked-windows-approve"
+  ]
 }
