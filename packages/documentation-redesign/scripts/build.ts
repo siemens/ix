@@ -285,6 +285,7 @@ async function generateApiMarkdown() {
 
   for (const component of components) {
     const { props, events, slots } = component;
+
     const propertyOutput = Mustache.render(propertyTemplate, {
       tag: component.tag,
       props: props.map((prop) => ({
@@ -304,7 +305,7 @@ async function generateApiMarkdown() {
 
     const slotOutput = Mustache.render(slotTemplate, {
       slots: slots.map((tag) => ({
-        tag: tag,
+        ...tag,
         docsTags: convertDocsTagsToTSXElement(component.tag, []),
       })),
     });

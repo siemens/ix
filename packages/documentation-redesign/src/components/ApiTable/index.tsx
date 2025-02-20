@@ -15,6 +15,17 @@ export type ApiTableProps = {
   type?: 'event' | 'property' | 'slot';
 };
 
+const toKebabCase = (str: string) => {
+  return str
+    .split('')
+    .map((letter, idx) => {
+      return letter.toUpperCase() === letter
+        ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
+        : letter;
+    })
+    .join('');
+};
+
 function ApiTable({ children }) {
   return (
     <div className="api-table container mx-auto mb-8">
@@ -26,10 +37,18 @@ function ApiTable({ children }) {
 }
 
 function PropertyHeader({ children, name, type }: ApiTableProps) {
+  const { framework } = useFramework();
+
+  let propertyName = name;
+
+  if (framework === 'vue' || framework === 'angular' || framework === 'html') {
+    propertyName = toKebabCase(name);
+  }
+
   return (
     <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
       <div className="flex items-center font-bold">
-        {name}
+        {propertyName}
         <a
           href={`#${type ?? 'property'}-${name}`}
           className="hash-link"
