@@ -8,32 +8,32 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Group
 
-## Examples
+## Development
 
-### Basic 
+### Basic
 
 <Playground
-  name="group" 
-  height="16rem"
-  >
+name="group"
+height="16rem"
+>
 </Playground>
 
 ### Suppress header selection
 
 <Playground
-  name="group-header-suppressed" 
-  height="16rem"
-  hideInitalCodePreview
-  >
+name="group-header-suppressed"
+height="16rem"
+hideInitalCodePreview
+>
 </Playground>
 
 ### Custom group entry
 
 <Playground
-  name="group-custom-entry" 
-  height="16rem"
-  hideInitalCodePreview
-  >
+name="group-custom-entry"
+height="16rem"
+hideInitalCodePreview
+>
 </Playground>
 
 ### Group with context menu
@@ -48,10 +48,10 @@ Luckily there exists a workaround for rendering context menus inside the group c
 To show a context menu place an `ix-dropdown` with `slot="dropdown"` combined with `ix-dropdown-item`'s inside the `ix-group-tag` tag.
 
 <Playground
-  name="group-context-menu" 
-  height="16rem"
-  hideInitalCodePreview
-  >
+name="group-context-menu"
+height="16rem"
+hideInitalCodePreview
+>
 </Playground>
 
 ## API (ix-group)

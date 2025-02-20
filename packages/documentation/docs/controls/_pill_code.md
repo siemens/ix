@@ -5,16 +5,14 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="pill"
 
 > </Playground>
 
-#### Variants
+### Variants
 
 <Playground
 name="pill-variants"

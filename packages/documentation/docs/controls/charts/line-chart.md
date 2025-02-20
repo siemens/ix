@@ -1,10 +1,10 @@
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Line charts
+## Development
 
 Line charts display data as a series of data points connected by straight line segments. Line charts are commonly used to visualize trends over time or compare two variables. We typically use line charts to visualize continuous data.
 
-### Basic line charts
+### Basic
 
 Basic line charts use a series of data points connected by straight lines to show changes in values, making it easy to identify patterns, trends and fluctuations. Line charts are particularly effective for displaying continuous data, such as stock prices, temperature changes or sales figures. Their simplicity and clarity make them a popular choice for dashboards, where understanding data trends is essential.
 
@@ -37,10 +37,10 @@ noMargin
 examplesByName>
 </Playground>
 
-## Dos and Don'ts
+### Dos and Don'ts
 
 - Do start the Y-axis at zero and label axes clearly
-- Do use contrasting colors for multiple lines to better distinguish different data series 
+- Do use contrasting colors for multiple lines to better distinguish different data series
 - Do use consistent intervals on axes
 - Do highlight important data points
 - Do use visual cues to show gaps in data

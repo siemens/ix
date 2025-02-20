@@ -5,9 +5,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="dropdown-button"
@@ -15,7 +13,7 @@ height="16rem"
 
 > </Playground>
 
-#### Icon
+### Icon
 
 <Playground
 name="dropdown-button-icon"

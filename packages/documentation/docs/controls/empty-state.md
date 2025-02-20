@@ -8,28 +8,28 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Tags />
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="empty-state" 
-  height="16rem"
-  >
+name="empty-state"
+height="16rem"
+>
 </Playground>
 
 ### Compact
 
 <Playground
-  name="empty-state-compact"
-  >
+name="empty-state-compact"
+>
 </Playground>
 
 ### Compact break
 
 <Playground
-  name="empty-state-compact-break"
-  >
+name="empty-state-compact-break"
+>
 </Playground>
 
 ## API

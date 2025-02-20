@@ -14,7 +14,7 @@ import CardEvents from './../auto-generated/ix-card/events.md';
 
 ## Development
 
-### Examples
+### Basic
 
 <CardTags/>
 
@@ -24,7 +24,7 @@ name="card"
 
 > </Playground>
 
-#### Action Card
+### Action Card
 
 <ActionCardTags />
 

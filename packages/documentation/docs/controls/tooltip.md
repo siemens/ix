@@ -9,7 +9,9 @@ import Playground from '@site/src/components/PlaygroundV3'
 
 <Tags />
 
-## Examples
+## Development
+
+### Basic
 
 <Playground
   name="tooltip"
@@ -17,25 +19,26 @@ import Playground from '@site/src/components/PlaygroundV3'
   >
 </Playground>
 
-## API
+### A11y
 
-### Properties
+Set the `aria-describedby` attribute on the trigger element to the tooltip `id` attribute. This allows assistive technologies to establish a logical connection between the trigger and the tooltip.
+
+See examples [above](#usage).
+
+[More information](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+
+### API
+
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-### Slots
+#### Slots
 
 <Slots />
 
-## A11y
-
-Set the `aria-describedby` attribute on the trigger element to the tooltip `id` attribute. This allows assistive technologies to establish a logical connection between the trigger and the tooltip. 
-
-See examples [above](#usage). 
-
-[More information](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 

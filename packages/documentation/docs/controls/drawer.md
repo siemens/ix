@@ -5,23 +5,23 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Drawer
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="drawer-full-height" 
-  height="24rem"
-  >
+name="drawer-full-height"
+height="24rem"
+>
 </Playground>
 
 ### Auto height
 
 <Playground
-  name="drawer" 
-  height="24rem"
-  hideInitalCodePreview
-  >
+name="drawer"
+height="24rem"
+hideInitalCodePreview
+>
 </Playground>
 
 ## API

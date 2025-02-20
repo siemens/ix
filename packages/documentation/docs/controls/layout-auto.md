@@ -7,7 +7,7 @@ import Tags from '@site/docs/auto-generated/ix-layout-auto/tags.md';
 
 <Tags />
 
-## Examples
+## Development
 
 ### Basic
 

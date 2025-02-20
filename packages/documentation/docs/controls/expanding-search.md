@@ -5,14 +5,14 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Expanding search
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="expanding-search" 
-  height="5rem"
-  >
+name="expanding-search"
+height="5rem"
+>
 </Playground>
 
 ## API

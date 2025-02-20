@@ -1,10 +1,10 @@
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Pie charts
+## Development
 
 Pie charts display data using a circular graph. The length of each slice is proportional to the value it represents. Pie charts are commonly used to visualize the parts of a whole and are particularly useful for comparing the relative sizes of different categories.
 
-### Pie chart example
+### Basic
 
 <Playground
 height="40rem"

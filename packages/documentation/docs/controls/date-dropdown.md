@@ -5,22 +5,22 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Date dropdown
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="date-dropdown" 
-  height="35rem"
-  >
+name="date-dropdown"
+height="35rem"
+>
 </Playground>
 
 ### With user defined range options
 
 <Playground
-  name="date-dropdown-user-range" 
-  height="35rem"
-  >
+name="date-dropdown-user-range"
+height="35rem"
+>
 </Playground>
 
 ## API

@@ -3,9 +3,7 @@ import Events from './../auto-generated/ix-spinner/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Spinner
-
-## Examples
+## Development
 
 ### Basic
 

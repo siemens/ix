@@ -6,9 +6,7 @@ import ItemEvents from './../auto-generated/ix-tab-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Tabs
-
-## Examples
+## Development
 
 ### Basic
 
@@ -25,22 +23,22 @@ import Playground from '@site/src/components/PlaygroundV3';
   >
 </Playground>
 
-## API (ix-tabs)
+### API (ix-tabs)
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-## API (ix-tab-item)
+### API (ix-tab-item)
 
-### Properties
+#### Properties
 
 <ItemProps />
 
-### Events
+#### Events
 
 <ItemEvents />

@@ -10,7 +10,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
+### Basic
 
 <Playground
 name="dropdown"
@@ -18,7 +18,7 @@ height="28rem"
 
 > </Playground>
 
-#### Dropdown with icon
+### Dropdown with icon
 
 <Playground
 name="dropdown-icon"
@@ -26,7 +26,7 @@ height="18rem"
 
 > </Playground>
 
-#### Dropdown with quick actions menu
+### Dropdown with quick actions menu
 
 <TagsQuickActions />
 
@@ -36,7 +36,7 @@ height="22rem"
 
 > </Playground>
 
-#### Dropdown with submenu
+### Dropdown with submenu
 
 <Playground
 name="dropdown-submenu"

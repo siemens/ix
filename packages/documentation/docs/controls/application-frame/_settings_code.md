@@ -7,9 +7,7 @@ import ItemEvents from './../../auto-generated/ix-menu-settings-item/events.md';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="settings"

@@ -7,16 +7,14 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
-#### Primary
+### Primary
 
 <Playground
 name="buttons"
 
 > </Playground>
 
-#### Primary Outline
+### Primary Outline
 
 :::info
 
@@ -30,7 +28,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Primary Ghost
+### Primary Ghost
 
 :::info
 
@@ -44,7 +42,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Secondary
+### Secondary
 
 :::info
 
@@ -58,7 +56,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Secondary Outline
+### Secondary Outline
 
 :::info
 
@@ -72,7 +70,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Secondary Ghost
+### Secondary Ghost
 
 :::info
 
@@ -86,7 +84,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Danger
+### Danger
 
 <ApiTableSinceTag message="2.3.0" />
 
@@ -96,7 +94,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Danger Outline
+### Danger Outline
 
 <ApiTableSinceTag message="2.3.0" />
 
@@ -106,7 +104,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Danger Ghost
+### Danger Ghost
 
 <ApiTableSinceTag message="2.3.0" />
 
@@ -116,7 +114,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Button group
+### Button group
 
 <Playground
 name="button-group"
@@ -124,7 +122,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Button with text and icon
+### Button with text and icon
 
 <Playground
 name="button-text-icon"
@@ -132,7 +130,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Loading button
+### Loading button
 
 <Playground
 name="button-loading"

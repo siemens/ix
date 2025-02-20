@@ -8,9 +8,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Example
-
-#### Basic
+### Basic
 
 <Playground
 name="pane"
@@ -19,7 +17,7 @@ noMargin
 
 > </Playground>
 
-#### Pane Layout
+### Pane Layout
 
 <Tags />
 

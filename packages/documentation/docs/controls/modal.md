@@ -11,7 +11,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Modal
 
-## Sizes
+## Development
 
 Our modals support the following sizes:
 
@@ -26,9 +26,9 @@ Our modals support the following sizes:
 The `size` can be configured over the configuration object of the `showModal` function.
 
 <Playground
-  height="19rem"
-  name="modal-sizes"
-  >
+height="19rem"
+name="modal-sizes"
+>
 </Playground>
 
 ## Custom
@@ -88,7 +88,7 @@ height="18rem"
 preventDefaultExample
 frameworks={['react']}
 additionalFiles={{
-  react: ['modal.tsx'],
+react: ['modal.tsx'],
 }}>
 </Playground>
 

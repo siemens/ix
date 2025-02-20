@@ -3,9 +3,7 @@ import Events from './../auto-generated/ix-upload/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Upload
-
-## Examples
+## Development
 
 <Playground
   name="upload" 
@@ -13,12 +11,12 @@ import Playground from '@site/src/components/PlaygroundV3';
   >
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

@@ -5,15 +5,12 @@ import Events from './../../auto-generated/ix-menu-about-news/events.md';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="popover-news"
 height="30rem"
 noMargin
-
 > </Playground>
 
 ### API

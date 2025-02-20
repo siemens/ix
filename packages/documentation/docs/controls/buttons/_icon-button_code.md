@@ -5,15 +5,13 @@ import Events from './../../auto-generated/ix-icon-button/events.md';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="button-with-icon"
 hideInitalCodePreview
-
-> </Playground>
+>
+</Playground>
 
 ### API (ix-icon-button)
 

@@ -6,37 +6,35 @@ import Tags from '@site/docs/auto-generated/ix-input/tags.md';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground name="input"></Playground>
 
-#### Disabled
+### Disabled
 
 <Playground name="input-disabled"></Playground>
 
-#### Label
+### Label
 
 <Playground name="input-label"></Playground>
 
-#### Pattern
+### Pattern
 
 <Playground name="input-pattern"></Playground>
 
-#### Readonly
+### Readonly
 
 <Playground name="input-readonly"></Playground>
 
-#### Types
+### Types
 
 <Playground name="input-types" height="24rem"></Playground>
 
-#### Validation
+### Validation
 
 <Playground name="input-validation" height="27rem"></Playground>
 
-#### Slots
+### Slots
 
 <Playground name="input-with-slots"></Playground>
 

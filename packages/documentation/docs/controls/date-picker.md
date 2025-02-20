@@ -5,22 +5,22 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Date picker
 
-## Examples 
+## Development
 
 ### Basic
 
 <Playground
-  name="datepicker-range" 
-  height="35rem"
-  >
+name="datepicker-range"
+height="35rem"
+>
 </Playground>
 
 ### Single Selection
 
 <Playground
-  name="datepicker" 
-  height="35rem"
-  >
+name="datepicker"
+height="35rem"
+>
 </Playground>
 
 ### Translation
@@ -28,9 +28,9 @@ import Playground from '@site/src/components/PlaygroundV3';
 The `ix-date-picker` can be configured using [BCP 47](https://tools.ietf.org/html/rfc5646) locale strings specifying the language to use generating or interpreting strings. More information can be found [here](https://moment.github.io/luxon/#/intl?id=default-locale)
 
 <Playground
-  name="datepicker-locale" 
-  height="35rem" 
-  >
+name="datepicker-locale"
+height="35rem"
+>
 </Playground>
 
 ## API

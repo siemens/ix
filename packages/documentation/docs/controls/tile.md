@@ -5,17 +5,17 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 # Tile
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  name="tile" 
-  height="22rem"
-  >
+name="tile"
+height="22rem"
+>
 </Playground>
 
-## API
+### API
 
 ### Properties
 

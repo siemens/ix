@@ -8,7 +8,7 @@ import Playground from '@site/src/components/PlaygroundV3'
 
 ## Development
 
-### Examples
+### Basic
 
 <Playground
 name="breadcrumb"
@@ -16,7 +16,7 @@ height="8rem"
 
 > </Playground>
 
-#### Truncate
+### Truncate
 
 <Playground
 name="breadcrumb-truncate"
@@ -25,7 +25,7 @@ hideInitalCodePreview
 
 > </Playground>
 
-#### Lazy loaded next items
+### Lazy loaded next items
 
 <Playground
 name="breadcrumb-next-items"

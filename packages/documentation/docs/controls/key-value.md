@@ -9,47 +9,47 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Tags />
 
-## Example
+## Development
 
 ### Basic
 
 <Playground
-  name="key-value" 
-  height="16rem"
-  >
+name="key-value"
+height="16rem"
+>
 </Playground>
 
 ### With custom value
 
 <Playground
-  name="key-value-with-custom-value"
-  >
+name="key-value-with-custom-value"
+>
 </Playground>
 
 ### With icon
 
 <Playground
-  name="key-value-with-icon"
-  >
+name="key-value-with-icon"
+>
 </Playground>
 
 ### With label on left side
 
 <Playground
-  name="key-value-with-label-left"
-  >
+name="key-value-with-label-left"
+>
 </Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events 
+#### Events
 
 <Events />
 
-### Slots
+#### Slots
 
 <Slots />

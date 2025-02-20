@@ -8,9 +8,7 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Examples
-
-#### Basic
+### Basic
 
 <Playground
 name="category-filter"
@@ -18,7 +16,7 @@ height="12rem"
 
 > </Playground>
 
-#### Without categories
+### Without categories
 
 <Playground
 name="category-filter-suggestions"

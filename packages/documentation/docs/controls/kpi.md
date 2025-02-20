@@ -3,18 +3,18 @@ import Props from './../auto-generated/ix-kpi/props.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# KPI
+## Development
 
-## Usage
+### Basic
 
 <Playground name="kpi" height="28rem"></Playground>
 
-## API
+### API
 
-### Properties
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />

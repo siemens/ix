@@ -9,50 +9,50 @@ import Playground from '@site/src/components/PlaygroundV3';
 
 <Tags />
 
-## Examples
+## Development
 
 ### Basic
 
 <Playground
-  height="15rem"
-  name="slider"
-  >
+height="15rem"
+name="slider"
+>
 </Playground>
 
 ### Marker
 
 <Playground
-  height="15rem"
-  name="slider-marker"
-  >
+height="15rem"
+name="slider-marker"
+>
 </Playground>
 
 ### Trace
 
 <Playground
-  height="18rem"
-  name="slider-trace"
-  >
+height="18rem"
+name="slider-trace"
+>
 </Playground>
 
 ### Error
 
 <Playground
-  name="slider-error"
-  height="14rem"
-  >
+name="slider-error"
+height="14rem"
+>
 </Playground>
 
-## API
+### API
 
-### Properties 
+#### Properties
 
 <Props />
 
-### Events
+#### Events
 
 <Events />
 
-### Slots
+#### Slots
 
 <Slots />

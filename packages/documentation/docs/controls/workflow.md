@@ -5,40 +5,40 @@ import WorkflowStepsEvents from './../auto-generated/ix-workflow-steps/events.md
 
 import Playground from '@site/src/components/PlaygroundV3';
 
-# Workflow
+## Development
 
-## Examples
+### Basic
 
 <Playground
-  name="workflow"
-  >
+name="workflow"
+>
 </Playground>
 
 ### Vertical
 
 <Playground
-  name="workflow-vertical" 
-  height="27rem"
-  hideInitalCodePreview
-  >
+name="workflow-vertical"
+height="27rem"
+hideInitalCodePreview
+>
 </Playground>
 
-## API (ix-workflow-steps)
+### API (ix-workflow-steps)
 
-### Properties
+#### Properties
 
 <WorkflowStepsProps />
 
-### Events
+#### Events
 
 <WorkflowStepsEvents />
 
-## API (ix-workflow-step)
+### API (ix-workflow-step)
 
-### Properties
+#### Properties
 
 <WorkflowStepProps />
 
-### Events
+#### Events
 
 <WorkflowStepEvents />
