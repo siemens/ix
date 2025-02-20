@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import { useFramework } from '@site/src/hooks/use-framework';
 import FrameworkSelection from '../UI/FrameworkSelection';
 
 export type ApiTableProps = {
@@ -45,8 +46,20 @@ function PropertyHeader({ children, name, type }: ApiTableProps) {
 }
 
 function EventHeader({ children, name }: ApiTableProps) {
+  const { framework } = useFramework();
+
+  let eventName = name;
+
+  if (framework === 'react') {
+    eventName = `on${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+  }
+
+  if (framework === 'vue') {
+    eventName = `@${name}`;
+  }
+
   return (
-    <PropertyHeader name={name} type="event">
+    <PropertyHeader name={eventName} type="event">
       {children}
     </PropertyHeader>
   );
