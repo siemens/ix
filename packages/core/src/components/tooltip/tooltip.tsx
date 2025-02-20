@@ -96,7 +96,7 @@ export class Tooltip {
   private disposeTooltipListener?: () => void;
   private disposeDomChangeListener?: () => void;
 
-  private instance = tooltipInstance++;
+  private readonly instance = tooltipInstance++;
 
   private readonly dialogRef = makeRef<HTMLDialogElement>();
 
@@ -350,13 +350,11 @@ export class Tooltip {
     };
 
     const onFocusIn = () => {
-      if (this.interactive) {
-        this.clearHideTimeout();
-      }
+      onMouseEnter();
     };
 
     const onFocusOut = () => {
-      this.hideTooltip();
+      onMouseLeave();
     };
 
     const onClick = (event: MouseEvent) => {
