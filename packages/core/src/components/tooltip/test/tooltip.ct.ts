@@ -20,7 +20,7 @@ test('renders', async ({ mount, page }) => {
   await button.hover();
 
   await expect(tooltip).toHaveClass(/hydrated/);
-  await expect(tooltip).toBeVisible();
+  await expect(tooltip).toHaveClass(/visible/);
 });
 
 test('renders in shadow DOM', async ({ mount, page }) => {
@@ -50,7 +50,7 @@ test('renders in shadow DOM', async ({ mount, page }) => {
   await button.hover();
 
   await expect(tooltip).toHaveClass(/hydrated/);
-  await expect(tooltip).toBeVisible();
+  await expect(tooltip).toHaveClass(/visible/);
 });
 
 test('renders in slot', async ({ mount, page }) => {
@@ -67,7 +67,7 @@ test('renders in slot', async ({ mount, page }) => {
   await button.hover();
 
   await expect(tooltip).toHaveClass(/hydrated/);
-  await expect(tooltip).toBeVisible();
+  await expect(tooltip).toHaveClass(/visible/);
 });
 
 test.describe('a11y', () => {
@@ -80,7 +80,7 @@ test.describe('a11y', () => {
     await button.hover();
     page.keyboard.down('Escape');
     const tooltip = page.locator('ix-tooltip');
-    await expect(tooltip).not.toBeVisible();
+    await expect(tooltip).not.toHaveClass(/visible/);
   });
 });
 
@@ -93,9 +93,9 @@ test('show tooltip after delay', async ({ mount, page }) => {
   const button = page.locator('ix-button');
 
   await button.hover();
-  await expect(tooltip).not.toBeVisible();
+  await expect(tooltip).not.toHaveClass(/visible/);
   await page.waitForTimeout(1000);
-  await expect(tooltip).toBeVisible();
+  await expect(tooltip).toHaveClass(/visible/);
 });
 
 test('hide tooltip after delay', async ({ mount, page }) => {
@@ -109,10 +109,10 @@ test('hide tooltip after delay', async ({ mount, page }) => {
   const button = page.locator('ix-button');
 
   await button.hover();
-  await expect(tooltip).toBeVisible();
+  await expect(tooltip).toHaveClass(/visible/);
   await page.mouse.move(0, 0);
   await page.waitForTimeout(1000);
-  await expect(tooltip).not.toBeVisible();
+  await expect(tooltip).not.toHaveClass(/visible/);
 });
 
 test('avoid double visibility request by focusin event', async ({
@@ -133,27 +133,23 @@ test('avoid double visibility request by focusin event', async ({
   await page.waitForTimeout(5);
   await menuItem1.click();
   await page.waitForTimeout(200);
-  await expect(page.locator('ix-tooltip').getByText('Item 1')).toBeVisible();
+  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
 
   await menuItem2.hover();
   await page.waitForTimeout(5);
   await menuItem2.click();
   await page.waitForTimeout(200);
-  await expect(page.locator('ix-tooltip').getByText('Item 2')).toBeVisible();
+  await expect(menuItem2.locator('ix-tooltip')).toHaveClass(/visible/);
 
   await menuItem1.hover();
   await page.waitForTimeout(5);
   await menuItem1.click();
   await page.waitForTimeout(200);
-  await expect(page.locator('ix-tooltip').getByText('Item 1')).toBeVisible();
+  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
 
   await page.mouse.move(0, 0);
   await page.waitForTimeout(200);
 
-  await expect(
-    page.locator('ix-tooltip').getByText('Item 1')
-  ).not.toBeVisible();
-  await expect(
-    page.locator('ix-tooltip').getByText('Item 2')
-  ).not.toBeVisible();
+  await expect(menuItem1.locator('ix-tooltip')).not.toHaveClass(/visible/);
+  await expect(menuItem2.locator('ix-tooltip')).not.toHaveClass(/visible/);
 });

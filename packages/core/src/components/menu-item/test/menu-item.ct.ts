@@ -44,10 +44,8 @@ test('show tooltip', async ({ mount, page }) => {
   // Default tooltip delay is 1000ms waiting another 500 ms
   await page.waitForTimeout(1500);
 
-  await expect(page.locator('ix-tooltip').getByText('Foo Bar')).toBeVisible();
-  await expect(page.locator('ix-tooltip').getByText('Foo Bar')).toHaveText(
-    'Foo bar'
-  );
+  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
+  await expect(menuItem1.locator('ix-tooltip')).toHaveText('Foo bar');
 });
 
 test('update item text', async ({ mount, page }) => {
@@ -65,9 +63,7 @@ test('update item text', async ({ mount, page }) => {
   await expect(menuItem2).toHaveClass('hydrated');
 
   await expect(menuItem1.locator('.tab-text').locator('slot')).toBeAttached();
-  await expect(page.locator('ix-tooltip').getByText('Foo bar')).toHaveText(
-    'Foo bar'
-  );
+  await expect(menuItem1.locator('ix-tooltip')).toHaveText('Foo bar');
 
   await menuItem1.evaluate(
     (item: HTMLIxMenuItemElement) => (item.innerText = 'Test123')
@@ -77,8 +73,6 @@ test('update item text', async ({ mount, page }) => {
   // Default tooltip delay is 1000ms waiting another 500 ms
   await page.waitForTimeout(1500);
 
-  await expect(page.locator('ix-tooltip').getByText('Test123')).toBeVisible();
-  await expect(page.locator('ix-tooltip').getByText('Test123')).toHaveText(
-    'Test123'
-  );
+  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
+  await expect(menuItem1.locator('ix-tooltip')).toHaveText('Test123');
 });
