@@ -50,6 +50,7 @@ export default function HeroHeader(props: {
   frontMatter: any;
 }) {
   const { description, tabs, title, frontMatter } = props;
+  const noSingleTab = props.frontMatter.no_single_tab;
 
   return (
     <>
@@ -68,9 +69,13 @@ export default function HeroHeader(props: {
 
       {tabs.length > 0 && (
         <Tabs>
-          {tabs.map((tab) => (
-            <Tab value={tab} label={tab} key={tab} />
-          ))}
+          {tabs.map((tab) => {
+            if (tabs.length > 0 && !noSingleTab) {
+              return <Tab value={tab} label={tab} key={tab} />;
+            }
+
+            return <></>;
+          })}
         </Tabs>
       )}
     </>
