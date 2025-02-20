@@ -79,7 +79,7 @@ regressionTest.describe('input', () => {
 
     await page.locator('ix-input').hover();
 
-    await expect(page.locator('ix-tooltip')).toBeVisible();
+    await expect(page.locator('ix-tooltip')).toHaveClass(/visible/);
     await expect(page).toHaveScreenshot();
   });
 });

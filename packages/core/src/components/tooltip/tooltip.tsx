@@ -17,7 +17,15 @@ import {
   offset,
   shift,
 } from '@floating-ui/dom';
-import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+} from '@stencil/core';
 import { resolveSelector } from '../utils/find-element';
 import { ElementReference } from 'src/components';
 import { makeRef } from '../utils/make-ref';
@@ -71,12 +79,14 @@ export class Tooltip {
   @Prop() showDelay = 0;
 
   /** @internal */
-  @Prop() hideDelay = 50;
+  @Prop() hideDelay?: number;
 
   /** @internal */
   @Prop() animationFrame = false;
 
   @Element() hostElement!: HTMLIxTooltipElement;
+
+  @State() private visibleFor?: Element;
 
   private hideTooltipTimeout?: NodeJS.Timeout;
   private showTooltipTimeout?: NodeJS.Timeout;
@@ -87,7 +97,6 @@ export class Tooltip {
   private disposeDomChangeListener?: () => void;
 
   private instance = tooltipInstance++;
-  private visibleFor?: Element;
 
   private readonly dialogRef = makeRef<HTMLDialogElement>();
 
@@ -98,7 +107,7 @@ export class Tooltip {
   /** @internal */
   @Method()
   async showTooltip(anchorElement: Element): Promise<void> {
-    this.clearHideTimeout();
+    this.clearTimeouts();
 
     if (this.showTooltipTimeout || this.visibleFor === anchorElement) {
       return;
@@ -106,7 +115,7 @@ export class Tooltip {
 
     const dialog = await this.dialogRef.waitForCurrent();
 
-    this.showTooltipTimeout = setTimeout(() => {
+    this.showTooltipTimeout = setTimeout(async () => {
       this.visibleFor = anchorElement;
       this.applyTooltipPosition(anchorElement, dialog);
       dialog.showPopover();
@@ -115,25 +124,28 @@ export class Tooltip {
 
   /** @internal */
   @Method()
-  async hideTooltip(hideDelay: number = 50): Promise<void> {
-    this.clearShowTimeout();
+  async hideTooltip(hideDelay?: number): Promise<void> {
+    this.clearTimeouts();
 
     if (this.hideTooltipTimeout || !this.visibleFor) {
       return;
     }
 
-    if (this.interactive && this.hideDelay === hideDelay) {
-      hideDelay = 150;
+    if (this.hideDelay === undefined) {
+      if (hideDelay === undefined) {
+        hideDelay = this.interactive ? 150 : 50;
+      }
+    } else {
+      hideDelay = hideDelay !== 0 ? this.hideDelay : 0;
     }
 
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.hideTooltipTimeout = setTimeout(() => {
       this.visibleFor = undefined;
+      this.disposeAutoUpdate?.();
       dialog.hidePopover();
     }, hideDelay);
-
-    this.disposeAutoUpdate?.();
   }
 
   private computeArrowPosition({
@@ -231,6 +243,14 @@ export class Tooltip {
               target,
               dialog
             );
+
+            const isHidden =
+              computeResponse.middlewareData.hide?.referenceHidden;
+
+            if (isHidden) {
+              this.hideTooltip(0);
+              resolve(computeResponse);
+            }
 
             if (computeResponse.middlewareData.arrow) {
               this.applyTooltipArrowPosition(computeResponse);
@@ -377,6 +397,11 @@ export class Tooltip {
     this.showTooltipTimeout = undefined;
   }
 
+  private clearTimeouts() {
+    this.clearHideTimeout();
+    this.clearShowTimeout();
+  }
+
   componentWillLoad() {
     this.registerTriggerListener();
   }
@@ -387,8 +412,7 @@ export class Tooltip {
   }
 
   disconnectedCallback() {
-    this.clearHideTimeout();
-    this.clearShowTimeout();
+    this.clearTimeouts();
 
     this.disposeAutoUpdate?.();
     this.disposeTriggerListener?.();
@@ -398,12 +422,13 @@ export class Tooltip {
 
   render() {
     return (
-      <Host role="tooltip">
+      <Host role="tooltip" class={{ visible: this.visibleFor !== undefined }}>
         <dialog
           ref={this.dialogRef}
           id={'tooltip-' + this.instance}
           class="dialog"
           popover="manual"
+          inert
         >
           <div class="tooltip-container">
             <div class={'tooltip-title'}>

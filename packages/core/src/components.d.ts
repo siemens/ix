@@ -3066,7 +3066,7 @@ export namespace Components {
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
         "for"?: ElementReference;
-        "hideDelay": number;
+        "hideDelay"?: number;
         "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
