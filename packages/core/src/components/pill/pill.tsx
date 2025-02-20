@@ -39,20 +39,12 @@ export class Pill implements IxComponent {
   /**
    * Show icon
    */
-  @Prop() icon: string | undefined;
+  @Prop() icon?: string;
 
   /**
    * Custom color for pill. Only working for `variant='custom'`
    */
   @Prop() background: string | undefined;
-
-  /**
-   * Custom font color for pill. Only working for `variant='custom'`
-   *
-   * @deprecated since 2.1.0 use `pill-color`
-   */
-  // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color: string | undefined;
 
   /**
    * Custom font color for pill. Only working for `variant='custom'`
@@ -82,7 +74,7 @@ export class Pill implements IxComponent {
 
     if (this.variant === 'custom') {
       customStyle = {
-        color: this.pillColor ?? this.color,
+        color: this.pillColor,
         [this.outline ? 'borderColor' : 'backgroundColor']: this.background,
       };
     }
@@ -91,7 +83,7 @@ export class Pill implements IxComponent {
         style={
           this.variant === 'custom'
             ? {
-                '--ix-icon-button-color': this.pillColor ?? this.color,
+                '--ix-icon-button-color': this.pillColor,
               }
             : {}
         }

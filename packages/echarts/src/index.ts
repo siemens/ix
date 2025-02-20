@@ -13,7 +13,3 @@ export { default as brandDark } from './themes/brand-dark';
 export { default as brandLight } from './themes/brand-light';
 export { default as classicDark } from './themes/classic-dark';
 export { default as classicLight } from './themes/classic-light';
-
-export function convertThemeName(conventionalName: string) {
-  return conventionalName.replace('theme-', '');
-}

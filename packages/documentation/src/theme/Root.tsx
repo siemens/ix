@@ -10,6 +10,8 @@
 import { useLocation } from '@docusaurus/router';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
+import { setAssetPath } from '@siemens/ix-icons/components';
+import { setAssetPath as setAssetPath_ } from '@siemens/ix-icons/components';
 
 declare global {
   interface Window {

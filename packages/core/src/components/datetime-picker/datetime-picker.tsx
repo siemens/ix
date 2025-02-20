@@ -120,14 +120,6 @@ export class DatetimePicker
   /**
    * Text of date select button
    *
-   * @since 1.1.0
-   * @deprecated since 2.1.0. Use `i18nDone`
-   */
-  @Prop() textSelectDate?: string;
-
-  /**
-   * Text of date select button
-   *
    * @since 2.1.0
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone: string = 'Done';
@@ -147,23 +139,6 @@ export class DatetimePicker
    * @since 2.1.0
    */
   @Prop() locale?: string;
-
-  /**
-   * Default behavior of the done event is to join the two events (date and time) into one combined string output.
-   * This combination can be configured over the delimiter
-   *
-   * @since 1.1.0
-   * @deprecated Not used anymore see `done` event
-   */
-  @Prop() eventDelimiter = ' - ';
-
-  /**
-   * Done event
-   *
-   * Set `doneEventDelimiter` to null or undefine to get the typed event
-   * @deprecated Use `this.dateChange`
-   */
-  @Event() done!: EventEmitter<string>;
 
   /**
    * Time change
@@ -198,10 +173,6 @@ export class DatetimePicker
       to: date?.to ?? '',
       time: time ?? '',
     });
-
-    this.done.emit(
-      [date?.from, date?.to ?? '', time].join(this.eventDelimiter)
-    );
   }
 
   private async onDateChange(event: CustomEvent<string | DateChangeEvent>) {
@@ -259,7 +230,7 @@ export class DatetimePicker
                   class="btn-select-date"
                   onClick={() => this.onDone()}
                 >
-                  {this.textSelectDate || this.i18nDone}
+                  {this.i18nDone}
                 </ix-button>
               </div>
             </ix-col>

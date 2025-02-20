@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import path from 'path';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
@@ -41,10 +39,5 @@ export default defineConfig(async () => {
   return {
     base: './',
     plugins: [react(), legacy()],
-    test: {
-      globals: true,
-      environment: 'jsdom',
-      setupFiles: './src/setupTests.ts',
-    },
   };
 });

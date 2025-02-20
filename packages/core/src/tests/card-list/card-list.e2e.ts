@@ -37,6 +37,7 @@ regressionTest.describe('card-list: basic', () => {
 
   regressionTest('layout scrolling', async ({ page }) => {
     await page.goto('card-list/layout-scroll');
+    await page.locator('#end').scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
     expect(
       await page.screenshot({ fullPage: true, animations: 'disabled' })
@@ -46,7 +47,7 @@ regressionTest.describe('card-list: basic', () => {
   regressionTest('layout scrolling end', async ({ page }) => {
     await page.goto('card-list/layout-scroll');
 
-    await page.locator('#end').scrollIntoViewIfNeeded();
+    await page.locator('ix-push-card').last().scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
     expect(
       await page.screenshot({ fullPage: true, animations: 'disabled' })

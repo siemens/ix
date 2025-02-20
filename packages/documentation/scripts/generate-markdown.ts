@@ -206,6 +206,21 @@ const tasks = new Listr<Context>(
         }
       },
     },
+    {
+      title: "Copy ix-icons to documentation's static folder",
+      task: async () => {
+        const iconsPath = path.join(staticPath, 'ix-icon-svg');
+
+        if (!fs.existsSync(iconsPath)) {
+          await fs.mkdir(iconsPath);
+        }
+
+        await fs.emptyDir(iconsPath);
+        const nodeIcons = require.resolve('@siemens/ix-icons');
+        const svg = path.join(nodeIcons, '..', '..', 'svg');
+        fs.copy(svg, iconsPath);
+      },
+    },
   ],
   { concurrent: false }
 );
