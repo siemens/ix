@@ -34,6 +34,11 @@ export const routes: Routes = [
           import('../preview-examples/action-card').then((m) => m.default),
       },
       {
+        path: 'add-icons',
+        loadComponent: () =>
+          import('../preview-examples/add-icons').then((m) => m.default),
+      },
+      {
         path: 'aggrid',
         loadComponent: () =>
           import('../preview-examples/aggrid').then((m) => m.default),

@@ -76,7 +76,7 @@ If you're facing any other problems, please raise an issue in GitHub [raising an
 As some of the components are named differently in Industrial Experience, please consult this list of the most important component name differences to help make your migration easier:
 
 | **User Experience Toolkit**                      | **Industrial Experience**                                                                              |
-| ------------------------------------------------ |--------------------------------------------------------------------------------------------------------|
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | App bar                                          | [Nav menu](../controls/application-frame/application-menu.md)                                          |
 | Badge                                            | [Pill](../controls/pill.md), [chip](../controls/chip.md)                                               |
 | Busy indicator                                   | [Spinner](../controls/spinner.md)                                                                      |
@@ -88,7 +88,7 @@ As some of the components are named differently in Industrial Experience, please
 | List                                             | [Event list](../controls/event-list.md)                                                                |
 | Stepper                                          | [Workflow](../controls/workflow.md)                                                                    |
 | Menu                                             | [Dropdown button](../controls/buttons/dropdown-button.md)                                              |
-| Message                                          | [Message bar](../controls/message-bar.mdx)                                                             |
+| Message                                          | [Message bar](../controls/messagebar.md)                                                               |
 | Notification                                     | [Toast](../controls/toast.md)                                                                          |
 | Pager                                            | [Pagination](../controls/pagination.md)                                                                |
 | Popover                                          | [Tooltip](../controls/tooltip.md), [dropdown](../controls/dropdown.md)                                 |

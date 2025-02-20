@@ -16,6 +16,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 import AboutAndLegal from './preview-examples/about-and-legal';
 import ActionCard from './preview-examples/action-card';
+import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
 import Application from './preview-examples/application';
 import ApplicationAppSwitch from './preview-examples/application-app-switch';
@@ -236,6 +237,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/grid" element={<Grid />} />
         <Route path="/preview/about-and-legal" element={<AboutAndLegal />} />
         <Route path="/preview/action-card" element={<ActionCard />} />
+        <Route path="/preview/add-icons" element={<AddIcons />} />
         <Route path="/preview/aggrid" element={<AgGrid />} />
         <Route path="/preview/application" element={<Application />} />
         <Route

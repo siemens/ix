@@ -8,7 +8,7 @@
  */
 
 import { Directive, HostListener, ElementRef, Injector } from '@angular/core';
-import { ValueAccessor, mapNgToIxClassNames } from './value-accessor';
+import { ValueAccessor } from './value-accessor';
 
 @Directive()
 export class RadioValueAccessorBaseDirective extends ValueAccessor {
@@ -20,7 +20,7 @@ export class RadioValueAccessorBaseDirective extends ValueAccessor {
     this.lastValue = value;
     this.elementRef.nativeElement.checked =
       this.elementRef.nativeElement.value === value;
-    mapNgToIxClassNames(this.elementRef);
+    super.mapNgToIxClassNames(this.elementRef);
   }
 
   @HostListener('checkedChange', ['$event.target'])

@@ -13,6 +13,7 @@ import { computed, ref } from 'vue';
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
 import ActionCard from './preview-examples/action-card.vue';
+import AddIcons from './preview-examples/add-icons.vue';
 import AgGrid from './preview-examples/aggrid.vue';
 import ApplicationAppSwitch from './preview-examples/application-app-switch.vue';
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
@@ -229,6 +230,7 @@ const routes: any = {
   '/': App,
   '/preview/about-and-legal': AboutAndLegal,
   '/preview/action-card': ActionCard,
+  '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
   '/preview/application': Application,
   '/preview/application-header': ApplicationHeader,

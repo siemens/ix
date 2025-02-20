@@ -201,6 +201,11 @@ const config: Config = {
         content:
           'Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers',
       },
+      {
+        //meta[name='ix-icons:path']
+        name: 'ix-icons:path',
+        content: '/ix-icon-svg',
+      }
     ],
     colorMode: {
       disableSwitch: true,

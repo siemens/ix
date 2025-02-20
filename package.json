@@ -57,6 +57,9 @@
   "pnpm": {
     "patchedDependencies": {
       "@stencil/vue-output-target@0.8.8": "patches/@stencil__vue-output-target@0.8.8.patch"
+    },
+    "overrides": {
+      "@stencil/core": "4.23.1"
     }
   }
 }
