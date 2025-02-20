@@ -87,7 +87,7 @@ export class Tooltip {
   private disposeDomChangeListener?: () => void;
 
   private instance = tooltipInstance++;
-  private visible = false;
+  private visibleFor?: Element;
 
   private readonly dialogRef = makeRef<HTMLDialogElement>();
 
@@ -98,16 +98,16 @@ export class Tooltip {
   /** @internal */
   @Method()
   async showTooltip(anchorElement: Element): Promise<void> {
-    if (this.showTooltipTimeout || this.visible) {
+    this.clearHideTimeout();
+
+    if (this.showTooltipTimeout || this.visibleFor === anchorElement) {
       return;
     }
-
-    this.visible = true;
-    this.clearHideTimeout();
 
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.showTooltipTimeout = setTimeout(() => {
+      this.visibleFor = anchorElement;
       this.applyTooltipPosition(anchorElement, dialog);
       dialog.showPopover();
     }, this.showDelay);
@@ -116,12 +116,11 @@ export class Tooltip {
   /** @internal */
   @Method()
   async hideTooltip(hideDelay: number = 50): Promise<void> {
-    if (this.hideTooltipTimeout || !this.visible) {
+    this.clearShowTimeout();
+
+    if (this.hideTooltipTimeout || !this.visibleFor) {
       return;
     }
-
-    this.visible = false;
-    this.clearShowTimeout();
 
     if (this.interactive && this.hideDelay === hideDelay) {
       hideDelay = 150;
@@ -130,6 +129,7 @@ export class Tooltip {
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.hideTooltipTimeout = setTimeout(() => {
+      this.visibleFor = undefined;
       dialog.hidePopover();
     }, hideDelay);
 
@@ -290,11 +290,7 @@ export class Tooltip {
       };
 
       const onFocusIn = () => {
-        if (this.showTooltipTimeout !== undefined) {
-          clearTimeout(this.showTooltipTimeout);
-        }
-
-        onMouseEnter();
+        this.showTooltip(element);
       };
 
       const onFocusOut = () => {
@@ -329,9 +325,7 @@ export class Tooltip {
     };
 
     const onMouseLeave = () => {
-      if (this.interactive) {
-        this.hideTooltip();
-      }
+      this.hideTooltip();
     };
 
     const onFocusIn = () => {
@@ -341,14 +335,16 @@ export class Tooltip {
     };
 
     const onFocusOut = () => {
-      if (this.interactive) {
-        console.log('B onFocusOut');
-        this.hideTooltip();
-      }
+      this.hideTooltip();
+    };
+
+    const onClick = (event: MouseEvent) => {
+      event.stopPropagation();
     };
 
     dialog.addEventListener('mouseenter', onMouseEnter);
     dialog.addEventListener('focusin', onFocusIn);
+    dialog.addEventListener('click', onClick);
 
     dialog.addEventListener('mouseleave', onMouseLeave);
     dialog.addEventListener('focusout', onFocusOut);
