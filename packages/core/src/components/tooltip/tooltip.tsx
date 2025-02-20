@@ -115,10 +115,11 @@ export class Tooltip {
 
     const dialog = await this.dialogRef.waitForCurrent();
 
-    this.showTooltipTimeout = setTimeout(async () => {
+    this.showTooltipTimeout = setTimeout(() => {
       this.visibleFor = anchorElement;
-      this.applyTooltipPosition(anchorElement, dialog);
       dialog.showPopover();
+      this.applyTooltipPosition(anchorElement, dialog);
+      this.registerTooltipListener(dialog);
     }, this.showDelay);
   }
 
@@ -143,8 +144,9 @@ export class Tooltip {
 
     this.hideTooltipTimeout = setTimeout(() => {
       this.visibleFor = undefined;
-      this.disposeAutoUpdate?.();
       dialog.hidePopover();
+      this.disposeAutoUpdate?.();
+      this.disposeTooltipListener?.();
     }, hideDelay);
   }
 
@@ -238,32 +240,29 @@ export class Tooltip {
         target,
         dialog,
         async () => {
-          setTimeout(async () => {
-            const computeResponse = await this.computeTooltipPosition(
-              target,
-              dialog
-            );
+          const computeResponse = await this.computeTooltipPosition(
+            target,
+            dialog
+          );
 
-            const isHidden =
-              computeResponse.middlewareData.hide?.referenceHidden;
+          const isHidden = computeResponse.middlewareData.hide?.referenceHidden;
 
-            if (isHidden) {
-              this.hideTooltip(0);
-              resolve(computeResponse);
-            }
-
-            if (computeResponse.middlewareData.arrow) {
-              this.applyTooltipArrowPosition(computeResponse);
-            }
-
-            const { x, y } = computeResponse;
-            Object.assign(dialog.style, {
-              left: numberToPixel(x),
-              top: numberToPixel(y),
-            });
-
+          if (isHidden) {
+            this.hideTooltip(0);
             resolve(computeResponse);
+          }
+
+          if (computeResponse.middlewareData.arrow) {
+            this.applyTooltipArrowPosition(computeResponse);
+          }
+
+          const { x, y } = computeResponse;
+          Object.assign(dialog.style, {
+            left: numberToPixel(x),
+            top: numberToPixel(y),
           });
+
+          resolve(computeResponse);
         },
         {
           ancestorResize: true,
@@ -335,8 +334,10 @@ export class Tooltip {
     };
   }
 
-  private async registerTooltipListener(): Promise<void> {
-    const dialog = await this.dialogRef.waitForCurrent();
+  private async registerTooltipListener(
+    dialog: HTMLDialogElement
+  ): Promise<void> {
+    this.disposeTooltipListener?.();
 
     const onMouseEnter = () => {
       if (this.interactive) {
@@ -362,12 +363,29 @@ export class Tooltip {
       event.stopPropagation();
     };
 
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        this.hideTooltip();
+      }
+    };
+
     dialog.addEventListener('mouseenter', onMouseEnter);
     dialog.addEventListener('focusin', onFocusIn);
-    dialog.addEventListener('click', onClick);
-
     dialog.addEventListener('mouseleave', onMouseLeave);
     dialog.addEventListener('focusout', onFocusOut);
+    dialog.addEventListener('click', onClick);
+
+    document.addEventListener('keydown', onKeyDown);
+
+    this.disposeTooltipListener = () => {
+      dialog.removeEventListener('mouseenter', onMouseEnter);
+      dialog.removeEventListener('focusin', onFocusIn);
+      dialog.removeEventListener('mouseleave', onMouseLeave);
+      dialog.removeEventListener('focusout', onFocusOut);
+      dialog.removeEventListener('click', onClick);
+
+      document.removeEventListener('keydown', onKeyDown);
+    };
   }
 
   private registerDomChangeListener(): void {
@@ -408,7 +426,6 @@ export class Tooltip {
 
   componentDidLoad() {
     this.registerDomChangeListener();
-    this.registerTooltipListener();
   }
 
   disconnectedCallback() {
@@ -428,7 +445,7 @@ export class Tooltip {
           id={'tooltip-' + this.instance}
           class="dialog"
           popover="manual"
-          inert
+          inert={this.visibleFor === undefined}
         >
           <div class="tooltip-container">
             <div class={'tooltip-title'}>
