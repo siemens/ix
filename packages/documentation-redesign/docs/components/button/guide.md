@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 Buttons initiate actions, apply actions to selected objects and activate/deactivate functions. We typically use buttons to trigger an immediate action, and you can place them within dialogs, forms, modal windows and other containers.

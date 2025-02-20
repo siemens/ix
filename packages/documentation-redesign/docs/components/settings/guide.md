@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 The settings component is an overlay that presents settings in a central location. It appears when users click on the "settings" icon (1). It overlays the current content and closing this overlay brings users back to the original content.

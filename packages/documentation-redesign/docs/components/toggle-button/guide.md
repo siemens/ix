@@ -1,7 +1,8 @@
 ## Usage
+
 ### Guidelines
 
-Toggle buttons with and without text labels are available. We typically use toggle buttons within button groups when users can chose between more than two options or when two available options don't follow the on/off metaphor.
+Toggle buttons with and without text labels are available. We typically use toggle buttons within button groups when users can choose between more than two options or when two available options don't follow the on/off metaphor.
 
 ![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1480-33046&mode=design&t=iUJlfIvOwhKY3qk9-4)
 

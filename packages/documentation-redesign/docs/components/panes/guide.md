@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 Panes have a header and a content area. When collapsed, panes are either hidden or reduced to a bar. In our applications, we often include contextual information, options, trees and lists inside panes.

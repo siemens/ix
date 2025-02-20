@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 Split buttons consist of two parts: a button labeled with text and/or an icon on the left and a dropdown button labeled with an icon on the right. We typically use split buttons when a default action is available but more options need to be offered. Split buttons group similar or related actions.

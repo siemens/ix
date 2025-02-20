@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 Application is a technical and infrastructural component without a direct visual appearance. It lays out the top level app elements like [header](../content). Furthermore, it controls the breakpoint handling and the theming of an application.

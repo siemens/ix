@@ -1,7 +1,8 @@
 ## Usage
+
 ### Guidelines
 
-We typically use dropdowns to allow users to select one option from a list. Selecting one of the items in the dropdown performs the action. 
+Dropdown containers allow users to select one option from a list. Selecting one of the items in the dropdown performs the action. 
 
 ![Overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=2353-2278&mode=design&t=OVHeXvLZYLkP2CzN-4)
 

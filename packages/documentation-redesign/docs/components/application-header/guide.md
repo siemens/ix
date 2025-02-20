@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 ![Application header with different options](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1634-56424&mode=design&t=4XzscFw57dE7McUX-11)

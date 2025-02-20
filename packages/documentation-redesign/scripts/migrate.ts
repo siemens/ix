@@ -452,7 +452,6 @@ Object.keys(newDocs).forEach((name) => {
     const file = fs.readFileSync(newDocs[name].indexPath, 'utf-8');
     deprecatedTags = getComponentDeprecatedTags(file);
   }
-  console.log("1", deprecatedTags)
 
   if (newDocs[name].codePath) {
     const file = fs.readFileSync(newDocs[name].codePath, 'utf-8');

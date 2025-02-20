@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 Use the popover news component to present news and information when the application starts like release notes, new app features or marketing-related information. For Siemens applications, provide the information within the [About and legal overlay](../about-and-legal) as well.

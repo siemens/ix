@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 Avatars are visual or textual representations of individual identities, most often used to represent users logged into a system. Identity providers or user management systems usually provide identity information, and the amount of information provided varies from system to system. The avatar component offers different options to handle this.

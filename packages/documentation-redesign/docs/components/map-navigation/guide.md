@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 Map navigation is a combination of infrastructural components that form a layout structure to present map-like content (geographical maps, P&I diagrams or other plans). It is supported by a collapsible context panel and an overlay can temporarily present additional information. Map navigation does not offer all features the [basic navigation](../basic-navigation) offers.  

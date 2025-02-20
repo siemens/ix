@@ -1,4 +1,3 @@
-import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 import Props from './../auto-generated/ix-message-bar/props.md';
 import Events from './../auto-generated/ix-message-bar/events.md';
 import Playground from '@site/src/components/PlaygroundV3';

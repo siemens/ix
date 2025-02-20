@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 The select component supports single or multiple selections and the editable variant allows users to add new items. We typically use select components in forms, filters and settings where users need to choose from predefined options.
@@ -43,7 +44,7 @@ The select component supports single or multiple selections and the editable var
 - **Overflow:**
   - The text in an input field is truncated with the length of the container.
   - On the multiselect, the selected items break into a second line and then show a scrollbar if it extends beyond two lines.
-  - The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item.
+  - The dropdown list is scrollable when the list exceeds the container height. Its width is defined by the longest item. The maximum width of the dropdown list is set to 100% by default. Use the properties `dropdownWidth` and `dropdownMaxWidth` to customize the dimensions.
 - **Alignment:** Selects are always aligned to the left, while right alignment is reserved exclusively for [number inputs](../input-number).
 
 #### States

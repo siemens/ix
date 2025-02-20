@@ -1,4 +1,5 @@
 ## Usage
+
 ### Guidelines
 
 Dropdown buttons are button elements that allow users to select an action from a list of options by clicking on a button and revealing a dropdown. Clicking on one of the exposed options triggers the action. We typically use dropdown buttons when no default action is available. Dropdown buttons typically group similar or related actions.

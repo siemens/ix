@@ -1,7 +1,8 @@
 ## Usage
+
 ### Guidelines
 
-Typically, pills contain a concise label and sometimes an icon. They are not clickable or closable, making them ideal for presenting static information succinctly within an application.
+Pills typically contain a concise label and sometimes an icon. They are not clickable or closable, making them ideal for presenting static information succinctly within an application.
 
 ![Pill overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1377-3110&mode=design&t=ZmcRP4ggXtr8b7vZ-1)
 

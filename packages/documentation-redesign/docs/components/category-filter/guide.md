@@ -1,7 +1,8 @@
 ## Usage
+
 ### Guidelines
 
-The category filter component enhances data navigation and user experience. We typically use a category filter to efficiently navigate large data sets, being particularly useful in scenarios with complex data. The filter also enhances user experience by providing autocomplete suggestions and customizable filter conditions.
+The category filter component enhances data navigation and user experience. We typically use a category filter to efficiently navigate large data sets, and it's particularly useful for complex data scenarios. The filter also enhances the user experience by providing autocomplete suggestions and customizable filter conditions.
 
 ![Category filter overview](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=1799-38402&mode=design&t=hgAA8GogE70JbHHy-1)
 
