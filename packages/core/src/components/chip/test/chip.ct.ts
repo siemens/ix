@@ -58,3 +58,43 @@ test('check inactive class', async ({ mount, page }) => {
   const chip = page.locator('ix-chip');
   await expect(chip).toHaveClass('inactive hydrated');
 });
+
+test('title with text content should be applied when tooltip-text is not set', async ({
+  mount,
+  page,
+}) => {
+  await mount('<ix-chip>Text content</ix-chip>');
+  const chip = page.locator('ix-chip');
+
+  await expect(chip).toHaveAttribute('title', 'Text content');
+});
+
+test('title with text content should be applied when tooltip-text is empty', async ({
+  mount,
+  page,
+}) => {
+  await mount('<ix-chip tooltip-text="">Text content</ix-chip>');
+  const chip = page.locator('ix-chip');
+
+  await expect(chip).toHaveAttribute('title', 'Text content');
+});
+
+test('title with custom text should be applied when tooltip-text is set', async ({
+  mount,
+  page,
+}) => {
+  await mount('<ix-chip tooltip-text="Custom tooltip">Text content</ix-chip>');
+  const chip = page.locator('ix-chip');
+
+  await expect(chip).toHaveAttribute('title', 'Custom tooltip');
+});
+
+test('no title should be applied when tooltip-text is none', async ({
+  mount,
+  page,
+}) => {
+  await mount('<ix-chip tooltip-text="none">Text content</ix-chip>');
+  const chip = page.locator('ix-chip');
+
+  await expect(chip).not.toHaveAttribute('title');
+});

@@ -16,8 +16,8 @@ import { IxPill } from '@siemens/ix-vue';
 <template>
   <IxPill variant="custom" color="white" background="purple">Label</IxPill>
 
-  <IxPill>Label</IxPill>
-  <IxPill outline>Label</IxPill>
+  <IxPill tooltip-text="Custom tooltip text">Label</IxPill>
+  <IxPill tooltip-text="none" outline>Label</IxPill>
   <IxPill class="styled">Label</IxPill>
 
   <IxPill icon="star">Label</IxPill>
@@ -31,9 +31,9 @@ import { IxPill } from '@siemens/ix-vue';
 
   <IxPill variant="alarm" icon="star">Label</IxPill>
   <IxPill variant="alarm" icon="star" class="styled">Label</IxPill>
-  <IxPill variant="alarm" outline alignLeft icon="star" class="styled">
-    Label
-  </IxPill>
+  <IxPill variant="alarm" outline alignLeft icon="star" class="styled"
+    >Label</IxPill
+  >
   <IxPill icon="star" class="styled-ellipsis-4">Label</IxPill>
   <IxPill outline icon="star" class="styled-ellipsis-4">Label</IxPill>
   <IxPill class="styled-ellipsis-3">Label</IxPill>
