@@ -1,11 +1,12 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
@@ -24,7 +25,7 @@ test('should show tooltip by focus', async ({ page, mount }) => {
 
   const input = slider.locator('input');
 
-  const tooltip = page.locator('ix-tooltip').first();
+  const tooltip = slider.locator('ix-tooltip');
   await input.focus();
   await expect(tooltip).toHaveClass(/visible/);
   const left = (await tooltip.locator('dialog').boundingBox())?.x;
@@ -58,7 +59,7 @@ test('should show tooltip while mouse drags slider handle', async ({
   const slider = page.locator('ix-slider');
   await expect(slider).toHaveClass(/hydrated/);
 
-  const tooltip = page.locator('ix-tooltip').first();
+  const tooltip = slider.locator('ix-tooltip');
 
   await expect(tooltip).not.toHaveClass(/visible/);
 
