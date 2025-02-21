@@ -247,28 +247,33 @@ a.menu__link {
   background-color: var(--theme-color-2);
 }
 
-.w-100 {
-  width: 100%;
-}
-
-.h-100 {
-  height: 100%;
-}
-
 .d-flex {
   display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .flex-align-right {
   justify-content: flex-end;
 }
 
-.mt-auto {
-  margin-top: auto;
-}
-
 .bold {
   font-weight: bold;
+}
+
+.ux-writing-guidelines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ux-writing-punctuation {
+  margin-block-end: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .siemens-brand-section {

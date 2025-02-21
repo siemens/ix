@@ -9,6 +9,8 @@
 
 .ApiTable .ApiTable__Headline {
   display: flex;
+  width: 50%;
+  flex: 0 0 auto;
   position: relative;
   align-items: center;
   height: 2.625rem;
@@ -31,11 +33,29 @@
   font: var(--theme-text-l-single);
 }
 
-.ApiTable .row.with--border:not(:last-child) {
+.ApiTable .ApiTable__Row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-block: 1rem;
+}
+
+.ApiTable .ApiTable__Col {
+  flex: 0 0 auto;
+  width: 50%;
+  padding-inline: 0.75rem;
+}
+
+.ApiTable .ApiTable__ColAuto {
+  flex: 0 0 auto;
+  width: auto;
+  padding-inline: 0.75rem;
+}
+
+.ApiTable .ApiTable__Row.with--border:not(:last-child) {
   border-bottom: var(--theme-weak-bdr-2);
 }
 
-.ApiTable > .row:not(:first-child) {
+.ApiTable > .ApiTable__Row:not(:first-child) {
   margin-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -58,4 +78,14 @@
 
 .ApiTable .Attribute {
   margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 48em) {
+  .ApiTable .ApiTable__Col {
+    width: 100%;
+  }
+
+  .ApiTable .ApiTable__Col:first-child {
+    margin-block-end: 0.5rem;
+  }
 }

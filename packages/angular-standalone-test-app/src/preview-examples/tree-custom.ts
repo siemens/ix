@@ -46,8 +46,8 @@ type TreeData = {
       [renderItem]="treeItem"
     ></ix-tree>
     <ng-template #treeItem let-item>
-      <div class="d-flex align-items-center">
-        <ix-icon [name]="item.icon" size="16" class="me-2"></ix-icon>
+      <div style="display: flex; align-items: center">
+        <ix-icon [name]="item.icon" size="16" style="margin-inline-end: 0.5rem;"></ix-icon>
         {{ item.name }}
       </div>
     </ng-template>
