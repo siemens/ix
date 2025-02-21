@@ -22,6 +22,7 @@ import {
   useState,
 } from 'react';
 import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
+import CopyButton from '../UI/CopyButton';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './ColorTable.module.css';
 
@@ -177,6 +178,7 @@ function ColorTable({ children, colorName }) {
           anchorLabel="Direct link to the color"
           right={
             <>
+              <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
               <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
               <ThemeVariantToggle
                 onChangeColorMode={() => setDarkColor(!isDarkColor)}
@@ -217,6 +219,7 @@ function Children() {
         <ColorCircle color={child.rawName}></ColorCircle>
         {child.rawName}
         <code className="p-1 ml-auto">{child.hex}</code>
+        <CopyButton text={`var(--theme-${child.rawName})`}></CopyButton>
       </div>
     </ApiTable.Text>
   ));
