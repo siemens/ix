@@ -29,7 +29,3 @@
 a[href].TagContainer {
   text-decoration: none !important;
 }
-
-div.TagsContainer > .Docs__Tag {
-  margin-right: 0;
-}
