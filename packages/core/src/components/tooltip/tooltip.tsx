@@ -28,7 +28,8 @@ import {
 } from '@stencil/core';
 import { resolveSelector } from '../utils/find-element';
 import { ElementReference } from 'src/components';
-import { makeRef } from '../utils/make-ref';
+import { MakeRef, makeRef } from '../utils/make-ref';
+import { addDisposableEventListenerAsArray } from '../utils/disposable-event-listener';
 
 type ArrowPosition = {
   top?: string;
@@ -56,7 +57,7 @@ export class Tooltip {
   /**
    * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
    */
-  @Prop() for?: ElementReference;
+  @Prop() for?: ElementReference | ElementReference[];
 
   /**
    * Title of the tooltip
@@ -66,7 +67,7 @@ export class Tooltip {
   /**
    * Define if the user can access the tooltip via mouse.
    */
-  @Prop() interactive = false;
+  @Prop() interactive: boolean = false;
 
   /**
    * Initial placement of the tooltip.
@@ -76,29 +77,31 @@ export class Tooltip {
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
   /** @internal */
-  @Prop() showDelay = 0;
+  @Prop() showDelay: number = 0;
 
   /** @internal */
-  @Prop() hideDelay?: number;
+  @Prop() hideDelay: number = 50;
 
   /** @internal */
-  @Prop() animationFrame = false;
+  @Prop() animationFrame: boolean = false;
 
   @Element() hostElement!: HTMLIxTooltipElement;
 
-  @State() private visibleFor?: Element;
+  @State() private visible: boolean = false;
 
   private hideTooltipTimeout?: NodeJS.Timeout;
   private showTooltipTimeout?: NodeJS.Timeout;
+  private visibleFor?: Element;
 
   private disposeAutoUpdate?: () => void;
   private disposeTriggerListener?: () => void;
   private disposeTooltipListener?: () => void;
   private disposeDomChangeListener?: () => void;
 
-  private readonly instance = tooltipInstance++;
+  private readonly instance: number = tooltipInstance++;
 
-  private readonly dialogRef = makeRef<HTMLDialogElement>();
+  private readonly dialogRef: MakeRef<HTMLDialogElement> =
+    makeRef<HTMLDialogElement>();
 
   private get arrowElement(): HTMLElement {
     return this.hostElement.shadowRoot!.querySelector('.arrow')!;
@@ -116,7 +119,7 @@ export class Tooltip {
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.showTooltipTimeout = setTimeout(() => {
-      this.visibleFor = anchorElement;
+      this.setAnchorElement(anchorElement);
       dialog.showPopover();
       this.applyTooltipPosition(anchorElement, dialog);
       this.registerTooltipListener(dialog);
@@ -125,29 +128,35 @@ export class Tooltip {
 
   /** @internal */
   @Method()
-  async hideTooltip(hideDelay?: number): Promise<void> {
+  async hideTooltip(hideDelay: number = this.hideDelay): Promise<void> {
     this.clearTimeouts();
 
-    if (this.hideTooltipTimeout || !this.visibleFor) {
+    if (this.hideTooltipTimeout || !this.visible) {
       return;
     }
 
-    if (this.hideDelay === undefined) {
-      if (hideDelay === undefined) {
-        hideDelay = this.interactive ? 150 : 50;
-      }
-    } else {
-      hideDelay = hideDelay !== 0 ? this.hideDelay : 0;
+    if (this.interactive && hideDelay === 50) {
+      hideDelay = 150;
     }
 
     const dialog = await this.dialogRef.waitForCurrent();
 
     this.hideTooltipTimeout = setTimeout(() => {
-      this.visibleFor = undefined;
+      this.setAnchorElement();
       dialog.hidePopover();
       this.disposeAutoUpdate?.();
       this.disposeTooltipListener?.();
     }, hideDelay);
+  }
+
+  private setAnchorElement(anchorElement?: Element): void {
+    if (!anchorElement) {
+      this.visibleFor = undefined;
+      this.visible = false;
+    } else {
+      this.visibleFor = anchorElement;
+      this.visible = true;
+    }
   }
 
   private computeArrowPosition({
@@ -275,18 +284,41 @@ export class Tooltip {
   }
 
   private async queryAnchorElements(): Promise<Array<HTMLElement> | undefined> {
-    if (typeof this.for === 'string') {
-      return resolveSelector(this.for, this.hostElement);
+    if (this.for) {
+      if (Array.isArray(this.for)) {
+        return this.resolveElements(this.for);
+      } else {
+        return this.resolveElements([this.for]);
+      }
+    }
+  }
+
+  private async resolveElements(
+    references: ElementReference[]
+  ): Promise<Array<HTMLElement> | undefined> {
+    if (references.every((item) => typeof item === 'string')) {
+      const elements = await Promise.all(
+        references.map((selector) =>
+          resolveSelector(selector as string, this.hostElement)
+        )
+      );
+      return elements
+        .flat()
+        .filter((el): el is HTMLElement => el instanceof HTMLElement);
     }
 
-    if (this.for instanceof HTMLElement) {
-      return Promise.resolve([this.for]);
+    if (references.every((item) => item instanceof HTMLElement)) {
+      return Promise.resolve(references as HTMLElement[]);
     }
 
-    if (this.for instanceof Promise) {
-      const element = await this.for;
-      return [element];
+    if (references.every((item) => item instanceof Promise)) {
+      const elements = await Promise.all(references as Promise<HTMLElement>[]);
+      return elements.filter(
+        (el): el is HTMLElement => el instanceof HTMLElement
+      );
     }
+
+    return undefined;
   }
 
   private async registerTriggerListener(): Promise<void> {
@@ -298,92 +330,103 @@ export class Tooltip {
       return;
     }
 
-    const listeners: (() => void)[] = [];
+    const listeners: {
+      element: Element | Window | Document;
+      eventType: string;
+      callback: EventListenerOrEventListenerObject;
+    }[] = [];
+
     triggerElementList.forEach((element) => {
-      const onMouseEnter = () => {
-        this.showTooltip(element);
-      };
-
-      const onMouseLeave = () => {
-        this.hideTooltip();
-      };
-
-      const onFocusIn = () => {
-        this.showTooltip(element);
-      };
-
-      const onFocusOut = () => {
-        this.hideTooltip();
-      };
-
-      element.addEventListener('mouseenter', onMouseEnter);
-      element.addEventListener('mouseleave', onMouseLeave);
-      element.addEventListener('focusin', onFocusIn);
-      element.addEventListener('focusout', onFocusOut);
-
-      listeners.push(() => {
-        element.removeEventListener('mouseenter', onMouseEnter);
-        element.removeEventListener('mouseleave', onMouseLeave);
-        element.removeEventListener('focusin', onFocusIn);
-        element.removeEventListener('focusout', onFocusOut);
-      });
+      listeners.push(
+        ...[
+          {
+            element: element,
+            eventType: 'mouseenter',
+            callback: () => {
+              this.showTooltip(element);
+            },
+          },
+          {
+            element: element,
+            eventType: 'mouseleave',
+            callback: () => {
+              this.hideTooltip();
+            },
+          },
+          {
+            element: element,
+            eventType: 'focus',
+            callback: () => {
+              this.showTooltip(element);
+            },
+          },
+          {
+            element: element,
+            eventType: 'focusout',
+            callback: () => {
+              this.hideTooltip();
+            },
+          },
+        ]
+      );
     });
 
-    this.disposeTriggerListener = () => {
-      listeners.forEach((listener) => listener());
-    };
+    this.disposeTriggerListener = addDisposableEventListenerAsArray(listeners);
   }
 
-  private async registerTooltipListener(
-    dialog: HTMLDialogElement
-  ): Promise<void> {
+  private registerTooltipListener(dialog: HTMLDialogElement): void {
     this.disposeTooltipListener?.();
 
-    const onMouseEnter = () => {
-      if (this.interactive) {
-        this.clearHideTimeout();
-      }
-    };
-
-    const onMouseLeave = () => {
-      this.hideTooltip();
-    };
-
-    const onFocusIn = () => {
-      onMouseEnter();
-    };
-
-    const onFocusOut = () => {
-      onMouseLeave();
-    };
-
-    const onClick = (event: MouseEvent) => {
-      event.stopPropagation();
-    };
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        this.hideTooltip();
-      }
-    };
-
-    dialog.addEventListener('mouseenter', onMouseEnter);
-    dialog.addEventListener('focusin', onFocusIn);
-    dialog.addEventListener('mouseleave', onMouseLeave);
-    dialog.addEventListener('focusout', onFocusOut);
-    dialog.addEventListener('click', onClick);
-
-    document.addEventListener('keydown', onKeyDown);
-
-    this.disposeTooltipListener = () => {
-      dialog.removeEventListener('mouseenter', onMouseEnter);
-      dialog.removeEventListener('focusin', onFocusIn);
-      dialog.removeEventListener('mouseleave', onMouseLeave);
-      dialog.removeEventListener('focusout', onFocusOut);
-      dialog.removeEventListener('click', onClick);
-
-      document.removeEventListener('keydown', onKeyDown);
-    };
+    this.disposeTooltipListener = addDisposableEventListenerAsArray([
+      {
+        element: dialog,
+        eventType: 'mouseenter',
+        callback: () => {
+          if (this.interactive) {
+            this.clearHideTimeout();
+          }
+        },
+      },
+      {
+        element: dialog,
+        eventType: 'focus',
+        callback: () => {
+          if (this.interactive) {
+            this.clearHideTimeout();
+          }
+        },
+      },
+      {
+        element: dialog,
+        eventType: 'mouseleave',
+        callback: () => {
+          this.hideTooltip();
+        },
+      },
+      {
+        element: dialog,
+        eventType: 'focusout',
+        callback: () => {
+          this.hideTooltip();
+        },
+      },
+      {
+        element: dialog,
+        eventType: 'click',
+        callback: (event: Event) => {
+          event.stopPropagation();
+        },
+      },
+      {
+        element: document,
+        eventType: 'keydown',
+        callback: (event: Event) => {
+          if ((event as KeyboardEvent).key === 'Escape') {
+            this.hideTooltip();
+          }
+        },
+      },
+    ]);
   }
 
   private registerDomChangeListener(): void {
@@ -403,30 +446,30 @@ export class Tooltip {
     };
   }
 
-  private clearHideTimeout() {
+  private clearHideTimeout(): void {
     clearTimeout(this.hideTooltipTimeout);
     this.hideTooltipTimeout = undefined;
   }
 
-  private clearShowTimeout() {
+  private clearShowTimeout(): void {
     clearTimeout(this.showTooltipTimeout);
     this.showTooltipTimeout = undefined;
   }
 
-  private clearTimeouts() {
+  private clearTimeouts(): void {
     this.clearHideTimeout();
     this.clearShowTimeout();
   }
 
-  componentWillLoad() {
+  componentWillLoad(): void {
     this.registerTriggerListener();
   }
 
-  componentDidLoad() {
+  componentDidLoad(): void {
     this.registerDomChangeListener();
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     this.clearTimeouts();
 
     this.disposeAutoUpdate?.();
@@ -437,26 +480,26 @@ export class Tooltip {
 
   render() {
     return (
-      <Host role="tooltip" class={{ visible: this.visibleFor !== undefined }}>
+      <Host role="tooltip" class={{ visible: this.visible }}>
         <dialog
           ref={this.dialogRef}
           id={'tooltip-' + this.instance}
           class="dialog"
           popover="manual"
-          inert={this.visibleFor === undefined}
+          inert={!this.visible}
         >
           <div class="tooltip-container">
-            <div class={'tooltip-title'}>
-              <slot name="title-icon"></slot>
-              <ix-typography format="h5">
-                {this.titleContent}
-                <slot name="title-content"></slot>
-              </ix-typography>
-            </div>
-            <div class={'tooltip-content'}>
+            <div class="content-wrapper">
+              <div class={'tooltip-title'}>
+                <slot name="title-icon"></slot>
+                <ix-typography format="h5">
+                  {this.titleContent}
+                  <slot name="title-content"></slot>
+                </ix-typography>
+              </div>
               <slot></slot>
+              <div class="arrow"></div>
             </div>
-            <div class="arrow"></div>
           </div>
         </dialog>
       </Host>

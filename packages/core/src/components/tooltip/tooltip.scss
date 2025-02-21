@@ -32,6 +32,10 @@
   border-radius: 0.25rem;
 }
 
+.content-wrapper {
+  overflow: auto;
+}
+
 .tooltip-title {
   display: flex;
   align-items: center;
@@ -39,10 +43,6 @@
   ::slotted(ix-icon) {
     margin-right: 0.35rem;
   }
-}
-
-.tooltip-content {
-  overflow: auto;
 }
 
 .arrow,
