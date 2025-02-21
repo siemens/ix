@@ -3065,9 +3065,9 @@ export namespace Components {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: ElementReference;
+        "for"?: ElementReference | ElementReference[];
         "hideDelay": number;
-        "hideTooltip": () => Promise<void>;
+        "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
          */
@@ -8400,7 +8400,7 @@ declare namespace LocalJSX {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: ElementReference;
+        "for"?: ElementReference | ElementReference[];
         "hideDelay"?: number;
         /**
           * Define if the user can access the tooltip via mouse.

@@ -1,0 +1,31 @@
+<!--
+SPDX-FileCopyrightText: 2025 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+  </head>
+  <body style="width: 100vw; height: 100vh">
+    <ix-button id="trigger">Open</ix-button>
+    <ix-dropdown trigger="trigger">
+      <ix-dropdown-item
+        label="Item 1"
+        icon="print"
+        id="item1"
+      ></ix-dropdown-item>
+      <ix-tooltip for="[id='item1']" placement="right">Print</ix-tooltip>
+      <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+      <ix-dropdown-item>Custom</ix-dropdown-item>
+    </ix-dropdown>
+    <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
+  </body>
+</html>

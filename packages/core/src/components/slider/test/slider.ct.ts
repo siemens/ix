@@ -1,11 +1,12 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
@@ -26,8 +27,8 @@ test('should show tooltip by focus', async ({ page, mount }) => {
 
   const tooltip = slider.locator('ix-tooltip');
   await input.focus();
-  await expect(tooltip).toBeVisible();
-  const left = (await tooltip.boundingBox())?.x;
+  await expect(tooltip).toHaveClass(/visible/);
+  const left = (await tooltip.locator('dialog').boundingBox())?.x;
 
   if (!left) {
     throw new Error('Tooltip bounding box is x is undefined.');
@@ -37,14 +38,16 @@ test('should show tooltip by focus', async ({ page, mount }) => {
   await input.press('ArrowRight');
 
   await page.waitForTimeout(500);
-  await expect(tooltip).toBeVisible();
-  const leftAfterKeyboardNavigation = (await tooltip.boundingBox())?.x;
+  await expect(tooltip).toHaveClass(/visible/);
+  const leftAfterKeyboardNavigation = (
+    await tooltip.locator('dialog').boundingBox()
+  )?.x;
 
   expect(leftAfterKeyboardNavigation).toBeGreaterThan(left);
 
   await input.blur();
   await page.waitForTimeout(500);
-  await expect(tooltip).not.toBeVisible();
+  await expect(tooltip).not.toHaveClass(/visible/);
 });
 
 test('should show tooltip while mouse drags slider handle', async ({
@@ -58,7 +61,7 @@ test('should show tooltip while mouse drags slider handle', async ({
 
   const tooltip = slider.locator('ix-tooltip');
 
-  await expect(tooltip).not.toBeVisible();
+  await expect(tooltip).not.toHaveClass(/visible/);
 
   const box = await slider.boundingBox();
 
@@ -66,13 +69,13 @@ test('should show tooltip while mouse drags slider handle', async ({
     await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
     await page.mouse.down();
     await page.mouse.move(box.x + box.width / 3, box.y + box.height / 3);
-    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveClass(/visible/);
   } else {
     throw new Error('Slider bounding box is null.');
   }
 
   await page.mouse.up();
-  await expect(tooltip).not.toBeVisible();
+  await expect(tooltip).not.toHaveClass(/visible/);
 });
 
 test('should not change value - prevent default', async ({ page, mount }) => {

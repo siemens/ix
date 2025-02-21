@@ -1,11 +1,12 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
@@ -44,7 +45,7 @@ test('show tooltip', async ({ mount, page }) => {
   // Default tooltip delay is 1000ms waiting another 500 ms
   await page.waitForTimeout(1500);
 
-  await expect(menuItem1.locator('ix-tooltip')).toBeVisible();
+  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
   await expect(menuItem1.locator('ix-tooltip')).toHaveText('Foo bar');
 });
 
@@ -73,6 +74,6 @@ test('update item text', async ({ mount, page }) => {
   // Default tooltip delay is 1000ms waiting another 500 ms
   await page.waitForTimeout(1500);
 
-  await expect(menuItem1.locator('ix-tooltip')).toBeVisible();
+  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
   await expect(menuItem1.locator('ix-tooltip')).toHaveText('Test123');
 });
