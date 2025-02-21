@@ -60,10 +60,9 @@ const ColorContainerFix = forwardRef<
   HTMLDivElement,
   {
     children?: React.ReactNode;
-    theme: string;
-    isDarkColor: boolean;
   }
->(({ children, theme, isDarkColor }, ref) => {
+>(({ children }, ref) => {
+  const { currentTheme: theme, isDarkColor } = useContext(ColorContext);
   const themeContainerRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(ref, () => themeContainerRef.current);
@@ -88,9 +87,9 @@ const ColorContainerFix = forwardRef<
   return <div ref={themeContainerRef}>{children}</div>;
 });
 
-function ColorCircle({ color, theme, isDarkColor }) {
+function ColorCircle({ color }) {
   return (
-    <ColorContainerFix theme={theme} isDarkColor={isDarkColor}>
+    <ColorContainerFix>
       <div
         className={styles.colorCircle}
         style={{ backgroundColor: `var(--theme-${color})` }}
@@ -105,6 +104,8 @@ type Color = {
 };
 
 type ColorContextType = Color & {
+  currentTheme: string;
+  isDarkColor: boolean;
   children: (Color & { rawName: string })[];
 };
 
@@ -112,6 +113,8 @@ const ColorContext = createContext<ColorContextType>({
   name: 'color-primary',
   hex: '#11111',
   children: [],
+  currentTheme: 'brand',
+  isDarkColor: true,
 });
 
 function ColorTable({ children, colorName }) {
@@ -122,6 +125,8 @@ function ColorTable({ children, colorName }) {
     name: 'color-primary',
     hex: '#11111',
     children: [],
+    currentTheme: theme,
+    isDarkColor: isDarkColor,
   });
 
   const themeRef = useRef<HTMLDivElement>();
@@ -156,45 +161,39 @@ function ColorTable({ children, colorName }) {
         name: colorName,
         hex: colorHex,
         children: children,
+        currentTheme: theme,
+        isDarkColor: isDarkColor,
       });
     });
   }, [colorName, isDarkColor, theme]);
 
   return (
     <ApiTable>
-      <ColorContainerFix
-        ref={themeRef}
-        theme={theme}
-        isDarkColor={isDarkColor}
-      ></ColorContainerFix>
-      <AnchorHeader
-        onClick={() => setExpanded(!expanded)}
-        anchorName={`color-${colorName}`}
-        anchorLabel="Direct link to the color"
-        right={
-          <>
-            <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
-            <ThemeVariantToggle
-              onChangeColorMode={() => setDarkColor(!isDarkColor)}
-              isLight={!isDarkColor}
-            />
-          </>
-        }
-      >
-        <div className={styles.colorRow}>
-          <IxIcon
-            name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
-          ></IxIcon>
-          <ColorCircle
-            color={colorName}
-            isDarkColor={isDarkColor}
-            theme={theme}
-          ></ColorCircle>
-          --theme-{colorName}
-        </div>
-      </AnchorHeader>
-
       <ColorContext.Provider value={color}>
+        <ColorContainerFix ref={themeRef}></ColorContainerFix>
+        <AnchorHeader
+          onClick={() => setExpanded(!expanded)}
+          anchorName={`color-${colorName}`}
+          anchorLabel="Direct link to the color"
+          right={
+            <>
+              <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
+              <ThemeVariantToggle
+                onChangeColorMode={() => setDarkColor(!isDarkColor)}
+                isLight={!isDarkColor}
+              />
+            </>
+          }
+        >
+          <div className={styles.colorRow}>
+            <IxIcon
+              name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
+            ></IxIcon>
+            <ColorCircle color={colorName}></ColorCircle>
+            --theme-{colorName}
+          </div>
+        </AnchorHeader>
+
         {expanded && children}
       </ColorContext.Provider>
     </ApiTable>
