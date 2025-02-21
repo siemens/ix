@@ -16,6 +16,8 @@
 @use './overwrite/admonition';
 @use './components/docsLayoutWrapper';
 @use './components/apiTable';
+@use './../../node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css';
+@use './../../node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css';
 
 @tailwind base;
 @tailwind components;
@@ -60,4 +62,12 @@
 
 #__docusaurus {
   background-color: var(--theme-color-1);
+}
+
+.color-table-classic-dark {
+  @extend .theme-classic-dark;
+}
+
+.color-table-classic-light {
+  @extend .theme-classic-light;
 }

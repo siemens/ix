@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.colorCircle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border-width: 0.125rem;
+  border-color: var(--theme-color-soft-bdr);
+  border-style: solid;
+}
+
+.colorRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

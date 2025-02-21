@@ -124,16 +124,20 @@ export function AnchorHeader({
   right,
   anchorName,
   anchorLabel,
+  onClick,
 }: {
   children: React.ReactNode;
   right?: React.ReactNode;
   anchorName: string;
   anchorLabel: string;
+  onClick?: () => void;
 }) {
   return (
     <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
       <div className="flex items-center font-bold">
-        {children}
+        <button onClick={onClick} style={{ all: 'unset' }}>
+          {children}
+        </button>
         <a
           href={`#${anchorName}`}
           className="hash-link"

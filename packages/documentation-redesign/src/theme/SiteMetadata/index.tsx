@@ -35,6 +35,10 @@ export default function SiteMetadataWrapper(props: Props): JSX.Element {
         'data-ix-theme',
         `brand-${variant}`
       );
+
+      setTimeout(() => {
+        document.body.classList.add('theme-placeholder');
+      });
     });
     observer.observe(document.documentElement, {
       attributes: true,

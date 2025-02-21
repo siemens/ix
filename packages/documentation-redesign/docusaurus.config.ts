@@ -15,8 +15,8 @@ const tmpBrandThemeExist = fs.existsSync(
 const theme = tmpBrandThemeExist
   ? ['./src/scss/theme.tmp/ix-brand-theme.css']
   : [
-      './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
-      './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css',
+      // './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
+      // './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css',
     ];
 
 const customCss = [
