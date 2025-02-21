@@ -1,3 +1,5 @@
+import ColorTable from '@site/src/components/ColorTable';
+
 # Colors
 
 All colors are provided as custom properties.
@@ -8,3 +10,7 @@ To access them the `var()` CSS function can be called with the color's name:
   background-color: var(--theme-color-primary);
 }
 ```
+
+<ColorTable colorName="color-primary">
+
+</ColorTable>
