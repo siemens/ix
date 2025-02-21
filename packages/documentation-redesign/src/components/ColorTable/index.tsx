@@ -12,7 +12,15 @@ import {
 } from '@siemens/ix-icons/icons';
 import { IxIcon } from '@siemens/ix-react';
 import ApiTable, { AnchorHeader } from '@site/src/components/ApiTable';
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './ColorTable.module.css';
@@ -48,12 +56,46 @@ function getAllCustomCSSProperties(): Set<string> {
 
 const allCustomCSSProperties: Set<string> = getAllCustomCSSProperties();
 
-function ColorCircle({ color }) {
+const ColorContainerFix = forwardRef<
+  HTMLDivElement,
+  {
+    children?: React.ReactNode;
+    theme: string;
+    isDarkColor: boolean;
+  }
+>(({ children, theme, isDarkColor }, ref) => {
+  const themeContainerRef = useRef<HTMLDivElement>(null);
+
+  useImperativeHandle(ref, () => themeContainerRef.current);
+
+  useEffect(() => {
+    const themeContainer = themeContainerRef.current;
+    if (!themeContainer) {
+      return;
+    }
+
+    if (theme === 'brand') {
+      themeContainer.className = `theme-${theme}-${
+        isDarkColor ? 'dark' : 'light'
+      }`;
+    } else {
+      themeContainer.className = `color-table-${theme}-${
+        isDarkColor ? 'dark' : 'light'
+      }`;
+    }
+  }, [theme, isDarkColor]);
+
+  return <div ref={themeContainerRef}>{children}</div>;
+});
+
+function ColorCircle({ color, theme, isDarkColor }) {
   return (
-    <div
-      className={styles.colorCircle}
-      style={{ backgroundColor: `var(--theme-${color})` }}
-    ></div>
+    <ColorContainerFix theme={theme} isDarkColor={isDarkColor}>
+      <div
+        className={styles.colorCircle}
+        style={{ backgroundColor: `var(--theme-${color})` }}
+      ></div>
+    </ColorContainerFix>
   );
 }
 
@@ -97,21 +139,6 @@ function ColorTable({ children, colorName }) {
   }
 
   useEffect(() => {
-    const themeContainer = themeRef.current;
-    if (!themeContainer) {
-      return;
-    }
-
-    if (theme === 'brand') {
-      themeContainer.className = `theme-${theme}-${
-        isDarkColor ? 'dark' : 'light'
-      }`;
-    } else {
-      themeContainer.className = `color-table-${theme}-${
-        isDarkColor ? 'dark' : 'light'
-      }`;
-    }
-
     setTimeout(() => {
       const name = `--theme-${colorName}`;
       const colorHex = getCustomCSSValue(name);
@@ -135,7 +162,11 @@ function ColorTable({ children, colorName }) {
 
   return (
     <ApiTable>
-      <div ref={themeRef} style={{ display: 'none' }}></div>
+      <ColorContainerFix
+        ref={themeRef}
+        theme={theme}
+        isDarkColor={isDarkColor}
+      ></ColorContainerFix>
       <AnchorHeader
         onClick={() => setExpanded(!expanded)}
         anchorName={`color-${colorName}`}
@@ -154,7 +185,11 @@ function ColorTable({ children, colorName }) {
           <IxIcon
             name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
           ></IxIcon>
-          <ColorCircle color={colorName}></ColorCircle>
+          <ColorCircle
+            color={colorName}
+            isDarkColor={isDarkColor}
+            theme={theme}
+          ></ColorCircle>
           --theme-{colorName}
         </div>
       </AnchorHeader>
