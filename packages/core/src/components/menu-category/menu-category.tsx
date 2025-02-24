@@ -126,6 +126,10 @@ export class MenuCategory {
         this.showItems = true;
         this.showDropdown = false;
       },
+      complete: () => {
+        this.menuItemsContainer!.removeAttribute('max-height');
+        this.setMenuItemsContainerMaxHeight();
+      }
     });
   }
 
@@ -151,7 +155,12 @@ export class MenuCategory {
   }
 
   private onNestedItemsChanged(mutations?: MutationRecord[]) {
+    const oldNestedItemsLength: number = this.nestedItems.length;
     this.nestedItems = this.getNestedItems();
+
+    if (this.showItems && oldNestedItemsLength !== this.nestedItems.length) {
+      this.setMenuItemsContainerMaxHeight();
+    }
 
     if (!this.menuExpand || this.showItems || !mutations) {
       return;
@@ -167,6 +176,12 @@ export class MenuCategory {
         this.onExpandCategory(true);
         return;
       }
+    }
+  }
+
+  private setMenuItemsContainerMaxHeight() {
+    if (this.menuItemsContainer) {
+      this.menuItemsContainer.style.maxHeight = `${this.getNestedItemsHeight() + DefaultIxMenuItemHeight}px`;
     }
   }
 
