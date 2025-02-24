@@ -28,7 +28,7 @@ Below is a table outlining the supported versions for different browsers. **Plea
 <table class="table" >
   <thead>
     <tr>
-      <th scope="col">Stencil Version</th>
+      <th scope="col">iX Version</th>
       <th scope="col">Chrome</th>
       <th scope="col">Edge</th>
       <th scope="col">Firefox</th>
