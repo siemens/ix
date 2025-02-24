@@ -116,8 +116,9 @@ export class Drawer {
 
       if (this.toggle && this.divElement) {
         this.slideOutRight(this.divElement);
-        window.removeEventListener('mousedown', this.callback);
       }
+
+      window.removeEventListener('mousedown', this.callback);
     }
 
     this.toggle = this.show;
