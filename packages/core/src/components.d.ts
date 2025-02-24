@@ -543,10 +543,10 @@ export namespace Components {
          */
         "outline": boolean;
         /**
-          * Optional text to show as a tooltip (title attribute). By default the component text content will be used. Set to 'none' to not show a tooltip.
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
          */
-        "tooltipText"?: string;
+        "tooltipText": string | boolean;
         /**
           * Chip variant
          */
@@ -2337,10 +2337,10 @@ export namespace Components {
          */
         "pillColor": string | undefined;
         /**
-          * Optional text to show as a tooltip (title attribute). By default the component text content will be used. Set to 'none' to not show a tooltip.
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
          */
-        "tooltipText"?: string;
+        "tooltipText": string | boolean;
         /**
           * Pill variant
          */
@@ -5658,10 +5658,10 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
-          * Optional text to show as a tooltip (title attribute). By default the component text content will be used. Set to 'none' to not show a tooltip.
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
          */
-        "tooltipText"?: string;
+        "tooltipText"?: string | boolean;
         /**
           * Chip variant
          */
@@ -7576,10 +7576,10 @@ declare namespace LocalJSX {
          */
         "pillColor"?: string | undefined;
         /**
-          * Optional text to show as a tooltip (title attribute). By default the component text content will be used. Set to 'none' to not show a tooltip.
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
           * @since 3.0.0
          */
-        "tooltipText"?: string;
+        "tooltipText"?: string | boolean;
         /**
           * Pill variant
          */

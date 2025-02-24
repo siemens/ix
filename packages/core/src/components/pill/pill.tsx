@@ -8,8 +8,8 @@
  */
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
-import { determineTooltip } from '../chip/chip.util';
 import { IxComponent } from '../utils/internal';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-pill',
@@ -66,13 +66,15 @@ export class Pill implements IxComponent {
   @Prop() alignLeft = false;
 
   /**
-   * Optional text to show as a tooltip (title attribute).
-   * By default the component text content will be used. Set to 'none' to not show a tooltip.
+   * Display a tooltip. By default, no tooltip will be displayed.
+   * Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
    * @since 3.0.0
    */
-  @Prop() tooltipText?: string;
+  @Prop() tooltipText: string | boolean = false;
 
   @State() iconOnly = false;
+
+  private containerElementRef = makeRef<HTMLElement>();
 
   componentWillLoad() {
     this.checkIfContentAvailable();
@@ -83,6 +85,25 @@ export class Pill implements IxComponent {
     const hasTextContent = !!this.hostElement.textContent;
 
     this.iconOnly = !hasChildren && !hasTextContent;
+  }
+
+  private determineTooltip() {
+    if (typeof this.tooltipText === 'string' && this.tooltipText !== '') {
+      return (
+        <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
+          {this.tooltipText}
+        </ix-tooltip>
+      );
+    } else if (
+      this.tooltipText ||
+      (this.hostElement.hasAttribute('tooltip-text') && this.tooltipText === '')
+    ) {
+      return (
+        <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
+          {this.hostElement.textContent}
+        </ix-tooltip>
+      );
+    }
   }
 
   render() {
@@ -103,12 +124,12 @@ export class Pill implements IxComponent {
               }
             : {}
         }
-        title={determineTooltip(this.tooltipText, this.hostElement.textContent)}
         class={{
           'align-left': this.alignLeft,
         }}
       >
         <div
+          ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{
             container: true,
@@ -139,6 +160,7 @@ export class Pill implements IxComponent {
             <slot onSlotchange={() => this.checkIfContentAvailable()}></slot>
           </span>
         </div>
+        {this.determineTooltip()}
       </Host>
     );
   }
