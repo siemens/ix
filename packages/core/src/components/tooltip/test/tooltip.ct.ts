@@ -190,7 +190,7 @@ test('handles all for input types', async ({ mount, page }) => {
 
     for (let i = 1; i <= 7; i++) {
       const buttons: HTMLIxButtonElement[] = [];
-      const buttonEntries = i > 3 ? (i !== 7 ? 2 : 3) : 1;
+      const buttonEntries = [1, 1, 1, 2, 2, 2, 3][i - 1];
 
       for (let j = 1; j <= buttonEntries; j++) {
         buttons.push(
