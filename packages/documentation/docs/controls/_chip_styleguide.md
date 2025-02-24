@@ -30,7 +30,7 @@ Chip variants:
 - **Icon**: Chips can include an icon within the element which is positioned before the chip's label.
 - **Color**: Customize font and icon color for chip. This allows users to specify a unique font color in combination with a custom background color (only applicable when the variant is set to 'custom').
 - **Width**: Typically content length determines chip width with a minimum width of '2rem'. Chip width can be set to a specific value.
-- **Tooltip text**: The default behavior displays the chip's text content as a tooltip. If a specific text is provided, it will be shown as the tooltip instead. If set to 'none', no tooltip will be displayed.
+- **Tooltip text**: Provide a specific text to be displayed as the tooltip or set the attribute without a specific value to display the chip's text content.
 
 ### Behavior
 
