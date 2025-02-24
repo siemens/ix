@@ -9,6 +9,12 @@
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
 
+declare global {
+  interface Window {
+    submitCount: number;
+  }
+}
+
 test('renders', async ({ mount, page }) => {
   await mount(`<ix-button>Content</ix-button>`);
   const button = page.locator('ix-button');
@@ -58,4 +64,35 @@ test.describe('A11y', () => {
     });
     await expect(button).not.toHaveAttribute('aria-disabled');
   });
+});
+
+test('form can be submitted multiple times', async ({ mount, page }) => {
+  await mount(`
+    <form id="test-form">
+      <input type="text" name="test-input" required minlength="1">
+      <ix-button type="submit">Submit</ix-button>
+    </form>
+  `);
+
+  await page.evaluate(() => {
+    const form = document.getElementById('test-form');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.submitCount = (window.submitCount || 0) + 1;
+    });
+  });
+
+  const button = page.locator('ix-button');
+  const input = page.locator('input[name="test-input"]');
+
+  for (let i = 0; i < 3; i++) {
+    await input.fill('test');
+    await button.click();
+    const submitCount = await page.evaluate(() => window.submitCount);
+    expect(submitCount).toBe(i + 1);
+    await page.waitForTimeout(100);
+  }
+
+  await expect(button).not.toHaveAttribute('disabled');
+  await expect(button).not.toHaveClass(/loading/);
 });

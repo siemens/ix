@@ -17,8 +17,6 @@
   right: 0;
   @include box-shadow(3);
 
-  visibility: hidden;
-
   display: block;
   position: absolute;
   justify-content: flex-start;
@@ -32,9 +30,8 @@
 
   transition: all var(--theme-medium-time) ease-out;
 
-  .toggle {
+  .drawer-container {
     z-index: 100;
-    visibility: visible;
   }
 
   .header {
@@ -60,10 +57,6 @@
     width: 100%;
     overflow-y: auto;
   }
-}
-
-:host(.toggle) {
-  visibility: visible;
 }
 
 :host(.display-none) {

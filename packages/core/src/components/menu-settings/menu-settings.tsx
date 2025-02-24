@@ -50,6 +50,12 @@ export class MenuSettings {
   @Prop() show = false;
 
   /**
+   * Active tab changed
+   * @since 3.0.0
+   */
+  @Event() tabChange!: EventEmitter<string>;
+
+  /**
    * Popover closed
    */
   @Event() close!: EventEmitter<CustomCloseEvent>;

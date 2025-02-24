@@ -194,7 +194,7 @@ export class CategoryFilter {
   }
 
   private onInput() {
-    this.inputValue = this.textInput?.current?.value || '';
+    this.inputValue = this.textInput?.current?.value ?? '';
     const inputState = new InputState(this.inputValue, this.category);
     this.inputChanged.emit(inputState);
 
