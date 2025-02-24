@@ -129,7 +129,7 @@ export class MenuCategory {
       complete: () => {
         this.menuItemsContainer!.removeAttribute('max-height');
         this.setMenuItemsContainerMaxHeight();
-      }
+      },
     });
   }
 
@@ -181,7 +181,9 @@ export class MenuCategory {
 
   private setMenuItemsContainerMaxHeight() {
     if (this.menuItemsContainer) {
-      this.menuItemsContainer.style.maxHeight = `${this.getNestedItemsHeight() + DefaultIxMenuItemHeight}px`;
+      this.menuItemsContainer.style.maxHeight = `${
+        this.getNestedItemsHeight() + DefaultIxMenuItemHeight
+      }px`;
     }
   }
 
