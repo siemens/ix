@@ -17,7 +17,7 @@ import { Component } from '@angular/core';
       <ix-chip icon="print" tooltip-text="Custom tooltip text"
         >Primary with icon</ix-chip
       >
-      <ix-chip icon="print" tooltip-text="none" style="width: 10rem" closable
+      <ix-chip icon="print" tooltip-text style="width: 10rem" closable
         >Primary</ix-chip
       >
 

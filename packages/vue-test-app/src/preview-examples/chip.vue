@@ -19,7 +19,7 @@ import { IxChip } from '@siemens/ix-vue';
     <IxChip icon="print" tooltip-text="Custom tooltip text"
       >Primary with icon</IxChip
     >
-    <IxChip icon="print" tooltip-text="none" closable>Primary</IxChip>
+    <IxChip icon="print" tooltip-text closable>Primary</IxChip>
 
     <IxChip variant="critical" closable outline>Alarm</IxChip>
     <IxChip variant="alarm" icon="print">Alarm with icon</IxChip>

@@ -20,7 +20,7 @@ export default () => {
       <IxChip icon="print" tooltipText="Custom tooltip text">
         Primary with icon
       </IxChip>
-      <IxChip icon="print" tooltipText="none" closable>
+      <IxChip icon="print" tooltipText closable>
         Primary
       </IxChip>
 
