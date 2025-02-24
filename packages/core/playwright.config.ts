@@ -58,7 +58,7 @@ const config: PlaywrightTestConfig = {
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   // eslint-disable-next-line turbo/no-undeclared-env-vars
-  retries: process.env.CI ? 2 : 0,
+  retries: 2,
   /* Opt out of parallel tests on CI. */
   workers: 10,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
