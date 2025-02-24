@@ -59,42 +59,88 @@ test('check inactive class', async ({ mount, page }) => {
   await expect(chip).toHaveClass('inactive hydrated');
 });
 
-test('title with text content should be applied when tooltip-text is not set', async ({
-  mount,
-  page,
-}) => {
-  await mount('<ix-chip>Text content</ix-chip>');
-  const chip = page.locator('ix-chip');
+test.describe('tooltip', () => {
+  test('should not display when tooltip-text attribute is absent', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-chip>Text content</ix-chip>');
+    const chip = page.locator('ix-chip');
+    await chip.hover();
 
-  await expect(chip).toHaveAttribute('title', 'Text content');
-});
+    await expect(chip).not.toHaveAttribute('tooltip-text');
+    expect(chip.locator('ix-tooltip')).not.toBeVisible();
+  });
 
-test('title with text content should be applied when tooltip-text is empty', async ({
-  mount,
-  page,
-}) => {
-  await mount('<ix-chip tooltip-text="">Text content</ix-chip>');
-  const chip = page.locator('ix-chip');
+  test('should display the component text content when tooltip-text attribute is an empty string', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-chip tooltip-text="">Text content</ix-chip>');
+    const chip = page.locator('ix-chip');
+    await chip.hover();
 
-  await expect(chip).toHaveAttribute('title', 'Text content');
-});
+    await expect(chip).toHaveAttribute('tooltip-text', '');
+    const tooltip = chip.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('Text content');
+  });
 
-test('title with custom text should be applied when tooltip-text is set', async ({
-  mount,
-  page,
-}) => {
-  await mount('<ix-chip tooltip-text="Custom tooltip">Text content</ix-chip>');
-  const chip = page.locator('ix-chip');
+  test('should display "false" when tooltip-text attribute is "false"', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-chip tooltip-text="false">Text content</ix-chip>');
+    const chip = page.locator('ix-chip');
+    await chip.hover();
 
-  await expect(chip).toHaveAttribute('title', 'Custom tooltip');
-});
+    await expect(chip).toHaveAttribute('tooltip-text', 'false');
+    const tooltip = chip.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('false');
+  });
 
-test('no title should be applied when tooltip-text is none', async ({
-  mount,
-  page,
-}) => {
-  await mount('<ix-chip tooltip-text="none">Text content</ix-chip>');
-  const chip = page.locator('ix-chip');
+  test('should display "true" when tooltip-text attribute is "true"', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-chip tooltip-text="true">Text content</ix-chip>');
+    const chip = page.locator('ix-chip');
+    await chip.hover();
 
-  await expect(chip).not.toHaveAttribute('title');
+    await expect(chip).toHaveAttribute('tooltip-text', 'true');
+    const tooltip = chip.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('true');
+  });
+
+  test('should display the component text content when tooltip-text attribute is present but no value is set', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-chip tooltip-text>Text content</ix-chip>');
+    const chip = page.locator('ix-chip');
+    await chip.hover();
+
+    await expect(chip).toHaveAttribute('tooltip-text', undefined);
+    const tooltip = chip.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('Text content');
+  });
+
+  test('should display the custom text when tooltip-text attribute is a custom string', async ({
+    mount,
+    page,
+  }) => {
+    await mount(
+      '<ix-chip tooltip-text="custom tooltip text">Text content</ix-chip>'
+    );
+    const chip = page.locator('ix-chip');
+    await chip.hover();
+
+    await expect(chip).toHaveAttribute('tooltip-text', 'custom tooltip text');
+    const tooltip = chip.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('custom tooltip text');
+  });
 });

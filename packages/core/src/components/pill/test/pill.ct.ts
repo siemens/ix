@@ -23,46 +23,90 @@ test.describe('Pill', () => {
 
     await expect(innerContainer).not.toHaveClass(/with-gap/);
   });
+});
 
-  test('title with text content should be applied when tooltip-text is not set', async ({
+test.describe('tooltip', () => {
+  test('should not display when tooltip-text attribute is absent', async ({
     mount,
     page,
   }) => {
     await mount('<ix-pill>Text content</ix-pill>');
     const pill = page.locator('ix-pill');
+    await pill.hover();
 
-    await expect(pill).toHaveAttribute('title', 'Text content');
+    await expect(pill).not.toHaveAttribute('tooltip-text');
+    expect(pill.locator('ix-tooltip')).not.toBeVisible();
   });
 
-  test('title with text content should be applied when tooltip-text is empty', async ({
+  test('should display the component text content when tooltip-text attribute is an empty string', async ({
     mount,
     page,
   }) => {
     await mount('<ix-pill tooltip-text="">Text content</ix-pill>');
     const pill = page.locator('ix-pill');
+    await pill.hover();
 
-    await expect(pill).toHaveAttribute('title', 'Text content');
+    await expect(pill).toHaveAttribute('tooltip-text', '');
+    const tooltip = pill.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('Text content');
   });
 
-  test('title with custom text should be applied when tooltip-text is set', async ({
+  test('should display "false" when tooltip-text attribute is "false"', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-pill tooltip-text="false">Text content</ix-pill>');
+    const pill = page.locator('ix-pill');
+    await pill.hover();
+
+    await expect(pill).toHaveAttribute('tooltip-text', 'false');
+    const tooltip = pill.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('false');
+  });
+
+  test('should display "true" when tooltip-text attribute is "true"', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-pill tooltip-text="true">Text content</ix-pill>');
+    const pill = page.locator('ix-pill');
+    await pill.hover();
+
+    await expect(pill).toHaveAttribute('tooltip-text', 'true');
+    const tooltip = pill.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('true');
+  });
+
+  test('should display the component text content when tooltip-text attribute is present but no value is set', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-pill tooltip-text>Text content</ix-pill>');
+    const pill = page.locator('ix-pill');
+    await pill.hover();
+
+    await expect(pill).toHaveAttribute('tooltip-text', undefined);
+    const tooltip = pill.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('Text content');
+  });
+
+  test('should display the custom text when tooltip-text attribute is a custom string', async ({
     mount,
     page,
   }) => {
     await mount(
-      '<ix-pill tooltip-text="Custom tooltip">Text content</ix-pill>'
+      '<ix-pill tooltip-text="custom tooltip text">Text content</ix-pill>'
     );
     const pill = page.locator('ix-pill');
+    await pill.hover();
 
-    await expect(pill).toHaveAttribute('title', 'Custom tooltip');
-  });
-
-  test('no title should be applied when tooltip-text is none', async ({
-    mount,
-    page,
-  }) => {
-    await mount('<ix-pill tooltip-text="none">Text content</ix-pill>');
-    const pill = page.locator('ix-pill');
-
-    await expect(pill).not.toHaveAttribute('title');
+    await expect(pill).toHaveAttribute('tooltip-text', 'custom tooltip text');
+    const tooltip = pill.locator('ix-tooltip');
+    expect(tooltip).toBeVisible();
+    expect(tooltip).toHaveText('custom tooltip text');
   });
 });
