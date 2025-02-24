@@ -283,7 +283,7 @@ export class Tooltip {
     });
   }
 
-  private async queryAnchorElements(): Promise<Array<HTMLElement> | undefined> {
+  private async queryAnchorElements(): Promise<HTMLElement[] | undefined> {
     if (this.for) {
       if (Array.isArray(this.for)) {
         return this.resolveElements(this.for);
@@ -295,30 +295,29 @@ export class Tooltip {
 
   private async resolveElements(
     references: ElementReference[]
-  ): Promise<Array<HTMLElement> | undefined> {
-    if (references.every((item) => typeof item === 'string')) {
-      const elements = await Promise.all(
-        references.map((selector) =>
-          resolveSelector(selector as string, this.hostElement)
-        )
-      );
-      return elements
-        .flat()
-        .filter((el): el is HTMLElement => el instanceof HTMLElement);
-    }
+  ): Promise<HTMLElement[]> {
+    const elements: HTMLElement[] = [];
 
-    if (references.every((item) => item instanceof HTMLElement)) {
-      return Promise.resolve(references as HTMLElement[]);
-    }
+    await Promise.all(
+      references.map(async (reference) => {
+        if (typeof reference === 'string') {
+          const resolvedElements = await resolveSelector(
+            reference,
+            this.hostElement
+          );
 
-    if (references.every((item) => item instanceof Promise)) {
-      const elements = await Promise.all(references as Promise<HTMLElement>[]);
-      return elements.filter(
-        (el): el is HTMLElement => el instanceof HTMLElement
-      );
-    }
+          if (resolvedElements) {
+            elements.push(...resolvedElements);
+          }
+        } else if (reference instanceof HTMLElement) {
+          elements.push(reference);
+        } else if (reference instanceof Promise) {
+          elements.push(await reference);
+        }
+      })
+    );
 
-    return undefined;
+    return elements;
   }
 
   private async registerTriggerListener(): Promise<void> {

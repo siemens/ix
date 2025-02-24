@@ -9,6 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { test } from '@utils/test';
+import { ElementReference } from 'src/components/utils/element-reference';
 
 test('renders', async ({ mount, page }) => {
   await mount(`
@@ -164,16 +165,20 @@ test('handles all for input types', async ({ mount, page }) => {
       <ix-tooltip id="tooltip4">tooltip4</ix-tooltip>
       <ix-tooltip id="tooltip5">tooltip5</ix-tooltip>
       <ix-tooltip id="tooltip6">tooltip6</ix-tooltip>
+      <ix-tooltip id="tooltip7">tooltip7</ix-tooltip>
 
       <ix-button id="button1-1">button1</ix-button>
       <ix-button id="button2-1">button2</ix-button>
       <ix-button id="button3-1">button3</ix-button>
-      <ix-button id="button4-1">button4</ix-button>
-      <ix-button id="button4-2">button5</ix-button>
-      <ix-button id="button5-1">button6</ix-button>
-      <ix-button id="button5-2">button7</ix-button>
-      <ix-button id="button6-1">button8</ix-button>
-      <ix-button id="button6-2">button9</ix-button>
+      <ix-button id="button4-1">button4-1</ix-button>
+      <ix-button id="button4-2">button4-2</ix-button>
+      <ix-button id="button5-1">button5-1</ix-button>
+      <ix-button id="button5-2">button5-2</ix-button>
+      <ix-button id="button6-1">button6-1</ix-button>
+      <ix-button id="button6-2">button6-2</ix-button>
+      <ix-button id="button7-1">button7-1</ix-button>
+      <ix-button id="button7-2">button7-2</ix-button>
+      <ix-button id="button7-3">button7-3</ix-button>
     </div>
   `);
 
@@ -183,9 +188,9 @@ test('handles all for input types', async ({ mount, page }) => {
       buttons: HTMLIxButtonElement[];
     }[] = [];
 
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 7; i++) {
       const buttons: HTMLIxButtonElement[] = [];
-      const buttonEntries = i > 3 ? 2 : 1;
+      const buttonEntries = i > 3 ? (i !== 7 ? 2 : 3) : 1;
 
       for (let j = 1; j <= buttonEntries; j++) {
         buttons.push(
@@ -223,14 +228,30 @@ test('handles all for input types', async ({ mount, page }) => {
       }
     };
 
+    const getMixture = (buttons: HTMLIxButtonElement[]) => {
+      const references: ElementReference[] = [];
+      buttons.forEach((button, index) => {
+        if (index === 0) {
+          references.push('#' + button.id);
+        } else if (index === 1) {
+          references.push(button);
+        } else {
+          references.push(Promise.resolve(button));
+        }
+      });
+      return references;
+    };
+
     let count = 1;
     for (const { tooltip, buttons } of map) {
       if (count === 1 || count === 4) {
         tooltip.for = getString(buttons);
       } else if (count === 2 || count === 5) {
         tooltip.for = getElement(buttons);
-      } else {
+      } else if (count === 3 || count === 6) {
         tooltip.for = getPromise(buttons);
+      } else {
+        tooltip.for = getMixture(buttons);
       }
 
       count++;
