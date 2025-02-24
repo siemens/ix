@@ -28,7 +28,7 @@ Below is a table outlining the supported versions for different browsers. **Plea
 <table class="table" >
   <thead>
     <tr>
-      <th scope="col">iX Version</th>
+      <th scope="col">Version</th>
       <th scope="col">Chrome</th>
       <th scope="col">Edge</th>
       <th scope="col">Firefox</th>
@@ -39,7 +39,7 @@ Below is a table outlining the supported versions for different browsers. **Plea
   </thead>
   <tbody>
     <tr>
-      <th scope="row">V2</th>
+      <th scope="row">v2.0.0</th>
       <td>v79+</td>
       <td>v79+</td>
       <td>v70+</td>
