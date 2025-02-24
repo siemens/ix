@@ -15,6 +15,7 @@ import fs from 'fs';
 import versionDeployment from './version-deployment.json' with { type: 'json '};
 import type { NormalizedSidebarItem, SidebarItemConfig, SidebarItemsGeneratorArgs } from '@docusaurus/plugin-content-docs/lib/sidebars/types';
 
+// Copied from https://github.com/THEOplayer/documentation/blob/f4dd44ed1fea8f0c58fc95a51982bfd8af584227/src/plugin/sidebarItemsGenerator.ts#L3
 interface PostProcessArgs extends Omit<SidebarItemsGeneratorArgs, 'item'> {
   item: NormalizedSidebarItem & {
     customProps?: {
@@ -27,6 +28,7 @@ interface PostProcessArgs extends Omit<SidebarItemsGeneratorArgs, 'item'> {
   };
 }
 
+// Copied from https://github.com/THEOplayer/documentation/blob/f4dd44ed1fea8f0c58fc95a51982bfd8af584227/src/plugin/sidebarItemsGenerator.ts#L15
 async function postProcess({ item, ...args }: PostProcessArgs) {
   if (item.type === 'category') {
     // Recurse through children
@@ -46,6 +48,8 @@ async function postProcess({ item, ...args }: PostProcessArgs) {
   }
 }
 
+// Docusaurus issue explaining custom generator: https://github.com/facebook/docusaurus/issues/5689#issuecomment-2034815211
+// Copied from https://github.com/THEOplayer/documentation/blob/f4dd44ed1fea8f0c58fc95a51982bfd8af584227/src/plugin/sidebarItemsGenerator.ts#L34
 export default async function sidebarItemsGenerator({ defaultSidebarItemsGenerator, item, ...args }: SidebarItemsGeneratorArgs) {
   const sidebarItems = await defaultSidebarItemsGenerator({ item, ...args });
   for (const item of sidebarItems) {
