@@ -18,7 +18,37 @@ The classic theme is the default that can be utilized by any application, includ
 </Accordion>
 
 <Accordion title="Which browsers are supported?" id="vendor-support">
-Although our design system can be used with any modern browser, we recommend Chrome for the best user experience.
+Our design system is compatible with most modern browsers, ensuring broad accessibility and functionality across platforms. 
+Although we aim to provide a smooth experience across all browsers, we recommend using **Google Chrome** for optimal performance and full feature support. 
+  
+In addition to Chrome, the design system is also compatible with other popular browsers such as Microsoft Edge, Firefox, and Safari.
+However, users of older or less common browsers may experience limited functionality, as our system may rely on features that are not supported or have partial support in certain versions.
+  
+Below is a table outlining the supported versions for different browsers. **Please note that these browser versions are not officially tested**:
+<table class="table" >
+  <thead>
+    <tr>
+      <th scope="col">Stencil Version</th>
+      <th scope="col">Chrome</th>
+      <th scope="col">Edge</th>
+      <th scope="col">Firefox</th>
+      <th scope="col">Safari</th>
+      <th scope="col">Internet Explorer</th>
+      <th scope="col">Pre-Chromium Edge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">V2</th>
+      <td>v79+</td>
+      <td>v79+</td>
+      <td>v70+</td>
+      <td>v14+</td>
+      <td>❌</td>
+      <td>❌</td>
+    </tr>
+  </tbody>
+</table>
 </Accordion>
 
 <Accordion title="Which device types are supported?" id="device-type-support">
