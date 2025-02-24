@@ -76,7 +76,6 @@ export class Drawer {
 
   @Watch('show')
   onShowChanged(newValue: boolean, oldValue?: boolean) {
-    console.log('show changed', newValue, oldValue);
     if (newValue === oldValue) {
       return;
     }
@@ -100,10 +99,8 @@ export class Drawer {
       }
 
       this.show = true;
-      if (!this.toggle) {
-        if (this.divElement) {
-          this.slideInRight(this.divElement);
-        }
+      if (!this.toggle && this.divElement) {
+        this.slideInRight(this.divElement);
         setTimeout(() => {
           window.addEventListener('mousedown', this.callback);
         }, Drawer.duration);
@@ -117,10 +114,8 @@ export class Drawer {
 
       this.show = false;
 
-      if (this.toggle) {
-        if (this.divElement) {
-          this.slideOutRight(this.divElement);
-        }
+      if (this.toggle && this.divElement) {
+        this.slideOutRight(this.divElement);
         window.removeEventListener('mousedown', this.callback);
       }
     }
