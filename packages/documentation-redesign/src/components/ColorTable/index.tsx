@@ -25,6 +25,8 @@ import ThemeSelection, { useDefaultTheme } from '../UI/ThemeSelection';
 import CopyButton from '../UI/CopyButton';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './ColorTable.module.css';
+import clsx from 'clsx';
+import { useLocation } from '@docusaurus/router';
 
 function capitalizeFirstLetter(input: string): string {
   if (input.length === 0) return input;
@@ -119,9 +121,14 @@ const ColorContext = createContext<ColorContextType>({
 });
 
 function ColorTable({ children, colorName }) {
+  const location = useLocation();
+
   const [theme, setTheme] = useState(useDefaultTheme());
   const [isDarkColor, setDarkColor] = useState(true);
-  const [expanded, setExpanded] = useState(false);
+
+  const [expanded, setExpanded] = useState(
+    location.hash === `#color-${colorName}`
+  );
   const [color, setColor] = useState<ColorContextType>({
     name: 'color-primary',
     hex: '#11111',
@@ -169,7 +176,7 @@ function ColorTable({ children, colorName }) {
   }, [colorName, isDarkColor, theme]);
 
   return (
-    <ApiTable>
+    <ApiTable id={`color-${colorName}`}>
       <ColorContext.Provider value={color}>
         <ColorContainerFix ref={themeRef}></ColorContainerFix>
         <AnchorHeader
@@ -214,14 +221,18 @@ function Hex() {
 function Children() {
   const color = useContext(ColorContext);
   return color.children?.map((child) => (
-    <ApiTable.Text name={child.name} key={child.name + '_' + child.hex}>
-      <div className={styles.colorRow}>
-        <ColorCircle color={child.rawName}></ColorCircle>
-        {child.rawName}
-        <code className="p-1 ml-auto">{child.hex}</code>
-        <CopyButton text={`var(--theme-${child.rawName})`}></CopyButton>
+    <ColorTable.Text name={child.name} key={child.name + '_' + child.hex}>
+      <div className={clsx(styles.colorRow)}>
+        <div className={clsx(styles.colorColumn, styles.colorColumnChildName)}>
+          <ColorCircle color={child.rawName}></ColorCircle>
+          {child.rawName}
+          <code className="p-1 ml-auto">{child.hex}</code>
+        </div>
+        <div className={clsx(styles.colorColumn, styles.colorColumnCopy)}>
+          <CopyButton text={`var(--theme-${child.rawName})`}></CopyButton>
+        </div>
       </div>
-    </ApiTable.Text>
+    </ColorTable.Text>
   ));
 }
 
@@ -234,7 +245,18 @@ function ColorTableWithChildren({ colorName }) {
   );
 }
 
-ColorTable.Text = ApiTable.Text;
+function Text({ children, name }) {
+  return (
+    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+      <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
+        {name}
+      </div>
+      <div className="w-auto">{children}</div>
+    </div>
+  );
+}
+
+ColorTable.Text = Text;
 ColorTable.Hex = Hex;
 ColorTable.Children = Children;
 

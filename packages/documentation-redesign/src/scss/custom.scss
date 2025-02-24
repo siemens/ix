@@ -71,3 +71,16 @@
 .color-table-classic-light {
   @extend .theme-classic-light;
 }
+
+[id]::before {
+  content: '';
+  display: block;
+  height: 15rem;
+  margin-top: -15rem;
+  visibility: hidden;
+}
+
+ix-tooltip {
+  // Increase z-index to make sure it is displayed on top of the sidebar
+  z-index: 9999;
+}

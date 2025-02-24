@@ -20,4 +20,47 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  height: 100%;
 }
+
+.colorChildRow {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.colorColumn {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: auto;
+  height: 100%;
+
+  padding-right: 1rem;
+  border-right: 1px solid var(--theme-color-soft-bdr);
+}
+
+.colorColumnChildName {
+  width: 100%;
+}
+
+.colorColumnCopy {
+  border-right: none;
+  width: fit-content;
+}
+
+/**
+*
+        <div className={clsx(styles.colorColumn)}>
+          <ColorCircle color={child.rawName}></ColorCircle>
+          {child.rawName}
+          <code className="p-1 ml-auto">{child.hex}</code>
+        </div>
+        <div className={clsx(styles.colorColumn, styles.colorColumnCopy)}>
+          <CopyButton text={`var(--theme-${child.rawName})`}></CopyButton>
+        </div>
+      </div>
+*
+**/
