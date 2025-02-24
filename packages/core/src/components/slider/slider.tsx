@@ -157,13 +157,20 @@ export class Slider {
     const value = parseFloat(this.slider.value);
 
     if (!isNaN(value)) {
+      const oldValue = this.rangeInput;
       this.rangeInput = value;
-      this.emitInputEvent();
+
+      const { defaultPrevented } = this.emitInputEvent();
+
+      if (defaultPrevented) {
+        this.rangeInput = oldValue;
+        this.slider.value = oldValue.toString();
+      }
     }
   }
 
   private emitInputEvent() {
-    this.valueChange.emit(this.rangeInput);
+    return this.valueChange.emit(this.rangeInput);
   }
 
   private isMarkerActive(markerValue: number) {

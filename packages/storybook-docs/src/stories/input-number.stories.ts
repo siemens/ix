@@ -14,7 +14,7 @@ import { html } from 'lit';
 type Element = Components.IxNumberInput;
 
 const meta = {
-  title: 'Example/Input',
+  title: 'Example/Input/Number',
   tags: [],
   render: (args) => genericRender('ix-number-input', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-number-input', {}),
@@ -29,16 +29,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
-export const Number: Story = {
-  args: {
-    value: 1337,
-    showStepperButtons: true,
-  },
-};
-
 export const Default: Story = {
-  args: {
-  },
+  args: {},
 };
 
 export const toggleNumberInput: Story = {
@@ -71,5 +63,12 @@ export const toggleNumberInput: Story = {
   args: {
     value: 0,
     showStepperButtons: true,
+  },
+};
+
+export const Required: Story = {
+  args: {
+    required: true,
+    label: 'Required',
   },
 };

@@ -14,6 +14,12 @@ export type ClassMutationObserver = {
   destroy: () => void;
 };
 
+export async function isTouched<T>(host: IxFormComponent<T>) {
+  if (typeof host.isTouched === 'function') {
+    return host.isTouched();
+  }
+}
+
 export async function shouldSuppressInternalValidation<T>(
   host: IxFormComponent<T>
 ) {
@@ -113,8 +119,9 @@ export function HookValidationLifecycle(options?: {
 
         if (host.hasValidValue && typeof host.hasValidValue === 'function') {
           const hasValue = await host.hasValidValue();
+          const touched = await isTouched(host);
           if (host.required) {
-            host.classList.toggle('ix-invalid--required', !hasValue);
+            host.classList.toggle('ix-invalid--required', !hasValue && touched);
           } else {
             host.classList.remove('ix-invalid--required');
           }
@@ -134,6 +141,7 @@ export function HookValidationLifecycle(options?: {
       };
 
       host.addEventListener('valueChange', checkIfRequiredFunction);
+      host.addEventListener('ixBlur', checkIfRequiredFunction);
       setTimeout(checkIfRequiredFunction);
       return connectedCallback?.call(this);
     };
@@ -165,6 +173,7 @@ export function HookValidationLifecycle(options?: {
 
       if (host && checkIfRequiredFunction) {
         host.removeEventListener('valueChange', checkIfRequiredFunction);
+        host.removeEventListener('ixBlur', checkIfRequiredFunction);
       }
 
       return disconnectedCallback?.call(this);

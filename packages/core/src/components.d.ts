@@ -783,6 +783,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns whether the text field has been touched.
+         */
+        "isTouched": () => Promise<boolean>;
+        /**
           * label of the input field
          */
         "label"?: string;
@@ -1360,6 +1364,11 @@ export namespace Components {
          */
         "height": number | 'auto';
         /**
+          * Index of the currently visible content
+          * @since 3.0.0
+         */
+        "index": number;
+        /**
           * Variation of the Flip
          */
         "state"?: FlipTileState;
@@ -1590,6 +1599,10 @@ export namespace Components {
           * The error text for the text field.
          */
         "invalidText"?: string;
+        /**
+          * Returns whether the text field has been touched.
+         */
+        "isTouched": () => Promise<boolean>;
         /**
           * The label for the text field.
          */
@@ -2159,6 +2172,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Returns true if the input field has been touched
+         */
+        "isTouched": () => Promise<boolean>;
+        /**
           * The label for the input field
          */
         "label"?: string;
@@ -2533,6 +2550,10 @@ export namespace Components {
          */
         "invalidText"?: string;
         /**
+          * Check if the input field has been touched.
+         */
+        "isTouched": () => Promise<boolean>;
+        /**
           * Label for the select component
           * @since 2.6.0
          */
@@ -2795,6 +2816,10 @@ export namespace Components {
           * The error text for the textarea field.
          */
         "invalidText"?: string;
+        /**
+          * Check if the textarea field has been touched.
+         */
+        "isTouched": () => Promise<boolean>;
         /**
           * The label for the textarea field.
          */
@@ -3323,6 +3348,10 @@ export interface IxExpandingSearchCustomEvent<T> extends CustomEvent<T> {
 export interface IxFilterChipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxFilterChipElement;
+}
+export interface IxFlipTileCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxFlipTileElement;
 }
 export interface IxGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -4071,7 +4100,18 @@ declare global {
         prototype: HTMLIxFilterChipElement;
         new (): HTMLIxFilterChipElement;
     };
+    interface HTMLIxFlipTileElementEventMap {
+        "toggle": number;
+    }
     interface HTMLIxFlipTileElement extends Components.IxFlipTile, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxFlipTileElementEventMap>(type: K, listener: (this: HTMLIxFlipTileElement, ev: IxFlipTileCustomEvent<HTMLIxFlipTileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxFlipTileElementEventMap>(type: K, listener: (this: HTMLIxFlipTileElement, ev: IxFlipTileCustomEvent<HTMLIxFlipTileElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIxFlipTileElement: {
         prototype: HTMLIxFlipTileElement;
@@ -4276,6 +4316,8 @@ declare global {
         "expandChange": boolean;
         "mapExpandChange": boolean;
         "openAppSwitch": void;
+        "openSettings": void;
+        "openAbout": void;
     }
     interface HTMLIxMenuElement extends Components.IxMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxMenuElementEventMap>(type: K, listener: (this: HTMLIxMenuElement, ev: IxMenuCustomEvent<HTMLIxMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -4292,6 +4334,7 @@ declare global {
         new (): HTMLIxMenuElement;
     };
     interface HTMLIxMenuAboutElementEventMap {
+        "tabChange": string;
         "close": CustomCloseEvent;
     }
     interface HTMLIxMenuAboutElement extends Components.IxMenuAbout, HTMLStencilElement {
@@ -4410,6 +4453,7 @@ declare global {
         new (): HTMLIxMenuItemElement;
     };
     interface HTMLIxMenuSettingsElementEventMap {
+        "tabChange": string;
         "close": CustomCloseEvent;
     }
     interface HTMLIxMenuSettingsElement extends Components.IxMenuSettings, HTMLStencilElement {
@@ -6528,6 +6572,16 @@ declare namespace LocalJSX {
          */
         "height"?: number | 'auto';
         /**
+          * Index of the currently visible content
+          * @since 3.0.0
+         */
+        "index"?: number;
+        /**
+          * Event emitted when the index changes
+          * @since 3.0.0
+         */
+        "onToggle"?: (event: IxFlipTileCustomEvent<number>) => void;
+        /**
           * Variation of the Flip
          */
         "state"?: FlipTileState;
@@ -7011,10 +7065,20 @@ declare namespace LocalJSX {
          */
         "onMapExpandChange"?: (event: IxMenuCustomEvent<boolean>) => void;
         /**
+          * Event emitted when the about button is clicked
+          * @since 3.0.0
+         */
+        "onOpenAbout"?: (event: IxMenuCustomEvent<void>) => void;
+        /**
           * Event emitted when the app switch button is clicked
           * @since 3.0.0
          */
         "onOpenAppSwitch"?: (event: IxMenuCustomEvent<void>) => void;
+        /**
+          * Event emitted when the settings button is clicked
+          * @since 3.0.0
+         */
+        "onOpenSettings"?: (event: IxMenuCustomEvent<void>) => void;
         /**
           * Menu stays pinned to the left
          */
@@ -7046,6 +7110,11 @@ declare namespace LocalJSX {
           * About and Legal closed
          */
         "onClose"?: (event: IxMenuAboutCustomEvent<CustomCloseEvent>) => void;
+        /**
+          * Active tab changed
+          * @since 3.0.0
+         */
+        "onTabChange"?: (event: IxMenuAboutCustomEvent<string>) => void;
         /**
           * Internal
          */
@@ -7227,6 +7296,11 @@ declare namespace LocalJSX {
           * Popover closed
          */
         "onClose"?: (event: IxMenuSettingsCustomEvent<CustomCloseEvent>) => void;
+        /**
+          * Active tab changed
+          * @since 3.0.0
+         */
+        "onTabChange"?: (event: IxMenuSettingsCustomEvent<string>) => void;
         /**
           * Internal
          */

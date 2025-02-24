@@ -66,3 +66,21 @@ test('should dispatch items count change', async ({ mount, page }) => {
   await expect(pagination).toHaveClass(/hydrated/);
   expect(await itemChanged).toBe(40);
 });
+
+test('should not change page', async ({ mount, page }) => {
+  await mount(`
+    <ix-pagination count="10">
+    </ix-pagination>
+  `);
+  const pagination = page.locator('ix-pagination');
+
+  await pagination.evaluate((elm) => {
+    elm.addEventListener('pageSelected', (event) => event.preventDefault());
+  });
+
+  const buttons = pagination.locator('button');
+  await buttons.nth(1).click();
+
+  await expect(buttons.first()).toHaveAttribute('aria-pressed', 'true');
+  await expect(buttons.nth(1)).toHaveAttribute('aria-pressed', 'false');
+});

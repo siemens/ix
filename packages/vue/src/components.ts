@@ -547,7 +547,9 @@ export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-
 export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', defineIxFlipTile, [
   'state',
   'height',
-  'width'
+  'width',
+  'index',
+  'toggle'
 ]);
 
 
@@ -732,7 +734,9 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', defin
   'i18nCollapse',
   'expandChange',
   'mapExpandChange',
-  'openAppSwitch'
+  'openAppSwitch',
+  'openSettings',
+  'openAbout'
 ]);
 
 
@@ -740,6 +744,7 @@ export const IxMenuAbout = /*@__PURE__*/ defineContainer<JSX.IxMenuAbout>('ix-me
   'activeTabLabel',
   'label',
   'show',
+  'tabChange',
   'close'
 ]);
 
@@ -805,6 +810,7 @@ export const IxMenuSettings = /*@__PURE__*/ defineContainer<JSX.IxMenuSettings>(
   'activeTabLabel',
   'label',
   'show',
+  'tabChange',
   'close'
 ]);
 
