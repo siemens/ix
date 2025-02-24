@@ -29,6 +29,9 @@ body {
   --ifm-menu-color: var(--theme-color-std-text);
   --ifm-navbar-link-color: var(--theme-color-std-text);
   --ifm-code-background: var(--theme-color-2);
+  --ifm-code-border-radius: 0px;
+  --ifm-code-font-size: var(--theme-ms-1);
+  --ifm-code-font-family: (JetBrainsMono, Courier New, monospace);
   --ifm-pre-background: var(--theme-color-1);
   --ifm-color-emphasis-200: var(--theme-color-2);
   --ifm-color-content: var(--theme-color-std-text);
@@ -39,8 +42,11 @@ body {
   --ifm-leading: calc(var(--ifm-leading-desktop) * 1rem);
   --ifm-hr-background-color: var(--theme-color-contrast-text);
   --ifm-hr-height: 0.125rem;
-  --ifm-code-border-radius: 0px;
   --bs-alert-bg: var(--theme-color-alarm) !important;
+}
+
+code {
+  font-size: var(--ifm-code-font-size) !important;
 }
 
 .theme-admonition-note {
