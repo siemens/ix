@@ -136,7 +136,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Digital ID
 
-- © Siemens AG 20XX
+- © Siemens 20XX
 
 <span>
 <Guideline do={false} label='V1'></Guideline>
