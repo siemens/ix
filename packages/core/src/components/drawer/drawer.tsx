@@ -158,7 +158,7 @@ export class Drawer {
 
   private slideOutRight(el: HTMLElement) {
     const initialWidth = `${this.getConstrainedWidth(
-      this.width === 'auto' ? this.minWidth : this.width,
+      this.width === 'auto' ? this.minWidth : this.width
     )}rem`;
 
     anime({
@@ -175,7 +175,7 @@ export class Drawer {
 
   private slideInRight(el: HTMLElement) {
     const targetWidth = `${this.getConstrainedWidth(
-      this.width === 'auto' ? this.minWidth : this.width,
+      this.width === 'auto' ? this.minWidth : this.width
     )}rem`;
 
     anime({
