@@ -365,6 +365,7 @@ Object.keys(newDocs).forEach((name) => {
     tabs.push('Code');
     codeFile = fs.readFileSync(codePath, 'utf-8');
     codeFile = codeFile.replace(/^# [^\n]*\n/gm, '');
+    codeFile = codeFile.replace(/#{1,4} Examples/g, '');
     codeFile = codeFile.replace(/import DocsTabs.*;\n/gm, '');
     codeFile = codeFile.replace(/<Playground(.*?)(\/>)/g, '<Playground$1></Playground>');
     const patchCodeMarkdown = /<Playground.*?name="([^"]+)".*?<\/Playground>/gms;
