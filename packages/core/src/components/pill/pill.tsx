@@ -74,7 +74,7 @@ export class Pill implements IxComponent {
 
   @State() iconOnly = false;
 
-  private containerElementRef = makeRef<HTMLElement>();
+  private readonly containerElementRef = makeRef<HTMLElement>();
 
   componentWillLoad() {
     this.checkIfContentAvailable();

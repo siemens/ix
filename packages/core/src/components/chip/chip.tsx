@@ -95,7 +95,7 @@ export class Chip {
    */
   @Event() closeChip!: EventEmitter;
 
-  private containerElementRef = makeRef<HTMLElement>();
+  private readonly containerElementRef = makeRef<HTMLElement>();
 
   private getCloseButton() {
     return (
