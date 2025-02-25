@@ -73,10 +73,6 @@ function EventHeader({ children, name }: ApiTableProps) {
     eventName = `on${name.charAt(0).toUpperCase()}${name.slice(1)}`;
   }
 
-  if (framework === 'vue') {
-    eventName = `@${name}`;
-  }
-
   return (
     <PropertyHeader name={eventName} type="event">
       {children}
