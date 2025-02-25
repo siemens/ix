@@ -4,7 +4,7 @@ sidebar_title: Logical
 title: Logical
 ---
 
-import Separator from '@site/src/components/separator/Separator';
+import Separator from '@site/src/components/Separator';
 
 Commands guide users through tasks logically and intuitively to remove doubt.
 
