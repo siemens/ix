@@ -35,7 +35,7 @@ test.describe('tooltip', () => {
     await pill.hover();
 
     await expect(pill).not.toHaveAttribute('tooltip-text');
-    expect(pill.locator('ix-tooltip')).not.toBeVisible();
+    await expect(pill.locator('ix-tooltip')).not.toBeVisible();
   });
 
   test('should display the component text content when tooltip-text attribute is an empty string', async ({
@@ -48,8 +48,8 @@ test.describe('tooltip', () => {
 
     await expect(pill).toHaveAttribute('tooltip-text', '');
     const tooltip = pill.locator('ix-tooltip');
-    expect(tooltip).toBeVisible();
-    expect(tooltip).toHaveText('Text content');
+    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveText('Text content');
   });
 
   test('should display "false" when tooltip-text attribute is "false"', async ({
@@ -62,8 +62,8 @@ test.describe('tooltip', () => {
 
     await expect(pill).toHaveAttribute('tooltip-text', 'false');
     const tooltip = pill.locator('ix-tooltip');
-    expect(tooltip).toBeVisible();
-    expect(tooltip).toHaveText('false');
+    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveText('false');
   });
 
   test('should display "true" when tooltip-text attribute is "true"', async ({
@@ -76,8 +76,8 @@ test.describe('tooltip', () => {
 
     await expect(pill).toHaveAttribute('tooltip-text', 'true');
     const tooltip = pill.locator('ix-tooltip');
-    expect(tooltip).toBeVisible();
-    expect(tooltip).toHaveText('true');
+    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveText('true');
   });
 
   test('should display the component text content when tooltip-text attribute is present but no value is set', async ({
@@ -90,8 +90,8 @@ test.describe('tooltip', () => {
 
     await expect(pill).toHaveAttribute('tooltip-text', undefined);
     const tooltip = pill.locator('ix-tooltip');
-    expect(tooltip).toBeVisible();
-    expect(tooltip).toHaveText('Text content');
+    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveText('Text content');
   });
 
   test('should display the custom text when tooltip-text attribute is a custom string', async ({
@@ -106,7 +106,7 @@ test.describe('tooltip', () => {
 
     await expect(pill).toHaveAttribute('tooltip-text', 'custom tooltip text');
     const tooltip = pill.locator('ix-tooltip');
-    expect(tooltip).toBeVisible();
-    expect(tooltip).toHaveText('custom tooltip text');
+    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveText('custom tooltip text');
   });
 });
