@@ -22,9 +22,9 @@ Our design system is compatible with most modern browsers, ensuring broad access
 Although we aim to provide a smooth experience across all browsers, we recommend using **Google Chrome** for optimal performance and full feature support. 
   
 In addition to Chrome, the design system is also compatible with other popular browsers such as Microsoft Edge, Firefox, and Safari.
-However, users of older or less common browsers may experience limited functionality, as our system could rely on features that are not supported or have partial support in certain versions.
+However, users of older or less common browsers may experience limited functionality, as our system could rely on features that are not supported or only have partial support in certain versions.
   
-The table below outlines the supported versions for different browsers. 
+The table below lists the supported versions for various browsers.
 <table class="table" >
   <thead>
     <tr>
@@ -49,7 +49,7 @@ The table below outlines the supported versions for different browsers.
     </tr>
   </tbody>
 </table>
-Please be aware that while our testing primarily focuses on Chrome, we may not cover every browser. 
+Please note that our testing primarily focuses on Chrome, so coverage for other browser vendors may not be as detailed.
 If you encounter any unexpected behavior, please don't hesitate to reach out to us. Your feedback helps us improve!
 </Accordion>
 
