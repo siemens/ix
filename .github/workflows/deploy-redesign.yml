@@ -27,7 +27,7 @@ jobs:
         id: publish
         uses: netlify/actions/cli@master
         with:
-          args: deploy --message pr-preview-${{ github.event.pull_request.number }} --filter documentation --alias pr-preview-${{ github.event.pull_request.number }}
+          args: deploy --message documentation-redesign --filter documentation-redesign --alias documentation-redesign
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
