@@ -4,4 +4,4 @@
 '@siemens/ix-vue': minor
 ---
 
-`ix-chip` and `ix-pill`: Add property `tooltip-text` to display an ix-tooltip with customizable text.
+`ix-chip` and `ix-pill`: Add property `tooltip-text` to display an `ix-tooltip` with customizable text.
