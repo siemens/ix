@@ -2,6 +2,6 @@
 "@siemens/ix": patch
 ---
 
-The max-height of __ix-menu-category__ is adjusted for dynamically added items. Dynamically added items are now visible.
+ __ix-menu-category__: Dynamically added items are now instantly visible. This is achieved by adjusting the max-height everytime an item gets added.
 
 Fixes #1606
