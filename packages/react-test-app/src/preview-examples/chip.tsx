@@ -17,8 +17,10 @@ export default () => {
       <IxChip closable outline>
         Primary
       </IxChip>
-      <IxChip icon="print">Primary with icon</IxChip>
-      <IxChip icon="print" closable>
+      <IxChip icon="print" tooltipText="Custom tooltip text">
+        Primary with icon
+      </IxChip>
+      <IxChip icon="print" tooltipText closable>
         Primary
       </IxChip>
 
