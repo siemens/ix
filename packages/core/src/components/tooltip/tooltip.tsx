@@ -28,7 +28,7 @@ import {
 } from '@stencil/core';
 import { resolveSelector } from '../utils/find-element';
 import { ElementReference } from 'src/components';
-import { MakeRef, makeRef } from '../utils/make-ref';
+import { makeRef } from '../utils/make-ref';
 import { addDisposableEventListenerAsArray } from '../utils/disposable-event-listener';
 
 type ArrowPosition = {
@@ -67,7 +67,7 @@ export class Tooltip {
   /**
    * Define if the user can access the tooltip via mouse.
    */
-  @Prop() interactive: boolean = false;
+  @Prop() interactive = false;
 
   /**
    * Initial placement of the tooltip.
@@ -77,17 +77,17 @@ export class Tooltip {
   @Prop() placement: 'top' | 'right' | 'bottom' | 'left' = 'top';
 
   /** @internal */
-  @Prop() showDelay: number = 0;
+  @Prop() showDelay = 0;
 
   /** @internal */
-  @Prop() hideDelay: number = 50;
+  @Prop() hideDelay = 50;
 
   /** @internal */
-  @Prop() animationFrame: boolean = false;
+  @Prop() animationFrame = false;
 
   @Element() hostElement!: HTMLIxTooltipElement;
 
-  @State() private visible: boolean = false;
+  @State() private visible = false;
 
   private hideTooltipTimeout?: NodeJS.Timeout;
   private showTooltipTimeout?: NodeJS.Timeout;
@@ -98,10 +98,9 @@ export class Tooltip {
   private disposeTooltipListener?: () => void;
   private disposeDomChangeListener?: () => void;
 
-  private readonly instance: number = tooltipInstance++;
+  private readonly instance = tooltipInstance++;
 
-  private readonly dialogRef: MakeRef<HTMLDialogElement> =
-    makeRef<HTMLDialogElement>();
+  private readonly dialogRef = makeRef<HTMLDialogElement>();
 
   private get arrowElement(): HTMLElement {
     return this.hostElement.shadowRoot!.querySelector('.arrow')!;
@@ -109,7 +108,7 @@ export class Tooltip {
 
   /** @internal */
   @Method()
-  async showTooltip(anchorElement: Element): Promise<void> {
+  async showTooltip(anchorElement: Element) {
     this.clearTimeouts();
 
     if (this.showTooltipTimeout || this.visibleFor === anchorElement) {
@@ -128,7 +127,7 @@ export class Tooltip {
 
   /** @internal */
   @Method()
-  async hideTooltip(hideDelay: number = this.hideDelay): Promise<void> {
+  async hideTooltip(hideDelay: number = this.hideDelay) {
     this.clearTimeouts();
 
     if (this.hideTooltipTimeout || !this.visible) {
@@ -149,7 +148,7 @@ export class Tooltip {
     }, hideDelay);
   }
 
-  private setAnchorElement(anchorElement?: Element): void {
+  private setAnchorElement(anchorElement?: Element) {
     if (!anchorElement) {
       this.visibleFor = undefined;
       this.visible = false;
@@ -227,9 +226,7 @@ export class Tooltip {
     });
   }
 
-  private applyTooltipArrowPosition(
-    computeResponse: ComputePositionReturn
-  ): void {
+  private applyTooltipArrowPosition(computeResponse: ComputePositionReturn) {
     const arrowPosition = this.computeArrowPosition(computeResponse);
     Object.assign(this.arrowElement.style, arrowPosition);
   }
@@ -320,7 +317,7 @@ export class Tooltip {
     return elements;
   }
 
-  private async registerTriggerListener(): Promise<void> {
+  private async registerTriggerListener() {
     this.disposeTriggerListener?.();
 
     const triggerElementList = await this.queryAnchorElements();
@@ -373,7 +370,7 @@ export class Tooltip {
     this.disposeTriggerListener = addDisposableEventListenerAsArray(listeners);
   }
 
-  private registerTooltipListener(dialog: HTMLDialogElement): void {
+  private registerTooltipListener(dialog: HTMLDialogElement) {
     this.disposeTooltipListener?.();
 
     this.disposeTooltipListener = addDisposableEventListenerAsArray([
@@ -428,7 +425,7 @@ export class Tooltip {
     ]);
   }
 
-  private registerDomChangeListener(): void {
+  private registerDomChangeListener() {
     const observer = new MutationObserver(() => {
       this.registerTriggerListener();
     });
@@ -445,30 +442,30 @@ export class Tooltip {
     };
   }
 
-  private clearHideTimeout(): void {
+  private clearHideTimeout() {
     clearTimeout(this.hideTooltipTimeout);
     this.hideTooltipTimeout = undefined;
   }
 
-  private clearShowTimeout(): void {
+  private clearShowTimeout() {
     clearTimeout(this.showTooltipTimeout);
     this.showTooltipTimeout = undefined;
   }
 
-  private clearTimeouts(): void {
+  private clearTimeouts() {
     this.clearHideTimeout();
     this.clearShowTimeout();
   }
 
-  componentWillLoad(): void {
+  componentWillLoad() {
     this.registerTriggerListener();
   }
 
-  componentDidLoad(): void {
+  componentDidLoad() {
     this.registerDomChangeListener();
   }
 
-  disconnectedCallback(): void {
+  disconnectedCallback() {
     this.clearTimeouts();
 
     this.disposeAutoUpdate?.();
