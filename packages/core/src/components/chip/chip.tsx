@@ -123,22 +123,20 @@ export class Chip {
   }
 
   private determineTooltip() {
-    if (typeof this.tooltipText === 'string' && this.tooltipText !== '') {
-      return (
-        <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
-          {this.tooltipText}
-        </ix-tooltip>
-      );
-    } else if (
-      this.tooltipText ||
-      (this.hostElement.hasAttribute('tooltip-text') && this.tooltipText === '')
-    ) {
-      return (
-        <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
-          {this.hostElement.textContent}
-        </ix-tooltip>
-      );
+    if (!this.tooltipText && !this.hostElement.hasAttribute('tooltip-text')) {
+      return null;
     }
+
+   const text =
+      typeof this.tooltipText === 'string' && this.tooltipText.trim()
+        ? this.tooltipText
+        : this.hostElement.textContent;
+
+    return (
+      <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
+        {text}
+      </ix-tooltip>
+    );
   }
 
   render() {
