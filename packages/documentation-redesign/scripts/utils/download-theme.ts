@@ -50,6 +50,10 @@ export async function downloadTheme(targetPath: string) {
 }
 
 async function unpack(file: string, targetPath: string) {
+  if (!fs.existsSync(targetPath)) {
+    fs.mkdirSync(targetPath, { recursive: true });
+  }
+
   return new Promise((resolve) =>
     fs
       .createReadStream(file)
