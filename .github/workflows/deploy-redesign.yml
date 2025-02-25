@@ -9,7 +9,6 @@ concurrency: preview-redesign-${{ github.ref }}
 
 jobs:
   deploy-redesign:
-    needs: changes
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
