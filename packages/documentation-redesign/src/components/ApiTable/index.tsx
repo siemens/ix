@@ -8,6 +8,7 @@
  */
 import { useFramework } from '@site/src/hooks/use-framework';
 import FrameworkSelection from '../UI/FrameworkSelection';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export type ApiTableProps = {
   children?: React.ReactNode;
@@ -28,11 +29,15 @@ const toKebabCase = (str: string) => {
 
 function ApiTable({ children }) {
   return (
-    <div className="api-table container mx-auto mb-8">
-      <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
-        {children}
-      </div>
-    </div>
+    <BrowserOnly>
+      {() => (
+        <div className="api-table container mx-auto mb-8">
+          <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
+            {children}
+          </div>
+        </div>
+      )}
+    </BrowserOnly>
   );
 }
 

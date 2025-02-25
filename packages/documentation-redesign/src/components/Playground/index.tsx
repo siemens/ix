@@ -3,7 +3,7 @@
  */
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { iconOpenExternal } from '@siemens/ix-icons/icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CodePreview, { CodePreviewFiles, SourceFiles } from '../CodePreview';
 import Pill from '../UI/Pill';
 import ThemeVariantToggle from '../UI/ThemeVariantToggle';
@@ -15,7 +15,7 @@ import { FrameworkTypes } from '@site/src/hooks/use-framework';
 import OpenStackblitz from '../UI/OpenStackblitz';
 import clsx from 'clsx';
 import BrowserOnly from '@docusaurus/BrowserOnly';
-
+import { useColorMode } from '@docusaurus/theme-common';
 function PreviewActions(props: {
   colorModeLight: boolean;
   openExternalUrl: string;
@@ -73,7 +73,8 @@ export default function Playground(props: {
   onlyFramework?: FrameworkTypes;
 }) {
   const defaultTheme = useDefaultTheme();
-  const [isDark, setIsDark] = useState(true);
+  const { colorMode } = useColorMode();
+  const [isDark, setIsDark] = useState(colorMode === 'dark');
   const [isPreview, setIsPreview] = useState(!props.noPreview);
   const [theme, setTheme] = useState(defaultTheme);
   const iframeSrc = useBaseUrl(
@@ -87,6 +88,10 @@ export default function Playground(props: {
   const [SourceCode, setSourceCode] = useState<React.FC>(() => () => (
     <CodeBlock children={['Nothing to see here 🥸']}></CodeBlock>
   ));
+
+  useEffect(() => {
+    setIsDark(colorMode === 'dark');
+  }, [colorMode]);
 
   return (
     <div className={styles.playground}>

@@ -31,10 +31,8 @@ export default function SiteMetadataWrapper(props: Props): JSX.Element {
         return;
       }
 
-      document.documentElement.setAttribute(
-        'data-ix-theme',
-        `brand-${variant}`
-      );
+      document.documentElement.setAttribute('data-ix-theme', `brand`);
+      document.documentElement.setAttribute('data-ix-variant', variant);
     });
     observer.observe(document.documentElement, {
       attributes: true,

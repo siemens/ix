@@ -6,21 +6,9 @@ import path from 'path';
 import fs from 'fs';
 const baseUrl = process.env.BASE_URL || '/';
 
-//TODO Use remote theme for installation, and remove check of them environment
-
-const tmpBrandThemeExist = fs.existsSync(
-  path.join(__dirname, 'src', 'scss', 'theme.tmp', 'ix-brand-theme.css')
-);
-
-const theme = tmpBrandThemeExist
-  ? ['./src/scss/theme.tmp/ix-brand-theme.css']
-  : [
-      './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
-      './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css',
-    ];
-
 const customCss = [
-  ...theme,
+  './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
+  './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css',
   './src/scss/custom.scss',
   './node_modules/@siemens/ix/scss/_common-variables.scss',
   './node_modules/@siemens/ix/scss/components/form/_input.scss',
@@ -28,35 +16,15 @@ const customCss = [
 
 let withBrandTheme = false;
 
-if (!process.env.CI) {
-  try {
-    // Check if theme is existing inside node_modes
-    const path = require.resolve(
-      '@siemens/ix-brand-theme/dist/ix-brand-theme/ix-brand-theme.css'
-    );
-    console.log('Found optionalDependency @siemens/ix-brand-theme.');
-    customCss.push(path);
-    withBrandTheme = true;
-  } catch (e) {
-    console.warn('optionalDependency @siemens/ix-brand-theme not found!');
-  }
-} else {
-  const themeCssFile = path.join(
-    __dirname,
-    '.build-temp',
-    'package',
-    'dist',
-    'ix-brand-theme',
-    'ix-brand-theme.css'
+try {
+  const path = require.resolve(
+    '@siemens/ix-corporate-theme/dist/css/corporate-theme.css'
   );
-
-  if (fs.existsSync(themeCssFile)) {
-    customCss.push(themeCssFile);
-    withBrandTheme = true;
-    console.log('Found optionalDependency @siemens/ix-brand-theme.');
-  } else {
-    console.warn('optionalDependency @siemens/ix-brand-theme not found!');
-  }
+  console.log('Found optionalDependency @siemens/ix-corporate-theme.');
+  customCss.push(path);
+  withBrandTheme = true;
+} catch (e) {
+  console.warn('optionalDependency @siemens/ix-corporate-theme not found!');
 }
 
 const config: Config = {

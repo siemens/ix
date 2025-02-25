@@ -49,6 +49,8 @@ Thumbs.db
 *.lock
 *.tmp
 *.tmp.*
+*.temp
+*.temp.*
 log.txt
 *.sublime-project
 *.sublime-workspace
