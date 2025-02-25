@@ -7,7 +7,7 @@ index a7e08d94d947308bdf78d9a116c3b296ae46b00f..ec91e66fdea3b7b208d22ef2302fa073
  import { BUILD as BUILD6 } from "@stencil/core/internal/app-data";
  var win = typeof window !== "undefined" ? window : {};
 -var doc = win.document || { head: {} };
-+var doc = win.document || { head: {}, querySelectorAll: () => { } };
++var doc = win.document || { head: {}, querySelectorAll: () => [] };
  var H = win.HTMLElement || class {
  };
  var plt = {
