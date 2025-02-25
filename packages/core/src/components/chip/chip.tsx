@@ -130,7 +130,7 @@ export class Chip {
     const text =
       typeof this.tooltipText === 'string' && this.tooltipText.trim()
         ? this.tooltipText
-        : this.hostElement.textContent;
+        : this.hostElement.textContent?.trim();
 
     return (
       <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
