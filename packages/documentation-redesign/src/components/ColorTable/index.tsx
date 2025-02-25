@@ -27,6 +27,7 @@ import ThemeVariantToggle from '../UI/ThemeVariantToggle';
 import styles from './ColorTable.module.css';
 import clsx from 'clsx';
 import { useLocation } from '@docusaurus/router';
+import { useColorMode } from '@docusaurus/theme-common';
 
 function capitalizeFirstLetter(input: string): string {
   if (input.length === 0) return input;
@@ -124,7 +125,9 @@ function ColorTable({ children, colorName }) {
   const location = useLocation();
 
   const [theme, setTheme] = useState(useDefaultTheme());
-  const [isDarkColor, setDarkColor] = useState(true);
+  const { colorMode } = useColorMode();
+
+  const [isDarkColor, setDarkColor] = useState(colorMode === 'dark');
 
   const [expanded, setExpanded] = useState(
     location.hash === `#color-${colorName}`
@@ -150,6 +153,14 @@ function ColorTable({ children, colorName }) {
 
     return colorHex;
   }
+
+  function changeColorMode() {
+    setDarkColor(!isDarkColor);
+  }
+
+  useEffect(() => {
+    setDarkColor(colorMode === 'dark');
+  }, [colorMode]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -185,10 +196,12 @@ function ColorTable({ children, colorName }) {
           anchorLabel="Direct link to the color"
           right={
             <>
-              <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
+              <div className={styles.DesktopOnly}>
+                <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
+              </div>
               <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
               <ThemeVariantToggle
-                onChangeColorMode={() => setDarkColor(!isDarkColor)}
+                onChangeColorMode={() => changeColorMode()}
                 isLight={!isDarkColor}
               />
             </>
@@ -226,10 +239,13 @@ function Children() {
         <div className={clsx(styles.colorColumn, styles.colorColumnChildName)}>
           <ColorCircle color={child.rawName}></ColorCircle>
           {child.rawName}
-          <code className="p-1 ml-auto">{child.hex}</code>
+          <CopyButton
+            className="ml-auto"
+            text={`var(--theme-${child.rawName})`}
+          ></CopyButton>
         </div>
         <div className={clsx(styles.colorColumn, styles.colorColumnCopy)}>
-          <CopyButton text={`var(--theme-${child.rawName})`}></CopyButton>
+          <code className="p-1">{child.hex}</code>
         </div>
       </div>
     </ColorTable.Text>

@@ -7,12 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { iconCopy } from '@siemens/ix-icons/icons';
-import { IxIconButton, IxTooltip } from '@siemens/ix-react';
+import { IxButton, IxIconButton, IxTooltip } from '@siemens/ix-react';
 import { useRef } from 'react';
+import Button from '../Button';
+import React from 'react';
 
-const CopyButton = ({ text }) => {
+const CopyButton = ({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) => {
   const tooltipRef = useRef<HTMLIxTooltipElement>(null);
-  const buttonRef = useRef<HTMLIxIconButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(text);
@@ -23,12 +31,15 @@ const CopyButton = ({ text }) => {
   };
 
   return (
-    <div>
+    <div className={className}>
       <input type="text" defaultValue={text} style={{ display: 'none' }} />
-      <IxIconButton onClick={handleCopy} icon={iconCopy} ghost ref={buttonRef}>
-        Copy Text
-      </IxIconButton>
-      <IxTooltip ref={tooltipRef}>Copied to clipboard 🎉</IxTooltip>
+      <Button onClick={handleCopy} ref={buttonRef}>
+        {React.createElement('ix-icon', {
+          name: iconCopy,
+        })}
+        Copy
+      </Button>
+      <IxTooltip ref={tooltipRef}>✅ Copied to clipboard</IxTooltip>
     </div>
   );
 };

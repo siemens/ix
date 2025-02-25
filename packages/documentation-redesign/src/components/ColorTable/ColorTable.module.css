@@ -51,16 +51,16 @@
   width: fit-content;
 }
 
-/**
-*
-        <div className={clsx(styles.colorColumn)}>
-          <ColorCircle color={child.rawName}></ColorCircle>
-          {child.rawName}
-          <code className="p-1 ml-auto">{child.hex}</code>
-        </div>
-        <div className={clsx(styles.colorColumn, styles.colorColumnCopy)}>
-          <CopyButton text={`var(--theme-${child.rawName})`}></CopyButton>
-        </div>
-      </div>
-*
-**/
+.DesktopOnly {
+  display: contents;
+}
+
+@media screen and (max-width: 700px) {
+  .DesktopOnly {
+    display: none;
+  }
+
+  .colorColumnCopy {
+    display: none !important;
+  }
+}
