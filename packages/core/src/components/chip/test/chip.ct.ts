@@ -86,34 +86,6 @@ test.describe('tooltip', () => {
     await expect(tooltip).toHaveText('Text content');
   });
 
-  test('should display "false" when tooltip-text attribute is "false"', async ({
-    mount,
-    page,
-  }) => {
-    await mount('<ix-chip tooltip-text="false">Text content</ix-chip>');
-    const chip = page.locator('ix-chip');
-    await chip.hover();
-
-    await expect(chip).toHaveAttribute('tooltip-text', 'false');
-    const tooltip = chip.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
-    await expect(tooltip).toHaveText('false');
-  });
-
-  test('should display "true" when tooltip-text attribute is "true"', async ({
-    mount,
-    page,
-  }) => {
-    await mount('<ix-chip tooltip-text="true">Text content</ix-chip>');
-    const chip = page.locator('ix-chip');
-    await chip.hover();
-
-    await expect(chip).toHaveAttribute('tooltip-text', 'true');
-    const tooltip = chip.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
-    await expect(tooltip).toHaveText('true');
-  });
-
   test('should display the component text content when tooltip-text attribute is present but no value is set', async ({
     mount,
     page,

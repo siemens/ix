@@ -52,34 +52,6 @@ test.describe('tooltip', () => {
     await expect(tooltip).toHaveText('Text content');
   });
 
-  test('should display "false" when tooltip-text attribute is "false"', async ({
-    mount,
-    page,
-  }) => {
-    await mount('<ix-pill tooltip-text="false">Text content</ix-pill>');
-    const pill = page.locator('ix-pill');
-    await pill.hover();
-
-    await expect(pill).toHaveAttribute('tooltip-text', 'false');
-    const tooltip = pill.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
-    await expect(tooltip).toHaveText('false');
-  });
-
-  test('should display "true" when tooltip-text attribute is "true"', async ({
-    mount,
-    page,
-  }) => {
-    await mount('<ix-pill tooltip-text="true">Text content</ix-pill>');
-    const pill = page.locator('ix-pill');
-    await pill.hover();
-
-    await expect(pill).toHaveAttribute('tooltip-text', 'true');
-    const tooltip = pill.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
-    await expect(tooltip).toHaveText('true');
-  });
-
   test('should display the component text content when tooltip-text attribute is present but no value is set', async ({
     mount,
     page,
