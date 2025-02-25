@@ -134,34 +134,19 @@ export class Checkbox implements IxFormComponent<string> {
   }
 
   private renderCheckmark() {
-    if (this.checked) {
-      return (
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M3.65625 8.15625L8.4375 12.9375L14.625 3.9375"
-            stroke="var(--ix-checkbox-check-color)"
-            stroke-width="2"
-          />
-        </svg>
-      );
-    }
-
-    if (this.indeterminate) {
-      return (
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+    return (
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {this.indeterminate && (
           <rect width="18" height="18" fill="transparent" />
+        )}
+
+        {this.indeterminate && (
           <rect
             x="3"
             y="8"
@@ -169,9 +154,17 @@ export class Checkbox implements IxFormComponent<string> {
             height="2"
             fill="var(--ix-checkbox-check-color)"
           />
-        </svg>
-      );
-    }
+        )}
+
+        {this.checked && (
+          <path
+            d="M3.65625 8.15625L8.4375 12.9375L14.625 3.9375"
+            stroke="var(--ix-checkbox-check-color)"
+            stroke-width="2"
+          />
+        )}
+      </svg>
+    );
   }
 
   render() {
