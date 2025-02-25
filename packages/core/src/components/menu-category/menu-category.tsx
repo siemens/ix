@@ -126,10 +126,6 @@ export class MenuCategory {
         this.showItems = true;
         this.showDropdown = false;
       },
-      complete: () => {
-        this.menuItemsContainer!.removeAttribute('max-height');
-        this.setMenuItemsContainerMaxHeight();
-      },
     });
   }
 
@@ -158,8 +154,14 @@ export class MenuCategory {
     const oldNestedItemsLength: number = this.nestedItems.length;
     this.nestedItems = this.getNestedItems();
 
-    if (this.showItems && oldNestedItemsLength !== this.nestedItems.length) {
-      this.setMenuItemsContainerMaxHeight();
+    if (
+      this.showItems &&
+      this.menuItemsContainer &&
+      oldNestedItemsLength !== this.nestedItems.length
+    ) {
+      this.menuItemsContainer.style.maxHeight = `${
+        this.getNestedItemsHeight() + DefaultIxMenuItemHeight
+      }px`;
     }
 
     if (!this.menuExpand || this.showItems || !mutations) {
@@ -176,14 +178,6 @@ export class MenuCategory {
         this.onExpandCategory(true);
         return;
       }
-    }
-  }
-
-  private setMenuItemsContainerMaxHeight() {
-    if (this.menuItemsContainer) {
-      this.menuItemsContainer.style.maxHeight = `${
-        this.getNestedItemsHeight() + DefaultIxMenuItemHeight
-      }px`;
     }
   }
 
