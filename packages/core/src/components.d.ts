@@ -543,6 +543,11 @@ export namespace Components {
          */
         "outline": boolean;
         /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText": string | boolean;
+        /**
           * Chip variant
          */
         "variant": | 'primary'
@@ -2348,6 +2353,11 @@ export namespace Components {
           * Custom font color for pill. Only working for `variant='custom'`
          */
         "pillColor": string | undefined;
+        /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText": string | boolean;
         /**
           * Pill variant
          */
@@ -5692,6 +5702,11 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText"?: string | boolean;
+        /**
           * Chip variant
          */
         "variant"?: | 'primary'
@@ -7634,6 +7649,11 @@ declare namespace LocalJSX {
           * Custom font color for pill. Only working for `variant='custom'`
          */
         "pillColor"?: string | undefined;
+        /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText"?: string | boolean;
         /**
           * Pill variant
          */
