@@ -87,7 +87,7 @@ export class Pill implements IxComponent {
     this.iconOnly = !hasChildren && !hasTextContent;
   }
 
-  private determineTooltip() {
+  private getTooltip() {
     if (!this.tooltipText && !this.hostElement.hasAttribute('tooltip-text')) {
       return null;
     }
@@ -158,7 +158,7 @@ export class Pill implements IxComponent {
             <slot onSlotchange={() => this.checkIfContentAvailable()}></slot>
           </span>
         </div>
-        {this.determineTooltip()}
+        {this.getTooltip()}
       </Host>
     );
   }

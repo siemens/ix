@@ -122,7 +122,7 @@ export class Chip {
     );
   }
 
-  private determineTooltip() {
+  private getTooltip() {
     if (!this.tooltipText && !this.hostElement.hasAttribute('tooltip-text')) {
       return null;
     }
@@ -197,7 +197,7 @@ export class Chip {
           </span>
           {isInactive === false && this.closable ? this.getCloseButton() : null}
         </div>
-        {this.determineTooltip()}
+        {this.getTooltip()}
       </Host>
     );
   }
