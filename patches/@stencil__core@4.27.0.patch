@@ -1,0 +1,14 @@
+diff --git a/internal/client/index.js b/internal/client/index.js
+index a7e08d94d947308bdf78d9a116c3b296ae46b00f..17abc8a4a1bbfbe778f78dec09470da0e0cd793f 100644
+--- a/internal/client/index.js
++++ b/internal/client/index.js
+@@ -2042,6 +2042,9 @@ var attachStyles = (hostRef) => {
+ var getScopeId = (cmp, mode) => "sc-" + (BUILD16.mode && mode && cmp.$flags$ & 32 /* hasMode */ ? cmp.$tagName$ + "-" + mode : cmp.$tagName$);
+ var convertScopedToShadow = (css) => css.replace(/\/\*!@([^\/]+)\*\/[^\{]+\{/g, "$1{");
+ var hydrateScopedToShadow = () => {
++  if (typeof window === "undefined") {
++    return;
++  }
+   const styles2 = doc.querySelectorAll(`[${HYDRATED_STYLE_ID}]`);
+   let i2 = 0;
+   for (; i2 < styles2.length; i2++) {
