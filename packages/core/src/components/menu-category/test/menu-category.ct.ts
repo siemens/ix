@@ -340,6 +340,8 @@ test('should adjust height when items are added dynamically', async ({
   await page.locator('ix-menu-category').click();
   await page.waitForSelector('ix-menu-item:visible');
 
+  await page.waitForTimeout(300);
+
   const initialHeight: number | undefined = await page
     .locator('ix-menu-category')
     .boundingBox()
