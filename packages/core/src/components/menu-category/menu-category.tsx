@@ -151,7 +151,7 @@ export class MenuCategory {
   }
 
   private onNestedItemsChanged(mutations?: MutationRecord[]) {
-    const oldNestedItemsLength: number = this.nestedItems.length;
+    const oldNestedItemsLength = this.nestedItems.length;
     this.nestedItems = this.getNestedItems();
 
     if (
