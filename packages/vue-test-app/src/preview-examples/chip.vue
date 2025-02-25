@@ -16,9 +16,9 @@ import { IxChip } from '@siemens/ix-vue';
 <template>
   <div class="chip">
     <IxChip closable outline>Primary</IxChip>
-    <IxChip icon="print" tooltip-text="Custom tooltip text"
-      >Primary with icon</IxChip
-    >
+    <IxChip icon="print" tooltip-text="Custom tooltip text">
+      Primary with icon
+    </IxChip>
     <IxChip icon="print" tooltip-text closable>Primary</IxChip>
 
     <IxChip variant="critical" closable outline>Alarm</IxChip>
@@ -31,7 +31,8 @@ import { IxChip } from '@siemens/ix-vue';
       variant="custom"
       icon="print"
       closable
-      >Custom</IxChip
     >
+      Custom
+    </IxChip>
   </div>
 </template>
