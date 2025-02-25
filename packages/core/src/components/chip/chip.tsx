@@ -127,7 +127,7 @@ export class Chip {
       return null;
     }
 
-   const text =
+    const text =
       typeof this.tooltipText === 'string' && this.tooltipText.trim()
         ? this.tooltipText
         : this.hostElement.textContent;
