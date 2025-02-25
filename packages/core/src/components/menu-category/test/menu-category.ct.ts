@@ -320,3 +320,52 @@ test('show category if item are focused', async ({ mount, page }) => {
   const dropdown = categoryElement.locator('ix-dropdown');
   await expect(dropdown).toBeVisible();
 });
+
+test('should adjust height when items are added dynamically', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-application>
+      <ix-menu>
+        <ix-menu-category label="Category label">
+          <ix-menu-item>Test</ix-menu-item>
+          <ix-menu-item>Test</ix-menu-item>
+        </ix-menu-category>
+      </ix-menu>
+    </ix-application>
+  `);
+
+  await page.locator('ix-menu-expand-icon').click();
+  await page.locator('ix-menu-category').click();
+  await page.waitForSelector('ix-menu-item:visible');
+
+  const initialHeight: number | undefined = await page
+    .locator('ix-menu-category')
+    .boundingBox()
+    .then((box) => box?.height);
+
+  await page.evaluate(() => {
+    const menuCategory = document.querySelector('ix-menu-category');
+
+    const newMenuItem1 = document.createElement('ix-menu-item');
+    const newMenuItem2 = document.createElement('ix-menu-item');
+
+    newMenuItem1.textContent = 'Dynamically Added';
+    newMenuItem2.textContent = 'Dynamically Added';
+
+    menuCategory?.appendChild(newMenuItem1);
+    menuCategory?.appendChild(newMenuItem2);
+  });
+
+  await page.waitForTimeout(300);
+
+  const newHeight: number | undefined = await page
+    .locator('ix-menu-category')
+    .boundingBox()
+    .then((box) => box?.height);
+
+  expect(initialHeight).toBeDefined();
+  expect(newHeight).toBeDefined();
+  expect(newHeight).toBeGreaterThan(initialHeight!);
+});
