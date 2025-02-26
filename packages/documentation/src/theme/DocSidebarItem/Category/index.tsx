@@ -21,7 +21,7 @@ import type { Props } from '@theme/DocSidebarItem/Category';
 import { IxIcon } from '@siemens/ix-react';
 import {
   iconChevronDownSmall,
-  iconChevronUpSmall,
+  iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
 // If we navigate to a category and it becomes active, it should automatically
@@ -198,7 +198,7 @@ export default function DocSidebarItemCategory({
           {...props}
         >
           {collapsed ? (
-            <IxIcon name={iconChevronUpSmall}></IxIcon>
+            <IxIcon name={iconChevronRightSmall}></IxIcon>
           ) : (
             <IxIcon name={iconChevronDownSmall}></IxIcon>
           )}
