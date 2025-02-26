@@ -112,11 +112,11 @@ export class Slider {
   private readonly tooltipRef = makeRef<HTMLIxTooltipElement>();
 
   get tooltip() {
-    return this.tooltipRef.current as HTMLIxTooltipElement;
+    return this.tooltipRef.current;
   }
 
   get pseudoThumb() {
-    return this.thumbRef.current as HTMLDivElement;
+    return this.thumbRef.current;
   }
 
   get slider() {
