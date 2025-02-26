@@ -31,7 +31,15 @@ body {
   --ifm-code-background: var(--theme-color-2);
   --ifm-code-border-radius: 0px;
   --ifm-code-font-size: var(--theme-ms-1);
-  --ifm-code-font-family: (JetBrainsMono, Courier New, monospace);
+  --ifm-code-font-family: (
+    JetBrainsMono,
+    Courier New,
+    monospace,
+    Siemens Sans,
+    Arial,
+    Helvetica,
+    sans-serif
+  );
   --ifm-pre-background: var(--theme-color-1);
   --ifm-color-emphasis-200: var(--theme-color-2);
   --ifm-color-content: var(--theme-color-std-text);
@@ -45,8 +53,13 @@ body {
   --bs-alert-bg: var(--theme-color-alarm) !important;
 }
 
+pre {
+  font-family: unset;
+}
+
 code {
-  font-size: var(--ifm-code-font-size) !important;
+    font-family: var(--ifm-code-font-family) !important;
+    font-size: var(--ifm-code-font-size) !important;
 }
 
 .theme-admonition-note {
