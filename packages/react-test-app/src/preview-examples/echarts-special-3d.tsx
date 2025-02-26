@@ -15,7 +15,7 @@ import { themeSwitcher } from '@siemens/ix';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
 import { EChartsOption } from 'echarts';
-import 'echarts-gl';
+/* import 'echarts-gl'; */
 
 export default function EchartsSpecial3d() {
   registerTheme(echarts);

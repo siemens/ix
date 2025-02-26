@@ -48,10 +48,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": [
-              "node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css",
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -60,7 +57,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "2.93MB"
+                  "maximumError": "3.25mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -79,6 +76,9 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "port": 4201
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {

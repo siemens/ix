@@ -131,7 +131,8 @@ export const IxApplication = /*@__PURE__*/ defineContainer<JSX.IxApplication>('i
 export const IxApplicationHeader = /*@__PURE__*/ defineContainer<JSX.IxApplicationHeader>('ix-application-header', defineIxApplicationHeader, [
   'name',
   'showMenu',
-  'menuToggle'
+  'menuToggle',
+  'openAppSwitch'
 ]);
 
 
@@ -285,6 +286,7 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', defin
   'background',
   'chipColor',
   'outline',
+  'tooltipText',
   'closeChip'
 ]);
 
@@ -535,7 +537,9 @@ export const IxFilterChip = /*@__PURE__*/ defineContainer<JSX.IxFilterChip>('ix-
 export const IxFlipTile = /*@__PURE__*/ defineContainer<JSX.IxFlipTile>('ix-flip-tile', defineIxFlipTile, [
   'state',
   'height',
-  'width'
+  'width',
+  'index',
+  'toggle'
 ]);
 
 
@@ -717,7 +721,10 @@ export const IxMenu = /*@__PURE__*/ defineContainer<JSX.IxMenu>('ix-menu', defin
   'i18nExpand',
   'i18nCollapse',
   'expandChange',
-  'mapExpandChange'
+  'mapExpandChange',
+  'openAppSwitch',
+  'openSettings',
+  'openAbout'
 ]);
 
 
@@ -725,6 +732,7 @@ export const IxMenuAbout = /*@__PURE__*/ defineContainer<JSX.IxMenuAbout>('ix-me
   'activeTabLabel',
   'label',
   'show',
+  'tabChange',
   'close'
 ]);
 
@@ -789,6 +797,7 @@ export const IxMenuSettings = /*@__PURE__*/ defineContainer<JSX.IxMenuSettings>(
   'activeTabLabel',
   'label',
   'show',
+  'tabChange',
   'close'
 ]);
 
@@ -802,7 +811,8 @@ export const IxMenuSettingsItem = /*@__PURE__*/ defineContainer<JSX.IxMenuSettin
 export const IxMessageBar = /*@__PURE__*/ defineContainer<JSX.IxMessageBar>('ix-message-bar', defineIxMessageBar, [
   'type',
   'dismissible',
-  'closedChange'
+  'closedChange',
+  'closeAnimationCompleted'
 ]);
 
 
@@ -905,7 +915,8 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', defin
   'icon',
   'background',
   'pillColor',
-  'alignLeft'
+  'alignLeft',
+  'tooltipText'
 ]);
 
 
@@ -968,6 +979,8 @@ export const IxSelect = /*@__PURE__*/ defineContainer<JSX.IxSelect, JSX.IxSelect
   'i18nSelectListHeader',
   'i18nNoMatches',
   'hideListHeader',
+  'dropdownWidth',
+  'dropdownMaxWidth',
   'valueChange',
   'inputChange',
   'addItem',

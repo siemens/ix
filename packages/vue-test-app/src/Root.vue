@@ -13,6 +13,7 @@ import { computed, ref } from 'vue';
 import App from './App.vue';
 import AboutAndLegal from './preview-examples/about-and-legal.vue';
 import ActionCard from './preview-examples/action-card.vue';
+import AddIcons from './preview-examples/add-icons.vue';
 import AgGrid from './preview-examples/aggrid.vue';
 import ApplicationAppSwitch from './preview-examples/application-app-switch.vue';
 import ApplicationBreakpoints from './preview-examples/application-breakpoints.vue';
@@ -151,6 +152,7 @@ import MapNavigation from './preview-examples/map-navigation.vue';
 import MenuCategory from './preview-examples/menu-category.vue';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs.vue';
 import MessageBar from './preview-examples/message-bar.vue';
+import MessageBarRemoval from './preview-examples/message-bar-removal.vue';
 import Message from './preview-examples/message.vue';
 import ModalSizes from './preview-examples/modal-sizes.vue';
 import ModalExample from './preview-examples/modal.vue';
@@ -228,6 +230,7 @@ const routes: any = {
   '/': App,
   '/preview/about-and-legal': AboutAndLegal,
   '/preview/action-card': ActionCard,
+  '/preview/add-icons': AddIcons,
   '/preview/aggrid': AgGrid,
   '/preview/application': Application,
   '/preview/application-header': ApplicationHeader,
@@ -331,6 +334,7 @@ const routes: any = {
   '/preview/input-legacy-types': InputLegacyTypes,
   '/preview/input-legacy-with-icon': InputLegacyWithIcon,
   '/preview/message-bar': MessageBar,
+  '/preview/message-bar-removal': MessageBarRemoval,
   '/preview/pill': Pill,
   '/preview/pill-variants': PillVariants,
   '/preview/radio-button': RadioButton,

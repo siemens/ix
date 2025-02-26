@@ -37,7 +37,7 @@ export class MenuSettings {
    * Active tab
    */
   // eslint-disable-next-line @stencil-community/strict-mutable
-  @Prop({ mutable: true }) activeTabLabel: string;
+  @Prop({ mutable: true }) activeTabLabel?: string;
 
   /**
    * Label of first tab
@@ -48,11 +48,17 @@ export class MenuSettings {
   @Prop() show = false;
 
   /**
+   * Active tab changed
+   * @since 3.0.0
+   */
+  @Event() tabChange!: EventEmitter<string>;
+
+  /**
    * Popover closed
    */
-  @Event() close: EventEmitter<CustomCloseEvent>;
+  @Event() close!: EventEmitter<CustomCloseEvent>;
 
-  @State() items: HTMLIxMenuSettingsItemElement[];
+  @State() items!: HTMLIxMenuSettingsItemElement[];
 
   @Watch('activeTabLabel')
   updateTab(label: string) {

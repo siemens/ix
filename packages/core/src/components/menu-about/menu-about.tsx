@@ -37,7 +37,7 @@ export class MenuAbout {
    * Active tab
    */
   // eslint-disable-next-line @stencil-community/strict-mutable
-  @Prop({ mutable: true }) activeTabLabel: string;
+  @Prop({ mutable: true }) activeTabLabel?: string;
 
   /**
    * Content of the header
@@ -48,11 +48,17 @@ export class MenuAbout {
   @Prop() show = false;
 
   /**
+   * Active tab changed
+   * @since 3.0.0
+   */
+  @Event() tabChange!: EventEmitter<string>;
+
+  /**
    * About and Legal closed
    */
-  @Event() close: EventEmitter<CustomCloseEvent>;
+  @Event() close!: EventEmitter<CustomCloseEvent>;
 
-  @State() items: HTMLIxMenuAboutItemElement[];
+  @State() items!: HTMLIxMenuAboutItemElement[];
 
   @Watch('activeTabLabel')
   updateTab(label: string) {

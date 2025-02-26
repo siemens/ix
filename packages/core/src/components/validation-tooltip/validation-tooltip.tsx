@@ -30,12 +30,12 @@ type Position = { x: number; y: number };
   shadow: true,
 })
 export class ValidationTooltip {
-  @Element() hostElement: HTMLIxValidationTooltipElement;
+  @Element() hostElement!: HTMLIxValidationTooltipElement;
 
   /**
    * Message of the tooltip
    */
-  @Prop() message: string;
+  @Prop() message?: string;
 
   /**
    * Placement of the tooltip
@@ -50,16 +50,16 @@ export class ValidationTooltip {
   @Prop() suppressAutomaticPlacement = false;
 
   @State() isInputValid = true;
-  @State() tooltipPosition: Position;
-  @State() arrowPosition: Position;
+  @State() tooltipPosition?: Position;
+  @State() arrowPosition?: Position;
 
   private onSubmitBind = this.onSubmit.bind(this);
   private onInputFocusBind = this.onInputFocus.bind(this);
-  private autoUpdateCleanup: () => void;
-  private observer: MutationObserver;
+  private autoUpdateCleanup?: () => void;
+  private observer?: MutationObserver;
 
   get arrow() {
-    return this.hostElement.shadowRoot.querySelector('#arrow') as HTMLElement;
+    return this.hostElement.shadowRoot!.querySelector('#arrow') as HTMLElement;
   }
 
   get inputElement() {
@@ -71,7 +71,7 @@ export class ValidationTooltip {
   }
 
   get tooltipElement(): HTMLElement {
-    return this.hostElement.shadowRoot.querySelector('.validation-tooltip');
+    return this.hostElement.shadowRoot!.querySelector('.validation-tooltip')!;
   }
 
   private destroyAutoUpdate() {
@@ -98,6 +98,10 @@ export class ValidationTooltip {
       ],
     };
 
+    if (!positionConfig.middleware) {
+      positionConfig.middleware = [];
+    }
+
     if (!this.suppressAutomaticPlacement) {
       positionConfig.middleware.push(
         flip({ fallbackStrategy: 'initialPlacement' })
@@ -106,23 +110,26 @@ export class ValidationTooltip {
     positionConfig.placement = this.placement;
 
     this.autoUpdateCleanup = autoUpdate(
-      this.inputElement,
+      this.inputElement!,
       this.tooltipElement,
       async () => {
         positionConfig.middleware = [
-          ...positionConfig.middleware,
+          ...positionConfig.middleware!,
           arrow({
             element: this.arrow,
           }),
         ];
         const computeResponse = await computePosition(
-          this.inputElement,
+          this.inputElement!,
           this.tooltipElement,
           positionConfig
         );
 
         if (computeResponse.middlewareData.arrow) {
-          const { x, y } = computeResponse.middlewareData.arrow;
+          const { x, y } = computeResponse.middlewareData.arrow as {
+            x: number;
+            y: number;
+          };
           this.arrowPosition = {
             x,
             y,
@@ -161,7 +168,7 @@ export class ValidationTooltip {
     this.inputElement.addEventListener('focus', this.onInputFocusBind);
 
     this.observer = new MutationObserver(() => {
-      if (this.inputElement.classList.contains('is-invalid')) {
+      if (this.inputElement!.classList.contains('is-invalid')) {
         this.isInputValid = false;
         this.validationChanged();
       }
@@ -180,8 +187,8 @@ export class ValidationTooltip {
   }
 
   private onSubmit() {
-    if (this.formElement.classList.contains('needs-validation')) {
-      this.isInputValid = this.inputElement.validity.valid;
+    if (this.formElement!.classList.contains('needs-validation')) {
+      this.isInputValid = this.inputElement!.validity.valid;
     }
   }
 
@@ -214,8 +221,8 @@ export class ValidationTooltip {
             top: '0',
             left: '0',
             transform: `translate(${Math.round(
-              this.tooltipPosition?.x || 0
-            )}px,${Math.round(this.tooltipPosition?.y || 0)}px)`,
+              this.tooltipPosition?.x ?? 0
+            )}px,${Math.round(this.tooltipPosition?.y ?? 0)}px)`,
           }}
           class="validation-tooltip text-default"
         >

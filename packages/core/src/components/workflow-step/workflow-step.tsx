@@ -35,7 +35,7 @@ import {
   shadow: true,
 })
 export class WorkflowStep {
-  @Element() hostElement: HTMLIxWorkflowStepElement;
+  @Element() hostElement!: HTMLIxWorkflowStepElement;
 
   /**
    * Select orientation
@@ -107,7 +107,7 @@ export class WorkflowStep {
         this.iconColor = 'color-success';
         break;
       case 'done':
-        this.iconName = iconSuccess;
+        this.iconName = iconCircleFilled;
         this.iconColor = 'workflow-step-icon-done--color';
         break;
       case 'warning':

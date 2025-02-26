@@ -135,14 +135,20 @@ export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplic
     defineCustomElement: defineIxApplication
 });
 
-type IxApplicationHeaderEvents = { onMenuToggle: EventName<CustomEvent<boolean>> };
+type IxApplicationHeaderEvents = {
+    onMenuToggle: EventName<CustomEvent<boolean>>,
+    onOpenAppSwitch: EventName<CustomEvent<void>>
+};
 
 export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents> = /*@__PURE__*/ createComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents>({
     tagName: 'ix-application-header',
     elementClass: IxApplicationHeaderElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onMenuToggle: 'menuToggle' } as IxApplicationHeaderEvents,
+    events: {
+        onMenuToggle: 'menuToggle',
+        onOpenAppSwitch: 'openAppSwitch'
+    } as IxApplicationHeaderEvents,
     defineCustomElement: defineIxApplicationHeader
 });
 
@@ -604,14 +610,14 @@ export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterCh
     defineCustomElement: defineIxFilterChip
 });
 
-type IxFlipTileEvents = NonNullable<unknown>;
+type IxFlipTileEvents = { onToggle: EventName<CustomEvent<number>> };
 
 export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEvents> = /*@__PURE__*/ createComponent<IxFlipTileElement, IxFlipTileEvents>({
     tagName: 'ix-flip-tile',
     elementClass: IxFlipTileElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: {} as IxFlipTileEvents,
+    events: { onToggle: 'toggle' } as IxFlipTileEvents,
     defineCustomElement: defineIxFlipTile
 });
 
@@ -826,7 +832,10 @@ export const IxMapNavigationOverlay: StencilReactComponent<IxMapNavigationOverla
 
 type IxMenuEvents = {
     onExpandChange: EventName<CustomEvent<boolean>>,
-    onMapExpandChange: EventName<CustomEvent<boolean>>
+    onMapExpandChange: EventName<CustomEvent<boolean>>,
+    onOpenAppSwitch: EventName<CustomEvent<void>>,
+    onOpenSettings: EventName<CustomEvent<void>>,
+    onOpenAbout: EventName<CustomEvent<void>>
 };
 
 export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = /*@__PURE__*/ createComponent<IxMenuElement, IxMenuEvents>({
@@ -836,19 +845,28 @@ export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = /*@__P
     react: React,
     events: {
         onExpandChange: 'expandChange',
-        onMapExpandChange: 'mapExpandChange'
+        onMapExpandChange: 'mapExpandChange',
+        onOpenAppSwitch: 'openAppSwitch',
+        onOpenSettings: 'openSettings',
+        onOpenAbout: 'openAbout'
     } as IxMenuEvents,
     defineCustomElement: defineIxMenu
 });
 
-type IxMenuAboutEvents = { onClose: EventName<IxMenuAboutCustomEvent<CustomCloseEvent>> };
+type IxMenuAboutEvents = {
+    onTabChange: EventName<CustomEvent<string>>,
+    onClose: EventName<IxMenuAboutCustomEvent<CustomCloseEvent>>
+};
 
 export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutEvents> = /*@__PURE__*/ createComponent<IxMenuAboutElement, IxMenuAboutEvents>({
     tagName: 'ix-menu-about',
     elementClass: IxMenuAboutElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onClose: 'close' } as IxMenuAboutEvents,
+    events: {
+        onTabChange: 'tabChange',
+        onClose: 'close'
+    } as IxMenuAboutEvents,
     defineCustomElement: defineIxMenuAbout
 });
 
@@ -924,14 +942,20 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
     defineCustomElement: defineIxMenuItem
 });
 
-type IxMenuSettingsEvents = { onClose: EventName<IxMenuSettingsCustomEvent<CustomCloseEvent>> };
+type IxMenuSettingsEvents = {
+    onTabChange: EventName<CustomEvent<string>>,
+    onClose: EventName<IxMenuSettingsCustomEvent<CustomCloseEvent>>
+};
 
 export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenuSettingsEvents> = /*@__PURE__*/ createComponent<IxMenuSettingsElement, IxMenuSettingsEvents>({
     tagName: 'ix-menu-settings',
     elementClass: IxMenuSettingsElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onClose: 'close' } as IxMenuSettingsEvents,
+    events: {
+        onTabChange: 'tabChange',
+        onClose: 'close'
+    } as IxMenuSettingsEvents,
     defineCustomElement: defineIxMenuSettings
 });
 
@@ -946,14 +970,20 @@ export const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement
     defineCustomElement: defineIxMenuSettingsItem
 });
 
-type IxMessageBarEvents = { onClosedChange: EventName<CustomEvent<any>> };
+type IxMessageBarEvents = {
+    onClosedChange: EventName<CustomEvent<any>>,
+    onCloseAnimationCompleted: EventName<CustomEvent<any>>
+};
 
 export const IxMessageBar: StencilReactComponent<IxMessageBarElement, IxMessageBarEvents> = /*@__PURE__*/ createComponent<IxMessageBarElement, IxMessageBarEvents>({
     tagName: 'ix-message-bar',
     elementClass: IxMessageBarElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onClosedChange: 'closedChange' } as IxMessageBarEvents,
+    events: {
+        onClosedChange: 'closedChange',
+        onCloseAnimationCompleted: 'closeAnimationCompleted'
+    } as IxMessageBarEvents,
     defineCustomElement: defineIxMessageBar
 });
 

@@ -54,8 +54,8 @@ regressionTest(
 
     const itemChanged = pagination.evaluate((elm) => {
       return new Promise<number>((resolve) => {
-        elm.addEventListener('itemCountChanged', (e: CustomEvent) =>
-          resolve(e.detail)
+        elm.addEventListener('itemCountChanged', (event) =>
+          resolve((event as CustomEvent<number>).detail)
         );
       });
     });
@@ -69,3 +69,21 @@ regressionTest(
     expect(await itemChanged).toBe(40);
   }
 );
+
+regressionTest('should not change page', async ({ mount, page }) => {
+  await mount(`
+    <ix-pagination count="10">
+    </ix-pagination>
+  `);
+  const pagination = page.locator('ix-pagination');
+
+  await pagination.evaluate((elm) => {
+    elm.addEventListener('pageSelected', (event) => event.preventDefault());
+  });
+
+  const buttons = pagination.locator('button');
+  await buttons.nth(1).click();
+
+  await expect(buttons.first()).toHaveAttribute('aria-pressed', 'true');
+  await expect(buttons.nth(1)).toHaveAttribute('aria-pressed', 'false');
+});

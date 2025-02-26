@@ -141,6 +141,25 @@ export class Menu {
    */
   @Event() mapExpandChange!: EventEmitter<boolean>;
 
+  /**
+   * Event emitted when the app switch button is clicked
+   *
+   * @since 3.0.0
+   */
+  @Event() openAppSwitch!: EventEmitter<void>;
+
+  /**
+   * Event emitted when the settings button is clicked
+   * @since 3.0.0
+   */
+  @Event() openSettings!: EventEmitter<void>;
+
+  /**
+   * Event emitted when the about button is clicked
+   * @since 3.0.0
+   */
+  @Event() openAbout!: EventEmitter<void>;
+
   @State() showPinned = false;
   @State() mapExpand = true;
   @State() breakpoint: Breakpoint = 'lg';
@@ -386,6 +405,8 @@ export class Menu {
    */
   @Method()
   async toggleMenu(show?: boolean) {
+    const oldExpand = this.expand;
+
     if (show !== undefined) {
       this.expand = show;
     } else {
@@ -396,7 +417,17 @@ export class Menu {
       this.aboutNewsPopover.expanded = this.expand;
     }
 
-    this.expandChange.emit(this.expand);
+    const { defaultPrevented } = this.expandChange.emit(this.expand);
+
+    if (defaultPrevented) {
+      this.expand = oldExpand;
+
+      if (this.aboutNewsPopover) {
+        this.aboutNewsPopover.expanded = oldExpand;
+      }
+
+      return;
+    }
 
     this.isTransitionDisabled = false;
     this.checkTransition();
@@ -439,6 +470,12 @@ export class Menu {
       return;
     }
 
+    const { defaultPrevented } = this.openSettings.emit();
+
+    if (defaultPrevented) {
+      return;
+    }
+
     if (!this.isOverlayVisible()) {
       this.animateOverlayFadeIn();
     }
@@ -459,6 +496,12 @@ export class Menu {
   @Method()
   async toggleAbout(show: boolean) {
     if (!this.about) {
+      return;
+    }
+
+    const { defaultPrevented } = this.openAbout.emit();
+
+    if (defaultPrevented) {
       return;
     }
 
@@ -574,6 +617,18 @@ export class Menu {
     );
   }
 
+  private async showAppSwitch() {
+    const { defaultPrevented } = this.openAppSwitch.emit();
+
+    if (defaultPrevented) {
+      return;
+    }
+
+    if (this.applicationLayoutContext?.appSwitchConfig) {
+      showAppSwitch(this.applicationLayoutContext.appSwitchConfig);
+    }
+  }
+
   render() {
     return (
       <Host
@@ -605,11 +660,7 @@ export class Menu {
               this.applicationLayoutContext?.appSwitchConfig && (
                 <ix-icon-button
                   onClick={() => {
-                    if (this.applicationLayoutContext?.appSwitchConfig) {
-                      showAppSwitch(
-                        this.applicationLayoutContext.appSwitchConfig
-                      );
-                    }
+                    this.showAppSwitch();
                   }}
                   icon={iconApps}
                   ghost

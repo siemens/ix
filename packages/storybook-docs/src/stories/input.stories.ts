@@ -6,43 +6,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { Maskito, maskitoInitialCalibrationPlugin } from '@maskito/core';
-import { maskitoNumberOptionsGenerator } from '@maskito/kit';
 import type { Components } from '@siemens/ix/components';
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
+import { genericRender, makeArgTypes } from './utils/generic-render';
 
-type Element = Components.IxInput & {
-  maskito?: Maskito;
-};
+type Element = Components.IxInput;
 
 const meta = {
-  title: 'Example/Input/Mask',
+  title: 'Example/Input/Text',
   tags: [],
-  render: (args, ctx) => {
-    const input = document.createElement('ix-input');
-    input.value = args.value;
-
-    const maskito = new Maskito(input as any, {
-      ...maskitoNumberOptionsGenerator({
-        decimalSeparator: ',',
-        thousandSeparator: '.',
-        precision: 2,
-      }),
-      plugins: [maskitoInitialCalibrationPlugin()],
-    });
-
-    ctx.args.maskito = maskito;
-
-    return input;
-  },
-  beforeEach: (ctx) => {
-    return () => {
-      ctx.args.maskito?.destroy();
-    };
-  },
-  args: {
-    value: '10000',
-  },
+  render: (args) => genericRender('ix-input', args),
+  argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-input', {}),
   parameters: {
     design: {
       type: 'figma',
@@ -54,30 +28,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<Element>;
 
-export const Separators: Story = {
+export const Required: Story = {
   args: {
-    value: '1000001',
-  },
-};
-
-export const Precision: Story = {
-  render: (args, ctx) => {
-    const input = document.createElement('ix-input');
-    input.value = args.value;
-
-    const maskito = new Maskito(input as any, {
-      ...maskitoNumberOptionsGenerator({
-        precision: 2,
-        min: 0,
-      }),
-      plugins: [maskitoInitialCalibrationPlugin()],
-    });
-
-    ctx.args.maskito = maskito;
-
-    return input;
-  },
-  args: {
-    value: '123.456',
+    label: 'Required',
+    value: '',
+    required: true,
   },
 };

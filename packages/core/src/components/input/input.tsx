@@ -30,8 +30,10 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
+  addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
+  DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
   onInputBlur,
@@ -171,8 +173,10 @@ export class Input implements IxInputFieldComponent<string> {
   private readonly inputRef = makeRef<HTMLInputElement>();
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
-
   private readonly inputId = `input-${inputIds++}`;
+  private touched = false;
+
+  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -189,8 +193,12 @@ export class Input implements IxInputFieldComponent<string> {
     this.inputType = this.type;
   }
 
-  componentDidRender() {
-    this.updatePaddings();
+  connectedCallback(): void {
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
   }
 
   private updatePaddings() {
@@ -199,6 +207,10 @@ export class Input implements IxInputFieldComponent<string> {
       this.slotEndRef.current,
       this.inputRef.current
     );
+  }
+
+  disconnectedCallback(): void {
+    this.disposableChangesAndVisibilityObservers?.();
   }
 
   updateFormInternalValue(value: string) {
@@ -232,6 +244,15 @@ export class Input implements IxInputFieldComponent<string> {
   @Method()
   async focusInput(): Promise<void> {
     return (await this.getNativeInputElement()).focus();
+  }
+
+  /**
+   * Returns whether the text field has been touched.
+   * @internal
+   */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
   }
 
   render() {
@@ -282,7 +303,10 @@ export class Input implements IxInputFieldComponent<string> {
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(value)
               }
-              onBlur={() => onInputBlur(this, this.inputRef.current)}
+              onBlur={() => {
+                onInputBlur(this, this.inputRef.current);
+                this.touched = true;
+              }}
               ariaAttributes={inputAria}
             ></InputElement>
             <SlotEnd

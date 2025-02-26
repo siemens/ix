@@ -115,6 +115,44 @@ regressionTest(
   }
 );
 
+regressionTest('should not open settings', async ({ mount, page }) => {
+  await mount(`
+      <ix-menu>
+        <ix-menu-settings>
+        </ix-menu-settings>
+      </ix-menu>
+    `);
+  const element = page.locator('ix-menu');
+
+  await element.evaluate((e) => {
+    e.addEventListener('openSettings', (event) => event.preventDefault());
+  });
+
+  await clickSettingsButton(element, page);
+  let settings = page.locator('ix-menu-settings');
+  await expect(settings).not.toBeVisible();
+});
+
+regressionTest('should not open about', async ({ mount, page }) => {
+  await mount(`
+      <ix-menu>
+        <ix-menu-about>
+        </ix-menu-about>
+      </ix-menu>
+    `);
+  const element = page.locator('ix-menu');
+
+  await element.evaluate((e) => {
+    e.addEventListener('openAbout', (event) => event.preventDefault());
+  });
+
+  const aboutButton = element.locator('ix-menu-item#aboutAndLegal');
+  await aboutButton.click();
+
+  let about = page.locator('ix-menu-about');
+  await expect(about).not.toBeVisible();
+});
+
 regressionTest('should open and close settings', async ({ mount, page }) => {
   await mount(`
       <ix-menu>

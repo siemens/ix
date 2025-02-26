@@ -17,6 +17,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-chip',
@@ -24,7 +25,7 @@ import {
   shadow: true,
 })
 export class Chip {
-  @Element() el: HTMLIxChipElement;
+  @Element() hostElement!: HTMLIxChipElement;
 
   /**
    * Chip variant
@@ -53,7 +54,7 @@ export class Chip {
   /**
    * Show icon
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Custom background color.
@@ -73,11 +74,20 @@ export class Chip {
   @Prop() outline = false;
 
   /**
+   * Display a tooltip. By default, no tooltip will be displayed.
+   * Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+   * @since 3.0.0
+   */
+  @Prop() tooltipText: string | boolean = false;
+
+  /**
    * Fire event if close button is clicked
    *
    * @since 1.5.0
    */
-  @Event() closeChip: EventEmitter;
+  @Event() closeChip!: EventEmitter;
+
+  private readonly containerElementRef = makeRef<HTMLElement>();
 
   private getCloseButton() {
     return (
@@ -100,6 +110,23 @@ export class Chip {
     );
   }
 
+  private getTooltip() {
+    if (!this.tooltipText && !this.hostElement.hasAttribute('tooltip-text')) {
+      return null;
+    }
+
+    const text =
+      typeof this.tooltipText === 'string' && this.tooltipText.trim()
+        ? this.tooltipText
+        : this.hostElement.textContent?.trim();
+
+    return (
+      <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
+        {text}
+      </ix-tooltip>
+    );
+  }
+
   render() {
     const isInactive = this.active === false;
 
@@ -115,7 +142,9 @@ export class Chip {
     return (
       <Host
         tabIndex="-1"
-        title={this.el.textContent}
+        class={{
+          inactive: isInactive,
+        }}
         style={
           this.variant === 'custom'
             ? {
@@ -125,6 +154,7 @@ export class Chip {
         }
       >
         <div
+          ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{
             container: true,
@@ -155,6 +185,7 @@ export class Chip {
           </span>
           {isInactive === false && this.closable ? this.getCloseButton() : null}
         </div>
+        {this.getTooltip()}
       </Host>
     );
   }

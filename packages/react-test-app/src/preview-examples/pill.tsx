@@ -18,11 +18,14 @@ export default () => {
         Label
       </IxPill>
 
-      <IxPill>Label</IxPill>
-      <IxPill outline>Label</IxPill>
+      <IxPill tooltipText="Custom tooltip text">Label</IxPill>
+      <IxPill tooltipText outline>
+        Label
+      </IxPill>
       <IxPill className="styled">Label</IxPill>
 
       <IxPill icon="star">Label</IxPill>
+      <IxPill icon="star"></IxPill>
       <IxPill icon="star" className="styled">
         Label
       </IxPill>
@@ -45,6 +48,17 @@ export default () => {
         Label
       </IxPill>
       <IxPill variant="alarm" outline alignLeft icon="star" className="styled">
+        Label
+      </IxPill>
+
+      <IxPill icon="star" className="styled-ellipsis-4">
+        Label
+      </IxPill>
+      <IxPill outline icon="star" className="styled-ellipsis-4">
+        Label
+      </IxPill>
+      <IxPill className="styled-ellipsis-3">Label</IxPill>
+      <IxPill outline className="styled-ellipsis-3">
         Label
       </IxPill>
     </>

@@ -16,10 +16,10 @@
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-icons": "0.0.0-20240827135516",
+    "@siemens/ix-icons": "0.0.0-pr-69-20250203134847",
     "vite": "^3.2.10"
   },
   "dependencies": {
-    "ag-grid-community": "^32.1.0"
+    "ag-grid-community": "^33.0.4"
   }
 }

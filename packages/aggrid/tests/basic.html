@@ -6,11 +6,12 @@ SPDX-License-Identifier: MIT
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
-<html>
+<html lang="en">
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32.1/dist/ag-grid-community.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css" />
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css" />
+    <title>Ag-Grid basic</title>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32/dist/ag-grid-community.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community@32/styles/ag-grid.css" />
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community@32/styles/ag-theme-alpine.css" />
 
     <link rel="stylesheet" href="/dist/ix-aggrid/ix-aggrid.css" />
     <link rel="stylesheet" href="/www/siemens-ix.css" />
@@ -50,7 +51,7 @@ LICENSE file in the root directory of this source tree.
         };
 
         const gridDiv = document.querySelector('div.ag-theme-ix');
-        const grid = new agGrid.Grid(gridDiv, gridOptions);
+        new agGrid.Grid(gridDiv, gridOptions);
       })();
     </script>
   </body>

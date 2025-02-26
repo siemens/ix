@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 export type MakeRef<T> = {
-  (ref: T | undefined): void;
+  (ref: T | undefined | null): void;
   current: T | null;
   waitForCurrent(): Promise<T>;
 };

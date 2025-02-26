@@ -605,8 +605,8 @@ regressionTest.describe('resolve during element connect', () => {
 
   regressionTest('attach and detach from dom', async ({ page }) => {
     await page.evaluate(() => {
-      const dropdown = document.querySelector('ix-dropdown');
-      const mount = document.querySelector('#mount');
+      const dropdown = document.querySelector('ix-dropdown')!;
+      const mount = document.querySelector('#mount')!;
       mount.removeChild(dropdown);
       mount.append(dropdown);
     });
@@ -620,7 +620,7 @@ regressionTest.describe('resolve during element connect', () => {
   regressionTest('add element within runtime', async ({ page }) => {
     await page.evaluate(async () => {
       const divElement = document.createElement('div');
-      const mount = document.querySelector('#mount');
+      const mount = document.querySelector('#mount')!;
       mount.appendChild(divElement);
     });
 
@@ -646,7 +646,7 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
   await expect(dropdown).toBeVisible();
 
   await dropdown.evaluate((dd) => {
-    dd.removeChild(dd.querySelector('ix-dropdown-button'));
+    dd.removeChild(dd.querySelector('ix-dropdown-button')!);
   });
 
   await trigger.click();
@@ -699,4 +699,52 @@ regressionTest.describe('A11y', () => {
       });
     });
   });
+});
+
+regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
+  await mount(`
+    <style>
+      .dialog {
+        animation: fade-in 0.2s forwards;
+        overflow: visible;
+      }
+
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+          transform: translate(0, -50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(0, 0);
+        }
+      }
+    </style>
+
+    <dialog id="dialog" class="dialog">
+      <ix-button id="trigger">Open</ix-button>
+      <ix-dropdown id="dropdown" trigger="trigger">
+        <ix-dropdown-item label="Item 1"></ix-dropdown-item>
+        <ix-dropdown-item label="Item 2"></ix-dropdown-item>
+      </ix-dropdown>
+    </dialog>
+  `);
+
+  await page.evaluate(() => {
+    const dialog = document.getElementById('dialog') as HTMLDialogElement;
+    dialog.showModal();
+  });
+
+  const trigger = page.locator('#trigger');
+  await trigger.click();
+
+  const dropdown = page.locator('#dropdown');
+
+  const dropdownRect = (await dropdown.boundingBox())!;
+  const triggerRect = (await trigger.boundingBox())!;
+
+  expect(Math.round(dropdownRect.x)).toBe(Math.round(triggerRect.x));
+  expect(Math.round(dropdownRect.y)).toBe(
+    Math.round(triggerRect.y + triggerRect.height)
+  );
 });

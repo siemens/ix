@@ -23,15 +23,14 @@
     "build": "dotenv -- turbo run build",
     "storybook": "dotenv -- turbo run storybook",
     "start": "dotenv -- turbo run start",
-    "turbo": "dotenv -- turbo",
+    "turbo": "turbo",
     "lint": "dotenv -- turbo run lint",
     "format": "prettier --write ./packages/**/src/**/*.{ts,tsx,js,jsx,css,scss,html,vue,json}",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "visual-regression": "dotenv -- turbo run visual-regression",
     "test": "dotenv -- turbo run test --concurrency=1",
-    "prepare": "pnpm git-hooks && pnpm disable-telemetry",
+    "prepare": "pnpm disable-telemetry",
     "disable-telemetry": "turbo telemetry disable",
-    "git-hooks": "husky install",
     "compare-examples": "node ./scripts/compare-preview-examples-across-test-apps.js",
     "ci:version": "pnpm changeset version && pnpm i --lockfile-only",
     "ci:publish": "pnpm changeset publish",
@@ -45,23 +44,15 @@
     "@actions/core": "^1.10.1",
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.27.7",
-    "@commitlint/cli": "^17.8.1",
-    "@commitlint/config-conventional": "^17.8.1",
     "dotenv-cli": "^7.4.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.10.0",
     "execa": "^5.1.1",
-    "husky": "^8.0.3",
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.4",
     "tsx": "^4.16.2",
-    "turbo": "^2.0.9",
+    "turbo": "^2.1.1",
     "typescript": "^5.5.4"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "pnpm": {
     "patchedDependencies": {

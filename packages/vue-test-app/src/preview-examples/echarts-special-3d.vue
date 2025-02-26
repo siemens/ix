@@ -17,7 +17,7 @@ import * as charts from 'echarts/charts';
 import * as components from 'echarts/components';
 import * as renderer from 'echarts/renderers';
 import { EChartsOption } from 'echarts';
-import 'echarts-gl';
+/* import 'echarts-gl'; */
 
 echarts.use([
   components.TooltipComponent,

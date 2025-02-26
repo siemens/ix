@@ -158,7 +158,10 @@ export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplic
         hydrateModule: import('@siemens/ix/hydrate')
     });
 
-type IxApplicationHeaderEvents = { onMenuToggle: EventName<CustomEvent<boolean>> };
+type IxApplicationHeaderEvents = {
+    onMenuToggle: EventName<CustomEvent<boolean>>,
+    onOpenAppSwitch: EventName<CustomEvent<void>>
+};
 
 export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents> = typeof window !== 'undefined'
     ? /*@__PURE__*/ createComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents>({
@@ -166,7 +169,10 @@ export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderEleme
         elementClass: IxApplicationHeaderElement,
         // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
         react: React,
-        events: { onMenuToggle: 'menuToggle' } as IxApplicationHeaderEvents,
+        events: {
+            onMenuToggle: 'menuToggle',
+            onOpenAppSwitch: 'openAppSwitch'
+        } as IxApplicationHeaderEvents,
         defineCustomElement: defineIxApplicationHeader
     })
     : /*@__PURE__*/ createSSRComponent<IxApplicationHeaderElement, IxApplicationHeaderEvents>({
@@ -547,7 +553,8 @@ export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents> = typeof
             icon: 'icon',
             background: 'background',
             chipColor: 'chip-color',
-            outline: 'outline'
+            outline: 'outline',
+            tooltipText: 'tooltip-text'
         },
         hydrateModule: import('@siemens/ix/hydrate')
     });
@@ -1090,7 +1097,7 @@ export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterCh
         hydrateModule: import('@siemens/ix/hydrate')
     });
 
-type IxFlipTileEvents = NonNullable<unknown>;
+type IxFlipTileEvents = { onToggle: EventName<CustomEvent<number>> };
 
 export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEvents> = typeof window !== 'undefined'
     ? /*@__PURE__*/ createComponent<IxFlipTileElement, IxFlipTileEvents>({
@@ -1098,7 +1105,7 @@ export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEven
         elementClass: IxFlipTileElement,
         // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
         react: React,
-        events: {} as IxFlipTileEvents,
+        events: { onToggle: 'toggle' } as IxFlipTileEvents,
         defineCustomElement: defineIxFlipTile
     })
     : /*@__PURE__*/ createSSRComponent<IxFlipTileElement, IxFlipTileEvents>({
@@ -1106,7 +1113,8 @@ export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEven
         properties: {
             state: 'state',
             height: 'height',
-            width: 'width'
+            width: 'width',
+            index: 'index'
         },
         hydrateModule: import('@siemens/ix/hydrate')
     });
@@ -1515,7 +1523,10 @@ export const IxMapNavigationOverlay: StencilReactComponent<IxMapNavigationOverla
 
 type IxMenuEvents = {
     onExpandChange: EventName<CustomEvent<boolean>>,
-    onMapExpandChange: EventName<CustomEvent<boolean>>
+    onMapExpandChange: EventName<CustomEvent<boolean>>,
+    onOpenAppSwitch: EventName<CustomEvent<void>>,
+    onOpenSettings: EventName<CustomEvent<void>>,
+    onOpenAbout: EventName<CustomEvent<void>>
 };
 
 export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = typeof window !== 'undefined'
@@ -1526,7 +1537,10 @@ export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = typeof
         react: React,
         events: {
             onExpandChange: 'expandChange',
-            onMapExpandChange: 'mapExpandChange'
+            onMapExpandChange: 'mapExpandChange',
+            onOpenAppSwitch: 'openAppSwitch',
+            onOpenSettings: 'openSettings',
+            onOpenAbout: 'openAbout'
         } as IxMenuEvents,
         defineCustomElement: defineIxMenu
     })
@@ -1553,7 +1567,10 @@ export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = typeof
         hydrateModule: import('@siemens/ix/hydrate')
     });
 
-type IxMenuAboutEvents = { onClose: EventName<IxMenuAboutCustomEvent<CustomCloseEvent>> };
+type IxMenuAboutEvents = {
+    onTabChange: EventName<CustomEvent<string>>,
+    onClose: EventName<IxMenuAboutCustomEvent<CustomCloseEvent>>
+};
 
 export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutEvents> = typeof window !== 'undefined'
     ? /*@__PURE__*/ createComponent<IxMenuAboutElement, IxMenuAboutEvents>({
@@ -1561,7 +1578,10 @@ export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutE
         elementClass: IxMenuAboutElement,
         // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
         react: React,
-        events: { onClose: 'close' } as IxMenuAboutEvents,
+        events: {
+            onTabChange: 'tabChange',
+            onClose: 'close'
+        } as IxMenuAboutEvents,
         defineCustomElement: defineIxMenuAbout
     })
     : /*@__PURE__*/ createSSRComponent<IxMenuAboutElement, IxMenuAboutEvents>({
@@ -1712,7 +1732,10 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
         hydrateModule: import('@siemens/ix/hydrate')
     });
 
-type IxMenuSettingsEvents = { onClose: EventName<IxMenuSettingsCustomEvent<CustomCloseEvent>> };
+type IxMenuSettingsEvents = {
+    onTabChange: EventName<CustomEvent<string>>,
+    onClose: EventName<IxMenuSettingsCustomEvent<CustomCloseEvent>>
+};
 
 export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenuSettingsEvents> = typeof window !== 'undefined'
     ? /*@__PURE__*/ createComponent<IxMenuSettingsElement, IxMenuSettingsEvents>({
@@ -1720,7 +1743,10 @@ export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenu
         elementClass: IxMenuSettingsElement,
         // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
         react: React,
-        events: { onClose: 'close' } as IxMenuSettingsEvents,
+        events: {
+            onTabChange: 'tabChange',
+            onClose: 'close'
+        } as IxMenuSettingsEvents,
         defineCustomElement: defineIxMenuSettings
     })
     : /*@__PURE__*/ createSSRComponent<IxMenuSettingsElement, IxMenuSettingsEvents>({
@@ -1750,7 +1776,10 @@ export const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement
         hydrateModule: import('@siemens/ix/hydrate')
     });
 
-type IxMessageBarEvents = { onClosedChange: EventName<CustomEvent<any>> };
+type IxMessageBarEvents = {
+    onClosedChange: EventName<CustomEvent<any>>,
+    onCloseAnimationCompleted: EventName<CustomEvent<any>>
+};
 
 export const IxMessageBar: StencilReactComponent<IxMessageBarElement, IxMessageBarEvents> = typeof window !== 'undefined'
     ? /*@__PURE__*/ createComponent<IxMessageBarElement, IxMessageBarEvents>({
@@ -1758,7 +1787,10 @@ export const IxMessageBar: StencilReactComponent<IxMessageBarElement, IxMessageB
         elementClass: IxMessageBarElement,
         // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
         react: React,
-        events: { onClosedChange: 'closedChange' } as IxMessageBarEvents,
+        events: {
+            onClosedChange: 'closedChange',
+            onCloseAnimationCompleted: 'closeAnimationCompleted'
+        } as IxMessageBarEvents,
         defineCustomElement: defineIxMessageBar
     })
     : /*@__PURE__*/ createSSRComponent<IxMessageBarElement, IxMessageBarEvents>({
@@ -2007,7 +2039,8 @@ export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents> = typeof
             icon: 'icon',
             background: 'background',
             pillColor: 'pill-color',
-            alignLeft: 'align-left'
+            alignLeft: 'align-left',
+            tooltipText: 'tooltip-text'
         },
         hydrateModule: import('@siemens/ix/hydrate')
     });
@@ -2152,7 +2185,9 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
             i18nPlaceholderEditable: 'i-1-8n-placeholder-editable',
             i18nSelectListHeader: 'i-1-8n-select-list-header',
             i18nNoMatches: 'i-1-8n-no-matches',
-            hideListHeader: 'hide-list-header'
+            hideListHeader: 'hide-list-header',
+            dropdownWidth: 'dropdown-width',
+            dropdownMaxWidth: 'dropdown-max-width'
         },
         hydrateModule: import('@siemens/ix/hydrate')
     });

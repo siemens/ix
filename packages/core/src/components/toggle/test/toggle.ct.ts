@@ -38,6 +38,22 @@ regressionTest('should toggle', async ({ mount, page }) => {
   await expect(input).toBeChecked();
 });
 
+regressionTest(
+  'should not toggle - default prevented',
+  async ({ mount, page }) => {
+    await mount(`<ix-toggle></ix-toggle>`);
+    const toggle = page.locator('ix-toggle');
+    await toggle.evaluate((t) =>
+      t.addEventListener('checkedChange', (e) => e.preventDefault())
+    );
+    await expect(toggle).toHaveClass(/hydrated/);
+    await toggle.click();
+
+    const input = toggle.locator('input');
+    await expect(input).not.toBeChecked();
+  }
+);
+
 regressionTest('should not toggle if disabled', async ({ mount, page }) => {
   await mount(`<ix-toggle disabled></ix-toggle>`);
   const toggle = page.locator('ix-toggle');

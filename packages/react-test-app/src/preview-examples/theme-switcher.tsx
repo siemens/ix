@@ -24,7 +24,7 @@ export default () => {
   const [themes] = useState(['theme-classic-light', 'theme-classic-dark']);
   const [selectedTheme, setSelectedTheme] = useState(themes[1]);
 
-  const selectionChange = (event: IxSelectCustomEvent<string | string[]>) => {
+  const valueChange = (event: IxSelectCustomEvent<string | string[]>) => {
     const newTheme: string = event.detail as string;
     themeSwitcher.setTheme(newTheme);
     setSelectedTheme(newTheme);
@@ -59,7 +59,7 @@ export default () => {
         <IxCol>
           <IxSelect
             value={selectedTheme}
-            onValueChange={selectionChange}
+            onValueChange={valueChange}
             placeholder="Select a theme"
           >
             {themes.map((theme) => (
@@ -74,10 +74,10 @@ export default () => {
       </IxRow>
 
       <IxRow>
-        <IxCol size="2">Use System</IxCol>
+        <IxCol size="2"></IxCol>
         <IxCol>
           <input type="checkbox" id="system" onChange={systemChange} />
-          <label htmlFor="system"></label>
+          <label htmlFor="system">Use System</label>
         </IxCol>
       </IxRow>
     </IxLayoutGrid>

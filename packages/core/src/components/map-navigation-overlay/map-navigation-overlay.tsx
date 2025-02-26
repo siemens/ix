@@ -27,17 +27,17 @@ import anime from 'animejs';
 export class MapNavigationOverlay {
   private static readonly slowTime = 500;
 
-  @Element() hostElement: HTMLIxMapNavigationOverlayElement;
+  @Element() hostElement!: HTMLIxMapNavigationOverlayElement;
 
   /**
    * Title of overlay
    */
-  @Prop() name: string;
+  @Prop() name?: string;
 
   /**
    * Icon of overlay
    */
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   /**
    * Color of icon
@@ -45,17 +45,17 @@ export class MapNavigationOverlay {
    * @deprecated since 2.1.0. Use `icon-color`
    */
   // eslint-disable-next-line @stencil-community/reserved-member-names
-  @Prop() color: string;
+  @Prop() color?: string;
 
   /**
    * Color of icon
    */
-  @Prop() iconColor: string;
+  @Prop() iconColor?: string;
 
   /**
    * Event closed
    */
-  @Event() closeClick: EventEmitter;
+  @Event() closeClick!: EventEmitter;
 
   componentWillLoad() {
     anime({

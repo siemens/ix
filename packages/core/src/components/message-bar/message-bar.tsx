@@ -44,11 +44,16 @@ export class MessageBar {
   /**
    * An event emitted when the close button is clicked
    */
-  @Event() closedChange: EventEmitter;
+  @Event() closedChange!: EventEmitter;
 
-  @State() icon: string;
+  /**
+   * An event emitted when the close animation is completed
+   */
+  @Event() closeAnimationCompleted!: EventEmitter;
 
-  @State() color: NotificationColor;
+  @State() icon?: string;
+
+  @State() color?: NotificationColor;
 
   private static readonly duration = 300;
 
@@ -72,16 +77,20 @@ export class MessageBar {
   }
 
   private closeAlert(el: HTMLElement) {
-    anime({
-      targets: el,
-      duration: MessageBar.duration,
-      opacity: [1, 0],
-      easing: 'easeOutSine',
-      complete: () => {
-        el.classList.add('d-none');
-      },
-    });
-    this.closedChange.emit();
+    const { defaultPrevented } = this.closedChange.emit();
+
+    if (!defaultPrevented) {
+      anime({
+        targets: el,
+        duration: MessageBar.duration,
+        opacity: [1, 0],
+        easing: 'easeOutSine',
+        complete: () => {
+          el.classList.add('message-bar-hidden');
+          this.closeAnimationCompleted.emit();
+        },
+      });
+    }
   }
 
   render() {
@@ -102,7 +111,9 @@ export class MessageBar {
               size="24"
               ghost={true}
               onClick={() => {
-                this.closeAlert(this.divElement);
+                if (this.divElement) {
+                  this.closeAlert(this.divElement);
+                }
               }}
               data-testid="close-btn"
             ></ix-icon-button>

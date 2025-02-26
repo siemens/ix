@@ -19,17 +19,17 @@ export class Kpi {
   /**
    *
    */
-  @Prop() label: string;
+  @Prop() label?: string;
 
   /**
    *
    */
-  @Prop() value: string | number;
+  @Prop() value?: string | number;
 
   /**
    *
    */
-  @Prop() unit: string;
+  @Prop() unit?: string;
 
   /**
    *

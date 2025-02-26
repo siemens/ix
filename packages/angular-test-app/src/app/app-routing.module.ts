@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
+import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
@@ -153,6 +154,7 @@ import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
 import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
+import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
@@ -241,6 +243,10 @@ const routes: Routes = [
       {
         path: 'action-card',
         component: ActionCard,
+      },
+      {
+        path: 'add-icons',
+        component: AddIcons,
       },
       {
         path: 'application',
@@ -721,6 +727,10 @@ const routes: Routes = [
       {
         path: 'message-bar',
         component: MessageBar,
+      },
+      {
+        path: 'message-bar-removal',
+        component: MessageBarRemoval,
       },
       {
         path: 'modal-by-instance-content',

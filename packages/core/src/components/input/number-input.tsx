@@ -14,11 +14,11 @@ import {
   Element,
   Event,
   EventEmitter,
+  h,
   Host,
   Method,
   Prop,
   State,
-  h,
 } from '@stencil/core';
 import {
   HookValidationLifecycle,
@@ -28,9 +28,11 @@ import {
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
 import {
+  addDisposableChangesAndVisibilityObservers,
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputBlur,
 } from './input.util';
@@ -168,6 +170,9 @@ export class NumberInput implements IxInputFieldComponent<number> {
   private readonly slotEndRef = makeRef<HTMLDivElement>();
   private readonly slotStartRef = makeRef<HTMLDivElement>();
   private readonly numberInputId = `number-input-${numberInputIds++}`;
+  private touched = false;
+
+  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   @HookValidationLifecycle()
   updateClassMappings(result: ValidationResults) {
@@ -178,8 +183,16 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.updateFormInternalValue(this.value);
   }
 
-  componentDidRender() {
-    this.updatePaddings();
+  connectedCallback() {
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
+  }
+
+  disconnectedCallback() {
+    this.disposableChangesAndVisibilityObservers?.();
   }
 
   private updatePaddings() {
@@ -223,6 +236,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
     return (await this.getNativeInputElement()).focus();
   }
 
+  /**
+   * Returns true if the input field has been touched
+   * @internal
+   */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
+  }
+
   render() {
     const showStepperButtons =
       this.showStepperButtons && (this.disabled || this.readonly) === false;
@@ -260,6 +282,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
               slotStartRef={this.slotStartRef}
               onSlotChange={() => this.updatePaddings()}
             ></SlotStart>
+
             <InputElement
               id={this.numberInputId}
               readonly={this.readonly}
@@ -278,7 +301,10 @@ export class NumberInput implements IxInputFieldComponent<number> {
               updateFormInternalValue={(value) =>
                 this.updateFormInternalValue(Number(value))
               }
-              onBlur={() => onInputBlur(this, this.inputRef.current)}
+              onBlur={() => {
+                onInputBlur(this, this.inputRef.current);
+                this.touched = true;
+              }}
             ></InputElement>
             <SlotEnd
               slotEndRef={this.slotEndRef}

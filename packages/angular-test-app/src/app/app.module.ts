@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as echarts from 'echarts';
 import AboutAndLegal from '../preview-examples/about-and-legal';
 import ActionCard from '../preview-examples/action-card';
+import AddIcons from '../preview-examples/add-icons';
 import AgGrid from '../preview-examples/aggrid';
 import ApplicationExample from '../preview-examples/application';
 import ApplicationAppSwitchExample from '../preview-examples/application-app-switch';
@@ -162,6 +163,7 @@ import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
 import Message from '../preview-examples/message';
 import MessageBar from '../preview-examples/message-bar';
+import MessageBarRemoval from '../preview-examples/message-bar-removal';
 import ModalByInstance from '../preview-examples/modal-by-instance';
 import ModalByInstanceContent from '../preview-examples/modal-by-instance-content';
 import ModalByTemplate from '../preview-examples/modal-by-template';
@@ -248,6 +250,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     AppComponent,
     AboutAndLegal,
     ActionCard,
+    AddIcons,
     AgGrid,
     ApplicationExample,
     ApplicationBreakpointExample,
@@ -376,6 +379,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     MenuWithBottomTabs,
     Message,
     MessageBar,
+    MessageBarRemoval,
     ModalByInstanceContent,
     ModalByInstance,
     ModalByTemplate,

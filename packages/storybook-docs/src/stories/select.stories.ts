@@ -54,3 +54,35 @@ export const editableSelect: Story = {
     disabled: false,
   },
 };
+
+export const editable_with_dropdown_width: Story = {
+  render: ({ editable, disabled, dropdownWidth, dropdownMaxWidth }) => {
+    return html` <ix-select
+      editable=${editable}
+      disabled=${disabled}
+      dropdown-width=${dropdownWidth}
+      dropdown-max-width=${dropdownMaxWidth}
+    >
+      <ix-select-item
+        label="this is an example for a very long selection option. this is an example for a very long selection option."
+        value="1"
+      ></ix-select-item>
+      <ix-select-item label="Item 2" value="2"></ix-select-item>
+      <ix-select-item label="Item 3" value="3"></ix-select-item>
+      <ix-select-item label="Item 4" value="4"></ix-select-item>
+    </ix-select>`;
+  },
+  args: {
+    editable: true,
+    disabled: false,
+    dropdownWidth: '35rem',
+    dropdownMaxWidth: '25rem',
+  },
+};
+
+export const Required: Story = {
+  args: {
+    required: true,
+    label: 'Required',
+  },
+};

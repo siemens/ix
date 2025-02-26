@@ -74,3 +74,16 @@ regressionTest(
     await expect(tooltip).not.toBeVisible();
   }
 );
+
+regressionTest(
+  'should not change value - prevent default',
+  async ({ page, mount }) => {
+    await mount(`<ix-slider value="20"></ix-slider>`);
+    const slider = page.locator('ix-slider');
+    await slider.evaluate((s) =>
+      s.addEventListener('valueChange', (e) => e.preventDefault())
+    );
+    await page.mouse.click(100, 16);
+    await expect(slider).toHaveAttribute('value', '20');
+  }
+);

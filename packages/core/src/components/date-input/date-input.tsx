@@ -24,7 +24,11 @@ import {
 import { DateTime } from 'luxon';
 import { dropdownController } from '../dropdown/dropdown-controller';
 import { SlotEnd, SlotStart } from '../input/input.fc';
-import { adjustPaddingForStartAndEnd } from '../input/input.util';
+import {
+  DisposableChangesAndVisibilityObservers,
+  addDisposableChangesAndVisibilityObservers,
+  adjustPaddingForStartAndEnd,
+} from '../input/input.util';
 import {
   ClassMutationObserver,
   HookValidationLifecycle,
@@ -173,6 +177,9 @@ export class DateInput implements IxInputFieldComponent<string> {
   private readonly dropdownElementRef = makeRef<HTMLIxDropdownElement>();
   private classObserver?: ClassMutationObserver;
   private invalidReason?: string;
+  private touched = false;
+
+  private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string): void {
     this.formInternals.setFormValue(value);
@@ -183,6 +190,12 @@ export class DateInput implements IxInputFieldComponent<string> {
     this.classObserver = createClassMutationObserver(this.hostElement, () =>
       this.checkClassList()
     );
+
+    this.disposableChangesAndVisibilityObservers =
+      addDisposableChangesAndVisibilityObservers(
+        this.hostElement,
+        this.updatePaddings.bind(this)
+      );
   }
 
   componentWillLoad(): void {
@@ -197,10 +210,6 @@ export class DateInput implements IxInputFieldComponent<string> {
     this.updateFormInternalValue(this.value);
   }
 
-  componentDidRender(): void {
-    this.updatePaddings();
-  }
-
   private updatePaddings() {
     adjustPaddingForStartAndEnd(
       this.slotStartRef.current,
@@ -210,9 +219,8 @@ export class DateInput implements IxInputFieldComponent<string> {
   }
 
   disconnectedCallback(): void {
-    if (this.classObserver) {
-      this.classObserver.destroy();
-    }
+    this.classObserver?.destroy();
+    this.disposableChangesAndVisibilityObservers?.();
   }
 
   @Watch('value')
@@ -337,7 +345,10 @@ export class DateInput implements IxInputFieldComponent<string> {
             this.openDropdown();
             this.ixFocus.emit();
           }}
-          onBlur={() => this.ixBlur.emit()}
+          onBlur={() => {
+            this.ixBlur.emit();
+            this.touched = true;
+          }}
         ></input>
         <SlotEnd
           slotEndRef={this.slotEndRef}
@@ -410,6 +421,15 @@ export class DateInput implements IxInputFieldComponent<string> {
   @Method()
   async focusInput(): Promise<void> {
     return (await this.getNativeInputElement()).focus();
+  }
+
+  /**
+   * Returns whether the text field has been touched.
+   * @internal
+   */
+  @Method()
+  isTouched(): Promise<boolean> {
+    return Promise.resolve(this.touched);
   }
 
   render() {

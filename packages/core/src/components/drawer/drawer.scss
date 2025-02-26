@@ -17,8 +17,6 @@
   right: 0;
   @include box-shadow(3);
 
-  visibility: hidden;
-
   display: flex;
   position: absolute;
   flex-flow: column nowrap;
@@ -32,9 +30,8 @@
 
   transition: all var(--theme-medium-time) ease-out;
 
-  .toggle {
+  .drawer-container {
     z-index: 100;
-    visibility: visible;
   }
 
   .header {
@@ -61,6 +58,10 @@
     width: 100%;
     overflow-y: auto;
   }
+}
+
+:host(.drawer-hidden) {
+  display: none;
 }
 
 :host(.toggle) {
