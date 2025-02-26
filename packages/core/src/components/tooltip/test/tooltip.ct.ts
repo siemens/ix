@@ -7,9 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { test } from '@utils/test';
-import { ElementReference } from 'src/components/utils/element-reference';
 
 test('renders', async ({ mount, page }) => {
   await mount(`
@@ -156,124 +155,147 @@ test('avoid double visibility request by focusin event', async ({
   await expect(menuItem2.locator('ix-tooltip')).not.toHaveClass(/visible/);
 });
 
-test('handles all for input types', async ({ mount, page }) => {
-  await mount(`
-    <div style="margin: 2rem">
-      <ix-tooltip id="tooltip1">tooltip1</ix-tooltip>
-      <ix-tooltip id="tooltip2">tooltip2</ix-tooltip>
-      <ix-tooltip id="tooltip3">tooltip3</ix-tooltip>
-      <ix-tooltip id="tooltip4">tooltip4</ix-tooltip>
-      <ix-tooltip id="tooltip5">tooltip5</ix-tooltip>
-      <ix-tooltip id="tooltip6">tooltip6</ix-tooltip>
-      <ix-tooltip id="tooltip7">tooltip7</ix-tooltip>
+test.describe('handles all reference types', () => {
+  const testButton = async (page: Page) => {
+    const tooltip = page.locator('#tooltip');
+    const button = page.locator('#button');
 
-      <ix-button id="button1-1">button1</ix-button>
-      <ix-button id="button2-1">button2</ix-button>
-      <ix-button id="button3-1">button3</ix-button>
-      <ix-button id="button4-1">button4-1</ix-button>
-      <ix-button id="button4-2">button4-2</ix-button>
-      <ix-button id="button5-1">button5-1</ix-button>
-      <ix-button id="button5-2">button5-2</ix-button>
-      <ix-button id="button6-1">button6-1</ix-button>
-      <ix-button id="button6-2">button6-2</ix-button>
-      <ix-button id="button7-1">button7-1</ix-button>
-      <ix-button id="button7-2">button7-2</ix-button>
-      <ix-button id="button7-3">button7-3</ix-button>
-    </div>
-  `);
+    await button.hover();
+    await expect(tooltip).toHaveClass(/visible/);
 
-  const ids = await page.evaluate(() => {
-    const map: {
-      tooltip: HTMLIxTooltipElement;
-      buttons: HTMLIxButtonElement[];
-    }[] = [];
+    await page.mouse.move(0, 0);
+    await expect(tooltip).not.toHaveClass(/visible/);
+  };
 
-    for (let i = 1; i <= 7; i++) {
-      const buttons: HTMLIxButtonElement[] = [];
-      const buttonEntries = [1, 1, 1, 2, 2, 2, 3][i - 1];
-
-      for (let j = 1; j <= buttonEntries; j++) {
-        buttons.push(
-          document.getElementById(`button${i}-${j}`) as HTMLIxButtonElement
-        );
-      }
-
-      map.push({
-        tooltip: document.getElementById(`tooltip${i}`) as HTMLIxTooltipElement,
-        buttons,
-      });
-    }
-
-    const getString = (buttons: HTMLIxButtonElement[]) => {
-      if (buttons.length === 1) {
-        return '#' + buttons[0].id;
-      } else {
-        return buttons.map((button) => '#' + button.id);
-      }
-    };
-
-    const getElement = (buttons: HTMLIxButtonElement[]) => {
-      if (buttons.length === 1) {
-        return buttons[0];
-      } else {
-        return buttons;
-      }
-    };
-
-    const getPromise = (buttons: HTMLIxButtonElement[]) => {
-      if (buttons.length === 1) {
-        return Promise.resolve(buttons[0]);
-      } else {
-        return buttons.map((button) => Promise.resolve(button));
-      }
-    };
-
-    const getMixture = (buttons: HTMLIxButtonElement[]) => {
-      const references: ElementReference[] = [];
-      buttons.forEach((button, index) => {
-        if (index === 0) {
-          references.push('#' + button.id);
-        } else if (index === 1) {
-          references.push(button);
-        } else {
-          references.push(Promise.resolve(button));
-        }
-      });
-      return references;
-    };
-
-    let count = 1;
-    for (const { tooltip, buttons } of map) {
-      if (count === 1 || count === 4) {
-        tooltip.for = getString(buttons);
-      } else if (count === 2 || count === 5) {
-        tooltip.for = getElement(buttons);
-      } else if (count === 3 || count === 6) {
-        tooltip.for = getPromise(buttons);
-      } else {
-        tooltip.for = getMixture(buttons);
-      }
-
-      count++;
-    }
-
-    return map.map(({ tooltip, buttons }) => ({
-      tooltipId: '#' + tooltip.id,
-      buttonIds: buttons.map((button) => '#' + button.id),
-    }));
+  test.beforeEach(async ({ mount }) => {
+    await mount(`
+      <div style="margin: 2rem">
+        <ix-tooltip id="tooltip">Tooltip</ix-tooltip>
+        <ix-button id="button">Button</ix-button>
+      </div>
+    `);
   });
 
-  // Test each tooltip
-  for (const { tooltipId, buttonIds } of ids) {
-    const tooltipElement = page.locator(tooltipId);
+  test('handles string', async ({ page }) => {
+    await page.evaluate(() => {
+      const tooltip = document.getElementById(
+        'tooltip'
+      ) as HTMLIxTooltipElement;
+      tooltip.for = '#button';
+    });
 
-    for (const buttonId of buttonIds) {
-      const buttonElement = page.locator(buttonId);
+    await testButton(page);
+  });
 
-      await buttonElement.hover();
-      await expect(tooltipElement).toHaveClass(/visible/);
-      await page.mouse.move(0, 0);
-      await expect(tooltipElement).not.toHaveClass(/visible/);
-    }
-  }
+  test('handles element', async ({ page }) => {
+    await page.evaluate(() => {
+      const tooltip = document.getElementById(
+        'tooltip'
+      ) as HTMLIxTooltipElement;
+      const button = document.getElementById('button') as HTMLIxButtonElement;
+      tooltip.for = button;
+    });
+
+    await testButton(page);
+  });
+
+  test('handles promise', async ({ page }) => {
+    await page.evaluate(() => {
+      const tooltip = document.getElementById(
+        'tooltip'
+      ) as HTMLIxTooltipElement;
+      const button = document.getElementById('button') as HTMLIxButtonElement;
+      tooltip.for = Promise.resolve(button);
+    });
+
+    await testButton(page);
+  });
+});
+
+test.describe('handles multiple references', () => {
+  const testMultipleButtons = async (page: Page) => {
+    const tooltip = page.locator('#tooltip');
+    const button1 = page.locator('#button1');
+    const button2 = page.locator('#button2');
+    const button3 = page.locator('#button3');
+
+    await button1.hover();
+    await expect(tooltip).toHaveClass(/visible/);
+
+    await button2.hover();
+    await expect(tooltip).toHaveClass(/visible/);
+
+    await button3.hover();
+    await expect(tooltip).toHaveClass(/visible/);
+
+    await page.mouse.move(0, 0);
+    await expect(tooltip).not.toHaveClass(/visible/);
+  };
+
+  test.beforeEach(async ({ mount }) => {
+    await mount(`
+      <div style="margin: 2rem">
+        <ix-tooltip id="tooltip">Tooltip</ix-tooltip>
+        <ix-button id="button1">Button1</ix-button>
+        <ix-button id="button2">Button2</ix-button>
+        <ix-button id="button3">Button3</ix-button>
+      </div>
+    `);
+  });
+
+  test('handles string array', async ({ page }) => {
+    await page.evaluate(() => {
+      const tooltip = document.getElementById(
+        'tooltip'
+      ) as HTMLIxTooltipElement;
+      tooltip.for = ['#button1', '#button2', '#button3'];
+    });
+
+    await testMultipleButtons(page);
+  });
+
+  test('handles element array', async ({ page }) => {
+    await page.evaluate(() => {
+      const tooltip = document.getElementById(
+        'tooltip'
+      ) as HTMLIxTooltipElement;
+      const button1 = document.getElementById('button1') as HTMLIxButtonElement;
+      const button2 = document.getElementById('button2') as HTMLIxButtonElement;
+      const button3 = document.getElementById('button3') as HTMLIxButtonElement;
+      tooltip.for = [button1, button2, button3];
+    });
+
+    await testMultipleButtons(page);
+  });
+
+  test('handles promise array', async ({ page }) => {
+    await page.evaluate(() => {
+      const tooltip = document.getElementById(
+        'tooltip'
+      ) as HTMLIxTooltipElement;
+      const button1 = document.getElementById('button1') as HTMLIxButtonElement;
+      const button2 = document.getElementById('button2') as HTMLIxButtonElement;
+      const button3 = document.getElementById('button3') as HTMLIxButtonElement;
+      tooltip.for = [
+        Promise.resolve(button1),
+        Promise.resolve(button2),
+        Promise.resolve(button3),
+      ];
+    });
+
+    await testMultipleButtons(page);
+  });
+
+  test('handles mixed array', async ({ page }) => {
+    await page.evaluate(() => {
+      const tooltip = document.getElementById(
+        'tooltip'
+      ) as HTMLIxTooltipElement;
+      const button2 = document.getElementById('button2') as HTMLIxButtonElement;
+      const button3 = document.getElementById('button3') as HTMLIxButtonElement;
+      tooltip.for = ['#button1', button2, Promise.resolve(button3)];
+    });
+
+    await testMultipleButtons(page);
+  });
 });
