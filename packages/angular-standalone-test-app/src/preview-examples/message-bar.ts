@@ -19,7 +19,7 @@ import { IxMessageBar, IxButton } from '@siemens/ix-angular/standalone';
       <ix-message-bar>Message text</ix-message-bar>
       <ix-message-bar type="warning">Message text</ix-message-bar>
       <ix-message-bar type="danger">
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="message-bar-danger">
           Message text
           <ix-button>Action</ix-button>
         </div>

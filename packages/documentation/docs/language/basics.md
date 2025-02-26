@@ -34,28 +34,28 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 - Avoid using negative contractions as they can appear too informal
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div className="ux-writing-guidelines">
+<span>
 <Guideline do label='their, them, theirs, salesperson'></Guideline>
 <Guideline do={false} label='his, hers, him, salesman'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Welcome to this application'></Guideline>
 <Guideline do={false} label='Hey there!'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='X appears when detail view has selected events'></Guideline>
 <Guideline do={false} label='X doesn’t appear if detail view has no selected events'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='cannot, will not'></Guideline>
 <Guideline do={false} label='can’t, won’t'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='you’ll, we’ve'></Guideline>
 <Guideline do={false} label='you will, we have'></Guideline>
 </span>
@@ -84,23 +84,23 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 - Capitalize named app functions and UI elements: Go to Settings, Allocate users in User management, Press Ok
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div className="ux-writing-guidelines">
+<span>
 <Guideline do label='Go to Settings'></Guideline>
 <Guideline do={false} label='Go To Settings'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Press OK'></Guideline>
 <Guideline do={false} label='Press Ok'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Log in'></Guideline>
 <Guideline do={false} label='LOG IN'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='For more information, see Siemens Industry Online Support.'></Guideline>
 <Guideline do={false} label='For more information, see Siemens industry online support.'></Guideline>
 </span>
@@ -109,63 +109,63 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 ### Common UX wording mistakes
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div className="ux-writing-guidelines">
+<span>
 <Guideline do label='time zone'></Guideline>
 <Guideline do={false} label='timezone'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='log file'></Guideline>
 <Guideline do={false} label='logfile'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='log in (as an action)'></Guideline>
 <Guideline do={false} label='login'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='login (as a noun)'></Guideline>
 <Guideline do={false} label='log in'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='equipment'></Guideline>
 <Guideline do={false} label='equipments'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='feedback'></Guideline>
 <Guideline do={false} label='feedbacks'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='training'></Guideline>
 <Guideline do={false} label='trainings'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='current'></Guideline>
 <Guideline do={false} label='actual'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='avoid "shall"'></Guideline>
 <Guideline do={false} label='user shall manage users'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Siemens has'></Guideline>
 <Guideline do={false} label='Siemens have'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='34 million / 35 billion'></Guideline>
 <Guideline do={false} label='34’ / 35“'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='34 million'></Guideline>
 <Guideline do={false} label='34 millions'></Guideline>
 </span>

@@ -137,7 +137,7 @@ export class MapNavigation {
       opacity: [1, 0],
       easing: 'easeInSine',
       complete: () => {
-        this.sidebar.classList.add('d-none');
+        this.sidebar.classList.add('display-none');
       },
     });
   }
@@ -150,7 +150,7 @@ export class MapNavigation {
       opacity: [0, 1],
       easing: 'easeOutSine',
       begin: () => {
-        this.sidebar.classList.remove('d-none');
+        this.sidebar.classList.remove('display-none');
       },
     });
   }
@@ -179,7 +179,7 @@ export class MapNavigation {
       opacity: [0, 1],
       easing: 'easeOutSine',
       begin: () => {
-        this.overlay.classList.remove('d-none');
+        this.overlay.classList.remove('display-none');
       },
     });
 
@@ -211,7 +211,7 @@ export class MapNavigation {
           return;
         }
         this.overlay.firstChild?.remove();
-        this.overlay.classList.add('d-none');
+        this.overlay.classList.add('display-none');
       },
     });
   }

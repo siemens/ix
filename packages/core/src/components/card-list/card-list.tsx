@@ -166,10 +166,10 @@ export class CardList {
     childElements.forEach((element, index) => {
       if (element instanceof HTMLElement) {
         if (index > this.maxVisibleCards - 1) {
-          element.classList.add('d-none');
+          element.classList.add('display-none');
           return;
         }
-        element.classList.remove('d-none');
+        element.classList.remove('display-none');
       }
     });
     this.hasOverflowingElements = childElements.length > this.maxVisibleCards;

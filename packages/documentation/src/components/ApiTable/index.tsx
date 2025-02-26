@@ -31,8 +31,8 @@ export type ApiTableEntryDefinition = {
 
 function ApiTableRow(props: { attribute: ApiTableEntry }) {
   return (
-    <div className="row with--border">
-      <div className="col-sm-6">
+    <div className="ApiTable__Row with--border">
+      <div className="ApiTable__Col">
         <div className="ApiTable__Name">
           {props?.attribute?.name}
           {props?.attribute?.tags
@@ -53,20 +53,20 @@ function ApiTableRow(props: { attribute: ApiTableEntry }) {
             ))}
         </div>
       </div>
-      <div className="col-sm-6">
+      <div className="ApiTable__Col">
         <div className="ApiTable__Content">
           <span className="Attribute__Description">
             {props?.attribute?.description}
           </span>
-          <div className="container-fluid">
+          <div>
             {props?.attribute?.definition
               ?.filter((attribute) => attribute.value !== undefined)
               .map((attribute) => (
-                <div className="row Attribute" key={attribute.name}>
-                  <div className="col-auto Attribute__Name">
+                <div className="ApiTable__Row Attribute" key={attribute.name}>
+                  <div className="ApiTable__ColAuto Attribute__Name">
                     {attribute.name}:
                   </div>
-                  <code className="col-auto Attribute__Value">
+                  <code className="ApiTable__ColAuto Attribute__Value">
                     {attribute.value}
                   </code>
                 </div>
@@ -80,10 +80,10 @@ function ApiTableRow(props: { attribute: ApiTableEntry }) {
 
 function ApiTable(props: { attributes: ApiTableEntry[] }) {
   return (
-    <div className="container-fluid ApiTable">
-      <div className="row with--border">
-        <div className="col-sm-6 ApiTable__Headline">Name</div>
-        <div className="col-sm-6 ApiTable__Headline">
+    <div className="ApiTable">
+      <div className="ApiTable__Row with--border">
+        <div className="ApiTable__Col ApiTable__Headline">Name</div>
+        <div className="ApiTable__Col ApiTable__Headline">
           Description and specifications
         </div>
       </div>

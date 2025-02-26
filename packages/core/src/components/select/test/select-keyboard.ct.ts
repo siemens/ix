@@ -54,7 +54,7 @@ function selectController(select: Locator) {
       let selector = 'ix-select-item';
 
       if (onlyVisible) {
-        selector += ':not(.d-none)';
+        selector += ':not(.display-none)';
       }
 
       await dropdownVisible();

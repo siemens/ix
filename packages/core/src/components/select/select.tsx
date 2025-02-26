@@ -255,7 +255,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   get visibleNonShadowItems() {
     return this.nonShadowItems.filter(
-      (item) => !item.classList.contains('d-none')
+      (item) => !item.classList.contains('display-none')
     );
   }
 
@@ -267,7 +267,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   get visibleShadowItems() {
     return this.shadowItems.filter(
-      (item) => !item.classList.contains('d-none')
+      (item) => !item.classList.contains('display-none')
     );
   }
 
@@ -276,7 +276,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   get visibleItems() {
-    return this.items.filter((item) => !item.classList.contains('d-none'));
+    return this.items.filter(
+      (item) => !item.classList.contains('display-none')
+    );
   }
 
   get selectedItems() {
@@ -296,7 +298,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
   }
 
   get isEveryDropdownItemHidden() {
-    return this.items.every((item) => item.classList.contains('d-none'));
+    return this.items.every((item) => item.classList.contains('display-none'));
   }
 
   @Watch('value')
@@ -700,13 +702,13 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
     if (this.inputFilterText) {
       this.items.forEach((item) => {
-        item.classList.remove('d-none');
+        item.classList.remove('display-none');
         if (
           !item.label
             ?.toLowerCase()
             .includes(this.inputFilterText.toLowerCase())
         ) {
-          item.classList.add('d-none');
+          item.classList.add('display-none');
         }
       });
     } else {
@@ -722,7 +724,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
 
   private removeHiddenFromItems() {
     this.items.forEach((item) => {
-      item.classList.remove('d-none');
+      item.classList.remove('display-none');
     });
   }
 
@@ -950,7 +952,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
           show={this.dropdownShow}
           closeBehavior={this.isMultipleMode ? 'outside' : 'both'}
           class={{
-            'd-none': this.disabled || this.readonly,
+            'display-none': this.disabled || this.readonly,
           }}
           anchor={this.dropdownAnchorRef.waitForCurrent()}
           trigger={this.dropdownWrapperRef.waitForCurrent()}
@@ -993,10 +995,7 @@ export class Select implements IxInputFieldComponent<string | string[]> {
               this.updateSelection();
             }}
           ></slot>
-          <div
-            ref={(ref) => (this.customItemsContainerElement = ref!)}
-            class="d-contents"
-          ></div>
+          <div ref={(ref) => (this.customItemsContainerElement = ref!)}></div>
           {this.isAddItemVisible() ? (
             <ix-dropdown-item
               data-testid="add-item"

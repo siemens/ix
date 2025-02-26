@@ -829,7 +829,7 @@ export class CategoryFilter {
           >
             <ix-icon
               color={this.getIconColor()}
-              class={{ 'd-none': this.hideIcon }}
+              class={{ 'display-none': this.hideIcon }}
               name={this.icon ?? iconSearch}
               size="16"
             ></ix-icon>
@@ -859,7 +859,7 @@ export class CategoryFilter {
                   <span
                     class={{
                       'category-preview': true,
-                      'd-none': this.category === '',
+                      'display-none': this.category === '',
                     }}
                   >
                     {this.categories[this.category]?.label}

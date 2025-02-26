@@ -66,7 +66,7 @@ export class MapNavigationOverlay {
       opacity: [0, 1],
       easing: 'easeOutSine',
       begin: () => {
-        this.hostElement.classList.remove('d-none');
+        this.hostElement.classList.remove('display-none');
       },
     });
   }
@@ -81,7 +81,7 @@ export class MapNavigationOverlay {
       easing: 'easeInSine',
       complete: () => {
         this.closeClick.emit();
-        this.hostElement.classList.add('d-none');
+        this.hostElement.classList.add('display-none');
       },
     });
   }
@@ -93,7 +93,7 @@ export class MapNavigationOverlay {
           <div
             class={{
               'color-indicator': true,
-              'd-none': (this.iconColor ?? this.color) === undefined,
+              'display-none': (this.iconColor ?? this.color) === undefined,
             }}
             style={{
               'background-color':

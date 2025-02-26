@@ -24,7 +24,7 @@ import {
   iconChevronDown,
   iconChevronDownSmall,
   iconChevronUp,
-  iconChevronUpSmall,
+  iconChevronRightSmall,
 } from '@siemens/ix-icons/icons';
 
 export type TimePickerCorners = DateTimeCardCorners;
@@ -251,7 +251,7 @@ export class TimePicker {
                       }))
                     }
                     ghost
-                    icon={iconChevronUpSmall}
+                    icon={iconChevronRightSmall}
                     variant="primary"
                     class="arrows"
                   ></ix-icon-button>

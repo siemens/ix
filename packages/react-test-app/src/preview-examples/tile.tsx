@@ -16,14 +16,14 @@ export default () => {
     <div className="example">
       <IxTile size="small">92.8 °C</IxTile>
 
-      <IxTile size="medium" className="mr-1">
+      <IxTile size="medium">
         <div slot="header">Tile header</div>
         <div className="text-l">92.8 °C</div>
       </IxTile>
 
       <IxTile size="big">
         <div
-          className="d-flex flex-grow-1 align-items-center justify-content-between"
+          className="tile-header"
           slot="header"
         >
           Tile header
@@ -42,7 +42,7 @@ export default () => {
           <span>92.8 °C</span>
         </div>
         <div
-          className="d-flex h-100 align-items-center justify-content-end"
+          className="tile-footer"
           slot="footer"
         >
           <IxButton ghost slot="footer">

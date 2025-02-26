@@ -213,7 +213,7 @@ export class DatetimePicker
               ></ix-date-picker>
             </ix-col>
 
-            <ix-col class="d-flex flex-column">
+            <ix-col>
               <ix-time-picker
                 class="min-width"
                 ref={(ref) => (this.timePickerElement = ref)}

@@ -11,7 +11,7 @@ import { IxInputGroup } from '@siemens/ix-react';
 
 export default () => {
   return (
-    <form className="needs-validation m-2">
+    <form className="needs-validation">
       <IxInputGroup>
         <span slot="input-start">Text:</span>
         <input placeholder="Enter text" type="text" />
