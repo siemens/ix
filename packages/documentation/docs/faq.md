@@ -43,7 +43,7 @@ The table below lists the supported versions for various browsers.
       <td>✅ v122+</td>
       <td>✅ v122+</td>
       <td>✅ v122+</td>
-      <td>✅ v17+</td>
+      <td>✅ v18+</td>
       <td>❌</td>
       <td>❌</td>
     </tr>
