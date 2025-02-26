@@ -9,6 +9,7 @@
 
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { IxComponent } from '../utils/internal';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-pill',
@@ -64,7 +65,16 @@ export class Pill implements IxComponent {
    */
   @Prop() alignLeft = false;
 
+  /**
+   * Display a tooltip. By default, no tooltip will be displayed.
+   * Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+   * @since 3.0.0
+   */
+  @Prop() tooltipText: string | boolean = false;
+
   @State() iconOnly = false;
+
+  private readonly containerElementRef = makeRef<HTMLElement>();
 
   componentWillLoad() {
     this.checkIfContentAvailable();
@@ -75,6 +85,23 @@ export class Pill implements IxComponent {
     const hasTextContent = !!this.hostElement.textContent;
 
     this.iconOnly = !hasChildren && !hasTextContent;
+  }
+
+  private getTooltip() {
+    if (!this.tooltipText && !this.hostElement.hasAttribute('tooltip-text')) {
+      return null;
+    }
+
+    const text =
+      typeof this.tooltipText === 'string' && this.tooltipText.trim()
+        ? this.tooltipText
+        : this.hostElement.textContent?.trim();
+
+    return (
+      <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
+        {text}
+      </ix-tooltip>
+    );
   }
 
   render() {
@@ -95,12 +122,12 @@ export class Pill implements IxComponent {
               }
             : {}
         }
-        title={this.hostElement.textContent}
         class={{
           'align-left': this.alignLeft,
         }}
       >
         <div
+          ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{
             container: true,
@@ -131,6 +158,7 @@ export class Pill implements IxComponent {
             <slot onSlotchange={() => this.checkIfContentAvailable()}></slot>
           </span>
         </div>
+        {this.getTooltip()}
       </Host>
     );
   }
