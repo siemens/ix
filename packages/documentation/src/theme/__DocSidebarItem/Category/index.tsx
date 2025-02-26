@@ -19,6 +19,10 @@ import useIsBrowser from '@docusaurus/useIsBrowser';
 import DocSidebarItems from '@theme/DocSidebarItems';
 import type { Props } from '@theme/DocSidebarItem/Category';
 import { IxIcon } from '@siemens/ix-react';
+import {
+  iconChevronDownSmall,
+  iconChevronUpSmall,
+} from '@siemens/ix-icons/icons';
 
 // If we navigate to a category and it becomes active, it should automatically
 // expand itself
@@ -194,9 +198,9 @@ export default function DocSidebarItemCategory({
           {...props}
         >
           {collapsed ? (
-            <IxIcon name="chevron-right-small"></IxIcon>
+            <IxIcon name={iconChevronUpSmall}></IxIcon>
           ) : (
-            <IxIcon name="chevron-down-small"></IxIcon>
+            <IxIcon name={iconChevronDownSmall}></IxIcon>
           )}
           {label}
         </Link>

@@ -6,6 +6,44 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { IxIcon } from '@siemens/ix-react';
+import {
+  iconArrowRight,
+  iconAttach,
+  iconBulb,
+  iconBulbFilled,
+  iconCalendarSettings,
+  iconCheckbox,
+  iconChevronDown,
+  iconChevronLeft,
+  iconChevronRight,
+  iconConfiguration,
+  iconControlledDevice,
+  iconDiamond,
+  iconHeart,
+  iconHierarchy,
+  iconHourglass,
+  iconMaintenance,
+  iconMaintenanceDocuments,
+  iconMap,
+  iconOpenExternal,
+  iconRadarchart,
+  iconRocket,
+  iconScreen,
+  iconSingleCheck,
+  iconSoundLoud,
+  iconSpatial,
+  iconSuccess,
+  iconSupport,
+  iconTag,
+  iconTouch,
+  iconTree,
+  iconTrend,
+  iconUploadSuccess,
+  iconUserManagement,
+  iconVersionHistory,
+  iconXlsDocument,
+  iconYAxisSettings,
+} from '@siemens/ix-icons/icons';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
@@ -152,49 +190,49 @@ function Homepage() {
             <div className={styles.Card_Info}>
               <div className={styles.Card_Line}>
                 <IxIcon
-                  name="single-check"
+                  name={iconSingleCheck}
                   className={clsx(styles.Card_Icon)}
                 ></IxIcon>
                 Open-source community contributions welcome
               </div>
               <div className={styles.Card_Line}>
                 <IxIcon
-                  name="single-check"
+                  name={iconSingleCheck}
                   className={clsx(styles.Card_Icon)}
                 ></IxIcon>
                 Web-based system requiring no installation
               </div>
               <div className={styles.Card_Line}>
                 <IxIcon
-                  name="single-check"
+                  name={iconSingleCheck}
                   className={clsx(styles.Card_Icon)}
                 ></IxIcon>
                 Shape your own corporate design with theming
               </div>
               <div className={styles.Card_Line}>
                 <IxIcon
-                  name="single-check"
+                  name={iconSingleCheck}
                   className={clsx(styles.Card_Icon)}
                 ></IxIcon>
                 Designed for complex UI and Data Analytics
               </div>
               <div className={styles.Card_Line}>
                 <IxIcon
-                  name="single-check"
+                  name={iconSingleCheck}
                   className={clsx(styles.Card_Icon)}
                 ></IxIcon>
                 Delivered as framework agnostic
               </div>
               <div className={styles.Card_Line}>
                 <IxIcon
-                  name="single-check"
+                  name={iconSingleCheck}
                   className={clsx(styles.Card_Icon)}
                 ></IxIcon>
                 Timeless visual design with intuitive UX
               </div>
               <div className={styles.Card_Line}>
                 <IxIcon
-                  name="single-check"
+                  name={iconSingleCheck}
                   className={clsx(styles.Card_Icon)}
                 ></IxIcon>
                 Built by Siemens UX/UI experts
@@ -210,7 +248,7 @@ function Homepage() {
             'animate__animated animate__shakeY'
           )}
         >
-          <IxIcon name="chevron-down"></IxIcon>
+          <IxIcon name={iconChevronDown}></IxIcon>
         </a>
       </div>
     </div>
@@ -267,13 +305,13 @@ function CallToActions() {
       <div className={styles.lines}>
         <Button
           link={useBaseUrl('/docs/getting-started-for-designers')}
-          icon="arrow-right"
+          icon={iconArrowRight}
           label="iX for Designers"
           style="primary"
         />
         <Button
           link={useBaseUrl('/docs/getting-started')}
-          icon="arrow-right"
+          icon={iconArrowRight}
           label="iX for Developers"
           style="primary"
         />
@@ -432,23 +470,37 @@ function Developers() {
 function Icons() {
   const icons = [
     [
-      'y-axis-settings',
-      'xls-document',
-      'version-history',
-      'validate',
-      'upload-success',
-      'trend',
+      iconYAxisSettings,
+      iconXlsDocument,
+      iconVersionHistory,
+      iconCheckbox,
+      iconUploadSuccess,
+      iconTrend,
     ],
-    ['tree', 'touch', 'support', 'spatial', 'radarchart', 'open-external'],
     [
-      'map',
-      'maintenance',
-      'hourglass',
-      'hierarchy',
-      'configuration',
-      'calendar-settings',
+      iconTree,
+      iconTouch,
+      iconSupport,
+      iconSpatial,
+      iconRadarchart,
+      iconOpenExternal,
     ],
-    ['attach', 'controller-device', 'tag', 'success', 'sound-loud', 'rocket'],
+    [
+      iconMap,
+      iconMaintenance,
+      iconHourglass,
+      iconHierarchy,
+      iconConfiguration,
+      iconCalendarSettings,
+    ],
+    [
+      iconAttach,
+      iconControlledDevice,
+      iconTag,
+      iconSuccess,
+      iconSoundLoud,
+      iconRocket,
+    ],
   ];
 
   for (let i = 0; i < icons.length; i++) {
@@ -523,7 +575,7 @@ function BrandDesign() {
 
           <div className={styles.row}>
             <IxIcon
-              name="chevron-left"
+              name={iconChevronLeft}
               className={clsx(styles.arrow)}
               onClick={() => click(-1)}
             ></IxIcon>
@@ -538,7 +590,7 @@ function BrandDesign() {
               className={step !== 2 ? styles.hidden : ''}
             />
             <IxIcon
-              name="chevron-right"
+              name={iconChevronRight}
               className={clsx(styles.arrow)}
               onClick={() => click(1)}
             ></IxIcon>
@@ -584,8 +636,8 @@ function Components() {
 
 function InformationCards() {
   const icons = [
-    ['maintenance-documents', 'bulb', 'tree'],
-    ['screen', 'diamond', 'user-management'],
+    [iconMaintenanceDocuments, iconBulb, iconTree],
+    [iconScreen, iconDiamond, iconUserManagement],
   ];
 
   const phrases = [
@@ -617,7 +669,7 @@ function InformationCards() {
                   <div className={clsx(styles.card)} key={iKey}>
                     <div className={styles.icon_gap}>
                       <IxIcon
-                        name="bulb-filled"
+                        name={iconBulbFilled}
                         className={clsx(icon !== 'bulb' ? styles.hidden : '')}
                       ></IxIcon>
                       <IxIcon name={icon}></IxIcon>
@@ -643,13 +695,13 @@ function FooterButtons() {
       <div className={styles.lines}>
         <Button
           link={useBaseUrl('/docs/getting-started-for-designers')}
-          icon="rocket"
+          icon={iconRocket}
           label="Start iX now"
           style="primary"
         />
         <Button
           link={useBaseUrl('/docs/contact-us')}
-          icon="heart"
+          icon={iconHeart}
           label="Meet the team"
           style="secondary"
         />
@@ -657,7 +709,7 @@ function FooterButtons() {
       <div className={styles.lines}>
         <Button
           link={'https://community.siemens.com/c/ix/'}
-          icon="user-management"
+          icon={iconUserManagement}
           label="iX Community"
           style="secondary"
         />
