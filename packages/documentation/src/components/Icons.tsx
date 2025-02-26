@@ -39,7 +39,7 @@ const Icons: React.FC = () => {
             <div
               key={icon}
               className={clsx(styles.Icon__Tile)}
-              onClick={() => { }}
+              onClick={() => {}}
             >
               <div>
                 <IxIcon name={icon}></IxIcon>
@@ -52,7 +52,7 @@ const Icons: React.FC = () => {
                 type="text"
                 readOnly
                 value={icon}
-                onChange={() => { }}
+                onChange={() => {}}
               ></input>
             </div>
           ))}

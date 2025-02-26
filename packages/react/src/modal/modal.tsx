@@ -1,3 +1,4 @@
+'use client';
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG
  *
@@ -7,7 +8,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React, { useImperativeHandle, useRef } from 'react';
-import { IxModal } from '../components';
+import IxModal from '../components/IxModal';
 
 export interface ModalRef {
   close: <T = any>(result: T) => void;

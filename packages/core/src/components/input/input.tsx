@@ -335,7 +335,11 @@ export class Input implements IxInputFieldComponent<string> {
             </SlotEnd>
           </div>
           {!!this.maxLength && this.maxLength > 0 && (
-            <ix-typography class="bottom-text" slot="bottom-right" color="soft">
+            <ix-typography
+              class="bottom-text"
+              slot="bottom-right"
+              textColor="soft"
+            >
               {this.value?.length}/{this.maxLength}
             </ix-typography>
           )}

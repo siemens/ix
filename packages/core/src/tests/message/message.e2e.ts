@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 import { showMessage } from 'src/components/utils/modal/message';
 import { IxModalSize } from 'src/components';
 
@@ -29,7 +29,7 @@ const screenWidths: IxModalSize[] = [
 ];
 
 screenWidths.forEach((size) => {
-  test(`message size ${size}`, async ({ page, mount }) => {
+  regressionTest(`message size ${size}`, async ({ page, mount }) => {
     await mount(``);
 
     await page.evaluate(() => {

@@ -20,7 +20,7 @@ const onClick = (event: Event) => {
     icon="refresh"
     heading="Scan for new devices"
     subheading="Secondary text"
-    variant="insight"
+    variant="outline"
     @click="onClick"
   ></IxActionCard>
 </template>

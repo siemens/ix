@@ -7,9 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { getFormValue, preventFormSubmission, test } from '@utils/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+} from '@utils/test';
 
-test('form-ready', async ({ mount, page }) => {
+regressionTest('form-ready', async ({ mount, page }) => {
   await mount(
     `<form><ix-radio name="my-radio" value="Test"></ix-radio></form>`
   );
@@ -23,7 +27,7 @@ test('form-ready', async ({ mount, page }) => {
   expect(formData).toBe('Test');
 });
 
-test('form-ready with default value', async ({ mount, page }) => {
+regressionTest('form-ready with default value', async ({ mount, page }) => {
   await mount(`<form><ix-radio name="my-radio"></ix-radio></form>`);
 
   const formElement = page.locator('form');
@@ -35,7 +39,7 @@ test('form-ready with default value', async ({ mount, page }) => {
   expect(formData).toBe('on');
 });
 
-test(`form-ready default active`, async ({ mount, page }) => {
+regressionTest(`form-ready default active`, async ({ mount, page }) => {
   await mount(
     `<form><ix-radio name="my-field-name" checked></ix-radio></form>`
   );
@@ -46,7 +50,7 @@ test(`form-ready default active`, async ({ mount, page }) => {
   expect(formData).toBe('on');
 });
 
-test(`disabled = undefined`, async ({ mount, page }) => {
+regressionTest(`disabled = undefined`, async ({ mount, page }) => {
   await mount(`<ix-radio label="test"></ix-radio>`);
 
   const radioElement = page.locator('ix-radio');

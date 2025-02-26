@@ -18,7 +18,7 @@ const onClick = (event: Event) => {
 <style scoped src="./card.css"></style>
 
 <template>
-  <IxCard variant="insight" @click="onClick">
+  <IxCard variant="outline" @click="onClick">
     <IxCardContent>
       <IxIcon name="capacity"></IxIcon>
       <IxTypography bold>Number of components</IxTypography>
