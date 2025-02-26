@@ -338,9 +338,11 @@ test('should adjust height when items are added dynamically', async ({
 
   await page.locator('ix-menu-expand-icon').click();
   await page.locator('ix-menu-category').click();
-  await page.waitForSelector('ix-menu-item:visible');
 
-  await page.waitForTimeout(300);
+  // wait for the menu expand animation to be finished
+  await page.waitForSelector(
+    'div.menu-items.menu-items--expanded[style*="opacity: 1"]'
+  );
 
   const initialHeight: number | undefined = await page
     .locator('ix-menu-category')
@@ -360,7 +362,10 @@ test('should adjust height when items are added dynamically', async ({
     menuCategory?.appendChild(newMenuItem2);
   });
 
-  await page.waitForTimeout(300);
+  // wait for new items to be visible
+  await page.waitForSelector('ix-menu-category ix-menu-item:nth-child(4)', {
+    state: 'visible',
+  });
 
   const newHeight: number | undefined = await page
     .locator('ix-menu-category')
