@@ -3125,14 +3125,19 @@
       "encapsulation": "shadow",
       "dependents": [],
       "dependencies": [
-        "ix-icon-button"
+        "ix-icon-button",
+        "ix-tooltip"
       ],
       "dependencyGraph": {
         "ix-chip": [
-          "ix-icon-button"
+          "ix-icon-button",
+          "ix-tooltip"
         ],
         "ix-icon-button": [
           "ix-spinner"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
         ]
       },
       "props": [
@@ -3270,6 +3275,38 @@
           "values": [
             {
               "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "boolean | string",
+          "complexType": {
+            "original": "string | boolean",
+            "resolved": "boolean | string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Display a tooltip. By default, no tooltip will be displayed.\nAdd the attribute to display the text content of the component as a tooltip or use a string to display a custom text.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
             }
           ],
           "optional": false,
@@ -15736,8 +15773,17 @@
       "docsTags": [],
       "encapsulation": "shadow",
       "dependents": [],
-      "dependencies": [],
-      "dependencyGraph": {},
+      "dependencies": [
+        "ix-tooltip"
+      ],
+      "dependencyGraph": {
+        "ix-pill": [
+          "ix-tooltip"
+        ],
+        "ix-tooltip": [
+          "ix-typography"
+        ]
+      },
       "props": [
         {
           "name": "alignLeft",
@@ -15847,6 +15893,38 @@
           "docs": "Custom font color for pill. Only working for `variant='custom'`",
           "docsTags": [],
           "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "tooltipText",
+          "type": "boolean | string",
+          "complexType": {
+            "original": "string | boolean",
+            "resolved": "boolean | string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "tooltip-text",
+          "reflectToAttr": false,
+          "docs": "Display a tooltip. By default, no tooltip will be displayed.\nAdd the attribute to display the text content of the component as a tooltip or use a string to display a custom text.",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            },
             {
               "type": "string"
             }
@@ -20818,8 +20896,10 @@
       ],
       "encapsulation": "shadow",
       "dependents": [
+        "ix-chip",
         "ix-field-wrapper",
         "ix-menu-item",
+        "ix-pill",
         "ix-slider"
       ],
       "dependencies": [
@@ -20829,10 +20909,16 @@
         "ix-tooltip": [
           "ix-typography"
         ],
+        "ix-chip": [
+          "ix-tooltip"
+        ],
         "ix-field-wrapper": [
           "ix-tooltip"
         ],
         "ix-menu-item": [
+          "ix-tooltip"
+        ],
+        "ix-pill": [
           "ix-tooltip"
         ],
         "ix-slider": [
