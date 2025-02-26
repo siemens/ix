@@ -69,7 +69,8 @@ test.describe('tooltip', () => {
     await chip.hover();
 
     await expect(chip).not.toHaveAttribute('tooltip-text');
-    await expect(chip.locator('ix-tooltip')).not.toBeVisible();
+    const tooltip = chip.locator('ix-tooltip');
+    await expect(tooltip).not.toBeAttached();
   });
 
   test('should display the component text content when tooltip-text attribute is an empty string', async ({
@@ -82,7 +83,7 @@ test.describe('tooltip', () => {
 
     await expect(chip).toHaveAttribute('tooltip-text', '');
     const tooltip = chip.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveClass(/visible/);
     await expect(tooltip).toHaveText('Text content');
   });
 
@@ -96,7 +97,7 @@ test.describe('tooltip', () => {
 
     await expect(chip).toHaveAttribute('tooltip-text', undefined);
     const tooltip = chip.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveClass(/visible/);
     await expect(tooltip).toHaveText('Text content');
   });
 
@@ -112,7 +113,7 @@ test.describe('tooltip', () => {
 
     await expect(chip).toHaveAttribute('tooltip-text', 'custom tooltip text');
     const tooltip = chip.locator('ix-tooltip');
-    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveClass(/visible/);
     await expect(tooltip).toHaveText('custom tooltip text');
   });
 });
