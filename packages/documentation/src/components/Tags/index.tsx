@@ -10,7 +10,7 @@ export default function LegacyTag(
   }>
 ) {
   return (
-    <div className="TagsContainer d-flex">
+    <div className="TagsContainer">
       {!props.hasDeprecatedAncestor && (
         <span className="Api__Table Docs__Tag Docs__Tag__Deprecated">
           Deprecated since {props.deprecationVersion}

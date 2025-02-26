@@ -47,7 +47,7 @@ regressionTest.describe('card-list: basic', () => {
   regressionTest('layout scrolling end', async ({ page }) => {
     await page.goto('card-list/layout-scroll');
 
-    const cards = await page.locator('ix-push-card:not(.d-none)');
+    const cards = await page.locator('ix-push-card:not(.display-none)');
     await cards.last().scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
     expect(

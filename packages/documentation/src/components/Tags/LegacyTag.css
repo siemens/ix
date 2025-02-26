@@ -7,6 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+.TagContainers {
+  display: flex;
+}
+
 .TagContainer {
   display: flex;
   align-items: center;
