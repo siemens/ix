@@ -12,6 +12,11 @@ export default function SiteMetadataWrapper(props: Props): JSX.Element {
     !context.siteConfig.customFields.withBrandTheme;
 
   useEffect(() => {
+    document.documentElement.setAttribute('data-ix-theme', `brand`);
+    document.documentElement.setAttribute('data-ix-variant', 'dark');
+  }, []);
+
+  useEffect(() => {
     document.documentElement.setAttribute('data-ix-theme', 'brand-dark');
     const observer = new MutationObserver(() => {
       const variant = document.documentElement.getAttribute('data-theme');
