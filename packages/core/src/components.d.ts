@@ -1656,6 +1656,10 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * Use the 'ix-input' component instead
+     */
     interface IxInputGroup {
     }
     /**
@@ -4220,6 +4224,10 @@ declare global {
         prototype: HTMLIxInputElement;
         new (): HTMLIxInputElement;
     };
+    /**
+     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * Use the 'ix-input' component instead
+     */
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
     var HTMLIxInputGroupElement: {
@@ -6887,6 +6895,10 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * Use the 'ix-input' component instead
+     */
     interface IxInputGroup {
     }
     /**
@@ -8880,6 +8892,10 @@ declare module "@stencil/core" {
              * @form-ready 2.6.0
              */
             "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
+            /**
+             * @deprecated since 3.0.0. Will be removed with 4.0.0.
+             * Use the 'ix-input' component instead
+             */
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
              * @since 1.6.0
