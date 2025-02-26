@@ -12,7 +12,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Only use simple verb forms in the past or future when necessary
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do label='click, browse, upload'></Guideline>
@@ -28,7 +28,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 ### Active voice
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do label='Configuration file opens.'></Guideline>
@@ -65,7 +65,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Basic terminology: checkbox, drop-down, field, icon, menu, link, radio button, window
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do label='click'></Guideline>
@@ -87,7 +87,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Avoid cultural references
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do label='remove'></Guideline>
@@ -131,7 +131,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Never make up your own acronyms: https://www.acronymfinder.com/
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do label='light emitting diodes (LEDs)'></Guideline>
@@ -163,7 +163,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Recent is more time focused and is similar to latest. It means that it happened a short time ago.
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do label='Latest update'></Guideline>

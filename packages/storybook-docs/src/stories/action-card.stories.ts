@@ -8,18 +8,14 @@
  */
 import type { ArgTypes, Meta, StoryObj } from '@storybook/web-components';
 import type { Components } from '@siemens/ix/components';
-import { makeArgTypes } from './utils/generic-render';
-import { html } from 'lit';
+import { genericRender, makeArgTypes } from './utils/generic-render';
 
 type Element = Components.IxActionCard & { defaultSlot: string };
 
 const meta = {
   title: 'Example/ActionCard',
   tags: [],
-  render: () =>{
-    return html`<ix-datetime-picker></ix-datetime-picker>`;
-  },
-
+  render: (args) => genericRender('ix-action-card', args),
   argTypes: makeArgTypes<Partial<ArgTypes<Element>>>('ix-action-card', {}),
   parameters: {
     design: {

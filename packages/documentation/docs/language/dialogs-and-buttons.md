@@ -20,7 +20,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Only use ‘OK’ as an option if you cannot find an appropriate verb
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 <span>
 <Guideline do label='Title: Add user  / Buttons: Cancel, Add'></Guideline>
 <Guideline do={false} label='Title: Add user  / Buttons: Cancel, OK'></Guideline>
@@ -43,7 +43,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Primary actions can either be positive (Send, Save) or negative (Delete)
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 <span>
 <Guideline do label='Cancel, Save'></Guideline>
 <Guideline do={false} label='Save, Cancel'></Guideline>

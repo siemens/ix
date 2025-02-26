@@ -95,7 +95,12 @@ export default () => {
         }}
         renderItem={(data: TreeData) => (
           <div style={'display: flex; align-items: center'}>
-            <IxIcon name={data.icon} size="16" style={'margin-inline-end: 0.5rem'} /> {data.name}
+            <IxIcon
+              name={data.icon}
+              size="16"
+              style={'margin-inline-end: 0.5rem'}
+            />
+            {data.name}
           </div>
         )}
       ></IxTree>

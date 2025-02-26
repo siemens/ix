@@ -14,7 +14,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Cockpit
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do={false} label='Console'></Guideline>
@@ -34,7 +34,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Anomaly detection
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do={false} label='Assessment'></Guideline>
@@ -55,7 +55,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Remove from watchlist
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do={false} label='Watch list'></Guideline>
@@ -71,7 +71,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Details
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do={false} label='Facts'></Guideline>
@@ -124,7 +124,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Drag files here or select files
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do={false} label='Drag and drop here or browse'></Guideline>

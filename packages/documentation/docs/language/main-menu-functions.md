@@ -14,7 +14,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Forgot password?
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do={false} label='Sign in / Sign up'></Guideline>
@@ -45,7 +45,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Edit account
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do={false} label='id / identification'></Guideline>

@@ -34,7 +34,7 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 - Avoid using negative contractions as they can appear too informal
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 <span>
 <Guideline do label='their, them, theirs, salesperson'></Guideline>
 <Guideline do={false} label='his, hers, him, salesman'></Guideline>
@@ -84,7 +84,7 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 - Capitalize named app functions and UI elements: Go to Settings, Allocate users in User management, Press Ok
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 <span>
 <Guideline do label='Go to Settings'></Guideline>
 <Guideline do={false} label='Go To Settings'></Guideline>
@@ -109,7 +109,7 @@ The following sections contain advice we follow at Siemens to create our own pro
 
 ### Common UX wording mistakes
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 <span>
 <Guideline do label='time zone'></Guideline>
 <Guideline do={false} label='timezone'></Guideline>

@@ -11,59 +11,59 @@ import {Guideline} from '@site/src/components/Guideline';
 Always consider whether necessary
 
 <div>
-<span class="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>!</span> Exclamation mark for high-level warnings only!
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>!</span> Exclamation mark for high-level warnings only!
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>?</span> Question mark only if necessary
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>?</span> Question mark only if necessary
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Use colons: especially to introduce lists
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Use colons: especially to introduce lists
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops at the end of all full sentences
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops at the end of all full sentences
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops before all file extensions: .csv .txt .zip
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops before all file extensions: .csv .txt .zip
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Consistent use of full stops throughout the application
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Consistent use of full stops throughout the application
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>…</span> Ellipsis only for transitional text: Upload… 
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>…</span> Ellipsis only for transitional text: Upload… 
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>'</span> Single quotation mark for possession: Customer’s role (single), customers’ roles (plural)
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>'</span> Single quotation mark for possession: Customer’s role (single), customers’ roles (plural)
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}> </span> No quotation mark or brackets for plurals: PDFs
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}> </span> No quotation mark or brackets for plurals: PDFs
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>&</span> Avoid ampersands unless in a product or company name: Siemens & Halske AG
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>&</span> Avoid ampersands unless in a product or company name: Siemens & Halske AG
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>*</span> Avoid asterisks in applications
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>*</span> Avoid asterisks in applications
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>(</span> Avoid brackets ( ) and [ ]
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>(</span> Avoid brackets ( ) and [ ]
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>;</span> Avoid semi-colons
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>;</span> Avoid semi-colons
 </div>
 
 <div>
-<span class="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Avoid and remove colons whenever possible, for example Username instead of Username:
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Avoid and remove colons whenever possible, for example Username instead of Username:
 </div>
 
 ### Formats
@@ -82,7 +82,7 @@ Always consider whether necessary
 
 - Numbers: Use No. as an abbreviation for number, no spacing between abbreviated No. and number: No.8
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do label='11am'></Guideline>
@@ -153,7 +153,7 @@ Always consider whether necessary
 
 - Add a space before unit of measurement
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do label='50%'></Guideline>
@@ -189,7 +189,7 @@ Always consider whether necessary
 
 - Make lists parallel, i.e. all items / bullets have the same look, length, feel, punctuation, capitalization
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 
 <span>
 <Guideline do label='Activate comments within your smartphone to

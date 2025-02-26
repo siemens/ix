@@ -14,7 +14,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Confirmation messages: Use the same verb as the transitional text
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 <span>
 <Guideline do label='Updating user roles…'></Guideline>
 <Guideline do={false} label='Getting ready…'></Guideline>
@@ -49,7 +49,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Use … to show an action is required, i.e. fill this in …
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 <span>
 <Guideline do label='System error: You’re offline. Check your connection and try again.'></Guideline>
 <Guideline do label='File error: We cannot upload this file. Try uploading again.'></Guideline>
@@ -71,7 +71,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Use wording to show users how to resolve the empty state, e.g. with an action, click, etc.
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 <span>
 <Guideline do label='Allocate users in User management.'></Guideline>
 <Guideline do={false} label='No allocated users.'></Guideline>
@@ -99,7 +99,7 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Do not use Delete and Remove as synonym
 
-<div class="ux-writing-guidelines">
+<div className="ux-writing-guidelines">
 <span>
 <Guideline do label='Create a chart and delete a chart'></Guideline>
 <Guideline do={false} label='Create a chart and remove it'></Guideline>
