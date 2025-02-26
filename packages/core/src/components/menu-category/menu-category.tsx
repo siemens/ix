@@ -21,6 +21,7 @@ import anime from 'animejs';
 import { closestIxMenu } from '../utils/application-layout/context';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { createEnterLeaveDebounce } from './enter-leave';
+import { iconChevronDownSmall } from '@siemens/ix-icons/icons';
 
 const DefaultIxMenuItemHeight = 40;
 const DefaultAnimationTimeout = 150;
@@ -251,7 +252,7 @@ export class MenuCategory {
           <div class="category">
             <div class="category-text">{this.label}</div>
             <ix-icon
-              name={'chevron-down-small'}
+              name={iconChevronDownSmall}
               class={{
                 'category-chevron': true,
                 'category-chevron--open': this.showItems,
@@ -292,7 +293,7 @@ export class MenuCategory {
           }}
         >
           <ix-dropdown-item class={'category-dropdown-header'}>
-            <ix-typography format="label" bold color="std">
+            <ix-typography format="label" bold textColor="std">
               {this.label}
             </ix-typography>
           </ix-dropdown-item>

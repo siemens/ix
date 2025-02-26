@@ -1,0 +1,35 @@
+---
+sidebar_position: 0
+---
+
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
+import LatestTags from '@site/src/components/Tags';
+
+import DocsUx from './_application_styleguide.md';
+import DocsCode from './_application_code.md';
+
+import Tags from './../../auto-generated/ix-application/tags.md';
+
+# Application
+
+<div className="d-flex gap-2 align-items-center">
+  <Tags />
+  <LatestTags
+    url={'/docs/legacy/basic-navigation'}
+    hasDeprecatedAncestor={true}
+    ancestorName="Basic Navigation"
+  ></LatestTags>
+  <LatestTags
+    url={'/docs/legacy/map-navigation'}
+    hasDeprecatedAncestor={true}
+    ancestorName="Map Navigation"
+  ></LatestTags>
+</div>
+
+<br />
+<br />
+
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>

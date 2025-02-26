@@ -8,9 +8,9 @@
  */
 
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
@@ -27,7 +27,7 @@ test('renders', async ({ mount, page }) => {
   await expect(menuItem1.locator('.tab-text').locator('slot')).toBeAttached();
 });
 
-test('show tooltip', async ({ mount, page }) => {
+regressionTest('show tooltip', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
@@ -49,7 +49,7 @@ test('show tooltip', async ({ mount, page }) => {
   await expect(menuItem1.locator('ix-tooltip')).toHaveText('Foo bar');
 });
 
-test('update item text', async ({ mount, page }) => {
+regressionTest('update item text', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>

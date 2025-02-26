@@ -8,9 +8,9 @@
  */
 
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `
     <ix-field-wrapper helper-text="Helper text">
@@ -28,25 +28,28 @@ test('renders', async ({ mount, page }) => {
   ).toHaveText('Helper text');
 });
 
-test('show text dependent on provided state', async ({ mount, page }) => {
-  await mount(
-    `
+regressionTest(
+  'show text dependent on provided state',
+  async ({ mount, page }) => {
+    await mount(
+      `
     <ix-field-wrapper helper-text="Helper text" invalid-text="invalid text" is-invalid>
       <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
     </ix-field-wrapper>
     `
-  );
-  const fieldWrapperElement = page.locator('ix-field-wrapper');
-  await expect(fieldWrapperElement).toHaveClass(/hydrated/);
-  await expect(
-    fieldWrapperElement
-      .locator('.field-bottom')
-      .locator('ix-typography.bottom-text')
-      .filter({ hasText: 'invalid text' })
-  ).toHaveText('invalid text');
-});
+    );
+    const fieldWrapperElement = page.locator('ix-field-wrapper');
+    await expect(fieldWrapperElement).toHaveClass(/hydrated/);
+    await expect(
+      fieldWrapperElement
+        .locator('.field-bottom')
+        .locator('ix-typography.bottom-text')
+        .filter({ hasText: 'invalid text' })
+    ).toHaveText('invalid text');
+  }
+);
 
-test('show text by tooltip', async ({ mount, page }) => {
+regressionTest('show text by tooltip', async ({ mount, page }) => {
   await mount(
     `
     <ix-field-wrapper helper-text="Helper text" invalid-text="invalid text" show-text-as-tooltip>
@@ -64,7 +67,7 @@ test('show text by tooltip', async ({ mount, page }) => {
   await expect(tooltip).toContainText('Helper text');
 });
 
-test('show text by tooltip invalid', async ({ mount, page }) => {
+regressionTest('show text by tooltip invalid', async ({ mount, page }) => {
   await mount(
     `
     <ix-field-wrapper helper-text="Helper text" invalid-text="invalid text" is-invalid show-text-as-tooltip>

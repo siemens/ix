@@ -1,0 +1,50 @@
+{
+  "name": "angular-standalone-test-app",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "copy-preview-styles": "node ./scripts/copy-preview.mjs",
+    "start": "pnpm copy-preview-styles && ng serve",
+    "build": "pnpm copy-preview-styles && ng build",
+    "watch": "pnpm copy-preview-styles && ng build --watch --configuration development",
+    "test": "ng test --watch false --browsers ChromeHeadless"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^17.3.12",
+    "@angular/common": "^17.3.12",
+    "@angular/compiler": "^17.3.12",
+    "@angular/core": "^17.3.12",
+    "@angular/forms": "^17.3.12",
+    "@angular/platform-browser": "^17.3.12",
+    "@angular/platform-browser-dynamic": "^17.3.12",
+    "@angular/router": "^17.3.12",
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-angular": "workspace:*",
+    "@siemens/ix-echarts": "workspace:*",
+    "@siemens/ix-aggrid": "workspace:*",
+    "@siemens/ix-icons": "0.0.0-pr-69-20250203134847",
+    "ag-grid-angular": "^32.0.2",
+    "ag-grid-community": "^32.0.2",
+    "echarts": "5.4.3",
+    "echarts-gl": "^2.0.9",
+    "html-test-app": "workspace:*",
+    "ngx-echarts": "^18.0.0",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.6.3",
+    "zone.js": "~0.14.8"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.3.8",
+    "@angular/cli": "^17.3.8",
+    "@angular/compiler-cli": "^17.3.12",
+    "@types/jasmine": "~5.1.4",
+    "jasmine-core": "~5.1.2",
+    "karma": "~6.4.3",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.1",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.4.5"
+  }
+}

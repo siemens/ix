@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconClose } from '@siemens/ix-icons/icons';
 import {
   Component,
   Event,
@@ -156,7 +157,7 @@ export class Drawer {
         opacity: [1, 0],
         easing: 'easeInSine',
         complete: () => {
-          el.classList.add('d-none');
+          el.classList.add('drawer-hidden');
         },
       });
     }
@@ -171,7 +172,7 @@ export class Drawer {
         opacity: [0, 1],
         easing: 'easeOutSine',
         begin: () => {
-          el.classList.remove('d-none');
+          el.classList.remove('drawer-hidden');
         },
       });
     }
@@ -186,7 +187,8 @@ export class Drawer {
       <Host
         class={{
           'drawer-container': true,
-          'd-none': true,
+          toggle: this.show,
+          'drawer-hidden': true,
         }}
         style={{
           width: this.width === 'auto' ? this.width : `${this.width}rem`,
@@ -204,7 +206,7 @@ export class Drawer {
           </div>
           <ix-icon-button
             class="close-button"
-            icon={'close'}
+            icon={iconClose}
             size="24"
             ghost
             onClick={() => this.onCloseClicked()}

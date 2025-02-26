@@ -98,6 +98,8 @@ function selectController(select: Locator) {
   };
 }
 
+test.describe.configure({ mode: 'serial' });
+
 test.describe('arrow key navigation', () => {
   test.describe('ArrowDown', () => {
     test('input -> slotted item', async ({ mount, page }) => {

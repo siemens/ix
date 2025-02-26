@@ -1,7 +1,7 @@
 ---
-"@siemens/ix": patch
+'@siemens/ix': major
 ---
 
-The __ix-tooltip__ is working as expected when utilized for an __ix-dropdown-item__ inside an __ix-dropdown__. The tooltip is now diplayed outside the dropdown without breaking its layout.
+The **ix-tooltip** is working as expected when utilized for an **ix-dropdown-item** inside an **ix-dropdown**. The tooltip is now displayed outside the dropdown without breaking its layout.
 
 Fixes #1618

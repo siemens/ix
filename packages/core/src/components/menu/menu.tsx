@@ -30,6 +30,7 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
+import { iconApps } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-menu',
@@ -59,9 +60,7 @@ export class Menu {
    */
   @Prop() enableSettings = true;
 
-  /**
-   * Internal
-   */
+  /** @internal */
   @Prop() enableMapExpand = false;
 
   /**
@@ -73,14 +72,6 @@ export class Menu {
    * Should only be set if you use ix-menu standalone
    */
   @Prop() applicationDescription = '';
-
-  /**
-   * Maximum number of menu items to show in case enough vertical space is available.
-   * Extra menu items will be collapsed to 'show more' menu item.
-   *
-   * @deprecated - Has no effect on component. Will get removed with next major release (v3)
-   */
-  @Prop() maxVisibleMenuItems = 9;
 
   /**
    * Accessibility i18n label for the burger menu of the sidebar
@@ -662,6 +653,7 @@ export class Menu {
                 class="menu-expand-icon"
                 ixAriaLabel={this.i18nExpandSidebar}
                 onClick={async () => this.toggleMenu()}
+                data-testid="expand-collapse-menu"
               ></ix-menu-expand-icon>
             )}
             {this.breakpoint === 'sm' &&
@@ -670,7 +662,7 @@ export class Menu {
                   onClick={() => {
                     this.showAppSwitch();
                   }}
-                  icon="apps"
+                  icon={iconApps}
                   ghost
                 ></ix-icon-button>
               )}

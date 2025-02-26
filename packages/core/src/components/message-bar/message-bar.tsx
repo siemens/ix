@@ -18,6 +18,12 @@ import {
 } from '@stencil/core';
 import anime from 'animejs';
 import { NotificationColor } from '../utils/notification-color';
+import {
+  iconClose,
+  iconError,
+  iconInfo,
+  iconWarning,
+} from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-message-bar',
@@ -45,7 +51,7 @@ export class MessageBar {
    */
   @Event() closeAnimationCompleted!: EventEmitter;
 
-  @State() icon?: 'error' | 'warning' | 'info';
+  @State() icon?: string;
 
   @State() color?: NotificationColor;
 
@@ -55,17 +61,17 @@ export class MessageBar {
 
   componentWillRender() {
     if (this.type === 'danger') {
-      this.icon = 'error';
+      this.icon = iconError;
       this.color = 'color-alarm';
     }
 
     if (this.type === 'info') {
-      this.icon = 'info';
+      this.icon = iconInfo;
       this.color = 'color-info';
     }
 
     if (this.type === 'warning') {
-      this.icon = 'warning';
+      this.icon = iconWarning;
       this.color = 'color-warning';
     }
   }
@@ -101,7 +107,7 @@ export class MessageBar {
           </div>
           {this.dismissible ? (
             <ix-icon-button
-              icon={'close'}
+              icon={iconClose}
               size="24"
               ghost={true}
               onClick={() => {

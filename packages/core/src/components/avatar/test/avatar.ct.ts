@@ -7,10 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test, viewPorts } from '@utils/test';
+import { regressionTest, viewPorts } from '@utils/test';
 
-test.describe('embedded into header', () => {
-  test('show avatar as clickable', async ({ page, mount }) => {
+regressionTest.describe('embedded into header', () => {
+  regressionTest('show avatar as clickable', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
     await mount(
       `
@@ -25,7 +25,7 @@ test.describe('embedded into header', () => {
     await expect(avatar.locator('button')).toBeVisible();
   });
 
-  test('show avatar dropdown', async ({ page, mount }) => {
+  regressionTest('show avatar dropdown', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
     await mount(
       `
@@ -45,7 +45,7 @@ test.describe('embedded into header', () => {
     await expect(avatar.getByText('Item 1')).toBeVisible();
   });
 
-  test('show user-info', async ({ page, mount }) => {
+  regressionTest('show user-info', async ({ page, mount }) => {
     await page.setViewportSize(viewPorts.lg);
     await mount(
       `
@@ -71,48 +71,48 @@ test.describe('embedded into header', () => {
     await expect(avatar.locator('ix-divider')).not.toBeVisible();
   });
 
-  test('should show divider if a element is slotted', async ({
-    page,
-    mount,
-  }) => {
-    await page.setViewportSize(viewPorts.lg);
-    await mount(
-      `
+  regressionTest(
+    'should show divider if a element is slotted',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
       <ix-application-header name="Test">
         <ix-avatar username="foo" extra="bar">
           <ix-dropdown-item>test</ix-dropdown-item>
         </ix-avatar>
       </ix-application-header>
     `
-    );
+      );
 
-    const avatar = page.locator('ix-avatar');
-    await avatar.click();
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
 
-    await expect(avatar.locator('ix-divider')).toBeVisible();
-  });
+      await expect(avatar.locator('ix-divider')).toBeVisible();
+    }
+  );
 
-  test('should hide user info if no username is provided', async ({
-    page,
-    mount,
-  }) => {
-    await page.setViewportSize(viewPorts.lg);
-    await mount(
-      `
+  regressionTest(
+    'should hide user info if no username is provided',
+    async ({ page, mount }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(
+        `
       <ix-application-header name="Test">
         <ix-avatar>
           <ix-dropdown-item>Test</ix-dropdown-item>
         </ix-avatar>
       </ix-application-header>
     `
-    );
+      );
 
-    const avatar = page.locator('ix-avatar');
-    await avatar.click();
+      const avatar = page.locator('ix-avatar');
+      await avatar.click();
 
-    const userInfo = avatar.locator('.user-info');
+      const userInfo = avatar.locator('.user-info');
 
-    await expect(userInfo).not.toBeVisible();
-    await expect(avatar.locator('ix-divider')).not.toBeVisible();
-  });
+      await expect(userInfo).not.toBeVisible();
+      await expect(avatar.locator('ix-divider')).not.toBeVisible();
+    }
+  );
 });

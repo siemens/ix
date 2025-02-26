@@ -59,3 +59,11 @@
     overflow-y: auto;
   }
 }
+
+:host(.drawer-hidden) {
+  display: none;
+}
+
+:host(.toggle) {
+  visibility: visible;
+}

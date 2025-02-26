@@ -8,15 +8,23 @@
  */
 
 import { expect, Page } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+// Reduce flaky behavior
+regressionTest.describe.configure({
+  mode: 'serial',
+});
+
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-tooltip for=".test">tooltip</ix-tooltip>
     <ix-button class="test">button</ix-button>
   `);
   const tooltip = page.locator('ix-tooltip');
+  await expect(tooltip).toHaveClass(/hydrated/);
+
   const button = page.locator('ix-button');
+  await expect(button).toHaveClass(/hydrated/);
 
   await button.hover();
 
@@ -24,7 +32,7 @@ test('renders', async ({ mount, page }) => {
   await expect(tooltip).toHaveClass(/visible/);
 });
 
-test('renders in shadow DOM', async ({ mount, page }) => {
+regressionTest('renders in shadow DOM', async ({ mount, page }) => {
   await mount(``);
 
   await page.evaluate(() => {
@@ -46,7 +54,9 @@ test('renders in shadow DOM', async ({ mount, page }) => {
   });
 
   const tooltip = page.locator('ix-tooltip');
+  await expect(tooltip).toHaveClass(/hydrated/);
   const button = page.locator('ix-button');
+  await expect(button).toHaveClass(/hydrated/);
 
   await button.hover();
 
@@ -54,7 +64,7 @@ test('renders in shadow DOM', async ({ mount, page }) => {
   await expect(tooltip).toHaveClass(/visible/);
 });
 
-test('renders in slot', async ({ mount, page }) => {
+regressionTest('renders in slot', async ({ mount, page }) => {
   await mount(`
     <ix-blind>
       <ix-tooltip for=".test">tooltip</ix-tooltip>
@@ -71,8 +81,8 @@ test('renders in slot', async ({ mount, page }) => {
   await expect(tooltip).toHaveClass(/visible/);
 });
 
-test.describe('a11y', () => {
-  test('closes on ESC', async ({ mount, page }) => {
+regressionTest.describe('a11y', () => {
+  regressionTest('closes on ESC', async ({ mount, page }) => {
     await mount(`
       <ix-tooltip for=".test">tooltip</ix-tooltip>
       <ix-button class="test"></ix-button>
@@ -85,7 +95,7 @@ test.describe('a11y', () => {
   });
 });
 
-test('show tooltip after delay', async ({ mount, page }) => {
+regressionTest('show tooltip after delay', async ({ mount, page }) => {
   await mount(`
     <ix-tooltip for=".test" show-delay="1000">tooltip</ix-tooltip>
     <ix-button class="test">button</ix-button>
@@ -99,7 +109,7 @@ test('show tooltip after delay', async ({ mount, page }) => {
   await expect(tooltip).toHaveClass(/visible/);
 });
 
-test('hide tooltip after delay', async ({ mount, page }) => {
+regressionTest('hide tooltip after delay', async ({ mount, page }) => {
   await mount(`
     <div style="margin: 2rem">
       <ix-tooltip for=".test" hide-delay="1000">tooltip</ix-tooltip>
@@ -116,46 +126,46 @@ test('hide tooltip after delay', async ({ mount, page }) => {
   await expect(tooltip).not.toHaveClass(/visible/);
 });
 
-test('avoid double visibility request by focusin event', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'avoid double visibility request by focusin event',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-menu>
       <ix-menu-item>Item 1</ix-menu-item>
       <ix-menu-item>Item 2</ix-menu-item>
     </ix-menu>
   `);
 
-  const menuItem1 = page.locator('ix-menu-item:nth-child(1)');
-  const menuItem2 = page.locator('ix-menu-item:nth-child(2)');
+    const menuItem1 = page.locator('ix-menu-item:nth-child(1)');
+    const menuItem2 = page.locator('ix-menu-item:nth-child(2)');
 
-  await menuItem1.hover();
-  await page.waitForTimeout(5);
-  await menuItem1.click();
-  await page.waitForTimeout(200);
-  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
+    await menuItem1.hover();
+    await page.waitForTimeout(5);
+    await menuItem1.click();
+    await page.waitForTimeout(200);
+    await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
 
-  await menuItem2.hover();
-  await page.waitForTimeout(5);
-  await menuItem2.click();
-  await page.waitForTimeout(200);
-  await expect(menuItem2.locator('ix-tooltip')).toHaveClass(/visible/);
+    await menuItem2.hover();
+    await page.waitForTimeout(5);
+    await menuItem2.click();
+    await page.waitForTimeout(200);
+    await expect(menuItem2.locator('ix-tooltip')).toHaveClass(/visible/);
 
-  await menuItem1.hover();
-  await page.waitForTimeout(5);
-  await menuItem1.click();
-  await page.waitForTimeout(200);
-  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
+    await menuItem1.hover();
+    await page.waitForTimeout(5);
+    await menuItem1.click();
+    await page.waitForTimeout(200);
+    await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
 
-  await page.mouse.move(0, 0);
-  await page.waitForTimeout(200);
+    await page.mouse.move(0, 0);
+    await page.waitForTimeout(200);
 
-  await expect(menuItem1.locator('ix-tooltip')).not.toHaveClass(/visible/);
-  await expect(menuItem2.locator('ix-tooltip')).not.toHaveClass(/visible/);
-});
+    await expect(menuItem1.locator('ix-tooltip')).not.toHaveClass(/visible/);
+    await expect(menuItem2.locator('ix-tooltip')).not.toHaveClass(/visible/);
+  }
+);
 
-test.describe('handles all reference types', () => {
+regressionTest.describe('handles all reference types', () => {
   const testButton = async (page: Page) => {
     const tooltip = page.locator('#tooltip');
     const button = page.locator('#button');
@@ -167,7 +177,7 @@ test.describe('handles all reference types', () => {
     await expect(tooltip).not.toHaveClass(/visible/);
   };
 
-  test.beforeEach(async ({ mount }) => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
       <div style="margin: 2rem">
         <ix-tooltip id="tooltip">Tooltip</ix-tooltip>
@@ -176,7 +186,7 @@ test.describe('handles all reference types', () => {
     `);
   });
 
-  test('handles string', async ({ page }) => {
+  regressionTest('handles string', async ({ page }) => {
     await page.evaluate(() => {
       const tooltip = document.getElementById(
         'tooltip'
@@ -187,7 +197,7 @@ test.describe('handles all reference types', () => {
     await testButton(page);
   });
 
-  test('handles element', async ({ page }) => {
+  regressionTest('handles element', async ({ page }) => {
     await page.evaluate(() => {
       const tooltip = document.getElementById(
         'tooltip'
@@ -199,7 +209,7 @@ test.describe('handles all reference types', () => {
     await testButton(page);
   });
 
-  test('handles promise', async ({ page }) => {
+  regressionTest('handles promise', async ({ page }) => {
     await page.evaluate(() => {
       const tooltip = document.getElementById(
         'tooltip'
@@ -212,7 +222,7 @@ test.describe('handles all reference types', () => {
   });
 });
 
-test.describe('handles multiple references', () => {
+regressionTest.describe('handles multiple references', () => {
   const testMultipleButtons = async (page: Page) => {
     const tooltip = page.locator('#tooltip');
     const button1 = page.locator('#button1');
@@ -232,7 +242,7 @@ test.describe('handles multiple references', () => {
     await expect(tooltip).not.toHaveClass(/visible/);
   };
 
-  test.beforeEach(async ({ mount }) => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
       <div style="margin: 2rem">
         <ix-tooltip id="tooltip">Tooltip</ix-tooltip>
@@ -243,7 +253,7 @@ test.describe('handles multiple references', () => {
     `);
   });
 
-  test('handles string array', async ({ page }) => {
+  regressionTest('handles string array', async ({ page }) => {
     await page.evaluate(() => {
       const tooltip = document.getElementById(
         'tooltip'
@@ -254,7 +264,7 @@ test.describe('handles multiple references', () => {
     await testMultipleButtons(page);
   });
 
-  test('handles element array', async ({ page }) => {
+  regressionTest('handles element array', async ({ page }) => {
     await page.evaluate(() => {
       const tooltip = document.getElementById(
         'tooltip'
@@ -268,7 +278,7 @@ test.describe('handles multiple references', () => {
     await testMultipleButtons(page);
   });
 
-  test('handles promise array', async ({ page }) => {
+  regressionTest('handles promise array', async ({ page }) => {
     await page.evaluate(() => {
       const tooltip = document.getElementById(
         'tooltip'
@@ -286,7 +296,7 @@ test.describe('handles multiple references', () => {
     await testMultipleButtons(page);
   });
 
-  test('handles mixed array', async ({ page }) => {
+  regressionTest('handles mixed array', async ({ page }) => {
     await page.evaluate(() => {
       const tooltip = document.getElementById(
         'tooltip'

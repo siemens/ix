@@ -23,12 +23,12 @@
     "build": "dotenv -- turbo run build",
     "storybook": "dotenv -- turbo run storybook",
     "start": "dotenv -- turbo run start",
-    "turbo": "dotenv -- turbo",
+    "turbo": "turbo",
     "lint": "dotenv -- turbo run lint",
     "format": "prettier --write ./packages/**/src/**/*.{ts,tsx,js,jsx,css,scss,html,vue,json}",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "visual-regression": "dotenv -- turbo run visual-regression",
-    "test": "dotenv -- turbo run test",
+    "test": "dotenv -- turbo run test --concurrency=1",
     "prepare": "pnpm disable-telemetry",
     "disable-telemetry": "turbo telemetry disable",
     "compare-examples": "node ./scripts/compare-preview-examples-across-test-apps.js",
@@ -38,26 +38,26 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.6.3"
   },
   "devDependencies": {
     "@actions/core": "^1.10.1",
     "@changesets/changelog-github": "^0.4.8",
-    "@changesets/cli": "^2.26.2",
-    "dotenv-cli": "^7.3.0",
-    "eslint": "^8.28.0",
-    "eslint-config-prettier": "^8.5.0",
+    "@changesets/cli": "^2.27.7",
+    "dotenv-cli": "^7.4.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^8.10.0",
     "execa": "^5.1.1",
-    "prettier": "^2.6.2",
-    "prettier-plugin-organize-imports": "^3.2.1",
-    "tsx": "^4.15.4",
-    "turbo": "^2.0.4",
-    "typescript": "^5.4.5"
+    "prettier": "^2.8.8",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "tsx": "^4.16.2",
+    "turbo": "^2.1.1",
+    "typescript": "^5.5.4"
   },
   "pnpm": {
     "patchedDependencies": {
-      "@stencil/react-output-target@0.5.3": "patches/@stencil__react-output-target@0.5.3.patch",
-      "@stencil/vue-output-target@0.8.8": "patches/@stencil__vue-output-target@0.8.8.patch"
+      "@stencil/vue-output-target@0.8.8": "patches/@stencil__vue-output-target@0.8.8.patch",
+      "@stencil/core@4.27.0": "patches/@stencil__core@4.27.0.patch"
     }
   }
 }

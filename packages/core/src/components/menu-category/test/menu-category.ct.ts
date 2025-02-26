@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
@@ -24,7 +24,7 @@ test('renders', async ({ mount, page }) => {
   await expect(element).toHaveClass('hydrated');
 });
 
-test('should collapse by click', async ({ mount, page }) => {
+regressionTest('should collapse by click', async ({ mount, page }) => {
   await mount(`
   <ix-basic-navigation>
     <ix-menu>
@@ -65,7 +65,7 @@ test('should collapse by click', async ({ mount, page }) => {
   );
 });
 
-test('should expand items', async ({ mount, page }) => {
+regressionTest('should expand items', async ({ mount, page }) => {
   await mount(`
   <ix-basic-navigation>
     <ix-menu>
@@ -96,7 +96,7 @@ test('should expand items', async ({ mount, page }) => {
   await expect(dropdown).not.toBeVisible();
 });
 
-test('should show items as dropdown', async ({ mount, page }) => {
+regressionTest('should show items as dropdown', async ({ mount, page }) => {
   await mount(`
   <ix-basic-navigation>
     <ix-menu>
@@ -134,11 +134,10 @@ test('should show items as dropdown', async ({ mount, page }) => {
   await expect(itemTwo).toBeVisible();
 });
 
-test('should collapse category after collapse menu', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'should collapse category after collapse menu',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-basic-navigation>
       <ix-menu>
         <ix-menu-category label="Category label">
@@ -149,32 +148,35 @@ test('should collapse category after collapse menu', async ({
     </ix-basic-navigation>
   `);
 
-  await page.waitForSelector('ix-menu');
-  const menu = page.locator('ix-menu');
-  await page
-    .locator('ix-basic-navigation')
-    .evaluate(
-      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    await page.waitForSelector('ix-menu');
+    const menu = page.locator('ix-menu');
+    await page
+      .locator('ix-basic-navigation')
+      .evaluate(
+        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+      );
+
+    const menuButton = menu.locator('ix-menu-expand-icon');
+    await menuButton.click();
+
+    const menuCategory = page.locator('ix-menu-category');
+    await menuCategory.click();
+
+    await expect(menuCategory.locator('.menu-items')).toHaveClass(
+      'menu-items menu-items--expanded'
     );
 
-  const menuButton = menu.locator('ix-menu-expand-icon');
-  await menuButton.click();
+    await menuButton.click();
+    await expect(menuCategory.locator('.menu-items')).toHaveClass(
+      'menu-items menu-items--collapsed'
+    );
+  }
+);
 
-  const menuCategory = page.locator('ix-menu-category');
-  await menuCategory.click();
-
-  await expect(menuCategory.locator('.menu-items')).toHaveClass(
-    'menu-items menu-items--expanded'
-  );
-
-  await menuButton.click();
-  await expect(menuCategory.locator('.menu-items')).toHaveClass(
-    'menu-items menu-items--collapsed'
-  );
-});
-
-test('should hide menu-items when collapsed', async ({ mount, page }) => {
-  await mount(`
+regressionTest(
+  'should hide menu-items when collapsed',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-basic-navigation>
       <ix-menu>
         <ix-menu-category label="Category label">
@@ -185,30 +187,30 @@ test('should hide menu-items when collapsed', async ({ mount, page }) => {
     </ix-basic-navigation>
   `);
 
-  await page.waitForSelector('ix-menu');
-  const menu = page.locator('ix-menu');
-  await page
-    .locator('ix-basic-navigation')
-    .evaluate(
-      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    await page.waitForSelector('ix-menu');
+    const menu = page.locator('ix-menu');
+    await page
+      .locator('ix-basic-navigation')
+      .evaluate(
+        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+      );
+
+    const menuButton = menu.locator('ix-menu-expand-icon');
+    await menuButton.click();
+
+    const menuCategory = page.locator('ix-menu-category');
+
+    await expect(menuCategory.locator('.menu-items')).toHaveClass(
+      'menu-items menu-items--collapsed'
     );
+    await expect(menuCategory.locator('.menu-items')).toBeHidden();
+  }
+);
 
-  const menuButton = menu.locator('ix-menu-expand-icon');
-  await menuButton.click();
-
-  const menuCategory = page.locator('ix-menu-category');
-
-  await expect(menuCategory.locator('.menu-items')).toHaveClass(
-    'menu-items menu-items--collapsed'
-  );
-  await expect(menuCategory.locator('.menu-items')).toBeHidden();
-});
-
-test('should open category when collapsed initially and active', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'should open category when collapsed initially and active',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-basic-navigation>
       <ix-menu>
         <ix-menu-category label="Category label">
@@ -219,33 +221,34 @@ test('should open category when collapsed initially and active', async ({
     </ix-basic-navigation>
   `);
 
-  await page.waitForSelector('ix-menu');
-  const menu = page.locator('ix-menu');
-  await page
-    .locator('ix-basic-navigation')
-    .evaluate(
-      (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+    await page.waitForSelector('ix-menu');
+    const menu = page.locator('ix-menu');
+    await page
+      .locator('ix-basic-navigation')
+      .evaluate(
+        (menu: HTMLIxBasicNavigationElement) => (menu.breakpoints = ['md'])
+      );
+
+    const menuButton = menu.locator('ix-menu-expand-icon');
+    await menuButton.click();
+
+    const menuCategory = page.locator('ix-menu-category');
+    await expect(menuCategory.locator('.menu-items')).toHaveClass(
+      'menu-items menu-items--expanded'
     );
 
-  const menuButton = menu.locator('ix-menu-expand-icon');
-  await menuButton.click();
+    await menuCategory.locator('.category-parent').click();
+    await expect(menuCategory.locator('.menu-items')).toHaveClass(/menu-items/);
+    await menuButton.click();
+    await menuButton.click();
 
-  const menuCategory = page.locator('ix-menu-category');
-  await expect(menuCategory.locator('.menu-items')).toHaveClass(
-    'menu-items menu-items--expanded'
-  );
+    await expect(menuCategory.locator('.menu-items')).toHaveClass(
+      'menu-items menu-items--expanded'
+    );
+  }
+);
 
-  await menuCategory.locator('.category-parent').click();
-  await expect(menuCategory.locator('.menu-items')).toHaveClass(/menu-items/);
-  await menuButton.click();
-  await menuButton.click();
-
-  await expect(menuCategory.locator('.menu-items')).toHaveClass(
-    'menu-items menu-items--expanded'
-  );
-});
-
-test('do not show tooltip', async ({ mount, page }) => {
+regressionTest('do not show tooltip', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
@@ -269,7 +272,7 @@ test('do not show tooltip', async ({ mount, page }) => {
   await expect(tooltip).not.toBeVisible();
 });
 
-test('collapse after category blur', async ({ mount, page }) => {
+regressionTest('collapse after category blur', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
@@ -298,7 +301,7 @@ test('collapse after category blur', async ({ mount, page }) => {
   await expect(dropdown).not.toBeVisible();
 });
 
-test('show category if item are focused', async ({ mount, page }) => {
+regressionTest('show category if item are focused', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
