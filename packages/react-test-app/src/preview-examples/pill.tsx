@@ -18,8 +18,10 @@ export default () => {
         Label
       </IxPill>
 
-      <IxPill>Label</IxPill>
-      <IxPill outline>Label</IxPill>
+      <IxPill tooltipText="Custom tooltip text">Label</IxPill>
+      <IxPill tooltipText outline>
+        Label
+      </IxPill>
       <IxPill className="styled">Label</IxPill>
 
       <IxPill icon="star">Label</IxPill>

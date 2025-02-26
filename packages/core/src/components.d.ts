@@ -660,6 +660,15 @@ export namespace Components {
          */
         "outline": boolean;
         /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText": string | boolean;
+        /**
+         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+         */
+        "tooltip-text"?: string | boolean;
+        /**
           * Chip variant
          */
         "variant": | 'primary'
@@ -2989,6 +2998,15 @@ export namespace Components {
          * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
          */
         "pill-color"?: string | undefined;
+        /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText": string | boolean;
+        /**
+         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+         */
+        "tooltip-text"?: string | boolean;
         /**
           * Pill variant
          */
@@ -6661,6 +6679,15 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText"?: string | boolean;
+        /**
+         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+         */
+        "tooltip-text"?: string | boolean;
+        /**
           * Chip variant
          */
         "variant"?: | 'primary'
@@ -9120,6 +9147,15 @@ declare namespace LocalJSX {
          * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
          */
         "pill-color"?: string | undefined;
+        /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText"?: string | boolean;
+        /**
+         * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
+         */
+        "tooltip-text"?: string | boolean;
         /**
           * Pill variant
          */

@@ -286,6 +286,7 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', defin
   'background',
   'chipColor',
   'outline',
+  'tooltipText',
   'closeChip'
 ]);
 
@@ -914,7 +915,8 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', defin
   'icon',
   'background',
   'pillColor',
-  'alignLeft'
+  'alignLeft',
+  'tooltipText'
 ]);
 
 
