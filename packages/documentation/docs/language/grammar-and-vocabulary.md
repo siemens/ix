@@ -12,14 +12,14 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Only use simple verb forms in the past or future when necessary
 
-<div class="d-flex flex-wrap">
+<div className="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do label='click, browse, upload'></Guideline>
 <Guideline do={false} label='clicking, being clicked, was clicking'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='file loads, file loaded'></Guideline>
 <Guideline do={false} label='file is going to be loaded, file has been loaded'></Guideline>
 </span>
@@ -28,29 +28,29 @@ import {Guideline} from '@site/src/components/Guideline';
 
 ### Active voice
 
-<div class="d-flex flex-wrap">
+<div className="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do label='Configuration file opens.'></Guideline>
 <Guideline do={false} label='The configuration file is opened.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Admin provides read-only access.'></Guideline>
 <Guideline do={false} label='Read-only access is provided by Admin.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Measure performance.'></Guideline>
 <Guideline do={false} label='Performance is measured.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Click submit.'></Guideline>
 <Guideline do={false} label='Submit is clicked by user.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Calculate the data.'></Guideline>
 <Guideline do={false} label='The data is calculated by application.'></Guideline>
 </span>
@@ -65,14 +65,14 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Basic terminology: checkbox, drop-down, field, icon, menu, link, radio button, window
 
-<div class="d-flex flex-wrap">
+<div className="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do label='click'></Guideline>
 <Guideline do={false} label='press'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='hover'></Guideline>
 <Guideline do={false} label='mouse over'></Guideline>
 </span>
@@ -87,24 +87,24 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Avoid cultural references
 
-<div class="d-flex flex-wrap">
+<div className="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do label='remove'></Guideline>
 <Guideline do={false} label='get rid of'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='calculate'></Guideline>
 <Guideline do={false} label='add up'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='continue'></Guideline>
 <Guideline do={false} label='carry on'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='mobile device'></Guideline>
 <Guideline do={false} label='Apple, Android, iOS, smartphone'></Guideline>
 </span>
@@ -131,24 +131,24 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Never make up your own acronyms: https://www.acronymfinder.com/
 
-<div class="d-flex flex-wrap">
+<div className="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do label='light emitting diodes (LEDs)'></Guideline>
 <Guideline do={false} label='Light Emitting Diodes (LEDS)'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='APS'></Guideline>
 <Guideline do={false} label='A.P.S.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='EU'></Guideline>
 <Guideline do={false} label='E.U.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='I/O component, I/O list, I/O module '></Guideline>
 <Guideline do={false} label='IO component, i/o list, I-O module'></Guideline>
 </span>
@@ -163,19 +163,19 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Recent is more time focused and is similar to latest. It means that it happened a short time ago.
 
-<div class="d-flex flex-wrap">
+<div className="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do label='Latest update'></Guideline>
 <Guideline do={false} label='Last update'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Latest summary'></Guideline>
 <Guideline do={false} label='Last summary'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Recent events'></Guideline>
 <Guideline do={false} label='Last events'></Guideline>
 </span>

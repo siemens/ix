@@ -7,6 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+.TagContainers {
+  display: flex;
+}
+
 .TagContainer {
   display: flex;
   align-items: center;
@@ -14,7 +18,7 @@
   width: min-content;
   white-space: nowrap;
 
-  gap: 0.25rem;
+  margin-inline-end: 0.5rem;
 
   border: 1px solid var(--theme-color-primary);
   border-radius: 0.25rem;
@@ -28,8 +32,4 @@
 
 a[href].TagContainer {
   text-decoration: none !important;
-}
-
-div.TagsContainer > .Docs__Tag {
-  margin-right: 0;
 }

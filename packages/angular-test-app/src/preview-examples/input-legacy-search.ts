@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <form class="needs-validation m-2">
+    <form class="needs-validation">
       <ix-input-group>
         <span slot="input-start">
           <ix-icon name="search" size="16"></ix-icon>

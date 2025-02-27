@@ -94,8 +94,13 @@ export default () => {
           setContext(detail);
         }}
         renderItem={(data: TreeData) => (
-          <div className="d-flex align-items-center">
-            <IxIcon name={data.icon} size="16" className="me-2" /> {data.name}
+          <div style={'display: flex; align-items: center'}>
+            <IxIcon
+              name={data.icon}
+              size="16"
+              style={'margin-inline-end: 0.5rem'}
+            />
+            {data.name}
           </div>
         )}
       ></IxTree>

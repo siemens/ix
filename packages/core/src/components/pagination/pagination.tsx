@@ -43,9 +43,6 @@ export class Pagination {
     loading: false,
     selected: false,
     type: 'button',
-    extraClasses: {
-      ['w-auto']: true,
-    },
   };
 
   private readonly maxCountPages = 7;

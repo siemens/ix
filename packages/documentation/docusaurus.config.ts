@@ -13,6 +13,50 @@ import figmaPlugin from 'figma-plugin';
 import path from 'path';
 import fs from 'fs';
 import versionDeployment from './version-deployment.json' with { type: 'json '};
+import type { NormalizedSidebarItem, SidebarItemConfig, SidebarItemsGeneratorArgs } from '@docusaurus/plugin-content-docs/lib/sidebars/types';
+
+// Copied from https://github.com/THEOplayer/documentation/blob/f4dd44ed1fea8f0c58fc95a51982bfd8af584227/src/plugin/sidebarItemsGenerator.ts#L3
+interface PostProcessArgs extends Omit<SidebarItemsGeneratorArgs, 'item'> {
+  item: NormalizedSidebarItem & {
+    customProps?: {
+      additionalItems?: Array<
+        SidebarItemConfig & {
+          position?: number;
+        }
+      >;
+    };
+  };
+}
+
+// Copied from https://github.com/THEOplayer/documentation/blob/f4dd44ed1fea8f0c58fc95a51982bfd8af584227/src/plugin/sidebarItemsGenerator.ts#L15
+async function postProcess({ item, ...args }: PostProcessArgs) {
+  if (item.type === 'category') {
+    // Recurse through children
+    for (const childItem of item.items) {
+      await postProcess({ item: childItem, ...args });
+    }
+    // Add additional items
+    if (item.customProps?.additionalItems) {
+      for (const { position, ...additionalItem } of item.customProps.additionalItems) {
+        if (position !== undefined) {
+          item.items.splice(position - 1, 0, additionalItem);
+        } else {
+          item.items.push(additionalItem);
+        }
+      }
+    }
+  }
+}
+
+// Docusaurus issue explaining custom generator: https://github.com/facebook/docusaurus/issues/5689#issuecomment-2034815211
+// Copied from https://github.com/THEOplayer/documentation/blob/f4dd44ed1fea8f0c58fc95a51982bfd8af584227/src/plugin/sidebarItemsGenerator.ts#L34
+export default async function sidebarItemsGenerator({ defaultSidebarItemsGenerator, item, ...args }: SidebarItemsGeneratorArgs) {
+  const sidebarItems = await defaultSidebarItemsGenerator({ item, ...args });
+  for (const item of sidebarItems) {
+    await postProcess({ item, defaultSidebarItemsGenerator, ...args });
+  }
+  return sidebarItems;
+}
 
 type DocContext = 'prod' | 'dev' | (string & {});
 
@@ -164,6 +208,7 @@ const config: Config = {
         debug: false,
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          sidebarItemsGenerator: sidebarItemsGenerator,
           // Please change this to your repo.
           editUrl:
             'https://www.github.com/siemens/ix/edit/main/packages/documentation/',
