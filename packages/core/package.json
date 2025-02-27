@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@siemens/ix-icons": "0.0.0-pr-69-20250203134847",
+    "@siemens/ix-icons": "0.0.0-pr-72-20250227071449",
     "@stencil-community/eslint-plugin": "^0.7.2",
     "@stencil-community/postcss": "^2.2.0",
     "@stencil/angular-output-target": "^0.9.0",
@@ -89,7 +89,7 @@
     "typescript": "~5.4.5"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "0.0.0-pr-69-20250203134847"
+    "@siemens/ix-icons": "0.0.0-pr-72-20250227071449"
   },
   "config": {
     "commitizen": {
