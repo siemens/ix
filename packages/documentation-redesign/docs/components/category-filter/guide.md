@@ -1,6 +1,4 @@
-## Usage
-
-### Guidelines
+## Guidelines
 
 The category filter component enhances data navigation and user experience. We typically use a category filter to efficiently navigate large data sets, and it's particularly useful for complex data scenarios. The filter also enhances the user experience by providing autocomplete suggestions and customizable filter conditions.
 
@@ -11,7 +9,7 @@ The category filter component enhances data navigation and user experience. We t
 3. Input chip
 4. Clear button
 
-#### Options
+### Options
 
 - **Categories**: Select these predefined groups to narrow down searches or browsing. The categories are customizable and should be defined based on the specific needs of your application or website.
 - **Suggestions**: These are potential search terms that appear as users begin to type in the input field. The aim is to assist users by predicting their intended search or category, thereby speeding up the input process and reducing potential errors.
@@ -22,7 +20,7 @@ The category filter component enhances data navigation and user experience. We t
 - **Plain text**: Provides the possibility to do a plain text search without choosing a specific category.
 - **Static operator**: Use to restrict the filter condition to either equal (=) or not equal (!=). This is useful when it doesn't make sense, or is not applicable, to let the user decide between equal and not equal. By default, the filter condition is without restriction.
 
-#### Behavior
+### Behavior
 
 - **Default**: The category filter is designed to adapt to the user’s needs and the context it’s used in. As soon as the user starts typing, the filter begins to apply, narrowing down the available options based on user input. This provides a dynamic and responsive user experience.
 - **Filter conditions**: These are the operators that determine how the filter matches the user’s input against the available categories. Available are equals (=) and not equals (!=). These conditions provide flexibility and precision in filtering, allowing users to find exactly what they’re looking for.
@@ -32,7 +30,7 @@ The category filter component enhances data navigation and user experience. We t
 - **Without category selection**: Use without category selection if user input alone is sufficient to filter the data, such as when the data is not well-organized into distinct categories, or if the categories are too numerous/complex.
 - **Visual feedback**: When a category is selected, it’s highlighted and a chip is added to the input field. If a user chooses to delete a category, the chip is removed and the data is unfiltered, allowing for further filtering.
 
-#### States
+### States
 
 Category filter has six states: Default, hover, active, disabled, read-only and focused.
 
@@ -41,7 +39,7 @@ Category filter has six states: Default, hover, active, disabled, read-only and 
 - **Read-only**: By setting the category filter to read-only, accidental data modifications or deletions can be prevented. This can be particularly useful when dealing with critical or sensitive information that should not be altered without proper authorization.
 - **Disabled**: This state is typically applied when the element is not applicable to the current context or when certain conditions must be met before the category filter can be enabled.
 
-#### Dos and Don’ts
+### Dos and Don’ts
 
 - Do use if you have a large amount of content or products organized into different categories
 - Do use when catering to a diverse user base with different interests or needs
@@ -52,7 +50,7 @@ Category filter has six states: Default, hover, active, disabled, read-only and 
 - Don’t use if it slows down the user experience
 - Don’t use if your users are not familiar with the category names
 
-#### Related patterns
+### Related patterns
 
 - [Expanding search](../expanding-search)
 - [Input](../input)

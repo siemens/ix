@@ -9,6 +9,7 @@
 import styles from './ApiTable.module.css';
 import { useFramework } from '@site/src/hooks/use-framework';
 import FrameworkSelection from '../UI/FrameworkSelection';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export type ApiTableProps = {
   children?: React.ReactNode;
@@ -26,6 +27,20 @@ const toKebabCase = (str: string) => {
     })
     .join('');
 };
+
+function ApiTable({ children, id }) {
+  return (
+    <BrowserOnly>
+      {() => (
+        <div className="api-table container mx-auto mb-8" id={id}>
+          <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
+            {children}
+          </div>
+        </div>
+      )}
+    </BrowserOnly>
+  );
+}
 
 function PropertyHeader({ children, name, type }: ApiTableProps) {
   const { framework } = useFramework();
@@ -64,10 +79,6 @@ function EventHeader({ children, name }: ApiTableProps) {
     eventName = `on${name.charAt(0).toUpperCase()}${name.slice(1)}`;
   }
 
-  if (framework === 'vue') {
-    eventName = `@${name}`;
-  }
-
   return (
     <PropertyHeader name={eventName} type="event">
       {children}
@@ -99,16 +110,6 @@ function Code({ children, name }: ApiTableProps) {
     <Text name={name}>
       <code className="p-1">{children}</code>
     </Text>
-  );
-}
-
-function ApiTable({ children, id }) {
-  return (
-    <div className="api-table container m-0 mb-8" id={id}>
-      <div className="bg-[transparent] overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)] border-b-0">
-        {children}
-      </div>
-    </div>
   );
 }
 

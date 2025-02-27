@@ -4,7 +4,7 @@ sidebar_title: Human
 title: Human
 ---
 
-import Separator from '@site/src/components/separator/Separator';
+import Separator from '@site/src/components/Separator';
 
 Design your commands for humans. Have a conversation. Speak the Siemens brand: Authentic, open and engaging.
 

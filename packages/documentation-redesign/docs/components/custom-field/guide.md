@@ -1,6 +1,4 @@
-## Usage
-
-### Guidelines
+## Guidelines
 
 The custom field's properties allow you to control the validation state of the field and the helper text. It's a versatile tool to create your own form fields that can be used in combination with the 'Form' components to create complex forms.
 
@@ -11,7 +9,7 @@ The custom field's properties allow you to control the validation state of the 
 3. Form component(s)
 4. Required indicator
 
-#### Options
+### Options
 
 - **Label:** See [form field](../forms-field).
 - **Group label:** Add a label to the group of radio buttons to provide context to your users. We typically use short and descriptive labels to summarize the options in the group.
@@ -21,16 +19,16 @@ The custom field's properties allow you to control the validation state of the 
 
 ![Custom field example](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3483-7223&t=DlxXBQ9vTnyDcIUI-4)
 
-#### Behavior in context
+### Behavior in context
 
 - **Validation:** See [validation](../forms-validation).
 - **Form behavior:** See [behavior](../forms-behavior).
 
-#### States
+### States
 
 The states depend on the component that you use in the custom field. The custom field itself does not have any interaction states.
 
-#### Dos and Don’ts
+### Dos and Don’ts
 
 - Do use the custom field when your desired solution is not covered by the already existing form field components
 - Do use the custom field in combination with the form component to create complex forms
@@ -38,7 +36,7 @@ The states depend on the component that you use in the custom field. The custom
 - Don't use the custom field without a form component, it is a wrapper component that is meant to be used in combination with the form component
 - Don't use helper and feedback texts for single fields within a custom field, use the helper and feedback text of the whole custom field instead
 
-#### Related patterns
+### Related patterns
 
 - [Form field](../forms-field)
 - [Validation](../forms-validation)

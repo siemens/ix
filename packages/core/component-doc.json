@@ -15459,7 +15459,7 @@
           "mutable": false,
           "attr": "item-count",
           "reflectToAttr": false,
-          "docs": "Number of items shown at once.\nCan only be changed in advaced mode.",
+          "docs": "Number of items shown at once.\nCan only be changed in advanced mode.",
           "docsTags": [],
           "default": "15",
           "values": [

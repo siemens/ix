@@ -1,6 +1,4 @@
-## Usage
-
-### Guidelines
+## Guidelines
 
 Radio buttons are presented in groups to signify that only one selection is allowed at a time. Selecting a radio button automatically deselects any previously chosen radio button within the same group. We typically use radio buttons to offer users a set of exclusive choices.
 
@@ -13,22 +11,22 @@ Radio buttons are presented in groups to signify that only one selection is allo
 5. Radio button
 6. Radio button label
 
-#### Options
+### Options
 
 - **Label:** See [form field](../forms-field).
 - **Helper text**: See [form field](../forms-field).
 - **Feedback text**: See [form field](../forms-field).
 
-#### Behavior in context
+### Behavior in context
 
 - **Validation**: Radio buttons are validated collectively, not individually. For more information on validation, see [validation](../forms-validation).
 - **Interaction**: Clicking on a radio button toggles its state between checked and unchecked/default. Every other radio button in the group is automatically unchecked.
 
-#### States
+### States
 
 ![States radio button](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3387-8703&t=ZvZOV5vvqWRxmqyv-4)
 
-#### Dos and Don’ts
+### Dos and Don’ts
 
 - Do use radio buttons when the user needs to select only one option from a set of options
 - Do group related radio buttons together to indicate that only one option can be selected at a time
@@ -36,7 +34,7 @@ Radio buttons are presented in groups to signify that only one selection is allo
 - Don’t use radio buttons if the user needs to select multiple options from a set of options - use a checkbox instead
 - Don’t use only one radio button in a group, groups should have at least two options
 
-#### Related patterns
+### Related patterns
 
 - [Form field](../forms-field)
 - [Validation](../forms-validation)

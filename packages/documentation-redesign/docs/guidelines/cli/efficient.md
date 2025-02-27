@@ -4,16 +4,17 @@ sidebar_title: Efficient
 title: Efficient
 ---
 
-import Separator from '@site/src/components/separator/Separator';
+import Separator from '@site/src/components/Separator';
 
 Commands are scannable, giving users just the right amount of information at the right time.
 
 ### Informing
+
 - Keep users informed when processes are known to take time
 - Give users time indicators when possible
-- Use loading bars showing progress when possible 
+- Use loading bars showing progress when possible
 - Make things time out and notify users promptly
-- Assume users need support 
+- Assume users need support
 
 ![Informing 1 - Do](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-9127&t=2JP2nlNciwS43htp-1)
 
@@ -26,6 +27,7 @@ Commands are scannable, giving users just the right amount of information at the
 ![Informing 2 - Don't](https://www.figma.com/design/YSvLeddwfyjLx8G5QWOTCH/Documentation-Visuals?node-id=1035-11430&t=2JP2nlNciwS43htp-1)
 
 ### Robustness
+
 - Ensure your program validates user input
 - Ensure your program can recover and bring the system back to safety
 - Ensure your program terminates when it’s invalid or fails

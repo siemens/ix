@@ -1,3 +1,6 @@
+[build]
+  command = "turbo run build --filter documentation"
+  publish = "packages/documentation-redesign/build"
 
 [context.deploy-preview.environment]
   NODE_VERSION = "20"

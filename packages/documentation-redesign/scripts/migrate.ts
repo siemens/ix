@@ -44,7 +44,7 @@ const no_single_tab_files = [
   'overview-chart',
   'gauge-chart',
   'overview'
-]
+];
 
 function removeLeadingNewline(content: string): string {
   return content.startsWith('\n') ? content.slice(1) : content;
@@ -161,7 +161,6 @@ function tryToGetIntroductionText(file: string) {
   };
 }
 
-
 function normalizeHeadlines(name: string, file: string): string {
   const lines = file.split('\n');
   const importLines: string[] = [];
@@ -215,10 +214,6 @@ function normalizeHeadlines(name: string, file: string): string {
       if (headline.trim() === "## Guidelines" || headline.trim() === "## Guideline") {
         return section;
       }
-      // // If the section appears to have no content and is not exempt, discard it.
-      // if (content.every((l) => l.trim() === '')) {
-      //   return null;
-      // }
       if (headline.startsWith('## ')) {
         if (!levelTwoFound) {
           levelTwoFound = true;
@@ -255,6 +250,8 @@ function tryToReplaceTags(file: string, name: string): string {
     "import { SinceTag } from '@site/src/components/UI/Tags';"
   );
   file = file.replace(/<ApiTableSinceTag message=(.*) \/>/g, '<SinceTag message=$1 />');
+
+  file = file.replace(/<Tags\s*\/>/g, '');
 
   return file;
 }
@@ -321,6 +318,117 @@ function getComponentDeprecatedTags(file: string): string[] {
   return matches.map((match) => match[2]);
 }
 
+// Function to process guide file and fix Guidelines headings
+function processGuideFile(guideFile) {
+  // First remove any import statements
+  const removeImports = /import.*;\n/gm;
+  guideFile = guideFile.replace(removeImports, '');
+
+  // Remove H1 headings
+  guideFile = guideFile.replace(/^# [^\n]*\n/gm, '');
+
+  // Check for existing Guidelines/Guideline sections at H2 or H3 level
+  const hasH2Guidelines = /^## Guidelines?(\s|$)/gm.test(guideFile);
+  const hasH3Guidelines = /^### Guidelines?(\s|$)/gm.test(guideFile);
+
+  // Remove any H3 Guidelines sections to avoid duplication
+  if (hasH3Guidelines) {
+    guideFile = guideFile.replace(/^### Guidelines?[^\n]*\n/gm, '');
+  }
+
+  // Extract all headings with their content
+  const sections = [];
+  const lines = guideFile.split('\n');
+  let currentSection = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (/^#{2,6}\s/.test(line) && currentSection.length > 0) {
+      sections.push(currentSection);
+      currentSection = [line];
+    } else {
+      currentSection.push(line);
+    }
+  }
+
+  if (currentSection.length > 0) {
+    sections.push(currentSection);
+  }
+
+  // Process sections to ensure proper heading hierarchy
+  const processedSections = [];
+
+  // Add H2 Guidelines if it doesn't exist
+  if (!hasH2Guidelines) {
+    processedSections.push(['## Guidelines']);
+  }
+
+  // Process each section to normalize heading levels
+  for (const section of sections) {
+    const headingLine = section[0];
+
+    // Skip if this is a Guidelines/Guideline section that we're already handling
+    if (/^## Guidelines?(\s|$)/.test(headingLine)) {
+      processedSections.push(section);
+      continue;
+    }
+
+    // Skip sections with no heading
+    if (!/^#{2,6}\s/.test(headingLine)) {
+      processedSections.push(section);
+      continue;
+    }
+
+    const headingMatch = headingLine.match(/^(#+)\s(.*)$/);
+    if (headingMatch) {
+      const headingLevel = headingMatch[1].length;
+      const headingText = headingMatch[2];
+
+      // If it's an H2, convert to H3 (one level below Guidelines)
+      if (headingLevel === 2) {
+        section[0] = `### ${headingText}`;
+      }
+      // If it's deeper than H3, ensure proper hierarchy (should be at most H3)
+      else if (headingLevel > 2) {
+        // Ensure max depth is only one level below H2 Guidelines
+        section[0] = `### ${headingText}`;
+      }
+    }
+
+    processedSections.push(section);
+  }
+
+  // Flatten sections back to lines
+  const resultLines = [];
+  processedSections.forEach(section => {
+    resultLines.push(...section);
+  });
+
+  // Final processing to ensure proper heading hierarchy
+  const finalLines = [];
+  let lastHeadingLevel = 2; // Starting with H2 for Guidelines
+
+  for (let i = 0; i < resultLines.length; i++) {
+    const line = resultLines[i];
+    const headingMatch = line.match(/^(#+)\s(.*)$/);
+
+    if (headingMatch) {
+      const headingLevel = headingMatch[1].length;
+      const headingText = headingMatch[2];
+
+      // Ensure proper nesting - heading can be at most one level deeper than the last heading
+      const newLevel = Math.min(lastHeadingLevel + 1, Math.max(headingLevel, lastHeadingLevel));
+      lastHeadingLevel = newLevel;
+
+      finalLines.push(`${'#'.repeat(newLevel)} ${headingText}`);
+    } else {
+      finalLines.push(line);
+    }
+  }
+
+  return finalLines.join('\n');
+}
+
 Object.keys(newDocs).forEach((name) => {
   const { guidePath, codePath, flatMarkdown } = newDocs[name];
   const folderName = path.resolve(__newDocumentationComponents, name);
@@ -344,16 +452,13 @@ Object.keys(newDocs).forEach((name) => {
   if (guidePath) {
     tabs.push('Usage');
     let guideFile = fs.readFileSync(guidePath, 'utf-8');
-    const removeImports = /import.*;\n/gm;
-    guideFile = guideFile.replace(removeImports, '');
 
-    guideFile = guideFile.replace(/^#/gm, '##');
-    guideFile = ['## Usage', guideFile].join('\n');
+    // Process the guide file to fix heading structure
+    guideFile = processGuideFile(guideFile);
 
     guideFile = tryToResolveBrokenLinks(guideFile);
 
     const { file, text } = tryToGetIntroductionText(guideFile);
-
     guideFile = file;
     if (text) {
       introductionText = text;
@@ -368,6 +473,7 @@ Object.keys(newDocs).forEach((name) => {
     tabs.push('Code');
     codeFile = fs.readFileSync(codePath, 'utf-8');
     codeFile = codeFile.replace(/^# [^\n]*\n/gm, '');
+    codeFile = codeFile.replace(/#{1,4} Examples/g, '');
     codeFile = codeFile.replace(/import DocsTabs.*;\n/gm, '');
     codeFile = codeFile.replace(/<Playground(.*?)(\/>)/g, '<Playground$1></Playground>');
     const patchCodeMarkdown = /<Playground.*?name="([^"]+)".*?<\/Playground>/gms;
@@ -409,10 +515,12 @@ Object.keys(newDocs).forEach((name) => {
     Array.from(codeFile.matchAll(/import (.*Api) from.*/gm)).forEach((match) => {
       apiComponents.push(match[1]);
     });
+
     codeFile = codeFile.replace(
       /(#+\sAPI.*\/>)/gms,
-      `### API\n\n${apiComponents.map((c) => `<${c} />`).join('\n')}`
+      `${apiComponents.map((c) => `<${c} />`).join('\n')}`
     );
+
     codeFile = tryToResolveBrokenLinks(codeFile);
     const { text, file } = tryToGetIntroductionText(codeFile);
     codeFile = file;

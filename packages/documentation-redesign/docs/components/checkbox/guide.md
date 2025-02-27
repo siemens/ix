@@ -1,6 +1,4 @@
-## Usage
-
-### Guidelines
+## Guidelines
 
 Checkboxes are commonly used when there are multiple options that can be selected or used to easily enable or disable a setting. They are often utilized in forms where users can choose multiple options, such as selecting items or categories that apply to a specific product or service.
 
@@ -12,7 +10,7 @@ Checkboxes are commonly used when there are multiple options that can be selecte
 4. Group required indicator
 5. Group helper or feedback text
 
-#### Options
+### Options
 
 - **Checkbox label:** See [form field](../forms-field).
 - **Indeterminate checkbox:** Indicates that only some items in a checkbox group are selected. We offer the indeterminate state, but the implementation when this state is active is the responsibility of each individual.
@@ -21,17 +19,17 @@ Checkboxes are commonly used when there are multiple options that can be selecte
 - **Group helper text**: See [form field](../forms-field).
 - **Group feedback text**: See [form field](../forms-field).
 
-#### Behavior in context
+### Behavior in context
 
 - **Validation**: See [validation](../forms-validation).
 - **Interaction**: Clicking on the checkbox toggles the state between checked and unchecked.
 - **Grouping**: Checkbox groups have only one label and helper text for the entire group. Grouped checkboxes are validated collectively, not individually.
 
-#### States
+### States
 
 ![Checkbox states](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3749-1431&t=VCAAFzKIYCDb7nIX-4)
 
-#### Dos and Don’ts
+### Dos and Don’ts
 
 - Do use checkboxes when you have multiple options that can be selected
 - Do group related checkboxes together to indicate their relationship

@@ -30,7 +30,7 @@
     var(--default-content-padding-left);
 }
 
-:root[data-ix-theme='brand-dark'],
+:root[data-ix-theme='brand'][data-ix-variant='dark'],
 #__docusaurus.theme-classic-dark {
   --ifm-background-color: var(--theme-color-1);
   --ifm-navbar-background-color: var(--theme-color-1);
@@ -48,13 +48,13 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-[data-ix-theme='brand-dark'],
+[data-ix-theme='brand'][data-ix-variant='dark'],
 #__docusaurus.theme-classic-dark {
   --ix-docs-hero-background: var(--theme-color-1);
   --ix-docs-hero-tab-active: var(--theme-color-1);
 }
 
-[data-ix-theme='brand-light'],
+[data-ix-theme='brand'][data-ix-variant='light'],
 #__docusaurus.theme-classic-light {
   --ix-docs-hero-background: var(--theme-color-1);
   --ix-docs-hero-tab-active: var(--theme-color-1);

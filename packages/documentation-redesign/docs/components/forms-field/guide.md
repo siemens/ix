@@ -1,6 +1,4 @@
-## Usage
-
-### Guidelines
+## Guidelines
 
 A field is a form element when user input is needed. It's typically used with other form elements in a fieldset.
 

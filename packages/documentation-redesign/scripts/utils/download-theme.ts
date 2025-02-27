@@ -17,7 +17,7 @@ const pkgRoot = path.join(__dirname, '..');
 const __tgzFile = path.join(pkgRoot, '.build.temp', 'theme.tgz');
 const __buildTemp = path.join(__tgzFile, '..');
 
-const version = '2.2.0';
+const version = '0.1.0';
 const token = process.env.CSC;
 const ci = process.env.CI;
 
@@ -36,7 +36,7 @@ export async function downloadTheme(targetPath: string) {
 
   ensureDirSync(__buildTemp);
   const response = await axios.get(
-    `https://code.siemens.com/api/v4/projects/249177/packages/npm/@siemens/ix-brand-theme/-/@siemens/ix-brand-theme-${version}.tgz`,
+    `https://code.siemens.com/api/v4/projects/249177/packages/npm/@siemens-ix/corporate-theme/-/@siemens-ix/corporate-theme-${version}.tgz`,
     {
       responseType: 'arraybuffer',
       headers: {
@@ -50,6 +50,10 @@ export async function downloadTheme(targetPath: string) {
 }
 
 async function unpack(file: string, targetPath: string) {
+  if (!fs.existsSync(targetPath)) {
+    fs.mkdirSync(targetPath, { recursive: true });
+  }
+
   return new Promise((resolve) =>
     fs
       .createReadStream(file)

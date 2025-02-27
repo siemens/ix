@@ -61,8 +61,13 @@ const __changelog = path.join(__docs, 'home', 'releases', 'changelog.md');
 
 const __demo = path.join(__root, 'static', 'demo', version);
 const __previewHtml = path.join(__demo, 'preview', 'html');
+const __previewMobile = path.join(__demo, 'preview', 'mobile');
 const __previewHtmlAdditionalTheme = path.join(
   __previewHtml,
+  'additional-theme'
+);
+const __previewMobileAdditionalTheme = path.join(
+  __previewMobile,
   'additional-theme'
 );
 
@@ -364,12 +369,24 @@ async function downloadAdditionalTheme() {
 
     const renameTarget = path.join(
       __previewHtmlAdditionalTheme,
-      'ix-brand-theme'
+      'ix-corporate-theme'
     );
     if (fs.existsSync(renameTarget)) {
       rimrafSync(renameTarget);
     }
     fs.renameSync(unpackTarget, renameTarget);
+
+    // Copy the theme to the mobile preview
+    fs.copySync(
+      renameTarget,
+      path.join(__previewMobileAdditionalTheme, 'ix-corporate-theme')
+    );
+
+    // This step is necessary to make the theme available during the build process of the documentation
+    fs.copySync(
+      renameTarget,
+      path.join(__node_modules, '@siemens', 'ix-corporate-theme')
+    );
   } catch (e: any) {
     console.timeLog('Download additional theme', e.message);
   } finally {

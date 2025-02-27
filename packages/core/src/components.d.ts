@@ -2248,7 +2248,7 @@ export namespace Components {
          */
         "i18nPage": string;
         /**
-          * Number of items shown at once. Can only be changed in advaced mode.
+          * Number of items shown at once. Can only be changed in advanced mode.
          */
         "itemCount": number;
         /**
@@ -7512,7 +7512,7 @@ declare namespace LocalJSX {
          */
         "i18nPage"?: string;
         /**
-          * Number of items shown at once. Can only be changed in advaced mode.
+          * Number of items shown at once. Can only be changed in advanced mode.
          */
         "itemCount"?: number;
         /**
