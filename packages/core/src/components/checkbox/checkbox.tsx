@@ -18,6 +18,7 @@ import {
   h,
   Element,
   Method,
+  Fragment,
 } from '@stencil/core';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
@@ -143,17 +144,16 @@ export class Checkbox implements IxFormComponent<string> {
         xmlns="http://www.w3.org/2000/svg"
       >
         {this.indeterminate && (
-          <rect width="18" height="18" fill="transparent" />
-        )}
-
-        {this.indeterminate && (
-          <rect
-            x="3"
-            y="8"
-            width="12"
-            height="2"
-            fill="var(--ix-checkbox-check-color)"
-          />
+          <Fragment>
+            <rect width="18" height="18" fill="transparent" />
+            <rect
+              x="3"
+              y="8"
+              width="12"
+              height="2"
+              fill="var(--ix-checkbox-check-color)"
+            />
+          </Fragment>
         )}
 
         {this.checked && (
