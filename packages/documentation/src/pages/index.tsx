@@ -435,7 +435,7 @@ function Icons() {
       'y-axis-settings',
       'xls-document',
       'version-history',
-      'validate',
+      'checkbox',
       'upload-success',
       'trend',
     ],
