@@ -55,7 +55,7 @@ export class Pagination {
 
   /**
    * Number of items shown at once.
-   * Can only be changed in advaced mode.
+   * Can only be changed in advanced mode.
    */
   @Prop() itemCount = 15;
 

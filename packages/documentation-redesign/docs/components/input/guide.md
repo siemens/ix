@@ -1,6 +1,4 @@
-## Usage
-
-### Guidelines
+## Guidelines
 
 Input fields are commonly used in forms, search bars and other areas where data input is required.
 
@@ -15,7 +13,7 @@ Input fields are commonly used in forms, search bars and other areas where data 
 7. Helper or feedback text
 8. Counter
 
-#### Options
+### Options
 
 - **Label:** See [form field](../forms-field).
 - **Slot options:** Add optional elements at the end and/or start of the input field, e.g. an icon, a button or a text option. We typically use slots for additional indications, options or information like a visibility toggle in a password field.
@@ -24,20 +22,20 @@ Input fields are commonly used in forms, search bars and other areas where data 
 - **Counter:** See [form field](../forms-field).
 - **Feedback text**: See [form field](../forms-field).
 
-#### Behavior in context
+### Behavior in context
 
 - **Validation:** See [validation](../forms-validation).
 - **Interaction**: Clicking in the container enables the editing of the field.
 - **Text truncation**: The text in an input field is cut off with the length of the container.
 - **Alignment**: Inputs are always aligned to the left, while right alignment is reserved exclusively for [number fields](../input-number).
 
-#### States
+### States
 
 The input field has five states: default, focused, hover, disabled and read-only. In the read-only state, the input field is displayed without offering any user interaction.
 
 ![Field States](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?node-id=3198-7167&t=jhhv5OZGqmBpgXcs-4)
 
-#### Dos and Don’ts
+### Dos and Don’ts
 
 - Do use helper text to guide users through the input process
 - Do use feedback text to inform users about the status of their input
@@ -45,7 +43,7 @@ The input field has five states: default, focused, hover, disabled and read-only
 - Don’t overcrowd the input field with too many elements
 - Don’t use placeholders as a substitute for labels
 
-#### Related patterns
+### Related patterns
 
 - [Form field](../forms-field)
 - [Validation](../forms-validation)

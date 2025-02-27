@@ -1,6 +1,4 @@
-## Usage
-
-### Guidelines
+## Guidelines
 
 With layout grids, a two-dimensional layout system is available to create responsive layouts. Our layout grids are made of three elements: a grid, row(s) and column(s). The layout grid adapts to screen size and orientation.
 
@@ -14,15 +12,15 @@ Commonly, the layout grid is based on a 12 column layout. Columns are nested in 
 4. Gutter
 5. Margin
 
-#### Options
+### Options
 
-##### Layout grid options
+### Layout grid options
 
 - The default number of columns in a grid is 12. It is possible to choose any number of columns between 2 and 12.
 - Layout grids contain horizontal margins. For smaller viewports or when used within a component, the margin can be removed or reduced.
 - As a general rule, a gutter of `1.5rem` is applied. The gutter can be decreased to allow for a narrower grouping of columns.
 
-##### Column options
+### Column options
 
 - The size of a column is defined by the available space and the number of columns. If no size is set, columns automatically have equal width. The size of a column can be adjusted so that it takes a higher percentage of the available space. The size property refers to the number of columns from the default of 12 per row.
 
@@ -43,6 +41,6 @@ Example: Here is an example of a 12 column layout grid with 4 columns, each with
 
 ![Example for viewport-based column sizes](https://www.figma.com/design/wEptRgAezDU1z80Cn3eZ0o/iX-Pattern-Illustrations?type=design&node-id=800-23920&mode=design&t=R26qUrZCUTY2iIxG-1)
 
-#### Behavior in context
+### Behavior in context
 
 Decreasing and increasing the viewport width influences the width of each column within a layout grid. When column width is decreased to the point that the minimum content width is reached for at least one column, the layout breaks into a second line.

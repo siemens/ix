@@ -1,6 +1,4 @@
-## Usage
-
-### Guidelines
+## Guidelines
 
 The settings component is an overlay that presents settings in a central location. It appears when users click on the "settings" icon (1). It overlays the current content and closing this overlay brings users back to the original content.
 
@@ -12,7 +10,7 @@ The settings component is an overlay that presents settings in a central locatio
 - (4) Tabs (optional): navigates through multiple settings categories
 - (5) Content
 
-#### Behavior
+### Behavior
 
 The overlay opens on top of the application content. The overlay has a semi-transparent background with a background blur effect to emphasize the overlay character. Closing this overlay brings users back to previous content.
 

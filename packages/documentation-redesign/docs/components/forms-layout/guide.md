@@ -1,6 +1,4 @@
-## Usage
-
-### Guidelines
+## Guidelines
 
 Effective form layouts play a crucial role in usability. Well-structured forms include fieldsets, considering the hierarchy of information, and understanding how to strike the right balance between aesthetics and functionality.
 
@@ -10,7 +8,7 @@ Effective form layouts play a crucial role in usability. Well-structured forms i
 2. Medium form
 3. Big form (page)
 
-#### Structuring a form
+### Structuring a form
 
 Effective ways to organize form elements enhance user comprehension and interaction within your forms:
 
@@ -22,7 +20,7 @@ Effective ways to organize form elements enhance user comprehension and interact
 - **Section heading:** Use section headings to break up long forms into manageable sections. This helps users focus on one part of the form at a time.
 - **Blind:** Use a [blind](../blind) to hide optional fields and reveal them when the user selects a specific option.
 
-#### Best practice
+### Best practice
 
 - **Z and F shape pattern:** Follow natural reading patterns, for example left to right, to guide users through the form. Consider a clear order of fields to ensure users don’t forget to fill in fields and improve data quality.
 - **Button alignment:** Position primary action buttons, e.g. submit and cancel consistently. We recommend: - Bottom left: Short forms (up to 5 fields) - Bottom right: Long forms (more than 5 fields) - Bottom right and sticky: Long forms that are already filled in (e.g. edit) with a large number of fields
@@ -32,7 +30,7 @@ Effective ways to organize form elements enhance user comprehension and interact
 - **Field width:** Use a consistent width for input fields to create a harmonious layout. For example, use a width of 100% for full-width fields and 50% for two-column fields.
   %% - **Responsive behavior**: xxx - Layout grid or flexbox - should I use 1 or 2 columns? %%
 
-#### Related patterns
+### Related patterns
 
 - [Validation](../forms-validation)
 - [Behavior](../forms-behavior)
