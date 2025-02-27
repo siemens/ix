@@ -1,0 +1,22 @@
+{
+  "name": "nextjs-test-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "start": "next dev"
+  },
+  "dependencies": {
+    "@siemens/ix": "workspace:*",
+    "@siemens/ix-react": "workspace:*",
+    "next": "^15.1.4",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}
