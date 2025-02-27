@@ -64,11 +64,11 @@
     margin-inline-end: $default-space;
   }
 
-  .d-none {
+  .display-none {
     display: none;
   }
 }
 
-:host(.d-none) {
+:host(.display-none) {
   display: none;
 }

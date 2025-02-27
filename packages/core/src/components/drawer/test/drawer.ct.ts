@@ -15,23 +15,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-drawer>Content</ix-drawer>`);
   const drawer = page.locator('ix-drawer');
   await expect(drawer).toHaveClass(/hydrated/);
   await expect(drawer).not.toBeVisible();
 });
 
-test('show by property (initial)', async ({ mount, page }) => {
+regressionTest('show by property (initial)', async ({ mount, page }) => {
   await mount(`<ix-drawer show>Content</ix-drawer>`);
   const drawer = page.locator('ix-drawer');
   await expect(drawer).toHaveClass(/hydrated/);
   await expect(drawer).toBeVisible();
 });
 
-test('show by property', async ({ mount, page }) => {
+regressionTest('show by property', async ({ mount, page }) => {
   await mount(`<ix-drawer>Content</ix-drawer>`);
   const drawer = page.locator('ix-drawer');
 
@@ -43,7 +43,7 @@ test('show by property', async ({ mount, page }) => {
   await expect(drawer).toBeVisible();
 });
 
-test('toggle by property', async ({ mount, page }) => {
+regressionTest('toggle by property', async ({ mount, page }) => {
   await mount(`<ix-drawer>Content</ix-drawer>`);
   const drawer = page.locator('ix-drawer');
 
@@ -61,7 +61,7 @@ test('toggle by property', async ({ mount, page }) => {
   await expect(drawer).not.toBeVisible();
 });
 
-test('open', async ({ mount, page }) => {
+regressionTest('open', async ({ mount, page }) => {
   await mount('<ix-drawer>Content</ix-drawer');
   const drawer = page.locator('ix-drawer');
   await expect(drawer).toHaveClass(/hydrated/);
@@ -74,7 +74,7 @@ test('open', async ({ mount, page }) => {
   await expect(drawer).not.toBeVisible();
 });
 
-test('drawerClose', async ({ mount, page }) => {
+regressionTest('drawerClose', async ({ mount, page }) => {
   await mount('<ix-drawer show>Content</ix-drawer');
   const drawer = page.locator('ix-drawer');
   await expect(drawer).toHaveClass(/hydrated/);

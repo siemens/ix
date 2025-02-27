@@ -34,6 +34,5 @@ import { IxIconButton } from '@siemens/ix-vue';
     <IxIconButton icon="info" size="12"></IxIconButton>
     <IxIconButton icon="info" size="16"></IxIconButton>
     <IxIconButton icon="info" size="24"></IxIconButton>
-    <IxIconButton icon="info" size="32"></IxIconButton>
   </div>
 </template>

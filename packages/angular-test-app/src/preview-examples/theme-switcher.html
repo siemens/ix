@@ -13,7 +13,7 @@
     <ix-col>
       <ix-select
         [value]="selectedTheme"
-        (itemSelectionChange)="onItemSelectionChange($event)"
+        (valueChange)="onValueChange($event)"
         placeholder="Select a theme"
       >
         <ix-select-item
@@ -26,10 +26,10 @@
   </ix-row>
 
   <ix-row>
-    <ix-col size="2">Use System</ix-col>
+    <ix-col size="2"></ix-col>
     <ix-col>
       <input type="checkbox" id="system" (change)="onSystemMode($event)" />
-      <label for="system"></label>
+      <label for="system">Use System</label>
     </ix-col>
   </ix-row>
 </ix-layout-grid>

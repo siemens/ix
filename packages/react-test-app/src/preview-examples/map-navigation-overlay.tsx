@@ -9,6 +9,8 @@
 
 import {
   IxButton,
+  IxContent,
+  IxContentHeader,
   IxMapNavigation,
   IxMapNavigationOverlay,
   IxMenu,
@@ -28,31 +30,45 @@ export default () => {
   }
 
   return (
-    <IxMapNavigation>
+    <IxMapNavigation
+      applicationName="My Application"
+      navigationTitle="Navigation title"
+      hideContextMenu={false}
+    >
       <div className="placeholder-logo" slot="logo"></div>
+
       <IxMenu>
         <IxMenuItem>Item 1</IxMenuItem>
         <IxMenuItem>Item 2</IxMenuItem>
-        <IxMenuItem>Item 3</IxMenuItem>
       </IxMenu>
-      <IxButton
-        onClick={() => {
-          openOverlay();
-        }}
-      >
-        Open overlay
-      </IxButton>
-      <div>
-        {overlay ? (
-          <IxMapNavigationOverlay
-            name="Custom overlay title"
-            icon="bulb"
-            onCloseClick={() => closeOverlay()}
-          >
-            Lorem ipsum
-          </IxMapNavigationOverlay>
-        ) : null}
-      </div>
+
+      <IxContent slot="sidebar-content">Sidebar content</IxContent>
+
+      <IxContent>
+        <IxContentHeader
+          slot="header"
+          header-title="My Content Page"
+        ></IxContentHeader>
+
+        <IxButton
+          onClick={() => {
+            openOverlay();
+          }}
+        >
+          Open overlay
+        </IxButton>
+      </IxContent>
+
+      {overlay ? (
+        <IxMapNavigationOverlay
+          slot="overlay"
+          name="Custom overlay"
+          icon="bulb"
+          onCloseClick={() => closeOverlay()}
+        >
+          <IxContent>Overlay content</IxContent>
+        </IxMapNavigationOverlay>
+      ) : null}
     </IxMapNavigation>
   );
 };

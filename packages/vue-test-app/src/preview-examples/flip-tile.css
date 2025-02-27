@@ -24,3 +24,8 @@
 .flip-tile > ix-flip-tile {
   margin: 0 0.5rem 0.5rem 0;
 }
+
+.footer-date {
+  display: flex;
+  align-items: center;
+}

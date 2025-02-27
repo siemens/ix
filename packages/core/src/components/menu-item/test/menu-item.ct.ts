@@ -1,15 +1,16 @@
 /*
- * SPDX-FileCopyrightText: 2023 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { expect } from '@playwright/test';
-import { test } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+import { expect } from '@playwright/test';
+import { regressionTest } from '@utils/test';
+
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
@@ -26,7 +27,7 @@ test('renders', async ({ mount, page }) => {
   await expect(menuItem1.locator('.tab-text').locator('slot')).toBeAttached();
 });
 
-test('show tooltip', async ({ mount, page }) => {
+regressionTest('show tooltip', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
@@ -44,11 +45,11 @@ test('show tooltip', async ({ mount, page }) => {
   // Default tooltip delay is 1000ms waiting another 500 ms
   await page.waitForTimeout(1500);
 
-  await expect(menuItem1.locator('ix-tooltip')).toBeVisible();
+  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
   await expect(menuItem1.locator('ix-tooltip')).toHaveText('Foo bar');
 });
 
-test('update item text', async ({ mount, page }) => {
+regressionTest('update item text', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
@@ -73,6 +74,6 @@ test('update item text', async ({ mount, page }) => {
   // Default tooltip delay is 1000ms waiting another 500 ms
   await page.waitForTimeout(1500);
 
-  await expect(menuItem1.locator('ix-tooltip')).toBeVisible();
+  await expect(menuItem1.locator('ix-tooltip')).toHaveClass(/visible/);
   await expect(menuItem1.locator('ix-tooltip')).toHaveText('Test123');
 });

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 Siemens AG
+ * SPDX-FileCopyrightText: 2025 Siemens AG
  *
  * SPDX-License-Identifier: MIT
  *
@@ -79,7 +79,7 @@ regressionTest.describe('input', () => {
 
     await page.locator('ix-input').hover();
 
-    await expect(page.locator('ix-tooltip')).toBeVisible();
+    await expect(page.locator('ix-tooltip')).toHaveClass(/visible/);
     await expect(page).toHaveScreenshot();
   });
 });

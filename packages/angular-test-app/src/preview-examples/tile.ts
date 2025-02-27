@@ -14,14 +14,14 @@ import { Component } from '@angular/core';
   template: `
     <ix-tile size="small">92.8 °C</ix-tile>
 
-    <ix-tile size="medium" class="mr-1">
+    <ix-tile size="medium">
       <div slot="header">Tile header</div>
       <div class="text-l">92.8 °C</div>
     </ix-tile>
 
     <ix-tile size="big">
       <div
-        class="d-flex flex-grow-1 align-items-center justify-content-between"
+        class="tile-header"
         slot="header"
       >
         Tile header
@@ -40,7 +40,7 @@ import { Component } from '@angular/core';
         <span>92.8 °C</span>
       </div>
       <div
-        class="d-flex h-100 align-items-center justify-content-end"
+        class="tile-footer"
         slot="footer"
       >
         <ix-button ghost slot="footer">
