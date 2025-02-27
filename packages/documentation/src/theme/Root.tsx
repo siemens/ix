@@ -68,5 +68,9 @@ export default function Root({ children }) {
     }
   }, []);
 
+  useEffect(() => {
+    setAssetPath_(location.origin);
+  }, []);
+
   return <>{children}</>;
 }
