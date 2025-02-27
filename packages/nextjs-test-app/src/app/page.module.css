@@ -13,4 +13,5 @@
   flex-direction: column;
   gap: 32px;
   grid-row-start: 2;
+  width: 100%;
 }

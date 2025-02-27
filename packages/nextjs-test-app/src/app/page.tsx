@@ -5,7 +5,7 @@ export default async function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <IxBlind></IxBlind>
+        <IxBlind label="Test">Hello World!</IxBlind>
       </main>
     </div>
   );
