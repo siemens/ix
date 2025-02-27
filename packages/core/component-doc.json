@@ -20928,10 +20928,10 @@
       "props": [
         {
           "name": "for",
-          "type": "HTMLElement | Promise<HTMLElement> | string",
+          "type": "ElementReference[] | HTMLElement | Promise<HTMLElement> | string",
           "complexType": {
-            "original": "ElementReference",
-            "resolved": "HTMLElement | Promise<HTMLElement> | string",
+            "original": "ElementReference | ElementReference[]",
+            "resolved": "ElementReference[] | HTMLElement | Promise<HTMLElement> | string",
             "references": {
               "ElementReference": {
                 "location": "import",
@@ -20946,6 +20946,9 @@
           "docs": "CSS selector for hover trigger element e.g. `for=\"[data-my-custom-select]\"`",
           "docsTags": [],
           "values": [
+            {
+              "type": "ElementReference[]"
+            },
             {
               "type": "HTMLElement"
             },

@@ -3913,13 +3913,13 @@ export namespace Components {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: ElementReference;
+        "for"?: ElementReference | ElementReference[];
         "hideDelay": number;
         /**
          * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
          */
         "hide-delay"?: number;
-        "hideTooltip": () => Promise<void>;
+        "hideTooltip": (hideDelay?: number) => Promise<void>;
         /**
           * Define if the user can access the tooltip via mouse.
          */
@@ -10098,7 +10098,7 @@ declare namespace LocalJSX {
         /**
           * CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
          */
-        "for"?: ElementReference;
+        "for"?: ElementReference | ElementReference[];
         "hideDelay"?: number;
         /**
          * @deprecated use camelCase instead. Support for dash-casing will be removed in Stencil v5.
