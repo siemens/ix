@@ -209,7 +209,7 @@ const tasks = new Listr<Context>(
     {
       title: "Copy ix-icons to documentation's static folder",
       task: async () => {
-        const iconsPath = path.join(staticPath, 'ix-icon-svg');
+        const iconsPath = path.join(staticPath, 'svg');
 
         if (!fs.existsSync(iconsPath)) {
           await fs.mkdir(iconsPath);

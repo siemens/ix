@@ -186,7 +186,7 @@ packages/documentation/docs/auto-generated/
 packages/documentation/.build-temp
 packages/documentation/scripts/.typedoc/
 packages/documentation/static/auto-generated/
-packages/documentation/static/ix-icon-svg/
+packages/documentation/static/svg/
 packages/documentation/static/figma/
 packages/documentation/static/webcomponent-examples/*
 packages/documentation/static/ionic-preview
