@@ -1,5 +1,6 @@
 import './LegacyTag.css';
 import { IxIcon } from '@siemens/ix-react';
+import { iconOpenExternal } from '@siemens/ix-icons/icons';
 
 export default function LegacyTag(
   props: Readonly<{
@@ -17,7 +18,7 @@ export default function LegacyTag(
         </span>
       )}
       <a href={props.url} target="_blank" className="TagContainer">
-        <IxIcon name="open-external" color="color-primary" size="16"></IxIcon>
+        <IxIcon name={iconOpenExternal} color="color-primary" size="16"></IxIcon>
         {props.hasDeprecatedAncestor
           ? 'Show deprecated ' + (props.ancestorName || 'version')
           : 'Show latest version'}

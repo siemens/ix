@@ -11,6 +11,7 @@ import './flip-tile.scoped.css';
 
 import { FlipTileState } from '@siemens/ix';
 import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-react';
+import { iconInfo } from '@siemens/ix-icons/icons';
 
 export default () => {
   return (
@@ -21,7 +22,7 @@ export default () => {
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div className="footer-date">
-            <IxIcon name="info" size="16"></IxIcon>2021-06-22
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
           </div>
         </div>
 
@@ -34,7 +35,7 @@ export default () => {
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div className="footer-date">
-            <IxIcon name="info" size="16"></IxIcon>2021-06-22
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
           </div>
         </div>
         <IxFlipTileContent> Example 1 </IxFlipTileContent>
@@ -46,7 +47,7 @@ export default () => {
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div className="footer-date">
-            <IxIcon name="info" size="16"></IxIcon>2021-06-22
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
           </div>
         </div>
         <IxFlipTileContent> Example 1 </IxFlipTileContent>
@@ -58,7 +59,7 @@ export default () => {
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div className="footer-date">
-            <IxIcon name="info" size="16"></IxIcon>2021-06-22
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
           </div>
         </div>
         <IxFlipTileContent> Example 1 </IxFlipTileContent>
@@ -70,7 +71,7 @@ export default () => {
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div className="footer-date">
-            <IxIcon name="info" size="16"></IxIcon>2021-06-22
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
           </div>
         </div>
         <IxFlipTileContent> Example 1 </IxFlipTileContent>

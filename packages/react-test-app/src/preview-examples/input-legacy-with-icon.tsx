@@ -8,6 +8,7 @@
  */
 
 import { IxIcon, IxInputGroup } from '@siemens/ix-react';
+import { iconAbout } from '@siemens/ix-icons/icons';
 
 export default () => {
   return (
@@ -15,7 +16,7 @@ export default () => {
       <IxInputGroup>
         <input type="text" />
         <span slot="input-end">
-          <IxIcon name="about" size="16"></IxIcon>
+          <IxIcon name={iconAbout} size="16"></IxIcon>
         </span>
       </IxInputGroup>
     </form>

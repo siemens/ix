@@ -10,6 +10,7 @@
 import './tile.scoped.css';
 
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-react';
+import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
 
 export default () => {
   return (
@@ -22,10 +23,7 @@ export default () => {
       </IxTile>
 
       <IxTile size="big">
-        <div
-          className="tile-header"
-          slot="header"
-        >
+        <div className="tile-header" slot="header">
           Tile header
           <IxIconButton ghost icon="context-menu"></IxIconButton>
         </div>
@@ -41,12 +39,9 @@ export default () => {
         >
           <span>92.8 °C</span>
         </div>
-        <div
-          className="tile-footer"
-          slot="footer"
-        >
+        <div className="tile-footer" slot="footer">
           <IxButton ghost slot="footer">
-            <IxIcon name="chevron-right-small"></IxIcon>Details
+            <IxIcon name={iconChevronRightSmall}></IxIcon>Details
           </IxButton>
         </div>
       </IxTile>
