@@ -284,7 +284,7 @@ importers:
         version: 3.3.7
       animejs:
         specifier: ~3.2.1
-        version: 3.2.1
+        version: 3.2.2
       luxon:
         specifier: ^3.4.4
         version: 3.4.4
@@ -321,7 +321,7 @@ importers:
         version: 5.17.0
       '@types/animejs':
         specifier: ^3.1.4
-        version: 3.1.10
+        version: 3.1.13
       '@types/jest':
         specifier: ^29.5.6
         version: 29.5.6
@@ -5478,8 +5478,8 @@ packages:
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
 
-  '@types/animejs@3.1.10':
-    resolution: {integrity: sha512-nCCSfdw7Ut/XwGSmkfh3nQJXKTnGe5wAhXoTBjMoGkBszbS7RYCxjggmZCAVf8mZJI4LEDTwQ7R6r7krFqPBFA==}
+  '@types/animejs@3.1.13':
+    resolution: {integrity: sha512-yWg9l1z7CAv/TKpty4/vupEh24jDGUZXv4r26StRkpUPQm04ztJaftgpto8vwdFs8SiTq6XfaPKCSI+wjzNMvQ==}
 
   '@types/aria-query@5.0.3':
     resolution: {integrity: sha512-0Z6Tr7wjKJIk4OUEjVUQMtyunLDy339vcMaj38Kpj6jM2OE1p3S4kXExKZ7a3uXQAPCoy3sbrP1wibDKaf39oA==}
@@ -6424,8 +6424,8 @@ packages:
   animate.css@4.1.1:
     resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
 
-  animejs@3.2.1:
-    resolution: {integrity: sha512-sWno3ugFryK5nhiDm/2BKeFCpZv7vzerWUcUPyAZLDhMek3+S/p418ldZJbJXo5ZUOpfm2kP2XRO4NJcULMy9A==}
+  animejs@3.2.2:
+    resolution: {integrity: sha512-Ao95qWLpDPXXM+WrmwcKbl6uNlC5tjnowlaRYtuVDHHoygjtIPfDUoK9NthrlZsQSKjZXlmji2TrBUAVbiH0LQ==}
 
   ansi-align@3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
@@ -22416,7 +22416,7 @@ snapshots:
     dependencies:
       '@types/estree': 0.0.52
 
-  '@types/animejs@3.1.10': {}
+  '@types/animejs@3.1.13': {}
 
   '@types/aria-query@5.0.3': {}
 
@@ -23673,7 +23673,7 @@ snapshots:
 
   animate.css@4.1.1: {}
 
-  animejs@3.2.1: {}
+  animejs@3.2.2: {}
 
   ansi-align@3.0.1:
     dependencies:
@@ -33002,7 +33002,7 @@ snapshots:
 
   react-anime@4.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      animejs: 3.2.1
+      animejs: 3.2.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
