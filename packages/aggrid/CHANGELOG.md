@@ -1,5 +1,12 @@
 # @siemens/ix-aggrid
 
+## 2.2.4
+
+### Patch Changes
+
+- Updated dependencies [[`aa63b4fd90`](https://github.com/siemens/ix/commit/aa63b4fd901bc50e98877826699412affa127ae7), [`9e13a08340`](https://github.com/siemens/ix/commit/9e13a08340efc9cb7dd1f0ef7d56481c8b5dcbbe), [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a), [`5b56d90813`](https://github.com/siemens/ix/commit/5b56d90813239cb34d28b4c20255392b9dd1d66f), [`093c783529`](https://github.com/siemens/ix/commit/093c78352916a193e7f2cbfab692362c4ba0de9a), [`5a12c6ac20`](https://github.com/siemens/ix/commit/5a12c6ac20e80a77f9fd3ad9aaffd66468f72b40), [`699958d387`](https://github.com/siemens/ix/commit/699958d387c1044b50def5071369f27de49f56ef), [`2d4e3b8cdb`](https://github.com/siemens/ix/commit/2d4e3b8cdb756dff44627941adfea6a0230ccf26), [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a), [`8726afc094`](https://github.com/siemens/ix/commit/8726afc094adf2ddb4f8e927c6a42aa8dc0ed589), [`f41b5d6029`](https://github.com/siemens/ix/commit/f41b5d60299cb874cec9730394038dd4c2df8a60), [`699958d387`](https://github.com/siemens/ix/commit/699958d387c1044b50def5071369f27de49f56ef), [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a), [`4685dc2c2b`](https://github.com/siemens/ix/commit/4685dc2c2b0de0961b464d305f633e1115a5926a)]:
+  - @siemens/ix@2.8.0
+
 ## 2.2.3
 
 ### Patch Changes
