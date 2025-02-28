@@ -934,7 +934,7 @@ importers:
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^3.2.2
-        version: 3.2.2(react@18.2.0)(storybook@8.4.2(prettier@3.0.3))
+        version: 3.2.5(react@18.2.0)(storybook@8.4.2(prettier@3.0.3))
       '@siemens/ix':
         specifier: workspace:*
         version: link:../core
@@ -3214,8 +3214,8 @@ packages:
   '@changesets/write@0.2.3':
     resolution: {integrity: sha512-Dbamr7AIMvslKnNYsLFafaVORx4H0pvCA2MHqgtNCySMe1blImEyAEOzDmcgKAkgz4+uwoLz7demIrX+JBr/Xw==}
 
-  '@chromatic-com/storybook@3.2.2':
-    resolution: {integrity: sha512-xmXt/GW0hAPbzNTrxYuVo43Adrtjue4DeVrsoIIEeJdGaPNNeNf+DHMlJKOBdlHmCnFUoe9R/0mLM9zUp5bKWw==}
+  '@chromatic-com/storybook@3.2.5':
+    resolution: {integrity: sha512-Y388ft6po5FmGKdkcqz3r2sW6aMF5DSBaatC0jvT5bI/Dh27RJw3gPTmXJcZVNjteNl6tpiP3qxZ9MswAk5luw==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
@@ -6467,8 +6467,8 @@ packages:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
 
-  ansi-regex@6.0.1:
-    resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
+  ansi-regex@6.1.0:
+    resolution: {integrity: sha512-7HSX4QQb4CspciLpVFwyRe79O3xsIZDDLER21kERQ71oaPodF8jL725AgJMFAYbooIqolJoRLuM81SpeUkpkvA==}
     engines: {node: '>=12'}
 
   ansi-sequence-parser@1.1.1:
@@ -7214,8 +7214,8 @@ packages:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
 
-  chromatic@11.18.0:
-    resolution: {integrity: sha512-3o9Frn1oIS1hFLsJxVH9yVJ1O7+TCYoyL7OZzUorL/DCYduhXr5LDSBfpUsp7EdCPb64ufkbyFzSRNbt/xy9kg==}
+  chromatic@11.26.1:
+    resolution: {integrity: sha512-kVMTigrKI7TOOV04i1lTTIVJsmQ+fj6ZFXyZ3LcdCioOrxO/zCVB1y74iX0iKS++cpi3bJcG+UszkmvptGDEuA==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
@@ -13234,11 +13234,11 @@ packages:
       react: ^17.x
       react-dom: ^17.x
 
-  react-confetti@6.1.0:
-    resolution: {integrity: sha512-7Ypx4vz0+g8ECVxr88W9zhcQpbeujJAVqL14ZnXJ3I23mOI9/oBVTQ3dkJhUmB0D6XOtCZEM6N0Gm9PMngkORw==}
-    engines: {node: '>=10.18'}
+  react-confetti@6.2.3:
+    resolution: {integrity: sha512-Jt6Fy3jE7FrpKxeDQ3oh36Bz6LoYt4o+vU578ghuF//NxADlcauDYvWr24S8hHKnQ90Uv01XXOngnKVBdZ73zQ==}
+    engines: {node: '>=16'}
     peerDependencies:
-      react: ^16.3.0 || ^17.0.1 || ^18.0.0
+      react: ^16.3.0 || ^17.0.1 || ^18.0.0 || ^19.0.0
 
   react-dev-utils@12.0.1:
     resolution: {integrity: sha512-84Ivxmr17KjUupyqzFode6xKhjwuEJDROWKJy/BthkL7Wn6NJ8h4WE6k/exAv6ImS+0oZLRRW5j/aINMHyeGeQ==}
@@ -19436,12 +19436,12 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.8
 
-  '@chromatic-com/storybook@3.2.2(react@18.2.0)(storybook@8.4.2(prettier@3.0.3))':
+  '@chromatic-com/storybook@3.2.5(react@18.2.0)(storybook@8.4.2(prettier@3.0.3))':
     dependencies:
-      chromatic: 11.18.0
+      chromatic: 11.26.1
       filesize: 10.1.6
       jsonfile: 6.1.0
-      react-confetti: 6.1.0(react@18.2.0)
+      react-confetti: 6.2.3(react@18.2.0)
       storybook: 8.4.2(prettier@3.0.3)
       strip-ansi: 7.1.0
     transitivePeerDependencies:
@@ -23705,7 +23705,7 @@ snapshots:
 
   ansi-regex@5.0.1: {}
 
-  ansi-regex@6.0.1: {}
+  ansi-regex@6.1.0: {}
 
   ansi-sequence-parser@1.1.1: {}
 
@@ -24716,7 +24716,7 @@ snapshots:
 
   chownr@2.0.0: {}
 
-  chromatic@11.18.0: {}
+  chromatic@11.26.1: {}
 
   chrome-trace-event@1.0.3: {}
 
@@ -33006,7 +33006,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  react-confetti@6.1.0(react@18.2.0):
+  react-confetti@6.2.3(react@18.2.0):
     dependencies:
       react: 18.2.0
       tween-functions: 1.2.0
@@ -34447,7 +34447,7 @@ snapshots:
 
   strip-ansi@7.1.0:
     dependencies:
-      ansi-regex: 6.0.1
+      ansi-regex: 6.1.0
 
   strip-bom-string@1.0.0: {}
 
