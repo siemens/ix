@@ -127,7 +127,7 @@ function ColorTable({ children, colorName }) {
   const [theme, setTheme] = useState(useDefaultTheme());
   const { colorMode } = useColorMode();
 
-  const [isDarkColor, setDarkColor] = useState(colorMode === 'dark');
+  const [isDarkColor, setIsDarkColor] = useState(colorMode === 'dark');
 
   const [expanded, setExpanded] = useState(
     location.hash === `#color-${colorName}`
@@ -155,11 +155,11 @@ function ColorTable({ children, colorName }) {
   }
 
   function changeColorMode() {
-    setDarkColor(!isDarkColor);
+    setIsDarkColor(!isDarkColor);
   }
 
   useEffect(() => {
-    setDarkColor(colorMode === 'dark');
+    setIsDarkColor(colorMode === 'dark');
   }, [colorMode]);
 
   useEffect(() => {

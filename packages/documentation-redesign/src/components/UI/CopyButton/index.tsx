@@ -7,10 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { iconCopy } from '@siemens/ix-icons/icons';
-import { IxButton, IxIconButton, IxTooltip } from '@siemens/ix-react';
-import { useRef } from 'react';
+import { IxTooltip } from '@siemens/ix-react';
+import React, { useRef } from 'react';
 import Button from '../Button';
-import React from 'react';
 
 const CopyButton = ({
   text,
@@ -24,7 +23,7 @@ const CopyButton = ({
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(text);
-    tooltipRef.current?.showTooltip(buttonRef.current!);
+    tooltipRef.current?.showTooltip(buttonRef.current);
     setTimeout(() => {
       tooltipRef.current?.hideTooltip();
     }, 750);

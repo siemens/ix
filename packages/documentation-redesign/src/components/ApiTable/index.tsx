@@ -12,9 +12,9 @@ import FrameworkSelection from '../UI/FrameworkSelection';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export type ApiTableProps = {
-  children?: React.ReactNode;
-  name: string;
-  type?: 'event' | 'property' | 'slot';
+  readonly children?: React.ReactNode;
+  readonly name: string;
+  readonly type?: 'event' | 'property' | 'slot';
 };
 
 const toKebabCase = (str: string) => {
