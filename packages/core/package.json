@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.13",
-    "@stencil/core": "~4.17.0",
+    "@stencil/core": "^4.27.1",
     "@types/luxon": "^3.3.7",
     "animejs": "~3.2.1",
     "luxon": "^3.4.4"
