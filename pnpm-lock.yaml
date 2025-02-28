@@ -629,8 +629,8 @@ importers:
   packages/ionic-test-app:
     dependencies:
       '@capacitor/app':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
+        specifier: 6.0.2
+        version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/core':
         specifier: 6.1.1
         version: 6.1.1
@@ -3113,8 +3113,8 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@capacitor/app@6.0.0':
-    resolution: {integrity: sha512-X5UGd90Jh5p9rmoPyMqFyFWqOypdJgVJhYcM5X1YyDVJJGzmJ5MuYv1+ajj5DW9Qyh+5a3th9WYptdGby8jidA==}
+  '@capacitor/app@6.0.2':
+    resolution: {integrity: sha512-SiGTGgslK4TbWJVImCUL1odul7/YFkVfkYtAYS9AAEzQpxBECBeRnuN3FFBcfZ9eiN1XxFBFchhiwpxtx/c7yQ==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -19217,7 +19217,7 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@capacitor/app@6.0.0(@capacitor/core@6.1.1)':
+  '@capacitor/app@6.0.2(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
