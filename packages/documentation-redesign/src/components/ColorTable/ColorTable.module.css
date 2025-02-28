@@ -46,21 +46,19 @@
   width: 100%;
 }
 
-.colorColumnCopy {
+.colorColumnHex {
+  display: flex;
+  justify-content: flex-end;
   border-right: none;
-  width: fit-content;
+  min-width: 7rem;
 }
 
 .DesktopOnly {
-  display: contents;
+  display: inherit;
 }
 
 @media screen and (max-width: 700px) {
   .DesktopOnly {
     display: none;
-  }
-
-  .colorColumnCopy {
-    display: none !important;
   }
 }

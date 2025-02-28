@@ -18,6 +18,7 @@ import {
   useContext,
   useEffect,
   useImperativeHandle,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -66,7 +67,7 @@ const ColorContainerFix = forwardRef<
     children?: React.ReactNode;
   }
 >(({ children }, ref) => {
-  const { currentTheme: theme, isDarkColor } = useContext(ColorContext);
+  const { currentTheme: theme, isDarkColor } = useContext(ThemeContext);
   const themeContainerRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(ref, () => themeContainerRef.current);
@@ -78,10 +79,16 @@ const ColorContainerFix = forwardRef<
     }
 
     if (theme === 'brand') {
-      themeContainer.className = `theme-${theme}-${
+      themeContainer.classList.remove('color-table-classic-dark');
+      themeContainer.classList.remove('color-table-classic-light');
+      themeContainer.setAttribute('data-ix-theme', 'brand');
+      themeContainer.setAttribute(
+        'data-ix-variant',
         isDarkColor ? 'dark' : 'light'
-      }`;
+      );
     } else {
+      themeContainer.removeAttribute('data-ix-theme');
+      themeContainer.removeAttribute('data-ix-variant');
       themeContainer.className = `color-table-${theme}-${
         isDarkColor ? 'dark' : 'light'
       }`;
@@ -108,15 +115,21 @@ type Color = {
 };
 
 type ColorContextType = Color & {
-  currentTheme: string;
-  isDarkColor: boolean;
   children: (Color & { rawName: string })[];
 };
 
+type ThemeContextType = {
+  currentTheme: string;
+  isDarkColor: boolean;
+};
+
 const ColorContext = createContext<ColorContextType>({
-  name: 'color-primary',
-  hex: '#11111',
+  name: '',
+  hex: '',
   children: [],
+});
+
+const ThemeContext = createContext<ThemeContextType>({
   currentTheme: 'brand',
   isDarkColor: true,
 });
@@ -133,11 +146,9 @@ function ColorTable({ children, colorName }) {
     location.hash === `#color-${colorName}`
   );
   const [color, setColor] = useState<ColorContextType>({
-    name: 'color-primary',
-    hex: '#11111',
+    name: '',
+    hex: '',
     children: [],
-    currentTheme: theme,
-    isDarkColor: isDarkColor,
   });
 
   const themeRef = useRef<HTMLDivElement>();
@@ -158,66 +169,102 @@ function ColorTable({ children, colorName }) {
     setIsDarkColor(!isDarkColor);
   }
 
+  function generateColorChildren() {
+    const name = `--theme-${colorName}`;
+
+    const children = getCustomCSSPropertyByPrefix(name).map((childName) => {
+      const childHex = getCustomCSSValue(childName);
+      return {
+        rawName: childName.substring('--theme-'.length),
+        name: capitalizeFirstLetter(childName.substring(name.length + 2)),
+        hex: childHex,
+      };
+    });
+
+    return children;
+  }
+
   useEffect(() => {
     setIsDarkColor(colorMode === 'dark');
   }, [colorMode]);
 
+  function getHexColors() {
+    const name = `--theme-${colorName}`;
+    const colorHex = getCustomCSSValue(name);
+    const children = generateColorChildren();
+
+    return {
+      name: colorName,
+      hex: colorHex,
+      children: children,
+    };
+  }
+
+  const observerRef = useRef(
+    new MutationObserver(() => setColor(getHexColors()))
+  );
+
   useEffect(() => {
-    setTimeout(() => {
-      const name = `--theme-${colorName}`;
-      const colorHex = getCustomCSSValue(name);
-
-      const children = getCustomCSSPropertyByPrefix(name).map((childName) => {
-        const childHex = getCustomCSSValue(childName);
-        return {
-          rawName: childName.substring('--theme-'.length),
-          name: capitalizeFirstLetter(childName.substring(name.length + 2)),
-          hex: childHex,
-        };
-      });
-
-      setColor({
-        name: colorName,
-        hex: colorHex,
-        children: children,
-        currentTheme: theme,
-        isDarkColor: isDarkColor,
-      });
+    const children = generateColorChildren();
+    setColor({
+      ...getHexColors(),
+      children: children,
     });
-  }, [colorName, isDarkColor, theme]);
+  }, [colorName, themeRef.current]);
+
+  useLayoutEffect(() => {
+    const observer = observerRef.current;
+    if (!themeRef.current) {
+      return;
+    }
+
+    observer.observe(themeRef.current, {
+      attributes: true,
+    });
+
+    setTimeout(() => {
+      setColor(getHexColors());
+    }, 250);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isDarkColor, theme]);
 
   return (
     <ApiTable id={`color-${colorName}`}>
-      <ColorContext.Provider value={color}>
-        <ColorContainerFix ref={themeRef}></ColorContainerFix>
-        <AnchorHeader
-          onClick={() => setExpanded(!expanded)}
-          anchorName={`color-${colorName}`}
-          anchorLabel="Direct link to the color"
-          right={
-            <>
-              <div className={styles.DesktopOnly}>
-                <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
-              </div>
-              <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
-              <ThemeVariantToggle
-                onChangeColorMode={() => changeColorMode()}
-                isLight={!isDarkColor}
-              />
-            </>
-          }
-        >
-          <div className={styles.colorRow}>
-            <IxIcon
-              name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
-            ></IxIcon>
-            <ColorCircle color={colorName}></ColorCircle>
-            --theme-{colorName}
-          </div>
-        </AnchorHeader>
+      <ThemeContext.Provider value={{ currentTheme: theme, isDarkColor }}>
+        <ColorContext.Provider value={color}>
+          <ColorContainerFix ref={themeRef}></ColorContainerFix>
+          <AnchorHeader
+            onClick={() => setExpanded(!expanded)}
+            anchorName={`color-${colorName}`}
+            anchorLabel="Direct link to the color"
+            right={
+              <>
+                <div className={styles.DesktopOnly}>
+                  <CopyButton text={`var(--theme-${colorName})`}></CopyButton>
+                </div>
+                <ThemeSelection onThemeChange={setTheme}></ThemeSelection>
+                <ThemeVariantToggle
+                  onChangeColorMode={() => changeColorMode()}
+                  isLight={!isDarkColor}
+                />
+              </>
+            }
+          >
+            <div className={styles.colorRow}>
+              <IxIcon
+                name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
+              ></IxIcon>
+              <ColorCircle color={colorName}></ColorCircle>
+              --theme-{colorName}
+            </div>
+          </AnchorHeader>
 
-        {expanded && children}
-      </ColorContext.Provider>
+          {expanded && children}
+        </ColorContext.Provider>
+      </ThemeContext.Provider>
     </ApiTable>
   );
 }
@@ -240,11 +287,11 @@ function Children() {
           <ColorCircle color={child.rawName}></ColorCircle>
           {child.rawName}
           <CopyButton
-            className="ml-auto"
+            className={clsx('ml-auto', styles.DesktopOnly)}
             text={`var(--theme-${child.rawName})`}
           ></CopyButton>
         </div>
-        <div className={clsx(styles.colorColumn, styles.colorColumnCopy)}>
+        <div className={clsx(styles.colorColumn, styles.colorColumnHex)}>
           <code className="p-1">{child.hex}</code>
         </div>
       </div>
