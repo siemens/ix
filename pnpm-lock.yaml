@@ -638,20 +638,20 @@ importers:
         specifier: ^6.0.0
         version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/haptics':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
+        specifier: 6.0.2
+        version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/ios':
         specifier: 6.1.1
         version: 6.1.1(@capacitor/core@6.1.1)
       '@capacitor/keyboard':
-        specifier: 6.0.1
-        version: 6.0.1(@capacitor/core@6.1.1)
+        specifier: 6.0.3
+        version: 6.0.3(@capacitor/core@6.1.1)
       '@capacitor/screen-orientation':
         specifier: ^6.0.1
-        version: 6.0.2(@capacitor/core@6.1.1)
+        version: 6.0.3(@capacitor/core@6.1.1)
       '@capacitor/status-bar':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
+        specifier: 6.0.2
+        version: 6.0.2(@capacitor/core@6.1.1)
       '@ionic/react':
         specifier: ^8.0.0
         version: 8.2.7(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -3131,8 +3131,8 @@ packages:
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
-  '@capacitor/haptics@6.0.0':
-    resolution: {integrity: sha512-z2TmB+pTbd98Il2I1xpZGClCFwORxxP2m9f1a0rh70c2ubj2atVyZctgxrx1fuoExZTNGSxHaylWfrmjmtelVg==}
+  '@capacitor/haptics@6.0.2':
+    resolution: {integrity: sha512-xcFdIH4iIIeW2+1lzmlYMVicqB9ytaiuZ9NE3a9laKFPvMGC7hdj6i6tHFezwPJ/96xkHOwXT2b0F8Mh9xtTWg==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -3141,18 +3141,18 @@ packages:
     peerDependencies:
       '@capacitor/core': ^6.1.0
 
-  '@capacitor/keyboard@6.0.1':
-    resolution: {integrity: sha512-fBjqQaMc5uhFj6ycLnLa2hzQsR77pj/iuLLATkWihMUze3dD+IkwqFnEyOLsyk+52uoOYM7WkziSpNTquU1sZA==}
+  '@capacitor/keyboard@6.0.3':
+    resolution: {integrity: sha512-V/mURxBI68HvClYjrGBlOriWkwYN7r+cWid/igJz/3scNc/V81DgQ9fpoLr4W0I5NY7YxOesjIJLuLO+LT18mQ==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
-  '@capacitor/screen-orientation@6.0.2':
-    resolution: {integrity: sha512-CF+RFUIUYrvztlX+voHwvONdAbf/F9xuJWfMDnxjiGliu+oPTNLLTWxAFPmoyi3sVJcNoeQ+qwWzUfXa7ag59Q==}
+  '@capacitor/screen-orientation@6.0.3':
+    resolution: {integrity: sha512-5R+tf+twRNnkZFGSWsQkEBz1MFyP1kzZDyqOA9rtXJlTQYNcFJWouSXEuNa+Ba6i6nEi4X83BuXVzEFJ7zDrgQ==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
-  '@capacitor/status-bar@6.0.0':
-    resolution: {integrity: sha512-Wo0ILugYlmENegKDgTzVCPjbvP8h1ObgHslLdgeVG643ViMS/diausHIq8e104WIKCXtKIELmQeYVp9mX7932g==}
+  '@capacitor/status-bar@6.0.2':
+    resolution: {integrity: sha512-AmRIX6QvFemItlY7/69ARkIAqitRQqJ2qwgZmD1KqgFb78pH+XFXm1guvS/a8CuOOm/IqZ4ddDbl20yxtBqzGA==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -19252,7 +19252,7 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.1
 
-  '@capacitor/haptics@6.0.0(@capacitor/core@6.1.1)':
+  '@capacitor/haptics@6.0.2(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
@@ -19260,15 +19260,15 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.1
 
-  '@capacitor/keyboard@6.0.1(@capacitor/core@6.1.1)':
+  '@capacitor/keyboard@6.0.3(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
-  '@capacitor/screen-orientation@6.0.2(@capacitor/core@6.1.1)':
+  '@capacitor/screen-orientation@6.0.3(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
-  '@capacitor/status-bar@6.0.0(@capacitor/core@6.1.1)':
+  '@capacitor/status-bar@6.0.2(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
