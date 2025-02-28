@@ -6,14 +6,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+import styles from './ApiTable.module.css';
 import { useFramework } from '@site/src/hooks/use-framework';
 import FrameworkSelection from '../UI/FrameworkSelection';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export type ApiTableProps = {
-  children?: React.ReactNode;
-  name: string;
-  type?: 'event' | 'property' | 'slot';
+  readonly children?: React.ReactNode;
+  readonly name: string;
+  readonly type?: 'event' | 'property' | 'slot';
 };
 
 const toKebabCase = (str: string) => {
@@ -27,11 +28,11 @@ const toKebabCase = (str: string) => {
     .join('');
 };
 
-function ApiTable({ children }) {
+function ApiTable({ children, id }) {
   return (
     <BrowserOnly>
       {() => (
-        <div className="api-table container mx-auto mb-8">
+        <div className="api-table container mx-auto mb-8" id={id}>
           <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
             {children}
           </div>
@@ -51,7 +52,7 @@ function PropertyHeader({ children, name, type }: ApiTableProps) {
   }
 
   return (
-    <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+    <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)] anchor">
       <div className="flex items-center font-bold">
         {propertyName}
         <a
@@ -99,7 +100,7 @@ function Text({ children, name }: ApiTableProps) {
       <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
         {name}
       </div>
-      <div className="p-4 w-auto">{children}</div>
+      <div className="w-auto p-4">{children}</div>
     </div>
   );
 }
@@ -119,3 +120,34 @@ ApiTable.Text = Text;
 ApiTable.Code = Code;
 
 export default ApiTable;
+
+export function AnchorHeader({
+  children,
+  right,
+  anchorName,
+  anchorLabel,
+  onClick,
+}: {
+  children: React.ReactNode;
+  right?: React.ReactNode;
+  anchorName: string;
+  anchorLabel: string;
+  onClick?: () => void;
+}) {
+  return (
+    <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+      <div className="flex items-center font-bold w-full">
+        <button onClick={onClick} className={styles.AnchorButton}>
+          {children}
+          <a
+            href={`#${anchorName}`}
+            className="hash-link"
+            aria-label={anchorLabel}
+            title={anchorLabel}
+          ></a>
+        </button>
+      </div>
+      <div className="flex items-center ml-auto gap-2">{right}</div>
+    </div>
+  );
+}
