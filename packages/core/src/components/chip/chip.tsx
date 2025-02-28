@@ -16,6 +16,7 @@ import {
   Host,
   Prop,
 } from '@stencil/core';
+import { makeRef } from '../utils/make-ref';
 
 @Component({
   tag: 'ix-chip',
@@ -81,11 +82,20 @@ export class Chip {
   @Prop() outline = false;
 
   /**
+   * Display a tooltip. By default, no tooltip will be displayed.
+   * Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+   * @since 3.0.0
+   */
+  @Prop() tooltipText: string | boolean = false;
+
+  /**
    * Fire event if close button is clicked
    *
    * @since 1.5.0
    */
   @Event() closeChip!: EventEmitter;
+
+  private readonly containerElementRef = makeRef<HTMLElement>();
 
   private getCloseButton() {
     return (
@@ -112,6 +122,23 @@ export class Chip {
     );
   }
 
+  private getTooltip() {
+    if (!this.tooltipText && !this.hostElement.hasAttribute('tooltip-text')) {
+      return null;
+    }
+
+    const text =
+      typeof this.tooltipText === 'string' && this.tooltipText.trim()
+        ? this.tooltipText
+        : this.hostElement.textContent?.trim();
+
+    return (
+      <ix-tooltip for={this.containerElementRef.waitForCurrent()}>
+        {text}
+      </ix-tooltip>
+    );
+  }
+
   render() {
     const isInactive = this.active === false;
 
@@ -127,7 +154,6 @@ export class Chip {
     return (
       <Host
         tabIndex="-1"
-        title={this.hostElement.textContent}
         class={{
           inactive: isInactive,
         }}
@@ -140,6 +166,7 @@ export class Chip {
         }
       >
         <div
+          ref={this.containerElementRef}
           style={{ ...customStyle }}
           class={{
             container: true,
@@ -170,6 +197,7 @@ export class Chip {
           </span>
           {isInactive === false && this.closable ? this.getCloseButton() : null}
         </div>
+        {this.getTooltip()}
       </Host>
     );
   }
