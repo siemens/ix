@@ -1,0 +1,8 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "monorepo:turbo",
+        "group:monorepos"
+    ],
+    "prHourlyLimit": 5
+}
