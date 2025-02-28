@@ -638,8 +638,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/haptics':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
+        specifier: 6.0.2
+        version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/ios':
         specifier: 6.1.1
         version: 6.1.1(@capacitor/core@6.1.1)
@@ -3131,8 +3131,8 @@ packages:
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
-  '@capacitor/haptics@6.0.0':
-    resolution: {integrity: sha512-z2TmB+pTbd98Il2I1xpZGClCFwORxxP2m9f1a0rh70c2ubj2atVyZctgxrx1fuoExZTNGSxHaylWfrmjmtelVg==}
+  '@capacitor/haptics@6.0.2':
+    resolution: {integrity: sha512-xcFdIH4iIIeW2+1lzmlYMVicqB9ytaiuZ9NE3a9laKFPvMGC7hdj6i6tHFezwPJ/96xkHOwXT2b0F8Mh9xtTWg==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -19252,7 +19252,7 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.1
 
-  '@capacitor/haptics@6.0.0(@capacitor/core@6.1.1)':
+  '@capacitor/haptics@6.0.2(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
