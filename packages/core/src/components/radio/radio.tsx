@@ -162,7 +162,10 @@ export class Radio implements IxFormComponent<string> {
             }}
             onClick={() => this.setCheckedState(!this.checked)}
           >
-            {this.checked && <div class="checkmark"></div>}
+            <div
+              class="checkmark"
+              style={{ visibility: this.checked ? 'visible' : 'hidden' }}
+            ></div>
           </button>
           <ix-typography
             format="label"
