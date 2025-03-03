@@ -641,7 +641,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
 
 
 @ProxyCmp({
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'i18nDone', 'individual', 'locale', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
+  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'hideWeekNumbers', 'i18nDone', 'individual', 'locale', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
   methods: ['getCurrentDate']
 })
 @Component({
@@ -649,7 +649,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'i18nDone', 'individual', 'locale', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
+  inputs: ['corners', 'eventDelimiter', 'format', 'from', 'hideWeekNumbers', 'i18nDone', 'individual', 'locale', 'maxDate', 'minDate', 'range', 'textSelectDate', 'to', 'weekStartIndex'],
 })
 export class IxDatePicker {
   protected el: HTMLElement;
