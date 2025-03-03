@@ -18,7 +18,39 @@ The classic theme is the default that can be utilized by any application, includ
 </Accordion>
 
 <Accordion title="Which browsers are supported?" id="vendor-support">
-Although our design system can be used with any modern browser, we recommend Chrome for the best user experience.
+Our design system is compatible with most modern browsers, ensuring broad accessibility and functionality across platforms. 
+Although we aim to provide a smooth experience across all browsers, we recommend using **Google Chrome** for optimal performance and full feature support. 
+  
+In addition to Chrome, the design system is also compatible with other popular browsers such as Microsoft Edge, Firefox, and Safari.
+However, users of older or less common browsers may experience limited functionality, as our system could rely on features that are not supported or only have partial support in certain versions.
+  
+The table below lists the supported versions for various browsers.
+<table class="table" >
+  <thead>
+    <tr>
+      <th scope="col">Version</th>
+      <th scope="col">Chrome</th>
+      <th scope="col">Edge</th>
+      <th scope="col">Firefox</th>
+      <th scope="col">Safari</th>
+      <th scope="col">Internet Explorer</th>
+      <th scope="col">Pre-Chromium Edge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">v2.0.0</th>
+      <td>✅ v122+</td>
+      <td>✅ v122+</td>
+      <td>✅ v122+</td>
+      <td>✅ v18+</td>
+      <td>❌</td>
+      <td>❌</td>
+    </tr>
+  </tbody>
+</table>
+Please note that our testing primarily focuses on Chrome, so coverage for other browser vendors may not be as detailed.
+If you encounter any unexpected behavior, please don't hesitate to reach out to us. Your feedback helps us improve!
 </Accordion>
 
 <Accordion title="Which device types are supported?" id="device-type-support">
