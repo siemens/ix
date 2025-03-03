@@ -387,6 +387,7 @@ export const IxDatePicker = /*@__PURE__*/ defineContainer<JSX.IxDatePicker>('ix-
   'i18nDone',
   'weekStartIndex',
   'locale',
+  'hideWeekNumbers',
   'individual',
   'eventDelimiter',
   'standaloneAppearance',

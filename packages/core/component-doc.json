@@ -5492,6 +5492,28 @@
           "required": false
         },
         {
+          "name": "hideWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "hide-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Hides the week numbers displayed on the left side of the date picker",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "i18nDone",
           "type": "string",
           "complexType": {

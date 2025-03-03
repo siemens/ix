@@ -853,6 +853,10 @@ export namespace Components {
          */
         "getCurrentDate": () => Promise<{ from: string | undefined; to: string | undefined; }>;
         /**
+          * Hides the week numbers displayed on the left side of the date picker
+         */
+        "hideWeekNumbers": boolean;
+        /**
           * Text of date select button
           * @since 2.1.0
          */
@@ -6014,6 +6018,10 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "from"?: string | undefined;
+        /**
+          * Hides the week numbers displayed on the left side of the date picker
+         */
+        "hideWeekNumbers"?: boolean;
         /**
           * Text of date select button
           * @since 2.1.0
