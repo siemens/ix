@@ -441,7 +441,7 @@ importers:
         version: 3.4.0(@docusaurus/core@3.3.0(@docusaurus/types@3.3.0(@swc/core@1.9.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@swc/core@1.9.2)(eslint@9.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.2.2)(vue-template-compiler@2.7.15))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       docusaurus-plugin-sass:
         specifier: ^0.2.2
-        version: 0.2.5(@docusaurus/core@3.3.0(@docusaurus/types@3.3.0(@swc/core@1.9.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@swc/core@1.9.2)(eslint@9.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.2.2)(vue-template-compiler@2.7.15))(sass@1.69.5)(webpack@5.89.0(@swc/core@1.9.2))
+        version: 0.2.6(@docusaurus/core@3.3.0(@docusaurus/types@3.3.0(@swc/core@1.9.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@swc/core@1.9.2)(eslint@9.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.2.2)(vue-template-compiler@2.7.15))(sass@1.69.5)(webpack@5.89.0(@swc/core@1.9.2))
       execa:
         specifier: ^5.1.1
         version: 5.1.1
@@ -8165,8 +8165,8 @@ packages:
       react: ^16.8.4 || ^17 || ^18
       react-dom: ^16.8.4 || ^17 || ^18
 
-  docusaurus-plugin-sass@0.2.5:
-    resolution: {integrity: sha512-Z+D0fLFUKcFpM+bqSUmqKIU+vO+YF1xoEQh5hoFreg2eMf722+siwXDD+sqtwU8E4MvVpuvsQfaHwODNlxJAEg==}
+  docusaurus-plugin-sass@0.2.6:
+    resolution: {integrity: sha512-2hKQQDkrufMong9upKoG/kSHJhuwd+FA3iAe/qzS/BmWpbIpe7XKmq5wlz4J5CJaOPu4x+iDJbgAxZqcoQf0kg==}
     peerDependencies:
       '@docusaurus/core': ^2.0.0-beta || ^3.0.0-alpha
       sass: ^1.30.0
@@ -13956,22 +13956,6 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  sass-loader@10.4.1:
-    resolution: {integrity: sha512-aX/iJZTTpNUNx/OSYzo2KsjIUQHqvWsAhhUijFjAPdZTEhstjZI9zTNvkTTwsx+uNUJqUwOw5gacxQMx4hJxGQ==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      fibers: '>= 3.1.0'
-      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
-      sass: ^1.3.0
-      webpack: ^4.36.0 || ^5.0.0
-    peerDependenciesMeta:
-      fibers:
-        optional: true
-      node-sass:
-        optional: true
-      sass:
-        optional: true
-
   sass-loader@13.0.2:
     resolution: {integrity: sha512-BbiqbVmbfJaWVeOOAu2o7DhYWtcNmTfvroVgFXa6k2hHheMxNAeDHLNoDy/Q5aoaVlz0LH+MbMktKwm9vN/j8Q==}
     engines: {node: '>= 14.15.0'}
@@ -13989,6 +13973,27 @@ packages:
       sass:
         optional: true
       sass-embedded:
+        optional: true
+
+  sass-loader@16.0.5:
+    resolution: {integrity: sha512-oL+CMBXrj6BZ/zOq4os+UECPL+bWqt6OAC6DWS8Ln8GZRcMDjlJ4JC3FBDuHJdYaFWIdKNIBYmtZtK2MaMkNIw==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      '@rspack/core': 0.x || 1.x
+      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
+      sass: ^1.3.0
+      sass-embedded: '*'
+      webpack: ^5.0.0
+    peerDependenciesMeta:
+      '@rspack/core':
+        optional: true
+      node-sass:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      webpack:
         optional: true
 
   sass@1.54.4:
@@ -25954,14 +25959,15 @@ snapshots:
       unified: 9.2.2
       unist-util-is: 4.1.0
 
-  docusaurus-plugin-sass@0.2.5(@docusaurus/core@3.3.0(@docusaurus/types@3.3.0(@swc/core@1.9.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@swc/core@1.9.2)(eslint@9.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.2.2)(vue-template-compiler@2.7.15))(sass@1.69.5)(webpack@5.89.0(@swc/core@1.9.2)):
+  docusaurus-plugin-sass@0.2.6(@docusaurus/core@3.3.0(@docusaurus/types@3.3.0(@swc/core@1.9.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@swc/core@1.9.2)(eslint@9.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.2.2)(vue-template-compiler@2.7.15))(sass@1.69.5)(webpack@5.89.0(@swc/core@1.9.2)):
     dependencies:
       '@docusaurus/core': 3.3.0(@docusaurus/types@3.3.0(@swc/core@1.9.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@swc/core@1.9.2)(eslint@9.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.2.2)(vue-template-compiler@2.7.15)
       sass: 1.69.5
-      sass-loader: 10.4.1(sass@1.69.5)(webpack@5.89.0(@swc/core@1.9.2))
+      sass-loader: 16.0.5(sass@1.69.5)(webpack@5.89.0(@swc/core@1.9.2))
     transitivePeerDependencies:
-      - fibers
+      - '@rspack/core'
       - node-sass
+      - sass-embedded
       - webpack
 
   dom-accessibility-api@0.5.16: {}
@@ -34017,17 +34023,6 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sass-loader@10.4.1(sass@1.69.5)(webpack@5.89.0(@swc/core@1.9.2)):
-    dependencies:
-      klona: 2.0.6
-      loader-utils: 2.0.4
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      semver: 7.5.4
-      webpack: 5.89.0(@swc/core@1.9.2)
-    optionalDependencies:
-      sass: 1.69.5
-
   sass-loader@13.0.2(sass@1.54.4)(webpack@5.76.1(esbuild@0.15.5)):
     dependencies:
       klona: 2.0.6
@@ -34035,6 +34030,13 @@ snapshots:
       webpack: 5.76.1(esbuild@0.15.5)
     optionalDependencies:
       sass: 1.54.4
+
+  sass-loader@16.0.5(sass@1.69.5)(webpack@5.89.0(@swc/core@1.9.2)):
+    dependencies:
+      neo-async: 2.6.2
+    optionalDependencies:
+      sass: 1.69.5
+      webpack: 5.89.0(@swc/core@1.9.2)
 
   sass@1.54.4:
     dependencies:
