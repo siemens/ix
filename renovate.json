@@ -4,5 +4,6 @@
         "monorepo:turbo",
         "group:monorepos"
     ],
+    "prConcurrentLimit": 5,
     "prHourlyLimit": 5
 }
