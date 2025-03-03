@@ -38,8 +38,10 @@ interface MessageTypeConfig {
 export class MessageBar {
   /**
    * Specifies the type of the alert.
+   * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
    */
   @Prop() type:
+    | 'alarm'
     | 'danger'
     | 'critical'
     | 'warning'
@@ -78,6 +80,7 @@ export class MessageBar {
     string,
     MessageTypeConfig
   > = {
+    alarm: { icon: 'error', color: 'color-alarm' },
     danger: { icon: 'error', color: 'color-alarm' },
     critical: { icon: 'warning-rhomb', color: 'color-critical' },
     warning: { icon: 'warning', color: 'color-warning' },

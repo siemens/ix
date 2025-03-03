@@ -31,6 +31,7 @@
   }
 
   $message-types: (
+    'alarm': var(--theme-color-alarm),
     'danger': var(--theme-color-alarm),
     'critical': var(--theme-color-critical),
     'warning': var(--theme-color-warning),

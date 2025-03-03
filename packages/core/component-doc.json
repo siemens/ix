@@ -14066,19 +14066,29 @@
         },
         {
           "name": "type",
-          "type": "\"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "| 'danger'\n    | 'critical'\n    | 'warning'\n    | 'success'\n    | 'info'\n    | 'neutral'\n    | 'primary'",
-            "resolved": "\"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
+            "original": "| 'alarm'\n    | 'danger'\n    | 'critical'\n    | 'warning'\n    | 'success'\n    | 'info'\n    | 'neutral'\n    | 'primary'",
+            "resolved": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
             "references": {}
           },
           "mutable": false,
           "attr": "type",
           "reflectToAttr": false,
           "docs": "Specifies the type of the alert.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Type `danger` will be removed in 4.0. Use `alarm` instead."
+            }
+          ],
           "default": "'info'",
+          "deprecation": "Type `danger` will be removed in 4.0. Use `alarm` instead.",
           "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
             {
               "value": "critical",
               "type": "string"

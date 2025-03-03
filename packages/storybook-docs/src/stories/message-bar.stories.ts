@@ -10,7 +10,7 @@ import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 
 type Element = {
-  type: 'danger' | 'warning' | 'success' | 'info' | 'critical' | 'neutral' | 'primary';
+  type: 'alarm' | 'danger' | 'warning' | 'success' | 'info' | 'critical' | 'neutral' | 'primary';
   dismissible: boolean;
 };
 
@@ -29,7 +29,7 @@ const meta = {
   argTypes: {
     type: {
       control: { type: 'select' },
-      options: ['danger', 'warning', 'success', 'info', 'critical', 'neutral', 'primary'],
+      options: ['alarm', 'danger', 'warning', 'success', 'info', 'critical', 'neutral', 'primary'],
     },
     dismissible: {
       control: { type: 'boolean' },
@@ -91,6 +91,13 @@ export const Neutral: Story = {
 export const Primary: Story = {
   args: {
     type: 'success',
+    dismissible: true,
+  },
+};
+
+export const Alarm: Story = {
+  args: {
+    type: 'alarm',
     dismissible: true,
   },
 };
