@@ -336,16 +336,15 @@ test('should adjust height when items are added dynamically', async ({
     </ix-application>
   `);
 
+  const menuCategory = page.locator('ix-menu-category');
+
   await page.locator('ix-menu-expand-icon').click();
-  await page.locator('ix-menu-category').click();
+  await menuCategory.click();
 
-  // wait for the menu expand animation to be finished
-  await page.waitForSelector(
-    'div.menu-items.menu-items--expanded[style*="opacity: 1"]'
-  );
+  // wait for dropdown items to be visible
+  await page.waitForTimeout(300);
 
-  const initialHeight: number | undefined = await page
-    .locator('ix-menu-category')
+  const initialHeight = await menuCategory
     .boundingBox()
     .then((box) => box?.height);
 
@@ -363,16 +362,12 @@ test('should adjust height when items are added dynamically', async ({
   });
 
   // wait for new items to be visible
-  await page.waitForSelector('ix-menu-category ix-menu-item:nth-child(4)', {
-    state: 'visible',
-  });
+  await page.waitForTimeout(300);
 
-  const newHeight: number | undefined = await page
-    .locator('ix-menu-category')
-    .boundingBox()
-    .then((box) => box?.height);
+  const newHeight = await menuCategory.boundingBox().then((box) => box?.height);
 
   expect(initialHeight).toBeDefined();
   expect(newHeight).toBeDefined();
-  expect(newHeight).toBeGreaterThan(initialHeight!);
+  expect(initialHeight).toBe(136);
+  expect(newHeight).toBe(216);
 });
