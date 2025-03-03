@@ -193,6 +193,33 @@ test.describe('date picker tests range', () => {
     });
   });
 
+  test.describe('date picker range undefined values test', () => {
+    test('dateSelect event with undefined from and to values', async ({
+      mount,
+      page,
+    }) => {
+      await mount(`<ix-date-picker range="true"></ix-date-picker>`);
+
+      await page.waitForSelector('ix-date-time-card');
+
+      const dateSelectEventPromise = page.evaluate(() => {
+        return new Promise((resolve) => {
+          document.addEventListener('dateSelect', (event) => {
+            resolve((event as CustomEvent).detail);
+          });
+        });
+      });
+
+      await page.getByText('Done').click();
+
+      const eventDetail = await dateSelectEventPromise;
+      expect(eventDetail).toEqual({
+        from: undefined,
+        to: undefined,
+      });
+    });
+  });
+
   test('select range spanning over 2 months', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
 
