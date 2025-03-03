@@ -14066,10 +14066,10 @@
         },
         {
           "name": "type",
-          "type": "\"danger\" | \"info\" | \"warning\"",
+          "type": "\"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "'danger' | 'warning' | 'info'",
-            "resolved": "\"danger\" | \"info\" | \"warning\"",
+            "original": "| 'danger'\n    | 'critical'\n    | 'warning'\n    | 'success'\n    | 'info'\n    | 'neutral'\n    | 'primary'",
+            "resolved": "\"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
             "references": {}
           },
           "mutable": false,
@@ -14080,11 +14080,27 @@
           "default": "'info'",
           "values": [
             {
+              "value": "critical",
+              "type": "string"
+            },
+            {
               "value": "danger",
               "type": "string"
             },
             {
               "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
               "type": "string"
             },
             {

@@ -2060,7 +2060,13 @@ export namespace Components {
         /**
           * Specifies the type of the alert.
          */
-        "type": 'danger' | 'warning' | 'info';
+        "type": | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
@@ -7344,7 +7350,13 @@ declare namespace LocalJSX {
         /**
           * Specifies the type of the alert.
          */
-        "type"?: 'danger' | 'warning' | 'info';
+        "type"?: | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
