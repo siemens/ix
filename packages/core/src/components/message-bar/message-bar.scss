@@ -30,20 +30,23 @@
     background-color: var(--theme-messagebar--background);
   }
 
-  .danger {
-    border: solid var(--theme-message-bar--border-thickness)
-      var(--theme-color-alarm);
+  $message-types: (
+    'alarm': var(--theme-color-alarm),
+    'danger': var(--theme-color-alarm),
+    'critical': var(--theme-color-critical),
+    'warning': var(--theme-color-warning),
+    'success': var(--theme-color-success),
+    'info': var(--theme-color-info),
+    'neutral': var(--theme-color-neutral),
+    'primary': var(--theme-color-primary)
+  );
+
+  @each $type, $color in $message-types {
+    .#{$type} {
+      border: solid var(--theme-message-bar--border-thickness) $color;
+    }
   }
 
-  .warning {
-    border: solid var(--theme-message-bar--border-thickness)
-      var(--theme-color-warning);
-  }
-
-  .info {
-    border: solid var(--theme-message-bar--border-thickness)
-      var(--theme-color-info);
-  }
 
   .message-content {
     @include ellipsis;
