@@ -32,7 +32,6 @@
 }
 
 .ApiTableText {
-  /* grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)] */
   display: grid;
   grid-template-columns: minmax(100px, 20%) 1fr;
   gap: 1rem;
