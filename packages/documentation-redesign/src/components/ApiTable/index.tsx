@@ -97,7 +97,7 @@ function SlotHeader({ children, name }: ApiTableProps) {
 
 function Text({ children, name }: ApiTableProps) {
   return (
-    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+    <div className={styles.ApiTableText}>
       <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
         {name}
       </div>
