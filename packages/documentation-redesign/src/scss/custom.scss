@@ -16,6 +16,7 @@
 @use './overwrite/admonition';
 @use './components/docsLayoutWrapper';
 @use './components/apiTable';
+@use './components/navLink';
 
 @tailwind base;
 @tailwind components;

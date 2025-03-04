@@ -175,6 +175,18 @@ const config: Config = {
           type: 'html',
           position: 'right',
           value:
+            '<a href="/docs/home/support/contact-us" class="nav-link">Support</a>',
+        },
+        {
+          type: 'html',
+          position: 'right',
+          value:
+            '<a href="/docs/home/getting-started/starter-app" class="nav-link">Starter app</a>',
+        },
+        {
+          type: 'html',
+          position: 'right',
+          value:
             '<a href="https://github.com/siemens/ix" target="_blank" class="icon-link icon-link-github" alt="Rounded avatar"></a>',
         },
       ],
