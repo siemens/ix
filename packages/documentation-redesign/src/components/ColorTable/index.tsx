@@ -19,6 +19,7 @@ import {
   useEffect,
   useImperativeHandle,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -231,9 +232,14 @@ function ColorTable({ children, colorName }) {
     };
   }, [isDarkColor, theme]);
 
+  const themeContext = useMemo(
+    () => ({ currentTheme: theme, isDarkColor }),
+    [theme, isDarkColor]
+  );
+
   return (
     <ApiTable id={`color-${colorName}`}>
-      <ThemeContext.Provider value={{ currentTheme: theme, isDarkColor }}>
+      <ThemeContext.Provider value={themeContext}>
         <ColorContext.Provider value={color}>
           <ColorContainerFix ref={themeRef}></ColorContainerFix>
           <AnchorHeader

@@ -6,11 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import styles from './ApiTable.module.css';
-import { useFramework } from '@site/src/hooks/use-framework';
-import FrameworkSelection from '../UI/FrameworkSelection';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import { useFramework } from '@site/src/hooks/use-framework';
 import clsx from 'clsx';
+import FrameworkSelection from '../UI/FrameworkSelection';
+import styles from './ApiTable.module.css';
 
 export type ApiTableProps = {
   readonly children?: React.ReactNode;
@@ -130,12 +130,12 @@ export function AnchorHeader({
   noBottomBorder,
   onClick,
 }: {
-  children: React.ReactNode;
-  right?: React.ReactNode;
-  anchorName: string;
-  anchorLabel: string;
-  noBottomBorder?: boolean;
-  onClick?: () => void;
+  readonly children: React.ReactNode;
+  readonly right?: React.ReactNode;
+  readonly anchorName: string;
+  readonly anchorLabel: string;
+  readonly noBottomBorder?: boolean;
+  readonly onClick?: () => void;
 }) {
   return (
     <div
