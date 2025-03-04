@@ -14,3 +14,19 @@
   width: 100%;
   flex-wrap: nowrap;
 }
+
+.AnchorHeader {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: nowrap;
+  padding: 1rem;
+  border-bottom: 1px solid var(--theme-color-soft-bdr);
+  background-color: var(--theme-color-2);
+  color: var(--theme-color-std-text);
+}
+
+.AnchorHeader.NoButtonBorder {
+  border-bottom: none;
+}

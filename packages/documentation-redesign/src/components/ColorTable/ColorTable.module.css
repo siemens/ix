@@ -53,6 +53,18 @@
   min-width: 7rem;
 }
 
+.colorTextRow {
+  display: grid;
+  grid-template-columns: minmax(100px, 20%) 1fr;
+  gap: 0.5rem;
+  border: 0;
+  border-bottom: 1px solid var(--theme-color-soft-bdr);
+}
+
+.colorTextRow:last-child {
+  border-bottom: 0;
+}
+
 .DesktopOnly {
   display: inherit;
 }

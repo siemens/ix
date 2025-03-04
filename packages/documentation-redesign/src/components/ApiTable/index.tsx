@@ -10,6 +10,7 @@ import styles from './ApiTable.module.css';
 import { useFramework } from '@site/src/hooks/use-framework';
 import FrameworkSelection from '../UI/FrameworkSelection';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import clsx from 'clsx';
 
 export type ApiTableProps = {
   readonly children?: React.ReactNode;
@@ -126,16 +127,22 @@ export function AnchorHeader({
   right,
   anchorName,
   anchorLabel,
+  noBottomBorder,
   onClick,
 }: {
   children: React.ReactNode;
   right?: React.ReactNode;
   anchorName: string;
   anchorLabel: string;
+  noBottomBorder?: boolean;
   onClick?: () => void;
 }) {
   return (
-    <div className="flex bg-[var(--theme-color-2)] text-[var(--theme-color-std-text)] p-4 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+    <div
+      className={clsx(styles.AnchorHeader, {
+        [styles.NoButtonBorder]: noBottomBorder,
+      })}
+    >
       <div className="flex items-center font-bold w-full">
         <button onClick={onClick} className={styles.AnchorButton}>
           {children}

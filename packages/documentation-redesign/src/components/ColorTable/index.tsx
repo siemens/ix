@@ -237,6 +237,7 @@ function ColorTable({ children, colorName }) {
         <ColorContext.Provider value={color}>
           <ColorContainerFix ref={themeRef}></ColorContainerFix>
           <AnchorHeader
+            noBottomBorder={!expanded}
             onClick={() => setExpanded(!expanded)}
             anchorName={`color-${colorName}`}
             anchorLabel="Direct link to the color"
@@ -310,7 +311,7 @@ function ColorTableWithChildren({ colorName }) {
 
 function Text({ children, name }) {
   return (
-    <div className="grid grid-cols-[minmax(100px,20%)_1fr] gap-2 border-solid border-0 border-b border-[var(--theme-color-soft-bdr)]">
+    <div className={styles.colorTextRow}>
       <div className="px-8 py-4 font-bold w-auto border-solid border-0 border-r border-[var(--theme-color-soft-bdr)]">
         {name}
       </div>
