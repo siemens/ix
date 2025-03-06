@@ -101,7 +101,7 @@ export function HookValidationLifecycle(options?: {
   includeChildren?: boolean;
 }) {
   return (proto: IxComponent, methodName: string) => {
-    let checkIfRequiredFunction: () => Promise<void>;
+    let checkIfRequiredFunction: (() => Promise<void>) | null;
     let classMutationObserver: ClassMutationObserver | null;
     const { componentWillLoad, disconnectedCallback, connectedCallback } =
       proto;
@@ -174,6 +174,7 @@ export function HookValidationLifecycle(options?: {
       if (host && checkIfRequiredFunction) {
         host.removeEventListener('valueChange', checkIfRequiredFunction);
         host.removeEventListener('ixBlur', checkIfRequiredFunction);
+        checkIfRequiredFunction = null;
       }
 
       return disconnectedCallback?.call(this);
