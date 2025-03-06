@@ -13,12 +13,12 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <meta name="ix:legacy-icons" content="false" />
-    <title>Stencil Component Starter</title>
-    <!--
-    <script type="module" src="../www/build/siemens-ix.esm.js"></script>
-    <script nomodule src="../www/build/siemens-ix.js"></script> -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css"
+    />
 
-    <link rel="stylesheet" href="../www/build/siemens-ix.css" />
+    <title>Stencil Component Starter</title>
   </head>
 
   <body style="margin: 0px; height: 100vh">
@@ -26,15 +26,11 @@ SPDX-License-Identifier: MIT
     <button id="remove">REMOVE</button>
     <div id="mount"></div>
     <script type="module">
-      // import { defineCustomElement } from '../components/ix-drawer.js';
-      // import { defineCustomElement as defineCustomElement1 } from '../components/ix-date-input.js';
-
-      // defineCustomElement();
-      // defineCustomElement1();
-      const selector = 'ix-date-dropdown';
+      const queryParam = new URLSearchParams(window.location.search);
+      const selector = queryParam.get('selector');
 
       const { defineCustomElement } = await import(
-        `../components/${selector}.js`
+        `/node_modules/@siemens/ix/components/${selector}.js`
       );
 
       defineCustomElement();
@@ -49,7 +45,7 @@ SPDX-License-Identifier: MIT
       }
 
       // Step 1: Dynamically create and remove date inputs
-      function createelements(count = 100) {
+      function createelements(count = 1) {
         const container = document.querySelector('div');
 
         for (let i = 0; i < count; i++) {
