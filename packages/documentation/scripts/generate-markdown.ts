@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import fs, { CopyOptions } from 'fs-extra';
+import fs from 'fs-extra';
 import { Listr } from 'listr2';
 import path from 'path';
 import { writeApi } from './api-tasks';

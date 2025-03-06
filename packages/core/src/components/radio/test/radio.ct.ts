@@ -11,6 +11,7 @@ import {
   getFormValue,
   preventFormSubmission,
   regressionTest,
+  test,
 } from '@utils/test';
 
 regressionTest('form-ready', async ({ mount, page }) => {
@@ -75,4 +76,36 @@ regressionTest(`disabled = undefined`, async ({ mount, page }) => {
 
   const disableLabelColor = 'rgba(245, 252, 255, 0.93)';
   await expect(label).toHaveCSS('color', disableLabelColor);
+});
+
+test('Radio button should not cause layout shift when checked', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <ix-radio label="test"></ix-radio>
+    <div id="element-below">This element should not move</div>
+  `);
+
+  await page.waitForSelector('ix-radio', { state: 'attached' });
+
+  const initialBounds = await page.$eval('#element-below', (el) => {
+    const rect = el.getBoundingClientRect();
+    return { top: rect.top, left: rect.left };
+  });
+
+  await page.click('ix-radio');
+
+  await page.waitForFunction(() => {
+    const radio = document.querySelector('ix-radio');
+    return radio?.getAttribute('aria-checked') === 'true';
+  });
+
+  const newBounds = await page.$eval('#element-below', (el) => {
+    const rect = el.getBoundingClientRect();
+    return { top: rect.top, left: rect.left };
+  });
+
+  expect(newBounds.top).toBeCloseTo(initialBounds.top, 0);
+  expect(newBounds.left).toBeCloseTo(initialBounds.left, 0);
 });

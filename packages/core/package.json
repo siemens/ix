@@ -68,7 +68,7 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "animate.css": "~4.1.1",
-    "autoprefixer": "10.4.5",
+    "autoprefixer": "10.4.20",
     "cssnano": "^6.1.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.0",

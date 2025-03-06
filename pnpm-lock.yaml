@@ -82,8 +82,8 @@ importers:
         specifier: ^32.1.0
         version: 32.1.0
       autoprefixer:
-        specifier: 10.4.5
-        version: 10.4.5(postcss@8.4.48)
+        specifier: 10.4.20
+        version: 10.4.20(postcss@8.4.48)
       cssnano:
         specifier: ^6.1.2
         version: 6.1.2(postcss@8.4.48)
@@ -456,8 +456,8 @@ importers:
         specifier: ~4.1.1
         version: 4.1.1
       autoprefixer:
-        specifier: 10.4.5
-        version: 10.4.5(postcss@8.4.48)
+        specifier: 10.4.20
+        version: 10.4.20(postcss@8.4.48)
       cssnano:
         specifier: ^6.1.2
         version: 6.1.2(postcss@8.4.48)
@@ -719,8 +719,8 @@ importers:
   packages/html-test-app:
     dependencies:
       ag-grid-community:
-        specifier: ^33.0.4
-        version: 33.0.4
+        specifier: ^33.1.1
+        version: 33.1.1
     devDependencies:
       '@siemens/ix':
         specifier: workspace:*
@@ -741,8 +741,8 @@ importers:
   packages/ionic-test-app:
     dependencies:
       '@capacitor/app':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
+        specifier: 6.0.2
+        version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/core':
         specifier: 6.1.1
         version: 6.1.1
@@ -750,20 +750,20 @@ importers:
         specifier: ^6.0.0
         version: 6.0.1(@capacitor/core@6.1.1)
       '@capacitor/haptics':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
+        specifier: 6.0.2
+        version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/ios':
         specifier: 6.1.1
         version: 6.1.1(@capacitor/core@6.1.1)
       '@capacitor/keyboard':
-        specifier: 6.0.1
-        version: 6.0.1(@capacitor/core@6.1.1)
+        specifier: 6.0.3
+        version: 6.0.3(@capacitor/core@6.1.1)
       '@capacitor/screen-orientation':
         specifier: ^6.0.1
         version: 6.0.2(@capacitor/core@6.1.1)
       '@capacitor/status-bar':
-        specifier: 6.0.0
-        version: 6.0.0(@capacitor/core@6.1.1)
+        specifier: 6.0.2
+        version: 6.0.2(@capacitor/core@6.1.1)
       '@ionic/react':
         specifier: ^8.0.0
         version: 8.2.7(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -2913,8 +2913,8 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@capacitor/app@6.0.0':
-    resolution: {integrity: sha512-X5UGd90Jh5p9rmoPyMqFyFWqOypdJgVJhYcM5X1YyDVJJGzmJ5MuYv1+ajj5DW9Qyh+5a3th9WYptdGby8jidA==}
+  '@capacitor/app@6.0.2':
+    resolution: {integrity: sha512-SiGTGgslK4TbWJVImCUL1odul7/YFkVfkYtAYS9AAEzQpxBECBeRnuN3FFBcfZ9eiN1XxFBFchhiwpxtx/c7yQ==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -2931,8 +2931,8 @@ packages:
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
-  '@capacitor/haptics@6.0.0':
-    resolution: {integrity: sha512-z2TmB+pTbd98Il2I1xpZGClCFwORxxP2m9f1a0rh70c2ubj2atVyZctgxrx1fuoExZTNGSxHaylWfrmjmtelVg==}
+  '@capacitor/haptics@6.0.2':
+    resolution: {integrity: sha512-xcFdIH4iIIeW2+1lzmlYMVicqB9ytaiuZ9NE3a9laKFPvMGC7hdj6i6tHFezwPJ/96xkHOwXT2b0F8Mh9xtTWg==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -2941,8 +2941,8 @@ packages:
     peerDependencies:
       '@capacitor/core': ^6.1.0
 
-  '@capacitor/keyboard@6.0.1':
-    resolution: {integrity: sha512-fBjqQaMc5uhFj6ycLnLa2hzQsR77pj/iuLLATkWihMUze3dD+IkwqFnEyOLsyk+52uoOYM7WkziSpNTquU1sZA==}
+  '@capacitor/keyboard@6.0.3':
+    resolution: {integrity: sha512-V/mURxBI68HvClYjrGBlOriWkwYN7r+cWid/igJz/3scNc/V81DgQ9fpoLr4W0I5NY7YxOesjIJLuLO+LT18mQ==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -2951,8 +2951,8 @@ packages:
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
-  '@capacitor/status-bar@6.0.0':
-    resolution: {integrity: sha512-Wo0ILugYlmENegKDgTzVCPjbvP8h1ObgHslLdgeVG643ViMS/diausHIq8e104WIKCXtKIELmQeYVp9mX7932g==}
+  '@capacitor/status-bar@6.0.2':
+    resolution: {integrity: sha512-AmRIX6QvFemItlY7/69ARkIAqitRQqJ2qwgZmD1KqgFb78pH+XFXm1guvS/a8CuOOm/IqZ4ddDbl20yxtBqzGA==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -6708,8 +6708,8 @@ packages:
   ag-charts-types@10.1.0:
     resolution: {integrity: sha512-pk9ft8hbgTXJ/thI/SEUR1BoauNplYExpcHh7tMOqVikoDsta1O15TB1ZL4XWnl4TPIzROBmONKsz7d8a2HBuQ==}
 
-  ag-charts-types@11.0.4:
-    resolution: {integrity: sha512-K/Mi7FXvSCoABLSrqQ70k1QrIL5R6RNCt2NAppOxMEir+DVFPqKZtghruobc2MGVUUKkT9MCn6Dun+fL6yZjfA==}
+  ag-charts-types@11.1.1:
+    resolution: {integrity: sha512-bRmUcf5VVhEEekhX8Vk0NSwa8Te8YM/zchjyYKR2CX4vDYiwoohM1Jg9RFvbIhVbLC1S6QrPEbx5v2C6RDfpSA==}
 
   ag-grid-angular@32.3.3:
     resolution: {integrity: sha512-i5wPWUIJujlsnLuQTVEGxGm21lkCbURhgKjZ3qEKjJzLnG6qIR2zJhJYkiV2/427TYDolBm5hdh9oUyT9/FHnQ==}
@@ -6724,8 +6724,8 @@ packages:
   ag-grid-community@32.1.0:
     resolution: {integrity: sha512-RVvkjRH61nuCXwIqTKQPqNbKR+8cGBKw7S1qmmMXsy0pCBAJaQn4kL3v31hKHxDtV4bPscBXLFKGnKzHuss0GQ==}
 
-  ag-grid-community@33.0.4:
-    resolution: {integrity: sha512-iBD8g8bNIl95w9CzCQpDid+eTdmOoT39204sPUOhE9eE50vfoDHIaF5U4fRYQHbLsT4bwbXfQYdsqBAOLJL24w==}
+  ag-grid-community@33.1.1:
+    resolution: {integrity: sha512-CNubIro0ipj4nfQ5WJPG9Isp7UI6MMDvNzrPdHNf3W+IoM8Uv3RUhjEn7xQqpQHuu6o/tMjrqpacipMUkhzqnw==}
 
   ag-grid-react@29.3.5:
     resolution: {integrity: sha512-Eg0GJ8hEBuxdVaN5g+qITOzhw0MGL9avL0Oaajr+p7QRtq2pIFHLZSknWsCBzUTjidiu75WZMKwlZjtGEuafdQ==}
@@ -7095,13 +7095,6 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
 
-  autoprefixer@10.4.5:
-    resolution: {integrity: sha512-Fvd8yCoA7lNX/OUllvS+aS1I7WRBclGXsepbvT8ZaPgrH24rgXpZzF0/6Hh3ZEkwg+0AES/Osd196VZmYoEFtw==}
-    engines: {node: ^10 || ^12 || >=14}
-    hasBin: true
-    peerDependencies:
-      postcss: ^8.1.0
-
   available-typed-arrays@1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
@@ -7333,11 +7326,6 @@ packages:
     peerDependencies:
       browserslist: '*'
 
-  browserslist@4.22.1:
-    resolution: {integrity: sha512-FEVc202+2iuClEhZhrWy6ZiAcRLvNMyYcxZ8raemul1DYVOVdFsbqckWLdsixQZCpJlwe77Z3UTalE7jsjnKfQ==}
-    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
-    hasBin: true
-
   browserslist@4.23.3:
     resolution: {integrity: sha512-btwCFJVjI4YWDNfau8RhZ+B1Q/VLoUITrm3RlP6y1tYGWIOa+InuYiRGXUBXo8nA1qKmHMyLB/iVQg5TT4eFoA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -7454,9 +7442,6 @@ packages:
 
   caniuse-api@3.0.0:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
-
-  caniuse-lite@1.0.30001554:
-    resolution: {integrity: sha512-A2E3U//MBwbJVzebddm1YfNp7Nud5Ip+IPn4BozBmn4KqVX7AvluoIDFWjsv5OkGnKUXQVmMSoMKLa3ScCblcQ==}
 
   caniuse-lite@1.0.30001651:
     resolution: {integrity: sha512-9Cf+Xv1jJNe1xPZLGuUXLNkE1BoDkqRqYyFJ9TDYSqhduqA4hu4oR9HluGoWYQC/aj8WHjsGVV+bwkh0+tegRg==}
@@ -8561,9 +8546,6 @@ packages:
     resolution: {integrity: sha512-UeJmFfOrAQS8OJWPZ4qtgHyWExa088/MtK5UEyoJGFH67cDEXkZSviOiKRCZ4Xij0zxI3JECgYs3oKx+AizQBA==}
     engines: {node: '>=0.10.0'}
     hasBin: true
-
-  electron-to-chromium@1.4.567:
-    resolution: {integrity: sha512-8KR114CAYQ4/r5EIEsOmOMqQ9j0MRbJZR3aXD/KFA8RuKzyoUB4XrUCg+l8RUGqTVQgKNIgTpjaG8YHRPAbX2w==}
 
   electron-to-chromium@1.5.65:
     resolution: {integrity: sha512-PWVzBjghx7/wop6n22vS2MLU8tKGd4Q91aCEGhG/TYmW6PP5OcSXcdnxTe1NNt0T66N8D6jxh4kC8UsdzOGaIw==}
@@ -12131,9 +12113,6 @@ packages:
     resolution: {integrity: sha512-RM5oyBy45cLEoHqCeh+MNuFAxO0vTFBLskvQbOKnEE7YTTSN4tbN8QWDIPQ6L+WvKsB/qLEGpYe2ZZ9d4W9OIQ==}
     engines: {node: '>=8'}
 
-  node-releases@2.0.13:
-    resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
-
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
 
@@ -15265,12 +15244,6 @@ packages:
   upath@1.2.0:
     resolution: {integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==}
     engines: {node: '>=4'}
-
-  update-browserslist-db@1.0.13:
-    resolution: {integrity: sha512-xebP81SNcPuNpPP3uzeW1NYXxI3rxyJzF3pD6sH4jE7o/IX+WtSpwnVU+qIsDPyk0d3hmFQ7mjqc6AtV604hbg==}
-    hasBin: true
-    peerDependencies:
-      browserslist: '>= 4.21.0'
 
   update-browserslist-db@1.1.0:
     resolution: {integrity: sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==}
@@ -19389,7 +19362,7 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@capacitor/app@6.0.0(@capacitor/core@6.1.1)':
+  '@capacitor/app@6.0.2(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
@@ -19424,7 +19397,7 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.1
 
-  '@capacitor/haptics@6.0.0(@capacitor/core@6.1.1)':
+  '@capacitor/haptics@6.0.2(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
@@ -19432,7 +19405,7 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.1
 
-  '@capacitor/keyboard@6.0.1(@capacitor/core@6.1.1)':
+  '@capacitor/keyboard@6.0.3(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
@@ -19440,7 +19413,7 @@ snapshots:
     dependencies:
       '@capacitor/core': 6.1.1
 
-  '@capacitor/status-bar@6.0.0(@capacitor/core@6.1.1)':
+  '@capacitor/status-bar@6.0.2(@capacitor/core@6.1.1)':
     dependencies:
       '@capacitor/core': 6.1.1
 
@@ -24061,7 +24034,7 @@ snapshots:
 
   ag-charts-types@10.1.0: {}
 
-  ag-charts-types@11.0.4: {}
+  ag-charts-types@11.1.1: {}
 
   ag-grid-angular@32.3.3(@angular/common@17.3.12(@angular/core@17.3.12(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@17.3.12(rxjs@7.8.1)(zone.js@0.14.10))(ag-grid-community@32.1.0):
     dependencies:
@@ -24083,9 +24056,9 @@ snapshots:
     dependencies:
       ag-charts-types: 10.1.0
 
-  ag-grid-community@33.0.4:
+  ag-grid-community@33.1.1:
     dependencies:
-      ag-charts-types: 11.0.4
+      ag-charts-types: 11.1.1
 
   ag-grid-react@29.3.5(ag-grid-community@30.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -24510,16 +24483,6 @@ snapshots:
       postcss: 8.4.48
       postcss-value-parser: 4.2.0
 
-  autoprefixer@10.4.5(postcss@8.4.48):
-    dependencies:
-      browserslist: 4.22.1
-      caniuse-lite: 1.0.30001554
-      fraction.js: 4.3.7
-      normalize-range: 0.1.2
-      picocolors: 1.0.0
-      postcss: 8.4.48
-      postcss-value-parser: 4.2.0
-
   available-typed-arrays@1.0.5: {}
 
   available-typed-arrays@1.0.7:
@@ -24920,13 +24883,6 @@ snapshots:
       browserslist: 4.23.3
       meow: 13.2.0
 
-  browserslist@4.22.1:
-    dependencies:
-      caniuse-lite: 1.0.30001554
-      electron-to-chromium: 1.4.567
-      node-releases: 2.0.13
-      update-browserslist-db: 1.0.13(browserslist@4.22.1)
-
   browserslist@4.23.3:
     dependencies:
       caniuse-lite: 1.0.30001651
@@ -25066,8 +25022,6 @@ snapshots:
       caniuse-lite: 1.0.30001684
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
-
-  caniuse-lite@1.0.30001554: {}
 
   caniuse-lite@1.0.30001651: {}
 
@@ -26312,8 +26266,6 @@ snapshots:
   ejs@3.1.10:
     dependencies:
       jake: 10.9.2
-
-  electron-to-chromium@1.4.567: {}
 
   electron-to-chromium@1.5.65: {}
 
@@ -31526,8 +31478,6 @@ snapshots:
     dependencies:
       process-on-spawn: 1.0.0
 
-  node-releases@2.0.13: {}
-
   node-releases@2.0.18: {}
 
   nopt@1.0.10:
@@ -35199,12 +35149,6 @@ snapshots:
   untildify@4.0.0: {}
 
   upath@1.2.0: {}
-
-  update-browserslist-db@1.0.13(browserslist@4.22.1):
-    dependencies:
-      browserslist: 4.22.1
-      escalade: 3.1.1
-      picocolors: 1.1.1
 
   update-browserslist-db@1.1.0(browserslist@4.23.3):
     dependencies:

@@ -13,6 +13,9 @@
 export type NotificationColor =
   | 'color-std-text'
   | 'color-info'
+  | 'color-critical'
   | 'color-warning'
   | 'color-success'
-  | 'color-alarm';
+  | 'color-alarm'
+  | 'color-neutral'
+  | 'color-primary';

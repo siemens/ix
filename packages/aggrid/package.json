@@ -27,7 +27,7 @@
     "@types/gulp-postcss": "^8.0.4",
     "@types/gulp-sass": "^5.0.2",
     "ag-grid-community": "^32.1.0",
-    "autoprefixer": "10.4.5",
+    "autoprefixer": "10.4.20",
     "cssnano": "^6.1.2",
     "gulp": "^4.0.2",
     "gulp-postcss": "^9.0.1",

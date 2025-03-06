@@ -152,7 +152,18 @@ export class MenuCategory {
   }
 
   private onNestedItemsChanged(mutations?: MutationRecord[]) {
+    const oldNestedItemsLength = this.nestedItems.length;
     this.nestedItems = this.getNestedItems();
+
+    if (
+      this.showItems &&
+      this.menuItemsContainer &&
+      oldNestedItemsLength !== this.nestedItems.length
+    ) {
+      this.menuItemsContainer.style.maxHeight = `${
+        this.getNestedItemsHeight() + DefaultIxMenuItemHeight
+      }px`;
+    }
 
     if (!this.menuExpand || this.showItems || !mutations) {
       return;
