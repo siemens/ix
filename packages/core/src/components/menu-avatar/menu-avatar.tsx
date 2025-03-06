@@ -17,6 +17,7 @@ import {
   State,
 } from '@stencil/core';
 import { getSlottedElements } from '../utils/shadow-dom';
+import { iconLogOut } from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-menu-avatar',
@@ -115,7 +116,7 @@ export class MenuAvatar {
           {this.showLogoutButton ? (
             <ix-menu-avatar-item
               label={this.i18nLogout}
-              icon={'log-out'}
+              icon={iconLogOut}
               onClick={(e) => {
                 this.logoutClick.emit(e);
               }}

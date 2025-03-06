@@ -22,6 +22,18 @@ SPDX-License-Identifier: MIT
         background-color: red;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import {
+        iconStar,
+        iconPrint,
+      } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconStar,
+        iconPrint,
+      });
+    </script>
   </head>
   <body>
     <ix-basic-navigation application-name="Test application!">

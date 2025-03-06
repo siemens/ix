@@ -24,6 +24,14 @@ SPDX-License-Identifier: MIT
         align-items: center;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconRefresh } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconRefresh,
+      });
+    </script>
   </head>
   <body>
     <ix-action-card

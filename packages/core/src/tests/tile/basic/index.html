@@ -40,6 +40,18 @@ SPDX-License-Identifier: MIT
         margin-bottom: 1rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import {
+        iconContextMenu,
+        iconChevronRightSmall,
+      } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconContextMenu,
+        iconChevronRightSmall,
+      });
+    </script>
   </head>
   <body style="padding: 2rem">
     <ix-tile size="small">92.8 °C</ix-tile>

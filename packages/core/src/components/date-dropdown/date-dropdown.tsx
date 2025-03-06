@@ -26,6 +26,7 @@ import { IxDatePickerComponent } from '../date-picker/date-picker-component';
 import { makeRef } from '../utils/make-ref';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
+import { iconHistory } from '@siemens/ix-icons/icons';
 
 export type DateDropdownOption = {
   id: string;
@@ -360,7 +361,7 @@ export class DateDropdown
           ghost={this.ghost}
           outline={this.outline}
           loading={this.loading}
-          icon="history"
+          icon={iconHistory}
           ref={this.triggerRef}
           disabled={this.disabled}
         >

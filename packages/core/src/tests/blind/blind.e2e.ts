@@ -8,6 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { regressionTest as regressionTest } from '@utils/test';
 
 regressionTest.describe('blind', () => {
@@ -43,7 +44,8 @@ regressionTest.describe('blind', () => {
   });
 
   regressionTest('should no hover on slot', async ({ mount, page }) => {
-    await mount(`
+    await mount(
+      `
       <ix-blind label="Example label" style="width: 25rem">
           <ix-button
             ghost
@@ -53,7 +55,13 @@ regressionTest.describe('blind', () => {
           ></ix-button>
         Some content
       </ix-blind>
-    `);
+    `,
+      {
+        icons: {
+          iconContextMenu,
+        },
+      }
+    );
     const blindElement = page.locator('ix-blind');
     await expect(blindElement).toHaveClass(/hydrated/);
 

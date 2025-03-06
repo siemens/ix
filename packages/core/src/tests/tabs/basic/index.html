@@ -19,6 +19,26 @@ SPDX-License-Identifier: MIT
         width: 40rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import {
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconHierarchy,
+        iconCalendarSettings,
+        iconSoundLoud,
+      } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconSuccess,
+        iconTree,
+        iconMaintenance,
+        iconHierarchy,
+        iconCalendarSettings,
+        iconSoundLoud,
+      });
+    </script>
   </head>
   <body>
     <div class="test">
