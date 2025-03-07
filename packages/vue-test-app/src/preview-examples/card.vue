@@ -8,6 +8,7 @@
 -->
 
 <script setup lang="ts">
+import { iconCapacity } from '@siemens/ix-icons/icons';
 import { IxCard, IxCardContent, IxIcon, IxTypography } from '@siemens/ix-vue';
 
 const onClick = (event: Event) => {
@@ -20,7 +21,7 @@ const onClick = (event: Event) => {
 <template>
   <IxCard variant="outline" @click="onClick">
     <IxCardContent>
-      <IxIcon name="capacity"></IxIcon>
+      <IxIcon :name="iconCapacity"></IxIcon>
       <IxTypography bold>Number of components</IxTypography>
       <IxTypography>
         Vanilla JavaScript<br />

@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { iconStar } from '@siemens/ix-icons/icons';
-import { IxButton, IxIcon } from '@siemens/ix-vue';
+import { IxButton } from '@siemens/ix-vue';
 </script>
 
 <style scoped src="./button-text-icon.css"></style>

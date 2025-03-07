@@ -8,7 +8,10 @@
 -->
 
 <script setup lang="ts">
-import { iconContextMenu } from '@siemens/ix-icons/icons';
+import {
+  iconChevronRightSmall,
+  iconContextMenu,
+} from '@siemens/ix-icons/icons';
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
 </script>
 
@@ -42,7 +45,7 @@ import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
       </div>
       <div className="tile-footer" slot="footer">
         <IxButton ghost slot="footer">
-          <IxIcon name="chevron-right-small"></IxIcon>Details
+          <IxIcon :name="iconChevronRightSmall"></IxIcon>Details
         </IxButton>
       </div>
     </IxTile>
