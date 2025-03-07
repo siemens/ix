@@ -38,15 +38,15 @@ noMargin>
 The navigation to another application is implemented via `window.open` (https://developer.mozilla.org/en-US/docs/Web/API/Window/open). Therefore you can control if the navigation should happen inside the current browser context `target: '_self'` or inside a new tab `target: '_blank'` (more information about target can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target))
 
 ```javascript
-  {
-    id: 'demo-app-2',
-    name: 'Calculator App',
-    description: 'Example description for Calculator App',
-    iconSrc: '...url to some icon',
+{
+  id: 'demo-app-2',
+  name: 'Calculator App',
+  description: 'Example description for Calculator App',
+  iconSrc: '...url to some icon',
 
-    url: '...target url',
-    target: '_self', // Define the navigation context (e.g current browser context or new tab)
-  }
+  url: '...target url',
+  target: '_self', // Define the navigation context (e.g current browser context or new tab)
+}
 ```
 
 <Playground

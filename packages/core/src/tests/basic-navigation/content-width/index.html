@@ -13,6 +13,18 @@ SPDX-License-Identifier: MIT
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Stencil Component Starter</title>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import {
+        iconStar,
+        iconPrint,
+      } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconStar,
+        iconPrint,
+      });
+    </script>
   </head>
   <style>
     main {
@@ -51,8 +63,8 @@ SPDX-License-Identifier: MIT
         />
       </svg>
       <ix-menu>
-        <ix-menu-item tab-icon="star">Item 1</ix-menu-item>
-        <ix-menu-item tab-icon="print">Item 2</ix-menu-item>
+        <ix-menu-item icon="star">Item 1</ix-menu-item>
+        <ix-menu-item icon="print">Item 2</ix-menu-item>
       </ix-menu>
       <main>Example content</main>
     </ix-basic-navigation>

@@ -8,6 +8,7 @@
 -->
 
 <script setup lang="ts">
+import { iconAdd } from '@siemens/ix-icons/icons';
 import { IxEmptyState } from '@siemens/ix-vue';
 </script>
 
@@ -16,7 +17,7 @@ import { IxEmptyState } from '@siemens/ix-vue';
     layout="compactBreak"
     header="No elements available"
     subHeader="Create an element first"
-    icon="add"
+    :icon="iconAdd"
     action="Create element"
   ></IxEmptyState>
 </template>

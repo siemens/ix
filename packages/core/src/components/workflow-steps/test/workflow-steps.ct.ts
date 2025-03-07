@@ -15,9 +15,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-workflow-steps>
       <ix-workflow-step>Test 1</ix-workflow-step>
@@ -37,7 +37,7 @@ test('renders', async ({ mount, page }) => {
   await expect(step).toBeVisible();
 });
 
-test('should be clickable', async ({ mount, page }) => {
+regressionTest('should be clickable', async ({ mount, page }) => {
   await mount(`
     <ix-workflow-steps clickable>
       <ix-workflow-step>Test 1</ix-workflow-step>
@@ -54,7 +54,7 @@ test('should be clickable', async ({ mount, page }) => {
   await expect(selectedDiv).toHaveClass(/selected/);
 });
 
-test('should prevent click navigation', async ({ mount, page }) => {
+regressionTest('should prevent click navigation', async ({ mount, page }) => {
   await mount(`
     <ix-workflow-steps clickable>
       <ix-workflow-step>Test 1</ix-workflow-step>

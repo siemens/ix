@@ -18,7 +18,7 @@ import { IxButton, IxMessageBar } from '@siemens/ix-vue';
     <IxMessageBar :dismissible="false">Message text</IxMessageBar>
     <IxMessageBar :dismissible="false" type="warning">Message text</IxMessageBar>
     <IxMessageBar :dismissible="false" type="danger">
-      <div class="d-flex align-items-center justify-content-between">
+      <div className="message-bar-danger">
         Message text
         <ix-button>Action</ix-button>
       </div>

@@ -1,10 +1,34 @@
 import Icons from '@site/src/components/Icons';
+import Playground from '@site/src/components/PlaygroundV3';
 
 ## Development
 
-### Usage
+The package `@siemens/ix-icons` offers a large set of icons.
+It also comes with the `ix-icon` component that displays them in your application.
+Additionally custom SVG icons (that are not part of the library) can be used.
 
-#### Angular
+As of iX version 3.0.0 not all available iX icons will be loaded automatically anymore.
+Only the icons actually used in the application will be part of the bundle to reduce the overall bundle size significant. As a result, icons must now be imported explicitly.
+
+### Angular
+
+Provide all iX icons as asset folder via `angular.json`.
+
+```json
+"assets": [
+  "src/favicon.ico",
+  "src/assets",
+  {
+  "glob": "**/*.svg",
+  "input": "node_modules/@siemens/ix-icons/svg",
+  "output": "./svg"
+  }
+],
+```
+
+It is also possible to import individual icons without an asset folder via [addIcons](#reference-icons-by-name).
+
+Then you can reference iX icons by name anywhere in your application.
 
 ```html
 <ix-icon name="star" size="16"></ix-icon>
@@ -12,15 +36,7 @@ import Icons from '@site/src/components/Icons';
 <ix-icon name="star" size="32"></ix-icon>
 ```
 
-#### React
-
-```html
-<IxIcon name="star" size="16"></IxIcon>
-<IxIcon name="star" size="24"></IxIcon>
-<IxIcon name="star" size="32"></IxIcon>
-```
-
-#### Web components
+### Web components
 
 ```html
 <ix-icon name="star" size="16"></ix-icon>
@@ -28,13 +44,32 @@ import Icons from '@site/src/components/Icons';
 <ix-icon name="star" size="32"></ix-icon>
 ```
 
-#### Vue
+### React
 
-```html
-<IxIcon name="star" size="16"></IxIcon>
-<IxIcon name="star" size="24"></IxIcon>
-<IxIcon name="star" size="32"></IxIcon>
+```tsx
+import { iconStar } from '@siemens/ix-icons/icons';
+
+<IxIcon name={iconStar} size="16"></IxIcon>
+<IxIcon name={iconStar} size="24"></IxIcon>
+<IxIcon name={iconStar} size="32"></IxIcon>
 ```
+
+### Vue
+
+```tsx
+import { iconStar } from '@siemens/ix-icons/icons';
+
+<IxIcon :name="iconStar" size="16"></IxIcon>
+<IxIcon :name="iconStar" size="24"></IxIcon>
+<IxIcon :name="iconStar" size="32"></IxIcon>
+```
+
+### Reference icons by name
+
+Although referencing icons by name (e.g. `<ix-icon name="star"><ix-icon>`) is still also possible, simply import all icons you want to display in your application via the `addIcons` method.
+
+<Playground name="add-icons">
+</Playground>
 
 ### Integrate external icons
 

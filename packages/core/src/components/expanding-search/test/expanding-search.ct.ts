@@ -7,15 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-expanding-search></ix-expanding-search>`);
   const button = page.locator('ix-expanding-search');
   await expect(button).toHaveClass(/hydrated/);
 });
 
-test('expands input', async ({ mount, page }) => {
+regressionTest('expands input', async ({ mount, page }) => {
   await mount(`<ix-expanding-search></ix-expanding-search>`);
   const element = page.locator('ix-expanding-search');
   const button = page.locator('button');
@@ -24,7 +24,7 @@ test('expands input', async ({ mount, page }) => {
   await expect(element).toHaveClass(/expanded/);
 });
 
-test('collapse input', async ({ mount, page }) => {
+regressionTest('collapse input', async ({ mount, page }) => {
   await mount(`<ix-expanding-search></ix-expanding-search>`);
   const element = page.locator('ix-expanding-search');
   const button = page.locator('button');
@@ -36,7 +36,7 @@ test('collapse input', async ({ mount, page }) => {
   await expect(element).not.toHaveClass(/expanded/);
 });
 
-test('changes input', async ({ mount, page }) => {
+regressionTest('changes input', async ({ mount, page }) => {
   await mount(`<ix-expanding-search></ix-expanding-search>`);
   const element = page.locator('ix-expanding-search');
   const button = page.locator('button');
@@ -49,22 +49,22 @@ test('changes input', async ({ mount, page }) => {
   await expect(element).toHaveClass(/expanded/);
 });
 
-test('erases the input when clear button is clicked', async ({
-  mount,
-  page,
-}) => {
-  await mount(`<ix-expanding-search></ix-expanding-search>`);
-  const element = page.locator('ix-expanding-search');
-  const button = page.locator('button');
-  const clearButton = page.locator('[data-testid="clear-button"]');
-  const input = page.locator('input');
+regressionTest(
+  'erases the input when clear button is clicked',
+  async ({ mount, page }) => {
+    await mount(`<ix-expanding-search></ix-expanding-search>`);
+    const element = page.locator('ix-expanding-search');
+    const button = page.locator('button');
+    const clearButton = page.locator('[data-testid="clear-button"]');
+    const input = page.locator('input');
 
-  await button.click();
-  await input.fill('new input');
+    await button.click();
+    await input.fill('new input');
 
-  await clearButton.click();
-  await input.blur();
+    await clearButton.click();
+    await input.blur();
 
-  await expect(input).toHaveValue('');
-  await expect(element).not.toHaveClass(/expanded/);
-});
+    await expect(input).toHaveValue('');
+    await expect(element).not.toHaveClass(/expanded/);
+  }
+);

@@ -26,8 +26,8 @@ function renderItem(data: TreeData) {
       data;
     },
     template: `
-    <div class="d-flex align-items-center">
-      <IxIcon :name="data.icon" size="16" class="me-2" />
+    <div style="display: flex; align-items: center">
+      <IxIcon :name="data.icon" size="16" style="margin-inline-end: 0.5rem" />
       {{ data.name }}
     </div>`,
   });

@@ -24,12 +24,9 @@
   [type='checkbox']:checked + label {
     position: relative;
     display: inline-flex;
-    align-items: center;
     user-select: none;
     color: var(--theme-checkbox-label--color);
-    height: $size;
-    min-height: $size;
-    max-height: $size;
+    min-height: 1.5rem;
   }
 
   [type='checkbox']:not(:disabled) + label {
@@ -46,6 +43,7 @@
     max-height: $size;
     float: left;
     margin-right: $small-space;
+    margin-top: 1px;
 
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -109,7 +107,7 @@
       border-bottom: 0.0625rem solid var(--theme-checkbox-checked--color);
       border-left: 0.0625rem solid var(--theme-checkbox-checked--color);
       position: absolute;
-      margin: 0.31rem 0.42rem 0.1875rem;
+      margin: 0.525rem 0.42rem 0.1875rem;
       transform: translate(-1px, -3px) rotate(-53deg) scale(2)
         skew(-8deg, -3deg);
     }
@@ -150,7 +148,7 @@
       height: 0.125rem;
       border-bottom: 0.125rem solid var(--theme-checkbox-mixed--color);
       position: absolute;
-      margin: 0 0 0 0.25rem;
+      margin: 0.5625rem 0 0 0.25rem;
     }
 
     & + label:before {

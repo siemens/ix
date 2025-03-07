@@ -10,60 +10,60 @@ import {Guideline} from '@site/src/components/Guideline';
 
 Always consider whether necessary
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>!</span> Exclamation mark for high-level warnings only!
+<div>
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>!</span> Exclamation mark for high-level warnings only!
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>?</span> Question mark only if necessary
+<div>
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>?</span> Question mark only if necessary
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Use colons: especially to introduce lists
+<div>
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Use colons: especially to introduce lists
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops at the end of all full sentences
+<div>
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops at the end of all full sentences
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops before all file extensions: .csv .txt .zip
+<div>
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Full stops before all file extensions: .csv .txt .zip
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Consistent use of full stops throughout the application
+<div>
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>.</span> Consistent use of full stops throughout the application
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>…</span> Ellipsis only for transitional text: Upload… 
+<div>
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>…</span> Ellipsis only for transitional text: Upload… 
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>'</span> Single quotation mark for possession: Customer’s role (single), customers’ roles (plural)
+<div>
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>'</span> Single quotation mark for possession: Customer’s role (single), customers’ roles (plural)
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}> </span> No quotation mark or brackets for plurals: PDFs
+<div>
+<span className="ux-writing-punctuation" style={{ backgroundColor: 'var(--theme-color-neutral)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}> </span> No quotation mark or brackets for plurals: PDFs
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>&</span> Avoid ampersands unless in a product or company name: Siemens & Halske AG
+<div>
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>&</span> Avoid ampersands unless in a product or company name: Siemens & Halske AG
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>*</span> Avoid asterisks in applications
+<div>
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>*</span> Avoid asterisks in applications
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>(</span> Avoid brackets ( ) and [ ]
+<div>
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>(</span> Avoid brackets ( ) and [ ]
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>;</span> Avoid semi-colons
+<div>
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>;</span> Avoid semi-colons
 </div>
 
-<div class="mb-2">
-<span class="d-inline-flex align-items-center justify-content-center" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Avoid and remove colons whenever possible, for example Username instead of Username:
+<div>
+<span className="ux-writing-punctuation" style={{ color: 'var(--theme-color-inv-std-text)', backgroundColor: 'var(--theme-color-contrast-text)', borderRadius: '4rem', width: '1.25rem', height: '1.25rem', fontSize: '0.875rem' }}>:</span> Avoid and remove colons whenever possible, for example Username instead of Username:
 </div>
 
 ### Formats
@@ -82,59 +82,59 @@ Always consider whether necessary
 
 - Numbers: Use No. as an abbreviation for number, no spacing between abbreviated No. and number: No.8
 
-<div class="d-flex flex-wrap">
+<div className="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do label='11am'></Guideline>
 <Guideline do={false} label='11 a.m.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Monday, January 12, 2021'></Guideline>
 <Guideline do={false} label='Monday, 12 January 2021'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='€999.50'></Guideline>
 <Guideline do={false} label='€999,50'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='€2.5 million'></Guideline>
 <Guideline do={false} label='€2,5 million'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='$400,456.50'></Guideline>
 <Guideline do={false} label='$400.456,50'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='£320'></Guideline>
 <Guideline do={false} label='320£'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='30 mm'></Guideline>
 <Guideline do={false} label='30 mms'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='10 oz'></Guideline>
 <Guideline do={false} label='10 oz.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='10-40%'></Guideline>
 <Guideline do={false} label='10–40%'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='No.7'></Guideline>
 <Guideline do={false} label='#7'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Number 7'></Guideline>
 <Guideline do={false} label='Num 7'></Guideline>
 </span>
@@ -153,24 +153,24 @@ Always consider whether necessary
 
 - Add a space before unit of measurement
 
-<div class="d-flex flex-wrap">
+<div className="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do label='50%'></Guideline>
 <Guideline do={false} label='50 %'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='11am'></Guideline>
 <Guideline do={false} label='11 am'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Tuesday: no data'></Guideline>
 <Guideline do={false} label='Tuesday:no data'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Browse…'></Guideline>
 <Guideline do={false} label='Browse …'></Guideline>
 </span>
@@ -189,9 +189,9 @@ Always consider whether necessary
 
 - Make lists parallel, i.e. all items / bullets have the same look, length, feel, punctuation, capitalization
 
-<div class="d-flex flex-wrap">
+<div className="ux-writing-guidelines">
 
-<span class="m-2">
+<span>
 <Guideline do label='Activate comments within your smartphone to
 '></Guideline>
 <ul>

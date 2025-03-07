@@ -1,8 +1,8 @@
 import Props from './../../auto-generated/ix-split-button/props.md';
 import Events from './../../auto-generated/ix-split-button/events.md';
 
-import ItemProps from './../../auto-generated/ix-split-button-item/props.md';
-import ItemEvents from './../../auto-generated/ix-split-button-item/events.md';
+import ItemProps from './../../auto-generated/ix-dropdown-item/props.md';
+import ItemEvents from './../../auto-generated/ix-dropdown-item/events.md';
 
 import Playground from '@site/src/components/PlaygroundV3';
 
@@ -13,17 +13,14 @@ import Playground from '@site/src/components/PlaygroundV3';
 <Playground
 name="split-button"
 height="16rem"
-
-> </Playground>
-
+/>
 #### With icon only
 
 <Playground
 name="split-button-icons"
 height="16rem"
 hideInitalCodePreview
-
-> </Playground>
+/>
 
 ### API (ix-split-button)
 
@@ -35,7 +32,7 @@ hideInitalCodePreview
 
 <Events />
 
-### API (ix-split-button-item)
+### API (ix-dropdown-item)
 
 #### Properties
 

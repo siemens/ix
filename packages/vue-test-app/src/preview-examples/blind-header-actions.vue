@@ -8,18 +8,24 @@
 -->
 
 <script setup lang="ts">
+import {
+  iconContextMenu,
+  iconInfo,
+  iconRename,
+  iconTrashcan,
+} from '@siemens/ix-icons/icons';
 import { IxBlind, IxDropdown, IxIconButton } from '@siemens/ix-vue';
 </script>
 
 <style scoped src="./blind-header-actions.css"></style>
 
 <template>
-  <IxBlind label="Example" icon="info">
+  <IxBlind label="Example" :icon="iconInfo">
     <IxIconButton
       id="context-menu"
       slot="header-actions"
       ghost
-      icon="context-menu"
+      :icon="iconContextMenu"
       iconColor="color-primary"
     ></IxIconButton>
     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
@@ -33,7 +39,7 @@ import { IxBlind, IxDropdown, IxIconButton } from '@siemens/ix-vue';
     amet.
   </IxBlind>
   <IxDropdown trigger="context-menu">
-    <IxDropdownItem label="Rename..." icon="Rename"></IxDropdownItem>
-    <IxDropdownItem label="trashcan" icon="Delete"></IxDropdownItem>
+    <IxDropdownItem label="Rename..." :icon="iconRename"></IxDropdownItem>
+    <IxDropdownItem label="trashcan" :icon="iconTrashcan"></IxDropdownItem>
   </IxDropdown>
 </template>
