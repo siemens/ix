@@ -18,6 +18,7 @@ import * as components from 'echarts/components';
 import * as renderer from 'echarts/renderers';
 import { EChartsOption } from 'echarts';
 import { IxEmptyState } from '@siemens/ix-vue';
+import { iconInfo } from '@siemens/ix-icons/icons';
 
 echarts.use([
   components.TooltipComponent,
@@ -67,7 +68,7 @@ const options = {
         className="empty-state"
         header="No elements available"
         sub-header="Failed to retrieve data"
-        icon="info"
+        :icon="iconInfo"
         action="Try again"
       ></IxEmptyState>
     </div>

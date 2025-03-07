@@ -8,6 +8,7 @@
  */
 
 import { TreeContext, TreeModel } from '@siemens/ix';
+import { iconCut, iconPrint, iconStar } from '@siemens/ix-icons/icons';
 import { IxButton, IxIcon, IxTree } from '@siemens/ix-react';
 import { useState } from 'react';
 
@@ -32,7 +33,7 @@ export default () => {
       id: 'sample',
       data: {
         name: 'Sample',
-        icon: 'star',
+        icon: iconStar,
       },
       hasChildren: true,
       children: ['sample-child-1', 'sample-child-2'],
@@ -41,7 +42,7 @@ export default () => {
       id: 'sample-child-1',
       data: {
         name: 'Sample Child 1',
-        icon: 'cut',
+        icon: iconCut,
       },
       hasChildren: false,
       children: [],
@@ -50,7 +51,7 @@ export default () => {
       id: 'sample-child-2',
       data: {
         name: 'Sample Child 2',
-        icon: 'print',
+        icon: iconPrint,
       },
       hasChildren: false,
       children: [],
@@ -94,11 +95,18 @@ export default () => {
           setContext(detail);
         }}
         renderItem={(data: TreeData) => (
-          <div style={'display: flex; align-items: center'}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
             <IxIcon
               name={data.icon}
               size="16"
-              style={'margin-inline-end: 0.5rem'}
+              style={{
+                marginInlineEnd: '0.5rem',
+              }}
             />
             {data.name}
           </div>

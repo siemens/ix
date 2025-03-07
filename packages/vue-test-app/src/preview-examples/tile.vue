@@ -8,6 +8,7 @@
 -->
 
 <script setup lang="ts">
+import { iconContextMenu } from '@siemens/ix-icons/icons';
 import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
 </script>
 
@@ -23,12 +24,9 @@ import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
     </IxTile>
 
     <IxTile size="big">
-      <div
-        className="tile-header"
-        slot="header"
-      >
+      <div className="tile-header" slot="header">
         Tile header
-        <IxIconButton ghost icon="context-menu"></IxIconButton>
+        <IxIconButton ghost :icon="iconContextMenu"></IxIconButton>
       </div>
       <div slot="subheader">Temperature</div>
       <div
@@ -42,10 +40,7 @@ import { IxButton, IxIcon, IxIconButton, IxTile } from '@siemens/ix-vue';
       >
         <span>92.8 °C</span>
       </div>
-      <div
-        className="tile-footer"
-        slot="footer"
-      >
+      <div className="tile-footer" slot="footer">
         <IxButton ghost slot="footer">
           <IxIcon name="chevron-right-small"></IxIcon>Details
         </IxButton>
