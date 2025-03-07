@@ -8,10 +8,13 @@
  */
 import { test } from '@utils/test';
 import { expect } from '@playwright/test';
+import { iconStar } from '@siemens/ix-icons/icons';
 
 test.describe('Pill', () => {
   test('dynamic gap behavior', async ({ mount, page }) => {
-    await mount('<ix-pill icon="star">Dynamic gap</ix-pill>');
+    await mount('<ix-pill icon="star">Dynamic gap</ix-pill>', {
+      icons: { iconStar },
+    });
     const pill = page.locator('ix-pill');
     const innerContainer = pill.locator('.container');
 

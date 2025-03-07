@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconRocket } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 declare global {
@@ -22,7 +23,9 @@ regressionTest('renders', async ({ mount, page }) => {
 });
 
 regressionTest('show icon', async ({ mount, page }) => {
-  await mount(`<ix-button icon="rocket">Content</ix-button>`);
+  await mount(`<ix-button icon="rocket">Content</ix-button>`, {
+    icons: { iconRocket },
+  });
   const button = page.locator('ix-button');
   await expect(button.locator('ix-icon')).toBeVisible();
 });
@@ -39,7 +42,9 @@ regressionTest('show spinner while loading', async ({ mount, page }) => {
 regressionTest(
   'replace icon with spinner while loading',
   async ({ mount, page }) => {
-    await mount(`<ix-button icon="rocket">Content</ix-button>`);
+    await mount(`<ix-button icon="rocket">Content</ix-button>`, {
+      icons: { iconRocket },
+    });
     const button = page.locator('ix-button');
 
     await expect(button.locator('ix-spinner')).not.toBeVisible();

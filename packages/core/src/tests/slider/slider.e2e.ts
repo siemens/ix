@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconRocket } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('should show reference value', async ({ page, mount }) => {
@@ -152,7 +153,8 @@ regressionTest(
 );
 
 regressionTest('should render with label', async ({ page, mount }) => {
-  await mount(`
+  await mount(
+    `
     <div id='slider-container'>
 
       <ix-slider
@@ -172,7 +174,13 @@ regressionTest('should render with label', async ({ page, mount }) => {
       </ix-slider>
 
     </div>
-  `);
+  `,
+    {
+      icons: {
+        iconRocket,
+      },
+    }
+  );
 
   const slider1 = page.locator('ix-slider').nth(0);
   const slider2 = page.locator('ix-slider').nth(1);

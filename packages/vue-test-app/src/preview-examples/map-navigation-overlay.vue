@@ -8,6 +8,7 @@
 -->
 
 <script setup lang="ts">
+import { iconBulb } from '@siemens/ix-icons/icons';
 import {
   IxButton,
   IxContent,
@@ -62,7 +63,7 @@ export default {
       v-if="overlay"
       slot="overlay"
       name="Custom overlay"
-      icon="bulb"
+      :icon="iconBulb"
       @close-click="() => showOverlay(false)"
     >
       <IxContent>Overlay content</IxContent>

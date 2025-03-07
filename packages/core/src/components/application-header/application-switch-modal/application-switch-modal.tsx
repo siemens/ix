@@ -13,7 +13,7 @@ import {
   AppSwitchConfigurationTarget,
 } from '../../utils/application-layout/context';
 import { dismissModal } from '../../utils/modal';
-import { iconOpenExternal } from '@siemens/ix-icons/icons';
+import { iconApps, iconOpenExternal } from '@siemens/ix-icons/icons';
 
 function ApplicationItem(props: {
   host: HTMLIxApplicationSwitchModalElement;
@@ -97,7 +97,7 @@ export class ApplicationSwitchModal {
   render() {
     return (
       <Host>
-        <ix-modal-header icon="apps">
+        <ix-modal-header icon={iconApps}>
           {this.config?.i18nAppSwitch || 'Switch to application'}
         </ix-modal-header>
         <ix-modal-content class="content">

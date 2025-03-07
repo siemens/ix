@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconBulb } from '@siemens/ix-icons/icons';
 import './map-navigation-migration.scoped.css';
 
 import {
@@ -57,7 +58,7 @@ export default () => {
         className="overlay"
         composition="right"
         heading="Custom overlay"
-        icon="bulb"
+        icon={iconBulb}
         size="320px"
         variant="floating"
         hideOnCollapse

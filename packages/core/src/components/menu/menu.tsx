@@ -30,7 +30,14 @@ import { ContextType, useContextConsumer } from '../utils/context';
 import { menuController } from '../utils/menu-service/menu-service';
 import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
-import { iconApps } from '@siemens/ix-icons/icons';
+import {
+  iconApps,
+  iconCogwheel,
+  iconInfo,
+  iconLightDark,
+  iconNavigationLeft,
+  iconNavigationRight,
+} from '@siemens/ix-icons/icons';
 
 @Component({
   tag: 'ix-menu',
@@ -536,7 +543,7 @@ export class Menu {
   }
 
   private getCollapseIcon() {
-    return this.mapExpand ? 'navigation-left' : 'navigation-right';
+    return this.mapExpand ? iconNavigationLeft : iconNavigationRight;
   }
 
   private isMenuItemClicked(event: Event) {
@@ -717,7 +724,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showSettings,
               }}
-              icon={'cogwheel'}
+              icon={iconCogwheel}
               onClick={async () => this.toggleSettings(!this.showSettings)}
               label={this.i18nSettings}
             ></ix-menu-item>
@@ -736,7 +743,7 @@ export class Menu {
                 'bottom-tab': true,
                 active: this.showAbout,
               }}
-              icon={'info'}
+              icon={iconInfo}
               onClick={async () => this.toggleAbout(!this.showAbout)}
               label={this.i18nLegal}
             ></ix-menu-item>
@@ -747,7 +754,7 @@ export class Menu {
               id="toggleTheme"
               onClick={() => themeSwitcher.toggleMode()}
               class="internal-tab bottom-tab"
-              icon={'light-dark'}
+              icon={iconLightDark}
               label={this.i18nToggleTheme}
             ></ix-menu-item>
           ) : null}

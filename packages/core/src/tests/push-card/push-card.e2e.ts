@@ -8,6 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
+import { iconBulb } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('push-card: basic', () => {
@@ -41,7 +42,8 @@ regressionTest('should hide overflowing text', async ({ page }) => {
 });
 
 regressionTest('push card expand', async ({ page, mount }) => {
-  await mount(`
+  await mount(
+    `
       <ix-push-card
         icon="bulb"
         notification="99"
@@ -50,7 +52,13 @@ regressionTest('push card expand', async ({ page, mount }) => {
         variant="outline"
         collapse="false"
       > </ix-push-card>
-  `);
+  `,
+    {
+      icons: {
+        iconBulb,
+      },
+    }
+  );
 
   await page.waitForSelector('ix-push-card');
 

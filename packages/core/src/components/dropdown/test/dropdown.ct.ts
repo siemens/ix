@@ -7,12 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { ElementHandle, expect, Locator, Page } from '@playwright/test';
+import {
+  iconCogwheel,
+  iconHeart,
+  iconPin,
+  iconPrint,
+  iconStar,
+} from '@siemens/ix-icons/icons';
 import { regressionTest, viewPorts } from '@utils/test';
 
 const html = String.raw;
 
 regressionTest('renders', async ({ mount, page }) => {
-  await mount(`
+  await mount(
+    `
   <ix-split-button label="Test 1">
     <ix-dropdown-item>Test 1</ix-dropdown-item>
   </ix-split-button>
@@ -38,7 +46,11 @@ regressionTest('renders', async ({ mount, page }) => {
       <ix-dropdown-item label="Item 4" icon="cogwheel" />
     </ix-dropdown>
   </ix-group>
-  `);
+  `,
+    {
+      icons: { iconPin, iconStar, iconHeart, iconCogwheel },
+    }
+  );
 
   const sb1 = page.locator('ix-split-button').nth(0);
   const sb2 = page.locator('ix-split-button').nth(1);
@@ -593,14 +605,19 @@ regressionTest(
 
 regressionTest.describe('resolve during element connect', () => {
   regressionTest.beforeEach(async ({ mount }) => {
-    await mount(`
+    await mount(
+      `
     <ix-button id="trigger">Open</ix-button>
     <ix-dropdown trigger="trigger">
       <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       <ix-dropdown-item>Custom</ix-dropdown-item>
     </ix-dropdown>
-    `);
+    `,
+      {
+        icons: { iconPrint },
+      }
+    );
   });
 
   regressionTest('attach and detach from dom', async ({ page }) => {
@@ -632,7 +649,7 @@ regressionTest.describe('resolve during element connect', () => {
 });
 
 regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
-  await mount(`<ix-button id="trigger">Open</ix-icon-button>
+  await mount(`<ix-button id="trigger">Open</ix-button>
         <ix-dropdown closeBehavior="outside" trigger="trigger">
           <ix-dropdown-item id="item-1">Item level 1</ix-dropdown-item>
           <ix-dropdown-button label="Nested">
@@ -657,14 +674,19 @@ regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
 regressionTest.describe('A11y', () => {
   regressionTest.describe('Keyboard navigation', () => {
     regressionTest.beforeEach(async ({ page, mount }) => {
-      await mount(`
+      await mount(
+        `
       <ix-button id="trigger">Open</ix-button>
       <ix-dropdown trigger="trigger">
         <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         <ix-dropdown-item>Custom</ix-dropdown-item>
       </ix-dropdown>
-      `);
+      `,
+        {
+          icons: { iconPrint },
+        }
+      );
 
       await page.locator('#trigger').click();
     });

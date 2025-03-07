@@ -8,6 +8,7 @@
 -->
 
 <script setup lang="ts">
+import { iconBulb } from '@siemens/ix-icons/icons';
 import {
   IxApplication,
   IxApplicationHeader,
@@ -65,7 +66,7 @@ export default {
       className="overlay"
       composition="right"
       heading="Custom overlay"
-      icon="bulb"
+      :icon="iconBulb"
       size="320px"
       variant="floating"
       hideOnCollapse
