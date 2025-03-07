@@ -13,6 +13,14 @@ LICENSE file in the root directory of this source tree.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Card list example</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconRocket, iconBulb } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconRocket,
+        iconBulb,
+      });
+    </script>
   </head>
   <body>
     <ix-card-list label="Stack Layout" show-all-count="12" list-style="stack">

@@ -14,6 +14,21 @@ LICENSE file in the root directory of this source tree.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vertical tabs example</title>
     <link rel="stylesheet" href="./vertical-tabs.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconUserProfile,
+        iconHome,
+        iconGlobe,
+        iconStar,
+      } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconUserProfile,
+        iconHome,
+        iconGlobe,
+        iconStar,
+      });
+    </script>
   </head>
   <body>
     <ix-menu>

@@ -9,7 +9,7 @@
 
 import { useState } from 'react';
 import { IxIcon, IxIconButton, IxInputGroup } from '@siemens/ix-react';
-import { iconSearch } from '@siemens/ix-icons/icons';
+import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 
 export default () => {
   const [message, setMessage] = useState('');
@@ -42,7 +42,7 @@ export default () => {
           <IxIconButton
             onClick={reset}
             id="clear-button"
-            icon="clear"
+            icon={iconClear}
             ghost
             size="16"
             style={{ display: display }}

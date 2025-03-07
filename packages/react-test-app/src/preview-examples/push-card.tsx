@@ -7,12 +7,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconBulb } from '@siemens/ix-icons/icons';
 import { IxPushCard } from '@siemens/ix-react';
 
 export default () => {
   return (
     <IxPushCard
-      icon="bulb"
+      icon={iconBulb}
       notification="99"
       heading="Heading content"
       subheading="Subheading"

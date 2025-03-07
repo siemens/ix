@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconBulb, iconRocket } from '@siemens/ix-icons/icons';
 import { IxCardList, IxPushCard } from '@siemens/ix-react';
 
 export default () => {
@@ -14,21 +15,21 @@ export default () => {
     <>
       <IxCardList label="Stack Layout" showAllCount={12} listStyle={'stack'}>
         <IxPushCard
-          icon="bulb"
+          icon={iconBulb}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
           variant="filled"
         ></IxPushCard>
         <IxPushCard
-          icon="bulb"
+          icon={iconBulb}
           notification="1"
           heading="Heading content"
           subheading="Subheading"
           variant="warning"
         ></IxPushCard>
         <IxPushCard
-          icon="rocket"
+          icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
@@ -38,35 +39,35 @@ export default () => {
 
       <IxCardList label="Flow Layout" showAllCount={12} listStyle={'scroll'}>
         <IxPushCard
-          icon="rocket"
+          icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
           variant="filled"
         ></IxPushCard>
         <IxPushCard
-          icon="bulb"
+          icon={iconBulb}
           notification="1"
           heading="Heading content"
           subheading="Subheading"
           variant="warning"
         ></IxPushCard>
         <IxPushCard
-          icon="rocket"
+          icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
           variant="filled"
         ></IxPushCard>
         <IxPushCard
-          icon="rocket"
+          icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"
           variant="filled"
         ></IxPushCard>
         <IxPushCard
-          icon="rocket"
+          icon={iconRocket}
           notification="3"
           heading="Heading content"
           subheading="Subheading"

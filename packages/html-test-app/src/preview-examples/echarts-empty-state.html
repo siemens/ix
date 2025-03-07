@@ -17,6 +17,14 @@ LICENSE file in the root directory of this source tree.
     <!-- External resources -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
     <!-- External resources -->
+
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconInfo } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconInfo,
+      });
+    </script>
   </head>
   <body class="theme-classic-dark">
     <div class="echarts">
