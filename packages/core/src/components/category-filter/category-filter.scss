@@ -16,7 +16,9 @@
 @import '../button/button';
 @import 'legacy/components/dropdown';
 @import 'legacy/components/forms';
-@import 'components/form/input';
+@import 'mixins/input';
+
+@include form;
 
 :host {
   @include ix-component;
@@ -88,8 +90,7 @@
 
     &,
     &:hover,
-    &:focus
-    &:focus-visible {
+    &:focus &:focus-visible {
       border: none !important;
       outline: none !important;
     }

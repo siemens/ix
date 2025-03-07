@@ -24,19 +24,29 @@ SPDX-License-Identifier: MIT
   </head>
   <body>
     <ix-input-group>
-      <input placeholder="Search" type="text" />
+      <input class="ix-form-control" placeholder="Search" type="text" />
       <span slot="input-start">
         <ix-icon name="search" size="16" color="color-primary"></ix-icon>
       </span>
     </ix-input-group>
     <ix-input-group>
-      <input placeholder="Search" readonly type="text" />
+      <input
+        class="ix-form-control"
+        placeholder="Search"
+        readonly
+        type="text"
+      />
       <span slot="input-start">
         <ix-icon name="search" size="16" color="color-primary"></ix-icon>
       </span>
     </ix-input-group>
     <ix-input-group>
-      <input placeholder="Search" disabled type="text" />
+      <input
+        class="ix-form-control"
+        placeholder="Search"
+        disabled
+        type="text"
+      />
       <span slot="input-start">
         <ix-icon name="search" size="16" color="color-primary"></ix-icon>
       </span>
@@ -45,7 +55,7 @@ SPDX-License-Identifier: MIT
       <span slot="input-start">Name</span>
       <input
         type="text"
-        class="form-control"
+        class="ix-form-control"
         aria-label="Dollar amount (with dot and two decimal places)"
       />
       <span slot="input-end">.00</span>

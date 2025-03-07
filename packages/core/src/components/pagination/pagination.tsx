@@ -228,7 +228,7 @@ export class Pagination {
           <div class="advanced-pagination">
             <ix-typography format="body">{this.i18nPage}</ix-typography>
             <input
-              class="form-control page-selection"
+              class="ix-form-control page-selection"
               type="number"
               min="1"
               max={this.count}
