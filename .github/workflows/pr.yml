@@ -83,7 +83,7 @@ jobs:
         run: pnpm build --cache-dir=.turbo --filter documentation
 
   visual-testing-core:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || contains(github.event.label.name, 'renovate') }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || contains(github.event.pull_request.labels.*.name, 'renovate') }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -136,7 +136,7 @@ jobs:
           retention-days: 14
 
   visual-testing-aggrid:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || contains(github.event.label.name, 'renovate') }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.aggrid_any_changed == 'true' || contains(github.event.pull_request.labels.*.name, 'renovate') }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
@@ -159,7 +159,7 @@ jobs:
           retention-days: 1
 
   visual-testing-echarts:
-    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || contains(github.event.label.name, 'renovate') }}
+    if: ${{ needs.changes.outputs.core_any_changed == 'true' || needs.changes.outputs.echarts_any_changed == 'true' || contains(github.event.pull_request.labels.*.name, 'renovate') }}
     needs: [build, changes]
     timeout-minutes: 10
     runs-on: ubuntu-latest
