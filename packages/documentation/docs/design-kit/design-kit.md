@@ -21,14 +21,3 @@ We use Figma variables to provide you a seamless and customizable experience whe
 
 ## Figma classic theme library (Open Source)
 Will be available soon.
-
-## Sketch libraries (discontinued)
-As we have focused on the design tool Figma, we don’t maintain the Sketch library anymore. Nevertheless, you can still download these libraries.
-
-### Sketch Siemens brand library (discontinued)
-
-› [Download here](https://siemens-ix.code.siemens.io/ix-brand-theme/sketch.zip)
-
-### Sketch open-source library (discontinued)
-
-› [Download here](/files/sketch.zip)
