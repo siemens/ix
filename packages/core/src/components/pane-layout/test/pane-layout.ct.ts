@@ -8,6 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
+import { iconStar } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
@@ -42,7 +43,10 @@ regressionTest.describe('pane-layout with floating pane', () => {
             </div>
           </ix-pane-layout>
         </div>
-      `
+      `,
+      {
+        icons: { iconStar },
+      }
     );
   });
 
