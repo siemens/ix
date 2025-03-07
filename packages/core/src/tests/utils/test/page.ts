@@ -66,14 +66,15 @@ async function mountComponent(
       }
 
       if (config?.icons) {
+        const iconImport = Object.keys(config.icons).join(',\n');
         const addIconsScript = `
           import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
           import {
-            ${Object.keys(config.icons).join(',\n')}
+            ${iconImport}
           } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
 
           addIcons({
-            ${Object.keys(config.icons).join(',\n')}
+            ${iconImport}
           });
         `;
 
