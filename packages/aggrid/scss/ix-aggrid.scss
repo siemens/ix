@@ -42,7 +42,7 @@
     width: 1.125rem;
     height: 1.125rem;
 
-    &:not(.ag-checked) {
+    &:not(.ag-checked):not(.ag-indeterminate) {
       border: var(--theme-checkbox--border-thickness) solid var(--theme-checkbox-unchecked--border-color);
     }
 
@@ -60,19 +60,41 @@
         mask-repeat: no-repeat;
         mask-position: center;
         mask-size: contain;
-
-        &:hover:not(:disabled) {
-          background-color: var(--theme-checkbox-checked--background--hover);
-          border-color: var(--theme-checkbox-checked--border-color--hover);
-        }
+      }
+      &:hover:not(:disabled)::before {
+        background-color: var(--theme-checkbox-checked--background--hover);
+        border-color: var(--theme-checkbox-checked--border-color--hover);
       }
     }
 
-    &:not(.ag-checked):hover:not(:disabled) {
+    &.ag-indeterminate {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: var(--theme-checkbox-checked--background);
+        border-color: var(--theme-checkbox-checked--border-color--hover);
+        //TODO: Replace base64 encoded image with svg and css variables
+        //Encoded image: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="7" width="12" height="2" fill="#000028"/></svg>
+        mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiAvPjwvc3ZnPg=='),
+          url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIyIiB5PSI3IiB3aWR0aD0iMTIiIGhlaWdodD0iMiIgZmlsbD0iIzAwMDAyOCIvPjwvc3ZnPg==');
+        mask-composite: subtract;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+      }
+      &:hover:not(:disabled)::before {
+        background-color: var(--theme-checkbox-checked--background--hover);
+        border-color: var(--theme-checkbox-checked--border-color--hover);
+      }
+    }
+
+    &:not(.ag-checked, .ag-indeterminate):hover:not(:disabled) {
       background-color: var(--theme-checkbox-unchecked--background--hover);
       border-color: var(--theme-checkbox-unchecked--border-color--hover);
     }
-
   }
 
   .ag-checkbox-input {
@@ -82,11 +104,6 @@
     appearance: none;
     -webkit-appearance: none;
     border-radius: 4px;
-
-    &:focus {
-      box-shadow: 0 0 3px 3px yellow;
-      outline: none;
-    }
   }
 
   .ag-input-wrapper {
