@@ -18,7 +18,7 @@ import path from 'path';
 // require('dotenv').config();
 // eslint-disable-next-line turbo/no-undeclared-env-vars
 
-const THEMES = ['theme-classic-dark'];
+const THEMES = ['theme-classic-light', 'theme-classic-dark'];
 
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {
@@ -58,9 +58,9 @@ const config: PlaywrightTestConfig = {
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   // eslint-disable-next-line turbo/no-undeclared-env-vars
-  retries: process.env.CI ? 2 : 2,
+  retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: '50%',
+  workers: 10,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI ? 'blob' : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
