@@ -33,7 +33,7 @@ function ApiTable({ children, id }) {
   return (
     <BrowserOnly>
       {() => (
-        <div className="api-table container mx-auto mb-8" id={id}>
+        <div className="api-table container ml-0 mb-8" id={id}>
           <div className="bg-[transparent] rounded-lg overflow-hidden border-solid border-[1px] border-[var(--theme-color-soft-bdr)]">
             {children}
           </div>
