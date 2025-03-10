@@ -4,4 +4,4 @@
 "@siemens/ix-vue": minor
 ---
 
-Time headline of the __ix-datetime-picker__ can now be translated via property
+ __ix-datetime-picker__: Time selection headline can now be translated via property `i18nTime`.
