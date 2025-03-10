@@ -2059,8 +2059,16 @@ export namespace Components {
         "dismissible": boolean;
         /**
           * Specifies the type of the alert.
+          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
          */
-        "type": 'danger' | 'warning' | 'info';
+        "type": | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
@@ -7343,8 +7351,16 @@ declare namespace LocalJSX {
         "onClosedChange"?: (event: IxMessageBarCustomEvent<any>) => void;
         /**
           * Specifies the type of the alert.
+          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
          */
-        "type"?: 'danger' | 'warning' | 'info';
+        "type"?: | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
