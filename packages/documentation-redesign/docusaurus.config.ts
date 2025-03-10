@@ -169,16 +169,16 @@ const config: Config = {
           value: '<div class="separator" aria-hidden></div>',
         },
         {
-          type: 'html',
+          type: 'custom-nav-link',
           position: 'right',
-          value:
-            '<a href="/docs/home/support/contact-us" class="nav-link">Support</a>',
+          label: 'Support',
+          value: '/docs/home/support/contact-us',
         },
         {
-          type: 'html',
+          type: 'custom-nav-link',
           position: 'right',
-          value:
-            '<a href="/docs/home/getting-started/starter-app" class="nav-link">Starter app</a>',
+          label: 'Starter app',
+          value: '/docs/home/getting-started/starter-app',
         },
         {
           type: 'html',
