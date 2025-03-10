@@ -105,7 +105,7 @@
 
   .grid {
     display: grid;
-    grid-template-columns: 24px repeat(6, 40px);
+    grid-template-columns: repeat(7, 40px);
     grid-template-rows: repeat(6, 40px);
 
     align-items: center;
