@@ -90,7 +90,8 @@
 
     &,
     &:hover,
-    &:focus &:focus-visible {
+    &:focus,
+    &:focus-visible {
       border: none !important;
       outline: none !important;
     }
