@@ -11,6 +11,7 @@ import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
 import { convertToRemString } from '../utils/rwd.util';
 import anime from 'animejs';
+import { isNumber } from '../utils/condition-checks';
 
 @Component({
   tag: 'ix-event-list',
@@ -60,8 +61,8 @@ export class EventList {
       this.triggerFadeIn();
     }
 
-    if (!Number.isNaN(Number(this.itemHeight))) {
-      const height = convertToRemString(this.itemHeight as number);
+    if (isNumber(this.itemHeight)) {
+      const height = convertToRemString(this.itemHeight);
       this.hostElement
         .querySelectorAll('ix-event-list-item')
         .forEach((item) => {
@@ -79,7 +80,7 @@ export class EventList {
 
   private onMutation(mutationRecords: Array<MutationRecord>) {
     this.triggerFadeOut().then(() => {
-      if (typeof this.itemHeight === 'number') {
+      if (isNumber(this.itemHeight)) {
         const height = convertToRemString(this.itemHeight);
 
         mutationRecords
@@ -100,6 +101,10 @@ export class EventList {
   }
 
   private setCustomHeight(item: HTMLElement, height: string) {
+    if (item.nodeType !== Node.ELEMENT_NODE) {
+      return;
+    }
+
     item.style.setProperty('--event-list-item-height', height);
   }
 

@@ -236,6 +236,7 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import EventListCustomItemHeightDynamicList from 'src/preview-examples/event-list-custom-item-height-dynamic-list';
 
 @NgModule({
   declarations: [
@@ -326,6 +327,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     EmptyStateCompact,
     EmptyState,
     EventListCompact,
+    EventListCustomItemHeightDynamicList,
     EventListCustomItemHeight,
     EventListSelected,
     EventList,
