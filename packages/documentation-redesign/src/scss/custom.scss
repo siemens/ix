@@ -16,6 +16,8 @@
 @use './overwrite/admonition';
 @use './components/docsLayoutWrapper';
 @use './components/apiTable';
+@use './components/navLink';
+
 @use './../../node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css';
 @use './../../node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css';
 

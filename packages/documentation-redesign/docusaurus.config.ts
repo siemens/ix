@@ -2,8 +2,6 @@ import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 
-const baseUrl = process.env.BASE_URL || '/';
-
 const customCss = [
   './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
   './node_modules/@siemens/ix/dist/siemens-ix/theme/classic-light.css',
@@ -164,12 +162,23 @@ const config: Config = {
           position: 'left',
           label: 'Styles',
         },
-        // TODO: Clarify if blog is needed
         // { to: '/blog', label: 'Blog', position: 'left' },
         {
           type: 'html',
           position: 'right',
           value: '<div class="separator" aria-hidden></div>',
+        },
+        {
+          type: 'custom-nav-link',
+          position: 'right',
+          label: 'Support',
+          value: '/docs/home/support/contact-us',
+        },
+        {
+          type: 'custom-nav-link',
+          position: 'right',
+          label: 'Starter app',
+          value: '/docs/home/getting-started/starter-app',
         },
         {
           type: 'html',
