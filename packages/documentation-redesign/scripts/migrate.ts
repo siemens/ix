@@ -117,7 +117,6 @@ flatMarkdowns(
     '_divider.md',
     '_category_.json',
     'toast',
-    'modal',
     '_toast',
     '_modal',
     '_forms-toggle_styleguide.md',
@@ -504,43 +503,243 @@ Object.keys(newDocs).forEach((name) => {
       /<Playground.*?name="([^"]+)".*?<\/Playground>/gms;
     const playgrounds = codeFile.match(patchCodeMarkdown);
     const playgroundImports: string[] = [];
+
     playgrounds?.forEach((playground) => {
       const nameRegex = /name="([^"]+)"/gms;
       const heightRegex = /height="([^"]+)"/gms;
+      const frameworksRegex = /frameworks={(\[[^\]]+\])}/gms;
+      const additionalFilesRegex = /additionalFiles={{([^}]+)}}/gms;
+      const devianRootFileNameRegex = /deviantRootFileName="([^"]+)"/gms;
+
       const nameMatch = nameRegex.exec(playground);
       const heightMatch = heightRegex.exec(playground);
-      if (nameMatch) {
-        const [, playgroundName] = nameMatch;
+      const frameworksMatch = frameworksRegex.exec(playground);
+      const additionalFilesMatch = additionalFilesRegex.exec(playground);
+      const devianRootFileNameMatch = devianRootFileNameRegex.exec(playground);
+
+      if (!nameMatch) return;
+
+      const [, playgroundName] = nameMatch;
+
+      const toValidJSIdentifier = (filename) => {
+        return filename.replace(/-/g, '_').replace(/\./g, '_');
+      };
+
+      if (frameworksMatch && additionalFilesMatch) {
+        const playgroundImport = "import Playground from '@site/src/components/Playground';";
+        if (!playgroundImports.includes(playgroundImport)) {
+          playgroundImports.push(playgroundImport);
+        }
+
+        const frameworksArray = frameworksMatch[1]
+          .replace(/[\[\]"'\s]/g, '')
+          .split(',')
+          .filter(Boolean);
+
+        const frameworks = frameworksArray.length ?
+          frameworksArray :
+          ['react', 'angular', 'vue', 'html'];
+
+        const cleanedFrameworks = frameworks.map(fw => fw === 'javascript' ? 'html' : fw);
+
+        const rootFileName = devianRootFileNameMatch ?
+          devianRootFileNameMatch[1] :
+          playgroundName;
+
+        const additionalFiles = {};
+        if (additionalFilesMatch && additionalFilesMatch[1]) {
+          const content = additionalFilesMatch[1].replace(/javascript/g, 'html'); // Replace javascript with html
+          const frameworkSections = content.split(/(\w+):\s*\[/g);
+
+          for (let i = 1; i < frameworkSections.length; i += 2) {
+            const framework = frameworkSections[i].trim() === 'javascript' ? 'html' : frameworkSections[i].trim();
+            const filesSection = frameworkSections[i + 1];
+            if (filesSection) {
+              const filesList = filesSection
+                .split(']')[0]
+                .split(',')
+                .map(f => f.replace(/[']/g, '').trim())
+                .filter(Boolean);
+
+              additionalFiles[framework] = filesList;
+            }
+          }
+        }
+
+        let sourceImports = [];
+        let sourceObj = {};
+        let filesObj = {};
+
+        cleanedFrameworks.forEach(framework => {
+          if (!sourceObj[framework]) sourceObj[framework] = {};
+          if (!filesObj[framework]) filesObj[framework] = {};
+
+          let files = [];
+
+          if (additionalFiles[framework] && additionalFiles[framework].length > 0) {
+            additionalFiles[framework].forEach(fileName => {
+              const hasQuotes = fileName.includes('"');
+              const cleanFileName = fileName.replace(/"/g, '');
+              const fileNameNoExt = cleanFileName.split('.').slice(0, -1).join('.');
+              const ext = cleanFileName.split('.').pop();
+
+              let alias = `${toValidJSIdentifier(fileNameNoExt)}_${ext}_${framework}`;
+
+              files.push({
+                name: fileName,
+                cleanName: cleanFileName,
+                alias: alias,
+                hasQuotes: hasQuotes
+              });
+            });
+          } else {
+            switch(framework) {
+              case 'react':
+                files = [
+                  {
+                    name: `${rootFileName}.tsx`,
+                    cleanName: `${rootFileName}.tsx`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_tsx_react`,
+                    hasQuotes: false
+                  },
+                  {
+                    name: `${rootFileName}.scoped.css`,
+                    cleanName: `${rootFileName}.scoped.css`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_scoped_css_react`,
+                    hasQuotes: false
+                  }
+                ];
+                break;
+              case 'angular':
+                files = [
+                  {
+                    name: `${rootFileName}.ts`,
+                    cleanName: `${rootFileName}.ts`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_ts_angular`,
+                    hasQuotes: false
+                  },
+                  {
+                    name: `${rootFileName}.css`,
+                    cleanName: `${rootFileName}.css`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_css_angular`,
+                    hasQuotes: false
+                  }
+                ];
+                break;
+              case 'vue':
+                files = [
+                  {
+                    name: `${rootFileName}.vue`,
+                    cleanName: `${rootFileName}.vue`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_vue_vue`,
+                    hasQuotes: false
+                  },
+                  {
+                    name: `${rootFileName}.css`,
+                    cleanName: `${rootFileName}.css`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_css_vue`,
+                    hasQuotes: false
+                  }
+                ];
+                break;
+              case 'html':
+                files = [
+                  {
+                    name: `${rootFileName}.html`,
+                    cleanName: `${rootFileName}.html`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_html_html`,
+                    hasQuotes: false
+                  },
+                  {
+                    name: `${rootFileName}.css`,
+                    cleanName: `${rootFileName}.css`,
+                    alias: `${toValidJSIdentifier(rootFileName)}_css_html`,
+                    hasQuotes: false
+                  }
+                ];
+                break;
+            }
+          }
+
+          files.forEach(file => {
+            const importPath = `@site/docs/autogenerated/usage/${framework}/${file.cleanName}.md`;
+            sourceImports.push(`import ${file.alias} from '${importPath}';`);
+
+            const displayName = file.hasQuotes ? `"${file.cleanName}"` : file.cleanName;
+
+            sourceObj[framework][displayName] = file.alias;
+
+            const filePath = `'${framework}/${displayName}'`;
+            filesObj[framework][displayName] = filePath;
+          });
+        });
+
+        sourceImports.forEach(importStatement => {
+          if (!playgroundImports.includes(importStatement)) {
+            playgroundImports.push(importStatement);
+          }
+        });
+
+        const formatNestedObj = (obj, quoteValues = false) => {
+          let result = '{{';  // Start with double braces
+          for (const [framework, files] of Object.entries(obj)) {
+            result += `${framework}: {`;
+            for (const [fileName, value] of Object.entries(files)) {
+
+              result += `\n            '${fileName}': ${value},`;
+            }
+            result += '\n          },\n          ';
+          }
+          result = result.slice(0, -12) + '}}';  // Close with double braces
+          return result;
+        };
+
+        const updatedPlayground = `<Playground
+  name="${playgroundName}" source=${formatNestedObj(sourceObj)}
+  files=${formatNestedObj(filesObj)}
+  height={props.height}
+  ${cleanedFrameworks.length === 1 ? `onlyFramework="${cleanedFrameworks[0]}"` : 'onlyFramework={props.onlyFramework}'}
+></Playground>`;
+
+        codeFile = codeFile.replace(playground, updatedPlayground);
+      } else {
         let height = '';
         if (heightMatch?.length) {
           height = ` height="${heightMatch[1]}"`;
         }
         const componentName = `${kebabToCamelCase(playgroundName)}Playground`;
-        playgroundImports.push(
-          `import ${componentName} from '@site/docs/autogenerated/playground/${playgroundName}.mdx';`
-        );
-        codeFile = codeFile.replace(
-          playground,
-          `<${componentName}${height} />`
-        );
+        const importStatement = `import ${componentName} from '@site/docs/autogenerated/playground/${playgroundName}.mdx';`;
+
+        if (!playgroundImports.includes(importStatement)) {
+          playgroundImports.push(importStatement);
+        }
+
+        codeFile = codeFile.replace(playground, `<${componentName}${height} />`);
       }
     });
+
     codeFile = codeFile.replace(/import?.Preview.*;\n/g, '');
+    codeFile = codeFile.replace(/import.*(Tabs|TabItem)';\n/g, '');
     codeFile = codeFile.replace(
-      /import (.*) from '.*(ix-.*)\/props.md';/g,
-      "import $1Api from '@site/docs/autogenerated/api/$2/api.mdx';"
+      /import (.*) from '.*\/auto-generated\/utils\/(core\/.*)'/g,
+      "import $1 from '@site/docs/autogenerated/utils/$1.mdx';"
     );
     codeFile = codeFile.replace(
-      /import (.*) from.*auto-generated\/(.*)\/(events|slots).md';\n/g,
+      /import (.*) from '.*(ix-.*)\/props.md';?/g,
+      "import $1Api from '@site/docs/autogenerated/api/$2/api.mdx';"
+    ).replace(/;;/g, ';');
+    codeFile = codeFile.replace(
+      /import (.*) from.*auto-generated\/(.*)\/(events|slots).md';?\n/g,
       ``
     );
+
     codeFile = codeFile.replace(
       /import.*Playground.*from.*Playground.*';?\n/g,
       playgroundImports.join('\n') + '\n'
     );
     codeFile = codeFile.replace(/#+\s(Properties|Events)\n+/gs, '');
     const apiComponents: string[] = [];
-    Array.from(codeFile.matchAll(/import (.*Api) from.*/gm)).forEach(
+    Array.from(codeFile.matchAll(/import (.*Api|.*Config|.*Instance) from.*/gm)).forEach(
       (match) => {
         apiComponents.push(match[1]);
       }

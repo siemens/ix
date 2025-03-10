@@ -96,6 +96,7 @@ const sidebars: SidebarsConfig = {
       // link: { type: 'doc', id: 'components/overview' },
       // link: { type: 'generated-index' },
       items: [
+        'components/modal/index',
         'components/application/index',
         'components/application-header/index',
         'components/application-menu/index',
