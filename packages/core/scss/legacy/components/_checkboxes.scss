@@ -11,8 +11,8 @@
   $size: 1.125rem;
 
   /* Base for label styling */
-  [type='checkbox']:not(:checked),
-  [type='checkbox']:checked {
+  .ix-form-control[type='checkbox']:not(:checked),
+  .ix-form-control[type='checkbox']:checked {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -20,8 +20,8 @@
     width: 0;
   }
 
-  [type='checkbox']:not(:checked) + label,
-  [type='checkbox']:checked + label {
+  .ix-form-control[type='checkbox']:not(:checked) + label,
+  .ix-form-control[type='checkbox']:checked + label {
     position: relative;
     display: inline-flex;
     user-select: none;
@@ -29,11 +29,11 @@
     min-height: 1.5rem;
   }
 
-  [type='checkbox']:not(:disabled) + label {
+  .ix-form-control[type='checkbox']:not(:disabled) + label {
     cursor: pointer;
   }
 
-  [type='checkbox'] + label:before {
+  .ix-form-control[type='checkbox'] + label:before {
     content: '';
     width: $size;
     height: $size;
@@ -50,21 +50,21 @@
     background-size: contain;
   }
 
-  [type='checkbox'] + label:focus-visible {
+  .ix-form-control[type='checkbox'] + label:focus-visible {
     &:before {
       outline: 0.0625rem solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-checkbox--focus--outline-offset);
     }
   }
 
-  [type='checkbox']:focus-visible + label {
+  .ix-form-control[type='checkbox']:focus-visible + label {
     &:before {
       outline: 0.0625rem solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-checkbox--focus--outline-offset);
     }
   }
 
-  [type='checkbox']:not(:checked) {
+  .ix-form-control[type='checkbox']:not(:checked) {
     & + label:before {
       background-color: var(--theme-checkbox-unchecked--background);
       border: var(--theme-checkbox--border-thickness) solid
@@ -90,7 +90,7 @@
     }
   }
 
-  [type='checkbox']:checked {
+  .ix-form-control[type='checkbox']:checked {
     & + label:before {
       background-color: var(--theme-checkbox-checked--background);
       border: var(--theme-checkbox--border-thickness) solid
@@ -135,12 +135,12 @@
     }
   }
 
-  [type='checkbox']:disabled + label:before {
+  .ix-form-control[type='checkbox']:disabled + label:before {
     pointer-events: none;
     opacity: 0.5;
   }
 
-  [type='checkbox']:indeterminate {
+  .ix-form-control[type='checkbox']:indeterminate {
     & + label:after {
       content: '';
       display: block;
@@ -180,7 +180,7 @@
     }
   }
 
-  [type='checkbox']:disabled + label {
+  .ix-form-control[type='checkbox']:disabled + label {
     color: var(--theme-checkbox-label--color--disabled);
   }
 }

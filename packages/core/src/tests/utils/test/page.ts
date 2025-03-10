@@ -15,6 +15,14 @@ import {
   expect,
 } from '@playwright/test';
 
+export type Mount = (
+  selector: string,
+  config?: {
+    headTags?: string[];
+    icons?: Record<string, string>;
+  }
+) => Promise<ElementHandle<HTMLElement>>;
+
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
   const originalScreenshot = page.screenshot.bind(page);
@@ -23,7 +31,7 @@ async function extendPageFixture(page: Page, testInfo: TestInfo) {
     type: theme,
   });
   page.goto = async (url: string, options) => {
-    if (testInfo.config.metadata['componentTest'] === true) {
+    if (testInfo['componentTest'] === true) {
       return originalGoto(url, options);
     }
 
@@ -169,7 +177,7 @@ export const regressionTest = testBase.extend<{
     );
   },
   mount: async ({ page }, use, testInfo) => {
-    testInfo.config.metadata['componentTest'] = true;
+    testInfo['componentTest'] = true;
     const theme = testInfo.project.metadata?.theme ?? 'theme-classic-dark';
     testInfo.annotations.push({
       type: theme,
@@ -182,11 +190,3 @@ export const regressionTest = testBase.extend<{
 });
 
 export const test = regressionTest;
-
-export type Mount = (
-  selector: string,
-  config?: {
-    headTags?: string[];
-    icons?: Record<string, string>;
-  }
-) => Promise<ElementHandle<HTMLElement>>;
