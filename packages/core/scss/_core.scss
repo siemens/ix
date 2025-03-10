@@ -17,16 +17,13 @@
 @import './common-variables';
 @import 'z-index';
 
-/* Components */
-@import 'legacy/components/modal';
-@import 'legacy/components/buttons';
-@import 'legacy/components/button-group';
-@import 'legacy/components/dropdown';
-// @import 'legacy/components/forms';
+/* Global legacy style components  */
 @import 'legacy/components/input';
+@import 'legacy/components/checkboxes';
+@import 'legacy/components/radiobuttons';
+
+/* Global style components */
 @import './components/links';
-@import './components/checkboxes';
-@import './components/radiobuttons';
 @import './components/shadows';
 @import './components/input-group';
 @import './components/table';
