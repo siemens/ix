@@ -10,6 +10,7 @@
 /* Import global stylings for Web Components */
 @import './../src/components/toast/styles/toast-container';
 
+/* Legacy typography will be removed in 4.0.0 */
 @import './legacy/mixins/fonts';
 @import './legacy/fonts';
 

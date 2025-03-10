@@ -135,13 +135,11 @@ select.ix-form-control {
   padding: 0 0.312rem;
 }
 
-textarea {
-  &.ix-form-control {
-    padding: 0.375rem $small-space;
-  }
+textarea.ix-form-control {
+  padding: 0.375rem $small-space;
 }
 
-input {
+input.ix-form-control {
   &.disabled,
   &:disabled {
     color: var(--theme-input--color--disabled);

@@ -18,7 +18,7 @@ import path from 'path';
 // require('dotenv').config();
 // eslint-disable-next-line turbo/no-undeclared-env-vars
 
-const THEMES = ['theme-classic-light', 'theme-classic-dark'];
+const THEMES = ['theme-classic-dark'];
 
 function buildProjectsWithThemes() {
   return THEMES.flatMap((theme) => {

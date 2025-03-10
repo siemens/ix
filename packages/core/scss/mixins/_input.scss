@@ -6,7 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'common-variables';
+// @import 'common-variables';
 @import './fonts';
 @import './validation/form-component';
 
@@ -24,6 +24,18 @@
       var(--theme-input--border-color);
     border-radius: var(--theme-input--border-radius);
     box-shadow: var(--theme-input--box-shadow);
+  }
+
+  &[type='number'] {
+    &::-webkit-inner-spin-button {
+      margin-right: -2px;
+      margin-left: 2px;
+      display: none;
+    }
+
+    & {
+      text-align: right;
+    }
   }
 
   &:-webkit-autofill,
@@ -131,16 +143,6 @@
 
   input#{$namespace} {
     @include element-input();
-  }
-
-  input#{$namespace}[type='number'] {
-    &::-webkit-inner-spin-button {
-      margin-right: -2px;
-      margin-left: 2px;
-      display: none;
-    }
-
-    text-align: right;
   }
 
   textarea#{$namespace} {
