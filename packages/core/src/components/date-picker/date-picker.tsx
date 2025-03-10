@@ -158,9 +158,9 @@ export class DatePicker implements IxDatePickerComponent {
   }
 
   /**
-   * Hides the week numbers displayed on the left side of the date picker
+   * Shows week numbers displayed on the left side of the date picker
    */
-  @Prop() hideWeekNumbers = false;
+  @Prop() showWeekNumbers = false;
 
   /**
    * @deprecated Not supported since 2.0.0.
@@ -791,12 +791,10 @@ export class DatePicker implements IxDatePickerComponent {
           <div
             class={{
               grid: true,
-              'grid--hidden-week-numbers': this.hideWeekNumbers,
+              'grid--show-week-numbers': this.showWeekNumbers,
             }}
           >
-            {!this.hideWeekNumbers && (
-              <div class="calendar-item week-day"></div>
-            )}
+            {this.showWeekNumbers && <div class="calendar-item week-day"></div>}
             {this.dayNames.map((name) => (
               <div key={name} class="calendar-item week-day">
                 <div class="overflow">{name.slice(0, 3)}</div>
@@ -805,7 +803,7 @@ export class DatePicker implements IxDatePickerComponent {
             {this.calendar.map((week) => {
               return (
                 <Fragment>
-                  {!this.hideWeekNumbers && (
+                  {this.showWeekNumbers && (
                     <div class="calendar-item week-number">
                       {week.weekNumber}
                     </div>
