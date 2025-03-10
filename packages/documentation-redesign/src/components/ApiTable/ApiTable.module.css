@@ -15,6 +15,10 @@
   flex-wrap: nowrap;
 }
 
+.AnchorButton:focus-visible {
+  outline: 1px solid var(--theme-color-focus-bdr);
+}
+
 .AnchorHeader {
   display: flex;
   align-items: center;
@@ -34,7 +38,6 @@
 .ApiTableText {
   display: grid;
   grid-template-columns: minmax(100px, 20%) 1fr;
-  gap: 1rem;
   border-bottom: 1px solid var(--theme-color-soft-bdr);
 }
 

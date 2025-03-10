@@ -101,12 +101,14 @@ const ColorContainerFix = forwardRef<
 
 function ColorCircle({ color }) {
   return (
-    <ColorContainerFix>
-      <div
-        className={styles.colorCircle}
-        style={{ backgroundColor: `var(--theme-${color})` }}
-      ></div>
-    </ColorContainerFix>
+    <div className={styles.colorCircle}>
+      <ColorContainerFix>
+        <div
+          className={styles.colorCircleInner}
+          style={{ backgroundColor: `var(--theme-${color})` }}
+        ></div>
+      </ColorContainerFix>
+    </div>
   );
 }
 
@@ -163,7 +165,7 @@ function ColorTable({ children, colorName }) {
     const computedStyle = getComputedStyle(themeContainer);
     const colorHex = computedStyle.getPropertyValue(name);
 
-    return colorHex;
+    return colorHex.toUpperCase();
   }
 
   function changeColorMode() {
@@ -265,7 +267,7 @@ function ColorTable({ children, colorName }) {
                 name={expanded ? iconChevronDownSmall : iconChevronRightSmall}
               ></IxIcon>
               <ColorCircle color={colorName}></ColorCircle>
-              --theme-{colorName}
+              <span className={styles.headColorName}>--theme-{colorName}</span>
             </div>
           </AnchorHeader>
 
@@ -280,7 +282,7 @@ function Hex() {
   const color = useContext(ColorContext);
   return (
     <ApiTable.Text name="Hex">
-      <code className="p-1">{color.hex}</code>
+      <code>{color.hex}</code>
     </ApiTable.Text>
   );
 }
@@ -296,10 +298,11 @@ function Children() {
           <CopyButton
             className={clsx('ml-auto', styles.DesktopOnly)}
             text={`var(--theme-${child.rawName})`}
+            label=""
           ></CopyButton>
         </div>
         <div className={clsx(styles.colorColumn, styles.colorColumnHex)}>
-          <code className="p-1">{child.hex}</code>
+          <code>{child.hex}</code>
         </div>
       </div>
     </ColorTable.Text>

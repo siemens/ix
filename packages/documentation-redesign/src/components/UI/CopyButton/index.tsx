@@ -14,9 +14,11 @@ import Button from '../Button';
 const CopyButton = ({
   text,
   className,
+  label,
 }: {
   text: string;
   className?: string;
+  label?: string;
 }) => {
   const tooltipRef = useRef<HTMLIxTooltipElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -36,7 +38,7 @@ const CopyButton = ({
         {React.createElement('ix-icon', {
           name: iconCopy,
         })}
-        Copy
+        {label ?? 'Copy'}
       </Button>
       <IxTooltip ref={tooltipRef}>✅ Copied to clipboard</IxTooltip>
     </div>
