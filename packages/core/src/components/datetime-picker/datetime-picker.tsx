@@ -158,6 +158,11 @@ export class DatetimePicker
   @Prop() eventDelimiter = ' - ';
 
   /**
+   * Shows week numbers displayed on the left side of the date picker
+   */
+  @Prop() showWeekNumbers = false;
+
+  /**
    * Done event
    *
    * Set `doneEventDelimiter` to null or undefine to get the typed event
@@ -239,6 +244,7 @@ export class DatetimePicker
                 weekStartIndex={this.weekStartIndex}
                 standaloneAppearance={false}
                 locale={this.locale}
+                showWeekNumbers={this.showWeekNumbers}
               ></ix-date-picker>
             </ix-col>
 

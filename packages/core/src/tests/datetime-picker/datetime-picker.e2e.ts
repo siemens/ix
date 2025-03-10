@@ -25,4 +25,11 @@ regressionTest.describe('datetime picker', () => {
       maxDiffPixels: 5,
     });
   });
+
+  regressionTest('show week numbers', async ({ page }) => {
+    await page.goto('datetime-picker/show-week-numbers');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot({
+      maxDiffPixels: 5,
+    });
+  });
 });
