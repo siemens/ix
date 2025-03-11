@@ -14,6 +14,7 @@ import { IxButton, IxEventList, IxEventListItem } from '@siemens/ix-vue';
 const items = ref([
     { id: 1, text: 'Text 1', color: 'color-primary' },
     { id: 2, text: 'Text 2', color: 'color-primary' },
+    { id: 3, text: 'Text 3', color: 'color-primary' },
 ]);
 
 const addItem = () => {
@@ -26,5 +27,5 @@ const addItem = () => {
     <IxEventList :itemHeight="60">
         <IxEventListItem v-for="item in items" :key="item.id" :color="item.color">{{ item.text }}</IxEventListItem>
     </IxEventList>
-    <IxButton :onClick="addItem">Add Item</IxButton>
+    <IxButton :onClick="addItem">Add</IxButton>
 </template>

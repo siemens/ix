@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event List Custom Item Height</title>
+    <title>Event List Custom Item Height Dynamic List</title>
     <script type="module">
       document.addEventListener('DOMContentLoaded', () => {
         const eventList = document.querySelector('ix-event-list');
         const addButton = document.querySelector('#add-button');
-        let items = [1, 2];
+        let items = [1, 2, 3];
 
         // Function to render items
         const renderItems = () => {
+          addButton.textContent = `Add`;
           eventList.innerHTML = ''; // Clear existing items
           items.forEach((item) => {
             const listItem = document.createElement('ix-event-list-item');
@@ -35,6 +36,6 @@
   </head>
   <body>
     <ix-event-list item-height="60"></ix-event-list>
-    <ix-button id="add-button">Add</ix-button>
+    <ix-button id="add-button"></ix-button>
   </body>
 </html>
