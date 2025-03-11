@@ -11,7 +11,8 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { themeSwitcher } from '@siemens/ix';
 
 /**
- * @deprecated Use themeSwitcher from core package `import { themeSwitcher } from '@siemens/ix';`
+ * @deprecated Will be removed in 4.0.0. Use themeSwitcher from core package `import { themeSwitcher } from '@siemens/ix';`
+ *
  */
 @Injectable({
   providedIn: 'root',
