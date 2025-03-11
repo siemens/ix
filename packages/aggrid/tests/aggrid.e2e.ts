@@ -83,4 +83,30 @@ regressionTest.describe('aggrid', () => {
     await page.goto('pagination.html');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest.describe('header checkbox', () => {
+    regressionTest('should be unchecked', async ({ page }) => {
+      await page.goto('header_checkbox.html');
+
+      expect(await page.screenshot({ fullPage: true }));
+    });
+
+    regressionTest('should be indeterminate', async ({ page }) => {
+      await page.goto('header_checkbox.html');
+
+      await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="0"] input')).click();
+
+      expect(await page.screenshot({ fullPage: true }));
+    });
+
+    regressionTest('should be checked', async ({ page }) => {
+      await page.goto('header_checkbox.html');
+
+      await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="0"] input')).click();
+      await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="1"] input')).click();
+      await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="2"] input')).click();
+
+      expect(await page.screenshot({ fullPage: true }));
+    });
+  });
 });
