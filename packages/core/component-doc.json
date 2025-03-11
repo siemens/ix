@@ -6098,6 +6098,33 @@
           "required": false
         },
         {
+          "name": "i18nTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-time",
+          "reflectToAttr": false,
+          "docs": "Top label of time picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "'Time'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
           "name": "locale",
           "type": "string | undefined",
           "complexType": {
@@ -14154,25 +14181,51 @@
         },
         {
           "name": "type",
-          "type": "\"danger\" | \"info\" | \"warning\"",
+          "type": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
           "complexType": {
-            "original": "'danger' | 'warning' | 'info'",
-            "resolved": "\"danger\" | \"info\" | \"warning\"",
+            "original": "| 'alarm'\n    | 'danger'\n    | 'critical'\n    | 'warning'\n    | 'success'\n    | 'info'\n    | 'neutral'\n    | 'primary'",
+            "resolved": "\"alarm\" | \"critical\" | \"danger\" | \"info\" | \"neutral\" | \"primary\" | \"success\" | \"warning\"",
             "references": {}
           },
           "mutable": false,
           "attr": "type",
           "reflectToAttr": false,
           "docs": "Specifies the type of the alert.",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "deprecated",
+              "text": "Type `danger` will be removed in 4.0. Use `alarm` instead."
+            }
+          ],
           "default": "'info'",
+          "deprecation": "Type `danger` will be removed in 4.0. Use `alarm` instead.",
           "values": [
+            {
+              "value": "alarm",
+              "type": "string"
+            },
+            {
+              "value": "critical",
+              "type": "string"
+            },
             {
               "value": "danger",
               "type": "string"
             },
             {
               "value": "info",
+              "type": "string"
+            },
+            {
+              "value": "neutral",
+              "type": "string"
+            },
+            {
+              "value": "primary",
+              "type": "string"
+            },
+            {
+              "value": "success",
               "type": "string"
             },
             {

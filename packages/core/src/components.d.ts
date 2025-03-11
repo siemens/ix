@@ -945,6 +945,11 @@ export namespace Components {
          */
         "i18nDone": string;
         /**
+          * Top label of time picker
+          * @since 3.0.0
+         */
+        "i18nTime": string;
+        /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
          */
@@ -2075,8 +2080,16 @@ export namespace Components {
         "dismissible": boolean;
         /**
           * Specifies the type of the alert.
+          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
          */
-        "type": 'danger' | 'warning' | 'info';
+        "type": | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
@@ -6143,6 +6156,11 @@ declare namespace LocalJSX {
          */
         "i18nDone"?: string;
         /**
+          * Top label of time picker
+          * @since 3.0.0
+         */
+        "i18nTime"?: string;
+        /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
          */
@@ -7375,8 +7393,16 @@ declare namespace LocalJSX {
         "onClosedChange"?: (event: IxMessageBarCustomEvent<any>) => void;
         /**
           * Specifies the type of the alert.
+          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
          */
-        "type"?: 'danger' | 'warning' | 'info';
+        "type"?: | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
