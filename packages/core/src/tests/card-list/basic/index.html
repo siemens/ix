@@ -18,6 +18,14 @@ SPDX-License-Identifier: MIT
         margin: 1rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconBulb } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconBulb,
+      });
+    </script>
   </head>
   <body>
     <ix-card-list label="example label" show-all-count="1337">
@@ -32,14 +40,14 @@ SPDX-License-Identifier: MIT
         notification="99"
         heading="Heading content"
         subheading="Subheading"
-        variant="insight"
+        variant="outline"
       ></ix-push-card>
       <ix-push-card
         icon="bulb"
         notification="99"
         heading="Heading content"
         subheading="Subheading"
-        variant="notification"
+        variant="filled"
       ></ix-push-card>
       <ix-push-card
         icon="bulb"

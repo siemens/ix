@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './application.scoped.css';
-
 import {
   IxApplication,
   IxApplicationHeader,
@@ -24,6 +22,7 @@ export default () => {
       <IxApplicationHeader name="My Application">
         <div className="placeholder-logo" slot="logo"></div>
       </IxApplicationHeader>
+
       <IxMenu>
         <IxMenuItem>Item 1</IxMenuItem>
         <IxMenuItem>Item 2</IxMenuItem>
@@ -32,7 +31,7 @@ export default () => {
       <IxContent>
         <IxContentHeader
           slot="header"
-          header-title="My Content Page"
+          headerTitle="My Content Page"
         ></IxContentHeader>
       </IxContent>
     </IxApplication>

@@ -8,16 +8,17 @@
 -->
 
 <script setup lang="ts">
+import { iconAbout } from '@siemens/ix-icons/icons';
 import { IxInputGroup } from '@siemens/ix-vue';
 </script>
 
 <template>
-  <form className="needs-validation m-2">
+  <form className="needs-validation">
     <IxInputGroup>
-        <input type="text" />
-        <span slot="input-end">
-          <IxIcon name="about" size="16"></IxIcon>
-        </span>
+      <input type="text" />
+      <span slot="input-end">
+        <IxIcon :name="iconAbout" size="16"></IxIcon>
+      </span>
     </IxInputGroup>
   </form>
 </template>

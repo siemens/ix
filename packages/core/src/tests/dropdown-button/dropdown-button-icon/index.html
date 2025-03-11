@@ -18,22 +18,19 @@ SPDX-License-Identifier: MIT
         margin: 0 0.25rem;
       }
     </style>
+    <script type="module">
+      import { addIcons } from '/www/node_modules/@siemens/ix-icons/dist/index.js';
+      import { iconCheckboxes } from '/www/node_modules/@siemens/ix-icons/icons/index.mjs';
+
+      addIcons({
+        iconCheckboxes,
+      });
+    </script>
   </head>
   <body>
-    <ix-dropdown-button
-      label=""
-      icon="checkboxes"
-    ></ix-dropdown-button>
-    <ix-dropdown-button
-      label=""
-      outline
-      icon="checkboxes"
-    ></ix-dropdown-button>
-    <ix-dropdown-button
-      label=""
-      ghost
-      icon="checkboxes"
-    ></ix-dropdown-button>
+    <ix-dropdown-button label="" icon="checkboxes"></ix-dropdown-button>
+    <ix-dropdown-button label="" outline icon="checkboxes"></ix-dropdown-button>
+    <ix-dropdown-button label="" ghost icon="checkboxes"></ix-dropdown-button>
     <ix-dropdown-button
       label=""
       disabled

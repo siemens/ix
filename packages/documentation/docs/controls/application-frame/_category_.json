@@ -1,4 +1,18 @@
 {
   "label": "Application frame",
-  "position": 0
+  "position": 0,
+  "customProps": {
+    "additionalItems": [
+      {
+        "type": "doc",
+        "label": "Map Navigation (deprecated)",
+        "id": "legacy/map-navigation"
+      },
+      {
+        "type": "doc",
+        "label": "Basic Navigation (deprecated)",
+        "id": "legacy/basic-navigation"
+      }
+    ]
+  }
 }

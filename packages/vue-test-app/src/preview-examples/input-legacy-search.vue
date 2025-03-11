@@ -8,6 +8,7 @@
 -->
 
 <script setup lang="ts">
+import { iconClear, iconSearch } from '@siemens/ix-icons/icons';
 import { IxIcon, IxIconButton, IxInputGroup } from '@siemens/ix-vue';
 import { ref } from 'vue';
 
@@ -19,17 +20,17 @@ function clearInput() {
 </script>
 
 <template>
-  <form className="needs-validation m-2">
+  <form className="needs-validation">
     <IxInputGroup>
       <span slot="input-start">
-        <IxIcon name="search" size="16"></IxIcon>
+        <IxIcon :name="iconSearch" size="16"></IxIcon>
       </span>
       <input id="input-string" type="string" v-model="text" />
       <span slot="input-end">
         <IxIconButton
           @click="clearInput"
           id="clear-button"
-          icon="clear"
+          :icon="iconClear"
           ghost
           size="16"
           :style="[text === '' ? { display: 'none' } : { display: 'block' }]"

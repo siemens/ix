@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { iconCheckboxes } from '@siemens/ix-icons/icons';
 import './icon-toggle-button-secondary.scoped.css';
 
 import { IxIconToggleButton } from '@siemens/ix-react';
@@ -14,13 +15,13 @@ import { IxIconToggleButton } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxIconToggleButton icon="checkboxes"></IxIconToggleButton>
-      <IxIconToggleButton pressed icon="checkboxes"></IxIconToggleButton>
-      <IxIconToggleButton disabled icon="checkboxes"></IxIconToggleButton>
+      <IxIconToggleButton icon={iconCheckboxes}></IxIconToggleButton>
+      <IxIconToggleButton pressed icon={iconCheckboxes}></IxIconToggleButton>
+      <IxIconToggleButton disabled icon={iconCheckboxes}></IxIconToggleButton>
       <IxIconToggleButton
         disabled
         loading
-        icon="checkboxes"
+        icon={iconCheckboxes}
       ></IxIconToggleButton>
     </>
   );

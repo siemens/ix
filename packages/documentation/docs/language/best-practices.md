@@ -14,23 +14,23 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Confirmation messages: Use the same verb as the transitional text
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div className="ux-writing-guidelines">
+<span>
 <Guideline do label='Updating user roles…'></Guideline>
 <Guideline do={false} label='Getting ready…'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Submitting log files…'></Guideline>
 <Guideline do={false} label='Chopping fruit…'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Saving project… > Project saved'></Guideline>
 <Guideline do={false} label='Saving project… > Project uploaded'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Training models… > Models trained'></Guideline>
 <Guideline do={false} label='Training models… > Training done'></Guideline>
 </span>
@@ -49,8 +49,8 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Use … to show an action is required, i.e. fill this in …
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div className="ux-writing-guidelines">
+<span>
 <Guideline do label='System error: You’re offline. Check your connection and try again.'></Guideline>
 <Guideline do label='File error: We cannot upload this file. Try uploading again.'></Guideline>
 <Guideline do label='Permission error: To carry out this task, you need more permissions. Contact admin to change permissions. '></Guideline>
@@ -71,18 +71,18 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Use wording to show users how to resolve the empty state, e.g. with an action, click, etc.
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div className="ux-writing-guidelines">
+<span>
 <Guideline do label='Allocate users in User management.'></Guideline>
 <Guideline do={false} label='No allocated users.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='To show rows, select a project.'></Guideline>
 <Guideline do={false} label='No rows to show.'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='To save a project, select Save in Project detail list.'></Guideline>
 <Guideline do={false} label='No projects saved.'></Guideline>
 </span>
@@ -99,13 +99,13 @@ import {Guideline} from '@site/src/components/Guideline';
 
 - Do not use Delete and Remove as synonym
 
-<div class="d-flex flex-wrap">
-<span class="m-2">
+<div className="ux-writing-guidelines">
+<span>
 <Guideline do label='Create a chart and delete a chart'></Guideline>
 <Guideline do={false} label='Create a chart and remove it'></Guideline>
 </span>
 
-<span class="m-2">
+<span>
 <Guideline do label='Add a sensor to a chart and remove a sensor from chart'></Guideline>
 <Guideline do={false} label='Add a sensor and delete the sensor'></Guideline>
 </span>

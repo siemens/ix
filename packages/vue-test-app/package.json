@@ -13,23 +13,23 @@
     "@siemens/ix": "workspace:*",
     "@siemens/ix-aggrid": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-icons": "^2.0.0",
+    "@siemens/ix-icons": "0.0.0-pr-72-20250227071449",
     "@siemens/ix-vue": "workspace:*",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
-    "ag-grid-community": "^30.2.0",
-    "ag-grid-vue3": "^30.1.0",
-    "echarts": "^5.4.1",
+    "ag-grid-community": "^30.2.1",
+    "ag-grid-vue3": "^30.2.1",
+    "echarts": "^5.5.1",
     "echarts-gl": "^2.0.9",
     "html-test-app": "workspace:*",
-    "vue": "^3.2.45",
-    "vue-echarts": "~6.6.9",
+    "vue": "^3.4.34",
+    "vue-echarts": "~6.6.10",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
-    "typescript": "^4.9.3",
-    "vite": "^4.0.4",
-    "vue-tsc": "^1.0.24"
+    "@vitejs/plugin-vue": "^4.6.2",
+    "typescript": "^4.9.5",
+    "vite": "^4.5.3",
+    "vue-tsc": "^1.8.27"
   }
 }

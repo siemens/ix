@@ -7,12 +7,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { ElementHandle, expect, Locator, Page } from '@playwright/test';
-import { test, viewPorts } from '@utils/test';
+import {
+  iconCogwheel,
+  iconHeart,
+  iconPin,
+  iconPrint,
+  iconStar,
+} from '@siemens/ix-icons/icons';
+import { regressionTest, viewPorts } from '@utils/test';
 
 const html = String.raw;
 
-test('renders', async ({ mount, page }) => {
-  await mount(`
+regressionTest('renders', async ({ mount, page }) => {
+  await mount(
+    `
   <ix-split-button label="Test 1">
     <ix-dropdown-item>Test 1</ix-dropdown-item>
   </ix-split-button>
@@ -38,7 +46,11 @@ test('renders', async ({ mount, page }) => {
       <ix-dropdown-item label="Item 4" icon="cogwheel" />
     </ix-dropdown>
   </ix-group>
-  `);
+  `,
+    {
+      icons: { iconPin, iconStar, iconHeart, iconCogwheel },
+    }
+  );
 
   const sb1 = page.locator('ix-split-button').nth(0);
   const sb2 = page.locator('ix-split-button').nth(1);
@@ -85,7 +97,7 @@ function expectToBeVisible(elements: Locator[], index: number) {
   );
 }
 
-test('trigger toggles', async ({ mount, page }) => {
+regressionTest('trigger toggles', async ({ mount, page }) => {
   await mount(`<ix-button id="trigger">Open</ix-button>
     <ix-dropdown trigger="trigger" trigger-toggles="true">
       <ix-dropdown-item label="Item 1"></ix-dropdown-item>
@@ -104,7 +116,7 @@ test('trigger toggles', async ({ mount, page }) => {
   await expect(dropdown).not.toBeVisible();
 });
 
-test.describe('Close behavior', () => {
+regressionTest.describe('Close behavior', () => {
   function mountDropdown(
     mount: (selector: string) => Promise<ElementHandle<HTMLElement>>,
     config: {
@@ -139,7 +151,7 @@ test.describe('Close behavior', () => {
       .getByText('Item 1');
   }
 
-  test(' = both', async ({ mount, page }) => {
+  regressionTest(' = both', async ({ mount, page }) => {
     await mountDropdown(mount, {
       closeBehavior: 'both',
     });
@@ -159,7 +171,7 @@ test.describe('Close behavior', () => {
     await expect(dropdownLevel1).not.toBeVisible();
   });
 
-  test(' = inside', async ({ mount, page }) => {
+  regressionTest(' = inside', async ({ mount, page }) => {
     await mountDropdown(mount, {
       closeBehavior: 'inside',
     });
@@ -176,7 +188,7 @@ test.describe('Close behavior', () => {
     await expect(dropdownLevel1).not.toBeVisible();
   });
 
-  test(' = outside', async ({ mount, page }) => {
+  regressionTest(' = outside', async ({ mount, page }) => {
     await mountDropdown(mount, {
       closeBehavior: 'outside',
     });
@@ -196,7 +208,7 @@ test.describe('Close behavior', () => {
     await expect(dropdownLevel1).toBeVisible();
   });
 
-  test(' = false', async ({ mount, page }) => {
+  regressionTest(' = false', async ({ mount, page }) => {
     await mountDropdown(mount, {
       // Disable close behavior
       closeBehavior: false,
@@ -228,7 +240,7 @@ test.describe('Close behavior', () => {
   });
 });
 
-test('Prevent closing', async ({ page, mount }) => {
+regressionTest('Prevent closing', async ({ page, mount }) => {
   await mount(`
     <ix-button id="trigger">Open</ix-button>
     <ix-dropdown trigger="trigger">
@@ -250,7 +262,7 @@ test('Prevent closing', async ({ page, mount }) => {
   await expect(header).not.toBeVisible();
 });
 
-test.describe('Nested dropdowns 1/3', () => {
+regressionTest.describe('Nested dropdowns 1/3', () => {
   function mountDropdown(
     mount: (selector: string) => Promise<ElementHandle<HTMLElement>>,
     config?: {
@@ -328,7 +340,7 @@ test.describe('Nested dropdowns 1/3', () => {
     dropdown5 = page.locator('#dropdown-5');
   }
 
-  test('close neighbor sub menu', async ({ mount, page }) => {
+  regressionTest('close neighbor sub menu', async ({ mount, page }) => {
     await mountDropdown(mount);
     setupTest(page);
 
@@ -344,7 +356,7 @@ test.describe('Nested dropdowns 1/3', () => {
     await expect(dropdown3).not.toBeVisible();
   });
 
-  test('close assigned submenu', async ({ mount, page }) => {
+  regressionTest('close assigned submenu', async ({ mount, page }) => {
     await mountDropdown(mount);
 
     setupTest(page);
@@ -367,8 +379,8 @@ test.describe('Nested dropdowns 1/3', () => {
     await expect(dropdown4).not.toBeVisible();
   });
 
-  test.describe('close by Escape with close behavior', () => {
-    test(' = both', async ({ mount, page }) => {
+  regressionTest.describe('close by Escape with close behavior', () => {
+    regressionTest(' = both', async ({ mount, page }) => {
       await mountDropdown(mount);
 
       setupTest(page);
@@ -394,7 +406,7 @@ test.describe('Nested dropdowns 1/3', () => {
       await expect(dropdown4).not.toBeVisible();
     });
 
-    test(' = inside', async ({ mount, page }) => {
+    regressionTest(' = inside', async ({ mount, page }) => {
       await mountDropdown(mount, {
         closeBehavior: 'inside',
       });
@@ -422,7 +434,7 @@ test.describe('Nested dropdowns 1/3', () => {
       await expect(dropdown4).not.toBeVisible();
     });
 
-    test(' = outside', async ({ mount, page }) => {
+    regressionTest(' = outside', async ({ mount, page }) => {
       await mountDropdown(mount, { closeBehavior: 'outside' });
 
       setupTest(page);
@@ -448,7 +460,7 @@ test.describe('Nested dropdowns 1/3', () => {
       await expect(dropdown4).not.toBeVisible();
     });
 
-    test(' = false', async ({ mount, page }) => {
+    regressionTest(' = false', async ({ mount, page }) => {
       await mountDropdown(mount, { closeBehavior: false });
 
       setupTest(page);
@@ -476,11 +488,11 @@ test.describe('Nested dropdowns 1/3', () => {
   });
 });
 
-test.describe('nested dropdown 2/3', () => {
+regressionTest.describe('nested dropdown 2/3', () => {
   const button1Text = 'Triggerbutton1';
   const button2Text = 'Triggerbutton2';
 
-  test.beforeEach(async ({ mount }) => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
       <button id="trigger1">${button1Text}</button>
       <ix-dropdown trigger="trigger1">
@@ -492,7 +504,7 @@ test.describe('nested dropdown 2/3', () => {
     `);
   });
 
-  test('can open nested dropdown', async ({ page }) => {
+  regressionTest('can open nested dropdown', async ({ page }) => {
     await page.getByText(button1Text).click();
     await page.getByText(button2Text).click();
     const nestedDropdownItem = page.locator('ix-dropdown-item');
@@ -501,8 +513,8 @@ test.describe('nested dropdown 2/3', () => {
   });
 });
 
-test.describe('nested dropdown 3/3', () => {
-  test.beforeEach(async ({ mount }) => {
+regressionTest.describe('nested dropdown 3/3', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
       <ix-button id="trigger-dropdown-1">Trigger 1</ix-button>
       <ix-dropdown id="dropdown-1" close-behavior="outside" trigger="trigger-dropdown-1">
@@ -518,7 +530,7 @@ test.describe('nested dropdown 3/3', () => {
     `);
   });
 
-  test('close child on parent dismiss', async ({ page }) => {
+  regressionTest('close child on parent dismiss', async ({ page }) => {
     const triggerDropdown1 = page.locator('#trigger-dropdown-1');
     const triggerDropdown2 = page.locator('#trigger-dropdown-2');
 
@@ -534,70 +546,81 @@ test.describe('nested dropdown 3/3', () => {
   });
 });
 
-test('Nested dropdowns within application-header', async ({ mount, page }) => {
-  await mount(html`
-    <ix-application-header>
-      <ix-dropdown-button label="Trigger">
-        <ix-dropdown-item label="MainItem 1"></ix-dropdown-item>
-        <ix-dropdown-item label="MainItem 2"></ix-dropdown-item>
-        <ix-dropdown-item label="MainItem 3" id="submenu-01"></ix-dropdown-item>
-      </ix-dropdown-button>
-    </ix-application-header>
-    <ix-dropdown id="submenu" trigger="submenu-01">
-      <ix-dropdown-item>SubMenuItem 1</ix-dropdown-item>
-      <ix-dropdown-item>SubMenuItem 2</ix-dropdown-item>
-      <ix-dropdown-item>SubMenuItem 3</ix-dropdown-item>
-      <ix-dropdown-item>SubMenuItem 4</ix-dropdown-item>
-    </ix-dropdown>
-  `);
-  await page.setViewportSize(viewPorts.sm);
-  await page.waitForTimeout(500);
+regressionTest(
+  'Nested dropdowns within application-header',
+  async ({ mount, page }) => {
+    await mount(html`
+      <ix-application-header>
+        <ix-dropdown-button label="Trigger">
+          <ix-dropdown-item label="MainItem 1"></ix-dropdown-item>
+          <ix-dropdown-item label="MainItem 2"></ix-dropdown-item>
+          <ix-dropdown-item
+            label="MainItem 3"
+            id="submenu-01"
+          ></ix-dropdown-item>
+        </ix-dropdown-button>
+      </ix-application-header>
+      <ix-dropdown id="submenu" trigger="submenu-01">
+        <ix-dropdown-item>SubMenuItem 1</ix-dropdown-item>
+        <ix-dropdown-item>SubMenuItem 2</ix-dropdown-item>
+        <ix-dropdown-item>SubMenuItem 3</ix-dropdown-item>
+        <ix-dropdown-item>SubMenuItem 4</ix-dropdown-item>
+      </ix-dropdown>
+    `);
+    await page.setViewportSize(viewPorts.sm);
+    await page.waitForTimeout(500);
 
-  const header = page.locator('ix-application-header');
-  await expect(header).toBeVisible();
+    const header = page.locator('ix-application-header');
+    await expect(header).toBeVisible();
 
-  const overflowTrigger = header.getByRole('button', { name: 'More Menu' });
-  await overflowTrigger.click();
+    const overflowTrigger = header.locator('ix-icon-button');
+    await overflowTrigger.click();
 
-  const dropdownButton = header.locator('ix-dropdown-button');
-  await dropdownButton.locator('ix-button').click();
+    const dropdownButton = header.locator('ix-dropdown-button');
+    await dropdownButton.locator('ix-button').click();
 
-  const dropdownOfDropdownButton = dropdownButton.locator('ix-dropdown');
-  await expect(dropdownOfDropdownButton).toBeVisible();
+    const dropdownOfDropdownButton = dropdownButton.locator('ix-dropdown');
+    await expect(dropdownOfDropdownButton).toBeVisible();
 
-  const submenuTrigger = page
-    .locator('ix-dropdown-item')
-    .getByText('MainItem 3');
-  await expect(submenuTrigger).toBeVisible();
-  await submenuTrigger.click();
+    const submenuTrigger = page
+      .locator('ix-dropdown-item')
+      .getByText('MainItem 3');
+    await expect(submenuTrigger).toBeVisible();
+    await submenuTrigger.click();
 
-  const submenuDropdown = page.locator('#submenu');
+    const submenuDropdown = page.locator('#submenu');
 
-  await expect(submenuDropdown).toBeVisible();
+    await expect(submenuDropdown).toBeVisible();
 
-  const subMenuItem = submenuDropdown
-    .locator('ix-dropdown-item')
-    .getByText('SubMenuItem 3');
+    const subMenuItem = submenuDropdown
+      .locator('ix-dropdown-item')
+      .getByText('SubMenuItem 3');
 
-  await subMenuItem.click();
+    await subMenuItem.click();
 
-  await expect(submenuDropdown).not.toBeVisible();
-  await expect(dropdownOfDropdownButton).not.toBeVisible();
-});
+    await expect(submenuDropdown).not.toBeVisible();
+    await expect(dropdownOfDropdownButton).not.toBeVisible();
+  }
+);
 
-test.describe('resolve during element connect', () => {
-  test.beforeEach(async ({ mount }) => {
-    await mount(`
+regressionTest.describe('resolve during element connect', () => {
+  regressionTest.beforeEach(async ({ mount }) => {
+    await mount(
+      `
     <ix-button id="trigger">Open</ix-button>
     <ix-dropdown trigger="trigger">
       <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
       <ix-dropdown-item label="Item 2"></ix-dropdown-item>
       <ix-dropdown-item>Custom</ix-dropdown-item>
     </ix-dropdown>
-    `);
+    `,
+      {
+        icons: { iconPrint },
+      }
+    );
   });
 
-  test('attach and detach from dom', async ({ page }) => {
+  regressionTest('attach and detach from dom', async ({ page }) => {
     await page.evaluate(() => {
       const dropdown = document.querySelector('ix-dropdown')!;
       const mount = document.querySelector('#mount')!;
@@ -611,7 +634,7 @@ test.describe('resolve during element connect', () => {
     await expect(dropdown).toBeVisible();
   });
 
-  test('add element within runtime', async ({ page }) => {
+  regressionTest('add element within runtime', async ({ page }) => {
     await page.evaluate(async () => {
       const divElement = document.createElement('div');
       const mount = document.querySelector('#mount')!;
@@ -625,8 +648,8 @@ test.describe('resolve during element connect', () => {
   });
 });
 
-test('Child dropdown disconnects', async ({ mount, page }) => {
-  await mount(`<ix-button id="trigger">Open</ix-icon-button>
+regressionTest('Child dropdown disconnects', async ({ mount, page }) => {
+  await mount(`<ix-button id="trigger">Open</ix-button>
         <ix-dropdown closeBehavior="outside" trigger="trigger">
           <ix-dropdown-item id="item-1">Item level 1</ix-dropdown-item>
           <ix-dropdown-button label="Nested">
@@ -648,30 +671,35 @@ test('Child dropdown disconnects', async ({ mount, page }) => {
   await expect(dropdown).toBeVisible();
 });
 
-test.describe('A11y', () => {
-  test.describe('Keyboard navigation', () => {
-    test.beforeEach(async ({ page, mount }) => {
-      await mount(`
+regressionTest.describe('A11y', () => {
+  regressionTest.describe('Keyboard navigation', () => {
+    regressionTest.beforeEach(async ({ page, mount }) => {
+      await mount(
+        `
       <ix-button id="trigger">Open</ix-button>
       <ix-dropdown trigger="trigger">
         <ix-dropdown-item label="Item 1" icon="print"></ix-dropdown-item>
         <ix-dropdown-item label="Item 2"></ix-dropdown-item>
         <ix-dropdown-item>Custom</ix-dropdown-item>
       </ix-dropdown>
-      `);
+      `,
+        {
+          icons: { iconPrint },
+        }
+      );
 
       await page.locator('#trigger').click();
     });
 
-    test.describe('ArrowDown', () => {
-      test('trigger -> first item', async ({ page }) => {
+    regressionTest.describe('ArrowDown', () => {
+      regressionTest('trigger -> first item', async ({ page }) => {
         await page.keyboard.press('ArrowDown');
         await page.waitForTimeout(100);
         const item = await page.locator('ix-dropdown-item').first();
         await expect(item).toBeFocused();
       });
 
-      test('first item -> second item', async ({ page }) => {
+      regressionTest('first item -> second item', async ({ page }) => {
         await page.keyboard.press('ArrowDown');
         await page.waitForTimeout(100);
         await page.keyboard.press('ArrowDown');
@@ -681,21 +709,21 @@ test.describe('A11y', () => {
       });
     });
 
-    test.describe('ArrowUp', () => {
-      test('second item -> fist item', async ({ page }) => {
+    regressionTest.describe('ArrowUp', () => {
+      regressionTest('second item -> fist item', async ({ page }) => {
         await page.keyboard.press('ArrowDown');
         await page.waitForTimeout(100);
         await page.keyboard.press('ArrowDown');
         await page.waitForTimeout(100);
         await page.keyboard.press('ArrowUp');
-        const item = await page.locator('ix-dropdown-item').first();
+        const item = page.locator('ix-dropdown-item').first();
         await expect(item).toBeFocused();
       });
     });
   });
 });
 
-test('Dropdown works in floating-ui', async ({ mount, page }) => {
+regressionTest('Dropdown works in floating-ui', async ({ mount, page }) => {
   await mount(`
     <style>
       .dialog {

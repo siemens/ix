@@ -47,6 +47,10 @@
     border-inline-end: 0.125rem solid
       var(--theme-map-navigation-separator--background);
     z-index: 99;
+
+    &.display-none {
+      display: none;
+    }
   }
 
   .map-nav-sidebar-content {

@@ -2,6 +2,15 @@
   // This file is not used in compilation. It is here just for a nice editor experience.
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "types": [
+      "node",
+      "@docusaurus/module-type-aliases",
+      "@docusaurus/preset-classic"
+    ],
+    "paths": {
+      "@siemens/ix-icons/*": ["./node_modules/@siemens/ix-icons/*"],
+      "@siemens/ix-icons": ["./node_modules/@siemens/ix-icons"]
+    }
   }
 }
