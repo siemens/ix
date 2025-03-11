@@ -133,9 +133,9 @@ export async function generateDocsForEntrypoint(entrypoint: string, targetPath: 
     }
 
     await fs.ensureDir(utilsPath);
-    console.log(`Generating TypeDoc: ${path.join(utilsPath, `${toKebabCase(typedoc.name)}.mdx`)}`);
+    console.log(`Generating TypeDoc: ${path.join(utilsPath, `${typedoc.name}.mdx`)}`);
     await fs.writeFile(
-      path.join(utilsPath, `${toKebabCase(typedoc.name)}.mdx`),
+      path.join(utilsPath, `${typedoc.name}.mdx`),
       mdxContent
     );
 
@@ -160,20 +160,15 @@ function generateStructuredMDX(typedoc: TypeDocTarget): string {
   // Convert the name to kebab case with ix- prefix
   const kebabName = `ix-${toKebabCase(typedoc.name)}`;
 
-  // Determine heading level based on the source path
-  console.log(typedoc.source);
-  const isAngular = typedoc.source.includes('angular');
-  const apiHeading = isAngular ? '#### API' : '### API';
-
   // Start with imports
   const mdxParts = [
     `import {SinceTag, DeprecatedTag} from '@site/src/components/UI/Tags';`,
     `import FrameworkSelection from '@site/src/components/UI/FrameworkSelection';`,
     `import ApiTable from '@site/src/components/ApiTable';`,
     '',
-    `${apiHeading} (${kebabName})`,
+    `### API (${kebabName})`,
     '',
-    `${isAngular ? '#####' : '####'} Properties`,
+    `#### Properties`,
     ''
   ];
 
@@ -225,6 +220,7 @@ function generateStructuredMDX(typedoc: TypeDocTarget): string {
 
   return mdxParts.join('\n');
 }
+
 /**
  * Helper function to escape backticks in strings
  */
