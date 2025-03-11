@@ -88,7 +88,7 @@ regressionTest.describe('aggrid', () => {
     regressionTest('should be unchecked', async ({ page }) => {
       await page.goto('basic.html');
 
-      expect(await page.screenshot({ fullPage: true }));
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
 
     regressionTest('should be indeterminate', async ({ page }) => {
@@ -96,7 +96,7 @@ regressionTest.describe('aggrid', () => {
 
       await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="0"] input')).click();
 
-      expect(await page.screenshot({ fullPage: true }));
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
 
     regressionTest('should be checked', async ({ page }) => {
@@ -106,7 +106,7 @@ regressionTest.describe('aggrid', () => {
       await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="1"] input')).click();
       await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="2"] input')).click();
 
-      expect(await page.screenshot({ fullPage: true }));
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
   });
 });
