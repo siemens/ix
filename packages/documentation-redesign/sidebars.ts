@@ -143,12 +143,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Forms',
-      items: [
-        'components/forms-field/index',
-        'components/forms-layout/index',
-        'components/forms-validation/index',
-        'components/forms-behavior/index',
-      ],
+      items: ['components/forms-validation/index'],
       collapsed: false,
     },
     {

@@ -52,28 +52,29 @@ To suppress the internal validation of a component, you have to provide the `nov
 
 ### Basic
 
-### Angular
-
-<Admonition type="tip" icon="💡" title="Important">
+<Tabs>
+  <TabItem value="angular" label="Angular" default>
+    <Admonition type="tip" icon="💡" title="Important">
       Please note that using the `required` attribute in an Angular application could result in unfavourabe behaviour displaying the field as invalid even if there was no user interaction yet.
       To avoid that it is suggested not to add the `required` attribute, but implement a custom validator for required fields instead (see `name` and `last-name` in the following code).
     </Admonition>
     <FormValidationPlayground onlyFramework="angular" examplesByName includeCssFile />
 
-### React
-
-<Admonition type="tip" icon="💡" title="Just an example">
+  </TabItem>
+  <TabItem value="react" label="React">
+    <Admonition type="tip" icon="💡" title="Just an example">
       Using `react-form-hook` is just an example to demonstrate how validation could be done
       within React. You can use any other validation library or write your own validation logic.
     </Admonition>
     <FormValidationPlayground onlyFramework="react" examplesByName includeCssFile />
 
-### Vue
-
-<Admonition type="tip" icon="💡" title="Just an example">
+  </TabItem>
+  <TabItem value="vue" label="Vue">
+    <Admonition type="tip" icon="💡" title="Just an example">
       Using `@vuelidate/core` is just an example to demonstrate how validation could be done
       within Vue. You can use any other validation library or write your own validation logic.
     </Admonition>
     <FormValidationPlayground onlyFramework="vue" examplesByName includeCssFile />
 
-
+  </TabItem>
+</Tabs>
