@@ -86,13 +86,13 @@ regressionTest.describe('aggrid', () => {
 
   regressionTest.describe('header checkbox', () => {
     regressionTest('should be unchecked', async ({ page }) => {
-      await page.goto('header_checkbox.html');
+      await page.goto('basic.html');
 
       expect(await page.screenshot({ fullPage: true }));
     });
 
     regressionTest('should be indeterminate', async ({ page }) => {
-      await page.goto('header_checkbox.html');
+      await page.goto('basic.html');
 
       await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="0"] input')).click();
 
@@ -100,7 +100,7 @@ regressionTest.describe('aggrid', () => {
     });
 
     regressionTest('should be checked', async ({ page }) => {
-      await page.goto('header_checkbox.html');
+      await page.goto('basic.html');
 
       await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="0"] input')).click();
       await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="1"] input')).click();
