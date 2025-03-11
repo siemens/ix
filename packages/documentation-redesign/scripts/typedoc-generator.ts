@@ -161,6 +161,7 @@ function generateStructuredMDX(typedoc: TypeDocTarget): string {
   const kebabName = `ix-${toKebabCase(typedoc.name)}`;
 
   // Determine heading level based on the source path
+  console.log(typedoc.source);
   const isAngular = typedoc.source.includes('angular');
   const apiHeading = isAngular ? '#### API' : '### API';
 

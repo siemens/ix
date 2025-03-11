@@ -186,7 +186,7 @@ const sidebars: SidebarsConfig = {
         'components/icon-button/index',
         'components/link-button/index',
         'components/split-button/index',
-        'components/toggle-button/index',
+        'components/toggle/index',
         'components/chip/index',
       ],
       collapsed: false,

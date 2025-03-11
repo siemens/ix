@@ -126,7 +126,7 @@ flatMarkdowns(
     '_category_.json',
     '_toast',
     '_modal',
-    // '_forms-toggle_styleguide.md',
+    '_forms-toggle_styleguide.md',
   ],
   undefined,
   // forms-behavior does not have tabs but is located under components

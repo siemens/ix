@@ -14,11 +14,11 @@ In addition to that it provides support for Angular and React.
 Follow the links below to the respective installation guides:
 
 <CardList>
-  <Card link="home/installation/angular"><AngularIcon className="Card_Icon" />Angular</Card>
-  <Card link="home/installation/react"><ReactIcon className="Card_Icon" />React</Card>
-  <Card link="home/installation/javascript"><WebComponentsIcon className="Card_Icon" />Web Components</Card>
-  <Card link="home/installation/vue"><VueIcon className="Card_Icon" />Vue&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
-  <Card link="home/installation/blazor"><BlazorIcon className="Card_Icon" />Blazor&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
+  <Card link="installation/angular"><AngularIcon className="Card_Icon" />Angular</Card>
+  <Card link="installation/react"><ReactIcon className="Card_Icon" />React</Card>
+  <Card link="installation/javascript"><WebComponentsIcon className="Card_Icon" />Web Components</Card>
+  <Card link="installation/vue"><VueIcon className="Card_Icon" />Vue&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
+  <Card link="installation/blazor"><BlazorIcon className="Card_Icon" />Blazor&nbsp;<span style={{fontSize: '0.8rem'}}>(experimental)</span></Card>
 </CardList>
 
 **Experience the Siemens Industrial Experience style while coding**  
