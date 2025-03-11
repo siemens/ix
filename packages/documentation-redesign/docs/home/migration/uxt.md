@@ -75,34 +75,34 @@ If you're facing any other problems, please raise an issue in GitHub [raising an
 
 As some of the components are named differently in Industrial Experience, please consult this list of the most important component name differences to help make your migration easier:
 
-| **User Experience Toolkit**                      | **Industrial Experience**                                                                               |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| App bar                                          | [Nav menu](/docs/components/application-menu)                                                           |
-| Badge                                            | [Pill](/docs/components/pill), [chip](/docs/components/chip)                                            |
-| Busy indicator                                   | [Spinner](/docs/components/spinner)                                                                     |
-| Button<br/>- primary<br/>- secondary<br/>- ghost | [Button](/docs/components/button)<br/>- primary filled<br/>- primary outline<br/>- primary ghost |
-| Card grid                                        | [Layout grid](/docs/components/layout-grid)                                                             |
-| Container                                        | [Card](/docs/components/card)                                                                           |
-| Dialog                                           | [Modal](/docs/components/modal)                                                                         |
-| Dropzone                                         | [Upload](/docs/components/upload)                                                                       |
-| List                                             | [Event list](/docs/components/event-list)                                                               |
-| Stepper                                          | [Workflow](/docs/components/workflow)                                                                   |
-| Menu                                             | [Dropdown button](/docs/components/dropdown-button)                                             |
-| Message                                          | [Message bar](/docs/components/messagebar)                                                              |
-| Notification                                     | [Toast](/docs/components/toast)                                                                         |
-| Pager                                            | [Pagination](/docs/components/pagination)                                                               |
-| Popover                                          | [Tooltip](/docs/components/tooltip), [dropdown](/docs/components/dropdown)                              |
-| Switch                                           | [Toggle](/docs/components/toggle)                                                                       |
-| Context region                                   | [Pane](/docs/components/panes) (inline right)                                                           |
-| Item region                                      | [Pane](/docs/components/panes) (floating right)                                                         |
-| Leading region                                   | [Pane](/docs/components/panes) (inline left)                                                            |
+| **User Experience Toolkit**                      | **Industrial Experience**                                                                                |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| App bar                                          | [Nav menu](/docs/components/application-menu)                                                            |
+| Badge                                            | [Pill](/docs/components/pill), [chip](/docs/components/chip)                                             |
+| Busy indicator                                   | [Spinner](/docs/components/spinner)                                                                      |
+| Button<br/>- primary<br/>- secondary<br/>- ghost | [Button](/docs/components/buttons/button)<br/>- primary filled<br/>- primary outline<br/>- primary ghost |
+| Card grid                                        | [Layout grid](/docs/components/layout-grid)                                                              |
+| Container                                        | [Card](/docs/components/card)                                                                            |
+| Dialog                                           | [Modal](/docs/components/modal)                                                                          |
+| Dropzone                                         | [Upload](/docs/components/upload)                                                                        |
+| List                                             | [Event list](/docs/components/event-list)                                                                |
+| Stepper                                          | [Workflow](/docs/components/workflow)                                                                    |
+| Menu                                             | [Dropdown button](/docs/components/buttons/dropdown-button)                                              |
+| Message                                          | [Message bar](/docs/components/messagebar)                                                               |
+| Notification                                     | [Toast](/docs/components/toast)                                                                          |
+| Pager                                            | [Pagination](/docs/components/pagination)                                                                |
+| Popover                                          | [Tooltip](/docs/components/tooltip), [dropdown](/docs/components/dropdown)                               |
+| Switch                                           | [Toggle](/docs/components/toggle)                                                                        |
+| Context region                                   | [Pane](/docs/components/panes) (inline right)                                                            |
+| Item region                                      | [Pane](/docs/components/panes) (floating right)                                                          |
+| Leading region                                   | [Pane](/docs/components/panes) (inline left)                                                             |
 
 ## System icons
 
 Key differences between UXT and Industrial Experience:
 
 - UXT offers an iconfont with 3 different styles (regular, bold, filled)
-- [iX offers SVGs](../../icons/icon-library.mdx) with mainly 1 style that corresponds to our bold and partially filled variants separately
+- [iX offers SVGs](docs/icons/icon-library) with mainly 1 style that corresponds to our bold and partially filled variants separately
 
 When changing to the SVG icons by Industrial Experience, check whether your stylings still apply in your custom-built components.
 
