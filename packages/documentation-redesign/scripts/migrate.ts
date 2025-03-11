@@ -70,6 +70,7 @@ function flatMarkdowns(
     });
   });
 
+
   files.forEach((file) => {
     const _file = path.resolve(filePath, file);
 
@@ -129,7 +130,6 @@ flatMarkdowns(
   ],
   undefined,
   // forms-behavior does not have tabs but is located under components
-  ['forms-behavior']
 );
 
 const indexMdTemplate = fs.readFileSync(__migrationIndexTemplate, 'utf-8');
@@ -511,6 +511,29 @@ Object.keys(newDocs).forEach((name) => {
     codeFile = codeFile.replace(/^# [^\n]*\n/gm, '');
     codeFile = codeFile.replace(/#{1,4} Examples/g, '');
     codeFile = codeFile.replace(/import DocsTabs.*;\n/gm, '');
+
+    // Transform Tabs/TabItem structure to H3 headings
+    codeFile = codeFile.replace(
+      /<Tabs>[\s\S]*?<TabItem[\s\S]*?value="([^"]*)"[\s\S]*?label="([^"]*)"[\s\S]*?>([\s\S]*?)<\/TabItem>[\s\S]*?<\/Tabs>/g,
+      function(match) {
+        let result = '';
+        const tabItems = [];
+        let tabItemRegex = /<TabItem\s+value="([^"]*)"\s+label="([^"]*)"(?:\s+default)?>([\s\S]*?)<\/TabItem>/g;
+        let tabMatch;
+
+        while ((tabMatch = tabItemRegex.exec(match)) !== null) {
+          const [, value, label, content] = tabMatch;
+          tabItems.push({ value, label, content: content.trim() });
+        }
+
+        tabItems.forEach(item => {
+          result += `\n\n### ${item.label}\n\n${item.content}\n\n`;
+        });
+
+        return result;
+      }
+    );
+
     codeFile = codeFile.replace(
       /<Playground(.*?)(\/>)/g,
       '<Playground$1></Playground>'
@@ -711,11 +734,11 @@ Object.keys(newDocs).forEach((name) => {
         };
 
         const updatedPlayground = `<Playground
-  name="${playgroundName}" source=${formatNestedObj(sourceObj)}
-  files=${formatNestedObj(filesObj)}
-  height={props.height}
-  ${cleanedFrameworks.length === 1 ? `onlyFramework="${cleanedFrameworks[0]}"` : 'onlyFramework={props.onlyFramework}'}
-></Playground>`;
+        name="${playgroundName}" source=${formatNestedObj(sourceObj)}
+        files=${formatNestedObj(filesObj)}
+        height={props.height}
+        ${cleanedFrameworks.length === 1 ? `onlyFramework="${cleanedFrameworks[0]}"` : 'onlyFramework={props.onlyFramework}'}
+        ></Playground>`;
 
         codeFile = codeFile.replace(playground, updatedPlayground);
       } else {
