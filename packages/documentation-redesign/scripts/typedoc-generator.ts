@@ -162,7 +162,7 @@ function generateStructuredMDX(typedoc: TypeDocTarget): string {
 
   // Determine heading level based on the source path
   const isAngular = typedoc.source.includes('angular');
-  const apiHeading = isAngular ? '#### API' : '### API';
+  const apiHeading = '### API';
 
   // Start with imports
   const mdxParts = [
@@ -170,9 +170,9 @@ function generateStructuredMDX(typedoc: TypeDocTarget): string {
     `import FrameworkSelection from '@site/src/components/UI/FrameworkSelection';`,
     `import ApiTable from '@site/src/components/ApiTable';`,
     '',
-    `${apiHeading} (${kebabName})`,
+    `${apiHeading} for ${kebabName}${isAngular ? ' (Angular)' : ''}`,
     '',
-    `${isAngular ? '#####' : '####'} Properties`,
+    `#### Properties`,
     ''
   ];
 
