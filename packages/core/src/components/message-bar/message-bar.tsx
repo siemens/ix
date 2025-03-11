@@ -19,6 +19,17 @@ import {
 import anime from 'animejs';
 import { NotificationColor } from '../utils/notification-color';
 
+interface MessageTypeConfig {
+  icon?:
+    | 'error'
+    | 'warning'
+    | 'info'
+    | 'success'
+    | 'notification'
+    | 'warning-rhomb';
+  color: NotificationColor;
+}
+
 @Component({
   tag: 'ix-message-bar',
   styleUrl: 'message-bar.scss',
@@ -27,8 +38,17 @@ import { NotificationColor } from '../utils/notification-color';
 export class MessageBar {
   /**
    * Specifies the type of the alert.
+   * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
    */
-  @Prop() type: 'danger' | 'warning' | 'info' = 'info';
+  @Prop() type:
+    | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary' = 'info';
 
   /**
    * If true, close button is enabled and alert can be dismissed by the user
@@ -45,28 +65,38 @@ export class MessageBar {
    */
   @Event() closeAnimationCompleted!: EventEmitter;
 
-  @State() icon?: 'error' | 'warning' | 'info';
+  @State() icon?:
+    | 'error'
+    | 'warning'
+    | 'info'
+    | 'success'
+    | 'notification'
+    | 'warning-rhomb';
 
   @State() color?: NotificationColor;
 
   private static readonly duration = 300;
+  private static readonly messageTypeConfigs: Record<
+    string,
+    MessageTypeConfig
+  > = {
+    alarm: { icon: 'error', color: 'color-alarm' },
+    danger: { icon: 'error', color: 'color-alarm' },
+    critical: { icon: 'warning-rhomb', color: 'color-critical' },
+    warning: { icon: 'warning', color: 'color-warning' },
+    success: { icon: 'success', color: 'color-success' },
+    info: { icon: 'info', color: 'color-info' },
+    neutral: { icon: 'notification', color: 'color-neutral' },
+    primary: { icon: 'notification', color: 'color-primary' },
+  };
 
   private divElement?: HTMLElement;
 
   componentWillRender() {
-    if (this.type === 'danger') {
-      this.icon = 'error';
-      this.color = 'color-alarm';
-    }
-
-    if (this.type === 'info') {
-      this.icon = 'info';
-      this.color = 'color-info';
-    }
-
-    if (this.type === 'warning') {
-      this.icon = 'warning';
-      this.color = 'color-warning';
+    const config = MessageBar.messageTypeConfigs[this.type];
+    if (config) {
+      this.icon = config.icon;
+      this.color = config.color;
     }
   }
 
