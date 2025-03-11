@@ -192,7 +192,7 @@ TypedEvent<{
 ## API (modal config)
 
 ### Properties
-y
+
 <ModalConfig />
 
 ## API (modal instance)
