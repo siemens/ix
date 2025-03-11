@@ -225,7 +225,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   @Watch('value')
   watchValue() {
-    this.from = this.value ?? null;
+    this.from = this.value ?? undefined;
   }
 
   /** @internal */

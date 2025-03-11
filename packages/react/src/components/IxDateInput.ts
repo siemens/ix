@@ -14,7 +14,7 @@ import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
 type IxDateInputEvents = {
-    onValueChange: EventName<CustomEvent<string>>,
+    onValueChange: EventName<CustomEvent<string | undefined>>,
     onValidityStateChange: EventName<IxDateInputCustomEvent<DateInputValidityState>>
 };
 
