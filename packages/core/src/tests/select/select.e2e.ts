@@ -125,6 +125,20 @@ regressionTest.describe('select', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('centered overflow', async ({ page }) => {
+    await page.goto('select/centered-overflow');
+    await page.locator('ix-select').locator('[data-select-dropdown]').click();
+    const menuHandle = await page.waitForSelector('.dropdown-menu.show');
+
+    await page.evaluate((menuElement) => {
+      menuElement.scrollTop = 9999;
+      menuElement.classList.add('__SCROLLED__');
+    }, menuHandle);
+
+    await page.waitForSelector('.dropdown-menu.show.__SCROLLED__');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest.describe('disabled', () => {
     regressionTest('basic', async ({ page }) => {
       await page.goto('select/disabled');
@@ -153,20 +167,6 @@ regressionTest.describe('select', () => {
       });
 
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
-    });
-
-    regressionTest('centered overflow', async ({ page }) => {
-      await page.goto('select/centered-overflow');
-      await page.locator('ix-select').locator('[data-select-dropdown]').click();
-      const menuHandle = await page.waitForSelector('.dropdown-menu.show');
-
-  await page.evaluate((menuElement) => {
-    menuElement.scrollTop = 9999;
-    menuElement.classList.add('__SCROLLED__');
-  }, menuHandle);
-
-  await page.waitForSelector('.dropdown-menu.show.__SCROLLED__');
-  expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
     });
   });
 });
