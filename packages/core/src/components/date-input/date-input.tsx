@@ -182,7 +182,6 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string | undefined): void {
-    console.log('updateFormInternalValue', value);
     this.formInternals.setFormValue(value);
     this.value = value;
   }

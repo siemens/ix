@@ -2,4 +2,4 @@
 '@siemens/ix': major
 ---
 
-Adapt the `value` and the `valueChange` event on the `ìx-date-input` to reflect the `dateSelect` changes on the `date-picker`
+`ìx-date-input`: Adapt the `value` property and the `valueChange` event to reflect the changed signature of the `date-picker`'s `dateSelect` event.

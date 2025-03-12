@@ -2,4 +2,4 @@
 '@siemens/ix': major
 ---
 
-Adapt the event signature of the `dateSelect` event in the `date-picker` to reflect undefined values
+`ix-date-input`: Adapt the types `DateDropdownOption` and `DateRangeChangeEvent` to reflect the changed signature of the  `ix-date-picker`'s `dateSelect` event.
