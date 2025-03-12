@@ -44,10 +44,14 @@ export default () => {
         <IxLayoutGrid>
           <IxRow>
             <IxCol size="4">
-              <label htmlFor="validationCustom01">First name</label>
+              <label className="ix-form-control" htmlFor="validationCustom01">
+                First name
+              </label>
               <input
                 type="text"
-                className={`${formState.errors.firstName ? 'is-invalid' : ''}`}
+                className={`ix-form-control${
+                  formState.errors.firstName ? 'is-invalid' : ''
+                }`}
                 id="validationCustom01"
                 {...register('firstName', {
                   required: true,
@@ -65,10 +69,14 @@ export default () => {
           <IxRow>
             <IxCol size="4">
               <IxValidationTooltip message="Cannot be empty!">
-                <label htmlFor="validationCustom02">Last name</label>
+                <label className="ix-form-control" htmlFor="validationCustom02">
+                  Last name
+                </label>
                 <input
                   type="text"
-                  className={`${formState.errors.lastName ? 'is-invalid' : ''}`}
+                  className={`ix-form-control ${
+                    formState.errors.lastName ? 'is-invalid' : ''
+                  }`}
                   id="validationCustom02"
                   {...register('lastName', {
                     required: true,
@@ -80,10 +88,17 @@ export default () => {
 
           <IxRow>
             <IxCol size="4">
-              <label htmlFor="validationCustomUsername">Username</label>
+              <label
+                className="ix-form-control"
+                htmlFor="validationCustomUsername"
+              >
+                Username
+              </label>
               <input
                 type="text"
-                className={`${formState.errors.userName ? 'is-invalid' : ''}`}
+                className={`ix-form-control ${
+                  formState.errors.userName ? 'is-invalid' : ''
+                }`}
                 id="validationCustomUsername"
                 aria-describedby="inputGroupPrepend"
                 {...register('userName', {

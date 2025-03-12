@@ -49,10 +49,15 @@ const onSubmit = () => {
     <IxLayoutGrid>
       <IxRow>
         <IxCol size="4">
-          <label for="validationCustom01">First name</label>
+          <label class="ix-form-control" for="validationCustom01"
+            >First name</label
+          >
           <input
             type="text"
-            :class="{ 'is-invalid': formState.errors.firstName }"
+            :class="{
+              'is-invalid': formState.errors.firstName,
+              'ix-form-control': true,
+            }"
             id="validationCustom01"
             v-model="firstName"
             required
@@ -67,10 +72,15 @@ const onSubmit = () => {
       <IxRow>
         <IxCol size="4">
           <IxValidationTooltip message="Cannot be empty!">
-            <label for="validationCustom02">Last name</label>
+            <label class="ix-form-control" for="validationCustom02"
+              >Last name</label
+            >
             <input
               type="text"
-              :class="{ 'is-invalid': formState.errors.lastName }"
+              :class="{
+                'is-invalid': formState.errors.lastName,
+                'ix-form-control': true,
+              }"
               id="validationCustom02"
               v-model="lastName"
               required
@@ -81,10 +91,15 @@ const onSubmit = () => {
 
       <IxRow>
         <IxCol size="4">
-          <label for="validationCustomUsername">Username</label>
+          <label for="validationCustomUsername" class="ix-form-control"
+            >Username</label
+          >
           <input
             type="text"
-            :class="{ 'is-invalid': formState.errors.userName }"
+            :class="{
+              'is-invalid': formState.errors.userName,
+              'ix-form-control': true,
+            }"
             id="validationCustomUsername"
             aria-describedby="inputGroupPrepend"
             v-model="userName"

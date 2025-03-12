@@ -83,8 +83,13 @@ const systemChange = (event: Event) => {
     <IxRow>
       <IxCol :size="'2'"></IxCol>
       <IxCol>
-        <input type="checkbox" id="system" @change="systemChange" />
-        <label for="system">Use System</label>
+        <input
+          class="ix-form-control"
+          type="checkbox"
+          id="system"
+          @change="systemChange"
+        />
+        <label class="ix-form-control" for="system">Use System</label>
       </IxCol>
     </IxRow>
   </IxLayoutGrid>

@@ -12,7 +12,12 @@ import { IxKeyValue } from '@siemens/ix-react';
 export default () => {
   return (
     <IxKeyValue label="Label">
-      <input placeholder="Enter text here" type="text" slot="custom-value" />
+      <input
+        className="ix-form-control"
+        placeholder="Enter text here"
+        type="text"
+        slot="custom-value"
+      />
     </IxKeyValue>
   );
 };

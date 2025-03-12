@@ -15,6 +15,7 @@ export default () => {
         placeholder="Enter text here"
         type="text"
         readOnly
+        className='ix-form-control'
       />
     </form>
   );

@@ -72,30 +72,33 @@ export default {
         type="radio"
         name="layout"
         value="sm"
+        class="ix-form-control"
         :checked="breakpoints[0] === 'sm'"
         @change="() => setBreakpoint('sm')"
       />
-      <label for="small">Small</label>
+      <label class="ix-form-control" for="small">Small</label>
 
       <input
         id="medium"
         type="radio"
         name="layout"
         value="md"
+        class="ix-form-control"
         :checked="breakpoints[0] === 'md'"
         @change="() => setBreakpoint('md')"
       />
-      <label for="medium">Medium</label>
+      <label class="ix-form-control" for="medium">Medium</label>
 
       <input
         id="large"
         type="radio"
         name="layout"
         value="lg"
+        class="ix-form-control"
         :checked="breakpoints[0] === 'lg'"
         @change="() => setBreakpoint('lg')"
       />
-      <label for="large">Large</label>
+      <label class="ix-form-control" for="large">Large</label>
     </IxContent>
   </IxApplication>
 </template>

@@ -58,6 +58,7 @@ export default () => {
           type="radio"
           name="layout"
           value="sm"
+          className="ix-form-control"
           checked={breakpoints[0] === 'sm'}
           onChange={() => setBreakpoints(['sm'])}
         />
@@ -68,6 +69,7 @@ export default () => {
           type="radio"
           name="layout"
           value="md"
+          className="ix-form-control"
           checked={breakpoints[0] === 'md'}
           onChange={() => setBreakpoints(['md'])}
         />
@@ -78,6 +80,7 @@ export default () => {
           type="radio"
           name="layout"
           value="lg"
+          className="ix-form-control"
           checked={breakpoints[0] === 'lg'}
           onChange={() => setBreakpoints(['lg'])}
         />

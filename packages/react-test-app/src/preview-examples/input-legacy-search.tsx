@@ -35,6 +35,7 @@ export default () => {
         <input
           id="input-string"
           type="string"
+          className="ix-form-control"
           onChange={handleChange}
           value={message}
         />
