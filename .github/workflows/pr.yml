@@ -208,5 +208,5 @@ jobs:
       - name: Test
         run: |
           cd testing/performance-memlab
-          pnpm dlx puppeteer browsers install chrome
+          pnpm dlx puppeteer browsers install chrome@127.0.6533.88
           pnpm test.memlab
