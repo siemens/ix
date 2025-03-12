@@ -57,8 +57,7 @@ regressionTest.describe('aggrid', () => {
   regressionTest('filter', async ({ page }) => {
     await page.goto('basic.html');
 
-    const filterHandle = page.locator('.ag-header-cell:nth-child(2) .ag-icon-filter');
-    await filterHandle.click();
+    await page.getByRole('columnheader', { name: 'Model' }).locator('.ag-icon-filter').click();
 
     const filterMenu = page.locator('.ag-menu.ag-filter-menu');
     await expect(filterMenu).toBeVisible();
@@ -82,5 +81,31 @@ regressionTest.describe('aggrid', () => {
   regressionTest('pagination', async ({ page }) => {
     await page.goto('pagination.html');
     expect(await page.screenshot({ fullPage: true, animations: 'disabled' })).toMatchSnapshot();
+  });
+
+  regressionTest.describe('header checkbox', () => {
+    regressionTest('should be unchecked', async ({ page }) => {
+      await page.goto('basic.html');
+
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+
+    regressionTest('should be indeterminate', async ({ page }) => {
+      await page.goto('basic.html');
+
+      await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="0"] input')).click();
+
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
+
+    regressionTest('should be checked', async ({ page }) => {
+      await page.goto('basic.html');
+
+      await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="0"] input')).click();
+      await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="1"] input')).click();
+      await (await page.waitForSelector('.ag-row-not-inline-editing[row-id="2"] input')).click();
+
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    });
   });
 });

@@ -5909,6 +5909,35 @@
           "setter": false
         },
         {
+          "name": "i18nTime",
+          "type": "string",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "i-1-8n-time",
+          "reflectToAttr": false,
+          "docs": "Top label of time picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "'Time'",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "locale",
           "type": "string",
           "complexType": {
