@@ -288,6 +288,7 @@ export const IxChip = /*@__PURE__*/ defineContainer<JSX.IxChip>('ix-chip', defin
   'color',
   'chipColor',
   'outline',
+  'tooltipText',
   'closeChip'
 ]);
 
@@ -413,6 +414,7 @@ export const IxDatetimePicker = /*@__PURE__*/ defineContainer<JSX.IxDatetimePick
   'timeReference',
   'textSelectDate',
   'i18nDone',
+  'i18nTime',
   'weekStartIndex',
   'locale',
   'eventDelimiter',
@@ -929,7 +931,8 @@ export const IxPill = /*@__PURE__*/ defineContainer<JSX.IxPill>('ix-pill', defin
   'background',
   'color',
   'pillColor',
-  'alignLeft'
+  'alignLeft',
+  'tooltipText'
 ]);
 
 

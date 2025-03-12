@@ -7,12 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import fs, { CopyOptions } from 'fs-extra';
+import fs from 'fs-extra';
 import { Listr } from 'listr2';
 import path from 'path';
 import { writeApi } from './api-tasks';
 import { writeTypeScriptFiles } from './ts-class-tasks';
-import rimraf from 'rimraf';
+import { rimrafSync } from 'rimraf';
 
 const rootPath = path.join(__dirname, '../');
 
@@ -103,24 +103,24 @@ const tasks = new Listr<Context>(
       task: async () => {
         await fs.ensureDir(docsPath);
 
-        rimraf.sync(docsStaticExamples);
+        rimrafSync(docsStaticExamples);
         await fs.ensureDir(docsStaticWebComponentExamples);
         await fs.ensureDir(docsStaticAngularExamples);
         await fs.ensureDir(docsStaticReactExamples);
         await fs.ensureDir(docsStaticVueExamples);
         await fs.ensureDir(docsStaticStyleExamples);
 
-        rimraf.sync(iframeExampleCodePath);
+        rimrafSync(iframeExampleCodePath);
         await fs.ensureDir(iframeExampleCodePath);
         await fs.ensureDir(iframeFrameDist);
 
-        rimraf.sync(docsIonicPreviewPath);
+        rimrafSync(docsIonicPreviewPath);
         await fs.ensureDir(docsIonicPreviewPath);
 
-        rimraf.sync(optionalThemeForPreview);
+        rimrafSync(optionalThemeForPreview);
         await fs.ensureDir(optionalThemeForPreview);
 
-        rimraf.sync(optionalThemeForIonicPreview);
+        rimrafSync(optionalThemeForIonicPreview);
         await fs.ensureDir(optionalThemeForIonicPreview);
       },
     },
