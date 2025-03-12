@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 .AnchorButton {
-  all: unset;
   display: flex;
   align-items: center;
   flex-direction: row;

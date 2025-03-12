@@ -21,7 +21,7 @@ export default function Pill({
   return (
     <button
       onClick={onClick}
-      className={clsx(styles.pill, {
+      className={clsx('all-unset', styles.pill, {
         [styles.pill__active]: active,
       })}
     >
