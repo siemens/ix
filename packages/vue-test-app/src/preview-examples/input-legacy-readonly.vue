@@ -16,6 +16,7 @@
       placeholder="Enter text here"
       type="text"
       readOnly
+      class="ix-form-control"
     />
   </form>
 </template>

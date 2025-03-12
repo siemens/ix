@@ -97,7 +97,7 @@ export class InputGroup {
       }
     } else {
       console.warn(
-        'You used the ix-input-group without an input tag, e.g. <input class="form-control" />'
+        'You used the ix-input-group without an input tag, e.g. <input class="ix-form-control" />'
       );
     }
   }

@@ -11,8 +11,8 @@
   $size: 1.25rem;
 
   /* Base for label styling */
-  [type='radio']:not(:checked),
-  [type='radio']:checked {
+  .ix-form-control[type='radio']:not(:checked),
+  .ix-form-control[type='radio']:checked {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;
@@ -27,8 +27,8 @@
     appearance: none;
   }
 
-  [type='radio']:not(:checked) + label,
-  [type='radio']:checked + label {
+  .ix-form-control[type='radio']:not(:checked) + label,
+  .ix-form-control[type='radio']:checked + label {
     display: inline-flex;
     align-items: flex-start;
     position: relative;
@@ -38,11 +38,11 @@
     margin-right: $default-space;
   }
 
-  [type='radio']:not(:disabled) + label {
+  .ix-form-control[type='radio']:not(:disabled) + label {
     cursor: pointer;
   }
 
-  [type='radio'] + label:before {
+  .ix-form-control[type='radio'] + label:before {
     content: '';
     width: $size;
     height: $size;
@@ -60,21 +60,21 @@
     border-radius: 100%;
   }
 
-  [type='radio'] + label:focus-visible {
+  .ix-form-control[type='radio'] + label:focus-visible {
     &:before {
       outline: 0.0625rem solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);
     }
   }
 
-  [type='radio']:focus-visible + label {
+  .ix-form-control[type='radio']:focus-visible + label {
     &:before {
       outline: 0.0625rem solid var(--theme-color-focus-bdr);
       outline-offset: var(--theme-radiobtn--focus--outline-offset);
     }
   }
 
-  [type='radio']:not(:checked) {
+  .ix-form-control[type='radio']:not(:checked) {
     & + label:before {
       background-color: var(--theme-radiobtn-unchecked--background);
       border: var(--theme-radiobtn--border-thickness) solid
@@ -100,7 +100,7 @@
     }
   }
 
-  [type='radio']:checked {
+  .ix-form-control[type='radio']:checked {
     & + label:before {
       background-color: var(--theme-radiobtn-checked--background);
       border: var(--theme-radiobtn--border-thickness) solid
@@ -142,12 +142,12 @@
     }
   }
 
-  [type='radio']:disabled + label:before {
+  .ix-form-control[type='radio']:disabled + label:before {
     pointer-events: none;
     opacity: 0.5;
   }
 
-  [type='radio']:disabled + label {
+  .ix-form-control[type='radio']:disabled + label {
     color: var(--theme-radiobtn-label--color--disabled);
   }
 }

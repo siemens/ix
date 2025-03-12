@@ -14,6 +14,7 @@ export default () => {
         defaultValue="Some example text"
         placeholder="Enter text here"
         type="text"
+        className="ix-form-control"
       />
     </form>
   );

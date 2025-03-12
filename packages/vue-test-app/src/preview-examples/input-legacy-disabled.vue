@@ -15,6 +15,7 @@
       value="Some example text"
       placeholder="Enter text here"
       type="text"
+      class="ix-form-control"
       disabled
     />
   </form>
