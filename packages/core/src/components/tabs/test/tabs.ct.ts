@@ -24,7 +24,7 @@ test('renders', async ({ mount, page }) => {
   await expect(tab).toHaveClass(/selected/);
 });
 
-test.only('should change tab', async ({ mount, page }) => {
+test('should change tab', async ({ mount, page }) => {
   await mount(`
     <ix-tabs>
       <ix-tab-item>Item 1</ix-tab-item>
@@ -64,7 +64,7 @@ test('should not change tab by tab click event', async ({ mount, page }) => {
   await expect(lastTab).not.toHaveClass(/selected/);
 });
 
-test.only('should not change tab by native click event on prevent default', async ({ mount, page }) => {
+test('should not change tab by native click event on prevent default', async ({ mount, page }) => {
   await mount(`
     <ix-tabs>
       <ix-tab-item onClick={(event) => event.preventDefault()}>Item 1</ix-tab-item>
