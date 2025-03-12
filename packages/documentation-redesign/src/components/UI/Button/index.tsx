@@ -8,6 +8,7 @@
  */
 import { forwardRef } from 'react';
 import styles from './styles.module.css';
+import clsx from 'clsx';
 
 type ButtonProps = {
   children: React.ReactNode;
@@ -17,7 +18,11 @@ type ButtonProps = {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, onClick }: ButtonProps, ref) => {
     return (
-      <button className={styles.Button} onClick={onClick} ref={ref}>
+      <button
+        className={clsx('all-unset', styles.Button)}
+        onClick={onClick}
+        ref={ref}
+      >
         {children}
       </button>
     );

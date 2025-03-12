@@ -144,7 +144,11 @@ export function AnchorHeader({
       })}
     >
       <div className="flex items-center font-bold w-full">
-        <button onClick={onClick} className={styles.AnchorButton} tabIndex={0}>
+        <button
+          onClick={onClick}
+          className={clsx('all-unset', styles.AnchorButton)}
+          tabIndex={0}
+        >
           {children}
           <a
             href={`#${anchorName}`}
