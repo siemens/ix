@@ -49,7 +49,7 @@ export default () => {
               </label>
               <input
                 type="text"
-                className={`ix-form-control${
+                className={`ix-form-control ${
                   formState.errors.firstName ? 'is-invalid' : ''
                 }`}
                 id="validationCustom01"
@@ -89,7 +89,7 @@ export default () => {
           <IxRow>
             <IxCol size="4">
               <label
-                className="ix-form-control"
+                className="ix-form-label"
                 htmlFor="validationCustomUsername"
               >
                 Username
