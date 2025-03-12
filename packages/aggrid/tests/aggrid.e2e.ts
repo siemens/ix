@@ -57,8 +57,7 @@ regressionTest.describe('aggrid', () => {
   regressionTest('filter', async ({ page }) => {
     await page.goto('basic.html');
 
-    const filterHandle = page.locator('.ag-header-cell:nth-child(2) .ag-icon-filter');
-    await filterHandle.click();
+    await page.getByRole('columnheader', { name: 'Model' }).locator('.ag-icon-filter').click();
 
     const filterMenu = page.locator('.ag-menu.ag-filter-menu');
     await expect(filterMenu).toBeVisible();
