@@ -117,17 +117,20 @@ export async function generateDocsForEntrypoint(entrypoint: string, targetPath: 
   });
 
   for (const typedoc of types) {
-    const mdxContent = generateStructuredMDX(typedoc, __templates);
 
     let utilsPath = path.join(targetPath, 'utils');
-    const frameworks = ['core', 'react', 'angular', 'vue'];
+    const frameworks = ['react', 'angular', 'vue'];
+    let current_framework = undefined;
 
     for (const framework of frameworks) {
-      if (typedoc.source.includes(path.join('packages', framework))) {
-        utilsPath = path.join(utilsPath, framework);
+      if (typedoc.source.includes(framework)) {
+        //utilsPath = path.join(utilsPath, framework);
+        current_framework = framework;
         break;
       }
     }
+
+    const mdxContent = generateStructuredMDX(typedoc, __templates, current_framework);
 
     await fs.ensureDir(utilsPath);
     console.log(`Generating TypeDoc: ${path.join(utilsPath, `${toKebabCase(typedoc.name)}.mdx`)}`);
@@ -164,7 +167,7 @@ function convertTagsToTSXElements(tags: Array<{ tag: string; text?: string }>) {
   }).filter(Boolean);
 }
 
-function generateStructuredMDX(typedoc: TypeDocTarget, templatesPath: string): string {
+function generateStructuredMDX(typedoc: TypeDocTarget, templatesPath: string, framework?: string): string {
   const propertyTemplate = fs.readFileSync(path.join(templatesPath, 'property-table.mustache'), 'utf-8');
   const apiTemplate = fs.readFileSync(path.join(templatesPath, 'api.mustache'), 'utf-8');
 
@@ -174,6 +177,7 @@ function generateStructuredMDX(typedoc: TypeDocTarget, templatesPath: string): s
   const formattedProps = typedoc.properties.map(prop => {
     return {
       name: prop.name,
+      onlyFramework: framework,
       docs: escapeBackticks(prop.comment),
       type: escapeBackticks(prop.type),
       default: prop.defaultValue ? escapeBackticks(prop.defaultValue) : undefined,
@@ -192,6 +196,8 @@ function generateStructuredMDX(typedoc: TypeDocTarget, templatesPath: string): s
     hasProps: typedoc.properties.length > 0,
     hasEvents: false,
     hasSlots: false,
+    singleFramework: framework,
+    framework: framework,
     properties: propertyOutput,
     events: '',
     slots: ''
