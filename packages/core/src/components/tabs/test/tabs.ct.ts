@@ -64,7 +64,10 @@ test('should not change tab by tab click event', async ({ mount, page }) => {
   await expect(lastTab).not.toHaveClass(/selected/);
 });
 
-test('should not change tab by native click event on prevent default', async ({ mount, page }) => {
+test('should not change tab by native click event on prevent default', async ({
+  mount,
+  page,
+}) => {
   await mount(`
     <ix-tabs>
       <ix-tab-item onClick={(event) => event.preventDefault()}>Item 1</ix-tab-item>
@@ -75,7 +78,7 @@ test('should not change tab by native click event on prevent default', async ({ 
   const tabs = page.locator('ix-tabs');
   const firstTab = page.locator('ix-tab-item').nth(0);
   const lastTab = page.locator('ix-tab-item').nth(2);
-  
+
   await lastTab.click();
 
   await expect(tabs).toHaveClass(/hydrated/);

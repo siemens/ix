@@ -101,9 +101,8 @@ export class TabItem {
         })}
         tabIndex={0}
         onClick={(event: MouseEvent) => {
-          if(event.defaultPrevented)
-            return
-          
+          if (event.defaultPrevented) return;
+
           const clientEvent = this.tabClick.emit({
             nativeEvent: event,
           });
