@@ -206,7 +206,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Install Playwright Browsers
-        run: pnpm exec puppeteer browsers install chrome
+        run: pnpm dlx puppeteer browsers install chrome
 
       - name: Test
         run: pnpm --filter performance-memlab test --cache-dir=.turbo
