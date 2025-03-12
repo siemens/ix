@@ -21,7 +21,7 @@ import { Component } from '@angular/core';
       <ix-layout-grid>
         <ix-row>
           <ix-col size="4">
-            <label class="ix-form-control" for="validationCustom01"
+            <label class="ix-form-label" for="validationCustom01"
               >First name</label
             >
             <input
@@ -40,7 +40,7 @@ import { Component } from '@angular/core';
         <ix-row>
           <ix-col size="4">
             <ix-validation-tooltip message="Cannot be empty!">
-              <label class="ix-form-control" for="validationCustom02"
+              <label class="ix-form-label" for="validationCustom02"
                 >Last name</label
               >
               <input
@@ -57,7 +57,7 @@ import { Component } from '@angular/core';
         </ix-row>
         <ix-row>
           <ix-col size="4">
-            <label class="ix-form-control" for="validationCustomUsername">
+            <label class="ix-form-label" for="validationCustomUsername">
               Username
             </label>
             <input

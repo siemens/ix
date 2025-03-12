@@ -20,7 +20,7 @@
       name="group_1"
       type="radio"
     />
-    <label class="ix-form-control" htmlFor="checkbox_1_1"> Checked </label>
+    <label class="ix-form-label" htmlFor="checkbox_1_1"> Checked </label>
 
     <input
       class="ix-form-control"
@@ -28,7 +28,7 @@
       name="group_1"
       type="radio"
     />
-    <label class="ix-form-control" htmlFor="checkbox_1_2"> Normal </label>
+    <label class="ix-form-label" htmlFor="checkbox_1_2"> Normal </label>
 
     <input
       class="ix-form-control"
@@ -37,6 +37,6 @@
       name="group_1"
       type="radio"
     />
-    <label class="ix-form-control" htmlFor="checkbox_1_3"> Disabled </label>
+    <label class="ix-form-label" htmlFor="checkbox_1_3"> Disabled </label>
   </div>
 </template>

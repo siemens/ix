@@ -76,7 +76,7 @@ export default {
         :checked="breakpoints[0] === 'sm'"
         @change="() => setBreakpoint('sm')"
       />
-      <label class="ix-form-control" for="small">Small</label>
+      <label class="ix-form-label" for="small">Small</label>
 
       <input
         id="medium"
@@ -87,7 +87,7 @@ export default {
         :checked="breakpoints[0] === 'md'"
         @change="() => setBreakpoint('md')"
       />
-      <label class="ix-form-control" for="medium">Medium</label>
+      <label class="ix-form-label" for="medium">Medium</label>
 
       <input
         id="large"
@@ -98,7 +98,7 @@ export default {
         :checked="breakpoints[0] === 'lg'"
         @change="() => setBreakpoint('lg')"
       />
-      <label class="ix-form-control" for="large">Large</label>
+      <label class="ix-form-label" for="large">Large</label>
     </IxContent>
   </IxApplication>
 </template>

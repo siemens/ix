@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
         id="checkbox_01"
         [indeterminate]="true"
       />
-      <label class="ix-form-control" for="checkbox_01">Simple checkbox</label>
+      <label class="ix-form-label" for="checkbox_01">Simple checkbox</label>
     </div>
   `,
 })

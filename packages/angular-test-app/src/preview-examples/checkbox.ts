@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
   template: `
     <div style="margin-bottom: 1rem">
       <input class="ix-form-control" type="checkbox" id="checkbox_01" />
-      <label class="ix-form-control" for="checkbox_01">Simple checkbox</label>
+      <label class="ix-form-label" for="checkbox_01">Simple checkbox</label>
     </div>
 
     <div>
@@ -24,7 +24,7 @@ import { Component } from '@angular/core';
         id="checkbox_02"
         disabled
       />
-      <label class="ix-form-control" for="checkbox_02">Disabled checkbox</label>
+      <label class="ix-form-label" for="checkbox_02">Disabled checkbox</label>
     </div>
   `,
 })

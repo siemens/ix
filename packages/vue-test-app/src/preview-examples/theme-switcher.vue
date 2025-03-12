@@ -89,7 +89,7 @@ const systemChange = (event: Event) => {
           id="system"
           @change="systemChange"
         />
-        <label class="ix-form-control" for="system">Use System</label>
+        <label class="ix-form-label" for="system">Use System</label>
       </IxCol>
     </IxRow>
   </IxLayoutGrid>

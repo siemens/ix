@@ -49,7 +49,7 @@ const onSubmit = () => {
     <IxLayoutGrid>
       <IxRow>
         <IxCol size="4">
-          <label class="ix-form-control" for="validationCustom01"
+          <label class="ix-form-label" for="validationCustom01"
             >First name</label
           >
           <input
@@ -72,7 +72,7 @@ const onSubmit = () => {
       <IxRow>
         <IxCol size="4">
           <IxValidationTooltip message="Cannot be empty!">
-            <label class="ix-form-control" for="validationCustom02"
+            <label class="ix-form-label" for="validationCustom02"
               >Last name</label
             >
             <input
@@ -91,7 +91,7 @@ const onSubmit = () => {
 
       <IxRow>
         <IxCol size="4">
-          <label for="validationCustomUsername" class="ix-form-control"
+          <label for="validationCustomUsername" class="ix-form-label"
             >Username</label
           >
           <input

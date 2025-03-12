@@ -28,7 +28,7 @@ export default () => {
         id="checkbox_01"
         ref={ref}
       />
-      <label className="ix-form-control" htmlFor="checkbox_01">
+      <label className="ix-form-label" htmlFor="checkbox_01">
         Simple checkbox
       </label>
     </>

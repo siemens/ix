@@ -82,7 +82,7 @@ export default () => {
             id="system"
             onChange={systemChange}
           />
-          <label className="ix-form-control" htmlFor="system">
+          <label className="ix-form-label" htmlFor="system">
             Use System
           </label>
         </IxCol>

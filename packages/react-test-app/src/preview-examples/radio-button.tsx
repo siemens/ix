@@ -19,9 +19,8 @@ export default () => {
         name="group_1"
         type="radio"
       />
-      <label className="ix-form-control" htmlFor="checkbox_1_1">
-        {' '}
-        Checked{' '}
+      <label className="ix-form-label" htmlFor="checkbox_1_1">
+        Checked
       </label>
 
       <input
@@ -30,9 +29,8 @@ export default () => {
         name="group_1"
         type="radio"
       />
-      <label className="ix-form-control" htmlFor="checkbox_1_2">
-        {' '}
-        Normal{' '}
+      <label className="ix-form-label" htmlFor="checkbox_1_2">
+        Normal
       </label>
 
       <input
@@ -42,9 +40,8 @@ export default () => {
         name="group_1"
         type="radio"
       />
-      <label className="ix-form-control" htmlFor="checkbox_1_3">
-        {' '}
-        Disabled{' '}
+      <label className="ix-form-label" htmlFor="checkbox_1_3">
+        Disabled
       </label>
     </div>
   );

@@ -125,7 +125,7 @@
   }
 }
 
-@mixin form($namespace: '') {
+@mixin label($namespace: '') {
   label#{$namespace} {
     color: var(--theme-color-soft-text);
     padding: 2px 0px;
@@ -134,7 +134,9 @@
   label#{$namespace}.label-alignment-left {
     padding: 6px 0px;
   }
+}
 
+@mixin form($namespace: '') {
   input#{$namespace} {
     @include element-input();
   }

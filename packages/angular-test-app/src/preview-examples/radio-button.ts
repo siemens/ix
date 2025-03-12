@@ -20,7 +20,7 @@ import { Component } from '@angular/core';
         name="group_1"
         type="radio"
       />
-      <label class="ix-form-control" for="checkbox_1_1"> Checked </label>
+      <label class="ix-form-label" for="checkbox_1_1"> Checked </label>
 
       <input
         class="ix-form-control"
@@ -28,7 +28,7 @@ import { Component } from '@angular/core';
         name="group_1"
         type="radio"
       />
-      <label class="ix-form-control" for="checkbox_1_2"> Normal </label>
+      <label class="ix-form-label" for="checkbox_1_2"> Normal </label>
 
       <input
         class="ix-form-control"
@@ -37,7 +37,7 @@ import { Component } from '@angular/core';
         name="group_1"
         type="radio"
       />
-      <label class="ix-form-control" for="checkbox_1_3"> Disabled </label>
+      <label class="ix-form-label" for="checkbox_1_3"> Disabled </label>
     </div>
   `,
   styleUrls: ['./radio-button.css'],

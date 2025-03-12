@@ -62,7 +62,9 @@ export default () => {
           checked={breakpoints[0] === 'sm'}
           onChange={() => setBreakpoints(['sm'])}
         />
-        <label htmlFor="small">Small</label>
+        <label className="ix-form-label" htmlFor="small">
+          Small
+        </label>
 
         <input
           id="medium"
@@ -73,7 +75,9 @@ export default () => {
           checked={breakpoints[0] === 'md'}
           onChange={() => setBreakpoints(['md'])}
         />
-        <label htmlFor="medium">Medium</label>
+        <label className="ix-form-label" htmlFor="medium">
+          Medium
+        </label>
 
         <input
           id="large"
@@ -84,7 +88,9 @@ export default () => {
           checked={breakpoints[0] === 'lg'}
           onChange={() => setBreakpoints(['lg'])}
         />
-        <label htmlFor="large">Large</label>
+        <label className="ix-form-label" htmlFor="large">
+          Large
+        </label>
       </IxContent>
     </IxApplication>
   );

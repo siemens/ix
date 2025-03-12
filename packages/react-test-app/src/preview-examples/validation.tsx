@@ -44,7 +44,7 @@ export default () => {
         <IxLayoutGrid>
           <IxRow>
             <IxCol size="4">
-              <label className="ix-form-control" htmlFor="validationCustom01">
+              <label className="ix-form-label" htmlFor="validationCustom01">
                 First name
               </label>
               <input
@@ -69,7 +69,7 @@ export default () => {
           <IxRow>
             <IxCol size="4">
               <IxValidationTooltip message="Cannot be empty!">
-                <label className="ix-form-control" htmlFor="validationCustom02">
+                <label className="ix-form-label" htmlFor="validationCustom02">
                   Last name
                 </label>
                 <input

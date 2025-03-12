@@ -8,5 +8,6 @@
  */
 @import 'mixins/input';
 
+@include label('.ix-form-label');
 @include form('.ix-form-control');
 @include element-form('.ix-form-control');
