@@ -26,3 +26,7 @@
 .Button:active {
   background-color: var(--theme-color-ghost--active);
 }
+
+.Button:focus-visible {
+  outline: 1px solid var(--theme-color-focus-bdr);
+}

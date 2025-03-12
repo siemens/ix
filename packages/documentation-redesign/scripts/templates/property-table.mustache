@@ -1,5 +1,5 @@
 {{#props}}
-<ApiTable>
+<ApiTable id="property-{{name}}">
   <ApiTable.PropertyHeader name="{{name}}">
     {{#docsTags}}
       {{{ rTag }}}
@@ -10,17 +10,21 @@
     { `{{ docs }}` }
   </ApiTable.Text>
 
+  {{#attr}}
   <ApiTable.Code name="Attribute">
     {`{{{ attr }}}`}
   </ApiTable.Code>
+  {{/attr}}
 
   <ApiTable.Code name="Type">
    {`{{{ type }}}`}
   </ApiTable.Code>
 
+  {{#default}}
   <ApiTable.Code name="Default">
     {`{{{ default }}}`}
   </ApiTable.Code>
+  {{/default}}
 
 </ApiTable>
 {{/props}}
