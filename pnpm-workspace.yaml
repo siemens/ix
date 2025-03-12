@@ -1,5 +1,5 @@
 packages:
   - 'packages/*'
-  - '!packages/documentation'
+#  - '!packages/documentation'
   - 'tools/*'
   - 'test-apps/*'
