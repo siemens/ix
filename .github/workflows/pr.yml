@@ -205,8 +205,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/workflows/actions/turbo
 
-      - name: Install Playwright Browsers
-        run: pnpm dlx puppeteer browsers install chrome
-
       - name: Test
-        run: pnpm turbo run test.memlab --cache-dir=.turbo
+        run: |
+          cd testing/performance-memlab
+          pnpm dlx puppeteer browsers install chrome
+          pnpm test.memlab
