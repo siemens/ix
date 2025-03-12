@@ -904,6 +904,11 @@ export namespace Components {
          */
         "i18nDone": string;
         /**
+          * Top label of time picker
+          * @since 3.0.0
+         */
+        "i18nTime": string;
+        /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
          */
@@ -5940,6 +5945,11 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "i18nDone"?: string;
+        /**
+          * Top label of time picker
+          * @since 3.0.0
+         */
+        "i18nTime"?: string;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0

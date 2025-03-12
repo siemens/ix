@@ -834,14 +834,14 @@ Only triggered if date-picker-rework is in range mode. @since 2.1.0
 
 @ProxyCmp({
   defineCustomElementFn: defineIxDatetimePicker,
-  inputs: ['dateFormat', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
+  inputs: ['dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-datetime-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateFormat', 'from', 'i18nDone', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
+  inputs: ['dateFormat', 'from', 'i18nDone', 'i18nTime', 'locale', 'maxDate', 'minDate', 'range', 'showHour', 'showMinutes', 'showSeconds', 'showTimeReference', 'time', 'timeFormat', 'timeReference', 'to', 'weekStartIndex'],
   standalone: true
 })
 export class IxDatetimePicker {

@@ -14,7 +14,7 @@ export default () => {
   return (
     <form className="needs-validation">
       <IxInputGroup>
-        <input type="text" />
+        <input className="ix-form-control" type="text" />
         <span slot="input-end">
           <IxIcon name={iconAbout} size="16"></IxIcon>
         </span>

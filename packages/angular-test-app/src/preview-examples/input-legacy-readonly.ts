@@ -18,6 +18,7 @@ import { Component } from '@angular/core';
         placeholder="Enter text here"
         type="text"
         readonly
+        class="ix-form-control"
       />
     </form>
   `,

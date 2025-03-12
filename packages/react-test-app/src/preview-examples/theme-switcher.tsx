@@ -76,8 +76,15 @@ export default () => {
       <IxRow>
         <IxCol size="2"></IxCol>
         <IxCol>
-          <input type="checkbox" id="system" onChange={systemChange} />
-          <label htmlFor="system">Use System</label>
+          <input
+            className="ix-form-control"
+            type="checkbox"
+            id="system"
+            onChange={systemChange}
+          />
+          <label className="ix-form-label" htmlFor="system">
+            Use System
+          </label>
         </IxCol>
       </IxRow>
     </IxLayoutGrid>

@@ -32,7 +32,7 @@ LICENSE file in the root directory of this source tree.
 
       (() => {
         const columnDefs = [
-          { field: 'make', resizable: true, checkboxSelection: true },
+          { field: 'make', resizable: true},
           { field: 'model', resizable: true, sortable: true, filter: true },
           { field: 'price', resizable: true, editable: true },
         ];
@@ -46,12 +46,14 @@ LICENSE file in the root directory of this source tree.
         const gridOptions = {
           columnDefs: columnDefs,
           rowData: rowData,
-          rowSelection: 'multiple',
+          rowSelection: {
+            mode: 'multiRow',
+          },
           suppressCellFocus: true,
         };
 
         const gridDiv = document.querySelector('div.ag-theme-ix');
-        new agGrid.Grid(gridDiv, gridOptions);
+        agGrid.createGrid(gridDiv, gridOptions);
       })();
     </script>
   </body>

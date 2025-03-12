@@ -17,6 +17,7 @@ import { Component } from '@angular/core';
         value="Some example text"
         placeholder="Enter text here"
         type="text"
+        class="ix-form-control"
       />
     </form>
   `,

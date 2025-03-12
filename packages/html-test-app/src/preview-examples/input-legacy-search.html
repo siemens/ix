@@ -28,7 +28,12 @@ LICENSE file in the root directory of this source tree.
         <span slot="input-start">
           <ix-icon name="search" size="16"></ix-icon>
         </span>
-        <input onInput="toggleClear()" id="input-string" type="string" />
+        <input
+          class="ix-form-control"
+          onInput="toggleClear()"
+          id="input-string"
+          type="string"
+        />
         <span slot="input-end">
           <ix-icon-button
             id="clear-button"

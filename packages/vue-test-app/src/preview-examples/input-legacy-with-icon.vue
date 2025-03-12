@@ -15,7 +15,7 @@ import { IxInputGroup } from '@siemens/ix-vue';
 <template>
   <form className="needs-validation">
     <IxInputGroup>
-      <input type="text" />
+      <input class="ix-form-control" type="text" />
       <span slot="input-end">
         <IxIcon :name="iconAbout" size="16"></IxIcon>
       </span>

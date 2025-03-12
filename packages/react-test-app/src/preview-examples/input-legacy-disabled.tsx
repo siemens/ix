@@ -15,6 +15,7 @@ export default () => {
         placeholder="Enter text here"
         type="text"
         disabled
+        className="ix-form-control"
       />
     </form>
   );

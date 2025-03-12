@@ -257,7 +257,7 @@ export class TimePicker {
                   ></ix-icon-button>
 
                   <input
-                    class="form-control"
+                    class="ix-form-control"
                     name={descriptor.unit}
                     type="number"
                     placeholder={descriptor.placeholder}

@@ -6,9 +6,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-@import 'components/form/input';
+@import 'mixins/input';
 @import 'mixins/shadow-dom/component';
 @import 'mixins/validation/form-component';
+
+@include form;
 
 @mixin applySpacingToStartSlot {
   .start-container ::slotted(*) {
