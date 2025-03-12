@@ -30,37 +30,13 @@ import styles from './ColorTable.module.css';
 import clsx from 'clsx';
 import { useLocation } from '@docusaurus/router';
 import { useColorMode } from '@docusaurus/theme-common';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 function capitalizeFirstLetter(input: string): string {
   if (input.length === 0) return input;
   return input.charAt(0).toUpperCase() + input.slice(1);
 }
-
-function getCustomCSSPropertyByPrefix(prefix: string): string[] {
-  return Array.from(allCustomCSSProperties)
-    .filter((property) => property !== prefix)
-    .filter((property) => property.startsWith(prefix + '--'));
-}
-
-function getAllCustomCSSProperties(): Set<string> {
-  const customProperties = new Set<string>();
-
-  for (const styleSheet of Array.from(document.styleSheets)) {
-    for (const cssRule of Array.from(styleSheet.cssRules)) {
-      if (cssRule instanceof CSSStyleRule) {
-        for (const style of Array.from(cssRule.style)) {
-          if (style.startsWith('--theme')) {
-            customProperties.add(style);
-          }
-        }
-      }
-    }
-  }
-
-  return customProperties;
-}
-
-const allCustomCSSProperties: Set<string> = getAllCustomCSSProperties();
 
 const ColorContainerFix = forwardRef<
   HTMLDivElement,
@@ -137,7 +113,7 @@ const ThemeContext = createContext<ThemeContextType>({
   isDarkColor: true,
 });
 
-function ColorTable({ children, colorName }) {
+function BrowserOnlyColorTable({ children, colorName }) {
   const location = useLocation();
 
   const [theme, setTheme] = useState(useDefaultTheme());
@@ -167,6 +143,35 @@ function ColorTable({ children, colorName }) {
 
     return colorHex.toUpperCase();
   }
+
+  function getCustomCSSPropertyByPrefix(prefix: string): string[] {
+    return Array.from(allCustomCSSProperties)
+      .filter((property) => property !== prefix)
+      .filter((property) => property.startsWith(prefix + '--'));
+  }
+
+  function getAllCustomCSSProperties(): Set<string> {
+    const customProperties = new Set<string>();
+
+    for (const styleSheet of Array.from(document.styleSheets)) {
+      for (const cssRule of Array.from(styleSheet.cssRules)) {
+        if (cssRule instanceof CSSStyleRule) {
+          for (const style of Array.from(cssRule.style)) {
+            if (style.startsWith('--theme')) {
+              customProperties.add(style);
+            }
+          }
+        }
+      }
+    }
+
+    return customProperties;
+  }
+
+  const allCustomCSSProperties: Set<string> = useMemo(
+    () => getAllCustomCSSProperties(),
+    []
+  );
 
   function changeColorMode() {
     setIsDarkColor(!isDarkColor);
@@ -328,6 +333,18 @@ function Text({ children, name }) {
     </div>
   );
 }
+
+const ColorTable = ({ children, colorName }) => {
+  return (
+    <BrowserOnly>
+      {() => (
+        <BrowserOnlyColorTable colorName={colorName}>
+          {children}
+        </BrowserOnlyColorTable>
+      )}
+    </BrowserOnly>
+  );
+};
 
 ColorTable.Text = Text;
 ColorTable.Hex = Hex;
