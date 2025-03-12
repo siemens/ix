@@ -68,3 +68,43 @@ test('check if items still clickable', async ({ mount, page }) => {
 
   clickCountHandle.dispose();
 });
+
+test.only('should add an item dynamically and verify its height', async ({ mount, page }) => {
+  await mount(`
+    <ix-event-list item-height="60">
+      <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Text 2</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
+      <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
+    </ix-event-list>
+    <ix-button id="add-button">Add</ix-button>
+  `);
+
+  const eventListItems = page.locator('ix-event-list-item');
+  const addButton = page.locator('#add-button');
+
+  // Ensure initial count is 4
+  await expect(eventListItems).toHaveCount(4);
+
+  await addButton.evaluate((buttonElement) => {
+    buttonElement.addEventListener('click', () => {
+      const eventListItem = document.createElement('ix-event-list-item');
+      eventListItem.textContent = 'Text 5';
+      eventListItem.setAttribute('color', 'color-primary');
+      const eventList = document.querySelector('ix-event-list');
+      if (eventList) {
+        eventList.appendChild(eventListItem);
+      }
+    });
+  });
+
+  // Click add button
+  await addButton.click();
+
+  // Fetch the count and print it
+  const itemCount = await page.evaluate(() => {
+    return document.querySelectorAll('ix-event-list-item').length;
+  });
+
+  expect(itemCount).toBe(5);
+});
