@@ -20,14 +20,6 @@ runs:
       shell: bash
 
     - uses: actions/cache@v3
-      name: Setup puppeteer cache
-      with:
-        path: ${{ env.STORE_PATH }}
-        key: ${{ runner.os }}-puppeteer-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-
-
-    - uses: actions/cache@v3
       name: Setup pnpm cache
       with:
         path: ${{ env.STORE_PATH }}
