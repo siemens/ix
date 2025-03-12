@@ -671,3 +671,71 @@ test('should be 100% when dropdown-max-width is greater than the viewport width'
 
   expect(box?.width).toBe(pageWidth);
 });
+
+test('select and display the last element in the list', async ({ mount, page }) => {
+  await mount(`
+    <ix-select>
+      ${Array.from({ length: 20 }, (_, i) => `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${i + 1}</ix-select-item>`).join('')}
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await page.locator('[data-select-dropdown]').click();
+
+  const dropdown = select.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  const lastItem = page.locator('ix-select-item').last();
+  await lastItem.click();
+
+  const inputValue = await select.locator('input').inputValue();
+  console.log(`Last selected item: ${inputValue}`); 
+
+  expect(inputValue).toEqual('Item 20');
+});
+
+
+test('select and display the last element in the list when select at center', async ({ mount, page }) => {
+  await mount(`
+    <div style="height:60vh"></div>
+    <ix-select>
+      ${Array.from({ length: 20 }, (_, i) => `<ix-select-item value="${i + 1}" label="Item ${i + 1}">Item ${i + 1}</ix-select-item>`).join('')}
+    </ix-select>
+  `);
+
+  const select = page.locator('ix-select');
+  await page.locator('[data-select-dropdown]').click();
+
+  const dropdown = select.locator('ix-dropdown');
+  await expect(dropdown).toBeVisible();
+
+  const dropdownPosition = await dropdown.evaluate(el => {
+    const rect = el.getBoundingClientRect();
+    return { top: rect.top, bottom: rect.bottom };
+  });
+
+  const selectPosition = await select.evaluate(el => {
+    const rect = el.getBoundingClientRect();
+    return { top: rect.top, bottom: rect.bottom };
+  });
+
+  console.log(`Dropdown Position: Top=${dropdownPosition.top}, Bottom=${dropdownPosition.bottom}`);
+  console.log(`Select Position: Top=${selectPosition.top}, Bottom=${selectPosition.bottom}`);
+
+  if (dropdownPosition.top >= selectPosition.bottom) {
+    console.log("Dropdown appears BELOW the select component.");
+  } else if (dropdownPosition.bottom <= selectPosition.top) {
+    console.log("Dropdown appears ABOVE the select component.");
+  } else {
+    console.log("Dropdown overlaps with the select component.");
+  }
+
+  const lastItem = page.locator('ix-select-item').last();
+  await lastItem.click();
+  
+  const inputValue = await select.locator('input').inputValue();
+  console.log(`Last selected item: ${inputValue}`); 
+
+ 
+});
+
