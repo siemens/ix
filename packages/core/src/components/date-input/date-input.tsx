@@ -182,7 +182,8 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
   updateFormInternalValue(value: string | undefined): void {
-    this.formInternals.setFormValue(value ?? null);
+    console.log('updateFormInternalValue', value);
+    this.formInternals.setFormValue(value);
     this.value = value;
   }
 
@@ -225,7 +226,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
 
   @Watch('value')
   watchValue() {
-    this.from = this.value ?? undefined;
+    this.from = this.value;
   }
 
   /** @internal */
