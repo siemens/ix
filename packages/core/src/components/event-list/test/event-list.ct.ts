@@ -69,7 +69,10 @@ test('check if items still clickable', async ({ mount, page }) => {
   clickCountHandle.dispose();
 });
 
-test.only('should add an item dynamically and verify its height', async ({ mount, page }) => {
+test.only('should add an item dynamically and verify its height', async ({
+  mount,
+  page,
+}) => {
   await mount(`
     <ix-event-list item-height="60">
       <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>

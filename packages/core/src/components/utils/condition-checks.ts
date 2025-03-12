@@ -36,7 +36,10 @@ export const isSvgDataUrl = (url: string) => {
 
 export const isNumber = (value: unknown): value is number => {
   const isNumberType = typeof value === 'number' && !Number.isNaN(value);
-  const isStringNumber = typeof value === 'string' && value.trim() !== '' && !Number.isNaN(Number(value));
+  const isStringNumber =
+    typeof value === 'string' &&
+    value.trim() !== '' &&
+    !Number.isNaN(Number(value));
 
   return isNumberType || isStringNumber;
 };
