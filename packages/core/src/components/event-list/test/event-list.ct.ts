@@ -69,7 +69,7 @@ test('check if items still clickable', async ({ mount, page }) => {
   clickCountHandle.dispose();
 });
 
-test.only('should add an item dynamically and verify its height', async ({
+test('should add an item dynamically and verify its height', async ({
   mount,
   page,
 }) => {
