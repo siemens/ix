@@ -11,6 +11,8 @@
 import { IxKeyValue, IxKeyValueList } from '@siemens/ix-vue';
 </script>
 
+<style scoped src="./key-value-list-with-custom-value.css"></style>
+
 <template>
   <IxKeyValueList>
     <IxKeyValue label="Label" labelPosition="left">

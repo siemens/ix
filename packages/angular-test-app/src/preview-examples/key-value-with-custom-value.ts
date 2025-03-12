@@ -21,5 +21,6 @@ import { Component } from '@angular/core';
       />
     </ix-key-value>
   `,
+  styleUrls: ['./key-value-with-custom-value.css'],
 })
 export default class KeyValueWithCustomValue {}
