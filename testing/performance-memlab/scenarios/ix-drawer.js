@@ -14,7 +14,7 @@ function timeout(ms) {
 
 // initial page load's url
 function url() {
-  return 'http://127.0.0.1:8080/test.html?selector=ix-application-header';
+  return 'http://127.0.0.1:8080/test.html?selector=ix-drawer';
 }
 
 // action where you suspect the memory leak might be happening
