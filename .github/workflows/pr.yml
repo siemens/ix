@@ -80,7 +80,7 @@ jobs:
       - uses: ./.github/workflows/actions/turbo
 
       - name: Build
-        run: pnpm build --cache-dir=.turbo --filter documentation
+        run: pnpm build --cache-dir=.turbo --filter documentation-redesign
 
   visual-testing-core:
     if: ${{ needs.changes.outputs.core_any_changed == 'true' || github.event.pull_request.user.login == 'renovate[bot]' }}
