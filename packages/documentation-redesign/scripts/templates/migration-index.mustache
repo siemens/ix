@@ -16,7 +16,9 @@ toc_max_heading_level: 5
 {{#hasGuide}}
 import Guide from './guide.md';
 {{/hasGuide}}
+{{#hasCode}}
 import Code from './code.mdx';
+{{/hasCode}}
 import QueryStringContent from '@site/src/components/theme/QueryStringContent';
 import ThemeFrame from '@site/src/components/ThemeFrame';
 import Playground from '@site/src/components/Playground';
@@ -27,5 +29,7 @@ import Playground from '@site/src/components/Playground';
 {{#hasGuide}}
   <Guide />
 {{/hasGuide}}
+{{#hasCode}}
   <Code />
+{{/hasCode}}
 </QueryStringContent>

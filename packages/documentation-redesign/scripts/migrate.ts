@@ -487,6 +487,8 @@ Object.keys(newDocs).forEach((name) => {
   if (guidePath) {
     tabs.push('Usage');
     let guideFile = fs.readFileSync(guidePath, 'utf-8');
+    guideFile = guideFile.replace(/^---\s*sidebar_position:\s*\d+\s*---$/gm, '');
+
 
     // Process the guide file to fix heading structure
     guideFile = processGuideFile(guideFile);
@@ -890,6 +892,7 @@ Object.keys(newDocs).forEach((name) => {
 
   let output = Mustache.render(indexMdTemplate, {
     hasGuide: tabs.includes('Usage'),
+    hasCode: tabs.includes('Code'),
     tabs: tabs,
     noSingleTab: no_single_tab_files.includes(name),
     title: title.replace(/-/g, ' '),
