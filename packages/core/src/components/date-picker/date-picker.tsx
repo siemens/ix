@@ -159,6 +159,8 @@ export class DatePicker implements IxDatePickerComponent {
 
   /**
    * Shows week numbers displayed on the left side of the date picker
+   *
+   * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
 
