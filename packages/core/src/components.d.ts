@@ -543,6 +543,11 @@ export namespace Components {
          */
         "outline": boolean;
         /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText": string | boolean;
+        /**
           * Chip variant
          */
         "variant": | 'primary'
@@ -927,6 +932,11 @@ export namespace Components {
           * @since 2.1.0
          */
         "i18nDone": string;
+        /**
+          * Top label of time picker
+          * @since 3.0.0
+         */
+        "i18nTime": string;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
@@ -1651,6 +1661,10 @@ export namespace Components {
          */
         "warningText"?: string;
     }
+    /**
+     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * Use the 'ix-input' component instead
+     */
     interface IxInputGroup {
     }
     /**
@@ -2050,8 +2064,16 @@ export namespace Components {
         "dismissible": boolean;
         /**
           * Specifies the type of the alert.
+          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
          */
-        "type": 'danger' | 'warning' | 'info';
+        "type": | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
@@ -2348,6 +2370,11 @@ export namespace Components {
           * Custom font color for pill. Only working for `variant='custom'`
          */
         "pillColor": string | undefined;
+        /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText": string | boolean;
         /**
           * Pill variant
          */
@@ -4210,6 +4237,10 @@ declare global {
         prototype: HTMLIxInputElement;
         new (): HTMLIxInputElement;
     };
+    /**
+     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * Use the 'ix-input' component instead
+     */
     interface HTMLIxInputGroupElement extends Components.IxInputGroup, HTMLStencilElement {
     }
     var HTMLIxInputGroupElement: {
@@ -5692,6 +5723,11 @@ declare namespace LocalJSX {
          */
         "outline"?: boolean;
         /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText"?: string | boolean;
+        /**
           * Chip variant
          */
         "variant"?: | 'primary'
@@ -6091,6 +6127,11 @@ declare namespace LocalJSX {
           * @since 2.1.0
          */
         "i18nDone"?: string;
+        /**
+          * Top label of time picker
+          * @since 3.0.0
+         */
+        "i18nTime"?: string;
         /**
           * Format of time string See {@link "https://moment.github.io/luxon/#/formatting?id=table-of-tokens"} for all available tokens.
           * @since 2.1.0
@@ -6872,6 +6913,10 @@ declare namespace LocalJSX {
          */
         "warningText"?: string;
     }
+    /**
+     * @deprecated since 3.0.0. Will be removed with 4.0.0.
+     * Use the 'ix-input' component instead
+     */
     interface IxInputGroup {
     }
     /**
@@ -7316,8 +7361,16 @@ declare namespace LocalJSX {
         "onClosedChange"?: (event: IxMessageBarCustomEvent<any>) => void;
         /**
           * Specifies the type of the alert.
+          * @deprecated Type `danger` will be removed in 4.0. Use `alarm` instead.
          */
-        "type"?: 'danger' | 'warning' | 'info';
+        "type"?: | 'alarm'
+    | 'danger'
+    | 'critical'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'neutral'
+    | 'primary';
     }
     interface IxModal {
         /**
@@ -7634,6 +7687,11 @@ declare namespace LocalJSX {
           * Custom font color for pill. Only working for `variant='custom'`
          */
         "pillColor"?: string | undefined;
+        /**
+          * Display a tooltip. By default, no tooltip will be displayed. Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
+          * @since 3.0.0
+         */
+        "tooltipText"?: string | boolean;
         /**
           * Pill variant
          */
@@ -8860,6 +8918,10 @@ declare module "@stencil/core" {
              * @form-ready 2.6.0
              */
             "ix-input": LocalJSX.IxInput & JSXBase.HTMLAttributes<HTMLIxInputElement>;
+            /**
+             * @deprecated since 3.0.0. Will be removed with 4.0.0.
+             * Use the 'ix-input' component instead
+             */
             "ix-input-group": LocalJSX.IxInputGroup & JSXBase.HTMLAttributes<HTMLIxInputGroupElement>;
             /**
              * @since 1.6.0

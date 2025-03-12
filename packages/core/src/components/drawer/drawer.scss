@@ -17,11 +17,11 @@
   right: 0;
   @include box-shadow(3);
 
-  display: flex;
+  display: block;
   position: absolute;
-  flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
+  opacity: 0;
 
   max-height: 100vh;
   min-height: $large-space;
@@ -52,10 +52,13 @@
   .content {
     position: relative;
     flex: 1;
-    flex-grow: 1;
     order: 2;
     height: 100%;
     width: 100%;
     overflow-y: auto;
   }
+}
+
+:host(.display-none) {
+  display: none;
 }
