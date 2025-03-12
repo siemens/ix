@@ -9,6 +9,7 @@
 
 import path from 'path';
 import fs from 'fs-extra';
+import Mustache from 'mustache';
 import {
   Application,
   IntrinsicType,
@@ -35,6 +36,7 @@ export type TypeDocProperty = {
 
 export async function generateDocsForEntrypoint(entrypoint: string, targetPath: string) {
   const __root = path.resolve(__dirname, '../');
+  const __templates = path.join(__dirname, 'templates');
   const tsconfig = path.join(
     __dirname,
     '..',
@@ -88,7 +90,6 @@ export async function generateDocsForEntrypoint(entrypoint: string, targetPath: 
         console.log(`=== Type ${property.name} is unknown`);
       }
 
-      // Extract tags from comment
       const tags: Array<{ tag: string; text?: string }> = [];
       if (property.comment?.blockTags) {
         property.comment.blockTags.forEach((tag) => {
@@ -115,21 +116,17 @@ export async function generateDocsForEntrypoint(entrypoint: string, targetPath: 
     });
   });
 
-  // Process each type one by one to avoid memory buildup
   for (const typedoc of types) {
-    // Generate the structured MDX format
-    const mdxContent = generateStructuredMDX(typedoc);
+    const mdxContent = generateStructuredMDX(typedoc, __templates);
 
     let utilsPath = path.join(targetPath, 'utils');
+    const frameworks = ['core', 'react', 'angular', 'vue'];
 
-    if (typedoc.source.startsWith(path.join('packages', 'core'))) {
-      utilsPath = path.join(utilsPath, 'core');
-    } else if (typedoc.source.startsWith(path.join('packages', 'react'))) {
-      utilsPath = path.join(utilsPath, 'react');
-    } else if (typedoc.source.startsWith(path.join('packages', 'angular'))) {
-      utilsPath = path.join(utilsPath, 'angular');
-    } else if (typedoc.source.startsWith(path.join('packages', 'vue'))) {
-      utilsPath = path.join(utilsPath, 'vue');
+    for (const framework of frameworks) {
+      if (typedoc.source.includes(path.join('packages', framework))) {
+        utilsPath = path.join(utilsPath, framework);
+        break;
+      }
     }
 
     await fs.ensureDir(utilsPath);
@@ -139,16 +136,12 @@ export async function generateDocsForEntrypoint(entrypoint: string, targetPath: 
       mdxContent
     );
 
-    // Help garbage collection
     if (global.gc) {
       global.gc();
     }
   }
 }
 
-/**
- * Convert a string from PascalCase or camelCase to kebab-case
- */
 function toKebabCase(str: string): string {
   return str
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
@@ -156,77 +149,55 @@ function toKebabCase(str: string): string {
     .toLowerCase();
 }
 
-function generateStructuredMDX(typedoc: TypeDocTarget): string {
-  // Convert the name to kebab case with ix- prefix
+function convertTagsToTSXElements(tags: Array<{ tag: string; text?: string }>) {
+  return tags.map(tag => {
+    if (tag.tag === 'deprecated') {
+      return {
+        rTag: `<DeprecatedTag message={\`${escapeBackticks(tag.text || '')}\`} />`
+      };
+    } else if (tag.tag === 'since') {
+      return {
+        rTag: `<SinceTag version={\`${escapeBackticks(tag.text || '')}\`} />`
+      };
+    }
+    return null;
+  }).filter(Boolean);
+}
+
+function generateStructuredMDX(typedoc: TypeDocTarget, templatesPath: string): string {
+  const propertyTemplate = fs.readFileSync(path.join(templatesPath, 'property-table.mustache'), 'utf-8');
+  const apiTemplate = fs.readFileSync(path.join(templatesPath, 'api.mustache'), 'utf-8');
+
   const kebabName = `ix-${toKebabCase(typedoc.name)}`;
-
-  // Determine heading level based on the source path
   const isAngular = typedoc.source.includes('angular');
-  const apiHeading = '### API';
 
-  // Start with imports
-  const mdxParts = [
-    `import {SinceTag, DeprecatedTag} from '@site/src/components/UI/Tags';`,
-    `import FrameworkSelection from '@site/src/components/UI/FrameworkSelection';`,
-    `import ApiTable from '@site/src/components/ApiTable';`,
-    '',
-    `${apiHeading} for ${kebabName}${isAngular ? ' (Angular)' : ''}`,
-    '',
-    `#### Properties`,
-    ''
-  ];
-
-  // Process each property
-  typedoc.properties.forEach(prop => {
-    mdxParts.push(`<ApiTable>`);
-
-    // Header with optional tags
-    mdxParts.push(`  <ApiTable.PropertyHeader name="${prop.name}">`);
-
-    // Add tags if present
-    prop.tags.forEach(tag => {
-      if (tag.tag === 'deprecated') {
-        mdxParts.push(`      <DeprecatedTag message={\`${escapeBackticks(tag.text || '')}\`} />`);
-      } else if (tag.tag === 'since') {
-        mdxParts.push(`      <SinceTag version={\`${escapeBackticks(tag.text || '')}\`} />`);
-      }
-    });
-
-    mdxParts.push(`  </ApiTable.PropertyHeader>`);
-    mdxParts.push('');
-
-    // Description
-    mdxParts.push(`  <ApiTable.Text name="Description">`);
-    mdxParts.push(`    { \`${escapeBackticks(prop.comment)}\` }`);
-    mdxParts.push(`  </ApiTable.Text>`);
-    mdxParts.push('');
-
-    // Attribute
-    mdxParts.push(`  <ApiTable.Code name="Attribute">`);
-    mdxParts.push(`    {\`${prop.name}\`}`);
-    mdxParts.push(`  </ApiTable.Code>`);
-    mdxParts.push('');
-
-    // Type
-    mdxParts.push(`  <ApiTable.Code name="Type">`);
-    mdxParts.push(`   {\`${escapeBackticks(prop.type)}\`}`);
-    mdxParts.push(`  </ApiTable.Code>`);
-    mdxParts.push('');
-
-    // Default
-    mdxParts.push(`  <ApiTable.Code name="Default">`);
-    mdxParts.push(`    {\`${escapeBackticks(prop.defaultValue || '')}\`}`);
-    mdxParts.push(`  </ApiTable.Code>`);
-    mdxParts.push('');
-
-    mdxParts.push(`</ApiTable>`);
+  const formattedProps = typedoc.properties.map(prop => {
+    return {
+      name: prop.name,
+      docs: escapeBackticks(prop.comment),
+      type: escapeBackticks(prop.type),
+      default: prop.defaultValue ? escapeBackticks(prop.defaultValue) : undefined,
+      attr: prop.name,
+      docsTags: convertTagsToTSXElements(prop.tags)
+    };
   });
 
-  return mdxParts.join('\n');
+  const propertyOutput = Mustache.render(propertyTemplate, {
+    tag: kebabName,
+    props: formattedProps
+  });
+
+  return Mustache.render(apiTemplate, {
+    tag: kebabName,
+    hasProps: typedoc.properties.length > 0,
+    hasEvents: false,
+    hasSlots: false,
+    properties: propertyOutput,
+    events: '',
+    slots: ''
+  });
 }
-/**
- * Helper function to escape backticks in strings
- */
+
 function escapeBackticks(str: string): string {
   if (!str) return '';
   return str.replace(/`/g, '\\`');
