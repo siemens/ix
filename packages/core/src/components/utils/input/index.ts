@@ -93,7 +93,7 @@ export interface IxInputFieldComponent<T = string>
   getNativeInputElement(): Promise<HTMLInputElement | HTMLTextAreaElement>;
 
   // Annotate as @Method()
-  focusInput(): void;
+  focusInput(): Promise<void>;
 }
 
 export function isIxInputFieldComponent<T>(
