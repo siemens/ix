@@ -14,8 +14,8 @@
 
   padding: var(--default-content-padding);
   padding-top: 0;
-  padding-bottom: 0px;
-  margin: 0 0 var(--ifm-paragraph-margin-bottom);
+  padding-bottom: var(--ifm-paragraph-margin-bottom);
+  margin: 0;
 }
 
 .sticky_h1 {
@@ -43,6 +43,12 @@
   padding-right: var(--default-content-padding-left);
   z-index: 2;
   background-color: var(--ix-docs-hero-background);
+
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.Scrolled {
+  box-shadow: 0px 10px 30px -10px var(--theme-color-shadow-1);
 }
 
 .Tabs::before {
