@@ -84,10 +84,8 @@ export class DatePicker implements IxDatePickerComponent {
 
     this.currFromDate = date;
 
-    if (this.currFromDate?.isValid) {
-      this.selectedYear = this.currFromDate.year;
-      this.selectedMonth = this.currFromDate.month - 1;
-    }
+    this.selectedYear = this.currFromDate.year;
+    this.selectedMonth = this.currFromDate.month - 1;
   }
 
   /**
@@ -108,10 +106,8 @@ export class DatePicker implements IxDatePickerComponent {
 
     this.currToDate = date;
 
-    if (this.currToDate?.isValid) {
-      this.selectedYear = this.currToDate.year;
-      this.selectedMonth = this.currToDate.month - 1;
-    }
+    this.selectedYear = this.currToDate.year;
+    this.selectedMonth = this.currToDate.month - 1;
   }
 
   /**
