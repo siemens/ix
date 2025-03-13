@@ -28,7 +28,7 @@
     "@mdx-js/react": "^3.0.0",
     "@siemens/ix": "workspace:*",
     "@siemens/ix-echarts": "workspace:*",
-    "@siemens/ix-icons": "0.0.0-pr-72-20250227071449",
+    "@siemens/ix-icons": "3.0.0-alpha.0",
     "@siemens/ix-react": "workspace:*",
     "@stackblitz/sdk": "^1.11.0",
     "angular-test-app": "workspace:*",
