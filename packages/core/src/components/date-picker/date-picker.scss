@@ -106,7 +106,7 @@
   .grid {
     display: grid;
     grid-template-columns: repeat(7, 40px);
-    grid-template-rows: repeat(6, 40px);
+    grid-template-rows: repeat(7, 40px);
 
     align-items: center;
     justify-items: center;
@@ -115,7 +115,6 @@
 
     &--show-week-numbers {
       grid-template-columns: 24px repeat(7, 40px);
-      grid-template-rows: repeat(7, 40px);
     }
 
     .calendar-item {

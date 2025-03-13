@@ -729,6 +729,7 @@ export namespace Components {
         "range": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
         "showWeekNumbers": boolean;
         /**
@@ -821,6 +822,7 @@ export namespace Components {
         "showTextAsTooltip"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
         "showWeekNumbers": boolean;
         /**
@@ -890,6 +892,7 @@ export namespace Components {
         "range": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
         "showWeekNumbers": boolean;
         "standaloneAppearance": boolean;
@@ -988,6 +991,7 @@ export namespace Components {
         "showTimeReference": boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
         "showWeekNumbers": boolean;
         /**
@@ -5929,6 +5933,7 @@ declare namespace LocalJSX {
         "range"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
         "showWeekNumbers"?: boolean;
         /**
@@ -6016,6 +6021,7 @@ declare namespace LocalJSX {
         "showTextAsTooltip"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
         "showWeekNumbers"?: boolean;
         /**
@@ -6101,6 +6107,7 @@ declare namespace LocalJSX {
         "range"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
         "showWeekNumbers"?: boolean;
         "standaloneAppearance"?: boolean;
@@ -6219,6 +6226,7 @@ declare namespace LocalJSX {
         "showTimeReference"?: boolean;
         /**
           * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
          */
         "showWeekNumbers"?: boolean;
         /**
