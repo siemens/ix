@@ -8,9 +8,23 @@ import useSearchParams from '@site/src/utils/hooks/useSearchParams';
 import ReadMore from '@site/src/components/ReadMore';
 import { useCallback, useEffect, useState } from 'react';
 import { RedirectTag } from '@site/src/components/UI/Tags';
+import { useScrollPosition } from '@docusaurus/theme-common/internal';
 
 function Tabs({ children }) {
-  return <div className={styles.Tabs}>{children}</div>;
+  const [isScrolling, setIsScrolling] = useState(false);
+  useScrollPosition(({ scrollY }) => {
+    setIsScrolling(scrollY > 50);
+  }, []);
+
+  return (
+    <div
+      className={clsx(styles.Tabs, {
+        [styles.Scrolled]: isScrolling,
+      })}
+    >
+      {children}
+    </div>
+  );
 }
 
 function Tab(props: { label: string; value: string }) {

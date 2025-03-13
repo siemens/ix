@@ -43,6 +43,12 @@
   padding-right: var(--default-content-padding-left);
   z-index: 2;
   background-color: var(--ix-docs-hero-background);
+
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.Scrolled {
+  box-shadow: 0px 10px 30px -10px var(--theme-color-shadow-1);
 }
 
 .Tabs::before {

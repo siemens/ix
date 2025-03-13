@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Layout from '@theme-original/DocItem/Layout';
 import type LayoutType from '@theme/DocItem/Layout';
 import type { WrapperProps } from '@docusaurus/types';
@@ -15,7 +15,6 @@ import DocItemTOCDesktop from '@theme/DocItem/TOC/Desktop';
 import styles from './styles.module.css';
 import { useSubPageHook } from '@site/src/components/theme/QueryStringContent';
 import { useHistory } from '@docusaurus/router';
-
 type Props = WrapperProps<typeof LayoutType>;
 
 export default function LayoutWrapper(props: Props): JSX.Element {
