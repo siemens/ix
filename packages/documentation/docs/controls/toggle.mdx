@@ -1,59 +1,19 @@
-import Props from './../auto-generated/ix-toggle/props.md';
-import Events from './../auto-generated/ix-toggle/events.md';
+import Tags from '@site/docs/auto-generated/ix-toggle/tags.md';
+import LinkableDocsTabs from '@site/src/components/LinkableDocsTabs';
 
-import Playground from '@site/src/components/PlaygroundV3';
+import DocsUx from './_forms-toggle_styleguide.md';
+import DocsCode from './_forms-toggle_code.md';
 
-## Development
+# Toggle switch
 
-<!-- introduction start -->
-Toggle switches enable users to toggle between an on and off state.
-<!-- introduction end -->
+<div className="d-flex gap-2 align-items-center">
+  <Tags />
+</div>
 
-### Basic
+<br />
+<br />
 
-<Playground
-  name="toggle"
-  >
-</Playground>
-
-### Custom label
-
-<Playground
-  name="toggle-custom-label"
-  hideInitalCodePreview
-  >
-</Playground>
-
-### Disabled
-
-<Playground
-  name="toggle-disabled"
-  hideInitalCodePreview
-  >
-</Playground>
-
-### Checked
-
-<Playground
-  name="toggle-checked"
-  hideInitalCodePreview
-  >
-</Playground>
-
-### Indeterminate
-
-<Playground
-name="toggle-indeterminate"
-hideInitalCodePreview
->
-</Playground>
-
-### API
-
-#### Properties
-
-<Props />
-
-#### Events
-
-<Events />
+<LinkableDocsTabs>
+  <DocsUx />
+  <DocsCode />
+</LinkableDocsTabs>

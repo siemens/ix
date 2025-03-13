@@ -10,7 +10,7 @@ Pills typically contain a concise label and sometimes an icon. They are not clic
 
 ### Variants
 
-With our pill variants, you can apply different colors based on their purpose, importance or context. We use chip variants to show class, status and levels of importance. The custom variant is often used for pills that visualize a high number of different categories.
+With our pill variants, you can apply different colors based on their purpose, importance or context. We use pill variants to show class, status and levels of importance. The custom variant is often used for pills that visualize a high number of different categories.
 
 Pill variants:
 
@@ -28,6 +28,7 @@ Pill variants:
 - **Icon**: Pills can include a close icon within the element which is positioned before the pill label.
 - **Outline**: Use for lower visual emphasis.
 - **Width**: Pill width can be set to a specific value, but content length normally determines pill width with a minimum width of '2rem'.
+- **Tooltip text**: Provide a specific text to be displayed as the tooltip or set the attribute without a specific value to display the pill's text content.
 
 ### Behavior
 

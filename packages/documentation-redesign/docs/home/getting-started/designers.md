@@ -8,9 +8,9 @@ import {Card, CardList} from '@site/src/components/Card';
 
 <CardList>
   <Card label="Design kits" isPrimary={true} size="big" link="design-kit" icon="ink-pen" />
-  <Card label="For developers" link="getting-started" icon="script"/>
-  <Card label="Icon set" link="icon-library/icons" icon="edit-plant" />
-  <Card label="Styles" link="theming/colors" icon="light-dark"/>
-  <Card label="Font system" link="theming/fonts" icon="text"/>
-  <Card label="Components" link="controls/application-frame/application" icon="configuration" />
+  <Card label="For developers" link="home/getting-started/developers" icon="script"/>
+  <Card label="Icon set" link="icons/icon-library" icon="edit-plant" />
+  <Card label="Styles" link="styles/colors" icon="light-dark"/>
+  <Card label="Font system" link="styles/typography" icon="text"/>
+  <Card label="Components" link="components/application" icon="configuration" />
 </CardList>

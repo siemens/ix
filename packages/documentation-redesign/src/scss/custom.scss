@@ -90,3 +90,18 @@ ix-tooltip {
 .all-unset {
   all: unset;
 }
+
+@media (pointer: fine) {
+  .thin-scrollbar {
+    scrollbar-width: thin;
+  }
+
+  @supports not (-moz-appearance: none) {
+    .thin-scrollbar {
+      scrollbar-width: auto;
+    }
+  }
+}
+
+
+

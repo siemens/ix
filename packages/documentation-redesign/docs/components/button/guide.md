@@ -56,5 +56,5 @@ Buttons have six states: Default, hover, active, disabled, loading and focused. 
 
 - [Dropdown button](../dropdown-button)
 - [Split button](../split-button)
-- [Toggle button](../toggle-buttons)
+- [Toggle button](../toggle-button)
 - [Modal](../modal)
