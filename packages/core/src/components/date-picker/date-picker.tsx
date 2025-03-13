@@ -32,8 +32,8 @@ import {
 } from '@siemens/ix-icons/icons';
 
 export type DateChangeEvent = {
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
 };
 
 interface CalendarWeek {
@@ -350,8 +350,7 @@ export class DatePicker implements IxDatePickerComponent {
 
   private async onDone() {
     const date = await this.getCurrentDate();
-    // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-    this.dateSelect.emit(date as DateChangeEvent);
+    this.dateSelect.emit(date);
   }
 
   private calculateCalendar() {
@@ -545,11 +544,9 @@ export class DatePicker implements IxDatePickerComponent {
 
   private onDateChange() {
     this.getCurrentDate().then((date) => {
-      // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-      this.dateChange.emit(date as DateChangeEvent);
+      this.dateChange.emit(date);
       if (this.range) {
-        // TODO (IX-1870): refactor event signatures to match internal logic with undefined values
-        this.dateRangeChange.emit(date as DateChangeEvent);
+        this.dateRangeChange.emit(date);
       }
     });
   }

@@ -815,7 +815,7 @@ export namespace Components {
         /**
           * value of the input element
          */
-        "value": string;
+        "value"?: string;
         /**
           * warning text below the input field
          */
@@ -3748,7 +3748,7 @@ declare global {
         new (): HTMLIxDateDropdownElement;
     };
     interface HTMLIxDateInputElementEventMap {
-        "valueChange": string;
+        "valueChange": string | undefined;
         "validityStateChange": DateInputValidityState;
         "ixFocus": void;
         "ixBlur": void;
@@ -5822,7 +5822,7 @@ declare namespace LocalJSX {
         /**
           * Input change event.
          */
-        "onValueChange"?: (event: IxDateInputCustomEvent<string>) => void;
+        "onValueChange"?: (event: IxDateInputCustomEvent<string | undefined>) => void;
         /**
           * placeholder of the input element
          */

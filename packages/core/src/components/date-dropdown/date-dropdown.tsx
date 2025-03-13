@@ -31,14 +31,14 @@ import { iconHistory } from '@siemens/ix-icons/icons';
 export type DateDropdownOption = {
   id: string;
   label: string;
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
 };
 
 export type DateRangeChangeEvent = {
   id: string;
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
 };
 
 /**
@@ -219,8 +219,8 @@ export class DateDropdown
 
   @State() private selectedDateRangeId: LiteralStringUnion<'custom'> = '';
   @State() private currentRangeValue?: {
-    from: string;
-    to: string;
+    from?: string;
+    to?: string;
     id: string;
   };
   private readonly triggerRef = makeRef<HTMLElement>();
@@ -281,7 +281,7 @@ export class DateDropdown
   }
 
   private onDateSelect(
-    rangeValue: { from: string; to: string; id: string },
+    rangeValue: { from?: string; to?: string; id: string },
     preserveDropdown = true
   ) {
     this.dateRangeChange.emit(rangeValue);

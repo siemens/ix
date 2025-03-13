@@ -632,7 +632,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
   /**
    * Input change event.
    */
-  valueChange: EventEmitter<CustomEvent<string>>;
+  valueChange: EventEmitter<CustomEvent<string | undefined>>;
   /**
    * Validation state change event.
    */

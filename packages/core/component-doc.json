@@ -4756,11 +4756,11 @@
       "events": [
         {
           "event": "dateRangeChange",
-          "detail": "{ id: string; from: string; to: string; }",
+          "detail": "{ id: string; from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateRangeChangeEvent",
-            "resolved": "{ id: string; from: string; to: string; }",
+            "resolved": "{ id: string; from?: string; to?: string; }",
             "references": {
               "DateRangeChangeEvent": {
                 "location": "local",
@@ -5198,7 +5198,7 @@
               "type": "string"
             }
           ],
-          "optional": false,
+          "optional": true,
           "required": false,
           "getter": false,
           "setter": false
@@ -5303,7 +5303,7 @@
           "detail": "string",
           "bubbles": true,
           "complexType": {
-            "original": "string",
+            "original": "string | undefined",
             "resolved": "string",
             "references": {}
           },
@@ -5693,11 +5693,11 @@
       "events": [
         {
           "event": "dateChange",
-          "detail": "{ from: string; to: string; }",
+          "detail": "{ from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateChangeEvent",
-            "resolved": "{ from: string; to: string; }",
+            "resolved": "{ from?: string; to?: string; }",
             "references": {
               "DateChangeEvent": {
                 "location": "local",
@@ -5718,11 +5718,11 @@
         },
         {
           "event": "dateRangeChange",
-          "detail": "{ from: string; to: string; }",
+          "detail": "{ from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateChangeEvent",
-            "resolved": "{ from: string; to: string; }",
+            "resolved": "{ from?: string; to?: string; }",
             "references": {
               "DateChangeEvent": {
                 "location": "local",
@@ -5743,11 +5743,11 @@
         },
         {
           "event": "dateSelect",
-          "detail": "{ from: string; to: string; }",
+          "detail": "{ from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateChangeEvent",
-            "resolved": "{ from: string; to: string; }",
+            "resolved": "{ from?: string; to?: string; }",
             "references": {
               "DateChangeEvent": {
                 "location": "local",
@@ -6297,11 +6297,11 @@
       "events": [
         {
           "event": "dateChange",
-          "detail": "string | { from: string; to: string; }",
+          "detail": "string | { from?: string; to?: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateTimeDateChangeEvent",
-            "resolved": "string | { from: string; to: string; }",
+            "resolved": "string | { from?: string; to?: string; }",
             "references": {
               "DateTimeDateChangeEvent": {
                 "location": "local",
@@ -6322,11 +6322,11 @@
         },
         {
           "event": "dateSelect",
-          "detail": "{ from: string; to: string; time: string; }",
+          "detail": "{ from?: string; to?: string; time: string; }",
           "bubbles": true,
           "complexType": {
             "original": "DateTimeSelectEvent",
-            "resolved": "{ from: string; to: string; time: string; }",
+            "resolved": "{ from?: string; to?: string; time: string; }",
             "references": {
               "DateTimeSelectEvent": {
                 "location": "local",
@@ -22627,12 +22627,12 @@
       "path": "src/components/date-time-card/date-time-card.tsx"
     },
     "src/components/date-dropdown/date-dropdown.tsx::DateDropdownOption": {
-      "declaration": "{\n  id: string;\n  label: string;\n  from: string;\n  to: string;\n}",
+      "declaration": "{\n  id: string;\n  label: string;\n  from?: string;\n  to?: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
     "src/components/date-dropdown/date-dropdown.tsx::DateRangeChangeEvent": {
-      "declaration": "{\n  id: string;\n  from: string;\n  to: string;\n}",
+      "declaration": "{\n  id: string;\n  from?: string;\n  to?: string;\n}",
       "docstring": "",
       "path": "src/components/date-dropdown/date-dropdown.tsx"
     },
@@ -22642,7 +22642,7 @@
       "path": "src/components/date-input/date-input.tsx"
     },
     "src/components/date-picker/date-picker.tsx::DateChangeEvent": {
-      "declaration": "{\n  from: string;\n  to: string;\n}",
+      "declaration": "{\n  from?: string;\n  to?: string;\n}",
       "docstring": "",
       "path": "src/components/date-picker/date-picker.tsx"
     },
@@ -22652,7 +22652,7 @@
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
     "src/components/datetime-picker/datetime-picker.tsx::DateTimeSelectEvent": {
-      "declaration": "{\n  from: string;\n  to: string;\n  time: string;\n}",
+      "declaration": "{\n  from?: string;\n  to?: string;\n  time: string;\n}",
       "docstring": "",
       "path": "src/components/datetime-picker/datetime-picker.tsx"
     },
