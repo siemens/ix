@@ -38,6 +38,7 @@ function Search(props: { onChange: (value: string) => void }) {
           const value = input.target.value;
           props.onChange(value);
         }}
+        className='ix-form-control'
       />
     </IxInputGroup>
   );
