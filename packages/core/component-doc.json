@@ -4641,7 +4641,12 @@
           "attr": "show-week-numbers",
           "reflectToAttr": false,
           "docs": "Shows week numbers displayed on the left side of the date picker",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -5183,7 +5188,12 @@
           "attr": "show-week-numbers",
           "reflectToAttr": false,
           "docs": "Shows week numbers displayed on the left side of the date picker",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -5707,7 +5717,12 @@
           "attr": "show-week-numbers",
           "reflectToAttr": false,
           "docs": "Shows week numbers displayed on the left side of the date picker",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
@@ -6342,7 +6357,12 @@
           "attr": "show-week-numbers",
           "reflectToAttr": false,
           "docs": "Shows week numbers displayed on the left side of the date picker",
-          "docsTags": [],
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
           "default": "false",
           "values": [
             {
