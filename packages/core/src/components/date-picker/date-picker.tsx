@@ -76,9 +76,13 @@ export class DatePicker implements IxDatePickerComponent {
 
   @Watch('from')
   watchFromPropHandler(newValue: string) {
-    this.currFromDate = newValue
-      ? DateTime.fromFormat(newValue, this.format)
-      : undefined;
+    const date = this.formatDateString(newValue);
+
+    if (!date) {
+      return;
+    }
+
+    this.currFromDate = date;
 
     if (this.currFromDate?.isValid) {
       this.selectedYear = this.currFromDate.year;
@@ -96,9 +100,13 @@ export class DatePicker implements IxDatePickerComponent {
 
   @Watch('to')
   watchToPropHandler(newValue: string) {
-    this.currToDate = newValue
-      ? DateTime.fromFormat(newValue, this.format)
-      : undefined;
+    const date = this.formatDateString(newValue);
+
+    if (!date) {
+      return;
+    }
+
+    this.currToDate = date;
 
     if (this.currToDate?.isValid) {
       this.selectedYear = this.currToDate.year;
@@ -301,6 +309,16 @@ export class DatePicker implements IxDatePickerComponent {
 
   private getDateTimeNow() {
     return DateTime.fromISO(this.today);
+  }
+
+  private formatDateString(dateString: string): DateTime | undefined {
+    const date = DateTime.fromFormat(dateString, this.format);
+
+    if (date && date.isValid) {
+      return date;
+    }
+
+    return undefined;
   }
 
   onDayBlur() {
