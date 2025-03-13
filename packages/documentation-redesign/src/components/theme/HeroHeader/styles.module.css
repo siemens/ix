@@ -14,8 +14,8 @@
 
   padding: var(--default-content-padding);
   padding-top: 0;
-  padding-bottom: 0px;
-  margin: 0 0 var(--ifm-paragraph-margin-bottom);
+  padding-bottom: var(--ifm-paragraph-margin-bottom);
+  margin: 0;
 }
 
 .sticky_h1 {
