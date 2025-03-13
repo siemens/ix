@@ -962,6 +962,9 @@ export class Select implements IxInputFieldComponent<string | string[]> {
                       ref={(ref) => {
                         if (this.editable) this.dropdownWrapperRef(ref);
                       }}
+                      onClick={() => {
+                        this.dropdownShow = !this.dropdownShow;
+                      }}
                     ></ix-icon-button>
                   )}
                 </div>
