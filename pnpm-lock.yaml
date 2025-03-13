@@ -63,7 +63,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.7.0
+        specifier: ~3.0.0
         version: link:../core
     devDependencies:
       '@playwright/test':
@@ -115,7 +115,7 @@ importers:
   packages/angular:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.7.0
+        specifier: ~3.0.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -511,7 +511,7 @@ importers:
         version: 3.2.1
       rimraf:
         specifier: ^3.0.2
-        version: 5.0.10
+        version: 3.0.2
       tar:
         specifier: ^6.2.0
         version: 6.2.0
@@ -541,7 +541,7 @@ importers:
         version: 14.1.1
       rimraf:
         specifier: ^3.0.2
-        version: 5.0.10
+        version: 3.0.2
       rollup:
         specifier: ^2.78.1
         version: 2.79.1
@@ -756,7 +756,7 @@ importers:
   packages/react:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.7.0
+        specifier: ~3.0.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -815,7 +815,7 @@ importers:
         version: 7.48.2(react@18.2.0)
       rimraf:
         specifier: ^3.0.2
-        version: 5.0.10
+        version: 3.0.2
       rollup:
         specifier: ^2.78.1
         version: 2.79.1
@@ -1008,7 +1008,7 @@ importers:
   packages/vue:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.7.0
+        specifier: ~3.0.0
         version: link:../core
       '@siemens/ix-icons':
         specifier: ^2.0.0
@@ -1031,7 +1031,7 @@ importers:
         version: 9.18.0(eslint@8.21.0)
       rimraf:
         specifier: ^3.0.2
-        version: 5.0.10
+        version: 3.0.2
       typescript:
         specifier: ^4.5.4
         version: 4.9.5
