@@ -33,7 +33,7 @@ export type TypeDocProperty = {
   tags: Array<{ tag: string; text?: string }>;
 };
 
-export async function generateDocsForEntrypoint(entrypoint: string, targetPath: string) {
+async function generateDocsForEntrypoint(entrypoint: string, targetPath: string) {
   const __root = path.resolve(__dirname, '../');
   const __templates = path.join(__dirname, 'templates');
   const tsconfig = path.join(
