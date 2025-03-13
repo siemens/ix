@@ -60,7 +60,7 @@ importers:
   packages/aggrid:
     dependencies:
       '@siemens/ix':
-        specifier: ~2.7.0
+        specifier: ^2.7.0 || ^3.0.0
         version: link:../core
     devDependencies:
       '@playwright/test':
