@@ -16,7 +16,7 @@ export type ApiTableProps = {
   readonly children?: React.ReactNode;
   readonly name: string;
   readonly type?: 'event' | 'property' | 'slot';
-  readonly onlyFramework?: boolean;
+  readonly singleFramework?: boolean;
 };
 
 const toKebabCase = (str: string) => {
@@ -44,7 +44,7 @@ function ApiTable({ children, id }) {
   );
 }
 
-function PropertyHeader({ children, name, type, onlyFramework }: ApiTableProps) {
+function PropertyHeader({ children, name, type, singleFramework }: ApiTableProps) {
   const { framework } = useFramework();
 
   let propertyName = name;
@@ -66,7 +66,7 @@ function PropertyHeader({ children, name, type, onlyFramework }: ApiTableProps) 
       </div>
       <div className="flex items-center ml-auto gap-2">
         {children}
-        {onlyFramework ? '' : <FrameworkSelection />}
+        {singleFramework ? '' : <FrameworkSelection />}
       </div>
     </div>
   );

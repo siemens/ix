@@ -130,4 +130,4 @@ jobs:
         run: pnpm exec playwright install chromium --with-deps
 
       - name: Test
-        run: pnpm run test --cache-dir=.turbo --filter '!documentation-redesign'
+        run: pnpm run test --cache-dir=.turbo --filter !\documentation

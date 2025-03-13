@@ -16,7 +16,6 @@ import {
   ReferenceType,
   TSConfigReader,
   UnionType,
-  DeclarationReflection,
 } from 'typedoc';
 
 export type TypeDocTarget = {
@@ -172,12 +171,11 @@ function generateStructuredMDX(typedoc: TypeDocTarget, templatesPath: string, fr
   const apiTemplate = fs.readFileSync(path.join(templatesPath, 'api.mustache'), 'utf-8');
 
   const kebabName = `ix-${toKebabCase(typedoc.name)}`;
-  const isAngular = typedoc.source.includes('angular');
 
   const formattedProps = typedoc.properties.map(prop => {
     return {
       name: prop.name,
-      onlyFramework: framework,
+      singleFramework: framework,
       docs: escapeBackticks(prop.comment),
       type: escapeBackticks(prop.type),
       default: prop.defaultValue ? escapeBackticks(prop.defaultValue) : undefined,
@@ -197,7 +195,7 @@ function generateStructuredMDX(typedoc: TypeDocTarget, templatesPath: string, fr
     hasEvents: false,
     hasSlots: false,
     singleFramework: framework,
-    framework: framework,
+    framework: framework?.charAt(0).toUpperCase() + framework?.slice(1),
     properties: propertyOutput,
     events: '',
     slots: ''
