@@ -1,5 +1,5 @@
 ---
-'@siemens/ix': minor
+'@siemens/ix': patch
 ---
 
-Refactor return type of `focusInput` method of `IxInputFieldComponent` to include type `Promise<void>`.
+Refactor return type of `focusInput` method of `IxInputFieldComponent` interface to `Promise<void>`.
