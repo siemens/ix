@@ -68,6 +68,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build
+        run: pnpm build --cache-dir=.turbo --filter \!documentation
+
       - name: Publish to npm + GitHub
         id: changesets
         # Only publish if we're still in pre mode and the last commit was
