@@ -28,7 +28,7 @@ Siemens Industrial Experience is an open-source design system for designers and 
 Siemens Industrial Experience provides and maintains a Figma design kit containing all components, design foundations and assets. Multiple code implementations are offered and maintained by our team. With guidelines on UX writing, pattern usage and more, Siemens Industrial Experience supports its users along the way. The comprehensive icon set contains more than 500 icons and is constantly growing.
 
 <CardList>
-  <Card link="design-kit">Go to design kits</Card>
+  <Card link="getting-started-for-designers">Go to design kits</Card>
   <Card link="icon-library/icons">Go to icon set</Card>
 </CardList>
 

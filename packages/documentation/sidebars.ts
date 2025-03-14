@@ -64,10 +64,6 @@ const sidebars: SidebarsConfig = {
           type: 'doc',
           id: 'getting-started-for-designers',
         },
-        {
-          type: 'doc',
-          id: 'design-kit/design-kit',
-        },
       ],
     },
     {
