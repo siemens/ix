@@ -721,6 +721,11 @@ export namespace Components {
          */
         "range": boolean;
         /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers": boolean;
+        /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
         "to": string;
@@ -809,6 +814,11 @@ export namespace Components {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers": boolean;
+        /**
           * valid text below the input field
          */
         "validText"?: string;
@@ -863,6 +873,11 @@ export namespace Components {
           * If true a date-range can be selected (from/to).
          */
         "range": boolean;
+        /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers": boolean;
         "standaloneAppearance": boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
@@ -945,6 +960,11 @@ export namespace Components {
           * @since 1.1.0
          */
         "showTimeReference": boolean;
+        /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers": boolean;
         /**
           * Select time with format string
           * @since 1.1.0
@@ -5757,6 +5777,11 @@ declare namespace LocalJSX {
          */
         "range"?: boolean;
         /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers"?: boolean;
+        /**
           * Picker date. If the picker is in range mode this property is the end date. If the picker is not in range mode leave this value `null`  Format is based on `format`
          */
         "to"?: string;
@@ -5840,6 +5865,11 @@ declare namespace LocalJSX {
          */
         "showTextAsTooltip"?: boolean;
         /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers"?: boolean;
+        /**
           * valid text below the input field
          */
         "validText"?: string;
@@ -5905,6 +5935,11 @@ declare namespace LocalJSX {
           * If true a date-range can be selected (from/to).
          */
         "range"?: boolean;
+        /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers"?: boolean;
         "standaloneAppearance"?: boolean;
         /**
           * The selected end date. If the the date-picker-rework is not in range mode this property has no impact. Format has to match the `format` property.
@@ -6002,6 +6037,11 @@ declare namespace LocalJSX {
           * @since 1.1.0
          */
         "showTimeReference"?: boolean;
+        /**
+          * Shows week numbers displayed on the left side of the date picker
+          * @since 3.0.0
+         */
+        "showWeekNumbers"?: boolean;
         /**
           * Select time with format string
           * @since 1.1.0

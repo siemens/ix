@@ -144,6 +144,13 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
     'Date is not valid';
 
   /**
+   * Shows week numbers displayed on the left side of the date picker
+   *
+   * @since 3.0.0
+   */
+  @Prop() showWeekNumbers = false;
+
+  /**
    * Input change event.
    */
   @Event({ cancelable: false }) valueChange!: EventEmitter<string | undefined>;
@@ -482,6 +489,7 @@ export class DateInput implements IxInputFieldComponent<string | undefined> {
               const { from } = event.detail;
               this.onInput(from);
             }}
+            showWeekNumbers={this.showWeekNumbers}
           ></ix-date-picker>
         </ix-dropdown>
       </Host>

@@ -148,6 +148,14 @@ export class DatetimePicker
   @Prop() locale?: string;
 
   /**
+   * Shows week numbers displayed on the left side of the date picker
+   *
+   * @since 3.0.0
+   */
+  @Prop() showWeekNumbers = false;
+
+  /**
+
    * Time change
    *
    * @since 1.1.0
@@ -217,6 +225,7 @@ export class DatetimePicker
                 weekStartIndex={this.weekStartIndex}
                 standaloneAppearance={false}
                 locale={this.locale}
+                showWeekNumbers={this.showWeekNumbers}
               ></ix-date-picker>
             </ix-col>
 

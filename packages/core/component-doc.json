@@ -4632,6 +4632,35 @@
           "setter": false
         },
         {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "to",
           "type": "string",
           "complexType": {
@@ -5157,6 +5186,35 @@
           "setter": false
         },
         {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "validText",
           "type": "string",
           "complexType": {
@@ -5598,6 +5656,35 @@
           "docs": "If true a date-range can be selected (from/to).",
           "docsTags": [],
           "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
           "values": [
             {
               "type": "boolean"
@@ -6151,6 +6238,35 @@
           "setter": false
         },
         {
+          "name": "showWeekNumbers",
+          "type": "boolean",
+          "complexType": {
+            "original": "boolean",
+            "resolved": "boolean",
+            "references": {}
+          },
+          "mutable": false,
+          "attr": "show-week-numbers",
+          "reflectToAttr": false,
+          "docs": "Shows week numbers displayed on the left side of the date picker",
+          "docsTags": [
+            {
+              "name": "since",
+              "text": "3.0.0"
+            }
+          ],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false,
+          "getter": false,
+          "setter": false
+        },
+        {
           "name": "time",
           "type": "string",
           "complexType": {
@@ -6356,7 +6472,7 @@
           },
           "cancelable": true,
           "composed": true,
-          "docs": "Time change",
+          "docs": "\nTime change",
           "docsTags": [
             {
               "name": "since",

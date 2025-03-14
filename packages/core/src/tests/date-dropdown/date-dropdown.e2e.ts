@@ -50,4 +50,14 @@ regressionTest.describe('date dropdown', () => {
     await expect(dropdown).toHaveClass(/show/);
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('show week numbers', async ({ page }) => {
+    await page.goto('date-dropdown/show-week-numbers');
+    const dateDropdown = page.locator('ix-date-dropdown');
+    await dateDropdown.click();
+    const dropdown = dateDropdown.locator('ix-dropdown[data-date-dropdown]');
+
+    await expect(dropdown).toHaveClass(/show/);
+    await expect(page).toHaveScreenshot();
+  });
 });
