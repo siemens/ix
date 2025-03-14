@@ -8,15 +8,15 @@
  */
 
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-group></ix-group>`);
   const group = page.locator('ix-group');
   await expect(group).toHaveClass(/hydrated/);
 });
 
-test('hide expand icon initial', async ({ mount, page }) => {
+regressionTest('hide expand icon initial', async ({ mount, page }) => {
   await mount(`
     <ix-group>
     </ix-group>
@@ -35,7 +35,7 @@ test('hide expand icon initial', async ({ mount, page }) => {
   await expect(expandIcon).toBeVisible();
 });
 
-test('show expand icon initial', async ({ mount, page }) => {
+regressionTest('show expand icon initial', async ({ mount, page }) => {
   await mount(`
     <ix-group>
       <ix-group-item>Item 1</ix-group-item>
@@ -57,93 +57,96 @@ test('show expand icon initial', async ({ mount, page }) => {
   await expect(expandIcon).not.toBeVisible();
 });
 
-test('suppress selection should not stop event propagation', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'suppress selection should not stop event propagation',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-group>
       <ix-group-item suppress-selection>Item 1</ix-group-item>
       <ix-group-item>Item 2</ix-group-item>
     </ix-group>
   `);
-  const group = page.locator('ix-group');
-  const expandIcon = group.getByTestId('expand-collapsed-icon');
-  await expandIcon.click();
+    const group = page.locator('ix-group');
+    const expandIcon = group.getByTestId('expand-collapsed-icon');
+    await expandIcon.click();
 
-  const groupItem = page.locator('ix-group-item').first();
-  await expect(group).toHaveClass(/hydrated/);
+    const groupItem = page.locator('ix-group-item').first();
+    await expect(group).toHaveClass(/hydrated/);
 
-  await groupItem.evaluate((item) => {
-    item.addEventListener('click', () => (item.innerHTML += 'Clicked'));
-  });
+    await groupItem.evaluate((item) => {
+      item.addEventListener('click', () => (item.innerHTML += 'Clicked'));
+    });
 
-  await groupItem.click();
-  await expect(groupItem).toHaveText('Item 1Clicked');
-});
+    await groupItem.click();
+    await expect(groupItem).toHaveText('Item 1Clicked');
+  }
+);
 
-test('item prevent default selection item event', async ({ mount, page }) => {
-  await mount(`
+regressionTest(
+  'item prevent default selection item event',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-group>
       <ix-group-item>Item 1</ix-group-item>
       <ix-group-item>Item 2</ix-group-item>
     </ix-group>
   `);
-  const group = page.locator('ix-group');
-  const expandIcon = group.getByTestId('expand-collapsed-icon');
-  await expandIcon.click();
+    const group = page.locator('ix-group');
+    const expandIcon = group.getByTestId('expand-collapsed-icon');
+    await expandIcon.click();
 
-  const groupItem = page.locator('ix-group-item').first();
-  await expect(group).toHaveClass(/hydrated/);
+    const groupItem = page.locator('ix-group-item').first();
+    await expect(group).toHaveClass(/hydrated/);
 
-  await group.evaluate((item) => {
-    item.addEventListener('selectItem', (e) => e.preventDefault());
-  });
+    await group.evaluate((item) => {
+      item.addEventListener('selectItem', (e) => e.preventDefault());
+    });
 
-  await groupItem.click();
-  await expect(groupItem).not.toHaveClass(/hydrated selected/);
-});
+    await groupItem.click();
+    await expect(groupItem).not.toHaveClass(/hydrated selected/);
+  }
+);
 
-test('group header prevent default collapse/expand', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'group header prevent default collapse/expand',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-group>
       <ix-group-item>Item 1</ix-group-item>
       <ix-group-item>Item 2</ix-group-item>
     </ix-group>
   `);
-  const group = page.locator('ix-group');
-  const expandIcon = group.getByTestId('expand-collapsed-icon');
+    const group = page.locator('ix-group');
+    const expandIcon = group.getByTestId('expand-collapsed-icon');
 
-  await group.evaluate((item) => {
-    item.addEventListener('collapsedChanged', (e) => e.preventDefault());
-  });
+    await group.evaluate((item) => {
+      item.addEventListener('collapsedChanged', (e) => e.preventDefault());
+    });
 
-  await expandIcon.click();
+    await expandIcon.click();
 
-  await expect(group).toHaveAttribute('collapsed');
-});
+    await expect(group).toHaveAttribute('collapsed');
+  }
+);
 
-test('group header prevent default selection event', async ({
-  mount,
-  page,
-}) => {
-  await mount(`
+regressionTest(
+  'group header prevent default selection event',
+  async ({ mount, page }) => {
+    await mount(`
     <ix-group header="Test" sub-header="Test2">
       <ix-group-item>Item 1</ix-group-item>
       <ix-group-item>Item 2</ix-group-item>
     </ix-group>
   `);
-  const group = page.locator('ix-group');
-  const groupHeader = group.locator('.group-header');
+    const group = page.locator('ix-group');
+    const groupHeader = group.locator('.group-header');
 
-  await group.evaluate((item) => {
-    item.addEventListener('selectGroup', (e) => e.preventDefault());
-  });
+    await group.evaluate((item) => {
+      item.addEventListener('selectGroup', (e) => e.preventDefault());
+    });
 
-  await groupHeader.click();
+    await groupHeader.click();
 
-  await expect(group).not.toHaveAttribute('selected');
-});
+    await expect(group).not.toHaveAttribute('selected');
+  }
+);

@@ -22,8 +22,15 @@ export default () => {
 
   return (
     <>
-      <input type="checkbox" id="checkbox_01" ref={ref} />
-      <label htmlFor="checkbox_01">Simple checkbox</label>
+      <input
+        className="ix-form-control"
+        type="checkbox"
+        id="checkbox_01"
+        ref={ref}
+      />
+      <label className="ix-form-label" htmlFor="checkbox_01">
+        Simple checkbox
+      </label>
     </>
   );
 };

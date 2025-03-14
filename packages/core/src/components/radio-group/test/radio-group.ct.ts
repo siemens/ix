@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>
@@ -29,7 +29,7 @@ test('renders', async ({ mount, page }) => {
   await expect(radioOption3).toHaveClass(/hydrated/);
 });
 
-test('initial checked', async ({ mount, page }) => {
+regressionTest('initial checked', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>
@@ -51,7 +51,7 @@ test('initial checked', async ({ mount, page }) => {
   await expect(radioOption2.locator('.checkmark')).toBeVisible();
 });
 
-test('change checked', async ({ mount, page }) => {
+regressionTest('change checked', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>
@@ -79,7 +79,7 @@ test('change checked', async ({ mount, page }) => {
   await expect(radioOption3).toHaveAttribute('checked');
 });
 
-test('emit group changed change', async ({ mount, page }) => {
+regressionTest('emit group changed change', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>
@@ -107,7 +107,7 @@ test('emit group changed change', async ({ mount, page }) => {
   expect(await onValueChange).toEqual('option3');
 });
 
-test('disabled', async ({ mount, page }) => {
+regressionTest('disabled', async ({ mount, page }) => {
   await mount(
     `
       <ix-radio-group>

@@ -7,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { test } from '@utils/test';
+import { regressionTest } from '@utils/test';
 
-test('renders', async ({ mount, page }) => {
+regressionTest('renders', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
         <ix-menu-about>
@@ -28,7 +28,7 @@ test('renders', async ({ mount, page }) => {
   await expect(aboutAndLegal).toHaveClass(/hydrated/);
 });
 
-test('active-tab-label', async ({ mount, page }) => {
+regressionTest('active-tab-label', async ({ mount, page }) => {
   await mount(`
     <ix-application>
       <ix-menu>
@@ -50,7 +50,7 @@ test('active-tab-label', async ({ mount, page }) => {
   await expect(tabItems.last()).toHaveAttribute('selected', 'true');
 });
 
-test('should not change tab', async ({ mount, page }) => {
+regressionTest('should not change tab', async ({ mount, page }) => {
   await mount(`
       <ix-menu>
         <ix-menu-about>

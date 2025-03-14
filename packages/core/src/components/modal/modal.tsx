@@ -75,12 +75,6 @@ export class Modal {
   @Prop() centered = false;
 
   /**
-   * Use ESC to dismiss the modal
-   * @deprecated - Use closeOnEscape instead
-   */
-  @Prop() keyboard = true;
-
-  /**
    * If set to true the modal can be closed by pressing the Escape key
    */
   @Prop() closeOnEscape = true;
@@ -97,7 +91,7 @@ export class Modal {
 
   @State() modalVisible = false;
 
-  @OnListener<Modal>('keydown', (self) => !self.closeOnEscape || !self.keyboard)
+  @OnListener<Modal>('keydown', (self) => !self.closeOnEscape)
   onKey(e: KeyboardEvent) {
     if (e.key === 'Escape') {
       e.preventDefault();

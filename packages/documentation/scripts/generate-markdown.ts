@@ -12,7 +12,7 @@ import { Listr } from 'listr2';
 import path from 'path';
 import { writeApi } from './api-tasks';
 import { writeTypeScriptFiles } from './ts-class-tasks';
-import { rimrafSync } from 'rimraf';
+import rimraf from 'rimraf';
 
 const rootPath = path.join(__dirname, '../');
 
@@ -103,24 +103,24 @@ const tasks = new Listr<Context>(
       task: async () => {
         await fs.ensureDir(docsPath);
 
-        rimrafSync(docsStaticExamples);
+        rimraf.sync(docsStaticExamples);
         await fs.ensureDir(docsStaticWebComponentExamples);
         await fs.ensureDir(docsStaticAngularExamples);
         await fs.ensureDir(docsStaticReactExamples);
         await fs.ensureDir(docsStaticVueExamples);
         await fs.ensureDir(docsStaticStyleExamples);
 
-        rimrafSync(iframeExampleCodePath);
+        rimraf.sync(iframeExampleCodePath);
         await fs.ensureDir(iframeExampleCodePath);
         await fs.ensureDir(iframeFrameDist);
 
-        rimrafSync(docsIonicPreviewPath);
+        rimraf.sync(docsIonicPreviewPath);
         await fs.ensureDir(docsIonicPreviewPath);
 
-        rimrafSync(optionalThemeForPreview);
+        rimraf.sync(optionalThemeForPreview);
         await fs.ensureDir(optionalThemeForPreview);
 
-        rimrafSync(optionalThemeForIonicPreview);
+        rimraf.sync(optionalThemeForIonicPreview);
         await fs.ensureDir(optionalThemeForIonicPreview);
       },
     },
@@ -204,6 +204,21 @@ const tasks = new Listr<Context>(
 
           return Promise.all(copy);
         }
+      },
+    },
+    {
+      title: "Copy ix-icons to documentation's static folder",
+      task: async () => {
+        const iconsPath = path.join(staticPath, 'svg');
+
+        if (!fs.existsSync(iconsPath)) {
+          await fs.mkdir(iconsPath);
+        }
+
+        await fs.emptyDir(iconsPath);
+        const nodeIcons = require.resolve('@siemens/ix-icons');
+        const svg = path.join(nodeIcons, '..', '..', 'svg');
+        fs.copy(svg, iconsPath);
       },
     },
   ],

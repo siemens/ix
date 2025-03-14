@@ -6,10 +6,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { getFormValue, preventFormSubmission, test } from '@utils/test';
+import {
+  getFormValue,
+  preventFormSubmission,
+  regressionTest,
+} from '@utils/test';
 import { expect } from '@playwright/test';
 
-test(`form-ready - ix-input`, async ({ mount, page }) => {
+regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
   await mount(`<form><ix-input name="my-field-name"></ix-input></form>`);
 
   const formElement = page.locator('form');
@@ -22,7 +26,7 @@ test(`form-ready - ix-input`, async ({ mount, page }) => {
   expect(formData).toBe('my example');
 });
 
-test(`form-ready - ix-number-input`, async ({ mount, page }) => {
+regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   await mount(
     `<form><ix-number-input name="my-field-name"></ix-number-input></form>`
   );
@@ -37,7 +41,7 @@ test(`form-ready - ix-number-input`, async ({ mount, page }) => {
   expect(formData).toBe('123');
 });
 
-test(`form-ready - ix-textarea`, async ({ mount, page }) => {
+regressionTest(`form-ready - ix-textarea`, async ({ mount, page }) => {
   await mount(`<form><ix-textarea name="my-field-name"></ix-textarea></form>`);
 
   const formElement = page.locator('form');
@@ -51,38 +55,44 @@ test(`form-ready - ix-textarea`, async ({ mount, page }) => {
 });
 
 //
-test(`form-ready - ix-input with initial value`, async ({ mount, page }) => {
-  await mount(
-    `<form><ix-input name="my-field-name" value="initial value"></ix-input></form>`
-  );
+regressionTest(
+  `form-ready - ix-input with initial value`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-input name="my-field-name" value="initial value"></ix-input></form>`
+    );
 
-  const formElement = page.locator('form');
-  preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('initial value');
-});
+    const formElement = page.locator('form');
+    preventFormSubmission(formElement);
+    const formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe('initial value');
+  }
+);
 
-test(`form-ready - ix-number-input with initial value`, async ({
-  mount,
-  page,
-}) => {
-  await mount(
-    `<form><ix-number-input name="my-field-name" value="1337"></ix-number-input></form>`
-  );
+regressionTest(
+  `form-ready - ix-number-input with initial value`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-number-input name="my-field-name" value="1337"></ix-number-input></form>`
+    );
 
-  const formElement = page.locator('form');
-  preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('1337');
-});
+    const formElement = page.locator('form');
+    preventFormSubmission(formElement);
+    const formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe('1337');
+  }
+);
 
-test(`form-ready - ix-textarea with initial value`, async ({ mount, page }) => {
-  await mount(
-    `<form><ix-textarea name="my-field-name" value="initial value"></ix-textarea></form>`
-  );
+regressionTest(
+  `form-ready - ix-textarea with initial value`,
+  async ({ mount, page }) => {
+    await mount(
+      `<form><ix-textarea name="my-field-name" value="initial value"></ix-textarea></form>`
+    );
 
-  const formElement = page.locator('form');
-  preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('initial value');
-});
+    const formElement = page.locator('form');
+    preventFormSubmission(formElement);
+    const formData = await getFormValue(formElement, 'my-field-name', page);
+    expect(formData).toBe('initial value');
+  }
+);

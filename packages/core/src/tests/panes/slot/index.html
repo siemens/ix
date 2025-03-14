@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
       name="viewport"
@@ -24,18 +24,20 @@ SPDX-License-Identifier: MIT
         <p>This is the left pane.</p>
       </ix-pane>
 
-      <div slot="content" style="display: flex; flex-direction: column;">
-        <ix-button id="toggle-slot" style="margin: 2.5rem">Toggle Slot</ix-button>
+      <div slot="content" style="display: flex; flex-direction: column">
+        <ix-button id="toggle-slot" style="margin: 2.5rem"
+          >Toggle Slot</ix-button
+        >
       </div>
     </ix-pane-layout>
 
     <script>
-      const pane = document.getElementById("pane");
-      const buttonSlot = document.getElementById("toggle-slot");
+      const pane = document.getElementById('pane');
+      const buttonSlot = document.getElementById('toggle-slot');
 
-      buttonSlot.addEventListener("click", () => {
-        pane.slot = "top"
-      })
+      buttonSlot.addEventListener('click', () => {
+        pane.slot = 'top';
+      });
     </script>
     <script src="http://127.0.0.1:8080/scripts/e2e/load-e2e-runtime.js"></script>
   </body>

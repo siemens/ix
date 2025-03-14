@@ -9,6 +9,7 @@
 
 <script setup lang="ts">
 import { FlipTileState } from '@siemens/ix';
+import { iconInfo } from '@siemens/ix-icons/icons';
 import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue';
 </script>
 
@@ -21,8 +22,8 @@ import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue';
 
       <div slot="footer">
         <div>Predicted maintenance date</div>
-        <div className="d-flex align-items-center">
-          <IxIcon name="info" size="16"></IxIcon>2021-06-22
+        <div className="footer-date">
+          <IxIcon :name="iconInfo" size="16"></IxIcon>2021-06-22
         </div>
       </div>
 
@@ -34,8 +35,8 @@ import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue';
       <div slot="header">Flip header</div>
       <div slot="footer">
         <div>Predicted maintenance date</div>
-        <div className="d-flex align-items-center">
-          <IxIcon name="info" size="16"></IxIcon>2021-06-22
+        <div className="footer-date">
+          <IxIcon :name="iconInfo" size="16"></IxIcon>2021-06-22
         </div>
       </div>
       <IxFlipTileContent> Example 1 </IxFlipTileContent>
@@ -46,8 +47,8 @@ import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue';
       <div slot="header">Flip header</div>
       <div slot="footer">
         <div>Predicted maintenance date</div>
-        <div className="d-flex align-items-center">
-          <IxIcon name="info" size="16"></IxIcon>2021-06-22
+        <div className="footer-date">
+          <IxIcon :name="iconInfo" size="16"></IxIcon>2021-06-22
         </div>
       </div>
       <IxFlipTileContent> Example 1 </IxFlipTileContent>
@@ -58,8 +59,8 @@ import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue';
       <div slot="header">Flip header</div>
       <div slot="footer">
         <div>Predicted maintenance date</div>
-        <div className="d-flex align-items-center">
-          <IxIcon name="info" size="16"></IxIcon>2021-06-22
+        <div className="footer-date">
+          <IxIcon :name="iconInfo" size="16"></IxIcon>2021-06-22
         </div>
       </div>
       <IxFlipTileContent> Example 1 </IxFlipTileContent>
@@ -70,8 +71,8 @@ import { IxFlipTile, IxFlipTileContent, IxIcon } from '@siemens/ix-vue';
       <div slot="header">Flip header</div>
       <div slot="footer">
         <div>Predicted maintenance date</div>
-        <div className="d-flex align-items-center">
-          <IxIcon name="info" size="16"></IxIcon>2021-06-22
+        <div className="footer-date">
+          <IxIcon :name="iconInfo" size="16"></IxIcon>2021-06-22
         </div>
       </div>
       <IxFlipTileContent> Example 1 </IxFlipTileContent>

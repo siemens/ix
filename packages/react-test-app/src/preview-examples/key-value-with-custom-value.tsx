@@ -7,12 +7,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './key-value-with-custom-value.scoped.css';
 import { IxKeyValue } from '@siemens/ix-react';
 
 export default () => {
   return (
     <IxKeyValue label="Label">
-      <input placeholder="Enter text here" type="text" slot="custom-value" />
+      <input
+        className="ix-form-control"
+        placeholder="Enter text here"
+        type="text"
+        slot="custom-value"
+      />
     </IxKeyValue>
   );
 };

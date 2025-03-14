@@ -129,6 +129,7 @@ const Search = props => {
         placeholder={indexReady ? placeholder : 'Loading...'}
         aria-label="Search"
         className={clsx(
+          'ix-form-control',
           "navbar__search-input",
           { "search-bar-expanded": props.isSearchBarExpanded },
           { "search-bar": !props.isSearchBarExpanded }

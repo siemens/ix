@@ -14,20 +14,28 @@ LICENSE file in the root directory of this source tree.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tile example</title>
     <link rel="stylesheet" href="./tile.css" />
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconContextMenu,
+        iconChevronRightSmall,
+      } from '@siemens/ix-icons/icons';
+      addIcons({
+        iconContextMenu,
+        iconChevronRightSmall,
+      });
+    </script>
   </head>
   <body>
     <ix-tile size="small">92.8 °C</ix-tile>
 
-    <ix-tile size="medium" class="mr-1">
+    <ix-tile size="medium">
       <div slot="header">Tile header</div>
       <div class="text-l">92.8 °C</div>
     </ix-tile>
 
     <ix-tile size="big">
-      <div
-        class="d-flex flex-grow-1 align-items-center justify-content-between"
-        slot="header"
-      >
+      <div class="tile-header" slot="header">
         Tile header
         <ix-icon-button ghost icon="context-menu"></ix-icon-button>
       </div>
@@ -43,12 +51,9 @@ LICENSE file in the root directory of this source tree.
       >
         <span>92.8 °C</span>
       </div>
-      <div
-        class="d-flex h-100 align-items-center justify-content-end"
-        slot="footer"
-      >
-        <ix-button ghost slot="footer">
-          <ix-icon name="chevron-right-small"></ix-icon>Details
+      <div class="tile-footer" slot="footer">
+        <ix-button icon="chevron-right-small" ghost slot="footer">
+          Details
         </ix-button>
       </div>
     </ix-tile>
