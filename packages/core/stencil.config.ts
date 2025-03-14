@@ -102,12 +102,8 @@ export const config: Config = {
       stencilPackageName: corePackageName,
       outDir: '../react/src',
       excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
-    }),
-    reactOutputTarget({
-      stencilPackageName: corePackageName,
-      outDir: '../react/src/ssr',
       hydrateModule: '@siemens/ix/hydrate',
-      excludeComponents: ['ix-tree', 'ix-tree-item', 'ix-icon'],
+      serializeShadowRoot: { scoped: [], default: 'declarative-shadow-dom' },
     }),
     {
       type: 'dist',

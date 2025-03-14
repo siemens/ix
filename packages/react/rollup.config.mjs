@@ -19,7 +19,7 @@ export default {
   ],
   input: {
     index: 'src/index.ts',
-    ssr: 'src/ssr/components.ts',
+    'components.server': 'src/components.server.ts',
   },
 
   plugins: [

@@ -2,21 +2,24 @@
   "name": "nextjs-test-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "next build",
     "start": "next dev"
   },
   "dependencies": {
-    "@siemens/ix": "workspace:*",
     "@siemens/ix-react": "workspace:*",
-    "next": "^15.1.4",
-    "react": "^19",
-    "react-dom": "^19"
+    "@siemens/ix": "workspace:*",
+    "html-react-parser": "^5.1.18",
+    "next": "^15",
+    "react-dom": "^19",
+    "react": "^19"
   },
   "devDependencies": {
+    "@stencil/ssr": "0.0.1-dev.11741888614.1fd07d67",
     "@types/node": "^20",
-    "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react": "^19",
     "typescript": "^5"
   }
 }

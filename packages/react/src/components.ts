@@ -113,7 +113,7 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-type IxActionCardEvents = NonNullable<unknown>;
+export type IxActionCardEvents = NonNullable<unknown>;
 
 export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCardEvents> = /*@__PURE__*/ createComponent<IxActionCardElement, IxActionCardEvents>({
     tagName: 'ix-action-card',
@@ -124,7 +124,7 @@ export const IxActionCard: StencilReactComponent<IxActionCardElement, IxActionCa
     defineCustomElement: defineIxActionCard
 });
 
-type IxApplicationEvents = NonNullable<unknown>;
+export type IxApplicationEvents = NonNullable<unknown>;
 
 export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplicationEvents> = /*@__PURE__*/ createComponent<IxApplicationElement, IxApplicationEvents>({
     tagName: 'ix-application',
@@ -135,7 +135,7 @@ export const IxApplication: StencilReactComponent<IxApplicationElement, IxApplic
     defineCustomElement: defineIxApplication
 });
 
-type IxApplicationHeaderEvents = {
+export type IxApplicationHeaderEvents = {
     onMenuToggle: EventName<CustomEvent<boolean>>,
     onOpenAppSwitch: EventName<CustomEvent<void>>
 };
@@ -152,7 +152,7 @@ export const IxApplicationHeader: StencilReactComponent<IxApplicationHeaderEleme
     defineCustomElement: defineIxApplicationHeader
 });
 
-type IxAvatarEvents = NonNullable<unknown>;
+export type IxAvatarEvents = NonNullable<unknown>;
 
 export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = /*@__PURE__*/ createComponent<IxAvatarElement, IxAvatarEvents>({
     tagName: 'ix-avatar',
@@ -163,7 +163,7 @@ export const IxAvatar: StencilReactComponent<IxAvatarElement, IxAvatarEvents> = 
     defineCustomElement: defineIxAvatar
 });
 
-type IxBasicNavigationEvents = NonNullable<unknown>;
+export type IxBasicNavigationEvents = NonNullable<unknown>;
 
 export const IxBasicNavigation: StencilReactComponent<IxBasicNavigationElement, IxBasicNavigationEvents> = /*@__PURE__*/ createComponent<IxBasicNavigationElement, IxBasicNavigationEvents>({
     tagName: 'ix-basic-navigation',
@@ -174,7 +174,7 @@ export const IxBasicNavigation: StencilReactComponent<IxBasicNavigationElement, 
     defineCustomElement: defineIxBasicNavigation
 });
 
-type IxBlindEvents = { onCollapsedChange: EventName<CustomEvent<boolean>> };
+export type IxBlindEvents = { onCollapsedChange: EventName<CustomEvent<boolean>> };
 
 export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents> = /*@__PURE__*/ createComponent<IxBlindElement, IxBlindEvents>({
     tagName: 'ix-blind',
@@ -185,7 +185,7 @@ export const IxBlind: StencilReactComponent<IxBlindElement, IxBlindEvents> = /*@
     defineCustomElement: defineIxBlind
 });
 
-type IxBreadcrumbEvents = {
+export type IxBreadcrumbEvents = {
     onItemClick: EventName<CustomEvent<string>>,
     onNextClick: EventName<IxBreadcrumbCustomEvent<{ event: UIEvent; item: string }>>
 };
@@ -202,7 +202,7 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
     defineCustomElement: defineIxBreadcrumb
 });
 
-type IxBreadcrumbItemEvents = NonNullable<unknown>;
+export type IxBreadcrumbItemEvents = NonNullable<unknown>;
 
 export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents> = /*@__PURE__*/ createComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents>({
     tagName: 'ix-breadcrumb-item',
@@ -213,7 +213,7 @@ export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, Ix
     defineCustomElement: defineIxBreadcrumbItem
 });
 
-type IxButtonEvents = NonNullable<unknown>;
+export type IxButtonEvents = NonNullable<unknown>;
 
 export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = /*@__PURE__*/ createComponent<IxButtonElement, IxButtonEvents>({
     tagName: 'ix-button',
@@ -224,7 +224,7 @@ export const IxButton: StencilReactComponent<IxButtonElement, IxButtonEvents> = 
     defineCustomElement: defineIxButton
 });
 
-type IxCardEvents = NonNullable<unknown>;
+export type IxCardEvents = NonNullable<unknown>;
 
 export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents> = /*@__PURE__*/ createComponent<IxCardElement, IxCardEvents>({
     tagName: 'ix-card',
@@ -235,7 +235,7 @@ export const IxCard: StencilReactComponent<IxCardElement, IxCardEvents> = /*@__P
     defineCustomElement: defineIxCard
 });
 
-type IxCardAccordionEvents = NonNullable<unknown>;
+export type IxCardAccordionEvents = NonNullable<unknown>;
 
 export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCardAccordionEvents> = /*@__PURE__*/ createComponent<IxCardAccordionElement, IxCardAccordionEvents>({
     tagName: 'ix-card-accordion',
@@ -246,7 +246,7 @@ export const IxCardAccordion: StencilReactComponent<IxCardAccordionElement, IxCa
     defineCustomElement: defineIxCardAccordion
 });
 
-type IxCardContentEvents = NonNullable<unknown>;
+export type IxCardContentEvents = NonNullable<unknown>;
 
 export const IxCardContent: StencilReactComponent<IxCardContentElement, IxCardContentEvents> = /*@__PURE__*/ createComponent<IxCardContentElement, IxCardContentEvents>({
     tagName: 'ix-card-content',
@@ -257,7 +257,7 @@ export const IxCardContent: StencilReactComponent<IxCardContentElement, IxCardCo
     defineCustomElement: defineIxCardContent
 });
 
-type IxCardListEvents = {
+export type IxCardListEvents = {
     onCollapseChanged: EventName<CustomEvent<boolean>>,
     onShowAllClick: EventName<IxCardListCustomEvent<{
         nativeEvent: MouseEvent;
@@ -280,7 +280,7 @@ export const IxCardList: StencilReactComponent<IxCardListElement, IxCardListEven
     defineCustomElement: defineIxCardList
 });
 
-type IxCardTitleEvents = NonNullable<unknown>;
+export type IxCardTitleEvents = NonNullable<unknown>;
 
 export const IxCardTitle: StencilReactComponent<IxCardTitleElement, IxCardTitleEvents> = /*@__PURE__*/ createComponent<IxCardTitleElement, IxCardTitleEvents>({
     tagName: 'ix-card-title',
@@ -291,7 +291,7 @@ export const IxCardTitle: StencilReactComponent<IxCardTitleElement, IxCardTitleE
     defineCustomElement: defineIxCardTitle
 });
 
-type IxCategoryFilterEvents = {
+export type IxCategoryFilterEvents = {
     onCategoryChanged: EventName<CustomEvent<string>>,
     onInputChanged: EventName<IxCategoryFilterCustomEvent<InputState>>,
     onFilterChanged: EventName<IxCategoryFilterCustomEvent<FilterState>>,
@@ -312,7 +312,7 @@ export const IxCategoryFilter: StencilReactComponent<IxCategoryFilterElement, Ix
     defineCustomElement: defineIxCategoryFilter
 });
 
-type IxCheckboxEvents = {
+export type IxCheckboxEvents = {
     onCheckedChange: EventName<CustomEvent<boolean>>,
     onValueChange: EventName<CustomEvent<string>>
 };
@@ -329,7 +329,7 @@ export const IxCheckbox: StencilReactComponent<IxCheckboxElement, IxCheckboxEven
     defineCustomElement: defineIxCheckbox
 });
 
-type IxCheckboxGroupEvents = NonNullable<unknown>;
+export type IxCheckboxGroupEvents = NonNullable<unknown>;
 
 export const IxCheckboxGroup: StencilReactComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents> = /*@__PURE__*/ createComponent<IxCheckboxGroupElement, IxCheckboxGroupEvents>({
     tagName: 'ix-checkbox-group',
@@ -340,7 +340,7 @@ export const IxCheckboxGroup: StencilReactComponent<IxCheckboxGroupElement, IxCh
     defineCustomElement: defineIxCheckboxGroup
 });
 
-type IxChipEvents = { onCloseChip: EventName<CustomEvent<any>> };
+export type IxChipEvents = { onCloseChip: EventName<CustomEvent<any>> };
 
 export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents> = /*@__PURE__*/ createComponent<IxChipElement, IxChipEvents>({
     tagName: 'ix-chip',
@@ -351,7 +351,7 @@ export const IxChip: StencilReactComponent<IxChipElement, IxChipEvents> = /*@__P
     defineCustomElement: defineIxChip
 });
 
-type IxColEvents = NonNullable<unknown>;
+export type IxColEvents = NonNullable<unknown>;
 
 export const IxCol: StencilReactComponent<IxColElement, IxColEvents> = /*@__PURE__*/ createComponent<IxColElement, IxColEvents>({
     tagName: 'ix-col',
@@ -362,7 +362,7 @@ export const IxCol: StencilReactComponent<IxColElement, IxColEvents> = /*@__PURE
     defineCustomElement: defineIxCol
 });
 
-type IxContentEvents = NonNullable<unknown>;
+export type IxContentEvents = NonNullable<unknown>;
 
 export const IxContent: StencilReactComponent<IxContentElement, IxContentEvents> = /*@__PURE__*/ createComponent<IxContentElement, IxContentEvents>({
     tagName: 'ix-content',
@@ -373,7 +373,7 @@ export const IxContent: StencilReactComponent<IxContentElement, IxContentEvents>
     defineCustomElement: defineIxContent
 });
 
-type IxContentHeaderEvents = { onBackButtonClick: EventName<CustomEvent<void>> };
+export type IxContentHeaderEvents = { onBackButtonClick: EventName<CustomEvent<void>> };
 
 export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxContentHeaderEvents> = /*@__PURE__*/ createComponent<IxContentHeaderElement, IxContentHeaderEvents>({
     tagName: 'ix-content-header',
@@ -384,7 +384,7 @@ export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxCo
     defineCustomElement: defineIxContentHeader
 });
 
-type IxCustomFieldEvents = NonNullable<unknown>;
+export type IxCustomFieldEvents = NonNullable<unknown>;
 
 export const IxCustomField: StencilReactComponent<IxCustomFieldElement, IxCustomFieldEvents> = /*@__PURE__*/ createComponent<IxCustomFieldElement, IxCustomFieldEvents>({
     tagName: 'ix-custom-field',
@@ -395,7 +395,7 @@ export const IxCustomField: StencilReactComponent<IxCustomFieldElement, IxCustom
     defineCustomElement: defineIxCustomField
 });
 
-type IxDateDropdownEvents = { onDateRangeChange: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>> };
+export type IxDateDropdownEvents = { onDateRangeChange: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>> };
 
 export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDateDropdownEvents> = /*@__PURE__*/ createComponent<IxDateDropdownElement, IxDateDropdownEvents>({
     tagName: 'ix-date-dropdown',
@@ -406,7 +406,7 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
     defineCustomElement: defineIxDateDropdown
 });
 
-type IxDateInputEvents = {
+export type IxDateInputEvents = {
     onValueChange: EventName<CustomEvent<string | undefined>>,
     onValidityStateChange: EventName<IxDateInputCustomEvent<DateInputValidityState>>
 };
@@ -423,7 +423,7 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
     defineCustomElement: defineIxDateInput
 });
 
-type IxDatePickerEvents = {
+export type IxDatePickerEvents = {
     onDateChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
     onDateRangeChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
     onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>
@@ -442,7 +442,7 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
     defineCustomElement: defineIxDatePicker
 });
 
-type IxDatetimePickerEvents = {
+export type IxDatetimePickerEvents = {
     onTimeChange: EventName<CustomEvent<string>>,
     onDateChange: EventName<IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>>,
     onDateSelect: EventName<IxDatetimePickerCustomEvent<DateTimeSelectEvent>>
@@ -461,7 +461,7 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
     defineCustomElement: defineIxDatetimePicker
 });
 
-type IxDividerEvents = NonNullable<unknown>;
+export type IxDividerEvents = NonNullable<unknown>;
 
 export const IxDivider: StencilReactComponent<IxDividerElement, IxDividerEvents> = /*@__PURE__*/ createComponent<IxDividerElement, IxDividerEvents>({
     tagName: 'ix-divider',
@@ -472,7 +472,7 @@ export const IxDivider: StencilReactComponent<IxDividerElement, IxDividerEvents>
     defineCustomElement: defineIxDivider
 });
 
-type IxDrawerEvents = {
+export type IxDrawerEvents = {
     onOpen: EventName<CustomEvent<any>>,
     onDrawerClose: EventName<CustomEvent<any>>
 };
@@ -489,7 +489,7 @@ export const IxDrawer: StencilReactComponent<IxDrawerElement, IxDrawerEvents> = 
     defineCustomElement: defineIxDrawer
 });
 
-type IxDropdownEvents = { onShowChanged: EventName<CustomEvent<boolean>> };
+export type IxDropdownEvents = { onShowChanged: EventName<CustomEvent<boolean>> };
 
 export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEvents> = /*@__PURE__*/ createComponent<IxDropdownElement, IxDropdownEvents>({
     tagName: 'ix-dropdown',
@@ -500,7 +500,7 @@ export const IxDropdown: StencilReactComponent<IxDropdownElement, IxDropdownEven
     defineCustomElement: defineIxDropdown
 });
 
-type IxDropdownButtonEvents = NonNullable<unknown>;
+export type IxDropdownButtonEvents = NonNullable<unknown>;
 
 export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, IxDropdownButtonEvents> = /*@__PURE__*/ createComponent<IxDropdownButtonElement, IxDropdownButtonEvents>({
     tagName: 'ix-dropdown-button',
@@ -511,7 +511,7 @@ export const IxDropdownButton: StencilReactComponent<IxDropdownButtonElement, Ix
     defineCustomElement: defineIxDropdownButton
 });
 
-type IxDropdownHeaderEvents = NonNullable<unknown>;
+export type IxDropdownHeaderEvents = NonNullable<unknown>;
 
 export const IxDropdownHeader: StencilReactComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents> = /*@__PURE__*/ createComponent<IxDropdownHeaderElement, IxDropdownHeaderEvents>({
     tagName: 'ix-dropdown-header',
@@ -522,7 +522,7 @@ export const IxDropdownHeader: StencilReactComponent<IxDropdownHeaderElement, Ix
     defineCustomElement: defineIxDropdownHeader
 });
 
-type IxDropdownItemEvents = NonNullable<unknown>;
+export type IxDropdownItemEvents = NonNullable<unknown>;
 
 export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDropdownItemEvents> = /*@__PURE__*/ createComponent<IxDropdownItemElement, IxDropdownItemEvents>({
     tagName: 'ix-dropdown-item',
@@ -533,7 +533,7 @@ export const IxDropdownItem: StencilReactComponent<IxDropdownItemElement, IxDrop
     defineCustomElement: defineIxDropdownItem
 });
 
-type IxDropdownQuickActionsEvents = NonNullable<unknown>;
+export type IxDropdownQuickActionsEvents = NonNullable<unknown>;
 
 export const IxDropdownQuickActions: StencilReactComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents> = /*@__PURE__*/ createComponent<IxDropdownQuickActionsElement, IxDropdownQuickActionsEvents>({
     tagName: 'ix-dropdown-quick-actions',
@@ -544,7 +544,7 @@ export const IxDropdownQuickActions: StencilReactComponent<IxDropdownQuickAction
     defineCustomElement: defineIxDropdownQuickActions
 });
 
-type IxEmptyStateEvents = { onActionClick: EventName<CustomEvent<void>> };
+export type IxEmptyStateEvents = { onActionClick: EventName<CustomEvent<void>> };
 
 export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptyStateEvents> = /*@__PURE__*/ createComponent<IxEmptyStateElement, IxEmptyStateEvents>({
     tagName: 'ix-empty-state',
@@ -555,7 +555,7 @@ export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptySta
     defineCustomElement: defineIxEmptyState
 });
 
-type IxEventListEvents = NonNullable<unknown>;
+export type IxEventListEvents = NonNullable<unknown>;
 
 export const IxEventList: StencilReactComponent<IxEventListElement, IxEventListEvents> = /*@__PURE__*/ createComponent<IxEventListElement, IxEventListEvents>({
     tagName: 'ix-event-list',
@@ -566,7 +566,7 @@ export const IxEventList: StencilReactComponent<IxEventListElement, IxEventListE
     defineCustomElement: defineIxEventList
 });
 
-type IxEventListItemEvents = { onItemClick: EventName<CustomEvent<any>> };
+export type IxEventListItemEvents = { onItemClick: EventName<CustomEvent<any>> };
 
 export const IxEventListItem: StencilReactComponent<IxEventListItemElement, IxEventListItemEvents> = /*@__PURE__*/ createComponent<IxEventListItemElement, IxEventListItemEvents>({
     tagName: 'ix-event-list-item',
@@ -577,7 +577,7 @@ export const IxEventListItem: StencilReactComponent<IxEventListItemElement, IxEv
     defineCustomElement: defineIxEventListItem
 });
 
-type IxExpandingSearchEvents = { onValueChange: EventName<CustomEvent<string>> };
+export type IxExpandingSearchEvents = { onValueChange: EventName<CustomEvent<string>> };
 
 export const IxExpandingSearch: StencilReactComponent<IxExpandingSearchElement, IxExpandingSearchEvents> = /*@__PURE__*/ createComponent<IxExpandingSearchElement, IxExpandingSearchEvents>({
     tagName: 'ix-expanding-search',
@@ -588,7 +588,7 @@ export const IxExpandingSearch: StencilReactComponent<IxExpandingSearchElement, 
     defineCustomElement: defineIxExpandingSearch
 });
 
-type IxFieldLabelEvents = NonNullable<unknown>;
+export type IxFieldLabelEvents = NonNullable<unknown>;
 
 export const IxFieldLabel: StencilReactComponent<IxFieldLabelElement, IxFieldLabelEvents> = /*@__PURE__*/ createComponent<IxFieldLabelElement, IxFieldLabelEvents>({
     tagName: 'ix-field-label',
@@ -599,7 +599,7 @@ export const IxFieldLabel: StencilReactComponent<IxFieldLabelElement, IxFieldLab
     defineCustomElement: defineIxFieldLabel
 });
 
-type IxFilterChipEvents = { onCloseClick: EventName<CustomEvent<void>> };
+export type IxFilterChipEvents = { onCloseClick: EventName<CustomEvent<void>> };
 
 export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterChipEvents> = /*@__PURE__*/ createComponent<IxFilterChipElement, IxFilterChipEvents>({
     tagName: 'ix-filter-chip',
@@ -610,7 +610,7 @@ export const IxFilterChip: StencilReactComponent<IxFilterChipElement, IxFilterCh
     defineCustomElement: defineIxFilterChip
 });
 
-type IxFlipTileEvents = { onToggle: EventName<CustomEvent<number>> };
+export type IxFlipTileEvents = { onToggle: EventName<CustomEvent<number>> };
 
 export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEvents> = /*@__PURE__*/ createComponent<IxFlipTileElement, IxFlipTileEvents>({
     tagName: 'ix-flip-tile',
@@ -621,7 +621,7 @@ export const IxFlipTile: StencilReactComponent<IxFlipTileElement, IxFlipTileEven
     defineCustomElement: defineIxFlipTile
 });
 
-type IxFlipTileContentEvents = NonNullable<unknown>;
+export type IxFlipTileContentEvents = NonNullable<unknown>;
 
 export const IxFlipTileContent: StencilReactComponent<IxFlipTileContentElement, IxFlipTileContentEvents> = /*@__PURE__*/ createComponent<IxFlipTileContentElement, IxFlipTileContentEvents>({
     tagName: 'ix-flip-tile-content',
@@ -632,7 +632,7 @@ export const IxFlipTileContent: StencilReactComponent<IxFlipTileContentElement, 
     defineCustomElement: defineIxFlipTileContent
 });
 
-type IxGroupEvents = {
+export type IxGroupEvents = {
     onSelectGroup: EventName<CustomEvent<boolean>>,
     onSelectItem: EventName<CustomEvent<number>>,
     onCollapsedChanged: EventName<CustomEvent<boolean>>
@@ -651,7 +651,7 @@ export const IxGroup: StencilReactComponent<IxGroupElement, IxGroupEvents> = /*@
     defineCustomElement: defineIxGroup
 });
 
-type IxGroupContextMenuEvents = NonNullable<unknown>;
+export type IxGroupContextMenuEvents = NonNullable<unknown>;
 
 export const IxGroupContextMenu: StencilReactComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents> = /*@__PURE__*/ createComponent<IxGroupContextMenuElement, IxGroupContextMenuEvents>({
     tagName: 'ix-group-context-menu',
@@ -662,7 +662,7 @@ export const IxGroupContextMenu: StencilReactComponent<IxGroupContextMenuElement
     defineCustomElement: defineIxGroupContextMenu
 });
 
-type IxGroupItemEvents = { onSelectedChanged: EventName<IxGroupItemCustomEvent<HTMLIxGroupItemElement>> };
+export type IxGroupItemEvents = { onSelectedChanged: EventName<IxGroupItemCustomEvent<HTMLIxGroupItemElement>> };
 
 export const IxGroupItem: StencilReactComponent<IxGroupItemElement, IxGroupItemEvents> = /*@__PURE__*/ createComponent<IxGroupItemElement, IxGroupItemEvents>({
     tagName: 'ix-group-item',
@@ -673,7 +673,7 @@ export const IxGroupItem: StencilReactComponent<IxGroupItemElement, IxGroupItemE
     defineCustomElement: defineIxGroupItem
 });
 
-type IxHelperTextEvents = NonNullable<unknown>;
+export type IxHelperTextEvents = NonNullable<unknown>;
 
 export const IxHelperText: StencilReactComponent<IxHelperTextElement, IxHelperTextEvents> = /*@__PURE__*/ createComponent<IxHelperTextElement, IxHelperTextEvents>({
     tagName: 'ix-helper-text',
@@ -684,7 +684,7 @@ export const IxHelperText: StencilReactComponent<IxHelperTextElement, IxHelperTe
     defineCustomElement: defineIxHelperText
 });
 
-type IxIconButtonEvents = NonNullable<unknown>;
+export type IxIconButtonEvents = NonNullable<unknown>;
 
 export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButtonEvents> = /*@__PURE__*/ createComponent<IxIconButtonElement, IxIconButtonEvents>({
     tagName: 'ix-icon-button',
@@ -695,7 +695,7 @@ export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButt
     defineCustomElement: defineIxIconButton
 });
 
-type IxIconToggleButtonEvents = { onPressedChange: EventName<CustomEvent<boolean>> };
+export type IxIconToggleButtonEvents = { onPressedChange: EventName<CustomEvent<boolean>> };
 
 export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents> = /*@__PURE__*/ createComponent<IxIconToggleButtonElement, IxIconToggleButtonEvents>({
     tagName: 'ix-icon-toggle-button',
@@ -706,7 +706,7 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
     defineCustomElement: defineIxIconToggleButton
 });
 
-type IxInputEvents = {
+export type IxInputEvents = {
     onValueChange: EventName<CustomEvent<string>>,
     onValidityStateChange: EventName<IxInputCustomEvent<ValidityState>>,
     onIxBlur: EventName<CustomEvent<void>>
@@ -725,7 +725,7 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents> = /*@
     defineCustomElement: defineIxInput
 });
 
-type IxInputGroupEvents = NonNullable<unknown>;
+export type IxInputGroupEvents = NonNullable<unknown>;
 
 export const IxInputGroup: StencilReactComponent<IxInputGroupElement, IxInputGroupEvents> = /*@__PURE__*/ createComponent<IxInputGroupElement, IxInputGroupEvents>({
     tagName: 'ix-input-group',
@@ -736,7 +736,7 @@ export const IxInputGroup: StencilReactComponent<IxInputGroupElement, IxInputGro
     defineCustomElement: defineIxInputGroup
 });
 
-type IxKeyValueEvents = NonNullable<unknown>;
+export type IxKeyValueEvents = NonNullable<unknown>;
 
 export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEvents> = /*@__PURE__*/ createComponent<IxKeyValueElement, IxKeyValueEvents>({
     tagName: 'ix-key-value',
@@ -747,7 +747,7 @@ export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEven
     defineCustomElement: defineIxKeyValue
 });
 
-type IxKeyValueListEvents = NonNullable<unknown>;
+export type IxKeyValueListEvents = NonNullable<unknown>;
 
 export const IxKeyValueList: StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents> = /*@__PURE__*/ createComponent<IxKeyValueListElement, IxKeyValueListEvents>({
     tagName: 'ix-key-value-list',
@@ -758,7 +758,7 @@ export const IxKeyValueList: StencilReactComponent<IxKeyValueListElement, IxKeyV
     defineCustomElement: defineIxKeyValueList
 });
 
-type IxKpiEvents = NonNullable<unknown>;
+export type IxKpiEvents = NonNullable<unknown>;
 
 export const IxKpi: StencilReactComponent<IxKpiElement, IxKpiEvents> = /*@__PURE__*/ createComponent<IxKpiElement, IxKpiEvents>({
     tagName: 'ix-kpi',
@@ -769,7 +769,7 @@ export const IxKpi: StencilReactComponent<IxKpiElement, IxKpiEvents> = /*@__PURE
     defineCustomElement: defineIxKpi
 });
 
-type IxLayoutAutoEvents = NonNullable<unknown>;
+export type IxLayoutAutoEvents = NonNullable<unknown>;
 
 export const IxLayoutAuto: StencilReactComponent<IxLayoutAutoElement, IxLayoutAutoEvents> = /*@__PURE__*/ createComponent<IxLayoutAutoElement, IxLayoutAutoEvents>({
     tagName: 'ix-layout-auto',
@@ -780,7 +780,7 @@ export const IxLayoutAuto: StencilReactComponent<IxLayoutAutoElement, IxLayoutAu
     defineCustomElement: defineIxLayoutAuto
 });
 
-type IxLayoutGridEvents = NonNullable<unknown>;
+export type IxLayoutGridEvents = NonNullable<unknown>;
 
 export const IxLayoutGrid: StencilReactComponent<IxLayoutGridElement, IxLayoutGridEvents> = /*@__PURE__*/ createComponent<IxLayoutGridElement, IxLayoutGridEvents>({
     tagName: 'ix-layout-grid',
@@ -791,7 +791,7 @@ export const IxLayoutGrid: StencilReactComponent<IxLayoutGridElement, IxLayoutGr
     defineCustomElement: defineIxLayoutGrid
 });
 
-type IxLinkButtonEvents = NonNullable<unknown>;
+export type IxLinkButtonEvents = NonNullable<unknown>;
 
 export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButtonEvents> = /*@__PURE__*/ createComponent<IxLinkButtonElement, IxLinkButtonEvents>({
     tagName: 'ix-link-button',
@@ -802,7 +802,7 @@ export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButt
     defineCustomElement: defineIxLinkButton
 });
 
-type IxMapNavigationEvents = {
+export type IxMapNavigationEvents = {
     onNavigationToggled: EventName<CustomEvent<boolean>>,
     onContextMenuClick: EventName<CustomEvent<void>>
 };
@@ -819,7 +819,7 @@ export const IxMapNavigation: StencilReactComponent<IxMapNavigationElement, IxMa
     defineCustomElement: defineIxMapNavigation
 });
 
-type IxMapNavigationOverlayEvents = { onCloseClick: EventName<CustomEvent<any>> };
+export type IxMapNavigationOverlayEvents = { onCloseClick: EventName<CustomEvent<any>> };
 
 export const IxMapNavigationOverlay: StencilReactComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents> = /*@__PURE__*/ createComponent<IxMapNavigationOverlayElement, IxMapNavigationOverlayEvents>({
     tagName: 'ix-map-navigation-overlay',
@@ -830,7 +830,7 @@ export const IxMapNavigationOverlay: StencilReactComponent<IxMapNavigationOverla
     defineCustomElement: defineIxMapNavigationOverlay
 });
 
-type IxMenuEvents = {
+export type IxMenuEvents = {
     onExpandChange: EventName<CustomEvent<boolean>>,
     onMapExpandChange: EventName<CustomEvent<boolean>>,
     onOpenAppSwitch: EventName<CustomEvent<void>>,
@@ -853,7 +853,7 @@ export const IxMenu: StencilReactComponent<IxMenuElement, IxMenuEvents> = /*@__P
     defineCustomElement: defineIxMenu
 });
 
-type IxMenuAboutEvents = {
+export type IxMenuAboutEvents = {
     onTabChange: EventName<CustomEvent<string>>,
     onClose: EventName<IxMenuAboutCustomEvent<CustomCloseEvent>>
 };
@@ -870,7 +870,7 @@ export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutE
     defineCustomElement: defineIxMenuAbout
 });
 
-type IxMenuAboutItemEvents = { onLabelChange: EventName<IxMenuAboutItemCustomEvent<CustomLabelChangeEvent>> };
+export type IxMenuAboutItemEvents = { onLabelChange: EventName<IxMenuAboutItemCustomEvent<CustomLabelChangeEvent>> };
 
 export const IxMenuAboutItem: StencilReactComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents> = /*@__PURE__*/ createComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents>({
     tagName: 'ix-menu-about-item',
@@ -881,7 +881,7 @@ export const IxMenuAboutItem: StencilReactComponent<IxMenuAboutItemElement, IxMe
     defineCustomElement: defineIxMenuAboutItem
 });
 
-type IxMenuAboutNewsEvents = {
+export type IxMenuAboutNewsEvents = {
     onShowMore: EventName<IxMenuAboutNewsCustomEvent<MouseEvent>>,
     onClosePopover: EventName<CustomEvent<void>>
 };
@@ -898,7 +898,7 @@ export const IxMenuAboutNews: StencilReactComponent<IxMenuAboutNewsElement, IxMe
     defineCustomElement: defineIxMenuAboutNews
 });
 
-type IxMenuAvatarEvents = { onLogoutClick: EventName<CustomEvent<any>> };
+export type IxMenuAvatarEvents = { onLogoutClick: EventName<CustomEvent<any>> };
 
 export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvatarEvents> = /*@__PURE__*/ createComponent<IxMenuAvatarElement, IxMenuAvatarEvents>({
     tagName: 'ix-menu-avatar',
@@ -909,7 +909,7 @@ export const IxMenuAvatar: StencilReactComponent<IxMenuAvatarElement, IxMenuAvat
     defineCustomElement: defineIxMenuAvatar
 });
 
-type IxMenuAvatarItemEvents = { onItemClick: EventName<IxMenuAvatarItemCustomEvent<MouseEvent>> };
+export type IxMenuAvatarItemEvents = { onItemClick: EventName<IxMenuAvatarItemCustomEvent<MouseEvent>> };
 
 export const IxMenuAvatarItem: StencilReactComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents> = /*@__PURE__*/ createComponent<IxMenuAvatarItemElement, IxMenuAvatarItemEvents>({
     tagName: 'ix-menu-avatar-item',
@@ -920,7 +920,7 @@ export const IxMenuAvatarItem: StencilReactComponent<IxMenuAvatarItemElement, Ix
     defineCustomElement: defineIxMenuAvatarItem
 });
 
-type IxMenuCategoryEvents = NonNullable<unknown>;
+export type IxMenuCategoryEvents = NonNullable<unknown>;
 
 export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenuCategoryEvents> = /*@__PURE__*/ createComponent<IxMenuCategoryElement, IxMenuCategoryEvents>({
     tagName: 'ix-menu-category',
@@ -931,7 +931,7 @@ export const IxMenuCategory: StencilReactComponent<IxMenuCategoryElement, IxMenu
     defineCustomElement: defineIxMenuCategory
 });
 
-type IxMenuItemEvents = NonNullable<unknown>;
+export type IxMenuItemEvents = NonNullable<unknown>;
 
 export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEvents> = /*@__PURE__*/ createComponent<IxMenuItemElement, IxMenuItemEvents>({
     tagName: 'ix-menu-item',
@@ -942,7 +942,7 @@ export const IxMenuItem: StencilReactComponent<IxMenuItemElement, IxMenuItemEven
     defineCustomElement: defineIxMenuItem
 });
 
-type IxMenuSettingsEvents = {
+export type IxMenuSettingsEvents = {
     onTabChange: EventName<CustomEvent<string>>,
     onClose: EventName<IxMenuSettingsCustomEvent<CustomCloseEvent>>
 };
@@ -959,7 +959,7 @@ export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenu
     defineCustomElement: defineIxMenuSettings
 });
 
-type IxMenuSettingsItemEvents = { onLabelChange: EventName<IxMenuSettingsItemCustomEvent<CustomLabelChangeEvent>> };
+export type IxMenuSettingsItemEvents = { onLabelChange: EventName<IxMenuSettingsItemCustomEvent<CustomLabelChangeEvent>> };
 
 export const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents> = /*@__PURE__*/ createComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents>({
     tagName: 'ix-menu-settings-item',
@@ -970,7 +970,7 @@ export const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement
     defineCustomElement: defineIxMenuSettingsItem
 });
 
-type IxMessageBarEvents = {
+export type IxMessageBarEvents = {
     onClosedChange: EventName<CustomEvent<any>>,
     onCloseAnimationCompleted: EventName<CustomEvent<any>>
 };
@@ -987,7 +987,7 @@ export const IxMessageBar: StencilReactComponent<IxMessageBarElement, IxMessageB
     defineCustomElement: defineIxMessageBar
 });
 
-type IxModalEvents = {
+export type IxModalEvents = {
     onDialogClose: EventName<CustomEvent<any>>,
     onDialogDismiss: EventName<CustomEvent<any>>
 };
@@ -1004,7 +1004,7 @@ export const IxModal: StencilReactComponent<IxModalElement, IxModalEvents> = /*@
     defineCustomElement: defineIxModal
 });
 
-type IxModalContentEvents = NonNullable<unknown>;
+export type IxModalContentEvents = NonNullable<unknown>;
 
 export const IxModalContent: StencilReactComponent<IxModalContentElement, IxModalContentEvents> = /*@__PURE__*/ createComponent<IxModalContentElement, IxModalContentEvents>({
     tagName: 'ix-modal-content',
@@ -1015,7 +1015,7 @@ export const IxModalContent: StencilReactComponent<IxModalContentElement, IxModa
     defineCustomElement: defineIxModalContent
 });
 
-type IxModalFooterEvents = NonNullable<unknown>;
+export type IxModalFooterEvents = NonNullable<unknown>;
 
 export const IxModalFooter: StencilReactComponent<IxModalFooterElement, IxModalFooterEvents> = /*@__PURE__*/ createComponent<IxModalFooterElement, IxModalFooterEvents>({
     tagName: 'ix-modal-footer',
@@ -1026,7 +1026,7 @@ export const IxModalFooter: StencilReactComponent<IxModalFooterElement, IxModalF
     defineCustomElement: defineIxModalFooter
 });
 
-type IxModalHeaderEvents = { onCloseClick: EventName<IxModalHeaderCustomEvent<MouseEvent>> };
+export type IxModalHeaderEvents = { onCloseClick: EventName<IxModalHeaderCustomEvent<MouseEvent>> };
 
 export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalHeaderEvents> = /*@__PURE__*/ createComponent<IxModalHeaderElement, IxModalHeaderEvents>({
     tagName: 'ix-modal-header',
@@ -1037,7 +1037,7 @@ export const IxModalHeader: StencilReactComponent<IxModalHeaderElement, IxModalH
     defineCustomElement: defineIxModalHeader
 });
 
-type IxNumberInputEvents = {
+export type IxNumberInputEvents = {
     onValueChange: EventName<CustomEvent<number>>,
     onValidityStateChange: EventName<IxNumberInputCustomEvent<ValidityState>>,
     onIxBlur: EventName<CustomEvent<void>>
@@ -1056,7 +1056,7 @@ export const IxNumberInput: StencilReactComponent<IxNumberInputElement, IxNumber
     defineCustomElement: defineIxNumberInput
 });
 
-type IxPaginationEvents = {
+export type IxPaginationEvents = {
     onPageSelected: EventName<CustomEvent<number>>,
     onItemCountChanged: EventName<CustomEvent<number>>
 };
@@ -1073,7 +1073,7 @@ export const IxPagination: StencilReactComponent<IxPaginationElement, IxPaginati
     defineCustomElement: defineIxPagination
 });
 
-type IxPaneEvents = {
+export type IxPaneEvents = {
     onExpandedChanged: EventName<IxPaneCustomEvent<ExpandedChangedEvent>>,
     onVariantChanged: EventName<IxPaneCustomEvent<VariantChangedEvent>>,
     onBorderlessChanged: EventName<IxPaneCustomEvent<BorderlessChangedEvent>>
@@ -1092,7 +1092,7 @@ export const IxPane: StencilReactComponent<IxPaneElement, IxPaneEvents> = /*@__P
     defineCustomElement: defineIxPane
 });
 
-type IxPaneLayoutEvents = NonNullable<unknown>;
+export type IxPaneLayoutEvents = NonNullable<unknown>;
 
 export const IxPaneLayout: StencilReactComponent<IxPaneLayoutElement, IxPaneLayoutEvents> = /*@__PURE__*/ createComponent<IxPaneLayoutElement, IxPaneLayoutEvents>({
     tagName: 'ix-pane-layout',
@@ -1103,7 +1103,7 @@ export const IxPaneLayout: StencilReactComponent<IxPaneLayoutElement, IxPaneLayo
     defineCustomElement: defineIxPaneLayout
 });
 
-type IxPillEvents = NonNullable<unknown>;
+export type IxPillEvents = NonNullable<unknown>;
 
 export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents> = /*@__PURE__*/ createComponent<IxPillElement, IxPillEvents>({
     tagName: 'ix-pill',
@@ -1114,7 +1114,7 @@ export const IxPill: StencilReactComponent<IxPillElement, IxPillEvents> = /*@__P
     defineCustomElement: defineIxPill
 });
 
-type IxPushCardEvents = NonNullable<unknown>;
+export type IxPushCardEvents = NonNullable<unknown>;
 
 export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEvents> = /*@__PURE__*/ createComponent<IxPushCardElement, IxPushCardEvents>({
     tagName: 'ix-push-card',
@@ -1125,7 +1125,7 @@ export const IxPushCard: StencilReactComponent<IxPushCardElement, IxPushCardEven
     defineCustomElement: defineIxPushCard
 });
 
-type IxRadioEvents = {
+export type IxRadioEvents = {
     onCheckedChange: EventName<CustomEvent<boolean>>,
     onValueChange: EventName<CustomEvent<string>>
 };
@@ -1142,7 +1142,7 @@ export const IxRadio: StencilReactComponent<IxRadioElement, IxRadioEvents> = /*@
     defineCustomElement: defineIxRadio
 });
 
-type IxRadioGroupEvents = { onValueChange: EventName<CustomEvent<string>> };
+export type IxRadioGroupEvents = { onValueChange: EventName<CustomEvent<string>> };
 
 export const IxRadioGroup: StencilReactComponent<IxRadioGroupElement, IxRadioGroupEvents> = /*@__PURE__*/ createComponent<IxRadioGroupElement, IxRadioGroupEvents>({
     tagName: 'ix-radio-group',
@@ -1153,7 +1153,7 @@ export const IxRadioGroup: StencilReactComponent<IxRadioGroupElement, IxRadioGro
     defineCustomElement: defineIxRadioGroup
 });
 
-type IxRowEvents = NonNullable<unknown>;
+export type IxRowEvents = NonNullable<unknown>;
 
 export const IxRow: StencilReactComponent<IxRowElement, IxRowEvents> = /*@__PURE__*/ createComponent<IxRowElement, IxRowEvents>({
     tagName: 'ix-row',
@@ -1164,7 +1164,7 @@ export const IxRow: StencilReactComponent<IxRowElement, IxRowEvents> = /*@__PURE
     defineCustomElement: defineIxRow
 });
 
-type IxSelectEvents = {
+export type IxSelectEvents = {
     onValueChange: EventName<CustomEvent<string | string[]>>,
     onInputChange: EventName<CustomEvent<string>>,
     onAddItem: EventName<CustomEvent<string>>,
@@ -1185,7 +1185,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents> = 
     defineCustomElement: defineIxSelect
 });
 
-type IxSelectItemEvents = { onItemClick: EventName<CustomEvent<string>> };
+export type IxSelectItemEvents = { onItemClick: EventName<CustomEvent<string>> };
 
 export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents>({
     tagName: 'ix-select-item',
@@ -1196,7 +1196,7 @@ export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectIt
     defineCustomElement: defineIxSelectItem
 });
 
-type IxSliderEvents = { onValueChange: EventName<CustomEvent<number>> };
+export type IxSliderEvents = { onValueChange: EventName<CustomEvent<number>> };
 
 export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents> = /*@__PURE__*/ createComponent<IxSliderElement, IxSliderEvents>({
     tagName: 'ix-slider',
@@ -1207,7 +1207,7 @@ export const IxSlider: StencilReactComponent<IxSliderElement, IxSliderEvents> = 
     defineCustomElement: defineIxSlider
 });
 
-type IxSpinnerEvents = NonNullable<unknown>;
+export type IxSpinnerEvents = NonNullable<unknown>;
 
 export const IxSpinner: StencilReactComponent<IxSpinnerElement, IxSpinnerEvents> = /*@__PURE__*/ createComponent<IxSpinnerElement, IxSpinnerEvents>({
     tagName: 'ix-spinner',
@@ -1218,7 +1218,7 @@ export const IxSpinner: StencilReactComponent<IxSpinnerElement, IxSpinnerEvents>
     defineCustomElement: defineIxSpinner
 });
 
-type IxSplitButtonEvents = { onButtonClick: EventName<IxSplitButtonCustomEvent<MouseEvent>> };
+export type IxSplitButtonEvents = { onButtonClick: EventName<IxSplitButtonCustomEvent<MouseEvent>> };
 
 export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitButtonEvents> = /*@__PURE__*/ createComponent<IxSplitButtonElement, IxSplitButtonEvents>({
     tagName: 'ix-split-button',
@@ -1229,7 +1229,7 @@ export const IxSplitButton: StencilReactComponent<IxSplitButtonElement, IxSplitB
     defineCustomElement: defineIxSplitButton
 });
 
-type IxTabItemEvents = { onTabClick: EventName<IxTabItemCustomEvent<TabClickDetail>> };
+export type IxTabItemEvents = { onTabClick: EventName<IxTabItemCustomEvent<TabClickDetail>> };
 
 export const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents> = /*@__PURE__*/ createComponent<IxTabItemElement, IxTabItemEvents>({
     tagName: 'ix-tab-item',
@@ -1240,7 +1240,7 @@ export const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents>
     defineCustomElement: defineIxTabItem
 });
 
-type IxTabsEvents = { onSelectedChange: EventName<CustomEvent<number>> };
+export type IxTabsEvents = { onSelectedChange: EventName<CustomEvent<number>> };
 
 export const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents> = /*@__PURE__*/ createComponent<IxTabsElement, IxTabsEvents>({
     tagName: 'ix-tabs',
@@ -1251,7 +1251,7 @@ export const IxTabs: StencilReactComponent<IxTabsElement, IxTabsEvents> = /*@__P
     defineCustomElement: defineIxTabs
 });
 
-type IxTextareaEvents = {
+export type IxTextareaEvents = {
     onValueChange: EventName<CustomEvent<string>>,
     onValidityStateChange: EventName<IxTextareaCustomEvent<ValidityState>>,
     onIxBlur: EventName<CustomEvent<void>>
@@ -1270,7 +1270,7 @@ export const IxTextarea: StencilReactComponent<IxTextareaElement, IxTextareaEven
     defineCustomElement: defineIxTextarea
 });
 
-type IxTileEvents = NonNullable<unknown>;
+export type IxTileEvents = NonNullable<unknown>;
 
 export const IxTile: StencilReactComponent<IxTileElement, IxTileEvents> = /*@__PURE__*/ createComponent<IxTileElement, IxTileEvents>({
     tagName: 'ix-tile',
@@ -1281,7 +1281,7 @@ export const IxTile: StencilReactComponent<IxTileElement, IxTileEvents> = /*@__P
     defineCustomElement: defineIxTile
 });
 
-type IxTimePickerEvents = {
+export type IxTimePickerEvents = {
     onTimeSelect: EventName<CustomEvent<string>>,
     onTimeChange: EventName<CustomEvent<string>>
 };
@@ -1298,7 +1298,7 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
     defineCustomElement: defineIxTimePicker
 });
 
-type IxToastEvents = { onCloseToast: EventName<CustomEvent<any>> };
+export type IxToastEvents = { onCloseToast: EventName<CustomEvent<any>> };
 
 export const IxToast: StencilReactComponent<IxToastElement, IxToastEvents> = /*@__PURE__*/ createComponent<IxToastElement, IxToastEvents>({
     tagName: 'ix-toast',
@@ -1309,7 +1309,7 @@ export const IxToast: StencilReactComponent<IxToastElement, IxToastEvents> = /*@
     defineCustomElement: defineIxToast
 });
 
-type IxToastContainerEvents = NonNullable<unknown>;
+export type IxToastContainerEvents = NonNullable<unknown>;
 
 export const IxToastContainer: StencilReactComponent<IxToastContainerElement, IxToastContainerEvents> = /*@__PURE__*/ createComponent<IxToastContainerElement, IxToastContainerEvents>({
     tagName: 'ix-toast-container',
@@ -1320,7 +1320,7 @@ export const IxToastContainer: StencilReactComponent<IxToastContainerElement, Ix
     defineCustomElement: defineIxToastContainer
 });
 
-type IxToggleEvents = { onCheckedChange: EventName<CustomEvent<boolean>> };
+export type IxToggleEvents = { onCheckedChange: EventName<CustomEvent<boolean>> };
 
 export const IxToggle: StencilReactComponent<IxToggleElement, IxToggleEvents> = /*@__PURE__*/ createComponent<IxToggleElement, IxToggleEvents>({
     tagName: 'ix-toggle',
@@ -1331,7 +1331,7 @@ export const IxToggle: StencilReactComponent<IxToggleElement, IxToggleEvents> = 
     defineCustomElement: defineIxToggle
 });
 
-type IxToggleButtonEvents = { onPressedChange: EventName<CustomEvent<boolean>> };
+export type IxToggleButtonEvents = { onPressedChange: EventName<CustomEvent<boolean>> };
 
 export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxToggleButtonEvents> = /*@__PURE__*/ createComponent<IxToggleButtonElement, IxToggleButtonEvents>({
     tagName: 'ix-toggle-button',
@@ -1342,7 +1342,7 @@ export const IxToggleButton: StencilReactComponent<IxToggleButtonElement, IxTogg
     defineCustomElement: defineIxToggleButton
 });
 
-type IxTooltipEvents = NonNullable<unknown>;
+export type IxTooltipEvents = NonNullable<unknown>;
 
 export const IxTooltip: StencilReactComponent<IxTooltipElement, IxTooltipEvents> = /*@__PURE__*/ createComponent<IxTooltipElement, IxTooltipEvents>({
     tagName: 'ix-tooltip',
@@ -1353,7 +1353,7 @@ export const IxTooltip: StencilReactComponent<IxTooltipElement, IxTooltipEvents>
     defineCustomElement: defineIxTooltip
 });
 
-type IxTypographyEvents = NonNullable<unknown>;
+export type IxTypographyEvents = NonNullable<unknown>;
 
 export const IxTypography: StencilReactComponent<IxTypographyElement, IxTypographyEvents> = /*@__PURE__*/ createComponent<IxTypographyElement, IxTypographyEvents>({
     tagName: 'ix-typography',
@@ -1364,7 +1364,7 @@ export const IxTypography: StencilReactComponent<IxTypographyElement, IxTypograp
     defineCustomElement: defineIxTypography
 });
 
-type IxUploadEvents = { onFilesChanged: EventName<IxUploadCustomEvent<Array<File>>> };
+export type IxUploadEvents = { onFilesChanged: EventName<IxUploadCustomEvent<Array<File>>> };
 
 export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = /*@__PURE__*/ createComponent<IxUploadElement, IxUploadEvents>({
     tagName: 'ix-upload',
@@ -1375,7 +1375,7 @@ export const IxUpload: StencilReactComponent<IxUploadElement, IxUploadEvents> = 
     defineCustomElement: defineIxUpload
 });
 
-type IxValidationTooltipEvents = NonNullable<unknown>;
+export type IxValidationTooltipEvents = NonNullable<unknown>;
 
 export const IxValidationTooltip: StencilReactComponent<IxValidationTooltipElement, IxValidationTooltipEvents> = /*@__PURE__*/ createComponent<IxValidationTooltipElement, IxValidationTooltipEvents>({
     tagName: 'ix-validation-tooltip',
@@ -1386,7 +1386,7 @@ export const IxValidationTooltip: StencilReactComponent<IxValidationTooltipEleme
     defineCustomElement: defineIxValidationTooltip
 });
 
-type IxWorkflowStepEvents = NonNullable<unknown>;
+export type IxWorkflowStepEvents = NonNullable<unknown>;
 
 export const IxWorkflowStep: StencilReactComponent<IxWorkflowStepElement, IxWorkflowStepEvents> = /*@__PURE__*/ createComponent<IxWorkflowStepElement, IxWorkflowStepEvents>({
     tagName: 'ix-workflow-step',
@@ -1397,7 +1397,7 @@ export const IxWorkflowStep: StencilReactComponent<IxWorkflowStepElement, IxWork
     defineCustomElement: defineIxWorkflowStep
 });
 
-type IxWorkflowStepsEvents = { onStepSelected: EventName<CustomEvent<number>> };
+export type IxWorkflowStepsEvents = { onStepSelected: EventName<CustomEvent<number>> };
 
 export const IxWorkflowSteps: StencilReactComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents> = /*@__PURE__*/ createComponent<IxWorkflowStepsElement, IxWorkflowStepsEvents>({
     tagName: 'ix-workflow-steps',

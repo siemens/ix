@@ -20,12 +20,12 @@ import {
   TemplateRef,
 } from '@angular/core';
 import type {
-  Components,
   TreeContext as ICwTreeTreeContext,
   TreeContext,
   UpdateCallback,
 } from '@siemens/ix';
 import { Subscription } from 'rxjs';
+import type { Components } from '@siemens/ix';
 
 export declare interface TreeBaseDirective
   extends Omit<Components.IxTree, 'renderItem'> {
