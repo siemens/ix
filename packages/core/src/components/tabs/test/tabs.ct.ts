@@ -70,19 +70,35 @@ test('should not change tab by native click event on prevent default', async ({
 }) => {
   await mount(`
     <ix-tabs>
-      <ix-tab-item onClick={(event) => event.preventDefault()}>Item 1</ix-tab-item>
-      <ix-tab-item onClick={(event) => event.preventDefault()}>Item 2</ix-tab-item>
-      <ix-tab-item onClick={(event) => event.preventDefault()}>Item 3</ix-tab-item>
+      <ix-tab-item>Item 1</ix-tab-item>
+      <ix-tab-item>Item 2</ix-tab-item>
+      <ix-tab-item>Item 3</ix-tab-item>
     </ix-tabs>
   `);
   const tabs = page.locator('ix-tabs');
   const firstTab = page.locator('ix-tab-item').nth(0);
+  const secondTab = page.locator('ix-tab-item').nth(1);
   const lastTab = page.locator('ix-tab-item').nth(2);
 
-  await lastTab.click();
+  await lastTab.evaluate((lastTabElement) => {
+    lastTabElement.addEventListener(
+      'click',
+      (event) => {
+        event.preventDefault();
+      },
+      true
+    );
+  });
 
   await expect(tabs).toHaveClass(/hydrated/);
   await expect(firstTab).toHaveClass(/selected/);
+
+  await secondTab.click();
+
+  await expect(secondTab).toHaveClass(/selected/);
+
+  await lastTab.click();
+
   await expect(lastTab).not.toHaveClass(/selected/);
 });
 
