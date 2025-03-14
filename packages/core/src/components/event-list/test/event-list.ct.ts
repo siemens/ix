@@ -73,37 +73,37 @@ test('should add an item dynamically and verify its height', async ({
   mount,
   page,
 }) => {
+  const itemHeight = 60;
+  const remInPixel = 16;
+
   await mount(`
-    <ix-event-list item-height="60">
+    <ix-event-list item-height="${itemHeight}">
       <ix-event-list-item color="color-primary">Text 1</ix-event-list-item>
       <ix-event-list-item color="color-primary">Text 2</ix-event-list-item>
       <ix-event-list-item color="color-primary">Text 3</ix-event-list-item>
       <ix-event-list-item color="color-primary">Text 4</ix-event-list-item>
     </ix-event-list>
-    <ix-button id="add-button">Add</ix-button>
   `);
 
   const eventListItems = page.locator('ix-event-list-item');
-  const addButton = page.locator('#add-button');
 
   // Ensure initial count is 4
   await expect(eventListItems).toHaveCount(4);
 
-  // Attach click event to add an item
-  await addButton.evaluate((buttonElement) => {
-    buttonElement.addEventListener('click', () => {
-      const eventListItem = document.createElement('ix-event-list-item');
-      eventListItem.textContent = 'Text 5';
-      eventListItem.setAttribute('color', 'color-primary');
-      const eventList = document.querySelector('ix-event-list');
-      if (eventList) {
-        eventList.appendChild(eventListItem);
-      }
-    });
-  });
+  // add an item and nested item
+  await page.evaluate(() => {
+    const eventListItem = document.createElement('ix-event-list-item');
+    eventListItem.textContent = 'Newly added item';
+    eventListItem.setAttribute('color', 'color-primary');
 
-  // Click add button to append a new item
-  await addButton.click();
+    const eventList = document.querySelector('ix-event-list');
+    if (eventList) {
+      eventList.appendChild(eventListItem);
+      const div = document.createElement('div');
+      div.appendChild(eventListItem);
+      eventList.appendChild(div);
+    }
+  });
 
   // Validate that the new item is added
   await expect(eventListItems).toHaveCount(5);
@@ -124,7 +124,7 @@ test('should add an item dynamically and verify its height', async ({
   );
 
   // Validate the heights (convert 60px to rem)
-  const expectedHeightInRem = `${60 / 16}rem`;
+  const expectedHeightInRem = `${itemHeight / remInPixel}rem`;
 
   heights.forEach((height) => {
     expect(height.trim()).toBe(expectedHeightInRem);

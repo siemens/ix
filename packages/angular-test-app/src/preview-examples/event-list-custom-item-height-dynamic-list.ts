@@ -12,9 +12,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-example',
   template: `
-    <ix-event-list item-height="60">
+    <ix-event-list [itemHeight]="itemHeight">
       <ng-container *ngFor="let item of items">
-        <ix-event-list-item color="color-primary">Text {{ item }}</ix-event-list-item>
+        <ix-event-list-item color="color-primary"
+          >Text {{ item }}</ix-event-list-item
+        >
       </ng-container>
     </ix-event-list>
     <ix-button (click)="onAdd()">Add</ix-button>
@@ -22,6 +24,7 @@ import { Component } from '@angular/core';
 })
 export default class EventListCustomItemHeightDynamicList {
   items = [1, 2, 3];
+  itemHeight = 60;
 
   onAdd() {
     this.items.push(this.items.length + 1);
