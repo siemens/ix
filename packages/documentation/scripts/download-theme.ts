@@ -9,7 +9,7 @@
 import axios from 'axios';
 import fs, { ensureDirSync } from 'fs-extra';
 import path from 'path';
-import { rimrafSync } from 'rimraf';
+import rimraf from 'rimraf';
 import tar from 'tar';
 import zlib from 'zlib';
 
@@ -21,7 +21,7 @@ const ci = process.env.CI;
 
 (async () => {
   const file = path.join(pkgRoot, '.build-temp', 'theme.tgz');
-  rimrafSync(path.join(file, '..'));
+  rimraf.sync(path.join(file, '..'));
 
   if (!ci) {
     console.log('No CI! Skip download theme.');

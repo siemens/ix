@@ -29,6 +29,78 @@ test('renders', async ({ mount, page }) => {
   await expect(header).toHaveClass(/breakpoint-lg/);
 });
 
+test('use brand logo if provided', async ({ mount, page }) => {
+  await mount(``);
+  await page.evaluate(() => {
+    customElements.define(
+      'ix-siemens-logo',
+      class extends HTMLElement {
+        constructor() {
+          super();
+          const shadow = this.attachShadow({ mode: 'open' });
+          const wrapper = document.createElement('div');
+          wrapper.innerText = `THE BRAND LOGO`;
+          shadow.appendChild(wrapper);
+        }
+      }
+    );
+  });
+
+  await page.evaluate(() => {
+    const header = document.createElement('ix-application-header');
+    header.name = 'Test';
+    document.querySelector('#mount')!.appendChild(header);
+  });
+
+  const header = page.locator('ix-application-header');
+  await expect(header).toBeVisible();
+
+  const logo = page.locator('ix-application-header .logo');
+  await expect(logo).toBeVisible();
+
+  const customLogo = logo.locator('ix-siemens-logo');
+  await expect(customLogo).toHaveText('THE BRAND LOGO');
+});
+
+test('use custom logo over brand logo', async ({ mount, page }) => {
+  await mount(``);
+  await page.evaluate(() => {
+    customElements.define(
+      'ix-siemens-logo',
+      class extends HTMLElement {
+        constructor() {
+          super();
+          const shadow = this.attachShadow({ mode: 'open' });
+          const wrapper = document.createElement('div');
+          wrapper.innerText = `THE BRAND LOGO`;
+          shadow.appendChild(wrapper);
+        }
+      }
+    );
+  });
+
+  await page.evaluate(() => {
+    const alternativeLogo = document.createElement('div');
+    alternativeLogo.innerText = 'CUSTOM LOGO';
+    alternativeLogo.slot = 'logo';
+
+    const header = document.createElement('ix-application-header');
+    header.name = 'Test';
+
+    header.appendChild(alternativeLogo);
+    document.querySelector('#mount')?.appendChild(header);
+  });
+
+  const header = page.locator('ix-application-header');
+  await expect(header).toBeVisible();
+
+  const logo = page.locator('ix-application-header .logo');
+  await expect(logo).toBeVisible();
+
+  const customLogo = logo.getByText('THE BRAND LOGO');
+  await expect(customLogo).not.toBeVisible();
+});
+
 test('not response inside map navigation', async ({ mount, page }) => {
   page.setViewportSize(viewPorts.sm);
   await mount(

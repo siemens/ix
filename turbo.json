@@ -34,6 +34,10 @@
       "dependsOn": ["^build"],
       "cache": false
     },
+    "test.memlab": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
     "build.watch": {
       "cache": false
     },

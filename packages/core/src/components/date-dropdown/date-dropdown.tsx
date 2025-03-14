@@ -391,7 +391,7 @@ export class DateDropdown
             }
           }}
         >
-          <ix-layout-grid no-margin="true">
+          <ix-layout-grid noMargin>
             <ix-row>
               {this.dateRangeOptions?.length > 1 && (
                 <ix-col
