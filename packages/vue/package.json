@@ -11,6 +11,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/vue"
   },
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
